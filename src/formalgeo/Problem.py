@@ -1,5 +1,72 @@
 import json
 import re
+
+
+def activate_theory_with_arguments(theory_with_templates, theory_with_args):
+    # Extract the theory name and templates
+    theory_name, templates = eval(theory_with_templates)
+    premise_template = templates['premise']
+    conclusion_template = templates['conclusion'][0]
+
+    # Extract the new theory name and its arguments
+    theory_name_with_args, *args = re.findall(r'\w+', theory_with_args)
+
+    # Create a dictionary mapping from original variables to new arguments
+    original_vars = re.findall(r'\w+', theory_name)
+    substitutions = dict(zip(original_vars, args))
+
+    # Substitute the arguments in the premise and conclusion
+    premise = premise_template
+    for var, value in substitutions.items():
+        premise = premise.replace(var, value)
+
+    conclusion = conclusion_template
+    for var, value in substitutions.items():
+        conclusion = conclusion.replace(var, value)
+
+    # Format the final theory
+    activated_theory = f"('{theory_name_with_args}({', '.join(args[1:])})', " \
+                       f"{{'premise': '{premise}', 'conclusion': ['{conclusion}']}})"
+
+    return activated_theory
+
+
+
+
+def get_theorem_seqs_expl(theorem_seqs):
+    theorems_seqs_expl = []
+    for v in theorem_seqs:
+        theory_str = str(get_theory(v))
+        input_string1 = v
+        input_string2 = theory_str
+        theorems_seqs_expl.append(activate_theory_with_arguments(input_string2, input_string1))
+        # result1 = extract_substring_first_exp(input_string1)
+        # result2 = extract_substring_second_exp(input_string2)
+        # if len(result1.replace(",", "")) != len(result2.replace(",", "")):
+        #     raise ValueError("The extracted substrings must have the same length for character-level mapping.")
+        #
+        # mapping_dict = {result2[i]: result1[i] for i in range(len(result2)) if result2[i].isupper()}
+        # theorems_seqs_expl.append(replace_symbols(input_string2, mapping_dict))
+
+    return theorems_seqs_expl
+
+def get_theorem_seqs_dag_expl(theorem_seqs_dag):
+    theorems_seqs_dag_expl = []
+    for key, val in theorem_seqs_dag.items():
+        for v in val:
+            theory_str = str(get_theory(v))
+            input_string1 = v
+            input_string2 = theory_str
+            result1 = extract_substring_first_exp(input_string1)
+            result2 = extract_substring_second_exp(input_string2)
+            if len(result1.replace(",", "")) != len(result2.replace(",", "")):
+                raise ValueError("The extracted substrings must have the same length for character-level mapping.")
+
+            mapping_dict = {result2[i]: result1[i] for i in range(len(result2)) if result2[i].isupper()}
+            theorems_seqs_dag_expl.append(replace_symbols(input_string2, mapping_dict))
+    return theorems_seqs_dag_expl
+
+
 class Problem:
     def __init__(self, id, problem_level, description, solution, construction_cdl, abstract_construction_cdl, text_cdl,
                  abstract_text_cdl, goal_cdl, abstract_goal_cdl, theorem_seqs, abstract_theorem_seqs,
@@ -22,6 +89,10 @@ class Problem:
         self.abstract_theorem_seqs_dag = abstract_theorem_seqs_dag
 
 
+
+
+
+
     def print_problem(self):
         print('---')
         print("problem:")
@@ -41,36 +112,10 @@ class Problem:
         print(self.text_cdl)
         print("goal_cdl:")
         print(self.goal_cdl)
-
-        theories_set = set()
-        theorems_expl = []
-        for key, val in self.theorem_seqs_dag.items():
-            for v in val:
-                theory_str = str(get_theory(v))
-                theories_set.add(theory_str)
-                input_string1 = v
-                input_string2 = theory_str
-                result1 = extract_substring_first_exp(input_string1)
-                result2 = extract_substring_second_exp(input_string2)
-                if len(result1.replace(",", "")) != len(result2.replace(",", "")):
-                    raise ValueError("The extracted substrings must have the same length for character-level mapping.")
-
-                mapping_dict = {result2[i]: result1[i] for i in range(len(result2)) if result2[i].isupper()}
-                theorems_expl.append(replace_symbols(input_string2, mapping_dict))
-
-        for key, val in self.theorem_seqs_dag.items():
-            l = []
-            for v in val:
-                l.append(remove_id_first_arg(v))
-            self.theorem_seqs_dag[key] = l
-
+        print("solution: " + str(self.solution))
         print("theorem_seqs_dag:")
         print(self.theorem_seqs_dag)
-        print("theorem_explanation:")
-        for t in theorems_expl:
-            print(t)
 
-        print("solution: " + str(self.solution))
 
 
 def get_theory(theory):

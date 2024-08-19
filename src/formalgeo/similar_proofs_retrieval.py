@@ -7,12 +7,9 @@ from utils import display_image
 
 
 
-
-
-def main():
+def retrieve_similar_proof(problem_id):
     data = pd.read_csv('results.csv')
-    problem1_id = 6800
-    filtered_data = data[data["problem1_id"] == problem1_id]
+    filtered_data = data[data["problem1_id"] == problem_id]
     filtered_data["predicted_similarity"] = filtered_data.apply(
         lambda row: load_model_and_predict(
             model_save_path,
@@ -28,18 +25,12 @@ def main():
     print("ground truth similarity")
     print(top_row['abstract_theorem_seqs_jaccard_similarity'])
 
-    problem1_id = top_row["problem1_id"].values[0]
-    problem2_id = top_row["problem2_id"].values[0]
+    return top_row["problem2_id"].values[0]
 
-    problems = save_problems()
 
-    problem = problems[problem1_id]
-    problem.print_problem()
-    display_image(problem1_id)
+def main():
+    retrieve_similar_proof(6800)
 
-    problem = problems[problem2_id]
-    problem.print_problem()
-    display_image(problem2_id)
 
 if __name__ == "__main__":
     main()
