@@ -4,6 +4,7 @@ from formalgeo.solver import Interactor
 from formalgeo.parse import parse_one_theorem
 from formalgeo.tools import show_solution
 
+from Problem import get_theorem_seqs_expl
 from create_problems_proofs_similarity_dataset import save_problems
 import time
 import openai
@@ -14,6 +15,9 @@ openai.api_key = "sk-ds-openapi-key-0sfNvLjYF3wMuFQcp7oST3BlbkFJWeqSW76sV6Gy48mj
 openai.api_key = "sk-ds-openapi-key-0sfNvLjYF3wMuFQcp7oST3BlbkFJWeqSW76sV6Gy48mjIJVK"
 
 from utils import display_image
+from similar_proofs_retrieval import retrieve_similar_proof
+import ast
+import re
 
 dl = DatasetLoader(dataset_name="formalgeo7k_v1", datasets_path="formalgeo7k_v1")
 solver = Interactor(dl.predicate_GDL, dl.theorem_GDL)
@@ -24,15 +28,104 @@ solver = Interactor(dl.predicate_GDL, dl.theorem_GDL)
 def remove_trailing_empty_lines(text):
     return '\n'.join(line for line in text.splitlines() if line.strip())
 
+
+def parse_relations(relations_string):
+    # Split by sections (e.g., Shape, Collinear, Point, etc.)
+    sections = re.split(r'(?<=\n)(?=\w+:\n)', relations_string)
+
+    # Dictionary to hold all sections
+    parsed_data = {}
+
+    # Process each section
+    for section in sections:
+        if section.strip():  # If the section is not empty
+            # Get the section name by finding the first line ending with ':'
+            section_name = section.split(':')[0].strip()
+            # Split the section into individual relations by newline, starting from the second line
+            relations = section.split('\n')[1:]  # Skip the section header line
+
+            # Parse each relation
+            parsed_relations = []
+            for relation in relations:
+                relation = relation.strip()
+                if relation:  # Ensure it's not an empty line
+                    parts = relation.strip('()').split(';')
+                    parsed_relations.append({
+                        'id': int(parts[0]),
+                        'entities': parts[1].split(','),
+                        'dependencies': parts[2].strip('()').split(',') if parts[2] != '(-1)' else [],
+                        'type': parts[3]
+                    })
+
+            # Store the parsed relations in the dictionary
+            parsed_data[section_name] = parsed_relations
+
+    return parsed_data
+
+
+def validate_premise(premise, relations_string):
+    # Parse the relations string
+    parsed_data = parse_relations(relations_string)
+
+    # Split the premise string by '&'
+    validations = premise.split("&")
+
+    # Dictionary to store validation results
+    validation_results = {}
+
+    # Function to validate a single item
+    def validate_item(item, parsed_data):
+        match = re.match(r"(\w+)\(([\w,]+)\)", item)
+        if match:
+            section = match.group(1)
+            entities = match.group(2).split(',')
+
+            # Check only in the relevant section
+            if section in parsed_data:
+                for relation in parsed_data[section]:
+                    if set(entities).issubset(set(relation['entities'])):
+                        return True
+            else:
+                return False  # Section not found
+        return False
+
+    # Validate each item in the premise
+    for item in validations:
+        item = item.strip()
+        validation_results[item] = validate_item(item, parsed_data)
+
+    # Return the validation results
+    return validation_results
 def theorem_verifier(solver, theorem_seqs):
     res = "Correct"
 
     for theorem in theorem_seqs:
         t_name, t_branch, t_para = parse_one_theorem(theorem)
         try:
-            solver.apply_theorem(t_name, t_branch, t_para)
+            update, reason = solver.apply_theorem(t_name, t_branch, t_para)
+            expl = get_theorem_seqs_expl([theorem])[0]
+            parsed_tuple = ast.literal_eval(expl)
+            premise = parsed_tuple[1]['premise']
+            if not update:
+                return "Theorem sequence step: " + theorem + ". premise: " + premise + ". " + reason
+
+            # expl = get_theorem_seqs_expl([theorem])[0]
+            # parsed_tuple = ast.literal_eval(expl)
+            # premise = parsed_tuple[1]['premise']
+            # if not update:
+            #     results = validate_premise(premise, res2['prompt_input_relations'])
+            #     for item, is_valid in results.items():
+            #         print(f"{item}: {'Valid' if is_valid else 'Invalid'}")
+            #
+            #     invalid_premises = " | ".join(
+            #         [f"please rewrite the theory step, you have an invalid premise: {key} which is not part of the given RELATIONS of the problem" for key, value in results.items() if not value])
+            #     if len(invalid_premises) > 0:
+            #         return "Theorem sequence step: " + theorem + ". premise: " + premise + ". " + invalid_premises
+
         except Exception as e:
             res = str(e) + " Theorem sequence step: " + theorem
+            break
+
     return res
 
 
@@ -40,20 +133,29 @@ def parse_problem(pid):
     problem_CDL = dl.get_problem(pid)
     solver.load_problem(problem_CDL)
 
-    prompt_input_relations = remove_trailing_empty_lines(show_solution(solver.problem))
+    result_dict = show_solution(solver.problem)
+
+    prompt_input_relations = remove_trailing_empty_lines(result_dict['relations'])
+    prompt_input_symbols_and_values = result_dict['symbols_and_values']
     prompt_input_description = problem_CDL['problem_text_en'].split('As shown in the diagram,')[1].strip()
     prompt_input_construction_cdl = "\n".join(problem_CDL['construction_cdl'])
     prompt_input_text_cdl = "\n".join(problem_CDL['text_cdl'])
     prompt_input_goal_cdl = problem_CDL['goal_cdl']
     theorem_seqs = problem_CDL['theorem_seqs']
     prompt_output_theorem_seqs = "\n".join(f"({i + 1};{theorem_seqs[i]})" for i in range(len(theorem_seqs)))
-
+    prompt_output_equations = result_dict['equations']
+    prompt_output_goal_symbol = result_dict['goal_value']
+    prompt_output_answer = result_dict['answer']
     return {
         'prompt_input_description': prompt_input_description,
         'prompt_input_construction_cdl': prompt_input_construction_cdl,
         'prompt_input_text_cdl': prompt_input_text_cdl,
         'prompt_input_goal_cdl': prompt_input_goal_cdl,
         'prompt_input_relations': prompt_input_relations,
+        'prompt_input_symbols_and_values': prompt_input_symbols_and_values,
+        'prompt_output_equations': prompt_output_equations,
+        'prompt_output_goal_symbol': prompt_output_goal_symbol,
+        'prompt_output_answer': prompt_output_answer,
         'prompt_output_theorem_seqs': prompt_output_theorem_seqs
     }
 
@@ -96,18 +198,18 @@ def gpt_response(messages, model_name):
     return resp
 
 
-def generate_and_verify(prompt_path, model_name, max_retries=5):
+def generate_and_verify(prompt_path, model_name, res1, res2, max_retries=5):
     with open(prompt_path, 'r') as file:
         initial_prompt = file.read()
 
     initial_message = {
         "role": "user",
         "content": initial_prompt + (
-            f"\nDESCRIPTION:\n{problem1_description}\nCONSTRUCTION_CDL:\n{problem1_construction_cdl}\n"
-            f"TEXT_CDL:\n{problem1_text_cdl}\nGOAL_CDL:\n{problem1_goal_cdl}\nRELATIONS:\n{problem1_relations}\n"
-            f"Outputs:\nTHEOREM_SEQUENCE:\n{problem1_theorem_seqs}\nInputs:\nDESCRIPTION:\n{problem2_construction_cdl}\n"
-            f"CONSTRUCTION_CDL:\n{problem2_construction_cdl}\nTEXT_CDL:\n{problem2_text_cdl}\nGOAL_CDL:\n{problem2_goal_cdl}\n"
-            f"RELATIONS:\n{problem2_relations}\nOutputs:\nTHEOREM_SEQUENCE:\n"
+            f"\nInputs for Problem A (Analogous Problem):\nDESCRIPTION:\n{res1['prompt_input_description']}\nCONSTRUCTION_CDL:\n{res1['prompt_input_construction_cdl']}\n"
+            f"TEXT_CDL:\n{res1['prompt_input_text_cdl']}\nGOAL_CDL:\n{res1['prompt_input_goal_cdl']}\nRELATIONS:\n{res1['prompt_input_relations']}\nSYMBOLS_AND_VALUES:\n{res1['prompt_input_symbols_and_values']}\n"
+            f"Outputs:\nOutputs for Problem A (Analogous Problem):EQUATIONS:\n{res1['prompt_output_equations']}\nGOAL_SYMBOL:\n{res1['prompt_output_goal_symbol']}\nANSWER:\n{res1['prompt_output_answer']}\nTHEOREM_SEQUENCE:\n{res1['prompt_output_theorem_seqs']}\nInputs for Problem B (To Be Solved):\nDESCRIPTION:\n{res2['prompt_input_description']}\n"
+            f"CONSTRUCTION_CDL:\n{res2['prompt_input_construction_cdl']}\nTEXT_CDL:\n{res2['prompt_input_text_cdl']}\nGOAL_CDL:\n{res2['prompt_input_goal_cdl']}\n"
+            f"RELATIONS:\n{res2['prompt_input_relations']}\nSYMBOLS_AND_VALUES:\n{res2['prompt_input_symbols_and_values']}\nOutputs for Problem B (Final Goal):\nEQUATIONS:\n"
         )
     }
 
@@ -119,19 +221,23 @@ def generate_and_verify(prompt_path, model_name, max_retries=5):
     attempts = 0
     verifier_result = None
 
-    while attempts <= max_retries:
+    while attempts < max_retries:
         resp = gpt_response(messages, model_name)
         generated_theorem_sequence = resp.split("THEOREM_SEQUENCE:\n")[1]
         generated_theorem_sequence_list = re.findall(r'\d+;([^\(\)]+\([^\)]+\))', generated_theorem_sequence)
         verifier_result = theorem_verifier(solver, generated_theorem_sequence_list)
 
+        print("Theorem explanation")
+        for t in get_theorem_seqs_expl(generated_theorem_sequence_list):
+            print(t)
+
         if verifier_result == "Correct":
             print("Theorem sequence verified correctly")
             break
 
-        messages.append({"role": "user", "content": f"Generated theorem sequence: {generated_theorem_sequence}"})
         messages.append({"role": "user", "content": f"Verifier result: {verifier_result}"})
-        messages.append({"role": "user", "content": resp})
+        messages.append({"role": "user", "content": f"Generated theorem sequence: {generated_theorem_sequence}"})
+        messages.append({"role": "assistant", "content": resp})
 
         print(f"Verifier result: {verifier_result}")
         print(f"Retry attempt: {attempts + 1}")
@@ -142,8 +248,9 @@ def generate_and_verify(prompt_path, model_name, max_retries=5):
 
 
 def main():
-    problem1_id = 1570
-    problem2_id = 5536
+
+    problem2_id = 1643
+    problem1_id = retrieve_similar_proof(problem2_id)
 
     problems = save_problems()
     problem = problems[problem1_id]
@@ -154,15 +261,12 @@ def main():
     problem.print_problem()
     display_image(problem2_id)
 
-    res = parse_problem(problem1_id)
-    problem1_description, problem1_construction_cdl, problem1_text_cdl, problem1_goal_cdl, problem1_relations, problem1_theorem_seqs = \
-    res['prompt_input_description'], res['prompt_input_construction_cdl'], res['prompt_input_text_cdl'], res[
-        'prompt_input_goal_cdl'], res['prompt_input_relations'], res['prompt_output_theorem_seqs']
-    res = parse_problem(problem2_id)
-    problem2_description, problem2_construction_cdl, problem2_text_cdl, problem2_goal_cdl, problem2_relations, problem2_theorem_seqs = \
-    res['prompt_input_description'], res['prompt_input_construction_cdl'], res['prompt_input_text_cdl'], res[
-        'prompt_input_goal_cdl'], res['prompt_input_relations'], res['prompt_output_theorem_seqs']
+    res1 = parse_problem(problem1_id)
+    res2 = parse_problem(problem2_id)
 
+    prompt_path = "src/formalgeo/prompt/geometry_problem_prompt.txt"
+    messages, resp, verifier_result = generate_and_verify(prompt_path, 'gpt-4o', res1, res2)
+    print(resp)
     print(1)
 
 if __name__ == "__main__":
