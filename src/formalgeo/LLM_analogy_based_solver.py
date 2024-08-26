@@ -1,4 +1,5 @@
 import re
+import json
 from formalgeo.data import download_dataset, DatasetLoader
 from formalgeo.solver import Interactor
 from formalgeo.parse import parse_one_theorem
@@ -13,7 +14,7 @@ openai.api_key = "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"
 openai.api_key = "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"
 openai.api_key = "sk-ds-openapi-key-0sfNvLjYF3wMuFQcp7oST3BlbkFJWeqSW76sV6Gy48mjIJVK"
 openai.api_key = "sk-ds-openapi-key-0sfNvLjYF3wMuFQcp7oST3BlbkFJWeqSW76sV6Gy48mjIJVK"
-
+openai.api_key = "sk-svcacct-kVTUGOlCTL2vge6gtHi--la5vr8g-lqT3ieuWGdHQBrYChItgkm2k1WPS9mA-MXe7ebaPHCMk8YrCft1OT3BlbkFJLNl-eYBXpQiokB5m3Nw0oiO9ZOe_Paf1WH0Kh4If52-rQ92DiSodgoopxiDoQDKlAGYDPRpiWamueq8vQA"
 from utils import display_image
 from similar_proofs_retrieval import retrieve_similar_proof
 import ast
@@ -29,38 +30,22 @@ def remove_trailing_empty_lines(text):
     return '\n'.join(line for line in text.splitlines() if line.strip())
 
 
-def parse_relations(relations_string):
-    # Split by sections (e.g., Shape, Collinear, Point, etc.)
-    sections = re.split(r'(?<=\n)(?=\w+:\n)', relations_string)
-
-    # Dictionary to hold all sections
-    parsed_data = {}
-
-    # Process each section
-    for section in sections:
-        if section.strip():  # If the section is not empty
-            # Get the section name by finding the first line ending with ':'
-            section_name = section.split(':')[0].strip()
-            # Split the section into individual relations by newline, starting from the second line
-            relations = section.split('\n')[1:]  # Skip the section header line
-
-            # Parse each relation
-            parsed_relations = []
-            for relation in relations:
-                relation = relation.strip()
-                if relation:  # Ensure it's not an empty line
-                    parts = relation.strip('()').split(';')
-                    parsed_relations.append({
-                        'id': int(parts[0]),
-                        'entities': parts[1].split(','),
-                        'dependencies': parts[2].strip('()').split(',') if parts[2] != '(-1)' else [],
-                        'type': parts[3]
-                    })
-
-            # Store the parsed relations in the dictionary
-            parsed_data[section_name] = parsed_relations
-
-    return parsed_data
+def convert_relations(relations_string):
+    relations_list = relations_string.split("\n")
+    res = []
+    type = ""
+    for row in relations_list:
+        if not row.startswith("("):
+            type = row[:-1]
+        else:
+            values = row.split(";")
+            res.append((type + "(" + values[1] + ")", values[-1][:-1]))
+    extended_res = []
+    for tup in res:
+        if tup[-1] == "prerequisite":
+            continue
+        extended_res.append(tup[0])
+    return "\n".join(extended_res)
 
 
 def validate_premise(premise, relations_string):
@@ -104,10 +89,9 @@ def theorem_verifier(solver, theorem_seqs):
         try:
             update, reason = solver.apply_theorem(t_name, t_branch, t_para)
             expl = get_theorem_seqs_expl([theorem])[0]
-            parsed_tuple = ast.literal_eval(expl)
-            premise = parsed_tuple[1]['premise']
+            premise = json.loads(expl)["premise"]
             if not update:
-                return "Theorem sequence step: " + theorem + ". premise: " + premise + ". " + reason
+                return "Theorem sequence step: " + theorem + ". Premise: " + premise + ". " + reason
 
             # expl = get_theorem_seqs_expl([theorem])[0]
             # parsed_tuple = ast.literal_eval(expl)
@@ -128,36 +112,6 @@ def theorem_verifier(solver, theorem_seqs):
 
     return res
 
-
-def parse_problem(pid):
-    problem_CDL = dl.get_problem(pid)
-    solver.load_problem(problem_CDL)
-
-    result_dict = show_solution(solver.problem)
-
-    prompt_input_relations = remove_trailing_empty_lines(result_dict['relations'])
-    prompt_input_symbols_and_values = result_dict['symbols_and_values']
-    prompt_input_description = problem_CDL['problem_text_en'].split('As shown in the diagram,')[1].strip()
-    prompt_input_construction_cdl = "\n".join(problem_CDL['construction_cdl'])
-    prompt_input_text_cdl = "\n".join(problem_CDL['text_cdl'])
-    prompt_input_goal_cdl = problem_CDL['goal_cdl']
-    theorem_seqs = problem_CDL['theorem_seqs']
-    prompt_output_theorem_seqs = "\n".join(f"({i + 1};{theorem_seqs[i]})" for i in range(len(theorem_seqs)))
-    prompt_output_equations = result_dict['equations']
-    prompt_output_goal_symbol = result_dict['goal_value']
-    prompt_output_answer = result_dict['answer']
-    return {
-        'prompt_input_description': prompt_input_description,
-        'prompt_input_construction_cdl': prompt_input_construction_cdl,
-        'prompt_input_text_cdl': prompt_input_text_cdl,
-        'prompt_input_goal_cdl': prompt_input_goal_cdl,
-        'prompt_input_relations': prompt_input_relations,
-        'prompt_input_symbols_and_values': prompt_input_symbols_and_values,
-        'prompt_output_equations': prompt_output_equations,
-        'prompt_output_goal_symbol': prompt_output_goal_symbol,
-        'prompt_output_answer': prompt_output_answer,
-        'prompt_output_theorem_seqs': prompt_output_theorem_seqs
-    }
 
 
 
@@ -198,18 +152,29 @@ def gpt_response(messages, model_name):
     return resp
 
 
-def generate_and_verify(prompt_path, model_name, res1, res2, max_retries=5):
+def generate_and_verify(prompt_path, model_name, problem1, problem2, max_retries=5):
+    problem1_construction_cdl = "\n".join(problem1.construction_cdl)
+    problem2_construction_cdl = "\n".join(problem2.construction_cdl)
+    problem1_text_cdl = "\n".join(problem1.text_cdl)
+    problem2_text_cdl = "\n".join(problem2.text_cdl)
+    problem1_construction_cdl_extended = "\n".join(problem1.construction_cdl_extended)
+    problem2_construction_cdl_extended = "\n".join(problem2.construction_cdl_extended)
+    problem1_theorem_seqs = "\n".join(f"{i + 1};{problem1.theorem_seqs[i]}" for i in range(len(problem1.theorem_seqs)))
+    problem1_equations = "\n".join(problem1.equations)
+
     with open(prompt_path, 'r') as file:
         initial_prompt = file.read()
+
 
     initial_message = {
         "role": "user",
         "content": initial_prompt + (
-            f"\nInputs for Problem A (Analogous Problem):\nDESCRIPTION:\n{res1['prompt_input_description']}\nCONSTRUCTION_CDL:\n{res1['prompt_input_construction_cdl']}\n"
-            f"TEXT_CDL:\n{res1['prompt_input_text_cdl']}\nGOAL_CDL:\n{res1['prompt_input_goal_cdl']}\nRELATIONS:\n{res1['prompt_input_relations']}\nSYMBOLS_AND_VALUES:\n{res1['prompt_input_symbols_and_values']}\n"
-            f"Outputs:\nOutputs for Problem A (Analogous Problem):EQUATIONS:\n{res1['prompt_output_equations']}\nGOAL_SYMBOL:\n{res1['prompt_output_goal_symbol']}\nANSWER:\n{res1['prompt_output_answer']}\nTHEOREM_SEQUENCE:\n{res1['prompt_output_theorem_seqs']}\nInputs for Problem B (To Be Solved):\nDESCRIPTION:\n{res2['prompt_input_description']}\n"
-            f"CONSTRUCTION_CDL:\n{res2['prompt_input_construction_cdl']}\nTEXT_CDL:\n{res2['prompt_input_text_cdl']}\nGOAL_CDL:\n{res2['prompt_input_goal_cdl']}\n"
-            f"RELATIONS:\n{res2['prompt_input_relations']}\nSYMBOLS_AND_VALUES:\n{res2['prompt_input_symbols_and_values']}\nOutputs for Problem B (Final Goal):\nEQUATIONS:\n"
+            f"\nInputs for Problem A (Analogous Problem):\nDESCRIPTION:\n{problem1.description}\nCONSTRUCTION_CDL:\n{problem1_construction_cdl}\n"
+            f"TEXT_CDL:\n{problem1_text_cdl}\nGOAL_CDL:\n{problem1.goal_cdl}\nCONSTRUCTION_CDL_EXTENDED:\n{problem1_construction_cdl_extended}\nSYMBOLS_AND_VALUES:\n{problem1.symbols_and_values}\n"
+            f"Outputs:\nOutputs for Problem A (Analogous Problem):\nEQUATIONS:\n{problem1_equations}\nGOAL_SYMBOL:\n{problem1.goal_symbol}\nANSWER:\n{problem1.answer}\nTHEOREM_SEQUENCE:\n{problem1_theorem_seqs}\n"
+            f"Inputs for Problem B (To Be Solved):\nDESCRIPTION:\n{problem2.description}\n"
+            f"CONSTRUCTION_CDL:\n{problem2_construction_cdl}\nTEXT_CDL:\n{problem2_text_cdl}\nGOAL_CDL:\n{problem2.goal_cdl}\n"
+            f"CONSTRUCTION_CDL_EXTENDED:\n{problem2_construction_cdl_extended}\nSYMBOLS_AND_VALUES:\n{problem2.symbols_and_values}\nOutputs for Problem B (Final Goal):\nEQUATIONS:\n"
         )
     }
 
@@ -235,10 +200,10 @@ def generate_and_verify(prompt_path, model_name, res1, res2, max_retries=5):
             print("Theorem sequence verified correctly")
             break
 
-        messages.append({"role": "user", "content": f"Verifier result: {verifier_result}"})
-        messages.append({"role": "user", "content": f"Generated theorem sequence: {generated_theorem_sequence}"})
-        messages.append({"role": "assistant", "content": resp})
+        messages.append({"role": "assistant", "content": f"Generated theorem sequence: {generated_theorem_sequence}"})
+        # messages.append({"role": "assistant", "content": resp})
 
+        messages.append({"role": "user", "content": f"Verifier result: {verifier_result}. Please fix the wrong theory step, by using the verifier hint"})
         print(f"Verifier result: {verifier_result}")
         print(f"Retry attempt: {attempts + 1}")
         attempts += 1
@@ -247,27 +212,32 @@ def generate_and_verify(prompt_path, model_name, res1, res2, max_retries=5):
 
 
 
-def main():
+def main(problems):
 
-    problem2_id = 1643
+    problem2_id = 729
     problem1_id = retrieve_similar_proof(problem2_id)
 
-    problems = save_problems()
-    problem = problems[problem1_id]
-    problem.print_problem()
+    problem1 = problems[problem1_id]
+    problem1.print_problem()
+    problem1.enrich_problem()
+    problem_CDL = dl.get_problem(problem1_id)
+    solver.load_problem(problem_CDL)
     display_image(problem1_id)
 
-    problem = problems[problem2_id]
-    problem.print_problem()
+    problem2 = problems[problem2_id]
+    problem2.print_problem()
+    problem2.enrich_problem()
+    problem_CDL = dl.get_problem(problem2_id)
+    solver.load_problem(problem_CDL)
     display_image(problem2_id)
 
-    res1 = parse_problem(problem1_id)
-    res2 = parse_problem(problem2_id)
 
     prompt_path = "src/formalgeo/prompt/geometry_problem_prompt.txt"
-    messages, resp, verifier_result = generate_and_verify(prompt_path, 'gpt-4o', res1, res2)
+    messages, resp, verifier_result = generate_and_verify(prompt_path, 'gpt-4o', problem1, problem2)
     print(resp)
     print(1)
 
 if __name__ == "__main__":
-    main()
+    problems = save_problems()
+    print(1)
+    main(problems)
