@@ -25,7 +25,7 @@ def retrieve_similar_proof(problem_id):
     print("ground truth similarity")
     print(top_row['abstract_theorem_seqs_jaccard_similarity'])
 
-    return top_row["problem2_id"].values[0]
+    return int(top_row["problem2_id"].values[0])
 
 
 def main():
