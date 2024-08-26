@@ -91,7 +91,7 @@ def theorem_verifier(solver, theorem_seqs):
             expl = get_theorem_seqs_expl([theorem])[0]
             premise = json.loads(expl)["premise"]
             if not update:
-                return "Theorem sequence step: " + theorem + ". Premise: " + premise + ". " + reason
+                return "A mistake in theorem sequence step: " + theorem + ". Premise: " + premise + ". " + reason
 
             # expl = get_theorem_seqs_expl([theorem])[0]
             # parsed_tuple = ast.literal_eval(expl)
