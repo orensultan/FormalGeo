@@ -200,9 +200,7 @@ def generate_and_verify(prompt_path, model_name, problem1, problem2, max_retries
             print("Theorem sequence verified correctly")
             break
 
-        messages.append({"role": "assistant", "content": f"Generated theorem sequence: {generated_theorem_sequence}"})
-        # messages.append({"role": "assistant", "content": resp})
-
+        messages.append({"role": "assistant", "content": resp})
         messages.append({"role": "user", "content": f"Verifier result: {verifier_result}. Please fix the wrong theory step, by using the verifier hint"})
         print(f"Verifier result: {verifier_result}")
         print(f"Retry attempt: {attempts + 1}")
