@@ -7,7 +7,7 @@ from utils import display_image
 
 
 
-def retrieve_similar_proof(problem_id):
+def retrieve_similar_proofs(problem_id, n=1):
     data = pd.read_csv('results.csv')
     filtered_data = data[data["problem1_id"] == problem_id]
     filtered_data["predicted_similarity"] = filtered_data.apply(
@@ -19,13 +19,13 @@ def retrieve_similar_proof(problem_id):
         ),
         axis=1
     )
-    top_row = filtered_data.sort_values(by="predicted_similarity", ascending=False).head(1)
-    print("predicted similarity")
-    print(top_row['predicted_similarity'])
-    print("ground truth similarity")
-    print(top_row['abstract_theorem_seqs_jaccard_similarity'])
+    top_rows = filtered_data.sort_values(by="predicted_similarity", ascending=False).head(n)
+    print("predicted similarities")
+    print(top_rows['predicted_similarity'])
+    print("ground truth similarities")
+    print(top_rows['abstract_theorem_seqs_jaccard_similarity'])
 
-    return int(top_row["problem2_id"].values[0])
+    return top_rows["problem2_id"].values.tolist()
 
 
 def main():

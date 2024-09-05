@@ -36,18 +36,6 @@ openai.api_key = "sk-ds-openapi-key-0sfNvLjYF3wMuFQcp7oST3BlbkFJWeqSW76sV6Gy48mj
 
 
 
-def extract_substring_first_exp(input_string):
-    pattern = r'\((?:[^,]+,)?([^,]+(?:,[^)]+)?)\)'
-    match = re.search(pattern, input_string)
-    return match.group(1) if match else None
-
-
-def extract_substring_second_exp(input_string):
-    pattern = r"\('([^']+)\(([^)]+)\)'\s*,"
-    match = re.search(pattern, input_string)
-    return match.group(2) if match else None
-
-
 
 def replace_symbols(input_string, mapping_dict):
     # Function to replace symbols in a given text based on the dictionary
@@ -148,20 +136,20 @@ class Problem:
         print(self.goal_cdl)
 
         theories_set = set()
-        theorems_expl = []
-        for key, val in self.theorem_seqs_dag.items():
-            for v in val:
-                theory_str = str(get_theory(v))
-                theories_set.add(theory_str)
-                input_string1 = v
-                input_string2 = theory_str
-                result1 = extract_substring_first_exp(input_string1)
-                result2 = extract_substring_second_exp(input_string2)
-                if len(result1.replace(",", "")) != len(result2.replace(",", "")):
-                    raise ValueError("The extracted substrings must have the same length for character-level mapping.")
-
-                mapping_dict = {result2[i]: result1[i] for i in range(len(result2)) if result2[i].isupper()}
-                theorems_expl.append(replace_symbols(input_string2, mapping_dict))
+        # theorems_expl = []
+        # for key, val in self.theorem_seqs_dag.items():
+        #     for v in val:
+        #         theory_str = str(get_theory(v))
+        #         theories_set.add(theory_str)
+        #         input_string1 = v
+        #         input_string2 = theory_str
+        #         result1 = extract_substring_first_exp(input_string1)
+        #         result2 = extract_substring_second_exp(input_string2)
+        #         if len(result1.replace(",", "")) != len(result2.replace(",", "")):
+        #             raise ValueError("The extracted substrings must have the same length for character-level mapping.")
+        #
+        #         mapping_dict = {result2[i]: result1[i] for i in range(len(result2)) if result2[i].isupper()}
+        #         theorems_expl.append(replace_symbols(input_string2, mapping_dict))
 
         for key, val in self.theorem_seqs_dag.items():
             l = []
@@ -171,10 +159,6 @@ class Problem:
 
         print("theorem_seqs_dag:")
         print(self.theorem_seqs_dag)
-        print("theorem_explanation:")
-        for t in theorems_expl:
-            print(t)
-
         print("solution: " + str(self.solution))
 
 

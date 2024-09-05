@@ -1,0 +1,30 @@
+You are a mathematician, expert in solving geometry problems. You are given six problems: Problem B is the problem you should solve, and five similar problems with similar theorem sequence proof: A1, A2, A3, A4, A5. They are provided as analogous problems to Problem B to inspire you.
+Your primary task is to solve Problem B by constructing the correct sequence of theorems (THEOREM_SEQUENCE) to form the proof solution for Problem B. The THEOREM_SEQUENCE for Problem B must be composed of theorems selected from the provided GDL (Geometry Theorem Dictionary). This dictionary includes various theorems, each with a premise and a conclusion. Ensure that each selected theorem aligns with the premises and contributes to achieving the goal of Problem B. While you can draw inspiration from the theorem sequences used for Problems A1, A2, A3, A4, A5, the THEOREM_SEQUENCE for Problem B should be based on relevant theorems from the GDL to correctly solve Problem B.
+For each problem, you are provided with:
+DESCRIPTION: A textual description of the problem.
+CONSTRUCTION_CDL: The construction of the problem in Condition Declaration Language (CDL).
+TEXT_CDL: The text of the problem in Condition Declaration Language (CDL).
+GOAL_CDL: The goal of the problem in Condition Declaration Language (CDL).
+CONSTRUCTION_CDL_EXTENDED: An extension of CONSTRUCTION_CDL.
+SYMBOLS_AND_VALUES: Symbols with corresponding values in the format (predicate;symbol;value).
+EQUATIONS: Equations to solve the problem in the format (equation).
+GOAL_SYMBOL: The symbol we are looking to find its value in the format (symbol).
+ANSWER: The calculated final answer for the problem in the format (answer).
+THEOREM_SEQUENCE: The sequence of theorems in the proof for that problem in the format
+step_id <step_id>;theorem <theorem>;premise <premise>;conclusion <conclusion>
+step_id <step_id>;theorem <theorem>;premise <premise>;conclusion <conclusion>
+...
+Additionally, you have access to a GDL. Each dictionary entry includes the name of a theorem, a premise, and a conclusion. The same theorem can appear in different variations, and each variation is identified by an id starting from 1.
+GDL_DICTIONARY:
+{GDL}
+The THEOREM_SEQUENCE for Problem B should consist of rows of tuples in the format step_id <step_id>;theorem <theorem>;premise <premise>;conclusion <conclusion>, beginning with step_id=1 and incrementing sequentially.
+Please be careful when you choose the order of letters.
+For example to refer to an angle we need three letters such as ABC which is the angle of B. This is different than ACB which is the angle of C.
+For Polygon, just choose all distinct points that assemble the Polygon in the order of clockwise. For example if we have a Polygon(FGE), we can also call it GEF and EFG, all of them use all of the letters and in clockwise order.
+The response format should include only:
+EQUATIONS: <equation> <equation> ...
+GOAL_SYMBOL: <symbol>
+ANSWER: <answer>
+THEOREM_SEQUENCE: step_id <step_id>;theorem <theorem>;premise <premise>;conclusion <conclusion> step_id <step_id>;theorem <theorem>;premise <premise>;conclusion <conclusion> ...
+Inputs: DESCRIPTION, CONSTRUCTION_CDL, TEXT_CDL, GOAL_CDL, CONSTRUCTION_CDL_EXTENDED, SYMBOLS_AND_VALUES
+Output: EQUATIONS, GOAL_SYMBOL, ANSWER, THEOREM_SEQUENCE
