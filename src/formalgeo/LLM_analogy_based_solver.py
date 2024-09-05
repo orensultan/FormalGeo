@@ -3,9 +3,10 @@ import json
 from formalgeo.data import download_dataset, DatasetLoader
 from formalgeo.solver import Interactor
 from formalgeo.parse import parse_one_theorem
+
 from formalgeo.tools import show_solution
 
-from Problem import get_theorem_seqs_expl
+from Problem import get_theory, replace_symbols
 from create_problems_proofs_similarity_dataset import save_problems
 import time
 import openai
@@ -16,15 +17,45 @@ openai.api_key = "sk-ds-openapi-key-0sfNvLjYF3wMuFQcp7oST3BlbkFJWeqSW76sV6Gy48mj
 openai.api_key = "sk-ds-openapi-key-0sfNvLjYF3wMuFQcp7oST3BlbkFJWeqSW76sV6Gy48mjIJVK"
 openai.api_key = "sk-svcacct-kVTUGOlCTL2vge6gtHi--la5vr8g-lqT3ieuWGdHQBrYChItgkm2k1WPS9mA-MXe7ebaPHCMk8YrCft1OT3BlbkFJLNl-eYBXpQiokB5m3Nw0oiO9ZOe_Paf1WH0Kh4If52-rQ92DiSodgoopxiDoQDKlAGYDPRpiWamueq8vQA"
 from utils import display_image
-from similar_proofs_retrieval import retrieve_similar_proof
+from similar_proofs_retrieval import retrieve_similar_proofs
 import ast
 import re
 
 dl = DatasetLoader(dataset_name="formalgeo7k_v1", datasets_path="formalgeo7k_v1")
 solver = Interactor(dl.predicate_GDL, dl.theorem_GDL)
+with open('formalgeo7k_v1/gdl/theorem_GDL.json', 'r') as f:
+    theorems = json.load(f)
 
 
 
+def get_theorem_seqs_expl(theorem_seqs):
+    theorems_seqs_expl = []
+    for theorem in theorem_seqs:
+        t_name, t_branch, t_para = parse_one_theorem(theorem)
+        letters = get_letters(t_name, t_para)
+        theory_json = get_theory(theorem)
+        premise, conclusions = json.loads(theory_json)['premise'], json.loads(theory_json)['conclusion']
+        premise = replace_symbols(premise, letters)
+        for i in range(len(conclusions)):
+            conclusions[i] = replace_symbols(conclusions[i], letters)
+
+        updated_json = {
+            "theorem": theorem,
+            "premise": premise,
+            "conclusion": conclusions
+        }
+        updated_json_str = json.dumps(updated_json, indent=4)
+        theorems_seqs_expl.append(updated_json_str)
+    return theorems_seqs_expl
+
+
+
+def get_letters(t_name, t_para):
+    letters = {}
+    for i in range(len(solver.parsed_theorem_GDL[t_name]["vars"])):
+        key = solver.parsed_theorem_GDL[t_name]["vars"][i].upper()
+        letters[key] = t_para[i]
+    return letters
 
 def remove_trailing_empty_lines(text):
     return '\n'.join(line for line in text.splitlines() if line.strip())
@@ -81,16 +112,29 @@ def validate_premise(premise, relations_string):
 
     # Return the validation results
     return validation_results
+
+
+#         updated_json = {
+#             "theorem": theorem_call,
+#             "premise": updated_premise,
+#             "conclusion": updated_conclusion
+#         }
+#         updated_json_str = json.dumps(updated_json, indent=4)
+#         theorems_seqs_expl.append(updated_json_str)
+
+
 def theorem_verifier(solver, theorem_seqs):
     res = "Correct"
 
     for theorem in theorem_seqs:
         t_name, t_branch, t_para = parse_one_theorem(theorem)
         try:
+            letters = get_letters(t_name, t_para)
+            theory_json = get_theory(theorem)
+            premise = json.loads(theory_json)['premise']
+            premise = replace_symbols(premise, letters)
             update, reason = solver.apply_theorem(t_name, t_branch, t_para)
-            expl = get_theorem_seqs_expl([theorem])[0]
-            premise = json.loads(expl)["premise"]
-            if not update:
+            if not update and reason != 'No updates were made.':
                 return "A mistake in theorem sequence step: " + theorem + ". Premise: " + premise + ". " + reason
 
             # expl = get_theorem_seqs_expl([theorem])[0]
@@ -151,32 +195,107 @@ def gpt_response(messages, model_name):
     print(resp)
     return resp
 
+def find_relevant_theorems(theorems, problems_set):
+    relevant_theorems = {}
+    for key in theorems.keys():
+        for problem in problems_set:
+            if problem in key:
+                relevant_theorems[key] = theorems[key]
+    return relevant_theorems
 
-def generate_and_verify(prompt_path, model_name, problem1, problem2, max_retries=5):
-    problem1_construction_cdl = "\n".join(problem1.construction_cdl)
-    problem2_construction_cdl = "\n".join(problem2.construction_cdl)
-    problem1_text_cdl = "\n".join(problem1.text_cdl)
-    problem2_text_cdl = "\n".join(problem2.text_cdl)
-    problem1_construction_cdl_extended = "\n".join(problem1.construction_cdl_extended)
-    problem2_construction_cdl_extended = "\n".join(problem2.construction_cdl_extended)
-    problem1_theorem_seqs = "\n".join(f"{i + 1};{problem1.theorem_seqs[i]}" for i in range(len(problem1.theorem_seqs)))
-    problem1_equations = "\n".join(problem1.equations)
+def get_problem_fields(problem):
+    construction_cdl = "\n".join(problem.construction_cdl)
+    text_cdl = "\n".join(problem.text_cdl)
+    construction_cdl_extended = "\n".join(problem.construction_cdl_extended)
+    theorem_seqs = "\n".join(f"{i + 1};{problem.theorem_seqs[i]}" for i in range(len(problem.theorem_seqs)))
+    equations = "\n".join(problem.equations)
+    return {'construction_cdl': construction_cdl, 'text_cdl': text_cdl,
+            'construction_cdl_extended': construction_cdl_extended, 'theorem_seqs': theorem_seqs, 'equations': equations}
 
+
+def convert_json_list_to_custom_format(json_list):
+    result = []
+
+    for index, item in enumerate(json_list, start=1):
+        # Parse the JSON string into a dictionary
+        theorem_dict = json.loads(item)
+
+        # Extract the fields
+        theorem = theorem_dict.get("theorem", "")
+        premise = theorem_dict.get("premise", "")
+        conclusion = theorem_dict.get("conclusion", [])
+
+        # Format the conclusion as a string
+        conclusion_str = json.dumps(conclusion)
+
+        # Create the custom formatted string
+        formatted_string = f"step_id: {index}; theorem: {theorem}; premise: {premise}; conclusion: {conclusion_str}"
+
+        # Append to the result list
+        result.append(formatted_string)
+
+    # Join all the formatted strings into a single string with line breaks
+    return "\n".join(result)
+
+
+def convert_theorem_seqs_format_string(input_str):
+    # Split the input string by lines
+    lines = input_str.strip().splitlines()
+
+    converted_list = []
+
+    for line in lines:
+        if not line.startswith("step_id:"):
+            break
+
+        # Split the input string by ';'
+        parts = line.split(';')
+
+        # Extract the parts after the first colon in each segment
+        step_id = parts[0].split(': ')[1]
+        theorem = parts[1].split(': ')[1]
+        premise = parts[2].split(': ')[1]
+        conclusion = parts[3].split(': ')[1]
+
+        # Combine them in the desired format and add to the list
+        converted_list.append(f"{step_id};{theorem};{premise};{conclusion}")
+
+    return "\n".join(converted_list)
+
+
+
+def generate_and_verify(prompt_path, model_name, similar_problems, problem2, max_retries=5):
+    relevant_theorems = set()
+    for problem in similar_problems:
+        for theorem in problem.abstract_theorem_seqs:
+            relevant_theorems.add(theorem)
+    for theorem in problem2.abstract_theorem_seqs:
+        relevant_theorems.add(theorem)
+    gdl_relevant_theorems = find_relevant_theorems(theorems, relevant_theorems)
     with open(prompt_path, 'r') as file:
         initial_prompt = file.read()
 
+    gdl_relevant_theorems_str = json.dumps(gdl_relevant_theorems, indent=4)
+    initial_prompt = initial_prompt.replace('{GDL}', gdl_relevant_theorems_str)
 
-    initial_message = {
-        "role": "user",
-        "content": initial_prompt + (
-            f"\nInputs for Problem A (Analogous Problem):\nDESCRIPTION:\n{problem1.description}\nCONSTRUCTION_CDL:\n{problem1_construction_cdl}\n"
-            f"TEXT_CDL:\n{problem1_text_cdl}\nGOAL_CDL:\n{problem1.goal_cdl}\nCONSTRUCTION_CDL_EXTENDED:\n{problem1_construction_cdl_extended}\nSYMBOLS_AND_VALUES:\n{problem1.symbols_and_values}\n"
-            f"Outputs:\nOutputs for Problem A (Analogous Problem):\nEQUATIONS:\n{problem1_equations}\nGOAL_SYMBOL:\n{problem1.goal_symbol}\nANSWER:\n{problem1.answer}\nTHEOREM_SEQUENCE:\n{problem1_theorem_seqs}\n"
-            f"Inputs for Problem B (To Be Solved):\nDESCRIPTION:\n{problem2.description}\n"
-            f"CONSTRUCTION_CDL:\n{problem2_construction_cdl}\nTEXT_CDL:\n{problem2_text_cdl}\nGOAL_CDL:\n{problem2.goal_cdl}\n"
-            f"CONSTRUCTION_CDL_EXTENDED:\n{problem2_construction_cdl_extended}\nSYMBOLS_AND_VALUES:\n{problem2.symbols_and_values}\nOutputs for Problem B (Final Goal):\nEQUATIONS:\n"
-        )
-    }
+    content = initial_prompt
+    for i in range(len(similar_problems)):
+        problem = similar_problems[i]
+        problem_dict = get_problem_fields(problem)
+
+        theorems_seqs_expl = convert_json_list_to_custom_format(get_theorem_seqs_expl(problem.theorem_seqs))
+        content += f"\nInputs for Problem A{i+1}:\nDESCRIPTION:\n{problem.description}\nCONSTRUCTION_CDL:\n{problem_dict['construction_cdl']}\n"
+        content += f"TEXT_CDL:\n{problem_dict['text_cdl']}\nGOAL_CDL:\n{problem.goal_cdl}\nCONSTRUCTION_CDL_EXTENDED:\n{problem_dict['construction_cdl_extended']}\nSYMBOLS_AND_VALUES:\n{problem.symbols_and_values}\n"
+        content += f"Outputs:\nOutputs for Problem A{i+1}:\nEQUATIONS:\n{problem_dict['equations']}\nGOAL_SYMBOL:\n{problem.goal_symbol}\nANSWER:\n{problem.answer}\nTHEOREM_SEQUENCE:\n{theorems_seqs_expl}\n"
+
+    problem_dict = get_problem_fields(problem2)
+    content += f"Inputs for Problem B:\nDESCRIPTION:\n{problem2.description}\n"
+    content += f"CONSTRUCTION_CDL:\n{problem_dict['construction_cdl']}\nTEXT_CDL:\n{problem_dict['text_cdl']}\nGOAL_CDL:\n{problem2.goal_cdl}\n"
+    content += f"CONSTRUCTION_CDL_EXTENDED:\n{problem_dict['construction_cdl_extended']}\nSYMBOLS_AND_VALUES:\n{problem.symbols_and_values}\nOutputs for Problem B (Final Goal):\nEQUATIONS:\n"
+
+    initial_message = {"role": "user", "content": content}
+    print(1)
+
 
     messages = [
         {"role": "system", "content": "You are a helpful assistant."},
@@ -189,20 +308,18 @@ def generate_and_verify(prompt_path, model_name, problem1, problem2, max_retries
     while attempts < max_retries:
         resp = gpt_response(messages, model_name)
         generated_theorem_sequence = resp.split("THEOREM_SEQUENCE:\n")[1]
+        generated_theorem_sequence = convert_theorem_seqs_format_string(generated_theorem_sequence)
         generated_theorem_sequence_list = re.findall(r'\d+;([^\(\)]+\([^\)]+\))', generated_theorem_sequence)
-        verifier_result = theorem_verifier(solver, generated_theorem_sequence_list)
+        # generated_theorem_list = [line.split(';')[1] for line in generated_theorem_sequence.split('\n')]
+        theorem_verifier_result = theorem_verifier(solver, generated_theorem_sequence_list)
 
-        print("Theorem explanation")
-        for t in get_theorem_seqs_expl(generated_theorem_sequence_list):
-            print(t)
-
-        if verifier_result == "Correct":
+        if theorem_verifier_result == "Correct":
             print("Theorem sequence verified correctly")
             break
 
         messages.append({"role": "assistant", "content": resp})
-        messages.append({"role": "user", "content": f"Verifier result: {verifier_result}. Please fix the wrong theory step, by using the verifier hint"})
-        print(f"Verifier result: {verifier_result}")
+        messages.append({"role": "user", "content": f"Verifier result: {theorem_verifier_result}. Please retry generating the correct theorem sequence proof, using the verifier hints."})
+        print(f"Verifier result: {theorem_verifier_result}")
         print(f"Retry attempt: {attempts + 1}")
         attempts += 1
 
@@ -213,14 +330,17 @@ def generate_and_verify(prompt_path, model_name, problem1, problem2, max_retries
 def main(problems):
 
     problem2_id = 729
-    problem1_id = retrieve_similar_proof(problem2_id)
+    similar_problem_ids = retrieve_similar_proofs(problem2_id, n=5)
+    similar_problems = []
+    for problem_id in similar_problem_ids:
+        problem = problems[problem_id]
+        problem.print_problem()
+        problem.enrich_problem()
+        problem_CDL = dl.get_problem(problem_id)
+        solver.load_problem(problem_CDL)
+        display_image(problem_id)
+        similar_problems.append(problem)
 
-    problem1 = problems[problem1_id]
-    problem1.print_problem()
-    problem1.enrich_problem()
-    problem_CDL = dl.get_problem(problem1_id)
-    solver.load_problem(problem_CDL)
-    display_image(problem1_id)
 
     problem2 = problems[problem2_id]
     problem2.print_problem()
@@ -229,9 +349,8 @@ def main(problems):
     solver.load_problem(problem_CDL)
     display_image(problem2_id)
 
-
-    prompt_path = "src/formalgeo/prompt/geometry_problem_prompt.txt"
-    messages, resp, verifier_result = generate_and_verify(prompt_path, 'gpt-4o', problem1, problem2)
+    prompt_path = "src/formalgeo/prompt/geometry_similar_problems_prompt.txt"
+    messages, resp, verifier_result = generate_and_verify(prompt_path, 'gpt-4o', similar_problems, problem2)
     print(resp)
     print(1)
 

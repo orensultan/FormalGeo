@@ -368,7 +368,7 @@ class SuperNode:
                 oppose = True
                 predicate = predicate.replace("~", "")
             item = tuple(letters[i] for i in item)
-            has_item = self.problem.condition.has(predicate, item)
+            has_item = self.problem.condition.has(predicate, item) # or self.problem.condition.has(predicate, item[::-1])
             if has_item:
                 premises.append(self.problem.condition.get_id_by_predicate_and_item(predicate, item))
 
