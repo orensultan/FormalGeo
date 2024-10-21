@@ -128,14 +128,14 @@ def theorem_verifier(solver, theorem_seqs):
 
     for theorem in theorem_seqs:
         t_name, t_branch, t_para = parse_one_theorem(theorem)
-        try:
-            letters = get_letters(t_name, t_para)
-            theory_json = get_theory(theorem)
-            premise = json.loads(theory_json)['premise']
-            premise = replace_symbols(premise, letters)
-            update, reason = solver.apply_theorem(t_name, t_branch, t_para)
-            if not update and reason != 'No updates were made.':
-                return "A mistake in theorem sequence step: " + theorem + ". Premise: " + premise + ". " + reason
+        # try:
+        letters = get_letters(t_name, t_para)
+        theory_json = get_theory(theorem)
+        premise = json.loads(theory_json)['premise']
+        premise = replace_symbols(premise, letters)
+        update, reason = solver.apply_theorem(t_name, t_branch, t_para)
+        if not update and reason != 'No updates were made.':
+            return "A mistake in theorem sequence step: " + theorem + ". Premise: " + premise + ". " + reason
 
             # expl = get_theorem_seqs_expl([theorem])[0]
             # parsed_tuple = ast.literal_eval(expl)
@@ -150,14 +150,23 @@ def theorem_verifier(solver, theorem_seqs):
             #     if len(invalid_premises) > 0:
             #         return "Theorem sequence step: " + theorem + ". premise: " + premise + ". " + invalid_premises
 
-        except Exception as e:
-            res = str(e) + " Theorem sequence step: " + theorem
-            break
+        # except Exception as e:
+        #     print(e)
+        #     res = str(e) + " Theorem sequence step: " + theorem
+        #     break
 
     return res
 
 
 
+
+
+def def_call_gpt_o1_preview(model, messages):
+    response = openai.ChatCompletion.create(
+        model=model,
+        messages=messages
+    )
+    return response.choices[0].message['content']
 
 
 def call_gpt(model, messages, temperature=0, wait_time=1, retry_wait_time=6, max_retries=10):
@@ -191,7 +200,7 @@ def call_gpt(model, messages, temperature=0, wait_time=1, retry_wait_time=6, max
             raise Exception(f"Unexpected error: {e}")
 
 def gpt_response(messages, model_name):
-    resp = call_gpt(model=model_name, messages=messages)
+    resp = def_call_gpt_o1_preview(model=model_name, messages=messages) if model_name != 'o1-preview' else def_call_gpt_o1_preview(model=model_name, messages=messages)
     print(resp)
     return resp
 
@@ -239,29 +248,62 @@ def convert_json_list_to_custom_format(json_list):
 
 
 def convert_theorem_seqs_format_string(input_str):
+    # Remove the leading and trailing single quotes
+    input_str = input_str.strip("'")
+
     # Split the input string by lines
     lines = input_str.strip().splitlines()
 
     converted_list = []
 
     for line in lines:
-        if not line.startswith("step_id:"):
-            break
+        line = line.strip()
+        if not line.startswith("step_id "):
+            continue  # Continue to the next line if this one doesn't start with 'step_id '
 
-        # Split the input string by ';'
+        # Split the line by ';'
         parts = line.split(';')
 
-        # Extract the parts after the first colon in each segment
-        step_id = parts[0].split(': ')[1]
-        theorem = parts[1].split(': ')[1]
-        premise = parts[2].split(': ')[1]
-        conclusion = parts[3].split(': ')[1]
+        # Initialize variables with empty strings in case any part is missing
+        step_id = ""
+        theorem = ""
+        premise = ""
+        conclusion = ""
+
+        # Extract the parts
+        if len(parts) > 0:
+            step_id_part = parts[0].strip()
+            # Extract just the number from 'step_id N'
+            if step_id_part.startswith('step_id '):
+                step_id = step_id_part[len('step_id '):]
+
+        if len(parts) > 1:
+            theorem = parts[1].strip()
+
+        if len(parts) > 2:
+            premise = parts[2].strip()
+
+        if len(parts) > 3:
+            conclusion = parts[3].strip()
 
         # Combine them in the desired format and add to the list
         converted_list.append(f"{step_id};{theorem};{premise};{conclusion}")
 
     return "\n".join(converted_list)
 
+
+
+
+
+
+def create_messages(content):
+    # Constructing the initial message with the user role
+    initial_message = {"role": "user", "content": content}
+
+    # Only include the user message
+    messages = [initial_message]
+
+    return messages
 
 
 def generate_and_verify(prompt_path, model_name, similar_problems, problem2, max_retries=5):
@@ -291,20 +333,20 @@ def generate_and_verify(prompt_path, model_name, similar_problems, problem2, max
     problem_dict = get_problem_fields(problem2)
     content += f"Inputs for Problem B:\nDESCRIPTION:\n{problem2.description}\n"
     content += f"CONSTRUCTION_CDL:\n{problem_dict['construction_cdl']}\nTEXT_CDL:\n{problem_dict['text_cdl']}\nGOAL_CDL:\n{problem2.goal_cdl}\n"
-    content += f"CONSTRUCTION_CDL_EXTENDED:\n{problem_dict['construction_cdl_extended']}\nSYMBOLS_AND_VALUES:\n{problem.symbols_and_values}\nOutputs for Problem B (Final Goal):\nEQUATIONS:\n"
+    content += f"CONSTRUCTION_CDL_EXTENDED:\n{problem_dict['construction_cdl_extended']}\nSYMBOLS_AND_VALUES:\n{problem.symbols_and_values}\nOutputs:\nOutputs for Problem B:\n"
 
-    initial_message = {"role": "user", "content": content}
-    print(1)
+    # initial_message = {"role": "user", "content": content}
+    # messages = [
+    #     {"role": "system", "content": "You are a helpful assistant."},
+    #     initial_message
+    # ]
 
+    messages = create_messages(content)
 
-    messages = [
-        {"role": "system", "content": "You are a helpful assistant."},
-        initial_message
-    ]
 
     attempts = 0
-    verifier_result = None
-
+    theorem_verifier_result = ""
+    resp = ""
     while attempts < max_retries:
         resp = gpt_response(messages, model_name)
         generated_theorem_sequence = resp.split("THEOREM_SEQUENCE:\n")[1]
@@ -323,13 +365,27 @@ def generate_and_verify(prompt_path, model_name, similar_problems, problem2, max
         print(f"Retry attempt: {attempts + 1}")
         attempts += 1
 
-    return messages, resp, verifier_result
+    return messages, resp, theorem_verifier_result
+
+
+
+def get_level_to_problems(problems):
+    level_to_problems = {}
+    for problem_id, problem_obj in problems.items():
+        level = problem_obj.level
+        if level not in level_to_problems:
+            level_to_problems[level] = [problem_id]
+        else:
+            level_to_problems[level].append(problem_id)
+    return level_to_problems
 
 
 
 def main(problems):
+    level_to_problems = get_level_to_problems(problems)
 
-    problem2_id = 729
+    # level 1: 2833, level 2: 6523, level 3: 2999, level 4: 2425, level 5: 4908, level 6: 729, level 7: 683, level 8: 912, level 9: 5749
+    problem2_id = 5749
     similar_problem_ids = retrieve_similar_proofs(problem2_id, n=5)
     similar_problems = []
     for problem_id in similar_problem_ids:
@@ -350,7 +406,9 @@ def main(problems):
     display_image(problem2_id)
 
     prompt_path = "src/formalgeo/prompt/geometry_similar_problems_prompt.txt"
-    messages, resp, verifier_result = generate_and_verify(prompt_path, 'gpt-4o', similar_problems, problem2)
+    model_name = "gpt-4o"
+    model_name = "o1-preview"
+    messages, resp, verifier_result = generate_and_verify(prompt_path, model_name, similar_problems, problem2)
     print(resp)
     print(1)
 
