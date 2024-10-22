@@ -127,6 +127,8 @@ def theorem_verifier(solver, theorem_seqs):
     res = "Correct"
 
     for theorem in theorem_seqs:
+        if "similar_triangle_judgment" in theorem:
+            print(1)
         t_name, t_branch, t_para = parse_one_theorem(theorem)
         # try:
         letters = get_letters(t_name, t_para)
@@ -258,38 +260,36 @@ def convert_theorem_seqs_format_string(input_str):
 
     for line in lines:
         line = line.strip()
-        if not line.startswith("step_id "):
-            continue  # Continue to the next line if this one doesn't start with 'step_id '
+        if not line.startswith("step_id:"):
+            continue  # Continue to the next line if this one doesn't start with 'step_id:'
 
-        # Split the line by ';'
-        parts = line.split(';')
+        # Split the line by ';' and remove the labels (step_id:, theorem:, etc.)
+        parts = [part.split(":")[1].strip() for part in line.split(";") if ":" in part]
 
-        # Initialize variables with empty strings in case any part is missing
+        # Initialize variables to store the extracted parts
         step_id = ""
         theorem = ""
         premise = ""
         conclusion = ""
 
-        # Extract the parts
+        # Assign the extracted parts based on their positions
         if len(parts) > 0:
-            step_id_part = parts[0].strip()
-            # Extract just the number from 'step_id N'
-            if step_id_part.startswith('step_id '):
-                step_id = step_id_part[len('step_id '):]
+            step_id = parts[0]  # This is the step_id value
 
         if len(parts) > 1:
-            theorem = parts[1].strip()
+            theorem = parts[1]  # This is the theorem value
 
         if len(parts) > 2:
-            premise = parts[2].strip()
+            premise = parts[2]  # This is the premise value
 
         if len(parts) > 3:
-            conclusion = parts[3].strip()
+            conclusion = parts[3]  # This is the conclusion value
 
         # Combine them in the desired format and add to the list
         converted_list.append(f"{step_id};{theorem};{premise};{conclusion}")
 
     return "\n".join(converted_list)
+
 
 
 
@@ -351,8 +351,7 @@ def generate_and_verify(prompt_path, model_name, similar_problems, problem2, max
         resp = gpt_response(messages, model_name)
         generated_theorem_sequence = resp.split("THEOREM_SEQUENCE:\n")[1]
         generated_theorem_sequence = convert_theorem_seqs_format_string(generated_theorem_sequence)
-        generated_theorem_sequence_list = re.findall(r'\d+;([^\(\)]+\([^\)]+\))', generated_theorem_sequence)
-        # generated_theorem_list = [line.split(';')[1] for line in generated_theorem_sequence.split('\n')]
+        generated_theorem_sequence_list = [line.split(";")[1].strip() for line in generated_theorem_sequence.strip().split("\n")]
         theorem_verifier_result = theorem_verifier(solver, generated_theorem_sequence_list)
 
         if theorem_verifier_result == "Correct":
