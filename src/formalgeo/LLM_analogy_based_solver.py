@@ -384,7 +384,7 @@ def main(problems):
     level_to_problems = get_level_to_problems(problems)
 
     # level 1: 2833, level 2: 6523, level 3: 2999, level 4: 2425, level 5: 4908, level 6: 729, level 7: 683, level 8: 912, level 9: 5749
-    problem2_id = 5749
+    problem2_id = 251
     similar_problem_ids = retrieve_similar_proofs(problem2_id, n=5)
     similar_problems = []
     for problem_id in similar_problem_ids:
