@@ -1,8 +1,12 @@
 import re
 import json
+import os
+import argparse
 from formalgeo.data import download_dataset, DatasetLoader
 from formalgeo.solver import Interactor
 from formalgeo.parse import parse_one_theorem
+import pandas as pd
+
 
 from formalgeo.tools import show_solution
 
@@ -18,6 +22,8 @@ openai.api_key = "sk-ds-openapi-key-0sfNvLjYF3wMuFQcp7oST3BlbkFJWeqSW76sV6Gy48mj
 openai.api_key = "sk-svcacct-kVTUGOlCTL2vge6gtHi--la5vr8g-lqT3ieuWGdHQBrYChItgkm2k1WPS9mA-MXe7ebaPHCMk8YrCft1OT3BlbkFJLNl-eYBXpQiokB5m3Nw0oiO9ZOe_Paf1WH0Kh4If52-rQ92DiSodgoopxiDoQDKlAGYDPRpiWamueq8vQA"
 from utils import display_image
 from similar_proofs_retrieval import retrieve_similar_proofs
+from similar_proofs_retrieval import retrieve_random_proofs
+
 import ast
 import re
 
@@ -206,11 +212,11 @@ def gpt_response(messages, model_name):
     print(resp)
     return resp
 
-def find_relevant_theorems(theorems, problems_set):
+def find_relevant_theorems(args, theorems, problems_set):
     relevant_theorems = {}
     for key in theorems.keys():
         for problem in problems_set:
-            if problem in key:
+            if problem in key or args.variant == "random" or args.variant == "analogy_based_all_theorems":
                 relevant_theorems[key] = theorems[key]
     return relevant_theorems
 
@@ -250,7 +256,7 @@ def convert_json_list_to_custom_format(json_list):
 
 
 def convert_theorem_seqs_format_string(input_str):
-    # Remove the leading and trailing single quotes
+    # Remove leading and trailing single quotes if present
     input_str = input_str.strip("'")
 
     # Split the input string by lines
@@ -260,32 +266,18 @@ def convert_theorem_seqs_format_string(input_str):
 
     for line in lines:
         line = line.strip()
-        if not line.startswith("step_id:"):
-            continue  # Continue to the next line if this one doesn't start with 'step_id:'
+        if line.startswith("step_id:"):
+            # Split the line by ';' and extract labeled parts
+            parts = [part.split(":", 1)[1].strip() for part in line.split(";") if ":" in part]
+        else:
+            # Assume the line is unlabeled and split by ';'
+            parts = [part.strip() for part in line.split(";")]
 
-        # Split the line by ';' and remove the labels (step_id:, theorem:, etc.)
-        parts = [part.split(":")[1].strip() for part in line.split(";") if ":" in part]
+        step_id = parts[0] if len(parts) > 0 else ""
+        theorem = parts[1] if len(parts) > 1 else ""
+        premise = parts[2] if len(parts) > 2 else ""
+        conclusion = parts[3] if len(parts) > 3 else ""
 
-        # Initialize variables to store the extracted parts
-        step_id = ""
-        theorem = ""
-        premise = ""
-        conclusion = ""
-
-        # Assign the extracted parts based on their positions
-        if len(parts) > 0:
-            step_id = parts[0]  # This is the step_id value
-
-        if len(parts) > 1:
-            theorem = parts[1]  # This is the theorem value
-
-        if len(parts) > 2:
-            premise = parts[2]  # This is the premise value
-
-        if len(parts) > 3:
-            conclusion = parts[3]  # This is the conclusion value
-
-        # Combine them in the desired format and add to the list
         converted_list.append(f"{step_id};{theorem};{premise};{conclusion}")
 
     return "\n".join(converted_list)
@@ -306,14 +298,37 @@ def create_messages(content):
     return messages
 
 
-def generate_and_verify(prompt_path, model_name, similar_problems, problem2, max_retries=5):
+
+def get_theorems_from_similar_problems(similar_problems):
     relevant_theorems = set()
     for problem in similar_problems:
         for theorem in problem.abstract_theorem_seqs:
             relevant_theorems.add(theorem)
-    for theorem in problem2.abstract_theorem_seqs:
+    return relevant_theorems
+
+def get_theorems_problem_to_solve(problem):
+    relevant_theorems = set()
+    for theorem in problem.abstract_theorem_seqs:
         relevant_theorems.add(theorem)
-    gdl_relevant_theorems = find_relevant_theorems(theorems, relevant_theorems)
+    return relevant_theorems
+
+
+
+def generate_and_verify(args, prompt_path, model_name, similar_problems, problem2, max_retries=5):
+    similar_problems_theorems = get_theorems_from_similar_problems(similar_problems)
+    problem_to_solve_theorems = get_theorems_problem_to_solve(problem2)
+
+    # all_present = problem_to_solve_theorems.issubset(similar_problems_theorems)
+    # file_name = f'cover_theorems_{args.num_examples}.csv'
+    # new_data = pd.DataFrame([[problem2.id, all_present, len(problem_to_solve_theorems), len(similar_problems_theorems)]], columns=['ProblemID', 'IsCovered', 'ProblemToSolveTheorems', 'SimilarProblemsTheorems'])
+    # if os.path.exists(file_name):
+    #     existing_data = pd.read_csv(file_name)
+    #     updated_data = pd.concat([existing_data, new_data], ignore_index=True)
+    # else:
+    #     updated_data = new_data
+    # updated_data.to_csv(file_name, index=False)
+
+    gdl_relevant_theorems = find_relevant_theorems(args, theorems, similar_problems_theorems)
     with open(prompt_path, 'r') as file:
         initial_prompt = file.read()
 
@@ -321,7 +336,7 @@ def generate_and_verify(prompt_path, model_name, similar_problems, problem2, max
     initial_prompt = initial_prompt.replace('{GDL}', gdl_relevant_theorems_str)
 
     content = initial_prompt
-    for i in range(len(similar_problems)):
+    for i in range(args.in_context_few_shot):
         problem = similar_problems[i]
         problem_dict = get_problem_fields(problem)
 
@@ -334,12 +349,6 @@ def generate_and_verify(prompt_path, model_name, similar_problems, problem2, max
     content += f"Inputs for Problem B:\nDESCRIPTION:\n{problem2.description}\n"
     content += f"CONSTRUCTION_CDL:\n{problem_dict['construction_cdl']}\nTEXT_CDL:\n{problem_dict['text_cdl']}\nGOAL_CDL:\n{problem2.goal_cdl}\n"
     content += f"CONSTRUCTION_CDL_EXTENDED:\n{problem_dict['construction_cdl_extended']}\nSYMBOLS_AND_VALUES:\n{problem.symbols_and_values}\nOutputs:\nOutputs for Problem B:\n"
-
-    # initial_message = {"role": "user", "content": content}
-    # messages = [
-    #     {"role": "system", "content": "You are a helpful assistant."},
-    #     initial_message
-    # ]
 
     messages = create_messages(content)
 
@@ -379,39 +388,121 @@ def get_level_to_problems(problems):
     return level_to_problems
 
 
+chosen_problems_by_level = {
+    # 1: [2833],
+    2: [6523],
+    # 3: [2999],
+    # 4: [2425],
+    # 5: [4908],
+    # 6: [729],
+    # 7: [683],
+    # 8: [912],
+    # 9: [5749]
+}
 
-def main(problems):
+prompt_path = "src/formalgeo/prompt/geometry_similar_problems_prompt_291224.txt"
+model_name = "o1-preview"
+
+
+import matplotlib.pyplot as plt
+import collections
+import random
+
+def plot_true_count_by_level(true_count_by_level):
+    x_values = list(true_count_by_level.keys())
+    y_values = list(true_count_by_level.values())
+    plt.figure(figsize=(8, 6))
+    plt.bar(x_values, y_values, width=0.6, color='blue', edgecolor='black')
+    plt.xlim(0, 9)
+    plt.ylim(0, 10)
+    plt.xlabel('Keys (0 to 9)')
+    plt.ylabel('Values (0 to 10)')
+    plt.title('Histogram of defaultdict')
+    plt.show()
+
+def print_similar_problems_theorems_coverage(chosen_problems_by_level):
+    problem_id_to_level = {}
+    for level, problems in chosen_problems_by_level.items():
+        for problem_id in problems:
+            problem_id_to_level[problem_id] = level
+
+    true_count_by_level = collections.defaultdict(int)
+    file_name = f'cover_theorems_{args.similar_problems}.csv'
+
+    df = pd.read_csv(file_name)
+    df['IsCovered'] = df['IsCovered'].astype(str) == 'True'
+    df['LevelID'] = df['ProblemID'].map(problem_id_to_level)
+    df.to_csv(file_name, index=False)
+    covered_df = df[df['IsCovered']]
+    for _, row in covered_df.iterrows():
+        level = row['LevelID']
+        if pd.notna(level):
+            true_count_by_level[level] += 1
+
+    total = 0
+    for level, count in true_count_by_level.items():
+        total += count
+
+    print("count problems: ", len(problem_id_to_level))
+    print("count covered problems: ", total)
+    print("coverage %:", total / len(problem_id_to_level))
+    print(true_count_by_level)
+
+    avg_problem_to_solve = df['ProblemToSolveTheorems'].mean()
+    avg_similar_problems = df['SimilarProblemsTheorems'].mean()
+
+    print(f"Average ProblemToSolveTheorems: {avg_problem_to_solve:.2f}")
+    print(f"Average SimilarProblemsTheorems: {avg_similar_problems:.2f}")
+
+
+
+def get_chosen_problems_by_level(problems):
+    random.seed(42)
     level_to_problems = get_level_to_problems(problems)
+    chosen_problems_by_level = {}
+    for level, problem_ids in level_to_problems.items():
+        if 1 <= level <= 10:
+            sample_problem_ids = random.sample(problem_ids, 10)
+            chosen_problems_by_level[level] = sample_problem_ids
+    return chosen_problems_by_level
 
-    # level 1: 2833, level 2: 6523, level 3: 2999, level 4: 2425, level 5: 4908, level 6: 729, level 7: 683, level 8: 912, level 9: 5749
-    problem2_id = 251
-    similar_problem_ids = retrieve_similar_proofs(problem2_id, n=5)
-    similar_problems = []
-    for problem_id in similar_problem_ids:
-        problem = problems[problem_id]
-        problem.print_problem()
-        problem.enrich_problem()
-        problem_CDL = dl.get_problem(problem_id)
-        solver.load_problem(problem_CDL)
-        display_image(problem_id)
-        similar_problems.append(problem)
+def main(args, problems):
+    # chosen_problems_by_level = get_chosen_problems_by_level(problems)
+    print_similar_problems_theorems_coverage(chosen_problems_by_level)
+    for _, problems_id in chosen_problems_by_level.items():
+        for problem2_id in problems_id:
+            if args.variant == "analogy_based":
+                similar_problem_ids = retrieve_similar_proofs(problem2_id, n=args.similar_problems)
+            else:
+                similar_problem_ids = retrieve_random_proofs(problem2_id, n=args.similar_problems)
+            similar_problems = []
+            for problem_id in similar_problem_ids:
+                problem = problems[problem_id]
+                problem.print_problem()
+                problem.enrich_problem()
+                problem_CDL = dl.get_problem(problem_id)
+                solver.load_problem(problem_CDL)
+                # display_image(problem_id)
+                similar_problems.append(problem)
+
+            problem2 = problems[problem2_id]
+            problem2.print_problem()
+            problem2.enrich_problem()
+            problem_CDL = dl.get_problem(problem2_id)
+            solver.load_problem(problem_CDL)
+            # display_image(problem2_id)
 
 
-    problem2 = problems[problem2_id]
-    problem2.print_problem()
-    problem2.enrich_problem()
-    problem_CDL = dl.get_problem(problem2_id)
-    solver.load_problem(problem_CDL)
-    display_image(problem2_id)
-
-    prompt_path = "src/formalgeo/prompt/geometry_similar_problems_prompt.txt"
-    model_name = "gpt-4o"
-    model_name = "o1-preview"
-    messages, resp, verifier_result = generate_and_verify(prompt_path, model_name, similar_problems, problem2)
-    print(resp)
-    print(1)
+            messages, resp, verifier_result = generate_and_verify(args, prompt_path, model_name, similar_problems, problem2)
+            # print(resp)
+            # print(1)
 
 if __name__ == "__main__":
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--variant", dest="variant", type=str, default="analogy_based")
+    parser.add_argument("--similar_problems", dest="similar_problems", type=int, default=100)
+    parser.add_argument("--in_context_few_shot", dest="in_context_few_shot", type=int, default=5)
+
+    args = parser.parse_args()
     problems = save_problems()
-    print(1)
-    main(problems)
+    main(args, problems)
