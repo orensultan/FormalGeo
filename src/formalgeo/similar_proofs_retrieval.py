@@ -7,6 +7,27 @@ from utils import display_image
 
 
 
+def retrieve_random_proofs(problem_id, n=1):
+    data = pd.read_csv('results.csv')
+    filtered_data = data[data["problem1_id"] == problem_id]
+    filtered_data["predicted_similarity"] = filtered_data.apply(
+        lambda row: load_model_and_predict(
+            model_save_path,
+            np.array([[row["abstract_construction_cdl_jaccard_similarity"],
+                       row["abstract_text_cdl_jaccard_similarity"],
+                       row["abstract_goal_similarity"]]])
+        ),
+        axis=1
+    )
+    top_rows = filtered_data.sample(n=n, random_state=42)  # Set a random_state for reproducibility if needed
+    print("predicted similarities")
+    print(top_rows['predicted_similarity'])
+    print("ground truth similarities")
+    print(top_rows['abstract_theorem_seqs_jaccard_similarity'])
+
+    return top_rows["problem2_id"].values.tolist()
+
+
 def retrieve_similar_proofs(problem_id, n=1):
     data = pd.read_csv('results.csv')
     filtered_data = data[data["problem1_id"] == problem_id]
@@ -29,8 +50,8 @@ def retrieve_similar_proofs(problem_id, n=1):
 
 
 def main():
-    retrieve_similar_proof(6800)
-
+    data = pd.read_csv('results.csv')
+    print(1)
 
 if __name__ == "__main__":
     main()

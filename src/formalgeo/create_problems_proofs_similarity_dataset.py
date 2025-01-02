@@ -5,6 +5,9 @@ import re
 from Problem import Problem
 from collections import Counter
 import argparse
+import collections
+
+import matplotlib.pyplot as plt
 
 def remove_duplicates(theorem_seqs):
     seen = set()
@@ -35,6 +38,25 @@ def replace_letters_and_numbers(text):
         return re.sub(r'\b[A-Z]+\b', '<word>', match.group(0))
 
     return re.sub(r'\([^\(\)]+\)', replace_letters, text)
+
+def print_problem_level_dist(problems):
+    level_count = collections.defaultdict(int)
+    for problem in problems.values():
+        level_count[problem.level] += 1
+
+    for level, count in level_count.items():
+        print(f"Level {level}: {count} problems")
+
+    levels = list(level_count.keys())
+    counts = list(level_count.values())
+
+    plt.bar(levels, counts)
+    plt.xlabel('Level')
+    plt.ylabel('Number of Problems')
+    plt.title('Problem Level Distribution')
+    plt.xticks(levels)  # Ensure each level has its own tick
+    plt.show()
+
 
 def print_problem(json, verbose=False):
     text_cdl = json['text_cdl']
@@ -85,6 +107,8 @@ def save_problems():
                 json_data = json.load(file)
                 problem = print_problem(json_data)
                 problems[problem.id] = problem
+    print_problem_level_dist(problems)
+    # target_problem = problems[2999]
     return problems
 
 
