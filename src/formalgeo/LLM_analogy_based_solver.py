@@ -216,7 +216,7 @@ def find_relevant_theorems(args, theorems, problems_set):
     relevant_theorems = {}
     for key in theorems.keys():
         for problem in problems_set:
-            if problem in key or args.variant == "random" or args.variant == "analogy_based_all_theorems":
+            if problem in key or args.variant == "random_all_theorems" or args.variant == "analogy_based_all_theorems":
                 relevant_theorems[key] = theorems[key]
     return relevant_theorems
 
@@ -471,7 +471,7 @@ def main(args, problems):
     print_similar_problems_theorems_coverage(chosen_problems_by_level)
     for _, problems_id in chosen_problems_by_level.items():
         for problem2_id in problems_id:
-            if args.variant == "analogy_based":
+            if args.variant in ["analogy_based", "analogy_based_all_theorems"]:
                 similar_problem_ids = retrieve_similar_proofs(problem2_id, n=args.similar_problems)
             else:
                 similar_problem_ids = retrieve_random_proofs(problem2_id, n=args.similar_problems)
