@@ -209,7 +209,6 @@ def call_gpt(model, messages, temperature=0, wait_time=1, retry_wait_time=6, max
 
 def gpt_response(messages, model_name):
     resp = def_call_gpt_o1_preview(model=model_name, messages=messages) if model_name != 'o1-preview' else def_call_gpt_o1_preview(model=model_name, messages=messages)
-    print(resp)
     return resp
 
 def find_relevant_theorems(args, theorems, problems_set):
@@ -313,54 +312,45 @@ def get_theorems_problem_to_solve(problem):
     return relevant_theorems
 
 
-
-def generate_and_verify(args, prompt_path, model_name, similar_problems, problem2, max_retries=5):
-    similar_problems_theorems = get_theorems_from_similar_problems(similar_problems)
-    problem_to_solve_theorems = get_theorems_problem_to_solve(problem2)
-
-    # all_present = problem_to_solve_theorems.issubset(similar_problems_theorems)
-    # file_name = f'cover_theorems_{args.num_examples}.csv'
-    # new_data = pd.DataFrame([[problem2.id, all_present, len(problem_to_solve_theorems), len(similar_problems_theorems)]], columns=['ProblemID', 'IsCovered', 'ProblemToSolveTheorems', 'SimilarProblemsTheorems'])
-    # if os.path.exists(file_name):
-    #     existing_data = pd.read_csv(file_name)
-    #     updated_data = pd.concat([existing_data, new_data], ignore_index=True)
-    # else:
-    #     updated_data = new_data
-    # updated_data.to_csv(file_name, index=False)
-
-    gdl_relevant_theorems = find_relevant_theorems(args, theorems, similar_problems_theorems)
-    with open(prompt_path, 'r') as file:
+def get_prompt_template_content(args, gdl_relevant_theorems, similar_problems, problem2):
+    with open(args.prompt_path, 'r') as file:
         initial_prompt = file.read()
-
     gdl_relevant_theorems_str = json.dumps(gdl_relevant_theorems, indent=4)
     initial_prompt = initial_prompt.replace('{GDL}', gdl_relevant_theorems_str)
-
     content = initial_prompt
+
     for i in range(args.in_context_few_shot):
         problem = similar_problems[i]
         problem_dict = get_problem_fields(problem)
-
         theorems_seqs_expl = convert_json_list_to_custom_format(get_theorem_seqs_expl(problem.theorem_seqs))
-        content += f"\nInputs for Problem A{i+1}:\nDESCRIPTION:\n{problem.description}\nCONSTRUCTION_CDL:\n{problem_dict['construction_cdl']}\n"
+        content += f"\nInputs for Problem A{i + 1}:\nDESCRIPTION:\n{problem.description}\nCONSTRUCTION_CDL:\n{problem_dict['construction_cdl']}\n"
         content += f"TEXT_CDL:\n{problem_dict['text_cdl']}\nGOAL_CDL:\n{problem.goal_cdl}\nCONSTRUCTION_CDL_EXTENDED:\n{problem_dict['construction_cdl_extended']}\nSYMBOLS_AND_VALUES:\n{problem.symbols_and_values}\n"
-        content += f"Outputs:\nOutputs for Problem A{i+1}:\nEQUATIONS:\n{problem_dict['equations']}\nGOAL_SYMBOL:\n{problem.goal_symbol}\nANSWER:\n{problem.answer}\nTHEOREM_SEQUENCE:\n{theorems_seqs_expl}\n"
+        content += f"Outputs:\nOutputs for Problem A{i + 1}:\nEQUATIONS:\n{problem_dict['equations']}\nGOAL_SYMBOL:\n{problem.goal_symbol}\nANSWER:\n{problem.answer}\nTHEOREM_SEQUENCE:\n{theorems_seqs_expl}\n"
 
     problem_dict = get_problem_fields(problem2)
     content += f"Inputs for Problem B:\nDESCRIPTION:\n{problem2.description}\n"
     content += f"CONSTRUCTION_CDL:\n{problem_dict['construction_cdl']}\nTEXT_CDL:\n{problem_dict['text_cdl']}\nGOAL_CDL:\n{problem2.goal_cdl}\n"
     content += f"CONSTRUCTION_CDL_EXTENDED:\n{problem_dict['construction_cdl_extended']}\nSYMBOLS_AND_VALUES:\n{problem.symbols_and_values}\nOutputs:\nOutputs for Problem B:\n"
+    return content
 
+def get_processed_model_resp(resp):
+    generated_theorem_sequence = resp.split("THEOREM_SEQUENCE:\n")[1]
+    generated_theorem_sequence = convert_theorem_seqs_format_string(generated_theorem_sequence)
+    generated_theorem_sequence_list = [line.split(";")[1].strip() for line in
+                                       generated_theorem_sequence.strip().split("\n")]
+    return generated_theorem_sequence_list
+
+
+def generate_and_verify(args, gdl_relevant_theorems, similar_problems, problem2, max_retries=5):
+    content = get_prompt_template_content(args, gdl_relevant_theorems, similar_problems, problem2)
     messages = create_messages(content)
-
 
     attempts = 0
     theorem_verifier_result = ""
     resp = ""
     while attempts < max_retries:
-        resp = gpt_response(messages, model_name)
-        generated_theorem_sequence = resp.split("THEOREM_SEQUENCE:\n")[1]
-        generated_theorem_sequence = convert_theorem_seqs_format_string(generated_theorem_sequence)
-        generated_theorem_sequence_list = [line.split(";")[1].strip() for line in generated_theorem_sequence.strip().split("\n")]
+        resp = gpt_response(messages, args.model_name)
+        generated_theorem_sequence_list = get_processed_model_resp(resp)
         theorem_verifier_result = theorem_verifier(solver, generated_theorem_sequence_list)
 
         if theorem_verifier_result == "Correct":
@@ -390,8 +380,8 @@ def get_level_to_problems(problems):
 
 chosen_problems_by_level = {
     # 1: [2833],
-    2: [6523],
-    # 3: [2999],
+    # 2: [6523],
+     3: [2999],
     # 4: [2425],
     # 5: [4908],
     # 6: [729],
@@ -400,8 +390,7 @@ chosen_problems_by_level = {
     # 9: [5749]
 }
 
-prompt_path = "src/formalgeo/prompt/geometry_similar_problems_prompt_291224.txt"
-model_name = "o1-preview"
+
 
 
 import matplotlib.pyplot as plt
@@ -466,9 +455,41 @@ def get_chosen_problems_by_level(problems):
             chosen_problems_by_level[level] = sample_problem_ids
     return chosen_problems_by_level
 
+
+
+def write_theorems_coverage_stats(similar_problems_theorems, problem2):
+    problem_to_solve_theorems = get_theorems_problem_to_solve(problem2)
+    all_present = problem_to_solve_theorems.issubset(similar_problems_theorems)
+    file_name = f'cover_theorems_{args.num_examples}.csv'
+    new_data = pd.DataFrame([[problem2.id, all_present, len(problem_to_solve_theorems), len(similar_problems_theorems)]], columns=['ProblemID', 'IsCovered', 'ProblemToSolveTheorems', 'SimilarProblemsTheorems'])
+    if os.path.exists(file_name):
+        existing_data = pd.read_csv(file_name)
+        updated_data = pd.concat([existing_data, new_data], ignore_index=True)
+    else:
+        updated_data = new_data
+    updated_data.to_csv(file_name, index=False)
+
+
+def get_gt_result(problem2):
+    gt = ""
+    gt += "\n\nGT_EQUATIONS:\n" + "\n".join(problem2.equations) + "\n"
+    gt += "GT_GOAL_SYMBOL:\n" + problem2.goal_symbol + "\n"
+    gt += "GT_ANSWER:\n" + problem2.answer + "\n"
+    gt += "GT_THEOREM_SEQUENCE:\n" + "\n".join(problem2.theorem_seqs) + "\n"
+    return gt
+
+
+def write_result(file_path, problem2_given, problem2_resp, problem2_gt):
+    with open(file_path, "w") as file:
+        file.write(problem2_given + "\n")
+        file.write(problem2_resp + "\n")
+        file.write(problem2_gt + "\n")
+    print(f"Content written to {file_path}")
+
+
 def main(args, problems):
     # chosen_problems_by_level = get_chosen_problems_by_level(problems)
-    print_similar_problems_theorems_coverage(chosen_problems_by_level)
+    # print_similar_problems_theorems_coverage(chosen_problems_by_level)
     for _, problems_id in chosen_problems_by_level.items():
         for problem2_id in problems_id:
             if args.variant in ["analogy_based", "analogy_based_all_theorems"]:
@@ -490,19 +511,29 @@ def main(args, problems):
             problem2.enrich_problem()
             problem_CDL = dl.get_problem(problem2_id)
             solver.load_problem(problem_CDL)
-            # display_image(problem2_id)
+            display_image(problem2_id)
+
+            similar_problems_theorems = get_theorems_from_similar_problems(similar_problems)
+            gdl_relevant_theorems = find_relevant_theorems(args, theorems, similar_problems_theorems)
+            # write_theorems_coverage_stats(similar_problems_theorems, problem2)
+            messages, problem2_resp, verifier_result = generate_and_verify(args, gdl_relevant_theorems, similar_problems, problem2)
+            problem2_gt = get_gt_result(problem2)
+            content = messages[0]['content']
+            start_index = content.find("Inputs for Problem B:")
+            problem2_given = content[start_index:]
+            output_path = "results/" + "variant_" + args.variant + "_model_" + args.model_name + "_problem_" + str(problem2.id) + ".txt"
+            write_result(output_path, problem2_given, problem2_resp, problem2_gt)
 
 
-            messages, resp, verifier_result = generate_and_verify(args, prompt_path, model_name, similar_problems, problem2)
-            # print(resp)
-            # print(1)
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("--variant", dest="variant", type=str, default="analogy_based")
+    parser.add_argument("--model_name", dest="model_name", type=str, default="o1")
+    parser.add_argument("--prompt_path", dest="prompt_path", type=str, default="src/formalgeo/prompt/geometry_similar_problems_prompt_291224.txt")
     parser.add_argument("--similar_problems", dest="similar_problems", type=int, default=100)
     parser.add_argument("--in_context_few_shot", dest="in_context_few_shot", type=int, default=5)
-
     args = parser.parse_args()
+
     problems = save_problems()
     main(args, problems)
