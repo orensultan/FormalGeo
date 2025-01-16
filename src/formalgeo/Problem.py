@@ -250,18 +250,26 @@ class Problem:
 
 
 
-def get_theory(theorem):
+def get_theorem(theorem):
     with open('formalgeo7k_v1/gdl/theorem_GDL.json', 'r') as file:
         theorems = json.load(file)
         matching_keys = [key for key, value in theorems.items() if theorem.split("(")[0] in key]
         key = matching_keys[0]
         num = theorem.split("(")[1][0]
-        premise_and_conclusion = theorems[key][num]
-        final_json = {
-            "theorem": f"{key.split('(')[0]}({num},{key.split('(')[1]}",
-            "premise": premise_and_conclusion['premise'],
-            "conclusion": premise_and_conclusion['conclusion']
-        }
+        if key in theorems and num in theorems[key]:
+            premise_and_conclusion = theorems[key][num]
+            final_json = {
+                "theorem": f"{key.split('(')[0]}({num},{key.split('(')[1]}",
+                "premise": premise_and_conclusion['premise'],
+                "conclusion": premise_and_conclusion['conclusion'],
+            }
+        else:
+            final_json = {
+                "theorem": f"{key.split('(')[0]}({num},{key.split('(')[1]}",
+                "premise": "theorem not found",
+                "conclusion": "theorem not found",
+            }
+
         final_json_str = json.dumps(final_json, indent=4)
         return final_json_str
 

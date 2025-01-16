@@ -10,7 +10,7 @@ import pandas as pd
 
 from formalgeo.tools import show_solution
 
-from Problem import get_theory, replace_symbols
+from Problem import get_theorem, replace_symbols
 from create_problems_proofs_similarity_dataset import save_problems
 import time
 import openai
@@ -39,7 +39,7 @@ def get_theorem_seqs_expl(theorem_seqs):
     for theorem in theorem_seqs:
         t_name, t_branch, t_para = parse_one_theorem(theorem)
         letters = get_letters(t_name, t_para)
-        theory_json = get_theory(theorem)
+        theory_json = get_theorem(theorem)
         premise, conclusions = json.loads(theory_json)['premise'], json.loads(theory_json)['conclusion']
         premise = replace_symbols(premise, letters)
         for i in range(len(conclusions)):
@@ -138,7 +138,7 @@ def theorem_verifier(solver, theorem_seqs):
         t_name, t_branch, t_para = parse_one_theorem(theorem)
         # try:
         letters = get_letters(t_name, t_para)
-        theory_json = get_theory(theorem)
+        theory_json = get_theorem(theorem)
         premise = json.loads(theory_json)['premise']
         premise = replace_symbols(premise, letters)
         update, reason = solver.apply_theorem(t_name, t_branch, t_para)
@@ -334,10 +334,9 @@ def get_prompt_template_content(args, gdl_relevant_theorems, similar_problems, p
     return content
 
 def get_processed_model_resp(resp):
-    generated_theorem_sequence = resp.split("THEOREM_SEQUENCE:\n")[1]
-    generated_theorem_sequence = convert_theorem_seqs_format_string(generated_theorem_sequence)
-    generated_theorem_sequence_list = [line.split(";")[1].strip() for line in
-                                       generated_theorem_sequence.strip().split("\n")]
+    generated_theorem_sequence = resp.split("THEOREM_SEQUENCE:\n")[1] if len(resp.split("THEOREM_SEQUENCE:\n")) > 1 else ""
+    generated_theorem_sequence = convert_theorem_seqs_format_string(generated_theorem_sequence) if generated_theorem_sequence != "" else ""
+    generated_theorem_sequence_list = [line.split(";")[1].strip() for line in generated_theorem_sequence.strip().split("\n")] if generated_theorem_sequence != "" else []
     return generated_theorem_sequence_list
 
 
@@ -379,15 +378,15 @@ def get_level_to_problems(problems):
 
 
 chosen_problems_by_level = {
-     1: [2833],
-    #  2: [6523],
+    # 1: [2833],
+    # 2: [6523],
     # 3: [2999],
-    # 4: [2425],
+    #  4: [2425],
     # 5: [4908],
     # 6: [729],
     # 7: [683],
     # 8: [912],
-    # 9: [5749]
+     9: [5749]
 }
 
 
