@@ -379,9 +379,9 @@ def get_level_to_problems(problems):
 
 
 chosen_problems_by_level = {
-    # 1: [2833],
-    # 2: [6523],
-     3: [2999],
+     1: [2833],
+    #  2: [6523],
+    # 3: [2999],
     # 4: [2425],
     # 5: [4908],
     # 6: [729],
@@ -486,6 +486,14 @@ def write_result(file_path, problem2_given, problem2_resp, problem2_gt):
         file.write(problem2_gt + "\n")
     print(f"Content written to {file_path}")
 
+def process_problem(problem_id):
+    problem = problems[problem_id]
+    problem.print_problem()
+    problem.enrich_problem()
+    problem_CDL = dl.get_problem(problem_id)
+    solver.load_problem(problem_CDL)
+    # display_image(problem_id)
+    return problem
 
 def main(args, problems):
     # chosen_problems_by_level = get_chosen_problems_by_level(problems)
@@ -496,31 +504,16 @@ def main(args, problems):
                 similar_problem_ids = retrieve_similar_proofs(problem2_id, n=args.similar_problems)
             else:
                 similar_problem_ids = retrieve_random_proofs(problem2_id, n=args.similar_problems)
-            similar_problems = []
-            for problem_id in similar_problem_ids:
-                problem = problems[problem_id]
-                problem.print_problem()
-                problem.enrich_problem()
-                problem_CDL = dl.get_problem(problem_id)
-                solver.load_problem(problem_CDL)
-                # display_image(problem_id)
-                similar_problems.append(problem)
-
-            problem2 = problems[problem2_id]
-            problem2.print_problem()
-            problem2.enrich_problem()
-            problem_CDL = dl.get_problem(problem2_id)
-            solver.load_problem(problem_CDL)
-            display_image(problem2_id)
+            similar_problems = [process_problem(problem_id) for problem_id in similar_problem_ids]
+            problem2 = process_problem(problem2_id)
 
             similar_problems_theorems = get_theorems_from_similar_problems(similar_problems)
             gdl_relevant_theorems = find_relevant_theorems(args, theorems, similar_problems_theorems)
             # write_theorems_coverage_stats(similar_problems_theorems, problem2)
             messages, problem2_resp, verifier_result = generate_and_verify(args, gdl_relevant_theorems, similar_problems, problem2)
             problem2_gt = get_gt_result(problem2)
-            content = messages[0]['content']
-            start_index = content.find("Inputs for Problem B:")
-            problem2_given = content[start_index:]
+            start_index = messages[0]['content'].find("Inputs for Problem B:")
+            problem2_given = messages[0]['content'][start_index:]
             output_path = "results/" + "variant_" + args.variant + "_model_" + args.model_name + "_problem_" + str(problem2.id) + ".txt"
             write_result(output_path, problem2_given, problem2_resp, problem2_gt)
 

@@ -5,6 +5,8 @@ You are given:
 Problem B, which you need to solve.
 Five analogous problems (A1, A2, A3, A4, A5) that have similar proof structures. These are provided to help guide your approach to solving Problem B.
 Geometry Theorem Dictionary (GDL): A dictionary containing various geometry theorems, each with its premise and conclusion. All theorems in the THEOREM_SEQUENCE must be selected from this dictionary.
+GDL_DICTIONARY:
+{GDL}
 For each problem, you are provided the following data:
 DESCRIPTION: A textual description of the problem.
 CONSTRUCTION_CDL: The problem's construction in Condition Declaration Language (CDL).
