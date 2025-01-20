@@ -42,6 +42,8 @@ def get_theorem_seqs_expl(theorem_seqs):
         theory_json = get_theorem(theorem)
         premise, conclusions = json.loads(theory_json)['premise'], json.loads(theory_json)['conclusion']
         premise = replace_symbols(premise, letters)
+        if isinstance(conclusions, str):
+            conclusions = [conclusions]
         for i in range(len(conclusions)):
             conclusions[i] = replace_symbols(conclusions[i], letters)
 
@@ -215,7 +217,11 @@ def find_relevant_theorems(args, theorems, problems_set):
     relevant_theorems = {}
     for key in theorems.keys():
         for problem in problems_set:
-            if problem in key or args.variant == "random_all_theorems" or args.variant == "analogy_based_all_theorems":
+            if args.variant == "random_no_theorems":
+                continue
+            if args.variant == "analogy_based" and problem in key:
+                relevant_theorems[key] = theorems[key]
+            if args.variant in ["random_all_theorems", "analogy_based_all_theorems"]:
                 relevant_theorems[key] = theorems[key]
     return relevant_theorems
 
@@ -380,13 +386,26 @@ def get_level_to_problems(problems):
 chosen_problems_by_level = {
     # 1: [2833],
     # 2: [6523],
-    # 3: [2999],
+    #  3: [2999],
     #  4: [2425],
     # 5: [4908],
     # 6: [729],
     # 7: [683],
     # 8: [912],
-     9: [5749]
+    # 9: [5749]
+}
+
+chosen_problems_by_level = {
+# 1: [1975, 1490, 1726, 178, 2669],
+# 2: [2141, 69, 2916, 358, 4473],
+# 3: [4187, 5244, 5062, 844, 1945],
+# 4: [2114, 464, 5510, 3272, 5230],
+5: [5440, 6485, 696, 847, 5563],
+# 6: [4923, 3298, 759, 4910, 5805],
+# 7: [3580, 4898, 6802, 6247, 449],
+# 8: [3983, 2761, 2875, 3434, 6806],
+ # 9: [4892, 5092, 5522, 4796, 3418],
+
 }
 
 
