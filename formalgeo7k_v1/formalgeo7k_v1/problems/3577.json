@@ -1,0 +1,36 @@
+{
+  "problem_id": 3577,
+  "annotation": "YanjunGuo_2023-04-30",
+  "source": "GeoQA-1218",
+  "problem_level": 4,
+  "problem_text_cn": "如图所示，∠BCA=60°，∠CAD=80°，CD平分∠BCA。求∠CDB的大小。",
+  "problem_text_en": "As shown in the diagram, ∠BCA=60°, ∠CAD=80°, CD is the angle bisector of ∠BCA. Find the measure of ∠CDB.",
+  "problem_img": "3577.png",
+  "construction_cdl": [
+    "Shape(AD,DC,CA)",
+    "Shape(DB,BC,CD)",
+    "Collinear(ADB)"
+  ],
+  "text_cdl": [
+    "Equal(MeasureOfAngle(BCA),60)",
+    "Equal(MeasureOfAngle(CAD),80)",
+    "IsBisectorOfAngle(CD,BCA)"
+  ],
+  "image_cdl": [],
+  "goal_cdl": "Value(MeasureOfAngle(CDB))",
+  "problem_answer": "110",
+  "theorem_seqs": [
+    "triangle_property_angle_sum(1,ADC)",
+    "triangle_property_angle_sum(1,DBC)",
+    "triangle_property_angle_sum(1,CAB)",
+    "adjacent_complementary_angle(1,ADC,CDB)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "triangle_property_angle_sum(1,ADC)",
+      "triangle_property_angle_sum(1,DBC)",
+      "triangle_property_angle_sum(1,CAB)",
+      "adjacent_complementary_angle(1,ADC,CDB)"
+    ]
+  }
+}

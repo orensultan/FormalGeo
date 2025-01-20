@@ -1,0 +1,73 @@
+{
+  "problem_id": 2508,
+  "annotation": "YifanWang_2023-04-23",
+  "source": "Geometry3k-2632",
+  "problem_level": 8,
+  "problem_text_cn": "如图所示，BG=15，CB=30，FE=15，BG是△BAC的中线，EH是△EDF的中线，△BAC与△EDF是相似三角形。求直线EH的长度。",
+  "problem_text_en": "As shown in the diagram, BG=15, CB=30, FE=15, BG is the median of △ BAC, EH is the median of △ EDF, triangle BAC is similar to triangle EDF.. Find the length of line EH.",
+  "problem_img": "2508.png",
+  "construction_cdl": [
+    "Shape(BA,AG,GB)",
+    "Shape(BG,GC,CB)",
+    "Shape(ED,DH,HE)",
+    "Shape(EH,HF,FE)",
+    "Collinear(AGC)",
+    "Collinear(DHF)"
+  ],
+  "text_cdl": [
+    "Equal(LengthOfLine(BG),15)",
+    "Equal(LengthOfLine(CB),30)",
+    "Equal(LengthOfLine(FE),15)",
+    "IsMedianOfTriangle(BG,BAC)",
+    "IsMedianOfTriangle(EH,EDF)",
+    "SimilarBetweenTriangle(BAC,EDF)"
+  ],
+  "image_cdl": [
+    "Equal(LengthOfLine(BG),15)",
+    "Equal(LengthOfLine(CB),30)",
+    "Equal(LengthOfLine(FE),15)",
+    "IsMedianOfTriangle(BG,BAC)",
+    "IsMedianOfTriangle(EH,EDF)",
+    "SimilarBetweenTriangle(BAC,EDF)"
+  ],
+  "goal_cdl": "Value(LengthOfLine(EH))",
+  "problem_answer": "15/2",
+  "theorem_seqs": [
+    "line_addition(1,AG,GC)",
+    "line_addition(1,DH,HF)",
+    "similar_triangle_property_line_ratio(1,BAC,EDF)",
+    "similar_triangle_property_line_ratio(1,ACB,DFE)",
+    "similar_triangle_property_angle_equal(1,CBA,FED)",
+    "similar_triangle_judgment_sas(1,CBG,FEH)",
+    "similar_triangle_property_line_ratio(1,CBG,FEH)",
+    "similar_triangle_property_line_ratio(1,GCB,HFE)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "line_addition(1,AG,GC)",
+      "line_addition(1,DH,HF)",
+      "similar_triangle_property_line_ratio(1,BAC,EDF)",
+      "similar_triangle_property_line_ratio(1,ACB,DFE)",
+      "similar_triangle_property_angle_equal(1,CBA,FED)"
+    ],
+    "line_addition(1,AG,GC)": [
+      "similar_triangle_judgment_sas(1,CBG,FEH)"
+    ],
+    "line_addition(1,DH,HF)": [
+      "similar_triangle_judgment_sas(1,CBG,FEH)"
+    ],
+    "similar_triangle_property_line_ratio(1,BAC,EDF)": [
+      "similar_triangle_judgment_sas(1,CBG,FEH)"
+    ],
+    "similar_triangle_property_line_ratio(1,ACB,DFE)": [
+      "similar_triangle_judgment_sas(1,CBG,FEH)"
+    ],
+    "similar_triangle_property_angle_equal(1,CBA,FED)": [
+      "similar_triangle_judgment_sas(1,CBG,FEH)"
+    ],
+    "similar_triangle_judgment_sas(1,CBG,FEH)": [
+      "similar_triangle_property_line_ratio(1,CBG,FEH)",
+      "similar_triangle_property_line_ratio(1,GCB,HFE)"
+    ]
+  }
+}

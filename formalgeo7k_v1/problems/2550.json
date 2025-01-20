@@ -1,0 +1,59 @@
+{
+  "problem_id": 2550,
+  "annotation": "ChenyangMao_2023-04-23",
+  "source": "Geometry3k-2675",
+  "problem_level": 8,
+  "problem_text_cn": "如图所示，⌒EDF的角度为102，E是圆E的圆心，CF是圆O的切线。求∠DFC的大小。",
+  "problem_text_en": "As shown in the diagram, the measure of arc EDF is 102, the center of ⊙E is E, the tangent to ⊙E is CF. Find the measure of ∠DFC.",
+  "problem_img": "2550.png",
+  "construction_cdl": [
+    "Shape(BD,DE)",
+    "Shape(EF,FC)",
+    "Shape(ED,DF,FE)",
+    "Shape(EDF,FD)",
+    "Shape(EFD,DE,EF)",
+    "Collinear(BDF)",
+    "Cocircular(E,DF)"
+  ],
+  "text_cdl": [
+    "Equal(MeasureOfArc(EDF),102)",
+    "IsCentreOfCircle(E,E)",
+    "IsTangentOfCircle(CF,E)"
+  ],
+  "image_cdl": [
+    "Equal(MeasureOfArc(EDF),102)",
+    "IsCentreOfCircle(E,E)",
+    "IsTangentOfCircle(CF,E)"
+  ],
+  "goal_cdl": "Value(MeasureOfAngle(DFC))",
+  "problem_answer": "129",
+  "theorem_seqs": [
+    "tangent_of_circle_property_perpendicular(1,CF,E,E)",
+    "radius_of_circle_property_length_equal(1,ED,E)",
+    "radius_of_circle_property_length_equal(1,EF,E)",
+    "arc_property_center_angle(1,EDF,E)",
+    "angle_addition(1,DFE,EFC)",
+    "triangle_property_angle_sum(1,EDF)",
+    "isosceles_triangle_judgment_line_equal(1,EDF)",
+    "isosceles_triangle_property_angle_equal(1,EDF)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "tangent_of_circle_property_perpendicular(1,CF,E,E)",
+      "radius_of_circle_property_length_equal(1,ED,E)",
+      "radius_of_circle_property_length_equal(1,EF,E)",
+      "arc_property_center_angle(1,EDF,E)",
+      "angle_addition(1,DFE,EFC)",
+      "triangle_property_angle_sum(1,EDF)"
+    ],
+    "radius_of_circle_property_length_equal(1,ED,E)": [
+      "isosceles_triangle_judgment_line_equal(1,EDF)"
+    ],
+    "radius_of_circle_property_length_equal(1,EF,E)": [
+      "isosceles_triangle_judgment_line_equal(1,EDF)"
+    ],
+    "isosceles_triangle_judgment_line_equal(1,EDF)": [
+      "isosceles_triangle_property_angle_equal(1,EDF)"
+    ]
+  }
+}

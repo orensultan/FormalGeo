@@ -1,0 +1,39 @@
+{
+  "problem_id": 3706,
+  "annotation": "YangLi_2023-04-30",
+  "source": "GeoQA-1470",
+  "problem_level": 4,
+  "problem_text_cn": "如图所示，∠AMN=36°，∠ANT=140°，∠AQP=36°。求∠QPA的大小。",
+  "problem_text_en": "As shown in the diagram, ∠AMN=36°, ∠ANT=140°, ∠AQP=36°. Find the measure of ∠QPA.",
+  "problem_img": "3706.png",
+  "construction_cdl": [
+    "Shape(PA,AQ,QP)",
+    "Shape(AM,MN,NA)",
+    "Shape(AN,NT)",
+    "Collinear(MAQ)",
+    "Collinear(PAN)",
+    "Collinear(MNT)"
+  ],
+  "text_cdl": [
+    "Equal(MeasureOfAngle(AMN),36)",
+    "Equal(MeasureOfAngle(ANT),140)",
+    "Equal(MeasureOfAngle(AQP),36)"
+  ],
+  "image_cdl": [],
+  "goal_cdl": "Value(MeasureOfAngle(QPA))",
+  "problem_answer": "40",
+  "theorem_seqs": [
+    "adjacent_complementary_angle(1,MNA,ANT)",
+    "triangle_property_angle_sum(1,NAM)",
+    "vertical_angle(1,PAQ,NAM)",
+    "triangle_property_angle_sum(1,PAQ)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "adjacent_complementary_angle(1,MNA,ANT)",
+      "triangle_property_angle_sum(1,NAM)",
+      "vertical_angle(1,PAQ,NAM)",
+      "triangle_property_angle_sum(1,PAQ)"
+    ]
+  }
+}

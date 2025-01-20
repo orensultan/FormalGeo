@@ -1,0 +1,34 @@
+{
+  "problem_id": 5063,
+  "annotation": "ChengQin_2023-05-21",
+  "source": "GeoQA-4829",
+  "problem_level": 3,
+  "problem_text_cn": "如图所示，BE=3，CE=2，三角形ABC与三角形DEB是相似三角形。求直线ED的长度与直线AB的长度之比。",
+  "problem_text_en": "As shown in the diagram, BE=3, CE=2, triangle ABC is similar to triangle DEB.. Find the ratio of the length of line ED to the length of line AB.",
+  "problem_img": "5063.png",
+  "construction_cdl": [
+    "Shape(AB,BE,EC,CA)",
+    "Shape(BD,DE,EB)",
+    "Collinear(BEC)"
+  ],
+  "text_cdl": [
+    "Equal(LengthOfLine(BE),3)",
+    "Equal(LengthOfLine(CE),2)",
+    "SimilarBetweenTriangle(ABC,DEB)"
+  ],
+  "image_cdl": [],
+  "goal_cdl": "Value(Div(LengthOfLine(ED),LengthOfLine(AB)))",
+  "problem_answer": "3/5",
+  "theorem_seqs": [
+    "line_addition(1,BE,EC)",
+    "similar_triangle_property_line_ratio(1,ABC,DEB)",
+    "similar_triangle_property_line_ratio(1,CAB,BDE)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "line_addition(1,BE,EC)",
+      "similar_triangle_property_line_ratio(1,ABC,DEB)",
+      "similar_triangle_property_line_ratio(1,CAB,BDE)"
+    ]
+  }
+}

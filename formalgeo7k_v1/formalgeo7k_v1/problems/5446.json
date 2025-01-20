@@ -1,0 +1,61 @@
+{
+  "problem_id": 5446,
+  "annotation": "YangLi_2023-05-21",
+  "source": "GeoQA-5798",
+  "problem_level": 9,
+  "problem_text_cn": "如图所示，AB=5，EF=2，AE平分∠DAB，DF是∠CDA的角平分线，AD∥BC，AD平行于BE，AD平行于FC，BA平行于CD。求直线AD的长度。",
+  "problem_text_en": "As shown in the diagram, AB=5, EF=2, AE is the angle bisector of ∠DAB, DF bisects ∠CDA, AD∥BC, AD∥BE, AD is parallel to FC, BA∥CD. Find the length of line AD.",
+  "problem_img": "5446.png",
+  "construction_cdl": [
+    "Shape(AG,GD,DA)",
+    "Shape(GF,FE,EG)",
+    "Shape(AB,BF,FG,GA)",
+    "Shape(DG,GE,EC,CD)",
+    "Collinear(AGE)",
+    "Collinear(FGD)",
+    "Collinear(BFEC)"
+  ],
+  "text_cdl": [
+    "Equal(LengthOfLine(AB),5)",
+    "Equal(LengthOfLine(EF),2)",
+    "IsBisectorOfAngle(AE,DAB)",
+    "IsBisectorOfAngle(DF,CDA)",
+    "ParallelBetweenLine(AD,BC)",
+    "ParallelBetweenLine(AD,BE)",
+    "ParallelBetweenLine(AD,FC)",
+    "ParallelBetweenLine(BA,CD)"
+  ],
+  "image_cdl": [],
+  "goal_cdl": "Value(LengthOfLine(AD))",
+  "problem_answer": "8",
+  "theorem_seqs": [
+    "line_addition(1,BF,FE)",
+    "line_addition(1,CF,FB)",
+    "parallelogram_judgment_parallel_and_parallel(1,DABC)",
+    "parallel_property_alternate_interior_angle(1,AD,BE)",
+    "parallel_property_alternate_interior_angle(2,AD,FC)",
+    "isosceles_triangle_judgment_angle_equal(1,CDF)",
+    "isosceles_triangle_judgment_angle_equal(1,BEA)",
+    "parallelogram_property_opposite_line_equal(1,ABCD)",
+    "parallelogram_property_opposite_line_equal(1,BCDA)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "line_addition(1,BF,FE)",
+      "line_addition(1,CF,FB)",
+      "parallelogram_judgment_parallel_and_parallel(1,DABC)",
+      "parallel_property_alternate_interior_angle(1,AD,BE)",
+      "parallel_property_alternate_interior_angle(2,AD,FC)"
+    ],
+    "parallelogram_judgment_parallel_and_parallel(1,DABC)": [
+      "parallelogram_property_opposite_line_equal(1,ABCD)",
+      "parallelogram_property_opposite_line_equal(1,BCDA)"
+    ],
+    "parallel_property_alternate_interior_angle(1,AD,BE)": [
+      "isosceles_triangle_judgment_angle_equal(1,BEA)"
+    ],
+    "parallel_property_alternate_interior_angle(2,AD,FC)": [
+      "isosceles_triangle_judgment_angle_equal(1,CDF)"
+    ]
+  }
+}

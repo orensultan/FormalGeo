@@ -1,0 +1,45 @@
+{
+  "problem_id": 5231,
+  "annotation": "XiaokaiZhang_2023-05-21",
+  "source": "GeoQA-5287",
+  "problem_level": 6,
+  "problem_text_cn": "如图所示，∠ABC=112°，∠MDN=32°，三角形NAM镜像全等于三角形NMD，MN∥BC。求∠CND的大小。",
+  "problem_text_en": "As shown in the diagram, ∠ABC=112°, ∠MDN=32°, △NAM is mirror congruent to △NMD, MN is parallel to BC. Find the measure of ∠CND.",
+  "problem_img": "5231.png",
+  "construction_cdl": [
+    "Shape(AM,MN,NA)",
+    "Shape(ME,EN,NM)",
+    "Shape(MD,DE,EM)",
+    "Shape(NE,EB,BC,CN)",
+    "Collinear(AMEB)",
+    "Collinear(ANC)",
+    "Collinear(DEN)"
+  ],
+  "text_cdl": [
+    "Equal(MeasureOfAngle(ABC),112)",
+    "Equal(MeasureOfAngle(MDN),32)",
+    "MirrorCongruentBetweenTriangle(NAM,NMD)",
+    "ParallelBetweenLine(MN,BC)"
+  ],
+  "image_cdl": [],
+  "goal_cdl": "Value(MeasureOfAngle(CND))",
+  "problem_answer": "108",
+  "theorem_seqs": [
+    "mirror_congruent_triangle_property_angle_equal(1,AMN,DNM)",
+    "parallel_property_corresponding_angle(1,MN,BC,A)",
+    "triangle_property_angle_sum(1,AMN)",
+    "mirror_congruent_triangle_property_angle_equal(1,NAM,NMD)",
+    "angle_addition(1,DNM,MNA)",
+    "adjacent_complementary_angle(1,CND,DNA)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "mirror_congruent_triangle_property_angle_equal(1,AMN,DNM)",
+      "parallel_property_corresponding_angle(1,MN,BC,A)",
+      "triangle_property_angle_sum(1,AMN)",
+      "mirror_congruent_triangle_property_angle_equal(1,NAM,NMD)",
+      "angle_addition(1,DNM,MNA)",
+      "adjacent_complementary_angle(1,CND,DNA)"
+    ]
+  }
+}

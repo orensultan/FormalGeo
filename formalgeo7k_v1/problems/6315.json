@@ -1,0 +1,53 @@
+{
+  "problem_id": 6315,
+  "annotation": "ZheZhu_2023-05-28",
+  "source": "GeoQA-9103",
+  "problem_level": 10,
+  "problem_text_cn": "如图所示，AB=4，∠AEO=90°，∠COB=120°，四边形ABCD是矩形。求直线AE的长度。",
+  "problem_text_en": "As shown in the diagram, AB=4, ∠AEO=90°, ∠COB=120°, quadrilateral ABCD is a rectangle. Find the length of line AE.",
+  "problem_img": "6315.png",
+  "construction_cdl": [
+    "Shape(AB,BE,EA)",
+    "Shape(AE,EO,OA)",
+    "Shape(OE,EB,BC,CO)",
+    "Shape(AO,OD,DA)",
+    "Shape(DO,OC,CD)",
+    "Collinear(AOC)",
+    "Collinear(BEOD)"
+  ],
+  "text_cdl": [
+    "Equal(LengthOfLine(AB),4)",
+    "Equal(MeasureOfAngle(AEO),90)",
+    "Equal(MeasureOfAngle(COB),120)",
+    "Rectangle(ABCD)"
+  ],
+  "image_cdl": [],
+  "goal_cdl": "Value(LengthOfLine(AE))",
+  "problem_answer": "2*sqrt(3)",
+  "theorem_seqs": [
+    "flat_angle(1,BEO)",
+    "angle_addition(1,ABE,EBC)",
+    "angle_addition(1,BEA,AEO)",
+    "angle_addition(1,CDO,ODA)",
+    "rectangle_property_diagonal_equal(1,ABCD)",
+    "triangle_property_angle_sum(1,OBC)",
+    "triangle_property_angle_sum(1,BCD)",
+    "sine_theorem(1,ABE)",
+    "sine_theorem(1,BDA)",
+    "sine_theorem(1,ABC)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "flat_angle(1,BEO)",
+      "angle_addition(1,ABE,EBC)",
+      "angle_addition(1,BEA,AEO)",
+      "angle_addition(1,CDO,ODA)",
+      "rectangle_property_diagonal_equal(1,ABCD)",
+      "triangle_property_angle_sum(1,OBC)",
+      "triangle_property_angle_sum(1,BCD)",
+      "sine_theorem(1,ABE)",
+      "sine_theorem(1,BDA)",
+      "sine_theorem(1,ABC)"
+    ]
+  }
+}

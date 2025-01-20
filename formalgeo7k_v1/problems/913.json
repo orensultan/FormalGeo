@@ -1,0 +1,43 @@
+{
+  "problem_id": 913,
+  "annotation": "XiaokaiZhang_2023-04-09",
+  "source": "Geometry3k-942",
+  "problem_level": 4,
+  "problem_text_cn": "如图所示，弧OAB的角度为143，弧ODC的角度为75。求∠BEA的大小。",
+  "problem_text_en": "As shown in the diagram, the measure of arc OAB is 143, the measure of arc ODC is 75. Find the measure of ∠BEA.",
+  "problem_img": "913.png",
+  "construction_cdl": [
+    "Shape(OAB,BE,EA)",
+    "Shape(OBD,DB)",
+    "Shape(ODC,CE,ED)",
+    "Shape(OCA,AE,EC)",
+    "Shape(EB,BD,DE)",
+    "Collinear(AED)",
+    "Collinear(CEB)",
+    "Cocircular(O,ABDC)"
+  ],
+  "text_cdl": [
+    "Equal(MeasureOfArc(OAB),143)",
+    "Equal(MeasureOfArc(ODC),75)"
+  ],
+  "image_cdl": [
+    "Equal(MeasureOfArc(OAB),143)",
+    "Equal(MeasureOfArc(ODC),75)"
+  ],
+  "goal_cdl": "Value(MeasureOfAngle(BEA))",
+  "problem_answer": "109",
+  "theorem_seqs": [
+    "arc_property_circumference_angle_external(1,OAB,D)",
+    "arc_property_circumference_angle_external(1,ODC,B)",
+    "triangle_property_angle_sum(1,EBD)",
+    "adjacent_complementary_angle(1,DEB,BEA)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "arc_property_circumference_angle_external(1,OAB,D)",
+      "arc_property_circumference_angle_external(1,ODC,B)",
+      "triangle_property_angle_sum(1,EBD)",
+      "adjacent_complementary_angle(1,DEB,BEA)"
+    ]
+  }
+}

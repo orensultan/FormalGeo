@@ -1,0 +1,42 @@
+{
+  "problem_id": 6336,
+  "annotation": "ChengQin_2023-06-04",
+  "source": "GeoQA-9149",
+  "problem_level": 4,
+  "problem_text_cn": "如图所示，AB=1，∠DAB=60°，ABCD是菱形。求直线BD的长度。",
+  "problem_text_en": "As shown in the diagram, AB=1, ∠DAB=60°, quadrilateral ABCD is a rhombus. Find the length of line BD.",
+  "problem_img": "6336.png",
+  "construction_cdl": [
+    "Shape(AB,BD,DA)",
+    "Shape(BC,CD,DB)"
+  ],
+  "text_cdl": [
+    "Equal(LengthOfLine(AB),1)",
+    "Equal(MeasureOfAngle(DAB),60)",
+    "Rhombus(ABCD)"
+  ],
+  "image_cdl": [],
+  "goal_cdl": "Value(LengthOfLine(BD))",
+  "problem_answer": "1",
+  "theorem_seqs": [
+    "isosceles_triangle_judgment_line_equal(1,ABD)",
+    "isosceles_triangle_property_angle_equal(1,ABD)",
+    "triangle_property_angle_sum(1,ABD)",
+    "isosceles_triangle_judgment_angle_equal(1,BDA)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "isosceles_triangle_judgment_line_equal(1,ABD)",
+      "triangle_property_angle_sum(1,ABD)"
+    ],
+    "isosceles_triangle_judgment_line_equal(1,ABD)": [
+      "isosceles_triangle_property_angle_equal(1,ABD)"
+    ],
+    "isosceles_triangle_property_angle_equal(1,ABD)": [
+      "isosceles_triangle_judgment_angle_equal(1,BDA)"
+    ],
+    "triangle_property_angle_sum(1,ABD)": [
+      "isosceles_triangle_judgment_angle_equal(1,BDA)"
+    ]
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "problem_id": 5250,
+  "annotation": "XiaokaiZhang_2023-05-21",
+  "source": "GeoQA-5344",
+  "problem_level": 1,
+  "problem_text_cn": "如图所示，AC=Mul(3/4,LengthOfLine(CB))，CB=60。求直线AB的长度。",
+  "problem_text_en": "As shown in the diagram, AC=Mul(3/4,LengthOfLine(CB)), CB=60. Find the length of line AB.",
+  "problem_img": "5250.png",
+  "construction_cdl": [
+    "Collinear(ACB)"
+  ],
+  "text_cdl": [
+    "Equal(LengthOfLine(AC),Mul(3/4,LengthOfLine(CB)))",
+    "Equal(LengthOfLine(CB),60)"
+  ],
+  "image_cdl": [],
+  "goal_cdl": "Value(LengthOfLine(AB))",
+  "problem_answer": "105",
+  "theorem_seqs": [
+    "line_addition(1,AC,CB)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "line_addition(1,AC,CB)"
+    ]
+  }
+}

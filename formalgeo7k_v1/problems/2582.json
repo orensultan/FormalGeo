@@ -1,0 +1,36 @@
+{
+  "problem_id": 2582,
+  "annotation": "DengfengYue_2023-04-23",
+  "source": "Geometry3k-2710",
+  "problem_level": 1,
+  "problem_text_cn": "如图所示，∠AXW=30°，WY垂直于ZY，WYZX是长方形。求∠AYZ的大小。",
+  "problem_text_en": "As shown in the diagram, ∠AXW=30°, WY is perpendicular to ZY, quadrilateral WYZX is a rectangle. Find the measure of ∠AYZ.",
+  "problem_img": "2582.png",
+  "construction_cdl": [
+    "Shape(WA,AX,XW)",
+    "Shape(WY,YA,AW)",
+    "Shape(AY,YZ,ZA)",
+    "Shape(AZ,ZX,XA)",
+    "Collinear(WAZ)",
+    "Collinear(XAY)"
+  ],
+  "text_cdl": [
+    "Equal(MeasureOfAngle(AXW),30)",
+    "PerpendicularBetweenLine(WY,ZY)",
+    "Rectangle(WYZX)"
+  ],
+  "image_cdl": [
+    "Equal(MeasureOfAngle(AXW),30)",
+    "PerpendicularBetweenLine(WY,ZY)"
+  ],
+  "goal_cdl": "Value(MeasureOfAngle(AYZ))",
+  "problem_answer": "30",
+  "theorem_seqs": [
+    "parallel_property_alternate_interior_angle(2,WX,YZ)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "parallel_property_alternate_interior_angle(2,WX,YZ)"
+    ]
+  }
+}

@@ -1,0 +1,40 @@
+{
+  "problem_id": 4870,
+  "annotation": "YifanWang_2023-05-21",
+  "source": "GeoQA-4380",
+  "problem_level": 4,
+  "problem_text_cn": "如图所示，∠CAB=35°，⊙O的圆心为O，DC是⊙O的切线。求∠BDC的大小。",
+  "problem_text_en": "As shown in the diagram, ∠CAB=35°, O is the center of ⊙O, the tangent to circle O is DC. Find the measure of ∠BDC.",
+  "problem_img": "4870.png",
+  "construction_cdl": [
+    "Shape(AC,OCA)",
+    "Shape(CA,AO,OC)",
+    "Shape(CO,OB,OBC)",
+    "Shape(BO,OA,OAB)",
+    "Shape(BD,DC,OBC)",
+    "Collinear(AOBD)",
+    "Cocircular(O,ABC)"
+  ],
+  "text_cdl": [
+    "Equal(MeasureOfAngle(CAB),35)",
+    "IsCentreOfCircle(O,O)",
+    "IsTangentOfCircle(DC,O)"
+  ],
+  "image_cdl": [],
+  "goal_cdl": "Value(MeasureOfAngle(BDC))",
+  "problem_answer": "20",
+  "theorem_seqs": [
+    "arc_property_center_angle(1,OBC,O)",
+    "arc_property_circumference_angle_external(1,OBC,A)",
+    "tangent_of_circle_property_perpendicular(2,DC,O,O)",
+    "triangle_property_angle_sum(1,COD)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "arc_property_center_angle(1,OBC,O)",
+      "arc_property_circumference_angle_external(1,OBC,A)",
+      "tangent_of_circle_property_perpendicular(2,DC,O,O)",
+      "triangle_property_angle_sum(1,COD)"
+    ]
+  }
+}

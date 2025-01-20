@@ -1,0 +1,49 @@
+{
+  "problem_id": 1732,
+  "annotation": "YangLi_2023-04-16",
+  "source": "Geometry3k-1797",
+  "problem_level": 1,
+  "problem_text_cn": "如图所示，∠ANE=30°，∠CEB=110°，∠ECA=∠AFN，∠ENJ=130°。求∠NEA的大小。",
+  "problem_text_en": "As shown in the diagram, ∠ANE=30°, ∠CEB=110°, ∠ECA=∠AFN, ∠ENJ=130°. Find the measure of ∠NEA.",
+  "problem_img": "1732.png",
+  "construction_cdl": [
+    "Shape(CA,AE,EC)",
+    "Shape(EA,AN,NE)",
+    "Shape(AF,FN,NA)",
+    "Shape(GA,AC)",
+    "Shape(DA,AG)",
+    "Shape(FA,AD)",
+    "Shape(CE,EB)",
+    "Shape(BE,EN)",
+    "Shape(EN,NJ)",
+    "Shape(JN,NM)",
+    "Shape(MN,NF)",
+    "Collinear(DAEB)",
+    "Collinear(GANM)",
+    "Collinear(FNJ)",
+    "Collinear(CAF)",
+    "Collinear(CEN)"
+  ],
+  "text_cdl": [
+    "Equal(MeasureOfAngle(ANE),30)",
+    "Equal(MeasureOfAngle(CEB),110)",
+    "Equal(MeasureOfAngle(ECA),MeasureOfAngle(AFN))",
+    "Equal(MeasureOfAngle(ENJ),130)"
+  ],
+  "image_cdl": [
+    "Equal(MeasureOfAngle(ANE),30)",
+    "Equal(MeasureOfAngle(CEB),110)",
+    "Equal(MeasureOfAngle(ECA),MeasureOfAngle(AFN))",
+    "Equal(MeasureOfAngle(ENJ),130)"
+  ],
+  "goal_cdl": "Value(MeasureOfAngle(NEA))",
+  "problem_answer": "110",
+  "theorem_seqs": [
+    "vertical_angle(1,NEA,CEB)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "vertical_angle(1,NEA,CEB)"
+    ]
+  }
+}

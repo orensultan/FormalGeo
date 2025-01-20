@@ -1,0 +1,43 @@
+{
+  "problem_id": 6969,
+  "annotation": "ChengQin_2023-06-04",
+  "source": "GeoQA-angle-10223",
+  "problem_level": 4,
+  "problem_text_cn": "如图所示，∠ABC=20°，圆O的圆心为O，圆O的直径为CD。求∠DCA的大小。",
+  "problem_text_en": "As shown in the diagram, ∠ABC=20°, O is the center of circle O, CD is the diameter of circle O. Find the measure of ∠DCA.",
+  "problem_img": "6969.png",
+  "construction_cdl": [
+    "Shape(OAD,DA)",
+    "Shape(ODB,BE,EO,OD)",
+    "Shape(AD,DO,OE,EA)",
+    "Shape(AE,EC,CA)",
+    "Shape(OCA,AC)",
+    "Shape(EB,BC,CE)",
+    "Shape(OBC,CB)",
+    "Collinear(DOEC)",
+    "Collinear(BEA)",
+    "Cocircular(O,ADBC)"
+  ],
+  "text_cdl": [
+    "Equal(MeasureOfAngle(ABC),20)",
+    "IsCentreOfCircle(O,O)",
+    "IsDiameterOfCircle(CD,O)"
+  ],
+  "image_cdl": [],
+  "goal_cdl": "Value(MeasureOfAngle(DCA))",
+  "problem_answer": "70",
+  "theorem_seqs": [
+    "diameter_of_circle_property_right_angle(1,CAD,O)",
+    "arc_property_circumference_angle_external(1,OCA,B)",
+    "arc_property_circumference_angle_external(1,OCA,D)",
+    "triangle_property_angle_sum(1,CAD)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "diameter_of_circle_property_right_angle(1,CAD,O)",
+      "arc_property_circumference_angle_external(1,OCA,B)",
+      "arc_property_circumference_angle_external(1,OCA,D)",
+      "triangle_property_angle_sum(1,CAD)"
+    ]
+  }
+}

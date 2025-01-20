@@ -1,0 +1,32 @@
+{
+  "problem_id": 4091,
+  "annotation": "YanjunGuo_2023-05-07",
+  "source": "GeoQA-2464",
+  "problem_level": 2,
+  "problem_text_cn": "如图所示，AC=2，BC=2，DF=3/2，三角形ABC与三角形DEF是相似三角形。求直线EF的长度。",
+  "problem_text_en": "As shown in the diagram, AC=2, BC=2, DF=3/2, triangle ABC is similar to triangle DEF.. Find the length of line EF.",
+  "problem_img": "4091.png",
+  "construction_cdl": [
+    "Shape(AB,BC,CA)",
+    "Shape(DE,EF,FD)"
+  ],
+  "text_cdl": [
+    "Equal(LengthOfLine(AC),2)",
+    "Equal(LengthOfLine(BC),2)",
+    "Equal(LengthOfLine(DF),3/2)",
+    "SimilarBetweenTriangle(ABC,DEF)"
+  ],
+  "image_cdl": [],
+  "goal_cdl": "Value(LengthOfLine(EF))",
+  "problem_answer": "3/2",
+  "theorem_seqs": [
+    "similar_triangle_property_line_ratio(1,ABC,DEF)",
+    "similar_triangle_property_line_ratio(1,BCA,EFD)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "similar_triangle_property_line_ratio(1,ABC,DEF)",
+      "similar_triangle_property_line_ratio(1,BCA,EFD)"
+    ]
+  }
+}

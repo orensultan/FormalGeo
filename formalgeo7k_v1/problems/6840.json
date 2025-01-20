@@ -1,0 +1,66 @@
+{
+  "problem_id": 6840,
+  "annotation": "DengfengYue_2023-06-04",
+  "source": "GeoQA-angle-10056",
+  "problem_level": 9,
+  "problem_text_cn": "如图所示，∠DBE=70°，∠ECF=50°，D是线段AB的中点，E是线段BC的中点，F是线段AC的中点。求∠DEF的大小。",
+  "problem_text_en": "As shown in the diagram, ∠DBE=70°, ∠ECF=50°, D is the midpoint of segment AB, E is the midpoint of segment BC, F is the midpoint of segment AC. Find the measure of ∠DEF.",
+  "problem_img": "6840.png",
+  "construction_cdl": [
+    "Shape(AD,DE,EF,FA)",
+    "Shape(DB,BE,ED)",
+    "Shape(FE,EC,CF)",
+    "Collinear(ADB)",
+    "Collinear(AFC)",
+    "Collinear(BEC)"
+  ],
+  "text_cdl": [
+    "Equal(MeasureOfAngle(DBE),70)",
+    "Equal(MeasureOfAngle(ECF),50)",
+    "IsMidpointOfLine(D,AB)",
+    "IsMidpointOfLine(E,BC)",
+    "IsMidpointOfLine(F,AC)"
+  ],
+  "image_cdl": [],
+  "goal_cdl": "Value(MeasureOfAngle(DEF))",
+  "problem_answer": "60",
+  "theorem_seqs": [
+    "triangle_property_angle_sum(1,BCA)",
+    "midsegment_of_triangle_judgment_midpoint(1,ED,BCA)",
+    "midsegment_of_triangle_judgment_midpoint(1,FE,CAB)",
+    "midsegment_of_triangle_property_parallel(1,ED,BCA)",
+    "midsegment_of_triangle_property_parallel(1,FE,CAB)",
+    "parallel_property_collinear_extend(3,AC,DE,F)",
+    "parallel_property_collinear_extend(3,BA,EF,D)",
+    "parallelogram_judgment_parallel_and_parallel(1,ADEF)",
+    "parallelogram_property_opposite_angle_equal(1,ADEF)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "triangle_property_angle_sum(1,BCA)",
+      "midsegment_of_triangle_judgment_midpoint(1,ED,BCA)",
+      "midsegment_of_triangle_judgment_midpoint(1,FE,CAB)"
+    ],
+    "midsegment_of_triangle_judgment_midpoint(1,ED,BCA)": [
+      "midsegment_of_triangle_property_parallel(1,ED,BCA)"
+    ],
+    "midsegment_of_triangle_judgment_midpoint(1,FE,CAB)": [
+      "midsegment_of_triangle_property_parallel(1,FE,CAB)"
+    ],
+    "midsegment_of_triangle_property_parallel(1,ED,BCA)": [
+      "parallel_property_collinear_extend(3,AC,DE,F)"
+    ],
+    "midsegment_of_triangle_property_parallel(1,FE,CAB)": [
+      "parallel_property_collinear_extend(3,BA,EF,D)"
+    ],
+    "parallel_property_collinear_extend(3,AC,DE,F)": [
+      "parallelogram_judgment_parallel_and_parallel(1,ADEF)"
+    ],
+    "parallel_property_collinear_extend(3,BA,EF,D)": [
+      "parallelogram_judgment_parallel_and_parallel(1,ADEF)"
+    ],
+    "parallelogram_judgment_parallel_and_parallel(1,ADEF)": [
+      "parallelogram_property_opposite_angle_equal(1,ADEF)"
+    ]
+  }
+}

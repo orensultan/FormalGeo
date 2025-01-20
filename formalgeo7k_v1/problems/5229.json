@@ -1,0 +1,35 @@
+{
+  "problem_id": 5229,
+  "annotation": "XiaokaiZhang_2023-05-21",
+  "source": "GeoQA-5284",
+  "problem_level": 3,
+  "problem_text_cn": "如图所示，∠CAD=15°，∠EBC=70°，BE平行于DA。求∠BCA的大小。",
+  "problem_text_en": "As shown in the diagram, ∠CAD=15°, ∠EBC=70°, BE∥DA. Find the measure of ∠BCA.",
+  "problem_img": "5229.png",
+  "construction_cdl": [
+    "Shape(EB,BA,AE)",
+    "Shape(AB,BD,DA)",
+    "Shape(AD,DC,CA)",
+    "Collinear(BDC)"
+  ],
+  "text_cdl": [
+    "Equal(MeasureOfAngle(CAD),15)",
+    "Equal(MeasureOfAngle(EBC),70)",
+    "ParallelBetweenLine(BE,DA)"
+  ],
+  "image_cdl": [],
+  "goal_cdl": "Value(MeasureOfAngle(BCA))",
+  "problem_answer": "95",
+  "theorem_seqs": [
+    "parallel_property_ipsilateral_internal_angle(1,BE,DA)",
+    "adjacent_complementary_angle(1,BDA,ADC)",
+    "triangle_property_angle_sum(1,ADC)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "parallel_property_ipsilateral_internal_angle(1,BE,DA)",
+      "adjacent_complementary_angle(1,BDA,ADC)",
+      "triangle_property_angle_sum(1,ADC)"
+    ]
+  }
+}

@@ -1,0 +1,44 @@
+{
+  "problem_id": 2950,
+  "annotation": "JiaZou_2023-04-16",
+  "source": "GeoQA-138",
+  "problem_level": 5,
+  "problem_text_cn": "如图所示，∠ABC=48°，∠DCE=70°，BE是△BCA的高，AD是∠EAB的角平分线。求∠DFB的大小。",
+  "problem_text_en": "As shown in the diagram, ∠ABC=48°, ∠DCE=70°, BE is the altitude of triangle BCA, AD bisects ∠EAB. Find the measure of ∠DFB.",
+  "problem_img": "2950.png",
+  "construction_cdl": [
+    "Shape(CE,EF,FD,DC)",
+    "Shape(EA,AF,FE)",
+    "Shape(FA,AB,BF)",
+    "Shape(FB,BD,DF)",
+    "Collinear(EFB)",
+    "Collinear(AFD)",
+    "Collinear(CEA)",
+    "Collinear(CDB)"
+  ],
+  "text_cdl": [
+    "Equal(MeasureOfAngle(ABC),48)",
+    "Equal(MeasureOfAngle(DCE),70)",
+    "IsAltitudeOfTriangle(BE,BCA)",
+    "IsBisectorOfAngle(AD,EAB)"
+  ],
+  "image_cdl": [],
+  "goal_cdl": "Value(MeasureOfAngle(DFB))",
+  "problem_answer": "59",
+  "theorem_seqs": [
+    "triangle_property_angle_sum(1,ABC)",
+    "angle_addition(1,EAF,FAB)",
+    "triangle_property_angle_sum(1,ABE)",
+    "triangle_property_angle_sum(1,ABF)",
+    "adjacent_complementary_angle(1,DFB,BFA)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "triangle_property_angle_sum(1,ABC)",
+      "angle_addition(1,EAF,FAB)",
+      "triangle_property_angle_sum(1,ABE)",
+      "triangle_property_angle_sum(1,ABF)",
+      "adjacent_complementary_angle(1,DFB,BFA)"
+    ]
+  }
+}

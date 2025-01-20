@@ -1,0 +1,30 @@
+{
+  "problem_id": 5280,
+  "annotation": "XiaokaiZhang_2023-05-21",
+  "source": "GeoQA-5439",
+  "problem_level": 2,
+  "problem_text_cn": "如图所示，CB=3，DB=5，D是线段AC的中点。求直线AB的长度。",
+  "problem_text_en": "As shown in the diagram, CB=3, DB=5, D bisects segment AC. Find the length of line AB.",
+  "problem_img": "5280.png",
+  "construction_cdl": [
+    "Collinear(ADCB)"
+  ],
+  "text_cdl": [
+    "Equal(LengthOfLine(CB),3)",
+    "Equal(LengthOfLine(DB),5)",
+    "IsMidpointOfLine(D,AC)"
+  ],
+  "image_cdl": [],
+  "goal_cdl": "Value(LengthOfLine(AB))",
+  "problem_answer": "7",
+  "theorem_seqs": [
+    "line_addition(1,AD,DB)",
+    "line_addition(1,DC,CB)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "line_addition(1,AD,DB)",
+      "line_addition(1,DC,CB)"
+    ]
+  }
+}

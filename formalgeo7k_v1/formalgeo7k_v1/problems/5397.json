@@ -1,0 +1,59 @@
+{
+  "problem_id": 5397,
+  "annotation": "XiaoxiaoJin_2023-05-21",
+  "source": "GeoQA-5690",
+  "problem_level": 9,
+  "problem_text_cn": "如图所示，AB=12，AC=18，BC=24，BO是∠ABC的角平分线，CO平分∠BCA，MN∥BC。求△AMN的周长。",
+  "problem_text_en": "As shown in the diagram, AB=12, AC=18, BC=24, BO bisects ∠ABC, CO is the angle bisector of ∠BCA, MN is parallel to BC. Find the perimeter of △AMN.",
+  "problem_img": "5397.png",
+  "construction_cdl": [
+    "Shape(AM,MO,ON,NA)",
+    "Shape(MB,BO,OM)",
+    "Shape(OC,CN,NO)",
+    "Shape(OB,BC,CO)",
+    "Collinear(AMB)",
+    "Collinear(ANC)",
+    "Collinear(MON)"
+  ],
+  "text_cdl": [
+    "Equal(LengthOfLine(AB),12)",
+    "Equal(LengthOfLine(AC),18)",
+    "Equal(LengthOfLine(BC),24)",
+    "IsBisectorOfAngle(BO,ABC)",
+    "IsBisectorOfAngle(CO,BCA)",
+    "ParallelBetweenLine(MN,BC)"
+  ],
+  "image_cdl": [],
+  "goal_cdl": "Value(PerimeterOfTriangle(AMN))",
+  "problem_answer": "30",
+  "theorem_seqs": [
+    "line_addition(1,AM,MB)",
+    "line_addition(1,AN,NC)",
+    "line_addition(1,MO,ON)",
+    "parallel_property_collinear_extend(3,MN,BC,O)",
+    "parallel_property_alternate_interior_angle(1,ON,BC)",
+    "parallel_property_alternate_interior_angle(2,MO,BC)",
+    "isosceles_triangle_judgment_angle_equal(1,MBO)",
+    "isosceles_triangle_judgment_angle_equal(1,NOC)",
+    "triangle_perimeter_formula(1,AMN)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "line_addition(1,AM,MB)",
+      "line_addition(1,AN,NC)",
+      "line_addition(1,MO,ON)",
+      "parallel_property_collinear_extend(3,MN,BC,O)",
+      "triangle_perimeter_formula(1,AMN)"
+    ],
+    "parallel_property_collinear_extend(3,MN,BC,O)": [
+      "parallel_property_alternate_interior_angle(2,MO,BC)",
+      "parallel_property_alternate_interior_angle(1,ON,BC)"
+    ],
+    "parallel_property_alternate_interior_angle(1,ON,BC)": [
+      "isosceles_triangle_judgment_angle_equal(1,NOC)"
+    ],
+    "parallel_property_alternate_interior_angle(2,MO,BC)": [
+      "isosceles_triangle_judgment_angle_equal(1,MBO)"
+    ]
+  }
+}

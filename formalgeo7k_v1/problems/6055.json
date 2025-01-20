@@ -1,0 +1,54 @@
+{
+  "problem_id": 6055,
+  "annotation": "ChenyangMao_2023-05-28",
+  "source": "GeoQA-8559",
+  "problem_level": 7,
+  "problem_text_cn": "如图所示，∠CDE=50°，O是⊙O的圆心，圆O的直径为CD，AO平行于DE。求∠CAO的大小。",
+  "problem_text_en": "As shown in the diagram, ∠CDE=50°, O is the center of circle O, the diameter of ⊙O is CD, AO∥DE. Find the measure of ∠CAO.",
+  "problem_img": "6055.png",
+  "construction_cdl": [
+    "Shape(OCA,AC)",
+    "Shape(AO,OC,CA)",
+    "Shape(OAD,DO,OA)",
+    "Shape(CO,OD,DE,OEC)",
+    "Shape(ODE,ED)",
+    "Collinear(COD)",
+    "Cocircular(O,ADEC)"
+  ],
+  "text_cdl": [
+    "Equal(MeasureOfAngle(CDE),50)",
+    "IsCentreOfCircle(O,O)",
+    "IsDiameterOfCircle(CD,O)",
+    "ParallelBetweenLine(AO,DE)"
+  ],
+  "image_cdl": [],
+  "goal_cdl": "Value(MeasureOfAngle(CAO))",
+  "problem_answer": "25",
+  "theorem_seqs": [
+    "parallel_property_alternate_interior_angle(2,AO,DE)",
+    "arc_property_center_angle(1,OAD,O)",
+    "arc_property_circumference_angle_external(1,OAD,C)",
+    "radius_of_circle_property_length_equal(1,OA,O)",
+    "radius_of_circle_property_length_equal(1,OC,O)",
+    "isosceles_triangle_judgment_line_equal(1,OCA)",
+    "isosceles_triangle_property_angle_equal(1,OCA)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "parallel_property_alternate_interior_angle(2,AO,DE)",
+      "arc_property_center_angle(1,OAD,O)",
+      "arc_property_circumference_angle_external(1,OAD,C)",
+      "radius_of_circle_property_length_equal(1,OA,O)",
+      "radius_of_circle_property_length_equal(1,OC,O)"
+    ],
+    "radius_of_circle_property_length_equal(1,OA,O)": [
+      "isosceles_triangle_judgment_line_equal(1,OCA)"
+    ],
+    "radius_of_circle_property_length_equal(1,OC,O)": [
+      "isosceles_triangle_judgment_line_equal(1,OCA)"
+    ],
+    "isosceles_triangle_judgment_line_equal(1,OCA)": [
+      "isosceles_triangle_property_angle_equal(1,OCA)"
+    ]
+  }
+}

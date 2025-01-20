@@ -1,0 +1,37 @@
+{
+  "problem_id": 1381,
+  "annotation": "YimingHe_2023-03-19",
+  "source": "Geometry3k-1430",
+  "problem_level": 1,
+  "problem_text_cn": "如图所示，三角形LMN与三角形QRS是全等三角形，ML=2*x+11，QR=3*x-9，∠LMN=y+10°，∠QRS=2*y-40°。求y的值。",
+  "problem_text_en": "As shown in the diagram, △LMN is congruent to △QRS, ML=2*x+11, QR=3*x-9, ∠LMN=y+10°, ∠QRS=2*y-40°. Find the value of y.",
+  "problem_img": "1381.png",
+  "construction_cdl": [
+    "Shape(LM,MN,NL)",
+    "Shape(SQ,QR,RS)"
+  ],
+  "text_cdl": [
+    "CongruentBetweenTriangle(LMN,QRS)",
+    "Equal(LengthOfLine(ML),2*x+11)",
+    "Equal(LengthOfLine(QR),3*x-9)",
+    "Equal(MeasureOfAngle(LMN),y+10)",
+    "Equal(MeasureOfAngle(QRS),2*y-40)"
+  ],
+  "image_cdl": [
+    "CongruentBetweenTriangle(LMN,QRS)",
+    "Equal(LengthOfLine(ML),2*x+11)",
+    "Equal(LengthOfLine(QR),3*x-9)",
+    "Equal(MeasureOfAngle(LMN),y+10)",
+    "Equal(MeasureOfAngle(QRS),2*y-40)"
+  ],
+  "goal_cdl": "Value(y)",
+  "problem_answer": "50",
+  "theorem_seqs": [
+    "congruent_triangle_property_angle_equal(1,MNL,RSQ)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "congruent_triangle_property_angle_equal(1,MNL,RSQ)"
+    ]
+  }
+}

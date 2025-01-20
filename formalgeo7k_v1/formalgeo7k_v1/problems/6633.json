@@ -1,0 +1,48 @@
+{
+  "problem_id": 6633,
+  "annotation": "YanjunGuo_2023-06-04",
+  "source": "GeoQA-9644",
+  "problem_level": 6,
+  "problem_text_cn": "如图所示，AD=AC，∠BOC=112°，O是⊙O的圆心。求∠BDC的大小。",
+  "problem_text_en": "As shown in the diagram, AD=AC, ∠BOC=112°, O is the center of ⊙O. Find the measure of ∠BDC.",
+  "problem_img": "6633.png",
+  "construction_cdl": [
+    "Shape(BO,OC,OCB)",
+    "Shape(AB,OBA)",
+    "Shape(CE,OEC)",
+    "Shape(EC,CA,OAE)",
+    "Shape(AC,CO,OB,BA)",
+    "Shape(AD,DE,OAE)",
+    "Collinear(CED)",
+    "Collinear(BAD)",
+    "Cocircular(O,BAEC)"
+  ],
+  "text_cdl": [
+    "Equal(LengthOfLine(AD),LengthOfLine(AC))",
+    "Equal(MeasureOfAngle(BOC),112)",
+    "IsCentreOfCircle(O,O)"
+  ],
+  "image_cdl": [],
+  "goal_cdl": "Value(MeasureOfAngle(BDC))",
+  "problem_answer": "28",
+  "theorem_seqs": [
+    "arc_property_center_angle(1,OCB,O)",
+    "arc_property_circumference_angle_external(1,OCB,A)",
+    "adjacent_complementary_angle(1,BAC,CAD)",
+    "isosceles_triangle_judgment_line_equal(1,ADC)",
+    "isosceles_triangle_property_angle_equal(1,ADC)",
+    "triangle_property_angle_sum(1,ADC)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "arc_property_center_angle(1,OCB,O)",
+      "arc_property_circumference_angle_external(1,OCB,A)",
+      "adjacent_complementary_angle(1,BAC,CAD)",
+      "isosceles_triangle_judgment_line_equal(1,ADC)",
+      "triangle_property_angle_sum(1,ADC)"
+    ],
+    "isosceles_triangle_judgment_line_equal(1,ADC)": [
+      "isosceles_triangle_property_angle_equal(1,ADC)"
+    ]
+  }
+}

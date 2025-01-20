@@ -1,0 +1,43 @@
+{
+  "problem_id": 4407,
+  "annotation": "YimingHe_2023-05-14",
+  "source": "GeoQA-3348",
+  "problem_level": 4,
+  "problem_text_cn": "如图所示，∠OAB=30°，O是⊙O的圆心，⊙O的直径为CD，AO∥CB。求∠AOD的大小。",
+  "problem_text_en": "As shown in the diagram, ∠OAB=30°, O is the center of circle O, CD is the diameter of circle O, AO∥CB. Find the measure of ∠AOD.",
+  "problem_img": "4407.png",
+  "construction_cdl": [
+    "Shape(BC,OCB)",
+    "Shape(CB,BE,EC)",
+    "Shape(CE,EA,OAC)",
+    "Shape(AE,EO,OA)",
+    "Shape(AO,OD,ODA)",
+    "Shape(DO,OE,EB,OBD)",
+    "Collinear(CEOD)",
+    "Collinear(AEB)",
+    "Cocircular(O,CBDA)"
+  ],
+  "text_cdl": [
+    "Equal(MeasureOfAngle(OAB),30)",
+    "IsCentreOfCircle(O,O)",
+    "IsDiameterOfCircle(CD,O)",
+    "ParallelBetweenLine(AO,CB)"
+  ],
+  "image_cdl": [],
+  "goal_cdl": "Value(MeasureOfAngle(AOD))",
+  "problem_answer": "120",
+  "theorem_seqs": [
+    "parallel_property_alternate_interior_angle(1,AO,CB)",
+    "arc_property_center_angle(1,OAC,O)",
+    "arc_property_circumference_angle_external(1,OAC,B)",
+    "adjacent_complementary_angle(1,COA,AOD)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "parallel_property_alternate_interior_angle(1,AO,CB)",
+      "arc_property_center_angle(1,OAC,O)",
+      "arc_property_circumference_angle_external(1,OAC,B)",
+      "adjacent_complementary_angle(1,COA,AOD)"
+    ]
+  }
+}

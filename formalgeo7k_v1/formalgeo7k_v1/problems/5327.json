@@ -1,0 +1,42 @@
+{
+  "problem_id": 5327,
+  "annotation": "YanjunGuo_2023-05-21",
+  "source": "GeoQA-5549",
+  "problem_level": 4,
+  "problem_text_cn": "如图所示，∠ABC=45°，圆O的直径为AD。求∠CAD的大小。",
+  "problem_text_en": "As shown in the diagram, ∠ABC=45°, AD is the diameter of circle O. Find the measure of ∠CAD.",
+  "problem_img": "5327.png",
+  "construction_cdl": [
+    "Shape(BA,OAB)",
+    "Shape(DE,EB,OBD)",
+    "Shape(CD,ODC)",
+    "Shape(AC,OCA)",
+    "Shape(BE,EA,AB)",
+    "Shape(CE,ED,DC)",
+    "Shape(EC,CA,AE)",
+    "Collinear(BEC)",
+    "Collinear(AOED)",
+    "Cocircular(O,BDCA)"
+  ],
+  "text_cdl": [
+    "Equal(MeasureOfAngle(ABC),45)",
+    "IsDiameterOfCircle(AD,O)"
+  ],
+  "image_cdl": [],
+  "goal_cdl": "Value(MeasureOfAngle(CAD))",
+  "problem_answer": "45",
+  "theorem_seqs": [
+    "diameter_of_circle_property_right_angle(1,DCA,O)",
+    "arc_property_circumference_angle_external(1,OCA,B)",
+    "arc_property_circumference_angle_external(1,OCA,D)",
+    "triangle_property_angle_sum(1,DCA)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "diameter_of_circle_property_right_angle(1,DCA,O)",
+      "arc_property_circumference_angle_external(1,OCA,B)",
+      "arc_property_circumference_angle_external(1,OCA,D)",
+      "triangle_property_angle_sum(1,DCA)"
+    ]
+  }
+}

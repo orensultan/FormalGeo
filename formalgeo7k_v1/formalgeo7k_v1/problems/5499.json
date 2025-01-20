@@ -1,0 +1,82 @@
+{
+  "problem_id": 5499,
+  "annotation": "ChenyangMao_2023-05-21",
+  "source": "GeoQA-5956",
+  "problem_level": 14,
+  "problem_text_cn": "如图所示，三角形ABC的周长为1，D平分线段AB，E平分线段AC，F平分线段BC，X是线段DE的中点，Y是线段DF的中点，Z平分线段EF。求△XYZ的周长。",
+  "problem_text_en": "As shown in the diagram, the perimeter of △ABC is 1, D is the midpoint of segment AB, E bisects segment AC, F bisects segment BC, X is the midpoint of segment DE, Y bisects segment DF, Z bisects segment EF. Find the perimeter of △XYZ.",
+  "problem_img": "5499.png",
+  "construction_cdl": [
+    "Shape(AD,DX,XE,EA)",
+    "Shape(DB,BF,FY,YD)",
+    "Shape(EZ,ZF,FC,CE)",
+    "Shape(DY,YX,XD)",
+    "Shape(YF,FZ,ZY)",
+    "Shape(XZ,ZE,EX)",
+    "Shape(XY,YZ,ZX)",
+    "Collinear(ADB)",
+    "Collinear(AEC)",
+    "Collinear(BFC)",
+    "Collinear(DYF)",
+    "Collinear(DXE)",
+    "Collinear(FZE)"
+  ],
+  "text_cdl": [
+    "Equal(PerimeterOfTriangle(ABC),1)",
+    "IsMidpointOfLine(D,AB)",
+    "IsMidpointOfLine(E,AC)",
+    "IsMidpointOfLine(F,BC)",
+    "IsMidpointOfLine(X,DE)",
+    "IsMidpointOfLine(Y,DF)",
+    "IsMidpointOfLine(Z,EF)"
+  ],
+  "image_cdl": [],
+  "goal_cdl": "Value(PerimeterOfTriangle(XYZ))",
+  "problem_answer": "1/4",
+  "theorem_seqs": [
+    "midsegment_of_triangle_judgment_midpoint(1,YX,DFE)",
+    "midsegment_of_triangle_judgment_midpoint(1,ZY,FED)",
+    "midsegment_of_triangle_judgment_midpoint(1,XZ,EDF)",
+    "midsegment_of_triangle_judgment_midpoint(1,DE,ABC)",
+    "midsegment_of_triangle_judgment_midpoint(1,FD,BCA)",
+    "midsegment_of_triangle_judgment_midpoint(1,EF,CAB)",
+    "midsegment_of_triangle_property_length(1,YX,DFE)",
+    "midsegment_of_triangle_property_length(1,ZY,FED)",
+    "midsegment_of_triangle_property_length(1,XZ,EDF)",
+    "midsegment_of_triangle_property_length(1,DE,ABC)",
+    "midsegment_of_triangle_property_length(1,FD,BCA)",
+    "midsegment_of_triangle_property_length(1,EF,CAB)",
+    "triangle_perimeter_formula(1,XYZ)",
+    "triangle_perimeter_formula(1,ABC)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "midsegment_of_triangle_judgment_midpoint(1,YX,DFE)",
+      "midsegment_of_triangle_judgment_midpoint(1,ZY,FED)",
+      "midsegment_of_triangle_judgment_midpoint(1,XZ,EDF)",
+      "midsegment_of_triangle_judgment_midpoint(1,DE,ABC)",
+      "midsegment_of_triangle_judgment_midpoint(1,FD,BCA)",
+      "midsegment_of_triangle_judgment_midpoint(1,EF,CAB)",
+      "triangle_perimeter_formula(1,XYZ)",
+      "triangle_perimeter_formula(1,ABC)"
+    ],
+    "midsegment_of_triangle_judgment_midpoint(1,YX,DFE)": [
+      "midsegment_of_triangle_property_length(1,YX,DFE)"
+    ],
+    "midsegment_of_triangle_judgment_midpoint(1,ZY,FED)": [
+      "midsegment_of_triangle_property_length(1,ZY,FED)"
+    ],
+    "midsegment_of_triangle_judgment_midpoint(1,XZ,EDF)": [
+      "midsegment_of_triangle_property_length(1,XZ,EDF)"
+    ],
+    "midsegment_of_triangle_judgment_midpoint(1,DE,ABC)": [
+      "midsegment_of_triangle_property_length(1,DE,ABC)"
+    ],
+    "midsegment_of_triangle_judgment_midpoint(1,FD,BCA)": [
+      "midsegment_of_triangle_property_length(1,FD,BCA)"
+    ],
+    "midsegment_of_triangle_judgment_midpoint(1,EF,CAB)": [
+      "midsegment_of_triangle_property_length(1,EF,CAB)"
+    ]
+  }
+}

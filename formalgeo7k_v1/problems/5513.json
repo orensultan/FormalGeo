@@ -1,0 +1,50 @@
+{
+  "problem_id": 5513,
+  "annotation": "DengfengYue_2023-05-21",
+  "source": "GeoQA-5985",
+  "problem_level": 7,
+  "problem_text_cn": "如图所示，AB=AC，∠EAD=40°，DE是CA的垂直平分线。求∠BCD的大小。",
+  "problem_text_en": "As shown in the diagram, AB=AC, ∠EAD=40°, DE perpendicular bisects CA. Find the measure of ∠BCD.",
+  "problem_img": "5513.png",
+  "construction_cdl": [
+    "Shape(AD,DE,EA)",
+    "Shape(ED,DC,CE)",
+    "Shape(DB,BC,CD)",
+    "Collinear(ADB)",
+    "Collinear(AEC)"
+  ],
+  "text_cdl": [
+    "Equal(LengthOfLine(AB),LengthOfLine(AC))",
+    "Equal(MeasureOfAngle(EAD),40)",
+    "IsPerpendicularBisectorOfLine(DE,CA)"
+  ],
+  "image_cdl": [],
+  "goal_cdl": "Value(MeasureOfAngle(BCD))",
+  "problem_answer": "30",
+  "theorem_seqs": [
+    "isosceles_triangle_judgment_line_equal(1,ABC)",
+    "isosceles_triangle_property_angle_equal(1,ABC)",
+    "triangle_property_angle_sum(1,ABC)",
+    "perpendicular_bisector_property_distance_equal(1,DE,CA)",
+    "isosceles_triangle_judgment_line_equal(1,DCA)",
+    "isosceles_triangle_property_angle_equal(1,DCA)",
+    "angle_addition(1,BCD,DCE)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "isosceles_triangle_judgment_line_equal(1,ABC)",
+      "triangle_property_angle_sum(1,ABC)",
+      "perpendicular_bisector_property_distance_equal(1,DE,CA)",
+      "angle_addition(1,BCD,DCE)"
+    ],
+    "isosceles_triangle_judgment_line_equal(1,ABC)": [
+      "isosceles_triangle_property_angle_equal(1,ABC)"
+    ],
+    "perpendicular_bisector_property_distance_equal(1,DE,CA)": [
+      "isosceles_triangle_judgment_line_equal(1,DCA)"
+    ],
+    "isosceles_triangle_judgment_line_equal(1,DCA)": [
+      "isosceles_triangle_property_angle_equal(1,DCA)"
+    ]
+  }
+}

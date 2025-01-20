@@ -1,0 +1,36 @@
+{
+  "problem_id": 4766,
+  "annotation": "YangLi_2023-05-14",
+  "source": "GeoQA-4138",
+  "problem_level": 3,
+  "problem_text_cn": "如图所示，∠BPA=60°，圆O的圆心为O，PA是⊙O的切线，PB是圆O的切线。求∠AOB的大小。",
+  "problem_text_en": "As shown in the diagram, ∠BPA=60°, O is the center of ⊙O, the tangent to circle O is PA, the tangent to ⊙O is PB. Find the measure of ∠AOB.",
+  "problem_img": "4766.png",
+  "construction_cdl": [
+    "Shape(BP,PA,OBA)",
+    "Shape(AO,OB,OBA)",
+    "Shape(BO,OA,OAB)",
+    "Cocircular(O,BA)"
+  ],
+  "text_cdl": [
+    "Equal(MeasureOfAngle(BPA),60)",
+    "IsCentreOfCircle(O,O)",
+    "IsTangentOfCircle(PA,O)",
+    "IsTangentOfCircle(PB,O)"
+  ],
+  "image_cdl": [],
+  "goal_cdl": "Value(MeasureOfAngle(AOB))",
+  "problem_answer": "120",
+  "theorem_seqs": [
+    "tangent_of_circle_property_perpendicular(2,PA,O,O)",
+    "tangent_of_circle_property_perpendicular(1,PB,O,O)",
+    "quadrilateral_property_angle_sum(1,PAOB)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "tangent_of_circle_property_perpendicular(2,PA,O,O)",
+      "tangent_of_circle_property_perpendicular(1,PB,O,O)",
+      "quadrilateral_property_angle_sum(1,PAOB)"
+    ]
+  }
+}

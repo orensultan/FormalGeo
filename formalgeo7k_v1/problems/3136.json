@@ -1,0 +1,45 @@
+{
+  "problem_id": 3136,
+  "annotation": "JiaZou_2023-04-23",
+  "source": "GeoQA-392",
+  "problem_level": 5,
+  "problem_text_cn": "如图所示，△ABC全等于△DEC，∠CAB=70°。求∠ACD的大小。",
+  "problem_text_en": "As shown in the diagram, △ABC is congruent to △DEC, ∠CAB=70°. Find the measure of ∠ACD.",
+  "problem_img": "3136.png",
+  "construction_cdl": [
+    "Shape(EO,OA,AE)",
+    "Shape(OB,BC,CO)",
+    "Shape(AO,OC,CA)",
+    "Shape(AC,CD,DA)",
+    "Collinear(EOC)",
+    "Collinear(BOA)",
+    "Collinear(EAD)"
+  ],
+  "text_cdl": [
+    "CongruentBetweenTriangle(ABC,DEC)",
+    "Equal(MeasureOfAngle(CAB),70)"
+  ],
+  "image_cdl": [],
+  "goal_cdl": "Value(MeasureOfAngle(ACD))",
+  "problem_answer": "40",
+  "theorem_seqs": [
+    "congruent_triangle_property_angle_equal(1,ABC,DEC)",
+    "congruent_triangle_property_line_equal(1,BCA,ECD)",
+    "isosceles_triangle_judgment_line_equal(1,CDA)",
+    "isosceles_triangle_property_angle_equal(1,CDA)",
+    "triangle_property_angle_sum(1,CDA)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "congruent_triangle_property_angle_equal(1,ABC,DEC)",
+      "congruent_triangle_property_line_equal(1,BCA,ECD)",
+      "triangle_property_angle_sum(1,CDA)"
+    ],
+    "congruent_triangle_property_line_equal(1,BCA,ECD)": [
+      "isosceles_triangle_judgment_line_equal(1,CDA)"
+    ],
+    "isosceles_triangle_judgment_line_equal(1,CDA)": [
+      "isosceles_triangle_property_angle_equal(1,CDA)"
+    ]
+  }
+}

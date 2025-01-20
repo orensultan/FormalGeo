@@ -1,0 +1,37 @@
+{
+  "problem_id": 3549,
+  "annotation": "YanjunGuo_2023-04-30",
+  "source": "GeoQA-1178",
+  "problem_level": 3,
+  "problem_text_cn": "如图所示，∠EBF=40°，BF∥CD，DB垂直于CB。求∠CDB的大小。",
+  "problem_text_en": "As shown in the diagram, ∠EBF=40°, BF is parallel to CD, DB⊥CB. Find the measure of ∠CDB.",
+  "problem_img": "3549.png",
+  "construction_cdl": [
+    "Shape(EB,BF)",
+    "Shape(FB,BD)",
+    "Shape(BC,CD,DB)",
+    "Shape(BD,DH)",
+    "Collinear(EBC)",
+    "Collinear(CDH)"
+  ],
+  "text_cdl": [
+    "Equal(MeasureOfAngle(EBF),40)",
+    "ParallelBetweenLine(BF,CD)",
+    "PerpendicularBetweenLine(DB,CB)"
+  ],
+  "image_cdl": [],
+  "goal_cdl": "Value(MeasureOfAngle(CDB))",
+  "problem_answer": "50",
+  "theorem_seqs": [
+    "angle_addition(1,EDF,FBD)",
+    "adjacent_complementary_angle(1,EBD,DBC)",
+    "parallel_property_alternate_interior_angle(1,BF,CD)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "angle_addition(1,EDF,FBD)",
+      "adjacent_complementary_angle(1,EBD,DBC)",
+      "parallel_property_alternate_interior_angle(1,BF,CD)"
+    ]
+  }
+}

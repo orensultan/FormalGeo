@@ -1,0 +1,45 @@
+{
+  "problem_id": 4630,
+  "annotation": "QikeHuang_2023-05-14",
+  "source": "GeoQA-3837",
+  "problem_level": 6,
+  "problem_text_cn": "如图所示，∠CAB=30°，圆O的半径为2，圆O的圆心为O，PC是圆O的切线。求直线PC的长度。",
+  "problem_text_en": "As shown in the diagram, ∠CAB=30°, the radius of circle O is 2, the center of ⊙O is O, the tangent to ⊙O is PC. Find the length of line PC.",
+  "problem_img": "4630.png",
+  "construction_cdl": [
+    "Shape(OCA,AC)",
+    "Shape(CA,AO,OC)",
+    "Shape(CO,OB,OBC)",
+    "Shape(OBC,BP,PC)",
+    "Shape(BO,OA,OAB)",
+    "Collinear(AOBP)",
+    "Cocircular(O,BCA)"
+  ],
+  "text_cdl": [
+    "Equal(MeasureOfAngle(CAB),30)",
+    "Equal(RadiusOfCircle(O),2)",
+    "IsCentreOfCircle(O,O)",
+    "IsTangentOfCircle(PC,O)"
+  ],
+  "image_cdl": [],
+  "goal_cdl": "Value(LengthOfLine(PC))",
+  "problem_answer": "2*sqrt(3)",
+  "theorem_seqs": [
+    "arc_property_circumference_angle_external(1,OBC,A)",
+    "arc_property_center_angle(1,OBC,O)",
+    "tangent_of_circle_property_perpendicular(2,PC,O,O)",
+    "triangle_property_angle_sum(1,OPC)",
+    "radius_of_circle_property_length_equal(1,OC,O)",
+    "sine_theorem(1,COP)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "arc_property_circumference_angle_external(1,OBC,A)",
+      "arc_property_center_angle(1,OBC,O)",
+      "tangent_of_circle_property_perpendicular(2,PC,O,O)",
+      "triangle_property_angle_sum(1,OPC)",
+      "radius_of_circle_property_length_equal(1,OC,O)",
+      "sine_theorem(1,COP)"
+    ]
+  }
+}

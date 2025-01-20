@@ -1,0 +1,39 @@
+{
+  "problem_id": 3207,
+  "annotation": "NaZhu_2023-04-23",
+  "source": "GeoQA-501",
+  "problem_level": 3,
+  "problem_text_cn": "如图所示，CB=CE，CD=CA，DE=58。求直线AB的长度。",
+  "problem_text_en": "As shown in the diagram, CB=CE, CD=CA, DE=58. Find the length of line AB.",
+  "problem_img": "3207.png",
+  "construction_cdl": [
+    "Shape(AC,CB,BA)",
+    "Shape(CE,ED,DC)",
+    "Collinear(ACD)",
+    "Collinear(BCE)"
+  ],
+  "text_cdl": [
+    "Equal(LengthOfLine(CB),LengthOfLine(CE))",
+    "Equal(LengthOfLine(CD),LengthOfLine(CA))",
+    "Equal(LengthOfLine(DE),58)"
+  ],
+  "image_cdl": [],
+  "goal_cdl": "Value(LengthOfLine(AB))",
+  "problem_answer": "58",
+  "theorem_seqs": [
+    "vertical_angle(1,ACB,DCE)",
+    "congruent_triangle_judgment_sas(1,CBA,CED)",
+    "congruent_triangle_property_line_equal(1,CBA,CED)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "vertical_angle(1,ACB,DCE)"
+    ],
+    "vertical_angle(1,ACB,DCE)": [
+      "congruent_triangle_judgment_sas(1,CBA,CED)"
+    ],
+    "congruent_triangle_judgment_sas(1,CBA,CED)": [
+      "congruent_triangle_property_line_equal(1,CBA,CED)"
+    ]
+  }
+}

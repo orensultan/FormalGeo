@@ -1,0 +1,44 @@
+{
+  "problem_id": 3973,
+  "annotation": "ZheZhu_2023-04-30",
+  "source": "GeoQA-1916",
+  "problem_level": 4,
+  "problem_text_cn": "如图所示，∠DOB=130°，O是⊙O的圆心。求∠ACD的大小。",
+  "problem_text_en": "As shown in the diagram, ∠DOB=130°, O is the center of circle O. Find the measure of ∠ACD.",
+  "problem_img": "3973.png",
+  "construction_cdl": [
+    "Shape(AC,CE,EA)",
+    "Shape(OAC,CA)",
+    "Shape(OE,EC,OCB,BO)",
+    "Shape(OB,OBD,DO)",
+    "Shape(EO,OD,DE)",
+    "Shape(AE,ED,ODA)",
+    "Collinear(AEOB)",
+    "Collinear(CED)",
+    "Cocircular(O,ACBD)"
+  ],
+  "text_cdl": [
+    "Equal(MeasureOfAngle(DOB),130)",
+    "IsCentreOfCircle(O,O)"
+  ],
+  "image_cdl": [
+    "Equal(MeasureOfAngle(DOB),130)",
+    "IsCentreOfCircle(O,O)"
+  ],
+  "goal_cdl": "Value(MeasureOfAngle(ACD))",
+  "problem_answer": "25",
+  "theorem_seqs": [
+    "flat_angle(1,AOB)",
+    "angle_addition(1,EOD,DOB)",
+    "arc_property_center_angle(1,ODA,O)",
+    "arc_property_circumference_angle_external(1,ODA,C)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "flat_angle(1,AOB)",
+      "angle_addition(1,EOD,DOB)",
+      "arc_property_center_angle(1,ODA,O)",
+      "arc_property_circumference_angle_external(1,ODA,C)"
+    ]
+  }
+}

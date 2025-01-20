@@ -1,0 +1,39 @@
+{
+  "problem_id": 1122,
+  "annotation": "XiaoxiaoJin_2023-04-09",
+  "source": "Geometry3k-1159",
+  "problem_level": 1,
+  "problem_text_cn": "如图所示，∠HLI=59°，⊙L的圆心为L，IL垂直于JL。求⌒LIH的角度。",
+  "problem_text_en": "As shown in the diagram, ∠HLI=59°, L is the center of ⊙L, IL is perpendicular to JL. Find the measure of arc LIH.",
+  "problem_img": "1122.png",
+  "construction_cdl": [
+    "Shape(HL,LI,LIH)",
+    "Shape(GL,LH,LHG)",
+    "Shape(KL,LG,LGK)",
+    "Shape(JL,LK,LKJ)",
+    "Shape(IL,LJ,LJI)",
+    "Collinear(HLK)",
+    "Collinear(ILG)",
+    "Cocircular(L,GKJIH)"
+  ],
+  "text_cdl": [
+    "Equal(MeasureOfAngle(HLI),59)",
+    "IsCentreOfCircle(L,L)",
+    "PerpendicularBetweenLine(IL,JL)"
+  ],
+  "image_cdl": [
+    "Equal(MeasureOfAngle(HLI),59)",
+    "IsCentreOfCircle(L,L)",
+    "PerpendicularBetweenLine(IL,JL)"
+  ],
+  "goal_cdl": "Value(MeasureOfArc(LIH))",
+  "problem_answer": "59",
+  "theorem_seqs": [
+    "arc_property_center_angle(1,LIH,L)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "arc_property_center_angle(1,LIH,L)"
+    ]
+  }
+}

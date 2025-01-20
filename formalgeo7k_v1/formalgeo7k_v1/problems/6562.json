@@ -1,0 +1,68 @@
+{
+  "problem_id": 6562,
+  "annotation": "XiaokaiZhang_2023-06-04",
+  "source": "GeoQA-9507",
+  "problem_level": 10,
+  "problem_text_cn": "如图所示，⊙M的半径为3，圆N的半径为5，O是⊙M的圆心，圆N的圆心为O，AC是⊙O的切线，圆O的切线为BC。求直线AB的长度。",
+  "problem_text_en": "As shown in the diagram, the radius of circle M is 3, the radius of ⊙N is 5, O is the center of circle M, the center of ⊙N is O, AC is the tangent to circle M, BC is the tangent to ⊙M. Find the length of line AB.",
+  "problem_img": "6562.png",
+  "construction_cdl": [
+    "Shape(NBA,AC,CB)",
+    "Shape(CA,AD,MCD)",
+    "Shape(OC,MCD,DO)",
+    "Shape(CO,OE,MEC)",
+    "Shape(EB,BC,MEC)",
+    "Shape(EO,OD,MDE)",
+    "Shape(DA,NAB,BE,MDE)",
+    "Collinear(ACB)",
+    "Collinear(ADO)",
+    "Collinear(OEB)",
+    "Cocircular(M,ECD)",
+    "Cocircular(N,AB)"
+  ],
+  "text_cdl": [
+    "Equal(RadiusOfCircle(M),3)",
+    "Equal(RadiusOfCircle(N),5)",
+    "IsCentreOfCircle(O,M)",
+    "IsCentreOfCircle(O,N)",
+    "IsTangentOfCircle(AC,M)",
+    "IsTangentOfCircle(BC,M)"
+  ],
+  "image_cdl": [],
+  "goal_cdl": "Value(LengthOfLine(AB))",
+  "problem_answer": "8",
+  "theorem_seqs": [
+    "tangent_of_circle_property_perpendicular(2,BC,M,O)",
+    "tangent_of_circle_property_perpendicular(1,AC,M,O)",
+    "radius_of_circle_property_length_equal(1,OC,M)",
+    "radius_of_circle_property_length_equal(1,OB,N)",
+    "radius_of_circle_property_length_equal(1,OA,N)",
+    "right_triangle_judgment_angle(1,BCO)",
+    "right_triangle_property_pythagorean(1,BCO)",
+    "right_triangle_judgment_angle(1,OCA)",
+    "right_triangle_property_pythagorean(1,OCA)",
+    "line_addition(1,AC,CB)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "tangent_of_circle_property_perpendicular(2,BC,M,O)",
+      "tangent_of_circle_property_perpendicular(1,AC,M,O)",
+      "radius_of_circle_property_length_equal(1,OC,M)",
+      "radius_of_circle_property_length_equal(1,OB,N)",
+      "radius_of_circle_property_length_equal(1,OA,N)",
+      "line_addition(1,AC,CB)"
+    ],
+    "tangent_of_circle_property_perpendicular(2,BC,M,O)": [
+      "right_triangle_judgment_angle(1,BCO)"
+    ],
+    "tangent_of_circle_property_perpendicular(1,AC,M,O)": [
+      "right_triangle_judgment_angle(1,OCA)"
+    ],
+    "right_triangle_judgment_angle(1,BCO)": [
+      "right_triangle_property_pythagorean(1,BCO)"
+    ],
+    "right_triangle_judgment_angle(1,OCA)": [
+      "right_triangle_property_pythagorean(1,OCA)"
+    ]
+  }
+}

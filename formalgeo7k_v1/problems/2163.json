@@ -1,0 +1,37 @@
+{
+  "problem_id": 2163,
+  "annotation": "XiaoxiaoJin_2023-04-23",
+  "source": "Geometry3k-2258",
+  "problem_level": 2,
+  "problem_text_cn": "如图所示，∠DFE=36°，圆F的圆心为F。求弧FAE的角度。",
+  "problem_text_en": "As shown in the diagram, ∠DFE=36°, the center of ⊙F is F. Find the measure of ⌒FAE.",
+  "problem_img": "2163.png",
+  "construction_cdl": [
+    "Shape(EF,FA,FAE)",
+    "Shape(CF,FE,FEC)",
+    "Shape(BD,FDB)",
+    "Shape(AF,FC,FDC,DB,FBA)",
+    "Collinear(AFD)",
+    "Cocircular(F,AECDB)"
+  ],
+  "text_cdl": [
+    "Equal(MeasureOfAngle(DFE),36)",
+    "IsCentreOfCircle(F,F)"
+  ],
+  "image_cdl": [
+    "Equal(MeasureOfAngle(DFE),36)",
+    "IsCentreOfCircle(F,F)"
+  ],
+  "goal_cdl": "Value(MeasureOfArc(FAE))",
+  "problem_answer": "144",
+  "theorem_seqs": [
+    "arc_property_center_angle(1,FAE,F)",
+    "adjacent_complementary_angle(1,DFE,EFA)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "arc_property_center_angle(1,FAE,F)",
+      "adjacent_complementary_angle(1,DFE,EFA)"
+    ]
+  }
+}

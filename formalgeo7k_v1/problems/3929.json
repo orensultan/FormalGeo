@@ -1,0 +1,89 @@
+{
+  "problem_id": 3929,
+  "annotation": "FangzhenZhu_2023-05-07",
+  "source": "GeoQA-1848",
+  "problem_level": 14,
+  "problem_text_cn": "如图所示，AC=4，圆O的半径为5/2，圆O的圆心为O，C是弧ODB的中点，DE垂直于CE。求直线CE的长度。",
+  "problem_text_en": "As shown in the diagram, AC=4, the radius of ⊙O is 5/2, the center of circle O is O, C bisects arc ODB, DE⊥CE. Find the length of line CE.",
+  "problem_img": "3929.png",
+  "construction_cdl": [
+    "Shape(OAD,DA)",
+    "Shape(ODC,CA,AD)",
+    "Shape(OCB,BC)",
+    "Shape(CB,BO,OA,AC)",
+    "Shape(OB,OBA,AO)",
+    "Shape(ODC,DE,EC)",
+    "Collinear(ADE)",
+    "Collinear(AOB)",
+    "Cocircular(O,ADCB)"
+  ],
+  "text_cdl": [
+    "Equal(LengthOfLine(AC),4)",
+    "Equal(RadiusOfCircle(O),5/2)",
+    "IsCentreOfCircle(O,O)",
+    "IsMidpointOfArc(C,ODB)",
+    "PerpendicularBetweenLine(DE,CE)"
+  ],
+  "image_cdl": [
+    "Equal(LengthOfLine(AC),4)",
+    "Equal(RadiusOfCircle(O),5/2)",
+    "IsCentreOfCircle(O,O)",
+    "IsMidpointOfArc(C,ODB)",
+    "PerpendicularBetweenLine(DE,CE)"
+  ],
+  "goal_cdl": "Value(LengthOfLine(CE))",
+  "problem_answer": "12/5",
+  "theorem_seqs": [
+    "radius_of_circle_property_length_equal(1,OA,O)",
+    "radius_of_circle_property_length_equal(1,OB,O)",
+    "line_addition(1,AO,OB)",
+    "congruent_arc_judgment_length_equal(1,ODC,OCB)",
+    "congruent_arc_property_measure_equal(1,ODC,OCB)",
+    "arc_property_circumference_angle_external(1,ODC,A)",
+    "arc_property_circumference_angle_external(1,OCB,A)",
+    "diameter_of_circle_judgment_pass_centre(1,AOB,O)",
+    "diameter_of_circle_property_right_angle(1,ACB,O)",
+    "right_triangle_judgment_angle(1,ACB)",
+    "right_triangle_property_pythagorean(1,ACB)",
+    "similar_triangle_judgment_aa(1,BAC,CAE)",
+    "similar_triangle_property_line_ratio(1,ACB,AEC)",
+    "similar_triangle_property_line_ratio(1,CBA,ECA)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "radius_of_circle_property_length_equal(1,OA,O)",
+      "radius_of_circle_property_length_equal(1,OB,O)",
+      "line_addition(1,AO,OB)",
+      "congruent_arc_judgment_length_equal(1,ODC,OCB)",
+      "arc_property_circumference_angle_external(1,ODC,A)",
+      "arc_property_circumference_angle_external(1,OCB,A)",
+      "diameter_of_circle_judgment_pass_centre(1,AOB,O)"
+    ],
+    "congruent_arc_judgment_length_equal(1,ODC,OCB)": [
+      "congruent_arc_property_measure_equal(1,ODC,OCB)"
+    ],
+    "congruent_arc_property_measure_equal(1,ODC,OCB)": [
+      "similar_triangle_judgment_aa(1,BAC,CAE)"
+    ],
+    "arc_property_circumference_angle_external(1,ODC,A)": [
+      "similar_triangle_judgment_aa(1,BAC,CAE)"
+    ],
+    "arc_property_circumference_angle_external(1,OCB,A)": [
+      "similar_triangle_judgment_aa(1,BAC,CAE)"
+    ],
+    "diameter_of_circle_judgment_pass_centre(1,AOB,O)": [
+      "diameter_of_circle_property_right_angle(1,ACB,O)"
+    ],
+    "diameter_of_circle_property_right_angle(1,ACB,O)": [
+      "right_triangle_judgment_angle(1,ACB)",
+      "similar_triangle_judgment_aa(1,BAC,CAE)"
+    ],
+    "right_triangle_judgment_angle(1,ACB)": [
+      "right_triangle_property_pythagorean(1,ACB)"
+    ],
+    "similar_triangle_judgment_aa(1,BAC,CAE)": [
+      "similar_triangle_property_line_ratio(1,ACB,AEC)",
+      "similar_triangle_property_line_ratio(1,CBA,ECA)"
+    ]
+  }
+}

@@ -1,0 +1,43 @@
+{
+  "problem_id": 6597,
+  "annotation": "YanjunGuo_2023-06-04",
+  "source": "GeoQA-9577",
+  "problem_level": 3,
+  "problem_text_cn": "如图所示，∠CBA=28°，∠OEB=90°，O是圆O的圆心，圆O的直径为AB。求∠BCD的大小。",
+  "problem_text_en": "As shown in the diagram, ∠CBA=28°, ∠OEB=90°, O is the center of circle O, AB is the diameter of circle O. Find the measure of ∠BCD.",
+  "problem_img": "6597.png",
+  "construction_cdl": [
+    "Shape(DC,OCD)",
+    "Shape(BE,ED,ODB)",
+    "Shape(CA,OAC)",
+    "Shape(AB,OBA)",
+    "Shape(DE,EC,CD)",
+    "Shape(EB,BO,OE)",
+    "Shape(EO,OA,AC,CE)",
+    "Collinear(DEO)",
+    "Collinear(BEC)",
+    "Collinear(BOA)",
+    "Cocircular(O,BACD)"
+  ],
+  "text_cdl": [
+    "Equal(MeasureOfAngle(CBA),28)",
+    "Equal(MeasureOfAngle(OEB),90)",
+    "IsCentreOfCircle(O,O)",
+    "IsDiameterOfCircle(AB,O)"
+  ],
+  "image_cdl": [],
+  "goal_cdl": "Value(MeasureOfAngle(BCD))",
+  "problem_answer": "31",
+  "theorem_seqs": [
+    "triangle_property_angle_sum(1,EBO)",
+    "arc_property_center_angle(1,ODB,O)",
+    "arc_property_circumference_angle_external(1,ODB,C)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "triangle_property_angle_sum(1,EBO)",
+      "arc_property_center_angle(1,ODB,O)",
+      "arc_property_circumference_angle_external(1,ODB,C)"
+    ]
+  }
+}

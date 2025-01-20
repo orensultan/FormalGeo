@@ -1,0 +1,47 @@
+{
+  "problem_id": 448,
+  "annotation": "JiaZou_2023-04-09",
+  "source": "Geometry3k-458",
+  "problem_level": 1,
+  "problem_text_cn": "如图所示，RP=y+4，RS=27，TP=2*y-5，TQ=5*x，∠PQT=95°，∠RQP=33°，∠TSP=3*z°，QR和TS是平行四边形QTSR的一组对边。求y的值。",
+  "problem_text_en": "As shown in the diagram, RP=y+4, RS=27, TP=2*y-5, TQ=5*x, ∠PQT=95°, ∠RQP=33°, ∠TSP=3*z°, QR and TS are opposite sides of the ▱ QTSR. Find the value of y.",
+  "problem_img": "448.png",
+  "construction_cdl": [
+    "Shape(QT,TP,PQ)",
+    "Shape(PT,TS,SP)",
+    "Shape(PS,SR,RP)",
+    "Shape(PR,RQ,QP)",
+    "Collinear(QPS)",
+    "Collinear(TPR)"
+  ],
+  "text_cdl": [
+    "Equal(LengthOfLine(RP),y+4)",
+    "Equal(LengthOfLine(RS),27)",
+    "Equal(LengthOfLine(TP),2*y-5)",
+    "Equal(LengthOfLine(TQ),5*x)",
+    "Equal(MeasureOfAngle(PQT),95)",
+    "Equal(MeasureOfAngle(RQP),33)",
+    "Equal(MeasureOfAngle(TSP),3*z)",
+    "Parallelogram(QTSR)"
+  ],
+  "image_cdl": [
+    "Equal(LengthOfLine(RP),y+4)",
+    "Equal(LengthOfLine(RS),27)",
+    "Equal(LengthOfLine(TP),2*y-5)",
+    "Equal(LengthOfLine(TQ),5*x)",
+    "Equal(MeasureOfAngle(PQT),95)",
+    "Equal(MeasureOfAngle(RQP),33)",
+    "Equal(MeasureOfAngle(TSP),3*z)",
+    "Parallelogram(QTSR)"
+  ],
+  "goal_cdl": "Value(y)",
+  "problem_answer": "9",
+  "theorem_seqs": [
+    "parallelogram_property_diagonal_bisection(1,TSRQ,P)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "parallelogram_property_diagonal_bisection(1,TSRQ,P)"
+    ]
+  }
+}

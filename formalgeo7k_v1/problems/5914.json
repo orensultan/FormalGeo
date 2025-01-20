@@ -1,0 +1,30 @@
+{
+  "problem_id": 5914,
+  "annotation": "YiwenHuang_2023-06-04",
+  "source": "GeoQA-8061",
+  "problem_level": 2,
+  "problem_text_cn": "如图所示，AC=2，∠ACB=90°，∠BAC=30°。求直线AB的长度。",
+  "problem_text_en": "As shown in the diagram, AC=2, ∠ACB=90°, ∠BAC=30°. Find the length of line AB.",
+  "problem_img": "5914.png",
+  "construction_cdl": [
+    "Shape(BA,AC,CB)"
+  ],
+  "text_cdl": [
+    "Equal(LengthOfLine(AC),2)",
+    "Equal(MeasureOfAngle(ACB),90)",
+    "Equal(MeasureOfAngle(BAC),30)"
+  ],
+  "image_cdl": [],
+  "goal_cdl": "Value(LengthOfLine(AB))",
+  "problem_answer": "4*sqrt(3)/3",
+  "theorem_seqs": [
+    "triangle_property_angle_sum(1,BAC)",
+    "sine_theorem(1,ACB)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "triangle_property_angle_sum(1,BAC)",
+      "sine_theorem(1,ACB)"
+    ]
+  }
+}

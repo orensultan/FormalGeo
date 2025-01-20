@@ -1,0 +1,33 @@
+{
+  "problem_id": 3493,
+  "annotation": "XiaokaiZhang_2023-04-30",
+  "source": "GeoQA-1097",
+  "problem_level": 2,
+  "problem_text_cn": "如图所示，∠BAC=40°，∠CBA=60°，DF平行于AC。求∠DFB的大小。",
+  "problem_text_en": "As shown in the diagram, ∠BAC=40°, ∠CBA=60°, DF is parallel to AC. Find the measure of ∠DFB.",
+  "problem_img": "3493.png",
+  "construction_cdl": [
+    "Shape(BD,DF,FB)",
+    "Shape(DA,AC,CF,FD)",
+    "Collinear(BDA)",
+    "Collinear(BFC)"
+  ],
+  "text_cdl": [
+    "Equal(MeasureOfAngle(BAC),40)",
+    "Equal(MeasureOfAngle(CBA),60)",
+    "ParallelBetweenLine(DF,AC)"
+  ],
+  "image_cdl": [],
+  "goal_cdl": "Value(MeasureOfAngle(DFB))",
+  "problem_answer": "80",
+  "theorem_seqs": [
+    "parallel_property_corresponding_angle(1,DF,AC,B)",
+    "triangle_property_angle_sum(1,BDF)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "parallel_property_corresponding_angle(1,DF,AC,B)",
+      "triangle_property_angle_sum(1,BDF)"
+    ]
+  }
+}

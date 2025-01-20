@@ -1,0 +1,44 @@
+{
+  "problem_id": 4767,
+  "annotation": "YangLi_2023-05-14",
+  "source": "GeoQA-4140",
+  "problem_level": 4,
+  "problem_text_cn": "如图所示，AC=16，OB=12，OC=12，圆O的圆心为O，圆O的切线为AC。求直线AB的长度。",
+  "problem_text_en": "As shown in the diagram, AC=16, OB=12, OC=12, O is the center of circle O, AC is the tangent to circle O. Find the length of line AB.",
+  "problem_img": "4767.png",
+  "construction_cdl": [
+    "Shape(BA,AC,OBC)",
+    "Shape(CO,OB,OBC)",
+    "Shape(BO,OC,OCB)",
+    "Collinear(ABO)",
+    "Cocircular(O,BC)"
+  ],
+  "text_cdl": [
+    "Equal(LengthOfLine(AC),16)",
+    "Equal(LengthOfLine(OB),12)",
+    "Equal(LengthOfLine(OC),12)",
+    "IsCentreOfCircle(O,O)",
+    "IsTangentOfCircle(AC,O)"
+  ],
+  "image_cdl": [],
+  "goal_cdl": "Value(LengthOfLine(AB))",
+  "problem_answer": "8",
+  "theorem_seqs": [
+    "tangent_of_circle_property_perpendicular(2,AC,O,O)",
+    "right_triangle_judgment_angle(1,ACO)",
+    "right_triangle_property_pythagorean(1,ACO)",
+    "line_addition(1,AB,BO)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "tangent_of_circle_property_perpendicular(2,AC,O,O)",
+      "line_addition(1,AB,BO)"
+    ],
+    "tangent_of_circle_property_perpendicular(2,AC,O,O)": [
+      "right_triangle_judgment_angle(1,ACO)"
+    ],
+    "right_triangle_judgment_angle(1,ACO)": [
+      "right_triangle_property_pythagorean(1,ACO)"
+    ]
+  }
+}

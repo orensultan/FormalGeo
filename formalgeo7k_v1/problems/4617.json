@@ -1,0 +1,41 @@
+{
+  "problem_id": 4617,
+  "annotation": "QikeHuang_2023-05-14",
+  "source": "GeoQA-3793",
+  "problem_level": 5,
+  "problem_text_cn": "如图所示，圆O的半径为2，Sin(MeasureOfAngle(ABC))=3/4，圆O的圆心为O。求直线AC的长度。",
+  "problem_text_en": "As shown in the diagram, the radius of ⊙O is 2, Sin(MeasureOfAngle(ABC))=3/4, O is the center of circle O. Find the length of line AC.",
+  "problem_img": "4617.png",
+  "construction_cdl": [
+    "Shape(OAB,BA)",
+    "Shape(AB,BC,CO,OA)",
+    "Shape(AO,OC,CA)",
+    "Shape(CB,OBC)",
+    "Shape(AC,OCA)",
+    "Cocircular(O,ABC)"
+  ],
+  "text_cdl": [
+    "Equal(RadiusOfCircle(O),2)",
+    "Equal(Sin(MeasureOfAngle(ABC)),3/4)",
+    "IsCentreOfCircle(O,O)"
+  ],
+  "image_cdl": [],
+  "goal_cdl": "Value(LengthOfLine(AC))",
+  "problem_answer": "3",
+  "theorem_seqs": [
+    "radius_of_circle_property_length_equal(1,OA,O)",
+    "radius_of_circle_property_length_equal(1,OC,O)",
+    "arc_property_center_angle(1,OCA,O)",
+    "arc_property_circumference_angle_external(1,OCA,B)",
+    "cosine_theorem(1,OCA)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "radius_of_circle_property_length_equal(1,OA,O)",
+      "radius_of_circle_property_length_equal(1,OC,O)",
+      "arc_property_center_angle(1,OCA,O)",
+      "arc_property_circumference_angle_external(1,OCA,B)",
+      "cosine_theorem(1,OCA)"
+    ]
+  }
+}

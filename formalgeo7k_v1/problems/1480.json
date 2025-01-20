@@ -1,0 +1,81 @@
+{
+  "problem_id": 1480,
+  "annotation": "QikeHuang_2023-04-16",
+  "source": "Geometry3k-1534",
+  "problem_level": 6,
+  "problem_text_cn": "如图所示，∠AGK=60°，∠MJB=50°，HA∥CG，MH∥EN，WD∥BT。求∠ORP的大小。",
+  "problem_text_en": "As shown in the diagram, ∠AGK=60°, ∠MJB=50°, HA∥CG, MH∥EN, WD is parallel to BT. Find the measure of ∠ORP.",
+  "problem_img": "1480.png",
+  "construction_cdl": [
+    "Shape(HC,CP,PN,NH)",
+    "Shape(SJ,JF,FO,OS)",
+    "Shape(RG,GA,AQ,QR)",
+    "Shape(WS)",
+    "Shape(BJ)",
+    "Shape(MJ)",
+    "Shape(EF)",
+    "Shape(IC)",
+    "Shape(NL)",
+    "Shape(CS,SO,OP,PC)",
+    "Shape(PO,OR,RP)",
+    "Shape(NP,PR,RQ,QN)",
+    "Shape(OF,FG,GR,RO)",
+    "Shape(QD)",
+    "Shape(AT)",
+    "Shape(AU)",
+    "Shape(GK)",
+    "Shape(MJ,JB)",
+    "Shape(EF,FJ)",
+    "Shape(AG,GK)",
+    "Shape(NQ,QD)",
+    "Shape(LN,NQ)",
+    "Collinear(WSORQD)",
+    "Collinear(BJFGAT)",
+    "Collinear(HCSJM)",
+    "Collinear(LNPOFE)",
+    "Collinear(ICPRGK)",
+    "Collinear(HNQAU)"
+  ],
+  "text_cdl": [
+    "Equal(MeasureOfAngle(AGK),60)",
+    "Equal(MeasureOfAngle(MJB),50)",
+    "ParallelBetweenLine(HA,CG)",
+    "ParallelBetweenLine(MH,EN)",
+    "ParallelBetweenLine(WD,BT)"
+  ],
+  "image_cdl": [
+    "Equal(MeasureOfAngle(AGK),60)",
+    "Equal(MeasureOfAngle(MJB),50)",
+    "ParallelBetweenLine(HA,CG)",
+    "ParallelBetweenLine(MH,EN)",
+    "ParallelBetweenLine(WD,BT)"
+  ],
+  "goal_cdl": "Value(MeasureOfAngle(ORP))",
+  "problem_answer": "60",
+  "theorem_seqs": [
+    "parallel_property_collinear_extend(3,WD,BT,O)",
+    "parallel_property_collinear_extend(3,OD,BT,R)",
+    "parallel_property_collinear_extend(3,TB,RO,F)",
+    "parallel_property_collinear_extend(3,TF,RO,G)",
+    "vertical_angle(1,AGK,FGR)",
+    "parallel_property_corresponding_angle(2,GF,RO,P)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "parallel_property_collinear_extend(3,WD,BT,O)",
+      "vertical_angle(1,AGK,FGR)"
+    ],
+    "parallel_property_collinear_extend(3,WD,BT,O)": [
+      "parallel_property_collinear_extend(3,OD,BT,R)"
+    ],
+    "parallel_property_collinear_extend(3,OD,BT,R)": [
+      "parallel_property_collinear_extend(3,TB,RO,F)"
+    ],
+    "parallel_property_collinear_extend(3,TB,RO,F)": [
+      "parallel_property_collinear_extend(3,TF,RO,G)"
+    ],
+    "parallel_property_collinear_extend(3,TF,RO,G)": [
+      "parallel_property_corresponding_angle(2,GF,RO,P)"
+    ]
+  }
+}

@@ -1,0 +1,41 @@
+{
+  "problem_id": 700,
+  "annotation": "JiaZou_2023-04-09",
+  "source": "Geometry3k-719",
+  "problem_level": 2,
+  "problem_text_cn": "如图所示，∠WZY=4*x°，∠XWZ=10*x°，∠YXW=120°，XWZY是风筝形。求∠ZYX的大小。",
+  "problem_text_en": "As shown in the diagram, ∠WZY=4*x°, ∠XWZ=10*x°, ∠YXW=120°, ZW and ZY are one pair of adjacent sides of the kite XWZY. Find the measure of ∠ZYX.",
+  "problem_img": "700.png",
+  "construction_cdl": [
+    "Shape(WZ,ZU,UW)",
+    "Shape(ZY,YU,UZ)",
+    "Shape(UY,YX,XU)",
+    "Shape(WU,UX,XW)",
+    "Collinear(ZUX)",
+    "Collinear(WUY)"
+  ],
+  "text_cdl": [
+    "Equal(MeasureOfAngle(WZY),4*x)",
+    "Equal(MeasureOfAngle(XWZ),10*x)",
+    "Equal(MeasureOfAngle(YXW),120)",
+    "Kite(XWZY)"
+  ],
+  "image_cdl": [
+    "Equal(MeasureOfAngle(WZY),4*x)",
+    "Equal(MeasureOfAngle(XWZ),10*x)",
+    "Equal(MeasureOfAngle(YXW),120)",
+    "Kite(XWZY)"
+  ],
+  "goal_cdl": "Value(MeasureOfAngle(ZYX))",
+  "problem_answer": "100",
+  "theorem_seqs": [
+    "kite_property_opposite_angle_equal(1,XWZY)",
+    "quadrilateral_property_angle_sum(1,WZYX)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "kite_property_opposite_angle_equal(1,XWZY)",
+      "quadrilateral_property_angle_sum(1,WZYX)"
+    ]
+  }
+}

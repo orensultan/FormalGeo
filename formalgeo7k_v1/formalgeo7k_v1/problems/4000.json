@@ -1,0 +1,44 @@
+{
+  "problem_id": 4000,
+  "annotation": "ZheZhu_2023-04-30",
+  "source": "GeoQA-1957",
+  "problem_level": 4,
+  "problem_text_cn": "如图所示，∠ABC=72°，∠CAB=90°，AD是∠CAB的角平分线，AE⊥CE。求∠ECD的大小。",
+  "problem_text_en": "As shown in the diagram, ∠ABC=72°, ∠CAB=90°, AD is the angle bisector of ∠CAB, AE is perpendicular to CE. Find the measure of ∠ECD.",
+  "problem_img": "4000.png",
+  "construction_cdl": [
+    "Shape(CA,AD,DC)",
+    "Shape(CD,DE,EC)",
+    "Shape(DA,AB,BD)",
+    "Collinear(ADEF)",
+    "Collinear(CDB)"
+  ],
+  "text_cdl": [
+    "Equal(MeasureOfAngle(ABC),72)",
+    "Equal(MeasureOfAngle(CAB),90)",
+    "IsBisectorOfAngle(AD,CAB)",
+    "PerpendicularBetweenLine(AE,CE)"
+  ],
+  "image_cdl": [
+    "Equal(MeasureOfAngle(ABC),72)",
+    "Equal(MeasureOfAngle(CAB),90)",
+    "IsBisectorOfAngle(AD,CAB)",
+    "PerpendicularBetweenLine(AE,CE)"
+  ],
+  "goal_cdl": "Value(MeasureOfAngle(ECD))",
+  "problem_answer": "27",
+  "theorem_seqs": [
+    "angle_addition(1,CAD,DAB)",
+    "angle_addition(1,ECD,DCA)",
+    "triangle_property_angle_sum(1,CAB)",
+    "triangle_property_angle_sum(1,CAE)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "angle_addition(1,CAD,DAB)",
+      "angle_addition(1,ECD,DCA)",
+      "triangle_property_angle_sum(1,CAB)",
+      "triangle_property_angle_sum(1,CAE)"
+    ]
+  }
+}

@@ -1,0 +1,59 @@
+{
+  "problem_id": 3734,
+  "annotation": "YangLi_2023-04-30",
+  "source": "GeoQA-1521",
+  "problem_level": 9,
+  "problem_text_cn": "如图所示，∠CAB=100°，DE是AB的垂直平分线，FG是AC的垂直平分线。求∠FAD的大小。",
+  "problem_text_en": "As shown in the diagram, ∠CAB=100°, DE is the perpendicular bisector of AB, FG perpendicular bisects AC. Find the measure of ∠FAD.",
+  "problem_img": "3734.png",
+  "construction_cdl": [
+    "Shape(BD,DE,EB)",
+    "Shape(AE,ED,DA)",
+    "Shape(AD,DF,FA)",
+    "Shape(AF,FG,GA)",
+    "Shape(GF,FC,CG)",
+    "Collinear(BEA)",
+    "Collinear(AGC)",
+    "Collinear(BDFC)"
+  ],
+  "text_cdl": [
+    "Equal(MeasureOfAngle(CAB),100)",
+    "IsPerpendicularBisectorOfLine(DE,AB)",
+    "IsPerpendicularBisectorOfLine(FG,AC)"
+  ],
+  "image_cdl": [],
+  "goal_cdl": "Value(MeasureOfAngle(FAD))",
+  "problem_answer": "20",
+  "theorem_seqs": [
+    "perpendicular_bisector_property_distance_equal(1,DE,AB)",
+    "perpendicular_bisector_property_distance_equal(1,FG,AC)",
+    "isosceles_triangle_judgment_line_equal(1,DAB)",
+    "isosceles_triangle_judgment_line_equal(1,FCA)",
+    "isosceles_triangle_property_angle_equal(1,DAB)",
+    "isosceles_triangle_property_angle_equal(1,FCA)",
+    "triangle_property_angle_sum(1,ABC)",
+    "angle_addition(1,GAF,FAD)",
+    "angle_addition(1,GAD,DAE)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "perpendicular_bisector_property_distance_equal(1,DE,AB)",
+      "perpendicular_bisector_property_distance_equal(1,FG,AC)",
+      "triangle_property_angle_sum(1,ABC)",
+      "angle_addition(1,GAF,FAD)",
+      "angle_addition(1,GAD,DAE)"
+    ],
+    "perpendicular_bisector_property_distance_equal(1,DE,AB)": [
+      "isosceles_triangle_judgment_line_equal(1,DAB)"
+    ],
+    "perpendicular_bisector_property_distance_equal(1,FG,AC)": [
+      "isosceles_triangle_judgment_line_equal(1,FCA)"
+    ],
+    "isosceles_triangle_judgment_line_equal(1,DAB)": [
+      "isosceles_triangle_property_angle_equal(1,DAB)"
+    ],
+    "isosceles_triangle_judgment_line_equal(1,FCA)": [
+      "isosceles_triangle_property_angle_equal(1,FCA)"
+    ]
+  }
+}

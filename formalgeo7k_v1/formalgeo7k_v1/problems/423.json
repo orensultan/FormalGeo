@@ -1,0 +1,37 @@
+{
+  "problem_id": 423,
+  "annotation": "JiaZou_2023-04-09",
+  "source": "Geometry3k-431",
+  "problem_level": 1,
+  "problem_text_cn": "如图所示，EH=9，HG=15，∠EHD=45°，EF和HG是▱EHGF的一组对边，ED⊥GD。求四边形EHGF的面积。",
+  "problem_text_en": "As shown in the diagram, EH=9, HG=15, ∠EHD=45°, EHGF is a parallelogram, ED⊥GD. Find the area of EHGF.",
+  "problem_img": "423.png",
+  "construction_cdl": [
+    "Shape(EH,HD,DE)",
+    "Shape(ED,DG,GF,FE)",
+    "Collinear(HDG)"
+  ],
+  "text_cdl": [
+    "Equal(LengthOfLine(EH),9)",
+    "Equal(LengthOfLine(HG),15)",
+    "Equal(MeasureOfAngle(EHD),45)",
+    "Parallelogram(EHGF)",
+    "PerpendicularBetweenLine(ED,GD)"
+  ],
+  "image_cdl": [
+    "Equal(LengthOfLine(EH),9)",
+    "Equal(LengthOfLine(HG),15)",
+    "Equal(MeasureOfAngle(EHD),45)",
+    "PerpendicularBetweenLine(ED,GD)"
+  ],
+  "goal_cdl": "Value(AreaOfQuadrilateral(EHGF))",
+  "problem_answer": "135*sqrt(2)/2",
+  "theorem_seqs": [
+    "parallelogram_area_formula_sine(1,EHGF)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "parallelogram_area_formula_sine(1,EHGF)"
+    ]
+  }
+}

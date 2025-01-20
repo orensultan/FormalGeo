@@ -1,0 +1,41 @@
+{
+  "problem_id": 6305,
+  "annotation": "ZheZhu_2023-05-28",
+  "source": "GeoQA-9070",
+  "problem_level": 3,
+  "problem_text_cn": "如图所示，Add(LengthOfLine(AD)=LengthOfLine(DC))，DE=2，EF=EC，∠CEF=90°，∠FEA=∠ECD，ABCD是长方形。求直线AE的长度。",
+  "problem_text_en": "As shown in the diagram, Add(LengthOfLine(AD)=LengthOfLine(DC)), DE=2, EF=EC, ∠CEF=90°, ∠FEA=∠ECD, ABCD is a rectangle. Find the length of line AE.",
+  "problem_img": "6305.png",
+  "construction_cdl": [
+    "Shape(EA,AF,FE)",
+    "Shape(CD,DE,EC)",
+    "Shape(EF,FB,BC,CE)",
+    "Collinear(AED)",
+    "Collinear(AFB)"
+  ],
+  "text_cdl": [
+    "Equal(Add(LengthOfLine(AD),LengthOfLine(DC)),8)",
+    "Equal(LengthOfLine(DE),2)",
+    "Equal(LengthOfLine(EF),LengthOfLine(EC))",
+    "Equal(MeasureOfAngle(CEF),90)",
+    "Equal(MeasureOfAngle(FEA),MeasureOfAngle(ECD))",
+    "Rectangle(ABCD)"
+  ],
+  "image_cdl": [],
+  "goal_cdl": "Value(LengthOfLine(AE))",
+  "problem_answer": "3",
+  "theorem_seqs": [
+    "congruent_triangle_judgment_aas(1,FEA,ECD)",
+    "congruent_triangle_property_line_equal(1,FEA,ECD)",
+    "line_addition(1,AE,ED)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "congruent_triangle_judgment_aas(1,FEA,ECD)",
+      "line_addition(1,AE,ED)"
+    ],
+    "congruent_triangle_judgment_aas(1,FEA,ECD)": [
+      "congruent_triangle_property_line_equal(1,FEA,ECD)"
+    ]
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "problem_id": 4583,
+  "annotation": "YanjunGuo_2023-05-14",
+  "source": "GeoQA-3726",
+  "problem_level": 2,
+  "problem_text_cn": "如图所示，∠BOA=120°，O是⊙O的圆心。求∠APB的大小。",
+  "problem_text_en": "As shown in the diagram, ∠BOA=120°, O is the center of ⊙O. Find the measure of ∠APB.",
+  "problem_img": "4583.png",
+  "construction_cdl": [
+    "Shape(AO,OB,OBA)",
+    "Shape(OA,AP,PB,BO)",
+    "Shape(PA,OAP)",
+    "Shape(BP,OPB)",
+    "Cocircular(O,APB)"
+  ],
+  "text_cdl": [
+    "Equal(MeasureOfAngle(BOA),120)",
+    "IsCentreOfCircle(O,O)"
+  ],
+  "image_cdl": [],
+  "goal_cdl": "Value(MeasureOfAngle(APB))",
+  "problem_answer": "120",
+  "theorem_seqs": [
+    "arc_property_center_angle(1,OAB,O)",
+    "arc_property_circumference_angle_internal(1,OAB,P)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "arc_property_center_angle(1,OAB,O)",
+      "arc_property_circumference_angle_internal(1,OAB,P)"
+    ]
+  }
+}

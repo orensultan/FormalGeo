@@ -1,0 +1,42 @@
+{
+  "problem_id": 3059,
+  "annotation": "XiaokaiZhang_2023-04-16",
+  "source": "GeoQA-281",
+  "problem_level": 4,
+  "problem_text_cn": "如图所示，ABCD的面积为25，CFGE的面积为9，△DCE为直角△，四边形ABCD是正方形，四边形CFGE是正方形，DEHI是正方形。求DEHI的面积。",
+  "problem_text_en": "As shown in the diagram, the area of quadrilateral ABCD is 25, the area of CFGE is 9, triangle DCE is a right triangle, quadrilateral ABCD is a square, quadrilateral CFGE is a square, quadrilateral DEHI is a square. Find the area of quadrilateral DEHI.",
+  "problem_img": "3059.png",
+  "construction_cdl": [
+    "Shape(AB,BC,CD,DA)",
+    "Shape(CF,FG,GE,EC)",
+    "Shape(DC,CE,ED)",
+    "Shape(DE,EH,HI,ID)",
+    "Collinear(DCF)",
+    "Collinear(BCE)"
+  ],
+  "text_cdl": [
+    "Equal(AreaOfQuadrilateral(ABCD),25)",
+    "Equal(AreaOfQuadrilateral(CFGE),9)",
+    "RightTriangle(DCE)",
+    "Square(ABCD)",
+    "Square(CFGE)",
+    "Square(DEHI)"
+  ],
+  "image_cdl": [],
+  "goal_cdl": "Value(AreaOfQuadrilateral(DEHI))",
+  "problem_answer": "34",
+  "theorem_seqs": [
+    "right_triangle_property_pythagorean(1,DCE)",
+    "parallelogram_area_formula_sine(1,ABCD)",
+    "parallelogram_area_formula_sine(1,CFGE)",
+    "parallelogram_area_formula_sine(1,DEHI)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "right_triangle_property_pythagorean(1,DCE)",
+      "parallelogram_area_formula_sine(1,ABCD)",
+      "parallelogram_area_formula_sine(1,CFGE)",
+      "parallelogram_area_formula_sine(1,DEHI)"
+    ]
+  }
+}

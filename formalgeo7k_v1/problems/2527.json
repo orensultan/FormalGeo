@@ -1,0 +1,64 @@
+{
+  "problem_id": 2527,
+  "annotation": "ChenyangMao_2023-04-23",
+  "source": "Geometry3k-2651",
+  "problem_level": 7,
+  "problem_text_cn": "如图所示，∠AZB=104°，弧ZCB的角度为94，Z是⊙Z的圆心，AB∥DC。求∠ZAC的大小。",
+  "problem_text_en": "As shown in the diagram, ∠AZB=104°, the measure of ⌒ZCB is 94, Z is the center of ⊙Z, AB is parallel to DC. Find the measure of ∠ZAC.",
+  "problem_img": "2527.png",
+  "construction_cdl": [
+    "Shape(ZB,BA,AZ)",
+    "Shape(EB,BZ,ZA,AE)",
+    "Shape(ZBA,AB)",
+    "Shape(ZAD,DA)",
+    "Shape(ZDC,CD)",
+    "Shape(ZCB,BC)",
+    "Shape(EC,CB,BE)",
+    "Shape(CE,ED,DC)",
+    "Shape(EA,AD,DE)",
+    "Collinear(BED)",
+    "Collinear(CEA)",
+    "Cocircular(Z,BADC)"
+  ],
+  "text_cdl": [
+    "Equal(MeasureOfAngle(AZB),104)",
+    "Equal(MeasureOfArc(ZCB),94)",
+    "IsCentreOfCircle(Z,Z)",
+    "ParallelBetweenLine(AB,DC)"
+  ],
+  "image_cdl": [
+    "Equal(MeasureOfAngle(AZB),104)",
+    "Equal(MeasureOfArc(ZCB),94)",
+    "IsCentreOfCircle(Z,Z)",
+    "ParallelBetweenLine(AB,DC)"
+  ],
+  "goal_cdl": "Value(MeasureOfAngle(ZAC))",
+  "problem_answer": "9",
+  "theorem_seqs": [
+    "radius_of_circle_property_length_equal(1,ZB,Z)",
+    "radius_of_circle_property_length_equal(1,ZA,Z)",
+    "isosceles_triangle_judgment_line_equal(1,ZBA)",
+    "isosceles_triangle_property_angle_equal(1,ZBA)",
+    "triangle_property_angle_sum(1,ZBA)",
+    "arc_property_circumference_angle_external(1,ZCB,A)",
+    "angle_addition(1,BAZ,ZAE)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "radius_of_circle_property_length_equal(1,ZB,Z)",
+      "radius_of_circle_property_length_equal(1,ZA,Z)",
+      "triangle_property_angle_sum(1,ZBA)",
+      "arc_property_circumference_angle_external(1,ZCB,A)",
+      "angle_addition(1,BAZ,ZAE)"
+    ],
+    "radius_of_circle_property_length_equal(1,ZB,Z)": [
+      "isosceles_triangle_judgment_line_equal(1,ZBA)"
+    ],
+    "radius_of_circle_property_length_equal(1,ZA,Z)": [
+      "isosceles_triangle_judgment_line_equal(1,ZBA)"
+    ],
+    "isosceles_triangle_judgment_line_equal(1,ZBA)": [
+      "isosceles_triangle_property_angle_equal(1,ZBA)"
+    ]
+  }
+}

@@ -1,0 +1,66 @@
+{
+  "problem_id": 2506,
+  "annotation": "YifanWang_2023-04-23",
+  "source": "Geometry3k-2630",
+  "problem_level": 7,
+  "problem_text_cn": "如图所示，AB=6，BC=15/2，CA=9，DE=9，∠ABF=∠FBC，BF是∠ABC的角平分线，ED∥AC，ED∥FC。求直线BD的长度。",
+  "problem_text_en": "As shown in the diagram, AB=6, BC=15/2, CA=9, DE=9, ∠ABF=∠FBC, BF is the angle bisector of ∠ABC, ED∥AC, ED is parallel to FC. Find the length of line BD.",
+  "problem_img": "2506.png",
+  "construction_cdl": [
+    "Shape(AB,BF,FA)",
+    "Shape(FB,BC,CF)",
+    "Shape(FC,CD,DE,EF)",
+    "Collinear(AFC)",
+    "Collinear(BFE)",
+    "Collinear(BCD)"
+  ],
+  "text_cdl": [
+    "Equal(LengthOfLine(AB),6)",
+    "Equal(LengthOfLine(BC),15/2)",
+    "Equal(LengthOfLine(CA),9)",
+    "Equal(LengthOfLine(DE),9)",
+    "Equal(MeasureOfAngle(ABF),MeasureOfAngle(FBC))",
+    "IsBisectorOfAngle(BF,ABC)",
+    "ParallelBetweenLine(ED,AC)",
+    "ParallelBetweenLine(ED,FC)"
+  ],
+  "image_cdl": [
+    "Equal(LengthOfLine(AB),6)",
+    "Equal(LengthOfLine(BC),15/2)",
+    "Equal(LengthOfLine(CA),9)",
+    "Equal(LengthOfLine(DE),9)",
+    "Equal(MeasureOfAngle(ABF),MeasureOfAngle(FBC))",
+    "IsBisectorOfAngle(BF,ABC)",
+    "ParallelBetweenLine(ED,AC)",
+    "ParallelBetweenLine(ED,FC)"
+  ],
+  "goal_cdl": "Value(LengthOfLine(BD))",
+  "problem_answer": "27/2",
+  "theorem_seqs": [
+    "line_addition(1,CF,FA)",
+    "bisector_of_angle_property_line_ratio(1,BF,ABC)",
+    "parallel_property_corresponding_angle(1,CA,DE,B)",
+    "parallel_property_corresponding_angle(2,ED,FC,B)",
+    "similar_triangle_judgment_aa(1,BDE,BCF)",
+    "similar_triangle_property_line_ratio(1,BDE,BCF)",
+    "similar_triangle_property_line_ratio(1,EBD,FBC)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "line_addition(1,CF,FA)",
+      "bisector_of_angle_property_line_ratio(1,BF,ABC)",
+      "parallel_property_corresponding_angle(1,CA,DE,B)",
+      "parallel_property_corresponding_angle(2,ED,FC,B)"
+    ],
+    "parallel_property_corresponding_angle(1,CA,DE,B)": [
+      "similar_triangle_judgment_aa(1,BDE,BCF)"
+    ],
+    "parallel_property_corresponding_angle(2,ED,FC,B)": [
+      "similar_triangle_judgment_aa(1,BDE,BCF)"
+    ],
+    "similar_triangle_judgment_aa(1,BDE,BCF)": [
+      "similar_triangle_property_line_ratio(1,BDE,BCF)",
+      "similar_triangle_property_line_ratio(1,EBD,FBC)"
+    ]
+  }
+}

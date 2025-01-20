@@ -1,0 +1,45 @@
+{
+  "problem_id": 6183,
+  "annotation": "DengfengYue_2023-05-28",
+  "source": "GeoQA-8756",
+  "problem_level": 4,
+  "problem_text_cn": "如图所示，AB=4，∠ACB=30°，⊙O的圆心为O，AD是⊙O的直径。求直线AD的长度。",
+  "problem_text_en": "As shown in the diagram, AB=4, ∠ACB=30°, O is the center of circle O, AD is the diameter of circle O. Find the length of line AD.",
+  "problem_img": "6183.png",
+  "construction_cdl": [
+    "Shape(AB,OBA)",
+    "Shape(AE,EB,BA)",
+    "Shape(AD,DE,EA)",
+    "Shape(BE,EC,CB)",
+    "Shape(BC,OCB)",
+    "Shape(CE,ED,ODC)",
+    "Shape(DA,OAD)",
+    "Collinear(AEC)",
+    "Collinear(BED)",
+    "Collinear(AOD)",
+    "Cocircular(O,ADCB)"
+  ],
+  "text_cdl": [
+    "Equal(LengthOfLine(AB),4)",
+    "Equal(MeasureOfAngle(ACB),30)",
+    "IsCentreOfCircle(O,O)",
+    "IsDiameterOfCircle(AD,O)"
+  ],
+  "image_cdl": [],
+  "goal_cdl": "Value(LengthOfLine(AD))",
+  "problem_answer": "8",
+  "theorem_seqs": [
+    "arc_property_circumference_angle_external(1,OBA,D)",
+    "arc_property_circumference_angle_external(1,OBA,C)",
+    "diameter_of_circle_property_right_angle(1,DBA,O)",
+    "sine_theorem(1,ADB)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "arc_property_circumference_angle_external(1,OBA,D)",
+      "arc_property_circumference_angle_external(1,OBA,C)",
+      "diameter_of_circle_property_right_angle(1,DBA,O)",
+      "sine_theorem(1,ADB)"
+    ]
+  }
+}

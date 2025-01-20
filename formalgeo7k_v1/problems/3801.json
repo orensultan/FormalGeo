@@ -1,0 +1,43 @@
+{
+  "problem_id": 3801,
+  "annotation": "YifanWang_2023-05-07",
+  "source": "GeoQA-1650",
+  "problem_level": 3,
+  "problem_text_cn": "如图所示，PQ=BP，∠BPQ=40°。求∠PQB的大小。",
+  "problem_text_en": "As shown in the diagram, PQ=BP, ∠BPQ=40°. Find the measure of ∠PQB.",
+  "problem_img": "3801.png",
+  "construction_cdl": [
+    "Shape(O,O)",
+    "Shape(AO,OC,OCB,BQ,QA)",
+    "Shape(PQ,QB,BP)",
+    "Shape(AQ,QP,OPA)",
+    "Shape(BP,0BP)",
+    "Collinear(AOC)",
+    "Collinear(AQB)",
+    "Cocircular(O,ABP)"
+  ],
+  "text_cdl": [
+    "Equal(LengthOfLine(PQ),LengthOfLine(BP))",
+    "Equal(MeasureOfAngle(BPQ),40)"
+  ],
+  "image_cdl": [
+    "Equal(LengthOfLine(PQ),LengthOfLine(BP))",
+    "Equal(MeasureOfAngle(BPQ),40)"
+  ],
+  "goal_cdl": "Value(MeasureOfAngle(PQB))",
+  "problem_answer": "70",
+  "theorem_seqs": [
+    "isosceles_triangle_judgment_line_equal(1,PQB)",
+    "triangle_property_angle_sum(1,PQB)",
+    "isosceles_triangle_property_angle_equal(1,PQB)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "isosceles_triangle_judgment_line_equal(1,PQB)",
+      "triangle_property_angle_sum(1,PQB)"
+    ],
+    "isosceles_triangle_judgment_line_equal(1,PQB)": [
+      "isosceles_triangle_property_angle_equal(1,PQB)"
+    ]
+  }
+}

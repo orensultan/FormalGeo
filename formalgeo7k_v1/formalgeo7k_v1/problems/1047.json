@@ -1,0 +1,36 @@
+{
+  "problem_id": 1047,
+  "annotation": "QikeHuang_2023-04-09",
+  "source": "Geometry3k-1080",
+  "problem_level": 1,
+  "problem_text_cn": "如图所示，∠ABD=32°，∠CAD=62°，∠CDS=125°。求∠BDA的大小。",
+  "problem_text_en": "As shown in the diagram, ∠ABD=32°, ∠CAD=62°, ∠CDS=125°. Find the measure of ∠BDA.",
+  "problem_img": "1047.png",
+  "construction_cdl": [
+    "Shape(AB,BD,DA)",
+    "Shape(AD,DC,CA)",
+    "Shape(DS)",
+    "Collinear(CDB)",
+    "Collinear(ADS)"
+  ],
+  "text_cdl": [
+    "Equal(MeasureOfAngle(ABD),32)",
+    "Equal(MeasureOfAngle(CAD),62)",
+    "Equal(MeasureOfAngle(CDS),125)"
+  ],
+  "image_cdl": [
+    "Equal(MeasureOfAngle(ABD),32)",
+    "Equal(MeasureOfAngle(CAD),62)",
+    "Equal(MeasureOfAngle(CDS),125)"
+  ],
+  "goal_cdl": "Value(MeasureOfAngle(BDA))",
+  "problem_answer": "125",
+  "theorem_seqs": [
+    "vertical_angle(1,CDS,BDA)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "vertical_angle(1,CDS,BDA)"
+    ]
+  }
+}

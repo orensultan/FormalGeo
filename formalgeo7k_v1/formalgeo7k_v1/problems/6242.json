@@ -1,0 +1,61 @@
+{
+  "problem_id": 6242,
+  "annotation": "FangzhenZhu_2023-06-04",
+  "source": "GeoQA-8846",
+  "problem_level": 11,
+  "problem_text_cn": "如图所示，圆O的直径为12，O是圆O的圆心，AM是OC的垂直平分线。求直线AB的长度。",
+  "problem_text_en": "As shown in the diagram, the diameter of ⊙O is 12, the center of ⊙O is O, AM perpendicular bisects OC. Find the length of line AB.",
+  "problem_img": "6242.png",
+  "construction_cdl": [
+    "Shape(AO,OM,MA)",
+    "Shape(OB,BM,MO)",
+    "Shape(OAB,BO,OA)",
+    "Shape(OBC,CM,MB)",
+    "Shape(OCA,AM,MC)",
+    "Collinear(OMC)",
+    "Collinear(AMB)",
+    "Cocircular(O,BCA)"
+  ],
+  "text_cdl": [
+    "Equal(DiameterOfCircle(O),12)",
+    "IsCentreOfCircle(O,O)",
+    "IsPerpendicularBisectorOfLine(AM,OC)"
+  ],
+  "image_cdl": [],
+  "goal_cdl": "Value(LengthOfLine(AB))",
+  "problem_answer": "6*sqrt(3)",
+  "theorem_seqs": [
+    "circle_property_length_of_radius_and_diameter(1,O)",
+    "radius_of_circle_property_length_equal(1,OB,O)",
+    "radius_of_circle_property_length_equal(1,OC,O)",
+    "radius_of_circle_property_length_equal(1,OA,O)",
+    "line_addition(1,OM,MC)",
+    "line_addition(1,AM,MB)",
+    "adjacent_complementary_angle(1,BMO,OMA)",
+    "right_triangle_judgment_angle(1,OMA)",
+    "right_triangle_judgment_angle(1,BMO)",
+    "right_triangle_property_pythagorean(1,OMA)",
+    "right_triangle_property_pythagorean(1,BMO)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "circle_property_length_of_radius_and_diameter(1,O)",
+      "radius_of_circle_property_length_equal(1,OB,O)",
+      "radius_of_circle_property_length_equal(1,OC,O)",
+      "radius_of_circle_property_length_equal(1,OA,O)",
+      "line_addition(1,OM,MC)",
+      "line_addition(1,AM,MB)",
+      "adjacent_complementary_angle(1,BMO,OMA)",
+      "right_triangle_judgment_angle(1,OMA)"
+    ],
+    "adjacent_complementary_angle(1,BMO,OMA)": [
+      "right_triangle_judgment_angle(1,BMO)"
+    ],
+    "right_triangle_judgment_angle(1,OMA)": [
+      "right_triangle_property_pythagorean(1,OMA)"
+    ],
+    "right_triangle_judgment_angle(1,BMO)": [
+      "right_triangle_property_pythagorean(1,BMO)"
+    ]
+  }
+}

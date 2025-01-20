@@ -1,0 +1,44 @@
+{
+  "problem_id": 3689,
+  "annotation": "YangLi_2023-04-30",
+  "source": "GeoQA-1440",
+  "problem_level": 4,
+  "problem_text_cn": "如图所示，AC=6，△ABD的周长为13，DE垂直平分AB，DE⊥AE。求△ABC的周长。",
+  "problem_text_en": "As shown in the diagram, AC=6, the perimeter of △ABD is 13, DE perpendicular bisects AC, DE is perpendicular to AE. Find the perimeter of triangle ABC.",
+  "problem_img": "3689.png",
+  "construction_cdl": [
+    "Shape(AB,BD,DA)",
+    "Shape(AD,DE,EA)",
+    "Shape(ED,DC,CE)",
+    "Collinear(AEC)",
+    "Collinear(BDC)"
+  ],
+  "text_cdl": [
+    "Equal(LengthOfLine(AC),6)",
+    "Equal(PerimeterOfTriangle(ABD),13)",
+    "IsPerpendicularBisectorOfLine(DE,AC)",
+    "PerpendicularBetweenLine(DE,AE)"
+  ],
+  "image_cdl": [
+    "Equal(LengthOfLine(AC),6)",
+    "Equal(PerimeterOfTriangle(ABD),13)",
+    "IsPerpendicularBisectorOfLine(DE,AC)",
+    "PerpendicularBetweenLine(DE,AE)"
+  ],
+  "goal_cdl": "Value(PerimeterOfTriangle(ABC))",
+  "problem_answer": "19",
+  "theorem_seqs": [
+    "line_addition(1,BD,DC)",
+    "perpendicular_bisector_property_distance_equal(1,DE,AC)",
+    "triangle_perimeter_formula(1,ABD)",
+    "triangle_perimeter_formula(1,ABC)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "line_addition(1,BD,DC)",
+      "perpendicular_bisector_property_distance_equal(1,DE,AC)",
+      "triangle_perimeter_formula(1,ABD)",
+      "triangle_perimeter_formula(1,ABC)"
+    ]
+  }
+}

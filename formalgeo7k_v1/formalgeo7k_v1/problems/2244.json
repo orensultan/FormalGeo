@@ -1,0 +1,48 @@
+{
+  "problem_id": 2244,
+  "annotation": "DengfengYue_2023-04-16",
+  "source": "Geometry3k-2345",
+  "problem_level": 3,
+  "problem_text_cn": "如图所示，∠UEN=64°，HD平行于EU，IL∥BN。求∠BHD的大小。",
+  "problem_text_en": "As shown in the diagram, ∠UEN=64°, HD∥EU, IL∥BN. Find the measure of ∠BHD.",
+  "problem_img": "2244.png",
+  "construction_cdl": [
+    "Shape(DH,HE,EU,UD)",
+    "Shape(WD,DU,UA,AW)",
+    "Shape(HJ,JK,KE,EH)",
+    "Shape(UE,EN,NL,LU)",
+    "Shape(DI,IB,BH,HD)",
+    "Shape(WI,ID,DW)",
+    "Shape(HB,BJ,JH)",
+    "Shape(AU,UL,LA)",
+    "Shape(EK,KN,NE)",
+    "Collinear(IDUQTSL)",
+    "Collinear(BHEN)",
+    "Collinear(JHDW)",
+    "Collinear(KEUGA)"
+  ],
+  "text_cdl": [
+    "Equal(MeasureOfAngle(UEN),64)",
+    "ParallelBetweenLine(HD,EU)",
+    "ParallelBetweenLine(IL,BN)"
+  ],
+  "image_cdl": [
+    "Equal(MeasureOfAngle(UEN),64)",
+    "ParallelBetweenLine(HD,EU)",
+    "ParallelBetweenLine(IL,BN)"
+  ],
+  "goal_cdl": "Value(MeasureOfAngle(BHD))",
+  "problem_answer": "116",
+  "theorem_seqs": [
+    "parallel_property_corresponding_angle(2,HD,EU,N)",
+    "flat_angle(1,BHE)",
+    "angle_addition(1,BHD,DHE)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "parallel_property_corresponding_angle(2,HD,EU,N)",
+      "flat_angle(1,BHE)",
+      "angle_addition(1,BHD,DHE)"
+    ]
+  }
+}

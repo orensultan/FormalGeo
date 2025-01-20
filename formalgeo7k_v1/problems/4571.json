@@ -1,0 +1,43 @@
+{
+  "problem_id": 4571,
+  "annotation": "YanjunGuo_2023-05-14",
+  "source": "GeoQA-3705",
+  "problem_level": 5,
+  "problem_text_cn": "如图所示，AB=AC，∠CAB=70°。求∠CDA的大小。",
+  "problem_text_en": "As shown in the diagram, AB=AC, ∠CAB=70°. Find the measure of ∠CDA.",
+  "problem_img": "4571.png",
+  "construction_cdl": [
+    "Shape(BA,OAB)",
+    "Shape(AB,BC,CA)",
+    "Shape(AC,CD,DA)",
+    "Shape(AD,ODA)",
+    "Shape(DC,OCD)",
+    "Shape(CB,OBC)",
+    "Cocircular(O,ABCD)"
+  ],
+  "text_cdl": [
+    "Equal(LengthOfLine(AB),LengthOfLine(AC))",
+    "Equal(MeasureOfAngle(CAB),70)"
+  ],
+  "image_cdl": [],
+  "goal_cdl": "Value(MeasureOfAngle(CDA))",
+  "problem_answer": "125",
+  "theorem_seqs": [
+    "isosceles_triangle_judgment_line_equal(1,ABC)",
+    "triangle_property_angle_sum(1,ABC)",
+    "isosceles_triangle_property_angle_equal(1,ABC)",
+    "arc_property_circumference_angle_external(1,OCA,B)",
+    "arc_property_circumference_angle_internal(1,OCA,D)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "isosceles_triangle_judgment_line_equal(1,ABC)",
+      "triangle_property_angle_sum(1,ABC)",
+      "arc_property_circumference_angle_external(1,OCA,B)",
+      "arc_property_circumference_angle_internal(1,OCA,D)"
+    ],
+    "isosceles_triangle_judgment_line_equal(1,ABC)": [
+      "isosceles_triangle_property_angle_equal(1,ABC)"
+    ]
+  }
+}

@@ -1,0 +1,74 @@
+{
+  "problem_id": 217,
+  "annotation": "XiaokaiZhang_2023-04-02",
+  "source": "Geometry3k-219",
+  "problem_level": 12,
+  "problem_text_cn": "如图所示，AB=22，AC=14，BD=14，CD=22，⊙E的圆心为E，圆O的圆心为O，AC是⊙O的直径，圆E的直径为BD，OC垂直于DC。求四边形ACDB的面积减去扇形OCA和EBD的面积和。",
+  "problem_text_en": "As shown in the diagram, AB=22, AC=14, BD=14, CD=22, the center of circle E is E, the center of ⊙O is O, AC is the diameter of circle O, BD is the diameter of circle E, OC is perpendicular to DC. Find the area of quadrilateral ACDB minus the sum of the areas of sectors OCA and EBD.",
+  "problem_img": "217.png",
+  "construction_cdl": [
+    "Shape(AO,OC,OCA)",
+    "Shape(OCA,CD,EBD,BA)",
+    "Shape(EBD,DE,EB)",
+    "Collinear(AOC)",
+    "Collinear(BED)",
+    "Cocircular(O,AC)",
+    "Cocircular(E,BD)"
+  ],
+  "text_cdl": [
+    "Equal(LengthOfLine(AB),22)",
+    "Equal(LengthOfLine(AC),14)",
+    "Equal(LengthOfLine(BD),14)",
+    "Equal(LengthOfLine(CD),22)",
+    "IsCentreOfCircle(E,E)",
+    "IsCentreOfCircle(O,O)",
+    "IsDiameterOfCircle(AC,O)",
+    "IsDiameterOfCircle(BD,E)",
+    "PerpendicularBetweenLine(OC,DC)"
+  ],
+  "image_cdl": [
+    "Equal(LengthOfLine(AB),22)",
+    "Equal(LengthOfLine(AC),14)",
+    "Equal(LengthOfLine(BD),14)",
+    "Equal(LengthOfLine(CD),22)",
+    "IsCentreOfCircle(E,E)",
+    "IsCentreOfCircle(O,O)",
+    "IsDiameterOfCircle(AC,O)",
+    "IsDiameterOfCircle(BD,E)",
+    "PerpendicularBetweenLine(OC,DC)"
+  ],
+  "goal_cdl": "Value(Sub(AreaOfQuadrilateral(ACDB),Add(AreaOfSector(OCA),AreaOfSector(EBD))))",
+  "problem_answer": "308-49*pi",
+  "theorem_seqs": [
+    "parallelogram_judgment_equal_and_equal(1,ACDB)",
+    "parallelogram_area_formula_sine(1,ACDB)",
+    "diameter_of_circle_property_length_equal(1,AC,O)",
+    "diameter_of_circle_property_length_equal(1,BD,E)",
+    "circle_property_length_of_radius_and_diameter(1,O)",
+    "circle_property_length_of_radius_and_diameter(1,E)",
+    "flat_angle(1,AOC)",
+    "flat_angle(1,DEB)",
+    "arc_property_center_angle(1,OCA,O)",
+    "arc_property_center_angle(1,EBD,E)",
+    "sector_area_formula(1,OCA)",
+    "sector_area_formula(1,EBD)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "parallelogram_judgment_equal_and_equal(1,ACDB)",
+      "diameter_of_circle_property_length_equal(1,AC,O)",
+      "diameter_of_circle_property_length_equal(1,BD,E)",
+      "circle_property_length_of_radius_and_diameter(1,O)",
+      "circle_property_length_of_radius_and_diameter(1,E)",
+      "flat_angle(1,AOC)",
+      "flat_angle(1,DEB)",
+      "arc_property_center_angle(1,OCA,O)",
+      "arc_property_center_angle(1,EBD,E)",
+      "sector_area_formula(1,OCA)",
+      "sector_area_formula(1,EBD)"
+    ],
+    "parallelogram_judgment_equal_and_equal(1,ACDB)": [
+      "parallelogram_area_formula_sine(1,ACDB)"
+    ]
+  }
+}

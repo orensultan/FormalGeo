@@ -1,0 +1,70 @@
+{
+  "problem_id": 429,
+  "annotation": "JiaZou_2023-04-09",
+  "source": "Geometry3k-437",
+  "problem_level": 9,
+  "problem_text_cn": "如图所示，Add(PerimeterOfCircle(K)=PerimeterOfCircle(J)，CJ=2*x，HA=x，HC=x，KA=4*x，⊙H的圆心为H，J是圆J的圆心，圆K的圆心为K。求直线KJ的长度。",
+  "problem_text_en": "As shown in the diagram, Add(PerimeterOfCircle(K)=PerimeterOfCircle(J), CJ=2*x, HA=x, HC=x, KA=4*x, H is the center of circle H, the center of ⊙J is J, the center of ⊙K is K. Find the length of line KJ.",
+  "problem_img": "429.png",
+  "construction_cdl": [
+    "Shape(KA,KAB,BK)",
+    "Shape(AK,KB,KBA)",
+    "Shape(KBA,JBC,HCA)",
+    "Shape(CH,HA,HAC)",
+    "Shape(HC,HCA,AH)",
+    "Shape(BJ,JC,JCB)",
+    "Shape(CJ,JB,JBC)",
+    "Collinear(KAH)",
+    "Collinear(HCJ)",
+    "Collinear(KBJ)",
+    "Cocircular(K,BA)",
+    "Cocircular(J,CB)",
+    "Cocircular(H,AC)"
+  ],
+  "text_cdl": [
+    "Equal(Add(PerimeterOfCircle(K),PerimeterOfCircle(J),PerimeterOfCircle(H)),56*pi)",
+    "Equal(LengthOfLine(CJ),2*x)",
+    "Equal(LengthOfLine(HA),x)",
+    "Equal(LengthOfLine(HC),x)",
+    "Equal(LengthOfLine(KA),4*x)",
+    "IsCentreOfCircle(H,H)",
+    "IsCentreOfCircle(J,J)",
+    "IsCentreOfCircle(K,K)"
+  ],
+  "image_cdl": [
+    "Equal(Add(PerimeterOfCircle(K),PerimeterOfCircle(J),PerimeterOfCircle(H)),56*pi)",
+    "Equal(LengthOfLine(CJ),2*x)",
+    "Equal(LengthOfLine(HA),x)",
+    "Equal(LengthOfLine(HC),x)",
+    "Equal(LengthOfLine(KA),4*x)",
+    "IsCentreOfCircle(H,H)",
+    "IsCentreOfCircle(J,J)",
+    "IsCentreOfCircle(K,K)"
+  ],
+  "goal_cdl": "Value(LengthOfLine(KJ))",
+  "problem_answer": "24",
+  "theorem_seqs": [
+    "radius_of_circle_property_length_equal(1,KA,K)",
+    "radius_of_circle_property_length_equal(1,KB,K)",
+    "radius_of_circle_property_length_equal(1,HC,H)",
+    "radius_of_circle_property_length_equal(1,JC,J)",
+    "radius_of_circle_property_length_equal(1,JB,J)",
+    "circle_perimeter_formula(1,K)",
+    "circle_perimeter_formula(1,J)",
+    "circle_perimeter_formula(1,H)",
+    "line_addition(1,KB,BJ)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "radius_of_circle_property_length_equal(1,KA,K)",
+      "radius_of_circle_property_length_equal(1,KB,K)",
+      "radius_of_circle_property_length_equal(1,HC,H)",
+      "radius_of_circle_property_length_equal(1,JC,J)",
+      "radius_of_circle_property_length_equal(1,JB,J)",
+      "circle_perimeter_formula(1,K)",
+      "circle_perimeter_formula(1,J)",
+      "circle_perimeter_formula(1,H)",
+      "line_addition(1,KB,BJ)"
+    ]
+  }
+}

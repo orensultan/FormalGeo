@@ -1,0 +1,64 @@
+{
+  "problem_id": 671,
+  "annotation": "YimingHe_2023-03-12",
+  "source": "Geometry3k-688",
+  "problem_level": 5,
+  "problem_text_cn": "如图所示，AR=RC，AT=16，CM=7，CT=TB，RM=4，SA=SB。求直线CS的长度。",
+  "problem_text_en": "As shown in the diagram, AR=RC, AT=16, CM=7, CT=TB, RM=4, SA=SB. Find the length of line CS.",
+  "problem_img": "671.png",
+  "construction_cdl": [
+    "Shape(AR,RM,MA)",
+    "Shape(MR,RC,CM)",
+    "Shape(MC,CT,TM)",
+    "Shape(MT,TB,BM)",
+    "Shape(MB,BS,SM)",
+    "Shape(MS,SA,AM)",
+    "Collinear(ARC)",
+    "Collinear(CTB)",
+    "Collinear(ASB)",
+    "Collinear(CMS)",
+    "Collinear(AMT)",
+    "Collinear(RMB)"
+  ],
+  "text_cdl": [
+    "Equal(LengthOfLine(AR),LengthOfLine(RC))",
+    "Equal(LengthOfLine(AT),16)",
+    "Equal(LengthOfLine(CM),7)",
+    "Equal(LengthOfLine(CT),LengthOfLine(TB))",
+    "Equal(LengthOfLine(RM),4)",
+    "Equal(LengthOfLine(SA),LengthOfLine(SB))"
+  ],
+  "image_cdl": [
+    "Equal(LengthOfLine(AR),LengthOfLine(RC))",
+    "Equal(LengthOfLine(AT),16)",
+    "Equal(LengthOfLine(CM),7)",
+    "Equal(LengthOfLine(CT),LengthOfLine(TB))",
+    "Equal(LengthOfLine(RM),4)",
+    "Equal(LengthOfLine(SA),LengthOfLine(SB))"
+  ],
+  "goal_cdl": "Value(LengthOfLine(CS))",
+  "problem_answer": "21/2",
+  "theorem_seqs": [
+    "median_of_triangle_judgment(1,BR,BAC)",
+    "median_of_triangle_judgment(1,AT,ACB)",
+    "centroid_of_triangle_judgment_intersection(1,M,CBA,T,R)",
+    "centroid_of_triangle_property_line_ratio(1,M,CBA,S)",
+    "line_addition(1,CM,MS)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "median_of_triangle_judgment(1,BR,BAC)",
+      "median_of_triangle_judgment(1,AT,ACB)",
+      "line_addition(1,CM,MS)"
+    ],
+    "median_of_triangle_judgment(1,BR,BAC)": [
+      "centroid_of_triangle_judgment_intersection(1,M,CBA,T,R)"
+    ],
+    "median_of_triangle_judgment(1,AT,ACB)": [
+      "centroid_of_triangle_judgment_intersection(1,M,CBA,T,R)"
+    ],
+    "centroid_of_triangle_judgment_intersection(1,M,CBA,T,R)": [
+      "centroid_of_triangle_property_line_ratio(1,M,CBA,S)"
+    ]
+  }
+}

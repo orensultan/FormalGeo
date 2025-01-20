@@ -1,0 +1,43 @@
+{
+  "problem_id": 2375,
+  "annotation": "FangzhenZhu_2023-04-23",
+  "source": "Geometry3k-2490",
+  "problem_level": 1,
+  "problem_text_cn": "如图所示，AE=3*x-6，ED=x+4，∠ACE=60°，∠DBE=5*y°，∠ECD=55°，DC和BA是平行四边形DBAC的一组对边。求x的值。",
+  "problem_text_en": "As shown in the diagram, AE=3*x-6, ED=x+4, ∠ACE=60°, ∠DBE=5*y°, ∠ECD=55°, BD and AC are opposite sides of the ▱ DBAC. Find the value of x.",
+  "problem_img": "2375.png",
+  "construction_cdl": [
+    "Shape(DB,BE,ED)",
+    "Shape(EB,BA,AE)",
+    "Shape(EA,AC,CE)",
+    "Shape(DE,EC,CD)",
+    "Collinear(DEA)",
+    "Collinear(BEC)"
+  ],
+  "text_cdl": [
+    "Equal(LengthOfLine(AE),3*x-6)",
+    "Equal(LengthOfLine(ED),x+4)",
+    "Equal(MeasureOfAngle(ACE),60)",
+    "Equal(MeasureOfAngle(DBE),5*y)",
+    "Equal(MeasureOfAngle(ECD),55)",
+    "Parallelogram(DBAC)"
+  ],
+  "image_cdl": [
+    "Equal(LengthOfLine(AE),3*x-6)",
+    "Equal(LengthOfLine(ED),x+4)",
+    "Equal(MeasureOfAngle(ACE),60)",
+    "Equal(MeasureOfAngle(DBE),5*y)",
+    "Equal(MeasureOfAngle(ECD),55)",
+    "Parallelogram(DBAC)"
+  ],
+  "goal_cdl": "Value(x)",
+  "problem_answer": "5",
+  "theorem_seqs": [
+    "parallelogram_property_diagonal_bisection(1,DBAC,E)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "parallelogram_property_diagonal_bisection(1,DBAC,E)"
+    ]
+  }
+}

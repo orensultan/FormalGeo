@@ -1,0 +1,35 @@
+{
+  "problem_id": 5373,
+  "annotation": "QikeHuang_2023-05-21",
+  "source": "GeoQA-5657",
+  "problem_level": 4,
+  "problem_text_cn": "如图所示，∠ABC=40°，∠DAC=60°，△ABC与△ACD是镜像全等三角形。求∠BCD的大小。",
+  "problem_text_en": "As shown in the diagram, ∠ABC=40°, ∠DAC=60°, △ABC is mirror congruent to △ACD. Find the measure of ∠BCD.",
+  "problem_img": "5373.png",
+  "construction_cdl": [
+    "Shape(AB,BC,CA)",
+    "Shape(AC,CD,DA)"
+  ],
+  "text_cdl": [
+    "Equal(MeasureOfAngle(ABC),40)",
+    "Equal(MeasureOfAngle(DAC),60)",
+    "MirrorCongruentBetweenTriangle(ABC,ACD)"
+  ],
+  "image_cdl": [],
+  "goal_cdl": "Value(MeasureOfAngle(BCD))",
+  "problem_answer": "160",
+  "theorem_seqs": [
+    "mirror_congruent_triangle_property_angle_equal(1,ABC,ACD)",
+    "mirror_congruent_triangle_property_angle_equal(1,BCA,DAC)",
+    "angle_addition(1,DAC,CAB)",
+    "quadrilateral_property_angle_sum(1,ABCD)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "mirror_congruent_triangle_property_angle_equal(1,ABC,ACD)",
+      "mirror_congruent_triangle_property_angle_equal(1,BCA,DAC)",
+      "angle_addition(1,DAC,CAB)",
+      "quadrilateral_property_angle_sum(1,ABCD)"
+    ]
+  }
+}

@@ -1,0 +1,57 @@
+{
+  "problem_id": 6549,
+  "annotation": "XiaokaiZhang_2023-06-04",
+  "source": "GeoQA-9478",
+  "problem_level": 10,
+  "problem_text_cn": "如图所示，BE=2，∠ABC=30°，O是圆O的圆心，BD是⊙O的切线，CA是圆O的切线，圆O的切线为CD，△CAB为直角△。求直线DC的长度。",
+  "problem_text_en": "As shown in the diagram, BE=2, ∠ABC=30°, the center of circle O is O, BD is the tangent to ⊙O, CA is the tangent to circle O, CD is the tangent to ⊙O, CA and AB are the legs of the right triangle CAB. Find the length of line DC.",
+  "problem_img": "6549.png",
+  "construction_cdl": [
+    "Shape(CA,ODA,DC)",
+    "Shape(ODA,AO,OD)",
+    "Shape(DO,OE,OED)",
+    "Shape(BD,OED,EB)",
+    "Shape(EO,OA,OAE)",
+    "Collinear(AOEB)",
+    "Collinear(CDB)",
+    "Cocircular(O,AED)"
+  ],
+  "text_cdl": [
+    "Equal(LengthOfLine(BE),2)",
+    "Equal(MeasureOfAngle(ABC),30)",
+    "IsCentreOfCircle(O,O)",
+    "IsTangentOfCircle(BD,O)",
+    "IsTangentOfCircle(CA,O)",
+    "IsTangentOfCircle(CD,O)",
+    "RightTriangle(CAB)"
+  ],
+  "image_cdl": [],
+  "goal_cdl": "Value(LengthOfLine(DC))",
+  "problem_answer": "2*sqrt(3)",
+  "theorem_seqs": [
+    "tangent_of_circle_property_perpendicular(2,BD,O,O)",
+    "radius_of_circle_property_length_equal(1,OD,O)",
+    "radius_of_circle_property_length_equal(1,OE,O)",
+    "sine_theorem(1,OBD)",
+    "line_addition(1,OE,EB)",
+    "radius_of_circle_property_length_equal(1,OA,O)",
+    "line_addition(1,AO,OB)",
+    "triangle_property_angle_sum(1,CAB)",
+    "sine_theorem(1,ABC)",
+    "tangent_of_circle_property_length_equal(1,CD,CA,O)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "tangent_of_circle_property_perpendicular(2,BD,O,O)",
+      "radius_of_circle_property_length_equal(1,OD,O)",
+      "radius_of_circle_property_length_equal(1,OE,O)",
+      "sine_theorem(1,OBD)",
+      "line_addition(1,OE,EB)",
+      "radius_of_circle_property_length_equal(1,OA,O)",
+      "line_addition(1,AO,OB)",
+      "triangle_property_angle_sum(1,CAB)",
+      "sine_theorem(1,ABC)",
+      "tangent_of_circle_property_length_equal(1,CD,CA,O)"
+    ]
+  }
+}

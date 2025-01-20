@@ -1,0 +1,39 @@
+{
+  "problem_id": 3662,
+  "annotation": "XiaoxiaoJin_2023-04-30",
+  "source": "GeoQA-1374",
+  "problem_level": 3,
+  "problem_text_cn": "如图所示，∠AOC=95°，∠DOF=53°。求∠EOB的大小。",
+  "problem_text_en": "As shown in the diagram, ∠AOC=95°, ∠DOF=53°. Find the measure of ∠EOB.",
+  "problem_img": "3662.png",
+  "construction_cdl": [
+    "Shape(AO,OC)",
+    "Shape(CO,OE)",
+    "Shape(EO,OB)",
+    "Shape(BO,OD)",
+    "Shape(DO,OF)",
+    "Shape(FO,OA)",
+    "Collinear(AOB)",
+    "Collinear(COD)",
+    "Collinear(FOE)"
+  ],
+  "text_cdl": [
+    "Equal(MeasureOfAngle(AOC),95)",
+    "Equal(MeasureOfAngle(DOF),53)"
+  ],
+  "image_cdl": [],
+  "goal_cdl": "Value(MeasureOfAngle(EOB))",
+  "problem_answer": "32",
+  "theorem_seqs": [
+    "vertical_angle(1,COE,DOF)",
+    "angle_addition(1,AOC,COE)",
+    "adjacent_complementary_angle(1,AOE,EOB)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "vertical_angle(1,COE,DOF)",
+      "angle_addition(1,AOC,COE)",
+      "adjacent_complementary_angle(1,AOE,EOB)"
+    ]
+  }
+}

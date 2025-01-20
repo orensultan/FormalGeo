@@ -1,0 +1,63 @@
+{
+  "problem_id": 4437,
+  "annotation": "JiaZou_2023-05-14",
+  "source": "GeoQA-3395",
+  "problem_level": 8,
+  "problem_text_cn": "如图所示，∠AFC=36°，圆O的圆心为O，AE是三角形ABC的中线，E是线段BC的中点，CA和AB是直角三角形CAB的两个直角边。求∠ABC的大小。",
+  "problem_text_en": "As shown in the diagram, ∠AFC=36°, O is the center of circle O, AE is the median of triangle ABC, E is the midpoint of segment BC, △CAB is a right △. Find the measure of ∠ABC.",
+  "problem_img": "4437.png",
+  "construction_cdl": [
+    "Shape(GA,OAG)",
+    "Shape(EH,HA,AE)",
+    "Shape(EA,AG,OGE)",
+    "Shape(AH,HC,CA)",
+    "Shape(AC,OCA)",
+    "Shape(FH,HE,OEF)",
+    "Shape(HF,FC,CH)",
+    "Shape(CF,OFC)",
+    "Shape(GB,BE,OGE)",
+    "Collinear(BGA)",
+    "Collinear(BEHC)",
+    "Collinear(FHA)",
+    "Cocircular(O,AGEFC)"
+  ],
+  "text_cdl": [
+    "Equal(MeasureOfAngle(AFC),36)",
+    "IsCentreOfCircle(O,O)",
+    "IsMedianOfTriangle(AE,ABC)",
+    "IsMidpointOfLine(E,BC)",
+    "RightTriangle(CAB)"
+  ],
+  "image_cdl": [],
+  "goal_cdl": "Value(MeasureOfAngle(ABC))",
+  "problem_answer": "18",
+  "theorem_seqs": [
+    "arc_property_circumference_angle_external(1,OCA,F)",
+    "arc_property_circumference_angle_external(1,OCA,E)",
+    "right_triangle_property_length_of_median(1,CAB,E)",
+    "adjacent_complementary_angle(1,BEA,AEC)",
+    "line_addition(1,BE,EC)",
+    "isosceles_triangle_judgment_line_equal(1,EAB)",
+    "isosceles_triangle_property_angle_equal(1,EAB)",
+    "triangle_property_angle_sum(1,EAB)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "arc_property_circumference_angle_external(1,OCA,F)",
+      "arc_property_circumference_angle_external(1,OCA,E)",
+      "right_triangle_property_length_of_median(1,CAB,E)",
+      "adjacent_complementary_angle(1,BEA,AEC)",
+      "line_addition(1,BE,EC)",
+      "triangle_property_angle_sum(1,EAB)"
+    ],
+    "right_triangle_property_length_of_median(1,CAB,E)": [
+      "isosceles_triangle_judgment_line_equal(1,EAB)"
+    ],
+    "line_addition(1,BE,EC)": [
+      "isosceles_triangle_judgment_line_equal(1,EAB)"
+    ],
+    "isosceles_triangle_judgment_line_equal(1,EAB)": [
+      "isosceles_triangle_property_angle_equal(1,EAB)"
+    ]
+  }
+}

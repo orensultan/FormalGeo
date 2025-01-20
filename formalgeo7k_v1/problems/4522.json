@@ -1,0 +1,41 @@
+{
+  "problem_id": 4522,
+  "annotation": "XiaokaiZhang_2023-05-14",
+  "source": "GeoQA-3555",
+  "problem_level": 3,
+  "problem_text_cn": "如图所示，∠CBE=50°，圆O的圆心为O，⊙O的直径为AD。求∠COA的大小。",
+  "problem_text_en": "As shown in the diagram, ∠CBE=50°, O is the center of circle O, the diameter of ⊙O is AD. Find the measure of ∠COA.",
+  "problem_img": "4522.png",
+  "construction_cdl": [
+    "Shape(ODA,AO,OD)",
+    "Shape(DO,OC,CD)",
+    "Shape(OCD,DC)",
+    "Shape(OA,AB,BC,CO)",
+    "Shape(OBC,CB)",
+    "Shape(OAB,BA)",
+    "Shape(CB,BE)",
+    "Collinear(ABE)",
+    "Collinear(AOD)",
+    "Cocircular(O,ABCD)"
+  ],
+  "text_cdl": [
+    "Equal(MeasureOfAngle(CBE),50)",
+    "IsCentreOfCircle(O,O)",
+    "IsDiameterOfCircle(AD,O)"
+  ],
+  "image_cdl": [],
+  "goal_cdl": "Value(MeasureOfAngle(COA))",
+  "problem_answer": "100",
+  "theorem_seqs": [
+    "adjacent_complementary_angle(1,ABC,CBE)",
+    "arc_property_circumference_angle_internal(1,OAC,B)",
+    "arc_property_center_angle(1,OAC,O)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "adjacent_complementary_angle(1,ABC,CBE)",
+      "arc_property_circumference_angle_internal(1,OAC,B)",
+      "arc_property_center_angle(1,OAC,O)"
+    ]
+  }
+}

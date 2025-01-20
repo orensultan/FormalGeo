@@ -1,0 +1,39 @@
+{
+  "problem_id": 4675,
+  "annotation": "YiwenHuang_2023-05-21",
+  "source": "GeoQA-3949",
+  "problem_level": 3,
+  "problem_text_cn": "如图所示，AB=5，AC=3，⊙O的切线为AC，AP是⊙O的切线，⊙O的切线为BD，⊙O的切线为BP。求直线BD的长度。",
+  "problem_text_en": "As shown in the diagram, AB=5, AC=3, the tangent to ⊙O is AC, the tangent to circle O is AP, the tangent to circle O is BD, the tangent to ⊙O is BP. Find the length of line BD.",
+  "problem_img": "4675.png",
+  "construction_cdl": [
+    "Shape(CA,AP,OCP)",
+    "Shape(PB,BD,OPD)",
+    "Shape(OCP,OPD,ODC)",
+    "Collinear(APB)",
+    "Cocircular(O,CPD)"
+  ],
+  "text_cdl": [
+    "Equal(LengthOfLine(AB),5)",
+    "Equal(LengthOfLine(AC),3)",
+    "IsTangentOfCircle(AC,O)",
+    "IsTangentOfCircle(AP,O)",
+    "IsTangentOfCircle(BD,O)",
+    "IsTangentOfCircle(BP,O)"
+  ],
+  "image_cdl": [],
+  "goal_cdl": "Value(LengthOfLine(BD))",
+  "problem_answer": "2",
+  "theorem_seqs": [
+    "tangent_of_circle_property_length_equal(1,AP,AC,O)",
+    "tangent_of_circle_property_length_equal(1,BP,BD,O)",
+    "line_addition(1,AP,PB)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "tangent_of_circle_property_length_equal(1,AP,AC,O)",
+      "tangent_of_circle_property_length_equal(1,BP,BD,O)",
+      "line_addition(1,AP,PB)"
+    ]
+  }
+}

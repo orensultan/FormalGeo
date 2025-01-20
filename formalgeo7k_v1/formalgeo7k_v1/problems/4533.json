@@ -1,0 +1,46 @@
+{
+  "problem_id": 4533,
+  "annotation": "XiaokaiZhang_2023-05-14",
+  "source": "GeoQA-3596",
+  "problem_level": 7,
+  "problem_text_cn": "如图所示，AC=2，∠BMC=120°，⊙O的直径为AB。求圆O的半径。",
+  "problem_text_en": "As shown in the diagram, AC=2, ∠BMC=120°, AB is the diameter of circle O. Find the radius of ⊙O.",
+  "problem_img": "4533.png",
+  "construction_cdl": [
+    "Shape(OAB,BA)",
+    "Shape(AB,BC,CA)",
+    "Shape(OCA,AC)",
+    "Shape(OBM,MB)",
+    "Shape(CB,BM,MC)",
+    "Shape(OMC,CM)",
+    "Cocircular(O,BMCA)"
+  ],
+  "text_cdl": [
+    "Equal(LengthOfLine(AC),2)",
+    "Equal(MeasureOfAngle(BMC),120)",
+    "IsDiameterOfCircle(AB,O)"
+  ],
+  "image_cdl": [],
+  "goal_cdl": "Value(RadiusOfCircle(O))",
+  "problem_answer": "2",
+  "theorem_seqs": [
+    "diameter_of_circle_property_right_angle(1,BCA,O)",
+    "arc_property_circumference_angle_internal(1,OBC,M)",
+    "arc_property_circumference_angle_external(1,OBC,A)",
+    "triangle_property_angle_sum(1,ABC)",
+    "sine_theorem(1,ABC)",
+    "diameter_of_circle_property_length_equal(1,AB,O)",
+    "circle_property_length_of_radius_and_diameter(1,O)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "diameter_of_circle_property_right_angle(1,BCA,O)",
+      "arc_property_circumference_angle_internal(1,OBC,M)",
+      "arc_property_circumference_angle_external(1,OBC,A)",
+      "triangle_property_angle_sum(1,ABC)",
+      "sine_theorem(1,ABC)",
+      "diameter_of_circle_property_length_equal(1,AB,O)",
+      "circle_property_length_of_radius_and_diameter(1,O)"
+    ]
+  }
+}

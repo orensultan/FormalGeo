@@ -1,0 +1,41 @@
+{
+  "problem_id": 5448,
+  "annotation": "YangLi_2023-05-21",
+  "source": "GeoQA-5810",
+  "problem_level": 4,
+  "problem_text_cn": "如图所示，AD=6，△AED的周长为16，BD平分∠ABC，ED∥BC。求直线AB的长度。",
+  "problem_text_en": "As shown in the diagram, AD=6, the perimeter of triangle AED is 16, BD bisects ∠ABC, ED∥BC. Find the length of line AB.",
+  "problem_img": "5448.png",
+  "construction_cdl": [
+    "Shape(AE,ED,DA)",
+    "Shape(DE,EB,BD)",
+    "Shape(DB,BC,CD)",
+    "Collinear(AEB)",
+    "Collinear(ADC)"
+  ],
+  "text_cdl": [
+    "Equal(LengthOfLine(AD),6)",
+    "Equal(PerimeterOfTriangle(AED),16)",
+    "IsBisectorOfAngle(BD,ABC)",
+    "ParallelBetweenLine(ED,BC)"
+  ],
+  "image_cdl": [],
+  "goal_cdl": "Value(LengthOfLine(AB))",
+  "problem_answer": "10",
+  "theorem_seqs": [
+    "triangle_perimeter_formula(1,AED)",
+    "parallel_property_alternate_interior_angle(2,ED,BC)",
+    "isosceles_triangle_judgment_angle_equal(1,EBD)",
+    "line_addition(1,AE,EB)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "triangle_perimeter_formula(1,AED)",
+      "parallel_property_alternate_interior_angle(2,ED,BC)",
+      "line_addition(1,AE,EB)"
+    ],
+    "parallel_property_alternate_interior_angle(2,ED,BC)": [
+      "isosceles_triangle_judgment_angle_equal(1,EBD)"
+    ]
+  }
+}

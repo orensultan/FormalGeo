@@ -1,0 +1,35 @@
+{
+  "problem_id": 3270,
+  "annotation": "XiaokaiZhang_2023-04-23",
+  "source": "GeoQA-577",
+  "problem_level": 3,
+  "problem_text_cn": "如图所示，三角形CAB全等于三角形EBD，∠ABC=100°，∠CAB=45°。求∠CBE的大小。",
+  "problem_text_en": "As shown in the diagram, △CAB is congruent to △EBD, ∠ABC=100°, ∠CAB=45°. Find the measure of ∠CBE.",
+  "problem_img": "3270.png",
+  "construction_cdl": [
+    "Shape(AB,BC,CA)",
+    "Shape(BD,DE,EB)",
+    "Shape(CB,BE)",
+    "Collinear(ABD)"
+  ],
+  "text_cdl": [
+    "CongruentBetweenTriangle(CAB,EBD)",
+    "Equal(MeasureOfAngle(ABC),100)",
+    "Equal(MeasureOfAngle(CAB),45)"
+  ],
+  "image_cdl": [],
+  "goal_cdl": "Value(MeasureOfAngle(CBE))",
+  "problem_answer": "35",
+  "theorem_seqs": [
+    "congruent_triangle_property_angle_equal(1,ABC,BDE)",
+    "angle_addition(1,ABC,CBE)",
+    "adjacent_complementary_angle(1,ABE,EBD)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "congruent_triangle_property_angle_equal(1,ABC,BDE)",
+      "angle_addition(1,ABC,CBE)",
+      "adjacent_complementary_angle(1,ABE,EBD)"
+    ]
+  }
+}

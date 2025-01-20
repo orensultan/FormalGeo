@@ -1,0 +1,58 @@
+{
+  "problem_id": 5546,
+  "annotation": "ZheZhu_2023-05-21",
+  "source": "GeoQA-6767",
+  "problem_level": 7,
+  "problem_text_cn": "如图所示，Div(LengthOfLine(AC)=LengthOfLine(BC))，Div(LengthOfLine(EF)=LengthOfLine(FD))，AC=6，AE=7，FD=4，四边形ABDE是等腰梯形，AE平行于CF，BC垂直于AC，EF垂直于DF。求直线BD的长度。",
+  "problem_text_en": "As shown in the diagram, Div(LengthOfLine(AC)=LengthOfLine(BC)), Div(LengthOfLine(EF)=LengthOfLine(FD)), AC=6, AE=7, FD=4, ABDE is a isosceles trapezoid, AE is parallel to CF, BC is perpendicular to AC, EF⊥DF. Find the length of line BD.",
+  "problem_img": "5546.png",
+  "construction_cdl": [
+    "Shape(AB,BC,CA)",
+    "Shape(AC,CF,FE,EA)",
+    "Shape(EF,FD,DE)",
+    "Collinear(BCFD)"
+  ],
+  "text_cdl": [
+    "Equal(Div(LengthOfLine(AC),LengthOfLine(BC)),3/2)",
+    "Equal(Div(LengthOfLine(EF),LengthOfLine(FD)),3/2)",
+    "Equal(LengthOfLine(AC),6)",
+    "Equal(LengthOfLine(AE),7)",
+    "Equal(LengthOfLine(FD),4)",
+    "IsoscelesTrapezoid(ABDE)",
+    "ParallelBetweenLine(AE,CF)",
+    "PerpendicularBetweenLine(BC,AC)",
+    "PerpendicularBetweenLine(EF,DF)"
+  ],
+  "image_cdl": [],
+  "goal_cdl": "Value(LengthOfLine(BD))",
+  "problem_answer": "15",
+  "theorem_seqs": [
+    "flat_angle(1,BFD)",
+    "angle_addition(1,CFE,EFD)",
+    "parallel_judgment_corresponding_angle(1,CA,FE,B)",
+    "parallelogram_judgment_parallel_and_parallel(1,ACFE)",
+    "parallelogram_property_opposite_line_equal(1,CFEA)",
+    "line_addition(1,BC,CF)",
+    "line_addition(1,BF,FD)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "flat_angle(1,BFD)",
+      "angle_addition(1,CFE,EFD)",
+      "line_addition(1,BC,CF)",
+      "line_addition(1,BF,FD)"
+    ],
+    "flat_angle(1,BFD)": [
+      "parallel_judgment_corresponding_angle(1,CA,FE,B)"
+    ],
+    "angle_addition(1,CFE,EFD)": [
+      "parallel_judgment_corresponding_angle(1,CA,FE,B)"
+    ],
+    "parallel_judgment_corresponding_angle(1,CA,FE,B)": [
+      "parallelogram_judgment_parallel_and_parallel(1,ACFE)"
+    ],
+    "parallelogram_judgment_parallel_and_parallel(1,ACFE)": [
+      "parallelogram_property_opposite_line_equal(1,CFEA)"
+    ]
+  }
+}

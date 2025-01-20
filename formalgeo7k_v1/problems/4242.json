@@ -1,0 +1,41 @@
+{
+  "problem_id": 4242,
+  "annotation": "ChenyangMao_2023-05-07",
+  "source": "GeoQA-3017",
+  "problem_level": 4,
+  "problem_text_cn": "如图所示，∠ACD=130°，O是⊙O的圆心，圆O的直径为AB。求∠BAD的大小。",
+  "problem_text_en": "As shown in the diagram, ∠ACD=130°, O is the center of ⊙O, the diameter of ⊙O is AB. Find the measure of ∠BAD.",
+  "problem_img": "4242.png",
+  "construction_cdl": [
+    "Shape(AC,CD,DA)",
+    "Shape(BO,OA,AD,DB)",
+    "Shape(OAC,CA)",
+    "Shape(OCD,DC)",
+    "Shape(ODB,BD)",
+    "Shape(OBA,AO,OB)",
+    "Collinear(AOB)",
+    "Cocircular(O,ACDB)"
+  ],
+  "text_cdl": [
+    "Equal(MeasureOfAngle(ACD),130)",
+    "IsCentreOfCircle(O,O)",
+    "IsDiameterOfCircle(AB,O)"
+  ],
+  "image_cdl": [],
+  "goal_cdl": "Value(MeasureOfAngle(BAD))",
+  "problem_answer": "40",
+  "theorem_seqs": [
+    "arc_property_circumference_angle_external(1,ODA,C)",
+    "arc_property_circumference_angle_internal(1,ODA,B)",
+    "diameter_of_circle_property_right_angle(1,ADB,O)",
+    "triangle_property_angle_sum(1,BAD)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "arc_property_circumference_angle_external(1,ODA,C)",
+      "arc_property_circumference_angle_internal(1,ODA,B)",
+      "diameter_of_circle_property_right_angle(1,ADB,O)",
+      "triangle_property_angle_sum(1,BAD)"
+    ]
+  }
+}

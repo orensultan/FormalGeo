@@ -1,0 +1,64 @@
+{
+  "problem_id": 4888,
+  "annotation": "YifanWang_2023-05-21",
+  "source": "GeoQA-4421",
+  "problem_level": 10,
+  "problem_text_cn": "如图所示，PA=5，∠PAQ=120°，O是圆O的圆心，⊙O的切线为AP，⊙O的切线为AQ。求⊙O的半径。",
+  "problem_text_en": "As shown in the diagram, PA=5, ∠PAQ=120°, O is the center of circle O, the tangent to ⊙O is AP, AQ is the tangent to ⊙O. Find the radius of ⊙O.",
+  "problem_img": "4888.png",
+  "construction_cdl": [
+    "Shape(PO,OQ,OQP)",
+    "Shape(DO,OP,OPD)",
+    "Shape(PA,AD,OPD)",
+    "Shape(QO,OD,ODQ)",
+    "Shape(DA,AQ,ODQ)",
+    "Collinear(ODA)",
+    "Cocircular(O,PDQ)"
+  ],
+  "text_cdl": [
+    "Equal(LengthOfLine(PA),5)",
+    "Equal(MeasureOfAngle(PAQ),120)",
+    "IsCentreOfCircle(O,O)",
+    "IsTangentOfCircle(AP,O)",
+    "IsTangentOfCircle(AQ,O)"
+  ],
+  "image_cdl": [],
+  "goal_cdl": "Value(RadiusOfCircle(O))",
+  "problem_answer": "5*sqrt(3)",
+  "theorem_seqs": [
+    "radius_of_circle_property_length_equal(1,OP,O)",
+    "tangent_of_circle_property_perpendicular(1,AP,O,O)",
+    "tangent_of_circle_property_perpendicular(2,AQ,O,O)",
+    "tangent_of_circle_property_length_equal(1,AP,AQ,O)",
+    "quadrilateral_property_angle_sum(1,OPAQ)",
+    "angle_addition(1,QOA,AOP)",
+    "mirror_congruent_triangle_judgment_hl(1,OPA,OAQ)",
+    "mirror_congruent_triangle_property_angle_equal(1,OPA,OAQ)",
+    "cosine_theorem(1,OPA)",
+    "cosine_theorem(1,PAO)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "radius_of_circle_property_length_equal(1,OP,O)",
+      "tangent_of_circle_property_perpendicular(1,AP,O,O)",
+      "tangent_of_circle_property_perpendicular(2,AQ,O,O)",
+      "tangent_of_circle_property_length_equal(1,AP,AQ,O)",
+      "quadrilateral_property_angle_sum(1,OPAQ)",
+      "angle_addition(1,QOA,AOP)",
+      "cosine_theorem(1,OPA)",
+      "cosine_theorem(1,PAO)"
+    ],
+    "tangent_of_circle_property_perpendicular(1,AP,O,O)": [
+      "mirror_congruent_triangle_judgment_hl(1,OPA,OAQ)"
+    ],
+    "tangent_of_circle_property_perpendicular(2,AQ,O,O)": [
+      "mirror_congruent_triangle_judgment_hl(1,OPA,OAQ)"
+    ],
+    "tangent_of_circle_property_length_equal(1,AP,AQ,O)": [
+      "mirror_congruent_triangle_judgment_hl(1,OPA,OAQ)"
+    ],
+    "mirror_congruent_triangle_judgment_hl(1,OPA,OAQ)": [
+      "mirror_congruent_triangle_property_angle_equal(1,OPA,OAQ)"
+    ]
+  }
+}

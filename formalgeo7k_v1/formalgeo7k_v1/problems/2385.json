@@ -1,0 +1,41 @@
+{
+  "problem_id": 2385,
+  "annotation": "FangzhenZhu_2023-04-23",
+  "source": "Geometry3k-2500",
+  "problem_level": 1,
+  "problem_text_cn": "如图所示，∠EDF=39°，∠FBA=48°，FC平行于ED，AF⊥BF，DC垂直于FC，FE⊥DE。求∠CFD的大小。",
+  "problem_text_en": "As shown in the diagram, ∠EDF=39°, ∠FBA=48°, FC is parallel to ED, AF⊥BF, DC⊥FC, FE⊥DE. Find the measure of ∠CFD.",
+  "problem_img": "2385.png",
+  "construction_cdl": [
+    "Shape(AF,FB,BA)",
+    "Shape(FD,DC,CF)",
+    "Shape(FE,ED,DF)",
+    "Collinear(AFE)"
+  ],
+  "text_cdl": [
+    "Equal(MeasureOfAngle(EDF),39)",
+    "Equal(MeasureOfAngle(FBA),48)",
+    "ParallelBetweenLine(FC,ED)",
+    "PerpendicularBetweenLine(AF,BF)",
+    "PerpendicularBetweenLine(DC,FC)",
+    "PerpendicularBetweenLine(FE,DE)"
+  ],
+  "image_cdl": [
+    "Equal(MeasureOfAngle(EDF),39)",
+    "Equal(MeasureOfAngle(FBA),48)",
+    "ParallelBetweenLine(FC,ED)",
+    "PerpendicularBetweenLine(AF,BF)",
+    "PerpendicularBetweenLine(DC,FC)",
+    "PerpendicularBetweenLine(FE,DE)"
+  ],
+  "goal_cdl": "Value(MeasureOfAngle(CFD))",
+  "problem_answer": "39",
+  "theorem_seqs": [
+    "parallel_property_alternate_interior_angle(1,FC,ED)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "parallel_property_alternate_interior_angle(1,FC,ED)"
+    ]
+  }
+}

@@ -1,0 +1,49 @@
+{
+  "problem_id": 5086,
+  "annotation": "YimingHe_2023-05-21",
+  "source": "GeoQA-4895",
+  "problem_level": 6,
+  "problem_text_cn": "如图所示，AO=3，BO=6，CO=2，DC平行于AB。求直线BD的长度。",
+  "problem_text_en": "As shown in the diagram, AO=3, BO=6, CO=2, DC∥AB. Find the length of line BD.",
+  "problem_img": "5086.png",
+  "construction_cdl": [
+    "Shape(DO,OC,CD)",
+    "Shape(OA,AB,BO)",
+    "Collinear(DOB)",
+    "Collinear(AOC)"
+  ],
+  "text_cdl": [
+    "Equal(LengthOfLine(AO),3)",
+    "Equal(LengthOfLine(BO),6)",
+    "Equal(LengthOfLine(CO),2)",
+    "ParallelBetweenLine(DC,AB)"
+  ],
+  "image_cdl": [],
+  "goal_cdl": "Value(LengthOfLine(BD))",
+  "problem_answer": "10",
+  "theorem_seqs": [
+    "line_addition(1,DO,OB)",
+    "parallel_property_alternate_interior_angle(1,DC,AB)",
+    "parallel_property_alternate_interior_angle(2,DC,AB)",
+    "similar_triangle_judgment_aa(1,OCD,OAB)",
+    "similar_triangle_property_line_ratio(1,CDO,ABO)",
+    "similar_triangle_property_line_ratio(1,DOC,BOA)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "line_addition(1,DO,OB)",
+      "parallel_property_alternate_interior_angle(1,DC,AB)",
+      "parallel_property_alternate_interior_angle(2,DC,AB)"
+    ],
+    "parallel_property_alternate_interior_angle(1,DC,AB)": [
+      "similar_triangle_judgment_aa(1,OCD,OAB)"
+    ],
+    "parallel_property_alternate_interior_angle(2,DC,AB)": [
+      "similar_triangle_judgment_aa(1,OCD,OAB)"
+    ],
+    "similar_triangle_judgment_aa(1,OCD,OAB)": [
+      "similar_triangle_property_line_ratio(1,CDO,ABO)",
+      "similar_triangle_property_line_ratio(1,DOC,BOA)"
+    ]
+  }
+}

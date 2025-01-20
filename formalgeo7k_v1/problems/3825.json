@@ -1,0 +1,57 @@
+{
+  "problem_id": 3825,
+  "annotation": "YifanWang_2023-05-07",
+  "source": "GeoQA-1691",
+  "problem_level": 4,
+  "problem_text_cn": "如图所示，AB=2，弧OBE的角度为60，⊙O的半径为1，圆O的圆心为O，⊙O的直径为AB，⊙O的直径为CD，CO⊥BO。求直线EA的长度与直线BE的长度之和。",
+  "problem_text_en": "As shown in the diagram, AB=2, the measure of ⌒OBE is 60, the radius of ⊙O is 1, O is the center of ⊙O, the diameter of ⊙O is AB, the diameter of circle O is CD, CO is perpendicular to BO. Find the sum of the length of line EA and the length of line BE.",
+  "problem_img": "3825.png",
+  "construction_cdl": [
+    "Shape(AP,PC,OCA)",
+    "Shape(CP,PE,OEC)",
+    "Shape(PA,AO,OP)",
+    "Shape(PO,OE,EP)",
+    "Shape(EO,OB,BE)",
+    "Shape(EB,OBE)",
+    "Shape(DO,OA,OAD)",
+    "Shape(BO,OD,ODB)",
+    "Collinear(AOB)",
+    "Collinear(CPOD)",
+    "Collinear(EPA)",
+    "Cocircular(O,ADBEC)"
+  ],
+  "text_cdl": [
+    "Equal(LengthOfLine(AB),2)",
+    "Equal(MeasureOfArc(OBE),60)",
+    "Equal(RadiusOfCircle(O),1)",
+    "IsCentreOfCircle(O,O)",
+    "IsDiameterOfCircle(AB,O)",
+    "IsDiameterOfCircle(CD,O)",
+    "PerpendicularBetweenLine(CO,BO)"
+  ],
+  "image_cdl": [
+    "Equal(LengthOfLine(AB),2)",
+    "Equal(MeasureOfArc(OBE),60)",
+    "Equal(RadiusOfCircle(O),1)",
+    "IsCentreOfCircle(O,O)",
+    "IsDiameterOfCircle(AB,O)",
+    "IsDiameterOfCircle(CD,O)",
+    "PerpendicularBetweenLine(CO,BO)"
+  ],
+  "goal_cdl": "Value(Add(LengthOfLine(EA),LengthOfLine(BE)))",
+  "problem_answer": "1+sqrt(3)",
+  "theorem_seqs": [
+    "arc_property_circumference_angle_external(1,OBE,A)",
+    "diameter_of_circle_property_right_angle(1,BEA,O)",
+    "sine_theorem(1,BEA)",
+    "cosine_theorem(1,ABE)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "arc_property_circumference_angle_external(1,OBE,A)",
+      "diameter_of_circle_property_right_angle(1,BEA,O)",
+      "sine_theorem(1,BEA)",
+      "cosine_theorem(1,ABE)"
+    ]
+  }
+}

@@ -1,0 +1,55 @@
+{
+  "problem_id": 2862,
+  "annotation": "YimingHe_2023-04-16",
+  "source": "GeoQA-22",
+  "problem_level": 4,
+  "problem_text_cn": "如图所示，∠EFB=55°，∠EFB=∠HFE，∠JCD=∠HFE，AD∥EG。求∠IBC的大小。",
+  "problem_text_en": "As shown in the diagram, ∠EFB=55°, ∠EFB=∠HFE, ∠JCD=∠HFE, AD∥EG. Find the measure of ∠IBC.",
+  "problem_img": "2862.png",
+  "construction_cdl": [
+    "Shape(AB,BI)",
+    "Shape(IB,BC)",
+    "Shape(BC,CJ)",
+    "Shape(JC,CD)",
+    "Shape(FB,BA)",
+    "Shape(EF,FB)",
+    "Shape(BF,FC,CB)",
+    "Shape(DC,CF)",
+    "Shape(CF,FG)",
+    "Shape(HF,FE)",
+    "Shape(GF,FH)",
+    "Collinear(ABCD)",
+    "Collinear(EFG)",
+    "Collinear(IBF)",
+    "Collinear(JCF)"
+  ],
+  "text_cdl": [
+    "Equal(MeasureOfAngle(EFB),55)",
+    "Equal(MeasureOfAngle(EFB),MeasureOfAngle(HFE))",
+    "Equal(MeasureOfAngle(JCD),MeasureOfAngle(HFE))",
+    "ParallelBetweenLine(AD,EG)"
+  ],
+  "image_cdl": [
+    "ParallelBetweenLine(AD,EG)"
+  ],
+  "goal_cdl": "Value(MeasureOfAngle(IBC))",
+  "problem_answer": "125",
+  "theorem_seqs": [
+    "parallel_property_collinear_extend(3,AD,EG,B)",
+    "parallel_property_collinear_extend(3,GE,DB,F)",
+    "parallel_property_alternate_interior_angle(1,BD,EF)",
+    "adjacent_complementary_angle(1,IBC,CBF)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "parallel_property_collinear_extend(3,AD,EG,B)",
+      "adjacent_complementary_angle(1,IBC,CBF)"
+    ],
+    "parallel_property_collinear_extend(3,AD,EG,B)": [
+      "parallel_property_collinear_extend(3,GE,DB,F)"
+    ],
+    "parallel_property_collinear_extend(3,GE,DB,F)": [
+      "parallel_property_alternate_interior_angle(1,BD,EF)"
+    ]
+  }
+}

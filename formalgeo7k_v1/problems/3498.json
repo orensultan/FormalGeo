@@ -1,0 +1,37 @@
+{
+  "problem_id": 3498,
+  "annotation": "XiaokaiZhang_2023-04-30",
+  "source": "GeoQA-1103",
+  "problem_level": 3,
+  "problem_text_cn": "如图所示，AB=AC，∠ADE=55°，DE∥BC。求∠BCA的大小。",
+  "problem_text_en": "As shown in the diagram, AB=AC, ∠ADE=55°, DE∥BC. Find the measure of ∠BCA.",
+  "problem_img": "3498.png",
+  "construction_cdl": [
+    "Shape(AD,DE,EA)",
+    "Shape(DB,BC,CE,ED)",
+    "Collinear(ADB)",
+    "Collinear(AEC)"
+  ],
+  "text_cdl": [
+    "Equal(LengthOfLine(AB),LengthOfLine(AC))",
+    "Equal(MeasureOfAngle(ADE),55)",
+    "ParallelBetweenLine(DE,BC)"
+  ],
+  "image_cdl": [],
+  "goal_cdl": "Value(MeasureOfAngle(BCA))",
+  "problem_answer": "55",
+  "theorem_seqs": [
+    "parallel_property_corresponding_angle(1,DE,BC,A)",
+    "isosceles_triangle_judgment_line_equal(1,ABC)",
+    "isosceles_triangle_property_angle_equal(1,ABC)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "parallel_property_corresponding_angle(1,DE,BC,A)",
+      "isosceles_triangle_judgment_line_equal(1,ABC)"
+    ],
+    "isosceles_triangle_judgment_line_equal(1,ABC)": [
+      "isosceles_triangle_property_angle_equal(1,ABC)"
+    ]
+  }
+}

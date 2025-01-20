@@ -1,0 +1,33 @@
+{
+  "problem_id": 5659,
+  "annotation": "JiaZou_2023-05-28",
+  "source": "GeoQA-7330",
+  "problem_level": 2,
+  "problem_text_cn": "如图所示，CE=5，∠ABC=150°，∠BEC=90°。求直线BC的长度。",
+  "problem_text_en": "As shown in the diagram, CE=5, ∠ABC=150°, ∠BEC=90°. Find the length of line BC.",
+  "problem_img": "5659.png",
+  "construction_cdl": [
+    "Shape(AB,BC)",
+    "Shape(DC,CB)",
+    "Shape(CB,BE,EC)",
+    "Collinear(ABE)"
+  ],
+  "text_cdl": [
+    "Equal(LengthOfLine(CE),5)",
+    "Equal(MeasureOfAngle(ABC),150)",
+    "Equal(MeasureOfAngle(BEC),90)"
+  ],
+  "image_cdl": [],
+  "goal_cdl": "Value(LengthOfLine(BC))",
+  "problem_answer": "10",
+  "theorem_seqs": [
+    "adjacent_complementary_angle(1,ABC,CBE)",
+    "sine_theorem(1,CBE)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "adjacent_complementary_angle(1,ABC,CBE)",
+      "sine_theorem(1,CBE)"
+    ]
+  }
+}

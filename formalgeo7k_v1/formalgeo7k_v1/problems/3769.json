@@ -1,0 +1,40 @@
+{
+  "problem_id": 3769,
+  "annotation": "ChenyangMao_2023-04-30",
+  "source": "GeoQA-1590",
+  "problem_level": 3,
+  "problem_text_cn": "如图所示，AB=10，BC=8，ED垂直平分AB。求△EBC的周长。",
+  "problem_text_en": "As shown in the diagram, AB=10, BC=8, ED is the perpendicular bisector of CA. Find the perimeter of △EBC.",
+  "problem_img": "3769.png",
+  "construction_cdl": [
+    "Shape(AE,ED,DA)",
+    "Shape(DE,EC,CD)",
+    "Shape(EB,BC,CE)",
+    "Collinear(ADC)",
+    "Collinear(AEB)"
+  ],
+  "text_cdl": [
+    "Equal(LengthOfLine(AB),10)",
+    "Equal(LengthOfLine(BC),8)",
+    "IsPerpendicularBisectorOfLine(ED,CA)"
+  ],
+  "image_cdl": [
+    "Equal(LengthOfLine(AB),10)",
+    "Equal(LengthOfLine(BC),8)",
+    "IsPerpendicularBisectorOfLine(ED,CA)"
+  ],
+  "goal_cdl": "Value(PerimeterOfTriangle(EBC))",
+  "problem_answer": "18",
+  "theorem_seqs": [
+    "line_addition(1,AE,EB)",
+    "perpendicular_bisector_property_distance_equal(1,ED,CA)",
+    "triangle_perimeter_formula(1,EBC)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "line_addition(1,AE,EB)",
+      "perpendicular_bisector_property_distance_equal(1,ED,CA)",
+      "triangle_perimeter_formula(1,EBC)"
+    ]
+  }
+}

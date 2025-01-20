@@ -1,0 +1,37 @@
+{
+  "problem_id": 5520,
+  "annotation": "DengfengYue_2023-05-21",
+  "source": "GeoQA-5993",
+  "problem_level": 3,
+  "problem_text_cn": "如图所示，AB=3，BC=5，ED垂直平分AB，∠ABC和∠BCA是等腰三角形ABC的底角。求三角形ABE的周长。",
+  "problem_text_en": "As shown in the diagram, AB=3, BC=5, ED perpendicular bisects CA, ∠ABC and ∠BCA are the base angles of the isosceles triangle ABC. Find the perimeter of △ABE.",
+  "problem_img": "5520.png",
+  "construction_cdl": [
+    "Shape(AB,BE,EA)",
+    "Shape(AE,ED,DA)",
+    "Shape(DE,EC,CD)",
+    "Collinear(ADC)",
+    "Collinear(BEC)"
+  ],
+  "text_cdl": [
+    "Equal(LengthOfLine(AB),3)",
+    "Equal(LengthOfLine(BC),5)",
+    "IsPerpendicularBisectorOfLine(ED,CA)",
+    "IsoscelesTriangle(ABC)"
+  ],
+  "image_cdl": [],
+  "goal_cdl": "Value(PerimeterOfTriangle(ABE))",
+  "problem_answer": "8",
+  "theorem_seqs": [
+    "perpendicular_bisector_property_distance_equal(1,ED,CA)",
+    "line_addition(1,BE,EC)",
+    "triangle_perimeter_formula(1,ABE)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "perpendicular_bisector_property_distance_equal(1,ED,CA)",
+      "line_addition(1,BE,EC)",
+      "triangle_perimeter_formula(1,ABE)"
+    ]
+  }
+}

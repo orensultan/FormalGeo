@@ -1,0 +1,43 @@
+{
+  "problem_id": 5125,
+  "annotation": "YimingHe_2023-05-21",
+  "source": "GeoQA-4984",
+  "problem_level": 3,
+  "problem_text_cn": "如图所示，Div(LengthOfLine(DF)=LengthOfLine(EF))，BC=8，D是线段AB的中点，E是线段AC的中点。求直线DF的长度。",
+  "problem_text_en": "As shown in the diagram, Div(LengthOfLine(DF)=LengthOfLine(EF)), BC=8, D is the midpoint of segment AB, E bisects segment AC. Find the length of line DF.",
+  "problem_img": "5125.png",
+  "construction_cdl": [
+    "Shape(AD,DE,EA)",
+    "Shape(AE,EF,FA)",
+    "Shape(DB,BO,OE,ED)",
+    "Shape(EO,OF,FE)",
+    "Shape(OB,BC,CO)",
+    "Collinear(ADB)",
+    "Collinear(AEOC)",
+    "Collinear(DEF)",
+    "Collinear(BOF)"
+  ],
+  "text_cdl": [
+    "Equal(Div(LengthOfLine(DF),LengthOfLine(EF)),3)",
+    "Equal(LengthOfLine(BC),8)",
+    "IsMidpointOfLine(D,AB)",
+    "IsMidpointOfLine(E,AC)"
+  ],
+  "image_cdl": [],
+  "goal_cdl": "Value(LengthOfLine(DF))",
+  "problem_answer": "6",
+  "theorem_seqs": [
+    "midsegment_of_triangle_judgment_midpoint(1,DE,ABC)",
+    "midsegment_of_triangle_property_length(1,DE,ABC)",
+    "line_addition(1,DE,EF)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "midsegment_of_triangle_judgment_midpoint(1,DE,ABC)",
+      "line_addition(1,DE,EF)"
+    ],
+    "midsegment_of_triangle_judgment_midpoint(1,DE,ABC)": [
+      "midsegment_of_triangle_property_length(1,DE,ABC)"
+    ]
+  }
+}

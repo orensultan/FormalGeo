@@ -1,0 +1,43 @@
+{
+  "problem_id": 4384,
+  "annotation": "YimingHe_2023-05-14",
+  "source": "GeoQA-3308",
+  "problem_level": 4,
+  "problem_text_cn": "如图所示，∠FDE=50°，O是⊙O的圆心，AE垂直于DE，OF⊥DF。求∠ACB的大小。",
+  "problem_text_en": "As shown in the diagram, ∠FDE=50°, O is the center of circle O, AE is perpendicular to DE, OF is perpendicular to DF. Find the measure of ∠ACB.",
+  "problem_img": "4384.png",
+  "construction_cdl": [
+    "Shape(AE,ED,ODA)",
+    "Shape(DE,EO,OF,FD)",
+    "Shape(DF,FB,OBD)",
+    "Shape(AC,CB,BO,OA)",
+    "Shape(CA,OAC)",
+    "Shape(BC,OCB)",
+    "Collinear(AEO)",
+    "Collinear(OFB)",
+    "Cocircular(O,ACBD)"
+  ],
+  "text_cdl": [
+    "Equal(MeasureOfAngle(FDE),50)",
+    "IsCentreOfCircle(O,O)",
+    "PerpendicularBetweenLine(AE,DE)",
+    "PerpendicularBetweenLine(OF,DF)"
+  ],
+  "image_cdl": [],
+  "goal_cdl": "Value(MeasureOfAngle(ACB))",
+  "problem_answer": "65",
+  "theorem_seqs": [
+    "adjacent_complementary_angle(1,AED,DEO)",
+    "quadrilateral_property_angle_sum(1,DEOF)",
+    "arc_property_circumference_angle_external(1,OBA,C)",
+    "arc_property_center_angle(1,OBA,O)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "adjacent_complementary_angle(1,AED,DEO)",
+      "quadrilateral_property_angle_sum(1,DEOF)",
+      "arc_property_circumference_angle_external(1,OBA,C)",
+      "arc_property_center_angle(1,OBA,O)"
+    ]
+  }
+}

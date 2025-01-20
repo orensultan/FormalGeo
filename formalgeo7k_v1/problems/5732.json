@@ -1,0 +1,42 @@
+{
+  "problem_id": 5732,
+  "annotation": "XiaokaiZhang_2023-05-28",
+  "source": "GeoQA-7533",
+  "problem_level": 4,
+  "problem_text_cn": "如图所示，△ABC的面积为18，CA=3，CD=2，DE平行于AB。求三角形DEC的面积。",
+  "problem_text_en": "As shown in the diagram, the area of △ABC is 18, CA=3, CD=2, DE is parallel to AB. Find the area of △DEC.",
+  "problem_img": "5732.png",
+  "construction_cdl": [
+    "Shape(CD,DE,EC)",
+    "Shape(AB,BE,ED,DA)",
+    "Collinear(BEC)",
+    "Collinear(ADC)"
+  ],
+  "text_cdl": [
+    "Equal(AreaOfTriangle(ABC),18)",
+    "Equal(LengthOfLine(CA),3)",
+    "Equal(LengthOfLine(CD),2)",
+    "ParallelBetweenLine(DE,AB)"
+  ],
+  "image_cdl": [],
+  "goal_cdl": "Value(AreaOfTriangle(DEC))",
+  "problem_answer": "8",
+  "theorem_seqs": [
+    "parallel_property_corresponding_angle(1,DE,AB,C)",
+    "similar_triangle_judgment_aa(1,ECD,BCA)",
+    "similar_triangle_property_line_ratio(1,ECD,BCA)",
+    "similar_triangle_property_area_square_ratio(1,ECD,BCA)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "parallel_property_corresponding_angle(1,DE,AB,C)"
+    ],
+    "parallel_property_corresponding_angle(1,DE,AB,C)": [
+      "similar_triangle_judgment_aa(1,ECD,BCA)"
+    ],
+    "similar_triangle_judgment_aa(1,ECD,BCA)": [
+      "similar_triangle_property_line_ratio(1,ECD,BCA)",
+      "similar_triangle_property_area_square_ratio(1,ECD,BCA)"
+    ]
+  }
+}

@@ -1,0 +1,39 @@
+{
+  "problem_id": 652,
+  "annotation": "YimingHe_2023-04-09",
+  "source": "Geometry3k-669",
+  "problem_level": 2,
+  "problem_text_cn": "如图所示，AE=3，AF=x，DE=9，AF是⊙O的切线。求x的值。",
+  "problem_text_en": "As shown in the diagram, AE=3, AF=x, DE=9, the tangent to circle B is AF. Find the value of x.",
+  "problem_img": "652.png",
+  "construction_cdl": [
+    "Shape(DB,BE,BEF,BFD)",
+    "Shape(BEF,EA,AF)",
+    "Shape(EB,BD,BDE)",
+    "Collinear(DBEA)",
+    "Cocircular(B,DEF)"
+  ],
+  "text_cdl": [
+    "Equal(LengthOfLine(AE),3)",
+    "Equal(LengthOfLine(AF),x)",
+    "Equal(LengthOfLine(DE),9)",
+    "IsTangentOfCircle(AF,B)"
+  ],
+  "image_cdl": [
+    "Equal(LengthOfLine(AE),3)",
+    "Equal(LengthOfLine(AF),x)",
+    "Equal(LengthOfLine(DE),9)"
+  ],
+  "goal_cdl": "Value(x)",
+  "problem_answer": "6",
+  "theorem_seqs": [
+    "line_addition(1,AE,ED)",
+    "circle_property_circular_power_tangent_and_segment_line(1,AF,AED,B)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "line_addition(1,AE,ED)",
+      "circle_property_circular_power_tangent_and_segment_line(1,AF,AED,B)"
+    ]
+  }
+}

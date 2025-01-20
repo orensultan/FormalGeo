@@ -1,0 +1,42 @@
+{
+  "problem_id": 6564,
+  "annotation": "XiaokaiZhang_2023-06-04",
+  "source": "GeoQA-9515",
+  "problem_level": 4,
+  "problem_text_cn": "如图所示，∠DBC=33°，圆O的直径为BD。求∠CAB的大小。",
+  "problem_text_en": "As shown in the diagram, ∠DBC=33°, BD is the diameter of circle O. Find the measure of ∠CAB.",
+  "problem_img": "6564.png",
+  "construction_cdl": [
+    "Shape(OAB,BA)",
+    "Shape(OBC,CB)",
+    "Shape(OCD,DC)",
+    "Shape(ODA,AE,ED)",
+    "Shape(AB,BE,EA)",
+    "Shape(EB,BC,CE)",
+    "Shape(DE,EC,CD)",
+    "Collinear(AEC)",
+    "Collinear(BED)",
+    "Cocircular(O,ABCD)"
+  ],
+  "text_cdl": [
+    "Equal(MeasureOfAngle(DBC),33)",
+    "IsDiameterOfCircle(BD,O)"
+  ],
+  "image_cdl": [],
+  "goal_cdl": "Value(MeasureOfAngle(CAB))",
+  "problem_answer": "57",
+  "theorem_seqs": [
+    "diameter_of_circle_property_right_angle(1,BCD,O)",
+    "triangle_property_angle_sum(1,DBC)",
+    "arc_property_circumference_angle_external(1,OBC,D)",
+    "arc_property_circumference_angle_external(1,OBC,A)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "diameter_of_circle_property_right_angle(1,BCD,O)",
+      "triangle_property_angle_sum(1,DBC)",
+      "arc_property_circumference_angle_external(1,OBC,D)",
+      "arc_property_circumference_angle_external(1,OBC,A)"
+    ]
+  }
+}

@@ -1,0 +1,63 @@
+{
+  "problem_id": 5356,
+  "annotation": "QikeHuang_2023-05-21",
+  "source": "GeoQA-5621",
+  "problem_level": 10,
+  "problem_text_cn": "如图所示，∠ABO=20°，∠OCA=30°，圆O的圆心为O。求∠COB的大小。",
+  "problem_text_en": "As shown in the diagram, ∠ABO=20°, ∠OCA=30°, the center of ⊙O is O. Find the measure of ∠COB.",
+  "problem_img": "5356.png",
+  "construction_cdl": [
+    "Shape(OAB,BA)",
+    "Shape(AB,BO,OA)",
+    "Shape(AO,OC,CA)",
+    "Shape(AC,OCA)",
+    "Shape(OB,OBC,CO)",
+    "Cocircular(O,ABC)"
+  ],
+  "text_cdl": [
+    "Equal(MeasureOfAngle(ABO),20)",
+    "Equal(MeasureOfAngle(OCA),30)",
+    "IsCentreOfCircle(O,O)"
+  ],
+  "image_cdl": [],
+  "goal_cdl": "Value(MeasureOfAngle(COB))",
+  "problem_answer": "100",
+  "theorem_seqs": [
+    "angle_addition(1,CAO,OAB)",
+    "radius_of_circle_property_length_equal(1,OA,O)",
+    "radius_of_circle_property_length_equal(1,OB,O)",
+    "radius_of_circle_property_length_equal(1,OC,O)",
+    "isosceles_triangle_judgment_line_equal(1,OAB)",
+    "isosceles_triangle_judgment_line_equal(1,OCA)",
+    "isosceles_triangle_property_angle_equal(1,OAB)",
+    "isosceles_triangle_property_angle_equal(1,OCA)",
+    "arc_property_circumference_angle_external(1,OBC,A)",
+    "arc_property_center_angle(1,OBC,O)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "angle_addition(1,CAO,OAB)",
+      "radius_of_circle_property_length_equal(1,OA,O)",
+      "radius_of_circle_property_length_equal(1,OB,O)",
+      "radius_of_circle_property_length_equal(1,OC,O)",
+      "arc_property_circumference_angle_external(1,OBC,A)",
+      "arc_property_center_angle(1,OBC,O)"
+    ],
+    "radius_of_circle_property_length_equal(1,OA,O)": [
+      "isosceles_triangle_judgment_line_equal(1,OAB)",
+      "isosceles_triangle_judgment_line_equal(1,OCA)"
+    ],
+    "radius_of_circle_property_length_equal(1,OB,O)": [
+      "isosceles_triangle_judgment_line_equal(1,OAB)"
+    ],
+    "radius_of_circle_property_length_equal(1,OC,O)": [
+      "isosceles_triangle_judgment_line_equal(1,OCA)"
+    ],
+    "isosceles_triangle_judgment_line_equal(1,OAB)": [
+      "isosceles_triangle_property_angle_equal(1,OAB)"
+    ],
+    "isosceles_triangle_judgment_line_equal(1,OCA)": [
+      "isosceles_triangle_property_angle_equal(1,OCA)"
+    ]
+  }
+}

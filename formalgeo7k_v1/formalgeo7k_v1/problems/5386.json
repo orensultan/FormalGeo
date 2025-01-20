@@ -1,0 +1,46 @@
+{
+  "problem_id": 5386,
+  "annotation": "QikeHuang_2023-05-21",
+  "source": "GeoQA-5671",
+  "problem_level": 5,
+  "problem_text_cn": "如图所示，EF=6，MA是PE的垂直平分线，NB垂直平分AB。求△PMN的周长。",
+  "problem_text_en": "As shown in the diagram, EF=6, MA perpendicular bisects PE, NB perpendicular bisects FP. Find the perimeter of triangle PMN.",
+  "problem_img": "5386.png",
+  "construction_cdl": [
+    "Shape(MO,ON,NM)",
+    "Shape(AE,EM,MA)",
+    "Shape(AM,MP,PA)",
+    "Shape(PM,MN,NP)",
+    "Shape(PN,NB,BP)",
+    "Shape(BN,NF,FB)",
+    "Collinear(OMA)",
+    "Collinear(ONB)",
+    "Collinear(EMNF)",
+    "Collinear(EAP)",
+    "Collinear(PBF)"
+  ],
+  "text_cdl": [
+    "Equal(LengthOfLine(EF),6)",
+    "IsPerpendicularBisectorOfLine(MA,PE)",
+    "IsPerpendicularBisectorOfLine(NB,FP)"
+  ],
+  "image_cdl": [],
+  "goal_cdl": "Value(PerimeterOfTriangle(PMN))",
+  "problem_answer": "6",
+  "theorem_seqs": [
+    "perpendicular_bisector_property_distance_equal(1,MA,PE)",
+    "perpendicular_bisector_property_distance_equal(1,NB,FP)",
+    "line_addition(1,EM,MN)",
+    "line_addition(1,EN,NF)",
+    "triangle_perimeter_formula(1,PMN)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "perpendicular_bisector_property_distance_equal(1,MA,PE)",
+      "perpendicular_bisector_property_distance_equal(1,NB,FP)",
+      "line_addition(1,EM,MN)",
+      "line_addition(1,EN,NF)",
+      "triangle_perimeter_formula(1,PMN)"
+    ]
+  }
+}

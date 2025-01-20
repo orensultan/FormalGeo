@@ -1,0 +1,36 @@
+{
+  "problem_id": 2879,
+  "annotation": "YimingHe_2023-04-16",
+  "source": "GeoQA-46",
+  "problem_level": 3,
+  "problem_text_cn": "如图所示，AB=AC，∠CBA=70°。求∠BAC的大小。",
+  "problem_text_en": "As shown in the diagram, AB=AC, ∠CBA=70°. Find the measure of ∠BAC.",
+  "problem_img": "2879.png",
+  "construction_cdl": [
+    "Shape(BA,AC,CB)"
+  ],
+  "text_cdl": [
+    "Equal(LengthOfLine(AB),LengthOfLine(AC))",
+    "Equal(MeasureOfAngle(CBA),70)"
+  ],
+  "image_cdl": [
+    "Equal(LengthOfLine(AB),LengthOfLine(AC))",
+    "Equal(MeasureOfAngle(CBA),70)"
+  ],
+  "goal_cdl": "Value(MeasureOfAngle(BAC))",
+  "problem_answer": "40",
+  "theorem_seqs": [
+    "isosceles_triangle_judgment_line_equal(1,ACB)",
+    "isosceles_triangle_property_angle_equal(1,ACB)",
+    "triangle_property_angle_sum(1,ACB)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "isosceles_triangle_judgment_line_equal(1,ACB)",
+      "triangle_property_angle_sum(1,ACB)"
+    ],
+    "isosceles_triangle_judgment_line_equal(1,ACB)": [
+      "isosceles_triangle_property_angle_equal(1,ACB)"
+    ]
+  }
+}

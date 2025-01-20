@@ -1,0 +1,54 @@
+{
+  "problem_id": 4557,
+  "annotation": "YanjunGuo_2023-05-14",
+  "source": "GeoQA-3670",
+  "problem_level": 7,
+  "problem_text_cn": "如图所示，⌒OBC的长度与⌒OCA的长度相等，∠BCA=100°。求∠ADC的大小。",
+  "problem_text_en": "As shown in the diagram, the length of arc OBC is equal to the length of ⌒OCA, ∠BCA=100°. Find the measure of ∠ADC.",
+  "problem_img": "4557.png",
+  "construction_cdl": [
+    "Shape(AC,OCA)",
+    "Shape(CA,AE,EC)",
+    "Shape(EA,AD,DE)",
+    "Shape(DA,OAD)",
+    "Shape(BE,ED,ODB)",
+    "Shape(CE,EB,BC)",
+    "Shape(CB,OBC)",
+    "Collinear(CED)",
+    "Collinear(AEB)",
+    "Cocircular(O,BCAD)"
+  ],
+  "text_cdl": [
+    "Equal(LengthOfArc(OBC),LengthOfArc(OCA))",
+    "Equal(MeasureOfAngle(BCA),100)"
+  ],
+  "image_cdl": [],
+  "goal_cdl": "Value(MeasureOfAngle(ADC))",
+  "problem_answer": "40",
+  "theorem_seqs": [
+    "congruent_arc_judgment_length_equal(1,OBC,OCA)",
+    "congruent_arc_property_chord_equal(1,OBC,OCA)",
+    "triangle_property_angle_sum(1,CAB)",
+    "isosceles_triangle_judgment_line_equal(1,CAB)",
+    "isosceles_triangle_property_angle_equal(1,CAB)",
+    "arc_property_circumference_angle_external(1,OCA,B)",
+    "arc_property_circumference_angle_external(1,OCA,D)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "congruent_arc_judgment_length_equal(1,OBC,OCA)",
+      "triangle_property_angle_sum(1,CAB)",
+      "arc_property_circumference_angle_external(1,OCA,B)",
+      "arc_property_circumference_angle_external(1,OCA,D)"
+    ],
+    "congruent_arc_judgment_length_equal(1,OBC,OCA)": [
+      "congruent_arc_property_chord_equal(1,OBC,OCA)"
+    ],
+    "congruent_arc_property_chord_equal(1,OBC,OCA)": [
+      "isosceles_triangle_judgment_line_equal(1,CAB)"
+    ],
+    "isosceles_triangle_judgment_line_equal(1,CAB)": [
+      "isosceles_triangle_property_angle_equal(1,CAB)"
+    ]
+  }
+}

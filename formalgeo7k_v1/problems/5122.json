@@ -1,0 +1,62 @@
+{
+  "problem_id": 5122,
+  "annotation": "YimingHe_2023-05-21",
+  "source": "GeoQA-4981",
+  "problem_level": 7,
+  "problem_text_cn": "如图所示，AB=CD，∠MPN=140°，M平分线段AD，N是线段BC的中点，P是线段BD的中点。求∠NMP的大小。",
+  "problem_text_en": "As shown in the diagram, AB=CD, ∠MPN=140°, M is the midpoint of segment AD, N bisects segment BC, P bisects segment BD. Find the measure of ∠NMP.",
+  "problem_img": "5122.png",
+  "construction_cdl": [
+    "Shape(AB,BP,PM,MA)",
+    "Shape(MP,PO,OM)",
+    "Shape(MO,OD,DM)",
+    "Shape(PB,BN,NP)",
+    "Shape(PN,NO,OP)",
+    "Shape(DO,ON,NC,CD)",
+    "Collinear(AMD)",
+    "Collinear(BNC)",
+    "Collinear(BPOD)",
+    "Collinear(MON)"
+  ],
+  "text_cdl": [
+    "Equal(LengthOfLine(AB),LengthOfLine(CD))",
+    "Equal(MeasureOfAngle(MPN),140)",
+    "IsMidpointOfLine(M,AD)",
+    "IsMidpointOfLine(N,BC)",
+    "IsMidpointOfLine(P,BD)"
+  ],
+  "image_cdl": [],
+  "goal_cdl": "Value(MeasureOfAngle(NMP))",
+  "problem_answer": "20",
+  "theorem_seqs": [
+    "midsegment_of_triangle_judgment_midpoint(1,MP,DAB)",
+    "midsegment_of_triangle_judgment_midpoint(1,NP,BCD)",
+    "midsegment_of_triangle_property_length(1,MP,DAB)",
+    "midsegment_of_triangle_property_length(1,NP,BCD)",
+    "isosceles_triangle_judgment_line_equal(1,PNM)",
+    "isosceles_triangle_property_angle_equal(1,PNM)",
+    "triangle_property_angle_sum(1,MPN)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "midsegment_of_triangle_judgment_midpoint(1,MP,DAB)",
+      "midsegment_of_triangle_judgment_midpoint(1,NP,BCD)",
+      "triangle_property_angle_sum(1,MPN)"
+    ],
+    "midsegment_of_triangle_judgment_midpoint(1,MP,DAB)": [
+      "midsegment_of_triangle_property_length(1,MP,DAB)"
+    ],
+    "midsegment_of_triangle_judgment_midpoint(1,NP,BCD)": [
+      "midsegment_of_triangle_property_length(1,NP,BCD)"
+    ],
+    "midsegment_of_triangle_property_length(1,MP,DAB)": [
+      "isosceles_triangle_judgment_line_equal(1,PNM)"
+    ],
+    "midsegment_of_triangle_property_length(1,NP,BCD)": [
+      "isosceles_triangle_judgment_line_equal(1,PNM)"
+    ],
+    "isosceles_triangle_judgment_line_equal(1,PNM)": [
+      "isosceles_triangle_property_angle_equal(1,PNM)"
+    ]
+  }
+}

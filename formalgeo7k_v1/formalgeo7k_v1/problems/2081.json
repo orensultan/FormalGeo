@@ -1,0 +1,44 @@
+{
+  "problem_id": 2081,
+  "annotation": "QikeHuang_2023-04-23",
+  "source": "Geometry3k-2168",
+  "problem_level": 2,
+  "problem_text_cn": "如图所示，∠ANE=30°，∠CEB=110°，∠ECA=∠AFN，∠ENJ=130°。求∠ECA的大小。",
+  "problem_text_en": "As shown in the diagram, ∠ANE=30°, ∠CEB=110°, ∠ECA=∠AFN, ∠ENJ=130°. Find the measure of ∠ECA.",
+  "problem_img": "2081.png",
+  "construction_cdl": [
+    "Shape(CA,AE,EC)",
+    "Shape(EA,AN,NE)",
+    "Shape(AF,FN,NA)",
+    "Shape(EN,NJ)",
+    "Shape(CE,EB)",
+    "Collinear(CAF)",
+    "Collinear(CEN)",
+    "Collinear(AEB)",
+    "Collinear(FNJ)"
+  ],
+  "text_cdl": [
+    "Equal(MeasureOfAngle(ANE),30)",
+    "Equal(MeasureOfAngle(CEB),110)",
+    "Equal(MeasureOfAngle(ECA),MeasureOfAngle(AFN))",
+    "Equal(MeasureOfAngle(ENJ),130)"
+  ],
+  "image_cdl": [
+    "Equal(MeasureOfAngle(ANE),30)",
+    "Equal(MeasureOfAngle(CEB),110)",
+    "Equal(MeasureOfAngle(ECA),MeasureOfAngle(AFN))",
+    "Equal(MeasureOfAngle(ENJ),130)"
+  ],
+  "goal_cdl": "Value(MeasureOfAngle(ECA))",
+  "problem_answer": "65",
+  "theorem_seqs": [
+    "adjacent_complementary_angle(1,FNE,ENJ)",
+    "triangle_property_angle_sum(1,CFN)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "adjacent_complementary_angle(1,FNE,ENJ)",
+      "triangle_property_angle_sum(1,CFN)"
+    ]
+  }
+}

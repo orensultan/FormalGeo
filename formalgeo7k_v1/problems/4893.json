@@ -1,0 +1,46 @@
+{
+  "problem_id": 4893,
+  "annotation": "YifanWang_2023-05-21",
+  "source": "GeoQA-4430",
+  "problem_level": 6,
+  "problem_text_cn": "如图所示，CO=sqrt(3)，△ABC为等边△，O是圆O的圆心，OF是EC的垂直平分线，⊙O的切线为BC。求直线CE的长度。",
+  "problem_text_en": "As shown in the diagram, CO=sqrt(3), △ABC is an equilateral △, O is the center of circle O, OF perpendicular bisects EC, BC is the tangent to ⊙O. Find the length of line CE.",
+  "problem_img": "4893.png",
+  "construction_cdl": [
+    "Shape(EA,AB,BC,OEC)",
+    "Shape(CF,FE,OEC)",
+    "Shape(OE,EF,FO)",
+    "Shape(OF,FC,CO)",
+    "Shape(EO,OC,OCE)",
+    "Collinear(AEFC)",
+    "Cocircular(O,EC)"
+  ],
+  "text_cdl": [
+    "Equal(LengthOfLine(CO),sqrt(3))",
+    "EquilateralTriangle(ABC)",
+    "IsCentreOfCircle(O,O)",
+    "IsPerpendicularBisectorOfLine(OF,EC)",
+    "IsTangentOfCircle(BC,O)"
+  ],
+  "image_cdl": [],
+  "goal_cdl": "Value(LengthOfLine(CE))",
+  "problem_answer": "3",
+  "theorem_seqs": [
+    "tangent_of_circle_property_perpendicular(2,BC,O,O)",
+    "angle_addition(1,BCF,FCO)",
+    "equilateral_triangle_property_angle(1,CAB)",
+    "radius_of_circle_property_length_equal(1,OE,O)",
+    "radius_of_circle_property_length_equal(1,OC,O)",
+    "cosine_theorem(1,COE)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "tangent_of_circle_property_perpendicular(2,BC,O,O)",
+      "angle_addition(1,BCF,FCO)",
+      "equilateral_triangle_property_angle(1,CAB)",
+      "radius_of_circle_property_length_equal(1,OE,O)",
+      "radius_of_circle_property_length_equal(1,OC,O)",
+      "cosine_theorem(1,COE)"
+    ]
+  }
+}

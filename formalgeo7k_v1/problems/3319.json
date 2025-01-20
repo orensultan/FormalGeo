@@ -1,0 +1,41 @@
+{
+  "problem_id": 3319,
+  "annotation": "YimingHe_2023-04-30",
+  "source": "GeoQA-708",
+  "problem_level": 3,
+  "problem_text_cn": "如图所示，AC=BC，BD=5，DE=3，∠ACD=90°，AD是∠EAC的角平分线，DE垂直于AE。求直线AC的长度。",
+  "problem_text_en": "As shown in the diagram, AC=BC, BD=5, DE=3, ∠ACD=90°, AD bisects ∠EAC, DE is perpendicular to AE. Find the length of line AC.",
+  "problem_img": "3319.png",
+  "construction_cdl": [
+    "Shape(AC,CD,DA)",
+    "Shape(AD,DE,EA)",
+    "Shape(ED,DB,BE)",
+    "Collinear(CDB)",
+    "Collinear(AEB)"
+  ],
+  "text_cdl": [
+    "Equal(LengthOfLine(AC),LengthOfLine(BC))",
+    "Equal(LengthOfLine(BD),5)",
+    "Equal(LengthOfLine(DE),3)",
+    "Equal(MeasureOfAngle(ACD),90)",
+    "IsBisectorOfAngle(AD,EAC)",
+    "PerpendicularBetweenLine(DE,AE)"
+  ],
+  "image_cdl": [],
+  "goal_cdl": "Value(LengthOfLine(AC))",
+  "problem_answer": "8",
+  "theorem_seqs": [
+    "mirror_congruent_triangle_judgment_aas(1,DAC,DEA)",
+    "mirror_congruent_triangle_property_line_equal(1,ACD,ADE)",
+    "line_addition(1,CD,DB)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "mirror_congruent_triangle_judgment_aas(1,DAC,DEA)",
+      "line_addition(1,CD,DB)"
+    ],
+    "mirror_congruent_triangle_judgment_aas(1,DAC,DEA)": [
+      "mirror_congruent_triangle_property_line_equal(1,ACD,ADE)"
+    ]
+  }
+}

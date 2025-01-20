@@ -1,0 +1,34 @@
+{
+  "problem_id": 3621,
+  "annotation": "QikeHuang_2023-04-30",
+  "source": "GeoQA-1298",
+  "problem_level": 3,
+  "problem_text_cn": "如图所示，弧ACB的长度为50*pi，∠BAC=150°，圆A的圆心为A。求直线AB的长度。",
+  "problem_text_en": "As shown in the diagram, the length of ⌒ACB is 50*pi, ∠BAC=150°, the center of ⊙A is A. Find the length of line AB.",
+  "problem_img": "3621.png",
+  "construction_cdl": [
+    "Shape(BA,AC,ACB)",
+    "Shape(CA,AB,ABC)",
+    "Cocircular(A,BC)"
+  ],
+  "text_cdl": [
+    "Equal(LengthOfArc(ACB),50*pi)",
+    "Equal(MeasureOfAngle(BAC),150)",
+    "IsCentreOfCircle(A,A)"
+  ],
+  "image_cdl": [],
+  "goal_cdl": "Value(LengthOfLine(AB))",
+  "problem_answer": "60",
+  "theorem_seqs": [
+    "arc_property_center_angle(1,ACB,A)",
+    "arc_length_formula(1,ACB)",
+    "radius_of_circle_property_length_equal(1,AB,A)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "arc_property_center_angle(1,ACB,A)",
+      "arc_length_formula(1,ACB)",
+      "radius_of_circle_property_length_equal(1,AB,A)"
+    ]
+  }
+}

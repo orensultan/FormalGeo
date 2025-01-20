@@ -1,0 +1,57 @@
+{
+  "problem_id": 5375,
+  "annotation": "QikeHuang_2023-05-21",
+  "source": "GeoQA-5659",
+  "problem_level": 8,
+  "problem_text_cn": "如图所示，AO=2，∠AOG=15°，∠GON=45°，OG垂直平分AB，ON垂直平分AB。求直线AC的长度。",
+  "problem_text_en": "As shown in the diagram, AO=2, ∠AOG=15°, ∠GON=45°, OG perpendicular bisects BA, ON is the perpendicular bisector of CB. Find the length of line AC.",
+  "problem_img": "5375.png",
+  "construction_cdl": [
+    "Shape(AO,OH,HA)",
+    "Shape(AH,HG,GA)",
+    "Shape(HO,OP,PH)",
+    "Shape(HP,PB,BG,GH)",
+    "Shape(PO,OQ,QP)",
+    "Shape(BP,PQ,QN,NB)",
+    "Shape(QO,OC,CQ)",
+    "Shape(NQ,QC,CN)",
+    "Collinear(AHPQC)",
+    "Collinear(AGB)",
+    "Collinear(BPO)",
+    "Collinear(OHG)",
+    "Collinear(BNC)",
+    "Collinear(OQN)"
+  ],
+  "text_cdl": [
+    "Equal(LengthOfLine(AO),2)",
+    "Equal(MeasureOfAngle(AOG),15)",
+    "Equal(MeasureOfAngle(GON),45)",
+    "IsPerpendicularBisectorOfLine(OG,BA)",
+    "IsPerpendicularBisectorOfLine(ON,CB)"
+  ],
+  "image_cdl": [],
+  "goal_cdl": "Value(LengthOfLine(AC))",
+  "problem_answer": "2*sqrt(2)",
+  "theorem_seqs": [
+    "perpendicular_bisector_property_distance_equal(1,OG,BA)",
+    "perpendicular_bisector_property_distance_equal(1,ON,CB)",
+    "perpendicular_bisector_property_bisector(1,OG,BA)",
+    "perpendicular_bisector_property_bisector(1,ON,CB)",
+    "angle_addition(1,GOB,BON)",
+    "angle_addition(1,AOG,GON)",
+    "angle_addition(1,AON,NOC)",
+    "cosine_theorem(1,OCA)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "perpendicular_bisector_property_distance_equal(1,OG,BA)",
+      "perpendicular_bisector_property_distance_equal(1,ON,CB)",
+      "perpendicular_bisector_property_bisector(1,OG,BA)",
+      "perpendicular_bisector_property_bisector(1,ON,CB)",
+      "angle_addition(1,GOB,BON)",
+      "angle_addition(1,AOG,GON)",
+      "angle_addition(1,AON,NOC)",
+      "cosine_theorem(1,OCA)"
+    ]
+  }
+}

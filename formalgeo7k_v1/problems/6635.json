@@ -1,0 +1,41 @@
+{
+  "problem_id": 6635,
+  "annotation": "YanjunGuo_2023-06-04",
+  "source": "GeoQA-9646",
+  "problem_level": 4,
+  "problem_text_cn": "如图所示，∠ABD=20°，⊙O的圆心为O，圆O的直径为AB。求∠BCD的大小。",
+  "problem_text_en": "As shown in the diagram, ∠ABD=20°, the center of ⊙O is O, the diameter of ⊙O is AB. Find the measure of ∠BCD.",
+  "problem_img": "6635.png",
+  "construction_cdl": [
+    "Shape(BA,OAB)",
+    "Shape(AD,ODA)",
+    "Shape(DC,OCD)",
+    "Shape(CB,OBC)",
+    "Shape(AB,BD,DA)",
+    "Shape(DB,BC,CD)",
+    "Collinear(AOB)",
+    "Cocircular(O,ABCD)"
+  ],
+  "text_cdl": [
+    "Equal(MeasureOfAngle(ABD),20)",
+    "IsCentreOfCircle(O,O)",
+    "IsDiameterOfCircle(AB,O)"
+  ],
+  "image_cdl": [],
+  "goal_cdl": "Value(MeasureOfAngle(BCD))",
+  "problem_answer": "110",
+  "theorem_seqs": [
+    "diameter_of_circle_property_right_angle(1,BDA,O)",
+    "triangle_property_angle_sum(1,DAB)",
+    "arc_property_circumference_angle_external(1,OBD,A)",
+    "arc_property_circumference_angle_internal(1,OBD,C)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "diameter_of_circle_property_right_angle(1,BDA,O)",
+      "triangle_property_angle_sum(1,DAB)",
+      "arc_property_circumference_angle_external(1,OBD,A)",
+      "arc_property_circumference_angle_internal(1,OBD,C)"
+    ]
+  }
+}

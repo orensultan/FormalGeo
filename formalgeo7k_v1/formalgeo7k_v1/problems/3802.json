@@ -1,0 +1,43 @@
+{
+  "problem_id": 3802,
+  "annotation": "YifanWang_2023-05-07",
+  "source": "GeoQA-1651",
+  "problem_level": 2,
+  "problem_text_cn": "如图所示，圆O的直径与直线AB的长度相等，BC=6，CA=8，O是⊙O的圆心，△BCA为直角△。求圆O的半径。",
+  "problem_text_en": "As shown in the diagram, the diameter of circle O is equal to the length of line AB, BC=6, CA=8, O is the center of ⊙O, triangle BCA is a right triangle. Find the radius of ⊙O.",
+  "problem_img": "3802.png",
+  "construction_cdl": [
+    "Shape(BO,OA,OAB)",
+    "Shape(AB,BC,CA)",
+    "Shape(CB,OBC)",
+    "Shape(AC,OCA)",
+    "Collinear(AOB)",
+    "Cocircular(O,ABC)"
+  ],
+  "text_cdl": [
+    "Equal(DiameterOfCircle(O),LengthOfLine(AB))",
+    "Equal(LengthOfLine(BC),6)",
+    "Equal(LengthOfLine(CA),8)",
+    "IsCentreOfCircle(O,O)",
+    "RightTriangle(BCA)"
+  ],
+  "image_cdl": [
+    "Equal(DiameterOfCircle(O),LengthOfLine(AB))",
+    "Equal(LengthOfLine(BC),6)",
+    "Equal(LengthOfLine(CA),8)",
+    "IsCentreOfCircle(O,O)",
+    "RightTriangle(BCA)"
+  ],
+  "goal_cdl": "Value(RadiusOfCircle(O))",
+  "problem_answer": "5",
+  "theorem_seqs": [
+    "right_triangle_property_pythagorean(1,BCA)",
+    "circle_property_length_of_radius_and_diameter(1,O)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "right_triangle_property_pythagorean(1,BCA)",
+      "circle_property_length_of_radius_and_diameter(1,O)"
+    ]
+  }
+}

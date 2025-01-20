@@ -1,0 +1,41 @@
+{
+  "problem_id": 1204,
+  "annotation": "JiaZou_2023-03-19",
+  "source": "Geometry3k-1244",
+  "problem_level": 2,
+  "problem_text_cn": "如图所示，PS=x，QP=2*x，RQ=3*y+8，RS=2*y，△QPS镜像全等于△QSR，QS垂直于RS。求y的值。",
+  "problem_text_en": "As shown in the diagram, PS=x, QP=2*x, RQ=3*y+8, RS=2*y, △QPS is mirror congruent to △QSR, QS⊥RS. Find the value of y.",
+  "problem_img": "1204.png",
+  "construction_cdl": [
+    "Shape(QP,PS,SQ)",
+    "Shape(QS,SR,RQ)",
+    "Collinear(PSR)"
+  ],
+  "text_cdl": [
+    "Equal(LengthOfLine(PS),x)",
+    "Equal(LengthOfLine(QP),2*x)",
+    "Equal(LengthOfLine(RQ),3*y+8)",
+    "Equal(LengthOfLine(RS),2*y)",
+    "MirrorCongruentBetweenTriangle(QPS,QSR)",
+    "PerpendicularBetweenLine(QS,RS)"
+  ],
+  "image_cdl": [
+    "Equal(LengthOfLine(PS),x)",
+    "Equal(LengthOfLine(QP),2*x)",
+    "Equal(LengthOfLine(RQ),3*y+8)",
+    "Equal(LengthOfLine(RS),2*y)",
+    "PerpendicularBetweenLine(QS,RS)"
+  ],
+  "goal_cdl": "Value(y)",
+  "problem_answer": "8",
+  "theorem_seqs": [
+    "mirror_congruent_triangle_property_line_equal(1,QPS,QSR)",
+    "mirror_congruent_triangle_property_line_equal(1,SQP,SRQ)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "mirror_congruent_triangle_property_line_equal(1,QPS,QSR)",
+      "mirror_congruent_triangle_property_line_equal(1,SQP,SRQ)"
+    ]
+  }
+}

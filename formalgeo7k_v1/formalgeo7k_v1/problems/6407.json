@@ -1,0 +1,43 @@
+{
+  "problem_id": 6407,
+  "annotation": "YimingHe_2023-06-04",
+  "source": "GeoQA-9268",
+  "problem_level": 4,
+  "problem_text_cn": "如图所示，∠OAE=60°，AD和BC是▱ABCD的一组对边，AF⊥DF，BE垂直于AE。求∠ABE的大小。",
+  "problem_text_en": "As shown in the diagram, ∠OAE=60°, quadrilateral ABCD is a parallelogram, AF is perpendicular to DF, BE is perpendicular to AE. Find the measure of ∠ABE.",
+  "problem_img": "6407.png",
+  "construction_cdl": [
+    "Shape(BE,EA,AB)",
+    "Shape(AE,EO,OA)",
+    "Shape(OF,FC,CO)",
+    "Shape(AO,OC,CD,DA)",
+    "Collinear(BEOC)",
+    "Collinear(AOF)",
+    "Collinear(FCD)"
+  ],
+  "text_cdl": [
+    "Equal(MeasureOfAngle(OAE),60)",
+    "Parallelogram(ABCD)",
+    "PerpendicularBetweenLine(AF,DF)",
+    "PerpendicularBetweenLine(BE,AE)"
+  ],
+  "image_cdl": [],
+  "goal_cdl": "Value(MeasureOfAngle(ABE))",
+  "problem_answer": "60",
+  "theorem_seqs": [
+    "parallel_property_collinear_extend(2,DC,AB,F)",
+    "parallel_property_alternate_interior_angle(2,DF,AB)",
+    "angle_addition(1,OAE,EAB)",
+    "triangle_property_angle_sum(1,BEA)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "parallel_property_collinear_extend(2,DC,AB,F)",
+      "angle_addition(1,OAE,EAB)",
+      "triangle_property_angle_sum(1,BEA)"
+    ],
+    "parallel_property_collinear_extend(2,DC,AB,F)": [
+      "parallel_property_alternate_interior_angle(2,DF,AB)"
+    ]
+  }
+}

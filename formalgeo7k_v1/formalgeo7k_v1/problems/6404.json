@@ -1,0 +1,58 @@
+{
+  "problem_id": 6404,
+  "annotation": "YimingHe_2023-06-04",
+  "source": "GeoQA-9265",
+  "problem_level": 10,
+  "problem_text_cn": "如图所示，BD=10，ABCD的周长为28，E平分线段CD，AD和BC是平行四边形ABCD的一组对边。求△DOE的周长。",
+  "problem_text_en": "As shown in the diagram, BD=10, the perimeter of quadrilateral ABCD is 28, E is the midpoint of segment CD, BA and CD are opposite sides of the ▱ ABCD. Find the perimeter of △DOE.",
+  "problem_img": "6404.png",
+  "construction_cdl": [
+    "Shape(BO,OA,AB)",
+    "Shape(BC,CO,OB)",
+    "Shape(OC,CE,EO)",
+    "Shape(OE,ED,DO)",
+    "Shape(AO,OD,DA)",
+    "Collinear(AOC)",
+    "Collinear(BOD)",
+    "Collinear(CED)"
+  ],
+  "text_cdl": [
+    "Equal(LengthOfLine(BD),10)",
+    "Equal(PerimeterOfQuadrilateral(ABCD),28)",
+    "IsMidpointOfLine(E,CD)",
+    "Parallelogram(ABCD)"
+  ],
+  "image_cdl": [],
+  "goal_cdl": "Value(PerimeterOfTriangle(DOE))",
+  "problem_answer": "12",
+  "theorem_seqs": [
+    "line_addition(1,BO,OD)",
+    "line_addition(1,CE,ED)",
+    "parallelogram_property_opposite_line_equal(1,ABCD)",
+    "parallelogram_property_opposite_line_equal(1,BCDA)",
+    "parallelogram_property_diagonal_bisection(1,ABCD,O)",
+    "parallelogram_property_diagonal_bisection(1,BCDA,O)",
+    "midsegment_of_triangle_judgment_midpoint(1,EO,CDA)",
+    "midsegment_of_triangle_property_length(1,EO,CDA)",
+    "triangle_perimeter_formula(1,OED)",
+    "quadrilateral_perimeter_formula(1,ABCD)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "line_addition(1,BO,OD)",
+      "line_addition(1,CE,ED)",
+      "parallelogram_property_opposite_line_equal(1,ABCD)",
+      "parallelogram_property_opposite_line_equal(1,BCDA)",
+      "parallelogram_property_diagonal_bisection(1,ABCD,O)",
+      "parallelogram_property_diagonal_bisection(1,BCDA,O)",
+      "triangle_perimeter_formula(1,OED)",
+      "quadrilateral_perimeter_formula(1,ABCD)"
+    ],
+    "parallelogram_property_diagonal_bisection(1,ABCD,O)": [
+      "midsegment_of_triangle_judgment_midpoint(1,EO,CDA)"
+    ],
+    "midsegment_of_triangle_judgment_midpoint(1,EO,CDA)": [
+      "midsegment_of_triangle_property_length(1,EO,CDA)"
+    ]
+  }
+}

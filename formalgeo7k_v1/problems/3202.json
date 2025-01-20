@@ -1,0 +1,43 @@
+{
+  "problem_id": 3202,
+  "annotation": "NaZhu_2023-04-23",
+  "source": "GeoQA-493",
+  "problem_level": 4,
+  "problem_text_cn": "如图所示，∠OAD=25°，O是⊙O的圆心，AB是圆O的直径。求∠ECA的大小。",
+  "problem_text_en": "As shown in the diagram, ∠OAD=25°, the center of ⊙O is O, the diameter of circle O is AB. Find the measure of ∠ECA.",
+  "problem_img": "3202.png",
+  "construction_cdl": [
+    "Shape(OCA,AC)",
+    "Shape(OAD,DA)",
+    "Shape(ODB,BD)",
+    "Shape(OBC,CE,EB)",
+    "Shape(CA,AO,OE,EC)",
+    "Shape(AD,DE,EO,OA)",
+    "Shape(BE,ED,DB)",
+    "Collinear(AOEB)",
+    "Collinear(CED)",
+    "Cocircular(O,ADBC)"
+  ],
+  "text_cdl": [
+    "Equal(MeasureOfAngle(OAD),25)",
+    "IsCentreOfCircle(O,O)",
+    "IsDiameterOfCircle(AB,O)"
+  ],
+  "image_cdl": [],
+  "goal_cdl": "Value(MeasureOfAngle(ECA))",
+  "problem_answer": "65",
+  "theorem_seqs": [
+    "triangle_property_angle_sum(1,ADB)",
+    "diameter_of_circle_property_right_angle(1,ADB,O)",
+    "arc_property_circumference_angle_external(1,OAD,B)",
+    "arc_property_circumference_angle_external(1,OAD,C)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "triangle_property_angle_sum(1,ADB)",
+      "diameter_of_circle_property_right_angle(1,ADB,O)",
+      "arc_property_circumference_angle_external(1,OAD,B)",
+      "arc_property_circumference_angle_external(1,OAD,C)"
+    ]
+  }
+}

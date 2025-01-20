@@ -1,0 +1,65 @@
+{
+  "problem_id": 761,
+  "annotation": "JiaZou_2023-04-09",
+  "source": "Geometry3k-786",
+  "problem_level": 10,
+  "problem_text_cn": "如图所示，AB=10，弧OBA的角度为60，⊙O的半径为10，O是圆O的圆心，BX垂直于OX。求直线OX的长度。",
+  "problem_text_en": "As shown in the diagram, AB=10, the measure of arc OBA is 60, the radius of ⊙O is 10, the center of ⊙O is O, BX is perpendicular to OX. Find the length of line OX.",
+  "problem_img": "761.png",
+  "construction_cdl": [
+    "Shape(AX,XY,OYA)",
+    "Shape(YX,XB,OBY)",
+    "Shape(OA,OAB,BO)",
+    "Shape(OX,XA,AO)",
+    "Shape(XO,OB,BX)",
+    "Collinear(YXO)",
+    "Collinear(AXB)",
+    "Cocircular(O,BYA)"
+  ],
+  "text_cdl": [
+    "Equal(LengthOfLine(AB),10)",
+    "Equal(MeasureOfArc(OBA),60)",
+    "Equal(RadiusOfCircle(O),10)",
+    "IsCentreOfCircle(O,O)",
+    "PerpendicularBetweenLine(BX,OX)"
+  ],
+  "image_cdl": [
+    "IsCentreOfCircle(O,O)",
+    "PerpendicularBetweenLine(BX,OX)"
+  ],
+  "goal_cdl": "Value(LengthOfLine(OX))",
+  "problem_answer": "5*sqrt(3)",
+  "theorem_seqs": [
+    "radius_of_circle_property_length_equal(1,OA,O)",
+    "radius_of_circle_property_length_equal(1,OB,O)",
+    "isosceles_triangle_judgment_line_equal(1,OBA)",
+    "isosceles_triangle_property_angle_equal(1,OBA)",
+    "arc_property_center_angle(1,OBA,O)",
+    "triangle_property_angle_sum(1,OBA)",
+    "circle_property_chord_perpendicular_bisect_chord(1,O,OX,BA)",
+    "line_addition(1,AX,XB)",
+    "triangle_property_angle_sum(1,BXO)",
+    "sine_theorem(1,XOB)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "radius_of_circle_property_length_equal(1,OA,O)",
+      "radius_of_circle_property_length_equal(1,OB,O)",
+      "arc_property_center_angle(1,OBA,O)",
+      "triangle_property_angle_sum(1,OBA)",
+      "circle_property_chord_perpendicular_bisect_chord(1,O,OX,BA)",
+      "line_addition(1,AX,XB)",
+      "triangle_property_angle_sum(1,BXO)",
+      "sine_theorem(1,XOB)"
+    ],
+    "radius_of_circle_property_length_equal(1,OA,O)": [
+      "isosceles_triangle_judgment_line_equal(1,OBA)"
+    ],
+    "radius_of_circle_property_length_equal(1,OB,O)": [
+      "isosceles_triangle_judgment_line_equal(1,OBA)"
+    ],
+    "isosceles_triangle_judgment_line_equal(1,OBA)": [
+      "isosceles_triangle_property_angle_equal(1,OBA)"
+    ]
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "problem_id": 4098,
+  "annotation": "YanjunGuo_2023-05-07",
+  "source": "GeoQA-2504",
+  "problem_level": 2,
+  "problem_text_cn": "如图所示，OA=2，三角形OBA和三角形OEF的相似比为1/2，三角形OBA与三角形OEF是相似三角形。求直线AF的长度。",
+  "problem_text_en": "As shown in the diagram, OA=2, the ratio of similar △OBA and △OEF is 1/2, triangle OBA is similar to triangle OEF.. Find the length of line AF.",
+  "problem_img": "4098.png",
+  "construction_cdl": [
+    "Shape(AO,OB,BA)",
+    "Shape(OE,EF,FO)",
+    "Collinear(AOF)",
+    "Collinear(BOE)"
+  ],
+  "text_cdl": [
+    "Equal(LengthOfLine(OA),2)",
+    "Equal(RatioOfSimilarTriangle(OBA,OEF),1/2)",
+    "SimilarBetweenTriangle(OBA,OEF)"
+  ],
+  "image_cdl": [],
+  "goal_cdl": "Value(LengthOfLine(AF))",
+  "problem_answer": "6",
+  "theorem_seqs": [
+    "similar_triangle_property_line_ratio(1,BAO,EFO)",
+    "line_addition(1,AO,OF)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "similar_triangle_property_line_ratio(1,BAO,EFO)",
+      "line_addition(1,AO,OF)"
+    ]
+  }
+}

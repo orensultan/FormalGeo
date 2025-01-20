@@ -1,0 +1,37 @@
+{
+  "problem_id": 5414,
+  "annotation": "XiaoxiaoJin_2023-05-21",
+  "source": "GeoQA-5718",
+  "problem_level": 2,
+  "problem_text_cn": "如图所示，四边形ABCD的面积为24，ABCD的面积为Add(AreaOfTriangle(APD),AreaOfTriangle(PBC),AreaOfTriangle(PAB))，四边形DABC的高与直线PE的长度相等，PE是△PAB的高，AD和BC是▱ABCD的一组对边。求△APD的面积与△PBC的面积之和。",
+  "problem_text_en": "As shown in the diagram, the area of ABCD is 24, the area of quadrilateral ABCD is Add(AreaOfTriangle(APD),AreaOfTriangle(PBC),AreaOfTriangle(PAB)), the height of quadrilateral DABC is equal to the length of line PE, PE is the altitude of triangle PAB, AD and BC are opposite sides of the parallelogram ABCD. Find the sum of the area of triangle APD and the area of △PBC.",
+  "problem_img": "5414.png",
+  "construction_cdl": [
+    "Shape(DA,AP,PD)",
+    "Shape(PB,BC,CP)",
+    "Shape(PA,AE,EP)",
+    "Shape(PE,EB,BP)",
+    "Collinear(DPC)",
+    "Collinear(AEB)"
+  ],
+  "text_cdl": [
+    "Equal(AreaOfQuadrilateral(ABCD),24)",
+    "Equal(AreaOfQuadrilateral(ABCD),Add(AreaOfTriangle(APD),AreaOfTriangle(PBC),AreaOfTriangle(PAB)))",
+    "Equal(HeightOfQuadrilateral(DABC),LengthOfLine(PE))",
+    "IsAltitudeOfTriangle(PE,PAB)",
+    "Parallelogram(ABCD)"
+  ],
+  "image_cdl": [],
+  "goal_cdl": "Value(Add(AreaOfTriangle(APD),AreaOfTriangle(PBC)))",
+  "problem_answer": "12",
+  "theorem_seqs": [
+    "parallelogram_area_formula_common(1,DABC)",
+    "triangle_area_formula_common(1,PAB)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "parallelogram_area_formula_common(1,DABC)",
+      "triangle_area_formula_common(1,PAB)"
+    ]
+  }
+}

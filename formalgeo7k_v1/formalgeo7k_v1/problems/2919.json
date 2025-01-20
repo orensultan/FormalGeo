@@ -1,0 +1,36 @@
+{
+  "problem_id": 2919,
+  "annotation": "JiaZou_2023-04-16",
+  "source": "GeoQA-97",
+  "problem_level": 3,
+  "problem_text_cn": "如图所示，∠ABC=150°，∠BAM=120°，BE∥CN，MA平行于BE。求∠BCN的大小。",
+  "problem_text_en": "As shown in the diagram, ∠ABC=150°, ∠BAM=120°, BE is parallel to CN, MA∥BE. Find the measure of ∠BCN.",
+  "problem_img": "2919.png",
+  "construction_cdl": [
+    "Shape(BA,AM)",
+    "Shape(AB,BE)",
+    "Shape(EB,BC)",
+    "Shape(BC,CN)"
+  ],
+  "text_cdl": [
+    "Equal(MeasureOfAngle(ABC),150)",
+    "Equal(MeasureOfAngle(BAM),120)",
+    "ParallelBetweenLine(BE,CN)",
+    "ParallelBetweenLine(MA,BE)"
+  ],
+  "image_cdl": [],
+  "goal_cdl": "Value(MeasureOfAngle(BCN))",
+  "problem_answer": "150",
+  "theorem_seqs": [
+    "parallel_property_alternate_interior_angle(2,MA,BE)",
+    "angle_addition(1,ABE,EBC)",
+    "parallel_property_ipsilateral_internal_angle(1,BE,CN)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "parallel_property_alternate_interior_angle(2,MA,BE)",
+      "angle_addition(1,ABE,EBC)",
+      "parallel_property_ipsilateral_internal_angle(1,BE,CN)"
+    ]
+  }
+}

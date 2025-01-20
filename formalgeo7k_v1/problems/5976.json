@@ -1,0 +1,49 @@
+{
+  "problem_id": 5976,
+  "annotation": "XiaoxiaoJin_2023-05-28",
+  "source": "GeoQA-8420",
+  "problem_level": 7,
+  "problem_text_cn": "如图所示，AB=8，OA=5，∠AHO=90°，⊙O的圆心为O。求直线HC的长度。",
+  "problem_text_en": "As shown in the diagram, AB=8, OA=5, ∠AHO=90°, O is the center of ⊙O. Find the length of line HC.",
+  "problem_img": "5976.png",
+  "construction_cdl": [
+    "Shape(OA,AH,HO)",
+    "Shape(OH,HB,BO)",
+    "Shape(CH,HA,OAC)",
+    "Shape(BH,HC,OCB)",
+    "Collinear(AHB)",
+    "Collinear(OHC)",
+    "Cocircular(O,ACB)"
+  ],
+  "text_cdl": [
+    "Equal(LengthOfLine(AB),8)",
+    "Equal(LengthOfLine(OA),5)",
+    "Equal(MeasureOfAngle(AHO),90)",
+    "IsCentreOfCircle(O,O)"
+  ],
+  "image_cdl": [],
+  "goal_cdl": "Value(LengthOfLine(HC))",
+  "problem_answer": "2",
+  "theorem_seqs": [
+    "radius_of_circle_property_length_equal(1,OA,O)",
+    "radius_of_circle_property_length_equal(1,OC,O)",
+    "circle_property_chord_perpendicular_bisect_chord(1,O,OH,AB)",
+    "right_triangle_judgment_angle(1,AHO)",
+    "right_triangle_property_pythagorean(1,AHO)",
+    "line_addition(1,AH,HB)",
+    "line_addition(1,OH,HC)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "radius_of_circle_property_length_equal(1,OA,O)",
+      "radius_of_circle_property_length_equal(1,OC,O)",
+      "circle_property_chord_perpendicular_bisect_chord(1,O,OH,AB)",
+      "right_triangle_judgment_angle(1,AHO)",
+      "line_addition(1,AH,HB)",
+      "line_addition(1,OH,HC)"
+    ],
+    "right_triangle_judgment_angle(1,AHO)": [
+      "right_triangle_property_pythagorean(1,AHO)"
+    ]
+  }
+}

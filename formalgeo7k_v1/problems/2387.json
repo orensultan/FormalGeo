@@ -1,0 +1,34 @@
+{
+  "problem_id": 2387,
+  "annotation": "RunanWang_2023-04-23",
+  "source": "Geometry3k-2502",
+  "problem_level": 2,
+  "problem_text_cn": "如图所示，∠DAB=123°，DC垂直于BC。求∠CBA的大小。",
+  "problem_text_en": "As shown in the diagram, ∠DAB=123°, DC is perpendicular to BC. Find the measure of ∠CBA.",
+  "problem_img": "2387.png",
+  "construction_cdl": [
+    "Shape(AC,CB,BA)",
+    "Shape(DA,AB)",
+    "Collinear(DAC)"
+  ],
+  "text_cdl": [
+    "Equal(MeasureOfAngle(DAB),123)",
+    "PerpendicularBetweenLine(DC,BC)"
+  ],
+  "image_cdl": [
+    "Equal(MeasureOfAngle(DAB),123)",
+    "PerpendicularBetweenLine(DC,BC)"
+  ],
+  "goal_cdl": "Value(MeasureOfAngle(CBA))",
+  "problem_answer": "33",
+  "theorem_seqs": [
+    "adjacent_complementary_angle(1,DAB,BAC)",
+    "triangle_property_angle_sum(1,ACB)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "adjacent_complementary_angle(1,DAB,BAC)",
+      "triangle_property_angle_sum(1,ACB)"
+    ]
+  }
+}

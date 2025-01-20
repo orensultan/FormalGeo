@@ -1,0 +1,33 @@
+{
+  "problem_id": 5470,
+  "annotation": "ChenyangMao_2023-05-21",
+  "source": "GeoQA-5886",
+  "problem_level": 2,
+  "problem_text_cn": "如图所示，BD=500，∠BDE=60°，∠DBA=150°，DE垂直于BE。求直线DE的长度。",
+  "problem_text_en": "As shown in the diagram, BD=500, ∠BDE=60°, ∠DBA=150°, DE is perpendicular to BE. Find the length of line DE.",
+  "problem_img": "5470.png",
+  "construction_cdl": [
+    "Shape(EC,CB,BD,DE)",
+    "Shape(DB,BA)",
+    "Collinear(ABCE)"
+  ],
+  "text_cdl": [
+    "Equal(LengthOfLine(BD),500)",
+    "Equal(MeasureOfAngle(BDE),60)",
+    "Equal(MeasureOfAngle(DBA),150)",
+    "PerpendicularBetweenLine(DE,BE)"
+  ],
+  "image_cdl": [],
+  "goal_cdl": "Value(LengthOfLine(DE))",
+  "problem_answer": "250",
+  "theorem_seqs": [
+    "triangle_property_angle_sum(1,EBD)",
+    "sine_theorem(1,DEB)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "triangle_property_angle_sum(1,EBD)",
+      "sine_theorem(1,DEB)"
+    ]
+  }
+}

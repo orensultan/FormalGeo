@@ -1,0 +1,43 @@
+{
+  "problem_id": 6170,
+  "annotation": "DengfengYue_2023-05-28",
+  "source": "GeoQA-8738",
+  "problem_level": 4,
+  "problem_text_cn": "如图所示，∠CBA=25°，O是⊙O的圆心，⊙O的直径为AB。求∠BDO的大小。",
+  "problem_text_en": "As shown in the diagram, ∠CBA=25°, O is the center of circle O, AB is the diameter of ⊙O. Find the measure of ∠BDO.",
+  "problem_img": "6170.png",
+  "construction_cdl": [
+    "Shape(AO,OD,ODA)",
+    "Shape(DO,OB,BD)",
+    "Shape(DB,OBD)",
+    "Shape(BO,OC,CB)",
+    "Shape(CO,OA,AC)",
+    "Shape(CA,OAC)",
+    "Shape(BC,OCB)",
+    "Collinear(COD)",
+    "Collinear(AOB)",
+    "Cocircular(O,ACBD)"
+  ],
+  "text_cdl": [
+    "Equal(MeasureOfAngle(CBA),25)",
+    "IsCentreOfCircle(O,O)",
+    "IsDiameterOfCircle(AB,O)"
+  ],
+  "image_cdl": [],
+  "goal_cdl": "Value(MeasureOfAngle(BDO))",
+  "problem_answer": "65",
+  "theorem_seqs": [
+    "diameter_of_circle_property_right_angle(1,ACB,O)",
+    "triangle_property_angle_sum(1,CBA)",
+    "arc_property_circumference_angle_external(1,OCB,A)",
+    "arc_property_circumference_angle_external(1,OCB,D)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "diameter_of_circle_property_right_angle(1,ACB,O)",
+      "triangle_property_angle_sum(1,CBA)",
+      "arc_property_circumference_angle_external(1,OCB,A)",
+      "arc_property_circumference_angle_external(1,OCB,D)"
+    ]
+  }
+}

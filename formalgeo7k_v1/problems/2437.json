@@ -1,0 +1,60 @@
+{
+  "problem_id": 2437,
+  "annotation": "YangLi_2023-04-23",
+  "source": "Geometry3k-2556",
+  "problem_level": 6,
+  "problem_text_cn": "如图所示，AE=8，AF=x，BE=8，CF=6，⊙C的圆心为C，⊙O的切线为AE。求x的值。",
+  "problem_text_en": "As shown in the diagram, AE=8, AF=x, BE=8, CF=6, C is the center of ⊙C, AE is the tangent to circle C. Find the value of x.",
+  "problem_img": "2437.png",
+  "construction_cdl": [
+    "Shape(DC,CE,CED)",
+    "Shape(EC,CF,CFE)",
+    "Shape(FC,CD,CDF)",
+    "Shape(FA,AE,CFE)",
+    "Shape(EB,BD,CED)",
+    "Collinear(AEB)",
+    "Collinear(CFA)",
+    "Collinear(CDB)",
+    "Cocircular(C,FED)"
+  ],
+  "text_cdl": [
+    "Equal(LengthOfLine(AE),8)",
+    "Equal(LengthOfLine(AF),x)",
+    "Equal(LengthOfLine(BE),8)",
+    "Equal(LengthOfLine(CF),6)",
+    "IsCentreOfCircle(C,C)",
+    "IsTangentOfCircle(AE,C)"
+  ],
+  "image_cdl": [
+    "Equal(LengthOfLine(AE),8)",
+    "Equal(LengthOfLine(AF),x)",
+    "Equal(LengthOfLine(BE),8)",
+    "Equal(LengthOfLine(CF),6)",
+    "IsCentreOfCircle(C,C)",
+    "IsTangentOfCircle(AE,C)"
+  ],
+  "goal_cdl": "Value(x)",
+  "problem_answer": "4",
+  "theorem_seqs": [
+    "radius_of_circle_property_length_equal(1,CF,C)",
+    "radius_of_circle_property_length_equal(1,CE,C)",
+    "line_addition(1,CF,FA)",
+    "tangent_of_circle_property_perpendicular(2,AE,C,C)",
+    "right_triangle_judgment_angle(1,AEC)",
+    "right_triangle_property_pythagorean(1,AEC)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "radius_of_circle_property_length_equal(1,CF,C)",
+      "radius_of_circle_property_length_equal(1,CE,C)",
+      "line_addition(1,CF,FA)",
+      "tangent_of_circle_property_perpendicular(2,AE,C,C)"
+    ],
+    "tangent_of_circle_property_perpendicular(2,AE,C,C)": [
+      "right_triangle_judgment_angle(1,AEC)"
+    ],
+    "right_triangle_judgment_angle(1,AEC)": [
+      "right_triangle_property_pythagorean(1,AEC)"
+    ]
+  }
+}

@@ -1,0 +1,47 @@
+{
+  "problem_id": 4137,
+  "annotation": "XiaoxiaoJin_2023-05-07",
+  "source": "GeoQA-2705",
+  "problem_level": 7,
+  "problem_text_cn": "如图所示，AC=12，BC=5，∠BCA=90°，∠CDB=90°。求sin(BC)的值。",
+  "problem_text_en": "As shown in the diagram, AC=12, BC=5, ∠BCA=90°, ∠CDB=90°. Find the value of sin(BC).",
+  "problem_img": "4137.png",
+  "construction_cdl": [
+    "Shape(AD,DC,CA)",
+    "Shape(CD,DB,BC)",
+    "Collinear(ADB)"
+  ],
+  "text_cdl": [
+    "Equal(LengthOfLine(AC),12)",
+    "Equal(LengthOfLine(BC),5)",
+    "Equal(MeasureOfAngle(BCA),90)",
+    "Equal(MeasureOfAngle(CDB),90)"
+  ],
+  "image_cdl": [],
+  "goal_cdl": "Value(Sin(MeasureOfAngle(BCD)))",
+  "problem_answer": "5/13",
+  "theorem_seqs": [
+    "right_triangle_judgment_angle(1,CDB)",
+    "right_triangle_judgment_angle(1,BCA)",
+    "right_triangle_property_pythagorean(1,CDB)",
+    "right_triangle_property_pythagorean(1,BCA)",
+    "cosine_theorem(1,CDB)",
+    "cosine_theorem(1,BCA)",
+    "sine_theorem(1,CDB)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "right_triangle_judgment_angle(1,CDB)",
+      "right_triangle_judgment_angle(1,BCA)",
+      "cosine_theorem(1,CDB)",
+      "cosine_theorem(1,BCA)",
+      "sine_theorem(1,CDB)"
+    ],
+    "right_triangle_judgment_angle(1,CDB)": [
+      "right_triangle_property_pythagorean(1,CDB)"
+    ],
+    "right_triangle_judgment_angle(1,BCA)": [
+      "right_triangle_property_pythagorean(1,BCA)"
+    ]
+  }
+}

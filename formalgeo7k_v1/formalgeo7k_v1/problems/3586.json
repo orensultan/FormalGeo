@@ -1,0 +1,52 @@
+{
+  "problem_id": 3586,
+  "annotation": "QikeHuang_2023-04-30",
+  "source": "GeoQA-1230",
+  "problem_level": 8,
+  "problem_text_cn": "如图所示，⌒ODA的长度与⌒OCD的长度相等，∠CAO=26°，圆O的圆心为O。求∠ACD的大小。",
+  "problem_text_en": "As shown in the diagram, the length of arc ODA is equal to the length of arc OCD, ∠CAO=26°, O is the center of ⊙O. Find the measure of ∠ACD.",
+  "problem_img": "3586.png",
+  "construction_cdl": [
+    "Shape(AO,OB,OBC,CA)",
+    "Shape(ODA,AD)",
+    "Shape(DA,AC,CD)",
+    "Shape(OCD,DC)",
+    "Shape(BO,OA,OAB)",
+    "Collinear(AOB)",
+    "Cocircular(O,BCDA)"
+  ],
+  "text_cdl": [
+    "Equal(LengthOfArc(ODA),LengthOfArc(OCD))",
+    "Equal(MeasureOfAngle(CAO),26)",
+    "IsCentreOfCircle(O,O)"
+  ],
+  "image_cdl": [
+    "IsCentreOfCircle(O,O)"
+  ],
+  "goal_cdl": "Value(MeasureOfAngle(ACD))",
+  "problem_answer": "32",
+  "theorem_seqs": [
+    "arc_addition_measure(1,OCD,ODA)",
+    "arc_addition_measure(1,OBC,OCA)",
+    "flat_angle(1,AOB)",
+    "arc_property_center_angle(1,OBA,O)",
+    "congruent_arc_judgment_length_equal(1,OCD,ODA)",
+    "congruent_arc_property_measure_equal(1,OCD,ODA)",
+    "arc_property_circumference_angle_external(1,OBC,A)",
+    "arc_property_circumference_angle_external(1,ODA,C)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "arc_addition_measure(1,OCD,ODA)",
+      "arc_addition_measure(1,OBC,OCA)",
+      "flat_angle(1,AOB)",
+      "arc_property_center_angle(1,OBA,O)",
+      "congruent_arc_judgment_length_equal(1,OCD,ODA)",
+      "arc_property_circumference_angle_external(1,OBC,A)",
+      "arc_property_circumference_angle_external(1,ODA,C)"
+    ],
+    "congruent_arc_judgment_length_equal(1,OCD,ODA)": [
+      "congruent_arc_property_measure_equal(1,OCD,ODA)"
+    ]
+  }
+}

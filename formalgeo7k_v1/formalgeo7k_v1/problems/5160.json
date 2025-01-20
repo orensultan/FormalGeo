@@ -1,0 +1,53 @@
+{
+  "problem_id": 5160,
+  "annotation": "JiaZou_2023-05-21",
+  "source": "GeoQA-5102",
+  "problem_level": 7,
+  "problem_text_cn": "如图所示，OP=6，∠OPA=30°，∠PCO=90°，圆O的半径为4，O是圆O的圆心。求直线AB的长度。",
+  "problem_text_en": "As shown in the diagram, OP=6, ∠OPA=30°, ∠PCO=90°, the radius of circle O is 4, O is the center of ⊙O. Find the length of line AB.",
+  "problem_img": "5160.png",
+  "construction_cdl": [
+    "Shape(AO,OC,CA)",
+    "Shape(BC,CO,OD,ODB)",
+    "Shape(AC,CB,OBA)",
+    "Shape(DO,OA,OAD)",
+    "Shape(DP,PB,ODB)",
+    "Collinear(ACBP)",
+    "Collinear(ODP)",
+    "Cocircular(O,ADB)"
+  ],
+  "text_cdl": [
+    "Equal(LengthOfLine(OP),6)",
+    "Equal(MeasureOfAngle(OPA),30)",
+    "Equal(MeasureOfAngle(PCO),90)",
+    "Equal(RadiusOfCircle(O),4)",
+    "IsCentreOfCircle(O,O)"
+  ],
+  "image_cdl": [],
+  "goal_cdl": "Value(LengthOfLine(AB))",
+  "problem_answer": "2*sqrt(7)",
+  "theorem_seqs": [
+    "sine_theorem(1,OPC)",
+    "adjacent_complementary_angle(1,PCO,OCA)",
+    "right_triangle_judgment_angle(1,OCA)",
+    "radius_of_circle_property_length_equal(1,OA,O)",
+    "right_triangle_property_pythagorean(1,OCA)",
+    "circle_property_chord_perpendicular_bisect_chord(1,O,OC,BA)",
+    "line_addition(1,AC,CB)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "sine_theorem(1,OPC)",
+      "adjacent_complementary_angle(1,PCO,OCA)",
+      "radius_of_circle_property_length_equal(1,OA,O)",
+      "circle_property_chord_perpendicular_bisect_chord(1,O,OC,BA)",
+      "line_addition(1,AC,CB)"
+    ],
+    "adjacent_complementary_angle(1,PCO,OCA)": [
+      "right_triangle_judgment_angle(1,OCA)"
+    ],
+    "right_triangle_judgment_angle(1,OCA)": [
+      "right_triangle_property_pythagorean(1,OCA)"
+    ]
+  }
+}

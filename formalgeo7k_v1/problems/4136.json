@@ -1,0 +1,43 @@
+{
+  "problem_id": 4136,
+  "annotation": "XiaoxiaoJin_2023-05-07",
+  "source": "GeoQA-2701",
+  "problem_level": 4,
+  "problem_text_cn": "如图所示，∠ADC=70°，圆O的圆心为O，圆O的直径为AB。求∠CAB的大小。",
+  "problem_text_en": "As shown in the diagram, ∠ADC=70°, O is the center of ⊙O, AB is the diameter of ⊙O. Find the measure of ∠CAB.",
+  "problem_img": "4136.png",
+  "construction_cdl": [
+    "Shape(AC,OCA)",
+    "Shape(DA,OAD)",
+    "Shape(CB,OBC)",
+    "Shape(BE,ED,ODB)",
+    "Shape(AD,DE,EO,OA)",
+    "Shape(AO,OE,EC,CA)",
+    "Shape(CE,EB,BC)",
+    "Collinear(AOEB)",
+    "Collinear(DEC)",
+    "Cocircular(O,ADBC)"
+  ],
+  "text_cdl": [
+    "Equal(MeasureOfAngle(ADC),70)",
+    "IsCentreOfCircle(O,O)",
+    "IsDiameterOfCircle(AB,O)"
+  ],
+  "image_cdl": [],
+  "goal_cdl": "Value(MeasureOfAngle(CAB))",
+  "problem_answer": "20",
+  "theorem_seqs": [
+    "arc_property_circumference_angle_external(1,OCA,D)",
+    "arc_property_circumference_angle_external(1,OCA,B)",
+    "diameter_of_circle_property_right_angle(1,BCA,O)",
+    "triangle_property_angle_sum(1,ABC)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "arc_property_circumference_angle_external(1,OCA,D)",
+      "arc_property_circumference_angle_external(1,OCA,B)",
+      "diameter_of_circle_property_right_angle(1,BCA,O)",
+      "triangle_property_angle_sum(1,ABC)"
+    ]
+  }
+}

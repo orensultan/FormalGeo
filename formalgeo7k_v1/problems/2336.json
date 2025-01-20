@@ -1,0 +1,34 @@
+{
+  "problem_id": 2336,
+  "annotation": "ChenyangMao_2023-04-09",
+  "source": "Geometry3k-2450",
+  "problem_level": 1,
+  "problem_text_cn": "如图所示，AB=5*x+8，AC=7*x，BC=6*x+5，三角形CBA的周长为139。求直线BA的长度。",
+  "problem_text_en": "As shown in the diagram, AB=5*x+8, AC=7*x, BC=6*x+5, the perimeter of triangle CBA is 139. Find the length of line BA.",
+  "problem_img": "2336.png",
+  "construction_cdl": [
+    "Shape(CB,BA,AC)"
+  ],
+  "text_cdl": [
+    "Equal(LengthOfLine(AB),5*x+8)",
+    "Equal(LengthOfLine(AC),7*x)",
+    "Equal(LengthOfLine(BC),6*x+5)",
+    "Equal(PerimeterOfTriangle(CBA),139)"
+  ],
+  "image_cdl": [
+    "Equal(LengthOfLine(AB),5*x+8)",
+    "Equal(LengthOfLine(AC),7*x)",
+    "Equal(LengthOfLine(BC),6*x+5)",
+    "Equal(PerimeterOfTriangle(CBA),139)"
+  ],
+  "goal_cdl": "Value(LengthOfLine(BA))",
+  "problem_answer": "43",
+  "theorem_seqs": [
+    "triangle_perimeter_formula(1,CBA)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "triangle_perimeter_formula(1,CBA)"
+    ]
+  }
+}

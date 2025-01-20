@@ -1,0 +1,34 @@
+{
+  "problem_id": 4211,
+  "annotation": "YangLi_2023-05-07",
+  "source": "GeoQA-2953",
+  "problem_level": 3,
+  "problem_text_cn": "如图所示，BC=4，CA=3，∠BCA=90°。求tan(AB)的值。",
+  "problem_text_en": "As shown in the diagram, BC=4, CA=3, ∠BCA=90°. Find the value of tan(AB).",
+  "problem_img": "4211.png",
+  "construction_cdl": [
+    "Shape(AB,BC,CA)"
+  ],
+  "text_cdl": [
+    "Equal(LengthOfLine(BC),4)",
+    "Equal(LengthOfLine(CA),3)",
+    "Equal(MeasureOfAngle(BCA),90)"
+  ],
+  "image_cdl": [],
+  "goal_cdl": "Value(Tan(MeasureOfAngle(ABC)))",
+  "problem_answer": "3/4",
+  "theorem_seqs": [
+    "right_triangle_judgment_angle(1,BCA)",
+    "right_triangle_property_pythagorean(1,BCA)",
+    "cosine_theorem(1,BCA)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "right_triangle_judgment_angle(1,BCA)",
+      "cosine_theorem(1,BCA)"
+    ],
+    "right_triangle_judgment_angle(1,BCA)": [
+      "right_triangle_property_pythagorean(1,BCA)"
+    ]
+  }
+}

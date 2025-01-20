@@ -1,0 +1,38 @@
+{
+  "problem_id": 955,
+  "annotation": "XiaokaiZhang_2023-04-09",
+  "source": "Geometry3k-984",
+  "problem_level": 3,
+  "problem_text_cn": "如图所示，FG=12，∠FGH=133°，G是⊙G的圆心。求扇形GHF的面积。",
+  "problem_text_en": "As shown in the diagram, FG=12, ∠FGH=133°, the center of circle G is G. Find the area of the sector GHF.",
+  "problem_img": "955.png",
+  "construction_cdl": [
+    "Shape(GF,GFH,HG)",
+    "Shape(GH,GHF,FG)",
+    "Cocircular(G,HF)"
+  ],
+  "text_cdl": [
+    "Equal(LengthOfLine(FG),12)",
+    "Equal(MeasureOfAngle(FGH),133)",
+    "IsCentreOfCircle(G,G)"
+  ],
+  "image_cdl": [
+    "Equal(LengthOfLine(FG),12)",
+    "Equal(MeasureOfAngle(FGH),133)",
+    "IsCentreOfCircle(G,G)"
+  ],
+  "goal_cdl": "Value(AreaOfSector(GHF))",
+  "problem_answer": "266*pi/5",
+  "theorem_seqs": [
+    "arc_property_center_angle(1,GHF,G)",
+    "radius_of_circle_property_length_equal(1,GF,G)",
+    "sector_area_formula(1,GHF)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "arc_property_center_angle(1,GHF,G)",
+      "radius_of_circle_property_length_equal(1,GF,G)",
+      "sector_area_formula(1,GHF)"
+    ]
+  }
+}

@@ -1,0 +1,50 @@
+{
+  "problem_id": 127,
+  "annotation": "XiaokaiZhang_2023-04-02",
+  "source": "Geometry3k-129",
+  "problem_level": 2,
+  "problem_text_cn": "如图所示，∠ADK=96°，∠HGJ=42°，GA∥HD。求∠GHD的大小。",
+  "problem_text_en": "As shown in the diagram, ∠ADK=96°, ∠HGJ=42°, GA∥HD. Find the measure of ∠GHD.",
+  "problem_img": "127.png",
+  "construction_cdl": [
+    "Shape(KD,DL)",
+    "Shape(LD,DH)",
+    "Shape(DH,HI)",
+    "Shape(IH,HC)",
+    "Shape(CH,HG)",
+    "Shape(HG,GJ)",
+    "Shape(JG,GF)",
+    "Shape(FG,GA)",
+    "Shape(GA,AM)",
+    "Shape(MA,AF)",
+    "Shape(FA,AD)",
+    "Shape(AD,DK)",
+    "Shape(DA,AG,GH,HD)",
+    "Collinear(KDHC)",
+    "Collinear(EAGJ)",
+    "Collinear(LDAM)",
+    "Collinear(IHGF)"
+  ],
+  "text_cdl": [
+    "Equal(MeasureOfAngle(ADK),96)",
+    "Equal(MeasureOfAngle(HGJ),42)",
+    "ParallelBetweenLine(GA,HD)"
+  ],
+  "image_cdl": [
+    "ParallelBetweenLine(GA,HD)"
+  ],
+  "goal_cdl": "Value(MeasureOfAngle(GHD))",
+  "problem_answer": "42",
+  "theorem_seqs": [
+    "parallel_property_collinear_extend(1,GA,HD,J)",
+    "parallel_property_alternate_interior_angle(2,DH,GJ)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "parallel_property_collinear_extend(1,GA,HD,J)"
+    ],
+    "parallel_property_collinear_extend(1,GA,HD,J)": [
+      "parallel_property_alternate_interior_angle(2,DH,GJ)"
+    ]
+  }
+}

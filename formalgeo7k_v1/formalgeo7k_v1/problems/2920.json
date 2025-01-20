@@ -1,0 +1,39 @@
+{
+  "problem_id": 2920,
+  "annotation": "JiaZou_2023-04-16",
+  "source": "GeoQA-99",
+  "problem_level": 2,
+  "problem_text_cn": "如图所示，EF=23，E平分线段AB，F是线段BC的中点。求直线AC的长度。",
+  "problem_text_en": "As shown in the diagram, EF=23, E bisects segment AB, F is the midpoint of segment BC. Find the length of line AC.",
+  "problem_img": "2920.png",
+  "construction_cdl": [
+    "Shape(BF,FE,EB)",
+    "Shape(EF,FC,CA,AE)",
+    "Collinear(BEA)",
+    "Collinear(BFC)"
+  ],
+  "text_cdl": [
+    "Equal(LengthOfLine(EF),23)",
+    "IsMidpointOfLine(E,AB)",
+    "IsMidpointOfLine(F,BC)"
+  ],
+  "image_cdl": [
+    "Equal(LengthOfLine(EF),23)",
+    "IsMidpointOfLine(E,AB)",
+    "IsMidpointOfLine(F,BC)"
+  ],
+  "goal_cdl": "Value(LengthOfLine(AC))",
+  "problem_answer": "46",
+  "theorem_seqs": [
+    "midsegment_of_triangle_judgment_midpoint(1,FE,BCA)",
+    "midsegment_of_triangle_property_length(1,FE,BCA)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "midsegment_of_triangle_judgment_midpoint(1,FE,BCA)"
+    ],
+    "midsegment_of_triangle_judgment_midpoint(1,FE,BCA)": [
+      "midsegment_of_triangle_property_length(1,FE,BCA)"
+    ]
+  }
+}

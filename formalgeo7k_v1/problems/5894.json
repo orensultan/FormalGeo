@@ -1,0 +1,60 @@
+{
+  "problem_id": 5894,
+  "annotation": "YiwenHuang_2023-06-04",
+  "source": "GeoQA-7985",
+  "problem_level": 9,
+  "problem_text_cn": "如图所示，AB=6，BC=4，CE是∠BCD的角平分线，DABC是▱。求直线OB的长度与直线BD的长度之比。",
+  "problem_text_en": "As shown in the diagram, AB=6, BC=4, CE bisects ∠BCD, DC and AB are opposite sides of the parallelogram DABC. Find the ratio of the length of line OB to the length of line BD.",
+  "problem_img": "5894.png",
+  "construction_cdl": [
+    "Shape(DA,AE,EO,OD)",
+    "Shape(CD,DO,OC)",
+    "Shape(OE,EB,BO)",
+    "Shape(CO,OB,BC)",
+    "Collinear(DOB)",
+    "Collinear(EOC)",
+    "Collinear(AEB)"
+  ],
+  "text_cdl": [
+    "Equal(LengthOfLine(AB),6)",
+    "Equal(LengthOfLine(BC),4)",
+    "IsBisectorOfAngle(CE,BCD)",
+    "Parallelogram(DABC)"
+  ],
+  "image_cdl": [],
+  "goal_cdl": "Value(Div(LengthOfLine(OB),LengthOfLine(BD)))",
+  "problem_answer": "2/5",
+  "theorem_seqs": [
+    "line_addition(1,DO,OB)",
+    "parallelogram_property_opposite_line_equal(1,ABCD)",
+    "parallel_property_collinear_extend(3,BA,CD,E)",
+    "parallel_property_alternate_interior_angle(1,DC,AB)",
+    "parallel_property_alternate_interior_angle(2,BE,CD)",
+    "isosceles_triangle_judgment_angle_equal(1,BCE)",
+    "similar_triangle_judgment_aa(1,OCD,OEB)",
+    "similar_triangle_property_line_ratio(1,OCD,OEB)",
+    "similar_triangle_property_line_ratio(1,CDO,EBO)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "line_addition(1,DO,OB)",
+      "parallelogram_property_opposite_line_equal(1,ABCD)",
+      "parallel_property_collinear_extend(3,BA,CD,E)",
+      "parallel_property_alternate_interior_angle(1,DC,AB)"
+    ],
+    "parallel_property_collinear_extend(3,BA,CD,E)": [
+      "parallel_property_alternate_interior_angle(2,BE,CD)"
+    ],
+    "parallel_property_alternate_interior_angle(1,DC,AB)": [
+      "similar_triangle_judgment_aa(1,OCD,OEB)"
+    ],
+    "parallel_property_alternate_interior_angle(2,BE,CD)": [
+      "isosceles_triangle_judgment_angle_equal(1,BCE)",
+      "similar_triangle_judgment_aa(1,OCD,OEB)"
+    ],
+    "similar_triangle_judgment_aa(1,OCD,OEB)": [
+      "similar_triangle_property_line_ratio(1,OCD,OEB)",
+      "similar_triangle_property_line_ratio(1,CDO,EBO)"
+    ]
+  }
+}

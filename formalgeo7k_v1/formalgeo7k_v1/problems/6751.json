@@ -1,0 +1,45 @@
+{
+  "problem_id": 6751,
+  "annotation": "YangLi_2023-06-04",
+  "source": "GeoQA-9816",
+  "problem_level": 3,
+  "problem_text_cn": "如图所示，⌒OBA全等于⌒OAC，∠AOB=50°，O是圆O的圆心。求∠CDE的大小。",
+  "problem_text_en": "As shown in the diagram, ⌒OBA is congruent to ⌒OAC, ∠AOB=50°, the center of ⊙O is O. Find the measure of ∠CDE.",
+  "problem_img": "6751.png",
+  "construction_cdl": [
+    "Shape(CF,FA,OAC)",
+    "Shape(AF,FG,GA)",
+    "Shape(AG,GB,OBA)",
+    "Shape(FC,CE,EF)",
+    "Shape(GF,FE,EO,OG)",
+    "Shape(BG,GO,OB)",
+    "Shape(DC,OCD)",
+    "Shape(EC,CD,DE)",
+    "Shape(BO,OE,ED,ODB)",
+    "Collinear(AGO)",
+    "Collinear(AFED)",
+    "Collinear(CFGB)",
+    "Collinear(CEO)",
+    "Cocircular(O,DBAC)"
+  ],
+  "text_cdl": [
+    "CongruentBetweenArc(OBA,OAC)",
+    "Equal(MeasureOfAngle(AOB),50)",
+    "IsCentreOfCircle(O,O)"
+  ],
+  "image_cdl": [],
+  "goal_cdl": "Value(MeasureOfAngle(CDE))",
+  "problem_answer": "25",
+  "theorem_seqs": [
+    "congruent_arc_property_measure_equal(1,OBA,OAC)",
+    "arc_property_circumference_angle_external(1,OAC,D)",
+    "arc_property_center_angle(1,OBA,O)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "congruent_arc_property_measure_equal(1,OBA,OAC)",
+      "arc_property_circumference_angle_external(1,OAC,D)",
+      "arc_property_center_angle(1,OBA,O)"
+    ]
+  }
+}

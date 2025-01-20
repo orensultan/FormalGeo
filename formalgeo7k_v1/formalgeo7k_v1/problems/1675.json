@@ -1,0 +1,53 @@
+{
+  "problem_id": 1675,
+  "annotation": "YangLi_2023-04-16",
+  "source": "Geometry3k-1739",
+  "problem_level": 2,
+  "problem_text_cn": "如图所示，∠HUN=123°，AM平行于QE，QI∥UH。求∠EQI的大小。",
+  "problem_text_en": "As shown in the diagram, ∠HUN=123°, AM∥QE, QI is parallel to UH. Find the measure of ∠EQI.",
+  "problem_img": "1675.png",
+  "construction_cdl": [
+    "Shape(GK,FK)",
+    "Shape(FK,KA)",
+    "Shape(UK,KG)",
+    "Shape(AK,KU)",
+    "Shape(NU,UK)",
+    "Shape(KU,UQ)",
+    "Shape(HU,UN)",
+    "Shape(QU,UH)",
+    "Shape(KA,AJ)",
+    "Shape(JA,AM)",
+    "Shape(QA,AK)",
+    "Shape(MA,AQ)",
+    "Shape(UQ,QA)",
+    "Shape(AQ,QE)",
+    "Shape(IQ,QU)",
+    "Shape(EQ,QI)",
+    "Collinear(GKAM)",
+    "Collinear(NUQE)",
+    "Collinear(FKUH)",
+    "Collinear(JAQI)"
+  ],
+  "text_cdl": [
+    "Equal(MeasureOfAngle(HUN),123)",
+    "ParallelBetweenLine(AM,QE)",
+    "ParallelBetweenLine(QI,UH)"
+  ],
+  "image_cdl": [
+    "Equal(MeasureOfAngle(HUN),123)",
+    "ParallelBetweenLine(AM,QE)",
+    "ParallelBetweenLine(QI,UH)"
+  ],
+  "goal_cdl": "Value(MeasureOfAngle(EQI))",
+  "problem_answer": "57",
+  "theorem_seqs": [
+    "adjacent_complementary_angle(1,QUH,HUN)",
+    "parallel_property_corresponding_angle(1,QI,UH,E)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "adjacent_complementary_angle(1,QUH,HUN)",
+      "parallel_property_corresponding_angle(1,QI,UH,E)"
+    ]
+  }
+}

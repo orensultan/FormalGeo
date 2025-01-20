@@ -1,0 +1,43 @@
+{
+  "problem_id": 4713,
+  "annotation": "XiaoxiaoJin_2023-05-14",
+  "source": "GeoQA-4032",
+  "problem_level": 4,
+  "problem_text_cn": "如图所示，∠BCD=130°，O是圆O的圆心，圆O的直径为AB，圆O的切线为PD。求∠ADP的大小。",
+  "problem_text_en": "As shown in the diagram, ∠BCD=130°, the center of circle O is O, AB is the diameter of ⊙O, the tangent to circle O is PD. Find the measure of ∠ADP.",
+  "problem_img": "4713.png",
+  "construction_cdl": [
+    "Shape(DP,PA,ODA)",
+    "Shape(AD,ODA)",
+    "Shape(DA,AO,OB,BD)",
+    "Shape(DC,OCD)",
+    "Shape(CB,OBC)",
+    "Shape(BO,OA,OAB)",
+    "Shape(BC,CD,DB)",
+    "Collinear(PAOB)",
+    "Cocircular(O,ABCD)"
+  ],
+  "text_cdl": [
+    "Equal(MeasureOfAngle(BCD),130)",
+    "IsCentreOfCircle(O,O)",
+    "IsDiameterOfCircle(AB,O)",
+    "IsTangentOfCircle(PD,O)"
+  ],
+  "image_cdl": [],
+  "goal_cdl": "Value(MeasureOfAngle(ADP))",
+  "problem_answer": "40",
+  "theorem_seqs": [
+    "angle_addition(1,BDA,ADP)",
+    "diameter_of_circle_property_right_angle(1,BDA,O)",
+    "arc_property_circumference_angle_external(1,ODB,C)",
+    "circle_property_angle_of_osculation(1,ODB,P)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "angle_addition(1,BDA,ADP)",
+      "diameter_of_circle_property_right_angle(1,BDA,O)",
+      "arc_property_circumference_angle_external(1,ODB,C)",
+      "circle_property_angle_of_osculation(1,ODB,P)"
+    ]
+  }
+}

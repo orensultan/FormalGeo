@@ -1,0 +1,39 @@
+{
+  "problem_id": 3040,
+  "annotation": "XiaokaiZhang_2023-04-16",
+  "source": "GeoQA-253",
+  "problem_level": 4,
+  "problem_text_cn": "如图所示，∠BCE=34°，BC是∠EBA的角平分线，AB∥CD。求∠BED的大小。",
+  "problem_text_en": "As shown in the diagram, ∠BCE=34°, BC is the angle bisector of ∠EBA, AB is parallel to CD. Find the measure of ∠BED.",
+  "problem_img": "3040.png",
+  "construction_cdl": [
+    "Shape(CB,BA)",
+    "Shape(BC,CE,EB)",
+    "Shape(BE,ED)",
+    "Collinear(CED)"
+  ],
+  "text_cdl": [
+    "Equal(MeasureOfAngle(BCE),34)",
+    "IsBisectorOfAngle(BC,EBA)",
+    "ParallelBetweenLine(AB,CD)"
+  ],
+  "image_cdl": [],
+  "goal_cdl": "Value(MeasureOfAngle(BED))",
+  "problem_answer": "68",
+  "theorem_seqs": [
+    "parallel_property_collinear_extend(3,DC,BA,E)",
+    "parallel_property_alternate_interior_angle(2,AB,CE)",
+    "angle_addition(1,EBC,CBA)",
+    "parallel_property_alternate_interior_angle(2,AB,ED)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "parallel_property_collinear_extend(3,DC,BA,E)",
+      "angle_addition(1,EBC,CBA)"
+    ],
+    "parallel_property_collinear_extend(3,DC,BA,E)": [
+      "parallel_property_alternate_interior_angle(2,AB,ED)",
+      "parallel_property_alternate_interior_angle(2,AB,CE)"
+    ]
+  }
+}

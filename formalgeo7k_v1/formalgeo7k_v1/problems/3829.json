@@ -1,0 +1,63 @@
+{
+  "problem_id": 3829,
+  "annotation": "YifanWang_2023-05-07",
+  "source": "GeoQA-1697",
+  "problem_level": 8,
+  "problem_text_cn": "如图所示，∠COA=40°，圆O的圆心为O，⊙O的直径为CD，AE∥OD。求⌒ODE的角度。",
+  "problem_text_en": "As shown in the diagram, ∠COA=40°, O is the center of ⊙O, CD is the diameter of circle O, AE∥OD. Find the measure of arc ODE.",
+  "problem_img": "3829.png",
+  "construction_cdl": [
+    "Shape(CO,OA,OAC)",
+    "Shape(AE,OEA)",
+    "Shape(EA,AO,OE)",
+    "Shape(EO,OD,ODE)",
+    "Shape(DO,OC,OCD)",
+    "Collinear(COD)",
+    "Cocircular(O,ACDE)"
+  ],
+  "text_cdl": [
+    "Equal(MeasureOfAngle(COA),40)",
+    "IsCentreOfCircle(O,O)",
+    "IsDiameterOfCircle(CD,O)",
+    "ParallelBetweenLine(AE,OD)"
+  ],
+  "image_cdl": [
+    "Equal(MeasureOfAngle(COA),40)",
+    "IsCentreOfCircle(O,O)",
+    "IsDiameterOfCircle(CD,O)",
+    "ParallelBetweenLine(AE,OD)"
+  ],
+  "goal_cdl": "Value(MeasureOfArc(ODE))",
+  "problem_answer": "40",
+  "theorem_seqs": [
+    "parallel_property_collinear_extend(2,DO,EA,C)",
+    "parallel_property_alternate_interior_angle(1,OC,EA)",
+    "parallel_property_alternate_interior_angle(2,AE,OD)",
+    "radius_of_circle_property_length_equal(1,OA,O)",
+    "radius_of_circle_property_length_equal(1,OE,O)",
+    "isosceles_triangle_judgment_line_equal(1,OEA)",
+    "isosceles_triangle_property_angle_equal(1,OEA)",
+    "arc_property_center_angle(1,ODE,O)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "parallel_property_collinear_extend(2,DO,EA,C)",
+      "parallel_property_alternate_interior_angle(2,AE,OD)",
+      "radius_of_circle_property_length_equal(1,OA,O)",
+      "radius_of_circle_property_length_equal(1,OE,O)",
+      "arc_property_center_angle(1,ODE,O)"
+    ],
+    "parallel_property_collinear_extend(2,DO,EA,C)": [
+      "parallel_property_alternate_interior_angle(1,OC,EA)"
+    ],
+    "radius_of_circle_property_length_equal(1,OA,O)": [
+      "isosceles_triangle_judgment_line_equal(1,OEA)"
+    ],
+    "radius_of_circle_property_length_equal(1,OE,O)": [
+      "isosceles_triangle_judgment_line_equal(1,OEA)"
+    ],
+    "isosceles_triangle_judgment_line_equal(1,OEA)": [
+      "isosceles_triangle_property_angle_equal(1,OEA)"
+    ]
+  }
+}

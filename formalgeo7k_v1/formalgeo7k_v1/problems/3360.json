@@ -1,0 +1,35 @@
+{
+  "problem_id": 3360,
+  "annotation": "JiaZou_2023-04-30",
+  "source": "GeoQA-834",
+  "problem_level": 2,
+  "problem_text_cn": "如图所示，∠AOC=70°，∠FOD=40°。求∠BOF的大小。",
+  "problem_text_en": "As shown in the diagram, ∠AOC=70°, ∠FOD=40°. Find the measure of ∠BOF.",
+  "problem_img": "3360.png",
+  "construction_cdl": [
+    "Shape(AO,OC)",
+    "Shape(CO,OB)",
+    "Shape(BO,OF)",
+    "Shape(FO,OD)",
+    "Shape(DO,OA)",
+    "Collinear(COD)",
+    "Collinear(AOB)"
+  ],
+  "text_cdl": [
+    "Equal(MeasureOfAngle(AOC),70)",
+    "Equal(MeasureOfAngle(FOD),40)"
+  ],
+  "image_cdl": [],
+  "goal_cdl": "Value(MeasureOfAngle(BOF))",
+  "problem_answer": "30",
+  "theorem_seqs": [
+    "vertical_angle(1,AOC,BOD)",
+    "angle_addition(1,BOF,FOD)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "vertical_angle(1,AOC,BOD)",
+      "angle_addition(1,BOF,FOD)"
+    ]
+  }
+}

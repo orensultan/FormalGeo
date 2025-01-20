@@ -1,0 +1,48 @@
+{
+  "problem_id": 5786,
+  "annotation": "YanjunGuo_2023-05-28",
+  "source": "GeoQA-7701",
+  "problem_level": 6,
+  "problem_text_cn": "如图所示，Div(LengthOfLine(AE)=LengthOfLine(EC))，AD=6，DE平行于BC。求直线AB的长度。",
+  "problem_text_en": "As shown in the diagram, Div(LengthOfLine(AE)=LengthOfLine(EC)), AD=6, DE is parallel to BC. Find the length of line AB.",
+  "problem_img": "5786.png",
+  "construction_cdl": [
+    "Shape(AD,DE,EA)",
+    "Shape(DB,BC,CE,ED)",
+    "Collinear(ADB)",
+    "Collinear(AEC)"
+  ],
+  "text_cdl": [
+    "Equal(Div(LengthOfLine(AE),LengthOfLine(EC)),2/3)",
+    "Equal(LengthOfLine(AD),6)",
+    "ParallelBetweenLine(DE,BC)"
+  ],
+  "image_cdl": [],
+  "goal_cdl": "Value(LengthOfLine(AB))",
+  "problem_answer": "15",
+  "theorem_seqs": [
+    "line_addition(1,AE,EC)",
+    "parallel_property_corresponding_angle(1,DE,BC,A)",
+    "parallel_property_corresponding_angle(2,CB,ED,A)",
+    "similar_triangle_judgment_aa(1,ADE,ABC)",
+    "similar_triangle_property_line_ratio(1,DEA,BCA)",
+    "similar_triangle_property_line_ratio(1,EAD,CAB)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "line_addition(1,AE,EC)",
+      "parallel_property_corresponding_angle(1,DE,BC,A)",
+      "parallel_property_corresponding_angle(2,CB,ED,A)"
+    ],
+    "parallel_property_corresponding_angle(1,DE,BC,A)": [
+      "similar_triangle_judgment_aa(1,ADE,ABC)"
+    ],
+    "parallel_property_corresponding_angle(2,CB,ED,A)": [
+      "similar_triangle_judgment_aa(1,ADE,ABC)"
+    ],
+    "similar_triangle_judgment_aa(1,ADE,ABC)": [
+      "similar_triangle_property_line_ratio(1,DEA,BCA)",
+      "similar_triangle_property_line_ratio(1,EAD,CAB)"
+    ]
+  }
+}

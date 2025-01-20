@@ -1,0 +1,49 @@
+{
+  "problem_id": 4772,
+  "annotation": "YangLi_2023-05-14",
+  "source": "GeoQA-4153",
+  "problem_level": 6,
+  "problem_text_cn": "如图所示，∠ABC=65°，O是圆O的圆心，CB是圆O的切线。求∠BAO的大小。",
+  "problem_text_en": "As shown in the diagram, ∠ABC=65°, the center of ⊙O is O, CB is the tangent to circle O. Find the measure of ∠BAO.",
+  "problem_img": "4772.png",
+  "construction_cdl": [
+    "Shape(OBA,BC)",
+    "Shape(BA,AO,OB)",
+    "Shape(AB,OBA)",
+    "Shape(BO,OA,OAB)",
+    "Cocircular(O,AB)"
+  ],
+  "text_cdl": [
+    "Equal(MeasureOfAngle(ABC),65)",
+    "IsCentreOfCircle(O,O)",
+    "IsTangentOfCircle(CB,O)"
+  ],
+  "image_cdl": [],
+  "goal_cdl": "Value(MeasureOfAngle(BAO))",
+  "problem_answer": "25",
+  "theorem_seqs": [
+    "radius_of_circle_property_length_equal(1,OA,O)",
+    "radius_of_circle_property_length_equal(1,OB,O)",
+    "tangent_of_circle_property_perpendicular(1,CB,O,O)",
+    "angle_addition(1,OBA,ABC)",
+    "isosceles_triangle_judgment_line_equal(1,OBA)",
+    "isosceles_triangle_property_angle_equal(1,OBA)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "radius_of_circle_property_length_equal(1,OA,O)",
+      "radius_of_circle_property_length_equal(1,OB,O)",
+      "tangent_of_circle_property_perpendicular(1,CB,O,O)",
+      "angle_addition(1,OBA,ABC)"
+    ],
+    "radius_of_circle_property_length_equal(1,OA,O)": [
+      "isosceles_triangle_judgment_line_equal(1,OBA)"
+    ],
+    "radius_of_circle_property_length_equal(1,OB,O)": [
+      "isosceles_triangle_judgment_line_equal(1,OBA)"
+    ],
+    "isosceles_triangle_judgment_line_equal(1,OBA)": [
+      "isosceles_triangle_property_angle_equal(1,OBA)"
+    ]
+  }
+}

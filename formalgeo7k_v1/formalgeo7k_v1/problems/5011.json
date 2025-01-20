@@ -1,0 +1,70 @@
+{
+  "problem_id": 5011,
+  "annotation": "ZheZhu_2023-05-14",
+  "source": "GeoQA-4716",
+  "problem_level": 12,
+  "problem_text_cn": "如图所示，AE=5，BF=3/2，EC=3，DE∥BC，FD平行于CA。求直线BC的长度。",
+  "problem_text_en": "As shown in the diagram, AE=5, BF=3/2, EC=3, DE is parallel to BC, FD∥CA. Find the length of line BC.",
+  "problem_img": "5011.png",
+  "construction_cdl": [
+    "Shape(AD,DE,EA)",
+    "Shape(DB,BF,FD)",
+    "Shape(ED,DF,FC,CE)",
+    "Collinear(ADB)",
+    "Collinear(AEC)",
+    "Collinear(BFC)"
+  ],
+  "text_cdl": [
+    "Equal(LengthOfLine(AE),5)",
+    "Equal(LengthOfLine(BF),3/2)",
+    "Equal(LengthOfLine(EC),3)",
+    "ParallelBetweenLine(DE,BC)",
+    "ParallelBetweenLine(FD,CA)"
+  ],
+  "image_cdl": [],
+  "goal_cdl": "Value(LengthOfLine(BC))",
+  "problem_answer": "4",
+  "theorem_seqs": [
+    "line_addition(1,AD,DB)",
+    "line_addition(1,AE,EC)",
+    "parallel_property_corresponding_angle(1,DE,BC,A)",
+    "parallel_property_corresponding_angle(1,FD,CA,B)",
+    "parallel_property_corresponding_angle(2,CB,ED,A)",
+    "similar_triangle_judgment_aa(1,ADE,DBF)",
+    "similar_triangle_judgment_aa(1,ADE,ABC)",
+    "similar_triangle_property_line_ratio(1,ADE,DBF)",
+    "similar_triangle_property_line_ratio(1,EAD,FDB)",
+    "similar_triangle_property_line_ratio(1,ADE,ABC)",
+    "similar_triangle_property_line_ratio(1,DEA,BCA)",
+    "similar_triangle_property_line_ratio(1,EAD,CAB)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "line_addition(1,AD,DB)",
+      "line_addition(1,AE,EC)",
+      "parallel_property_corresponding_angle(1,DE,BC,A)",
+      "parallel_property_corresponding_angle(1,FD,CA,B)",
+      "parallel_property_corresponding_angle(2,CB,ED,A)"
+    ],
+    "parallel_property_corresponding_angle(1,DE,BC,A)": [
+      "similar_triangle_judgment_aa(1,ADE,DBF)",
+      "similar_triangle_judgment_aa(1,ADE,ABC)"
+    ],
+    "parallel_property_corresponding_angle(1,FD,CA,B)": [
+      "similar_triangle_judgment_aa(1,ADE,DBF)"
+    ],
+    "parallel_property_corresponding_angle(2,CB,ED,A)": [
+      "similar_triangle_judgment_aa(1,ADE,DBF)",
+      "similar_triangle_judgment_aa(1,ADE,ABC)"
+    ],
+    "similar_triangle_judgment_aa(1,ADE,DBF)": [
+      "similar_triangle_property_line_ratio(1,ADE,DBF)",
+      "similar_triangle_property_line_ratio(1,EAD,FDB)"
+    ],
+    "similar_triangle_judgment_aa(1,ADE,ABC)": [
+      "similar_triangle_property_line_ratio(1,ADE,ABC)",
+      "similar_triangle_property_line_ratio(1,DEA,BCA)",
+      "similar_triangle_property_line_ratio(1,EAD,CAB)"
+    ]
+  }
+}

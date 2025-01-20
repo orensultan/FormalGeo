@@ -1,0 +1,35 @@
+{
+  "problem_id": 5051,
+  "annotation": "ChengQin_2023-05-21",
+  "source": "GeoQA-4802",
+  "problem_level": 3,
+  "problem_text_cn": "如图所示，AE=4，EC=5，△EDC与△ABC是相似三角形。求直线CD的长度与直线CB的长度之比。",
+  "problem_text_en": "As shown in the diagram, AE=4, EC=5, triangle EDC is similar to triangle ABC.. Find the ratio of the length of line CD to the length of line CB.",
+  "problem_img": "5051.png",
+  "construction_cdl": [
+    "Shape(AB,BD,DE,EA)",
+    "Shape(ED,DC,CE)",
+    "Collinear(AEC)",
+    "Collinear(BDC)"
+  ],
+  "text_cdl": [
+    "Equal(LengthOfLine(AE),4)",
+    "Equal(LengthOfLine(EC),5)",
+    "SimilarBetweenTriangle(EDC,ABC)"
+  ],
+  "image_cdl": [],
+  "goal_cdl": "Value(Div(LengthOfLine(CD),LengthOfLine(CB)))",
+  "problem_answer": "5/9",
+  "theorem_seqs": [
+    "line_addition(1,AE,EC)",
+    "similar_triangle_property_line_ratio(1,DCE,BCA)",
+    "similar_triangle_property_line_ratio(1,EDC,ABC)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "line_addition(1,AE,EC)",
+      "similar_triangle_property_line_ratio(1,DCE,BCA)",
+      "similar_triangle_property_line_ratio(1,EDC,ABC)"
+    ]
+  }
+}

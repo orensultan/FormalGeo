@@ -1,0 +1,35 @@
+{
+  "problem_id": 5155,
+  "annotation": "JiaZou_2023-05-21",
+  "source": "GeoQA-5088",
+  "problem_level": 4,
+  "problem_text_cn": "如图所示，∠COB=130°，BO平分∠ABC，CO平分∠BCA。求∠CAB的大小。",
+  "problem_text_en": "As shown in the diagram, ∠COB=130°, BO is the angle bisector of ∠ABC, CO is the angle bisector of ∠BCA. Find the measure of ∠CAB.",
+  "problem_img": "5155.png",
+  "construction_cdl": [
+    "Shape(AB,BO,OC,CA)",
+    "Shape(OB,BC,CO)"
+  ],
+  "text_cdl": [
+    "Equal(MeasureOfAngle(COB),130)",
+    "IsBisectorOfAngle(BO,ABC)",
+    "IsBisectorOfAngle(CO,BCA)"
+  ],
+  "image_cdl": [],
+  "goal_cdl": "Value(MeasureOfAngle(CAB))",
+  "problem_answer": "80",
+  "theorem_seqs": [
+    "angle_addition(1,ABO,OBC)",
+    "angle_addition(1,BCO,OCA)",
+    "triangle_property_angle_sum(1,OBC)",
+    "triangle_property_angle_sum(1,ABC)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "angle_addition(1,ABO,OBC)",
+      "angle_addition(1,BCO,OCA)",
+      "triangle_property_angle_sum(1,OBC)",
+      "triangle_property_angle_sum(1,ABC)"
+    ]
+  }
+}

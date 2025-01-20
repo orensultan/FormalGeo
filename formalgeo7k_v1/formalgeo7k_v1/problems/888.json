@@ -1,0 +1,56 @@
+{
+  "problem_id": 888,
+  "annotation": "NaZhu_2023-04-09",
+  "source": "Geometry3k-917",
+  "problem_level": 4,
+  "problem_text_cn": "如图所示，圆A的直径为8，圆B的直径为18，⊙C的直径为11，⊙A的圆心为A，⊙B的圆心为B，C是⊙C的圆心，AG是⊙B的直径。求直线FG的长度。",
+  "problem_text_en": "As shown in the diagram, the diameter of circle A is 8, the diameter of ⊙B is 18, the diameter of ⊙C is 11, the center of circle A is A, B is the center of circle B, C is the center of ⊙C, the diameter of circle B is AG. Find the length of line FG.",
+  "problem_img": "888.png",
+  "construction_cdl": [
+    "Shape(BAM,AMN,BNA)",
+    "Shape(AFM,BMA,AF)",
+    "Shape(FA,BAN,ANF)",
+    "Shape(BXM,AMF,AFN,BNY,CYE,CEX)",
+    "Shape(CXE,EG,BGX)",
+    "Shape(CEY,BYG,GE)",
+    "Shape(CYX,BXG,BGY)",
+    "Collinear(AFBEGC)",
+    "Cocircular(A,NFM)",
+    "Cocircular(B,MANYGX)",
+    "Cocircular(C,XEY)"
+  ],
+  "text_cdl": [
+    "Equal(DiameterOfCircle(A),8)",
+    "Equal(DiameterOfCircle(B),18)",
+    "Equal(DiameterOfCircle(C),11)",
+    "IsCentreOfCircle(A,A)",
+    "IsCentreOfCircle(B,B)",
+    "IsCentreOfCircle(C,C)",
+    "IsDiameterOfCircle(AG,B)"
+  ],
+  "image_cdl": [
+    "Equal(DiameterOfCircle(A),8)",
+    "Equal(DiameterOfCircle(B),18)",
+    "Equal(DiameterOfCircle(C),11)",
+    "IsCentreOfCircle(A,A)",
+    "IsCentreOfCircle(B,B)",
+    "IsCentreOfCircle(C,C)",
+    "IsDiameterOfCircle(AG,B)"
+  ],
+  "goal_cdl": "Value(LengthOfLine(FG))",
+  "problem_answer": "14",
+  "theorem_seqs": [
+    "diameter_of_circle_property_length_equal(1,AG,B)",
+    "circle_property_length_of_radius_and_diameter(1,A)",
+    "radius_of_circle_property_length_equal(1,AF,A)",
+    "line_addition(1,AF,FG)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "diameter_of_circle_property_length_equal(1,AG,B)",
+      "circle_property_length_of_radius_and_diameter(1,A)",
+      "radius_of_circle_property_length_equal(1,AF,A)",
+      "line_addition(1,AF,FG)"
+    ]
+  }
+}

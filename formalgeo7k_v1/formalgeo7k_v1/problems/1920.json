@@ -1,0 +1,38 @@
+{
+  "problem_id": 1920,
+  "annotation": "YanjunGuo_2023-04-23",
+  "source": "Geometry3k-1997",
+  "problem_level": 3,
+  "problem_text_cn": "如图所示，AB=8，∠BAC=121°，圆A的圆心为A。求扇形ACB的面积。",
+  "problem_text_en": "As shown in the diagram, AB=8, ∠BAC=121°, A is the center of ⊙A. Find the area of the sector ACB.",
+  "problem_img": "1920.png",
+  "construction_cdl": [
+    "Shape(AB,ABC,CA)",
+    "Shape(AC,ACB,BA)",
+    "Cocircular(A,CB)"
+  ],
+  "text_cdl": [
+    "Equal(LengthOfLine(AB),8)",
+    "Equal(MeasureOfAngle(BAC),121)",
+    "IsCentreOfCircle(A,A)"
+  ],
+  "image_cdl": [
+    "Equal(LengthOfLine(AB),8)",
+    "Equal(MeasureOfAngle(BAC),121)",
+    "IsCentreOfCircle(A,A)"
+  ],
+  "goal_cdl": "Value(AreaOfSector(ACB))",
+  "problem_answer": "968*pi/45",
+  "theorem_seqs": [
+    "radius_of_circle_property_length_equal(1,AB,A)",
+    "arc_property_center_angle(1,ACB,A)",
+    "sector_area_formula(1,ACB)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "radius_of_circle_property_length_equal(1,AB,A)",
+      "arc_property_center_angle(1,ACB,A)",
+      "sector_area_formula(1,ACB)"
+    ]
+  }
+}

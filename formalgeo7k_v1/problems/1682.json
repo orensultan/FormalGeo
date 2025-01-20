@@ -1,0 +1,60 @@
+{
+  "problem_id": 1682,
+  "annotation": "YangLi_2023-04-16",
+  "source": "Geometry3k-1746",
+  "problem_level": 8,
+  "problem_text_cn": "如图所示，GH=10，⊙G的圆心为G，⊙J的圆心为J，⊙K的圆心为K。求直线JK的长度。",
+  "problem_text_en": "As shown in the diagram, GH=10, the center of ⊙G is G, the center of circle J is J, the center of ⊙K is K. Find the length of line JK.",
+  "problem_img": "1682.png",
+  "construction_cdl": [
+    "Shape(BG,GH,GHB)",
+    "Shape(FG,GB,GBF)",
+    "Shape(HG,JGK,GLH)",
+    "Shape(GF,GFL,JGL)",
+    "Shape(JG,JGL,KJL)",
+    "Shape(GJ,KLJ,JLG)",
+    "Shape(JK,KL,KLJ)",
+    "Shape(LK,KJ,KJL)",
+    "Collinear(HGF)",
+    "Collinear(BGJKL)",
+    "Cocircular(K,JL)",
+    "Cocircular(J,GL)",
+    "Cocircular(G,FLHB)"
+  ],
+  "text_cdl": [
+    "Equal(LengthOfLine(GH),10)",
+    "IsCentreOfCircle(G,G)",
+    "IsCentreOfCircle(J,J)",
+    "IsCentreOfCircle(K,K)"
+  ],
+  "image_cdl": [
+    "Equal(LengthOfLine(GH),10)",
+    "IsCentreOfCircle(G,G)",
+    "IsCentreOfCircle(J,J)",
+    "IsCentreOfCircle(K,K)"
+  ],
+  "goal_cdl": "Value(LengthOfLine(JK))",
+  "problem_answer": "5/2",
+  "theorem_seqs": [
+    "radius_of_circle_property_length_equal(1,GH,G)",
+    "radius_of_circle_property_length_equal(1,GL,G)",
+    "radius_of_circle_property_length_equal(1,JG,J)",
+    "radius_of_circle_property_length_equal(1,JL,J)",
+    "line_addition(1,GJ,JL)",
+    "radius_of_circle_property_length_equal(1,KJ,K)",
+    "radius_of_circle_property_length_equal(1,KL,K)",
+    "line_addition(1,JK,KL)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "radius_of_circle_property_length_equal(1,GH,G)",
+      "radius_of_circle_property_length_equal(1,GL,G)",
+      "radius_of_circle_property_length_equal(1,JG,J)",
+      "radius_of_circle_property_length_equal(1,JL,J)",
+      "line_addition(1,GJ,JL)",
+      "radius_of_circle_property_length_equal(1,KJ,K)",
+      "radius_of_circle_property_length_equal(1,KL,K)",
+      "line_addition(1,JK,KL)"
+    ]
+  }
+}

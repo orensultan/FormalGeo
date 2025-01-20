@@ -1,0 +1,39 @@
+{
+  "problem_id": 3756,
+  "annotation": "ChenyangMao_2023-04-30",
+  "source": "GeoQA-1561",
+  "problem_level": 2,
+  "problem_text_cn": "如图所示，∠CAD=42°，∠CAF=90°，AD平行于EF。求∠EFA的大小。",
+  "problem_text_en": "As shown in the diagram, ∠CAD=42°, ∠CAF=90°, AD∥EF. Find the measure of ∠EFA.",
+  "problem_img": "3756.png",
+  "construction_cdl": [
+    "Shape(CA,AD,DC)",
+    "Shape(AF,FG,GD,DA)",
+    "Shape(FB,BG,GF)",
+    "Shape(EF,FA)",
+    "Collinear(CDGB)",
+    "Collinear(AFB)"
+  ],
+  "text_cdl": [
+    "Equal(MeasureOfAngle(CAD),42)",
+    "Equal(MeasureOfAngle(CAF),90)",
+    "ParallelBetweenLine(AD,EF)"
+  ],
+  "image_cdl": [
+    "Equal(MeasureOfAngle(CAD),42)",
+    "Equal(MeasureOfAngle(CAF),90)",
+    "ParallelBetweenLine(AD,EF)"
+  ],
+  "goal_cdl": "Value(MeasureOfAngle(EFA))",
+  "problem_answer": "48",
+  "theorem_seqs": [
+    "angle_addition(1,CAD,DAF)",
+    "parallel_property_alternate_interior_angle(1,AD,EF)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "angle_addition(1,CAD,DAF)",
+      "parallel_property_alternate_interior_angle(1,AD,EF)"
+    ]
+  }
+}

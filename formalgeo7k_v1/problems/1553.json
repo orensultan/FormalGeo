@@ -1,0 +1,43 @@
+{
+  "problem_id": 1553,
+  "annotation": "XiaoxiaoJin_2023-04-16",
+  "source": "Geometry3k-1612",
+  "problem_level": 1,
+  "problem_text_cn": "如图所示，∠ADG=36°，∠AGF=104°，∠EFC=40°，AB垂直于CB，GB垂直于CB。求∠BFG的大小。",
+  "problem_text_en": "As shown in the diagram, ∠ADG=36°, ∠AGF=104°, ∠EFC=40°, AB is perpendicular to CB, GB⊥CB. Find the measure of ∠BFG.",
+  "problem_img": "1553.png",
+  "construction_cdl": [
+    "Shape(AD,DG,GA)",
+    "Shape(AG,GF)",
+    "Shape(FB,BF,FG)",
+    "Shape(GF,FE)",
+    "Shape(EF,FC)",
+    "Shape(FB,BC,CF)",
+    "Collinear(DGFC)",
+    "Collinear(BFE)"
+  ],
+  "text_cdl": [
+    "Equal(MeasureOfAngle(ADG),36)",
+    "Equal(MeasureOfAngle(AGF),104)",
+    "Equal(MeasureOfAngle(EFC),40)",
+    "PerpendicularBetweenLine(AB,CB)",
+    "PerpendicularBetweenLine(GB,CB)"
+  ],
+  "image_cdl": [
+    "Equal(MeasureOfAngle(ADG),36)",
+    "Equal(MeasureOfAngle(AGF),104)",
+    "Equal(MeasureOfAngle(EFC),40)",
+    "PerpendicularBetweenLine(AB,CB)",
+    "PerpendicularBetweenLine(GB,CB)"
+  ],
+  "goal_cdl": "Value(MeasureOfAngle(BFG))",
+  "problem_answer": "40",
+  "theorem_seqs": [
+    "vertical_angle(1,BFG,EFC)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "vertical_angle(1,BFG,EFC)"
+    ]
+  }
+}

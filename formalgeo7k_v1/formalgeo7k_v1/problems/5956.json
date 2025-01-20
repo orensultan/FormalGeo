@@ -1,0 +1,30 @@
+{
+  "problem_id": 5956,
+  "annotation": "XiaoxiaoJin_2023-05-28",
+  "source": "GeoQA-8365",
+  "problem_level": 2,
+  "problem_text_cn": "如图所示，BC=10，∠ACB=50°，∠CBA=90°。求直线AB的长度。",
+  "problem_text_en": "As shown in the diagram, BC=10, ∠ACB=50°, ∠CBA=90°. Find the length of line AB.",
+  "problem_img": "5956.png",
+  "construction_cdl": [
+    "Shape(AC,CB,BA)"
+  ],
+  "text_cdl": [
+    "Equal(LengthOfLine(BC),10)",
+    "Equal(MeasureOfAngle(ACB),50)",
+    "Equal(MeasureOfAngle(CBA),90)"
+  ],
+  "image_cdl": [],
+  "goal_cdl": "Value(LengthOfLine(AB))",
+  "problem_answer": "10/tan(2*pi/9)",
+  "theorem_seqs": [
+    "triangle_property_angle_sum(1,ACB)",
+    "sine_theorem(1,BAC)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "triangle_property_angle_sum(1,ACB)",
+      "sine_theorem(1,BAC)"
+    ]
+  }
+}

@@ -1,0 +1,61 @@
+{
+  "problem_id": 125,
+  "annotation": "XiaokaiZhang_2023-04-02",
+  "source": "Geometry3k-127",
+  "problem_level": 5,
+  "problem_text_cn": "如图所示，∠ABH=3*p-10°，∠CDB=6*r+5°，∠JAB=4*p+15°，AJ平行于BH，CI平行于AL。求r的值。",
+  "problem_text_en": "As shown in the diagram, ∠ABH=3*p-10°, ∠CDB=6*r+5°, ∠JAB=4*p+15°, AJ is parallel to BH, CI is parallel to AL. Find the value of r.",
+  "problem_img": "125.png",
+  "construction_cdl": [
+    "Shape(LA,AJ)",
+    "Shape(JA,AB)",
+    "Shape(AB,BH)",
+    "Shape(HB,BE)",
+    "Shape(EB,BD)",
+    "Shape(BD,DK)",
+    "Shape(KD,DF)",
+    "Shape(FD,DC)",
+    "Shape(DC,CG)",
+    "Shape(GC,CI)",
+    "Shape(IC,CA)",
+    "Shape(CA,AL)",
+    "Shape(AC,CD,DB,BA)",
+    "Collinear(LABE)",
+    "Collinear(ICDK)",
+    "Collinear(JACG)",
+    "Collinear(HBDF)"
+  ],
+  "text_cdl": [
+    "Equal(MeasureOfAngle(ABH),3*p-10)",
+    "Equal(MeasureOfAngle(CDB),6*r+5)",
+    "Equal(MeasureOfAngle(JAB),4*p+15)",
+    "ParallelBetweenLine(AJ,BH)",
+    "ParallelBetweenLine(CI,AL)"
+  ],
+  "image_cdl": [
+    "ParallelBetweenLine(AJ,BH)",
+    "ParallelBetweenLine(CI,AL)"
+  ],
+  "goal_cdl": "Value(r)",
+  "problem_answer": "10",
+  "theorem_seqs": [
+    "parallel_property_ipsilateral_internal_angle(1,AJ,BH)",
+    "adjacent_complementary_angle(1,DBA,ABH)",
+    "parallel_property_collinear_extend(2,LA,IC,B)",
+    "parallel_property_collinear_extend(1,CI,BA,D)",
+    "parallel_property_ipsilateral_internal_angle(1,DI,BA)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "parallel_property_ipsilateral_internal_angle(1,AJ,BH)",
+      "adjacent_complementary_angle(1,DBA,ABH)",
+      "parallel_property_collinear_extend(2,LA,IC,B)"
+    ],
+    "parallel_property_collinear_extend(2,LA,IC,B)": [
+      "parallel_property_collinear_extend(1,CI,BA,D)"
+    ],
+    "parallel_property_collinear_extend(1,CI,BA,D)": [
+      "parallel_property_ipsilateral_internal_angle(1,DI,BA)"
+    ]
+  }
+}

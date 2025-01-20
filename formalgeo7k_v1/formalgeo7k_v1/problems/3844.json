@@ -1,0 +1,101 @@
+{
+  "problem_id": 3844,
+  "annotation": "YifanWang_2023-05-07",
+  "source": "GeoQA-1719",
+  "problem_level": 13,
+  "problem_text_cn": "如图所示，Add(MeasureOfAngle(BAC)=MeasureOfAngle(DAE))，ED=6，⊙A的半径为5，⊙A的圆心为A，FC是⊙A的直径，CH⊥AH。求直线HA的长度。",
+  "problem_text_en": "As shown in the diagram, Add(MeasureOfAngle(BAC)=MeasureOfAngle(DAE)), ED=6, the radius of circle A is 5, A is the center of ⊙A, the diameter of circle A is FC, CH is perpendicular to AH. Find the length of line HA.",
+  "problem_img": "3844.png",
+  "construction_cdl": [
+    "Shape(BH,HC,ACB)",
+    "Shape(CH,HA,AC)",
+    "Shape(AH,HB,BA)",
+    "Shape(AB,BF,FA)",
+    "Shape(CA,AD,ADC)",
+    "Shape(DA,AE,ED)",
+    "Shape(DE,AED)",
+    "Shape(EA,AF,AFE)",
+    "Shape(FB,ABF)",
+    "Collinear(FAC)",
+    "Collinear(CHB)",
+    "Cocircular(A,CBFED)"
+  ],
+  "text_cdl": [
+    "Equal(Add(MeasureOfAngle(BAC),MeasureOfAngle(DAE)),180)",
+    "Equal(LengthOfLine(ED),6)",
+    "Equal(RadiusOfCircle(A),5)",
+    "IsCentreOfCircle(A,A)",
+    "IsDiameterOfCircle(FC,A)",
+    "PerpendicularBetweenLine(CH,AH)"
+  ],
+  "image_cdl": [
+    "Equal(Add(MeasureOfAngle(BAC),MeasureOfAngle(DAE)),180)",
+    "Equal(LengthOfLine(ED),6)",
+    "Equal(RadiusOfCircle(A),5)",
+    "IsCentreOfCircle(A,A)",
+    "IsDiameterOfCircle(FC,A)",
+    "PerpendicularBetweenLine(CH,AH)"
+  ],
+  "goal_cdl": "Value(LengthOfLine(HA))",
+  "problem_answer": "3",
+  "theorem_seqs": [
+    "adjacent_complementary_angle(1,FAB,BAC)",
+    "arc_property_center_angle(1,ABF,A)",
+    "arc_property_center_angle(1,AED,A)",
+    "congruent_arc_judgment_measure_equal(1,ABF,AED)",
+    "congruent_arc_property_chord_equal(1,ABF,AED)",
+    "radius_of_circle_property_length_equal(1,AC,A)",
+    "radius_of_circle_property_length_equal(1,AB,A)",
+    "radius_of_circle_property_length_equal(1,AF,A)",
+    "isosceles_triangle_judgment_line_equal(1,ACB)",
+    "altitude_of_triangle_judgment(1,AH,ACB)",
+    "isosceles_triangle_property_line_coincidence(1,ACB,H)",
+    "midsegment_of_triangle_judgment_midpoint(1,HA,CBF)",
+    "midsegment_of_triangle_property_length(1,HA,CBF)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "adjacent_complementary_angle(1,FAB,BAC)",
+      "arc_property_center_angle(1,ABF,A)",
+      "arc_property_center_angle(1,AED,A)",
+      "radius_of_circle_property_length_equal(1,AC,A)",
+      "radius_of_circle_property_length_equal(1,AB,A)",
+      "radius_of_circle_property_length_equal(1,AF,A)",
+      "altitude_of_triangle_judgment(1,AH,ACB)"
+    ],
+    "adjacent_complementary_angle(1,FAB,BAC)": [
+      "congruent_arc_judgment_measure_equal(1,ABF,AED)"
+    ],
+    "arc_property_center_angle(1,ABF,A)": [
+      "congruent_arc_judgment_measure_equal(1,ABF,AED)"
+    ],
+    "arc_property_center_angle(1,AED,A)": [
+      "congruent_arc_judgment_measure_equal(1,ABF,AED)"
+    ],
+    "congruent_arc_judgment_measure_equal(1,ABF,AED)": [
+      "congruent_arc_property_chord_equal(1,ABF,AED)"
+    ],
+    "radius_of_circle_property_length_equal(1,AC,A)": [
+      "isosceles_triangle_judgment_line_equal(1,ACB)",
+      "midsegment_of_triangle_judgment_midpoint(1,HA,CBF)"
+    ],
+    "radius_of_circle_property_length_equal(1,AB,A)": [
+      "isosceles_triangle_judgment_line_equal(1,ACB)"
+    ],
+    "radius_of_circle_property_length_equal(1,AF,A)": [
+      "midsegment_of_triangle_judgment_midpoint(1,HA,CBF)"
+    ],
+    "isosceles_triangle_judgment_line_equal(1,ACB)": [
+      "isosceles_triangle_property_line_coincidence(1,ACB,H)"
+    ],
+    "altitude_of_triangle_judgment(1,AH,ACB)": [
+      "isosceles_triangle_property_line_coincidence(1,ACB,H)"
+    ],
+    "isosceles_triangle_property_line_coincidence(1,ACB,H)": [
+      "midsegment_of_triangle_judgment_midpoint(1,HA,CBF)"
+    ],
+    "midsegment_of_triangle_judgment_midpoint(1,HA,CBF)": [
+      "midsegment_of_triangle_property_length(1,HA,CBF)"
+    ]
+  }
+}

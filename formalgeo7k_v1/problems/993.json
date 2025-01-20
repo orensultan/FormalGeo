@@ -1,0 +1,39 @@
+{
+  "problem_id": 993,
+  "annotation": "XiaokaiZhang_2023-04-09",
+  "source": "Geometry3k-1024",
+  "problem_level": 2,
+  "problem_text_cn": "如图所示，BC=x，BD=7，DE=13，圆O的切线为DE。求x的值。",
+  "problem_text_en": "As shown in the diagram, BC=x, BD=7, DE=13, DE is the tangent to ⊙A. Find the value of x.",
+  "problem_img": "993.png",
+  "construction_cdl": [
+    "Shape(BD,DE,ABE)",
+    "Shape(ABE,AEC,CB)",
+    "Shape(ACB,BC)",
+    "Collinear(DBC)",
+    "Cocircular(A,BEC)"
+  ],
+  "text_cdl": [
+    "Equal(LengthOfLine(BC),x)",
+    "Equal(LengthOfLine(BD),7)",
+    "Equal(LengthOfLine(DE),13)",
+    "IsTangentOfCircle(DE,A)"
+  ],
+  "image_cdl": [
+    "Equal(LengthOfLine(BC),x)",
+    "Equal(LengthOfLine(BD),7)",
+    "Equal(LengthOfLine(DE),13)"
+  ],
+  "goal_cdl": "Value(x)",
+  "problem_answer": "120/7",
+  "theorem_seqs": [
+    "circle_property_circular_power_tangent_and_segment_line(1,DE,DBC,A)",
+    "line_addition(1,DB,BC)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "circle_property_circular_power_tangent_and_segment_line(1,DE,DBC,A)",
+      "line_addition(1,DB,BC)"
+    ]
+  }
+}

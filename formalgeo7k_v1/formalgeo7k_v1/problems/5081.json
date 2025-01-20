@@ -1,0 +1,47 @@
+{
+  "problem_id": 5081,
+  "annotation": "ChengQin_2023-05-21",
+  "source": "GeoQA-4879",
+  "problem_level": 6,
+  "problem_text_cn": "如图所示，Div(LengthOfLine(AE)=LengthOfLine(BE))，AC∥DB。求直线CE的长度与直线CD的长度之比。",
+  "problem_text_en": "As shown in the diagram, Div(LengthOfLine(AE)=LengthOfLine(BE)), AC is parallel to DB. Find the ratio of the length of line CE to the length of line CD.",
+  "problem_img": "5081.png",
+  "construction_cdl": [
+    "Shape(AE,EC,CA)",
+    "Shape(ED,DB,BE)",
+    "Collinear(AEB)",
+    "Collinear(CED)"
+  ],
+  "text_cdl": [
+    "Equal(Div(LengthOfLine(AE),LengthOfLine(BE)),1/2)",
+    "ParallelBetweenLine(AC,DB)"
+  ],
+  "image_cdl": [],
+  "goal_cdl": "Value(Div(LengthOfLine(CE),LengthOfLine(CD)))",
+  "problem_answer": "1/3",
+  "theorem_seqs": [
+    "parallel_property_alternate_interior_angle(1,AC,DB)",
+    "parallel_property_alternate_interior_angle(2,AC,DB)",
+    "similar_triangle_judgment_aa(1,ECA,EDB)",
+    "similar_triangle_property_line_ratio(1,CAE,DBE)",
+    "similar_triangle_property_line_ratio(1,AEC,BED)",
+    "line_addition(1,CE,ED)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "parallel_property_alternate_interior_angle(1,AC,DB)",
+      "parallel_property_alternate_interior_angle(2,AC,DB)",
+      "line_addition(1,CE,ED)"
+    ],
+    "parallel_property_alternate_interior_angle(1,AC,DB)": [
+      "similar_triangle_judgment_aa(1,ECA,EDB)"
+    ],
+    "parallel_property_alternate_interior_angle(2,AC,DB)": [
+      "similar_triangle_judgment_aa(1,ECA,EDB)"
+    ],
+    "similar_triangle_judgment_aa(1,ECA,EDB)": [
+      "similar_triangle_property_line_ratio(1,CAE,DBE)",
+      "similar_triangle_property_line_ratio(1,AEC,BED)"
+    ]
+  }
+}

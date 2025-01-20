@@ -1,0 +1,54 @@
+{
+  "problem_id": 6237,
+  "annotation": "FangzhenZhu_2023-06-04",
+  "source": "GeoQA-8835",
+  "problem_level": 8,
+  "problem_text_cn": "如图所示，AB=16，OC=6，O是圆O的圆心，OC⊥BC。求直线OA的长度。",
+  "problem_text_en": "As shown in the diagram, AB=16, OC=6, O is the center of circle O, OC⊥BC. Find the length of line OA.",
+  "problem_img": "6237.png",
+  "construction_cdl": [
+    "Shape(OAB,BC,CA)",
+    "Shape(OBA,AO,OB)",
+    "Shape(OA,AC,CO)",
+    "Shape(OC,CB,BO)",
+    "Collinear(ACB)",
+    "Cocircular(O,AB)"
+  ],
+  "text_cdl": [
+    "Equal(LengthOfLine(AB),16)",
+    "Equal(LengthOfLine(OC),6)",
+    "IsCentreOfCircle(O,O)",
+    "PerpendicularBetweenLine(OC,BC)"
+  ],
+  "image_cdl": [],
+  "goal_cdl": "Value(LengthOfLine(OA))",
+  "problem_answer": "10",
+  "theorem_seqs": [
+    "radius_of_circle_property_length_equal(1,OA,O)",
+    "radius_of_circle_property_length_equal(1,OB,O)",
+    "adjacent_complementary_angle(1,ACO,OCB)",
+    "right_triangle_judgment_angle(1,ACO)",
+    "right_triangle_judgment_angle(1,OCB)",
+    "right_triangle_property_pythagorean(1,ACO)",
+    "right_triangle_property_pythagorean(1,OCB)",
+    "line_addition(1,AC,CB)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "radius_of_circle_property_length_equal(1,OA,O)",
+      "radius_of_circle_property_length_equal(1,OB,O)",
+      "adjacent_complementary_angle(1,ACO,OCB)",
+      "right_triangle_judgment_angle(1,OCB)",
+      "line_addition(1,AC,CB)"
+    ],
+    "adjacent_complementary_angle(1,ACO,OCB)": [
+      "right_triangle_judgment_angle(1,ACO)"
+    ],
+    "right_triangle_judgment_angle(1,ACO)": [
+      "right_triangle_property_pythagorean(1,ACO)"
+    ],
+    "right_triangle_judgment_angle(1,OCB)": [
+      "right_triangle_property_pythagorean(1,OCB)"
+    ]
+  }
+}

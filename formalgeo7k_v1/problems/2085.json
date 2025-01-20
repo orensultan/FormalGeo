@@ -1,0 +1,35 @@
+{
+  "problem_id": 2085,
+  "annotation": "YimingHe_2023-03-26",
+  "source": "Geometry3k-2172",
+  "problem_level": 1,
+  "problem_text_cn": "如图所示，∠WZX=24°，∠XWZ=23°，∠YXZ=105°，∠ZYX=∠XZY。求∠XZY的大小。",
+  "problem_text_en": "As shown in the diagram, ∠WZX=24°, ∠XWZ=23°, ∠YXZ=105°, ∠ZYX=∠XZY. Find the measure of ∠XZY.",
+  "problem_img": "2085.png",
+  "construction_cdl": [
+    "Shape(WZ,ZX,XW)",
+    "Shape(XZ,ZY,YX)"
+  ],
+  "text_cdl": [
+    "Equal(MeasureOfAngle(WZX),24)",
+    "Equal(MeasureOfAngle(XWZ),23)",
+    "Equal(MeasureOfAngle(YXZ),105)",
+    "Equal(MeasureOfAngle(ZYX),MeasureOfAngle(XZY))"
+  ],
+  "image_cdl": [
+    "Equal(MeasureOfAngle(WZX),24)",
+    "Equal(MeasureOfAngle(XWZ),23)",
+    "Equal(MeasureOfAngle(YXZ),105)",
+    "Equal(MeasureOfAngle(ZYX),MeasureOfAngle(XZY))"
+  ],
+  "goal_cdl": "Value(MeasureOfAngle(XZY))",
+  "problem_answer": "75/2",
+  "theorem_seqs": [
+    "triangle_property_angle_sum(1,XZY)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "triangle_property_angle_sum(1,XZY)"
+    ]
+  }
+}
