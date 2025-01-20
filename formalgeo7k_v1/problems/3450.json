@@ -1,0 +1,47 @@
+{
+  "problem_id": 3450,
+  "annotation": "NaZhu_2023-04-30",
+  "source": "GeoQA-1017",
+  "problem_level": 4,
+  "problem_text_cn": "如图所示，∠BCM=30°，∠HAN=45°，四边形DEFG是长方形，BC和CA是直角△BCA的两个直角边。求∠NHA的大小。",
+  "problem_text_en": "As shown in the diagram, ∠BCM=30°, ∠HAN=45°, DEFG is a rectangle, ∠BCA is the right angle of the right △ BCA. Find the measure of ∠NHA.",
+  "problem_img": "3450.png",
+  "construction_cdl": [
+    "Shape(DE,EM,MN,ND)",
+    "Shape(AN,NH,HA)",
+    "Shape(NM,MC,CH,HN)",
+    "Shape(MB,BC,CM)",
+    "Shape(HC,CF,FG,GH)",
+    "Collinear(DNHG)",
+    "Collinear(EMCF)",
+    "Collinear(ANMB)",
+    "Collinear(AHC)"
+  ],
+  "text_cdl": [
+    "Equal(MeasureOfAngle(BCM),30)",
+    "Equal(MeasureOfAngle(HAN),45)",
+    "Rectangle(DEFG)",
+    "RightTriangle(BCA)"
+  ],
+  "image_cdl": [],
+  "goal_cdl": "Value(MeasureOfAngle(NHA))",
+  "problem_answer": "60",
+  "theorem_seqs": [
+    "parallel_property_collinear_extend(3,DG,EF,H)",
+    "parallel_property_collinear_extend(3,FE,HD,C)",
+    "parallel_property_corresponding_angle(2,CE,HD,A)",
+    "angle_addition(1,BCM,MCH)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "parallel_property_collinear_extend(3,DG,EF,H)",
+      "angle_addition(1,BCM,MCH)"
+    ],
+    "parallel_property_collinear_extend(3,DG,EF,H)": [
+      "parallel_property_collinear_extend(3,FE,HD,C)"
+    ],
+    "parallel_property_collinear_extend(3,FE,HD,C)": [
+      "parallel_property_corresponding_angle(2,CE,HD,A)"
+    ]
+  }
+}

@@ -1,0 +1,58 @@
+{
+  "problem_id": 1169,
+  "annotation": "JiaZou_2023-03-19",
+  "source": "Geometry3k-1209",
+  "problem_level": 8,
+  "problem_text_cn": "如图所示，BD=6，DA=2，AC⊥BC，BD垂直于CD。求直线CD的长度。",
+  "problem_text_en": "As shown in the diagram, BD=6, DA=2, AC is perpendicular to BC, BD⊥CD. Find the length of line CD.",
+  "problem_img": "1169.png",
+  "construction_cdl": [
+    "Shape(AC,CD,DA)",
+    "Shape(CB,BD,DC)",
+    "Collinear(ADB)"
+  ],
+  "text_cdl": [
+    "Equal(LengthOfLine(BD),6)",
+    "Equal(LengthOfLine(DA),2)",
+    "PerpendicularBetweenLine(AC,BC)",
+    "PerpendicularBetweenLine(BD,CD)"
+  ],
+  "image_cdl": [
+    "Equal(LengthOfLine(BD),6)",
+    "Equal(LengthOfLine(DA),2)",
+    "PerpendicularBetweenLine(AC,BC)",
+    "PerpendicularBetweenLine(BD,CD)"
+  ],
+  "goal_cdl": "Value(LengthOfLine(CD))",
+  "problem_answer": "2*sqrt(3)",
+  "theorem_seqs": [
+    "line_addition(1,AD,DB)",
+    "adjacent_complementary_angle(1,BDC,CDA)",
+    "right_triangle_judgment_angle(1,CDA)",
+    "right_triangle_judgment_angle(1,BDC)",
+    "right_triangle_judgment_angle(1,ACB)",
+    "right_triangle_property_pythagorean(1,CDA)",
+    "right_triangle_property_pythagorean(1,BDC)",
+    "right_triangle_property_pythagorean(1,ACB)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "line_addition(1,AD,DB)",
+      "adjacent_complementary_angle(1,BDC,CDA)",
+      "right_triangle_judgment_angle(1,BDC)",
+      "right_triangle_judgment_angle(1,ACB)"
+    ],
+    "adjacent_complementary_angle(1,BDC,CDA)": [
+      "right_triangle_judgment_angle(1,CDA)"
+    ],
+    "right_triangle_judgment_angle(1,CDA)": [
+      "right_triangle_property_pythagorean(1,CDA)"
+    ],
+    "right_triangle_judgment_angle(1,BDC)": [
+      "right_triangle_property_pythagorean(1,BDC)"
+    ],
+    "right_triangle_judgment_angle(1,ACB)": [
+      "right_triangle_property_pythagorean(1,ACB)"
+    ]
+  }
+}

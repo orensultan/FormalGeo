@@ -1,0 +1,29 @@
+{
+  "problem_id": 3378,
+  "annotation": "JiaZou_2023-04-30",
+  "source": "GeoQA-879",
+  "problem_level": 1,
+  "problem_text_cn": "如图所示，AB=5，三角形ABC和三角形DEF的相似比为1/2，△ABC与△DEF是相似三角形。求直线DE的长度。",
+  "problem_text_en": "As shown in the diagram, AB=5, the ratio of similar triangles ABC and DEF is 1/2, triangle ABC is similar to triangle DEF.. Find the length of line DE.",
+  "problem_img": "3378.png",
+  "construction_cdl": [
+    "Shape(AB,BC,CA)",
+    "Shape(DE,EF,FD)"
+  ],
+  "text_cdl": [
+    "Equal(LengthOfLine(AB),5)",
+    "Equal(RatioOfSimilarTriangle(ABC,DEF),1/2)",
+    "SimilarBetweenTriangle(ABC,DEF)"
+  ],
+  "image_cdl": [],
+  "goal_cdl": "Value(LengthOfLine(DE))",
+  "problem_answer": "10",
+  "theorem_seqs": [
+    "similar_triangle_property_line_ratio(1,CAB,FDE)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "similar_triangle_property_line_ratio(1,CAB,FDE)"
+    ]
+  }
+}

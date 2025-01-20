@@ -1,0 +1,43 @@
+{
+  "problem_id": 2118,
+  "annotation": "QikeHuang_2023-04-23",
+  "source": "Geometry3k-2208",
+  "problem_level": 2,
+  "problem_text_cn": "如图所示，BC=31，BD=20，DA=x，X是⊙X的圆心，圆O的切线为BC。求x的值。",
+  "problem_text_en": "As shown in the diagram, BC=31, BD=20, DA=x, the center of ⊙X is X, the tangent to circle X is BC. Find the value of x.",
+  "problem_img": "2118.png",
+  "construction_cdl": [
+    "Shape(X)",
+    "Shape(DA,XAD)",
+    "Shape(AD,XDC,XCA)",
+    "Shape(DB,BC,XDC)",
+    "Collinear(ADB)",
+    "Cocircular(X,DCA)"
+  ],
+  "text_cdl": [
+    "Equal(LengthOfLine(BC),31)",
+    "Equal(LengthOfLine(BD),20)",
+    "Equal(LengthOfLine(DA),x)",
+    "IsCentreOfCircle(X,X)",
+    "IsTangentOfCircle(BC,X)"
+  ],
+  "image_cdl": [
+    "Equal(LengthOfLine(BC),31)",
+    "Equal(LengthOfLine(BD),20)",
+    "Equal(LengthOfLine(DA),x)",
+    "IsCentreOfCircle(X,X)",
+    "IsTangentOfCircle(BC,X)"
+  ],
+  "goal_cdl": "Value(x)",
+  "problem_answer": "561/20",
+  "theorem_seqs": [
+    "line_addition(1,AD,DB)",
+    "circle_property_circular_power_tangent_and_segment_line(1,BC,BDA,X)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "line_addition(1,AD,DB)",
+      "circle_property_circular_power_tangent_and_segment_line(1,BC,BDA,X)"
+    ]
+  }
+}

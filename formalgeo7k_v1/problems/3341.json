@@ -1,0 +1,39 @@
+{
+  "problem_id": 3341,
+  "annotation": "YimingHe_2023-04-30",
+  "source": "GeoQA-767",
+  "problem_level": 3,
+  "problem_text_cn": "如图所示，∠ODE=50°，⊙O的圆心为O，⊙O的直径为CD，AO平行于DE。求∠OCA的大小。",
+  "problem_text_en": "As shown in the diagram, ∠ODE=50°, the center of circle O is O, CD is the diameter of circle O, AO∥DE. Find the measure of ∠OCA.",
+  "problem_img": "3341.png",
+  "construction_cdl": [
+    "Shape(AC,OCA)",
+    "Shape(AO,OC,CA)",
+    "Shape(DO,OA,OAD)",
+    "Shape(CO,OD,DE,OEC)",
+    "Shape(ED,ODE)",
+    "Collinear(COD)",
+    "Cocircular(O,ADEC)"
+  ],
+  "text_cdl": [
+    "Equal(MeasureOfAngle(ODE),50)",
+    "IsCentreOfCircle(O,O)",
+    "IsDiameterOfCircle(CD,O)",
+    "ParallelBetweenLine(AO,DE)"
+  ],
+  "image_cdl": [],
+  "goal_cdl": "Value(MeasureOfAngle(OCA))",
+  "problem_answer": "25",
+  "theorem_seqs": [
+    "parallel_property_alternate_interior_angle(2,AO,DE)",
+    "arc_property_center_angle(1,OAD,O)",
+    "arc_property_circumference_angle_external(1,OAD,C)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "parallel_property_alternate_interior_angle(2,AO,DE)",
+      "arc_property_center_angle(1,OAD,O)",
+      "arc_property_circumference_angle_external(1,OAD,C)"
+    ]
+  }
+}

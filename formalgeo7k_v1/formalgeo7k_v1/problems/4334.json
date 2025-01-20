@@ -1,0 +1,37 @@
+{
+  "problem_id": 4334,
+  "annotation": "ZheZhu_2023-05-07",
+  "source": "GeoQA-3194",
+  "problem_level": 3,
+  "problem_text_cn": "如图所示，弧OBA的长度与弧OAC的长度相等，∠CDA=20°。求弧OBA的角度。",
+  "problem_text_en": "As shown in the diagram, the length of ⌒OBA is equal to the length of ⌒OAC, ∠CDA=20°. Find the measure of arc OBA.",
+  "problem_img": "4334.png",
+  "construction_cdl": [
+    "Shape(OCD,DC)",
+    "Shape(OAC,CD,DA)",
+    "Shape(AO,OB,OBA)",
+    "Shape(OA,AD,ODB,BO)",
+    "Cocircular(O,CDBA)"
+  ],
+  "text_cdl": [
+    "Equal(LengthOfArc(OBA),LengthOfArc(OAC))",
+    "Equal(MeasureOfAngle(CDA),20)"
+  ],
+  "image_cdl": [],
+  "goal_cdl": "Value(MeasureOfArc(OBA))",
+  "problem_answer": "40",
+  "theorem_seqs": [
+    "congruent_arc_judgment_length_equal(1,OAC,OBA)",
+    "congruent_arc_property_measure_equal(1,OAC,OBA)",
+    "arc_property_circumference_angle_external(1,OAC,D)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "congruent_arc_judgment_length_equal(1,OAC,OBA)",
+      "arc_property_circumference_angle_external(1,OAC,D)"
+    ],
+    "congruent_arc_judgment_length_equal(1,OAC,OBA)": [
+      "congruent_arc_property_measure_equal(1,OAC,OBA)"
+    ]
+  }
+}

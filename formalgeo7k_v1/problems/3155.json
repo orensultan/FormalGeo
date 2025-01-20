@@ -1,0 +1,46 @@
+{
+  "problem_id": 3155,
+  "annotation": "JiaZou_2023-04-23",
+  "source": "GeoQA-422",
+  "problem_level": 5,
+  "problem_text_cn": "如图所示，BD=25，BF=30，CD=3/2，BA平行于DC，DC平行于FE。求直线AB的长度。",
+  "problem_text_en": "As shown in the diagram, BD=25, BF=30, CD=3/2, BA is parallel to DC, DC∥FE. Find the length of line AB.",
+  "problem_img": "3155.png",
+  "construction_cdl": [
+    "Shape(AB,BD,DC,CA)",
+    "Shape(CD,DF,FC)",
+    "Shape(CF,FE)",
+    "Collinear(BDF)",
+    "Collinear(ACF)"
+  ],
+  "text_cdl": [
+    "Equal(LengthOfLine(BD),25)",
+    "Equal(LengthOfLine(BF),30)",
+    "Equal(LengthOfLine(CD),3/2)",
+    "ParallelBetweenLine(BA,DC)",
+    "ParallelBetweenLine(DC,FE)"
+  ],
+  "image_cdl": [],
+  "goal_cdl": "Value(LengthOfLine(AB))",
+  "problem_answer": "9",
+  "theorem_seqs": [
+    "parallel_property_corresponding_angle(2,BA,DC,F)",
+    "similar_triangle_judgment_aa(1,ABF,CDF)",
+    "line_addition(1,BD,DF)",
+    "similar_triangle_property_line_ratio(1,ABF,CDF)",
+    "similar_triangle_property_line_ratio(1,FAB,FCD)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "parallel_property_corresponding_angle(2,BA,DC,F)",
+      "line_addition(1,BD,DF)"
+    ],
+    "parallel_property_corresponding_angle(2,BA,DC,F)": [
+      "similar_triangle_judgment_aa(1,ABF,CDF)"
+    ],
+    "similar_triangle_judgment_aa(1,ABF,CDF)": [
+      "similar_triangle_property_line_ratio(1,ABF,CDF)",
+      "similar_triangle_property_line_ratio(1,FAB,FCD)"
+    ]
+  }
+}

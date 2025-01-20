@@ -1,0 +1,44 @@
+{
+  "problem_id": 2959,
+  "annotation": "JiaZou_2023-04-16",
+  "source": "GeoQA-154",
+  "problem_level": 5,
+  "problem_text_cn": "如图所示，∠CAO=35°，O是⊙O的圆心，PC是圆O的切线。求∠BPC的大小。",
+  "problem_text_en": "As shown in the diagram, ∠CAO=35°, the center of ⊙O is O, PC is the tangent to ⊙O. Find the measure of ∠BPC.",
+  "problem_img": "2959.png",
+  "construction_cdl": [
+    "Shape(AC,OCA)",
+    "Shape(CA,AO,OC)",
+    "Shape(CO,OB,OBC)",
+    "Shape(BO,OA,OAB)",
+    "Shape(BP,PC,OBC)",
+    "Collinear(AOBP)",
+    "Cocircular(O,ABC)"
+  ],
+  "text_cdl": [
+    "Equal(MeasureOfAngle(CAO),35)",
+    "IsCentreOfCircle(O,O)",
+    "IsTangentOfCircle(PC,O)"
+  ],
+  "image_cdl": [
+    "IsCentreOfCircle(O,O)"
+  ],
+  "goal_cdl": "Value(MeasureOfAngle(BPC))",
+  "problem_answer": "20",
+  "theorem_seqs": [
+    "arc_property_circumference_angle_external(1,OBC,A)",
+    "adjacent_complementary_angle(1,AOC,COB)",
+    "arc_property_center_angle(1,OCA,O)",
+    "arc_property_center_angle(1,OBC,O)",
+    "circle_property_circular_power_tangent_and_segment_angle(2,PC,PBA,O)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "arc_property_circumference_angle_external(1,OBC,A)",
+      "adjacent_complementary_angle(1,AOC,COB)",
+      "arc_property_center_angle(1,OCA,O)",
+      "arc_property_center_angle(1,OBC,O)",
+      "circle_property_circular_power_tangent_and_segment_angle(2,PC,PBA,O)"
+    ]
+  }
+}

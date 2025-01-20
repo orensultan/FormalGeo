@@ -1,0 +1,42 @@
+{
+  "problem_id": 4908,
+  "annotation": "YifanWang_2023-05-21",
+  "source": "GeoQA-4455",
+  "problem_level": 5,
+  "problem_text_cn": "如图所示，∠NBM=60°，⊙O的圆心为O，AM是圆O的切线，AN是圆O的切线。求∠MAN的大小。",
+  "problem_text_en": "As shown in the diagram, ∠NBM=60°, O is the center of ⊙O, AM is the tangent to ⊙O, the tangent to circle O is AN. Find the measure of ∠MAN.",
+  "problem_img": "4908.png",
+  "construction_cdl": [
+    "Shape(MB,OBM)",
+    "Shape(BN,ONB)",
+    "Shape(NB,BM,MO,ON)",
+    "Shape(NO,OM,OMN)",
+    "Shape(MA,AN,OMN)",
+    "Cocircular(O,BMN)"
+  ],
+  "text_cdl": [
+    "Equal(MeasureOfAngle(NBM),60)",
+    "IsCentreOfCircle(O,O)",
+    "IsTangentOfCircle(AM,O)",
+    "IsTangentOfCircle(AN,O)"
+  ],
+  "image_cdl": [],
+  "goal_cdl": "Value(MeasureOfAngle(MAN))",
+  "problem_answer": "60",
+  "theorem_seqs": [
+    "tangent_of_circle_property_perpendicular(2,AN,O,O)",
+    "tangent_of_circle_property_perpendicular(1,AM,O,O)",
+    "arc_property_center_angle(1,OMN,O)",
+    "arc_property_circumference_angle_external(1,OMN,B)",
+    "quadrilateral_property_angle_sum(1,NOMA)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "tangent_of_circle_property_perpendicular(2,AN,O,O)",
+      "tangent_of_circle_property_perpendicular(1,AM,O,O)",
+      "arc_property_center_angle(1,OMN,O)",
+      "arc_property_circumference_angle_external(1,OMN,B)",
+      "quadrilateral_property_angle_sum(1,NOMA)"
+    ]
+  }
+}

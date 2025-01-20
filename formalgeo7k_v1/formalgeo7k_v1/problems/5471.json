@@ -1,0 +1,32 @@
+{
+  "problem_id": 5471,
+  "annotation": "ChenyangMao_2023-05-21",
+  "source": "GeoQA-5887",
+  "problem_level": 2,
+  "problem_text_cn": "如图所示，CD=36，∠ACB=30°，三角形BAC镜像全等于三角形DCA，BA⊥CA。求直线BA的长度。",
+  "problem_text_en": "As shown in the diagram, CD=36, ∠ACB=30°, △BAC is mirror congruent to △DCA, BA is perpendicular to CA. Find the length of line BA.",
+  "problem_img": "5471.png",
+  "construction_cdl": [
+    "Shape(BA,AC,CB)",
+    "Shape(AD,DC,CA)"
+  ],
+  "text_cdl": [
+    "Equal(LengthOfLine(CD),36)",
+    "Equal(MeasureOfAngle(ACB),30)",
+    "MirrorCongruentBetweenTriangle(BAC,DCA)",
+    "PerpendicularBetweenLine(BA,CA)"
+  ],
+  "image_cdl": [],
+  "goal_cdl": "Value(LengthOfLine(BA))",
+  "problem_answer": "18",
+  "theorem_seqs": [
+    "sine_theorem(1,BAC)",
+    "mirror_congruent_triangle_property_line_equal(1,ACB,ADC)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "sine_theorem(1,BAC)",
+      "mirror_congruent_triangle_property_line_equal(1,ACB,ADC)"
+    ]
+  }
+}

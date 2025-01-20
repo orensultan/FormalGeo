@@ -1,0 +1,35 @@
+{
+  "problem_id": 6870,
+  "annotation": "DengfengYue_2023-06-04",
+  "source": "GeoQA-angle-10096",
+  "problem_level": 2,
+  "problem_text_cn": "如图所示，∠BCD=140°，O是圆O的圆心。求∠DOB的大小。",
+  "problem_text_en": "As shown in the diagram, ∠BCD=140°, the center of circle O is O. Find the measure of ∠DOB.",
+  "problem_img": "6870.png",
+  "construction_cdl": [
+    "Shape(BA,OAB)",
+    "Shape(AB,BO,OD,DA)",
+    "Shape(BC,CD,DO,OB)",
+    "Shape(CB,OBC)",
+    "Shape(DC,OCD)",
+    "Shape(AD,ODA)",
+    "Cocircular(O,ABCD)"
+  ],
+  "text_cdl": [
+    "Equal(MeasureOfAngle(BCD),140)",
+    "IsCentreOfCircle(O,O)"
+  ],
+  "image_cdl": [],
+  "goal_cdl": "Value(MeasureOfAngle(DOB))",
+  "problem_answer": "80",
+  "theorem_seqs": [
+    "arc_property_circumference_angle_internal(1,OBD,C)",
+    "arc_property_center_angle(1,OBD,O)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "arc_property_circumference_angle_internal(1,OBD,C)",
+      "arc_property_center_angle(1,OBD,O)"
+    ]
+  }
+}

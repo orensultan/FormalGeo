@@ -1,0 +1,54 @@
+{
+  "problem_id": 1307,
+  "annotation": "DengfengYue_2023-04-09",
+  "source": "Geometry3k-1354",
+  "problem_level": 6,
+  "problem_text_cn": "如图所示，AG=Mul(LengthOfLine(HA),2)，BH=Mul(LengthOfLine(EB),2)，CE=Mul(LengthOfLine(CF),2)，DF=Mul(LengthOfLine(DG),2)，EH=9，BADC是正方形，EHGF是正方形。求BADC的面积与四边形EHGF的面积之比。",
+  "problem_text_en": "As shown in the diagram, AG=Mul(LengthOfLine(HA),2), BH=Mul(LengthOfLine(EB),2), CE=Mul(LengthOfLine(CF),2), DF=Mul(LengthOfLine(DG),2), EH=9, BADC is a square, quadrilateral EHGF is a square. Find the ratio of the area of quadrilateral BADC to the area of quadrilateral EHGF.",
+  "problem_img": "1307.png",
+  "construction_cdl": [
+    "Shape(CE,EB,BC)",
+    "Shape(BH,HA,AB)",
+    "Shape(AG,GD,DA)",
+    "Shape(CD,DF,FC)",
+    "Shape(BA,AD,DC,CB)",
+    "Collinear(EBH)",
+    "Collinear(HAG)",
+    "Collinear(GDF)",
+    "Collinear(FCE)"
+  ],
+  "text_cdl": [
+    "Equal(LengthOfLine(AG),Mul(LengthOfLine(HA),2))",
+    "Equal(LengthOfLine(BH),Mul(LengthOfLine(EB),2))",
+    "Equal(LengthOfLine(CE),Mul(LengthOfLine(CF),2))",
+    "Equal(LengthOfLine(DF),Mul(LengthOfLine(DG),2))",
+    "Equal(LengthOfLine(EH),9)",
+    "Square(BADC)",
+    "Square(EHGF)"
+  ],
+  "image_cdl": [
+    "Equal(LengthOfLine(EH),9)"
+  ],
+  "goal_cdl": "Value(Div(AreaOfQuadrilateral(BADC),AreaOfQuadrilateral(EHGF)))",
+  "problem_answer": "5/9",
+  "theorem_seqs": [
+    "line_addition(1,EB,BH)",
+    "line_addition(1,HA,AG)",
+    "right_triangle_judgment_angle(1,BHA)",
+    "right_triangle_property_pythagorean(1,BHA)",
+    "parallelogram_area_formula_sine(1,BADC)",
+    "parallelogram_area_formula_sine(1,EHGF)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "line_addition(1,EB,BH)",
+      "line_addition(1,HA,AG)",
+      "right_triangle_judgment_angle(1,BHA)",
+      "parallelogram_area_formula_sine(1,BADC)",
+      "parallelogram_area_formula_sine(1,EHGF)"
+    ],
+    "right_triangle_judgment_angle(1,BHA)": [
+      "right_triangle_property_pythagorean(1,BHA)"
+    ]
+  }
+}

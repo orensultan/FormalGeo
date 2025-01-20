@@ -1,0 +1,42 @@
+{
+  "problem_id": 2243,
+  "annotation": "DengfengYue_2023-04-16",
+  "source": "Geometry3k-2342",
+  "problem_level": 2,
+  "problem_text_cn": "如图所示，JN=14-x，KL=3*x+2*y，MK=6*x，JL和MK是▱LJMK的一组对边，四边形PNML是矩形。求x的值。",
+  "problem_text_en": "As shown in the diagram, JN=14-x, KL=3*x+2*y, MK=6*x, LK and JM are opposite sides of the parallelogram LJMK, quadrilateral PNML is a rectangle. Find the value of x.",
+  "problem_img": "2243.png",
+  "construction_cdl": [
+    "Shape(PN,NJ,JP)",
+    "Shape(NM,MJ,JN)",
+    "Shape(JM,ML,LJ)",
+    "Shape(PJ,JL,LP)",
+    "Shape(LM,MK,KL)",
+    "Collinear(PJM)",
+    "Collinear(LJN)"
+  ],
+  "text_cdl": [
+    "Equal(LengthOfLine(JN),14-x)",
+    "Equal(LengthOfLine(KL),3*x+2*y)",
+    "Equal(LengthOfLine(MK),6*x)",
+    "Parallelogram(LJMK)",
+    "Rectangle(PNML)"
+  ],
+  "image_cdl": [
+    "Equal(LengthOfLine(JN),14-x)",
+    "Equal(LengthOfLine(KL),3*x+2*y)",
+    "Equal(LengthOfLine(MK),6*x)"
+  ],
+  "goal_cdl": "Value(x)",
+  "problem_answer": "2",
+  "theorem_seqs": [
+    "parallelogram_property_diagonal_bisection(1,NMLP,J)",
+    "parallelogram_property_opposite_line_equal(1,LJMK)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "parallelogram_property_diagonal_bisection(1,NMLP,J)",
+      "parallelogram_property_opposite_line_equal(1,LJMK)"
+    ]
+  }
+}

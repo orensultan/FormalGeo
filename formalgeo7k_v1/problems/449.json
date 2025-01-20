@@ -1,0 +1,56 @@
+{
+  "problem_id": 449,
+  "annotation": "JiaZou_2023-03-12",
+  "source": "Geometry3k-459",
+  "problem_level": 7,
+  "problem_text_cn": "如图所示，AB=6，AC=4，DC=2，CD⊥AD，CD垂直于BD。求△CBA的周长。",
+  "problem_text_en": "As shown in the diagram, AB=6, AC=4, DC=2, CD is perpendicular to AD, CD⊥BD. Find the perimeter of triangle CBA.",
+  "problem_img": "449.png",
+  "construction_cdl": [
+    "Shape(CB,BD,DC)",
+    "Shape(CD,DA,AC)",
+    "Collinear(BDA)"
+  ],
+  "text_cdl": [
+    "Equal(LengthOfLine(AB),6)",
+    "Equal(LengthOfLine(AC),4)",
+    "Equal(LengthOfLine(DC),2)",
+    "PerpendicularBetweenLine(CD,AD)",
+    "PerpendicularBetweenLine(CD,BD)"
+  ],
+  "image_cdl": [
+    "Equal(LengthOfLine(AB),6)",
+    "Equal(LengthOfLine(AC),4)",
+    "Equal(LengthOfLine(DC),2)",
+    "PerpendicularBetweenLine(CD,AD)",
+    "PerpendicularBetweenLine(CD,BD)"
+  ],
+  "goal_cdl": "Value(PerimeterOfTriangle(CBA))",
+  "problem_answer": "2*sqrt(13-6*sqrt(3))+10",
+  "theorem_seqs": [
+    "adjacent_complementary_angle(1,BDC,CDA)",
+    "right_triangle_judgment_angle(1,BDC)",
+    "right_triangle_judgment_angle(1,CDA)",
+    "line_addition(1,BD,DA)",
+    "right_triangle_property_pythagorean(1,BDC)",
+    "right_triangle_property_pythagorean(1,CDA)",
+    "triangle_perimeter_formula(1,BAC)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "adjacent_complementary_angle(1,BDC,CDA)",
+      "right_triangle_judgment_angle(1,CDA)",
+      "line_addition(1,BD,DA)",
+      "triangle_perimeter_formula(1,BAC)"
+    ],
+    "adjacent_complementary_angle(1,BDC,CDA)": [
+      "right_triangle_judgment_angle(1,BDC)"
+    ],
+    "right_triangle_judgment_angle(1,BDC)": [
+      "right_triangle_property_pythagorean(1,BDC)"
+    ],
+    "right_triangle_judgment_angle(1,CDA)": [
+      "right_triangle_property_pythagorean(1,CDA)"
+    ]
+  }
+}

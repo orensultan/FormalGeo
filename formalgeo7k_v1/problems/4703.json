@@ -1,0 +1,42 @@
+{
+  "problem_id": 4703,
+  "annotation": "XiaoxiaoJin_2023-05-14",
+  "source": "GeoQA-4007",
+  "problem_level": 4,
+  "problem_text_cn": "如图所示，∠OBA=32°，O是圆O的圆心，BA是圆O的切线。求∠ADC的大小。",
+  "problem_text_en": "As shown in the diagram, ∠OBA=32°, O is the center of ⊙O, the tangent to ⊙O is BA. Find the measure of ∠ADC.",
+  "problem_img": "4703.png",
+  "construction_cdl": [
+    "Shape(DC,CE,ED)",
+    "Shape(OE,EA,AO)",
+    "Shape(DE,EO,OA,OAD)",
+    "Shape(CD,ODC)",
+    "Shape(AE,EC,OCA)",
+    "Shape(CB,BA,OCA)",
+    "Collinear(BCEO)",
+    "Collinear(DEA)",
+    "Cocircular(O,DCA)"
+  ],
+  "text_cdl": [
+    "Equal(MeasureOfAngle(OBA),32)",
+    "IsCentreOfCircle(O,O)",
+    "IsTangentOfCircle(BA,O)"
+  ],
+  "image_cdl": [],
+  "goal_cdl": "Value(MeasureOfAngle(ADC))",
+  "problem_answer": "29",
+  "theorem_seqs": [
+    "tangent_of_circle_property_perpendicular(2,BA,O,O)",
+    "triangle_property_angle_sum(1,AOB)",
+    "arc_property_center_angle(1,OCA,O)",
+    "arc_property_circumference_angle_external(1,OCA,D)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "tangent_of_circle_property_perpendicular(2,BA,O,O)",
+      "triangle_property_angle_sum(1,AOB)",
+      "arc_property_center_angle(1,OCA,O)",
+      "arc_property_circumference_angle_external(1,OCA,D)"
+    ]
+  }
+}

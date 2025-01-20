@@ -1,0 +1,51 @@
+{
+  "problem_id": 608,
+  "annotation": "YimingHe_2023-04-09",
+  "source": "Geometry3k-625",
+  "problem_level": 6,
+  "problem_text_cn": "如图所示，RT=11，∠RPS=130°，∠TPQ=112°，圆P的圆心为P，⊙P的直径为RT。求⌒PQR的长度。",
+  "problem_text_en": "As shown in the diagram, RT=11, ∠RPS=130°, ∠TPQ=112°, P is the center of circle P, the diameter of ⊙P is RT. Find the length of ⌒PQR.",
+  "problem_img": "608.png",
+  "construction_cdl": [
+    "Shape(QP,PR,PRQ)",
+    "Shape(TP,PQ,PQT)",
+    "Shape(SP,PT,PTS)",
+    "Shape(RP,PS,PSR)",
+    "Collinear(RPT)",
+    "Cocircular(P,RQTS)"
+  ],
+  "text_cdl": [
+    "Equal(LengthOfLine(RT),11)",
+    "Equal(MeasureOfAngle(RPS),130)",
+    "Equal(MeasureOfAngle(TPQ),112)",
+    "IsCentreOfCircle(P,P)",
+    "IsDiameterOfCircle(RT,P)"
+  ],
+  "image_cdl": [
+    "Equal(LengthOfLine(RT),11)",
+    "Equal(MeasureOfAngle(RPS),130)",
+    "Equal(MeasureOfAngle(TPQ),112)",
+    "IsCentreOfCircle(P,P)",
+    "IsDiameterOfCircle(RT,P)"
+  ],
+  "goal_cdl": "Value(LengthOfArc(PQR))",
+  "problem_answer": "803*pi/90",
+  "theorem_seqs": [
+    "flat_angle(1,RPT)",
+    "angle_addition(1,RPT,TPQ)",
+    "arc_length_formula(1,PQR)",
+    "arc_property_center_angle(1,PQR,P)",
+    "diameter_of_circle_property_length_equal(1,RT,P)",
+    "circle_property_length_of_radius_and_diameter(1,P)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "flat_angle(1,RPT)",
+      "angle_addition(1,RPT,TPQ)",
+      "arc_length_formula(1,PQR)",
+      "arc_property_center_angle(1,PQR,P)",
+      "diameter_of_circle_property_length_equal(1,RT,P)",
+      "circle_property_length_of_radius_and_diameter(1,P)"
+    ]
+  }
+}

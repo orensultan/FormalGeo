@@ -1,0 +1,43 @@
+{
+  "problem_id": 3790,
+  "annotation": "RunanWang_2023-05-07",
+  "source": "GeoQA-1632",
+  "problem_level": 3,
+  "problem_text_cn": "如图所示，∠ACB=60°，∠HBC=25°，CF平行于HB，GE∥CF。求∠AGE的大小。",
+  "problem_text_en": "As shown in the diagram, ∠ACB=60°, ∠HBC=25°, CF is parallel to HB, GE∥CF. Find the measure of ∠AGE.",
+  "problem_img": "3790.png",
+  "construction_cdl": [
+    "Shape(AG,GE,EA)",
+    "Shape(EG,GC,CF,FE)",
+    "Shape(FC,CB,BF)",
+    "Shape(HB,BC)",
+    "Collinear(AEFB)",
+    "Collinear(AGC)"
+  ],
+  "text_cdl": [
+    "Equal(MeasureOfAngle(ACB),60)",
+    "Equal(MeasureOfAngle(HBC),25)",
+    "ParallelBetweenLine(CF,HB)",
+    "ParallelBetweenLine(GE,CF)"
+  ],
+  "image_cdl": [
+    "Equal(MeasureOfAngle(ACB),60)",
+    "Equal(MeasureOfAngle(HBC),25)",
+    "ParallelBetweenLine(CF,HB)",
+    "ParallelBetweenLine(GE,CF)"
+  ],
+  "goal_cdl": "Value(MeasureOfAngle(AGE))",
+  "problem_answer": "35",
+  "theorem_seqs": [
+    "parallel_property_alternate_interior_angle(1,CF,HB)",
+    "parallel_property_corresponding_angle(1,GE,CF,A)",
+    "angle_addition(1,GCF,FCB)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "parallel_property_alternate_interior_angle(1,CF,HB)",
+      "parallel_property_corresponding_angle(1,GE,CF,A)",
+      "angle_addition(1,GCF,FCB)"
+    ]
+  }
+}

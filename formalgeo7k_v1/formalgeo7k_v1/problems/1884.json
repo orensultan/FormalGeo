@@ -1,0 +1,30 @@
+{
+  "problem_id": 1884,
+  "annotation": "YanjunGuo_2023-04-23",
+  "source": "Geometry3k-1959",
+  "problem_level": 2,
+  "problem_text_cn": "如图所示，⊙A的面积为20*pi。求圆A的周长。",
+  "problem_text_en": "As shown in the diagram, the area of the ⊙A is 20*pi. Find the circumference of the circle A.",
+  "problem_img": "1884.png",
+  "construction_cdl": [
+    "Cocircular(A)"
+  ],
+  "text_cdl": [
+    "Equal(AreaOfCircle(A),20*pi)"
+  ],
+  "image_cdl": [
+    "Equal(AreaOfCircle(A),20*pi)"
+  ],
+  "goal_cdl": "Value(PerimeterOfCircle(A))",
+  "problem_answer": "4*sqrt(5)*pi",
+  "theorem_seqs": [
+    "circle_area_formula(1,A)",
+    "circle_perimeter_formula(1,A)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "circle_area_formula(1,A)",
+      "circle_perimeter_formula(1,A)"
+    ]
+  }
+}

@@ -1,0 +1,43 @@
+{
+  "problem_id": 5590,
+  "annotation": "YimingHe_2023-05-28",
+  "source": "GeoQA-7117",
+  "problem_level": 5,
+  "problem_text_cn": "如图所示，AC=CD，AD=5000，OA=3000，∠COA=90°。求直线CD的长度。",
+  "problem_text_en": "As shown in the diagram, AC=CD, AD=5000, OA=3000, ∠COA=90°. Find the length of line CD.",
+  "problem_img": "5590.png",
+  "construction_cdl": [
+    "Shape(OA,AC,CO)",
+    "Shape(CA,AD,DC)",
+    "Collinear(OCD)"
+  ],
+  "text_cdl": [
+    "Equal(LengthOfLine(AC),LengthOfLine(CD))",
+    "Equal(LengthOfLine(AD),5000)",
+    "Equal(LengthOfLine(OA),3000)",
+    "Equal(MeasureOfAngle(COA),90)"
+  ],
+  "image_cdl": [],
+  "goal_cdl": "Value(LengthOfLine(CD))",
+  "problem_answer": "3125",
+  "theorem_seqs": [
+    "line_addition(1,OC,CD)",
+    "right_triangle_judgment_angle(1,COA)",
+    "right_triangle_judgment_angle(1,DOA)",
+    "right_triangle_property_pythagorean(1,COA)",
+    "right_triangle_property_pythagorean(1,DOA)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "line_addition(1,OC,CD)",
+      "right_triangle_judgment_angle(1,COA)",
+      "right_triangle_judgment_angle(1,DOA)"
+    ],
+    "right_triangle_judgment_angle(1,COA)": [
+      "right_triangle_property_pythagorean(1,COA)"
+    ],
+    "right_triangle_judgment_angle(1,DOA)": [
+      "right_triangle_property_pythagorean(1,DOA)"
+    ]
+  }
+}

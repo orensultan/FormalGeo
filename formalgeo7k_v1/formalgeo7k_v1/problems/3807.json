@@ -1,0 +1,51 @@
+{
+  "problem_id": 3807,
+  "annotation": "YifanWang_2023-05-07",
+  "source": "GeoQA-1661",
+  "problem_level": 6,
+  "problem_text_cn": "如图所示，DB=BO，∠CAD=50°，O是圆O的圆心。求∠DBO的大小。",
+  "problem_text_en": "As shown in the diagram, DB=BO, ∠CAD=50°, the center of ⊙O is O. Find the measure of ∠DBO.",
+  "problem_img": "3807.png",
+  "construction_cdl": [
+    "Shape(AD,DB,OAB)",
+    "Shape(AD,DO,OC,CA)",
+    "Shape(DB,BO,OD)",
+    "Shape(CO,OB,OBC)",
+    "Shape(CA,OCA)",
+    "Collinear(ADB)",
+    "Collinear(DOC)",
+    "Cocircular(O,ABC)"
+  ],
+  "text_cdl": [
+    "Equal(LengthOfLine(DB),LengthOfLine(BO))",
+    "Equal(MeasureOfAngle(CAD),50)",
+    "IsCentreOfCircle(O,O)"
+  ],
+  "image_cdl": [
+    "Equal(LengthOfLine(DB),LengthOfLine(BO))",
+    "Equal(MeasureOfAngle(CAD),50)",
+    "IsCentreOfCircle(O,O)"
+  ],
+  "goal_cdl": "Value(MeasureOfAngle(DBO))",
+  "problem_answer": "20",
+  "theorem_seqs": [
+    "arc_property_circumference_angle_external(1,OBC,A)",
+    "arc_property_center_angle(1,OBC,O)",
+    "adjacent_complementary_angle(1,COB,BOD)",
+    "isosceles_triangle_judgment_line_equal(1,BOD)",
+    "isosceles_triangle_property_angle_equal(1,BOD)",
+    "triangle_property_angle_sum(1,DBO)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "arc_property_circumference_angle_external(1,OBC,A)",
+      "arc_property_center_angle(1,OBC,O)",
+      "adjacent_complementary_angle(1,COB,BOD)",
+      "isosceles_triangle_judgment_line_equal(1,BOD)",
+      "triangle_property_angle_sum(1,DBO)"
+    ],
+    "isosceles_triangle_judgment_line_equal(1,BOD)": [
+      "isosceles_triangle_property_angle_equal(1,BOD)"
+    ]
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "problem_id": 3085,
+  "annotation": "YimingHe_2023-04-23",
+  "source": "GeoQA-317",
+  "problem_level": 2,
+  "problem_text_cn": "如图所示，DE=14，D平分线段OA，E平分线段OB。求直线AB的长度。",
+  "problem_text_en": "As shown in the diagram, DE=14, D is the midpoint of segment OA, E is the midpoint of segment OB. Find the length of line AB.",
+  "problem_img": "3085.png",
+  "construction_cdl": [
+    "Shape(OD,DE,EO)",
+    "Shape(DA,AB,BE,ED)",
+    "Collinear(ODA)",
+    "Collinear(OEB)"
+  ],
+  "text_cdl": [
+    "Equal(LengthOfLine(DE),14)",
+    "IsMidpointOfLine(D,OA)",
+    "IsMidpointOfLine(E,OB)"
+  ],
+  "image_cdl": [],
+  "goal_cdl": "Value(LengthOfLine(AB))",
+  "problem_answer": "28",
+  "theorem_seqs": [
+    "midsegment_of_triangle_judgment_midpoint(1,DE,OAB)",
+    "midsegment_of_triangle_property_length(1,DE,OAB)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "midsegment_of_triangle_judgment_midpoint(1,DE,OAB)"
+    ],
+    "midsegment_of_triangle_judgment_midpoint(1,DE,OAB)": [
+      "midsegment_of_triangle_property_length(1,DE,OAB)"
+    ]
+  }
+}

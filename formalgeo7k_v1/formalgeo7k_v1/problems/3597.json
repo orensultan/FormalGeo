@@ -1,0 +1,36 @@
+{
+  "problem_id": 3597,
+  "annotation": "QikeHuang_2023-04-30",
+  "source": "GeoQA-1248",
+  "problem_level": 3,
+  "problem_text_cn": "如图所示，∠EDB=60°，AD⊥CD，FD⊥ED。求∠FDC的大小。",
+  "problem_text_en": "As shown in the diagram, ∠EDB=60°, AD⊥CD, FD is perpendicular to ED. Find the measure of ∠FDC.",
+  "problem_img": "3597.png",
+  "construction_cdl": [
+    "Shape(AD,DF)",
+    "Shape(FD,DC)",
+    "Shape(CD,DE)",
+    "Shape(ED,DB)",
+    "Collinear(ADB)"
+  ],
+  "text_cdl": [
+    "Equal(MeasureOfAngle(EDB),60)",
+    "PerpendicularBetweenLine(AD,CD)",
+    "PerpendicularBetweenLine(FD,ED)"
+  ],
+  "image_cdl": [],
+  "goal_cdl": "Value(MeasureOfAngle(FDC))",
+  "problem_answer": "60",
+  "theorem_seqs": [
+    "adjacent_complementary_angle(1,ADC,CDB)",
+    "angle_addition(1,FDC,CDE)",
+    "angle_addition(1,CDE,EDB)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "adjacent_complementary_angle(1,ADC,CDB)",
+      "angle_addition(1,FDC,CDE)",
+      "angle_addition(1,CDE,EDB)"
+    ]
+  }
+}

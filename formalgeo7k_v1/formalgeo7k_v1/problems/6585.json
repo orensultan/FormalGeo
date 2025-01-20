@@ -1,0 +1,44 @@
+{
+  "problem_id": 6585,
+  "annotation": "YanjunGuo_2023-06-04",
+  "source": "GeoQA-9559",
+  "problem_level": 5,
+  "problem_text_cn": "如图所示，AB=AC，AD=5，AD=DB，三角形EBC的周长为24，AD垂直于ED。求直线BC的长度。",
+  "problem_text_en": "As shown in the diagram, AB=AC, AD=5, AD=DB, the perimeter of △EBC is 24, AD is perpendicular to ED. Find the length of line BC.",
+  "problem_img": "6585.png",
+  "construction_cdl": [
+    "Shape(AD,DE,EA)",
+    "Shape(DB,BE,ED)",
+    "Shape(EB,BC,CE)",
+    "Collinear(ADB)",
+    "Collinear(AEC)"
+  ],
+  "text_cdl": [
+    "Equal(LengthOfLine(AB),LengthOfLine(AC))",
+    "Equal(LengthOfLine(AD),5)",
+    "Equal(LengthOfLine(AD),LengthOfLine(DB))",
+    "Equal(PerimeterOfTriangle(EBC),24)",
+    "PerpendicularBetweenLine(AD,ED)"
+  ],
+  "image_cdl": [],
+  "goal_cdl": "Value(LengthOfLine(BC))",
+  "problem_answer": "14",
+  "theorem_seqs": [
+    "line_addition(1,AD,DB)",
+    "perpendicular_bisector_judgment_per_and_mid(1,ED,AB)",
+    "perpendicular_bisector_property_distance_equal(1,ED,AB)",
+    "line_addition(1,AE,EC)",
+    "triangle_perimeter_formula(1,EBC)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "line_addition(1,AD,DB)",
+      "perpendicular_bisector_judgment_per_and_mid(1,ED,AB)",
+      "line_addition(1,AE,EC)",
+      "triangle_perimeter_formula(1,EBC)"
+    ],
+    "perpendicular_bisector_judgment_per_and_mid(1,ED,AB)": [
+      "perpendicular_bisector_property_distance_equal(1,ED,AB)"
+    ]
+  }
+}

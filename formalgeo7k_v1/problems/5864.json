@@ -1,0 +1,47 @@
+{
+  "problem_id": 5864,
+  "annotation": "QikeHuang_2023-05-28",
+  "source": "GeoQA-7902",
+  "problem_level": 6,
+  "problem_text_cn": "如图所示，Div(LengthOfLine(AB)=LengthOfLine(AC))，AD=3，AD=CE，BC=10，DE∥BC。求直线DE的长度。",
+  "problem_text_en": "As shown in the diagram, Div(LengthOfLine(AB)=LengthOfLine(AC)), AD=3, AD=CE, BC=10, DE∥BC. Find the length of line DE.",
+  "problem_img": "5864.png",
+  "construction_cdl": [
+    "Shape(AD,DE,EA)",
+    "Shape(DB,BC,CE,ED)",
+    "Collinear(ADB)",
+    "Collinear(AEC)"
+  ],
+  "text_cdl": [
+    "Equal(Div(LengthOfLine(AB),LengthOfLine(AC)),3/2)",
+    "Equal(LengthOfLine(AD),3)",
+    "Equal(LengthOfLine(AD),LengthOfLine(CE))",
+    "Equal(LengthOfLine(BC),10)",
+    "ParallelBetweenLine(DE,BC)"
+  ],
+  "image_cdl": [],
+  "goal_cdl": "Value(LengthOfLine(DE))",
+  "problem_answer": "4",
+  "theorem_seqs": [
+    "parallel_property_corresponding_angle(1,DE,BC,A)",
+    "similar_triangle_judgment_aa(1,EAD,CAB)",
+    "similar_triangle_property_line_ratio(1,EAD,CAB)",
+    "similar_triangle_property_line_ratio(1,ADE,ABC)",
+    "similar_triangle_property_line_ratio(1,DEA,BCA)",
+    "line_addition(1,AE,EC)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "parallel_property_corresponding_angle(1,DE,BC,A)",
+      "line_addition(1,AE,EC)"
+    ],
+    "parallel_property_corresponding_angle(1,DE,BC,A)": [
+      "similar_triangle_judgment_aa(1,EAD,CAB)"
+    ],
+    "similar_triangle_judgment_aa(1,EAD,CAB)": [
+      "similar_triangle_property_line_ratio(1,EAD,CAB)",
+      "similar_triangle_property_line_ratio(1,ADE,ABC)",
+      "similar_triangle_property_line_ratio(1,DEA,BCA)"
+    ]
+  }
+}

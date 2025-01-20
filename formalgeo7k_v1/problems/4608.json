@@ -1,0 +1,54 @@
+{
+  "problem_id": 4608,
+  "annotation": "QikeHuang_2023-05-14",
+  "source": "GeoQA-3775",
+  "problem_level": 7,
+  "problem_text_cn": "如图所示，BC=6，OA=2，∠CAB=90°，O是⊙O的圆心，AB和AC是等腰直角三角形ABC的腰。求圆O的半径。",
+  "problem_text_en": "As shown in the diagram, BC=6, OA=2, ∠CAB=90°, the center of circle O is O, ∠CAB is the right angle of the isosceles right triangle ABC. Find the radius of circle O.",
+  "problem_img": "4608.png",
+  "construction_cdl": [
+    "Shape(AC,OCB,BA)",
+    "Shape(AB,BO,OA)",
+    "Shape(AO,OC,CA)",
+    "Shape(OB,BC,CO)",
+    "Shape(CB,OBC)",
+    "Cocircular(O,BC)"
+  ],
+  "text_cdl": [
+    "Equal(LengthOfLine(BC),6)",
+    "Equal(LengthOfLine(OA),2)",
+    "Equal(MeasureOfAngle(CAB),90)",
+    "IsCentreOfCircle(O,O)",
+    "IsoscelesRightTriangle(ABC)"
+  ],
+  "image_cdl": [],
+  "goal_cdl": "Value(RadiusOfCircle(O))",
+  "problem_answer": "sqrt(10)",
+  "theorem_seqs": [
+    "radius_of_circle_property_length_equal(1,OB,O)",
+    "radius_of_circle_property_length_equal(1,OC,O)",
+    "mirror_congruent_triangle_judgment_sss(1,ABO,AOC)",
+    "mirror_congruent_triangle_property_angle_equal(1,ABO,AOC)",
+    "angle_addition(1,COA,OAB)",
+    "right_triangle_property_pythagorean(1,CAB)",
+    "cosine_theorem(1,ABO)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "radius_of_circle_property_length_equal(1,OB,O)",
+      "radius_of_circle_property_length_equal(1,OC,O)",
+      "angle_addition(1,COA,OAB)",
+      "right_triangle_property_pythagorean(1,CAB)",
+      "cosine_theorem(1,ABO)"
+    ],
+    "radius_of_circle_property_length_equal(1,OB,O)": [
+      "mirror_congruent_triangle_judgment_sss(1,ABO,AOC)"
+    ],
+    "radius_of_circle_property_length_equal(1,OC,O)": [
+      "mirror_congruent_triangle_judgment_sss(1,ABO,AOC)"
+    ],
+    "mirror_congruent_triangle_judgment_sss(1,ABO,AOC)": [
+      "mirror_congruent_triangle_property_angle_equal(1,ABO,AOC)"
+    ]
+  }
+}

@@ -1,0 +1,42 @@
+{
+  "problem_id": 4026,
+  "annotation": "JiaZou_2023-05-07",
+  "source": "GeoQA-2196",
+  "problem_level": 4,
+  "problem_text_cn": "如图所示，∠EAF=40°，∠FCD=80°，AB∥CD。求∠FEA的大小。",
+  "problem_text_en": "As shown in the diagram, ∠EAF=40°, ∠FCD=80°, AB∥CD. Find the measure of ∠FEA.",
+  "problem_img": "4026.png",
+  "construction_cdl": [
+    "Shape(EA,AF,FE)",
+    "Shape(EF,FB)",
+    "Shape(BF,FC)",
+    "Shape(CF,FA)",
+    "Shape(FC,CD)",
+    "Collinear(AFB)",
+    "Collinear(EFC)"
+  ],
+  "text_cdl": [
+    "Equal(MeasureOfAngle(EAF),40)",
+    "Equal(MeasureOfAngle(FCD),80)",
+    "ParallelBetweenLine(AB,CD)"
+  ],
+  "image_cdl": [],
+  "goal_cdl": "Value(MeasureOfAngle(FEA))",
+  "problem_answer": "40",
+  "theorem_seqs": [
+    "parallel_property_collinear_extend(3,AB,CD,F)",
+    "parallel_property_corresponding_angle(1,FB,CD,E)",
+    "adjacent_complementary_angle(1,AFE,EFB)",
+    "triangle_property_angle_sum(1,AFE)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "parallel_property_collinear_extend(3,AB,CD,F)",
+      "adjacent_complementary_angle(1,AFE,EFB)",
+      "triangle_property_angle_sum(1,AFE)"
+    ],
+    "parallel_property_collinear_extend(3,AB,CD,F)": [
+      "parallel_property_corresponding_angle(1,FB,CD,E)"
+    ]
+  }
+}

@@ -1,0 +1,50 @@
+{
+  "problem_id": 1831,
+  "annotation": "ChenyangMao_2023-04-16",
+  "source": "Geometry3k-1899",
+  "problem_level": 2,
+  "problem_text_cn": "如图所示，∠HEL=55°，∠IHF=110°，IC∥HF。求∠HIA的大小。",
+  "problem_text_en": "As shown in the diagram, ∠HEL=55°, ∠IHF=110°, IC is parallel to HF. Find the measure of ∠HIA.",
+  "problem_img": "1831.png",
+  "construction_cdl": [
+    "Shape(DI,IC)",
+    "Shape(CI,IH)",
+    "Shape(IH,HF)",
+    "Shape(FH,HB)",
+    "Shape(AI,ID)",
+    "Shape(HI,IA,AE,EH)",
+    "Shape(BH,HE)",
+    "Shape(JA,AI)",
+    "Shape(HE,EL)",
+    "Shape(KA,AJ)",
+    "Shape(EA,AK)",
+    "Shape(GE,EA)",
+    "Shape(LE,EG)",
+    "Collinear(JAEL)",
+    "Collinear(DIHB)",
+    "Collinear(CIAK)",
+    "Collinear(FHEG)"
+  ],
+  "text_cdl": [
+    "Equal(MeasureOfAngle(HEL),55)",
+    "Equal(MeasureOfAngle(IHF),110)",
+    "ParallelBetweenLine(IC,HF)"
+  ],
+  "image_cdl": [
+    "Equal(MeasureOfAngle(HEL),55)",
+    "Equal(MeasureOfAngle(IHF),110)",
+    "ParallelBetweenLine(IC,HF)"
+  ],
+  "goal_cdl": "Value(MeasureOfAngle(HIA))",
+  "problem_answer": "110",
+  "theorem_seqs": [
+    "parallel_property_corresponding_angle(1,IC,HF,D)",
+    "vertical_angle(1,DIC,HIA)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "parallel_property_corresponding_angle(1,IC,HF,D)",
+      "vertical_angle(1,DIC,HIA)"
+    ]
+  }
+}

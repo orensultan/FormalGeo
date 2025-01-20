@@ -1,0 +1,85 @@
+{
+  "problem_id": 4874,
+  "annotation": "YifanWang_2023-05-21",
+  "source": "GeoQA-4389",
+  "problem_level": 16,
+  "problem_text_cn": "如图所示，∠EAD=50°，⊙O的圆心为O，⊙O的切线为PD，PE是⊙O的切线，三角形ABC为等腰三角形。求∠EPD的大小。",
+  "problem_text_en": "As shown in the diagram, ∠EAD=50°, the center of ⊙O is O, PD is the tangent to ⊙O, the tangent to circle O is PE, △ABC is an isosceles △. Find the measure of ∠EPD.",
+  "problem_img": "4874.png",
+  "construction_cdl": [
+    "Shape(AD,DP,PE,EA)",
+    "Shape(EP,PD,OED)",
+    "Shape(BD,ODB)",
+    "Shape(DB,BO,OD)",
+    "Shape(DO,OE,OED)",
+    "Shape(EO,OC,CE)",
+    "Shape(EC,OCE)",
+    "Shape(CO,OB,OBC)",
+    "Collinear(ADB)",
+    "Collinear(CEA)",
+    "Collinear(BOC)",
+    "Cocircular(O,BCED)"
+  ],
+  "text_cdl": [
+    "Equal(MeasureOfAngle(EAD),50)",
+    "IsCentreOfCircle(O,O)",
+    "IsTangentOfCircle(PD,O)",
+    "IsTangentOfCircle(PE,O)",
+    "IsoscelesTriangle(ABC)"
+  ],
+  "image_cdl": [],
+  "goal_cdl": "Value(MeasureOfAngle(EPD))",
+  "problem_answer": "100",
+  "theorem_seqs": [
+    "tangent_of_circle_property_perpendicular(2,PD,O,O)",
+    "tangent_of_circle_property_perpendicular(1,PE,O,O)",
+    "radius_of_circle_property_length_equal(1,OB,O)",
+    "radius_of_circle_property_length_equal(1,OC,O)",
+    "radius_of_circle_property_length_equal(1,OE,O)",
+    "radius_of_circle_property_length_equal(1,OD,O)",
+    "isosceles_triangle_judgment_line_equal(1,ODB)",
+    "isosceles_triangle_judgment_line_equal(1,OCE)",
+    "isosceles_triangle_property_angle_equal(1,ODB)",
+    "isosceles_triangle_property_angle_equal(1,OCE)",
+    "triangle_property_angle_sum(1,DBO)",
+    "triangle_property_angle_sum(1,EOC)",
+    "triangle_property_angle_sum(1,ABC)",
+    "angle_addition(1,DOE,EOC)",
+    "adjacent_complementary_angle(1,BOD,DOC)",
+    "quadrilateral_property_angle_sum(1,PDOE)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "tangent_of_circle_property_perpendicular(2,PD,O,O)",
+      "tangent_of_circle_property_perpendicular(1,PE,O,O)",
+      "radius_of_circle_property_length_equal(1,OB,O)",
+      "radius_of_circle_property_length_equal(1,OC,O)",
+      "radius_of_circle_property_length_equal(1,OE,O)",
+      "radius_of_circle_property_length_equal(1,OD,O)",
+      "triangle_property_angle_sum(1,DBO)",
+      "triangle_property_angle_sum(1,EOC)",
+      "triangle_property_angle_sum(1,ABC)",
+      "angle_addition(1,DOE,EOC)",
+      "adjacent_complementary_angle(1,BOD,DOC)",
+      "quadrilateral_property_angle_sum(1,PDOE)"
+    ],
+    "radius_of_circle_property_length_equal(1,OB,O)": [
+      "isosceles_triangle_judgment_line_equal(1,ODB)"
+    ],
+    "radius_of_circle_property_length_equal(1,OC,O)": [
+      "isosceles_triangle_judgment_line_equal(1,OCE)"
+    ],
+    "radius_of_circle_property_length_equal(1,OE,O)": [
+      "isosceles_triangle_judgment_line_equal(1,OCE)"
+    ],
+    "radius_of_circle_property_length_equal(1,OD,O)": [
+      "isosceles_triangle_judgment_line_equal(1,ODB)"
+    ],
+    "isosceles_triangle_judgment_line_equal(1,ODB)": [
+      "isosceles_triangle_property_angle_equal(1,ODB)"
+    ],
+    "isosceles_triangle_judgment_line_equal(1,OCE)": [
+      "isosceles_triangle_property_angle_equal(1,OCE)"
+    ]
+  }
+}

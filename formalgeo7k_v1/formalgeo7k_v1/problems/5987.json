@@ -1,0 +1,55 @@
+{
+  "problem_id": 5987,
+  "annotation": "YangLi_2023-05-28",
+  "source": "GeoQA-8445",
+  "problem_level": 7,
+  "problem_text_cn": "如图所示，∠CAB=50°，O是⊙O的圆心，D平分线段BC，OD垂直于BD。求∠COD的大小。",
+  "problem_text_en": "As shown in the diagram, ∠CAB=50°, the center of ⊙O is O, D is the midpoint of segment BC, OD is perpendicular to BD. Find the measure of ∠COD.",
+  "problem_img": "5987.png",
+  "construction_cdl": [
+    "Shape(AC,OCA)",
+    "Shape(AB,BO,OC,CA)",
+    "Shape(BA,OAB)",
+    "Shape(OB,BD,DO)",
+    "Shape(OD,DC,CO)",
+    "Shape(CD,DB,OBC)",
+    "Collinear(BDC)",
+    "Cocircular(O,BCA)"
+  ],
+  "text_cdl": [
+    "Equal(MeasureOfAngle(CAB),50)",
+    "IsCentreOfCircle(O,O)",
+    "IsMidpointOfLine(D,BC)",
+    "PerpendicularBetweenLine(OD,BC)"
+  ],
+  "image_cdl": [],
+  "goal_cdl": "Value(MeasureOfAngle(COD))",
+  "problem_answer": "50",
+  "theorem_seqs": [
+    "radius_of_circle_property_length_equal(1,OB,O)",
+    "radius_of_circle_property_length_equal(1,OC,O)",
+    "arc_property_center_angle(1,OBC,O)",
+    "arc_property_circumference_angle_external(1,OBC,A)",
+    "mirror_congruent_triangle_judgment_sss(1,OBD,ODC)",
+    "mirror_congruent_triangle_property_angle_equal(1,OBD,ODC)",
+    "angle_addition(1,COD,DOB)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "radius_of_circle_property_length_equal(1,OB,O)",
+      "radius_of_circle_property_length_equal(1,OC,O)",
+      "arc_property_center_angle(1,OBC,O)",
+      "arc_property_circumference_angle_external(1,OBC,A)",
+      "angle_addition(1,COD,DOB)"
+    ],
+    "radius_of_circle_property_length_equal(1,OB,O)": [
+      "mirror_congruent_triangle_judgment_sss(1,OBD,ODC)"
+    ],
+    "radius_of_circle_property_length_equal(1,OC,O)": [
+      "mirror_congruent_triangle_judgment_sss(1,OBD,ODC)"
+    ],
+    "mirror_congruent_triangle_judgment_sss(1,OBD,ODC)": [
+      "mirror_congruent_triangle_property_angle_equal(1,OBD,ODC)"
+    ]
+  }
+}

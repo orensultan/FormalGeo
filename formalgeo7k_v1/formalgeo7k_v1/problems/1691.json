@@ -1,0 +1,41 @@
+{
+  "problem_id": 1691,
+  "annotation": "YangLi_2023-04-16",
+  "source": "Geometry3k-1755",
+  "problem_level": 2,
+  "problem_text_cn": "如图所示，∠GFJ=4*x+2°，∠JHG=9*x-3°，圆J的圆心为J，圆J的直径为HF。求∠GFH的大小。",
+  "problem_text_en": "As shown in the diagram, ∠GFJ=4*x+2°, ∠JHG=9*x-3°, J is the center of circle J, the diameter of circle J is HF. Find the measure of ∠GFH.",
+  "problem_img": "1691.png",
+  "construction_cdl": [
+    "Shape(FJ,JH,HG,GF)",
+    "Shape(Hj,JF,JFH)",
+    "Shape(FG,JGF)",
+    "Shape(GH,JHG)",
+    "Collinear(FJH)",
+    "Cocircular(J,FHG)"
+  ],
+  "text_cdl": [
+    "Equal(MeasureOfAngle(GFJ),4*x+2)",
+    "Equal(MeasureOfAngle(JHG),9*x-3)",
+    "IsCentreOfCircle(J,J)",
+    "IsDiameterOfCircle(HF,J)"
+  ],
+  "image_cdl": [
+    "Equal(MeasureOfAngle(GFJ),4*x+2)",
+    "Equal(MeasureOfAngle(JHG),9*x-3)",
+    "IsCentreOfCircle(J,J)",
+    "IsDiameterOfCircle(HF,J)"
+  ],
+  "goal_cdl": "Value(MeasureOfAngle(GFH))",
+  "problem_answer": "30",
+  "theorem_seqs": [
+    "diameter_of_circle_property_right_angle(1,HGF,J)",
+    "triangle_property_angle_sum(1,FHG)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "diameter_of_circle_property_right_angle(1,HGF,J)",
+      "triangle_property_angle_sum(1,FHG)"
+    ]
+  }
+}

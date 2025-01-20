@@ -1,0 +1,40 @@
+{
+  "problem_id": 4618,
+  "annotation": "QikeHuang_2023-05-14",
+  "source": "GeoQA-3794",
+  "problem_level": 4,
+  "problem_text_cn": "如图所示，∠COA=130°，⊙O的圆心为O。求∠DBA的大小。",
+  "problem_text_en": "As shown in the diagram, ∠COA=130°, the center of ⊙O is O. Find the measure of ∠DBA.",
+  "problem_img": "4618.png",
+  "construction_cdl": [
+    "Shape(OCA,AO,OC)",
+    "Shape(OA,AC,CO)",
+    "Shape(AB,BC,CA)",
+    "Shape(OAB,BA)",
+    "Shape(CB,OBC)",
+    "Shape(DB,BA)",
+    "Collinear(DBC)",
+    "Cocircular(O,ABC)"
+  ],
+  "text_cdl": [
+    "Equal(MeasureOfAngle(COA),130)",
+    "IsCentreOfCircle(O,O)"
+  ],
+  "image_cdl": [],
+  "goal_cdl": "Value(MeasureOfAngle(DBA))",
+  "problem_answer": "65",
+  "theorem_seqs": [
+    "arc_property_center_angle(1,OAC,O)",
+    "round_arc(1,OAC,OCA)",
+    "arc_property_circumference_angle_external(1,OCA,B)",
+    "adjacent_complementary_angle(1,DBA,ABC)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "arc_property_center_angle(1,OAC,O)",
+      "round_arc(1,OAC,OCA)",
+      "arc_property_circumference_angle_external(1,OCA,B)",
+      "adjacent_complementary_angle(1,DBA,ABC)"
+    ]
+  }
+}

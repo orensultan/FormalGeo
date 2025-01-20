@@ -1,0 +1,61 @@
+{
+  "problem_id": 3579,
+  "annotation": "QikeHuang_2023-04-30",
+  "source": "GeoQA-1220",
+  "problem_level": 8,
+  "problem_text_cn": "如图所示，四边形BCDA与四边形FGHE全等，HG=24，MC=6，MG=8，BC和DA是直角梯形BCDA的腰，FG和HE是直角梯形FGHE的腰。求四边形MGHD的面积。",
+  "problem_text_en": "As shown in the diagram, quadrilateral BCDA is congruent to quadrilateral FGHE, HG=24, MC=6, MG=8, quadrilateral BCDA is a right trapezoid, quadrilateral FGHE is a right trapezoid. Find the area of quadrilateral MGHD.",
+  "problem_img": "3579.png",
+  "construction_cdl": [
+    "Shape(BC,CM,MF,FE,EA,AB)",
+    "Shape(FM,MD,DE,EF)",
+    "Shape(MG,GH,HD,DM)",
+    "Collinear(CMD)",
+    "Collinear(AEDH)",
+    "Collinear(FMG)"
+  ],
+  "text_cdl": [
+    "CongruentBetweenQuadrilateral(BCDA,FGHE)",
+    "Equal(LengthOfLine(HG),24)",
+    "Equal(LengthOfLine(MC),6)",
+    "Equal(LengthOfLine(MG),8)",
+    "RightTrapezoid(BCDA)",
+    "RightTrapezoid(FGHE)"
+  ],
+  "image_cdl": [],
+  "goal_cdl": "Value(AreaOfQuadrilateral(MGHD))",
+  "problem_answer": "168",
+  "theorem_seqs": [
+    "congruent_quadrilateral_property_angle_equal(1,DABC,HEFG)",
+    "adjacent_complementary_angle(1,HDM,MDE)",
+    "parallel_judgment_ipsilateral_internal_angle(1,HG,DM)",
+    "trapezoid_judgment_parallel(1,MGHD)",
+    "right_trapezoid_judgment_right_angle(1,MGHD)",
+    "line_addition(1,CM,MD)",
+    "congruent_quadrilateral_property_line_equal(1,CDAB,GHEF)",
+    "right_trapezoid_area_formular(1,MGHD)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "congruent_quadrilateral_property_angle_equal(1,DABC,HEFG)",
+      "adjacent_complementary_angle(1,HDM,MDE)",
+      "line_addition(1,CM,MD)",
+      "congruent_quadrilateral_property_line_equal(1,CDAB,GHEF)"
+    ],
+    "congruent_quadrilateral_property_angle_equal(1,DABC,HEFG)": [
+      "parallel_judgment_ipsilateral_internal_angle(1,HG,DM)"
+    ],
+    "adjacent_complementary_angle(1,HDM,MDE)": [
+      "parallel_judgment_ipsilateral_internal_angle(1,HG,DM)"
+    ],
+    "parallel_judgment_ipsilateral_internal_angle(1,HG,DM)": [
+      "trapezoid_judgment_parallel(1,MGHD)"
+    ],
+    "trapezoid_judgment_parallel(1,MGHD)": [
+      "right_trapezoid_judgment_right_angle(1,MGHD)"
+    ],
+    "right_trapezoid_judgment_right_angle(1,MGHD)": [
+      "right_trapezoid_area_formular(1,MGHD)"
+    ]
+  }
+}

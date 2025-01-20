@@ -1,0 +1,60 @@
+{
+  "problem_id": 1877,
+  "annotation": "JiaZou_2023-03-26",
+  "source": "Geometry3k-1950",
+  "problem_level": 9,
+  "problem_text_cn": "如图所示，XN=10，YN=5/2，XZ⊥YZ，ZN⊥XN。求三角形ZYX的高。",
+  "problem_text_en": "As shown in the diagram, XN=10, YN=5/2, XZ⊥YZ, ZN⊥XN. Find the height of △ZYX.",
+  "problem_img": "1877.png",
+  "construction_cdl": [
+    "Shape(ZY,YN,NZ)",
+    "Shape(ZN,NX,XZ)",
+    "Collinear(YNX)"
+  ],
+  "text_cdl": [
+    "Equal(LengthOfLine(XN),10)",
+    "Equal(LengthOfLine(YN),5/2)",
+    "PerpendicularBetweenLine(XZ,YZ)",
+    "PerpendicularBetweenLine(ZN,XN)"
+  ],
+  "image_cdl": [
+    "Equal(LengthOfLine(XN),10)",
+    "Equal(LengthOfLine(YN),5/2)",
+    "PerpendicularBetweenLine(XZ,YZ)",
+    "PerpendicularBetweenLine(ZN,XN)"
+  ],
+  "goal_cdl": "Value(HeightOfTriangle(ZYX))",
+  "problem_answer": "5",
+  "theorem_seqs": [
+    "line_addition(1,YN,NX)",
+    "adjacent_complementary_angle(1,YNZ,ZNX)",
+    "right_triangle_judgment_angle(1,YNZ)",
+    "right_triangle_judgment_angle(1,ZNX)",
+    "right_triangle_judgment_angle(1,XZY)",
+    "right_triangle_property_pythagorean(1,YNZ)",
+    "right_triangle_property_pythagorean(1,ZNX)",
+    "right_triangle_property_pythagorean(1,XZY)",
+    "altitude_of_triangle_judgment(1,ZN,ZYX)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "line_addition(1,YN,NX)",
+      "adjacent_complementary_angle(1,YNZ,ZNX)",
+      "right_triangle_judgment_angle(1,ZNX)",
+      "right_triangle_judgment_angle(1,XZY)"
+    ],
+    "adjacent_complementary_angle(1,YNZ,ZNX)": [
+      "right_triangle_judgment_angle(1,YNZ)",
+      "altitude_of_triangle_judgment(1,ZN,ZYX)"
+    ],
+    "right_triangle_judgment_angle(1,YNZ)": [
+      "right_triangle_property_pythagorean(1,YNZ)"
+    ],
+    "right_triangle_judgment_angle(1,ZNX)": [
+      "right_triangle_property_pythagorean(1,ZNX)"
+    ],
+    "right_triangle_judgment_angle(1,XZY)": [
+      "right_triangle_property_pythagorean(1,XZY)"
+    ]
+  }
+}

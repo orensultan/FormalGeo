@@ -1,0 +1,45 @@
+{
+  "problem_id": 6690,
+  "annotation": "QikeHuang_2023-06-04",
+  "source": "GeoQA-9719",
+  "problem_level": 6,
+  "problem_text_cn": "如图所示，Add(MeasureOfAngle(BAC)=MeasureOfAngle(DAE))，DE=6，圆A的半径为5，A是⊙A的圆心。求直线BC的长度。",
+  "problem_text_en": "As shown in the diagram, Add(MeasureOfAngle(BAC)=MeasureOfAngle(DAE)), DE=6, the radius of circle A is 5, A is the center of circle A. Find the length of line BC.",
+  "problem_img": "6690.png",
+  "construction_cdl": [
+    "Shape(ACB,BC)",
+    "Shape(AC,CB,BA)",
+    "Shape(ADC,CA,AD)",
+    "Shape(AB,ABE,EA)",
+    "Shape(DA,AE,ED)",
+    "Shape(DE,AED)",
+    "Cocircular(A,CBED)"
+  ],
+  "text_cdl": [
+    "Equal(Add(MeasureOfAngle(BAC),MeasureOfAngle(DAE)),180)",
+    "Equal(LengthOfLine(DE),6)",
+    "Equal(RadiusOfCircle(A),5)",
+    "IsCentreOfCircle(A,A)"
+  ],
+  "image_cdl": [],
+  "goal_cdl": "Value(LengthOfLine(BC))",
+  "problem_answer": "8",
+  "theorem_seqs": [
+    "radius_of_circle_property_length_equal(1,AC,A)",
+    "radius_of_circle_property_length_equal(1,AB,A)",
+    "radius_of_circle_property_length_equal(1,AE,A)",
+    "radius_of_circle_property_length_equal(1,AD,A)",
+    "cosine_theorem(1,AED)",
+    "cosine_theorem(1,ACB)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "radius_of_circle_property_length_equal(1,AC,A)",
+      "radius_of_circle_property_length_equal(1,AB,A)",
+      "radius_of_circle_property_length_equal(1,AE,A)",
+      "radius_of_circle_property_length_equal(1,AD,A)",
+      "cosine_theorem(1,AED)",
+      "cosine_theorem(1,ACB)"
+    ]
+  }
+}

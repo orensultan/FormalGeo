@@ -1,0 +1,53 @@
+{
+  "problem_id": 720,
+  "annotation": "YimingHe_2023-03-12",
+  "source": "Geometry3k-743",
+  "problem_level": 6,
+  "problem_text_cn": "如图所示，AB=16，AC=x-3，BE=20，CD=x+5，BC∥ED。求直线AC的长度。",
+  "problem_text_en": "As shown in the diagram, AB=16, AC=x-3, BE=20, CD=x+5, BC is parallel to ED. Find the length of line AC.",
+  "problem_img": "720.png",
+  "construction_cdl": [
+    "Shape(AB,BC,CA)",
+    "Shape(CB,BE,ED,DC)",
+    "Collinear(ABE)",
+    "Collinear(ACD)"
+  ],
+  "text_cdl": [
+    "Equal(LengthOfLine(AB),16)",
+    "Equal(LengthOfLine(AC),x-3)",
+    "Equal(LengthOfLine(BE),20)",
+    "Equal(LengthOfLine(CD),x+5)",
+    "ParallelBetweenLine(BC,ED)"
+  ],
+  "image_cdl": [
+    "Equal(LengthOfLine(AB),16)",
+    "Equal(LengthOfLine(AC),x-3)",
+    "Equal(LengthOfLine(BE),20)",
+    "Equal(LengthOfLine(CD),x+5)",
+    "ParallelBetweenLine(BC,ED)"
+  ],
+  "goal_cdl": "Value(LengthOfLine(AC))",
+  "problem_answer": "32",
+  "theorem_seqs": [
+    "parallel_property_corresponding_angle(1,BC,ED,A)",
+    "similar_triangle_judgment_aa(1,CAB,DAE)",
+    "line_addition(1,AB,BE)",
+    "line_addition(1,AC,CD)",
+    "similar_triangle_property_line_ratio(1,CAB,DAE)",
+    "similar_triangle_property_line_ratio(1,BCA,EDA)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "parallel_property_corresponding_angle(1,BC,ED,A)",
+      "line_addition(1,AB,BE)",
+      "line_addition(1,AC,CD)"
+    ],
+    "parallel_property_corresponding_angle(1,BC,ED,A)": [
+      "similar_triangle_judgment_aa(1,CAB,DAE)"
+    ],
+    "similar_triangle_judgment_aa(1,CAB,DAE)": [
+      "similar_triangle_property_line_ratio(1,CAB,DAE)",
+      "similar_triangle_property_line_ratio(1,BCA,EDA)"
+    ]
+  }
+}

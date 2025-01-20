@@ -1,0 +1,53 @@
+{
+  "problem_id": 3500,
+  "annotation": "XiaokaiZhang_2023-04-30",
+  "source": "GeoQA-1105",
+  "problem_level": 7,
+  "problem_text_cn": "如图所示，∠CAB=66°，⊙O的圆心为O。求∠BCO的大小。",
+  "problem_text_en": "As shown in the diagram, ∠CAB=66°, O is the center of ⊙O. Find the measure of ∠BCO.",
+  "problem_img": "3500.png",
+  "construction_cdl": [
+    "Shape(OCA,AC)",
+    "Shape(OC,CA,AB,BO)",
+    "Shape(CO,OB,BC)",
+    "Shape(OBC,CB)",
+    "Shape(OAB,BA)",
+    "Cocircular(O,ABC)"
+  ],
+  "text_cdl": [
+    "Equal(MeasureOfAngle(CAB),66)",
+    "IsCentreOfCircle(O,O)"
+  ],
+  "image_cdl": [
+    "IsCentreOfCircle(O,O)"
+  ],
+  "goal_cdl": "Value(MeasureOfAngle(BCO))",
+  "problem_answer": "24",
+  "theorem_seqs": [
+    "arc_property_circumference_angle_external(1,OBC,A)",
+    "arc_property_center_angle(1,OBC,O)",
+    "radius_of_circle_property_length_equal(1,OC,O)",
+    "radius_of_circle_property_length_equal(1,OB,O)",
+    "isosceles_triangle_judgment_line_equal(1,OBC)",
+    "isosceles_triangle_property_angle_equal(1,OBC)",
+    "triangle_property_angle_sum(1,OBC)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "arc_property_circumference_angle_external(1,OBC,A)",
+      "arc_property_center_angle(1,OBC,O)",
+      "radius_of_circle_property_length_equal(1,OC,O)",
+      "radius_of_circle_property_length_equal(1,OB,O)",
+      "triangle_property_angle_sum(1,OBC)"
+    ],
+    "radius_of_circle_property_length_equal(1,OC,O)": [
+      "isosceles_triangle_judgment_line_equal(1,OBC)"
+    ],
+    "radius_of_circle_property_length_equal(1,OB,O)": [
+      "isosceles_triangle_judgment_line_equal(1,OBC)"
+    ],
+    "isosceles_triangle_judgment_line_equal(1,OBC)": [
+      "isosceles_triangle_property_angle_equal(1,OBC)"
+    ]
+  }
+}

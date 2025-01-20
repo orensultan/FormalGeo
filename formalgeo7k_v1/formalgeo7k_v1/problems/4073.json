@@ -1,0 +1,43 @@
+{
+  "problem_id": 4073,
+  "annotation": "XiaokaiZhang_2023-05-07",
+  "source": "GeoQA-2396",
+  "problem_level": 5,
+  "problem_text_cn": "如图所示，AB=80，AC=100，EC=60，AB垂直于CB，AD⊥ED。求直线DB的长度。",
+  "problem_text_en": "As shown in the diagram, AB=80, AC=100, EC=60, AB⊥CB, AD is perpendicular to ED. Find the length of line DB.",
+  "problem_img": "4073.png",
+  "construction_cdl": [
+    "Shape(AD,DE,EA)",
+    "Shape(DB,BC,CE,ED)",
+    "Collinear(AEC)",
+    "Collinear(ADB)"
+  ],
+  "text_cdl": [
+    "Equal(LengthOfLine(AB),80)",
+    "Equal(LengthOfLine(AC),100)",
+    "Equal(LengthOfLine(EC),60)",
+    "PerpendicularBetweenLine(AB,CB)",
+    "PerpendicularBetweenLine(AD,ED)"
+  ],
+  "image_cdl": [],
+  "goal_cdl": "Value(LengthOfLine(DB))",
+  "problem_answer": "48",
+  "theorem_seqs": [
+    "similar_triangle_judgment_aa(1,EAD,CAB)",
+    "similar_triangle_property_line_ratio(1,EAD,CAB)",
+    "similar_triangle_property_line_ratio(1,DEA,BCA)",
+    "line_addition(1,AE,EC)",
+    "line_addition(1,AD,DB)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "similar_triangle_judgment_aa(1,EAD,CAB)",
+      "line_addition(1,AE,EC)",
+      "line_addition(1,AD,DB)"
+    ],
+    "similar_triangle_judgment_aa(1,EAD,CAB)": [
+      "similar_triangle_property_line_ratio(1,EAD,CAB)",
+      "similar_triangle_property_line_ratio(1,DEA,BCA)"
+    ]
+  }
+}

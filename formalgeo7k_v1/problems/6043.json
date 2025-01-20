@@ -1,0 +1,41 @@
+{
+  "problem_id": 6043,
+  "annotation": "ChenyangMao_2023-05-28",
+  "source": "GeoQA-8543",
+  "problem_level": 4,
+  "problem_text_cn": "如图所示，AC=AB，∠AOC=60°，圆O的圆心为O。求∠BCA的大小。",
+  "problem_text_en": "As shown in the diagram, AC=AB, ∠AOC=60°, the center of ⊙O is O. Find the measure of ∠BCA.",
+  "problem_img": "6043.png",
+  "construction_cdl": [
+    "Shape(AB,BC,CA)",
+    "Shape(AO,OC,CA)",
+    "Shape(OCA,AC)",
+    "Shape(OAB,BA)",
+    "Shape(OBC,CB)",
+    "Cocircular(O,ABC)"
+  ],
+  "text_cdl": [
+    "Equal(LengthOfLine(AC),LengthOfLine(AB))",
+    "Equal(MeasureOfAngle(AOC),60)",
+    "IsCentreOfCircle(O,O)"
+  ],
+  "image_cdl": [],
+  "goal_cdl": "Value(MeasureOfAngle(BCA))",
+  "problem_answer": "30",
+  "theorem_seqs": [
+    "arc_property_center_angle(1,OCA,O)",
+    "arc_property_circumference_angle_external(1,OCA,B)",
+    "isosceles_triangle_judgment_line_equal(1,ABC)",
+    "isosceles_triangle_property_angle_equal(1,ABC)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "arc_property_center_angle(1,OCA,O)",
+      "arc_property_circumference_angle_external(1,OCA,B)",
+      "isosceles_triangle_judgment_line_equal(1,ABC)"
+    ],
+    "isosceles_triangle_judgment_line_equal(1,ABC)": [
+      "isosceles_triangle_property_angle_equal(1,ABC)"
+    ]
+  }
+}

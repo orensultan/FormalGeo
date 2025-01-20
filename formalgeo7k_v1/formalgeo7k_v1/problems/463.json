@@ -1,0 +1,34 @@
+{
+  "problem_id": 463,
+  "annotation": "YimingHe_2023-04-02",
+  "source": "Geometry3k-473",
+  "problem_level": 1,
+  "problem_text_cn": "如图所示，∠RST=63°，A是⊙A的圆心。求⌒ATR的角度。",
+  "problem_text_en": "As shown in the diagram, ∠RST=63°, the center of ⊙A is A. Find the measure of ⌒ATR.",
+  "problem_img": "463.png",
+  "construction_cdl": [
+    "Shape(SR,ARS)",
+    "Shape(TS,AST)",
+    "Shape(AT,ATR,RA)",
+    "Shape(ST,TA,AR,RS)",
+    "Cocircular(A,RST)"
+  ],
+  "text_cdl": [
+    "Equal(MeasureOfAngle(RST),63)",
+    "IsCentreOfCircle(A,A)"
+  ],
+  "image_cdl": [
+    "Equal(MeasureOfAngle(RST),63)",
+    "IsCentreOfCircle(A,A)"
+  ],
+  "goal_cdl": "Value(MeasureOfArc(ATR))",
+  "problem_answer": "126",
+  "theorem_seqs": [
+    "arc_property_circumference_angle_external(1,ATR,S)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "arc_property_circumference_angle_external(1,ATR,S)"
+    ]
+  }
+}

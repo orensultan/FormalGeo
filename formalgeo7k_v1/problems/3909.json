@@ -1,0 +1,59 @@
+{
+  "problem_id": 3909,
+  "annotation": "FangzhenZhu_2023-05-07",
+  "source": "GeoQA-1814",
+  "problem_level": 5,
+  "problem_text_cn": "如图所示，AB=10，BC=6，圆O的圆心为O，AD垂直于OD。求直线OD的长度。",
+  "problem_text_en": "As shown in the diagram, AB=10, BC=6, the center of ⊙O is O, AD is perpendicular to OD. Find the length of line OD.",
+  "problem_img": "3909.png",
+  "construction_cdl": [
+    "Shape(OBA,AO,OB)",
+    "Shape(OAC,CD,DA)",
+    "Shape(OCB,BC)",
+    "Shape(OA,AD,DO)",
+    "Shape(OD,DC,CB,BO)",
+    "Collinear(AOB)",
+    "Collinear(ADC)",
+    "Cocircular(O,ACB)"
+  ],
+  "text_cdl": [
+    "Equal(LengthOfLine(AB),10)",
+    "Equal(LengthOfLine(BC),6)",
+    "IsCentreOfCircle(O,O)",
+    "PerpendicularBetweenLine(AD,OD)"
+  ],
+  "image_cdl": [
+    "Equal(LengthOfLine(AB),10)",
+    "Equal(LengthOfLine(BC),6)",
+    "IsCentreOfCircle(O,O)",
+    "PerpendicularBetweenLine(AD,OD)"
+  ],
+  "goal_cdl": "Value(LengthOfLine(OD))",
+  "problem_answer": "3",
+  "theorem_seqs": [
+    "circle_property_chord_perpendicular_bisect_chord(1,O,OD,AC)",
+    "radius_of_circle_property_length_equal(1,OA,O)",
+    "radius_of_circle_property_length_equal(1,OB,O)",
+    "midsegment_of_triangle_judgment_midpoint(1,DO,ACB)",
+    "midsegment_of_triangle_property_length(1,DO,ACB)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "circle_property_chord_perpendicular_bisect_chord(1,O,OD,AC)",
+      "radius_of_circle_property_length_equal(1,OA,O)",
+      "radius_of_circle_property_length_equal(1,OB,O)"
+    ],
+    "circle_property_chord_perpendicular_bisect_chord(1,O,OD,AC)": [
+      "midsegment_of_triangle_judgment_midpoint(1,DO,ACB)"
+    ],
+    "radius_of_circle_property_length_equal(1,OA,O)": [
+      "midsegment_of_triangle_judgment_midpoint(1,DO,ACB)"
+    ],
+    "radius_of_circle_property_length_equal(1,OB,O)": [
+      "midsegment_of_triangle_judgment_midpoint(1,DO,ACB)"
+    ],
+    "midsegment_of_triangle_judgment_midpoint(1,DO,ACB)": [
+      "midsegment_of_triangle_property_length(1,DO,ACB)"
+    ]
+  }
+}

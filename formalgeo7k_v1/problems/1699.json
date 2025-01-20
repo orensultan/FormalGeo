@@ -1,0 +1,34 @@
+{
+  "problem_id": 1699,
+  "annotation": "NaZhu_2023-03-26",
+  "source": "Geometry3k-1763",
+  "problem_level": 1,
+  "problem_text_cn": "如图所示，∠PRQ=33°，∠SQP=51°，RQ⊥PQ。求∠RQS的大小。",
+  "problem_text_en": "As shown in the diagram, ∠PRQ=33°, ∠SQP=51°, RQ⊥PQ. Find the measure of ∠RQS.",
+  "problem_img": "1699.png",
+  "construction_cdl": [
+    "Shape(QP,PS,SQ)",
+    "Shape(QS,SR,RQ)",
+    "Collinear(PSR)"
+  ],
+  "text_cdl": [
+    "Equal(MeasureOfAngle(PRQ),33)",
+    "Equal(MeasureOfAngle(SQP),51)",
+    "PerpendicularBetweenLine(RQ,PQ)"
+  ],
+  "image_cdl": [
+    "Equal(MeasureOfAngle(PRQ),33)",
+    "Equal(MeasureOfAngle(SQP),51)",
+    "PerpendicularBetweenLine(RQ,PQ)"
+  ],
+  "goal_cdl": "Value(MeasureOfAngle(RQS))",
+  "problem_answer": "39",
+  "theorem_seqs": [
+    "angle_addition(1,RQS,SQP)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "angle_addition(1,RQS,SQP)"
+    ]
+  }
+}

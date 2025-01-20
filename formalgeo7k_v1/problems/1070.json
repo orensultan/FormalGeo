@@ -1,0 +1,53 @@
+{
+  "problem_id": 1070,
+  "annotation": "YiwenHuang_2023-04-23",
+  "source": "Geometry3k-1106",
+  "problem_level": 4,
+  "problem_text_cn": "如图所示，AB=8，CB=10，CD=9，ED=x，CH是圆O的切线，CH是圆O的切线。求x的值。",
+  "problem_text_en": "As shown in the diagram, AB=8, CB=10, CD=9, ED=x, the tangent to circle O is CH, CH is the tangent to ⊙P. Find the value of x.",
+  "problem_img": "1070.png",
+  "construction_cdl": [
+    "Shape(OAB,BA)",
+    "Shape(AB,OBH,OHA)",
+    "Shape(OBH,BC,CH)",
+    "Shape(HC,CD,PHD)",
+    "Shape(PDE,ED)",
+    "Shape(DE,PEH,PHD)",
+    "Collinear(CDEF)",
+    "Collinear(CBA)",
+    "Cocircular(O,ABH)",
+    "Cocircular(P,HDE)"
+  ],
+  "text_cdl": [
+    "Equal(LengthOfLine(AB),8)",
+    "Equal(LengthOfLine(CB),10)",
+    "Equal(LengthOfLine(CD),9)",
+    "Equal(LengthOfLine(ED),x)",
+    "IsTangentOfCircle(CH,O)",
+    "IsTangentOfCircle(CH,P)"
+  ],
+  "image_cdl": [
+    "Equal(LengthOfLine(AB),8)",
+    "Equal(LengthOfLine(CB),10)",
+    "Equal(LengthOfLine(CD),9)",
+    "Equal(LengthOfLine(ED),x)",
+    "IsTangentOfCircle(CH,O)",
+    "IsTangentOfCircle(CH,P)"
+  ],
+  "goal_cdl": "Value(x)",
+  "problem_answer": "11",
+  "theorem_seqs": [
+    "line_addition(1,CD,DE)",
+    "line_addition(1,CB,BA)",
+    "circle_property_circular_power_tangent_and_segment_line(1,CH,CBA,O)",
+    "circle_property_circular_power_tangent_and_segment_line(1,CH,CDE,P)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "line_addition(1,CD,DE)",
+      "line_addition(1,CB,BA)",
+      "circle_property_circular_power_tangent_and_segment_line(1,CH,CBA,O)",
+      "circle_property_circular_power_tangent_and_segment_line(1,CH,CDE,P)"
+    ]
+  }
+}

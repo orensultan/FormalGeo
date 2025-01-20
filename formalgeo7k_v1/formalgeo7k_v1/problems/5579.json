@@ -1,0 +1,37 @@
+{
+  "problem_id": 5579,
+  "annotation": "YimingHe_2023-05-28",
+  "source": "GeoQA-7075",
+  "problem_level": 3,
+  "problem_text_cn": "如图所示，OM=5，PM=12，⊙O的圆心为O，圆O的切线为PM。求sin(MP)的值。",
+  "problem_text_en": "As shown in the diagram, OM=5, PM=12, O is the center of circle O, the tangent to ⊙O is PM. Find the value of sin(MP).",
+  "problem_img": "5579.png",
+  "construction_cdl": [
+    "Shape(PA,OMA,MP)",
+    "Shape(AO,OM,OMA)",
+    "Shape(MO,OA,OAM)",
+    "Collinear(PAO)",
+    "Cocircular(O,AM)"
+  ],
+  "text_cdl": [
+    "Equal(LengthOfLine(OM),5)",
+    "Equal(LengthOfLine(PM),12)",
+    "IsCentreOfCircle(O,O)",
+    "IsTangentOfCircle(PM,O)"
+  ],
+  "image_cdl": [],
+  "goal_cdl": "Value(Sin(MeasureOfAngle(MPO)))",
+  "problem_answer": "5/13",
+  "theorem_seqs": [
+    "tangent_of_circle_property_perpendicular(1,PM,O,O)",
+    "cosine_theorem(1,MPO)",
+    "cosine_theorem(1,POM)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "tangent_of_circle_property_perpendicular(1,PM,O,O)",
+      "cosine_theorem(1,MPO)",
+      "cosine_theorem(1,POM)"
+    ]
+  }
+}

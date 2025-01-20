@@ -1,0 +1,64 @@
+{
+  "problem_id": 6706,
+  "annotation": "XiaoxiaoJin_2023-06-04",
+  "source": "GeoQA-9741",
+  "problem_level": 9,
+  "problem_text_cn": "如图所示，∠CPA=28°，⊙O的圆心为O，AB是⊙O的直径，AO垂直于CO。求∠ABQ的大小。",
+  "problem_text_en": "As shown in the diagram, ∠CPA=28°, the center of ⊙O is O, the diameter of circle O is AB, AO is perpendicular to CO. Find the measure of ∠ABQ.",
+  "problem_img": "6706.png",
+  "construction_cdl": [
+    "Shape(QC,OCQ)",
+    "Shape(CQ,QD,DC)",
+    "Shape(CD,DB,OBC)",
+    "Shape(DO,OB,BD)",
+    "Shape(OD,DQ,QO)",
+    "Shape(AO,OQ,OQA)",
+    "Shape(QP,PA,OQA)",
+    "Shape(BO,OA,OAB)",
+    "Collinear(PAOB)",
+    "Collinear(PQC)",
+    "Collinear(QDB)",
+    "Collinear(CDO)",
+    "Cocircular(O,ABCQ)"
+  ],
+  "text_cdl": [
+    "Equal(MeasureOfAngle(CPA),28)",
+    "IsCentreOfCircle(O,O)",
+    "IsDiameterOfCircle(AB,O)",
+    "PerpendicularBetweenLine(AO,CO)"
+  ],
+  "image_cdl": [],
+  "goal_cdl": "Value(MeasureOfAngle(ABQ))",
+  "problem_answer": "17",
+  "theorem_seqs": [
+    "angle_addition(1,AOQ,QOD)",
+    "radius_of_circle_property_length_equal(1,OC,O)",
+    "radius_of_circle_property_length_equal(1,OQ,O)",
+    "arc_property_center_angle(1,OQA,O)",
+    "arc_property_circumference_angle_external(1,OQA,B)",
+    "isosceles_triangle_judgment_line_equal(1,OCQ)",
+    "isosceles_triangle_property_angle_equal(1,OCQ)",
+    "triangle_property_angle_sum(1,CQO)",
+    "triangle_property_angle_sum(1,CPO)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "angle_addition(1,AOQ,QOD)",
+      "radius_of_circle_property_length_equal(1,OC,O)",
+      "radius_of_circle_property_length_equal(1,OQ,O)",
+      "arc_property_center_angle(1,OQA,O)",
+      "arc_property_circumference_angle_external(1,OQA,B)",
+      "triangle_property_angle_sum(1,CQO)",
+      "triangle_property_angle_sum(1,CPO)"
+    ],
+    "radius_of_circle_property_length_equal(1,OC,O)": [
+      "isosceles_triangle_judgment_line_equal(1,OCQ)"
+    ],
+    "radius_of_circle_property_length_equal(1,OQ,O)": [
+      "isosceles_triangle_judgment_line_equal(1,OCQ)"
+    ],
+    "isosceles_triangle_judgment_line_equal(1,OCQ)": [
+      "isosceles_triangle_property_angle_equal(1,OCQ)"
+    ]
+  }
+}

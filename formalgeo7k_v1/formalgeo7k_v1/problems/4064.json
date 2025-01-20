@@ -1,0 +1,33 @@
+{
+  "problem_id": 4064,
+  "annotation": "XiaokaiZhang_2023-05-07",
+  "source": "GeoQA-2377",
+  "problem_level": 2,
+  "problem_text_cn": "如图所示，AC=3，BA=15，EA=2，三角形ECA相似于三角形DAB。求直线DB的长度。",
+  "problem_text_en": "As shown in the diagram, AC=3, BA=15, EA=2, triangle ECA is similar to triangle DAB.. Find the length of line DB.",
+  "problem_img": "4064.png",
+  "construction_cdl": [
+    "Shape(EC,CA,AE)",
+    "Shape(DA,AB,BD)",
+    "Collinear(CAB)"
+  ],
+  "text_cdl": [
+    "Equal(LengthOfLine(AC),3)",
+    "Equal(LengthOfLine(BA),15)",
+    "Equal(LengthOfLine(EA),2)",
+    "SimilarBetweenTriangle(ECA,DAB)"
+  ],
+  "image_cdl": [],
+  "goal_cdl": "Value(LengthOfLine(DB))",
+  "problem_answer": "10",
+  "theorem_seqs": [
+    "similar_triangle_property_line_ratio(1,ECA,DAB)",
+    "similar_triangle_property_line_ratio(1,CAE,ABD)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "similar_triangle_property_line_ratio(1,ECA,DAB)",
+      "similar_triangle_property_line_ratio(1,CAE,ABD)"
+    ]
+  }
+}

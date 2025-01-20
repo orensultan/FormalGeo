@@ -1,0 +1,66 @@
+{
+  "problem_id": 5584,
+  "annotation": "YimingHe_2023-05-28",
+  "source": "GeoQA-7090",
+  "problem_level": 8,
+  "problem_text_cn": "如图所示，AC=8，BC=6，ED=CE，圆O的直径为AB，AE垂直于CE。求sin(DB)的值。",
+  "problem_text_en": "As shown in the diagram, AC=8, BC=6, ED=CE, AB is the diameter of ⊙O, AE is perpendicular to CE. Find the value of sin(DB).",
+  "problem_img": "5584.png",
+  "construction_cdl": [
+    "Shape(AC,OCA)",
+    "Shape(AO,OE,EC,CA)",
+    "Shape(CE,EB,BC)",
+    "Shape(CB,OBC)",
+    "Shape(ED,DB,BE)",
+    "Shape(BD,ODB)",
+    "Shape(DE,EO,OA,AD)",
+    "Shape(DA,OAD)",
+    "Collinear(AOEB)",
+    "Collinear(CED)",
+    "Cocircular(O,ADBC)"
+  ],
+  "text_cdl": [
+    "Equal(LengthOfLine(AC),8)",
+    "Equal(LengthOfLine(BC),6)",
+    "Equal(LengthOfLine(ED),LengthOfLine(CE))",
+    "IsDiameterOfCircle(AB,O)",
+    "PerpendicularBetweenLine(AE,CE)"
+  ],
+  "image_cdl": [],
+  "goal_cdl": "Value(Sin(MeasureOfAngle(DBE)))",
+  "problem_answer": "4/5",
+  "theorem_seqs": [
+    "adjacent_complementary_angle(1,AEC,CEB)",
+    "adjacent_complementary_angle(1,CEB,BED)",
+    "diameter_of_circle_property_right_angle(1,BCA,O)",
+    "right_triangle_judgment_angle(1,BCA)",
+    "right_triangle_property_pythagorean(1,BCA)",
+    "sine_theorem(1,ABC)",
+    "mirror_congruent_triangle_judgment_sas(1,EBC,EDB)",
+    "mirror_congruent_triangle_property_angle_equal(1,BCE,BED)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "adjacent_complementary_angle(1,AEC,CEB)",
+      "adjacent_complementary_angle(1,CEB,BED)",
+      "diameter_of_circle_property_right_angle(1,BCA,O)",
+      "sine_theorem(1,ABC)"
+    ],
+    "adjacent_complementary_angle(1,AEC,CEB)": [
+      "mirror_congruent_triangle_judgment_sas(1,EBC,EDB)",
+      "mirror_congruent_triangle_judgment_sas(1,EBC,EDB)"
+    ],
+    "adjacent_complementary_angle(1,CEB,BED)": [
+      "mirror_congruent_triangle_judgment_sas(1,EBC,EDB)"
+    ],
+    "diameter_of_circle_property_right_angle(1,BCA,O)": [
+      "right_triangle_judgment_angle(1,BCA)"
+    ],
+    "right_triangle_judgment_angle(1,BCA)": [
+      "right_triangle_property_pythagorean(1,BCA)"
+    ],
+    "mirror_congruent_triangle_judgment_sas(1,EBC,EDB)": [
+      "mirror_congruent_triangle_property_angle_equal(1,BCE,BED)"
+    ]
+  }
+}

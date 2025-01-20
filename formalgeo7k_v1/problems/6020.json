@@ -1,0 +1,53 @@
+{
+  "problem_id": 6020,
+  "annotation": "ChenyangMao_2023-05-28",
+  "source": "GeoQA-8501",
+  "problem_level": 8,
+  "problem_text_cn": "如图所示，AB=3，AB=AC，∠BAC=120°，⊙O的圆心为O，BD是⊙O的直径。求直线AD的长度。",
+  "problem_text_en": "As shown in the diagram, AB=3, AB=AC, ∠BAC=120°, the center of circle O is O, the diameter of ⊙O is BD. Find the length of line AD.",
+  "problem_img": "6020.png",
+  "construction_cdl": [
+    "Shape(BA,AC,CB)",
+    "Shape(OBA,AB)",
+    "Shape(OAC,CA)",
+    "Shape(OAC,OCD,DA)",
+    "Shape(ODB,BO,OD)",
+    "Shape(DO,OB,BA,AD)",
+    "Collinear(BOD)",
+    "Cocircular(O,BACD)"
+  ],
+  "text_cdl": [
+    "Equal(LengthOfLine(AB),3)",
+    "Equal(LengthOfLine(AB),LengthOfLine(AC))",
+    "Equal(MeasureOfAngle(BAC),120)",
+    "IsCentreOfCircle(O,O)",
+    "IsDiameterOfCircle(BD,O)"
+  ],
+  "image_cdl": [],
+  "goal_cdl": "Value(LengthOfLine(AD))",
+  "problem_answer": "3*sqrt(3)",
+  "theorem_seqs": [
+    "isosceles_triangle_judgment_line_equal(1,ACB)",
+    "isosceles_triangle_property_angle_equal(1,ACB)",
+    "triangle_property_angle_sum(1,BAC)",
+    "triangle_property_angle_sum(1,DBA)",
+    "diameter_of_circle_property_right_angle(1,BAD,O)",
+    "arc_property_circumference_angle_external(1,OBA,C)",
+    "arc_property_circumference_angle_external(1,OBA,D)",
+    "sine_theorem(1,ADB)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "isosceles_triangle_judgment_line_equal(1,ACB)",
+      "triangle_property_angle_sum(1,BAC)",
+      "triangle_property_angle_sum(1,DBA)",
+      "diameter_of_circle_property_right_angle(1,BAD,O)",
+      "arc_property_circumference_angle_external(1,OBA,C)",
+      "arc_property_circumference_angle_external(1,OBA,D)",
+      "sine_theorem(1,ADB)"
+    ],
+    "isosceles_triangle_judgment_line_equal(1,ACB)": [
+      "isosceles_triangle_property_angle_equal(1,ACB)"
+    ]
+  }
+}

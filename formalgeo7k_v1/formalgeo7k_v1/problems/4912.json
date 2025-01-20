@@ -1,0 +1,52 @@
+{
+  "problem_id": 4912,
+  "annotation": "YifanWang_2023-05-21",
+  "source": "GeoQA-4461",
+  "problem_level": 6,
+  "problem_text_cn": "如图所示，∠PCA=55°，⊙O的圆心为O，PC是圆O的切线。求∠BAC的大小。",
+  "problem_text_en": "As shown in the diagram, ∠PCA=55°, O is the center of ⊙O, PC is the tangent to ⊙O. Find the measure of ∠BAC.",
+  "problem_img": "4912.png",
+  "construction_cdl": [
+    "Shape(AO,OB,OBA)",
+    "Shape(OA,AC,CO)",
+    "Shape(OC,CB,BO)",
+    "Shape(BC,OCB)",
+    "Shape(CA,OAD,ODC)",
+    "Shape(DP,PC,ODC)",
+    "Collinear(AOB)",
+    "Cocircular(O,ADCB)"
+  ],
+  "text_cdl": [
+    "Equal(MeasureOfAngle(PCA),55)",
+    "IsCentreOfCircle(O,O)",
+    "IsTangentOfCircle(PC,O)"
+  ],
+  "image_cdl": [],
+  "goal_cdl": "Value(MeasureOfAngle(BAC))",
+  "problem_answer": "35",
+  "theorem_seqs": [
+    "tangent_of_circle_property_perpendicular(2,PC,O,O)",
+    "angle_addition(1,PCA,ACO)",
+    "radius_of_circle_property_length_equal(1,OA,O)",
+    "radius_of_circle_property_length_equal(1,OC,O)",
+    "isosceles_triangle_judgment_line_equal(1,OAC)",
+    "isosceles_triangle_property_angle_equal(1,OAC)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "tangent_of_circle_property_perpendicular(2,PC,O,O)",
+      "angle_addition(1,PCA,ACO)",
+      "radius_of_circle_property_length_equal(1,OA,O)",
+      "radius_of_circle_property_length_equal(1,OC,O)"
+    ],
+    "radius_of_circle_property_length_equal(1,OA,O)": [
+      "isosceles_triangle_judgment_line_equal(1,OAC)"
+    ],
+    "radius_of_circle_property_length_equal(1,OC,O)": [
+      "isosceles_triangle_judgment_line_equal(1,OAC)"
+    ],
+    "isosceles_triangle_judgment_line_equal(1,OAC)": [
+      "isosceles_triangle_property_angle_equal(1,OAC)"
+    ]
+  }
+}

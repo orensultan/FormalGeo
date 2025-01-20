@@ -1,0 +1,44 @@
+{
+  "problem_id": 3327,
+  "annotation": "YimingHe_2023-04-30",
+  "source": "GeoQA-728",
+  "problem_level": 4,
+  "problem_text_cn": "如图所示，BD=3，DE=3/2，∠DCA=90°，AD是∠CAE的角平分线，DE⊥BE。求直线BC的长度。",
+  "problem_text_en": "As shown in the diagram, BD=3, DE=3/2, ∠DCA=90°, AD is the angle bisector of ∠CAE, DE⊥BE. Find the length of line BC.",
+  "problem_img": "3327.png",
+  "construction_cdl": [
+    "Shape(BD,DE,EB)",
+    "Shape(ED,DA,AE)",
+    "Shape(AD,DC,CA)",
+    "Collinear(AEB)",
+    "Collinear(BDC)"
+  ],
+  "text_cdl": [
+    "Equal(LengthOfLine(BD),3)",
+    "Equal(LengthOfLine(DE),3/2)",
+    "Equal(MeasureOfAngle(DCA),90)",
+    "IsBisectorOfAngle(AD,CAE)",
+    "PerpendicularBetweenLine(DE,BE)"
+  ],
+  "image_cdl": [],
+  "goal_cdl": "Value(LengthOfLine(BC))",
+  "problem_answer": "9/2",
+  "theorem_seqs": [
+    "adjacent_complementary_angle(1,AED,DEB)",
+    "mirror_congruent_triangle_judgment_aas(1,DAE,DCA)",
+    "mirror_congruent_triangle_property_line_equal(1,AED,ADC)",
+    "line_addition(1,BD,DC)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "adjacent_complementary_angle(1,AED,DEB)",
+      "line_addition(1,BD,DC)"
+    ],
+    "adjacent_complementary_angle(1,AED,DEB)": [
+      "mirror_congruent_triangle_judgment_aas(1,DAE,DCA)"
+    ],
+    "mirror_congruent_triangle_judgment_aas(1,DAE,DCA)": [
+      "mirror_congruent_triangle_property_line_equal(1,AED,ADC)"
+    ]
+  }
+}

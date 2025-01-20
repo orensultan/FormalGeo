@@ -1,0 +1,42 @@
+{
+  "problem_id": 4510,
+  "annotation": "NaZhu_2023-05-14",
+  "source": "GeoQA-3536",
+  "problem_level": 3,
+  "problem_text_cn": "如图所示，∠FCB=100°，圆O的圆心为O，AB平行于DC。求∠FEC的大小。",
+  "problem_text_en": "As shown in the diagram, ∠FCB=100°, O is the center of circle O, AB is parallel to DC. Find the measure of ∠FEC.",
+  "problem_img": "4510.png",
+  "construction_cdl": [
+    "Shape(OAD,DA)",
+    "Shape(ODE,EF,FD)",
+    "Shape(OEC,CE)",
+    "Shape(EC,CF,FE)",
+    "Shape(OCB,BC)",
+    "Shape(OBA,AB)",
+    "Shape(AD,DF,FA)",
+    "Shape(AF,FC,CB,BA)",
+    "Collinear(DFC)",
+    "Collinear(AFE)",
+    "Cocircular(O,ADECB)"
+  ],
+  "text_cdl": [
+    "Equal(MeasureOfAngle(FCB),100)",
+    "IsCentreOfCircle(O,O)",
+    "ParallelBetweenLine(AB,DC)"
+  ],
+  "image_cdl": [],
+  "goal_cdl": "Value(MeasureOfAngle(FEC))",
+  "problem_answer": "100",
+  "theorem_seqs": [
+    "parallel_property_ipsilateral_internal_angle(1,CD,BA)",
+    "arc_property_circumference_angle_external(1,OAC,B)",
+    "arc_property_circumference_angle_internal(1,OAC,E)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "parallel_property_ipsilateral_internal_angle(1,CD,BA)",
+      "arc_property_circumference_angle_external(1,OAC,B)",
+      "arc_property_circumference_angle_internal(1,OAC,E)"
+    ]
+  }
+}

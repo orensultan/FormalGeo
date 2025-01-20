@@ -1,0 +1,46 @@
+{
+  "problem_id": 4387,
+  "annotation": "YimingHe_2023-05-14",
+  "source": "GeoQA-3316",
+  "problem_level": 4,
+  "problem_text_cn": "如图所示，∠AMC=90°，∠PNA=60°，O是圆O的圆心，圆O的直径为CD，M平分线段AB。求∠PDC的大小。",
+  "problem_text_en": "As shown in the diagram, ∠AMC=90°, ∠PNA=60°, O is the center of circle O, the diameter of ⊙O is CD, M is the midpoint of segment AB. Find the measure of ∠PDC.",
+  "problem_img": "4387.png",
+  "construction_cdl": [
+    "Shape(AN,NC,OCA)",
+    "Shape(NM,MC,CN)",
+    "Shape(CM,MB,OBC)",
+    "Shape(PN,NA,OAP)",
+    "Shape(NP,PD,DO,OM,MN)",
+    "Shape(BM,MO,OD,ODB)",
+    "Shape(DP,OPD)",
+    "Collinear(ANMB)",
+    "Collinear(CNP)",
+    "Collinear(CMOD)",
+    "Cocircular(O,APDBC)"
+  ],
+  "text_cdl": [
+    "Equal(MeasureOfAngle(AMC),90)",
+    "Equal(MeasureOfAngle(PNA),60)",
+    "IsCentreOfCircle(O,O)",
+    "IsDiameterOfCircle(CD,O)",
+    "IsMidpointOfLine(M,AB)"
+  ],
+  "image_cdl": [],
+  "goal_cdl": "Value(MeasureOfAngle(PDC))",
+  "problem_answer": "60",
+  "theorem_seqs": [
+    "diameter_of_circle_property_right_angle(1,CPD,O)",
+    "vertical_angle(1,CNM,PNA)",
+    "triangle_property_angle_sum(1,NMC)",
+    "triangle_property_angle_sum(1,CPD)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "diameter_of_circle_property_right_angle(1,CPD,O)",
+      "vertical_angle(1,CNM,PNA)",
+      "triangle_property_angle_sum(1,NMC)",
+      "triangle_property_angle_sum(1,CPD)"
+    ]
+  }
+}

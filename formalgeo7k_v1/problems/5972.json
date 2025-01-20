@@ -1,0 +1,40 @@
+{
+  "problem_id": 5972,
+  "annotation": "XiaoxiaoJin_2023-05-28",
+  "source": "GeoQA-8415",
+  "problem_level": 4,
+  "problem_text_cn": "如图所示，∠ACD=30°，O是圆O的圆心，圆O的直径为AB，圆O的切线为CD。求∠DAC的大小。",
+  "problem_text_en": "As shown in the diagram, ∠ACD=30°, the center of ⊙O is O, AB is the diameter of circle O, the tangent to circle O is CD. Find the measure of ∠DAC.",
+  "problem_img": "5972.png",
+  "construction_cdl": [
+    "Shape(AO,OD,DA)",
+    "Shape(AD,ODA)",
+    "Shape(DO,OB,OBD)",
+    "Shape(BC,CD,OBD)",
+    "Collinear(AOBC)",
+    "Cocircular(O,ABD)"
+  ],
+  "text_cdl": [
+    "Equal(MeasureOfAngle(ACD),30)",
+    "IsCentreOfCircle(O,O)",
+    "IsDiameterOfCircle(AB,O)",
+    "IsTangentOfCircle(CD,O)"
+  ],
+  "image_cdl": [],
+  "goal_cdl": "Value(MeasureOfAngle(DAC))",
+  "problem_answer": "30",
+  "theorem_seqs": [
+    "arc_property_center_angle(1,OBD,O)",
+    "arc_property_circumference_angle_external(1,OBD,A)",
+    "tangent_of_circle_property_perpendicular(2,CD,O,O)",
+    "triangle_property_angle_sum(1,DOC)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "arc_property_center_angle(1,OBD,O)",
+      "arc_property_circumference_angle_external(1,OBD,A)",
+      "tangent_of_circle_property_perpendicular(2,CD,O,O)",
+      "triangle_property_angle_sum(1,DOC)"
+    ]
+  }
+}

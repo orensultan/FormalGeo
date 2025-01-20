@@ -1,0 +1,50 @@
+{
+  "problem_id": 2914,
+  "annotation": "JiaZou_2023-04-16",
+  "source": "GeoQA-91",
+  "problem_level": 4,
+  "problem_text_cn": "如图所示，∠ABC=90°，∠ACF=23°，∠CAB=60°，四边形DEFG是矩形。求∠HAB的大小。",
+  "problem_text_en": "As shown in the diagram, ∠ABC=90°, ∠ACF=23°, ∠CAB=60°, quadrilateral DEFG is a rectangle. Find the measure of ∠HAB.",
+  "problem_img": "2914.png",
+  "construction_cdl": [
+    "Shape(DE,EC,CH,HD)",
+    "Shape(HC,CA,AH)",
+    "Shape(AC,CF,FG,GA)",
+    "Shape(BH,HA,AB)",
+    "Collinear(DHAG)",
+    "Collinear(ECF)",
+    "Collinear(BHC)"
+  ],
+  "text_cdl": [
+    "Equal(MeasureOfAngle(ABC),90)",
+    "Equal(MeasureOfAngle(ACF),23)",
+    "Equal(MeasureOfAngle(CAB),60)",
+    "Rectangle(DEFG)"
+  ],
+  "image_cdl": [
+    "Equal(MeasureOfAngle(ABC),90)",
+    "Equal(MeasureOfAngle(ACF),23)",
+    "Equal(MeasureOfAngle(CAB),60)",
+    "Rectangle(DEFG)"
+  ],
+  "goal_cdl": "Value(MeasureOfAngle(HAB))",
+  "problem_answer": "37",
+  "theorem_seqs": [
+    "parallel_property_collinear_extend(3,DG,EF,A)",
+    "parallel_property_collinear_extend(3,FE,AD,C)",
+    "parallel_property_alternate_interior_angle(2,DA,CF)",
+    "angle_addition(1,CAH,HAB)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "parallel_property_collinear_extend(3,DG,EF,A)",
+      "angle_addition(1,CAH,HAB)"
+    ],
+    "parallel_property_collinear_extend(3,DG,EF,A)": [
+      "parallel_property_collinear_extend(3,FE,AD,C)"
+    ],
+    "parallel_property_collinear_extend(3,FE,AD,C)": [
+      "parallel_property_alternate_interior_angle(2,DA,CF)"
+    ]
+  }
+}

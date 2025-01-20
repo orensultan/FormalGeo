@@ -1,0 +1,45 @@
+{
+  "problem_id": 2071,
+  "annotation": "QikeHuang_2023-04-23",
+  "source": "Geometry3k-2158",
+  "problem_level": 4,
+  "problem_text_cn": "如图所示，AB=x-2，AD=x，DG=15/2，EB=5，四边形BADC相似于四边形EAGF。求直线AG的长度。",
+  "problem_text_en": "As shown in the diagram, AB=x-2, AD=x, DG=15/2, EB=5, BADC is similar to EAGF. Find the length of line AG.",
+  "problem_img": "2071.png",
+  "construction_cdl": [
+    "Shape(BA,AD,DC,CB)",
+    "Shape(EB,BC,CD,DG,GF,FE)",
+    "Collinear(ABE)",
+    "Collinear(ADG)"
+  ],
+  "text_cdl": [
+    "Equal(LengthOfLine(AB),x-2)",
+    "Equal(LengthOfLine(AD),x)",
+    "Equal(LengthOfLine(DG),15/2)",
+    "Equal(LengthOfLine(EB),5)",
+    "SimilarBetweenQuadrilateral(BADC,EAGF)"
+  ],
+  "image_cdl": [
+    "Equal(LengthOfLine(AB),x-2)",
+    "Equal(LengthOfLine(AD),x)",
+    "Equal(LengthOfLine(DG),15/2)",
+    "Equal(LengthOfLine(EB),5)",
+    "SimilarBetweenQuadrilateral(BADC,EAGF)"
+  ],
+  "goal_cdl": "Value(LengthOfLine(AG))",
+  "problem_answer": "27/2",
+  "theorem_seqs": [
+    "line_addition(1,EB,BA)",
+    "line_addition(1,AD,DG)",
+    "similar_quadrilateral_property_line_ratio(1,BADC,EAGF)",
+    "similar_quadrilateral_property_line_ratio(1,ADCB,AGFE)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "line_addition(1,EB,BA)",
+      "line_addition(1,AD,DG)",
+      "similar_quadrilateral_property_line_ratio(1,BADC,EAGF)",
+      "similar_quadrilateral_property_line_ratio(1,ADCB,AGFE)"
+    ]
+  }
+}

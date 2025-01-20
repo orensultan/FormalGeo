@@ -1,0 +1,43 @@
+{
+  "problem_id": 4109,
+  "annotation": "QikeHuang_2023-05-07",
+  "source": "GeoQA-2551",
+  "problem_level": 4,
+  "problem_text_cn": "如图所示，∠CAB=42°，∠DBA=35°，⊙O的圆心为O。求∠DPA的大小。",
+  "problem_text_en": "As shown in the diagram, ∠CAB=42°, ∠DBA=35°, the center of ⊙O is O. Find the measure of ∠DPA.",
+  "problem_img": "4109.png",
+  "construction_cdl": [
+    "Shape(OCA,AC)",
+    "Shape(CA,AP,PC)",
+    "Shape(PA,OAD,DP)",
+    "Shape(O)",
+    "Shape(BP,PD,DB)",
+    "Shape(CP,PB,PBC)",
+    "Shape(BD,ODB)",
+    "Collinear(CPD)",
+    "Collinear(APB)",
+    "Cocircular(O,ADBC)"
+  ],
+  "text_cdl": [
+    "Equal(MeasureOfAngle(CAB),42)",
+    "Equal(MeasureOfAngle(DBA),35)",
+    "IsCentreOfCircle(O,O)"
+  ],
+  "image_cdl": [],
+  "goal_cdl": "Value(MeasureOfAngle(DPA))",
+  "problem_answer": "77",
+  "theorem_seqs": [
+    "arc_property_circumference_angle_external(1,OAD,B)",
+    "arc_property_circumference_angle_external(1,OAD,C)",
+    "triangle_property_angle_sum(1,APC)",
+    "adjacent_complementary_angle(1,DPA,APC)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "arc_property_circumference_angle_external(1,OAD,B)",
+      "arc_property_circumference_angle_external(1,OAD,C)",
+      "triangle_property_angle_sum(1,APC)",
+      "adjacent_complementary_angle(1,DPA,APC)"
+    ]
+  }
+}

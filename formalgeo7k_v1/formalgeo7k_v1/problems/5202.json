@@ -1,0 +1,39 @@
+{
+  "problem_id": 5202,
+  "annotation": "NaZhu_2023-05-21",
+  "source": "GeoQA-5203",
+  "problem_level": 3,
+  "problem_text_cn": "如图所示，OH=1，∠HOA=60°，O是圆O的圆心，AH⊥OH。求圆O的半径。",
+  "problem_text_en": "As shown in the diagram, OH=1, ∠HOA=60°, O is the center of ⊙O, AH⊥OH. Find the radius of circle O.",
+  "problem_img": "5202.png",
+  "construction_cdl": [
+    "Shape(OAC,CH,HA)",
+    "Shape(OCB,BH,HC)",
+    "Shape(OBA,AO,OH,HB)",
+    "Shape(OA,AH,HO)",
+    "Collinear(AHB)",
+    "Collinear(OHC)",
+    "Cocircular(O,ACB)"
+  ],
+  "text_cdl": [
+    "Equal(LengthOfLine(OH),1)",
+    "Equal(MeasureOfAngle(HOA),60)",
+    "IsCentreOfCircle(O,O)",
+    "PerpendicularBetweenLine(AH,OH)"
+  ],
+  "image_cdl": [],
+  "goal_cdl": "Value(RadiusOfCircle(O))",
+  "problem_answer": "2",
+  "theorem_seqs": [
+    "triangle_property_angle_sum(1,OAH)",
+    "sine_theorem(1,OAH)",
+    "radius_of_circle_property_length_equal(1,OA,O)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "triangle_property_angle_sum(1,OAH)",
+      "sine_theorem(1,OAH)",
+      "radius_of_circle_property_length_equal(1,OA,O)"
+    ]
+  }
+}

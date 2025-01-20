@@ -1,0 +1,33 @@
+{
+  "problem_id": 4337,
+  "annotation": "ZheZhu_2023-05-07",
+  "source": "GeoQA-3208",
+  "problem_level": 2,
+  "problem_text_cn": "如图所示，∠AOB=110°，⊙O的圆心为O。求∠BCA的大小。",
+  "problem_text_en": "As shown in the diagram, ∠AOB=110°, O is the center of circle O. Find the measure of ∠BCA.",
+  "problem_img": "4337.png",
+  "construction_cdl": [
+    "Shape(OA,OAB,BO)",
+    "Shape(AO,OB,BC,CA)",
+    "Shape(OCA,AC)",
+    "Shape(OBC,CB)",
+    "Cocircular(O,ABC)"
+  ],
+  "text_cdl": [
+    "Equal(MeasureOfAngle(AOB),110)",
+    "IsCentreOfCircle(O,O)"
+  ],
+  "image_cdl": [],
+  "goal_cdl": "Value(MeasureOfAngle(BCA))",
+  "problem_answer": "125",
+  "theorem_seqs": [
+    "arc_property_center_angle(1,OBA,O)",
+    "arc_property_circumference_angle_internal(1,OBA,C)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "arc_property_center_angle(1,OBA,O)",
+      "arc_property_circumference_angle_internal(1,OBA,C)"
+    ]
+  }
+}

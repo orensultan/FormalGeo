@@ -1,0 +1,50 @@
+{
+  "problem_id": 2183,
+  "annotation": "XiaoxiaoJin_2023-04-23",
+  "source": "Geometry3k-2279",
+  "problem_level": 5,
+  "problem_text_cn": "如图所示，∠ABD=3*x-60°，∠ECF=2*x+15°，BD∥CE。求∠DBC的大小。",
+  "problem_text_en": "As shown in the diagram, ∠ABD=3*x-60°, ∠ECF=2*x+15°, BD is parallel to CE. Find the measure of ∠DBC.",
+  "problem_img": "2183.png",
+  "construction_cdl": [
+    "Shape(RB,BA)",
+    "Shape(AB,BD)",
+    "Shape(DB,BC)",
+    "Shape(CB,BR)",
+    "Shape(VC,CB)",
+    "Shape(BC,CE)",
+    "Shape(EC,CF)",
+    "Shape(FC,CV)",
+    "Collinear(ABCF)",
+    "Collinear(RBD)",
+    "Collinear(VCE)"
+  ],
+  "text_cdl": [
+    "Equal(MeasureOfAngle(ABD),3*x-60)",
+    "Equal(MeasureOfAngle(ECF),2*x+15)",
+    "ParallelBetweenLine(BD,CE)"
+  ],
+  "image_cdl": [
+    "Equal(MeasureOfAngle(ABD),3*x-60)",
+    "Equal(MeasureOfAngle(ECF),2*x+15)",
+    "ParallelBetweenLine(BD,CE)"
+  ],
+  "goal_cdl": "Value(MeasureOfAngle(DBC))",
+  "problem_answer": "105",
+  "theorem_seqs": [
+    "adjacent_complementary_angle(1,ABD,DBC)",
+    "adjacent_complementary_angle(1,FCV,VCA)",
+    "adjacent_complementary_angle(1,VCB,BCE)",
+    "adjacent_complementary_angle(1,ECF,FCV)",
+    "parallel_property_corresponding_angle(1,BD,CE,A)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "adjacent_complementary_angle(1,ABD,DBC)",
+      "adjacent_complementary_angle(1,FCV,VCA)",
+      "adjacent_complementary_angle(1,VCB,BCE)",
+      "adjacent_complementary_angle(1,ECF,FCV)",
+      "parallel_property_corresponding_angle(1,BD,CE,A)"
+    ]
+  }
+}

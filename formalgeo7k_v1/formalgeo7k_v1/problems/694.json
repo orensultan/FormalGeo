@@ -1,0 +1,47 @@
+{
+  "problem_id": 694,
+  "annotation": "YimingHe_2023-03-12",
+  "source": "Geometry3k-713",
+  "problem_level": 3,
+  "problem_text_cn": "如图所示，MQ=18，QP=18，∠PNQ=4*x-8°，∠QNM=3*x+5°，NM⊥QM，QP⊥NP。求∠PNM的大小。",
+  "problem_text_en": "As shown in the diagram, MQ=18, QP=18, ∠PNQ=4*x-8°, ∠QNM=3*x+5°, NM⊥QM, QP⊥NP. Find the measure of ∠PNM.",
+  "problem_img": "694.png",
+  "construction_cdl": [
+    "Shape(NM,MQ,QN)",
+    "Shape(NQ,QP,PN)",
+    "Collinear(BMN)",
+    "Collinear(CPN)"
+  ],
+  "text_cdl": [
+    "Equal(LengthOfLine(MQ),18)",
+    "Equal(LengthOfLine(QP),18)",
+    "Equal(MeasureOfAngle(PNQ),4*x-8)",
+    "Equal(MeasureOfAngle(QNM),3*x+5)",
+    "PerpendicularBetweenLine(NM,QM)",
+    "PerpendicularBetweenLine(QP,NP)"
+  ],
+  "image_cdl": [
+    "Equal(LengthOfLine(MQ),18)",
+    "Equal(LengthOfLine(QP),18)",
+    "Equal(MeasureOfAngle(PNQ),4*x-8)",
+    "Equal(MeasureOfAngle(QNM),3*x+5)",
+    "PerpendicularBetweenLine(NM,QM)",
+    "PerpendicularBetweenLine(QP,NP)"
+  ],
+  "goal_cdl": "Value(MeasureOfAngle(PNM))",
+  "problem_answer": "88",
+  "theorem_seqs": [
+    "mirror_congruent_triangle_judgment_hl(1,NMQ,NQP)",
+    "mirror_congruent_triangle_property_angle_equal(1,NMQ,NQP)",
+    "angle_addition(1,PNQ,QNM)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "mirror_congruent_triangle_judgment_hl(1,NMQ,NQP)",
+      "angle_addition(1,PNQ,QNM)"
+    ],
+    "mirror_congruent_triangle_judgment_hl(1,NMQ,NQP)": [
+      "mirror_congruent_triangle_property_angle_equal(1,NMQ,NQP)"
+    ]
+  }
+}

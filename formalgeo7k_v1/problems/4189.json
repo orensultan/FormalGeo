@@ -1,0 +1,34 @@
+{
+  "problem_id": 4189,
+  "annotation": "YangLi_2023-05-07",
+  "source": "GeoQA-2859",
+  "problem_level": 3,
+  "problem_text_cn": "如图所示，AB=5，AC=3，∠BCA=90°。求sin(AB)的值。",
+  "problem_text_en": "As shown in the diagram, AB=5, AC=3, ∠BCA=90°. Find the value of sin(AB).",
+  "problem_img": "4189.png",
+  "construction_cdl": [
+    "Shape(BC,CA,AB)"
+  ],
+  "text_cdl": [
+    "Equal(LengthOfLine(AB),5)",
+    "Equal(LengthOfLine(AC),3)",
+    "Equal(MeasureOfAngle(BCA),90)"
+  ],
+  "image_cdl": [],
+  "goal_cdl": "Value(Sin(MeasureOfAngle(ABC)))",
+  "problem_answer": "3/5",
+  "theorem_seqs": [
+    "right_triangle_judgment_angle(1,BCA)",
+    "right_triangle_property_pythagorean(1,BCA)",
+    "cosine_theorem(1,BCA)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "right_triangle_judgment_angle(1,BCA)",
+      "cosine_theorem(1,BCA)"
+    ],
+    "right_triangle_judgment_angle(1,BCA)": [
+      "right_triangle_property_pythagorean(1,BCA)"
+    ]
+  }
+}

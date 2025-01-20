@@ -1,0 +1,39 @@
+{
+  "problem_id": 6650,
+  "annotation": "QikeHuang_2023-06-04",
+  "source": "GeoQA-9668",
+  "problem_level": 3,
+  "problem_text_cn": "如图所示，∠DOB=110°，⊙O的圆心为O，AB是⊙O的直径，AD平行于CO。求∠COA的大小。",
+  "problem_text_en": "As shown in the diagram, ∠DOB=110°, O is the center of ⊙O, the diameter of circle O is AB, AD is parallel to CO. Find the measure of ∠COA.",
+  "problem_img": "6650.png",
+  "construction_cdl": [
+    "Shape(ODA,AD)",
+    "Shape(DA,AO,OD)",
+    "Shape(DO,OB,OBD)",
+    "Shape(OA,OAC,CO)",
+    "Shape(OC,OCB,BO)",
+    "Collinear(AOB)",
+    "Cocircular(O,ACBD)"
+  ],
+  "text_cdl": [
+    "Equal(MeasureOfAngle(DOB),110)",
+    "IsCentreOfCircle(O,O)",
+    "IsDiameterOfCircle(AB,O)",
+    "ParallelBetweenLine(AD,CO)"
+  ],
+  "image_cdl": [],
+  "goal_cdl": "Value(MeasureOfAngle(COA))",
+  "problem_answer": "55",
+  "theorem_seqs": [
+    "parallel_property_alternate_interior_angle(1,AD,CO)",
+    "arc_property_center_angle(1,OBD,O)",
+    "arc_property_circumference_angle_external(1,OBD,A)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "parallel_property_alternate_interior_angle(1,AD,CO)",
+      "arc_property_center_angle(1,OBD,O)",
+      "arc_property_circumference_angle_external(1,OBD,A)"
+    ]
+  }
+}

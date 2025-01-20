@@ -1,0 +1,50 @@
+{
+  "problem_id": 6815,
+  "annotation": "ChenyangMao_2023-06-04",
+  "source": "GeoQA-angle-10030",
+  "problem_level": 8,
+  "problem_text_cn": "如图所示，AE=BE，BC=BE，∠CDA=105°，四边形ABCD是▱。求∠CAB的大小。",
+  "problem_text_en": "As shown in the diagram, AE=BE, BC=BE, ∠CDA=105°, quadrilateral ABCD is a ▱. Find the measure of ∠CAB.",
+  "problem_img": "6815.png",
+  "construction_cdl": [
+    "Shape(AB,BE,EA)",
+    "Shape(CE,EB,BC)",
+    "Shape(DA,AE,EC,CD)",
+    "Collinear(AEC)"
+  ],
+  "text_cdl": [
+    "Equal(LengthOfLine(AE),LengthOfLine(BE))",
+    "Equal(LengthOfLine(BC),LengthOfLine(BE))",
+    "Equal(MeasureOfAngle(CDA),105)",
+    "Parallelogram(ABCD)"
+  ],
+  "image_cdl": [],
+  "goal_cdl": "Value(MeasureOfAngle(CAB))",
+  "problem_answer": "25",
+  "theorem_seqs": [
+    "parallelogram_property_opposite_angle_equal(1,BCDA)",
+    "angle_addition(1,ABE,EBC)",
+    "isosceles_triangle_judgment_line_equal(1,EAB)",
+    "isosceles_triangle_judgment_line_equal(1,BCE)",
+    "isosceles_triangle_property_angle_equal(1,EAB)",
+    "isosceles_triangle_property_angle_equal(1,BCE)",
+    "triangle_property_angle_sum(1,CEB)",
+    "triangle_property_angle_sum(1,ABC)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "parallelogram_property_opposite_angle_equal(1,BCDA)",
+      "angle_addition(1,ABE,EBC)",
+      "isosceles_triangle_judgment_line_equal(1,EAB)",
+      "isosceles_triangle_judgment_line_equal(1,BCE)",
+      "triangle_property_angle_sum(1,CEB)",
+      "triangle_property_angle_sum(1,ABC)"
+    ],
+    "isosceles_triangle_judgment_line_equal(1,EAB)": [
+      "isosceles_triangle_property_angle_equal(1,EAB)"
+    ],
+    "isosceles_triangle_judgment_line_equal(1,BCE)": [
+      "isosceles_triangle_property_angle_equal(1,BCE)"
+    ]
+  }
+}

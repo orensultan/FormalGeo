@@ -1,0 +1,41 @@
+{
+  "problem_id": 3738,
+  "annotation": "YangLi_2023-04-30",
+  "source": "GeoQA-1530",
+  "problem_level": 3,
+  "problem_text_cn": "如图所示，∠AOC=130°，O是圆O的圆心。求∠EDB的大小。",
+  "problem_text_en": "As shown in the diagram, ∠AOC=130°, the center of ⊙O is O. Find the measure of ∠EDB.",
+  "problem_img": "3738.png",
+  "construction_cdl": [
+    "Shape(BD,ODB)",
+    "Shape(CE,EB,OBC)",
+    "Shape(CO,OE,EC)",
+    "Shape(AO,OC,OCA)",
+    "Shape(DB,BE,ED)",
+    "Shape(DE,EO,OA,OAD)",
+    "Collinear(BEOA)",
+    "Collinear(DEC)",
+    "Cocircular(O,BCAD)"
+  ],
+  "text_cdl": [
+    "Equal(MeasureOfAngle(AOC),130)",
+    "IsCentreOfCircle(O,O)"
+  ],
+  "image_cdl": [
+    "IsCentreOfCircle(O,O)"
+  ],
+  "goal_cdl": "Value(MeasureOfAngle(EDB))",
+  "problem_answer": "25",
+  "theorem_seqs": [
+    "adjacent_complementary_angle(1,AOC,COE)",
+    "arc_property_center_angle(1,OBC,O)",
+    "arc_property_circumference_angle_external(1,OBC,D)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "adjacent_complementary_angle(1,AOC,COE)",
+      "arc_property_center_angle(1,OBC,O)",
+      "arc_property_circumference_angle_external(1,OBC,D)"
+    ]
+  }
+}

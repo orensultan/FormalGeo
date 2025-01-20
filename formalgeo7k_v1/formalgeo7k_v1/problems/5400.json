@@ -1,0 +1,58 @@
+{
+  "problem_id": 5400,
+  "annotation": "XiaoxiaoJin_2023-05-21",
+  "source": "GeoQA-5693",
+  "problem_level": 11,
+  "problem_text_cn": "如图所示，BA=BC，BA=BD，BA=BE，∠EAB=60°，AE∥BC。求∠CDE的大小。",
+  "problem_text_en": "As shown in the diagram, BA=BC, BA=BD, BA=BE, ∠EAB=60°, AE∥BC. Find the measure of ∠CDE.",
+  "problem_img": "5400.png",
+  "construction_cdl": [
+    "Shape(EA,AB,BE)",
+    "Shape(EB,BD,DE)",
+    "Shape(CD,DB,BC)"
+  ],
+  "text_cdl": [
+    "Equal(LengthOfLine(BA),LengthOfLine(BC))",
+    "Equal(LengthOfLine(BA),LengthOfLine(BD))",
+    "Equal(LengthOfLine(BA),LengthOfLine(BE))",
+    "Equal(MeasureOfAngle(EAB),60)",
+    "ParallelBetweenLine(AE,BC)"
+  ],
+  "image_cdl": [],
+  "goal_cdl": "Value(MeasureOfAngle(CDE))",
+  "problem_answer": "150",
+  "theorem_seqs": [
+    "angle_addition(1,EBD,DBC)",
+    "angle_addition(1,CDB,BDE)",
+    "triangle_property_angle_sum(1,EBD)",
+    "triangle_property_angle_sum(1,CDB)",
+    "parallel_property_alternate_interior_angle(2,AE,BC)",
+    "isosceles_triangle_judgment_line_equal(1,BEA)",
+    "isosceles_triangle_judgment_line_equal(1,BDE)",
+    "isosceles_triangle_judgment_line_equal(1,BCD)",
+    "isosceles_triangle_property_angle_equal(1,BEA)",
+    "isosceles_triangle_property_angle_equal(1,BDE)",
+    "isosceles_triangle_property_angle_equal(1,BCD)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "angle_addition(1,EBD,DBC)",
+      "angle_addition(1,CDB,BDE)",
+      "triangle_property_angle_sum(1,EBD)",
+      "triangle_property_angle_sum(1,CDB)",
+      "parallel_property_alternate_interior_angle(2,AE,BC)",
+      "isosceles_triangle_judgment_line_equal(1,BEA)",
+      "isosceles_triangle_judgment_line_equal(1,BDE)",
+      "isosceles_triangle_judgment_line_equal(1,BCD)"
+    ],
+    "isosceles_triangle_judgment_line_equal(1,BEA)": [
+      "isosceles_triangle_property_angle_equal(1,BEA)"
+    ],
+    "isosceles_triangle_judgment_line_equal(1,BDE)": [
+      "isosceles_triangle_property_angle_equal(1,BDE)"
+    ],
+    "isosceles_triangle_judgment_line_equal(1,BCD)": [
+      "isosceles_triangle_property_angle_equal(1,BCD)"
+    ]
+  }
+}

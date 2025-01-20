@@ -1,0 +1,31 @@
+{
+  "problem_id": 4103,
+  "annotation": "YanjunGuo_2023-05-07",
+  "source": "GeoQA-2528",
+  "problem_level": 1,
+  "problem_text_cn": "如图所示，三角形ABC的面积为18，三角形ADE和三角形ABC的相似比为2/3，△ADE与△ABC是相似三角形。求△ADE的面积。",
+  "problem_text_en": "As shown in the diagram, the area of △ABC is 18, the ratio of similar triangles ADE and ABC is 2/3, triangle ADE is similar to triangle ABC.. Find the area of triangle ADE.",
+  "problem_img": "4103.png",
+  "construction_cdl": [
+    "Shape(AD,DE,EA)",
+    "Shape(DB,BC,CE,ED)",
+    "Collinear(ADB)",
+    "Collinear(AEC)"
+  ],
+  "text_cdl": [
+    "Equal(AreaOfTriangle(ABC),18)",
+    "Equal(RatioOfSimilarTriangle(ADE,ABC),2/3)",
+    "SimilarBetweenTriangle(ADE,ABC)"
+  ],
+  "image_cdl": [],
+  "goal_cdl": "Value(AreaOfTriangle(ADE))",
+  "problem_answer": "8",
+  "theorem_seqs": [
+    "similar_triangle_property_area_square_ratio(1,ADE,ABC)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "similar_triangle_property_area_square_ratio(1,ADE,ABC)"
+    ]
+  }
+}

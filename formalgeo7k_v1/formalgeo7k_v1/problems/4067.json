@@ -1,0 +1,41 @@
+{
+  "problem_id": 4067,
+  "annotation": "XiaokaiZhang_2023-05-07",
+  "source": "GeoQA-2382",
+  "problem_level": 4,
+  "problem_text_cn": "如图所示，BE=8，DE=4，EC=22，BC⊥AC，BE垂直于DE。求直线AC的长度。",
+  "problem_text_en": "As shown in the diagram, BE=8, DE=4, EC=22, BC is perpendicular to AC, BE⊥DE. Find the length of line AC.",
+  "problem_img": "4067.png",
+  "construction_cdl": [
+    "Shape(DB,BE,ED)",
+    "Shape(AD,DE,EC,CA)",
+    "Collinear(BDA)",
+    "Collinear(BEC)"
+  ],
+  "text_cdl": [
+    "Equal(LengthOfLine(BE),8)",
+    "Equal(LengthOfLine(DE),4)",
+    "Equal(LengthOfLine(EC),22)",
+    "PerpendicularBetweenLine(BC,AC)",
+    "PerpendicularBetweenLine(BE,DE)"
+  ],
+  "image_cdl": [],
+  "goal_cdl": "Value(LengthOfLine(AC))",
+  "problem_answer": "15",
+  "theorem_seqs": [
+    "similar_triangle_judgment_aa(1,DBE,ABC)",
+    "similar_triangle_property_line_ratio(1,DBE,ABC)",
+    "similar_triangle_property_line_ratio(1,BED,BCA)",
+    "line_addition(1,BE,EC)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "similar_triangle_judgment_aa(1,DBE,ABC)",
+      "line_addition(1,BE,EC)"
+    ],
+    "similar_triangle_judgment_aa(1,DBE,ABC)": [
+      "similar_triangle_property_line_ratio(1,DBE,ABC)",
+      "similar_triangle_property_line_ratio(1,BED,BCA)"
+    ]
+  }
+}

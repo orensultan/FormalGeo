@@ -1,0 +1,33 @@
+{
+  "problem_id": 1932,
+  "annotation": "ZheZhu_2023-04-16",
+  "source": "Geometry3k-2010",
+  "problem_level": 1,
+  "problem_text_cn": "如图所示，RQTS的面积为72，RT=12，RQTS是菱形。求直线QS的长度。",
+  "problem_text_en": "As shown in the diagram, the area of quadrilateral RQTS is 72, RT=12, RQTS is a rhombus. Find the length of line QS.",
+  "problem_img": "1932.png",
+  "construction_cdl": [
+    "Shape(RQ,QB,BR)",
+    "Shape(BQ,QT,TB)",
+    "Shape(BT,TS,SB)",
+    "Shape(RB,BS,SR)",
+    "Collinear(RBT)",
+    "Collinear(QBS)"
+  ],
+  "text_cdl": [
+    "Equal(AreaOfQuadrilateral(RQTS),72)",
+    "Equal(LengthOfLine(RT),12)",
+    "Rhombus(RQTS)"
+  ],
+  "image_cdl": [],
+  "goal_cdl": "Value(LengthOfLine(QS))",
+  "problem_answer": "12",
+  "theorem_seqs": [
+    "kite_area_formula_diagonal(1,RQTS)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "kite_area_formula_diagonal(1,RQTS)"
+    ]
+  }
+}

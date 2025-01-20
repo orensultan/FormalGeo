@@ -1,0 +1,40 @@
+{
+  "problem_id": 516,
+  "annotation": "JiaZou_2023-03-12",
+  "source": "Geometry3k-528",
+  "problem_level": 3,
+  "problem_text_cn": "如图所示，三角形CED的面积为336，DF=24，DF⊥EF。求直线CE的长度。",
+  "problem_text_en": "As shown in the diagram, the area of triangle CED is 336, DF=24, DF is perpendicular to EF. Find the length of line CE.",
+  "problem_img": "516.png",
+  "construction_cdl": [
+    "Shape(CF,FD,DC)",
+    "Shape(FE,ED,DF)",
+    "Collinear(CFE)"
+  ],
+  "text_cdl": [
+    "Equal(AreaOfTriangle(CED),336)",
+    "Equal(LengthOfLine(DF),24)",
+    "PerpendicularBetweenLine(DF,EF)"
+  ],
+  "image_cdl": [
+    "Equal(AreaOfTriangle(CED),336)",
+    "Equal(LengthOfLine(DF),24)",
+    "PerpendicularBetweenLine(DF,EF)"
+  ],
+  "goal_cdl": "Value(LengthOfLine(CE))",
+  "problem_answer": "28",
+  "theorem_seqs": [
+    "adjacent_complementary_angle(1,CFD,DFE)",
+    "altitude_of_triangle_judgment(1,DF,DCE)",
+    "triangle_area_formula_common(1,DCE)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "adjacent_complementary_angle(1,CFD,DFE)",
+      "triangle_area_formula_common(1,DCE)"
+    ],
+    "adjacent_complementary_angle(1,CFD,DFE)": [
+      "altitude_of_triangle_judgment(1,DF,DCE)"
+    ]
+  }
+}

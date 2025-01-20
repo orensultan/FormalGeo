@@ -1,0 +1,39 @@
+{
+  "problem_id": 3106,
+  "annotation": "YimingHe_2023-04-23",
+  "source": "GeoQA-348",
+  "problem_level": 4,
+  "problem_text_cn": "如图所示，∠ACE=50°，AE平分∠BAC，AB平行于CD。求∠AED的大小。",
+  "problem_text_en": "As shown in the diagram, ∠ACE=50°, AE bisects ∠BAC, AB∥CD. Find the measure of ∠AED.",
+  "problem_img": "3106.png",
+  "construction_cdl": [
+    "Shape(AC,CE,EA)",
+    "Shape(BA,AE)",
+    "Shape(AE,ED)",
+    "Collinear(CED)"
+  ],
+  "text_cdl": [
+    "Equal(MeasureOfAngle(ACE),50)",
+    "IsBisectorOfAngle(AE,BAC)",
+    "ParallelBetweenLine(AB,CD)"
+  ],
+  "image_cdl": [],
+  "goal_cdl": "Value(MeasureOfAngle(AED))",
+  "problem_answer": "115",
+  "theorem_seqs": [
+    "parallel_property_collinear_extend(3,DC,BA,E)",
+    "parallel_property_alternate_interior_angle(1,EC,BA)",
+    "triangle_property_angle_sum(1,ACE)",
+    "adjacent_complementary_angle(1,CEA,AED)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "parallel_property_collinear_extend(3,DC,BA,E)",
+      "triangle_property_angle_sum(1,ACE)",
+      "adjacent_complementary_angle(1,CEA,AED)"
+    ],
+    "parallel_property_collinear_extend(3,DC,BA,E)": [
+      "parallel_property_alternate_interior_angle(1,EC,BA)"
+    ]
+  }
+}

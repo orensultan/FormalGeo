@@ -1,0 +1,33 @@
+{
+  "problem_id": 4089,
+  "annotation": "YanjunGuo_2023-05-07",
+  "source": "GeoQA-2452",
+  "problem_level": 2,
+  "problem_text_cn": "如图所示，BD=5，CD=3，三角形ABD与三角形ECD是相似三角形。求直线AB的长度与直线EC的长度之比。",
+  "problem_text_en": "As shown in the diagram, BD=5, CD=3, △ABD is similar to △ECD.. Find the ratio of the length of line AB to the length of line EC.",
+  "problem_img": "4089.png",
+  "construction_cdl": [
+    "Shape(AB,BC,CE,EA)",
+    "Shape(EC,CD,DE)",
+    "Collinear(AED)",
+    "Collinear(BCD)"
+  ],
+  "text_cdl": [
+    "Equal(LengthOfLine(BD),5)",
+    "Equal(LengthOfLine(CD),3)",
+    "SimilarBetweenTriangle(ABD,ECD)"
+  ],
+  "image_cdl": [],
+  "goal_cdl": "Value(Div(LengthOfLine(AB),LengthOfLine(EC)))",
+  "problem_answer": "5/3",
+  "theorem_seqs": [
+    "similar_triangle_property_line_ratio(1,ABD,ECD)",
+    "similar_triangle_property_line_ratio(1,DAB,DEC)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "similar_triangle_property_line_ratio(1,ABD,ECD)",
+      "similar_triangle_property_line_ratio(1,DAB,DEC)"
+    ]
+  }
+}

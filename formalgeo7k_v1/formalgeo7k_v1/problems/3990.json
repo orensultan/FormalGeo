@@ -1,0 +1,56 @@
+{
+  "problem_id": 3990,
+  "annotation": "ZheZhu_2023-04-30",
+  "source": "GeoQA-1939",
+  "problem_level": 7,
+  "problem_text_cn": "如图所示，AB=16，OA=10，⊙O的圆心为O，BD垂直于OD。求直线CD的长度。",
+  "problem_text_en": "As shown in the diagram, AB=16, OA=10, O is the center of circle O, BD is perpendicular to OD. Find the length of line CD.",
+  "problem_img": "3990.png",
+  "construction_cdl": [
+    "Shape(AD,DC,OCA)",
+    "Shape(CD,DB,OBC)",
+    "Shape(DA,AO,OD)",
+    "Shape(OA,OAB,BD,DO)",
+    "Collinear(CDO)",
+    "Collinear(ADB)",
+    "Cocircular(O,CAB)"
+  ],
+  "text_cdl": [
+    "Equal(LengthOfLine(AB),16)",
+    "Equal(LengthOfLine(OA),10)",
+    "IsCentreOfCircle(O,O)",
+    "PerpendicularBetweenLine(BD,OD)"
+  ],
+  "image_cdl": [
+    "Equal(LengthOfLine(AB),16)",
+    "Equal(LengthOfLine(OA),10)",
+    "IsCentreOfCircle(O,O)",
+    "PerpendicularBetweenLine(BD,OD)"
+  ],
+  "goal_cdl": "Value(LengthOfLine(CD))",
+  "problem_answer": "4",
+  "theorem_seqs": [
+    "circle_property_chord_perpendicular_bisect_chord(1,O,OD,BA)",
+    "line_addition(1,CD,DO)",
+    "line_addition(1,AD,DB)",
+    "radius_of_circle_property_length_equal(1,OC,O)",
+    "radius_of_circle_property_length_equal(1,OA,O)",
+    "right_triangle_judgment_angle(1,ODA)",
+    "right_triangle_property_pythagorean(1,ODA)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "circle_property_chord_perpendicular_bisect_chord(1,O,OD,BA)",
+      "line_addition(1,CD,DO)",
+      "line_addition(1,AD,DB)",
+      "radius_of_circle_property_length_equal(1,OC,O)",
+      "radius_of_circle_property_length_equal(1,OA,O)"
+    ],
+    "circle_property_chord_perpendicular_bisect_chord(1,O,OD,BA)": [
+      "right_triangle_judgment_angle(1,ODA)"
+    ],
+    "right_triangle_judgment_angle(1,ODA)": [
+      "right_triangle_property_pythagorean(1,ODA)"
+    ]
+  }
+}

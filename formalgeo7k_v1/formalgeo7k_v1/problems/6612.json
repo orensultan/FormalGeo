@@ -1,0 +1,47 @@
+{
+  "problem_id": 6612,
+  "annotation": "YanjunGuo_2023-06-04",
+  "source": "GeoQA-9603",
+  "problem_level": 6,
+  "problem_text_cn": "如图所示，AD=3，∠DCB=30°，圆O的直径为AB。求圆O的直径。",
+  "problem_text_en": "As shown in the diagram, AD=3, ∠DCB=30°, the diameter of circle O is AB. Find the diameter of circle O.",
+  "problem_img": "6612.png",
+  "construction_cdl": [
+    "Shape(AD,ODA)",
+    "Shape(DB,OBD)",
+    "Shape(BC,OCB)",
+    "Shape(CE,EA,OAC)",
+    "Shape(DA,AE,ED)",
+    "Shape(DE,EB,BD)",
+    "Shape(BE,EC,CB)",
+    "Collinear(AOEB)",
+    "Collinear(DEC)",
+    "Cocircular(O,ACBD)"
+  ],
+  "text_cdl": [
+    "Equal(LengthOfLine(AD),3)",
+    "Equal(MeasureOfAngle(DCB),30)",
+    "IsDiameterOfCircle(AB,O)"
+  ],
+  "image_cdl": [],
+  "goal_cdl": "Value(DiameterOfCircle(O))",
+  "problem_answer": "2*sqrt(3)",
+  "theorem_seqs": [
+    "arc_property_circumference_angle_external(1,OBD,A)",
+    "arc_property_circumference_angle_external(1,OBD,C)",
+    "diameter_of_circle_property_right_angle(1,BDA,O)",
+    "triangle_property_angle_sum(1,DAB)",
+    "sine_theorem(1,ABD)",
+    "diameter_of_circle_property_length_equal(1,AB,O)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "arc_property_circumference_angle_external(1,OBD,A)",
+      "arc_property_circumference_angle_external(1,OBD,C)",
+      "diameter_of_circle_property_right_angle(1,BDA,O)",
+      "triangle_property_angle_sum(1,DAB)",
+      "sine_theorem(1,ABD)",
+      "diameter_of_circle_property_length_equal(1,AB,O)"
+    ]
+  }
+}

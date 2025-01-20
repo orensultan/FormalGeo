@@ -1,0 +1,60 @@
+{
+  "problem_id": 4799,
+  "annotation": "ChenyangMao_2023-05-14",
+  "source": "GeoQA-4207",
+  "problem_level": 6,
+  "problem_text_cn": "如图所示，AB=10，AO=5，圆O的半径为3，O是⊙O的圆心，圆O的切线为AE，圆O的切线为AF，BE是圆O的切线，圆O的切线为BG，ABCD是菱形。求直线BG的长度。",
+  "problem_text_en": "As shown in the diagram, AB=10, AO=5, the radius of ⊙O is 3, O is the center of ⊙O, AE is the tangent to circle O, the tangent to circle O is AF, BE is the tangent to circle O, the tangent to circle O is BG, quadrilateral ABCD is a rhombus. Find the length of line BG.",
+  "problem_img": "4799.png",
+  "construction_cdl": [
+    "Shape(HA,AE,OHE)",
+    "Shape(OHE,EO,OH)",
+    "Shape(FA,AH,OFH)",
+    "Shape(OFH,HO,OF)",
+    "Shape(OEG,GO,OE)",
+    "Shape(EB,BG,OEG)",
+    "Shape(OGF,FO,OG)",
+    "Shape(GB,BC,CG)",
+    "Shape(OGF,GC,CD,DF)",
+    "Collinear(AEB)",
+    "Collinear(AHO)",
+    "Collinear(AFD)",
+    "Cocircular(O,HEGF)"
+  ],
+  "text_cdl": [
+    "Equal(LengthOfLine(AB),10)",
+    "Equal(LengthOfLine(AO),5)",
+    "Equal(RadiusOfCircle(O),3)",
+    "IsCentreOfCircle(O,O)",
+    "IsTangentOfCircle(AE,O)",
+    "IsTangentOfCircle(AF,O)",
+    "IsTangentOfCircle(BE,O)",
+    "IsTangentOfCircle(BG,O)",
+    "Rhombus(ABCD)"
+  ],
+  "image_cdl": [],
+  "goal_cdl": "Value(LengthOfLine(BG))",
+  "problem_answer": "6",
+  "theorem_seqs": [
+    "tangent_of_circle_property_perpendicular(2,AE,O,O)",
+    "radius_of_circle_property_length_equal(1,OE,O)",
+    "right_triangle_judgment_angle(1,AEO)",
+    "right_triangle_property_pythagorean(1,AEO)",
+    "line_addition(1,AE,EB)",
+    "tangent_of_circle_property_length_equal(1,BE,BG,O)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "tangent_of_circle_property_perpendicular(2,AE,O,O)",
+      "radius_of_circle_property_length_equal(1,OE,O)",
+      "line_addition(1,AE,EB)",
+      "tangent_of_circle_property_length_equal(1,BE,BG,O)"
+    ],
+    "tangent_of_circle_property_perpendicular(2,AE,O,O)": [
+      "right_triangle_judgment_angle(1,AEO)"
+    ],
+    "right_triangle_judgment_angle(1,AEO)": [
+      "right_triangle_property_pythagorean(1,AEO)"
+    ]
+  }
+}

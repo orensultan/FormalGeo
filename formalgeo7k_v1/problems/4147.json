@@ -1,0 +1,56 @@
+{
+  "problem_id": 4147,
+  "annotation": "XiaoxiaoJin_2023-05-07",
+  "source": "GeoQA-2737",
+  "problem_level": 7,
+  "problem_text_cn": "如图所示，AC=12，BC=5，∠BCA=90°，CD是△CAB的中线。求sin(DC)的值。",
+  "problem_text_en": "As shown in the diagram, AC=12, BC=5, ∠BCA=90°, CD is the median of △ CAB. Find the value of sin(DC).",
+  "problem_img": "4147.png",
+  "construction_cdl": [
+    "Shape(BC,CD,DB)",
+    "Shape(DC,CA,AD)",
+    "Collinear(ADB)"
+  ],
+  "text_cdl": [
+    "Equal(LengthOfLine(AC),12)",
+    "Equal(LengthOfLine(BC),5)",
+    "Equal(MeasureOfAngle(BCA),90)",
+    "IsMedianOfTriangle(CD,CAB)"
+  ],
+  "image_cdl": [],
+  "goal_cdl": "Value(Sin(MeasureOfAngle(DCA)))",
+  "problem_answer": "5/13",
+  "theorem_seqs": [
+    "line_addition(1,AD,DB)",
+    "right_triangle_judgment_angle(1,BCA)",
+    "right_triangle_property_pythagorean(1,BCA)",
+    "right_triangle_property_length_of_median(1,BCA,D)",
+    "isosceles_triangle_judgment_line_equal(1,DCA)",
+    "isosceles_triangle_property_angle_equal(1,DCA)",
+    "sine_theorem(1,BCA)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "line_addition(1,AD,DB)",
+      "right_triangle_judgment_angle(1,BCA)",
+      "sine_theorem(1,BCA)"
+    ],
+    "line_addition(1,AD,DB)": [
+      "isosceles_triangle_judgment_line_equal(1,DCA)"
+    ],
+    "right_triangle_judgment_angle(1,BCA)": [
+      "right_triangle_property_pythagorean(1,BCA)",
+      "right_triangle_property_length_of_median(1,BCA,D)"
+    ],
+    "right_triangle_property_pythagorean(1,BCA)": [
+      "isosceles_triangle_judgment_line_equal(1,DCA)",
+      "isosceles_triangle_judgment_line_equal(1,DCA)"
+    ],
+    "right_triangle_property_length_of_median(1,BCA,D)": [
+      "isosceles_triangle_judgment_line_equal(1,DCA)"
+    ],
+    "isosceles_triangle_judgment_line_equal(1,DCA)": [
+      "isosceles_triangle_property_angle_equal(1,DCA)"
+    ]
+  }
+}

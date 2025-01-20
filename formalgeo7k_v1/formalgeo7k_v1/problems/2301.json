@@ -1,0 +1,49 @@
+{
+  "problem_id": 2301,
+  "annotation": "DengfengYue_2023-04-16",
+  "source": "Geometry3k-2408",
+  "problem_level": 5,
+  "problem_text_cn": "如图所示，XM=2，XN=6，XY=10，NM平行于ZY。求直线NZ的长度。",
+  "problem_text_en": "As shown in the diagram, XM=2, XN=6, XY=10, NM∥ZY. Find the length of line NZ.",
+  "problem_img": "2301.png",
+  "construction_cdl": [
+    "Shape(MX,XN,NM)",
+    "Shape(MN,NZ,ZY,YM)",
+    "Collinear(XMY)",
+    "Collinear(XNZ)"
+  ],
+  "text_cdl": [
+    "Equal(LengthOfLine(XM),2)",
+    "Equal(LengthOfLine(XN),6)",
+    "Equal(LengthOfLine(XY),10)",
+    "ParallelBetweenLine(NM,ZY)"
+  ],
+  "image_cdl": [
+    "Equal(LengthOfLine(XM),2)",
+    "Equal(LengthOfLine(XN),6)",
+    "Equal(LengthOfLine(XY),10)",
+    "ParallelBetweenLine(NM,ZY)"
+  ],
+  "goal_cdl": "Value(LengthOfLine(NZ))",
+  "problem_answer": "24",
+  "theorem_seqs": [
+    "parallel_property_corresponding_angle(1,NM,ZY,X)",
+    "similar_triangle_judgment_aa(1,MXN,YXZ)",
+    "similar_triangle_property_line_ratio(1,NMX,ZYX)",
+    "similar_triangle_property_line_ratio(1,MXN,YXZ)",
+    "line_addition(1,XN,NZ)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "parallel_property_corresponding_angle(1,NM,ZY,X)",
+      "line_addition(1,XN,NZ)"
+    ],
+    "parallel_property_corresponding_angle(1,NM,ZY,X)": [
+      "similar_triangle_judgment_aa(1,MXN,YXZ)"
+    ],
+    "similar_triangle_judgment_aa(1,MXN,YXZ)": [
+      "similar_triangle_property_line_ratio(1,MXN,YXZ)",
+      "similar_triangle_property_line_ratio(1,NMX,ZYX)"
+    ]
+  }
+}

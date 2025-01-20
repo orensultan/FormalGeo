@@ -1,0 +1,53 @@
+{
+  "problem_id": 3871,
+  "annotation": "DengfengYue_2023-04-30",
+  "source": "GeoQA-1759",
+  "problem_level": 7,
+  "problem_text_cn": "如图所示，∠CAD=25°，圆C的圆心为C，BC和CA是直角三角形BCA的两个直角边。求∠DCE的大小。",
+  "problem_text_en": "As shown in the diagram, ∠CAD=25°, the center of circle C is C, ∠BCA is the right angle of the right triangle BCA. Find the measure of ∠DCE.",
+  "problem_img": "3871.png",
+  "construction_cdl": [
+    "Shape(BC,CD,DB)",
+    "Shape(DC,CA,AD)",
+    "Shape(BD,CDB)",
+    "Shape(EC,CB,CBE)",
+    "Collinear(CEA)",
+    "Collinear(BDA)",
+    "Cocircular(C,EDB)"
+  ],
+  "text_cdl": [
+    "Equal(MeasureOfAngle(CAD),25)",
+    "IsCentreOfCircle(C,C)",
+    "RightTriangle(BCA)"
+  ],
+  "image_cdl": [],
+  "goal_cdl": "Value(MeasureOfAngle(DCE))",
+  "problem_answer": "40",
+  "theorem_seqs": [
+    "triangle_property_angle_sum(1,BCD)",
+    "triangle_property_angle_sum(1,BCA)",
+    "radius_of_circle_property_length_equal(1,CD,C)",
+    "radius_of_circle_property_length_equal(1,CB,C)",
+    "isosceles_triangle_judgment_line_equal(1,CDB)",
+    "isosceles_triangle_property_angle_equal(1,CDB)",
+    "angle_addition(1,BCD,DCE)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "triangle_property_angle_sum(1,BCD)",
+      "triangle_property_angle_sum(1,BCA)",
+      "radius_of_circle_property_length_equal(1,CD,C)",
+      "radius_of_circle_property_length_equal(1,CB,C)",
+      "angle_addition(1,BCD,DCE)"
+    ],
+    "radius_of_circle_property_length_equal(1,CD,C)": [
+      "isosceles_triangle_judgment_line_equal(1,CDB)"
+    ],
+    "radius_of_circle_property_length_equal(1,CB,C)": [
+      "isosceles_triangle_judgment_line_equal(1,CDB)"
+    ],
+    "isosceles_triangle_judgment_line_equal(1,CDB)": [
+      "isosceles_triangle_property_angle_equal(1,CDB)"
+    ]
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "problem_id": 204,
+  "annotation": "XiaokaiZhang_2023-04-02",
+  "source": "Geometry3k-206",
+  "problem_level": 2,
+  "problem_text_cn": "如图所示，∠ABE=32°。求∠EDC的大小。",
+  "problem_text_en": "As shown in the diagram, ∠ABE=32°. Find the measure of ∠EDC.",
+  "problem_img": "204.png",
+  "construction_cdl": [
+    "Shape(HCA,AE,EC)",
+    "Shape(HAB,BA)",
+    "Shape(HBD,DE,EB)",
+    "Shape(HDC,CD)",
+    "Shape(EA,AB,BE)",
+    "Shape(ED,DC,CE)",
+    "Collinear(AED)",
+    "Collinear(CEB)",
+    "Cocircular(H,ABDC)"
+  ],
+  "text_cdl": [
+    "Equal(MeasureOfAngle(ABE),32)"
+  ],
+  "image_cdl": [
+    "Equal(MeasureOfAngle(ABE),32)"
+  ],
+  "goal_cdl": "Value(MeasureOfAngle(EDC))",
+  "problem_answer": "32",
+  "theorem_seqs": [
+    "arc_property_circumference_angle_external(1,HCA,D)",
+    "arc_property_circumference_angle_external(1,HCA,B)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "arc_property_circumference_angle_external(1,HCA,D)",
+      "arc_property_circumference_angle_external(1,HCA,B)"
+    ]
+  }
+}

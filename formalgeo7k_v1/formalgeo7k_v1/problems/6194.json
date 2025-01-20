@@ -1,0 +1,39 @@
+{
+  "problem_id": 6194,
+  "annotation": "DengfengYue_2023-05-28",
+  "source": "GeoQA-8774",
+  "problem_level": 4,
+  "problem_text_cn": "如图所示，∠CAB=40°，O是⊙O的圆心，C是弧OBA的中点。求∠ABC的大小。",
+  "problem_text_en": "As shown in the diagram, ∠CAB=40°, O is the center of ⊙O, C is the midpoint of arc OBA. Find the measure of ∠ABC.",
+  "problem_img": "6194.png",
+  "construction_cdl": [
+    "Shape(BA,OAB)",
+    "Shape(AB,BC,CA)",
+    "Shape(AC,OCA)",
+    "Cocircular(O,BCA)"
+  ],
+  "text_cdl": [
+    "Equal(MeasureOfAngle(CAB),40)",
+    "IsCentreOfCircle(O,O)",
+    "IsMidpointOfArc(C,OBA)"
+  ],
+  "image_cdl": [],
+  "goal_cdl": "Value(MeasureOfAngle(ABC))",
+  "problem_answer": "40",
+  "theorem_seqs": [
+    "congruent_arc_judgment_length_equal(1,OBC,OCA)",
+    "congruent_arc_property_measure_equal(1,OBC,OCA)",
+    "arc_property_circumference_angle_external(1,OBC,A)",
+    "arc_property_circumference_angle_external(1,OCA,B)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "congruent_arc_judgment_length_equal(1,OBC,OCA)",
+      "arc_property_circumference_angle_external(1,OBC,A)",
+      "arc_property_circumference_angle_external(1,OCA,B)"
+    ],
+    "congruent_arc_judgment_length_equal(1,OBC,OCA)": [
+      "congruent_arc_property_measure_equal(1,OBC,OCA)"
+    ]
+  }
+}

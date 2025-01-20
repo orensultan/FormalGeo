@@ -1,0 +1,44 @@
+{
+  "problem_id": 1445,
+  "annotation": "YanjunGuo_2023-04-16",
+  "source": "Geometry3k-1498",
+  "problem_level": 1,
+  "problem_text_cn": "如图所示，∠CFA=38°，∠GEC=52°，DF垂直于DF。求∠DFI的大小。",
+  "problem_text_en": "As shown in the diagram, ∠CFA=38°, ∠GEC=52°, DF⊥DF. Find the measure of ∠DFI.",
+  "problem_img": "1445.png",
+  "construction_cdl": [
+    "Shape(IF,FB)",
+    "Shape(BF,FE)",
+    "Shape(FE,EG)",
+    "Shape(GE,EC)",
+    "Shape(DF,FI)",
+    "Shape(FD,DE,EF)",
+    "Shape(CE,ED)",
+    "Shape(HD,DF)",
+    "Shape(AD,DH)",
+    "Shape(ED,DA)",
+    "Collinear(BFDA)",
+    "Collinear(HDEC)",
+    "Collinear(IFEC)"
+  ],
+  "text_cdl": [
+    "Equal(MeasureOfAngle(CFA),38)",
+    "Equal(MeasureOfAngle(GEC),52)",
+    "PerpendicularBetweenLine(DF,DE)"
+  ],
+  "image_cdl": [
+    "Equal(MeasureOfAngle(CFA),38)",
+    "Equal(MeasureOfAngle(GEC),52)",
+    "PerpendicularBetweenLine(DF,DE)"
+  ],
+  "goal_cdl": "Value(MeasureOfAngle(DFI))",
+  "problem_answer": "142",
+  "theorem_seqs": [
+    "adjacent_complementary_angle(1,EFD,DFI)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "adjacent_complementary_angle(1,EFD,DFI)"
+    ]
+  }
+}

@@ -1,0 +1,47 @@
+{
+  "problem_id": 3107,
+  "annotation": "YimingHe_2023-04-23",
+  "source": "GeoQA-353",
+  "problem_level": 4,
+  "problem_text_cn": "如图所示，∠FGD=110°，AB∥CD。求∠AFE的大小。",
+  "problem_text_en": "As shown in the diagram, ∠FGD=110°, AB is parallel to CD. Find the measure of ∠AFE.",
+  "problem_img": "3107.png",
+  "construction_cdl": [
+    "Shape(AF,FE)",
+    "Shape(EF,FB)",
+    "Shape(GF,FA)",
+    "Shape(BF,FG)",
+    "Shape(CG,GF)",
+    "Shape(FG,GD)",
+    "Shape(HG,GC)",
+    "Shape(DG,GH)",
+    "Collinear(AFB)",
+    "Collinear(CGD)",
+    "Collinear(EFGH)"
+  ],
+  "text_cdl": [
+    "Equal(MeasureOfAngle(FGD),110)",
+    "ParallelBetweenLine(AB,CD)"
+  ],
+  "image_cdl": [],
+  "goal_cdl": "Value(MeasureOfAngle(AFE))",
+  "problem_answer": "70",
+  "theorem_seqs": [
+    "parallel_property_collinear_extend(3,AB,CD,F)",
+    "parallel_property_collinear_extend(3,DC,BF,G)",
+    "parallel_property_corresponding_angle(1,FB,GD,E)",
+    "adjacent_complementary_angle(1,AFE,EFB)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "parallel_property_collinear_extend(3,AB,CD,F)",
+      "adjacent_complementary_angle(1,AFE,EFB)"
+    ],
+    "parallel_property_collinear_extend(3,AB,CD,F)": [
+      "parallel_property_collinear_extend(3,DC,BF,G)"
+    ],
+    "parallel_property_collinear_extend(3,DC,BF,G)": [
+      "parallel_property_corresponding_angle(1,FB,GD,E)"
+    ]
+  }
+}

@@ -1,0 +1,63 @@
+{
+  "problem_id": 4932,
+  "annotation": "DengfengYue_2023-05-14",
+  "source": "GeoQA-4548",
+  "problem_level": 9,
+  "problem_text_cn": "如图所示，三角形BED的面积为3，Div(AreaOfTriangle(DEO)=AreaOfTriangle(AOC))，ED平行于CA。求三角形ABC的面积。",
+  "problem_text_en": "As shown in the diagram, the area of △BED is 3, Div(AreaOfTriangle(DEO)=AreaOfTriangle(AOC)), ED is parallel to CA. Find the area of △ABC.",
+  "problem_img": "4932.png",
+  "construction_cdl": [
+    "Shape(AD,DO,OA)",
+    "Shape(AO,OC,CA)",
+    "Shape(DB,BE,ED)",
+    "Shape(DE,EO,OD)",
+    "Shape(OE,EC,CO)",
+    "Collinear(ADB)",
+    "Collinear(AOE)",
+    "Collinear(DOC)",
+    "Collinear(BEC)"
+  ],
+  "text_cdl": [
+    "Equal(AreaOfTriangle(BED),3)",
+    "Equal(Div(AreaOfTriangle(DEO),AreaOfTriangle(AOC)),1/9)",
+    "ParallelBetweenLine(ED,CA)"
+  ],
+  "image_cdl": [],
+  "goal_cdl": "Value(AreaOfTriangle(ABC))",
+  "problem_answer": "27",
+  "theorem_seqs": [
+    "parallel_property_alternate_interior_angle(1,ED,CA)",
+    "parallel_property_alternate_interior_angle(2,ED,CA)",
+    "similar_triangle_judgment_aa(1,ODE,OCA)",
+    "similar_triangle_property_area_square_ratio(1,ODE,OCA)",
+    "similar_triangle_property_line_ratio(1,ODE,OCA)",
+    "parallel_property_corresponding_angle(1,ED,CA,B)",
+    "similar_triangle_judgment_aa(1,DBE,ABC)",
+    "similar_triangle_property_line_ratio(1,BED,BCA)",
+    "similar_triangle_property_area_square_ratio(1,DBE,ABC)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "parallel_property_alternate_interior_angle(1,ED,CA)",
+      "parallel_property_alternate_interior_angle(2,ED,CA)",
+      "parallel_property_corresponding_angle(1,ED,CA,B)"
+    ],
+    "parallel_property_alternate_interior_angle(1,ED,CA)": [
+      "similar_triangle_judgment_aa(1,ODE,OCA)"
+    ],
+    "parallel_property_alternate_interior_angle(2,ED,CA)": [
+      "similar_triangle_judgment_aa(1,ODE,OCA)"
+    ],
+    "similar_triangle_judgment_aa(1,ODE,OCA)": [
+      "similar_triangle_property_area_square_ratio(1,ODE,OCA)",
+      "similar_triangle_property_line_ratio(1,ODE,OCA)"
+    ],
+    "parallel_property_corresponding_angle(1,ED,CA,B)": [
+      "similar_triangle_judgment_aa(1,DBE,ABC)"
+    ],
+    "similar_triangle_judgment_aa(1,DBE,ABC)": [
+      "similar_triangle_property_area_square_ratio(1,DBE,ABC)",
+      "similar_triangle_property_line_ratio(1,BED,BCA)"
+    ]
+  }
+}

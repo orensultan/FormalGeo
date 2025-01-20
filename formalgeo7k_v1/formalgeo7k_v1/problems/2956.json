@@ -1,0 +1,35 @@
+{
+  "problem_id": 2956,
+  "annotation": "JiaZou_2023-04-16",
+  "source": "GeoQA-151",
+  "problem_level": 3,
+  "problem_text_cn": "如图所示，∠BCA=90°，∠CDE=150°，DE∥AB。求∠CAB的大小。",
+  "problem_text_en": "As shown in the diagram, ∠BCA=90°, ∠CDE=150°, DE is parallel to AB. Find the measure of ∠CAB.",
+  "problem_img": "2956.png",
+  "construction_cdl": [
+    "Shape(AB,BD,DC,CA)",
+    "Shape(CD,DE)",
+    "Shape(ED,DB)",
+    "Collinear(CDB)"
+  ],
+  "text_cdl": [
+    "Equal(MeasureOfAngle(BCA),90)",
+    "Equal(MeasureOfAngle(CDE),150)",
+    "ParallelBetweenLine(DE,AB)"
+  ],
+  "image_cdl": [],
+  "goal_cdl": "Value(MeasureOfAngle(CAB))",
+  "problem_answer": "60",
+  "theorem_seqs": [
+    "adjacent_complementary_angle(1,CDE,EDB)",
+    "parallel_property_alternate_interior_angle(1,DE,AB)",
+    "triangle_property_angle_sum(1,BCA)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "adjacent_complementary_angle(1,CDE,EDB)",
+      "parallel_property_alternate_interior_angle(1,DE,AB)",
+      "triangle_property_angle_sum(1,BCA)"
+    ]
+  }
+}

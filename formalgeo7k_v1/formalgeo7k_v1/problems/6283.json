@@ -1,0 +1,44 @@
+{
+  "problem_id": 6283,
+  "annotation": "ZheZhu_2023-05-28",
+  "source": "GeoQA-8970",
+  "problem_level": 3,
+  "problem_text_cn": "如图所示，AD=4，DC=9，⊙O的圆心为O，AB是圆O的直径，CB是圆O的切线，CE是圆O的切线，圆O的切线为DA，DE是圆O的切线。求直线BC的长度。",
+  "problem_text_en": "As shown in the diagram, AD=4, DC=9, the center of circle O is O, the diameter of ⊙O is AB, the tangent to circle O is CB, CE is the tangent to circle O, the tangent to circle O is DA, DE is the tangent to circle O. Find the length of line BC.",
+  "problem_img": "6283.png",
+  "construction_cdl": [
+    "Shape(ED,DA,OEA)",
+    "Shape(OEA,AE)",
+    "Shape(OE,EA,AO)",
+    "Shape(OB,OBE,EO)",
+    "Shape(BC,CE,OBE)",
+    "Collinear(AOB)",
+    "Collinear(DEC)",
+    "Cocircular(O,EAB)"
+  ],
+  "text_cdl": [
+    "Equal(LengthOfLine(AD),4)",
+    "Equal(LengthOfLine(DC),9)",
+    "IsCentreOfCircle(O,O)",
+    "IsDiameterOfCircle(AB,O)",
+    "IsTangentOfCircle(CB,O)",
+    "IsTangentOfCircle(CE,O)",
+    "IsTangentOfCircle(DA,O)",
+    "IsTangentOfCircle(DE,O)"
+  ],
+  "image_cdl": [],
+  "goal_cdl": "Value(LengthOfLine(BC))",
+  "problem_answer": "5",
+  "theorem_seqs": [
+    "tangent_of_circle_property_length_equal(1,CE,CB,O)",
+    "tangent_of_circle_property_length_equal(1,DA,DE,O)",
+    "line_addition(1,DE,EC)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "tangent_of_circle_property_length_equal(1,CE,CB,O)",
+      "tangent_of_circle_property_length_equal(1,DA,DE,O)",
+      "line_addition(1,DE,EC)"
+    ]
+  }
+}

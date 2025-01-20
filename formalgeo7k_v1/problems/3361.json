@@ -1,0 +1,53 @@
+{
+  "problem_id": 3361,
+  "annotation": "JiaZou_2023-04-30",
+  "source": "GeoQA-835",
+  "problem_level": 6,
+  "problem_text_cn": "如图所示，AE=Mul(LengthOfLine(ED),2)，CD=3，AD和BC是▱ABCD的一组对边。求直线AF的长度。",
+  "problem_text_en": "As shown in the diagram, AE=Mul(LengthOfLine(ED),2), CD=3, quadrilateral ABCD is a parallelogram. Find the length of line AF.",
+  "problem_img": "3361.png",
+  "construction_cdl": [
+    "Shape(FA,AE,EF)",
+    "Shape(EC,CD,DE)",
+    "Shape(AB,BC,CE,EA)",
+    "Collinear(AED)",
+    "Collinear(FEC)",
+    "Collinear(FAB)"
+  ],
+  "text_cdl": [
+    "Equal(LengthOfLine(AE),Mul(LengthOfLine(ED),2))",
+    "Equal(LengthOfLine(CD),3)",
+    "Parallelogram(ABCD)"
+  ],
+  "image_cdl": [],
+  "goal_cdl": "Value(LengthOfLine(AF))",
+  "problem_answer": "6",
+  "theorem_seqs": [
+    "parallelogram_property_opposite_angle_equal(1,BCDA)",
+    "vertical_angle(1,AEF,DEC)",
+    "parallel_property_corresponding_angle(1,AD,BC,F)",
+    "similar_triangle_judgment_aa(1,FAE,CDE)",
+    "similar_triangle_property_line_ratio(1,FAE,CDE)",
+    "similar_triangle_property_line_ratio(1,EFA,ECD)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "parallelogram_property_opposite_angle_equal(1,BCDA)",
+      "vertical_angle(1,AEF,DEC)",
+      "parallel_property_corresponding_angle(1,AD,BC,F)"
+    ],
+    "parallelogram_property_opposite_angle_equal(1,BCDA)": [
+      "similar_triangle_judgment_aa(1,FAE,CDE)"
+    ],
+    "vertical_angle(1,AEF,DEC)": [
+      "similar_triangle_judgment_aa(1,FAE,CDE)"
+    ],
+    "parallel_property_corresponding_angle(1,AD,BC,F)": [
+      "similar_triangle_judgment_aa(1,FAE,CDE)"
+    ],
+    "similar_triangle_judgment_aa(1,FAE,CDE)": [
+      "similar_triangle_property_line_ratio(1,FAE,CDE)",
+      "similar_triangle_property_line_ratio(1,EFA,ECD)"
+    ]
+  }
+}

@@ -1,0 +1,48 @@
+{
+  "problem_id": 3005,
+  "annotation": "NaZhu_2023-04-16",
+  "source": "GeoQA-209",
+  "problem_level": 5,
+  "problem_text_cn": "如图所示，∠FNE=63°，EN平分∠BEF，AB平行于CD。求∠EFN的大小。",
+  "problem_text_en": "As shown in the diagram, ∠FNE=63°, EN is the angle bisector of ∠BEF, AB∥CD. Find the measure of ∠EFN.",
+  "problem_img": "3005.png",
+  "construction_cdl": [
+    "Shape(EF,FN,NE)",
+    "Shape(FE,EA)",
+    "Shape(BE,EN)",
+    "Shape(CF,FE)",
+    "Shape(EN,ND)",
+    "Collinear(AEB)",
+    "Collinear(CFND)"
+  ],
+  "text_cdl": [
+    "Equal(MeasureOfAngle(FNE),63)",
+    "IsBisectorOfAngle(EN,BEF)",
+    "ParallelBetweenLine(AB,CD)"
+  ],
+  "image_cdl": [],
+  "goal_cdl": "Value(MeasureOfAngle(EFN))",
+  "problem_answer": "54",
+  "theorem_seqs": [
+    "parallel_property_collinear_extend(3,DC,BA,F)",
+    "parallel_property_collinear_extend(1,FC,BA,N)",
+    "parallel_property_collinear_extend(3,AB,FN,E)",
+    "parallel_property_alternate_interior_angle(1,EB,FN)",
+    "triangle_property_angle_sum(1,EFN)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "parallel_property_collinear_extend(3,DC,BA,F)",
+      "triangle_property_angle_sum(1,EFN)"
+    ],
+    "parallel_property_collinear_extend(3,DC,BA,F)": [
+      "parallel_property_collinear_extend(1,FC,BA,N)"
+    ],
+    "parallel_property_collinear_extend(1,FC,BA,N)": [
+      "parallel_property_collinear_extend(3,AB,FN,E)"
+    ],
+    "parallel_property_collinear_extend(3,AB,FN,E)": [
+      "parallel_property_alternate_interior_angle(1,EB,FN)"
+    ]
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "problem_id": 3028,
+  "annotation": "XiaokaiZhang_2023-04-16",
+  "source": "GeoQA-237",
+  "problem_level": 4,
+  "problem_text_cn": "如图所示，∠CAB=36°，BD平分∠ABC，∠ABC和∠BCA是等腰△ABC的底角。求∠CDB的大小。",
+  "problem_text_en": "As shown in the diagram, ∠CAB=36°, BD is the angle bisector of ∠ABC, triangleABC is an isosceles triangle. Find the measure of ∠CDB.",
+  "problem_img": "3028.png",
+  "construction_cdl": [
+    "Shape(AB,BD,DA)",
+    "Shape(DB,BC,CD)",
+    "Collinear(ADC)"
+  ],
+  "text_cdl": [
+    "Equal(MeasureOfAngle(CAB),36)",
+    "IsBisectorOfAngle(BD,ABC)",
+    "IsoscelesTriangle(ABC)"
+  ],
+  "image_cdl": [],
+  "goal_cdl": "Value(MeasureOfAngle(CDB))",
+  "problem_answer": "72",
+  "theorem_seqs": [
+    "isosceles_triangle_property_angle_equal(1,ABC)",
+    "triangle_property_angle_sum(1,ABC)",
+    "angle_addition(1,ABD,DBC)",
+    "triangle_property_angle_sum(1,DBC)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "isosceles_triangle_property_angle_equal(1,ABC)",
+      "triangle_property_angle_sum(1,ABC)",
+      "angle_addition(1,ABD,DBC)",
+      "triangle_property_angle_sum(1,DBC)"
+    ]
+  }
+}

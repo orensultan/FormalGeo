@@ -1,0 +1,36 @@
+{
+  "problem_id": 1809,
+  "annotation": "JiaZou_2023-03-26",
+  "source": "Geometry3k-1875",
+  "problem_level": 2,
+  "problem_text_cn": "如图所示，∠ABC=38°，∠ADC=72°，∠BCA=42°。求∠DAB的大小。",
+  "problem_text_en": "As shown in the diagram, ∠ABC=38°, ∠ADC=72°, ∠BCA=42°. Find the measure of ∠DAB.",
+  "problem_img": "1809.png",
+  "construction_cdl": [
+    "Shape(AD,DC,CA)",
+    "Shape(AB,BD,DA)",
+    "Collinear(CDB)"
+  ],
+  "text_cdl": [
+    "Equal(MeasureOfAngle(ABC),38)",
+    "Equal(MeasureOfAngle(ADC),72)",
+    "Equal(MeasureOfAngle(BCA),42)"
+  ],
+  "image_cdl": [
+    "Equal(MeasureOfAngle(ABC),38)",
+    "Equal(MeasureOfAngle(ADC),72)",
+    "Equal(MeasureOfAngle(BCA),42)"
+  ],
+  "goal_cdl": "Value(MeasureOfAngle(DAB))",
+  "problem_answer": "34",
+  "theorem_seqs": [
+    "adjacent_complementary_angle(1,BDA,ADC)",
+    "triangle_property_angle_sum(1,ABD)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "adjacent_complementary_angle(1,BDA,ADC)",
+      "triangle_property_angle_sum(1,ABD)"
+    ]
+  }
+}

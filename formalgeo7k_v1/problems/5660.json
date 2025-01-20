@@ -1,0 +1,30 @@
+{
+  "problem_id": 5660,
+  "annotation": "JiaZou_2023-05-28",
+  "source": "GeoQA-7338",
+  "problem_level": 2,
+  "problem_text_cn": "如图所示，BD=6，∠BDE=90°，∠EBD=15°。求直线DE的长度。",
+  "problem_text_en": "As shown in the diagram, BD=6, ∠BDE=90°, ∠EBD=15°. Find the length of line DE.",
+  "problem_img": "5660.png",
+  "construction_cdl": [
+    "Shape(BD,DE,EB)"
+  ],
+  "text_cdl": [
+    "Equal(LengthOfLine(BD),6)",
+    "Equal(MeasureOfAngle(BDE),90)",
+    "Equal(MeasureOfAngle(EBD),15)"
+  ],
+  "image_cdl": [],
+  "goal_cdl": "Value(LengthOfLine(DE))",
+  "problem_answer": "12-6*sqrt(3)",
+  "theorem_seqs": [
+    "triangle_property_angle_sum(1,BDE)",
+    "sine_theorem(1,DEB)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "triangle_property_angle_sum(1,BDE)",
+      "sine_theorem(1,DEB)"
+    ]
+  }
+}

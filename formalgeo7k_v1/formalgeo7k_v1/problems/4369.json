@@ -1,0 +1,39 @@
+{
+  "problem_id": 4369,
+  "annotation": "YimingHe_2023-05-14",
+  "source": "GeoQA-3280",
+  "problem_level": 3,
+  "problem_text_cn": "如图所示，∠DAC=110°，O是⊙O的圆心，△ACD镜像全等于△EDC。求∠DBC的大小。",
+  "problem_text_en": "As shown in the diagram, ∠DAC=110°, the center of ⊙O is O, △ACD is mirror congruent to △EDC. Find the measure of ∠DBC.",
+  "problem_img": "4369.png",
+  "construction_cdl": [
+    "Shape(CB,OBC)",
+    "Shape(CA,AD,DB,BC)",
+    "Shape(BD,ODB)",
+    "Shape(CD,DA,AC)",
+    "Shape(CE,ED,DC)",
+    "Shape(EC,OCE)",
+    "Shape(DE,OED)",
+    "Cocircular(O,CEDB)"
+  ],
+  "text_cdl": [
+    "Equal(MeasureOfAngle(DAC),110)",
+    "IsCentreOfCircle(O,O)",
+    "MirrorCongruentBetweenTriangle(ACD,EDC)"
+  ],
+  "image_cdl": [],
+  "goal_cdl": "Value(MeasureOfAngle(DBC))",
+  "problem_answer": "70",
+  "theorem_seqs": [
+    "mirror_congruent_triangle_property_angle_equal(1,ACD,EDC)",
+    "arc_property_circumference_angle_internal(1,OCD,E)",
+    "arc_property_circumference_angle_external(1,OCD,B)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "mirror_congruent_triangle_property_angle_equal(1,ACD,EDC)",
+      "arc_property_circumference_angle_internal(1,OCD,E)",
+      "arc_property_circumference_angle_external(1,OCD,B)"
+    ]
+  }
+}

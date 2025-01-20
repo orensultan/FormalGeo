@@ -1,0 +1,58 @@
+{
+  "problem_id": 858,
+  "annotation": "NaZhu_2023-04-09",
+  "source": "Geometry3k-887",
+  "problem_level": 4,
+  "problem_text_cn": "如图所示，∠FEI=2*x+70°，∠HGL=2*y-20°，∠RFX=3*x+40°，GF平行于HE，HG平行于EF。求y的值。",
+  "problem_text_en": "As shown in the diagram, ∠FEI=2*x+70°, ∠HGL=2*y-20°, ∠RFX=3*x+40°, GF∥HE, HG is parallel to EF. Find the value of y.",
+  "problem_img": "858.png",
+  "construction_cdl": [
+    "Shape(RF,FX)",
+    "Shape(XF,FE)",
+    "Shape(FE,EI)",
+    "Shape(IE,EO)",
+    "Shape(GF.FR)",
+    "Shape(EF,FG)",
+    "Shape(HE,EF)",
+    "Shape(OE,EH)",
+    "Shape(QG,GF)",
+    "Shape(FG,GH)",
+    "Shape(GH,HE)",
+    "Shape(EH,HM)",
+    "Shape(LG,GQ)",
+    "Shape(HG,GL)",
+    "Shape(JH,HG)",
+    "Shape(MH,HJ)",
+    "Collinear(RFEO)",
+    "Collinear(QGHM)",
+    "Collinear(XFGL)",
+    "Collinear(IEHJ)"
+  ],
+  "text_cdl": [
+    "Equal(MeasureOfAngle(FEI),2*x+70)",
+    "Equal(MeasureOfAngle(HGL),2*y-20)",
+    "Equal(MeasureOfAngle(RFX),3*x+40)",
+    "ParallelBetweenLine(GF,HE)",
+    "ParallelBetweenLine(HG,EF)"
+  ],
+  "image_cdl": [
+    "ParallelBetweenLine(GF,HE)",
+    "ParallelBetweenLine(HG,EF)"
+  ],
+  "goal_cdl": "Value(y)",
+  "problem_answer": "75",
+  "theorem_seqs": [
+    "vertical_angle(1,RFX,EFG)",
+    "vertical_angle(1,FEI,OEH)",
+    "parallel_property_corresponding_angle(1,EH,FG,O)",
+    "parallel_property_corresponding_angle(2,FE,GH,L)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "vertical_angle(1,RFX,EFG)",
+      "vertical_angle(1,FEI,OEH)",
+      "parallel_property_corresponding_angle(1,EH,FG,O)",
+      "parallel_property_corresponding_angle(2,FE,GH,L)"
+    ]
+  }
+}

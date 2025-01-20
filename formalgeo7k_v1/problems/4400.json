@@ -1,0 +1,41 @@
+{
+  "problem_id": 4400,
+  "annotation": "YimingHe_2023-05-14",
+  "source": "GeoQA-3337",
+  "problem_level": 3,
+  "problem_text_cn": "如图所示，Add(MeasureOfAngle(DCB)=MeasureOfAngle(AOD))，⊙O的圆心为O，AB是⊙O的直径。求∠DCB的大小。",
+  "problem_text_en": "As shown in the diagram, Add(MeasureOfAngle(DCB)=MeasureOfAngle(AOD)), the center of ⊙O is O, the diameter of circle O is AB. Find the measure of ∠DCB.",
+  "problem_img": "4400.png",
+  "construction_cdl": [
+    "Shape(AO,OE,EC,OCA)",
+    "Shape(CD,ODC)",
+    "Shape(CE,ED,DC)",
+    "Shape(DE,EB,OBD)",
+    "Shape(DO,OB,BE)",
+    "Shape(BO,OA,OAB)",
+    "Collinear(CEB)",
+    "Collinear(OED)",
+    "Collinear(AOB)",
+    "Cocircular(O,ABDC)"
+  ],
+  "text_cdl": [
+    "Equal(Add(MeasureOfAngle(DCB),MeasureOfAngle(AOD)),145)",
+    "IsCentreOfCircle(O,O)",
+    "IsDiameterOfCircle(AB,O)"
+  ],
+  "image_cdl": [],
+  "goal_cdl": "Value(MeasureOfAngle(DCB))",
+  "problem_answer": "35",
+  "theorem_seqs": [
+    "adjacent_complementary_angle(1,AOD,DOB)",
+    "arc_property_center_angle(1,OBD,O)",
+    "arc_property_circumference_angle_external(1,OBD,C)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "adjacent_complementary_angle(1,AOD,DOB)",
+      "arc_property_center_angle(1,OBD,O)",
+      "arc_property_circumference_angle_external(1,OBD,C)"
+    ]
+  }
+}

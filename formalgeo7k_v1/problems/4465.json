@@ -1,0 +1,63 @@
+{
+  "problem_id": 4465,
+  "annotation": "JiaZou_2023-05-14",
+  "source": "GeoQA-3448",
+  "problem_level": 10,
+  "problem_text_cn": "如图所示，⌒OBC的长度与弧OCD的长度相等，∠DAB=50°，⊙O的圆心为O，圆O的直径为AB。求∠ABC的大小。",
+  "problem_text_en": "As shown in the diagram, the length of arc OBC is equal to the length of ⌒OCD, ∠DAB=50°, the center of ⊙O is O, the diameter of circle O is AB. Find the measure of ∠ABC.",
+  "problem_img": "4465.png",
+  "construction_cdl": [
+    "Shape(DA,AO,OC,CD)",
+    "Shape(CO,OB,BC)",
+    "Shape(AD,ODA)",
+    "Shape(DC,OCD)",
+    "Shape(CB,OBC)",
+    "Shape(BO,OA,OAB)",
+    "Collinear(AOB)",
+    "Cocircular(O,ABCD)"
+  ],
+  "text_cdl": [
+    "Equal(LengthOfArc(OBC),LengthOfArc(OCD))",
+    "Equal(MeasureOfAngle(DAB),50)",
+    "IsCentreOfCircle(O,O)",
+    "IsDiameterOfCircle(AB,O)"
+  ],
+  "image_cdl": [],
+  "goal_cdl": "Value(MeasureOfAngle(ABC))",
+  "problem_answer": "65",
+  "theorem_seqs": [
+    "congruent_arc_judgment_length_equal(1,OBC,OCD)",
+    "congruent_arc_property_measure_equal(1,OBC,OCD)",
+    "arc_property_circumference_angle_external(1,OBD,A)",
+    "arc_addition_measure(1,OBC,OCD)",
+    "arc_property_center_angle(1,OBC,O)",
+    "radius_of_circle_property_length_equal(1,OB,O)",
+    "radius_of_circle_property_length_equal(1,OC,O)",
+    "isosceles_triangle_judgment_line_equal(1,OBC)",
+    "isosceles_triangle_property_angle_equal(1,OBC)",
+    "triangle_property_angle_sum(1,OBC)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "congruent_arc_judgment_length_equal(1,OBC,OCD)",
+      "arc_property_circumference_angle_external(1,OBD,A)",
+      "arc_addition_measure(1,OBC,OCD)",
+      "arc_property_center_angle(1,OBC,O)",
+      "radius_of_circle_property_length_equal(1,OB,O)",
+      "radius_of_circle_property_length_equal(1,OC,O)",
+      "triangle_property_angle_sum(1,OBC)"
+    ],
+    "congruent_arc_judgment_length_equal(1,OBC,OCD)": [
+      "congruent_arc_property_measure_equal(1,OBC,OCD)"
+    ],
+    "radius_of_circle_property_length_equal(1,OB,O)": [
+      "isosceles_triangle_judgment_line_equal(1,OBC)"
+    ],
+    "radius_of_circle_property_length_equal(1,OC,O)": [
+      "isosceles_triangle_judgment_line_equal(1,OBC)"
+    ],
+    "isosceles_triangle_judgment_line_equal(1,OBC)": [
+      "isosceles_triangle_property_angle_equal(1,OBC)"
+    ]
+  }
+}

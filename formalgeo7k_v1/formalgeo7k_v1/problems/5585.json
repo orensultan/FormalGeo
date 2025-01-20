@@ -1,0 +1,53 @@
+{
+  "problem_id": 5585,
+  "annotation": "YimingHe_2023-05-28",
+  "source": "GeoQA-7091",
+  "problem_level": 8,
+  "problem_text_cn": "如图所示，AC=4，BC=3，CD是三角形CAB的高，BC垂直于AC。求cos(BC)的值。",
+  "problem_text_en": "As shown in the diagram, AC=4, BC=3, CD is the altitude of △ CAB, BC⊥AC. Find the value of cos(BC).",
+  "problem_img": "5585.png",
+  "construction_cdl": [
+    "Shape(AD,DC,CA)",
+    "Shape(CD,DB,BC)",
+    "Collinear(ADB)"
+  ],
+  "text_cdl": [
+    "Equal(LengthOfLine(AC),4)",
+    "Equal(LengthOfLine(BC),3)",
+    "IsAltitudeOfTriangle(CD,CAB)",
+    "PerpendicularBetweenLine(BC,AC)"
+  ],
+  "image_cdl": [
+    "PerpendicularBetweenLine(BC,AC)"
+  ],
+  "goal_cdl": "Value(Cos(MeasureOfAngle(BCD)))",
+  "problem_answer": "4/5",
+  "theorem_seqs": [
+    "right_triangle_judgment_angle(1,ADC)",
+    "right_triangle_judgment_angle(1,CDB)",
+    "right_triangle_judgment_angle(1,BCA)",
+    "right_triangle_property_pythagorean(1,ADC)",
+    "right_triangle_property_pythagorean(1,CDB)",
+    "right_triangle_property_pythagorean(1,BCA)",
+    "line_addition(1,AD,DB)",
+    "sine_theorem(1,BCD)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "right_triangle_judgment_angle(1,ADC)",
+      "right_triangle_judgment_angle(1,CDB)",
+      "right_triangle_judgment_angle(1,BCA)",
+      "line_addition(1,AD,DB)",
+      "sine_theorem(1,BCD)"
+    ],
+    "right_triangle_judgment_angle(1,ADC)": [
+      "right_triangle_property_pythagorean(1,ADC)"
+    ],
+    "right_triangle_judgment_angle(1,CDB)": [
+      "right_triangle_property_pythagorean(1,CDB)"
+    ],
+    "right_triangle_judgment_angle(1,BCA)": [
+      "right_triangle_property_pythagorean(1,BCA)"
+    ]
+  }
+}

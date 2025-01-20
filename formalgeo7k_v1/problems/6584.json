@@ -1,0 +1,43 @@
+{
+  "problem_id": 6584,
+  "annotation": "XiaokaiZhang_2023-06-04",
+  "source": "GeoQA-9556",
+  "problem_level": 6,
+  "problem_text_cn": "如图所示，ABCD的周长为18，FE垂直平分AB，ABCD是平行四边形。求三角形CDF的周长。",
+  "problem_text_en": "As shown in the diagram, the perimeter of quadrilateral ABCD is 18, FE perpendicular bisects AC, BA and CD are opposite sides of the parallelogram ABCD. Find the perimeter of △CDF.",
+  "problem_img": "6584.png",
+  "construction_cdl": [
+    "Shape(AB,BC,CE,EA)",
+    "Shape(AE,EF,FA)",
+    "Shape(FE,EC,CF)",
+    "Shape(FC,CD,DF)",
+    "Collinear(AEC)",
+    "Collinear(AFD)"
+  ],
+  "text_cdl": [
+    "Equal(PerimeterOfQuadrilateral(ABCD),18)",
+    "IsPerpendicularBisectorOfLine(FE,AC)",
+    "Parallelogram(ABCD)"
+  ],
+  "image_cdl": [],
+  "goal_cdl": "Value(PerimeterOfTriangle(CDF))",
+  "problem_answer": "9",
+  "theorem_seqs": [
+    "perpendicular_bisector_property_distance_equal(1,FE,AC)",
+    "line_addition(1,AF,FD)",
+    "parallelogram_property_opposite_line_equal(1,ABCD)",
+    "parallelogram_property_opposite_line_equal(1,BCDA)",
+    "quadrilateral_perimeter_formula(1,ABCD)",
+    "triangle_perimeter_formula(1,CDF)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "perpendicular_bisector_property_distance_equal(1,FE,AC)",
+      "line_addition(1,AF,FD)",
+      "parallelogram_property_opposite_line_equal(1,ABCD)",
+      "parallelogram_property_opposite_line_equal(1,BCDA)",
+      "quadrilateral_perimeter_formula(1,ABCD)",
+      "triangle_perimeter_formula(1,CDF)"
+    ]
+  }
+}

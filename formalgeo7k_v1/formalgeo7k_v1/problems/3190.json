@@ -1,0 +1,45 @@
+{
+  "problem_id": 3190,
+  "annotation": "NaZhu_2023-04-23",
+  "source": "GeoQA-476",
+  "problem_level": 4,
+  "problem_text_cn": "如图所示，∠CEF=45°，∠ECD=30°，AHDB是长方形，△EFC为直角△。求∠GEF的大小。",
+  "problem_text_en": "As shown in the diagram, ∠CEF=45°, ∠ECD=30°, quadrilateral AHDB is a rectangle, ∠EFC is the right angle of the right triangle EFC. Find the measure of ∠GEF.",
+  "problem_img": "3190.png",
+  "construction_cdl": [
+    "Shape(AH,HC,CG,GA)",
+    "Shape(FG,GE,EF)",
+    "Shape(EG,GC,CE)",
+    "Shape(BE,EC,CD,DB)",
+    "Collinear(AGEB)",
+    "Collinear(FGC)",
+    "Collinear(HCD)"
+  ],
+  "text_cdl": [
+    "Equal(MeasureOfAngle(CEF),45)",
+    "Equal(MeasureOfAngle(ECD),30)",
+    "Rectangle(AHDB)",
+    "RightTriangle(EFC)"
+  ],
+  "image_cdl": [],
+  "goal_cdl": "Value(MeasureOfAngle(GEF))",
+  "problem_answer": "15",
+  "theorem_seqs": [
+    "parallel_property_collinear_extend(3,AB,HD,E)",
+    "parallel_property_collinear_extend(3,DH,EA,C)",
+    "parallel_property_alternate_interior_angle(2,DC,EA)",
+    "angle_addition(1,CEG,GEF)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "parallel_property_collinear_extend(3,AB,HD,E)",
+      "angle_addition(1,CEG,GEF)"
+    ],
+    "parallel_property_collinear_extend(3,AB,HD,E)": [
+      "parallel_property_collinear_extend(3,DH,EA,C)"
+    ],
+    "parallel_property_collinear_extend(3,DH,EA,C)": [
+      "parallel_property_alternate_interior_angle(2,DC,EA)"
+    ]
+  }
+}

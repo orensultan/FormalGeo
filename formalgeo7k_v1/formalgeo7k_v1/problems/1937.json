@@ -1,0 +1,40 @@
+{
+  "problem_id": 1937,
+  "annotation": "ZheZhu_2023-04-16",
+  "source": "Geometry3k-2016",
+  "problem_level": 3,
+  "problem_text_cn": "如图所示，∠TSR=42°，⊙S的圆心为S。求⌒STK的角度。",
+  "problem_text_en": "As shown in the diagram, ∠TSR=42°, the center of ⊙S is S. Find the measure of arc STK.",
+  "problem_img": "1937.png",
+  "construction_cdl": [
+    "Shape(STK,KS,ST)",
+    "Shape(SKE,ES,SK)",
+    "Shape(SER,RS,SE)",
+    "Shape(SRT,TS,SR)",
+    "Collinear(RSK)",
+    "Collinear(TSE)",
+    "Cocircular(S,RTKE)"
+  ],
+  "text_cdl": [
+    "Equal(MeasureOfAngle(TSR),42)",
+    "IsCentreOfCircle(S,S)"
+  ],
+  "image_cdl": [
+    "Equal(MeasureOfAngle(TSR),42)",
+    "IsCentreOfCircle(S,S)"
+  ],
+  "goal_cdl": "Value(MeasureOfArc(STK))",
+  "problem_answer": "138",
+  "theorem_seqs": [
+    "flat_angle(1,KSR)",
+    "angle_addition(1,KST,TSR)",
+    "arc_property_center_angle(1,STK,S)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "flat_angle(1,KSR)",
+      "angle_addition(1,KST,TSR)",
+      "arc_property_center_angle(1,STK,S)"
+    ]
+  }
+}

@@ -1,0 +1,67 @@
+{
+  "problem_id": 4641,
+  "annotation": "QikeHuang_2023-05-14",
+  "source": "GeoQA-3862",
+  "problem_level": 11,
+  "problem_text_cn": "如图所示，PA=4，O是圆O的圆心，EC是圆O的切线，⊙O的切线为FC，PA是圆O的切线，PB是⊙O的切线。求三角形PFE的周长。",
+  "problem_text_en": "As shown in the diagram, PA=4, O is the center of ⊙O, EC is the tangent to circle O, FC is the tangent to circle O, the tangent to circle O is PA, the tangent to circle O is PB. Find the perimeter of triangle PFE.",
+  "problem_img": "4641.png",
+  "construction_cdl": [
+    "Shape(PF,FC,CE,EP)",
+    "Shape(CF,FB,OCB)",
+    "Shape(AE,EC,OAC)",
+    "Shape(OAC,OCB,BO,OA)",
+    "Shape(AO,OB,OBA)",
+    "Collinear(PEA)",
+    "Collinear(PFB)",
+    "Collinear(ECF)",
+    "Cocircular(O,ACB)"
+  ],
+  "text_cdl": [
+    "Equal(LengthOfLine(PA),4)",
+    "IsCentreOfCircle(O,O)",
+    "IsTangentOfCircle(EC,O)",
+    "IsTangentOfCircle(FC,O)",
+    "IsTangentOfCircle(PA,O)",
+    "IsTangentOfCircle(PB,O)"
+  ],
+  "image_cdl": [],
+  "goal_cdl": "Value(PerimeterOfTriangle(PFE))",
+  "problem_answer": "8",
+  "theorem_seqs": [
+    "tangent_of_circle_property_perpendicular(1,PA,O,O)",
+    "tangent_of_circle_property_perpendicular(1,PB,O,O)",
+    "tangent_of_circle_judgment_perpendicular(1,EA,O,O)",
+    "tangent_of_circle_judgment_perpendicular(1,FB,O,O)",
+    "tangent_of_circle_property_length_equal(1,PA,PB,O)",
+    "tangent_of_circle_property_length_equal(1,EC,EA,O)",
+    "tangent_of_circle_property_length_equal(1,FC,FB,O)",
+    "line_addition(1,PE,EA)",
+    "line_addition(1,PF,FB)",
+    "line_addition(1,EC,CF)",
+    "triangle_perimeter_formula(1,PFE)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "tangent_of_circle_property_perpendicular(1,PA,O,O)",
+      "tangent_of_circle_property_perpendicular(1,PB,O,O)",
+      "tangent_of_circle_property_length_equal(1,PA,PB,O)",
+      "line_addition(1,PE,EA)",
+      "line_addition(1,PF,FB)",
+      "line_addition(1,EC,CF)",
+      "triangle_perimeter_formula(1,PFE)"
+    ],
+    "tangent_of_circle_property_perpendicular(1,PA,O,O)": [
+      "tangent_of_circle_judgment_perpendicular(1,EA,O,O)"
+    ],
+    "tangent_of_circle_property_perpendicular(1,PB,O,O)": [
+      "tangent_of_circle_judgment_perpendicular(1,FB,O,O)"
+    ],
+    "tangent_of_circle_judgment_perpendicular(1,EA,O,O)": [
+      "tangent_of_circle_property_length_equal(1,EC,EA,O)"
+    ],
+    "tangent_of_circle_judgment_perpendicular(1,FB,O,O)": [
+      "tangent_of_circle_property_length_equal(1,FC,FB,O)"
+    ]
+  }
+}

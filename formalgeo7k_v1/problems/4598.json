@@ -1,0 +1,43 @@
+{
+  "problem_id": 4598,
+  "annotation": "QikeHuang_2023-05-14",
+  "source": "GeoQA-3757",
+  "problem_level": 5,
+  "problem_text_cn": "如图所示，∠DAC=20°，△ABC为等边△，圆O的圆心为O。求∠ACD的大小。",
+  "problem_text_en": "As shown in the diagram, ∠DAC=20°, △ABC is an equilateral △, O is the center of ⊙O. Find the measure of ∠ACD.",
+  "problem_img": "4598.png",
+  "construction_cdl": [
+    "Shape(OAB,BA)",
+    "Shape(AB,BC,CA)",
+    "Shape(O)",
+    "Shape(CB,OBC)",
+    "Shape(AC,CD,DA)",
+    "Shape(AD,ODA)",
+    "Shape(DC,OCD)",
+    "Cocircular(O,ABCD)"
+  ],
+  "text_cdl": [
+    "Equal(MeasureOfAngle(DAC),20)",
+    "EquilateralTriangle(ABC)",
+    "IsCentreOfCircle(O,O)"
+  ],
+  "image_cdl": [],
+  "goal_cdl": "Value(MeasureOfAngle(ACD))",
+  "problem_answer": "40",
+  "theorem_seqs": [
+    "equilateral_triangle_property_angle(1,BCA)",
+    "arc_property_circumference_angle_external(1,OCA,B)",
+    "arc_property_circumference_angle_external(1,OCD,A)",
+    "arc_addition_measure(1,OCD,ODA)",
+    "arc_property_circumference_angle_external(1,ODA,C)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "equilateral_triangle_property_angle(1,BCA)",
+      "arc_property_circumference_angle_external(1,OCA,B)",
+      "arc_property_circumference_angle_external(1,OCD,A)",
+      "arc_addition_measure(1,OCD,ODA)",
+      "arc_property_circumference_angle_external(1,ODA,C)"
+    ]
+  }
+}

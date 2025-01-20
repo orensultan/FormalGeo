@@ -1,0 +1,41 @@
+{
+  "problem_id": 2911,
+  "annotation": "JiaZou_2023-04-16",
+  "source": "GeoQA-88",
+  "problem_level": 2,
+  "problem_text_cn": "如图所示，AB=80，BC=60，EF=900，AB垂直于CB，DE⊥FE，三角形ABC相似于三角形DEF。求直线DE的长度。",
+  "problem_text_en": "As shown in the diagram, AB=80, BC=60, EF=900, AB⊥CB, DE is perpendicular to FE, triangle ABC is similar to triangle DEF.. Find the length of line DE.",
+  "problem_img": "2911.png",
+  "construction_cdl": [
+    "Shape(AB,BC,CA)",
+    "Shape(DE,EF,FD)"
+  ],
+  "text_cdl": [
+    "Equal(LengthOfLine(AB),80)",
+    "Equal(LengthOfLine(BC),60)",
+    "Equal(LengthOfLine(EF),900)",
+    "PerpendicularBetweenLine(AB,CB)",
+    "PerpendicularBetweenLine(DE,FE)",
+    "SimilarBetweenTriangle(ABC,DEF)"
+  ],
+  "image_cdl": [
+    "Equal(LengthOfLine(AB),80)",
+    "Equal(LengthOfLine(BC),60)",
+    "Equal(LengthOfLine(EF),900)",
+    "PerpendicularBetweenLine(AB,CB)",
+    "PerpendicularBetweenLine(DE,FE)",
+    "SimilarBetweenTriangle(ABC,DEF)"
+  ],
+  "goal_cdl": "Value(LengthOfLine(DE))",
+  "problem_answer": "1200",
+  "theorem_seqs": [
+    "similar_triangle_property_line_ratio(1,ABC,DEF)",
+    "similar_triangle_property_line_ratio(1,CAB,FDE)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "similar_triangle_property_line_ratio(1,ABC,DEF)",
+      "similar_triangle_property_line_ratio(1,CAB,FDE)"
+    ]
+  }
+}

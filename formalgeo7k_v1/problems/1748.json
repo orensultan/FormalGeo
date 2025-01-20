@@ -1,0 +1,68 @@
+{
+  "problem_id": 1748,
+  "annotation": "NaZhu_2023-03-26",
+  "source": "Geometry3k-1813",
+  "problem_level": 4,
+  "problem_text_cn": "如图所示，AS=4*z，AT=2*x-5，AU=3，DA=6，EA=y，FA=5，S平分线段DE，T是线段EF的中点，U是线段DF的中点。求z的值。",
+  "problem_text_en": "As shown in the diagram, AS=4*z, AT=2*x-5, AU=3, DA=6, EA=y, FA=5, S bisects segment DE, T is the midpoint of segment EF, U is the midpoint of segment DF. Find the value of z.",
+  "problem_img": "1748.png",
+  "construction_cdl": [
+    "Shape(ES,SA,AE)",
+    "Shape(EA,AT,TE)",
+    "Shape(SD,DA,AS)",
+    "Shape(AD,DU,UA)",
+    "Shape(TA,AF,FT)",
+    "Shape(AU,UF,FA)",
+    "Collinear(ESD)",
+    "Collinear(ETF)",
+    "Collinear(DUF)",
+    "Collinear(SAF)",
+    "Collinear(EAU)",
+    "Collinear(DAT)"
+  ],
+  "text_cdl": [
+    "Equal(LengthOfLine(AS),4*z)",
+    "Equal(LengthOfLine(AT),2*x-5)",
+    "Equal(LengthOfLine(AU),3)",
+    "Equal(LengthOfLine(DA),6)",
+    "Equal(LengthOfLine(EA),y)",
+    "Equal(LengthOfLine(FA),5)",
+    "IsMidpointOfLine(S,DE)",
+    "IsMidpointOfLine(T,EF)",
+    "IsMidpointOfLine(U,DF)"
+  ],
+  "image_cdl": [
+    "Equal(LengthOfLine(AS),4*z)",
+    "Equal(LengthOfLine(AT),2*x-5)",
+    "Equal(LengthOfLine(AU),3)",
+    "Equal(LengthOfLine(DA),6)",
+    "Equal(LengthOfLine(EA),y)",
+    "Equal(LengthOfLine(FA),5)",
+    "IsMidpointOfLine(S,DE)",
+    "IsMidpointOfLine(T,EF)",
+    "IsMidpointOfLine(U,DF)"
+  ],
+  "goal_cdl": "Value(z)",
+  "problem_answer": "5/8",
+  "theorem_seqs": [
+    "median_of_triangle_judgment(1,DT,DFE)",
+    "median_of_triangle_judgment(1,FS,FED)",
+    "centroid_of_triangle_judgment_intersection(1,A,EDF,S,T)",
+    "centroid_of_triangle_property_line_ratio(1,A,FED,S)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "median_of_triangle_judgment(1,DT,DFE)",
+      "median_of_triangle_judgment(1,FS,FED)"
+    ],
+    "median_of_triangle_judgment(1,DT,DFE)": [
+      "centroid_of_triangle_judgment_intersection(1,A,EDF,S,T)"
+    ],
+    "median_of_triangle_judgment(1,FS,FED)": [
+      "centroid_of_triangle_judgment_intersection(1,A,EDF,S,T)"
+    ],
+    "centroid_of_triangle_judgment_intersection(1,A,EDF,S,T)": [
+      "centroid_of_triangle_property_line_ratio(1,A,FED,S)"
+    ]
+  }
+}

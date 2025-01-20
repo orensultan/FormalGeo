@@ -1,0 +1,40 @@
+{
+  "problem_id": 4763,
+  "annotation": "YangLi_2023-05-14",
+  "source": "GeoQA-4132",
+  "problem_level": 4,
+  "problem_text_cn": "如图所示，∠DAB=34°，圆O的圆心为O，圆O的切线为AB。求∠BCO的大小。",
+  "problem_text_en": "As shown in the diagram, ∠DAB=34°, the center of ⊙O is O, the tangent to ⊙O is AB. Find the measure of ∠BCO.",
+  "problem_img": "4763.png",
+  "construction_cdl": [
+    "Shape(CB,OBC)",
+    "Shape(CO,OB,BC)",
+    "Shape(BO,OD,ODB)",
+    "Shape(DO,OC,OCD)",
+    "Shape(DA,AB,ODB)",
+    "Collinear(CODA)",
+    "Cocircular(O,DBC)"
+  ],
+  "text_cdl": [
+    "Equal(MeasureOfAngle(DAB),34)",
+    "IsCentreOfCircle(O,O)",
+    "IsTangentOfCircle(AB,O)"
+  ],
+  "image_cdl": [],
+  "goal_cdl": "Value(MeasureOfAngle(BCO))",
+  "problem_answer": "28",
+  "theorem_seqs": [
+    "tangent_of_circle_property_perpendicular(2,AB,O,O)",
+    "triangle_property_angle_sum(1,OAB)",
+    "arc_property_center_angle(1,ODB,O)",
+    "arc_property_circumference_angle_external(1,ODB,C)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "tangent_of_circle_property_perpendicular(2,AB,O,O)",
+      "triangle_property_angle_sum(1,OAB)",
+      "arc_property_center_angle(1,ODB,O)",
+      "arc_property_circumference_angle_external(1,ODB,C)"
+    ]
+  }
+}

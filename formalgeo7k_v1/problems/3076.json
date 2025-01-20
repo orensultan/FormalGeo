@@ -1,0 +1,46 @@
+{
+  "problem_id": 3076,
+  "annotation": "XiaokaiZhang_2023-04-16",
+  "source": "GeoQA-304",
+  "problem_level": 6,
+  "problem_text_cn": "如图所示，∠FEA=56°，EG是∠DEF的角平分线，ABCD是长方形。求∠BGE的大小。",
+  "problem_text_en": "As shown in the diagram, ∠FEA=56°, EG is the angle bisector of ∠DEF, quadrilateral ABCD is a rectangle. Find the measure of ∠BGE.",
+  "problem_img": "3076.png",
+  "construction_cdl": [
+    "Shape(AB,BF,FE,EA)",
+    "Shape(EF,FG,GE)",
+    "Shape(EG,GC,CD,DE)",
+    "Collinear(AED)",
+    "Collinear(BFGC)"
+  ],
+  "text_cdl": [
+    "Equal(MeasureOfAngle(FEA),56)",
+    "IsBisectorOfAngle(EG,DEF)",
+    "Rectangle(ABCD)"
+  ],
+  "image_cdl": [],
+  "goal_cdl": "Value(MeasureOfAngle(BGE))",
+  "problem_answer": "62",
+  "theorem_seqs": [
+    "adjacent_complementary_angle(1,DEF,FEA)",
+    "angle_addition(1,DEG,GEF)",
+    "angle_addition(1,GEF,FEA)",
+    "parallel_property_collinear_extend(3,AD,BC,E)",
+    "parallel_property_collinear_extend(3,CB,EA,G)",
+    "parallel_property_ipsilateral_internal_angle(1,GB,EA)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "adjacent_complementary_angle(1,DEF,FEA)",
+      "angle_addition(1,DEG,GEF)",
+      "angle_addition(1,GEF,FEA)",
+      "parallel_property_collinear_extend(3,AD,BC,E)"
+    ],
+    "parallel_property_collinear_extend(3,AD,BC,E)": [
+      "parallel_property_collinear_extend(3,CB,EA,G)"
+    ],
+    "parallel_property_collinear_extend(3,CB,EA,G)": [
+      "parallel_property_ipsilateral_internal_angle(1,GB,EA)"
+    ]
+  }
+}

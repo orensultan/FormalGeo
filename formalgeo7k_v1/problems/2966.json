@@ -1,0 +1,51 @@
+{
+  "problem_id": 2966,
+  "annotation": "NaZhu_2023-04-16",
+  "source": "GeoQA-161",
+  "problem_level": 3,
+  "problem_text_cn": "如图所示，∠ACF=25°，AC∥ME，AC∥PD，PD∥ME，ME垂直于DE。求∠EDC的大小。",
+  "problem_text_en": "As shown in the diagram, ∠ACF=25°, AC is parallel to ME, AC is parallel to PD, PD is parallel to ME, ME⊥DE. Find the measure of ∠EDC.",
+  "problem_img": "2966.png",
+  "construction_cdl": [
+    "Shape(AC,CF)",
+    "Shape(FC,CB)",
+    "Shape(DC,CA)",
+    "Shape(BC,CD)",
+    "Shape(PD,DC)",
+    "Shape(CD,DQ)",
+    "Shape(ED,DP)",
+    "Shape(QD,DE)",
+    "Shape(ME,ED)",
+    "Shape(DE,EN)",
+    "Shape(ED,DC)",
+    "Collinear(ACB)",
+    "Collinear(PDQ)",
+    "Collinear(MEN)",
+    "Collinear(FCD)"
+  ],
+  "text_cdl": [
+    "Equal(MeasureOfAngle(ACF),25)",
+    "ParallelBetweenLine(AC,ME)",
+    "ParallelBetweenLine(AC,PD)",
+    "ParallelBetweenLine(PD,ME)",
+    "PerpendicularBetweenLine(ME,DE)"
+  ],
+  "image_cdl": [
+    "ParallelBetweenLine(AC,PD)",
+    "ParallelBetweenLine(PD,ME)"
+  ],
+  "goal_cdl": "Value(MeasureOfAngle(EDC))",
+  "problem_answer": "115",
+  "theorem_seqs": [
+    "parallel_property_corresponding_angle(2,DP,CA,F)",
+    "parallel_property_ipsilateral_internal_angle(1,EM,DP)",
+    "angle_addition(1,EDP,PDC)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "parallel_property_corresponding_angle(2,DP,CA,F)",
+      "parallel_property_ipsilateral_internal_angle(1,EM,DP)",
+      "angle_addition(1,EDP,PDC)"
+    ]
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "problem_id": 1617,
+  "annotation": "XiaoxiaoJin_2023-04-16",
+  "source": "Geometry3k-1677",
+  "problem_level": 2,
+  "problem_text_cn": "如图所示，QR=12，UT=22，S是线段RT的中点，V平分线段QU，QU和TR是梯形QUTR的腰。求直线VS的长度。",
+  "problem_text_en": "As shown in the diagram, QR=12, UT=22, S is the midpoint of segment RT, V bisects segment QU, QUTR is a trapezoid. Find the length of line VS.",
+  "problem_img": "1617.png",
+  "construction_cdl": [
+    "Shape(QV,VS,SR,RQ)",
+    "Shape(VU,UT,TS,SV)",
+    "Collinear(QVU)",
+    "Collinear(RST)"
+  ],
+  "text_cdl": [
+    "Equal(LengthOfLine(QR),12)",
+    "Equal(LengthOfLine(UT),22)",
+    "IsMidpointOfLine(S,RT)",
+    "IsMidpointOfLine(V,QU)",
+    "Trapezoid(QUTR)"
+  ],
+  "image_cdl": [],
+  "goal_cdl": "Value(LengthOfLine(VS))",
+  "problem_answer": "17",
+  "theorem_seqs": [
+    "midsegment_of_quadrilateral_judgment_midpoint(1,VS,QUTR)",
+    "midsegment_of_quadrilateral_property_length(1,VS,QUTR)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "midsegment_of_quadrilateral_judgment_midpoint(1,VS,QUTR)"
+    ],
+    "midsegment_of_quadrilateral_judgment_midpoint(1,VS,QUTR)": [
+      "midsegment_of_quadrilateral_property_length(1,VS,QUTR)"
+    ]
+  }
+}

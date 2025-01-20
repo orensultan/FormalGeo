@@ -1,0 +1,40 @@
+{
+  "problem_id": 3672,
+  "annotation": "XiaoxiaoJin_2023-04-30",
+  "source": "GeoQA-1401",
+  "problem_level": 3,
+  "problem_text_cn": "如图所示，∠GEF=20°，CF平行于AE，AE⊥FE。求∠CGH的大小。",
+  "problem_text_en": "As shown in the diagram, ∠GEF=20°, CF∥AE, AE is perpendicular to FE. Find the measure of ∠CGH.",
+  "problem_img": "3672.png",
+  "construction_cdl": [
+    "Shape(CG,GH)",
+    "Shape(HG,GF)",
+    "Shape(GE,EF,FG)",
+    "Shape(AE,EG)",
+    "Shape(EG,GC)",
+    "Collinear(HGE)",
+    "Collinear(CGF)"
+  ],
+  "text_cdl": [
+    "Equal(MeasureOfAngle(GEF),20)",
+    "ParallelBetweenLine(CF,AE)",
+    "PerpendicularBetweenLine(AE,FE)"
+  ],
+  "image_cdl": [],
+  "goal_cdl": "Value(MeasureOfAngle(CGH))",
+  "problem_answer": "70",
+  "theorem_seqs": [
+    "parallel_property_collinear_extend(3,CF,AE,G)",
+    "angle_addition(1,AEG,GEF)",
+    "parallel_property_corresponding_angle(2,EA,GC,H)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "parallel_property_collinear_extend(3,CF,AE,G)",
+      "angle_addition(1,AEG,GEF)"
+    ],
+    "parallel_property_collinear_extend(3,CF,AE,G)": [
+      "parallel_property_corresponding_angle(2,EA,GC,H)"
+    ]
+  }
+}

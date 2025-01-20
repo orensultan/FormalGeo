@@ -1,0 +1,39 @@
+{
+  "problem_id": 3546,
+  "annotation": "YanjunGuo_2023-04-30",
+  "source": "GeoQA-1174",
+  "problem_level": 2,
+  "problem_text_cn": "如图所示，∠HED=110°，ED∥BF。求∠BFE的大小。",
+  "problem_text_en": "As shown in the diagram, ∠HED=110°, ED is parallel to BF. Find the measure of ∠BFE.",
+  "problem_img": "3546.png",
+  "construction_cdl": [
+    "Shape(AE,EH)",
+    "Shape(HE,ED)",
+    "Shape(FE,EA)",
+    "Shape(DE,EF)",
+    "Shape(BF,FE)",
+    "Shape(EF,FC)",
+    "Shape(GF,FB)",
+    "Shape(CF,FG)",
+    "Collinear(AED)",
+    "Collinear(BFC)",
+    "Collinear(HEFC)"
+  ],
+  "text_cdl": [
+    "Equal(MeasureOfAngle(HED),110)",
+    "ParallelBetweenLine(ED,BF)"
+  ],
+  "image_cdl": [],
+  "goal_cdl": "Value(MeasureOfAngle(BFE))",
+  "problem_answer": "70",
+  "theorem_seqs": [
+    "adjacent_complementary_angle(1,HED,DEF)",
+    "parallel_property_alternate_interior_angle(1,ED,BF)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "adjacent_complementary_angle(1,HED,DEF)",
+      "parallel_property_alternate_interior_angle(1,ED,BF)"
+    ]
+  }
+}

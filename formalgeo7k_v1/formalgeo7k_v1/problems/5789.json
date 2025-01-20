@@ -1,0 +1,52 @@
+{
+  "problem_id": 5789,
+  "annotation": "YanjunGuo_2023-05-28",
+  "source": "GeoQA-7706",
+  "problem_level": 6,
+  "problem_text_cn": "如图所示，Div(LengthOfLine(FD)=LengthOfLine(FC))，CE=2，ABCD是▱。求直线AD的长度。",
+  "problem_text_en": "As shown in the diagram, Div(LengthOfLine(FD)=LengthOfLine(FC)), CE=2, AD and BC are opposite sides of the parallelogram ABCD. Find the length of line AD.",
+  "problem_img": "5789.png",
+  "construction_cdl": [
+    "Shape(BC,CF,FA,AB)",
+    "Shape(AF,FD,DA)",
+    "Shape(FC,CE,EF)",
+    "Collinear(AFE)",
+    "Collinear(DFC)",
+    "Collinear(BCE)"
+  ],
+  "text_cdl": [
+    "Equal(Div(LengthOfLine(FD),LengthOfLine(FC)),2)",
+    "Equal(LengthOfLine(CE),2)",
+    "Parallelogram(ABCD)"
+  ],
+  "image_cdl": [],
+  "goal_cdl": "Value(LengthOfLine(AD))",
+  "problem_answer": "4",
+  "theorem_seqs": [
+    "parallel_property_collinear_extend(1,CB,DA,E)",
+    "parallel_property_alternate_interior_angle(1,EC,DA)",
+    "parallel_property_alternate_interior_angle(2,EC,DA)",
+    "similar_triangle_judgment_aa(1,FDA,FCE)",
+    "similar_triangle_property_line_ratio(1,FDA,FCE)",
+    "similar_triangle_property_line_ratio(1,AFD,EFC)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "parallel_property_collinear_extend(1,CB,DA,E)"
+    ],
+    "parallel_property_collinear_extend(1,CB,DA,E)": [
+      "parallel_property_alternate_interior_angle(1,EC,DA)",
+      "parallel_property_alternate_interior_angle(2,EC,DA)"
+    ],
+    "parallel_property_alternate_interior_angle(1,EC,DA)": [
+      "similar_triangle_judgment_aa(1,FDA,FCE)"
+    ],
+    "parallel_property_alternate_interior_angle(2,EC,DA)": [
+      "similar_triangle_judgment_aa(1,FDA,FCE)"
+    ],
+    "similar_triangle_judgment_aa(1,FDA,FCE)": [
+      "similar_triangle_property_line_ratio(1,FDA,FCE)",
+      "similar_triangle_property_line_ratio(1,AFD,EFC)"
+    ]
+  }
+}

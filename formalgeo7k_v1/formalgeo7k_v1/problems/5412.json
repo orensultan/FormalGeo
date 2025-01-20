@@ -1,0 +1,51 @@
+{
+  "problem_id": 5412,
+  "annotation": "XiaoxiaoJin_2023-05-21",
+  "source": "GeoQA-5716",
+  "problem_level": 7,
+  "problem_text_cn": "如图所示，AB=1，∠ABC=45°，AE∥BD，ABCD是平行四边形，BF垂直于EF。求直线EF的长度。",
+  "problem_text_en": "As shown in the diagram, AB=1, ∠ABC=45°, AE∥BD, AD and BC are opposite sides of the ▱ ABCD, BF is perpendicular to EF. Find the length of line EF.",
+  "problem_img": "5412.png",
+  "construction_cdl": [
+    "Shape(EA,AD,DE)",
+    "Shape(AB,BD,DA)",
+    "Shape(DB,BC,CD)",
+    "Shape(ED,DC,CF,FE)",
+    "Collinear(CDE)",
+    "Collinear(BCF)"
+  ],
+  "text_cdl": [
+    "Equal(LengthOfLine(AB),1)",
+    "Equal(MeasureOfAngle(ABC),45)",
+    "ParallelBetweenLine(AE,BD)",
+    "Parallelogram(ABCD)",
+    "PerpendicularBetweenLine(BF,EF)"
+  ],
+  "image_cdl": [],
+  "goal_cdl": "Value(LengthOfLine(EF))",
+  "problem_answer": "sqrt(2)",
+  "theorem_seqs": [
+    "parallel_property_collinear_extend(1,DC,AB,E)",
+    "parallelogram_judgment_parallel_and_parallel(1,ABDE)",
+    "parallelogram_property_opposite_line_equal(1,ABCD)",
+    "parallelogram_property_opposite_line_equal(1,ABDE)",
+    "parallel_property_corresponding_angle(2,BA,CD,F)",
+    "line_addition(1,CD,DE)",
+    "sine_theorem(1,ECF)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "parallel_property_collinear_extend(1,DC,AB,E)",
+      "parallelogram_property_opposite_line_equal(1,ABCD)",
+      "parallel_property_corresponding_angle(2,BA,CD,F)",
+      "line_addition(1,CD,DE)",
+      "sine_theorem(1,ECF)"
+    ],
+    "parallel_property_collinear_extend(1,DC,AB,E)": [
+      "parallelogram_judgment_parallel_and_parallel(1,ABDE)"
+    ],
+    "parallelogram_judgment_parallel_and_parallel(1,ABDE)": [
+      "parallelogram_property_opposite_line_equal(1,ABDE)"
+    ]
+  }
+}

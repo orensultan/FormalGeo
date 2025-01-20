@@ -1,0 +1,43 @@
+{
+  "problem_id": 257,
+  "annotation": "XiaokaiZhang_2023-03-12",
+  "source": "Geometry3k-260",
+  "problem_level": 3,
+  "problem_text_cn": "如图所示，∠BDF=47°，∠CIF=112°，∠DFB=65°。求∠IAF的大小。",
+  "problem_text_en": "As shown in the diagram, ∠BDF=47°, ∠CIF=112°, ∠DFB=65°. Find the measure of ∠IAF.",
+  "problem_img": "257.png",
+  "construction_cdl": [
+    "Shape(BD,DF,FB)",
+    "Shape(FI,IA,AF)",
+    "Shape(DB,BG)",
+    "Shape(BF,FA)",
+    "Shape(CI,IF)",
+    "Collinear(GBFI)",
+    "Collinear(AFD)",
+    "Collinear(AIC)"
+  ],
+  "text_cdl": [
+    "Equal(MeasureOfAngle(BDF),47)",
+    "Equal(MeasureOfAngle(CIF),112)",
+    "Equal(MeasureOfAngle(DFB),65)"
+  ],
+  "image_cdl": [
+    "Equal(MeasureOfAngle(BDF),47)",
+    "Equal(MeasureOfAngle(CIF),112)",
+    "Equal(MeasureOfAngle(DFB),65)"
+  ],
+  "goal_cdl": "Value(MeasureOfAngle(IAF))",
+  "problem_answer": "47",
+  "theorem_seqs": [
+    "vertical_angle(1,DFB,AFI)",
+    "adjacent_complementary_angle(1,CIF,FIA)",
+    "triangle_property_angle_sum(1,FIA)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "vertical_angle(1,DFB,AFI)",
+      "adjacent_complementary_angle(1,CIF,FIA)",
+      "triangle_property_angle_sum(1,FIA)"
+    ]
+  }
+}

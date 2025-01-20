@@ -1,0 +1,111 @@
+{
+  "problem_id": 3081,
+  "annotation": "YimingHe_2023-04-23",
+  "source": "GeoQA-312",
+  "problem_level": 17,
+  "problem_text_cn": "如图所示，AB=10，BF=12，AG平分∠FAB，⊙A的圆心为A，AD和BC是平行四边形ABCD的一组对边。求直线AE的长度。",
+  "problem_text_en": "As shown in the diagram, AB=10, BF=12, AG bisects ∠FAB, the center of ⊙A is A, BA and CD are opposite sides of the ▱ ABCD. Find the length of line AE.",
+  "problem_img": "3081.png",
+  "construction_cdl": [
+    "Shape(AB,BH,HA)",
+    "Shape(AH,HF,FA)",
+    "Shape(GH,HB,ABG)",
+    "Shape(FH,HG,AGF)",
+    "Shape(AGF,GE,EF)",
+    "Shape(ABG,BE,EG)",
+    "Shape(FE,EC,CD,DF)",
+    "Collinear(AFD)",
+    "Collinear(BEC)",
+    "Collinear(AHGE)",
+    "Collinear(BHF)",
+    "Cocircular(A,BGF)"
+  ],
+  "text_cdl": [
+    "Equal(LengthOfLine(AB),10)",
+    "Equal(LengthOfLine(BF),12)",
+    "IsBisectorOfAngle(AG,FAB)",
+    "IsCentreOfCircle(A,A)",
+    "Parallelogram(ABCD)"
+  ],
+  "image_cdl": [
+    "IsCentreOfCircle(A,A)"
+  ],
+  "goal_cdl": "Value(LengthOfLine(AE))",
+  "problem_answer": "16",
+  "theorem_seqs": [
+    "line_addition(1,BH,HF)",
+    "line_addition(1,AH,HE)",
+    "radius_of_circle_property_length_equal(1,AB,A)",
+    "radius_of_circle_property_length_equal(1,AF,A)",
+    "parallel_property_collinear_extend(3,AD,BC,F)",
+    "parallel_property_collinear_extend(3,CB,FA,E)",
+    "parallel_property_alternate_interior_angle(1,AF,BE)",
+    "isosceles_triangle_judgment_angle_equal(1,BEA)",
+    "parallelogram_judgment_parallel_and_equal(1,BEFA)",
+    "parallel_property_alternate_interior_angle(2,BA,EF)",
+    "isosceles_triangle_judgment_angle_equal(1,FAE)",
+    "kite_judgment_equal_and_equal(1,BEFA)",
+    "kite_judgment_equal_and_equal(1,ABEF)",
+    "kite_property_diagonal_perpendicular_bisection(1,ABEF,H)",
+    "kite_property_diagonal_perpendicular_bisection(1,BEFA,H)",
+    "right_triangle_judgment_angle(1,BHA)",
+    "right_triangle_property_pythagorean(1,BHA)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "line_addition(1,BH,HF)",
+      "line_addition(1,AH,HE)",
+      "radius_of_circle_property_length_equal(1,AB,A)",
+      "radius_of_circle_property_length_equal(1,AF,A)",
+      "parallel_property_collinear_extend(3,AD,BC,F)"
+    ],
+    "radius_of_circle_property_length_equal(1,AB,A)": [
+      "parallelogram_judgment_parallel_and_equal(1,BEFA)",
+      "kite_judgment_equal_and_equal(1,ABEF)",
+      "kite_judgment_equal_and_equal(1,ABEF)"
+    ],
+    "radius_of_circle_property_length_equal(1,AF,A)": [
+      "parallelogram_judgment_parallel_and_equal(1,BEFA)",
+      "kite_judgment_equal_and_equal(1,ABEF)",
+      "kite_judgment_equal_and_equal(1,ABEF)"
+    ],
+    "parallel_property_collinear_extend(3,AD,BC,F)": [
+      "parallel_property_collinear_extend(3,CB,FA,E)"
+    ],
+    "parallel_property_collinear_extend(3,CB,FA,E)": [
+      "parallelogram_judgment_parallel_and_equal(1,BEFA)",
+      "parallel_property_alternate_interior_angle(1,AF,BE)"
+    ],
+    "parallel_property_alternate_interior_angle(1,AF,BE)": [
+      "isosceles_triangle_judgment_angle_equal(1,BEA)",
+      "isosceles_triangle_judgment_angle_equal(1,FAE)"
+    ],
+    "isosceles_triangle_judgment_angle_equal(1,BEA)": [
+      "kite_judgment_equal_and_equal(1,BEFA)",
+      "parallelogram_judgment_parallel_and_equal(1,BEFA)",
+      "kite_judgment_equal_and_equal(1,ABEF)"
+    ],
+    "parallelogram_judgment_parallel_and_equal(1,BEFA)": [
+      "parallel_property_alternate_interior_angle(2,BA,EF)"
+    ],
+    "parallel_property_alternate_interior_angle(2,BA,EF)": [
+      "isosceles_triangle_judgment_angle_equal(1,FAE)"
+    ],
+    "isosceles_triangle_judgment_angle_equal(1,FAE)": [
+      "kite_judgment_equal_and_equal(1,BEFA)",
+      "kite_judgment_equal_and_equal(1,ABEF)"
+    ],
+    "kite_judgment_equal_and_equal(1,BEFA)": [
+      "kite_property_diagonal_perpendicular_bisection(1,BEFA,H)"
+    ],
+    "kite_judgment_equal_and_equal(1,ABEF)": [
+      "kite_property_diagonal_perpendicular_bisection(1,ABEF,H)"
+    ],
+    "kite_property_diagonal_perpendicular_bisection(1,ABEF,H)": [
+      "right_triangle_judgment_angle(1,BHA)"
+    ],
+    "right_triangle_judgment_angle(1,BHA)": [
+      "right_triangle_property_pythagorean(1,BHA)"
+    ]
+  }
+}

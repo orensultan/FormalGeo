@@ -1,0 +1,52 @@
+{
+  "problem_id": 5349,
+  "annotation": "QikeHuang_2023-05-21",
+  "source": "GeoQA-5593",
+  "problem_level": 7,
+  "problem_text_cn": "如图所示，PA=10，圆O的切线为CA，圆O的切线为CE，DB是圆O的切线，⊙O的切线为DE，⊙O的切线为PA，PB是⊙O的切线。求三角形PCD的周长。",
+  "problem_text_en": "As shown in the diagram, PA=10, the tangent to circle O is CA, CE is the tangent to circle O, the tangent to ⊙O is DB, the tangent to circle O is DE, the tangent to circle O is PA, PB is the tangent to circle O. Find the perimeter of △PCD.",
+  "problem_img": "5349.png",
+  "construction_cdl": [
+    "Shape(PC,CE,ED,DP)",
+    "Shape(EC,CA,OEA)",
+    "Shape(BD,DE,OBE)",
+    "Shape(OAB,OBE,OEA)",
+    "Shape(O)",
+    "Collinear(ACP)",
+    "Collinear(BDP)",
+    "Collinear(CED)",
+    "Cocircular(O,ABE)"
+  ],
+  "text_cdl": [
+    "Equal(LengthOfLine(PA),10)",
+    "IsTangentOfCircle(CA,O)",
+    "IsTangentOfCircle(CE,O)",
+    "IsTangentOfCircle(DB,O)",
+    "IsTangentOfCircle(DE,O)",
+    "IsTangentOfCircle(PA,O)",
+    "IsTangentOfCircle(PB,O)"
+  ],
+  "image_cdl": [],
+  "goal_cdl": "Value(PerimeterOfTriangle(PCD))",
+  "problem_answer": "20",
+  "theorem_seqs": [
+    "tangent_of_circle_property_length_equal(1,PA,PB,O)",
+    "tangent_of_circle_property_length_equal(1,CE,CA,O)",
+    "tangent_of_circle_property_length_equal(1,DE,DB,O)",
+    "line_addition(1,AC,CP)",
+    "line_addition(1,BD,DP)",
+    "line_addition(1,CE,ED)",
+    "triangle_perimeter_formula(1,PCD)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "tangent_of_circle_property_length_equal(1,PA,PB,O)",
+      "tangent_of_circle_property_length_equal(1,CE,CA,O)",
+      "tangent_of_circle_property_length_equal(1,DE,DB,O)",
+      "line_addition(1,AC,CP)",
+      "line_addition(1,BD,DP)",
+      "line_addition(1,CE,ED)",
+      "triangle_perimeter_formula(1,PCD)"
+    ]
+  }
+}

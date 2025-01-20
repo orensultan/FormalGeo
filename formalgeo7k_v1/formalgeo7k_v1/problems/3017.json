@@ -1,0 +1,65 @@
+{
+  "problem_id": 3017,
+  "annotation": "NaZhu_2023-04-16",
+  "source": "GeoQA-222",
+  "problem_level": 10,
+  "problem_text_cn": "如图所示，AM=CN，∠OAD=28°，ADCB是菱形。求∠CBO的大小。",
+  "problem_text_en": "As shown in the diagram, AM=CN, ∠OAD=28°, quadrilateral ADCB is a rhombus. Find the measure of ∠CBO.",
+  "problem_img": "3017.png",
+  "construction_cdl": [
+    "Shape(CB,BO,OC)",
+    "Shape(BM,MO,OB)",
+    "Shape(MA,AO,OM)",
+    "Shape(CO,ON,NC)",
+    "Shape(OA,AD,DN,NO)",
+    "Collinear(AMB)",
+    "Collinear(CND)",
+    "Collinear(MON)",
+    "Collinear(AOC)"
+  ],
+  "text_cdl": [
+    "Equal(LengthOfLine(AM),LengthOfLine(CN))",
+    "Equal(MeasureOfAngle(OAD),28)",
+    "Rhombus(ADCB)"
+  ],
+  "image_cdl": [],
+  "goal_cdl": "Value(MeasureOfAngle(CBO))",
+  "problem_answer": "62",
+  "theorem_seqs": [
+    "vertical_angle(1,AOM,CON)",
+    "parallel_property_alternate_interior_angle(1,AB,DC)",
+    "congruent_triangle_judgment_aas(1,MAO,NCO)",
+    "congruent_triangle_property_line_equal(1,MAO,NCO)",
+    "mirror_congruent_triangle_judgment_sss(1,CBO,AOB)",
+    "mirror_congruent_triangle_property_angle_equal(1,OCB,OBA)",
+    "parallel_property_alternate_interior_angle(2,BC,AD)",
+    "flat_angle(1,AOC)",
+    "angle_addition(1,AOB,BOC)",
+    "triangle_property_angle_sum(1,BOC)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "vertical_angle(1,AOM,CON)",
+      "parallel_property_alternate_interior_angle(1,AB,DC)",
+      "parallel_property_alternate_interior_angle(2,BC,AD)",
+      "flat_angle(1,AOC)",
+      "angle_addition(1,AOB,BOC)",
+      "triangle_property_angle_sum(1,BOC)"
+    ],
+    "vertical_angle(1,AOM,CON)": [
+      "congruent_triangle_judgment_aas(1,MAO,NCO)"
+    ],
+    "parallel_property_alternate_interior_angle(1,AB,DC)": [
+      "congruent_triangle_judgment_aas(1,MAO,NCO)"
+    ],
+    "congruent_triangle_judgment_aas(1,MAO,NCO)": [
+      "congruent_triangle_property_line_equal(1,MAO,NCO)"
+    ],
+    "congruent_triangle_property_line_equal(1,MAO,NCO)": [
+      "mirror_congruent_triangle_judgment_sss(1,CBO,AOB)"
+    ],
+    "mirror_congruent_triangle_judgment_sss(1,CBO,AOB)": [
+      "mirror_congruent_triangle_property_angle_equal(1,OCB,OBA)"
+    ]
+  }
+}

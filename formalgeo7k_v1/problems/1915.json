@@ -1,0 +1,34 @@
+{
+  "problem_id": 1915,
+  "annotation": "JiaZou_2023-03-26",
+  "source": "Geometry3k-1991",
+  "problem_level": 1,
+  "problem_text_cn": "如图所示，AB=25，AC=26，BC=14，∠BCA=x°。求x的值。",
+  "problem_text_en": "As shown in the diagram, AB=25, AC=26, BC=14, ∠BCA=x°. Find the value of x.",
+  "problem_img": "1915.png",
+  "construction_cdl": [
+    "Shape(AB,BC,CA)"
+  ],
+  "text_cdl": [
+    "Equal(LengthOfLine(AB),25)",
+    "Equal(LengthOfLine(AC),26)",
+    "Equal(LengthOfLine(BC),14)",
+    "Equal(MeasureOfAngle(BCA),x)"
+  ],
+  "image_cdl": [
+    "Equal(LengthOfLine(AB),25)",
+    "Equal(LengthOfLine(AC),26)",
+    "Equal(LengthOfLine(BC),14)",
+    "Equal(MeasureOfAngle(BCA),x)"
+  ],
+  "goal_cdl": "Value(x)",
+  "problem_answer": "180*acos(19/56)/pi",
+  "theorem_seqs": [
+    "cosine_theorem(1,CAB)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "cosine_theorem(1,CAB)"
+    ]
+  }
+}

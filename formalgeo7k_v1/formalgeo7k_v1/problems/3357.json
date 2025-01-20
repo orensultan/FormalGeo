@@ -1,0 +1,39 @@
+{
+  "problem_id": 3357,
+  "annotation": "YimingHe_2023-04-30",
+  "source": "GeoQA-826",
+  "problem_level": 5,
+  "problem_text_cn": "如图所示，。求∠OAH的大小、∠ICO的大小、∠HBI的大小、∠HDE的大小与∠DEI的大小之和。",
+  "problem_text_en": "As shown in the diagram, . Find the sum of the measure of ∠OAH, the measure of ∠ICO, the measure of ∠HBI, the measure of ∠HDE and the measure of ∠DEI.",
+  "problem_img": "3357.png",
+  "construction_cdl": [
+    "Shape(AH,HO,OA)",
+    "Shape(OH,HB,BI,IO)",
+    "Shape(CO,OI,IC)",
+    "Shape(HD,DE,EI,IB,BH)",
+    "Collinear(AHB)",
+    "Collinear(AOIE)",
+    "Collinear(DHOC)",
+    "Collinear(BIC)"
+  ],
+  "text_cdl": [],
+  "image_cdl": [],
+  "goal_cdl": "Value(Add(MeasureOfAngle(OAH),MeasureOfAngle(ICO),MeasureOfAngle(HBI),MeasureOfAngle(HDE),MeasureOfAngle(DEI)))",
+  "problem_answer": "180",
+  "theorem_seqs": [
+    "adjacent_complementary_angle(1,AHO,OHB)",
+    "adjacent_complementary_angle(1,IOH,HOA)",
+    "triangle_property_angle_sum(1,AHO)",
+    "triangle_property_angle_sum(1,ODE)",
+    "triangle_property_angle_sum(1,HBC)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "adjacent_complementary_angle(1,AHO,OHB)",
+      "adjacent_complementary_angle(1,IOH,HOA)",
+      "triangle_property_angle_sum(1,AHO)",
+      "triangle_property_angle_sum(1,ODE)",
+      "triangle_property_angle_sum(1,HBC)"
+    ]
+  }
+}
