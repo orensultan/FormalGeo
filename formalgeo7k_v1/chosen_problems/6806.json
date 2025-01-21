@@ -1,0 +1,48 @@
+{
+  "problem_id": 6806,
+  "annotation": "ChenyangMao_2023-06-04",
+  "source": "GeoQA-angle-10013",
+  "problem_level": 8,
+  "problem_text_cn": "如图所示，AD=AO，三角形ABC为等边三角形，BO是三角形BCA的中线。求∠BOD的大小。",
+  "problem_text_en": "As shown in the diagram, AD=AO, triangle ABC is an equilateral triangle, BO is the median of △ BCA. Find the measure of ∠BOD.",
+  "problem_img": "6806.png",
+  "construction_cdl": [
+    "Shape(OD,DA,AO)",
+    "Shape(CO,OB,BC)",
+    "Shape(OA,AB,BO)",
+    "Collinear(DAB)",
+    "Collinear(COA)"
+  ],
+  "text_cdl": [
+    "Equal(LengthOfLine(AD),LengthOfLine(AO))",
+    "EquilateralTriangle(ABC)",
+    "IsMedianOfTriangle(BO,BCA)"
+  ],
+  "image_cdl": [],
+  "goal_cdl": "Value(MeasureOfAngle(BOD))",
+  "problem_answer": "120",
+  "theorem_seqs": [
+    "equilateral_triangle_property_angle(1,ABC)",
+    "adjacent_complementary_angle(1,DAO,OAB)",
+    "isosceles_triangle_judgment_line_equal(1,AOD)",
+    "isosceles_triangle_property_angle_equal(1,AOD)",
+    "triangle_property_angle_sum(1,ODA)",
+    "triangle_property_angle_sum(1,OAB)",
+    "triangle_property_angle_sum(1,ODB)",
+    "isosceles_triangle_property_line_coincidence(2,BCA,O)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "equilateral_triangle_property_angle(1,ABC)",
+      "adjacent_complementary_angle(1,DAO,OAB)",
+      "isosceles_triangle_judgment_line_equal(1,AOD)",
+      "triangle_property_angle_sum(1,ODA)",
+      "triangle_property_angle_sum(1,OAB)",
+      "triangle_property_angle_sum(1,ODB)",
+      "isosceles_triangle_property_line_coincidence(2,BCA,O)"
+    ],
+    "isosceles_triangle_judgment_line_equal(1,AOD)": [
+      "isosceles_triangle_property_angle_equal(1,AOD)"
+    ]
+  }
+}
