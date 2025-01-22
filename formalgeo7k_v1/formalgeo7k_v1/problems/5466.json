@@ -1,0 +1,88 @@
+{
+  "problem_id": 5466,
+  "annotation": "ChenyangMao_2023-05-21",
+  "source": "GeoQA-5881",
+  "problem_level": 13,
+  "problem_text_cn": "如图所示，CD=2，∠ABC=60°，∠BCA=90°，三角形AEB为等边三角形，CD是△CAB的中线。求直线EF的长度。",
+  "problem_text_en": "As shown in the diagram, CD=2, ∠ABC=60°, ∠BCA=90°, △AEB is an equilateral △, CD is the median of △ CAB. Find the length of line EF.",
+  "problem_img": "5466.png",
+  "construction_cdl": [
+    "Shape(CA,AD,DC)",
+    "Shape(CD,DB,BC)",
+    "Shape(DA,AF,FD)",
+    "Shape(DF,FE,EB,BD)",
+    "Collinear(ADB)",
+    "Collinear(CDF)",
+    "Collinear(AFE)"
+  ],
+  "text_cdl": [
+    "Equal(LengthOfLine(CD),2)",
+    "Equal(MeasureOfAngle(ABC),60)",
+    "Equal(MeasureOfAngle(BCA),90)",
+    "EquilateralTriangle(AEB)",
+    "IsMedianOfTriangle(CD,CAB)"
+  ],
+  "image_cdl": [],
+  "goal_cdl": "Value(LengthOfLine(EF))",
+  "problem_answer": "2",
+  "theorem_seqs": [
+    "line_addition(1,AD,DB)",
+    "line_addition(1,AF,FE)",
+    "equilateral_triangle_property_angle(1,AEB)",
+    "equilateral_triangle_property_angle(1,EBA)",
+    "triangle_property_angle_sum(1,CDB)",
+    "triangle_property_angle_sum(1,DAF)",
+    "right_triangle_judgment_angle(1,BCA)",
+    "right_triangle_property_length_of_median(1,BCA,D)",
+    "isosceles_triangle_judgment_line_equal(1,DBC)",
+    "isosceles_triangle_property_angle_equal(1,DBC)",
+    "vertical_angle(1,CDB,FDA)",
+    "parallel_judgment_corresponding_angle(1,FD,EB,A)",
+    "midsegment_of_triangle_judgment_parallel(2,FD,AEB)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "line_addition(1,AD,DB)",
+      "line_addition(1,AF,FE)",
+      "equilateral_triangle_property_angle(1,AEB)",
+      "equilateral_triangle_property_angle(1,EBA)",
+      "triangle_property_angle_sum(1,CDB)",
+      "triangle_property_angle_sum(1,DAF)",
+      "right_triangle_judgment_angle(1,BCA)",
+      "vertical_angle(1,CDB,FDA)"
+    ],
+    "line_addition(1,AD,DB)": [
+      "isosceles_triangle_judgment_line_equal(1,DBC)"
+    ],
+    "equilateral_triangle_property_angle(1,AEB)": [
+      "parallel_judgment_corresponding_angle(1,FD,EB,A)"
+    ],
+    "equilateral_triangle_property_angle(1,EBA)": [
+      "parallel_judgment_corresponding_angle(1,FD,EB,A)"
+    ],
+    "triangle_property_angle_sum(1,CDB)": [
+      "parallel_judgment_corresponding_angle(1,FD,EB,A)"
+    ],
+    "triangle_property_angle_sum(1,DAF)": [
+      "parallel_judgment_corresponding_angle(1,FD,EB,A)"
+    ],
+    "right_triangle_judgment_angle(1,BCA)": [
+      "right_triangle_property_length_of_median(1,BCA,D)"
+    ],
+    "right_triangle_property_length_of_median(1,BCA,D)": [
+      "isosceles_triangle_judgment_line_equal(1,DBC)"
+    ],
+    "isosceles_triangle_judgment_line_equal(1,DBC)": [
+      "isosceles_triangle_property_angle_equal(1,DBC)"
+    ],
+    "isosceles_triangle_property_angle_equal(1,DBC)": [
+      "parallel_judgment_corresponding_angle(1,FD,EB,A)"
+    ],
+    "vertical_angle(1,CDB,FDA)": [
+      "parallel_judgment_corresponding_angle(1,FD,EB,A)"
+    ],
+    "parallel_judgment_corresponding_angle(1,FD,EB,A)": [
+      "midsegment_of_triangle_judgment_parallel(2,FD,AEB)"
+    ]
+  }
+}

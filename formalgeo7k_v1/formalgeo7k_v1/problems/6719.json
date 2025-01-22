@@ -1,0 +1,45 @@
+{
+  "problem_id": 6719,
+  "annotation": "XiaoxiaoJin_2023-06-04",
+  "source": "GeoQA-9762",
+  "problem_level": 6,
+  "problem_text_cn": "如图所示，∠CBO=25°，O是⊙O的圆心，AO垂直于BO。求∠DAC的大小。",
+  "problem_text_en": "As shown in the diagram, ∠CBO=25°, O is the center of ⊙O, AO⊥BO. Find the measure of ∠DAC.",
+  "problem_img": "6719.png",
+  "construction_cdl": [
+    "Shape(AC,CD,DO,OA)",
+    "Shape(CA,OAC)",
+    "Shape(BD,DC,OCB)",
+    "Shape(OD,DB,BO)",
+    "Shape(AO,OB,OBA)",
+    "Collinear(CDB)",
+    "Collinear(AOD)",
+    "Cocircular(O,ACB)"
+  ],
+  "text_cdl": [
+    "Equal(MeasureOfAngle(CBO),25)",
+    "IsCentreOfCircle(O,O)",
+    "PerpendicularBetweenLine(AO,BO)"
+  ],
+  "image_cdl": [],
+  "goal_cdl": "Value(MeasureOfAngle(DAC))",
+  "problem_answer": "20",
+  "theorem_seqs": [
+    "arc_property_center_angle(1,OBA,O)",
+    "arc_property_circumference_angle_external(1,OBA,C)",
+    "triangle_property_angle_sum(1,ACD)",
+    "triangle_property_angle_sum(1,ODB)",
+    "adjacent_complementary_angle(1,CDO,ODB)",
+    "adjacent_complementary_angle(1,AOB,BOD)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "arc_property_center_angle(1,OBA,O)",
+      "arc_property_circumference_angle_external(1,OBA,C)",
+      "triangle_property_angle_sum(1,ACD)",
+      "triangle_property_angle_sum(1,ODB)",
+      "adjacent_complementary_angle(1,CDO,ODB)",
+      "adjacent_complementary_angle(1,AOB,BOD)"
+    ]
+  }
+}

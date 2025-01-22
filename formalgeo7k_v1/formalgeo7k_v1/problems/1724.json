@@ -1,0 +1,36 @@
+{
+  "problem_id": 1724,
+  "annotation": "YangLi_2023-04-16",
+  "source": "Geometry3k-1789",
+  "problem_level": 1,
+  "problem_text_cn": "如图所示，∠KJP=2*x+4°，∠PLK=7*x+5°，JMLK是矩形。求x的值。",
+  "problem_text_en": "As shown in the diagram, ∠KJP=2*x+4°, ∠PLK=7*x+5°, quadrilateral JMLK is a rectangle. Find the value of x.",
+  "problem_img": "1724.png",
+  "construction_cdl": [
+    "Shape(JM,MP,PJ)",
+    "Shape(PM,ML,LP)",
+    "Shape(KP,PL,LK)",
+    "Shape(JP,PK,KJ)",
+    "Collinear(JPL)",
+    "Collinear(MPK)"
+  ],
+  "text_cdl": [
+    "Equal(MeasureOfAngle(KJP),2*x+4)",
+    "Equal(MeasureOfAngle(PLK),7*x+5)",
+    "Rectangle(JMLK)"
+  ],
+  "image_cdl": [
+    "Equal(MeasureOfAngle(KJP),2*x+4)",
+    "Equal(MeasureOfAngle(PLK),7*x+5)"
+  ],
+  "goal_cdl": "Value(x)",
+  "problem_answer": "9",
+  "theorem_seqs": [
+    "triangle_property_angle_sum(1,KJL)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "triangle_property_angle_sum(1,KJL)"
+    ]
+  }
+}

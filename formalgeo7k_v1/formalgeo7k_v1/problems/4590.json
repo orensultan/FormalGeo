@@ -1,0 +1,55 @@
+{
+  "problem_id": 4590,
+  "annotation": "QikeHuang_2023-05-14",
+  "source": "GeoQA-3746",
+  "problem_level": 7,
+  "problem_text_cn": "如图所示，AB=BP，∠BCA=30°，圆O的半径为5，⊙O的圆心为O。求直线AP的长度。",
+  "problem_text_en": "As shown in the diagram, AB=BP, ∠BCA=30°, the radius of ⊙O is 5, the center of ⊙O is O. Find the length of line AP.",
+  "problem_img": "4590.png",
+  "construction_cdl": [
+    "Shape(CA,AM,MC)",
+    "Shape(OM,ME,EN,NO)",
+    "Shape(MA,AE,EM)",
+    "Shape(EB,BN,NE)",
+    "Shape(EA,AB,BE)",
+    "Shape(PN,NB,BP)",
+    "Shape(OCA,AC)",
+    "Shape(AB,OBA)",
+    "Shape(BP,OPB)",
+    "Shape(OPC,CM,MO,ON,NP)",
+    "Collinear(CMEB)",
+    "Collinear(OMA)",
+    "Collinear(ONB)",
+    "Collinear(PNEA)",
+    "Cocircular(O,CABP)"
+  ],
+  "text_cdl": [
+    "Equal(LengthOfLine(AB),LengthOfLine(BP))",
+    "Equal(MeasureOfAngle(BCA),30)",
+    "Equal(RadiusOfCircle(O),5)",
+    "IsCentreOfCircle(O,O)"
+  ],
+  "image_cdl": [],
+  "goal_cdl": "Value(LengthOfLine(AP))",
+  "problem_answer": "5*sqrt(3)",
+  "theorem_seqs": [
+    "radius_of_circle_property_length_equal(1,OA,O)",
+    "radius_of_circle_property_length_equal(1,OB,O)",
+    "arc_property_circumference_angle_external(1,OAB,C)",
+    "arc_property_circumference_angle_external(1,OAB,P)",
+    "arc_property_center_angle(1,OAB,O)",
+    "cosine_theorem(1,OAB)",
+    "cosine_theorem(1,PAB)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "radius_of_circle_property_length_equal(1,OA,O)",
+      "radius_of_circle_property_length_equal(1,OB,O)",
+      "arc_property_circumference_angle_external(1,OAB,C)",
+      "arc_property_circumference_angle_external(1,OAB,P)",
+      "arc_property_center_angle(1,OAB,O)",
+      "cosine_theorem(1,OAB)",
+      "cosine_theorem(1,PAB)"
+    ]
+  }
+}

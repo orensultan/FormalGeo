@@ -1,0 +1,36 @@
+{
+  "problem_id": 4418,
+  "annotation": "JiaZou_2023-05-14",
+  "source": "GeoQA-3368",
+  "problem_level": 2,
+  "problem_text_cn": "如图所示，∠BOA=110°，⊙O的圆心为O。求∠ACB的大小。",
+  "problem_text_en": "As shown in the diagram, ∠BOA=110°, O is the center of circle O. Find the measure of ∠ACB.",
+  "problem_img": "4418.png",
+  "construction_cdl": [
+    "Shape(DA,AO,OB,BD)",
+    "Shape(OA,AB,BO)",
+    "Shape(AC,CB,BA)",
+    "Shape(AD,ODA)",
+    "Shape(CA,OAC)",
+    "Shape(BC,OCB)",
+    "Shape(DB,OBD)",
+    "Cocircular(O,ACB,D)"
+  ],
+  "text_cdl": [
+    "Equal(MeasureOfAngle(BOA),110)",
+    "IsCentreOfCircle(O,O)"
+  ],
+  "image_cdl": [],
+  "goal_cdl": "Value(MeasureOfAngle(ACB))",
+  "problem_answer": "125",
+  "theorem_seqs": [
+    "arc_property_center_angle(1,OAB,O)",
+    "arc_property_circumference_angle_internal(1,OAB,C)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "arc_property_center_angle(1,OAB,O)",
+      "arc_property_circumference_angle_internal(1,OAB,C)"
+    ]
+  }
+}

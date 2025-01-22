@@ -1,0 +1,34 @@
+{
+  "problem_id": 4416,
+  "annotation": "JiaZou_2023-05-14",
+  "source": "GeoQA-3365",
+  "problem_level": 3,
+  "problem_text_cn": "如图所示，∠ABD=110°。求∠BDE的大小减去∠BCD的大小。",
+  "problem_text_en": "As shown in the diagram, ∠ABD=110°. Find the measure of ∠BDE minus the measure of ∠BCD.",
+  "problem_img": "4416.png",
+  "construction_cdl": [
+    "Shape(AB,BD)",
+    "Shape(BC,CD,DB)",
+    "Shape(BD,DE)",
+    "Collinear(CDE)",
+    "Collinear(ABC)"
+  ],
+  "text_cdl": [
+    "Equal(MeasureOfAngle(ABD),110)"
+  ],
+  "image_cdl": [],
+  "goal_cdl": "Value(Sub(MeasureOfAngle(BDE),MeasureOfAngle(BCD)))",
+  "problem_answer": "70",
+  "theorem_seqs": [
+    "adjacent_complementary_angle(1,ABD,DBC)",
+    "adjacent_complementary_angle(1,CDB,BDE)",
+    "triangle_property_angle_sum(1,BCD)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "adjacent_complementary_angle(1,ABD,DBC)",
+      "adjacent_complementary_angle(1,CDB,BDE)",
+      "triangle_property_angle_sum(1,BCD)"
+    ]
+  }
+}

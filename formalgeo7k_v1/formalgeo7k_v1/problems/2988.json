@@ -1,0 +1,33 @@
+{
+  "problem_id": 2988,
+  "annotation": "NaZhu_2023-04-16",
+  "source": "GeoQA-189",
+  "problem_level": 2,
+  "problem_text_cn": "如图所示，∠DBC=40°，∠DEA=60°，DE平行于BC。求∠EAD的大小。",
+  "problem_text_en": "As shown in the diagram, ∠DBC=40°, ∠DEA=60°, DE∥BC. Find the measure of ∠EAD.",
+  "problem_img": "2988.png",
+  "construction_cdl": [
+    "Shape(AD,DE,EA)",
+    "Shape(DB,BC,CE,ED)",
+    "Collinear(ADB)",
+    "Collinear(AEC)"
+  ],
+  "text_cdl": [
+    "Equal(MeasureOfAngle(DBC),40)",
+    "Equal(MeasureOfAngle(DEA),60)",
+    "ParallelBetweenLine(DE,BC)"
+  ],
+  "image_cdl": [],
+  "goal_cdl": "Value(MeasureOfAngle(EAD))",
+  "problem_answer": "80",
+  "theorem_seqs": [
+    "parallel_property_corresponding_angle(1,DE,BC,A)",
+    "triangle_property_angle_sum(1,ADE)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "parallel_property_corresponding_angle(1,DE,BC,A)",
+      "triangle_property_angle_sum(1,ADE)"
+    ]
+  }
+}

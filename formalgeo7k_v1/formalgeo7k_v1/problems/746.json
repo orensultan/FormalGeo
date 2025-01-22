@@ -1,0 +1,43 @@
+{
+  "problem_id": 746,
+  "annotation": "JiaZou_2023-04-09",
+  "source": "Geometry3k-771",
+  "problem_level": 3,
+  "problem_text_cn": "如图所示，AB=20，AD=18，CE=16，BC和AD是▱BADC的一组对边，CE垂直于DE。求四边形BADC的面积。",
+  "problem_text_en": "As shown in the diagram, AB=20, AD=18, CE=16, BADC is a parallelogram, CE is perpendicular to DE. Find the area of BADC.",
+  "problem_img": "746.png",
+  "construction_cdl": [
+    "Shape(BA,AE,EC,CB)",
+    "Shape(CE,ED,DC)",
+    "Collinear(AED)"
+  ],
+  "text_cdl": [
+    "Equal(LengthOfLine(AB),20)",
+    "Equal(LengthOfLine(AD),18)",
+    "Equal(LengthOfLine(CE),16)",
+    "Parallelogram(BADC)",
+    "PerpendicularBetweenLine(CE,DE)"
+  ],
+  "image_cdl": [
+    "Equal(LengthOfLine(AB),20)",
+    "Equal(LengthOfLine(AD),18)",
+    "Equal(LengthOfLine(CE),16)",
+    "PerpendicularBetweenLine(CE,DE)"
+  ],
+  "goal_cdl": "Value(AreaOfQuadrilateral(BADC))",
+  "problem_answer": "288",
+  "theorem_seqs": [
+    "adjacent_complementary_angle(1,AEC,CED)",
+    "altitude_of_quadrilateral_judgment_right_vertex(1,CE,BADC)",
+    "parallelogram_area_formula_common(1,BADC)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "adjacent_complementary_angle(1,AEC,CED)",
+      "parallelogram_area_formula_common(1,BADC)"
+    ],
+    "adjacent_complementary_angle(1,AEC,CED)": [
+      "altitude_of_quadrilateral_judgment_right_vertex(1,CE,BADC)"
+    ]
+  }
+}

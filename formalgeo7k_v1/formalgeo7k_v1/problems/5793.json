@@ -1,0 +1,42 @@
+{
+  "problem_id": 5793,
+  "annotation": "YanjunGuo_2023-05-28",
+  "source": "GeoQA-7718",
+  "problem_level": 4,
+  "problem_text_cn": "如图所示，Div(LengthOfLine(AD)=LengthOfLine(DE))，BD=4，∠DCA=∠DBE。求直线DC的长度。",
+  "problem_text_en": "As shown in the diagram, Div(LengthOfLine(AD)=LengthOfLine(DE)), BD=4, ∠DCA=∠DBE. Find the length of line DC.",
+  "problem_img": "5793.png",
+  "construction_cdl": [
+    "Shape(AB,BD,DA)",
+    "Shape(AD,DC,CA)",
+    "Shape(DB,BE,ED)",
+    "Collinear(ADE)",
+    "Collinear(BDC)"
+  ],
+  "text_cdl": [
+    "Equal(Div(LengthOfLine(AD),LengthOfLine(DE)),3/5)",
+    "Equal(LengthOfLine(BD),4)",
+    "Equal(MeasureOfAngle(DCA),MeasureOfAngle(DBE))"
+  ],
+  "image_cdl": [],
+  "goal_cdl": "Value(LengthOfLine(DC))",
+  "problem_answer": "12/5",
+  "theorem_seqs": [
+    "vertical_angle(1,ADC,EDB)",
+    "similar_triangle_judgment_aa(1,EDB,ADC)",
+    "similar_triangle_property_line_ratio(1,EDB,ADC)",
+    "similar_triangle_property_line_ratio(1,BED,CAD)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "vertical_angle(1,ADC,EDB)"
+    ],
+    "vertical_angle(1,ADC,EDB)": [
+      "similar_triangle_judgment_aa(1,EDB,ADC)"
+    ],
+    "similar_triangle_judgment_aa(1,EDB,ADC)": [
+      "similar_triangle_property_line_ratio(1,EDB,ADC)",
+      "similar_triangle_property_line_ratio(1,BED,CAD)"
+    ]
+  }
+}

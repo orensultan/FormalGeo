@@ -1,0 +1,40 @@
+{
+  "problem_id": 1489,
+  "annotation": "QikeHuang_2023-04-16",
+  "source": "Geometry3k-1544",
+  "problem_level": 3,
+  "problem_text_cn": "如图所示，AC=5，CD=9，∠DCA=60°，DCAB是▱，CA垂直于DA。求四边形DCAB的周长。",
+  "problem_text_en": "As shown in the diagram, AC=5, CD=9, ∠DCA=60°, DB and CA are opposite sides of the parallelogram DCAB, CA is perpendicular to DA. Find the perimeter of DCAB.",
+  "problem_img": "1489.png",
+  "construction_cdl": [
+    "Shape(DC,CA,AD)",
+    "Shape(DA,AB,BD)"
+  ],
+  "text_cdl": [
+    "Equal(LengthOfLine(AC),5)",
+    "Equal(LengthOfLine(CD),9)",
+    "Equal(MeasureOfAngle(DCA),60)",
+    "Parallelogram(DCAB)",
+    "PerpendicularBetweenLine(CA,DA)"
+  ],
+  "image_cdl": [
+    "Equal(LengthOfLine(AC),5)",
+    "Equal(LengthOfLine(CD),9)",
+    "Equal(MeasureOfAngle(DCA),60)",
+    "PerpendicularBetweenLine(CA,DA)"
+  ],
+  "goal_cdl": "Value(PerimeterOfQuadrilateral(DCAB))",
+  "problem_answer": "28",
+  "theorem_seqs": [
+    "parallelogram_property_opposite_line_equal(1,DCAB)",
+    "parallelogram_property_opposite_line_equal(1,CABD)",
+    "quadrilateral_perimeter_formula(1,DCAB)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "parallelogram_property_opposite_line_equal(1,DCAB)",
+      "parallelogram_property_opposite_line_equal(1,CABD)",
+      "quadrilateral_perimeter_formula(1,DCAB)"
+    ]
+  }
+}

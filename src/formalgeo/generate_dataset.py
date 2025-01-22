@@ -273,7 +273,7 @@ def print_problem(json, verbose=False):
 
 
 def get_theory(theory):
-    with open('../../formalgeo7k_v1/gdl/theorem_GDL.json', 'r') as file:
+    with open('../../formalgeo7k_v1/formalgeo7k_v1/gdl/theorem_GDL.json', 'r') as file:
         theories = json.load(file)
         matching_keys = [key for key, value in theories.items() if theory.split("(")[0] in key]
         key = matching_keys[0]
@@ -288,7 +288,7 @@ def get_theory(theory):
 def save_problems():
     count = 0
     problems = {}
-    directory_path = '../../formalgeo7k_v1/problems'
+    directory_path = '../../formalgeo7k_v1/formalgeo7k_v1/problems'
     for filename in os.listdir(directory_path):
         count += 1
         if filename.endswith('.json'):
@@ -920,7 +920,7 @@ def parse_problem(pid):
 
 
 # download_dataset(dataset_name="formalgeo7k_v1", datasets_path="../../formalgeo7k_v1")
-dl = DatasetLoader(dataset_name="formalgeo7k_v1", datasets_path="../../formalgeo7k_v1")
+dl = DatasetLoader(dataset_name="formalgeo7k_v1", datasets_path="../../formalgeo7k_v1/formalgeo7k_v1")
 solver = Interactor(dl.predicate_GDL, dl.theorem_GDL)
 
 

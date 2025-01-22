@@ -1,0 +1,50 @@
+{
+  "problem_id": 1389,
+  "annotation": "YimingHe_2023-03-19",
+  "source": "Geometry3k-1439",
+  "problem_level": 6,
+  "problem_text_cn": "如图所示，AB=y，BD=8，CD=x，∠ACD=43°，BA垂直于CA，CD垂直于AD。求x的值。",
+  "problem_text_en": "As shown in the diagram, AB=y, BD=8, CD=x, ∠ACD=43°, BA is perpendicular to CA, CD⊥AD. Find the value of x.",
+  "problem_img": "1389.png",
+  "construction_cdl": [
+    "Shape(BA,AD,DB)",
+    "Shape(DA,AC,CD)",
+    "Collinear(BDC)"
+  ],
+  "text_cdl": [
+    "Equal(LengthOfLine(AB),y)",
+    "Equal(LengthOfLine(BD),8)",
+    "Equal(LengthOfLine(CD),x)",
+    "Equal(MeasureOfAngle(ACD),43)",
+    "PerpendicularBetweenLine(BA,CA)",
+    "PerpendicularBetweenLine(CD,AD)"
+  ],
+  "image_cdl": [
+    "Equal(LengthOfLine(AB),y)",
+    "Equal(LengthOfLine(BD),8)",
+    "Equal(LengthOfLine(CD),x)",
+    "Equal(MeasureOfAngle(ACD),43)",
+    "PerpendicularBetweenLine(BA,CA)",
+    "PerpendicularBetweenLine(CD,AD)"
+  ],
+  "goal_cdl": "Value(x)",
+  "problem_answer": "8/tan(43*pi/180)**2",
+  "theorem_seqs": [
+    "adjacent_complementary_angle(1,CDA,ADB)",
+    "triangle_property_angle_sum(1,ACD)",
+    "angle_addition(1,BAD,DAC)",
+    "sine_theorem(1,BAD)",
+    "sine_theorem(1,BAC)",
+    "line_addition(1,BD,DC)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "adjacent_complementary_angle(1,CDA,ADB)",
+      "triangle_property_angle_sum(1,ACD)",
+      "angle_addition(1,BAD,DAC)",
+      "sine_theorem(1,BAD)",
+      "sine_theorem(1,BAC)",
+      "line_addition(1,BD,DC)"
+    ]
+  }
+}

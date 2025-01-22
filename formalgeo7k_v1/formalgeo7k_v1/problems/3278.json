@@ -1,0 +1,41 @@
+{
+  "problem_id": 3278,
+  "annotation": "XiaokaiZhang_2023-04-23",
+  "source": "GeoQA-588",
+  "problem_level": 3,
+  "problem_text_cn": "如图所示，∠DOA=86°，∠DOB=30°，圆O的圆心为O。求∠BCA的大小。",
+  "problem_text_en": "As shown in the diagram, ∠DOA=86°, ∠DOB=30°, O is the center of ⊙O. Find the measure of ∠BCA.",
+  "problem_img": "3278.png",
+  "construction_cdl": [
+    "Shape(OAB,BF,FA)",
+    "Shape(OBD,DO,OB)",
+    "Shape(OF,FB,BO)",
+    "Shape(AF,FC,CA)",
+    "Shape(OCA,AC)",
+    "Shape(CF,FO,OE,OEC)",
+    "Collinear(BFC)",
+    "Collinear(AFO)",
+    "Collinear(DOE)",
+    "Cocircular(O,ECABD)"
+  ],
+  "text_cdl": [
+    "Equal(MeasureOfAngle(DOA),86)",
+    "Equal(MeasureOfAngle(DOB),30)",
+    "IsCentreOfCircle(O,O)"
+  ],
+  "image_cdl": [],
+  "goal_cdl": "Value(MeasureOfAngle(BCA))",
+  "problem_answer": "28",
+  "theorem_seqs": [
+    "angle_addition(1,DOB,BOA)",
+    "arc_property_center_angle(1,OAB,O)",
+    "arc_property_circumference_angle_external(1,OAB,C)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "angle_addition(1,DOB,BOA)",
+      "arc_property_center_angle(1,OAB,O)",
+      "arc_property_circumference_angle_external(1,OAB,C)"
+    ]
+  }
+}

@@ -29,7 +29,7 @@ import re
 
 dl = DatasetLoader(dataset_name="formalgeo7k_v1", datasets_path="formalgeo7k_v1")
 solver = Interactor(dl.predicate_GDL, dl.theorem_GDL)
-with open('formalgeo7k_v1/gdl/theorem_GDL.json', 'r') as f:
+with open('formalgeo7k_v1/formalgeo7k_v1/gdl/theorem_GDL.json', 'r') as f:
     theorems = json.load(f)
 
 
@@ -397,7 +397,7 @@ chosen_problems_by_level = {
 
 chosen_problems_by_level = {
 # 1: [1975, 1490, 1726, 178, 2669],
-2: [2141] #, 69, 2916, 358, 4473],
+2: [4473] #,  2141, 69 , 2916, 358, 4473],
  # 3: [4187, 5244, 5062, 844, 1945],
 # 4: [2114, 464, 5510, 3272, 5230],
  # 5: [5440, 6485 , 696, 847, 5563]

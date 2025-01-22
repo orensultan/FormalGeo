@@ -1,0 +1,34 @@
+{
+  "problem_id": 574,
+  "annotation": "YimingHe_2023-04-09",
+  "source": "Geometry3k-588",
+  "problem_level": 1,
+  "problem_text_cn": "如图所示，⌒WSR全等于⌒WVT，SR=5*x-9，TV=2*x+3。求直线RS的长度。",
+  "problem_text_en": "As shown in the diagram, ⌒WSR is congruent to ⌒WVT, SR=5*x-9, TV=2*x+3. Find the length of line RS.",
+  "problem_img": "574.png",
+  "construction_cdl": [
+    "Shape(RS,WSR)",
+    "Shape(SR,WRV,VT,WTS)",
+    "Shape(TV,WVT)",
+    "Cocircular(W,RVTS)"
+  ],
+  "text_cdl": [
+    "CongruentBetweenArc(WSR,WVT)",
+    "Equal(LengthOfLine(SR),5*x-9)",
+    "Equal(LengthOfLine(TV),2*x+3)"
+  ],
+  "image_cdl": [
+    "Equal(LengthOfLine(SR),5*x-9)",
+    "Equal(LengthOfLine(TV),2*x+3)"
+  ],
+  "goal_cdl": "Value(LengthOfLine(RS))",
+  "problem_answer": "11",
+  "theorem_seqs": [
+    "congruent_arc_property_chord_equal(1,WSR,WVT)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "congruent_arc_property_chord_equal(1,WSR,WVT)"
+    ]
+  }
+}

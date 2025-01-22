@@ -1,0 +1,62 @@
+{
+  "problem_id": 5172,
+  "annotation": "JiaZou_2023-05-21",
+  "source": "GeoQA-5132",
+  "problem_level": 7,
+  "problem_text_cn": "如图所示，DE=3，O是⊙O的圆心，AD垂直于OD，CE⊥OE。求直线BC的长度。",
+  "problem_text_en": "As shown in the diagram, DE=3, the center of circle O is O, AD⊥OD, CE is perpendicular to OE. Find the length of line BC.",
+  "problem_img": "5172.png",
+  "construction_cdl": [
+    "Shape(AD,DE,EA)",
+    "Shape(DO,OE,ED)",
+    "Shape(DB,BC,CE,EO,OD)",
+    "Shape(CB,OBC)",
+    "Shape(AE,EC,OCA)",
+    "Shape(BD,DA,OAB)",
+    "Collinear(ADB)",
+    "Collinear(AEC)",
+    "Cocircular(O,ABC)"
+  ],
+  "text_cdl": [
+    "Equal(LengthOfLine(DE),3)",
+    "IsCentreOfCircle(O,O)",
+    "PerpendicularBetweenLine(AD,OD)",
+    "PerpendicularBetweenLine(CE,OE)"
+  ],
+  "image_cdl": [],
+  "goal_cdl": "Value(LengthOfLine(BC))",
+  "problem_answer": "6",
+  "theorem_seqs": [
+    "circle_property_chord_perpendicular_bisect_chord(1,O,OD,AB)",
+    "circle_property_chord_perpendicular_bisect_chord(1,O,OE,CA)",
+    "line_addition(1,AD,DB)",
+    "line_addition(1,AE,EC)",
+    "similar_triangle_judgment_sas(1,ADE,ABC)",
+    "similar_triangle_property_line_ratio(1,DEA,BCA)",
+    "similar_triangle_property_line_ratio(1,ADE,ABC)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "circle_property_chord_perpendicular_bisect_chord(1,O,OD,AB)",
+      "circle_property_chord_perpendicular_bisect_chord(1,O,OE,CA)",
+      "line_addition(1,AD,DB)",
+      "line_addition(1,AE,EC)"
+    ],
+    "circle_property_chord_perpendicular_bisect_chord(1,O,OD,AB)": [
+      "similar_triangle_judgment_sas(1,ADE,ABC)"
+    ],
+    "circle_property_chord_perpendicular_bisect_chord(1,O,OE,CA)": [
+      "similar_triangle_judgment_sas(1,ADE,ABC)"
+    ],
+    "line_addition(1,AD,DB)": [
+      "similar_triangle_judgment_sas(1,ADE,ABC)"
+    ],
+    "line_addition(1,AE,EC)": [
+      "similar_triangle_judgment_sas(1,ADE,ABC)"
+    ],
+    "similar_triangle_judgment_sas(1,ADE,ABC)": [
+      "similar_triangle_property_line_ratio(1,ADE,ABC)",
+      "similar_triangle_property_line_ratio(1,DEA,BCA)"
+    ]
+  }
+}

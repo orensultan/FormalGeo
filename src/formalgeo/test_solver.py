@@ -15,7 +15,7 @@ openai.api_key = "sk-ds-openapi-key-0sfNvLjYF3wMuFQcp7oST3BlbkFJWeqSW76sV6Gy48mj
 
 
 # download_dataset(dataset_name="formalgeo7k_v1", datasets_path=".")
-dl = DatasetLoader(dataset_name="formalgeo7k_v1", datasets_path=".")
+dl = DatasetLoader(dataset_name="formalgeo7k_v1", datasets_path="formalgeo7k_v1")
 solver = Interactor(dl.predicate_GDL, dl.theorem_GDL)
 problem_CDL = dl.get_problem(pid=5232)
 solver.load_problem(problem_CDL)

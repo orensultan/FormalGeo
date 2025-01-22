@@ -1,0 +1,37 @@
+{
+  "problem_id": 3376,
+  "annotation": "JiaZou_2023-04-30",
+  "source": "GeoQA-875",
+  "problem_level": 3,
+  "problem_text_cn": "如图所示，AB=AC，BC=10，△DBC的周长为22，DE是AB的垂直平分线。求直线AB的长度。",
+  "problem_text_en": "As shown in the diagram, AB=AC, BC=10, the perimeter of triangle DBC is 22, DE is the perpendicular bisector of AB. Find the length of line AB.",
+  "problem_img": "3376.png",
+  "construction_cdl": [
+    "Shape(AE,ED,DA)",
+    "Shape(EB,BD,DE)",
+    "Shape(DB,BC,CD)",
+    "Collinear(AEB)",
+    "Collinear(ADC)"
+  ],
+  "text_cdl": [
+    "Equal(LengthOfLine(AB),LengthOfLine(AC))",
+    "Equal(LengthOfLine(BC),10)",
+    "Equal(PerimeterOfTriangle(DBC),22)",
+    "IsPerpendicularBisectorOfLine(DE,AB)"
+  ],
+  "image_cdl": [],
+  "goal_cdl": "Value(LengthOfLine(AB))",
+  "problem_answer": "12",
+  "theorem_seqs": [
+    "perpendicular_bisector_property_distance_equal(1,DE,AB)",
+    "line_addition(1,AD,DC)",
+    "triangle_perimeter_formula(1,DBC)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "perpendicular_bisector_property_distance_equal(1,DE,AB)",
+      "line_addition(1,AD,DC)",
+      "triangle_perimeter_formula(1,DBC)"
+    ]
+  }
+}

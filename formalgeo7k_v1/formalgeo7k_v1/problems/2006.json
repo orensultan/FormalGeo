@@ -1,0 +1,44 @@
+{
+  "problem_id": 2006,
+  "annotation": "ZheZhu_2023-04-16",
+  "source": "Geometry3k-2091",
+  "problem_level": 3,
+  "problem_text_cn": "如图所示，∠HBF=38°，NO∥MH。求∠OCB的大小。",
+  "problem_text_en": "As shown in the diagram, ∠HBF=38°, NO∥MH. Find the measure of ∠OCB.",
+  "problem_img": "2006.png",
+  "construction_cdl": [
+    "Shape(OC,CB)",
+    "Shape(HB,BF)",
+    "Shape(CK,KB,BC)",
+    "Collinear(JCBF)",
+    "Collinear(ICKG)",
+    "Collinear(NCO)",
+    "Collinear(MKBH)"
+  ],
+  "text_cdl": [
+    "Equal(MeasureOfAngle(HBF),38)",
+    "ParallelBetweenLine(NO,MH)"
+  ],
+  "image_cdl": [
+    "Equal(MeasureOfAngle(HBF),38)",
+    "ParallelBetweenLine(NO,MH)"
+  ],
+  "goal_cdl": "Value(MeasureOfAngle(OCB))",
+  "problem_answer": "38",
+  "theorem_seqs": [
+    "parallel_property_collinear_extend(3,NO,MH,C)",
+    "parallel_property_collinear_extend(3,HM,OC,B)",
+    "parallel_property_corresponding_angle(2,CO,BH,F)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "parallel_property_collinear_extend(3,NO,MH,C)"
+    ],
+    "parallel_property_collinear_extend(3,NO,MH,C)": [
+      "parallel_property_collinear_extend(3,HM,OC,B)"
+    ],
+    "parallel_property_collinear_extend(3,HM,OC,B)": [
+      "parallel_property_corresponding_angle(2,CO,BH,F)"
+    ]
+  }
+}
