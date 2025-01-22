@@ -1,0 +1,38 @@
+{
+  "problem_id": 3729,
+  "annotation": "YangLi_2023-04-30",
+  "source": "GeoQA-1510",
+  "problem_level": 4,
+  "problem_text_cn": "如图所示，∠EAB=80°，∠EBC=40°，三角形ABC与三角形DBC是镜像全等三角形。求∠ECD的大小。",
+  "problem_text_en": "As shown in the diagram, ∠EAB=80°, ∠EBC=40°, triangle ABC is mirror congruent to triangle DBC. Find the measure of ∠ECD.",
+  "problem_img": "3729.png",
+  "construction_cdl": [
+    "Shape(AB,BE,EA)",
+    "Shape(DE,EC,CD)",
+    "Shape(EB,BC,CE)",
+    "Collinear(AEC)",
+    "Collinear(BED)"
+  ],
+  "text_cdl": [
+    "Equal(MeasureOfAngle(EAB),80)",
+    "Equal(MeasureOfAngle(EBC),40)",
+    "MirrorCongruentBetweenTriangle(ABC,DBC)"
+  ],
+  "image_cdl": [],
+  "goal_cdl": "Value(MeasureOfAngle(ECD))",
+  "problem_answer": "20",
+  "theorem_seqs": [
+    "mirror_congruent_triangle_property_angle_equal(1,ABC,DBC)",
+    "mirror_congruent_triangle_property_angle_equal(1,CAB,BCD)",
+    "triangle_property_angle_sum(1,DBC)",
+    "angle_addition(1,BCE,ECD)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "mirror_congruent_triangle_property_angle_equal(1,ABC,DBC)",
+      "mirror_congruent_triangle_property_angle_equal(1,CAB,BCD)",
+      "triangle_property_angle_sum(1,DBC)",
+      "angle_addition(1,BCE,ECD)"
+    ]
+  }
+}

@@ -20,14 +20,14 @@ Shape(BD,BDC,CB)
 Shape(BDC,CB,BD)
 Shape(BF,BFD,DB)
 Shape(BFD,DB,BF)
-Shape(BC,BCF,BFD,DB)
-Shape(BCF,BFD,DB,BC)
-Shape(BFD,DB,BC,BCF)
-Shape(DB,BC,BCF,BFD)
 Shape(BCF,FB,BD,BDC)
 Shape(FB,BD,BDC,BCF)
 Shape(BD,BDC,BCF,FB)
 Shape(BDC,BCF,FB,BD)
+Shape(BC,BCF,BFD,DB)
+Shape(BCF,BFD,DB,BC)
+Shape(BFD,DB,BC,BCF)
+Shape(DB,BC,BCF,BFD)
 Shape(BDC,CB,BF,BFD)
 Shape(CB,BF,BFD,BDC)
 Shape(BF,BFD,BDC,CB)
@@ -65,8 +65,8 @@ Arc(BDC)
 Angle(FBC)
 Angle(CBD)
 Angle(DBF)
-Angle(DBC)
 Angle(FBD)
+Angle(DBC)
 Angle(CBF)
 Circle(B)
 SYMBOLS_AND_VALUES:
@@ -90,8 +90,8 @@ ANSWER:
 225
 
 THEOREM_SEQUENCE:
-1; angle_addition(1,FBC,CBD); Angle(FBC)&Angle(CBD)&Angle(FBD); ["Equal(MeasureOfAngle(FBD),Add(MeasureOfAngle(FBC),MeasureOfAngle(CBD)))"]  
-2; round_angle(1,DBF,FBD); Angle(DBF)&Angle(FBD); ["Equal(Add(MeasureOfAngle(DBF),MeasureOfAngle(FBD)),360)"]  
+1; angle_addition(1,FBC,CBD); Angle(FBC)&Angle(CBD)&Angle(FBD); ["Equal(MeasureOfAngle(FBD),Add(MeasureOfAngle(FBC),MeasureOfAngle(CBD)))"]
+2; round_angle(1,DBF,FBD); Angle(DBF)&Angle(FBD); ["Equal(Add(MeasureOfAngle(DBF),MeasureOfAngle(FBD)),360)"]
 
 
 GT_EQUATIONS:

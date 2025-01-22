@@ -1,0 +1,40 @@
+{
+  "problem_id": 2003,
+  "annotation": "ZheZhu_2023-04-16",
+  "source": "Geometry3k-2088",
+  "problem_level": 2,
+  "problem_text_cn": "如图所示，∠BTS=3*x-5°，∠VUS=2*x+15°。求∠VTS的大小。",
+  "problem_text_en": "As shown in the diagram, ∠BTS=3*x-5°, ∠VUS=2*x+15°. Find the measure of ∠VTS.",
+  "problem_img": "2003.png",
+  "construction_cdl": [
+    "Shape(ATS,ST)",
+    "Shape(TS,SB,BT)",
+    "Shape(ASV,VB,BS)",
+    "Shape(BV,VU,UB)",
+    "Shape(AVU,UV)",
+    "Shape(AUT,TB,BU)",
+    "Collinear(TBV)",
+    "Collinear(UBS)",
+    "Cocircular(A,UTSV)"
+  ],
+  "text_cdl": [
+    "Equal(MeasureOfAngle(BTS),3*x-5)",
+    "Equal(MeasureOfAngle(VUS),2*x+15)"
+  ],
+  "image_cdl": [
+    "Equal(MeasureOfAngle(BTS),3*x-5)",
+    "Equal(MeasureOfAngle(VUS),2*x+15)"
+  ],
+  "goal_cdl": "Value(MeasureOfAngle(VTS))",
+  "problem_answer": "55",
+  "theorem_seqs": [
+    "arc_property_circumference_angle_external(1,ASV,U)",
+    "arc_property_circumference_angle_external(1,ASV,T)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "arc_property_circumference_angle_external(1,ASV,U)",
+      "arc_property_circumference_angle_external(1,ASV,T)"
+    ]
+  }
+}

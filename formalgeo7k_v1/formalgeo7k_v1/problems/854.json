@@ -1,0 +1,96 @@
+{
+  "problem_id": 854,
+  "annotation": "NaZhu_2023-04-09",
+  "source": "Geometry3k-883",
+  "problem_level": 16,
+  "problem_text_cn": "如图所示，RP=6，SQ=4，圆R的圆心为R，S是⊙S的圆心，PQ是⊙O的切线，QP是圆O的切线，MA垂直于RA。求直线PQ的长度。",
+  "problem_text_en": "As shown in the diagram, RP=6, SQ=4, the center of ⊙R is R, S is the center of circle S, the tangent to circle S is PQ, QP is the tangent to ⊙R, MA is perpendicular to RA. Find the length of line PQ.",
+  "problem_img": "854.png",
+  "construction_cdl": [
+    "Shape(RPC,CR,RA,AP)",
+    "Shape(RCM,MA,AR,RC)",
+    "Shape(RMP,PA,AM)",
+    "Shape(RCM,SNC,NM)",
+    "Shape(SNC,CS,SN)",
+    "Shape(SQN,NS,SQ)",
+    "Shape(SCQ,QS,SC)",
+    "Shape(RMP,MN,SQN,QP)",
+    "Collinear(RAP)",
+    "Collinear(RCS)",
+    "Collinear(AMNS)",
+    "Cocircular(R,CMP)",
+    "Cocircular(S,QNC)"
+  ],
+  "text_cdl": [
+    "Equal(LengthOfLine(RP),6)",
+    "Equal(LengthOfLine(SQ),4)",
+    "IsCentreOfCircle(R,R)",
+    "IsCentreOfCircle(S,S)",
+    "IsTangentOfCircle(PQ,S)",
+    "IsTangentOfCircle(QP,R)",
+    "PerpendicularBetweenLine(MA,RA)"
+  ],
+  "image_cdl": [
+    "Equal(LengthOfLine(RP),6)",
+    "Equal(LengthOfLine(SQ),4)",
+    "IsCentreOfCircle(R,R)",
+    "IsCentreOfCircle(S,S)",
+    "PerpendicularBetweenLine(MA,RA)"
+  ],
+  "goal_cdl": "Value(LengthOfLine(PQ))",
+  "problem_answer": "4*sqrt(6)",
+  "theorem_seqs": [
+    "radius_of_circle_property_length_equal(1,RP,R)",
+    "radius_of_circle_property_length_equal(1,RC,R)",
+    "radius_of_circle_property_length_equal(1,SQ,S)",
+    "radius_of_circle_property_length_equal(1,SC,S)",
+    "line_addition(1,RC,CS)",
+    "tangent_of_circle_property_perpendicular(1,PQ,S,S)",
+    "tangent_of_circle_property_perpendicular(2,QP,R,R)",
+    "parallel_judgment_corresponding_angle(2,PQ,AS,R)",
+    "parallel_judgment_per_per(1,QS,PR)",
+    "parallel_property_collinear_extend(3,RP,SQ,A)",
+    "parallelogram_judgment_parallel_and_parallel(1,PASQ)",
+    "parallelogram_property_opposite_line_equal(1,PASQ)",
+    "parallelogram_property_opposite_line_equal(1,ASQP)",
+    "line_addition(1,PA,AR)",
+    "right_triangle_judgment_angle(1,SAR)",
+    "right_triangle_property_pythagorean(1,SAR)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "radius_of_circle_property_length_equal(1,RP,R)",
+      "radius_of_circle_property_length_equal(1,RC,R)",
+      "radius_of_circle_property_length_equal(1,SQ,S)",
+      "radius_of_circle_property_length_equal(1,SC,S)",
+      "line_addition(1,RC,CS)",
+      "tangent_of_circle_property_perpendicular(1,PQ,S,S)",
+      "tangent_of_circle_property_perpendicular(2,QP,R,R)",
+      "line_addition(1,PA,AR)",
+      "right_triangle_judgment_angle(1,SAR)"
+    ],
+    "tangent_of_circle_property_perpendicular(1,PQ,S,S)": [
+      "parallel_judgment_per_per(1,QS,PR)"
+    ],
+    "tangent_of_circle_property_perpendicular(2,QP,R,R)": [
+      "parallel_judgment_per_per(1,QS,PR)",
+      "parallel_judgment_corresponding_angle(2,PQ,AS,R)"
+    ],
+    "parallel_judgment_corresponding_angle(2,PQ,AS,R)": [
+      "parallelogram_judgment_parallel_and_parallel(1,PASQ)"
+    ],
+    "parallel_judgment_per_per(1,QS,PR)": [
+      "parallel_property_collinear_extend(3,RP,SQ,A)"
+    ],
+    "parallel_property_collinear_extend(3,RP,SQ,A)": [
+      "parallelogram_judgment_parallel_and_parallel(1,PASQ)"
+    ],
+    "parallelogram_judgment_parallel_and_parallel(1,PASQ)": [
+      "parallelogram_property_opposite_line_equal(1,PASQ)",
+      "parallelogram_property_opposite_line_equal(1,ASQP)"
+    ],
+    "right_triangle_judgment_angle(1,SAR)": [
+      "right_triangle_property_pythagorean(1,SAR)"
+    ]
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "problem_id": 5318,
+  "annotation": "YanjunGuo_2023-05-21",
+  "source": "GeoQA-5528",
+  "problem_level": 2,
+  "problem_text_cn": "如图所示，AB=8，∠ADC=90°，∠CBA=30°，∠DCA=45°。求直线AC的长度。",
+  "problem_text_en": "As shown in the diagram, AB=8, ∠ADC=90°, ∠CBA=30°, ∠DCA=45°. Find the length of line AC.",
+  "problem_img": "5318.png",
+  "construction_cdl": [
+    "Shape(AD,DC,CA)",
+    "Shape(AC,CB,BA)",
+    "Collinear(DCB)"
+  ],
+  "text_cdl": [
+    "Equal(LengthOfLine(AB),8)",
+    "Equal(MeasureOfAngle(ADC),90)",
+    "Equal(MeasureOfAngle(CBA),30)",
+    "Equal(MeasureOfAngle(DCA),45)"
+  ],
+  "image_cdl": [],
+  "goal_cdl": "Value(LengthOfLine(AC))",
+  "problem_answer": "4*sqrt(2)",
+  "theorem_seqs": [
+    "sine_theorem(1,ADC)",
+    "sine_theorem(1,ADB)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "sine_theorem(1,ADC)",
+      "sine_theorem(1,ADB)"
+    ]
+  }
+}

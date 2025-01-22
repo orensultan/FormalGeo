@@ -1,0 +1,51 @@
+{
+  "problem_id": 2975,
+  "annotation": "NaZhu_2023-04-16",
+  "source": "GeoQA-172",
+  "problem_level": 7,
+  "problem_text_cn": "如图所示，∠DBC=30°，D平分线段AB，E平分线段AC，三角形ADE镜像全等于三角形PED。求∠QDB的大小。",
+  "problem_text_en": "As shown in the diagram, ∠DBC=30°, D bisects segment AB, E bisects segment AC, △ADE is mirror congruent to △PED. Find the measure of ∠QDB.",
+  "problem_img": "2975.png",
+  "construction_cdl": [
+    "Shape(AD,DE,EA)",
+    "Shape(ED,DQ,QE)",
+    "Shape(PE,EQ,QP)",
+    "Shape(QD,DB,BC,CQ)",
+    "Collinear(AEQC)",
+    "Collinear(ADB)",
+    "Collinear(DQP)"
+  ],
+  "text_cdl": [
+    "Equal(MeasureOfAngle(DBC),30)",
+    "IsMidpointOfLine(D,AB)",
+    "IsMidpointOfLine(E,AC)",
+    "MirrorCongruentBetweenTriangle(ADE,PED)"
+  ],
+  "image_cdl": [],
+  "goal_cdl": "Value(MeasureOfAngle(QDB))",
+  "problem_answer": "120",
+  "theorem_seqs": [
+    "midsegment_of_triangle_judgment_midpoint(1,DE,ABC)",
+    "midsegment_of_triangle_property_parallel(1,DE,ABC)",
+    "parallel_property_corresponding_angle(1,DE,BC,A)",
+    "mirror_congruent_triangle_property_angle_equal(1,DEA,DPE)",
+    "angle_addition(1,ADE,EDQ)",
+    "flat_angle(1,ADB)",
+    "angle_addition(1,ADQ,QDB)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "midsegment_of_triangle_judgment_midpoint(1,DE,ABC)",
+      "mirror_congruent_triangle_property_angle_equal(1,DEA,DPE)",
+      "angle_addition(1,ADE,EDQ)",
+      "flat_angle(1,ADB)",
+      "angle_addition(1,ADQ,QDB)"
+    ],
+    "midsegment_of_triangle_judgment_midpoint(1,DE,ABC)": [
+      "midsegment_of_triangle_property_parallel(1,DE,ABC)"
+    ],
+    "midsegment_of_triangle_property_parallel(1,DE,ABC)": [
+      "parallel_property_corresponding_angle(1,DE,BC,A)"
+    ]
+  }
+}

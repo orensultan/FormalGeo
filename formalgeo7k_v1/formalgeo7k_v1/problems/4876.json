@@ -1,0 +1,40 @@
+{
+  "problem_id": 4876,
+  "annotation": "YifanWang_2023-05-21",
+  "source": "GeoQA-4394",
+  "problem_level": 4,
+  "problem_text_cn": "如图所示，∠BSC=30°，圆O的圆心为O，SC是圆O的切线。求∠CAB的大小。",
+  "problem_text_en": "As shown in the diagram, ∠BSC=30°, O is the center of ⊙O, SC is the tangent to circle O. Find the measure of ∠CAB.",
+  "problem_img": "4876.png",
+  "construction_cdl": [
+    "Shape(AC,OCA)",
+    "Shape(CA,AO,OC)",
+    "Shape(CO,OB,OBC)",
+    "Shape(BS,SC,OBC)",
+    "Shape(BO,OA,OAB)",
+    "Collinear(AOBS)",
+    "Cocircular(O,ABC)"
+  ],
+  "text_cdl": [
+    "Equal(MeasureOfAngle(BSC),30)",
+    "IsCentreOfCircle(O,O)",
+    "IsTangentOfCircle(SC,O)"
+  ],
+  "image_cdl": [],
+  "goal_cdl": "Value(MeasureOfAngle(CAB))",
+  "problem_answer": "30",
+  "theorem_seqs": [
+    "tangent_of_circle_property_perpendicular(2,SC,O,O)",
+    "triangle_property_angle_sum(1,COS)",
+    "arc_property_center_angle(1,OBC,O)",
+    "arc_property_circumference_angle_external(1,OBC,A)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "tangent_of_circle_property_perpendicular(2,SC,O,O)",
+      "triangle_property_angle_sum(1,COS)",
+      "arc_property_center_angle(1,OBC,O)",
+      "arc_property_circumference_angle_external(1,OBC,A)"
+    ]
+  }
+}

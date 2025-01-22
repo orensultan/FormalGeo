@@ -1,0 +1,36 @@
+{
+  "problem_id": 3334,
+  "annotation": "YimingHe_2023-04-30",
+  "source": "GeoQA-743",
+  "problem_level": 3,
+  "problem_text_cn": "如图所示，BC=2，BD=1/2，DE=1，三角形ADE与三角形ABC是相似三角形。求直线AB的长度。",
+  "problem_text_en": "As shown in the diagram, BC=2, BD=1/2, DE=1, triangle ADE is similar to triangle ABC.. Find the length of line AB.",
+  "problem_img": "3334.png",
+  "construction_cdl": [
+    "Shape(AD,DE,EA)",
+    "Shape(DB,BC,CE,ED)",
+    "Collinear(ADB)",
+    "Collinear(AEC)"
+  ],
+  "text_cdl": [
+    "Equal(LengthOfLine(BC),2)",
+    "Equal(LengthOfLine(BD),1/2)",
+    "Equal(LengthOfLine(DE),1)",
+    "SimilarBetweenTriangle(ADE,ABC)"
+  ],
+  "image_cdl": [],
+  "goal_cdl": "Value(LengthOfLine(AB))",
+  "problem_answer": "1",
+  "theorem_seqs": [
+    "line_addition(1,AD,DB)",
+    "similar_triangle_property_line_ratio(1,ADE,ABC)",
+    "similar_triangle_property_line_ratio(1,EAD,CAB)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "line_addition(1,AD,DB)",
+      "similar_triangle_property_line_ratio(1,ADE,ABC)",
+      "similar_triangle_property_line_ratio(1,EAD,CAB)"
+    ]
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "problem_id": 3304,
+  "annotation": "YimingHe_2023-04-30",
+  "source": "GeoQA-649",
+  "problem_level": 1,
+  "problem_text_cn": "如图所示，∠COB=40°，AO垂直于BO。求∠AOC的大小。",
+  "problem_text_en": "As shown in the diagram, ∠COB=40°, AO⊥BO. Find the measure of ∠AOC.",
+  "problem_img": "3304.png",
+  "construction_cdl": [
+    "Shape(AO,OC)",
+    "Shape(CO,OB)"
+  ],
+  "text_cdl": [
+    "Equal(MeasureOfAngle(COB),40)",
+    "PerpendicularBetweenLine(AO,BO)"
+  ],
+  "image_cdl": [],
+  "goal_cdl": "Value(MeasureOfAngle(AOC))",
+  "problem_answer": "50",
+  "theorem_seqs": [
+    "angle_addition(1,AOC,COB)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "angle_addition(1,AOC,COB)"
+    ]
+  }
+}

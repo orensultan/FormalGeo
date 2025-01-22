@@ -1,0 +1,32 @@
+{
+  "problem_id": 5527,
+  "annotation": "ZheZhu_2023-05-21",
+  "source": "GeoQA-6663",
+  "problem_level": 2,
+  "problem_text_cn": "如图所示，⌒OAB的长度为20*pi，圆O的半径为24，圆O的圆心为O。求扇形OAB的面积。",
+  "problem_text_en": "As shown in the diagram, the length of ⌒OAB is 20*pi, the radius of circle O is 24, O is the center of circle O. Find the area of the sector OAB.",
+  "problem_img": "5527.png",
+  "construction_cdl": [
+    "Shape(OA,OAB,BO)",
+    "Shape(OB,OBA,AO)",
+    "Cocircular(O,AB)"
+  ],
+  "text_cdl": [
+    "Equal(LengthOfArc(OAB),20*pi)",
+    "Equal(RadiusOfCircle(O),24)",
+    "IsCentreOfCircle(O,O)"
+  ],
+  "image_cdl": [],
+  "goal_cdl": "Value(AreaOfSector(OAB))",
+  "problem_answer": "240*pi",
+  "theorem_seqs": [
+    "arc_length_formula(1,OAB)",
+    "sector_area_formula(1,OAB)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "arc_length_formula(1,OAB)",
+      "sector_area_formula(1,OAB)"
+    ]
+  }
+}

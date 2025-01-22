@@ -1,0 +1,50 @@
+{
+  "problem_id": 2908,
+  "annotation": "JiaZou_2023-04-16",
+  "source": "GeoQA-84",
+  "problem_level": 5,
+  "problem_text_cn": "如图所示，∠ACG=120°，∠BAD=80°，DE平行于FG。求∠CAB的大小。",
+  "problem_text_en": "As shown in the diagram, ∠ACG=120°, ∠BAD=80°, DE is parallel to FG. Find the measure of ∠CAB.",
+  "problem_img": "2908.png",
+  "construction_cdl": [
+    "Shape(BA,AD)",
+    "Shape(FB,BA)",
+    "Shape(EA,AC)",
+    "Shape(AC,CG)",
+    "Shape(AB,BC,CA)",
+    "Collinear(DAE)",
+    "Collinear(FBCG)"
+  ],
+  "text_cdl": [
+    "Equal(MeasureOfAngle(ACG),120)",
+    "Equal(MeasureOfAngle(BAD),80)",
+    "ParallelBetweenLine(DE,FG)"
+  ],
+  "image_cdl": [
+    "Equal(MeasureOfAngle(ACG),120)",
+    "Equal(MeasureOfAngle(BAD),80)",
+    "ParallelBetweenLine(DE,FG)"
+  ],
+  "goal_cdl": "Value(MeasureOfAngle(CAB))",
+  "problem_answer": "40",
+  "theorem_seqs": [
+    "parallel_property_collinear_extend(3,DE,FG,A)",
+    "parallel_property_collinear_extend(3,GF,EA,C)",
+    "parallel_property_ipsilateral_internal_angle(1,AE,CG)",
+    "angle_addition(1,CAB,BAD)",
+    "adjacent_complementary_angle(1,EAC,CAD)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "parallel_property_collinear_extend(3,DE,FG,A)",
+      "angle_addition(1,CAB,BAD)",
+      "adjacent_complementary_angle(1,EAC,CAD)"
+    ],
+    "parallel_property_collinear_extend(3,DE,FG,A)": [
+      "parallel_property_collinear_extend(3,GF,EA,C)"
+    ],
+    "parallel_property_collinear_extend(3,GF,EA,C)": [
+      "parallel_property_ipsilateral_internal_angle(1,AE,CG)"
+    ]
+  }
+}

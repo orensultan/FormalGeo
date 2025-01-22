@@ -1,0 +1,49 @@
+{
+  "problem_id": 4777,
+  "annotation": "YangLi_2023-05-14",
+  "source": "GeoQA-4161",
+  "problem_level": 6,
+  "problem_text_cn": "如图所示，PA=15，O是圆O的圆心，CA是⊙O的切线，⊙O的切线为CE，DB是⊙O的切线，DE是圆O的切线，PA是⊙O的切线，⊙O的切线为PB。求直线PC的长度、直线CD的长度与直线DP的长度之和。",
+  "problem_text_en": "As shown in the diagram, PA=15, the center of ⊙O is O, the tangent to circle O is CA, the tangent to circle O is CE, the tangent to circle O is DB, the tangent to ⊙O is DE, PA is the tangent to circle O, PB is the tangent to ⊙O. Find the sum of the length of line PC, the length of line CD and the length of line DP.",
+  "problem_img": "4777.png",
+  "construction_cdl": [
+    "Shape(PC,CE,ED,DP)",
+    "Shape(BD,DE,OBE)",
+    "Shape(EC,CA,OEA)",
+    "Collinear(BDP)",
+    "Collinear(ACP)",
+    "Collinear(CED)",
+    "Cocircular(O,BEA)"
+  ],
+  "text_cdl": [
+    "Equal(LengthOfLine(PA),15)",
+    "IsCentreOfCircle(O,O)",
+    "IsTangentOfCircle(CA,O)",
+    "IsTangentOfCircle(CE,O)",
+    "IsTangentOfCircle(DB,O)",
+    "IsTangentOfCircle(DE,O)",
+    "IsTangentOfCircle(PA,O)",
+    "IsTangentOfCircle(PB,O)"
+  ],
+  "image_cdl": [],
+  "goal_cdl": "Value(Add(LengthOfLine(PC),LengthOfLine(CD),LengthOfLine(DP)))",
+  "problem_answer": "30",
+  "theorem_seqs": [
+    "tangent_of_circle_property_length_equal(1,CE,CA,O)",
+    "tangent_of_circle_property_length_equal(1,DE,DB,O)",
+    "tangent_of_circle_property_length_equal(1,PA,PB,O)",
+    "line_addition(1,BD,DP)",
+    "line_addition(1,AC,CP)",
+    "line_addition(1,CE,ED)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "tangent_of_circle_property_length_equal(1,CE,CA,O)",
+      "tangent_of_circle_property_length_equal(1,DE,DB,O)",
+      "tangent_of_circle_property_length_equal(1,PA,PB,O)",
+      "line_addition(1,BD,DP)",
+      "line_addition(1,AC,CP)",
+      "line_addition(1,CE,ED)"
+    ]
+  }
+}

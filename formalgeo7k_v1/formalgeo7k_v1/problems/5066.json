@@ -1,0 +1,34 @@
+{
+  "problem_id": 5066,
+  "annotation": "ChengQin_2023-05-21",
+  "source": "GeoQA-4835",
+  "problem_level": 2,
+  "problem_text_cn": "如图所示，AB=10，AC=8，三角形CBA镜像相似于三角形DAC，AC和CB是直角三角形ACB的两个直角边，∠CDA是直角三角形CDA的直角。求直线AD的长度。",
+  "problem_text_en": "As shown in the diagram, AB=10, AC=8, Triangle CBA is mirror similar to triangle DAC., △ACB is a right △, CD and DA are the legs of the right triangle CDA. Find the length of line AD.",
+  "problem_img": "5066.png",
+  "construction_cdl": [
+    "Shape(CB,BD,DC)",
+    "Shape(CD,DA,AC)",
+    "Collinear(BDA)"
+  ],
+  "text_cdl": [
+    "Equal(LengthOfLine(AB),10)",
+    "Equal(LengthOfLine(AC),8)",
+    "MirrorSimilarBetweenTriangle(CBA,DAC)",
+    "RightTriangle(ACB)",
+    "RightTriangle(CDA)"
+  ],
+  "image_cdl": [],
+  "goal_cdl": "Value(LengthOfLine(AD))",
+  "problem_answer": "32/5",
+  "theorem_seqs": [
+    "mirror_similar_triangle_property_line_ratio(1,CBA,DAC)",
+    "mirror_similar_triangle_property_line_ratio(1,BAC,CDA)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "mirror_similar_triangle_property_line_ratio(1,CBA,DAC)",
+      "mirror_similar_triangle_property_line_ratio(1,BAC,CDA)"
+    ]
+  }
+}

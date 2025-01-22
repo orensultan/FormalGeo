@@ -1,0 +1,39 @@
+{
+  "problem_id": 3968,
+  "annotation": "ZheZhu_2023-04-30",
+  "source": "GeoQA-1905",
+  "problem_level": 2,
+  "problem_text_cn": "如图所示，∠COB=72°，圆O的圆心为O。求∠CAB的大小。",
+  "problem_text_en": "As shown in the diagram, ∠COB=72°, O is the center of circle O. Find the measure of ∠CAB.",
+  "problem_img": "3968.png",
+  "construction_cdl": [
+    "Shape(OB,BD,DO)",
+    "Shape(DB,OBC,CD)",
+    "Shape(AD,DC,CA)",
+    "Shape(OCA,AC)",
+    "Shape(OD,DA,OAB,BO)",
+    "Collinear(ODC)",
+    "Collinear(BDA)",
+    "Cocircular(O,BCA)"
+  ],
+  "text_cdl": [
+    "Equal(MeasureOfAngle(COB),72)",
+    "IsCentreOfCircle(O,O)"
+  ],
+  "image_cdl": [
+    "Equal(MeasureOfAngle(COB),72)",
+    "IsCentreOfCircle(O,O)"
+  ],
+  "goal_cdl": "Value(MeasureOfAngle(CAB))",
+  "problem_answer": "36",
+  "theorem_seqs": [
+    "arc_property_center_angle(1,OBC,O)",
+    "arc_property_circumference_angle_external(1,OBC,A)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "arc_property_center_angle(1,OBC,O)",
+      "arc_property_circumference_angle_external(1,OBC,A)"
+    ]
+  }
+}

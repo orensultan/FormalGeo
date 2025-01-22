@@ -1,0 +1,44 @@
+{
+  "problem_id": 2946,
+  "annotation": "JiaZou_2023-04-16",
+  "source": "GeoQA-133",
+  "problem_level": 4,
+  "problem_text_cn": "如图所示，∠DAB=65°，⊙O的圆心为O，DE垂直于OE。求∠COA的大小。",
+  "problem_text_en": "As shown in the diagram, ∠DAB=65°, O is the center of circle O, DE is perpendicular to OE. Find the measure of ∠COA.",
+  "problem_img": "2946.png",
+  "construction_cdl": [
+    "Shape(AD,ODA)",
+    "Shape(DA,AE,ED)",
+    "Shape(CE,EA,OAC)",
+    "Shape(OE,EC,CO)",
+    "Shape(BO,OC,OCB)",
+    "Shape(DE,EO,OB,OBD)",
+    "Collinear(AEOB)",
+    "Collinear(DEC)",
+    "Cocircular(O,ACBD)"
+  ],
+  "text_cdl": [
+    "Equal(MeasureOfAngle(DAB),65)",
+    "IsCentreOfCircle(O,O)",
+    "PerpendicularBetweenLine(DE,OE)"
+  ],
+  "image_cdl": [
+    "IsCentreOfCircle(O,O)"
+  ],
+  "goal_cdl": "Value(MeasureOfAngle(COA))",
+  "problem_answer": "50",
+  "theorem_seqs": [
+    "adjacent_complementary_angle(1,AED,DEO)",
+    "triangle_property_angle_sum(1,DAE)",
+    "arc_property_circumference_angle_external(1,OAC,D)",
+    "arc_property_center_angle(1,OAC,O)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "adjacent_complementary_angle(1,AED,DEO)",
+      "triangle_property_angle_sum(1,DAE)",
+      "arc_property_circumference_angle_external(1,OAC,D)",
+      "arc_property_center_angle(1,OAC,O)"
+    ]
+  }
+}

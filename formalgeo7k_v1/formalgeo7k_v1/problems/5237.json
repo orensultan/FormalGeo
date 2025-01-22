@@ -1,0 +1,35 @@
+{
+  "problem_id": 5237,
+  "annotation": "XiaokaiZhang_2023-05-21",
+  "source": "GeoQA-5305",
+  "problem_level": 4,
+  "problem_text_cn": "如图所示，∠ABC=Mul(3,MeasureOfAngle(DBC))°，∠BCD=130°，∠CDA=Mul(3,MeasureOfAngle(CDB))°。求∠DAB的大小。",
+  "problem_text_en": "As shown in the diagram, ∠ABC=Mul(3,MeasureOfAngle(DBC))°, ∠BCD=130°, ∠CDA=Mul(3,MeasureOfAngle(CDB))°. Find the measure of ∠DAB.",
+  "problem_img": "5237.png",
+  "construction_cdl": [
+    "Shape(AB,BD,DA)",
+    "Shape(CD,DB,BC)"
+  ],
+  "text_cdl": [
+    "Equal(MeasureOfAngle(ABC),Mul(3,MeasureOfAngle(DBC)))",
+    "Equal(MeasureOfAngle(BCD),130)",
+    "Equal(MeasureOfAngle(CDA),Mul(3,MeasureOfAngle(CDB)))"
+  ],
+  "image_cdl": [],
+  "goal_cdl": "Value(MeasureOfAngle(DAB))",
+  "problem_answer": "80",
+  "theorem_seqs": [
+    "triangle_property_angle_sum(1,ABD)",
+    "triangle_property_angle_sum(1,CDB)",
+    "angle_addition(1,ABD,DBC)",
+    "angle_addition(1,CDB,BDA)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "triangle_property_angle_sum(1,ABD)",
+      "triangle_property_angle_sum(1,CDB)",
+      "angle_addition(1,ABD,DBC)",
+      "angle_addition(1,CDB,BDA)"
+    ]
+  }
+}

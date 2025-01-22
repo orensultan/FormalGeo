@@ -1,0 +1,37 @@
+{
+  "problem_id": 1458,
+  "annotation": "YanjunGuo_2023-04-09",
+  "source": "Geometry3k-1512",
+  "problem_level": 2,
+  "problem_text_cn": "如图所示，DF=6，FC=8，△CFB的周长为27，△DFE与△CFB是相似三角形。求△DFE的周长。",
+  "problem_text_en": "As shown in the diagram, DF=6, FC=8, the perimeter of triangle CFB is 27, triangle DFE is similar to triangle CFB.. Find the perimeter of △DFE.",
+  "problem_img": "1458.png",
+  "construction_cdl": [
+    "Shape(EA,AD,DE)",
+    "Shape(ED,DF,FE)",
+    "Shape(FD,DB,BF)",
+    "Shape(FB,BC,CF)",
+    "Shape(EF,FC,CE)",
+    "Collinear(E,F,B)",
+    "Collinear(D,F,C)"
+  ],
+  "text_cdl": [
+    "Equal(LengthOfLine(DF),6)",
+    "Equal(LengthOfLine(FC),8)",
+    "Equal(PerimeterOfTriangle(CFB),27)",
+    "SimilarBetweenTriangle(DFE,CFB)"
+  ],
+  "image_cdl": [],
+  "goal_cdl": "Value(PerimeterOfTriangle(DFE))",
+  "problem_answer": "81/4",
+  "theorem_seqs": [
+    "similar_triangle_property_line_ratio(1,EDF,BCF)",
+    "similar_triangle_property_perimeter_ratio(1,EDF,BCF)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "similar_triangle_property_line_ratio(1,EDF,BCF)",
+      "similar_triangle_property_perimeter_ratio(1,EDF,BCF)"
+    ]
+  }
+}

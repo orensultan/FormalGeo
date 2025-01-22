@@ -1,0 +1,37 @@
+{
+  "problem_id": 4309,
+  "annotation": "ZheZhu_2023-05-07",
+  "source": "GeoQA-3139",
+  "problem_level": 2,
+  "problem_text_cn": "如图所示，∠APD=80°，∠CBP=30°。求∠PCB的大小。",
+  "problem_text_en": "As shown in the diagram, ∠APD=80°, ∠CBP=30°. Find the measure of ∠PCB.",
+  "problem_img": "4309.png",
+  "construction_cdl": [
+    "Shape(PC,CB,BP)",
+    "Shape(AP,PD,DA)",
+    "Shape(CP,PA,OAC)",
+    "Shape(OCB,BC)",
+    "Shape(PB,OBD,DP)",
+    "Shape(ODA,AD)",
+    "Collinear(CPD)",
+    "Collinear(APB)",
+    "Cocircular(P,CBDA)"
+  ],
+  "text_cdl": [
+    "Equal(MeasureOfAngle(APD),80)",
+    "Equal(MeasureOfAngle(CBP),30)"
+  ],
+  "image_cdl": [],
+  "goal_cdl": "Value(MeasureOfAngle(PCB))",
+  "problem_answer": "70",
+  "theorem_seqs": [
+    "vertical_angle(1,APD,BPC)",
+    "triangle_property_angle_sum(1,PCB)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "vertical_angle(1,APD,BPC)",
+      "triangle_property_angle_sum(1,PCB)"
+    ]
+  }
+}

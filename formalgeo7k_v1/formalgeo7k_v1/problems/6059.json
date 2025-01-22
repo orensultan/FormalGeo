@@ -1,0 +1,43 @@
+{
+  "problem_id": 6059,
+  "annotation": "ChenyangMao_2023-05-28",
+  "source": "GeoQA-8568",
+  "problem_level": 5,
+  "problem_text_cn": "如图所示，∠ABO=52°，∠ACO=18°，O是圆O的圆心。求∠CAB的大小。",
+  "problem_text_en": "As shown in the diagram, ∠ABO=52°, ∠ACO=18°, the center of ⊙O is O. Find the measure of ∠CAB.",
+  "problem_img": "6059.png",
+  "construction_cdl": [
+    "Shape(OBC,CD,DB)",
+    "Shape(OAB,BA)",
+    "Shape(OCA,AD,DO,OC)",
+    "Shape(AB,BD,DA)",
+    "Shape(DC,CO,OD)",
+    "Collinear(ADC)",
+    "Collinear(BDO)",
+    "Cocircular(O,ABC)"
+  ],
+  "text_cdl": [
+    "Equal(MeasureOfAngle(ABO),52)",
+    "Equal(MeasureOfAngle(ACO),18)",
+    "IsCentreOfCircle(O,O)"
+  ],
+  "image_cdl": [],
+  "goal_cdl": "Value(MeasureOfAngle(CAB))",
+  "problem_answer": "34",
+  "theorem_seqs": [
+    "arc_property_center_angle(1,OBC,O)",
+    "vertical_angle(1,BDA,ODC)",
+    "arc_property_circumference_angle_external(1,OBC,A)",
+    "triangle_property_angle_sum(1,ABD)",
+    "triangle_property_angle_sum(1,DCO)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "arc_property_center_angle(1,OBC,O)",
+      "vertical_angle(1,BDA,ODC)",
+      "arc_property_circumference_angle_external(1,OBC,A)",
+      "triangle_property_angle_sum(1,ABD)",
+      "triangle_property_angle_sum(1,DCO)"
+    ]
+  }
+}
