@@ -36,14 +36,14 @@ Shape(OBE,OEA,AO,OB)
 Shape(OEA,AO,OB,OBE)
 Shape(AO,OB,OBE,OEA)
 Shape(OB,OBE,OEA,AO)
-Shape(BA,AO,OD,DB)
-Shape(AO,OD,DB,BA)
-Shape(OD,DB,BA,AO)
-Shape(DB,BA,AO,OD)
 Shape(OB,BA,OAD,DO)
 Shape(BA,OAD,DO,OB)
 Shape(OAD,DO,OB,BA)
 Shape(DO,OB,BA,OAD)
+Shape(BA,AO,OD,DB)
+Shape(AO,OD,DB,BA)
+Shape(OD,DB,BA,AO)
+Shape(DB,BA,AO,OD)
 Shape(BO,OD,ODB)
 Shape(OD,ODB,BO)
 Shape(ODB,BO,OD)
@@ -51,16 +51,16 @@ Shape(DB,BO,OA,OAD)
 Shape(BO,OA,OAD,DB)
 Shape(OA,OAD,DB,BO)
 Shape(OAD,DB,BO,OA)
-Shape(OBE,OEA,AO,OD,DB)
-Shape(OEA,AO,OD,DB,OBE)
-Shape(AO,OD,DB,OBE,OEA)
-Shape(OD,DB,OBE,OEA,AO)
-Shape(DB,OBE,OEA,AO,OD)
 Shape(OBE,OEA,OAD,DO,OB)
 Shape(OEA,OAD,DO,OB,OBE)
 Shape(OAD,DO,OB,OBE,OEA)
 Shape(DO,OB,OBE,OEA,OAD)
 Shape(OB,OBE,OEA,OAD,DO)
+Shape(OBE,OEA,AO,OD,DB)
+Shape(OEA,AO,OD,DB,OBE)
+Shape(AO,OD,DB,OBE,OEA)
+Shape(OD,DB,OBE,OEA,AO)
+Shape(DB,OBE,OEA,AO,OD)
 Shape(AO,OB,BC,CE,OEA)
 Shape(OB,BC,CE,OEA,AO)
 Shape(BC,CE,OEA,AO,OB)
@@ -197,9 +197,9 @@ Angle(ODB)
 Angle(DBO)
 Angle(BCE)
 Angle(ABC)
+Angle(DOB)
 Angle(ADB)
 Angle(DBA)
-Angle(DOB)
 Angle(BOA)
 Angle(OBC)
 Angle(DBC)
@@ -252,11 +252,9 @@ GOAL_SYMBOL:
 ma_adb
 
 ANSWER:
-115
+65
 
 THEOREM_SEQUENCE:
-1; circle_property_angle_of_osculation(2,OAB,C); Arc(OAB)&Angle(CBA)&IsTangentOfCircle(CB,O); ["Equal(MeasureOfAngle(CBA),Mul(MeasureOfArc(OAB),1/2))"]
-2; arc_property_circumference_angle_internal(1,OAB,D); Cocircular(O,ADB)&Angle(ADB); ["Equal(MeasureOfAngle(ADB),Sub(180,Mul(MeasureOfArc(OAB),1/2)))"]
 
 
 GT_EQUATIONS:
@@ -266,13 +264,13 @@ ma_adb
 GT_ANSWER:
 65
 GT_THEOREM_SEQUENCE:
-tangent_of_circle_property_perpendicular(1,CB,O,O)
-angle_addition(1,OBA,ABC)
-radius_of_circle_property_length_equal(1,OA,O)
-radius_of_circle_property_length_equal(1,OB,O)
-isosceles_triangle_judgment_line_equal(1,OBA)
-isosceles_triangle_property_angle_equal(1,OBA)
-arc_property_center_angle(1,OBA,O)
-arc_property_circumference_angle_external(1,OBA,D)
-triangle_property_angle_sum(1,AOB)
+1;tangent_of_circle_property_perpendicular(1,CB,O,O);IsTangentOfCircle(CB,O)&Angle(OBC)&IsCentreOfCircle(O,O);["PerpendicularBetweenLine(OB,CB)"]
+2;angle_addition(1,OBA,ABC);Angle(OBA)&Angle(ABC)&Angle(OBC);["Equal(MeasureOfAngle(OBC),Add(MeasureOfAngle(OBA),MeasureOfAngle(ABC)))"]
+3;radius_of_circle_property_length_equal(1,OA,O);Cocircular(O,A)&Line(OA)&IsCentreOfCircle(O,O);["Equal(LengthOfLine(OA),RadiusOfCircle(O))"]
+4;radius_of_circle_property_length_equal(1,OB,O);Cocircular(O,B)&Line(OB)&IsCentreOfCircle(O,O);["Equal(LengthOfLine(OB),RadiusOfCircle(O))"]
+5;isosceles_triangle_judgment_line_equal(1,OBA);Polygon(OBA)&Equal(LengthOfLine(OB),LengthOfLine(OA));["IsoscelesTriangle(OBA)"]
+6;isosceles_triangle_property_angle_equal(1,OBA);IsoscelesTriangle(OBA);["Equal(MeasureOfAngle(OBA),MeasureOfAngle(BAO))"]
+7;arc_property_center_angle(1,OBA,O);Arc(OBA)&Angle(AOB)&IsCentreOfCircle(O,O);["Equal(MeasureOfArc(OBA),MeasureOfAngle(AOB))"]
+8;arc_property_circumference_angle_external(1,OBA,D);Cocircular(O,BAD)&Angle(ADB);["Equal(MeasureOfAngle(ADB),Mul(MeasureOfArc(OBA),1/2))"]
+9;triangle_property_angle_sum(1,AOB);Polygon(AOB);["Equal(Add(MeasureOfAngle(AOB),MeasureOfAngle(OBA),MeasureOfAngle(BAO)),180)"]
 

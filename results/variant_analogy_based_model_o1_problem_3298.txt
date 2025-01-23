@@ -140,9 +140,9 @@ ANSWER:
 10
 
 THEOREM_SEQUENCE:
-1; isosceles_triangle_judgment_line_equal(1,BOC); Polygon(BOC)&Equal(LengthOfLine(BO),LengthOfLine(CO)); ["IsoscelesTriangle(BOC)"]  
-2; isosceles_triangle_property_angle_equal(1,BOC); IsoscelesTriangle(BOC); ["Equal(MeasureOfAngle(OBC),MeasureOfAngle(OCB))"]  
-3; triangle_property_angle_sum(1,BOC); Polygon(BOC); ["Equal(Add(MeasureOfAngle(BOC),MeasureOfAngle(OBC),MeasureOfAngle(OCB)),180)"]  
+1; isosceles_triangle_judgment_line_equal(1,OBC); Polygon(OBC)&Equal(LengthOfLine(OB),LengthOfLine(OC)); ["IsoscelesTriangle(OBC)"]  
+2; isosceles_triangle_property_angle_equal(1,OBC); IsoscelesTriangle(OBC); ["Equal(MeasureOfAngle(OBC),MeasureOfAngle(BCO))"]  
+3; triangle_property_angle_sum(1,OBC); Polygon(OBC); ["Equal(Add(MeasureOfAngle(OBC),MeasureOfAngle(BCO),MeasureOfAngle(BOC)),180)"]  
 4; triangle_property_angle_sum(1,ABC); Polygon(ABC); ["Equal(Add(MeasureOfAngle(ABC),MeasureOfAngle(BCA),MeasureOfAngle(CAB)),180)"]  
 
 
@@ -156,10 +156,10 @@ ma_oab
 GT_ANSWER:
 10
 GT_THEOREM_SEQUENCE:
-incenter_of_triangle_judgment_intersection(1,O,ABC)
-triangle_property_angle_sum(1,OBC)
-angle_addition(1,ABO,OBC)
-angle_addition(1,BCO,OCA)
-triangle_property_angle_sum(1,ABC)
-angle_addition(1,CAO,OAB)
+1;incenter_of_triangle_judgment_intersection(1,O,ABC);Polygon(ABC)&IsBisectorOfAngle(BO,ABC)&IsBisectorOfAngle(CO,BCA);["IsIncenterOfTriangle(O,ABC)"]
+2;triangle_property_angle_sum(1,OBC);Polygon(OBC);["Equal(Add(MeasureOfAngle(OBC),MeasureOfAngle(BCO),MeasureOfAngle(COB)),180)"]
+3;angle_addition(1,ABO,OBC);Angle(ABO)&Angle(OBC)&Angle(ABC);["Equal(MeasureOfAngle(ABC),Add(MeasureOfAngle(ABO),MeasureOfAngle(OBC)))"]
+4;angle_addition(1,BCO,OCA);Angle(BCO)&Angle(OCA)&Angle(BCA);["Equal(MeasureOfAngle(BCA),Add(MeasureOfAngle(BCO),MeasureOfAngle(OCA)))"]
+5;triangle_property_angle_sum(1,ABC);Polygon(ABC);["Equal(Add(MeasureOfAngle(ABC),MeasureOfAngle(BCA),MeasureOfAngle(CAB)),180)"]
+6;angle_addition(1,CAO,OAB);Angle(CAO)&Angle(OAB)&Angle(CAB);["Equal(MeasureOfAngle(CAB),Add(MeasureOfAngle(CAO),MeasureOfAngle(OAB)))"]
 

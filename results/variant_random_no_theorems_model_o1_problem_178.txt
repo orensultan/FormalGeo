@@ -56,12 +56,12 @@ Outputs:
 Outputs for Problem B:
 
 EQUATIONS:
-CB=18
-CD=12
-∠BAD=115
+ll_cb=18
+ll_cd=12
+ma_bad=115
 
 GOAL_SYMBOL:
-∠ADC
+ma_adc
 
 ANSWER:
 65
@@ -78,5 +78,5 @@ ma_adc
 GT_ANSWER:
 65
 GT_THEOREM_SEQUENCE:
-parallel_property_ipsilateral_internal_angle(1,AB,DC)
+1;parallel_property_ipsilateral_internal_angle(1,AB,DC);ParallelBetweenLine(AB,DC)&Line(AD);["Equal(Add(MeasureOfAngle(BAD),MeasureOfAngle(ADC)),180)"]
 

@@ -90,8 +90,8 @@ ANSWER:
 
 THEOREM_SEQUENCE:
 1; tangent_of_circle_property_perpendicular(1,WX,B,B); IsTangentOfCircle(WX,B)&Angle(BXW)&IsCentreOfCircle(B,B); ["PerpendicularBetweenLine(BX,WX)"]  
-2; tangent_of_circle_property_perpendicular(2,WY,B,B); IsTangentOfCircle(WY,B)&Angle(WYB)&IsCentreOfCircle(B,B); ["PerpendicularBetweenLine(BY,WY)"]  
-3; quadrilateral_property_angle_sum(1,YBXW); Polygon(YBXW); ["Equal(Add(MeasureOfAngle(YBX),MeasureOfAngle(BXW),MeasureOfAngle(XWY),MeasureOfAngle(WYB)),360)"]
+2; tangent_of_circle_property_perpendicular(1,WY,B,B); IsTangentOfCircle(WY,B)&Angle(BYW)&IsCentreOfCircle(B,B); ["PerpendicularBetweenLine(BY,WY)"]  
+3; quadrilateral_property_angle_sum(1,XWYB); Polygon(XWYB); ["Equal(Add(MeasureOfAngle(XWY),MeasureOfAngle(WYB),MeasureOfAngle(YBX),MeasureOfAngle(BXW)),360)"]  
 
 
 GT_EQUATIONS:
@@ -101,7 +101,7 @@ ma_xwy
 GT_ANSWER:
 74
 GT_THEOREM_SEQUENCE:
-tangent_of_circle_property_perpendicular(1,WX,B,B)
-tangent_of_circle_property_perpendicular(2,WY,B,B)
-quadrilateral_property_angle_sum(1,WYBX)
+1;tangent_of_circle_property_perpendicular(1,WX,B,B);IsTangentOfCircle(WX,B)&Angle(BXW)&IsCentreOfCircle(B,B);["PerpendicularBetweenLine(BX,WX)"]
+2;tangent_of_circle_property_perpendicular(2,WY,B,B);IsTangentOfCircle(WY,B)&Angle(WYB)&IsCentreOfCircle(B,B);["PerpendicularBetweenLine(WY,BY)"]
+3;quadrilateral_property_angle_sum(1,WYBX);Polygon(WYBX);["Equal(Add(MeasureOfAngle(WYB),MeasureOfAngle(YBX),MeasureOfAngle(BXW),MeasureOfAngle(XWY)),360)"]
 

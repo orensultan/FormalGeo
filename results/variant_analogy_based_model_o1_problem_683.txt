@@ -106,20 +106,20 @@ Outputs:
 Outputs for Problem B:
 
 EQUATIONS:
-ll_ab=6
-ll_ae=9
-ll_bc=4
+ll_ab=6 ll_ae=9 ll_bc=4
+
 GOAL_SYMBOL:
 ll_ed
+
 ANSWER:
 6
+
 THEOREM_SEQUENCE:
-1; line_addition(AB,BC); Collinear(ABC); ["Equal(LengthOfLine(AC),Add(LengthOfLine(AB),LengthOfLine(BC)))"]
-2; line_addition(AE,ED); Collinear(AED); ["Equal(LengthOfLine(AD),Add(LengthOfLine(AE),LengthOfLine(ED)))"]
-3; parallel_property_corresponding_angle(1,EB,DC,A); ParallelBetweenLine(EB,DC)&Collinear(AED); ["Equal(MeasureOfAngle(AEB),MeasureOfAngle(EDC))"]
-4; similar_triangle_judgment_aa(1,BAE,CAD); Polygon(BAE)&Polygon(CAD)&Equal(MeasureOfAngle(BAE),MeasureOfAngle(CAD))&Equal(MeasureOfAngle(AEB),MeasureOfAngle(ADC)); ["SimilarBetweenTriangle(BAE,CAD)"]
-5; similar_triangle_property_line_ratio(1,BAE,CAD); SimilarBetweenTriangle(BAE,CAD); ["Equal(LengthOfLine(AE),Mul(LengthOfLine(AD),RatioOfSimilarTriangle(BAE,CAD)))"]
-6; similar_triangle_property_line_ratio(1,EBA,DCA); SimilarBetweenTriangle(EBA,DCA); ["Equal(LengthOfLine(BA),Mul(LengthOfLine(CA),RatioOfSimilarTriangle(EBA,DCA)))"]
+1; line_addition(AB,BC); Collinear(ABC); ["Equal(LengthOfLine(AC),Add(LengthOfLine(AB),LengthOfLine(BC)))"]  
+2; line_addition(AE,ED); Collinear(AED); ["Equal(LengthOfLine(AD),Add(LengthOfLine(AE),LengthOfLine(ED)))"]  
+3; parallel_property_corresponding_angle(1,EB,DC,A); ParallelBetweenLine(EB,DC)&Collinear(AED); ["Equal(MeasureOfAngle(AEB),MeasureOfAngle(EDC))"]  
+4; similar_triangle_judgment_aa(1,AEB,ADC); Polygon(AEB)&Polygon(ADC)&Equal(MeasureOfAngle(BAE),MeasureOfAngle(CAD))&Equal(MeasureOfAngle(AEB),MeasureOfAngle(ADC)); ["SimilarBetweenTriangle(AEB,ADC)"]  
+5; similar_triangle_property_line_ratio(1,AEB,ADC); SimilarBetweenTriangle(AEB,ADC); ["Equal(LengthOfLine(AB),Mul(LengthOfLine(AC),RatioOfSimilarTriangle(AEB,ADC)))"]  
 
 
 GT_EQUATIONS:
@@ -131,11 +131,11 @@ ll_ed
 GT_ANSWER:
 6
 GT_THEOREM_SEQUENCE:
-parallel_property_corresponding_angle(1,EB,DC,A)
-parallel_property_corresponding_angle(2,CD,BE,A)
-similar_triangle_judgment_aa(1,ADC,AEB)
-line_addition(1,AB,BC)
-line_addition(1,AE,ED)
-similar_triangle_property_line_ratio(1,DCA,EBA)
-similar_triangle_property_line_ratio(1,CAD,BAE)
+1;parallel_property_corresponding_angle(1,EB,DC,A);ParallelBetweenLine(EB,DC)&Collinear(AED);["Equal(MeasureOfAngle(AEB),MeasureOfAngle(EDC))"]
+2;parallel_property_corresponding_angle(2,CD,BE,A);ParallelBetweenLine(CD,BE)&Collinear(CBA);["Equal(MeasureOfAngle(DCB),MeasureOfAngle(EBA))"]
+3;similar_triangle_judgment_aa(1,ADC,AEB);Polygon(ADC)&Polygon(AEB)&Equal(MeasureOfAngle(ADC),MeasureOfAngle(AEB))&Equal(MeasureOfAngle(DCA),MeasureOfAngle(EBA));["SimilarBetweenTriangle(ADC,AEB)"]
+4;line_addition(1,AB,BC);Collinear(ABC);["Equal(LengthOfLine(AC),Add(LengthOfLine(AB),LengthOfLine(BC)))"]
+5;line_addition(1,AE,ED);Collinear(AED);["Equal(LengthOfLine(AD),Add(LengthOfLine(AE),LengthOfLine(ED)))"]
+6;similar_triangle_property_line_ratio(1,DCA,EBA);SimilarBetweenTriangle(DCA,EBA);["Equal(LengthOfLine(CA),Mul(LengthOfLine(BA),RatioOfSimilarTriangle(DCA,EBA)))"]
+7;similar_triangle_property_line_ratio(1,CAD,BAE);SimilarBetweenTriangle(CAD,BAE);["Equal(LengthOfLine(AD),Mul(LengthOfLine(AE),RatioOfSimilarTriangle(CAD,BAE)))"]
 

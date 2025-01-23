@@ -166,8 +166,7 @@ ANSWER:
 100
 
 THEOREM_SEQUENCE:
-1; arc_property_circumference_angle_external(1,OAC,B); Cocircular(O,ABC)&Angle(ABC); ["Equal(MeasureOfAngle(ABC),Mul(MeasureOfArc(OAC),1/2))"]
-2; arc_property_circumference_angle_internal(1,OAC,D); Cocircular(O,ACD)&Angle(CDA); ["Equal(MeasureOfAngle(CDA),Sub(180,Mul(MeasureOfArc(OAC),1/2)))"]
+1; quadrilateral_property_angle_sum(1,ABCD); Polygon(ABCD); ["Equal(Add(MeasureOfAngle(ABC),MeasureOfAngle(BCD),MeasureOfAngle(CDA),MeasureOfAngle(DAB)),360)"]
 
 
 GT_EQUATIONS:
@@ -177,6 +176,6 @@ ma_cda
 GT_ANSWER:
 100
 GT_THEOREM_SEQUENCE:
-arc_property_circumference_angle_external(1,OCA,B)
-arc_property_circumference_angle_internal(1,OCA,D)
+1;arc_property_circumference_angle_external(1,OCA,B);Cocircular(O,CAB)&Angle(ABC);["Equal(MeasureOfAngle(ABC),Mul(MeasureOfArc(OCA),1/2))"]
+2;arc_property_circumference_angle_internal(1,OCA,D);Cocircular(O,CDA)&Angle(CDA);["Equal(MeasureOfAngle(CDA),Sub(180,Mul(MeasureOfArc(OCA),1/2)))"]
 

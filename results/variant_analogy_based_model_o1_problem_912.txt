@@ -113,18 +113,18 @@ ll_ac=12
 ma_dbc=45
 
 GOAL_SYMBOL:
-ac_d-at_cab
+ac_d - at_cab
 
 ANSWER:
-72*pi-72
+72*pi - 72
 
 THEOREM_SEQUENCE:
-1; diameter_of_circle_property_right_angle(1,BCA,D); IsDiameterOfCircle(BA,D)&Cocircular(D,BCA)&Angle(BCA); ["PerpendicularBetweenLine(BC,AC)"]  
-2; diameter_of_circle_property_length_equal(1,BA,D); IsDiameterOfCircle(BA,D); ["Equal(LengthOfLine(BA),DiameterOfCircle(D))"]  
-3; circle_property_length_of_radius_and_diameter(1,D); Circle(D); ["Equal(DiameterOfCircle(D),Mul(RadiusOfCircle(D),2))"]  
-4; circle_area_formula(1,D); Circle(D); ["Equal(AreaOfCircle(D),Mul(pi,RadiusOfCircle(D),RadiusOfCircle(D)))"]  
-5; triangle_area_formula_sine(1,CAB); Polygon(CAB); ["Equal(AreaOfTriangle(CAB),Mul(LengthOfLine(CA),LengthOfLine(CB),Sin(MeasureOfAngle(ACB)),1/2))"]  
-6; triangle_property_angle_sum(1,CAB); Polygon(CAB); ["Equal(Add(MeasureOfAngle(CAB),MeasureOfAngle(ABC),MeasureOfAngle(BCA)),180)"]  
+1; diameter_of_circle_property_right_angle(1,BCA,D); IsDiameterOfCircle(AB,D)&Cocircular(D,BCA)&Angle(BCA); ["PerpendicularBetweenLine(BC,AC)"]
+2; diameter_of_circle_property_length_equal(1,AB,D); IsDiameterOfCircle(AB,D); ["Equal(LengthOfLine(AB),DiameterOfCircle(D))"]
+3; circle_property_length_of_radius_and_diameter(1,D); Circle(D); ["Equal(DiameterOfCircle(D),Mul(RadiusOfCircle(D),2))"]
+4; circle_area_formula(1,D); Circle(D); ["Equal(AreaOfCircle(D),Mul(pi,RadiusOfCircle(D),RadiusOfCircle(D)))"]
+5; triangle_area_formula_sine(1,CAB); Polygon(CAB); ["Equal(AreaOfTriangle(CAB),Mul(LengthOfLine(CA),LengthOfLine(AB),Sin(MeasureOfAngle(ACB)),1/2))"]
+6; triangle_property_angle_sum(1,BCA); Polygon(BCA); ["Equal(Add(MeasureOfAngle(BCA),MeasureOfAngle(CAB),MeasureOfAngle(ABC)),180)"]
 
 
 GT_EQUATIONS:
@@ -135,12 +135,12 @@ ac_d-at_cab
 GT_ANSWER:
 -72+72*pi
 GT_THEOREM_SEQUENCE:
-diameter_of_circle_property_right_angle(1,BCA,D)
-triangle_property_angle_sum(1,CAB)
-sine_theorem(1,ABC)
-sine_theorem(1,BCA)
-diameter_of_circle_property_length_equal(1,AB,D)
-circle_property_length_of_radius_and_diameter(1,D)
-triangle_area_formula_sine(1,CAB)
-circle_area_formula(1,D)
+1;diameter_of_circle_property_right_angle(1,BCA,D);IsDiameterOfCircle(AB,D)&Cocircular(D,BCA)&Angle(BCA);["PerpendicularBetweenLine(BC,AC)"]
+2;triangle_property_angle_sum(1,CAB);Polygon(CAB);["Equal(Add(MeasureOfAngle(CAB),MeasureOfAngle(ABC),MeasureOfAngle(BCA)),180)"]
+3;sine_theorem(1,ABC);Polygon(ABC);["Equal(Mul(LengthOfLine(AB),Sin(MeasureOfAngle(ABC))),Mul(LengthOfLine(AC),Sin(MeasureOfAngle(BCA))))"]
+4;sine_theorem(1,BCA);Polygon(BCA);["Equal(Mul(LengthOfLine(BC),Sin(MeasureOfAngle(BCA))),Mul(LengthOfLine(BA),Sin(MeasureOfAngle(CAB))))"]
+5;diameter_of_circle_property_length_equal(1,AB,D);IsDiameterOfCircle(AB,D);["Equal(LengthOfLine(AB),DiameterOfCircle(D))"]
+6;circle_property_length_of_radius_and_diameter(1,D);Circle(D);["Equal(DiameterOfCircle(D),Mul(RadiusOfCircle(D),2))"]
+7;triangle_area_formula_sine(1,CAB);Polygon(CAB);["Equal(AreaOfTriangle(CAB),Mul(LengthOfLine(CA),LengthOfLine(CB),Sin(MeasureOfAngle(BCA)),1/2))"]
+8;circle_area_formula(1,D);Circle(D);["Equal(AreaOfCircle(D),Mul(pi,RadiusOfCircle(D),RadiusOfCircle(D)))"]
 

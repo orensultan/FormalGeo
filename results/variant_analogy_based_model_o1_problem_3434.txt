@@ -21,16 +21,16 @@ Shape(EA,AD,DE)
 Shape(AD,DE,EA)
 Shape(CE,ED,DC)
 Shape(ED,DC,CE)
-Shape(CB,BA,AE,ED,DC)
-Shape(BA,AE,ED,DC,CB)
-Shape(AE,ED,DC,CB,BA)
-Shape(ED,DC,CB,BA,AE)
-Shape(DC,CB,BA,AE,ED)
 Shape(EC,CB,BA,AD,DE)
 Shape(CB,BA,AD,DE,EC)
 Shape(BA,AD,DE,EC,CB)
 Shape(AD,DE,EC,CB,BA)
 Shape(DE,EC,CB,BA,AD)
+Shape(CB,BA,AE,ED,DC)
+Shape(BA,AE,ED,DC,CB)
+Shape(AE,ED,DC,CB,BA)
+Shape(ED,DC,CB,BA,AE)
+Shape(DC,CB,BA,AE,ED)
 Shape(EA,AD,DC,CE)
 Shape(AD,DC,CE,EA)
 Shape(DC,CE,EA,AD)
@@ -77,11 +77,11 @@ Angle(ADE)
 Angle(DCE)
 Angle(CED)
 Angle(EDC)
-Angle(AED)
-Angle(DCB)
 Angle(ECB)
 Angle(BDE)
 Angle(DEC)
+Angle(AED)
+Angle(DCB)
 Angle(ADC)
 Angle(BDC)
 Angle(EAB)
@@ -96,9 +96,9 @@ Angle(DAE)
 Angle(EDA)
 Angle(ECD)
 Angle(CDE)
-Angle(BCD)
 Angle(BCE)
 Angle(EDB)
+Angle(BCD)
 Angle(CDA)
 Angle(CDB)
 Angle(DBC)
@@ -122,15 +122,15 @@ Polygon(CDE)
 Polygon(CED)
 Polygon(EDC)
 Polygon(ECD)
+Polygon(ECBD)
+Polygon(CBDE)
+Polygon(BDEC)
+Polygon(DECB)
 Polygon(CBAED)
 Polygon(BAEDC)
 Polygon(AEDCB)
 Polygon(EDCBA)
 Polygon(DCBAE)
-Polygon(ECBD)
-Polygon(CBDE)
-Polygon(BDEC)
-Polygon(DECB)
 Polygon(ADC)
 Polygon(ACD)
 Polygon(DAC)
@@ -165,9 +165,10 @@ ANSWER:
 57
 
 THEOREM_SEQUENCE:
-1; triangle_property_angle_sum(1,DEA); Polygon(DEA); ["Equal(Add(MeasureOfAngle(DEA),MeasureOfAngle(EAD),MeasureOfAngle(ADE)),180)"]
-2; triangle_property_angle_sum(1,DCE); Polygon(DCE); ["Equal(Add(MeasureOfAngle(DCE),MeasureOfAngle(DEC),MeasureOfAngle(EDC)),180)"]
-3; congruent_triangle_property_angle_equal(1,CBA,DEA); CongruentBetweenTriangle(CBA,DEA); ["Equal(MeasureOfAngle(CBA),MeasureOfAngle(DEA))"]
+1; congruent_triangle_property_angle_equal(1,CBA,DEA); CongruentBetweenTriangle(CBA,DEA); ["Equal(MeasureOfAngle(CBA),MeasureOfAngle(DEA))"]  
+2; flat_angle(1,BAD); Collinear(BAD); ["Equal(MeasureOfAngle(BAD),180)"]  
+3; angle_addition(1,BAE,EAD); Angle(BAE)&Angle(EAD)&Angle(BAD); ["Equal(MeasureOfAngle(BAD),Add(MeasureOfAngle(BAE),MeasureOfAngle(EAD)))"]  
+4; triangle_property_angle_sum(1,DEA); Polygon(DEA); ["Equal(Add(MeasureOfAngle(DEA),MeasureOfAngle(DAE),MeasureOfAngle(EAD)),180)"]
 
 
 GT_EQUATIONS:
@@ -178,12 +179,12 @@ ma_cba
 GT_ANSWER:
 78
 GT_THEOREM_SEQUENCE:
-congruent_triangle_property_line_equal(1,BAC,EAD)
-isosceles_triangle_judgment_line_equal(1,ADC)
-isosceles_triangle_property_angle_equal(1,ADC)
-adjacent_complementary_angle(1,CED,DEA)
-adjacent_complementary_angle(1,BAE,EAD)
-triangle_property_angle_sum(1,CAD)
-triangle_property_angle_sum(1,CED)
-congruent_triangle_property_angle_equal(1,BAC,EAD)
+1;congruent_triangle_property_line_equal(1,BAC,EAD);CongruentBetweenTriangle(BAC,EAD);["Equal(LengthOfLine(AC),LengthOfLine(AD))"]
+2;isosceles_triangle_judgment_line_equal(1,ADC);Polygon(ADC)&Equal(LengthOfLine(AD),LengthOfLine(AC));["IsoscelesTriangle(ADC)"]
+3;isosceles_triangle_property_angle_equal(1,ADC);IsoscelesTriangle(ADC);["Equal(MeasureOfAngle(ADC),MeasureOfAngle(DCA))"]
+4;adjacent_complementary_angle(1,CED,DEA);Collinear(CEA)&Angle(CED)&Angle(DEA);["Equal(Add(MeasureOfAngle(CED),MeasureOfAngle(DEA)),180)"]
+5;adjacent_complementary_angle(1,BAE,EAD);Collinear(BAD)&Angle(BAE)&Angle(EAD);["Equal(Add(MeasureOfAngle(BAE),MeasureOfAngle(EAD)),180)"]
+6;triangle_property_angle_sum(1,CAD);Polygon(CAD);["Equal(Add(MeasureOfAngle(CAD),MeasureOfAngle(ADC),MeasureOfAngle(DCA)),180)"]
+7;triangle_property_angle_sum(1,CED);Polygon(CED);["Equal(Add(MeasureOfAngle(CED),MeasureOfAngle(EDC),MeasureOfAngle(DCE)),180)"]
+8;congruent_triangle_property_angle_equal(1,BAC,EAD);CongruentBetweenTriangle(BAC,EAD);["Equal(MeasureOfAngle(CBA),MeasureOfAngle(DEA))"]
 

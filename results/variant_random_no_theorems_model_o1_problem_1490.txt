@@ -249,7 +249,7 @@ CD=10
 ∠FBA=20
 
 GOAL_SYMBOL:
-∠AFB
+ma_afb
 
 ANSWER:
 52
@@ -270,5 +270,5 @@ ma_afb
 GT_ANSWER:
 131
 GT_THEOREM_SEQUENCE:
-adjacent_complementary_angle(1,AFB,BFC)
+1;adjacent_complementary_angle(1,AFB,BFC);Collinear(AFC)&Angle(AFB)&Angle(BFC);["Equal(Add(MeasureOfAngle(AFB),MeasureOfAngle(BFC)),180)"]
 

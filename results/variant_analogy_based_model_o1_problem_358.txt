@@ -47,10 +47,10 @@ Outputs:
 Outputs for Problem B:
 
 EQUATIONS:
+-h+ll_ba
 ll_ca=3
--h+ll_ab
 ma_bac=45
-ma_bca=90
+ma_acb=90
 
 GOAL_SYMBOL:
 h
@@ -72,6 +72,6 @@ h
 GT_ANSWER:
 3*sqrt(2)
 GT_THEOREM_SEQUENCE:
-triangle_property_angle_sum(1,ACB)
-sine_theorem(1,ACB)
+1;triangle_property_angle_sum(1,ACB);Polygon(ACB);["Equal(Add(MeasureOfAngle(ACB),MeasureOfAngle(CBA),MeasureOfAngle(BAC)),180)"]
+2;sine_theorem(1,ACB);Polygon(ACB);["Equal(Mul(LengthOfLine(AC),Sin(MeasureOfAngle(ACB))),Mul(LengthOfLine(AB),Sin(MeasureOfAngle(CBA))))"]
 

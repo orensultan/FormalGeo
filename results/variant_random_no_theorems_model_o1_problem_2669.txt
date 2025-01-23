@@ -26,14 +26,14 @@ Shape(FBD,DE,EB)
 Shape(DE,EB,FBD)
 Shape(AE,ED,FDA)
 Shape(ED,FDA,AE)
-Shape(EA,FAC,FCB,BE)
-Shape(FAC,FCB,BE,EA)
-Shape(FCB,BE,EA,FAC)
-Shape(BE,EA,FAC,FCB)
 Shape(FAC,CE,ED,FDA)
 Shape(CE,ED,FDA,FAC)
 Shape(ED,FDA,FAC,CE)
 Shape(FDA,FAC,CE,ED)
+Shape(EA,FAC,FCB,BE)
+Shape(FAC,FCB,BE,EA)
+Shape(FCB,BE,EA,FAC)
+Shape(BE,EA,FAC,FCB)
 Shape(EC,FCB,FBD,DE)
 Shape(FCB,FBD,DE,EC)
 Shape(FBD,DE,EC,FCB)
@@ -42,26 +42,26 @@ Shape(EB,FBD,FDA,AE)
 Shape(FBD,FDA,AE,EB)
 Shape(FDA,AE,EB,FBD)
 Shape(AE,EB,FBD,FDA)
-Shape(EA,FAC,FCB,FBD,DE)
-Shape(FAC,FCB,FBD,DE,EA)
-Shape(FCB,FBD,DE,EA,FAC)
-Shape(FBD,DE,EA,FAC,FCB)
-Shape(DE,EA,FAC,FCB,FBD)
 Shape(FAC,CE,EB,FBD,FDA)
 Shape(CE,EB,FBD,FDA,FAC)
 Shape(EB,FBD,FDA,FAC,CE)
 Shape(FBD,FDA,FAC,CE,EB)
 Shape(FDA,FAC,CE,EB,FBD)
-Shape(EC,FCB,FBD,FDA,AE)
-Shape(FCB,FBD,FDA,AE,EC)
-Shape(FBD,FDA,AE,EC,FCB)
-Shape(FDA,AE,EC,FCB,FBD)
-Shape(AE,EC,FCB,FBD,FDA)
+Shape(EA,FAC,FCB,FBD,DE)
+Shape(FAC,FCB,FBD,DE,EA)
+Shape(FCB,FBD,DE,EA,FAC)
+Shape(FBD,DE,EA,FAC,FCB)
+Shape(DE,EA,FAC,FCB,FBD)
 Shape(FCB,BE,ED,FDA,FAC)
 Shape(BE,ED,FDA,FAC,FCB)
 Shape(ED,FDA,FAC,FCB,BE)
 Shape(FDA,FAC,FCB,BE,ED)
 Shape(FAC,FCB,BE,ED,FDA)
+Shape(EC,FCB,FBD,FDA,AE)
+Shape(FCB,FBD,FDA,AE,EC)
+Shape(FBD,FDA,AE,EC,FCB)
+Shape(FDA,AE,EC,FCB,FBD)
+Shape(AE,EC,FCB,FBD,FDA)
 Shape(FAC,FCB,FBD,FDA)
 Shape(FCB,FBD,FDA,FAC)
 Shape(FBD,FDA,FAC,FCB)
@@ -136,10 +136,10 @@ Angle(CEA)
 Angle(BEC)
 Angle(DEB)
 Angle(AED)
-Angle(DEA)
 Angle(CEB)
-Angle(AEC)
+Angle(DEA)
 Angle(BED)
+Angle(AEC)
 Circle(F)
 SYMBOLS_AND_VALUES:
 MeasureOfAngle(ACE);ma_bcd;45
@@ -156,6 +156,7 @@ Outputs for Problem B:
 
 EQUATIONS:
 6*x=3*4
+6x=12
 x=2
 
 GOAL_SYMBOL:
@@ -177,5 +178,5 @@ x
 GT_ANSWER:
 2
 GT_THEOREM_SEQUENCE:
-circle_property_circular_power_chord_and_chord(1,BEA,DEC,F)
+1;circle_property_circular_power_chord_and_chord(1,BEA,DEC,F);Cocircular(F,BA)&Cocircular(F,DC)&Collinear(BEA)&Collinear(DEC);["Equal(Mul(LengthOfLine(ED),LengthOfLine(EC)),Mul(LengthOfLine(EB),LengthOfLine(EA)))"]
 

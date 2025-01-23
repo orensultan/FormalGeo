@@ -81,6 +81,6 @@ ma_dab
 GT_ANSWER:
 110
 GT_THEOREM_SEQUENCE:
-adjacent_complementary_angle(1,BCD,DCE)
-parallelogram_property_opposite_angle_equal(1,ABCD)
+1;adjacent_complementary_angle(1,BCD,DCE);Collinear(BCE)&Angle(BCD)&Angle(DCE);["Equal(Add(MeasureOfAngle(BCD),MeasureOfAngle(DCE)),180)"]
+2;parallelogram_property_opposite_angle_equal(1,ABCD);Parallelogram(ABCD);["Equal(MeasureOfAngle(DAB),MeasureOfAngle(BCD))"]
 

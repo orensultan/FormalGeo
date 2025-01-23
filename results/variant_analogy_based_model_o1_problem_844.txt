@@ -102,7 +102,9 @@ ANSWER:
 45*sqrt(3)/2
 
 THEOREM_SEQUENCE:
-1; parallelogram_area_formula_sine(1,DACB); Parallelogram(DACB); ["Equal(AreaOfQuadrilateral(DACB),Mul(LengthOfLine(DA),LengthOfLine(AC),Sin(MeasureOfAngle(DAC))))"]
+1; triangle_property_angle_sum(1,DAC); Polygon(DAC); ["Equal(Add(MeasureOfAngle(DAC),MeasureOfAngle(ACD),MeasureOfAngle(CDA)),180)"]
+2; sine_theorem(1,DAC); Polygon(DAC); ["Equal(Mul(LengthOfLine(DA),Sin(MeasureOfAngle(DAC))),Mul(LengthOfLine(DC),Sin(MeasureOfAngle(ACD))))"]
+3; parallelogram_area_formula_sine(1,DACB); Parallelogram(DACB); ["Equal(AreaOfQuadrilateral(DACB),Mul(LengthOfLine(DA),LengthOfLine(AC),Sin(MeasureOfAngle(DAC))))"]
 
 
 GT_EQUATIONS:
@@ -115,7 +117,7 @@ aq_dacb
 GT_ANSWER:
 45*sqrt(3)/2
 GT_THEOREM_SEQUENCE:
-sine_theorem(1,DAC)
-altitude_of_quadrilateral_judgment_diagonal(1,DACB)
-parallelogram_area_formula_common(1,DACB)
+1;sine_theorem(1,DAC);Polygon(DAC);["Equal(Mul(LengthOfLine(DA),Sin(MeasureOfAngle(DAC))),Mul(LengthOfLine(DC),Sin(MeasureOfAngle(ACD))))"]
+2;altitude_of_quadrilateral_judgment_diagonal(1,DACB);(Parallelogram(DACB)|Trapezoid(DACB))&Line(DC)&Equal(MeasureOfAngle(ACD),90);["IsAltitudeOfQuadrilateral(DC,DACB)"]
+3;parallelogram_area_formula_common(1,DACB);Parallelogram(DACB);["Equal(AreaOfQuadrilateral(DACB),Mul(HeightOfQuadrilateral(DACB),LengthOfLine(AC)))"]
 
