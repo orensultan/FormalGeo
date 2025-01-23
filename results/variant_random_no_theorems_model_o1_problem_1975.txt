@@ -153,7 +153,6 @@ ma_dec
 ANSWER:
 95
 THEOREM_SEQUENCE:
-1; triangle_property_angle_sum(1,CDE); Polygon(CDE); ["Equal(Add(MeasureOfAngle(CDE),MeasureOfAngle(ECD),MeasureOfAngle(DEC)),180)"]
 
 
 GT_EQUATIONS:
@@ -166,5 +165,5 @@ ma_dec
 GT_ANSWER:
 95
 GT_THEOREM_SEQUENCE:
-triangle_property_angle_sum(1,CDE)
+1;triangle_property_angle_sum(1,CDE);Polygon(CDE);["Equal(Add(MeasureOfAngle(CDE),MeasureOfAngle(DEC),MeasureOfAngle(ECD)),180)"]
 

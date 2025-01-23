@@ -103,10 +103,9 @@ Outputs:
 Outputs for Problem B:
 
 EQUATIONS:
-AB=17  
-CE=9  
-∠ACD=45  
-∠AED=90  
+ll_ab=17
+ll_ce=9
+ma_acd=45
 
 GOAL_SYMBOL:
 aq_acdb
@@ -115,9 +114,8 @@ ANSWER:
 153
 
 THEOREM_SEQUENCE:
-1; line_addition(CE,ED); Collinear(CED); ["Equal(LengthOfLine(CD),Add(LengthOfLine(CE),LengthOfLine(ED)))"]  
-2; parallelogram_property_opposite_line_equal(1,ACDB); Parallelogram(ACDB); ["Equal(LengthOfLine(AB),LengthOfLine(CD))"]  
-3; parallelogram_area_formula_common(1,ACDB); Parallelogram(ACDB); ["Equal(AreaOfQuadrilateral(ACDB),Mul(HeightOfQuadrilateral(ACDB),LengthOfLine(CD)))"]  
+1; parallelogram_property_opposite_line_equal(1,ACDB); Parallelogram(ACDB); ["Equal(LengthOfLine(AB),LengthOfLine(CD))"]  
+2; parallelogram_area_formula_sine(1,ACDB); Parallelogram(ACDB); ["Equal(AreaOfQuadrilateral(ACDB),Mul(LengthOfLine(AC),LengthOfLine(CD),Sin(MeasureOfAngle(ACD))))"]  
 
 
 GT_EQUATIONS:
@@ -130,10 +128,10 @@ aq_acdb
 GT_ANSWER:
 153
 GT_THEOREM_SEQUENCE:
-triangle_property_angle_sum(1,ACE)
-sine_theorem(1,EAC)
-adjacent_complementary_angle(1,CEA,AED)
-altitude_of_quadrilateral_judgment_left_vertex(1,AE,ACDB)
-parallelogram_property_opposite_line_equal(1,CDBA)
-parallelogram_area_formula_common(1,ACDB)
+1;triangle_property_angle_sum(1,ACE);Polygon(ACE);["Equal(Add(MeasureOfAngle(ACE),MeasureOfAngle(CEA),MeasureOfAngle(EAC)),180)"]
+2;sine_theorem(1,EAC);Polygon(EAC);["Equal(Mul(LengthOfLine(EA),Sin(MeasureOfAngle(EAC))),Mul(LengthOfLine(EC),Sin(MeasureOfAngle(ACE))))"]
+3;adjacent_complementary_angle(1,CEA,AED);Collinear(CED)&Angle(CEA)&Angle(AED);["Equal(Add(MeasureOfAngle(CEA),MeasureOfAngle(AED)),180)"]
+4;altitude_of_quadrilateral_judgment_left_vertex(1,AE,ACDB);(Parallelogram(ACDB)|Trapezoid(ACDB))&Line(AE)&Collinear(CED)&Equal(MeasureOfAngle(CEA),90);["IsAltitudeOfQuadrilateral(AE,ACDB)"]
+5;parallelogram_property_opposite_line_equal(1,CDBA);Parallelogram(CDBA);["Equal(LengthOfLine(DC),LengthOfLine(BA))"]
+6;parallelogram_area_formula_common(1,ACDB);Parallelogram(ACDB);["Equal(AreaOfQuadrilateral(ACDB),Mul(HeightOfQuadrilateral(ACDB),LengthOfLine(CD)))"]
 

@@ -202,11 +202,13 @@ Outputs:
 Outputs for Problem B:
 
 EQUATIONS:
-ma_efb=122
-Add(ma_cab,ma_ead)=302
+m∠EFB = 122
+m∠EFB - m∠EBA = 0
+m∠EBA = 122
+m∠CAB + m∠EAD = 302
 
 GOAL_SYMBOL:
-ma_cab+ma_ead
+m∠CAB + m∠EAD
 
 ANSWER:
 302
@@ -215,7 +217,6 @@ THEOREM_SEQUENCE:
 1; mirror_congruent_triangle_property_angle_equal(EFB,EBA); MirrorCongruentBetweenTriangle(EFB,EBA); ["Equal(MeasureOfAngle(EFB),MeasureOfAngle(EBA))"]
 2; triangle_property_angle_sum(EBA); Polygon(EBA); ["Equal(Add(MeasureOfAngle(EBA),MeasureOfAngle(BAE),MeasureOfAngle(AEB)),180)"]
 3; flat_angle(CAD); Collinear(CAD); ["Equal(MeasureOfAngle(CAD),180)"]
-4; triangle_property_angle_sum(EAD); Polygon(EAD); ["Equal(Add(MeasureOfAngle(EAD),MeasureOfAngle(EDA),MeasureOfAngle(DAE)),180)"]
 
 
 GT_EQUATIONS:
@@ -225,7 +226,7 @@ ma_cab+ma_ead
 GT_ANSWER:
 58
 GT_THEOREM_SEQUENCE:
-mirror_congruent_triangle_property_angle_equal(1,FBE,AEB)
-angle_addition(1,CAB,BAE)
-adjacent_complementary_angle(1,CAE,EAD)
+1;mirror_congruent_triangle_property_angle_equal(1,FBE,AEB);MirrorCongruentBetweenTriangle(FBE,AEB);["Equal(MeasureOfAngle(EFB),MeasureOfAngle(BAE))"]
+2;angle_addition(1,CAB,BAE);Angle(CAB)&Angle(BAE)&Angle(CAE);["Equal(MeasureOfAngle(CAE),Add(MeasureOfAngle(CAB),MeasureOfAngle(BAE)))"]
+3;adjacent_complementary_angle(1,CAE,EAD);Collinear(CAD)&Angle(CAE)&Angle(EAD);["Equal(Add(MeasureOfAngle(CAE),MeasureOfAngle(EAD)),180)"]
 

@@ -31,16 +31,16 @@ Shape(AO,OP,PB,OBC,OCA)
 Shape(OP,PB,OBC,OCA,AO)
 Shape(PB,OBC,OCA,AO,OP)
 Shape(OBC,OCA,AO,OP,PB)
-Shape(PC,OCA,AO,OB,BP)
-Shape(OCA,AO,OB,BP,PC)
-Shape(AO,OB,BP,PC,OCA)
-Shape(OB,BP,PC,OCA,AO)
-Shape(BP,PC,OCA,AO,OB)
 Shape(OP,PC,OCA,OAB,BO)
 Shape(PC,OCA,OAB,BO,OP)
 Shape(OCA,OAB,BO,OP,PC)
 Shape(OAB,BO,OP,PC,OCA)
 Shape(BO,OP,PC,OCA,OAB)
+Shape(PC,OCA,AO,OB,BP)
+Shape(OCA,AO,OB,BP,PC)
+Shape(AO,OB,BP,PC,OCA)
+Shape(OB,BP,PC,OCA,AO)
+Shape(BP,PC,OCA,AO,OB)
 Shape(OA,OAB,BP,PO)
 Shape(OAB,BP,PO,OA)
 Shape(BP,PO,OA,OAB)
@@ -113,8 +113,8 @@ Angle(OBP)
 Angle(BPO)
 Angle(POB)
 Angle(OPB)
-Angle(ABP)
 Angle(BOP)
+Angle(ABP)
 Angle(POA)
 Angle(CPO)
 Angle(ABC)
@@ -146,21 +146,22 @@ Outputs for Problem B:
 EQUATIONS:
 ll_ab=8
 ll_op=2
+ma_opb=90
 
 GOAL_SYMBOL:
 ll_bc
 
 ANSWER:
-4*sqrt(3)
+4√3
 
 THEOREM_SEQUENCE:
-1; line_addition(1,AO,OB); Collinear(AOB); ["Equal(LengthOfLine(AB),Add(LengthOfLine(AO),LengthOfLine(OB)))"]  
-2; radius_of_circle_property_length_equal(1,OA,O); Cocircular(O,A)&Line(OA)&IsCentreOfCircle(O,O); ["Equal(LengthOfLine(OA),RadiusOfCircle(O))"]  
-3; radius_of_circle_property_length_equal(1,OB,O); Cocircular(O,B)&Line(OB)&IsCentreOfCircle(O,O); ["Equal(LengthOfLine(OB),RadiusOfCircle(O))"]  
-4; circle_property_chord_perpendicular_bisect_chord(1,O,OP,BC); Cocircular(O,BC)&Collinear(BPC)&IsCentreOfCircle(O,O)&Equal(MeasureOfAngle(BPO),90); ["IsPerpendicularBisectorOfLine(OP,BC)"]  
-5; right_triangle_judgment_angle(1,BPO); Polygon(BPO)&Equal(MeasureOfAngle(BPO),90); ["RightTriangle(BPO)"]  
-6; right_triangle_property_pythagorean(1,BPO); RightTriangle(BPO); ["Equal(Add(Pow(LengthOfLine(BP),2),Pow(LengthOfLine(OP),2)),Pow(LengthOfLine(BO),2))"]  
-7; line_addition(1,BP,PC); Collinear(BPC); ["Equal(LengthOfLine(BC),Add(LengthOfLine(BP),LengthOfLine(PC)))"]  
+1; radius_of_circle_property_length_equal(1,OA,O); Cocircular(O,A)&Line(OA)&IsCentreOfCircle(O,O); ["Equal(LengthOfLine(OA),RadiusOfCircle(O))"]  
+2; radius_of_circle_property_length_equal(1,OB,O); Cocircular(O,B)&Line(OB)&IsCentreOfCircle(O,O); ["Equal(LengthOfLine(OB),RadiusOfCircle(O))"]  
+3; line_addition(AO,OB); Collinear(AOB); ["Equal(LengthOfLine(AB),Add(LengthOfLine(AO),LengthOfLine(OB)))"]  
+4; right_triangle_judgment_angle(1,OPB); Polygon(OPB)&Equal(MeasureOfAngle(OPB),90); ["RightTriangle(OPB)"]  
+5; right_triangle_property_pythagorean(1,OPB); RightTriangle(OPB); ["Equal(Add(Pow(LengthOfLine(OP),2),Pow(LengthOfLine(PB),2)),Pow(LengthOfLine(OB),2))"]  
+6; circle_property_chord_perpendicular_bisect_chord(1,O,OP,BC); Cocircular(O,BC)&Collinear(BPC)&IsCentreOfCircle(O,O)&Equal(MeasureOfAngle(OPB),90); ["IsPerpendicularBisectorOfLine(OP,BC)"]  
+7; line_addition(BP,PC); Collinear(BPC); ["Equal(LengthOfLine(BC),Add(LengthOfLine(BP),LengthOfLine(PC)))"]  
 
 
 GT_EQUATIONS:
@@ -172,11 +173,11 @@ ll_bc
 GT_ANSWER:
 4*sqrt(3)
 GT_THEOREM_SEQUENCE:
-line_addition(1,AO,OB)
-line_addition(1,CP,PB)
-radius_of_circle_property_length_equal(1,OA,O)
-radius_of_circle_property_length_equal(1,OB,O)
-circle_property_chord_perpendicular_bisect_chord(1,O,OP,BC)
-right_triangle_judgment_angle(1,BPO)
-right_triangle_property_pythagorean(1,BPO)
+1;line_addition(1,AO,OB);Collinear(AOB);["Equal(LengthOfLine(AB),Add(LengthOfLine(AO),LengthOfLine(OB)))"]
+2;line_addition(1,CP,PB);Collinear(CPB);["Equal(LengthOfLine(CB),Add(LengthOfLine(CP),LengthOfLine(PB)))"]
+3;radius_of_circle_property_length_equal(1,OA,O);Cocircular(O,A)&Line(OA)&IsCentreOfCircle(O,O);["Equal(LengthOfLine(OA),RadiusOfCircle(O))"]
+4;radius_of_circle_property_length_equal(1,OB,O);Cocircular(O,B)&Line(OB)&IsCentreOfCircle(O,O);["Equal(LengthOfLine(OB),RadiusOfCircle(O))"]
+5;circle_property_chord_perpendicular_bisect_chord(1,O,OP,BC);Cocircular(O,BC)&Collinear(BPC)&IsCentreOfCircle(O,O)&Equal(MeasureOfAngle(BPO),90);["IsPerpendicularBisectorOfLine(OP,BC)"]
+6;right_triangle_judgment_angle(1,BPO);Polygon(BPO)&Equal(MeasureOfAngle(BPO),90);["RightTriangle(BPO)"]
+7;right_triangle_property_pythagorean(1,BPO);RightTriangle(BPO);["Equal(Add(Pow(LengthOfLine(BP),2),Pow(LengthOfLine(PO),2)),Pow(LengthOfLine(BO),2))"]
 

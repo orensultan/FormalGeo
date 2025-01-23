@@ -386,8 +386,8 @@ def get_level_to_problems(problems):
 chosen_problems_by_level = {
     # 1: [2833],
     # 2: [6523],
-    #  3: [2999],
-    #  4: [2425],
+    # 3: [2999],
+    # 4: [2425],
     # 5: [4908],
     # 6: [729],
     # 7: [683],
@@ -396,16 +396,15 @@ chosen_problems_by_level = {
 }
 
 chosen_problems_by_level = {
-# 1: [1975, 1490, 1726, 178, 2669],
-2: [4473] #,  2141, 69 , 2916, 358, 4473],
- # 3: [4187, 5244, 5062, 844, 1945],
-# 4: [2114, 464, 5510, 3272, 5230],
- # 5: [5440, 6485 , 696, 847, 5563]
-
+1: [1975, 1490, 1726, 178, 2669],
+# 2: [2141, 69, 2916, 358, 4473],
+#  3: [ 4187, 5244, 5062, 844, 1945 ]
+# 4: [ 2114, 464, 5510, 3272, 5230]
+# 5: [5440, 6485 , 696, 847, 5563]
 # 6: [4923, 3298, 759, 4910, 5805],
-# 7: [3580, 4898, 6802, 6247, 449],
+# 7: [3580, 4898, 4898, 6802, 6247, 449],
 # 8: [3983, 2761, 2875, 3434, 6806],
- # 9: [4892, 5092, 5522, 4796, 3418],
+# 9: [4892, 5092, 5522, 4796, 3418 ],
 
 }
 
@@ -494,7 +493,9 @@ def get_gt_result(problem2):
     gt += "\n\nGT_EQUATIONS:\n" + "\n".join(problem2.equations) + "\n"
     gt += "GT_GOAL_SYMBOL:\n" + problem2.goal_symbol + "\n"
     gt += "GT_ANSWER:\n" + problem2.answer + "\n"
-    gt += "GT_THEOREM_SEQUENCE:\n" + "\n".join(problem2.theorem_seqs) + "\n"
+    theorems_seqs_expl = convert_json_list_to_custom_format(get_theorem_seqs_expl(problem2.theorem_seqs))
+    theorem_seqs_format = convert_theorem_seqs_format_string(theorems_seqs_expl)
+    gt += "GT_THEOREM_SEQUENCE:\n" + theorem_seqs_format + "\n"
     return gt
 
 

@@ -157,10 +157,10 @@ la_psr
 ANSWER:
 65*pi/12
 THEOREM_SEQUENCE:
-1; arc_property_center_angle(PSR,P); Arc(PSR)&Angle(RPS)&IsCentreOfCircle(P,P); ["Equal(MeasureOfArc(PSR),MeasureOfAngle(RPS))"]
-2; diameter_of_circle_property_length_equal(TR,P); IsDiameterOfCircle(TR,P); ["Equal(LengthOfLine(TR),DiameterOfCircle(P))"]
-3; circle_property_length_of_radius_and_diameter(P); Circle(P); ["Equal(DiameterOfCircle(P),Mul(RadiusOfCircle(P),2))"]
-4; arc_length_formula(PSR); Arc(PSR); ["Equal(LengthOfArc(PSR),Mul(MeasureOfArc(PSR),1/180*pi,RadiusOfCircle(P)))"]
+1; arc_property_center_angle(1,PSR,P); Arc(PSR)&Angle(RPS)&IsCentreOfCircle(P,P); ["Equal(MeasureOfArc(PSR),MeasureOfAngle(RPS))"]
+2; diameter_of_circle_property_length_equal(1,RT,P); IsDiameterOfCircle(RT,P); ["Equal(LengthOfLine(RT),DiameterOfCircle(P))"]
+3; circle_property_length_of_radius_and_diameter(1,P); Circle(P); ["Equal(DiameterOfCircle(P),Mul(RadiusOfCircle(P),2))"]
+4; arc_length_formula(1,PSR); Arc(PSR); ["Equal(LengthOfArc(PSR),Mul(MeasureOfArc(PSR),1/180*pi,RadiusOfCircle(P)))"]
 
 
 GT_EQUATIONS:
@@ -172,8 +172,8 @@ la_psr
 GT_ANSWER:
 65*pi/12
 GT_THEOREM_SEQUENCE:
-diameter_of_circle_property_length_equal(1,TR,P)
-circle_property_length_of_radius_and_diameter(1,P)
-arc_property_center_angle(1,PSR,P)
-arc_length_formula(1,PSR)
+1;diameter_of_circle_property_length_equal(1,TR,P);IsDiameterOfCircle(TR,P);["Equal(LengthOfLine(TR),DiameterOfCircle(P))"]
+2;circle_property_length_of_radius_and_diameter(1,P);Circle(P);["Equal(DiameterOfCircle(P),Mul(RadiusOfCircle(P),2))"]
+3;arc_property_center_angle(1,PSR,P);Arc(PSR)&Angle(RPS)&IsCentreOfCircle(P,P);["Equal(MeasureOfArc(PSR),MeasureOfAngle(RPS))"]
+4;arc_length_formula(1,PSR);Arc(PSR);["Equal(LengthOfArc(PSR),Mul(MeasureOfArc(PSR),1/180*pi,RadiusOfCircle(P)))"]
 

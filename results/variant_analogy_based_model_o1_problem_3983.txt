@@ -26,13 +26,13 @@ Shape(ODB,BC,CD)
 Shape(CB,OBA,AO,OC)
 Shape(OBA,AO,OC,CB)
 Shape(AO,OC,CB,OBA)
+Shape(AC,CB,OBA)
+Shape(CB,OBA,AC)
+Shape(OBA,AC,CB)
 Shape(CO,OA,OAD,DC)
 Shape(OA,OAD,DC,CO)
 Shape(OAD,DC,CO,OA)
 Shape(DC,CO,OA,OAD)
-Shape(AC,CB,OBA)
-Shape(CB,OBA,AC)
-Shape(OBA,AC,CB)
 Shape(CA,OAD,ODB,BC)
 Shape(OAD,ODB,BC,CA)
 Shape(ODB,BC,CA,OAD)
@@ -42,15 +42,15 @@ Shape(ODB,OBA,AO,OC,CD)
 Shape(OBA,AO,OC,CD,ODB)
 Shape(AO,OC,CD,ODB,OBA)
 Shape(OC,CD,ODB,OBA,AO)
+Shape(AC,CD,ODB,OBA)
+Shape(CD,ODB,OBA,AC)
+Shape(ODB,OBA,AC,CD)
+Shape(OBA,AC,CD,ODB)
 Shape(CO,OA,OAD,ODB,BC)
 Shape(OA,OAD,ODB,BC,CO)
 Shape(OAD,ODB,BC,CO,OA)
 Shape(ODB,BC,CO,OA,OAD)
 Shape(BC,CO,OA,OAD,ODB)
-Shape(AC,CD,ODB,OBA)
-Shape(CD,ODB,OBA,AC)
-Shape(ODB,OBA,AC,CD)
-Shape(OBA,AC,CD,ODB)
 Shape(OAD,DC,CB,OBA)
 Shape(DC,CB,OBA,OAD)
 Shape(CB,OBA,OAD,DC)
@@ -107,8 +107,8 @@ Angle(DCA)
 Angle(BCD)
 Angle(OCB)
 Angle(AOC)
-Angle(BCO)
 Angle(ACD)
+Angle(BCO)
 Angle(DCB)
 Angle(OAB)
 Angle(DOA)
@@ -147,10 +147,13 @@ ANSWER:
 2
 
 THEOREM_SEQUENCE:
-1; radius_of_circle_property_length_equal(1,OA,O); Cocircular(O,A)&Line(OA)&IsCentreOfCircle(O,O); ["Equal(LengthOfLine(OA),RadiusOfCircle(O))"]  
-2; radius_of_circle_property_length_equal(1,OB,O); Cocircular(O,B)&Line(OB)&IsCentreOfCircle(O,O); ["Equal(LengthOfLine(OB),RadiusOfCircle(O))"]  
-3; radius_of_circle_property_length_equal(1,OD,O); Cocircular(O,D)&Line(OD)&IsCentreOfCircle(O,O); ["Equal(LengthOfLine(OD),RadiusOfCircle(O))"]  
-4; line_addition(1,OC,CD); Collinear(OCD); ["Equal(LengthOfLine(OD),Add(LengthOfLine(OC),LengthOfLine(CD)))"]
+1; adjacent_complementary_angle(1,ACO,OCB); Collinear(ACB)&Angle(ACO)&Angle(OCB); ["Equal(Add(MeasureOfAngle(ACO),MeasureOfAngle(OCB)),180)"]
+2; circle_property_chord_perpendicular_bisect_chord(1,O,OC,AB); Cocircular(O,AB)&Collinear(ACB)&IsCentreOfCircle(O,O)&Equal(MeasureOfAngle(ACO),90); ["IsPerpendicularBisectorOfLine(OC,AB)"]
+3; line_addition(1,AC,CB); Collinear(ACB); ["Equal(LengthOfLine(AB),Add(LengthOfLine(AC),LengthOfLine(CB)))"]
+4; right_triangle_judgment_angle(1,ACO); Polygon(ACO)&Equal(MeasureOfAngle(ACO),90); ["RightTriangle(ACO)"]
+5; right_triangle_property_pythagorean(1,ACO); RightTriangle(ACO); ["Equal(Add(Pow(LengthOfLine(AC),2),Pow(LengthOfLine(CO),2)),Pow(LengthOfLine(AO),2))"]
+6; radius_of_circle_property_length_equal(1,OD,O); Cocircular(O,D)&Line(OD)&IsCentreOfCircle(O,O); ["Equal(LengthOfLine(OD),RadiusOfCircle(O))"]
+7; line_addition(1,OC,CD); Collinear(OCD); ["Equal(LengthOfLine(OD),Add(LengthOfLine(OC),LengthOfLine(CD)))"]
 
 
 GT_EQUATIONS:
@@ -162,12 +165,12 @@ ll_cd
 GT_ANSWER:
 2
 GT_THEOREM_SEQUENCE:
-adjacent_complementary_angle(1,ACO,OCB)
-circle_property_chord_perpendicular_bisect_chord(1,O,OC,AB)
-radius_of_circle_property_length_equal(1,OA,O)
-radius_of_circle_property_length_equal(1,OD,O)
-line_addition(1,AC,CB)
-line_addition(1,OC,CD)
-right_triangle_judgment_angle(1,ACO)
-right_triangle_property_pythagorean(1,ACO)
+1;adjacent_complementary_angle(1,ACO,OCB);Collinear(ACB)&Angle(ACO)&Angle(OCB);["Equal(Add(MeasureOfAngle(ACO),MeasureOfAngle(OCB)),180)"]
+2;circle_property_chord_perpendicular_bisect_chord(1,O,OC,AB);Cocircular(O,AB)&Collinear(ACB)&IsCentreOfCircle(O,O)&Equal(MeasureOfAngle(ACO),90);["IsPerpendicularBisectorOfLine(OC,AB)"]
+3;radius_of_circle_property_length_equal(1,OA,O);Cocircular(O,A)&Line(OA)&IsCentreOfCircle(O,O);["Equal(LengthOfLine(OA),RadiusOfCircle(O))"]
+4;radius_of_circle_property_length_equal(1,OD,O);Cocircular(O,D)&Line(OD)&IsCentreOfCircle(O,O);["Equal(LengthOfLine(OD),RadiusOfCircle(O))"]
+5;line_addition(1,AC,CB);Collinear(ACB);["Equal(LengthOfLine(AB),Add(LengthOfLine(AC),LengthOfLine(CB)))"]
+6;line_addition(1,OC,CD);Collinear(OCD);["Equal(LengthOfLine(OD),Add(LengthOfLine(OC),LengthOfLine(CD)))"]
+7;right_triangle_judgment_angle(1,ACO);Polygon(ACO)&Equal(MeasureOfAngle(ACO),90);["RightTriangle(ACO)"]
+8;right_triangle_property_pythagorean(1,ACO);RightTriangle(ACO);["Equal(Add(Pow(LengthOfLine(AC),2),Pow(LengthOfLine(CO),2)),Pow(LengthOfLine(AO),2))"]
 

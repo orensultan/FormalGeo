@@ -93,11 +93,14 @@ Outputs for Problem B:
 EQUATIONS:
 ma_def=25
 ma_gfd=65
-ma_egd=90
+ma_fgd=90
+
 GOAL_SYMBOL:
 ma_fdg
+
 ANSWER:
 25
+
 THEOREM_SEQUENCE:
 1; triangle_property_angle_sum(1,FDG); Polygon(FDG); ["Equal(Add(MeasureOfAngle(FDG),MeasureOfAngle(DGF),MeasureOfAngle(GFD)),180)"]
 
@@ -111,6 +114,6 @@ ma_fdg
 GT_ANSWER:
 25
 GT_THEOREM_SEQUENCE:
-adjacent_complementary_angle(1,EGD,DGF)
-triangle_property_angle_sum(1,DGF)
+1;adjacent_complementary_angle(1,EGD,DGF);Collinear(EGF)&Angle(EGD)&Angle(DGF);["Equal(Add(MeasureOfAngle(EGD),MeasureOfAngle(DGF)),180)"]
+2;triangle_property_angle_sum(1,DGF);Polygon(DGF);["Equal(Add(MeasureOfAngle(DGF),MeasureOfAngle(GFD),MeasureOfAngle(FDG)),180)"]
 

@@ -172,19 +172,22 @@ Outputs:
 Outputs for Problem B:
 
 EQUATIONS:
-ll_cd=12
-ll_de=8
-ll_df=5
-ll_ef=4
+CD=12
+DE=8
+DF=5
+EF=4
+
 GOAL_SYMBOL:
 pt_bcd
+
 ANSWER:
 51/2
+
 THEOREM_SEQUENCE:
-1; similar_triangle_property_line_ratio(1,BCD,FDE); SimilarBetweenTriangle(BCD,FDE); ["Equal(LengthOfLine(CD),Mul(LengthOfLine(DE),RatioOfSimilarTriangle(BCD,FDE)))"]
-2; similar_triangle_property_line_ratio(1,BCD,FDE); SimilarBetweenTriangle(BCD,FDE); ["Equal(LengthOfLine(BC),Mul(LengthOfLine(FD),RatioOfSimilarTriangle(BCD,FDE)))"]
-3; similar_triangle_property_line_ratio(1,BCD,FDE); SimilarBetweenTriangle(BCD,FDE); ["Equal(LengthOfLine(BD),Mul(LengthOfLine(EF),RatioOfSimilarTriangle(BCD,FDE)))"]
-4; triangle_perimeter_formula(1,BCD); Polygon(BCD); ["Equal(PerimeterOfTriangle(BCD),Add(LengthOfLine(BC),LengthOfLine(CD),LengthOfLine(BD)))"]
+1; similar_triangle_property_line_ratio(1,BCD,FDE); SimilarBetweenTriangle(BCD,FDE); ["Equal(LengthOfLine(CD),Mul(LengthOfLine(DE),RatioOfSimilarTriangle(BCD,FDE)))"]  
+2; similar_triangle_property_line_ratio(1,DBC,EFD); SimilarBetweenTriangle(DBC,EFD); ["Equal(LengthOfLine(BC),Mul(LengthOfLine(FD),RatioOfSimilarTriangle(DBC,EFD)))"]  
+3; similar_triangle_property_line_ratio(1,CDB,DEF); SimilarBetweenTriangle(CDB,DEF); ["Equal(LengthOfLine(DB),Mul(LengthOfLine(EF),RatioOfSimilarTriangle(CDB,DEF)))"]  
+4; triangle_perimeter_formula(1,BCD); Polygon(BCD); ["Equal(PerimeterOfTriangle(BCD),Add(LengthOfLine(BC),LengthOfLine(CD),LengthOfLine(DB)))"]
 
 
 GT_EQUATIONS:
@@ -197,8 +200,8 @@ pt_bcd
 GT_ANSWER:
 51/2
 GT_THEOREM_SEQUENCE:
-similar_triangle_property_line_ratio(1,BCD,FDE)
-similar_triangle_property_line_ratio(1,CDB,DEF)
-similar_triangle_property_line_ratio(1,DBC,EFD)
-triangle_perimeter_formula(1,BCD)
+1;similar_triangle_property_line_ratio(1,BCD,FDE);SimilarBetweenTriangle(BCD,FDE);["Equal(LengthOfLine(CD),Mul(LengthOfLine(DE),RatioOfSimilarTriangle(BCD,FDE)))"]
+2;similar_triangle_property_line_ratio(1,CDB,DEF);SimilarBetweenTriangle(CDB,DEF);["Equal(LengthOfLine(DB),Mul(LengthOfLine(EF),RatioOfSimilarTriangle(CDB,DEF)))"]
+3;similar_triangle_property_line_ratio(1,DBC,EFD);SimilarBetweenTriangle(DBC,EFD);["Equal(LengthOfLine(BC),Mul(LengthOfLine(FD),RatioOfSimilarTriangle(DBC,EFD)))"]
+4;triangle_perimeter_formula(1,BCD);Polygon(BCD);["Equal(PerimeterOfTriangle(BCD),Add(LengthOfLine(BC),LengthOfLine(CD),LengthOfLine(DB)))"]
 

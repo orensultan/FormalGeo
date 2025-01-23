@@ -94,7 +94,7 @@ Outputs for Problem B:
 EQUATIONS:
 -ll_ab+ll_bc
 ll_ac=12
--ll_bd+h
+ll_bd-h
 ma_cab=60
 ma_cdb=90
 
@@ -106,10 +106,10 @@ ANSWER:
 
 THEOREM_SEQUENCE:
 1; isosceles_triangle_judgment_line_equal(1,ABC); Polygon(ABC)&Equal(LengthOfLine(AB),LengthOfLine(BC)); ["IsoscelesTriangle(ABC)"]  
-2; triangle_property_angle_sum(1,ABC); Polygon(ABC); ["Equal(Add(MeasureOfAngle(ABC),MeasureOfAngle(BCA),MeasureOfAngle(CAB)),180)"]  
-3; isosceles_triangle_property_angle_equal(1,ABC); IsoscelesTriangle(ABC); ["Equal(MeasureOfAngle(ABC),MeasureOfAngle(BCA))"]  
-4; right_triangle_judgment_angle(1,BCD); Polygon(BCD)&Equal(MeasureOfAngle(CDB),90); ["RightTriangle(BCD)"]  
-5; right_triangle_property_pythagorean(1,BCD); RightTriangle(BCD); ["Equal(Add(Pow(LengthOfLine(BC),2),Pow(LengthOfLine(CD),2)),Pow(LengthOfLine(BD),2))"]
+2; isosceles_triangle_property_angle_equal(1,ABC); IsoscelesTriangle(ABC); ["Equal(MeasureOfAngle(ABC),MeasureOfAngle(BCA))"]  
+3; triangle_property_angle_sum(1,ABC); Polygon(ABC); ["Equal(Add(MeasureOfAngle(ABC),MeasureOfAngle(BCA),MeasureOfAngle(CAB)),180)"]  
+4; right_triangle_judgment_angle(1,CDB); Polygon(CDB)&Equal(MeasureOfAngle(CDB),90); ["RightTriangle(CDB)"]  
+5; right_triangle_property_pythagorean(1,CDB); RightTriangle(CDB); ["Equal(Add(Pow(LengthOfLine(CD),2),Pow(LengthOfLine(DB),2)),Pow(LengthOfLine(CB),2))"]
 
 
 GT_EQUATIONS:
@@ -123,9 +123,9 @@ h
 GT_ANSWER:
 6*sqrt(3)
 GT_THEOREM_SEQUENCE:
-perpendicular_bisector_judgment_distance_equal(1,BD,CA)
-line_addition(1,CD,DA)
-triangle_property_angle_sum(1,BDA)
-sine_theorem(1,BDA)
-sine_theorem(1,ABD)
+1;perpendicular_bisector_judgment_distance_equal(1,BD,CA);Collinear(CDA)&Angle(CDB)&Equal(MeasureOfAngle(CDB),90)&Equal(LengthOfLine(BC),LengthOfLine(BA));["IsPerpendicularBisectorOfLine(BD,CA)"]
+2;line_addition(1,CD,DA);Collinear(CDA);["Equal(LengthOfLine(CA),Add(LengthOfLine(CD),LengthOfLine(DA)))"]
+3;triangle_property_angle_sum(1,BDA);Polygon(BDA);["Equal(Add(MeasureOfAngle(BDA),MeasureOfAngle(DAB),MeasureOfAngle(ABD)),180)"]
+4;sine_theorem(1,BDA);Polygon(BDA);["Equal(Mul(LengthOfLine(BD),Sin(MeasureOfAngle(BDA))),Mul(LengthOfLine(BA),Sin(MeasureOfAngle(DAB))))"]
+5;sine_theorem(1,ABD);Polygon(ABD);["Equal(Mul(LengthOfLine(AB),Sin(MeasureOfAngle(ABD))),Mul(LengthOfLine(AD),Sin(MeasureOfAngle(BDA))))"]
 

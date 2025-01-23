@@ -220,7 +220,7 @@ Outputs for Problem B:
 
 EQUATIONS:
 AreaOfTriangle(ABC)=65
-AreaOfTriangle(ABC)=Add(AreaOfTriangle(DCA),AreaOfTriangle(DAB))
+AreaOfTriangle(ABC)-Add(AreaOfTriangle(DCA),AreaOfTriangle(DAB))=0
 LengthOfLine(AB)=13
 LengthOfLine(AC)=13
 MeasureOfAngle(CMD)=90
@@ -230,13 +230,13 @@ GOAL_SYMBOL:
 LengthOfLine(DN)+LengthOfLine(DM)
 
 ANSWER:
-26
+13
 
 THEOREM_SEQUENCE:
-1; isosceles_triangle_judgment_line_equal(1,ABC); Polygon(ABC)&Equal(LengthOfLine(AB),LengthOfLine(AC)); ["IsoscelesTriangle(ABC)"]  
-2; triangle_area_formula_common(1,ABC); Polygon(ABC); ["Equal(AreaOfTriangle(ABC),Mul(HeightOfTriangle(ABC),LengthOfLine(BC),1/2))"]  
-3; right_triangle_judgment_angle(1,CMD); Polygon(CMD)&Equal(MeasureOfAngle(CMD),90); ["RightTriangle(CMD)"]  
-4; right_triangle_judgment_angle(1,AND); Polygon(AND)&Equal(MeasureOfAngle(AND),90); ["RightTriangle(AND)"]  
+1; isosceles_triangle_judgment_line_equal(1,ABC); Polygon(ABC)&Equal(LengthOfLine(AB),LengthOfLine(AC)); ["IsoscelesTriangle(ABC)"]
+2; triangle_area_formula_common(1,ABC); Polygon(ABC); ["Equal(AreaOfTriangle(ABC),Mul(HeightOfTriangle(ABC),LengthOfLine(BC),1/2))"]
+3; right_triangle_judgment_angle(1,CMD); Polygon(CMD)&Equal(MeasureOfAngle(CMD),90); ["RightTriangle(CMD)"]
+4; right_triangle_judgment_angle(1,AND); Polygon(AND)&Equal(MeasureOfAngle(AND),90); ["RightTriangle(AND)"]
 
 
 GT_EQUATIONS:
@@ -251,8 +251,8 @@ ll_dm+ll_dn
 GT_ANSWER:
 10
 GT_THEOREM_SEQUENCE:
-altitude_of_triangle_judgment(1,DN,DAB)
-altitude_of_triangle_judgment(1,DM,DCA)
-triangle_area_formula_common(1,DCA)
-triangle_area_formula_common(1,DAB)
+1;altitude_of_triangle_judgment(1,DN,DAB);Polygon(DAB)&Line(DN)&Collinear(ANB)&Equal(MeasureOfAngle(AND),90);["IsAltitudeOfTriangle(DN,DAB)"]
+2;altitude_of_triangle_judgment(1,DM,DCA);Polygon(DCA)&Line(DM)&Collinear(CMA)&Equal(MeasureOfAngle(CMD),90);["IsAltitudeOfTriangle(DM,DCA)"]
+3;triangle_area_formula_common(1,DCA);Polygon(DCA);["Equal(AreaOfTriangle(DCA),Mul(HeightOfTriangle(DCA),LengthOfLine(CA),1/2))"]
+4;triangle_area_formula_common(1,DAB);Polygon(DAB);["Equal(AreaOfTriangle(DAB),Mul(HeightOfTriangle(DAB),LengthOfLine(AB),1/2))"]
 

@@ -122,9 +122,9 @@ THEOREM_SEQUENCE:
 2; radius_of_circle_property_length_equal(1,OB,O); Cocircular(O,B)&Line(OB)&IsCentreOfCircle(O,O); ["Equal(LengthOfLine(OB),RadiusOfCircle(O))"]  
 3; radius_of_circle_property_length_equal(1,OC,O); Cocircular(O,C)&Line(OC)&IsCentreOfCircle(O,O); ["Equal(LengthOfLine(OC),RadiusOfCircle(O))"]  
 4; isosceles_triangle_judgment_line_equal(1,OBC); Polygon(OBC)&Equal(LengthOfLine(OB),LengthOfLine(OC)); ["IsoscelesTriangle(OBC)"]  
-5; isosceles_triangle_property_angle_equal(1,OBC); IsoscelesTriangle(OBC); ["Equal(MeasureOfAngle(OCB),MeasureOfAngle(OBC))"]  
+5; isosceles_triangle_property_angle_equal(1,OBC); IsoscelesTriangle(OBC); ["Equal(MeasureOfAngle(OBC),MeasureOfAngle(BCO))"]  
 6; triangle_property_angle_sum(1,OBC); Polygon(OBC); ["Equal(Add(MeasureOfAngle(OBC),MeasureOfAngle(BCO),MeasureOfAngle(COB)),180)"]  
-7; triangle_property_angle_sum(1,OAB); Polygon(OAB); ["Equal(Add(MeasureOfAngle(OAB),MeasureOfAngle(ABO),MeasureOfAngle(BOA)),180)"]  
+7; angle_addition(1,OBC,CBA); Angle(OBC)&Angle(CBA)&Angle(OBA); ["Equal(MeasureOfAngle(OBA),Add(MeasureOfAngle(OBC),MeasureOfAngle(CBA)))"]  
 
 
 GT_EQUATIONS:
@@ -134,11 +134,11 @@ ma_cab
 GT_ANSWER:
 50
 GT_THEOREM_SEQUENCE:
-tangent_of_circle_property_perpendicular(2,AB,O,O)
-triangle_property_angle_sum(1,OCB)
-triangle_property_angle_sum(1,BOA)
-radius_of_circle_property_length_equal(1,OC,O)
-radius_of_circle_property_length_equal(1,OB,O)
-isosceles_triangle_judgment_line_equal(1,OCB)
-isosceles_triangle_property_angle_equal(1,OCB)
+1;tangent_of_circle_property_perpendicular(2,AB,O,O);IsTangentOfCircle(AB,O)&Angle(ABO)&IsCentreOfCircle(O,O);["PerpendicularBetweenLine(AB,OB)"]
+2;triangle_property_angle_sum(1,OCB);Polygon(OCB);["Equal(Add(MeasureOfAngle(OCB),MeasureOfAngle(CBO),MeasureOfAngle(BOC)),180)"]
+3;triangle_property_angle_sum(1,BOA);Polygon(BOA);["Equal(Add(MeasureOfAngle(BOA),MeasureOfAngle(OAB),MeasureOfAngle(ABO)),180)"]
+4;radius_of_circle_property_length_equal(1,OC,O);Cocircular(O,C)&Line(OC)&IsCentreOfCircle(O,O);["Equal(LengthOfLine(OC),RadiusOfCircle(O))"]
+5;radius_of_circle_property_length_equal(1,OB,O);Cocircular(O,B)&Line(OB)&IsCentreOfCircle(O,O);["Equal(LengthOfLine(OB),RadiusOfCircle(O))"]
+6;isosceles_triangle_judgment_line_equal(1,OCB);Polygon(OCB)&Equal(LengthOfLine(OC),LengthOfLine(OB));["IsoscelesTriangle(OCB)"]
+7;isosceles_triangle_property_angle_equal(1,OCB);IsoscelesTriangle(OCB);["Equal(MeasureOfAngle(OCB),MeasureOfAngle(CBO))"]
 

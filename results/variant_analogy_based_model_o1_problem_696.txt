@@ -239,20 +239,25 @@ MeasureOfAngle(ADE);ma_bdc;None
 Outputs:
 Outputs for Problem B:
 
-EQUATIONS:  
-x=3  
-y=6(√6 - 1)
+EQUATIONS:
+AF=2*x
+AG=y
+BD=x
+BF=24
+CG=12
+DC=9
 
-GOAL_SYMBOL:  
+GOAL_SYMBOL:
 y
 
-ANSWER:  
+ANSWER:
 6(√6 - 1)
 
 THEOREM_SEQUENCE:
-1; line_addition(1,DB,BF); Collinear(DBF); ["Equal(LengthOfLine(DF),Add(LengthOfLine(DB),LengthOfLine(BF)))"]  
-2; circle_property_circular_power_tangent_and_segment_line(1,DC,DBF,E); IsTangentOfCircle(DC,E)&Cocircular(E,BF)&Collinear(DBF); ["Equal(Mul(LengthOfLine(DC),LengthOfLine(DC)),Mul(LengthOfLine(DB),LengthOfLine(DF)))"]  
-3; line_addition(1,AG,GC); Collinear(AGC); ["Equal(LengthOfLine(AC),Add(LengthOfLine(AG),LengthOfLine(CG)))"]
+1; circle_property_circular_power_tangent_and_segment_line(1,DC,DBF,E); IsTangentOfCircle(DC,E)&Cocircular(E,BCGF)&Collinear(DBF); ["Equal(Mul(LengthOfLine(DC),LengthOfLine(DC)),Mul(LengthOfLine(DB),LengthOfLine(DF)))"]
+2; line_addition(1,DB,BF); Collinear(DBF); ["Equal(LengthOfLine(DF),Add(LengthOfLine(DB),LengthOfLine(BF)))"]
+3; line_addition(1,BF,FA); Collinear(BFA); ["Equal(LengthOfLine(BA),Add(LengthOfLine(BF),LengthOfLine(FA)))"]
+4; line_addition(1,AG,GC); Collinear(AGC); ["Equal(LengthOfLine(AC),Add(LengthOfLine(AG),LengthOfLine(GC)))"]
 
 
 GT_EQUATIONS:
@@ -267,9 +272,9 @@ y
 GT_ANSWER:
 -6+6*sqrt(6)
 GT_THEOREM_SEQUENCE:
-line_addition(1,DB,BF)
-circle_property_circular_power_tangent_and_segment_line(1,DC,DBF,E)
-line_addition(1,AF,FB)
-line_addition(1,AG,GC)
-circle_property_circular_power_segment_and_segment_line(1,AFB,AGC,E)
+1;line_addition(1,DB,BF);Collinear(DBF);["Equal(LengthOfLine(DF),Add(LengthOfLine(DB),LengthOfLine(BF)))"]
+2;circle_property_circular_power_tangent_and_segment_line(1,DC,DBF,E);IsTangentOfCircle(DC,E)&Cocircular(E,BF)&Collinear(DBF);["Equal(Mul(LengthOfLine(DC),LengthOfLine(DC)),Mul(LengthOfLine(DB),LengthOfLine(DF)))"]
+3;line_addition(1,AF,FB);Collinear(AFB);["Equal(LengthOfLine(AB),Add(LengthOfLine(AF),LengthOfLine(FB)))"]
+4;line_addition(1,AG,GC);Collinear(AGC);["Equal(LengthOfLine(AC),Add(LengthOfLine(AG),LengthOfLine(GC)))"]
+5;circle_property_circular_power_segment_and_segment_line(1,AFB,AGC,E);Cocircular(E,FB)&Cocircular(E,GC)&Collinear(AFB)&Collinear(AGC);["Equal(Mul(LengthOfLine(AF),LengthOfLine(AB)),Mul(LengthOfLine(AG),LengthOfLine(AC)))"]
 

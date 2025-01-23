@@ -54,10 +54,13 @@ EQUATIONS:
 -a/2+ma_xwz=8
 -a+ma_yxw
 -a+ma_zyx+28
+
 GOAL_SYMBOL:
 ma_zyx
+
 ANSWER:
 80
+
 THEOREM_SEQUENCE:
 1; quadrilateral_property_angle_sum(1,XWZY); Polygon(XWZY); ["Equal(Add(MeasureOfAngle(XWZ),MeasureOfAngle(WZY),MeasureOfAngle(ZYX),MeasureOfAngle(YXW)),360)"]
 
@@ -72,5 +75,5 @@ ma_zyx
 GT_ANSWER:
 80
 GT_THEOREM_SEQUENCE:
-quadrilateral_property_angle_sum(1,XWZY)
+1;quadrilateral_property_angle_sum(1,XWZY);Polygon(XWZY);["Equal(Add(MeasureOfAngle(XWZ),MeasureOfAngle(WZY),MeasureOfAngle(ZYX),MeasureOfAngle(YXW)),360)"]
 

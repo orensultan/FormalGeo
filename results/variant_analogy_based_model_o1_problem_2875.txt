@@ -143,8 +143,7 @@ Outputs for Problem B:
 
 EQUATIONS:
 ma_abe=80
-ma_dae-ma_abe
-Rhombus(ABCD)
+ma_dae=80
 
 GOAL_SYMBOL:
 ma_cde
@@ -153,8 +152,8 @@ ANSWER:
 20
 
 THEOREM_SEQUENCE:
-1; triangle_property_angle_sum(ADE); Polygon(ADE); ["Equal(Add(MeasureOfAngle(DAE),MeasureOfAngle(ADE),MeasureOfAngle(EDA)),180)"]
-2; triangle_property_angle_sum(CDE); Polygon(CDE); ["Equal(Add(MeasureOfAngle(CDE),MeasureOfAngle(DEC),MeasureOfAngle(ECD)),180)"]
+1; parallelogram_property_opposite_angle_equal(ABCD); Rhombus(ABCD); ["Equal(MeasureOfAngle(ABC),MeasureOfAngle(CDA))"]
+2; triangle_property_angle_sum(CDE); Polygon(CDE); ["Equal(Add(MeasureOfAngle(CDE),MeasureOfAngle(DCE),MeasureOfAngle(DEC)),180)"]
 
 
 GT_EQUATIONS:
@@ -170,12 +169,12 @@ ma_cde
 GT_ANSWER:
 30
 GT_THEOREM_SEQUENCE:
-parallel_property_collinear_extend(3,CB,DA,E)
-parallel_property_alternate_interior_angle(1,AD,BE)
-isosceles_triangle_judgment_angle_equal(1,ABE)
-isosceles_triangle_judgment_line_equal(1,AED)
-isosceles_triangle_property_angle_equal(1,AED)
-parallelogram_property_opposite_angle_equal(1,DABC)
-triangle_property_angle_sum(1,AED)
-angle_addition(1,CDE,EDA)
+1;parallel_property_collinear_extend(3,CB,DA,E);ParallelBetweenLine(CB,DA)&Collinear(CEB);["ParallelBetweenLine(CE,DA)", "ParallelBetweenLine(EB,DA)"]
+2;parallel_property_alternate_interior_angle(1,AD,BE);ParallelBetweenLine(AD,BE)&Line(AE);["Equal(MeasureOfAngle(DAE),MeasureOfAngle(BEA))"]
+3;isosceles_triangle_judgment_angle_equal(1,ABE);Polygon(ABE)&Equal(MeasureOfAngle(ABE),MeasureOfAngle(BEA));["IsoscelesTriangle(ABE)"]
+4;isosceles_triangle_judgment_line_equal(1,AED);Polygon(AED)&Equal(LengthOfLine(AE),LengthOfLine(AD));["IsoscelesTriangle(AED)"]
+5;isosceles_triangle_property_angle_equal(1,AED);IsoscelesTriangle(AED);["Equal(MeasureOfAngle(AED),MeasureOfAngle(EDA))"]
+6;parallelogram_property_opposite_angle_equal(1,DABC);Parallelogram(DABC);["Equal(MeasureOfAngle(CDA),MeasureOfAngle(ABC))"]
+7;triangle_property_angle_sum(1,AED);Polygon(AED);["Equal(Add(MeasureOfAngle(AED),MeasureOfAngle(EDA),MeasureOfAngle(DAE)),180)"]
+8;angle_addition(1,CDE,EDA);Angle(CDE)&Angle(EDA)&Angle(CDA);["Equal(MeasureOfAngle(CDA),Add(MeasureOfAngle(CDE),MeasureOfAngle(EDA)))"]
 

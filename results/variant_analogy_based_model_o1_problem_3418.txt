@@ -27,14 +27,14 @@ Shape(GF,FA,AG)
 Shape(FA,AG,GF)
 Shape(GC,CF,FG)
 Shape(CF,FG,GC)
-Shape(EA,AD,DB,BE)
-Shape(AD,DB,BE,EA)
-Shape(DB,BE,EA,AD)
-Shape(BE,EA,AD,DB)
 Shape(AD,DE,EG,GA)
 Shape(DE,EG,GA,AD)
 Shape(EG,GA,AD,DE)
 Shape(GA,AD,DE,EG)
+Shape(EA,AD,DB,BE)
+Shape(AD,DB,BE,EA)
+Shape(DB,BE,EA,AD)
+Shape(BE,EA,AD,DB)
 Shape(AE,EG,GF,FA)
 Shape(EG,GF,FA,AE)
 Shape(GF,FA,AE,EG)
@@ -154,10 +154,10 @@ Angle(FAG)
 Angle(FGC)
 Angle(GCF)
 Angle(CFG)
-Angle(ABE)
-Angle(BEA)
 Angle(DEG)
 Angle(GAD)
+Angle(ABE)
+Angle(BEA)
 Angle(EGF)
 Angle(FAE)
 Angle(AGC)
@@ -203,9 +203,9 @@ Angle(GAF)
 Angle(CGF)
 Angle(FCG)
 Angle(GFC)
+Angle(DAG)
 Angle(EBA)
 Angle(AEB)
-Angle(DAG)
 Angle(EAF)
 Angle(DAF)
 Angle(FCE)
@@ -255,16 +255,16 @@ Polygon(GFC)
 Polygon(GCF)
 Polygon(CFG)
 Polygon(CGF)
+Polygon(ADEG)
+Polygon(DEGA)
+Polygon(EGAD)
+Polygon(GADE)
 Polygon(EAB)
 Polygon(EBA)
 Polygon(AEB)
 Polygon(ABE)
 Polygon(BEA)
 Polygon(BAE)
-Polygon(ADEG)
-Polygon(DEGA)
-Polygon(EGAD)
-Polygon(GADE)
 Polygon(AEGF)
 Polygon(EGFA)
 Polygon(GFAE)
@@ -345,13 +345,13 @@ Outputs:
 Outputs for Problem B:
 
 EQUATIONS:
-ma_fad=115
-ma_ade=90
-ma_edb=90
-ll_ea-ll_eb
-ma_afg=90
-ma_gfc=90
-ll_ga-ll_gc
+ma_fad=115  
+ma_aed=90  
+ma_edb=90  
+ll_ea-ll_eb  
+ma_agf=90  
+ma_gfc=90  
+ll_ga-ll_gc  
 
 GOAL_SYMBOL:
 ma_gae
@@ -360,12 +360,14 @@ ANSWER:
 25
 
 THEOREM_SEQUENCE:
-1; perpendicular_bisector_property_distance_equal(1,ED,AB); IsPerpendicularBisectorOfLine(ED,AB); ["Equal(LengthOfLine(EA),LengthOfLine(EB))"]
-2; perpendicular_bisector_property_distance_equal(1,GF,AC); IsPerpendicularBisectorOfLine(GF,AC); ["Equal(LengthOfLine(GA),LengthOfLine(GC))"]
-3; isosceles_triangle_judgment_line_equal(1,EAB); Polygon(EAB)&Equal(LengthOfLine(EA),LengthOfLine(EB)); ["IsoscelesTriangle(EAB)"]
-4; isosceles_triangle_judgment_line_equal(1,GAC); Polygon(GAC)&Equal(LengthOfLine(GA),LengthOfLine(GC)); ["IsoscelesTriangle(GAC)"]
-5; angle_addition(1,GAF,FAD); Angle(GAF)&Angle(FAD)&Angle(GAD); ["Equal(MeasureOfAngle(GAD),Add(MeasureOfAngle(GAF),MeasureOfAngle(FAD)))"]
-6; angle_addition(1,GAD,DAE); Angle(GAD)&Angle(DAE)&Angle(GAE); ["Equal(MeasureOfAngle(GAE),Add(MeasureOfAngle(GAD),MeasureOfAngle(DAE)))"]
+1; perpendicular_bisector_property_distance_equal(1,ED,AB); IsPerpendicularBisectorOfLine(ED,AB); ["Equal(LengthOfLine(EA),LengthOfLine(EB))"]  
+2; perpendicular_bisector_property_distance_equal(1,GF,AC); IsPerpendicularBisectorOfLine(GF,AC); ["Equal(LengthOfLine(GA),LengthOfLine(GC))"]  
+3; isosceles_triangle_judgment_line_equal(1,EAB); Polygon(EAB)&Equal(LengthOfLine(EA),LengthOfLine(EB)); ["IsoscelesTriangle(EAB)"]  
+4; isosceles_triangle_judgment_line_equal(1,GAC); Polygon(GAC)&Equal(LengthOfLine(GA),LengthOfLine(GC)); ["IsoscelesTriangle(GAC)"]  
+5; isosceles_triangle_property_angle_equal(1,EAB); IsoscelesTriangle(EAB); ["Equal(MeasureOfAngle(EAB),MeasureOfAngle(ABE))"]  
+6; isosceles_triangle_property_angle_equal(1,GAC); IsoscelesTriangle(GAC); ["Equal(MeasureOfAngle(GAC),MeasureOfAngle(ACG))"]  
+7; angle_addition(1,GAF,FAD); Angle(GAF)&Angle(FAD)&Angle(GAD); ["Equal(MeasureOfAngle(GAD),Add(MeasureOfAngle(GAF),MeasureOfAngle(FAD)))"]  
+8; angle_addition(1,GAD,DAE); Angle(GAD)&Angle(DAE)&Angle(GAE); ["Equal(MeasureOfAngle(GAE),Add(MeasureOfAngle(GAD),MeasureOfAngle(DAE)))"]  
 
 
 GT_EQUATIONS:
@@ -381,13 +383,13 @@ ma_gae
 GT_ANSWER:
 50
 GT_THEOREM_SEQUENCE:
-perpendicular_bisector_property_distance_equal(1,ED,AB)
-perpendicular_bisector_property_distance_equal(1,GF,AC)
-isosceles_triangle_judgment_line_equal(1,EAB)
-isosceles_triangle_judgment_line_equal(1,GCA)
-isosceles_triangle_property_angle_equal(1,EAB)
-isosceles_triangle_property_angle_equal(1,GCA)
-triangle_property_angle_sum(1,ABC)
-angle_addition(1,GAE,EAD)
-angle_addition(1,FAG,GAD)
+1;perpendicular_bisector_property_distance_equal(1,ED,AB);IsPerpendicularBisectorOfLine(ED,AB);["Equal(LengthOfLine(EA),LengthOfLine(EB))"]
+2;perpendicular_bisector_property_distance_equal(1,GF,AC);IsPerpendicularBisectorOfLine(GF,AC);["Equal(LengthOfLine(GA),LengthOfLine(GC))"]
+3;isosceles_triangle_judgment_line_equal(1,EAB);Polygon(EAB)&Equal(LengthOfLine(EA),LengthOfLine(EB));["IsoscelesTriangle(EAB)"]
+4;isosceles_triangle_judgment_line_equal(1,GCA);Polygon(GCA)&Equal(LengthOfLine(GC),LengthOfLine(GA));["IsoscelesTriangle(GCA)"]
+5;isosceles_triangle_property_angle_equal(1,EAB);IsoscelesTriangle(EAB);["Equal(MeasureOfAngle(EAB),MeasureOfAngle(ABE))"]
+6;isosceles_triangle_property_angle_equal(1,GCA);IsoscelesTriangle(GCA);["Equal(MeasureOfAngle(GCA),MeasureOfAngle(CAG))"]
+7;triangle_property_angle_sum(1,ABC);Polygon(ABC);["Equal(Add(MeasureOfAngle(ABC),MeasureOfAngle(BCA),MeasureOfAngle(CAB)),180)"]
+8;angle_addition(1,GAE,EAD);Angle(GAE)&Angle(EAD)&Angle(GAD);["Equal(MeasureOfAngle(GAD),Add(MeasureOfAngle(GAE),MeasureOfAngle(EAD)))"]
+9;angle_addition(1,FAG,GAD);Angle(FAG)&Angle(GAD)&Angle(FAD);["Equal(MeasureOfAngle(FAD),Add(MeasureOfAngle(FAG),MeasureOfAngle(GAD)))"]
 
