@@ -1,0 +1,40 @@
+{
+  "problem_id": 6308,
+  "annotation": "ZheZhu_2023-05-28",
+  "source": "GeoQA-9081",
+  "problem_level": 3,
+  "problem_text_cn": "如图所示，AM=MD，AO=OC，OM=3，四边形ABCD是长方形。求直线AB的长度。",
+  "problem_text_en": "As shown in the diagram, AM=MD, AO=OC, OM=3, ABCD is a rectangle. Find the length of line AB.",
+  "problem_img": "6308.png",
+  "construction_cdl": [
+    "Shape(MA,AO,OM)",
+    "Shape(DM,MO,OC,CD)",
+    "Shape(OA,AB,BO)",
+    "Shape(OB,BC,CO)",
+    "Collinear(AMD)",
+    "Collinear(AOC)"
+  ],
+  "text_cdl": [
+    "Equal(LengthOfLine(AM),LengthOfLine(MD))",
+    "Equal(LengthOfLine(AO),LengthOfLine(OC))",
+    "Equal(LengthOfLine(OM),3)",
+    "Rectangle(ABCD)"
+  ],
+  "image_cdl": [],
+  "goal_cdl": "Value(LengthOfLine(AB))",
+  "problem_answer": "6",
+  "theorem_seqs": [
+    "midsegment_of_triangle_judgment_midpoint(1,OM,ACD)",
+    "midsegment_of_triangle_property_length(1,OM,ACD)",
+    "parallelogram_property_opposite_line_equal(1,ABCD)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "midsegment_of_triangle_judgment_midpoint(1,OM,ACD)",
+      "parallelogram_property_opposite_line_equal(1,ABCD)"
+    ],
+    "midsegment_of_triangle_judgment_midpoint(1,OM,ACD)": [
+      "midsegment_of_triangle_property_length(1,OM,ACD)"
+    ]
+  }
+}

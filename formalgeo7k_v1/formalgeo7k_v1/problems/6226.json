@@ -1,0 +1,40 @@
+{
+  "problem_id": 6226,
+  "annotation": "FangzhenZhu_2023-06-04",
+  "source": "GeoQA-8821",
+  "problem_level": 3,
+  "problem_text_cn": "如图所示，∠DAC=35°，AD是∠BAC的角平分线，⊙O的圆心为O。求∠BOC的大小。",
+  "problem_text_en": "As shown in the diagram, ∠DAC=35°, AD bisects ∠BAC, O is the center of ⊙O. Find the measure of ∠BOC.",
+  "problem_img": "6226.png",
+  "construction_cdl": [
+    "Shape(OAC,CA)",
+    "Shape(OCD,DM,MC)",
+    "Shape(ODB,BO,OM,MD)",
+    "Shape(OBA,AB)",
+    "Shape(AM,MO,OB,BA)",
+    "Shape(AC,CM,MA)",
+    "Collinear(AMD)",
+    "Collinear(CMO)",
+    "Cocircular(O,ACDB)"
+  ],
+  "text_cdl": [
+    "Equal(MeasureOfAngle(DAC),35)",
+    "IsBisectorOfAngle(AD,BAC)",
+    "IsCentreOfCircle(O,O)"
+  ],
+  "image_cdl": [],
+  "goal_cdl": "Value(MeasureOfAngle(BOC))",
+  "problem_answer": "140",
+  "theorem_seqs": [
+    "angle_addition(1,BAM,MAC)",
+    "arc_property_center_angle(1,OCB,O)",
+    "arc_property_circumference_angle_external(1,OCB,A)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "angle_addition(1,BAM,MAC)",
+      "arc_property_center_angle(1,OCB,O)",
+      "arc_property_circumference_angle_external(1,OCB,A)"
+    ]
+  }
+}

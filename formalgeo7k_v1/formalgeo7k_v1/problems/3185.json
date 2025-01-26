@@ -1,0 +1,35 @@
+{
+  "problem_id": 3185,
+  "annotation": "JiaZou_2023-04-23",
+  "source": "GeoQA-467",
+  "problem_level": 2,
+  "problem_text_cn": "如图所示，∠AOE=90°，∠DOB=50°。求∠COE的大小。",
+  "problem_text_en": "As shown in the diagram, ∠AOE=90°, ∠DOB=50°. Find the measure of ∠COE.",
+  "problem_img": "3185.png",
+  "construction_cdl": [
+    "Shape(AO,OE)",
+    "Shape(EO,OD)",
+    "Shape(DO,OB)",
+    "Shape(BO,OC)",
+    "Shape(CO,OA)",
+    "Collinear(COD)",
+    "Collinear(AOB)"
+  ],
+  "text_cdl": [
+    "Equal(MeasureOfAngle(AOE),90)",
+    "Equal(MeasureOfAngle(DOB),50)"
+  ],
+  "image_cdl": [],
+  "goal_cdl": "Value(MeasureOfAngle(COE))",
+  "problem_answer": "140",
+  "theorem_seqs": [
+    "vertical_angle(1,CPA,DOB)",
+    "angle_addition(1,COA,AOE)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "vertical_angle(1,CPA,DOB)",
+      "angle_addition(1,COA,AOE)"
+    ]
+  }
+}

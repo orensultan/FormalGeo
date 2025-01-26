@@ -1,0 +1,43 @@
+{
+  "problem_id": 6211,
+  "annotation": "DengfengYue_2023-05-28",
+  "source": "GeoQA-8799",
+  "problem_level": 4,
+  "problem_text_cn": "如图所示，∠CAB=30°，O是圆O的圆心，⊙O的直径为AB。求∠ADE的大小。",
+  "problem_text_en": "As shown in the diagram, ∠CAB=30°, O is the center of circle O, AB is the diameter of circle O. Find the measure of ∠ADE.",
+  "problem_img": "6211.png",
+  "construction_cdl": [
+    "Shape(AC,OCA)",
+    "Shape(CA,AE,EC)",
+    "Shape(CE,EB,BC)",
+    "Shape(CB,OBC)",
+    "Shape(AD,DE,EA)",
+    "Shape(BE,ED,ODB)",
+    "Shape(DA,OAD)",
+    "Collinear(CED)",
+    "Collinear(AOEB)",
+    "Cocircular(O,ADBC)"
+  ],
+  "text_cdl": [
+    "Equal(MeasureOfAngle(CAB),30)",
+    "IsCentreOfCircle(O,O)",
+    "IsDiameterOfCircle(AB,O)"
+  ],
+  "image_cdl": [],
+  "goal_cdl": "Value(MeasureOfAngle(ADE))",
+  "problem_answer": "60",
+  "theorem_seqs": [
+    "diameter_of_circle_property_right_angle(1,BCA,O)",
+    "triangle_property_angle_sum(1,CAB)",
+    "arc_property_circumference_angle_external(1,OCA,D)",
+    "arc_property_circumference_angle_external(1,OCA,B)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "diameter_of_circle_property_right_angle(1,BCA,O)",
+      "triangle_property_angle_sum(1,CAB)",
+      "arc_property_circumference_angle_external(1,OCA,D)",
+      "arc_property_circumference_angle_external(1,OCA,B)"
+    ]
+  }
+}

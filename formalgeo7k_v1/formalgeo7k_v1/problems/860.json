@@ -1,0 +1,69 @@
+{
+  "problem_id": 860,
+  "annotation": "NaZhu_2023-04-09",
+  "source": "Geometry3k-889",
+  "problem_level": 11,
+  "problem_text_cn": "如图所示，∠BGE=52°，∠GFE=30°，⌒OBA的角度为108，弧OFE的角度为118，圆O的圆心为O。求弧OAC的角度。",
+  "problem_text_en": "As shown in the diagram, ∠BGE=52°, ∠GFE=30°, the measure of ⌒OBA is 108, the measure of arc OFE is 118, O is the center of ⊙O. Find the measure of ⌒OAC.",
+  "problem_img": "860.png",
+  "construction_cdl": [
+    "Shape(OEB,BE)",
+    "Shape(OE,EB,BO)",
+    "Shape(OBA,AB)",
+    "Shape(OAC,CB,BA)",
+    "Shape(GB,BC,CG)",
+    "Shape(OCF,FG,GC)",
+    "Shape(GE,EO,OB,BG)",
+    "Shape(OFE,EF)",
+    "Shape(GF,FE,EG)",
+    "Shape(OAC,AD,DC)",
+    "Collinear(DAB)",
+    "Collinear(DCGE)",
+    "Collinear(FGB)",
+    "Cocircular(O,ACFEB)"
+  ],
+  "text_cdl": [
+    "Equal(MeasureOfAngle(BGE),52)",
+    "Equal(MeasureOfAngle(GFE),30)",
+    "Equal(MeasureOfArc(OBA),108)",
+    "Equal(MeasureOfArc(OFE),118)",
+    "IsCentreOfCircle(O,O)"
+  ],
+  "image_cdl": [
+    "Equal(MeasureOfAngle(BGE),52)",
+    "Equal(MeasureOfAngle(GFE),30)",
+    "Equal(MeasureOfArc(OBA),108)",
+    "Equal(MeasureOfArc(OFE),118)",
+    "IsCentreOfCircle(O,O)"
+  ],
+  "goal_cdl": "Value(MeasureOfArc(OAC))",
+  "problem_answer": "30",
+  "theorem_seqs": [
+    "arc_property_circumference_angle_external(1,OEB,C)",
+    "flat_angle(1,CGE)",
+    "angle_addition(1,CGB,BGE)",
+    "triangle_property_angle_sum(1,BCG)",
+    "arc_property_circumference_angle_external(1,OCF,B)",
+    "arc_property_center_angle(1,OEB,O)",
+    "arc_property_center_angle(1,OBE,O)",
+    "arc_addition_measure(1,OAC,OCE)",
+    "arc_addition_measure(1,OBA,OAE)",
+    "arc_addition_measure(1,OCF,OFE)",
+    "round_angle(1,BOE,EOB)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "arc_property_circumference_angle_external(1,OEB,C)",
+      "flat_angle(1,CGE)",
+      "angle_addition(1,CGB,BGE)",
+      "triangle_property_angle_sum(1,BCG)",
+      "arc_property_circumference_angle_external(1,OCF,B)",
+      "arc_property_center_angle(1,OEB,O)",
+      "arc_property_center_angle(1,OBE,O)",
+      "arc_addition_measure(1,OAC,OCE)",
+      "arc_addition_measure(1,OBA,OAE)",
+      "arc_addition_measure(1,OCF,OFE)",
+      "round_angle(1,BOE,EOB)"
+    ]
+  }
+}

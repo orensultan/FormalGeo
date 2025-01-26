@@ -1,0 +1,57 @@
+{
+  "problem_id": 3770,
+  "annotation": "ChenyangMao_2023-04-30",
+  "source": "GeoQA-1591",
+  "problem_level": 8,
+  "problem_text_cn": "如图所示，AB=AC，∠EAD=30°，∠FDA=145°，FE平行于GC。求∠GCB的大小。",
+  "problem_text_en": "As shown in the diagram, AB=AC, ∠EAD=30°, ∠FDA=145°, FE is parallel to GC. Find the measure of ∠GCB.",
+  "problem_img": "3770.png",
+  "construction_cdl": [
+    "Shape(AD,DE,EA)",
+    "Shape(FD,DA)",
+    "Shape(DB,BC,CE,ED)",
+    "Shape(BD,DF)",
+    "Shape(GC,CB)",
+    "Collinear(FDE)",
+    "Collinear(ADB)",
+    "Collinear(AEC)"
+  ],
+  "text_cdl": [
+    "Equal(LengthOfLine(AB),LengthOfLine(AC))",
+    "Equal(MeasureOfAngle(EAD),30)",
+    "Equal(MeasureOfAngle(FDA),145)",
+    "ParallelBetweenLine(FE,GC)"
+  ],
+  "image_cdl": [
+    "Equal(LengthOfLine(AB),LengthOfLine(AC))",
+    "Equal(MeasureOfAngle(EAD),30)",
+    "Equal(MeasureOfAngle(FDA),145)",
+    "ParallelBetweenLine(FE,GC)"
+  ],
+  "goal_cdl": "Value(MeasureOfAngle(GCB))",
+  "problem_answer": "40",
+  "theorem_seqs": [
+    "triangle_property_angle_sum(1,ADE)",
+    "triangle_property_angle_sum(1,ABC)",
+    "isosceles_triangle_judgment_line_equal(1,ABC)",
+    "isosceles_triangle_property_angle_equal(1,ABC)",
+    "adjacent_complementary_angle(1,FDA,ADE)",
+    "adjacent_complementary_angle(1,CED,DEA)",
+    "parallel_property_ipsilateral_internal_angle(1,CG,EF)",
+    "angle_addition(1,GCB,BCE)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "triangle_property_angle_sum(1,ADE)",
+      "triangle_property_angle_sum(1,ABC)",
+      "isosceles_triangle_judgment_line_equal(1,ABC)",
+      "adjacent_complementary_angle(1,FDA,ADE)",
+      "adjacent_complementary_angle(1,CED,DEA)",
+      "parallel_property_ipsilateral_internal_angle(1,CG,EF)",
+      "angle_addition(1,GCB,BCE)"
+    ],
+    "isosceles_triangle_judgment_line_equal(1,ABC)": [
+      "isosceles_triangle_property_angle_equal(1,ABC)"
+    ]
+  }
+}

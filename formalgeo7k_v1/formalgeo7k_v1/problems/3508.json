@@ -1,0 +1,32 @@
+{
+  "problem_id": 3508,
+  "annotation": "XiaokaiZhang_2023-04-30",
+  "source": "GeoQA-1115",
+  "problem_level": 1,
+  "problem_text_cn": "如图所示，∠ECD=25°，∠FEA=∠DEC，ABCD是矩形。求∠FEA的大小。",
+  "problem_text_en": "As shown in the diagram, ∠ECD=25°, ∠FEA=∠DEC, ABCD is a rectangle. Find the measure of ∠FEA.",
+  "problem_img": "3508.png",
+  "construction_cdl": [
+    "Shape(AB,BF,FE,EA)",
+    "Shape(EF,FC,CE)",
+    "Shape(EC,CD,DE)",
+    "Collinear(AED)",
+    "Collinear(BFC)"
+  ],
+  "text_cdl": [
+    "Equal(MeasureOfAngle(ECD),25)",
+    "Equal(MeasureOfAngle(FEA),MeasureOfAngle(DEC))",
+    "Rectangle(ABCD)"
+  ],
+  "image_cdl": [],
+  "goal_cdl": "Value(MeasureOfAngle(FEA))",
+  "problem_answer": "65",
+  "theorem_seqs": [
+    "triangle_property_angle_sum(1,ECD)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "triangle_property_angle_sum(1,ECD)"
+    ]
+  }
+}

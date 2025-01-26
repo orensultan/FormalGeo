@@ -1,0 +1,28 @@
+{
+  "problem_id": 5649,
+  "annotation": "JiaZou_2023-05-28",
+  "source": "GeoQA-7304",
+  "problem_level": 1,
+  "problem_text_cn": "如图所示，AB=600，∠ACB=90°，∠BAC=30°。求直线BC的长度。",
+  "problem_text_en": "As shown in the diagram, AB=600, ∠ACB=90°, ∠BAC=30°. Find the length of line BC.",
+  "problem_img": "5649.png",
+  "construction_cdl": [
+    "Shape(BA,AC,CB)"
+  ],
+  "text_cdl": [
+    "Equal(LengthOfLine(AB),600)",
+    "Equal(MeasureOfAngle(ACB),90)",
+    "Equal(MeasureOfAngle(BAC),30)"
+  ],
+  "image_cdl": [],
+  "goal_cdl": "Value(LengthOfLine(BC))",
+  "problem_answer": "300",
+  "theorem_seqs": [
+    "sine_theorem(1,BAC)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "sine_theorem(1,BAC)"
+    ]
+  }
+}

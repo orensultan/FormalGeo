@@ -1,0 +1,44 @@
+{
+  "problem_id": 3780,
+  "annotation": "ChenyangMao_2023-04-30",
+  "source": "GeoQA-1611",
+  "problem_level": 3,
+  "problem_text_cn": "如图所示，∠FEC=90°，∠FED=30°，BC平行于DE。求∠GCE的大小。",
+  "problem_text_en": "As shown in the diagram, ∠FEC=90°, ∠FED=30°, BC is parallel to DE. Find the measure of ∠GCE.",
+  "problem_img": "3780.png",
+  "construction_cdl": [
+    "Shape(AB,BC,CA)",
+    "Shape(BD,DE,EC,CB)",
+    "Shape(DF,FE,ED)",
+    "Shape(GC,CE)",
+    "Collinear(ABDF)",
+    "Collinear(BCG)",
+    "Collinear(ACE)"
+  ],
+  "text_cdl": [
+    "Equal(MeasureOfAngle(FEC),90)",
+    "Equal(MeasureOfAngle(FED),30)",
+    "ParallelBetweenLine(BC,DE)"
+  ],
+  "image_cdl": [
+    "Equal(MeasureOfAngle(FEC),90)",
+    "Equal(MeasureOfAngle(FED),30)",
+    "ParallelBetweenLine(BC,DE)"
+  ],
+  "goal_cdl": "Value(MeasureOfAngle(GCE))",
+  "problem_answer": "60",
+  "theorem_seqs": [
+    "parallel_property_collinear_extend(2,BC,DE,G)",
+    "angle_addition(1,FED,DEC)",
+    "parallel_property_alternate_interior_angle(1,CG,DE)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "parallel_property_collinear_extend(2,BC,DE,G)",
+      "angle_addition(1,FED,DEC)"
+    ],
+    "parallel_property_collinear_extend(2,BC,DE,G)": [
+      "parallel_property_alternate_interior_angle(1,CG,DE)"
+    ]
+  }
+}

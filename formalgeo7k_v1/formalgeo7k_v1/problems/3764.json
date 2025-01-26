@@ -1,0 +1,60 @@
+{
+  "problem_id": 3764,
+  "annotation": "ChenyangMao_2023-04-30",
+  "source": "GeoQA-1579",
+  "problem_level": 5,
+  "problem_text_cn": "如图所示，∠BFG=∠FBA，∠GCB=60°。求∠HGL的大小。",
+  "problem_text_en": "As shown in the diagram, ∠BFG=∠FBA, ∠GCB=60°. Find the measure of ∠HGL.",
+  "problem_img": "3764.png",
+  "construction_cdl": [
+    "Shape(AB,BI)",
+    "Shape(IB,BC)",
+    "Shape(BC,CJ)",
+    "Shape(JC,CD)",
+    "Shape(FB,BA)",
+    "Shape(CB,BF,FG,GC)",
+    "Shape(DC,CG)",
+    "Shape(EF,FB)",
+    "Shape(DG,GH)",
+    "Shape(KF,FE)",
+    "Shape(GF,FK)",
+    "Shape(LG,GF)",
+    "Shape(HG,GL)",
+    "Collinear(ABCD)",
+    "Collinear(EFGH)",
+    "Collinear(IBFK)",
+    "Collinear(JCGL)"
+  ],
+  "text_cdl": [
+    "Equal(MeasureOfAngle(BFG),MeasureOfAngle(FBA))",
+    "Equal(MeasureOfAngle(GCB),60)"
+  ],
+  "image_cdl": [
+    "Equal(MeasureOfAngle(BFG),MeasureOfAngle(FBA))",
+    "Equal(MeasureOfAngle(GCB),60)"
+  ],
+  "goal_cdl": "Value(MeasureOfAngle(HGL))",
+  "problem_answer": "120",
+  "theorem_seqs": [
+    "parallel_judgment_alternate_interior_angle(2,AB,FG)",
+    "parallel_property_collinear_extend(1,GF,BA,H)",
+    "parallel_property_collinear_extend(2,AB,GH,C)",
+    "parallel_property_alternate_interior_angle(2,AC,GH)",
+    "adjacent_complementary_angle(1,JGH,HGL)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "parallel_judgment_alternate_interior_angle(2,AB,FG)",
+      "adjacent_complementary_angle(1,JGH,HGL)"
+    ],
+    "parallel_judgment_alternate_interior_angle(2,AB,FG)": [
+      "parallel_property_collinear_extend(1,GF,BA,H)"
+    ],
+    "parallel_property_collinear_extend(1,GF,BA,H)": [
+      "parallel_property_collinear_extend(2,AB,GH,C)"
+    ],
+    "parallel_property_collinear_extend(2,AB,GH,C)": [
+      "parallel_property_alternate_interior_angle(2,AC,GH)"
+    ]
+  }
+}

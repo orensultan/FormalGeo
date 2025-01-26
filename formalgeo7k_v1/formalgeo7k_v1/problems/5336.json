@@ -1,0 +1,43 @@
+{
+  "problem_id": 5336,
+  "annotation": "QikeHuang_2023-05-21",
+  "source": "GeoQA-5563",
+  "problem_level": 6,
+  "problem_text_cn": "如图所示，AB=AC，CD=1，∠CAB=36°，BD平分∠ABC。求直线AC的长度。",
+  "problem_text_en": "As shown in the diagram, AB=AC, CD=1, ∠CAB=36°, BD bisects ∠ABC. Find the length of line AC.",
+  "problem_img": "5336.png",
+  "construction_cdl": [
+    "Shape(AB,BD,DA)",
+    "Shape(DB,BC,CD)",
+    "Collinear(ADC)"
+  ],
+  "text_cdl": [
+    "Equal(LengthOfLine(AB),LengthOfLine(AC))",
+    "Equal(LengthOfLine(CD),1)",
+    "Equal(MeasureOfAngle(CAB),36)",
+    "IsBisectorOfAngle(BD,ABC)"
+  ],
+  "image_cdl": [],
+  "goal_cdl": "Value(LengthOfLine(AC))",
+  "problem_answer": "1+sqrt(sqrt(5)+5)/sqrt(5-sqrt(5))",
+  "theorem_seqs": [
+    "triangle_property_angle_sum(1,ABC)",
+    "isosceles_triangle_judgment_line_equal(1,ABC)",
+    "isosceles_triangle_property_angle_equal(1,ABC)",
+    "sine_theorem(1,DBC)",
+    "sine_theorem(1,DAB)",
+    "line_addition(1,AD,DC)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "triangle_property_angle_sum(1,ABC)",
+      "isosceles_triangle_judgment_line_equal(1,ABC)",
+      "sine_theorem(1,DBC)",
+      "sine_theorem(1,DAB)",
+      "line_addition(1,AD,DC)"
+    ],
+    "isosceles_triangle_judgment_line_equal(1,ABC)": [
+      "isosceles_triangle_property_angle_equal(1,ABC)"
+    ]
+  }
+}

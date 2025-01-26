@@ -1,0 +1,68 @@
+{
+  "problem_id": 5348,
+  "annotation": "QikeHuang_2023-05-21",
+  "source": "GeoQA-5592",
+  "problem_level": 11,
+  "problem_text_cn": "如图所示，AB=8，AC=10，BC=9，⊙O的圆心为O，AG是⊙O的切线，AM是⊙O的切线，BM是圆O的切线，BN是⊙O的切线，圆O的切线为DF，DN是圆O的切线，⊙O的切线为EF，⊙O的切线为EG。求三角形CED的周长。",
+  "problem_text_en": "As shown in the diagram, AB=8, AC=10, BC=9, the center of circle O is O, the tangent to circle O is AG, AM is the tangent to circle O, the tangent to circle O is BM, BN is the tangent to circle O, the tangent to ⊙O is DF, the tangent to ⊙O is DN, EF is the tangent to ⊙O, the tangent to ⊙O is EG. Find the perimeter of △CED.",
+  "problem_img": "5348.png",
+  "construction_cdl": [
+    "Shape(AM,OGM,GA)",
+    "Shape(MB,BN,OMN)",
+    "Shape(ND,DF,ONF)",
+    "Shape(FE,EG,OFG)",
+    "Shape(CE,EF,FD,DC)",
+    "Shape(O)",
+    "Shape(OMN,ONF,OFG,OGM)",
+    "Collinear(AGEC)",
+    "Collinear(AMB)",
+    "Collinear(BNDC)",
+    "Collinear(EFD)",
+    "Cocircular(O,MNFG)"
+  ],
+  "text_cdl": [
+    "Equal(LengthOfLine(AB),8)",
+    "Equal(LengthOfLine(AC),10)",
+    "Equal(LengthOfLine(BC),9)",
+    "IsCentreOfCircle(O,O)",
+    "IsTangentOfCircle(AG,O)",
+    "IsTangentOfCircle(AM,O)",
+    "IsTangentOfCircle(BM,O)",
+    "IsTangentOfCircle(BN,O)",
+    "IsTangentOfCircle(DF,O)",
+    "IsTangentOfCircle(DN,O)",
+    "IsTangentOfCircle(EF,O)",
+    "IsTangentOfCircle(EG,O)"
+  ],
+  "image_cdl": [],
+  "goal_cdl": "Value(PerimeterOfTriangle(CED))",
+  "problem_answer": "11",
+  "theorem_seqs": [
+    "tangent_of_circle_property_length_equal(1,EF,EG,O)",
+    "tangent_of_circle_property_length_equal(1,DF,DN,O)",
+    "tangent_of_circle_property_length_equal(1,BN,BM,O)",
+    "tangent_of_circle_property_length_equal(1,AM,AG,O)",
+    "line_addition(1,AG,GE)",
+    "line_addition(1,AE,EC)",
+    "line_addition(1,AM,MB)",
+    "line_addition(1,BN,ND)",
+    "line_addition(1,BD,DC)",
+    "line_addition(1,EF,FD)",
+    "triangle_perimeter_formula(1,CED)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "tangent_of_circle_property_length_equal(1,EF,EG,O)",
+      "tangent_of_circle_property_length_equal(1,DF,DN,O)",
+      "tangent_of_circle_property_length_equal(1,BN,BM,O)",
+      "tangent_of_circle_property_length_equal(1,AM,AG,O)",
+      "line_addition(1,AG,GE)",
+      "line_addition(1,AE,EC)",
+      "line_addition(1,AM,MB)",
+      "line_addition(1,BN,ND)",
+      "line_addition(1,BD,DC)",
+      "line_addition(1,EF,FD)",
+      "triangle_perimeter_formula(1,CED)"
+    ]
+  }
+}

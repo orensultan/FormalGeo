@@ -1,0 +1,33 @@
+{
+  "problem_id": 5451,
+  "annotation": "YangLi_2023-05-21",
+  "source": "GeoQA-5838",
+  "problem_level": 3,
+  "problem_text_cn": "如图所示，∠DAE=60°。求∠CDE的大小与∠DEB的大小之和。",
+  "problem_text_en": "As shown in the diagram, ∠DAE=60°. Find the sum of the measure of ∠CDE and the measure of ∠DEB.",
+  "problem_img": "5451.png",
+  "construction_cdl": [
+    "Shape(DA,AE,ED)",
+    "Shape(CD,DE,EB,BC)",
+    "Collinear(ADC)",
+    "Collinear(AEB)"
+  ],
+  "text_cdl": [
+    "Equal(MeasureOfAngle(DAE),60)"
+  ],
+  "image_cdl": [],
+  "goal_cdl": "Value(Add(MeasureOfAngle(CDE),MeasureOfAngle(DEB)))",
+  "problem_answer": "240",
+  "theorem_seqs": [
+    "triangle_property_angle_sum(1,DAE)",
+    "adjacent_complementary_angle(1,CDE,EDA)",
+    "adjacent_complementary_angle(1,AED,DEB)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "triangle_property_angle_sum(1,DAE)",
+      "adjacent_complementary_angle(1,CDE,EDA)",
+      "adjacent_complementary_angle(1,AED,DEB)"
+    ]
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "problem_id": 5279,
+  "annotation": "XiaokaiZhang_2023-05-21",
+  "source": "GeoQA-5437",
+  "problem_level": 1,
+  "problem_text_cn": "如图所示，∠COB=60°。求∠AOC的大小。",
+  "problem_text_en": "As shown in the diagram, ∠COB=60°. Find the measure of ∠AOC.",
+  "problem_img": "5279.png",
+  "construction_cdl": [
+    "Shape(AO,OC)",
+    "Shape(CO,OB)",
+    "Collinear(AOB)"
+  ],
+  "text_cdl": [
+    "Equal(MeasureOfAngle(COB),60)"
+  ],
+  "image_cdl": [],
+  "goal_cdl": "Value(MeasureOfAngle(AOC))",
+  "problem_answer": "120",
+  "theorem_seqs": [
+    "adjacent_complementary_angle(1,AOC,COB)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "adjacent_complementary_angle(1,AOC,COB)"
+    ]
+  }
+}

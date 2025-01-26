@@ -1,0 +1,39 @@
+{
+  "problem_id": 202,
+  "annotation": "XiaokaiZhang_2023-04-02",
+  "source": "Geometry3k-204",
+  "problem_level": 3,
+  "problem_text_cn": "如图所示，∠ADE=43°，AD平行于BC，DC∥AB。求∠ABC的大小。",
+  "problem_text_en": "As shown in the diagram, ∠ADE=43°, AD is parallel to BC, DC∥AB. Find the measure of ∠ABC.",
+  "problem_img": "202.png",
+  "construction_cdl": [
+    "Shape(AB,BC,CD,DA)",
+    "Shape(AD,DE)",
+    "Collinear(EDC)"
+  ],
+  "text_cdl": [
+    "Equal(MeasureOfAngle(ADE),43)",
+    "ParallelBetweenLine(AD,BC)",
+    "ParallelBetweenLine(DC,AB)"
+  ],
+  "image_cdl": [
+    "ParallelBetweenLine(AD,BC)",
+    "ParallelBetweenLine(DC,AB)"
+  ],
+  "goal_cdl": "Value(MeasureOfAngle(ABC))",
+  "problem_answer": "137",
+  "theorem_seqs": [
+    "adjacent_complementary_angle(1,CDA,ADE)",
+    "parallelogram_judgment_parallel_and_parallel(1,ABCD)",
+    "parallelogram_property_opposite_angle_equal(1,BCDA)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "adjacent_complementary_angle(1,CDA,ADE)",
+      "parallelogram_judgment_parallel_and_parallel(1,ABCD)"
+    ],
+    "parallelogram_judgment_parallel_and_parallel(1,ABCD)": [
+      "parallelogram_property_opposite_angle_equal(1,BCDA)"
+    ]
+  }
+}

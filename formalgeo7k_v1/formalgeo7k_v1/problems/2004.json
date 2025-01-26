@@ -1,0 +1,33 @@
+{
+  "problem_id": 2004,
+  "annotation": "ZheZhu_2023-04-16",
+  "source": "Geometry3k-2089",
+  "problem_level": 0,
+  "problem_text_cn": "如图所示，∠AGC=60°，DG⊥AG。求∠DGA的大小。",
+  "problem_text_en": "As shown in the diagram, ∠AGC=60°, DG is perpendicular to AG. Find the measure of ∠DGA.",
+  "problem_img": "2004.png",
+  "construction_cdl": [
+    "Shape(CG,GB,GBC)",
+    "Shape(GC,GCA,AG)",
+    "Shape(DG,GA,GAD)",
+    "Shape(GD,GDE,EG)",
+    "Shape(GE,GEB,BG)",
+    "Collinear(AGB)",
+    "Collinear(CGE)",
+    "Cocircular(G,CADEB)"
+  ],
+  "text_cdl": [
+    "Equal(MeasureOfAngle(AGC),60)",
+    "PerpendicularBetweenLine(DG,AG)"
+  ],
+  "image_cdl": [
+    "Equal(MeasureOfAngle(AGC),60)",
+    "PerpendicularBetweenLine(DG,AG)"
+  ],
+  "goal_cdl": "Value(MeasureOfAngle(DGA))",
+  "problem_answer": "90",
+  "theorem_seqs": [],
+  "theorem_seqs_dag": {
+    "START": []
+  }
+}

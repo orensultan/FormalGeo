@@ -1,0 +1,28 @@
+{
+  "problem_id": 4732,
+  "annotation": "XiaoxiaoJin_2023-05-14",
+  "source": "GeoQA-4069",
+  "problem_level": 1,
+  "problem_text_cn": "如图所示，OC=4，∠CDO=90°，∠DOC=45°。求直线CD的长度。",
+  "problem_text_en": "As shown in the diagram, OC=4, ∠CDO=90°, ∠DOC=45°. Find the length of line CD.",
+  "problem_img": "4732.png",
+  "construction_cdl": [
+    "Shape(DO,OC,CD)"
+  ],
+  "text_cdl": [
+    "Equal(LengthOfLine(OC),4)",
+    "Equal(MeasureOfAngle(CDO),90)",
+    "Equal(MeasureOfAngle(DOC),45)"
+  ],
+  "image_cdl": [],
+  "goal_cdl": "Value(LengthOfLine(CD))",
+  "problem_answer": "2*sqrt(2)",
+  "theorem_seqs": [
+    "sine_theorem(1,CDO)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "sine_theorem(1,CDO)"
+    ]
+  }
+}

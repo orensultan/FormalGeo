@@ -1,0 +1,37 @@
+{
+  "problem_id": 2795,
+  "annotation": "RunanWang_2023-05-07",
+  "source": "Geometry3k-2944",
+  "problem_level": 1,
+  "problem_text_cn": "如图所示，∠YXW=30°，WY⊥ZY，四边形WYZX是长方形。求∠ZXA的大小。",
+  "problem_text_en": "As shown in the diagram, ∠YXW=30°, WY⊥ZY, quadrilateral WYZX is a rectangle. Find the measure of ∠ZXA.",
+  "problem_img": "2795.png",
+  "construction_cdl": [
+    "Shape(WY,YA,AW)",
+    "Shape(AY,YZ,ZA)",
+    "Shape(AZ,ZX,XA)",
+    "Shape(AX,XW,WA)",
+    "Collinear(WAZ)",
+    "Collinear(YAX)"
+  ],
+  "text_cdl": [
+    "Equal(MeasureOfAngle(YXW),30)",
+    "PerpendicularBetweenLine(WY,ZY)",
+    "Rectangle(WYZX)"
+  ],
+  "image_cdl": [
+    "Equal(MeasureOfAngle(YXW),30)",
+    "PerpendicularBetweenLine(WY,ZY)",
+    "Rectangle(WYZX)"
+  ],
+  "goal_cdl": "Value(MeasureOfAngle(ZXA))",
+  "problem_answer": "60",
+  "theorem_seqs": [
+    "angle_addition(1,ZXA,AXW)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "angle_addition(1,ZXA,AXW)"
+    ]
+  }
+}

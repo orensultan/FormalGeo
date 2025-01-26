@@ -1,0 +1,39 @@
+{
+  "problem_id": 3545,
+  "annotation": "YanjunGuo_2023-04-30",
+  "source": "GeoQA-1173",
+  "problem_level": 2,
+  "problem_text_cn": "如图所示，∠GBC=70°，AB平行于DE。求∠DEB的大小。",
+  "problem_text_en": "As shown in the diagram, ∠GBC=70°, AB is parallel to DE. Find the measure of ∠DEB.",
+  "problem_img": "3545.png",
+  "construction_cdl": [
+    "Shape(AB,BG)",
+    "Shape(GB,BC)",
+    "Shape(EB,BA)",
+    "Shape(CB,BE)",
+    "Shape(DE,EB)",
+    "Shape(BE,EF)",
+    "Shape(HE,ED)",
+    "Shape(FE,EH)",
+    "Collinear(ABC)",
+    "Collinear(DEF)",
+    "Collinear(GBEH)"
+  ],
+  "text_cdl": [
+    "Equal(MeasureOfAngle(GBC),70)",
+    "ParallelBetweenLine(AB,DE)"
+  ],
+  "image_cdl": [],
+  "goal_cdl": "Value(MeasureOfAngle(DEB))",
+  "problem_answer": "110",
+  "theorem_seqs": [
+    "vertical_angle(1,GBC,EBA)",
+    "parallel_property_ipsilateral_internal_angle(1,ED,BA)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "vertical_angle(1,GBC,EBA)",
+      "parallel_property_ipsilateral_internal_angle(1,ED,BA)"
+    ]
+  }
+}

@@ -1,0 +1,40 @@
+{
+  "problem_id": 3777,
+  "annotation": "ChenyangMao_2023-04-30",
+  "source": "GeoQA-1608",
+  "problem_level": 3,
+  "problem_text_cn": "如图所示，∠BDA=65°，∠DBC=140°，EF平行于AC。求∠FED的大小。",
+  "problem_text_en": "As shown in the diagram, ∠BDA=65°, ∠DBC=140°, EF∥AC. Find the measure of ∠FED.",
+  "problem_img": "3777.png",
+  "construction_cdl": [
+    "Shape(DA,AB,BD)",
+    "Shape(FE,ED)",
+    "Shape(DB,BC)",
+    "Collinear(ABC)",
+    "Collinear(ADE)"
+  ],
+  "text_cdl": [
+    "Equal(MeasureOfAngle(BDA),65)",
+    "Equal(MeasureOfAngle(DBC),140)",
+    "ParallelBetweenLine(EF,AC)"
+  ],
+  "image_cdl": [
+    "Equal(MeasureOfAngle(BDA),65)",
+    "Equal(MeasureOfAngle(DBC),140)",
+    "ParallelBetweenLine(EF,AC)"
+  ],
+  "goal_cdl": "Value(MeasureOfAngle(FED))",
+  "problem_answer": "105",
+  "theorem_seqs": [
+    "adjacent_complementary_angle(1,ABD,DBC)",
+    "triangle_property_angle_sum(1,DAB)",
+    "parallel_property_ipsilateral_internal_angle(1,EF,AC)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "adjacent_complementary_angle(1,ABD,DBC)",
+      "triangle_property_angle_sum(1,DAB)",
+      "parallel_property_ipsilateral_internal_angle(1,EF,AC)"
+    ]
+  }
+}

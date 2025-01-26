@@ -1,0 +1,39 @@
+{
+  "problem_id": 3943,
+  "annotation": "FangzhenZhu_2023-05-07",
+  "source": "GeoQA-1865",
+  "problem_level": 2,
+  "problem_text_cn": "如图所示，∠AOB=130°，圆O的圆心为O。求∠BCA的大小。",
+  "problem_text_en": "As shown in the diagram, ∠AOB=130°, the center of ⊙O is O. Find the measure of ∠BCA.",
+  "problem_img": "3943.png",
+  "construction_cdl": [
+    "Shape(OCA,AC)",
+    "Shape(OBC,CB)",
+    "Shape(OAD,DA)",
+    "Shape(ODB,BD)",
+    "Shape(OB,BC,CA,AO)",
+    "Shape(DO,OA,AD)",
+    "Shape(DB,BO,OD)",
+    "Cocircular(O,BCAD)"
+  ],
+  "text_cdl": [
+    "Equal(MeasureOfAngle(AOB),130)",
+    "IsCentreOfCircle(O,O)"
+  ],
+  "image_cdl": [
+    "Equal(MeasureOfAngle(AOB),130)",
+    "IsCentreOfCircle(O,O)"
+  ],
+  "goal_cdl": "Value(MeasureOfAngle(BCA))",
+  "problem_answer": "115",
+  "theorem_seqs": [
+    "arc_property_center_angle(1,OBA,O)",
+    "arc_property_circumference_angle_internal(1,OBA,C)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "arc_property_center_angle(1,OBA,O)",
+      "arc_property_circumference_angle_internal(1,OBA,C)"
+    ]
+  }
+}

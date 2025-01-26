@@ -1,0 +1,54 @@
+{
+  "problem_id": 3558,
+  "annotation": "YanjunGuo_2023-04-30",
+  "source": "GeoQA-1188",
+  "problem_level": 8,
+  "problem_text_cn": "如图所示，∠CDB=110°，O是圆O的圆心，AB是圆O的直径，DB是圆O的切线，DC是⊙O的切线。求∠BAC的大小。",
+  "problem_text_en": "As shown in the diagram, ∠CDB=110°, the center of ⊙O is O, the diameter of ⊙O is AB, DB is the tangent to ⊙O, the tangent to circle O is DC. Find the measure of ∠BAC.",
+  "problem_img": "3558.png",
+  "construction_cdl": [
+    "Shape(AC,CB,BA)",
+    "Shape(CA,OAC)",
+    "Shape(BC,OCB)",
+    "Shape(CD,DB,OCB)",
+    "Shape(AB,OBA)",
+    "Collinear(AOB)",
+    "Cocircular(O,ACB)"
+  ],
+  "text_cdl": [
+    "Equal(MeasureOfAngle(CDB),110)",
+    "IsCentreOfCircle(O,O)",
+    "IsDiameterOfCircle(AB,O)",
+    "IsTangentOfCircle(DB,O)",
+    "IsTangentOfCircle(DC,O)"
+  ],
+  "image_cdl": [],
+  "goal_cdl": "Value(MeasureOfAngle(BAC))",
+  "problem_answer": "35",
+  "theorem_seqs": [
+    "tangent_of_circle_property_length_equal(1,DC,DB,O)",
+    "isosceles_triangle_judgment_line_equal(1,DBC)",
+    "isosceles_triangle_property_angle_equal(1,DBC)",
+    "triangle_property_angle_sum(1,ACB)",
+    "triangle_property_angle_sum(1,BCD)",
+    "tangent_of_circle_property_perpendicular(2,DB,O,O)",
+    "angle_addition(1,DBC,CBA)",
+    "diameter_of_circle_property_right_angle(1,ACB,O)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "tangent_of_circle_property_length_equal(1,DC,DB,O)",
+      "triangle_property_angle_sum(1,ACB)",
+      "triangle_property_angle_sum(1,BCD)",
+      "tangent_of_circle_property_perpendicular(2,DB,O,O)",
+      "angle_addition(1,DBC,CBA)",
+      "diameter_of_circle_property_right_angle(1,ACB,O)"
+    ],
+    "tangent_of_circle_property_length_equal(1,DC,DB,O)": [
+      "isosceles_triangle_judgment_line_equal(1,DBC)"
+    ],
+    "isosceles_triangle_judgment_line_equal(1,DBC)": [
+      "isosceles_triangle_property_angle_equal(1,DBC)"
+    ]
+  }
+}

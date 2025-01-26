@@ -1,0 +1,35 @@
+{
+  "problem_id": 4428,
+  "annotation": "JiaZou_2023-05-14",
+  "source": "GeoQA-3381",
+  "problem_level": 2,
+  "problem_text_cn": "如图所示，∠COA=100°，圆O的圆心为O。求∠ABC的大小。",
+  "problem_text_en": "As shown in the diagram, ∠COA=100°, O is the center of ⊙O. Find the measure of ∠ABC.",
+  "problem_img": "4428.png",
+  "construction_cdl": [
+    "Shape(DA,AO,OC,CD)",
+    "Shape(OA,AB,BC,CO)",
+    "Shape(AD,ODA)",
+    "Shape(BA,OAB)",
+    "Shape(CB,OBC)",
+    "Shape(DC,OCD)",
+    "Cocircular(O,ABCD)"
+  ],
+  "text_cdl": [
+    "Equal(MeasureOfAngle(COA),100)",
+    "IsCentreOfCircle(O,O)"
+  ],
+  "image_cdl": [],
+  "goal_cdl": "Value(MeasureOfAngle(ABC))",
+  "problem_answer": "130",
+  "theorem_seqs": [
+    "arc_property_center_angle(1,OAC,O)",
+    "arc_property_circumference_angle_internal(1,OAC,B)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "arc_property_center_angle(1,OAC,O)",
+      "arc_property_circumference_angle_internal(1,OAC,B)"
+    ]
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "problem_id": 3051,
+  "annotation": "XiaokaiZhang_2023-04-16",
+  "source": "GeoQA-270",
+  "problem_level": 5,
+  "problem_text_cn": "如图所示，∠GED=80°，EF是∠CEG的角平分线，AB平行于CD。求∠GFE的大小。",
+  "problem_text_en": "As shown in the diagram, ∠GED=80°, EF bisects ∠CEG, AB is parallel to CD. Find the measure of ∠GFE.",
+  "problem_img": "3051.png",
+  "construction_cdl": [
+    "Shape(EF,FA)",
+    "Shape(BG,GE)",
+    "Shape(CE,EF)",
+    "Shape(GE,ED)",
+    "Shape(FE,EG,GF)",
+    "Collinear(AFGB)",
+    "Collinear(CED)"
+  ],
+  "text_cdl": [
+    "Equal(MeasureOfAngle(GED),80)",
+    "IsBisectorOfAngle(EF,CEG)",
+    "ParallelBetweenLine(AB,CD)"
+  ],
+  "image_cdl": [],
+  "goal_cdl": "Value(MeasureOfAngle(GFE))",
+  "problem_answer": "50",
+  "theorem_seqs": [
+    "adjacent_complementary_angle(1,CEG,GED)",
+    "angle_addition(1,CEF,FEG)",
+    "parallel_property_collinear_extend(3,AB,CD,F)",
+    "parallel_property_collinear_extend(3,DC,BF,E)",
+    "parallel_property_alternate_interior_angle(1,FB,CE)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "adjacent_complementary_angle(1,CEG,GED)",
+      "angle_addition(1,CEF,FEG)",
+      "parallel_property_collinear_extend(3,AB,CD,F)"
+    ],
+    "parallel_property_collinear_extend(3,AB,CD,F)": [
+      "parallel_property_collinear_extend(3,DC,BF,E)"
+    ],
+    "parallel_property_collinear_extend(3,DC,BF,E)": [
+      "parallel_property_alternate_interior_angle(1,FB,CE)"
+    ]
+  }
+}

@@ -1,0 +1,45 @@
+{
+  "problem_id": 2182,
+  "annotation": "XiaoxiaoJin_2023-04-23",
+  "source": "Geometry3k-2278",
+  "problem_level": 3,
+  "problem_text_cn": "如图所示，∠GCH=2*x°，∠HCD=6*x+28°，⊙C的圆心为C，FC垂直于GC。求弧CHF的角度。",
+  "problem_text_en": "As shown in the diagram, ∠GCH=2*x°, ∠HCD=6*x+28°, C is the center of circle C, FC is perpendicular to GC. Find the measure of ⌒CHF.",
+  "problem_img": "2182.png",
+  "construction_cdl": [
+    "Shape(HGC,CH,CHG)",
+    "Shape(FC,CG,CGF)",
+    "Shape(EC,CF,CFE)",
+    "Shape(DC,CE,CED)",
+    "Shape(HC,CD,CDH)",
+    "Collinear(GCD)",
+    "Collinear(HCE)",
+    "Cocircular(C,HGFED)"
+  ],
+  "text_cdl": [
+    "Equal(MeasureOfAngle(GCH),2*x)",
+    "Equal(MeasureOfAngle(HCD),6*x+28)",
+    "IsCentreOfCircle(C,C)",
+    "PerpendicularBetweenLine(FC,GC)"
+  ],
+  "image_cdl": [
+    "Equal(MeasureOfAngle(GCH),2*x)",
+    "Equal(MeasureOfAngle(HCD),6*x+28)",
+    "IsCentreOfCircle(C,C)",
+    "PerpendicularBetweenLine(FC,GC)"
+  ],
+  "goal_cdl": "Value(MeasureOfArc(CHF))",
+  "problem_answer": "128",
+  "theorem_seqs": [
+    "adjacent_complementary_angle(1,GCH,HCD)",
+    "angle_addition(1,FCG,GCH)",
+    "arc_property_center_angle(1,CHF,C)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "adjacent_complementary_angle(1,GCH,HCD)",
+      "angle_addition(1,FCG,GCH)",
+      "arc_property_center_angle(1,CHF,C)"
+    ]
+  }
+}

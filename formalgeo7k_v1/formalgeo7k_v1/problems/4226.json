@@ -1,0 +1,52 @@
+{
+  "problem_id": 4226,
+  "annotation": "ChenyangMao_2023-05-07",
+  "source": "GeoQA-2983",
+  "problem_level": 5,
+  "problem_text_cn": "如图所示，∠BAD=25°，O是⊙O的圆心，AE垂直于CE，DE垂直于EE。求∠DGA的大小。",
+  "problem_text_en": "As shown in the diagram, ∠BAD=25°, O is the center of ⊙O, AE is perpendicular to CE, DE is perpendicular to EE. Find the measure of ∠DGA.",
+  "problem_img": "4226.png",
+  "construction_cdl": [
+    "Shape(FG,OCG,CF)",
+    "Shape(OCG,GC)",
+    "Shape(GA,AO,OE,EC,CG)",
+    "Shape(OBC,CE,EB)",
+    "Shape(EO,OA,AD,DE)",
+    "Shape(ODB,BD)",
+    "Shape(BE,ED,DB)",
+    "Shape(GA,AD,DG)",
+    "Shape(OAD,DA)",
+    "Shape(OGA,AG)",
+    "Collinear(AOEB)",
+    "Collinear(FCED)",
+    "Collinear(AGF)",
+    "Cocircular(O,ADBCG)"
+  ],
+  "text_cdl": [
+    "Equal(MeasureOfAngle(BAD),25)",
+    "IsCentreOfCircle(O,O)",
+    "PerpendicularBetweenLine(AE,CE)",
+    "PerpendicularBetweenLine(DE,EA)"
+  ],
+  "image_cdl": [],
+  "goal_cdl": "Value(MeasureOfAngle(DGA))",
+  "problem_answer": "65",
+  "theorem_seqs": [
+    "diameter_of_circle_judgment_pass_centre(1,AOB,O)",
+    "diameter_of_circle_property_right_angle(1,ADB,O)",
+    "triangle_property_angle_sum(1,ADB)",
+    "arc_property_circumference_angle_external(1,OAD,B)",
+    "arc_property_circumference_angle_external(1,OAD,G)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "diameter_of_circle_judgment_pass_centre(1,AOB,O)",
+      "triangle_property_angle_sum(1,ADB)",
+      "arc_property_circumference_angle_external(1,OAD,B)",
+      "arc_property_circumference_angle_external(1,OAD,G)"
+    ],
+    "diameter_of_circle_judgment_pass_centre(1,AOB,O)": [
+      "diameter_of_circle_property_right_angle(1,ADB,O)"
+    ]
+  }
+}

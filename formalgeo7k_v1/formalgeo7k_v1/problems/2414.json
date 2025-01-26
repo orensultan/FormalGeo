@@ -1,0 +1,44 @@
+{
+  "problem_id": 2414,
+  "annotation": "YangLi_2023-04-23",
+  "source": "Geometry3k-2530",
+  "problem_level": 4,
+  "problem_text_cn": "如图所示，JM=6，KL=6，∠JML=80°，JK∥ML。求∠LKJ的大小。",
+  "problem_text_en": "As shown in the diagram, JM=6, KL=6, ∠JML=80°, JK is parallel to ML. Find the measure of ∠LKJ.",
+  "problem_img": "2414.png",
+  "construction_cdl": [
+    "Shape(JM,ML,LK,KJ)"
+  ],
+  "text_cdl": [
+    "Equal(LengthOfLine(JM),6)",
+    "Equal(LengthOfLine(KL),6)",
+    "Equal(MeasureOfAngle(JML),80)",
+    "ParallelBetweenLine(JK,ML)"
+  ],
+  "image_cdl": [
+    "Equal(LengthOfLine(JM),6)",
+    "Equal(LengthOfLine(KL),6)",
+    "Equal(MeasureOfAngle(JML),80)",
+    "ParallelBetweenLine(JK,ML)"
+  ],
+  "goal_cdl": "Value(MeasureOfAngle(LKJ))",
+  "problem_answer": "100",
+  "theorem_seqs": [
+    "trapezoid_judgment_parallel(1,JMLK)",
+    "isosceles_trapezoid_judgment_line_equal(1,JMLK)",
+    "parallel_property_ipsilateral_internal_angle(1,JK,ML)",
+    "isosceles_trapezoid_property_angle_equal(1,LKJM)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "trapezoid_judgment_parallel(1,JMLK)",
+      "parallel_property_ipsilateral_internal_angle(1,JK,ML)"
+    ],
+    "trapezoid_judgment_parallel(1,JMLK)": [
+      "isosceles_trapezoid_judgment_line_equal(1,JMLK)"
+    ],
+    "isosceles_trapezoid_judgment_line_equal(1,JMLK)": [
+      "isosceles_trapezoid_property_angle_equal(1,LKJM)"
+    ]
+  }
+}

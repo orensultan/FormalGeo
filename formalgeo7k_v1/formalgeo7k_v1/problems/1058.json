@@ -1,0 +1,39 @@
+{
+  "problem_id": 1058,
+  "annotation": "QikeHuang_2023-04-09",
+  "source": "Geometry3k-1092",
+  "problem_level": 2,
+  "problem_text_cn": "如图所示，AB=12，CB=x，CD=12，CD是圆O的切线。求x的值。",
+  "problem_text_en": "As shown in the diagram, AB=12, CB=x, CD=12, CD is the tangent to circle E. Find the value of x.",
+  "problem_img": "1058.png",
+  "construction_cdl": [
+    "Shape(AE,EB,EBA)",
+    "Shape(BE,EA,EAD,EDB)",
+    "Shape(CB,EBD,DC)",
+    "Collinear(AEBC)",
+    "Cocircular(E,ADB)"
+  ],
+  "text_cdl": [
+    "Equal(LengthOfLine(AB),12)",
+    "Equal(LengthOfLine(CB),x)",
+    "Equal(LengthOfLine(CD),12)",
+    "IsTangentOfCircle(CD,E)"
+  ],
+  "image_cdl": [
+    "Equal(LengthOfLine(AB),12)",
+    "Equal(LengthOfLine(CB),x)",
+    "Equal(LengthOfLine(CD),12)"
+  ],
+  "goal_cdl": "Value(x)",
+  "problem_answer": "-6+6*sqrt(5)",
+  "theorem_seqs": [
+    "line_addition(1,AB,BC)",
+    "circle_property_circular_power_tangent_and_segment_line(1,CD,CBA,E)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "line_addition(1,AB,BC)",
+      "circle_property_circular_power_tangent_and_segment_line(1,CD,CBA,E)"
+    ]
+  }
+}

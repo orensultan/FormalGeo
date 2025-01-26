@@ -1,0 +1,48 @@
+{
+  "problem_id": 1126,
+  "annotation": "XiaoxiaoJin_2023-04-09",
+  "source": "Geometry3k-1163",
+  "problem_level": 6,
+  "problem_text_cn": "如图所示，AD=5，四边形ADBC是正方形。求⊙E的周长。",
+  "problem_text_en": "As shown in the diagram, AD=5, quadrilateral ADBC is a square. Find the circumference of the circle E.",
+  "problem_img": "1126.png",
+  "construction_cdl": [
+    "Shape(AD,DB,BA)",
+    "Shape(AB,BC,CA)",
+    "Shape(DA,EAD)",
+    "Shape(BD,EDB)",
+    "Shape(CB,EBC)",
+    "Shape(AC,ECA)",
+    "Collinear(AEB)",
+    "Cocircular(E,ADBC)"
+  ],
+  "text_cdl": [
+    "Equal(LengthOfLine(AD),5)",
+    "Square(ADBC)"
+  ],
+  "image_cdl": [],
+  "goal_cdl": "Value(PerimeterOfCircle(E))",
+  "problem_answer": "5*sqrt(2)*pi",
+  "theorem_seqs": [
+    "right_triangle_judgment_angle(1,ADB)",
+    "right_triangle_property_pythagorean(1,ADB)",
+    "diameter_of_circle_judgment_right_angle(1,ADB,E)",
+    "diameter_of_circle_property_length_equal(1,AB,E)",
+    "circle_property_length_of_radius_and_diameter(1,E)",
+    "circle_perimeter_formula(1,E)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "right_triangle_judgment_angle(1,ADB)",
+      "diameter_of_circle_judgment_right_angle(1,ADB,E)",
+      "circle_property_length_of_radius_and_diameter(1,E)",
+      "circle_perimeter_formula(1,E)"
+    ],
+    "right_triangle_judgment_angle(1,ADB)": [
+      "right_triangle_property_pythagorean(1,ADB)"
+    ],
+    "diameter_of_circle_judgment_right_angle(1,ADB,E)": [
+      "diameter_of_circle_property_length_equal(1,AB,E)"
+    ]
+  }
+}

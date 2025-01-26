@@ -1,0 +1,36 @@
+{
+  "problem_id": 1012,
+  "annotation": "YanjunGuo_2023-04-09",
+  "source": "Geometry3k-1045",
+  "problem_level": 2,
+  "problem_text_cn": "如图所示，∠JQR=131°，QJ∥RH，QR平行于TS。求∠SRQ的大小。",
+  "problem_text_en": "As shown in the diagram, ∠JQR=131°, QJ∥RH, QR is parallel to TS. Find the measure of ∠SRQ.",
+  "problem_img": "1012.png",
+  "construction_cdl": [
+    "Shape(JQ,QR)",
+    "Shape(QR,RH)",
+    "Shape(ST,TC)",
+    "Shape(BS,ST)",
+    "Shape(QT,TS,SR,RQ)",
+    "Collinear(JQTC)",
+    "Collinear(HRSB)"
+  ],
+  "text_cdl": [
+    "Equal(MeasureOfAngle(JQR),131)",
+    "ParallelBetweenLine(QJ,RH)",
+    "ParallelBetweenLine(QR,TS)"
+  ],
+  "image_cdl": [],
+  "goal_cdl": "Value(MeasureOfAngle(SRQ))",
+  "problem_answer": "131",
+  "theorem_seqs": [
+    "parallel_property_ipsilateral_internal_angle(1,QJ,RH)",
+    "adjacent_complementary_angle(1,SRQ,QRH)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "parallel_property_ipsilateral_internal_angle(1,QJ,RH)",
+      "adjacent_complementary_angle(1,SRQ,QRH)"
+    ]
+  }
+}

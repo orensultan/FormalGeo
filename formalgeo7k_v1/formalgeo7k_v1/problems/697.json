@@ -1,0 +1,44 @@
+{
+  "problem_id": 697,
+  "annotation": "YimingHe_2023-03-12",
+  "source": "Geometry3k-716",
+  "problem_level": 4,
+  "problem_text_cn": "如图所示，BE=7*sqrt(3)，∠ABC=60°，∠CAB=30°，AE⊥CE，BC垂直于AC。求直线CE的长度。",
+  "problem_text_en": "As shown in the diagram, BE=7*sqrt(3), ∠ABC=60°, ∠CAB=30°, AE⊥CE, BC⊥AC. Find the length of line CE.",
+  "problem_img": "697.png",
+  "construction_cdl": [
+    "Shape(BC,CE,EB)",
+    "Shape(EC,CA,AE)",
+    "Collinear(BEA)"
+  ],
+  "text_cdl": [
+    "Equal(LengthOfLine(BE),7*sqrt(3))",
+    "Equal(MeasureOfAngle(ABC),60)",
+    "Equal(MeasureOfAngle(CAB),30)",
+    "PerpendicularBetweenLine(AE,CE)",
+    "PerpendicularBetweenLine(BC,AC)"
+  ],
+  "image_cdl": [
+    "Equal(LengthOfLine(BE),7*sqrt(3))",
+    "Equal(MeasureOfAngle(ABC),60)",
+    "Equal(MeasureOfAngle(CAB),30)",
+    "PerpendicularBetweenLine(AE,CE)",
+    "PerpendicularBetweenLine(BC,AC)"
+  ],
+  "goal_cdl": "Value(LengthOfLine(CE))",
+  "problem_answer": "21",
+  "theorem_seqs": [
+    "adjacent_complementary_angle(1,AEC,CEB)",
+    "triangle_property_angle_sum(1,CEB)",
+    "sine_theorem(1,CEB)",
+    "sine_theorem(1,BCE)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "adjacent_complementary_angle(1,AEC,CEB)",
+      "triangle_property_angle_sum(1,CEB)",
+      "sine_theorem(1,CEB)",
+      "sine_theorem(1,BCE)"
+    ]
+  }
+}

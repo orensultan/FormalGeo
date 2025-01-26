@@ -1,0 +1,37 @@
+{
+  "problem_id": 5638,
+  "annotation": "JiaZou_2023-05-28",
+  "source": "GeoQA-7269",
+  "problem_level": 3,
+  "problem_text_cn": "如图所示，△ADC的面积为3，AC=2，AD=1，∠DCA=∠ABC。求三角形ABC的面积减去三角形ADC的面积。",
+  "problem_text_en": "As shown in the diagram, the area of △ADC is 3, AC=2, AD=1, ∠DCA=∠ABC. Find the area of △ABC minus the area of △ADC.",
+  "problem_img": "5638.png",
+  "construction_cdl": [
+    "Shape(BC,CD,DB)",
+    "Shape(AD,DC,CA)",
+    "Collinear(BDA)"
+  ],
+  "text_cdl": [
+    "Equal(AreaOfTriangle(ADC),3)",
+    "Equal(LengthOfLine(AC),2)",
+    "Equal(LengthOfLine(AD),1)",
+    "Equal(MeasureOfAngle(DCA),MeasureOfAngle(ABC))"
+  ],
+  "image_cdl": [],
+  "goal_cdl": "Value(Sub(AreaOfTriangle(ABC),AreaOfTriangle(ADC)))",
+  "problem_answer": "9",
+  "theorem_seqs": [
+    "mirror_similar_triangle_judgment_aa(1,DCA,CAB)",
+    "mirror_similar_triangle_property_line_ratio(1,CAD,BCA)",
+    "mirror_similar_triangle_property_area_square_ratio(1,DCA,CAB)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "mirror_similar_triangle_judgment_aa(1,DCA,CAB)"
+    ],
+    "mirror_similar_triangle_judgment_aa(1,DCA,CAB)": [
+      "mirror_similar_triangle_property_area_square_ratio(1,DCA,CAB)",
+      "mirror_similar_triangle_property_line_ratio(1,CAD,BCA)"
+    ]
+  }
+}

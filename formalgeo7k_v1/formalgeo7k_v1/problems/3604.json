@@ -1,0 +1,35 @@
+{
+  "problem_id": 3604,
+  "annotation": "QikeHuang_2023-04-30",
+  "source": "GeoQA-1267",
+  "problem_level": 3,
+  "problem_text_cn": "如图所示，∠CEM=70°，三角形EDA镜像全等于三角形EAM，四边形ABCD是长方形。求∠AED的大小。",
+  "problem_text_en": "As shown in the diagram, ∠CEM=70°, triangle EDA is mirror congruent to triangle EAM, ABCD is a rectangle. Find the measure of ∠AED.",
+  "problem_img": "3604.png",
+  "construction_cdl": [
+    "Shape(DA,AE,ED)",
+    "Shape(EA,AM,ME)",
+    "Shape(EM,MA,AB,BC,CE)",
+    "Collinear(DEC)"
+  ],
+  "text_cdl": [
+    "Equal(MeasureOfAngle(CEM),70)",
+    "MirrorCongruentBetweenTriangle(EDA,EAM)",
+    "Rectangle(ABCD)"
+  ],
+  "image_cdl": [],
+  "goal_cdl": "Value(MeasureOfAngle(AED))",
+  "problem_answer": "55",
+  "theorem_seqs": [
+    "mirror_congruent_triangle_property_angle_equal(1,EDA,EAM)",
+    "angle_addition(1,MEA,AED)",
+    "adjacent_complementary_angle(1,CEM,MED)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "mirror_congruent_triangle_property_angle_equal(1,EDA,EAM)",
+      "angle_addition(1,MEA,AED)",
+      "adjacent_complementary_angle(1,CEM,MED)"
+    ]
+  }
+}

@@ -1,0 +1,49 @@
+{
+  "problem_id": 1795,
+  "annotation": "ChenyangMao_2023-04-16",
+  "source": "Geometry3k-1861",
+  "problem_level": 3,
+  "problem_text_cn": "如图所示，∠ETV=9*x-11°，∠REU=8*x+4°，DU平行于CV。求∠REU的大小。",
+  "problem_text_en": "As shown in the diagram, ∠ETV=9*x-11°, ∠REU=8*x+4°, DU∥CV. Find the measure of ∠REU.",
+  "problem_img": "1795.png",
+  "construction_cdl": [
+    "Shape(DE,ER)",
+    "Shape(RE,EU)",
+    "Shape(TE,ED)",
+    "Shape(UE,ET)",
+    "Shape(CT,TE)",
+    "Shape(ET,TV)",
+    "Shape(VT,TB)",
+    "Shape(BT,TC)",
+    "Collinear(RETB)",
+    "Collinear(DEU)",
+    "Collinear(CTV)"
+  ],
+  "text_cdl": [
+    "Equal(MeasureOfAngle(ETV),9*x-11)",
+    "Equal(MeasureOfAngle(REU),8*x+4)",
+    "ParallelBetweenLine(DU,CV)"
+  ],
+  "image_cdl": [
+    "Equal(MeasureOfAngle(ETV),9*x-11)",
+    "Equal(MeasureOfAngle(REU),8*x+4)"
+  ],
+  "goal_cdl": "Value(MeasureOfAngle(REU))",
+  "problem_answer": "124",
+  "theorem_seqs": [
+    "parallel_property_collinear_extend(3,VC,UD,T)",
+    "parallel_property_collinear_extend(3,DU,TV,E)",
+    "parallel_property_corresponding_angle(1,EU,TV,R)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "parallel_property_collinear_extend(3,VC,UD,T)"
+    ],
+    "parallel_property_collinear_extend(3,VC,UD,T)": [
+      "parallel_property_collinear_extend(3,DU,TV,E)"
+    ],
+    "parallel_property_collinear_extend(3,DU,TV,E)": [
+      "parallel_property_corresponding_angle(1,EU,TV,R)"
+    ]
+  }
+}

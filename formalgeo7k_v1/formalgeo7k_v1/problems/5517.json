@@ -1,0 +1,53 @@
+{
+  "problem_id": 5517,
+  "annotation": "DengfengYue_2023-05-21",
+  "source": "GeoQA-5990",
+  "problem_level": 6,
+  "problem_text_cn": "如图所示，AB=AC，∠BEG=40°，∠HDB=23°，GF∥HI。求∠BCA的大小。",
+  "problem_text_en": "As shown in the diagram, AB=AC, ∠BEG=40°, ∠HDB=23°, GF is parallel to HI. Find the measure of ∠BCA.",
+  "problem_img": "5517.png",
+  "construction_cdl": [
+    "Shape(AE,EF,FA)",
+    "Shape(EG,GH,HB,BE)",
+    "Shape(BH,HD,DB)",
+    "Shape(EB,BD,DF,FE)",
+    "Shape(FD,DI,IF)",
+    "Shape(ID,DC,CI)",
+    "Collinear(AEBH)",
+    "Collinear(AFIC)",
+    "Collinear(GEF)",
+    "Collinear(BDC)",
+    "Collinear(HDI)"
+  ],
+  "text_cdl": [
+    "Equal(LengthOfLine(AB),LengthOfLine(AC))",
+    "Equal(MeasureOfAngle(BEG),40)",
+    "Equal(MeasureOfAngle(HDB),23)",
+    "ParallelBetweenLine(GF,HI)"
+  ],
+  "image_cdl": [],
+  "goal_cdl": "Value(MeasureOfAngle(BCA))",
+  "problem_answer": "63",
+  "theorem_seqs": [
+    "parallel_property_collinear_extend(3,GF,HI,E)",
+    "parallel_property_alternate_interior_angle(2,GE,HI)",
+    "triangle_property_angle_sum(1,BHD)",
+    "adjacent_complementary_angle(1,ABD,DBH)",
+    "isosceles_triangle_judgment_line_equal(1,ABC)",
+    "isosceles_triangle_property_angle_equal(1,ABC)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "parallel_property_collinear_extend(3,GF,HI,E)",
+      "triangle_property_angle_sum(1,BHD)",
+      "adjacent_complementary_angle(1,ABD,DBH)",
+      "isosceles_triangle_judgment_line_equal(1,ABC)"
+    ],
+    "parallel_property_collinear_extend(3,GF,HI,E)": [
+      "parallel_property_alternate_interior_angle(2,GE,HI)"
+    ],
+    "isosceles_triangle_judgment_line_equal(1,ABC)": [
+      "isosceles_triangle_property_angle_equal(1,ABC)"
+    ]
+  }
+}

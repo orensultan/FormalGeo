@@ -1,0 +1,36 @@
+{
+  "problem_id": 982,
+  "annotation": "NaZhu_2023-03-19",
+  "source": "Geometry3k-1011",
+  "problem_level": 2,
+  "problem_text_cn": "如图所示，∠ACD=50°，∠CDA=70°，∠DBA=21°。求∠ADB的大小。",
+  "problem_text_en": "As shown in the diagram, ∠ACD=50°, ∠CDA=70°, ∠DBA=21°. Find the measure of ∠ADB.",
+  "problem_img": "982.png",
+  "construction_cdl": [
+    "Shape(AC,CD,DA)",
+    "Shape(AD,DB,BA)",
+    "Collinear(CDB)"
+  ],
+  "text_cdl": [
+    "Equal(MeasureOfAngle(ACD),50)",
+    "Equal(MeasureOfAngle(CDA),70)",
+    "Equal(MeasureOfAngle(DBA),21)"
+  ],
+  "image_cdl": [
+    "Equal(MeasureOfAngle(ACD),50)",
+    "Equal(MeasureOfAngle(CDA),70)",
+    "Equal(MeasureOfAngle(DBA),21)"
+  ],
+  "goal_cdl": "Value(MeasureOfAngle(ADB))",
+  "problem_answer": "110",
+  "theorem_seqs": [
+    "flat_angle(1,CDB)",
+    "angle_addition(1,CDA,ADB)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "flat_angle(1,CDB)",
+      "angle_addition(1,CDA,ADB)"
+    ]
+  }
+}

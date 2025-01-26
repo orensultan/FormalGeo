@@ -1,0 +1,44 @@
+{
+  "problem_id": 259,
+  "annotation": "XiaokaiZhang_2023-03-12",
+  "source": "Geometry3k-262",
+  "problem_level": 4,
+  "problem_text_cn": "如图所示，AB=10，AE=25/4，BC=x+2，DE=x-1，三角形ABE相似于三角形ACD。求直线BC的长度。",
+  "problem_text_en": "As shown in the diagram, AB=10, AE=25/4, BC=x+2, DE=x-1, △ABE is similar to △ACD.. Find the length of line BC.",
+  "problem_img": "259.png",
+  "construction_cdl": [
+    "Shape(AB,BE,EA)",
+    "Shape(BC,CD,DE,EB)",
+    "Collinear(ABC)",
+    "Collinear(AED)"
+  ],
+  "text_cdl": [
+    "Equal(LengthOfLine(AB),10)",
+    "Equal(LengthOfLine(AE),25/4)",
+    "Equal(LengthOfLine(BC),x+2)",
+    "Equal(LengthOfLine(DE),x-1)",
+    "SimilarBetweenTriangle(ABE,ACD)"
+  ],
+  "image_cdl": [
+    "Equal(LengthOfLine(AB),10)",
+    "Equal(LengthOfLine(AE),25/4)",
+    "Equal(LengthOfLine(BC),x+2)",
+    "Equal(LengthOfLine(DE),x-1)"
+  ],
+  "goal_cdl": "Value(LengthOfLine(BC))",
+  "problem_answer": "8",
+  "theorem_seqs": [
+    "similar_triangle_property_line_ratio(1,EAB,DAC)",
+    "similar_triangle_property_line_ratio(1,BEA,CDA)",
+    "line_addition(1,AB,BC)",
+    "line_addition(1,AE,ED)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "similar_triangle_property_line_ratio(1,EAB,DAC)",
+      "similar_triangle_property_line_ratio(1,BEA,CDA)",
+      "line_addition(1,AB,BC)",
+      "line_addition(1,AE,ED)"
+    ]
+  }
+}

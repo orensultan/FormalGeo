@@ -1,0 +1,35 @@
+{
+  "problem_id": 80,
+  "annotation": "XiaokaiZhang_2023-03-12",
+  "source": "Geometry3k-81",
+  "problem_level": 1,
+  "problem_text_cn": "如图所示，BC=x，BQ=6，QC=8。求x的值。",
+  "problem_text_en": "As shown in the diagram, BC=x, BQ=6, QC=8. Find the value of x.",
+  "problem_img": "80.png",
+  "construction_cdl": [
+    "Shape(AD,DB,BC,CA)",
+    "Shape(DQ,QB,BD)",
+    "Collinear(ADQ)",
+    "Collinear(QBC)"
+  ],
+  "text_cdl": [
+    "Equal(LengthOfLine(BC),x)",
+    "Equal(LengthOfLine(BQ),6)",
+    "Equal(LengthOfLine(QC),8)"
+  ],
+  "image_cdl": [
+    "Equal(LengthOfLine(BC),x)",
+    "Equal(LengthOfLine(BQ),6)",
+    "Equal(LengthOfLine(QC),8)"
+  ],
+  "goal_cdl": "Value(x)",
+  "problem_answer": "2",
+  "theorem_seqs": [
+    "line_addition(1,QB,BC)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "line_addition(1,QB,BC)"
+    ]
+  }
+}

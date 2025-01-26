@@ -1,0 +1,38 @@
+{
+  "problem_id": 719,
+  "annotation": "JiaZou_2023-04-09",
+  "source": "Geometry3k-741",
+  "problem_level": 2,
+  "problem_text_cn": "如图所示，四边形ADCB的面积为150，四边形FJHG的面积为54，CD=10，JH=x，AB和DC是▱ADCB的一组对边，JF和HG是▱FJHG的一组对边，四边形FJHG与四边形ADCB相似。求x的值。",
+  "problem_text_en": "As shown in the diagram, the area of ADCB is 150, the area of quadrilateral FJHG is 54, CD=10, JH=x, AB and DC are opposite sides of the parallelogram ADCB, JF and HG are opposite sides of the parallelogram FJHG, quadrilateral FJHG is similar to quadrilateral ADCB. Find the value of x.",
+  "problem_img": "719.png",
+  "construction_cdl": [
+    "Shape(FJ,JH,HG,GF)",
+    "Shape(AD,DC,CB,BA)"
+  ],
+  "text_cdl": [
+    "Equal(AreaOfQuadrilateral(ADCB),150)",
+    "Equal(AreaOfQuadrilateral(FJHG),54)",
+    "Equal(LengthOfLine(CD),10)",
+    "Equal(LengthOfLine(JH),x)",
+    "Parallelogram(ADCB)",
+    "Parallelogram(FJHG)",
+    "SimilarBetweenQuadrilateral(FJHG,ADCB)"
+  ],
+  "image_cdl": [
+    "Equal(LengthOfLine(CD),10)",
+    "Equal(LengthOfLine(JH),x)"
+  ],
+  "goal_cdl": "Value(x)",
+  "problem_answer": "6",
+  "theorem_seqs": [
+    "similar_quadrilateral_property_area_square_ratio(1,FJHG,ADCB)",
+    "similar_quadrilateral_property_line_ratio(1,JHGF,DCBA)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "similar_quadrilateral_property_area_square_ratio(1,FJHG,ADCB)",
+      "similar_quadrilateral_property_line_ratio(1,JHGF,DCBA)"
+    ]
+  }
+}

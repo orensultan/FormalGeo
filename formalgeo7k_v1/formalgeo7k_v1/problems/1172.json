@@ -1,0 +1,33 @@
+{
+  "problem_id": 1172,
+  "annotation": "JiaZou_2023-03-19",
+  "source": "Geometry3k-1212",
+  "problem_level": 2,
+  "problem_text_cn": "如图所示，AB=35，BC=22，AC和CB是直角三角形ACB的两个直角边。求∠BAC的大小。",
+  "problem_text_en": "As shown in the diagram, AB=35, BC=22, triangle ACB is a right triangle. Find the measure of ∠BAC.",
+  "problem_img": "1172.png",
+  "construction_cdl": [
+    "Shape(AC,CB,BA)"
+  ],
+  "text_cdl": [
+    "Equal(LengthOfLine(AB),35)",
+    "Equal(LengthOfLine(BC),22)",
+    "RightTriangle(ACB)"
+  ],
+  "image_cdl": [
+    "Equal(LengthOfLine(AB),35)",
+    "Equal(LengthOfLine(BC),22)"
+  ],
+  "goal_cdl": "Value(MeasureOfAngle(BAC))",
+  "problem_answer": "180*acos(sqrt(741)/35)/pi",
+  "theorem_seqs": [
+    "cosine_theorem(1,ACB)",
+    "cosine_theorem(1,CBA)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "cosine_theorem(1,ACB)",
+      "cosine_theorem(1,CBA)"
+    ]
+  }
+}

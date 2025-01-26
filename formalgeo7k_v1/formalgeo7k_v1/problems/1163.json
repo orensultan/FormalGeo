@@ -1,0 +1,40 @@
+{
+  "problem_id": 1163,
+  "annotation": "ChenyangMao_2023-04-09",
+  "source": "Geometry3k-1202",
+  "problem_level": 2,
+  "problem_text_cn": "如图所示，∠CGK=2*x-54°，∠JHC=x°。求∠JHC的大小。",
+  "problem_text_en": "As shown in the diagram, ∠CGK=2*x-54°, ∠JHC=x°. Find the measure of ∠JHC.",
+  "problem_img": "1163.png",
+  "construction_cdl": [
+    "Shape(AJH,HJ)",
+    "Shape(AHG,GC,CH)",
+    "Shape(AGK,KG)",
+    "Shape(AKJ,JC,CK)",
+    "Shape(CJ,JH,HC)",
+    "Shape(CG,GK,KC)",
+    "Collinear(HCK)",
+    "Collinear(GCJ)",
+    "Cocircular(A,HGKJ)"
+  ],
+  "text_cdl": [
+    "Equal(MeasureOfAngle(CGK),2*x-54)",
+    "Equal(MeasureOfAngle(JHC),x)"
+  ],
+  "image_cdl": [
+    "Equal(MeasureOfAngle(CGK),2*x-54)",
+    "Equal(MeasureOfAngle(JHC),x)"
+  ],
+  "goal_cdl": "Value(MeasureOfAngle(JHC))",
+  "problem_answer": "54",
+  "theorem_seqs": [
+    "arc_property_circumference_angle_external(1,AKJ,H)",
+    "arc_property_circumference_angle_external(1,AKJ,G)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "arc_property_circumference_angle_external(1,AKJ,H)",
+      "arc_property_circumference_angle_external(1,AKJ,G)"
+    ]
+  }
+}

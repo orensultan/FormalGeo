@@ -1,0 +1,40 @@
+{
+  "problem_id": 3709,
+  "annotation": "YangLi_2023-04-30",
+  "source": "GeoQA-1475",
+  "problem_level": 4,
+  "problem_text_cn": "如图所示，OD=1/2，O是线段AB的中点，AC⊥DC，OD垂直于BD。求直线AC的长度。",
+  "problem_text_en": "As shown in the diagram, OD=1/2, O is the midpoint of segment AB, AC⊥DC, OD⊥BD. Find the length of line AC.",
+  "problem_img": "3709.png",
+  "construction_cdl": [
+    "Shape(OD,DB,BO)",
+    "Shape(AC,CD,DO,OA)",
+    "Collinear(AOB)",
+    "Collinear(CDB)"
+  ],
+  "text_cdl": [
+    "Equal(LengthOfLine(OD),1/2)",
+    "IsMidpointOfLine(O,AB)",
+    "PerpendicularBetweenLine(AC,DC)",
+    "PerpendicularBetweenLine(OD,BD)"
+  ],
+  "image_cdl": [],
+  "goal_cdl": "Value(LengthOfLine(AC))",
+  "problem_answer": "1",
+  "theorem_seqs": [
+    "line_addition(1,AO,OB)",
+    "similar_triangle_judgment_aa(1,ODB,ACB)",
+    "similar_triangle_property_line_ratio(1,DBO,CBA)",
+    "similar_triangle_property_line_ratio(1,BOD,BAC)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "line_addition(1,AO,OB)",
+      "similar_triangle_judgment_aa(1,ODB,ACB)"
+    ],
+    "similar_triangle_judgment_aa(1,ODB,ACB)": [
+      "similar_triangle_property_line_ratio(1,DBO,CBA)",
+      "similar_triangle_property_line_ratio(1,BOD,BAC)"
+    ]
+  }
+}

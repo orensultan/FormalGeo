@@ -1,0 +1,105 @@
+{
+  "problem_id": 1603,
+  "annotation": "XiaoxiaoJin_2023-04-16",
+  "source": "Geometry3k-1663",
+  "problem_level": 18,
+  "problem_text_cn": "如图所示，DI=7/2，IF=3，NG=11/2，圆G的圆心为G，DI⊥FI，EN垂直于GN，GD垂直于ID，JE⊥NE，JG⊥FG。求扇形GFJ的面积、四边形DIFG的面积与四边形NGJE的面积之和。",
+  "problem_text_en": "As shown in the diagram, DI=7/2, IF=3, NG=11/2, the center of circle G is G, DI is perpendicular to FI, EN is perpendicular to GN, GD is perpendicular to ID, JE⊥NE, JG is perpendicular to FG. Find the sum of the area of the sector GFJ, the area of DIFG and the area of quadrilateral NGJE.",
+  "problem_img": "1603.png",
+  "construction_cdl": [
+    "Shape(DI,IF,FG,GD)",
+    "Shape(NG,GJ,JE,EN)",
+    "Shape(JG,GF,GFJ)",
+    "Collinear(DGJ)",
+    "Collinear(FGN)",
+    "Cocircular(G,FJ)"
+  ],
+  "text_cdl": [
+    "Equal(LengthOfLine(DI),7/2)",
+    "Equal(LengthOfLine(IF),3)",
+    "Equal(LengthOfLine(NG),11/2)",
+    "IsCentreOfCircle(G,G)",
+    "PerpendicularBetweenLine(DI,FI)",
+    "PerpendicularBetweenLine(EN,GN)",
+    "PerpendicularBetweenLine(GD,ID)",
+    "PerpendicularBetweenLine(JE,NE)",
+    "PerpendicularBetweenLine(JG,FG)"
+  ],
+  "image_cdl": [
+    "Equal(LengthOfLine(DI),7/2)",
+    "Equal(LengthOfLine(IF),3)",
+    "Equal(LengthOfLine(NG),11/2)",
+    "IsCentreOfCircle(G,G)",
+    "PerpendicularBetweenLine(DI,FI)",
+    "PerpendicularBetweenLine(EN,GN)",
+    "PerpendicularBetweenLine(GD,ID)",
+    "PerpendicularBetweenLine(JE,NE)",
+    "PerpendicularBetweenLine(JG,FG)"
+  ],
+  "goal_cdl": "Value(Add(AreaOfSector(GFJ),AreaOfQuadrilateral(DIFG),AreaOfQuadrilateral(NGJE)))",
+  "problem_answer": "49*pi/16+119/4",
+  "theorem_seqs": [
+    "adjacent_complementary_angle(1,JGF,FGD)",
+    "adjacent_complementary_angle(1,NGJ,JGF)",
+    "perpendicular_judgment_angle(1,FG,DG)",
+    "perpendicular_judgment_angle(1,NG,JG)",
+    "parallel_judgment_per_per(1,DG,IF)",
+    "parallel_judgment_per_per(1,GF,DI)",
+    "parallel_judgment_per_per(1,EJ,NG)",
+    "parallel_judgment_per_per(1,NE,GJ)",
+    "parallelogram_judgment_parallel_and_parallel(1,IFGD)",
+    "parallelogram_judgment_parallel_and_parallel(1,NGJE)",
+    "parallelogram_property_opposite_line_equal(1,DIFG)",
+    "parallelogram_property_opposite_line_equal(1,GJEN)",
+    "parallelogram_area_formula_sine(1,DIFG)",
+    "parallelogram_area_formula_sine(1,ENGJ)",
+    "radius_of_circle_property_length_equal(1,GF,G)",
+    "radius_of_circle_property_length_equal(1,GJ,G)",
+    "arc_property_center_angle(1,GFJ,G)",
+    "sector_area_formula(1,GFJ)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "adjacent_complementary_angle(1,JGF,FGD)",
+      "adjacent_complementary_angle(1,NGJ,JGF)",
+      "parallel_judgment_per_per(1,DG,IF)",
+      "parallel_judgment_per_per(1,EJ,NG)",
+      "radius_of_circle_property_length_equal(1,GF,G)",
+      "radius_of_circle_property_length_equal(1,GJ,G)",
+      "arc_property_center_angle(1,GFJ,G)",
+      "sector_area_formula(1,GFJ)"
+    ],
+    "adjacent_complementary_angle(1,JGF,FGD)": [
+      "perpendicular_judgment_angle(1,FG,DG)"
+    ],
+    "adjacent_complementary_angle(1,NGJ,JGF)": [
+      "perpendicular_judgment_angle(1,NG,JG)"
+    ],
+    "perpendicular_judgment_angle(1,FG,DG)": [
+      "parallel_judgment_per_per(1,GF,DI)"
+    ],
+    "perpendicular_judgment_angle(1,NG,JG)": [
+      "parallel_judgment_per_per(1,NE,GJ)"
+    ],
+    "parallel_judgment_per_per(1,DG,IF)": [
+      "parallelogram_judgment_parallel_and_parallel(1,IFGD)"
+    ],
+    "parallel_judgment_per_per(1,GF,DI)": [
+      "parallelogram_judgment_parallel_and_parallel(1,IFGD)"
+    ],
+    "parallel_judgment_per_per(1,EJ,NG)": [
+      "parallelogram_judgment_parallel_and_parallel(1,NGJE)"
+    ],
+    "parallel_judgment_per_per(1,NE,GJ)": [
+      "parallelogram_judgment_parallel_and_parallel(1,NGJE)"
+    ],
+    "parallelogram_judgment_parallel_and_parallel(1,IFGD)": [
+      "parallelogram_property_opposite_line_equal(1,DIFG)",
+      "parallelogram_area_formula_sine(1,DIFG)"
+    ],
+    "parallelogram_judgment_parallel_and_parallel(1,NGJE)": [
+      "parallelogram_property_opposite_line_equal(1,GJEN)",
+      "parallelogram_area_formula_sine(1,ENGJ)"
+    ]
+  }
+}

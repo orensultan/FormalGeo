@@ -1,0 +1,41 @@
+{
+  "problem_id": 4698,
+  "annotation": "XiaoxiaoJin_2023-05-14",
+  "source": "GeoQA-4000",
+  "problem_level": 5,
+  "problem_text_cn": "如图所示，OB=3，∠BPA=30°，O是圆O的圆心，圆O的切线为PA。求直线PB的长度。",
+  "problem_text_en": "As shown in the diagram, OB=3, ∠BPA=30°, O is the center of ⊙O, PA is the tangent to ⊙O. Find the length of line PB.",
+  "problem_img": "4698.png",
+  "construction_cdl": [
+    "Shape(AO,OB,OBA)",
+    "Shape(BP,PA,OBA)",
+    "Shape(BO,OA,OAB)",
+    "Collinear(OBP)",
+    "Cocircular(O,AB)"
+  ],
+  "text_cdl": [
+    "Equal(LengthOfLine(OB),3)",
+    "Equal(MeasureOfAngle(BPA),30)",
+    "IsCentreOfCircle(O,O)",
+    "IsTangentOfCircle(PA,O)"
+  ],
+  "image_cdl": [],
+  "goal_cdl": "Value(LengthOfLine(PB))",
+  "problem_answer": "3",
+  "theorem_seqs": [
+    "tangent_of_circle_property_perpendicular(2,PA,O,O)",
+    "radius_of_circle_property_length_equal(1,OA,O)",
+    "radius_of_circle_property_length_equal(1,OB,O)",
+    "line_addition(1,OB,BP)",
+    "sine_theorem(1,OPA)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "tangent_of_circle_property_perpendicular(2,PA,O,O)",
+      "radius_of_circle_property_length_equal(1,OA,O)",
+      "radius_of_circle_property_length_equal(1,OB,O)",
+      "line_addition(1,OB,BP)",
+      "sine_theorem(1,OPA)"
+    ]
+  }
+}

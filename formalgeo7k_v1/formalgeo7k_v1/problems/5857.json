@@ -1,0 +1,28 @@
+{
+  "problem_id": 5857,
+  "annotation": "QikeHuang_2023-05-28",
+  "source": "GeoQA-7884",
+  "problem_level": 1,
+  "problem_text_cn": "如图所示，BC=2，Tan(MeasureOfAngle(BAC))=1/2，AC⊥BC。求直线AB的长度。",
+  "problem_text_en": "As shown in the diagram, BC=2, Tan(MeasureOfAngle(BAC))=1/2, AC⊥BC. Find the length of line AB.",
+  "problem_img": "5857.png",
+  "construction_cdl": [
+    "Shape(AC,CB,BA)"
+  ],
+  "text_cdl": [
+    "Equal(LengthOfLine(BC),2)",
+    "Equal(Tan(MeasureOfAngle(BAC)),1/2)",
+    "PerpendicularBetweenLine(AC,BC)"
+  ],
+  "image_cdl": [],
+  "goal_cdl": "Value(LengthOfLine(AB))",
+  "problem_answer": "2*sqrt(5)",
+  "theorem_seqs": [
+    "sine_theorem(1,BAC)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "sine_theorem(1,BAC)"
+    ]
+  }
+}

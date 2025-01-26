@@ -1,0 +1,48 @@
+{
+  "problem_id": 2667,
+  "annotation": "ZheZhu_2023-04-23",
+  "source": "Geometry3k-2805",
+  "problem_level": 3,
+  "problem_text_cn": "如图所示，∠DOB=∠EOD，∠EOD=∠FOE，∠FOE=∠AOF，O是圆O的圆心，CO⊥AO。求弧OEA的角度。",
+  "problem_text_en": "As shown in the diagram, ∠DOB=∠EOD, ∠EOD=∠FOE, ∠FOE=∠AOF, O is the center of circle O, CO is perpendicular to AO. Find the measure of ⌒OEA.",
+  "problem_img": "2667.png",
+  "construction_cdl": [
+    "Shape(DO,OB,OBD)",
+    "Shape(EO,OD,ODE)",
+    "Shape(FO,OE,OEF)",
+    "Shape(OFA,AO,OF)",
+    "Shape(OA,OAC,CO)",
+    "Shape(OC,OCB,BO)",
+    "Collinear(AOB)",
+    "Collinear(EOC)",
+    "Cocircular(O,BDEFAC)"
+  ],
+  "text_cdl": [
+    "Equal(MeasureOfAngle(DOB),MeasureOfAngle(EOD))",
+    "Equal(MeasureOfAngle(EOD),MeasureOfAngle(FOE))",
+    "Equal(MeasureOfAngle(FOE),MeasureOfAngle(AOF))",
+    "IsCentreOfCircle(O,O)",
+    "PerpendicularBetweenLine(CO,AO)"
+  ],
+  "image_cdl": [
+    "Equal(MeasureOfAngle(DOB),MeasureOfAngle(EOD))",
+    "Equal(MeasureOfAngle(EOD),MeasureOfAngle(FOE))",
+    "Equal(MeasureOfAngle(FOE),MeasureOfAngle(AOF))",
+    "IsCentreOfCircle(O,O)",
+    "PerpendicularBetweenLine(CO,AO)"
+  ],
+  "goal_cdl": "Value(MeasureOfArc(OEA))",
+  "problem_answer": "90",
+  "theorem_seqs": [
+    "flat_angle(1,COE)",
+    "angle_addition(1,COA,AOE)",
+    "arc_property_center_angle(1,OEA,O)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "flat_angle(1,COE)",
+      "angle_addition(1,COA,AOE)",
+      "arc_property_center_angle(1,OEA,O)"
+    ]
+  }
+}

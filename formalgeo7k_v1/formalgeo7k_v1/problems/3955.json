@@ -1,0 +1,39 @@
+{
+  "problem_id": 3955,
+  "annotation": "FangzhenZhu_2023-05-07",
+  "source": "GeoQA-1881",
+  "problem_level": 2,
+  "problem_text_cn": "如图所示，∠ABC=40°，圆O的圆心为O。求∠AOC的大小。",
+  "problem_text_en": "As shown in the diagram, ∠ABC=40°, the center of circle O is O. Find the measure of ∠AOC.",
+  "problem_img": "3955.png",
+  "construction_cdl": [
+    "Shape(OC,CM,MO)",
+    "Shape(MA,AB,BM)",
+    "Shape(OCA,AM,MC)",
+    "Shape(OAB,BA)",
+    "Shape(OBC,CO,OM,MB)",
+    "Collinear(CMB)",
+    "Collinear(OMA)",
+    "Cocircular(O,CAB)"
+  ],
+  "text_cdl": [
+    "Equal(MeasureOfAngle(ABC),40)",
+    "IsCentreOfCircle(O,O)"
+  ],
+  "image_cdl": [
+    "Equal(MeasureOfAngle(ABC),40)",
+    "IsCentreOfCircle(O,O)"
+  ],
+  "goal_cdl": "Value(MeasureOfAngle(AOC))",
+  "problem_answer": "80",
+  "theorem_seqs": [
+    "arc_property_center_angle(1,OCA,O)",
+    "arc_property_circumference_angle_external(1,OCA,B)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "arc_property_center_angle(1,OCA,O)",
+      "arc_property_circumference_angle_external(1,OCA,B)"
+    ]
+  }
+}

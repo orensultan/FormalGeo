@@ -1,0 +1,28 @@
+{
+  "problem_id": 3458,
+  "annotation": "NaZhu_2023-04-30",
+  "source": "GeoQA-1032",
+  "problem_level": 1,
+  "problem_text_cn": "如图所示，AB=5，BC=3，△ACB为直角△。求直线AC的长度与直线BC的长度之和。",
+  "problem_text_en": "As shown in the diagram, AB=5, BC=3, △ACB is a right △. Find the sum of the length of line AC and the length of line BC.",
+  "problem_img": "3458.png",
+  "construction_cdl": [
+    "Shape(BA,AC,CB)"
+  ],
+  "text_cdl": [
+    "Equal(LengthOfLine(AB),5)",
+    "Equal(LengthOfLine(BC),3)",
+    "RightTriangle(ACB)"
+  ],
+  "image_cdl": [],
+  "goal_cdl": "Value(Add(LengthOfLine(AC),LengthOfLine(BC)))",
+  "problem_answer": "7",
+  "theorem_seqs": [
+    "right_triangle_property_pythagorean(1,ACB)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "right_triangle_property_pythagorean(1,ACB)"
+    ]
+  }
+}

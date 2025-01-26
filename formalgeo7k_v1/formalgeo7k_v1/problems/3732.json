@@ -1,0 +1,36 @@
+{
+  "problem_id": 3732,
+  "annotation": "YangLi_2023-04-30",
+  "source": "GeoQA-1518",
+  "problem_level": 3,
+  "problem_text_cn": "如图所示，∠CDE=60°，∠EBA=20°，AB平行于EF，EF平行于CD。求∠BED的大小。",
+  "problem_text_en": "As shown in the diagram, ∠CDE=60°, ∠EBA=20°, AB is parallel to EF, EF∥CD. Find the measure of ∠BED.",
+  "problem_img": "3732.png",
+  "construction_cdl": [
+    "Shape(EB,BA)",
+    "Shape(BE,EF)",
+    "Shape(FE,ED)",
+    "Shape(CD,DE)"
+  ],
+  "text_cdl": [
+    "Equal(MeasureOfAngle(CDE),60)",
+    "Equal(MeasureOfAngle(EBA),20)",
+    "ParallelBetweenLine(AB,EF)",
+    "ParallelBetweenLine(EF,CD)"
+  ],
+  "image_cdl": [],
+  "goal_cdl": "Value(MeasureOfAngle(BED))",
+  "problem_answer": "80",
+  "theorem_seqs": [
+    "parallel_property_alternate_interior_angle(2,AB,EF)",
+    "parallel_property_alternate_interior_angle(1,EF,CD)",
+    "angle_addition(1,BEF,FED)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "parallel_property_alternate_interior_angle(2,AB,EF)",
+      "parallel_property_alternate_interior_angle(1,EF,CD)",
+      "angle_addition(1,BEF,FED)"
+    ]
+  }
+}
