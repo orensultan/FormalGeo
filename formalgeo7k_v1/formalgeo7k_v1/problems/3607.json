@@ -1,0 +1,36 @@
+{
+  "problem_id": 3607,
+  "annotation": "QikeHuang_2023-04-30",
+  "source": "GeoQA-1275",
+  "problem_level": 3,
+  "problem_text_cn": "如图所示，∠DEF=125°，AB平行于CD。求∠EBA的大小。",
+  "problem_text_en": "As shown in the diagram, ∠DEF=125°, AB∥CD. Find the measure of ∠EBA.",
+  "problem_img": "3607.png",
+  "construction_cdl": [
+    "Shape(AC,CE,EB,BA)",
+    "Shape(EF,FD,DE)",
+    "Collinear(BEF)",
+    "Collinear(CED)"
+  ],
+  "text_cdl": [
+    "Equal(MeasureOfAngle(DEF),125)",
+    "ParallelBetweenLine(AB,CD)"
+  ],
+  "image_cdl": [],
+  "goal_cdl": "Value(MeasureOfAngle(EBA))",
+  "problem_answer": "55",
+  "theorem_seqs": [
+    "parallel_property_collinear_extend(3,DC,BA,E)",
+    "vertical_angle(1,CEB,DEF)",
+    "parallel_property_ipsilateral_internal_angle(1,EC,BA)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "parallel_property_collinear_extend(3,DC,BA,E)",
+      "vertical_angle(1,CEB,DEF)"
+    ],
+    "parallel_property_collinear_extend(3,DC,BA,E)": [
+      "parallel_property_ipsilateral_internal_angle(1,EC,BA)"
+    ]
+  }
+}

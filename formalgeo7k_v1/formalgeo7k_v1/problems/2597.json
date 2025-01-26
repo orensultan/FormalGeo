@@ -1,0 +1,49 @@
+{
+  "problem_id": 2597,
+  "annotation": "DengfengYue_2023-04-23",
+  "source": "Geometry3k-2725",
+  "problem_level": 3,
+  "problem_text_cn": "如图所示，⊙B的直径为30，⊙C的直径为10，CW=2，圆B的圆心为B，C是⊙C的圆心。求直线YW的长度。",
+  "problem_text_en": "As shown in the diagram, the diameter of ⊙B is 30, the diameter of ⊙C is 10, CW=2, the center of circle B is B, the center of circle C is C. Find the length of line YW.",
+  "problem_img": "2597.png",
+  "construction_cdl": [
+    "Shape(BY,CEY,BEZ,ZB)",
+    "Shape(BZ,BZF,CYF,YB)",
+    "Shape(BWE,CEY,YW)",
+    "Shape(WY,CYF,BFW)",
+    "Shape(CD,CDE,BWE,WC)",
+    "Shape(CW,BFW,CFD,DC)",
+    "Collinear(ZXBYWCD)",
+    "Cocircular(B,WZ)",
+    "Cocircular(C,DY)"
+  ],
+  "text_cdl": [
+    "Equal(DiameterOfCircle(B),30)",
+    "Equal(DiameterOfCircle(C),10)",
+    "Equal(LengthOfLine(CW),2)",
+    "IsCentreOfCircle(B,B)",
+    "IsCentreOfCircle(C,C)"
+  ],
+  "image_cdl": [
+    "Equal(DiameterOfCircle(B),30)",
+    "Equal(DiameterOfCircle(C),10)",
+    "Equal(LengthOfLine(CW),2)",
+    "IsCentreOfCircle(B,B)",
+    "IsCentreOfCircle(C,C)",
+    "IsCentreOfCircle(C,C)"
+  ],
+  "goal_cdl": "Value(LengthOfLine(YW))",
+  "problem_answer": "3",
+  "theorem_seqs": [
+    "circle_property_length_of_radius_and_diameter(1,C)",
+    "radius_of_circle_property_length_equal(1,CY,C)",
+    "line_addition(1,YW,WC)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "circle_property_length_of_radius_and_diameter(1,C)",
+      "radius_of_circle_property_length_equal(1,CY,C)",
+      "line_addition(1,YW,WC)"
+    ]
+  }
+}

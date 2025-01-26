@@ -1,0 +1,28 @@
+{
+  "problem_id": 5601,
+  "annotation": "YimingHe_2023-05-28",
+  "source": "GeoQA-7143",
+  "problem_level": 1,
+  "problem_text_cn": "如图所示，AB=2，∠BCA=90°，Sin(MeasureOfAngle(ABC))=2/5。求直线AC的长度。",
+  "problem_text_en": "As shown in the diagram, AB=2, ∠BCA=90°, Sin(MeasureOfAngle(ABC))=2/5. Find the length of line AC.",
+  "problem_img": "5601.png",
+  "construction_cdl": [
+    "Shape(BC,CA,AB)"
+  ],
+  "text_cdl": [
+    "Equal(LengthOfLine(AB),2)",
+    "Equal(MeasureOfAngle(BCA),90)",
+    "Equal(Sin(MeasureOfAngle(ABC)),2/5)"
+  ],
+  "image_cdl": [],
+  "goal_cdl": "Value(LengthOfLine(AC))",
+  "problem_answer": "4/5",
+  "theorem_seqs": [
+    "sine_theorem(1,ABC)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "sine_theorem(1,ABC)"
+    ]
+  }
+}

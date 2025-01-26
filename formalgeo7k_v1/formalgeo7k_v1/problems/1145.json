@@ -1,0 +1,40 @@
+{
+  "problem_id": 1145,
+  "annotation": "YangLi_2023-04-09",
+  "source": "Geometry3k-1184",
+  "problem_level": 2,
+  "problem_text_cn": "如图所示，AB=4，CB=x，DC=x+2，BA是圆O的切线。求x的值。",
+  "problem_text_en": "As shown in the diagram, AB=4, CB=x, DC=x+2, BA is the tangent to circle E. Find the value of x.",
+  "problem_img": "1145.png",
+  "construction_cdl": [
+    "Shape(CB,BA,ECA)",
+    "Shape(DE,EC,ECA,EAD)",
+    "Shape(CE,ED,EDC)",
+    "Collinear(DECB)",
+    "Cocircular(E,ADC)"
+  ],
+  "text_cdl": [
+    "Equal(LengthOfLine(AB),4)",
+    "Equal(LengthOfLine(CB),x)",
+    "Equal(LengthOfLine(DC),x+2)",
+    "IsTangentOfCircle(BA,E)"
+  ],
+  "image_cdl": [
+    "Equal(LengthOfLine(AB),4)",
+    "Equal(LengthOfLine(CB),x)",
+    "Equal(LengthOfLine(DC),x+2)",
+    "IsTangentOfCircle(BA,E)"
+  ],
+  "goal_cdl": "Value(x)",
+  "problem_answer": "-1/2+sqrt(33)/2",
+  "theorem_seqs": [
+    "line_addition(1,DC,CB)",
+    "circle_property_circular_power_tangent_and_segment_line(1,BA,BCD,E)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "line_addition(1,DC,CB)",
+      "circle_property_circular_power_tangent_and_segment_line(1,BA,BCD,E)"
+    ]
+  }
+}

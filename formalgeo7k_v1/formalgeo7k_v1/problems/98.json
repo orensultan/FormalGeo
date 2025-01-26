@@ -1,0 +1,45 @@
+{
+  "problem_id": 98,
+  "annotation": "XiaokaiZhang_2023-04-02",
+  "source": "Geometry3k-99",
+  "problem_level": 4,
+  "problem_text_cn": "如图所示，∠CBD=55°，∠FBG=35°，圆B的圆心为B。求⌒BFA的角度。",
+  "problem_text_en": "As shown in the diagram, ∠CBD=55°, ∠FBG=35°, B is the center of ⊙B. Find the measure of arc BFA.",
+  "problem_img": "98.png",
+  "construction_cdl": [
+    "Shape(BCA,AB,BC)",
+    "Shape(BAG,GB,BA)",
+    "Shape(BGF,FB,BG)",
+    "Shape(BFD,DB,BF)",
+    "Shape(BDC,CB,BD)",
+    "Collinear(ABD)",
+    "Collinear(CBG)",
+    "Cocircular(B,CAGFD)"
+  ],
+  "text_cdl": [
+    "Equal(MeasureOfAngle(CBD),55)",
+    "Equal(MeasureOfAngle(FBG),35)",
+    "IsCentreOfCircle(B,B)"
+  ],
+  "image_cdl": [
+    "Equal(MeasureOfAngle(CBD),55)",
+    "Equal(MeasureOfAngle(FBG),35)",
+    "IsCentreOfCircle(B,B)"
+  ],
+  "goal_cdl": "Value(MeasureOfArc(BFA))",
+  "problem_answer": "270",
+  "theorem_seqs": [
+    "vertical_angle(1,CBD,GBA)",
+    "angle_addition(1,FBG,GBA)",
+    "round_angle(1,FBA,ABF)",
+    "arc_property_center_angle(1,BFA,B)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "vertical_angle(1,CBD,GBA)",
+      "angle_addition(1,FBG,GBA)",
+      "round_angle(1,FBA,ABF)",
+      "arc_property_center_angle(1,BFA,B)"
+    ]
+  }
+}

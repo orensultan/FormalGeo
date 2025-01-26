@@ -1,0 +1,35 @@
+{
+  "problem_id": 4167,
+  "annotation": "YangLi_2023-05-07",
+  "source": "GeoQA-2803",
+  "problem_level": 2,
+  "problem_text_cn": "如图所示，∠BOA=90°，⊙O的圆心为O。求sin(BP)的值。",
+  "problem_text_en": "As shown in the diagram, ∠BOA=90°, O is the center of circle O. Find the value of sin(BP).",
+  "problem_img": "4167.png",
+  "construction_cdl": [
+    "Shape(BP,PA,AO,OB)",
+    "Shape(PB,OBP)",
+    "Shape(AP,OPA)",
+    "Shape(BO,OA,OAB)",
+    "Cocircular(O,BPA)"
+  ],
+  "text_cdl": [
+    "Equal(MeasureOfAngle(BOA),90)",
+    "IsCentreOfCircle(O,O)"
+  ],
+  "image_cdl": [
+    "IsCentreOfCircle(O,O)"
+  ],
+  "goal_cdl": "Value(Sin(MeasureOfAngle(BPA)))",
+  "problem_answer": "sqrt(2)/2",
+  "theorem_seqs": [
+    "arc_property_center_angle(1,OAB,O)",
+    "arc_property_circumference_angle_external(1,OAB,P)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "arc_property_center_angle(1,OAB,O)",
+      "arc_property_circumference_angle_external(1,OAB,P)"
+    ]
+  }
+}

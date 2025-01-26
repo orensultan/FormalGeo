@@ -1,0 +1,44 @@
+{
+  "problem_id": 3344,
+  "annotation": "YimingHe_2023-04-30",
+  "source": "GeoQA-777",
+  "problem_level": 5,
+  "problem_text_cn": "如图所示，∠CAD=60°，∠DBE=40°，DE是BC的垂直平分线。求∠DCA的大小。",
+  "problem_text_en": "As shown in the diagram, ∠CAD=60°, ∠DBE=40°, DE perpendicular bisects BC. Find the measure of ∠DCA.",
+  "problem_img": "3344.png",
+  "construction_cdl": [
+    "Shape(BE,ED,DB)",
+    "Shape(DE,EC,CD)",
+    "Shape(DC,CA,AD)",
+    "Collinear(ADB)",
+    "Collinear(BEC)"
+  ],
+  "text_cdl": [
+    "Equal(MeasureOfAngle(CAD),60)",
+    "Equal(MeasureOfAngle(DBE),40)",
+    "IsPerpendicularBisectorOfLine(DE,BC)"
+  ],
+  "image_cdl": [],
+  "goal_cdl": "Value(MeasureOfAngle(DCA))",
+  "problem_answer": "40",
+  "theorem_seqs": [
+    "perpendicular_bisector_property_distance_equal(1,DE,BC)",
+    "isosceles_triangle_judgment_line_equal(1,DBC)",
+    "isosceles_triangle_property_angle_equal(1,DBC)",
+    "triangle_property_angle_sum(1,ABC)",
+    "angle_addition(1,ECD,DCA)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "perpendicular_bisector_property_distance_equal(1,DE,BC)",
+      "triangle_property_angle_sum(1,ABC)",
+      "angle_addition(1,ECD,DCA)"
+    ],
+    "perpendicular_bisector_property_distance_equal(1,DE,BC)": [
+      "isosceles_triangle_judgment_line_equal(1,DBC)"
+    ],
+    "isosceles_triangle_judgment_line_equal(1,DBC)": [
+      "isosceles_triangle_property_angle_equal(1,DBC)"
+    ]
+  }
+}

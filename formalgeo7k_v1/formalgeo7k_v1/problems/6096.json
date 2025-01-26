@@ -1,0 +1,49 @@
+{
+  "problem_id": 6096,
+  "annotation": "RunanWang_2023-06-04",
+  "source": "GeoQA-8628",
+  "problem_level": 5,
+  "problem_text_cn": "如图所示，∠BCA=40°，∠CAB=60°，O是圆O的圆心。求∠CDA的大小。",
+  "problem_text_en": "As shown in the diagram, ∠BCA=40°, ∠CAB=60°, the center of circle O is O. Find the measure of ∠CDA.",
+  "problem_img": "6096.png",
+  "construction_cdl": [
+    "Shape(ODA,AD)",
+    "Shape(OAB,BA)",
+    "Shape(ED,DA,AE)",
+    "Shape(EA,AB,BE)",
+    "Shape(OBC,CB)",
+    "Shape(EB,BC,CE)",
+    "Shape(OCD,DC)",
+    "Shape(EC,CD,DE)",
+    "Collinear(DEB)",
+    "Collinear(AEC)",
+    "Cocircular(O,ABCD)"
+  ],
+  "text_cdl": [
+    "Equal(MeasureOfAngle(BCA),40)",
+    "Equal(MeasureOfAngle(CAB),60)",
+    "IsCentreOfCircle(O,O)"
+  ],
+  "image_cdl": [
+    "Equal(MeasureOfAngle(BCA),40)",
+    "Equal(MeasureOfAngle(CAB),60)"
+  ],
+  "goal_cdl": "Value(MeasureOfAngle(CDA))",
+  "problem_answer": "100",
+  "theorem_seqs": [
+    "arc_property_circumference_angle_external(1,OAB,C)",
+    "arc_property_circumference_angle_external(1,OBC,A)",
+    "arc_property_circumference_angle_external(1,OAB,D)",
+    "arc_property_circumference_angle_external(1,OBC,D)",
+    "angle_addition(1,CDE,EDA)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "arc_property_circumference_angle_external(1,OAB,C)",
+      "arc_property_circumference_angle_external(1,OBC,A)",
+      "arc_property_circumference_angle_external(1,OAB,D)",
+      "arc_property_circumference_angle_external(1,OBC,D)",
+      "angle_addition(1,CDE,EDA)"
+    ]
+  }
+}

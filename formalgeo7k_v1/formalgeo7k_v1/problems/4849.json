@@ -1,0 +1,47 @@
+{
+  "problem_id": 4849,
+  "annotation": "RunanWang_2023-05-21",
+  "source": "GeoQA-4329",
+  "problem_level": 4,
+  "problem_text_cn": "如图所示，AB=8，AO=10，⊙O的圆心为O，⊙O的切线为AB。求圆O的半径。",
+  "problem_text_en": "As shown in the diagram, AB=8, AO=10, O is the center of ⊙O, AB is the tangent to ⊙O. Find the radius of circle O.",
+  "problem_img": "4849.png",
+  "construction_cdl": [
+    "Shape(AB,OMB,MA)",
+    "Shape(OM,OMB,BO)",
+    "Shape(OB,OBM,MO)",
+    "Collinear(AMO)",
+    "Cocircular(O,MB)"
+  ],
+  "text_cdl": [
+    "Equal(LengthOfLine(AB),8)",
+    "Equal(LengthOfLine(AO),10)",
+    "IsCentreOfCircle(O,O)",
+    "IsTangentOfCircle(AB,O)"
+  ],
+  "image_cdl": [
+    "Equal(LengthOfLine(AB),8)",
+    "Equal(LengthOfLine(AO),10)",
+    "IsTangentOfCircle(AB,O)"
+  ],
+  "goal_cdl": "Value(RadiusOfCircle(O))",
+  "problem_answer": "6",
+  "theorem_seqs": [
+    "tangent_of_circle_property_perpendicular(2,AB,O,O)",
+    "right_triangle_judgment_angle(1,ABO)",
+    "right_triangle_property_pythagorean(1,ABO)",
+    "radius_of_circle_property_length_equal(1,OB,O)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "tangent_of_circle_property_perpendicular(2,AB,O,O)",
+      "radius_of_circle_property_length_equal(1,OB,O)"
+    ],
+    "tangent_of_circle_property_perpendicular(2,AB,O,O)": [
+      "right_triangle_judgment_angle(1,ABO)"
+    ],
+    "right_triangle_judgment_angle(1,ABO)": [
+      "right_triangle_property_pythagorean(1,ABO)"
+    ]
+  }
+}

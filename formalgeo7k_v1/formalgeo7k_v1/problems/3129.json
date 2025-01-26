@@ -1,0 +1,38 @@
+{
+  "problem_id": 3129,
+  "annotation": "YimingHe_2023-04-23",
+  "source": "GeoQA-382",
+  "problem_level": 5,
+  "problem_text_cn": "如图所示，∠ABD=24°，CB和CA是等腰直角三角形CBA的腰，DB∥EC。求∠ECA的大小。",
+  "problem_text_en": "As shown in the diagram, ∠ABD=24°, CB and CA are the legs of the isosceles right △ CBA, DB is parallel to EC. Find the measure of ∠ECA.",
+  "problem_img": "3129.png",
+  "construction_cdl": [
+    "Shape(AC,CB,BA)",
+    "Shape(AB,BD)",
+    "Shape(EC,CA)"
+  ],
+  "text_cdl": [
+    "Equal(MeasureOfAngle(ABD),24)",
+    "IsoscelesRightTriangle(CBA)",
+    "ParallelBetweenLine(DB,EC)"
+  ],
+  "image_cdl": [],
+  "goal_cdl": "Value(MeasureOfAngle(ECA))",
+  "problem_answer": "21",
+  "theorem_seqs": [
+    "angle_addition(1,CBA,ABD)",
+    "angle_addition(1,ECA,ACB)",
+    "isosceles_triangle_property_angle_equal(1,CBA)",
+    "triangle_property_angle_sum(1,CBA)",
+    "parallel_property_ipsilateral_internal_angle(1,CE,BD)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "angle_addition(1,CBA,ABD)",
+      "angle_addition(1,ECA,ACB)",
+      "isosceles_triangle_property_angle_equal(1,CBA)",
+      "triangle_property_angle_sum(1,CBA)",
+      "parallel_property_ipsilateral_internal_angle(1,CE,BD)"
+    ]
+  }
+}

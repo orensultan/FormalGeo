@@ -1,0 +1,43 @@
+{
+  "problem_id": 6516,
+  "annotation": "NaZhu_2023-06-04",
+  "source": "GeoQA-9434",
+  "problem_level": 5,
+  "problem_text_cn": "如图所示，AD=Mul(2,LengthOfLine(AB))，AE=3，CE是∠BCD的角平分线，四边形ABCD是平行四边形。求直线AB的长度。",
+  "problem_text_en": "As shown in the diagram, AD=Mul(2,LengthOfLine(AB)), AE=3, CE bisects ∠BCD, quadrilateral ABCD is a ▱. Find the length of line AB.",
+  "problem_img": "6516.png",
+  "construction_cdl": [
+    "Shape(AB,BC,CE,EA)",
+    "Shape(EC,CD,DE)",
+    "Collinear(AED)"
+  ],
+  "text_cdl": [
+    "Equal(LengthOfLine(AD),Mul(2,LengthOfLine(AB)))",
+    "Equal(LengthOfLine(AE),3)",
+    "IsBisectorOfAngle(CE,BCD)",
+    "Parallelogram(ABCD)"
+  ],
+  "image_cdl": [],
+  "goal_cdl": "Value(LengthOfLine(AB))",
+  "problem_answer": "3",
+  "theorem_seqs": [
+    "parallel_property_collinear_extend(3,AD,BC,E)",
+    "parallel_property_alternate_interior_angle(1,ED,BC)",
+    "isosceles_triangle_judgment_angle_equal(1,DEC)",
+    "parallelogram_property_opposite_line_equal(1,ABCD)",
+    "line_addition(1,AE,ED)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "parallel_property_collinear_extend(3,AD,BC,E)",
+      "parallelogram_property_opposite_line_equal(1,ABCD)",
+      "line_addition(1,AE,ED)"
+    ],
+    "parallel_property_collinear_extend(3,AD,BC,E)": [
+      "parallel_property_alternate_interior_angle(1,ED,BC)"
+    ],
+    "parallel_property_alternate_interior_angle(1,ED,BC)": [
+      "isosceles_triangle_judgment_angle_equal(1,DEC)"
+    ]
+  }
+}

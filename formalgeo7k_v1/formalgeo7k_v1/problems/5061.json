@@ -1,0 +1,32 @@
+{
+  "problem_id": 5061,
+  "annotation": "ChengQin_2023-05-21",
+  "source": "GeoQA-4820",
+  "problem_level": 2,
+  "problem_text_cn": "如图所示，△ABC的面积为18，AB=3，DE=4，△ABC与△DEF是相似三角形。求△DEF的面积。",
+  "problem_text_en": "As shown in the diagram, the area of triangle ABC is 18, AB=3, DE=4, triangle ABC is similar to triangle DEF.. Find the area of triangle DEF.",
+  "problem_img": "5061.png",
+  "construction_cdl": [
+    "Shape(AB,BC,CA)",
+    "Shape(DE,EF,FD)"
+  ],
+  "text_cdl": [
+    "Equal(AreaOfTriangle(ABC),18)",
+    "Equal(LengthOfLine(AB),3)",
+    "Equal(LengthOfLine(DE),4)",
+    "SimilarBetweenTriangle(ABC,DEF)"
+  ],
+  "image_cdl": [],
+  "goal_cdl": "Value(AreaOfTriangle(DEF))",
+  "problem_answer": "32",
+  "theorem_seqs": [
+    "similar_triangle_property_line_ratio(1,CAB,FDE)",
+    "similar_triangle_property_area_square_ratio(1,ABC,DEF)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "similar_triangle_property_line_ratio(1,CAB,FDE)",
+      "similar_triangle_property_area_square_ratio(1,ABC,DEF)"
+    ]
+  }
+}

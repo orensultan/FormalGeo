@@ -1,0 +1,44 @@
+{
+  "problem_id": 2468,
+  "annotation": "YangLi_2023-04-23",
+  "source": "Geometry3k-2588",
+  "problem_level": 2,
+  "problem_text_cn": "如图所示，∠EHB=72°，∠GCF=x-12°，CA平行于HE。求x的值。",
+  "problem_text_en": "As shown in the diagram, ∠EHB=72°, ∠GCF=x-12°, CA is parallel to HE. Find the value of x.",
+  "problem_img": "2468.png",
+  "construction_cdl": [
+    "Shape(FC,CA)",
+    "Shape(AC,CH)",
+    "Shape(GC,CF)",
+    "Shape(HC,CG)",
+    "Shape(CH,HE)",
+    "Shape(EH,HB)",
+    "Shape(DH,HC)",
+    "Shape(BH,HD)",
+    "Collinear(ACG)",
+    "Collinear(EHD)",
+    "Collinear(FCHB)"
+  ],
+  "text_cdl": [
+    "Equal(MeasureOfAngle(EHB),72)",
+    "Equal(MeasureOfAngle(GCF),x-12)",
+    "ParallelBetweenLine(CA,HE)"
+  ],
+  "image_cdl": [
+    "Equal(MeasureOfAngle(EHB),72)",
+    "Equal(MeasureOfAngle(GCF),x-12)",
+    "ParallelBetweenLine(CA,HE)"
+  ],
+  "goal_cdl": "Value(x)",
+  "problem_answer": "84",
+  "theorem_seqs": [
+    "parallel_property_corresponding_angle(2,CA,HE,B)",
+    "vertical_angle(1,GCF,ACH)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "parallel_property_corresponding_angle(2,CA,HE,B)",
+      "vertical_angle(1,GCF,ACH)"
+    ]
+  }
+}

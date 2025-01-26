@@ -1,0 +1,41 @@
+{
+  "problem_id": 3760,
+  "annotation": "ChenyangMao_2023-04-30",
+  "source": "GeoQA-1568",
+  "problem_level": 3,
+  "problem_text_cn": "如图所示，∠DCE=144°，∠EBA=70°，AB平行于EF，CD平行于EF。求∠BEC的大小。",
+  "problem_text_en": "As shown in the diagram, ∠DCE=144°, ∠EBA=70°, AB is parallel to EF, CD is parallel to EF. Find the measure of ∠BEC.",
+  "problem_img": "3760.png",
+  "construction_cdl": [
+    "Shape(EB,BA)",
+    "Shape(BE,EC)",
+    "Shape(DC,CE)",
+    "Shape(CE,EF)"
+  ],
+  "text_cdl": [
+    "Equal(MeasureOfAngle(DCE),144)",
+    "Equal(MeasureOfAngle(EBA),70)",
+    "ParallelBetweenLine(AB,EF)",
+    "ParallelBetweenLine(CD,EF)"
+  ],
+  "image_cdl": [
+    "Equal(MeasureOfAngle(DCE),144)",
+    "Equal(MeasureOfAngle(EBA),70)",
+    "ParallelBetweenLine(AB,EF)",
+    "ParallelBetweenLine(CD,EF)"
+  ],
+  "goal_cdl": "Value(MeasureOfAngle(BEC))",
+  "problem_answer": "34",
+  "theorem_seqs": [
+    "angle_addition(1,BEC,CEF)",
+    "parallel_property_ipsilateral_internal_angle(1,CD,EF)",
+    "parallel_property_alternate_interior_angle(2,AB,EF)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "angle_addition(1,BEC,CEF)",
+      "parallel_property_ipsilateral_internal_angle(1,CD,EF)",
+      "parallel_property_alternate_interior_angle(2,AB,EF)"
+    ]
+  }
+}

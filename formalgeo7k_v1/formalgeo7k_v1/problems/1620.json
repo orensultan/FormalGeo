@@ -1,0 +1,45 @@
+{
+  "problem_id": 1620,
+  "annotation": "XiaoxiaoJin_2023-04-16",
+  "source": "Geometry3k-1680",
+  "problem_level": 4,
+  "problem_text_cn": "如图所示，PS=4，∠RPS=130°，∠TPQ=112°，P是圆P的圆心。求⌒PRQ的长度。",
+  "problem_text_en": "As shown in the diagram, PS=4, ∠RPS=130°, ∠TPQ=112°, P is the center of circle P. Find the length of arc PRQ.",
+  "problem_img": "1620.png",
+  "construction_cdl": [
+    "Shape(QP,PR,PRQ)",
+    "Shape(TP,PQ,PQT)",
+    "Shape(SP,PT,PTS)",
+    "Shape(RP,PS,PSR)",
+    "Collinear(RPT)",
+    "Cocircular(P,RQTS)"
+  ],
+  "text_cdl": [
+    "Equal(LengthOfLine(PS),4)",
+    "Equal(MeasureOfAngle(RPS),130)",
+    "Equal(MeasureOfAngle(TPQ),112)",
+    "IsCentreOfCircle(P,P)"
+  ],
+  "image_cdl": [
+    "Equal(LengthOfLine(PS),4)",
+    "Equal(MeasureOfAngle(RPS),130)",
+    "Equal(MeasureOfAngle(TPQ),112)",
+    "IsCentreOfCircle(P,P)"
+  ],
+  "goal_cdl": "Value(LengthOfArc(PRQ))",
+  "problem_answer": "68*pi/45",
+  "theorem_seqs": [
+    "adjacent_complementary_angle(1,TPQ,QPR)",
+    "arc_property_center_angle(1,PRQ,P)",
+    "radius_of_circle_property_length_equal(1,PS,P)",
+    "arc_length_formula(1,PRQ)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "adjacent_complementary_angle(1,TPQ,QPR)",
+      "arc_property_center_angle(1,PRQ,P)",
+      "radius_of_circle_property_length_equal(1,PS,P)",
+      "arc_length_formula(1,PRQ)"
+    ]
+  }
+}

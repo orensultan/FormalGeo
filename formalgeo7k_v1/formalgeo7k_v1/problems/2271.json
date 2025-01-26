@@ -1,0 +1,43 @@
+{
+  "problem_id": 2271,
+  "annotation": "YangLi_2023-04-09",
+  "source": "Geometry3k-2375",
+  "problem_level": 2,
+  "problem_text_cn": "如图所示，AD=11，∠AEF=32°，∠DEA=32°，AD垂直于ED，IF垂直于GF。求直线AF的长度。",
+  "problem_text_en": "As shown in the diagram, AD=11, ∠AEF=32°, ∠DEA=32°, AD⊥ED, IF is perpendicular to GF. Find the length of line AF.",
+  "problem_img": "2271.png",
+  "construction_cdl": [
+    "Shape(AD,DE,EA)",
+    "Shape(AE,EF,FA)",
+    "Collinear(EDJB)",
+    "Collinear(EAH)",
+    "Collinear(EIFLK)",
+    "Collinear(AGF)"
+  ],
+  "text_cdl": [
+    "Equal(LengthOfLine(AD),11)",
+    "Equal(MeasureOfAngle(AEF),32)",
+    "Equal(MeasureOfAngle(DEA),32)",
+    "PerpendicularBetweenLine(AD,ED)",
+    "PerpendicularBetweenLine(IF,GF)"
+  ],
+  "image_cdl": [
+    "Equal(LengthOfLine(AD),11)",
+    "Equal(MeasureOfAngle(AEF),32)",
+    "Equal(MeasureOfAngle(DEA),32)",
+    "PerpendicularBetweenLine(AD,ED)",
+    "PerpendicularBetweenLine(IF,GF)"
+  ],
+  "goal_cdl": "Value(LengthOfLine(AF))",
+  "problem_answer": "11",
+  "theorem_seqs": [
+    "sine_theorem(1,ADE)",
+    "sine_theorem(1,AEF)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "sine_theorem(1,ADE)",
+      "sine_theorem(1,AEF)"
+    ]
+  }
+}

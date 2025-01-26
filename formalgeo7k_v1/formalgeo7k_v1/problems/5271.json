@@ -1,0 +1,47 @@
+{
+  "problem_id": 5271,
+  "annotation": "XiaokaiZhang_2023-05-21",
+  "source": "GeoQA-5409",
+  "problem_level": 6,
+  "problem_text_cn": "如图所示，∠CDB=125°，NA垂直于QA。求∠CDB的大小、∠EAB的大小、∠NME的大小、∠ENM的大小、∠BPQ的大小与∠PQB的大小之和。",
+  "problem_text_en": "As shown in the diagram, ∠CDB=125°, NA is perpendicular to QA. Find the sum of the measure of ∠CDB, the measure of ∠EAB, the measure of ∠NME, the measure of ∠ENM, the measure of ∠BPQ and the measure of ∠PQB.",
+  "problem_img": "5271.png",
+  "construction_cdl": [
+    "Shape(ME,EN,NM)",
+    "Shape(MA,AE,EM)",
+    "Shape(AP,PB,BA)",
+    "Shape(BP,PQ,QB)",
+    "Shape(BQ,QC,CD,DB)",
+    "Shape(NE,ED,DC,CN)",
+    "Shape(AB,BD,DE,EA)",
+    "Collinear(MEDC)",
+    "Collinear(AEN)",
+    "Collinear(ABQ)",
+    "Collinear(PBD)"
+  ],
+  "text_cdl": [
+    "Equal(MeasureOfAngle(CDB),125)",
+    "PerpendicularBetweenLine(NA,QA)"
+  ],
+  "image_cdl": [],
+  "goal_cdl": "Value(Add(MeasureOfAngle(CDB),MeasureOfAngle(EAB),MeasureOfAngle(NME),MeasureOfAngle(ENM),MeasureOfAngle(BPQ),MeasureOfAngle(PQB)))",
+  "problem_answer": "360",
+  "theorem_seqs": [
+    "adjacent_complementary_angle(1,CDB,BDE)",
+    "quadrilateral_property_angle_sum(1,ABDE)",
+    "vertical_angle(1,MEN,DEA)",
+    "vertical_angle(1,ABD,QBP)",
+    "triangle_property_angle_sum(1,MEN)",
+    "triangle_property_angle_sum(1,PQB)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "adjacent_complementary_angle(1,CDB,BDE)",
+      "quadrilateral_property_angle_sum(1,ABDE)",
+      "vertical_angle(1,MEN,DEA)",
+      "vertical_angle(1,ABD,QBP)",
+      "triangle_property_angle_sum(1,MEN)",
+      "triangle_property_angle_sum(1,PQB)"
+    ]
+  }
+}

@@ -1,0 +1,74 @@
+{
+  "problem_id": 3949,
+  "annotation": "FangzhenZhu_2023-05-07",
+  "source": "GeoQA-1873",
+  "problem_level": 13,
+  "problem_text_cn": "如图所示，DC=DO，∠DCA=18°，O是圆O的圆心。求∠EAB的大小。",
+  "problem_text_en": "As shown in the diagram, DC=DO, ∠DCA=18°, O is the center of circle O. Find the measure of ∠EAB.",
+  "problem_img": "3949.png",
+  "construction_cdl": [
+    "Shape(OBE,EO,OB)",
+    "Shape(OBE,EA,AO,OB)",
+    "Shape(OE,ED,DO)",
+    "Shape(OED,DE)",
+    "Shape(ODA,AO,OD)",
+    "Shape(ODA,AE,ED)",
+    "Shape(ODA,DC,CA)",
+    "Collinear(CAOB)",
+    "Collinear(CDE)",
+    "Cocircular(O,BEDA)"
+  ],
+  "text_cdl": [
+    "Equal(LengthOfLine(DC),LengthOfLine(DO))",
+    "Equal(MeasureOfAngle(DCA),18)",
+    "IsCentreOfCircle(O,O)"
+  ],
+  "image_cdl": [
+    "Equal(LengthOfLine(DC),LengthOfLine(DO))",
+    "Equal(MeasureOfAngle(DCA),18)",
+    "IsCentreOfCircle(O,O)"
+  ],
+  "goal_cdl": "Value(MeasureOfAngle(EAB))",
+  "problem_answer": "27",
+  "theorem_seqs": [
+    "isosceles_triangle_judgment_line_equal(1,DCO)",
+    "isosceles_triangle_property_angle_equal(1,DCO)",
+    "triangle_property_angle_sum(1,DCO)",
+    "adjacent_complementary_angle(1,EDO,ODC)",
+    "radius_of_circle_property_length_equal(1,OD,O)",
+    "radius_of_circle_property_length_equal(1,OE,O)",
+    "isosceles_triangle_judgment_line_equal(1,OED)",
+    "isosceles_triangle_property_angle_equal(1,OED)",
+    "angle_addition(1,AOD,DOE)",
+    "triangle_property_angle_sum(1,OED)",
+    "adjacent_complementary_angle(1,AOE,EOB)",
+    "arc_property_center_angle(1,OBE,O)",
+    "arc_property_circumference_angle_external(1,OBE,A)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "isosceles_triangle_judgment_line_equal(1,DCO)",
+      "triangle_property_angle_sum(1,DCO)",
+      "adjacent_complementary_angle(1,EDO,ODC)",
+      "radius_of_circle_property_length_equal(1,OD,O)",
+      "radius_of_circle_property_length_equal(1,OE,O)",
+      "angle_addition(1,AOD,DOE)",
+      "triangle_property_angle_sum(1,OED)",
+      "adjacent_complementary_angle(1,AOE,EOB)",
+      "arc_property_center_angle(1,OBE,O)",
+      "arc_property_circumference_angle_external(1,OBE,A)"
+    ],
+    "isosceles_triangle_judgment_line_equal(1,DCO)": [
+      "isosceles_triangle_property_angle_equal(1,DCO)"
+    ],
+    "radius_of_circle_property_length_equal(1,OD,O)": [
+      "isosceles_triangle_judgment_line_equal(1,OED)"
+    ],
+    "radius_of_circle_property_length_equal(1,OE,O)": [
+      "isosceles_triangle_judgment_line_equal(1,OED)"
+    ],
+    "isosceles_triangle_judgment_line_equal(1,OED)": [
+      "isosceles_triangle_property_angle_equal(1,OED)"
+    ]
+  }
+}

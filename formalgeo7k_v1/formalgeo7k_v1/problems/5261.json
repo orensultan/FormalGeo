@@ -1,0 +1,37 @@
+{
+  "problem_id": 5261,
+  "annotation": "XiaokaiZhang_2023-05-21",
+  "source": "GeoQA-5366",
+  "problem_level": 5,
+  "problem_text_cn": "如图所示，AB=10，NM=1，C平分线段MB，M是线段AB的中点。求直线NC的长度。",
+  "problem_text_en": "As shown in the diagram, AB=10, NM=1, C bisects segment MB, M bisects segment AB. Find the length of line NC.",
+  "problem_img": "5261.png",
+  "construction_cdl": [
+    "Collinear(ANMCB)"
+  ],
+  "text_cdl": [
+    "Equal(LengthOfLine(AB),10)",
+    "Equal(LengthOfLine(NM),1)",
+    "IsMidpointOfLine(C,MB)",
+    "IsMidpointOfLine(M,AB)"
+  ],
+  "image_cdl": [],
+  "goal_cdl": "Value(LengthOfLine(NC))",
+  "problem_answer": "7/2",
+  "theorem_seqs": [
+    "line_addition(1,AN,NM)",
+    "line_addition(1,AN,NC)",
+    "line_addition(1,AM,MC)",
+    "line_addition(1,AM,MB)",
+    "line_addition(1,AC,CB)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "line_addition(1,AN,NM)",
+      "line_addition(1,AN,NC)",
+      "line_addition(1,AM,MC)",
+      "line_addition(1,AM,MB)",
+      "line_addition(1,AC,CB)"
+    ]
+  }
+}

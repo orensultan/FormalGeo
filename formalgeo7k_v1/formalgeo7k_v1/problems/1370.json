@@ -1,0 +1,46 @@
+{
+  "problem_id": 1370,
+  "annotation": "ZheZhu_2023-04-09",
+  "source": "Geometry3k-1418",
+  "problem_level": 3,
+  "problem_text_cn": "如图所示，BC=24，FB=14，IF=16，IH=12，FI∥BC，BH垂直于IH。求IFBC的面积。",
+  "problem_text_en": "As shown in the diagram, BC=24, FB=14, IF=16, IH=12, FI is parallel to BC, BH is perpendicular to IH. Find the area of IFBC.",
+  "problem_img": "1370.png",
+  "construction_cdl": [
+    "Shape(IF,FB,BH,HI)",
+    "Shape(IH,HC,CI)",
+    "Collinear(BHC)"
+  ],
+  "text_cdl": [
+    "Equal(LengthOfLine(BC),24)",
+    "Equal(LengthOfLine(FB),14)",
+    "Equal(LengthOfLine(IF),16)",
+    "Equal(LengthOfLine(IH),12)",
+    "ParallelBetweenLine(FI,BC)",
+    "PerpendicularBetweenLine(BH,IH)"
+  ],
+  "image_cdl": [
+    "Equal(LengthOfLine(BC),24)",
+    "Equal(LengthOfLine(FB),14)",
+    "Equal(LengthOfLine(IF),16)",
+    "Equal(LengthOfLine(IH),12)",
+    "ParallelBetweenLine(FI,BC)",
+    "PerpendicularBetweenLine(BH,IH)"
+  ],
+  "goal_cdl": "Value(AreaOfQuadrilateral(IFBC))",
+  "problem_answer": "240",
+  "theorem_seqs": [
+    "trapezoid_judgment_parallel(1,CIFB)",
+    "altitude_of_quadrilateral_judgment_right_vertex(2,IH,FBCI)",
+    "trapezoid_area_formula(1,FBCI)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "trapezoid_judgment_parallel(1,CIFB)"
+    ],
+    "trapezoid_judgment_parallel(1,CIFB)": [
+      "altitude_of_quadrilateral_judgment_right_vertex(2,IH,FBCI)",
+      "trapezoid_area_formula(1,FBCI)"
+    ]
+  }
+}

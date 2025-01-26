@@ -1,0 +1,59 @@
+{
+  "problem_id": 5506,
+  "annotation": "DengfengYue_2023-05-21",
+  "source": "GeoQA-5970",
+  "problem_level": 7,
+  "problem_text_cn": "如图所示，AB=6，AC=9，AD平分∠BAE，M是线段BC的中点，AD垂直于BD。求直线MD的长度。",
+  "problem_text_en": "As shown in the diagram, AB=6, AC=9, AD bisects ∠BAE, M bisects segment BC, AD⊥BD. Find the length of line MD.",
+  "problem_img": "5506.png",
+  "construction_cdl": [
+    "Shape(ED,DA,AE)",
+    "Shape(AD,DF,FA)",
+    "Shape(FD,DB,BF)",
+    "Shape(CA,AF,FM,MC)",
+    "Shape(MF,FB,BM)",
+    "Collinear(EAC)",
+    "Collinear(EDB)",
+    "Collinear(BFA)",
+    "Collinear(DFM)",
+    "Collinear(BMC)"
+  ],
+  "text_cdl": [
+    "Equal(LengthOfLine(AB),6)",
+    "Equal(LengthOfLine(AC),9)",
+    "IsBisectorOfAngle(AD,BAE)",
+    "IsMidpointOfLine(M,BC)",
+    "PerpendicularBetweenLine(AD,BD)"
+  ],
+  "image_cdl": [],
+  "goal_cdl": "Value(LengthOfLine(MD))",
+  "problem_answer": "15/2",
+  "theorem_seqs": [
+    "adjacent_complementary_angle(1,EDA,ADB)",
+    "mirror_congruent_triangle_judgment_aas(2,EDA,BAD)",
+    "mirror_congruent_triangle_property_line_equal(1,DAE,DBA)",
+    "mirror_congruent_triangle_property_line_equal(1,AED,ADB)",
+    "line_addition(1,EA,AC)",
+    "midsegment_of_triangle_judgment_midpoint(1,MD,BCE)",
+    "midsegment_of_triangle_property_length(1,MD,BCE)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "adjacent_complementary_angle(1,EDA,ADB)",
+      "line_addition(1,EA,AC)"
+    ],
+    "adjacent_complementary_angle(1,EDA,ADB)": [
+      "mirror_congruent_triangle_judgment_aas(2,EDA,BAD)"
+    ],
+    "mirror_congruent_triangle_judgment_aas(2,EDA,BAD)": [
+      "mirror_congruent_triangle_property_line_equal(1,DAE,DBA)",
+      "mirror_congruent_triangle_property_line_equal(1,AED,ADB)"
+    ],
+    "mirror_congruent_triangle_property_line_equal(1,AED,ADB)": [
+      "midsegment_of_triangle_judgment_midpoint(1,MD,BCE)"
+    ],
+    "midsegment_of_triangle_judgment_midpoint(1,MD,BCE)": [
+      "midsegment_of_triangle_property_length(1,MD,BCE)"
+    ]
+  }
+}

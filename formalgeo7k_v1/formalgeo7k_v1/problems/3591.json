@@ -1,0 +1,43 @@
+{
+  "problem_id": 3591,
+  "annotation": "QikeHuang_2023-04-30",
+  "source": "GeoQA-1240",
+  "problem_level": 4,
+  "problem_text_cn": "如图所示，∠EOA=72°，∠GOB=10°，HO⊥GO。求∠AOB的大小。",
+  "problem_text_en": "As shown in the diagram, ∠EOA=72°, ∠GOB=10°, HO⊥GO. Find the measure of ∠AOB.",
+  "problem_img": "3591.png",
+  "construction_cdl": [
+    "Shape(EO,OA,AE)",
+    "Shape(AO,OH,HA)",
+    "Shape(HO,OG,GH)",
+    "Shape(GO,OB,BG)",
+    "Shape(BO,OF,FB)",
+    "Shape(FO,OE,EF)",
+    "Collinear(FOH)",
+    "Collinear(EOG)"
+  ],
+  "text_cdl": [
+    "Equal(MeasureOfAngle(EOA),72)",
+    "Equal(MeasureOfAngle(GOB),10)",
+    "PerpendicularBetweenLine(HO,GO)"
+  ],
+  "image_cdl": [
+    "PerpendicularBetweenLine(HO,GO)"
+  ],
+  "goal_cdl": "Value(MeasureOfAngle(AOB))",
+  "problem_answer": "118",
+  "theorem_seqs": [
+    "angle_addition(1,HOG,GOB)",
+    "angle_addition(1,EOA,AOH)",
+    "adjacent_complementary_angle(1,EOH,HOG)",
+    "angle_addition(1,AOH,HOB)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "angle_addition(1,HOG,GOB)",
+      "angle_addition(1,EOA,AOH)",
+      "adjacent_complementary_angle(1,EOH,HOG)",
+      "angle_addition(1,AOH,HOB)"
+    ]
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "problem_id": 4150,
+  "annotation": "XiaoxiaoJin_2023-05-07",
+  "source": "GeoQA-2743",
+  "problem_level": 2,
+  "problem_text_cn": "如图所示，AB=3，BC=2，∠ACB=90°。求sin(BA)的值。",
+  "problem_text_en": "As shown in the diagram, AB=3, BC=2, ∠ACB=90°. Find the value of sin(BA).",
+  "problem_img": "4150.png",
+  "construction_cdl": [
+    "Shape(AC,CB,BA)"
+  ],
+  "text_cdl": [
+    "Equal(LengthOfLine(AB),3)",
+    "Equal(LengthOfLine(BC),2)",
+    "Equal(MeasureOfAngle(ACB),90)"
+  ],
+  "image_cdl": [],
+  "goal_cdl": "Value(Sin(MeasureOfAngle(BAC)))",
+  "problem_answer": "2/3",
+  "theorem_seqs": [
+    "cosine_theorem(1,ACB)",
+    "cosine_theorem(1,CBA)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "cosine_theorem(1,ACB)",
+      "cosine_theorem(1,CBA)"
+    ]
+  }
+}

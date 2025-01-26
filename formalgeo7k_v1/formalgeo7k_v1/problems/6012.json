@@ -1,0 +1,43 @@
+{
+  "problem_id": 6012,
+  "annotation": "YangLi_2023-05-28",
+  "source": "GeoQA-8486",
+  "problem_level": 3,
+  "problem_text_cn": "如图所示，∠FDA=70°，⊙O的圆心为O，⊙O的直径为BE，ABCD是平行四边形。求∠CEF的大小。",
+  "problem_text_en": "As shown in the diagram, ∠FDA=70°, the center of ⊙O is O, BE is the diameter of ⊙O, ABCD is a ▱. Find the measure of ∠CEF.",
+  "problem_img": "6012.png",
+  "construction_cdl": [
+    "Shape(BA,OAB)",
+    "Shape(AD,ODA)",
+    "Shape(DF,FE,OED)",
+    "Shape(FC,CE,EF)",
+    "Shape(AB,BO,OC,CF,FA)",
+    "Shape(AF,FD,DA)",
+    "Shape(EC,CO,OB,OBE)",
+    "Collinear(BOCE)",
+    "Collinear(DFC)",
+    "Collinear(AFE)",
+    "Cocircular(O,ABED)"
+  ],
+  "text_cdl": [
+    "Equal(MeasureOfAngle(FDA),70)",
+    "IsCentreOfCircle(O,O)",
+    "IsDiameterOfCircle(BE,O)",
+    "Parallelogram(ABCD)"
+  ],
+  "image_cdl": [],
+  "goal_cdl": "Value(MeasureOfAngle(CEF))",
+  "problem_answer": "20",
+  "theorem_seqs": [
+    "parallelogram_property_opposite_angle_equal(1,BCDA)",
+    "diameter_of_circle_property_right_angle(1,EAB,O)",
+    "triangle_property_angle_sum(1,ABE)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "parallelogram_property_opposite_angle_equal(1,BCDA)",
+      "diameter_of_circle_property_right_angle(1,EAB,O)",
+      "triangle_property_angle_sum(1,ABE)"
+    ]
+  }
+}

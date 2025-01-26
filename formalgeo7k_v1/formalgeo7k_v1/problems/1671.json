@@ -1,0 +1,36 @@
+{
+  "problem_id": 1671,
+  "annotation": "YangLi_2023-04-16",
+  "source": "Geometry3k-1735",
+  "problem_level": 1,
+  "problem_text_cn": "如图所示，WX=x+4，ZY=2*x+3，ZW⊥XW，WXYZ是长方形。求直线WX的长度。",
+  "problem_text_en": "As shown in the diagram, WX=x+4, ZY=2*x+3, ZW⊥XW, WXYZ is a rectangle. Find the length of line WX.",
+  "problem_img": "1671.png",
+  "construction_cdl": [
+    "Shape(ZW,WP,PZ)",
+    "Shape(PW,WX,XP)",
+    "Shape(PX,XY,YP)",
+    "Shape(ZP,PY,YZ)",
+    "Collinear(ZPX)",
+    "Collinear(WPY)"
+  ],
+  "text_cdl": [
+    "Equal(LengthOfLine(WX),x+4)",
+    "Equal(LengthOfLine(ZY),2*x+3)",
+    "PerpendicularBetweenLine(ZW,XW)",
+    "Rectangle(WXYZ)"
+  ],
+  "image_cdl": [
+    "PerpendicularBetweenLine(ZW,XW)"
+  ],
+  "goal_cdl": "Value(LengthOfLine(WX))",
+  "problem_answer": "5",
+  "theorem_seqs": [
+    "parallelogram_property_opposite_line_equal(1,WXYZ)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "parallelogram_property_opposite_line_equal(1,WXYZ)"
+    ]
+  }
+}

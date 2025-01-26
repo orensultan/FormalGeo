@@ -1,0 +1,44 @@
+{
+  "problem_id": 5367,
+  "annotation": "QikeHuang_2023-05-21",
+  "source": "GeoQA-5647",
+  "problem_level": 1,
+  "problem_text_cn": "如图所示，AB=4，ME⊥CE，MF⊥DF，NG⊥CG，NH垂直于DH，四边形ABCD是正方形。求三角形ACD的面积。",
+  "problem_text_en": "As shown in the diagram, AB=4, ME is perpendicular to CE, MF⊥DF, NG is perpendicular to CG, NH is perpendicular to DH, ABCD is a square. Find the area of triangle ACD.",
+  "problem_img": "5367.png",
+  "construction_cdl": [
+    "Shape(AB,BE,EM,MA)",
+    "Shape(ME,EG,GN,NM)",
+    "Shape(NG,GC,CN)",
+    "Shape(AM,MF,FD,DA)",
+    "Shape(MN,NH,HF,FM)",
+    "Shape(NC,CH,HN)",
+    "Collinear(AMNC)",
+    "Collinear(BEGC)",
+    "Collinear(DFHC)"
+  ],
+  "text_cdl": [
+    "Equal(LengthOfLine(AB),4)",
+    "PerpendicularBetweenLine(ME,CE)",
+    "PerpendicularBetweenLine(MF,DF)",
+    "PerpendicularBetweenLine(NG,CG)",
+    "PerpendicularBetweenLine(NH,DH)",
+    "Square(ABCD)"
+  ],
+  "image_cdl": [
+    "PerpendicularBetweenLine(ME,CE)",
+    "PerpendicularBetweenLine(MF,DF)",
+    "PerpendicularBetweenLine(NG,CG)",
+    "PerpendicularBetweenLine(NH,DH)"
+  ],
+  "goal_cdl": "Value(AreaOfTriangle(ACD))",
+  "problem_answer": "8",
+  "theorem_seqs": [
+    "triangle_area_formula_sine(1,DAC)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "triangle_area_formula_sine(1,DAC)"
+    ]
+  }
+}

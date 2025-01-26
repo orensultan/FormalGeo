@@ -1,0 +1,36 @@
+{
+  "problem_id": 2447,
+  "annotation": "YangLi_2023-04-23",
+  "source": "Geometry3k-2567",
+  "problem_level": 1,
+  "problem_text_cn": "如图所示，∠HGK=13°，EH垂直于GH，EHGF是矩形。求∠KGF的大小。",
+  "problem_text_en": "As shown in the diagram, ∠HGK=13°, EH is perpendicular to GH, EHGF is a rectangle. Find the measure of ∠KGF.",
+  "problem_img": "2447.png",
+  "construction_cdl": [
+    "Shape(EH,HK,KE)",
+    "Shape(KH,HG,GK)",
+    "Shape(KG,GF,FK)",
+    "Shape(EK,KF,FE)",
+    "Collinear(EKG)",
+    "Collinear(HKF)"
+  ],
+  "text_cdl": [
+    "Equal(MeasureOfAngle(HGK),13)",
+    "PerpendicularBetweenLine(EH,GH)",
+    "Rectangle(EHGF)"
+  ],
+  "image_cdl": [
+    "Equal(MeasureOfAngle(HGK),13)",
+    "PerpendicularBetweenLine(EH,GH)"
+  ],
+  "goal_cdl": "Value(MeasureOfAngle(KGF))",
+  "problem_answer": "77",
+  "theorem_seqs": [
+    "angle_addition(1,HGK,KGF)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "angle_addition(1,HGK,KGF)"
+    ]
+  }
+}

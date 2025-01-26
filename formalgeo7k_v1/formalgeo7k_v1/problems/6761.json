@@ -1,0 +1,35 @@
+{
+  "problem_id": 6761,
+  "annotation": "YangLi_2023-06-04",
+  "source": "GeoQA-9839",
+  "problem_level": 2,
+  "problem_text_cn": "如图所示，∠ABO=30°，圆O的圆心为O，BC是⊙O的直径。求∠OCA的大小。",
+  "problem_text_en": "As shown in the diagram, ∠ABO=30°, the center of ⊙O is O, BC is the diameter of circle O. Find the measure of ∠OCA.",
+  "problem_img": "6761.png",
+  "construction_cdl": [
+    "Shape(AB,BO,OC,CA)",
+    "Shape(BA,OAB)",
+    "Shape(AC,OCA)",
+    "Shape(CO,OB,OBC)",
+    "Collinear(BOC)",
+    "Cocircular(O,BCA)"
+  ],
+  "text_cdl": [
+    "Equal(MeasureOfAngle(ABO),30)",
+    "IsCentreOfCircle(O,O)",
+    "IsDiameterOfCircle(BC,O)"
+  ],
+  "image_cdl": [],
+  "goal_cdl": "Value(MeasureOfAngle(OCA))",
+  "problem_answer": "60",
+  "theorem_seqs": [
+    "diameter_of_circle_property_right_angle(1,CAB,O)",
+    "triangle_property_angle_sum(1,ABC)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "diameter_of_circle_property_right_angle(1,CAB,O)",
+      "triangle_property_angle_sum(1,ABC)"
+    ]
+  }
+}

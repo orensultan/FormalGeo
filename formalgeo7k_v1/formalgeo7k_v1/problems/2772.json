@@ -1,0 +1,39 @@
+{
+  "problem_id": 2772,
+  "annotation": "RunanWang_2023-05-07",
+  "source": "Geometry3k-2919",
+  "problem_level": 1,
+  "problem_text_cn": "如图所示，ABXC的面积为169，AX=2*x，BC=x，ABXC是菱形。求直线AX的长度。",
+  "problem_text_en": "As shown in the diagram, the area of ABXC is 169, AX=2*x, BC=x, ABXC is a rhombus. Find the length of line AX.",
+  "problem_img": "2772.png",
+  "construction_cdl": [
+    "Shape(AO,OC,CA)",
+    "Shape(CO,OX,XC)",
+    "Shape(XO,OB,BX)",
+    "Shape(OA,AB,BO)",
+    "Collinear(COB)",
+    "Collinear(AOX)"
+  ],
+  "text_cdl": [
+    "Equal(AreaOfQuadrilateral(ABXC),169)",
+    "Equal(LengthOfLine(AX),2*x)",
+    "Equal(LengthOfLine(BC),x)",
+    "Rhombus(ABXC)"
+  ],
+  "image_cdl": [
+    "Equal(AreaOfQuadrilateral(ABXC),169)",
+    "Equal(LengthOfLine(AX),2*x)",
+    "Equal(LengthOfLine(BC),x)",
+    "Rhombus(ABXC)"
+  ],
+  "goal_cdl": "Value(LengthOfLine(AX))",
+  "problem_answer": "26",
+  "theorem_seqs": [
+    "kite_area_formula_diagonal(1,ABXC)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "kite_area_formula_diagonal(1,ABXC)"
+    ]
+  }
+}

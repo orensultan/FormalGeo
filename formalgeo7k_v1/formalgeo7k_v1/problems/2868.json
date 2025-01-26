@@ -1,0 +1,52 @@
+{
+  "problem_id": 2868,
+  "annotation": "YimingHe_2023-04-16",
+  "source": "GeoQA-30",
+  "problem_level": 5,
+  "problem_text_cn": "如图所示，∠CFG=65°，DG平行于HI，AB垂直于CB。求∠HBE的大小。",
+  "problem_text_en": "As shown in the diagram, ∠CFG=65°, DG is parallel to HI, AB⊥CB. Find the measure of ∠HBE.",
+  "problem_img": "2868.png",
+  "construction_cdl": [
+    "Shape(DE,EA)",
+    "Shape(AE,EF)",
+    "Shape(EF,FC)",
+    "Shape(CF,FG)",
+    "Shape(GF,FB)",
+    "Shape(EB,BF,FE)",
+    "Shape(HB,BE)",
+    "Shape(BE,ED)",
+    "Shape(FB,BI)",
+    "Collinear(DEFG)",
+    "Collinear(HBI)",
+    "Collinear(AEB)",
+    "Collinear(BFC)"
+  ],
+  "text_cdl": [
+    "Equal(MeasureOfAngle(CFG),65)",
+    "ParallelBetweenLine(DG,HI)",
+    "PerpendicularBetweenLine(AB,CB)"
+  ],
+  "image_cdl": [],
+  "goal_cdl": "Value(MeasureOfAngle(HBE))",
+  "problem_answer": "25",
+  "theorem_seqs": [
+    "parallel_property_collinear_extend(3,DG,HI,F)",
+    "parallel_property_collinear_extend(3,IH,GF,B)",
+    "parallel_property_corresponding_angle(1,FG,BI,C)",
+    "angle_addition(1,EBF,FBI)",
+    "adjacent_complementary_angle(1,HBE,EBI)"
+  ],
+  "theorem_seqs_dag": {
+    "START": [
+      "parallel_property_collinear_extend(3,DG,HI,F)",
+      "angle_addition(1,EBF,FBI)",
+      "adjacent_complementary_angle(1,HBE,EBI)"
+    ],
+    "parallel_property_collinear_extend(3,DG,HI,F)": [
+      "parallel_property_collinear_extend(3,IH,GF,B)"
+    ],
+    "parallel_property_collinear_extend(3,IH,GF,B)": [
+      "parallel_property_corresponding_angle(1,FG,BI,C)"
+    ]
+  }
+}
