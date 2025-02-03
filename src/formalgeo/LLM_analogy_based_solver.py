@@ -9,11 +9,12 @@ import pandas as pd
 
 
 from formalgeo.tools import show_solution
-
 from Problem import get_theorem, replace_symbols
 from create_problems_proofs_similarity_dataset import save_problems
 import time
 import openai
+
+from src.formalgeo.verifier import Verifier
 
 openai.api_key = "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"
 openai.api_key = "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"
@@ -31,7 +32,6 @@ dl = DatasetLoader(dataset_name="formalgeo7k_v1", datasets_path="formalgeo7k_v1"
 solver = Interactor(dl.predicate_GDL, dl.theorem_GDL)
 with open('formalgeo7k_v1/formalgeo7k_v1/gdl/theorem_GDL.json', 'r') as f:
     theorems = json.load(f)
-
 
 
 def get_theorem_seqs_expl(theorem_seqs):
@@ -135,10 +135,7 @@ def theorem_verifier(solver, theorem_seqs):
     res = "Correct"
 
     for theorem in theorem_seqs:
-        if "similar_triangle_judgment" in theorem:
-            print(1)
         t_name, t_branch, t_para = parse_one_theorem(theorem)
-        # try:
         letters = get_letters(t_name, t_para)
         theory_json = get_theorem(theorem)
         premise = json.loads(theory_json)['premise']
@@ -160,10 +157,6 @@ def theorem_verifier(solver, theorem_seqs):
             #     if len(invalid_premises) > 0:
             #         return "Theorem sequence step: " + theorem + ". premise: " + premise + ". " + invalid_premises
 
-        # except Exception as e:
-        #     print(e)
-        #     res = str(e) + " Theorem sequence step: " + theorem
-        #     break
 
     return res
 
@@ -259,6 +252,12 @@ def convert_json_list_to_custom_format(json_list):
     # Join all the formatted strings into a single string with line breaks
     return "\n".join(result)
 
+def get_processed_model_resp(resp):
+    generated_theorem_sequence = resp.split("THEOREM_SEQUENCE:\n")[1] if len(resp.split("THEOREM_SEQUENCE:\n")) > 1 else ""
+    generated_theorem_sequence = convert_theorem_seqs_format_string(generated_theorem_sequence) if generated_theorem_sequence != "" else ""
+    generated_theorem_sequence_list = [line.split(";")[1].strip() for line in generated_theorem_sequence.strip().split("\n")] if generated_theorem_sequence != "" else []
+    return generated_theorem_sequence_list
+
 
 def convert_theorem_seqs_format_string(input_str):
     # Remove leading and trailing single quotes if present
@@ -339,11 +338,6 @@ def get_prompt_template_content(args, gdl_relevant_theorems, similar_problems, p
     content += f"CONSTRUCTION_CDL_EXTENDED:\n{problem_dict['construction_cdl_extended']}\nSYMBOLS_AND_VALUES:\n{problem.symbols_and_values}\nOutputs:\nOutputs for Problem B:\n"
     return content
 
-def get_processed_model_resp(resp):
-    generated_theorem_sequence = resp.split("THEOREM_SEQUENCE:\n")[1] if len(resp.split("THEOREM_SEQUENCE:\n")) > 1 else ""
-    generated_theorem_sequence = convert_theorem_seqs_format_string(generated_theorem_sequence) if generated_theorem_sequence != "" else ""
-    generated_theorem_sequence_list = [line.split(";")[1].strip() for line in generated_theorem_sequence.strip().split("\n")] if generated_theorem_sequence != "" else []
-    return generated_theorem_sequence_list
 
 
 def generate_and_verify(args, gdl_relevant_theorems, similar_problems, problem2, max_retries=5):
@@ -356,14 +350,16 @@ def generate_and_verify(args, gdl_relevant_theorems, similar_problems, problem2,
     while attempts < max_retries:
         resp = gpt_response(messages, args.model_name)
         generated_theorem_sequence_list = get_processed_model_resp(resp)
-        theorem_verifier_result = theorem_verifier(solver, generated_theorem_sequence_list)
-
-        if theorem_verifier_result == "Correct":
+        verifier = Verifier(problem2.id, generated_theorem_sequence_list)
+        theorem_verifier_result = verifier.verify()
+        # if problem2.id == 2916 and len(generated_theorem_sequence_list) == 1 and (generated_theorem_sequence_list[0] == "parallel_property_alternate_interior_angle(2,AB,CD)" or generated_theorem_sequence_list[0] == "parallel_property_corresponding_angle(2,AB,CD,E)"):
+        #     theorem_verifier_result = "According to the verification algorithm, the THEOREM_SEQUENCE you provided is incomplete - the measure of angle ECD cannot be determined. Please retry generating a correct THEOREM_SEQUENCE to solve the problem. Hint: try to use the adjacent_complementary_angle theorem."
+        if theorem_verifier_result == "Success":
             print("Theorem sequence verified correctly")
             break
 
         messages.append({"role": "assistant", "content": resp})
-        messages.append({"role": "user", "content": f"Verifier result: {theorem_verifier_result}. Please retry generating the correct theorem sequence proof, using the verifier hints."})
+        messages.append({"role": "user", "content": f"Verifier result: {theorem_verifier_result}"})
         print(f"Verifier result: {theorem_verifier_result}")
         print(f"Retry attempt: {attempts + 1}")
         attempts += 1
@@ -390,23 +386,23 @@ chosen_problems_by_level = {
     # 4: [2425],
     # 5: [4908],
     # 6: [729],
-    # 7: [683],
+     7: [683],
     # 8: [912],
     # 9: [5749]
 }
 
-chosen_problems_by_level = {
-1: [1975, 1490, 1726, 178, 2669],
-# 2: [2141, 69, 2916, 358, 4473],
-#  3: [ 4187, 5244, 5062, 844, 1945 ]
-# 4: [ 2114, 464, 5510, 3272, 5230]
-# 5: [5440, 6485 , 696, 847, 5563]
-# 6: [4923, 3298, 759, 4910, 5805],
-# 7: [3580, 4898, 4898, 6802, 6247, 449],
-# 8: [3983, 2761, 2875, 3434, 6806],
-# 9: [4892, 5092, 5522, 4796, 3418 ],
-
-}
+# chosen_problems_by_level = {
+# # 1: [1975, 1490, 1726, 178, 2669],
+# # 2: [2141, 69, 2916, 358, 4473],
+# #  3: [ 4187, 5244, 5062, 844, 1945 ]
+# # 4: [ 2114, 464, 5510, 3272, 5230]
+# # 5: [5440, 6485 , 696, 847, 5563]
+# # 6: [4923, 3298, 759, 4910, 5805],
+# # 7: [3580, 4898, 4898, 6802, 6247, 449],
+# # 8: [3983, 2761, 2875, 3434, 6806],
+# # 9: [4892, 5092, 5522, 4796, 3418 ],
+#
+# }
 
 
 
@@ -506,7 +502,7 @@ def write_result(file_path, problem2_given, problem2_resp, problem2_gt):
         file.write(problem2_gt + "\n")
     print(f"Content written to {file_path}")
 
-def process_problem(problem_id):
+def process_problem(problem_id, solver = None, problems=None):
     problem = problems[problem_id]
     problem.print_problem()
     problem.enrich_problem()
@@ -524,8 +520,8 @@ def main(args, problems):
                 similar_problem_ids = retrieve_similar_proofs(problem2_id, n=args.similar_problems)
             else:
                 similar_problem_ids = retrieve_random_proofs(problem2_id, n=args.similar_problems)
-            similar_problems = [process_problem(problem_id) for problem_id in similar_problem_ids]
-            problem2 = process_problem(problem2_id)
+            similar_problems = [process_problem(problem_id, solver, problems) for problem_id in similar_problem_ids]
+            problem2 = process_problem(problem2_id, solver, problems)
 
             similar_problems_theorems = get_theorems_from_similar_problems(similar_problems)
             gdl_relevant_theorems = find_relevant_theorems(args, theorems, similar_problems_theorems)

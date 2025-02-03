@@ -278,3 +278,4 @@ GT_ANSWER:
 GT_THEOREM_SEQUENCE:
 1;adjacent_complementary_angle(1,AFB,BFC);Collinear(AFC)&Angle(AFB)&Angle(BFC);["Equal(Add(MeasureOfAngle(AFB),MeasureOfAngle(BFC)),180)"]
 
+problem_id: 1490: Theorem <adjacent_complementary_angle> branch error. Expected dict_keys(['1']) but got None.
