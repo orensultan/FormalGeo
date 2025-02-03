@@ -179,3 +179,4 @@ GT_THEOREM_SEQUENCE:
 1;arc_property_circumference_angle_external(1,OCA,B);Cocircular(O,CAB)&Angle(ABC);["Equal(MeasureOfAngle(ABC),Mul(MeasureOfArc(OCA),1/2))"]
 2;arc_property_circumference_angle_internal(1,OCA,D);Cocircular(O,CDA)&Angle(CDA);["Equal(MeasureOfAngle(CDA),Sub(180,Mul(MeasureOfArc(OCA),1/2)))"]
 
+problem_id: 4473: Success

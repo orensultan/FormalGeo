@@ -71,3 +71,4 @@ GT_ANSWER:
 GT_THEOREM_SEQUENCE:
 1;cosine_theorem(1,BAC);Polygon(BAC);["Equal(Add(Pow(LengthOfLine(AC),2),Mul(2,LengthOfLine(BA),LengthOfLine(BC),Cos(MeasureOfAngle(CBA)))),Add(Pow(LengthOfLine(BA),2),Pow(LengthOfLine(BC),2)))"]
 
+problem_id: 1726: Success

@@ -183,3 +183,4 @@ GT_ANSWER:
 GT_THEOREM_SEQUENCE:
 1;circle_property_circular_power_chord_and_chord(1,BEA,DEC,F);Cocircular(F,BA)&Cocircular(F,DC)&Collinear(BEA)&Collinear(DEC);["Equal(Mul(LengthOfLine(ED),LengthOfLine(EC)),Mul(LengthOfLine(EB),LengthOfLine(EA)))"]
 
+problem_id: 2669: Success

@@ -117,3 +117,4 @@ GT_THEOREM_SEQUENCE:
 1;adjacent_complementary_angle(1,EGD,DGF);Collinear(EGF)&Angle(EGD)&Angle(DGF);["Equal(Add(MeasureOfAngle(EGD),MeasureOfAngle(DGF)),180)"]
 2;triangle_property_angle_sum(1,DGF);Polygon(DGF);["Equal(Add(MeasureOfAngle(DGF),MeasureOfAngle(GFD),MeasureOfAngle(FDG)),180)"]
 
+problem_id: 69: Success

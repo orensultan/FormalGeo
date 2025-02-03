@@ -96,6 +96,6 @@ ma_ecd
 GT_ANSWER:
 110
 GT_THEOREM_SEQUENCE:
-adjacent_complementary_angle(1,CBA,ABE)
-parallel_property_alternate_interior_angle(2,AB,CD)
+1;adjacent_complementary_angle(1,CBA,ABE);Collinear(CBE)&Angle(CBA)&Angle(ABE);["Equal(Add(MeasureOfAngle(CBA),MeasureOfAngle(ABE)),180)"]
+2;parallel_property_alternate_interior_angle(2,AB,CD);ParallelBetweenLine(AB,CD)&Line(BC);["Equal(MeasureOfAngle(CBA),MeasureOfAngle(BCD))"]
 

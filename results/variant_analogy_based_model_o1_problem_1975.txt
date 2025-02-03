@@ -181,3 +181,4 @@ GT_ANSWER:
 GT_THEOREM_SEQUENCE:
 1;triangle_property_angle_sum(1,CDE);Polygon(CDE);["Equal(Add(MeasureOfAngle(CDE),MeasureOfAngle(DEC),MeasureOfAngle(ECD)),180)"]
 
+problem_id: 1975: Success
