@@ -1,0 +1,61 @@
+problem_id: 2833: Success
+problem_id: 6523: Success
+problem_id: 2999: Success
+problem_id: 2425: Success
+problem_id: 4908: Success
+problem_id: 729: Success
+problem_id: 683: Theorem <line_addition> branch error. Expected dict_keys(['1']) but got None.
+problem_id: 912: Success
+problem_id: 5749: Success
+problem_id: 1975: Success
+problem_id: 1490: Theorem <adjacent_complementary_angle> branch error. Expected dict_keys(['1']) but got None.
+problem_id: 1726: Success
+problem_id: 178: Success
+problem_id: 2669: Success
+problem_id: 2141: Success
+problem_id: 69: Success
+problem_id: 2916: Success
+problem_id: 358: Success
+problem_id: 4473: Success
+problem_id: 4187: Success
+problem_id: 5244: Theorem <mirror_congruent_triangle_property_angle_equal> branch error. Expected dict_keys(['1']) but got None.
+problem_id: 5062: Failed at algebra constraint (('MeasureOfAngle', ('A', 'E', 'D')), ('MeasureOfAngle', ('F', 'A', 'B'))) with equation ma_aed - ma_fab.
+problem_id: 844: Success
+problem_id: 1945: Success
+problem_id: 2114: Success
+problem_id: 464: Success
+problem_id: 5510: Success
+problem_id: 3272: Failed at products constraint of a theorem step. Please try to modify the theorem step 'arc_property_circumference_angle_external' with parameters ('O', 'D', 'B', 'C'). For these parameters, there is an invalid predicate: Cocircular(ODBC). Available predicates: Cocircular(OCBDA), Cocircular(OC), Cocircular(OB), Cocircular(OD), Cocircular(OA), Cocircular(OCB), Cocircular(OBC), Cocircular(OCD), Cocircular(ODC), Cocircular(OCA), Cocircular(OAC), Cocircular(OBD), Cocircular(ODB), Cocircular(OBA), Cocircular(OAB), Cocircular(ODA), Cocircular(OAD), Cocircular(OCBD), Cocircular(OBDC), Cocircular(ODCB), Cocircular(OCBA), Cocircular(OBAC), Cocircular(OACB), Cocircular(OCDA), Cocircular(ODAC), Cocircular(OACD), Cocircular(OBDA), Cocircular(ODAB), Cocircular(OABD), Cocircular(OBDAC), Cocircular(ODACB), Cocircular(OACBD)
+problem_id: 5230: Success
+problem_id: 5440: Success
+problem_id: 6485: Success
+problem_id: 696: Success
+problem_id: 847: Failed at algebra constraint (('LengthOfLine', ('A', 'B')), ('LengthOfLine', ('A', 'C'))) with equation ll_ab - ll_ac.
+problem_id: 5563: Success
+problem_id: 4923: Failed at products constraint of a theorem step. Please try to modify the theorem step 'parallel_property_corresponding_angle' with parameters ('E', 'D', 'C', 'A', 'B'). For these parameters, there is an invalid predicate: Collinear(ECB). Available predicates: Collinear(BDA), Collinear(ADB), Collinear(BEC), Collinear(CEB)
+problem_id: 3298: Success
+problem_id: 759: Success
+problem_id: 4910: Success
+problem_id: 5805: Success
+problem_id: 3580: Failed at algebra constraint (('MeasureOfAngle', ('A', 'N', 'D')), ('MeasureOfAngle', ('B', 'D', 'A'))) with equation ma_and - ma_bda.
+problem_id: 4898: Success
+problem_id: 6802: Success
+problem_id: 6247: Theorem <line_addition> branch error. Expected dict_keys(['1']) but got None.
+problem_id: 449: Failed at algebra constraint (('MeasureOfAngle', ('A', 'D', 'C')), '90') with equation ma_adc - 90.
+problem_id: 3983: Success
+problem_id: 2761: Theorem <line_addition> branch error. Expected dict_keys(['1']) but got None.
+problem_id: 2875: Theorem <parallelogram_property_opposite_angle_equal> branch error. Expected dict_keys(['1']) but got None.
+problem_id: 3434: Success
+problem_id: 6806: Success
+problem_id: 4892: Success
+problem_id: 5092: Success
+problem_id: 5522: Success
+problem_id: 4796: Success
+problem_id: 3418: Success
+problem_id: 2916: Success
+problem_id: 2916: Success
+problem_id: 2916: Success
+problem_id: 2916: Success
+problem_id: 2916: Success
+problem_id: 2916: Success
+problem_id: 2916: Success
