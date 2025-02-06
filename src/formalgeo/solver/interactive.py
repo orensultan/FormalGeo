@@ -52,7 +52,7 @@ class Interactor:
                 t_name, len(self.parsed_theorem_GDL[t_name]["vars"]), t_para)
             raise Exception(e_msg)
         if t_branch is not None and t_branch not in self.parsed_theorem_GDL[t_name]["body"]:
-            e_msg = "Theorem <{}> branch error. Expected {} but got {}.".format(
+            e_msg = "Theorem <{}> branch error. Expected {} but got {} ".format(
                 t_name, self.parsed_theorem_GDL[t_name]["body"].keys(), t_branch)
             raise Exception(e_msg)
 

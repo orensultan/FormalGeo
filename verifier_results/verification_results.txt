@@ -4,11 +4,11 @@ problem_id: 2999: Success
 problem_id: 2425: Success
 problem_id: 4908: Success
 problem_id: 729: Success
-problem_id: 683: Theorem <line_addition> branch error. Expected dict_keys(['1']) but got None.
+problem_id: 683: Success
 problem_id: 912: Success
 problem_id: 5749: Success
 problem_id: 1975: Success
-problem_id: 1490: Theorem <adjacent_complementary_angle> branch error. Expected dict_keys(['1']) but got None.
+problem_id: 1490: Success
 problem_id: 1726: Success
 problem_id: 178: Success
 problem_id: 2669: Success
@@ -18,7 +18,7 @@ problem_id: 2916: Success
 problem_id: 358: Success
 problem_id: 4473: Success
 problem_id: 4187: Success
-problem_id: 5244: Theorem <mirror_congruent_triangle_property_angle_equal> branch error. Expected dict_keys(['1']) but got None.
+problem_id: 5244: Success
 problem_id: 5062: Failed at algebra constraint (('MeasureOfAngle', ('A', 'E', 'D')), ('MeasureOfAngle', ('F', 'A', 'B'))) with equation ma_aed - ma_fab.
 problem_id: 844: Success
 problem_id: 1945: Success
@@ -40,11 +40,11 @@ problem_id: 5805: Success
 problem_id: 3580: Failed at algebra constraint (('MeasureOfAngle', ('A', 'N', 'D')), ('MeasureOfAngle', ('B', 'D', 'A'))) with equation ma_and - ma_bda.
 problem_id: 4898: Success
 problem_id: 6802: Success
-problem_id: 6247: Theorem <line_addition> branch error. Expected dict_keys(['1']) but got None.
+problem_id: 6247: Success
 problem_id: 449: Failed at algebra constraint (('MeasureOfAngle', ('A', 'D', 'C')), '90') with equation ma_adc - 90.
 problem_id: 3983: Success
-problem_id: 2761: Theorem <line_addition> branch error. Expected dict_keys(['1']) but got None.
-problem_id: 2875: Theorem <parallelogram_property_opposite_angle_equal> branch error. Expected dict_keys(['1']) but got None.
+problem_id: 2761: Success
+problem_id: 2875: Success
 problem_id: 3434: Success
 problem_id: 6806: Success
 problem_id: 4892: Success
@@ -52,10 +52,3 @@ problem_id: 5092: Success
 problem_id: 5522: Success
 problem_id: 4796: Success
 problem_id: 3418: Success
-problem_id: 2916: Success
-problem_id: 2916: Success
-problem_id: 2916: Success
-problem_id: 2916: Success
-problem_id: 2916: Success
-problem_id: 2916: Success
-problem_id: 2916: Success

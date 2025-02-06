@@ -68,7 +68,6 @@ problems = [2833, 6523, 2999, 2425, 4908, 729, 683, 912, 5749,
             3983, 2761, 2875, 3434, 6806,
             4892, 5092, 5522, 4796, 3418]
 
-problems = [2916]
 
 verifier_results_path = os.path.join("verifier_results", "verification_results.txt")
 
