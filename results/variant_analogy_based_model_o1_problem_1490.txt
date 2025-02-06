@@ -54,16 +54,16 @@ Shape(DF,FC,CB,BA,AD)
 Shape(FC,CB,BA,AD,DF)
 Shape(CB,BA,AD,DF,FC)
 Shape(BA,AD,DF,FC,CB)
-Shape(FD,DC,CB,BA,AF)
-Shape(DC,CB,BA,AF,FD)
-Shape(CB,BA,AF,FD,DC)
-Shape(BA,AF,FD,DC,CB)
-Shape(AF,FD,DC,CB,BA)
 Shape(DC,CF,FB,BA,AD)
 Shape(CF,FB,BA,AD,DC)
 Shape(FB,BA,AD,DC,CF)
 Shape(BA,AD,DC,CF,FB)
 Shape(AD,DC,CF,FB,BA)
+Shape(FD,DC,CB,BA,AF)
+Shape(DC,CB,BA,AF,FD)
+Shape(CB,BA,AF,FD,DC)
+Shape(BA,AF,FD,DC,CB)
+Shape(AF,FD,DC,CB,BA)
 Shape(AD,DC,CB,BA)
 Shape(DC,CB,BA,AD)
 Shape(CB,BA,AD,DC)
@@ -118,8 +118,8 @@ Angle(DCB)
 Angle(CBA)
 Angle(BFA)
 Angle(DFC)
-Angle(AFD)
 Angle(CFB)
+Angle(AFD)
 Angle(ADB)
 Angle(CAD)
 Angle(BDC)
@@ -205,16 +205,16 @@ Polygon(DFCBA)
 Polygon(FCBAD)
 Polygon(CBADF)
 Polygon(BADFC)
-Polygon(FDCBA)
-Polygon(DCBAF)
-Polygon(CBAFD)
-Polygon(BAFDC)
-Polygon(AFDCB)
 Polygon(DCFBA)
 Polygon(CFBAD)
 Polygon(FBADC)
 Polygon(BADCF)
 Polygon(ADCFB)
+Polygon(FDCBA)
+Polygon(DCBAF)
+Polygon(CBAFD)
+Polygon(BAFDC)
+Polygon(AFDCB)
 Polygon(ADCB)
 Polygon(DCBA)
 Polygon(CBAD)
@@ -248,19 +248,22 @@ Outputs:
 Outputs for Problem B:
 
 EQUATIONS:
-ll_ba=3*y-8
+ll_ab=3*y-8
 ll_ad=13
 ll_cb=2*x+7
 ll_cd=10
 ma_adf=59
 ma_bfc=49
 ma_fba=20
+
 GOAL_SYMBOL:
 ma_afb
+
 ANSWER:
 131
+
 THEOREM_SEQUENCE:
-1; adjacent_complementary_angle(AFB,BFC); Collinear(AFC)&Angle(AFB)&Angle(BFC); ["Equal(Add(MeasureOfAngle(AFB),MeasureOfAngle(BFC)),180)"]
+1; adjacent_complementary_angle(1,AFB,BFC); Collinear(AFC)&Angle(AFB)&Angle(BFC); ["Equal(Add(MeasureOfAngle(AFB),MeasureOfAngle(BFC)),180)"]
 
 
 GT_EQUATIONS:
@@ -278,4 +281,3 @@ GT_ANSWER:
 GT_THEOREM_SEQUENCE:
 1;adjacent_complementary_angle(1,AFB,BFC);Collinear(AFC)&Angle(AFB)&Angle(BFC);["Equal(Add(MeasureOfAngle(AFB),MeasureOfAngle(BFC)),180)"]
 
-problem_id: 1490: Theorem <adjacent_complementary_angle> branch error. Expected dict_keys(['1']) but got None.

@@ -202,21 +202,15 @@ Outputs:
 Outputs for Problem B:
 
 EQUATIONS:
-m∠EFB = 122
-m∠EFB - m∠EBA = 0
-m∠EBA = 122
-m∠CAB + m∠EAD = 302
-
+ma_efb=122
 GOAL_SYMBOL:
-m∠CAB + m∠EAD
-
+ma_cab+ma_ead
 ANSWER:
 302
-
 THEOREM_SEQUENCE:
-1; mirror_congruent_triangle_property_angle_equal(EFB,EBA); MirrorCongruentBetweenTriangle(EFB,EBA); ["Equal(MeasureOfAngle(EFB),MeasureOfAngle(EBA))"]
-2; triangle_property_angle_sum(EBA); Polygon(EBA); ["Equal(Add(MeasureOfAngle(EBA),MeasureOfAngle(BAE),MeasureOfAngle(AEB)),180)"]
-3; flat_angle(CAD); Collinear(CAD); ["Equal(MeasureOfAngle(CAD),180)"]
+1; mirror_congruent_triangle_property_angle_equal(1,EFB,EBA); MirrorCongruentBetweenTriangle(EFB,EBA); ["Equal(MeasureOfAngle(EFB),MeasureOfAngle(EBA))"]
+2; triangle_property_angle_sum(1,EFB); Polygon(EFB); ["Equal(Add(MeasureOfAngle(EFB),MeasureOfAngle(FBE),MeasureOfAngle(BEF)),180)"]
+3; triangle_property_angle_sum(1,EBA); Polygon(EBA); ["Equal(Add(MeasureOfAngle(EBA),MeasureOfAngle(BAE),MeasureOfAngle(AEB)),180)"]
 
 
 GT_EQUATIONS:
