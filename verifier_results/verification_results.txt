@@ -25,7 +25,7 @@ problem_id: 1945: Success
 problem_id: 2114: Success
 problem_id: 464: Success
 problem_id: 5510: Success
-problem_id: 3272: Failed at products constraint of a theorem step. Please try to modify the theorem step 'arc_property_circumference_angle_external' with parameters ('O', 'D', 'B', 'C'). For these parameters, there is an invalid predicate: Cocircular(ODBC). Available predicates: Cocircular(OCBDA), Cocircular(OC), Cocircular(OB), Cocircular(OD), Cocircular(OA), Cocircular(OCB), Cocircular(OBC), Cocircular(OCD), Cocircular(ODC), Cocircular(OCA), Cocircular(OAC), Cocircular(OBD), Cocircular(ODB), Cocircular(OBA), Cocircular(OAB), Cocircular(ODA), Cocircular(OAD), Cocircular(OCBD), Cocircular(OBDC), Cocircular(ODCB), Cocircular(OCBA), Cocircular(OBAC), Cocircular(OACB), Cocircular(OCDA), Cocircular(ODAC), Cocircular(OACD), Cocircular(OBDA), Cocircular(ODAB), Cocircular(OABD), Cocircular(OBDAC), Cocircular(ODACB), Cocircular(OACBD)
+problem_id: 3272: Success
 problem_id: 5230: Success
 problem_id: 5440: Success
 problem_id: 6485: Success
@@ -41,7 +41,7 @@ problem_id: 3580: Failed at products constraint of a theorem step. Please try to
 problem_id: 4898: Success
 problem_id: 6802: Success
 problem_id: 6247: Success
-problem_id: 449: Theorem <triangle_perimeter_formula> branch error. Expected dict_keys(['1']) but got None. Please rewrite your response, you should change only the call to theorem <triangle_perimeter_formula> by adding the branch number as the first argument
+problem_id: 449: Success
 problem_id: 3983: Success
 problem_id: 2761: Success
 problem_id: 2875: Success

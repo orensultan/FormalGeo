@@ -90,21 +90,22 @@ Outputs:
 Outputs for Problem B:
 
 EQUATIONS:
-ll_ab-6 ll_ac-4 ll_dc-2 ma_cda-90 ma_cdb-90
-
+ll_ab-6
+ll_ac-4
+ll_dc-2
+ma_adc-90
+ma_bdc-90
 GOAL_SYMBOL:
 pt_cba
-
 ANSWER:
-10+sqrt(52-24√3)
-
+10+2*sqrt(13-6*sqrt(3))
 THEOREM_SEQUENCE:
-1; right_triangle_judgment_angle(1,CDA); Polygon(CDA)&Equal(MeasureOfAngle(CDA),90); ["RightTriangle(CDA)"]
-2; line_addition(1,AD,DB); Collinear(ADB); ["Equal(LengthOfLine(AB),Add(LengthOfLine(AD),LengthOfLine(DB)))"]
-3; right_triangle_property_pythagorean(1,CDA); RightTriangle(CDA); ["Equal(Add(Pow(LengthOfLine(CD),2),Pow(LengthOfLine(DA),2)),Pow(LengthOfLine(CA),2))"]
-4; right_triangle_judgment_angle(1,CDB); Polygon(CDB)&Equal(MeasureOfAngle(CDB),90); ["RightTriangle(CDB)"]
-5; right_triangle_property_pythagorean(1,CDB); RightTriangle(CDB); ["Equal(Add(Pow(LengthOfLine(CD),2),Pow(LengthOfLine(DB),2)),Pow(LengthOfLine(CB),2))"]
-6; triangle_perimeter_formula(ABC); Polygon(CBA); ["Equal(PerimeterOfTriangle(CBA),Add(LengthOfLine(CB),LengthOfLine(BA),LengthOfLine(AC)))"]
+1; line_addition(1,AD,DB); Collinear(ADB); ["Equal(LengthOfLine(AB),Add(LengthOfLine(AD),LengthOfLine(DB)))"]
+2; right_triangle_judgment_angle(1,ADC); Polygon(ADC)&Equal(MeasureOfAngle(ADC),90); ["RightTriangle(ADC)"]
+3; right_triangle_property_pythagorean(1,ADC); RightTriangle(ADC); ["Equal(Add(Pow(LengthOfLine(AD),2),Pow(LengthOfLine(DC),2)),Pow(LengthOfLine(AC),2))"]
+4; right_triangle_judgment_angle(1,BDC); Polygon(BDC)&Equal(MeasureOfAngle(BDC),90); ["RightTriangle(BDC)"]
+5; right_triangle_property_pythagorean(1,BDC); RightTriangle(BDC); ["Equal(Add(Pow(LengthOfLine(BD),2),Pow(LengthOfLine(DC),2)),Pow(LengthOfLine(BC),2))"]
+6; triangle_perimeter_formula(1,CBA); Polygon(CBA); ["Equal(PerimeterOfTriangle(CBA),Add(LengthOfLine(CB),LengthOfLine(BA),LengthOfLine(AC)))"]
 
 
 GT_EQUATIONS:

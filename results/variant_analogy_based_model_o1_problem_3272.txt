@@ -273,34 +273,28 @@ Outputs:
 Outputs for Problem B:
 
 EQUATIONS:
-ma_aod=54  
-(MeasureOfArc(OAD)=54)  
-(MeasureOfAngle(AOB)=180)  
-(MeasureOfArc(OAB)=180)  
-(MeasureOfArc(ODB)=360-(54+180)=126)  
+ma_aod-54
 
 GOAL_SYMBOL:
-ma_dcb  
+ma_dcb
 
 ANSWER:
-63  
+63
 
 THEOREM_SEQUENCE:
-1; arc_property_center_angle(1,OAD,O); Arc(OAD)&Angle(AOD)&IsCentreOfCircle(O,O); ["Equal(MeasureOfArc(OAD),MeasureOfAngle(AOD))"]  
-2; flat_angle(1,AOB); Collinear(AOB); ["Equal(MeasureOfAngle(AOB),180)"]  
-3; arc_property_center_angle(1,OAB,O); Arc(OAB)&Angle(AOB)&IsCentreOfCircle(O,O); ["Equal(MeasureOfArc(OAB),MeasureOfAngle(AOB))"]  
-4; arc_property_circumference_angle_external(1,ODB,C); Cocircular(OBDC)&Angle(DCB); ["Equal(MeasureOfAngle(DCB),Mul(MeasureOfArc(ODB),1/2))"]  
+1; arc_property_center_angle(1,OAD,O); Arc(OAD)&Angle(AOD)&IsCentreOfCircle(O,O); ["Equal(MeasureOfArc(OAD),MeasureOfAngle(AOD))"]
+2; arc_property_circumference_angle_external(1,OBD,C); Cocircular(O,DBC)&Angle(DCB); ["Equal(MeasureOfAngle(DCB),Mul(MeasureOfArc(OBD),1/2))"]
 
 
 GT_EQUATIONS:
-ma_aod=54
+ma_aod-54
 GT_GOAL_SYMBOL:
 ma_dcb
 GT_ANSWER:
 63
 GT_THEOREM_SEQUENCE:
-arc_property_center_angle(1,ODA,O)
-arc_property_circumference_angle_external(1,ODA,C)
-diameter_of_circle_property_right_angle(1,ACB,O)
-angle_addition(1,ACD,DCB)
+1;arc_property_center_angle(1,ODA,O);Arc(ODA)&Angle(AOD)&IsCentreOfCircle(O,O);["Equal(MeasureOfArc(ODA),MeasureOfAngle(AOD))"]
+2;arc_property_circumference_angle_external(1,ODA,C);Cocircular(O,DAC)&Angle(ACD);["Equal(MeasureOfAngle(ACD),Mul(MeasureOfArc(ODA),1/2))"]
+3;diameter_of_circle_property_right_angle(1,ACB,O);IsDiameterOfCircle(BA,O)&Cocircular(O,ACB)&Angle(ACB);["PerpendicularBetweenLine(AC,BC)"]
+4;angle_addition(1,ACD,DCB);Angle(ACD)&Angle(DCB)&Angle(ACB);["Equal(MeasureOfAngle(ACB),Add(MeasureOfAngle(ACD),MeasureOfAngle(DCB)))"]
 
