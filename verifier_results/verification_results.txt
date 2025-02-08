@@ -19,7 +19,7 @@ problem_id: 358: Success
 problem_id: 4473: Success
 problem_id: 4187: Success
 problem_id: 5244: Success
-problem_id: 5062: Failed at algebra constraint (('MeasureOfAngle', ('A', 'E', 'D')), ('MeasureOfAngle', ('F', 'A', 'B'))) with equation ma_aed - ma_fab.
+problem_id: 5062: Success
 problem_id: 844: Success
 problem_id: 1945: Success
 problem_id: 2114: Success
@@ -30,18 +30,18 @@ problem_id: 5230: Success
 problem_id: 5440: Success
 problem_id: 6485: Success
 problem_id: 696: Success
-problem_id: 847: Failed at algebra constraint (('LengthOfLine', ('A', 'B')), ('LengthOfLine', ('A', 'C'))) with equation ll_ab - ll_ac.
+problem_id: 847: Success
 problem_id: 5563: Success
 problem_id: 4923: Failed at products constraint of a theorem step. Please try to modify the theorem step 'parallel_property_corresponding_angle' with parameters ('E', 'D', 'C', 'A', 'B'). For these parameters, there is an invalid predicate: Collinear(ECB). Available predicates: Collinear(BDA), Collinear(ADB), Collinear(BEC), Collinear(CEB)
 problem_id: 3298: Success
 problem_id: 759: Success
 problem_id: 4910: Success
 problem_id: 5805: Success
-problem_id: 3580: Failed at algebra constraint (('MeasureOfAngle', ('A', 'N', 'D')), ('MeasureOfAngle', ('B', 'D', 'A'))) with equation ma_and - ma_bda.
+problem_id: 3580: Failed at products constraint of a theorem step. Please try to modify the theorem step 'midsegment_of_triangle_judgment_midpoint' with parameters ('M', 'N', 'B', 'D', 'C'). For these parameters, there is an invalid predicate: Collinear(BMD). Available predicates: Collinear(ADC), Collinear(CDA), Collinear(BMC), Collinear(CMB), Collinear(BND), Collinear(DNB)
 problem_id: 4898: Success
 problem_id: 6802: Success
 problem_id: 6247: Success
-problem_id: 449: Failed at algebra constraint (('MeasureOfAngle', ('A', 'D', 'C')), '90') with equation ma_adc - 90.
+problem_id: 449: Theorem <triangle_perimeter_formula> branch error. Expected dict_keys(['1']) but got None. Please rewrite your response, you should change only the call to theorem <triangle_perimeter_formula> by adding the branch number as the first argument
 problem_id: 3983: Success
 problem_id: 2761: Success
 problem_id: 2875: Success
