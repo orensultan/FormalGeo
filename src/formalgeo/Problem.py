@@ -159,7 +159,7 @@ def convert_equations(equations_string):
     for row in equations_list:
         values = row.split(";")
         if len(values) > 1:
-            res.append(modify_string(values[1]))
+            res.append(values[1])
     return res
 
 def convert_relations(relations_string):

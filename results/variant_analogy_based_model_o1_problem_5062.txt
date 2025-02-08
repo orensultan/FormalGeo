@@ -23,16 +23,16 @@ Shape(DA,AF,FE,ED)
 Shape(BC,CE,EF,FB)
 Shape(CE,EF,FB,BC)
 Shape(EF,FB,BC,CE)
-Shape(FA,AB,BC,CE,EF)
-Shape(AB,BC,CE,EF,FA)
-Shape(BC,CE,EF,FA,AB)
-Shape(CE,EF,FA,AB,BC)
-Shape(EF,FA,AB,BC,CE)
 Shape(AB,BF,FE,ED,DA)
 Shape(BF,FE,ED,DA,AB)
 Shape(FE,ED,DA,AB,BF)
 Shape(ED,DA,AB,BF,FE)
 Shape(DA,AB,BF,FE,ED)
+Shape(FA,AB,BC,CE,EF)
+Shape(AB,BC,CE,EF,FA)
+Shape(BC,CE,EF,FA,AB)
+Shape(CE,EF,FA,AB,BC)
+Shape(EF,FA,AB,BC,CE)
 Shape(ED,DA,AF,FB,BC,CE)
 Shape(DA,AF,FB,BC,CE,ED)
 Shape(AF,FB,BC,CE,ED,DA)
@@ -86,10 +86,10 @@ Angle(FBC)
 Angle(BCE)
 Angle(CEF)
 Angle(EFB)
-Angle(ABC)
 Angle(BFE)
 Angle(FED)
 Angle(DAB)
+Angle(ABC)
 Angle(DAF)
 Angle(AFB)
 Angle(CDA)
@@ -106,8 +106,8 @@ Angle(ADE)
 Angle(EAD)
 Angle(CBF)
 Angle(ECB)
-Angle(CBA)
 Angle(BAD)
+Angle(CBA)
 Angle(FAD)
 Angle(ADC)
 Angle(BAE)
@@ -128,15 +128,15 @@ Polygon(FBCE)
 Polygon(BCEF)
 Polygon(CEFB)
 Polygon(EFBC)
-Polygon(ABCE)
-Polygon(BCEA)
-Polygon(CEAB)
-Polygon(EABC)
 Polygon(ABFED)
 Polygon(BFEDA)
 Polygon(FEDAB)
 Polygon(EDABF)
 Polygon(DABFE)
+Polygon(ABCE)
+Polygon(BCEA)
+Polygon(CEAB)
+Polygon(EABC)
 Polygon(DAFBC)
 Polygon(AFBCD)
 Polygon(FBCDA)
@@ -199,32 +199,31 @@ Outputs:
 Outputs for Problem B:
 
 EQUATIONS:
-ll_ae=4
-ll_bf=3
+ll_ae-4
+ll_bf-3
 
 GOAL_SYMBOL:
 AreaOfQuadrilateral(ABCD)
 
 ANSWER:
-49
+25
 
 THEOREM_SEQUENCE:
-1; mirror_similar_triangle_judgment_aa(1,AED,BFA); Polygon(AED)&Polygon(BFA)&Equal(MeasureOfAngle(AED),MeasureOfAngle(BFA))&Equal(MeasureOfAngle(EDA),MeasureOfAngle(FAB)); ["MirrorSimilarBetweenTriangle(AED,BFA)"]
-2; mirror_similar_triangle_property_line_ratio(1,AED,BFA); MirrorSimilarBetweenTriangle(AED,BFA); ["Equal(LengthOfLine(AE),Mul(LengthOfLine(BF),RatioOfMirrorSimilarTriangle(AED,BFA)))"]
-3; parallelogram_area_formula_sine(1,ABCD); Polygon(ABCD); ["Equal(AreaOfQuadrilateral(ABCD),Mul(LengthOfLine(AB),LengthOfLine(BC),Sin(MeasureOfAngle(ABC))))"]
+1; mirror_similar_triangle_property_line_ratio(1,AED,BFA); MirrorSimilarBetweenTriangle(AED,BFA); ["Equal(LengthOfLine(AE),Mul(LengthOfLine(BF),RatioOfMirrorSimilarTriangle(AED,BFA)))"]
+2; parallelogram_area_formula_sine(1,ABCD); Square(ABCD); ["Equal(AreaOfQuadrilateral(ABCD),Mul(LengthOfLine(AB),LengthOfLine(BC),Sin(MeasureOfAngle(ABC))))"]
 
 
 GT_EQUATIONS:
-ll_ae=4
-ll_bf=3
+ll_ae-4
+ll_bf-3
 ll_ab-ll_ad
 ll_cb-ll_cd
 -ll_ab+ll_cb
 -ll_ad+ll_cd
-ma_abc=90
-ma_bcd=90
-ma_cda=90
-ma_dab=90
+ma_abc-90
+ma_bcd-90
+ma_cda-90
+ma_dab-90
 GT_GOAL_SYMBOL:
 aq_abcd
 GT_ANSWER:
