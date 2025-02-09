@@ -92,6 +92,7 @@ Polygon(CAB)
 Polygon(ABC)
 Polygon(ACB)
 ParallelBetweenLine(AC,DE)
+ParallelBetweenLine(DE,AC)
 SYMBOLS_AND_VALUES:
 LengthOfLine(AE);ll_ae;2
 LengthOfLine(EA);ll_ae;2
@@ -106,23 +107,18 @@ Outputs:
 Outputs for Problem B:
 
 EQUATIONS:
-ll_ba-9
-ll_bd-6
-ll_be-4
-
+ll_ba-9 ll_bd-6 ll_be-4
 GOAL_SYMBOL:
 ll_ec
-
 ANSWER:
 2
-
 THEOREM_SEQUENCE:
-1; line_addition(1,BD,DA); Collinear(BDA); ["Equal(LengthOfLine(BA),Add(LengthOfLine(BD),LengthOfLine(DA)))"]  
-2; line_addition(1,BE,EC); Collinear(BEC); ["Equal(LengthOfLine(BC),Add(LengthOfLine(BE),LengthOfLine(EC)))"]  
-3; parallel_property_corresponding_angle(1,ED,CA,B); ParallelBetweenLine(ED,CA)&Collinear(BDA); ["Equal(MeasureOfAngle(BED),MeasureOfAngle(DCA))"]  
-4; parallel_property_corresponding_angle(2,ED,CA,B); ParallelBetweenLine(ED,CA)&Collinear(BEC); ["Equal(MeasureOfAngle(ACE),MeasureOfAngle(EDB))"]  
-5; similar_triangle_judgment_aa(1,BDE,BCA); Polygon(BDE)&Polygon(BCA)&Equal(MeasureOfAngle(BED),MeasureOfAngle(BCA))&Equal(MeasureOfAngle(EDB),MeasureOfAngle(CBA)); ["SimilarBetweenTriangle(BDE,BCA)"]  
-6; similar_triangle_property_line_ratio(1,BDE,BCA); SimilarBetweenTriangle(BDE,BCA); ["Equal(LengthOfLine(BD),Mul(LengthOfLine(BA),RatioOfSimilarTriangle(BDE,BCA)))"]
+1; line_addition(1,BD,DA); Collinear(BDA); ["Equal(LengthOfLine(BA),Add(LengthOfLine(BD),LengthOfLine(DA)))"]
+2; line_addition(1,BE,EC); Collinear(BEC); ["Equal(LengthOfLine(BC),Add(LengthOfLine(BE),LengthOfLine(EC)))"]
+3; parallel_property_corresponding_angle(1,ED,CA,B); ParallelBetweenLine(ED,CA)&Collinear(BDA); ["Equal(MeasureOfAngle(BDE),MeasureOfAngle(BAC))"]
+4; parallel_property_corresponding_angle(2,CA,ED,B); ParallelBetweenLine(CA,ED)&Collinear(BEC); ["Equal(MeasureOfAngle(BED),MeasureOfAngle(BCA))"]
+5; similar_triangle_judgment_aa(1,BDE,BAC); Polygon(BDE)&Polygon(BAC)&Equal(MeasureOfAngle(BDE),MeasureOfAngle(BAC))&Equal(MeasureOfAngle(BED),MeasureOfAngle(BCA)); ["SimilarBetweenTriangle(BDE,BAC)"]
+6; similar_triangle_property_line_ratio(1,BDE,BAC); SimilarBetweenTriangle(BDE,BAC); ["Equal(LengthOfLine(BE),Mul(LengthOfLine(BC),RatioOfSimilarTriangle(BDE,BAC)))"]
 
 
 GT_EQUATIONS:
