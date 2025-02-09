@@ -32,12 +32,11 @@ problem_id: 6485: Success
 problem_id: 696: Success
 problem_id: 847: Success
 problem_id: 5563: Success
-problem_id: 4923: Failed at products constraint of a theorem step. Please try to modify the theorem step 'parallel_property_corresponding_angle' with parameters ('E', 'D', 'C', 'A', 'B'). For these parameters, there is an invalid predicate: Collinear(ECB). Available predicates: Collinear(BDA), Collinear(ADB), Collinear(BEC), Collinear(CEB)
+problem_id: 4923: Success
 problem_id: 3298: Success
 problem_id: 759: Success
 problem_id: 4910: Success
 problem_id: 5805: Success
-problem_id: 3580: Failed at products constraint of a theorem step. Please try to modify the theorem step 'midsegment_of_triangle_judgment_midpoint' with parameters ('M', 'N', 'B', 'D', 'C'). For these parameters, there is an invalid predicate: Collinear(BMD). Available predicates: Collinear(ADC), Collinear(CDA), Collinear(BMC), Collinear(CMB), Collinear(BND), Collinear(DNB)
 problem_id: 4898: Success
 problem_id: 6802: Success
 problem_id: 6247: Success
@@ -52,3 +51,4 @@ problem_id: 5092: Success
 problem_id: 5522: Success
 problem_id: 4796: Success
 problem_id: 3418: Success
+problem_id: 2916: Success
