@@ -118,10 +118,16 @@ class Problem:
                                            (_id,), ("extended", None, None))
                     cocircular = list(extended_item)
                     l = len(cocircular)
-                    for bias in range(l):
-                        extended_item = tuple([circle] + [cocircular[(i + bias) % l] for i in range(l)])
-                        self.condition.add("Cocircular", extended_item, (_id,), ("extended", None, None))
+                    # for bias in range(l):
+                    #     extended_item = tuple([circle] + [cocircular[(i + bias) % l] for i in range(l)])
+                    #     self.condition.add("Cocircular", extended_item, (_id,), ("extended", None, None))
+                    for bias in range(l):  # Generate all cyclic permutations
+                        permuted_cocircular = tuple([circle] + [cocircular[(i + bias) % l] for i in range(l)])
+                        self.condition.add("Cocircular", permuted_cocircular, (_id,), ("extended", None, None))
 
+                        # Also add reversed order to ensure both cyclic orientations exist
+                        reversed_cocircular = tuple([circle] + list(reversed(permuted_cocircular[1:])))
+                        self.condition.add("Cocircular", reversed_cocircular, (_id,), ("extended", None, None))
         # 3.Shape expand.
         jigsaw_unit = {}  # shape's jigsaw
         shape_unit = []  # mini shape unit
