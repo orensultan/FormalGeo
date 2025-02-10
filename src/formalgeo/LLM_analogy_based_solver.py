@@ -350,6 +350,7 @@ def generate_and_verify(args, gdl_relevant_theorems, similar_problems, problem2,
     while attempts < max_retries:
         resp = gpt_response(messages, args.model_name)
         generated_theorem_sequence_list = get_processed_model_resp(resp)
+
         verifier = Verifier(problem2.id, generated_theorem_sequence_list)
         theorem_verifier_result = verifier.verify()
         if problem2.id == 2916 and len(generated_theorem_sequence_list) == 1 and (generated_theorem_sequence_list[0] == "parallel_property_alternate_interior_angle(2,AB,CD)" or generated_theorem_sequence_list[0] == "parallel_property_corresponding_angle(2,AB,CD,E)"):
@@ -396,13 +397,13 @@ chosen_problems_by_level = {
 chosen_problems_by_level = {
 # 1: [1975, 1490, 1726, 178, 2669, 2614, 51, 2323, 192, 2624],
 # 2: [2141, 69, 2916, 358, 4473, 4483, 5645, 127, 2410, 4523],
-#  3: [ 4187, 5244, 5062, 844, 1945 ]
+#  3: [ 4187, 5244, 5062, 844, 1945, 2200, 4099, 2765, 4476, 4254 ]
 # 4: [ 2114, 464, 5510, 3272, 5230]
 # 5: [5440, 6485 , 696, 847, 5563]
 # 6: [4923, 3298, 759, 4910, 5805],
 # 7: [4898, 4898, 6802, 6247, 449],
 # 8: [3983, 2761, 2875, 3434, 6806],
-# 9: [4892, 5092, 5522, 4796, 3418 ],
+9:[4892]# 9: [4892, 5092, 5522, 4796, 3418 ],
 
 }
 
