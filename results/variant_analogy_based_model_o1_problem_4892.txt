@@ -246,19 +246,22 @@ Outputs:
 Outputs for Problem B:
 
 EQUATIONS:
-ma_abc=65
+ma_abc-65
 
 GOAL_SYMBOL:
 ma_adb
 
 ANSWER:
-65
+115
 
 THEOREM_SEQUENCE:
+1; circle_property_angle_of_osculation(2,OAB,C); Arc(OAB)&Angle(CBA)&IsTangentOfCircle(CB,O); ["Equal(MeasureOfAngle(CBA),Mul(MeasureOfArc(OAB),1/2))"]
+2; arc_property_center_angle(1,OAB,O); Arc(OAB)&Angle(AOB)&IsCentreOfCircle(O,O); ["Equal(MeasureOfArc(OAB),MeasureOfAngle(AOB))"]
+3; arc_property_circumference_angle_internal(1,OAB,D); Cocircular(O,ADB)&Angle(ADB); ["Equal(MeasureOfAngle(ADB),Sub(180,Mul(MeasureOfArc(OAB),1/2)))"]
 
 
 GT_EQUATIONS:
-ma_abc=65
+ma_abc-65
 GT_GOAL_SYMBOL:
 ma_adb
 GT_ANSWER:
