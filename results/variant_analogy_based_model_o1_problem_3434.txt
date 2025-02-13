@@ -21,16 +21,16 @@ Shape(EA,AD,DE)
 Shape(AD,DE,EA)
 Shape(CE,ED,DC)
 Shape(ED,DC,CE)
-Shape(EC,CB,BA,AD,DE)
-Shape(CB,BA,AD,DE,EC)
-Shape(BA,AD,DE,EC,CB)
-Shape(AD,DE,EC,CB,BA)
-Shape(DE,EC,CB,BA,AD)
 Shape(CB,BA,AE,ED,DC)
 Shape(BA,AE,ED,DC,CB)
 Shape(AE,ED,DC,CB,BA)
 Shape(ED,DC,CB,BA,AE)
 Shape(DC,CB,BA,AE,ED)
+Shape(EC,CB,BA,AD,DE)
+Shape(CB,BA,AD,DE,EC)
+Shape(BA,AD,DE,EC,CB)
+Shape(AD,DE,EC,CB,BA)
+Shape(DE,EC,CB,BA,AD)
 Shape(EA,AD,DC,CE)
 Shape(AD,DC,CE,EA)
 Shape(DC,CE,EA,AD)
@@ -77,11 +77,11 @@ Angle(ADE)
 Angle(DCE)
 Angle(CED)
 Angle(EDC)
+Angle(AED)
+Angle(DCB)
 Angle(ECB)
 Angle(BDE)
 Angle(DEC)
-Angle(AED)
-Angle(DCB)
 Angle(ADC)
 Angle(BDC)
 Angle(EAB)
@@ -96,9 +96,9 @@ Angle(DAE)
 Angle(EDA)
 Angle(ECD)
 Angle(CDE)
+Angle(BCD)
 Angle(BCE)
 Angle(EDB)
-Angle(BCD)
 Angle(CDA)
 Angle(CDB)
 Angle(DBC)
@@ -122,15 +122,15 @@ Polygon(CDE)
 Polygon(CED)
 Polygon(EDC)
 Polygon(ECD)
-Polygon(ECBD)
-Polygon(CBDE)
-Polygon(BDEC)
-Polygon(DECB)
 Polygon(CBAED)
 Polygon(BAEDC)
 Polygon(AEDCB)
 Polygon(EDCBA)
 Polygon(DCBAE)
+Polygon(ECBD)
+Polygon(CBDE)
+Polygon(BDEC)
+Polygon(DECB)
 Polygon(ADC)
 Polygon(ACD)
 Polygon(DAC)
@@ -155,8 +155,8 @@ Outputs:
 Outputs for Problem B:
 
 EQUATIONS:
-ma_bae=90
-ma_edc=33
+ma_bae-90
+ma_edc-33
 
 GOAL_SYMBOL:
 ma_cba
@@ -165,15 +165,13 @@ ANSWER:
 57
 
 THEOREM_SEQUENCE:
-1; congruent_triangle_property_angle_equal(1,CBA,DEA); CongruentBetweenTriangle(CBA,DEA); ["Equal(MeasureOfAngle(CBA),MeasureOfAngle(DEA))"]  
-2; flat_angle(1,BAD); Collinear(BAD); ["Equal(MeasureOfAngle(BAD),180)"]  
-3; angle_addition(1,BAE,EAD); Angle(BAE)&Angle(EAD)&Angle(BAD); ["Equal(MeasureOfAngle(BAD),Add(MeasureOfAngle(BAE),MeasureOfAngle(EAD)))"]  
-4; triangle_property_angle_sum(1,DEA); Polygon(DEA); ["Equal(Add(MeasureOfAngle(DEA),MeasureOfAngle(DAE),MeasureOfAngle(EAD)),180)"]
+1; congruent_triangle_property_angle_equal(1,CBA,DEA); CongruentBetweenTriangle(CBA,DEA); ["Equal(MeasureOfAngle(CBA),MeasureOfAngle(DEA))"]
+2; triangle_property_angle_sum(1,DEA); Polygon(DEA); ["Equal(Add(MeasureOfAngle(DEA),MeasureOfAngle(EAD),MeasureOfAngle(ADE)),180)"]
 
 
 GT_EQUATIONS:
-ma_bae=90
-ma_edc=33
+ma_bae-90
+ma_edc-33
 GT_GOAL_SYMBOL:
 ma_cba
 GT_ANSWER:

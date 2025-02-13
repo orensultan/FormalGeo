@@ -163,7 +163,7 @@ EQUATIONS:
 ll_ad-ll_ao
 ll_ab-ll_bc
 ll_bc-ll_ca
-ll_co-ll_oa
+ll_co-ll_ao
 
 GOAL_SYMBOL:
 ma_bod
@@ -172,9 +172,8 @@ ANSWER:
 30
 
 THEOREM_SEQUENCE:
-1; equilateral_triangle_property_angle(1,ABC); EquilateralTriangle(ABC); ["Equal(MeasureOfAngle(CAB),60)"]
-2; isosceles_triangle_judgment_line_equal(1,ADO); Polygon(ADO)&Equal(LengthOfLine(AD),LengthOfLine(AO)); ["IsoscelesTriangle(ADO)"]
-3; isosceles_triangle_property_angle_equal(1,ADO); IsoscelesTriangle(ADO); ["Equal(MeasureOfAngle(ADO),MeasureOfAngle(AOD))"]
+1; equilateral_triangle_property_angle(1,ABC); EquilateralTriangle(ABC); ["Equal(MeasureOfAngle(CAB),60)"]  
+2; isosceles_triangle_judgment_line_equal(1,AOD); Polygon(AOD)&Equal(LengthOfLine(AD),LengthOfLine(AO)); ["IsoscelesTriangle(AOD)"]
 
 
 GT_EQUATIONS:
