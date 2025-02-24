@@ -45,25 +45,26 @@ MeasureOfAngle(CBA);ma_cba;None
 Outputs:
 Outputs for Problem B:
 
+***MODEL_RESPONSE_BEGIN***
 EQUATIONS:
-ll_ab=21
-ll_ac=16
-ll_bc=15
-
+ll_ab-21
+ll_ac-16
+ll_bc-15
 GOAL_SYMBOL:
 cos(pi*ma_cba/180)
-
 ANSWER:
 41/63
-
 THEOREM_SEQUENCE:
 1; cosine_theorem(1,BAC); Polygon(BAC); ["Equal(Add(Pow(LengthOfLine(AC),2),Mul(2,LengthOfLine(BA),LengthOfLine(BC),Cos(MeasureOfAngle(CBA)))),Add(Pow(LengthOfLine(BA),2),Pow(LengthOfLine(BC),2)))"]
-
+***MODEL_RESPONSE_END***
+RETRIES_MESSAGES:
+#RETRIES:
+0
 
 GT_EQUATIONS:
-ll_ab=21
-ll_ca=16
-ll_cb=15
+ll_ab-21
+ll_ca-16
+ll_cb-15
 GT_GOAL_SYMBOL:
 cos(pi*ma_cba/180)
 GT_ANSWER:
@@ -71,4 +72,3 @@ GT_ANSWER:
 GT_THEOREM_SEQUENCE:
 1;cosine_theorem(1,BAC);Polygon(BAC);["Equal(Add(Pow(LengthOfLine(AC),2),Mul(2,LengthOfLine(BA),LengthOfLine(BC),Cos(MeasureOfAngle(CBA)))),Add(Pow(LengthOfLine(BA),2),Pow(LengthOfLine(BC),2)))"]
 
-problem_id: 1726: Success

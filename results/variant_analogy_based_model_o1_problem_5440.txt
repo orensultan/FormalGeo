@@ -105,17 +105,17 @@ Shape(AF,FB,BH,HG,GE,EA)
 Shape(FB,BH,HG,GE,EA,AF)
 Shape(BH,HG,GE,EA,AF,FB)
 Shape(HG,GE,EA,AF,FB,BH)
-Shape(CG,GH,HF,FB,BC)
-Shape(GH,HF,FB,BC,CG)
-Shape(HF,FB,BC,CG,GH)
-Shape(FB,BC,CG,GH,HF)
-Shape(BC,CG,GH,HF,FB)
 Shape(HC,CG,GA,AF,FB,BH)
 Shape(CG,GA,AF,FB,BH,HC)
 Shape(GA,AF,FB,BH,HC,CG)
 Shape(AF,FB,BH,HC,CG,GA)
 Shape(FB,BH,HC,CG,GA,AF)
 Shape(BH,HC,CG,GA,AF,FB)
+Shape(CG,GH,HF,FB,BC)
+Shape(GH,HF,FB,BC,CG)
+Shape(HF,FB,BC,CG,GH)
+Shape(FB,BC,CG,GH,HF)
+Shape(BC,CG,GH,HF,FB)
 ..(BC,CG,GA,AD,DF,FH,HB)
 ..(CG,GA,AD,DF,FH,HB,BC)
 ..(GA,AD,DF,FH,HB,BC,CG)
@@ -348,9 +348,9 @@ Angle(FHB)
 Angle(ABC)
 Angle(CHG)
 Angle(CGE)
-Angle(GHF)
 Angle(CAF)
 Angle(BHC)
+Angle(GHF)
 Angle(DHB)
 Angle(BEA)
 Angle(DAG)
@@ -549,15 +549,15 @@ Polygon(AEB)
 Polygon(ABE)
 Polygon(BEA)
 Polygon(BAE)
+Polygon(HCAB)
+Polygon(CABH)
+Polygon(ABHC)
+Polygon(BHCA)
 Polygon(CGHFB)
 Polygon(GHFBC)
 Polygon(HFBCG)
 Polygon(FBCGH)
 Polygon(BCGHF)
-Polygon(HCAB)
-Polygon(CABH)
-Polygon(ABHC)
-Polygon(BHCA)
 Polygon(ADHBC)
 Polygon(DHBCA)
 Polygon(HBCAD)
@@ -644,6 +644,7 @@ Polygon(CGEDFB)
 Polygon(GEDFBC)
 Polygon(EDFBCG)
 ParallelBetweenLine(CB,ED)
+ParallelBetweenLine(ED,CB)
 SYMBOLS_AND_VALUES:
 LengthOfLine(AB);ll_ab;10
 LengthOfLine(BA);ll_ab;10
@@ -662,9 +663,10 @@ LengthOfLine(FD);ll_df;None
 Outputs:
 Outputs for Problem B:
 
+***MODEL_RESPONSE_BEGIN***
 EQUATIONS:
-ll_ab=4
-ll_ac=3
+ll_ab-4
+ll_ac-3
 
 GOAL_SYMBOL:
 ll_de
@@ -673,12 +675,20 @@ ANSWER:
 1
 
 THEOREM_SEQUENCE:
-1; triangle_property_angle_sum(1,ABC); Polygon(ABC); ["Equal(Add(MeasureOfAngle(ABC),MeasureOfAngle(BCA),MeasureOfAngle(CAB)),180)"]
-
+1; parallel_property_alternate_interior_angle(1,DE,BC); ParallelBetweenLine(DE,BC)&Line(AD); ["Equal(MeasureOfAngle(ADE),MeasureOfAngle(ABC))"]
+2; parallel_property_alternate_interior_angle(2,DE,BC); ParallelBetweenLine(DE,BC)&Line(AE); ["Equal(MeasureOfAngle(AED),MeasureOfAngle(ACB))"]
+***MODEL_RESPONSE_END***
+RETRIES_MESSAGES:
+#retry: 1; message: Tier1 error. Theorem <bisector_of_angle_property_line_ratio> branch error. Expected dict_keys(['1']) but got None. Please rewrite your response, you should change only the call to theorem <bisector_of_angle_property_line_ratio> by adding the branch number from the dict_keys as the first argument
+#retry: 2; message: Tier2 error. Failed at products constraint of a theorem step. Please try to modify the theorem step 'bisector_of_angle_property_line_ratio' with parameters ('B', 'E', 'A', 'B', 'C'). For these parameters, there is an invalid predicate: Collinear(CEA). Available predicates: Collinear(DAE), Collinear(EAD), Collinear(DFHC), Collinear(CHFD), Collinear(DFH), Collinear(HFD), Collinear(DFC), Collinear(CFD), Collinear(DHC), Collinear(CHD), Collinear(FHC), Collinear(CHF), Collinear(EGHB), Collinear(BHGE), Collinear(EGH), Collinear(HGE), Collinear(EGB), Collinear(BGE), Collinear(EHB), Collinear(BHE), Collinear(GHB), Collinear(BHG), Collinear(AFB), Collinear(BFA), Collinear(AGC), Collinear(CGA)
+#retry: 3; message: Tier1 error. Theorem <similar_triangle_judgment_aa> branch error. Expected dict_keys(['1']) but got None. Please rewrite your response, you should change only the call to theorem <similar_triangle_judgment_aa> by adding the branch number from the dict_keys as the first argument
+#retry: 4; message: Tier2 error. Failed at products constraint of a theorem step. Please try to modify the theorem step 'similar_triangle_judgment_aa' with parameters ('A', 'B', 'C', 'A', 'D', 'E'). For these parameters, there is an invalid predicate: Polygon(ADE). Available predicates: Polygon(DFA), Polygon(DAF), Polygon(FDA), Polygon(FAD), Polygon(ADF), Polygon(AFD), Polygon(AFHG), Polygon(FHGA), Polygon(HGAF), Polygon(GAFH), Polygon(AGE), Polygon(AEG), Polygon(GAE), Polygon(GEA), Polygon(EAG), Polygon(EGA), Polygon(GHC), Polygon(GCH), Polygon(HGC), Polygon(HCG), Polygon(CGH), Polygon(CHG), Polygon(HBC), Polygon(HCB), Polygon(BHC), Polygon(BCH), Polygon(CHB), Polygon(CBH), Polygon(HFB), Polygon(HBF), Polygon(FHB), Polygon(FBH), Polygon(BHF), Polygon(BFH), Polygon(ADHG), Polygon(DHGA), Polygon(HGAD), Polygon(GADH), Polygon(AFHE), Polygon(FHEA), Polygon(HEAF), Polygon(EAFH), Polygon(AFC), Polygon(ACF), Polygon(FAC), Polygon(FCA), Polygon(CAF), Polygon(CFA), Polygon(GAB), Polygon(GBA), Polygon(AGB), Polygon(ABG), Polygon(BGA), Polygon(BAG), Polygon(CGB), Polygon(CBG), Polygon(GCB), Polygon(GBC), Polygon(BCG), Polygon(BGC), Polygon(BCF), Polygon(BFC), Polygon(CBF), Polygon(CFB), Polygon(FBC), Polygon(FCB), Polygon(DHE), Polygon(DEH), Polygon(HDE), Polygon(HED), Polygon(EDH), Polygon(EHD), Polygon(ADC), Polygon(ACD), Polygon(DAC), Polygon(DCA), Polygon(CAD), Polygon(CDA), Polygon(ADFBG), Polygon(DFBGA), Polygon(FBGAD), Polygon(BGADF), Polygon(GADFB), Polygon(AFHBC), Polygon(FHBCA), Polygon(HBCAF), Polygon(BCAFH), Polygon(CAFHB), Polygon(HGABC), Polygon(GABCH), Polygon(ABCHG), Polygon(BCHGA), Polygon(CHGAB), Polygon(GEAFC), Polygon(EAFCG), Polygon(AFCGE), Polygon(FCGEA), Polygon(CGEAF), Polygon(EAB), Polygon(EBA), Polygon(AEB), Polygon(ABE), Polygon(BEA), Polygon(BAE), Polygon(HCAB), Polygon(CABH), Polygon(ABHC), Polygon(BHCA), Polygon(CGHFB), Polygon(GHFBC), Polygon(HFBCG), Polygon(FBCGH), Polygon(BCGHF), Polygon(ADHBC), Polygon(DHBCA), Polygon(HBCAD), Polygon(BCADH), Polygon(CADHB), Polygon(ADFBCHG), Polygon(DFBCHGA), Polygon(FBCHGAD), Polygon(BCHGADF), Polygon(CHGADFB), Polygon(HGADFBC), Polygon(GADFBCH), Polygon(DCGE), Polygon(CGED), Polygon(GEDC), Polygon(EDCG), Polygon(DFBE), Polygon(FBED), Polygon(BEDF), Polygon(EDFB), Polygon(ADFBHC), Polygon(DFBHCA), Polygon(FBHCAD), Polygon(BHCADF), Polygon(HCADFB), Polygon(CADFBH), Polygon(ABC), Polygon(ACB), Polygon(BAC), Polygon(BCA), Polygon(CAB), Polygon(CBA), Polygon(GEAFHBC), Polygon(EAFHBCG), Polygon(AFHBCGE), Polygon(FHBCGEA), Polygon(HBCGEAF), Polygon(BCGEAFH), Polygon(CGEAFHB), Polygon(EABCH), Polygon(ABCHE), Polygon(BCHEA), Polygon(CHEAB), Polygon(HEABC), Polygon(GEABHC), Polygon(EABHCG), Polygon(ABHCGE), Polygon(BHCGEA), Polygon(HCGEAB), Polygon(CGEABH), Polygon(ADFBC), Polygon(DFBCA), Polygon(FBCAD), Polygon(BCADF), Polygon(CADFB), Polygon(DHBCGE), Polygon(HBCGED), Polygon(BCGEDH), Polygon(CGEDHB), Polygon(GEDHBC), Polygon(EDHBCG), Polygon(DFBCHE), Polygon(FBCHED), Polygon(BCHEDF), Polygon(CHEDFB), Polygon(HEDFBC), Polygon(EDFBCH), Polygon(DFBHCGE), Polygon(FBHCGED), Polygon(BHCGEDF), Polygon(HCGEDFB), Polygon(CGEDFBH), Polygon(GEDFBHC), Polygon(EDFBHCG), Polygon(GEABC), Polygon(EABCG), Polygon(ABCGE), Polygon(BCGEA), Polygon(CGEAB), Polygon(DFBCGE), Polygon(FBCGED), Polygon(BCGEDF), Polygon(CGEDFB), Polygon(GEDFBC), Polygon(EDFBCG)
+#RETRIES:
+4
 
 GT_EQUATIONS:
-ll_ab=4
-ll_ac=3
+ll_ab-4
+ll_ac-3
 ma_abe-ma_ebc
 ma_bcd-ma_dca
 GT_GOAL_SYMBOL:

@@ -73,20 +73,36 @@ Cocircular(B,TU)
 Cocircular(B,VT)
 Cocircular(B,TV)
 Cocircular(B,SUV)
+Cocircular(B,VUS)
 Cocircular(B,UVS)
+Cocircular(B,SVU)
 Cocircular(B,VSU)
+Cocircular(B,USV)
 Cocircular(B,SUT)
+Cocircular(B,TUS)
 Cocircular(B,UTS)
+Cocircular(B,STU)
 Cocircular(B,TSU)
+Cocircular(B,UST)
 Cocircular(B,SVT)
+Cocircular(B,TVS)
 Cocircular(B,VTS)
+Cocircular(B,STV)
 Cocircular(B,TSV)
+Cocircular(B,VST)
 Cocircular(B,UVT)
+Cocircular(B,TVU)
 Cocircular(B,VTU)
+Cocircular(B,UTV)
 Cocircular(B,TUV)
+Cocircular(B,VUT)
+Cocircular(B,TVUS)
 Cocircular(B,UVTS)
+Cocircular(B,STVU)
 Cocircular(B,VTSU)
+Cocircular(B,USTV)
 Cocircular(B,TSUV)
+Cocircular(B,VUST)
 Point(R)
 Point(T)
 Point(S)
@@ -140,6 +156,7 @@ MeasureOfAngle(BCD);ma_bcd;None
 Outputs:
 Outputs for Problem B:
 
+***MODEL_RESPONSE_BEGIN***
 EQUATIONS:
 ma_sru-23
 mar_bvt-68
@@ -149,7 +166,10 @@ ANSWER:
 114
 THEOREM_SEQUENCE:
 1; circle_property_circular_power_segment_and_segment_angle(1,RST,RUV,B); Cocircular(B,SUVT)&Collinear(RST)&Collinear(RUV); ["Equal(Sub(MeasureOfArc(BSU),MeasureOfArc(BVT)),Mul(MeasureOfAngle(SRU),2))"]
-
+***MODEL_RESPONSE_END***
+RETRIES_MESSAGES:
+#RETRIES:
+0
 
 GT_EQUATIONS:
 ma_sru-23

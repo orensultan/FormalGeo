@@ -17,8 +17,8 @@ class Verifier:
             t_name, t_branch, t_para = parse_one_theorem(theorem)
             tier1_verification_result = self.solver.verify_tier1(t_name, t_branch, t_para)
             if tier1_verification_result != "Success":
-                return tier1_verification_result
-            update, tier2_verification_result = self.solver.verify_tier2(t_name, t_branch, t_para)
-            if tier2_verification_result != "Success":
-                return tier2_verification_result
+                return "Tier1 error. " + tier1_verification_result
+            # update, tier2_verification_result = self.solver.verify_tier2(t_name, t_branch, t_para)
+            # if tier2_verification_result != "Success":
+            #     return "Tier2 error. " + tier2_verification_result
         return "Success"

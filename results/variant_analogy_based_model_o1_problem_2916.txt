@@ -55,6 +55,7 @@ Polygon(CBA)
 Polygon(BAC)
 Polygon(BCA)
 ParallelBetweenLine(DC,BA)
+ParallelBetweenLine(BA,DC)
 SYMBOLS_AND_VALUES:
 MeasureOfAngle(EDA);ma_eda;125
 MeasureOfAngle(CBE);ma_cbd;None
@@ -63,21 +64,27 @@ MeasureOfAngle(CBD);ma_cbd;None
 Outputs:
 Outputs for Problem B:
 
+***MODEL_RESPONSE_BEGIN***
 EQUATIONS:
-ma_abe=70
-
+ma_abe-70
 GOAL_SYMBOL:
 ma_ecd
-
 ANSWER:
 70
-
 THEOREM_SEQUENCE:
 1; parallel_property_alternate_interior_angle(2,AB,CD); ParallelBetweenLine(AB,CD)&Line(BC); ["Equal(MeasureOfAngle(CBA),MeasureOfAngle(BCD))"]
-
+***MODEL_RESPONSE_END***
+RETRIES_MESSAGES:
+#retry: 1; message: verification failed. Your task was to find the measure of angle ECD but this measure is still underconstrained. Specifically, you found that the measure of angle BCD is equal to the measure of angle CBA, but the measure of CBA, but you did not find the measure of CBA. Please fix the proof. You should modify only the THEOREM_SEQUENCE.
+#retry: 2; message: verification failed. Your task was to find the measure of angle ECD but this measure is still underconstrained. Specifically, you found that the measure of angle BCD is equal to the measure of angle CBA, but the measure of CBA, but you did not find the measure of CBA. Please fix the proof. You should modify only the THEOREM_SEQUENCE.
+#retry: 3; message: verification failed. Your task was to find the measure of angle ECD but this measure is still underconstrained. Specifically, you found that the measure of angle BCD is equal to the measure of angle CBA, but the measure of CBA, but you did not find the measure of CBA. Please fix the proof. You should modify only the THEOREM_SEQUENCE.
+#retry: 4; message: Tier1 error. Theorem <angle_addition> branch error. Expected dict_keys(['1']) but got None. Please rewrite your response, you should change only the call to theorem <angle_addition> by adding the branch number from the dict_keys as the first argument
+#retry: 5; message: verification failed. Your task was to find the measure of angle ECD but this measure is still underconstrained. Specifically, you found that the measure of angle BCD is equal to the measure of angle CBA, but the measure of CBA, but you did not find the measure of CBA. Please fix the proof. You should modify only the THEOREM_SEQUENCE.
+#RETRIES:
+5
 
 GT_EQUATIONS:
-ma_abe=70
+ma_abe-70
 GT_GOAL_SYMBOL:
 ma_ecd
 GT_ANSWER:

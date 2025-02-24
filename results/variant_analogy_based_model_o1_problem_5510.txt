@@ -218,34 +218,36 @@ MeasureOfAngle(BCD);ma_bcd;None
 Outputs:
 Outputs for Problem B:
 
+***MODEL_RESPONSE_BEGIN***
 EQUATIONS:
-AreaOfTriangle(ABC)=65
-AreaOfTriangle(ABC)-Add(AreaOfTriangle(DCA),AreaOfTriangle(DAB))=0
-LengthOfLine(AB)=13
-LengthOfLine(AC)=13
-MeasureOfAngle(CMD)=90
-MeasureOfAngle(AND)=90
+at_abc-65
+ll_ab-13
+ll_ac-13
+ma_cmd-90
+ma_and-90
 
 GOAL_SYMBOL:
-LengthOfLine(DN)+LengthOfLine(DM)
+ll_dn+ll_dm
 
 ANSWER:
 13
 
 THEOREM_SEQUENCE:
-1; isosceles_triangle_judgment_line_equal(1,ABC); Polygon(ABC)&Equal(LengthOfLine(AB),LengthOfLine(AC)); ["IsoscelesTriangle(ABC)"]
-2; triangle_area_formula_common(1,ABC); Polygon(ABC); ["Equal(AreaOfTriangle(ABC),Mul(HeightOfTriangle(ABC),LengthOfLine(BC),1/2))"]
-3; right_triangle_judgment_angle(1,CMD); Polygon(CMD)&Equal(MeasureOfAngle(CMD),90); ["RightTriangle(CMD)"]
-4; right_triangle_judgment_angle(1,AND); Polygon(AND)&Equal(MeasureOfAngle(AND),90); ["RightTriangle(AND)"]
-
+1; right_triangle_judgment_angle(1,CMD); Polygon(CMD)&Equal(MeasureOfAngle(CMD),90); ["RightTriangle(CMD)"]
+2; right_triangle_judgment_angle(1,AND); Polygon(AND)&Equal(MeasureOfAngle(AND),90); ["RightTriangle(AND)"]
+***MODEL_RESPONSE_END***
+RETRIES_MESSAGES:
+#retry: 1; message: Tier1 error. Theorem <right_triangle_judgment_angle> branch error. Expected dict_keys(['1']) but got None. Please rewrite your response, you should change only the call to theorem <right_triangle_judgment_angle> by adding the branch number from the dict_keys as the first argument
+#RETRIES:
+1
 
 GT_EQUATIONS:
-at_abc=65
+at_abc-65
 at_abc-at_dab-at_dca
-ll_ab=13
-ll_ac=13
-ma_cmd=90
-ma_and=90
+ll_ab-13
+ll_ac-13
+ma_cmd-90
+ma_and-90
 GT_GOAL_SYMBOL:
 ll_dm+ll_dn
 GT_ANSWER:

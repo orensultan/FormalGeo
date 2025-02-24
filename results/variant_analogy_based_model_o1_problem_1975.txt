@@ -153,11 +153,12 @@ MeasureOfAngle(EAD);ma_gaf;None
 Outputs:
 Outputs for Problem B:
 
+***MODEL_RESPONSE_BEGIN***
 EQUATIONS:
-ma_cba=36
-ma_cde=57
-ma_dbe=42
-ma_ecd=28
+ma_cba-36
+ma_cde-57
+ma_dbe-42
+ma_ecd-28
 
 GOAL_SYMBOL:
 ma_dec
@@ -166,14 +167,17 @@ ANSWER:
 95
 
 THEOREM_SEQUENCE:
-1; triangle_property_angle_sum(1,CDE); Polygon(CDE); ["Equal(Add(MeasureOfAngle(CDE),MeasureOfAngle(DEC),MeasureOfAngle(ECD)),180)"]
-
+1; triangle_property_angle_sum(1,CDE); Polygon(CDE); ["Equal(Add(MeasureOfAngle(CDE),MeasureOfAngle(ECD),MeasureOfAngle(DEC)),180)"]
+***MODEL_RESPONSE_END***
+RETRIES_MESSAGES:
+#RETRIES:
+0
 
 GT_EQUATIONS:
-ma_cba=36
-ma_cde=57
-ma_dbe=42
-ma_ecd=28
+ma_cba-36
+ma_cde-57
+ma_dbe-42
+ma_ecd-28
 GT_GOAL_SYMBOL:
 ma_dec
 GT_ANSWER:
@@ -181,4 +185,3 @@ GT_ANSWER:
 GT_THEOREM_SEQUENCE:
 1;triangle_property_angle_sum(1,CDE);Polygon(CDE);["Equal(Add(MeasureOfAngle(CDE),MeasureOfAngle(DEC),MeasureOfAngle(ECD)),180)"]
 
-problem_id: 1975: Success

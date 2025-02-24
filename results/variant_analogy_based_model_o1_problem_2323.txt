@@ -45,17 +45,24 @@ MeasureOfAngle(BAC);ma_bac;30
 Outputs:
 Outputs for Problem B:
 
+***MODEL_RESPONSE_BEGIN***
 EQUATIONS:
 ma_abc-40
 ma_bca-x
 ma_cab-25
+
 GOAL_SYMBOL:
 x
+
 ANSWER:
 115
+
 THEOREM_SEQUENCE:
 1; triangle_property_angle_sum(1,ABC); Polygon(ABC); ["Equal(Add(MeasureOfAngle(ABC),MeasureOfAngle(BCA),MeasureOfAngle(CAB)),180)"]
-
+***MODEL_RESPONSE_END***
+RETRIES_MESSAGES:
+#RETRIES:
+0
 
 GT_EQUATIONS:
 ma_abc-40

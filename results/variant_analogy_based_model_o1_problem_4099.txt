@@ -66,6 +66,7 @@ MeasureOfAngle(CAE);ma_cae;None
 Outputs:
 Outputs for Problem B:
 
+***MODEL_RESPONSE_BEGIN***
 EQUATIONS:
 ma_ecb-130
 
@@ -76,12 +77,13 @@ ANSWER:
 50
 
 THEOREM_SEQUENCE:
-1; triangle_property_angle_sum(1,ABC); Polygon(ABC); ["Equal(Add(MeasureOfAngle(ABC),MeasureOfAngle(BCA),MeasureOfAngle(CAB)),180)"]  
-2; flat_angle(1,ACE); Collinear(ACE); ["Equal(MeasureOfAngle(ACE),180)"]  
-3; angle_addition(1,ACB,BCE); Angle(ACB)&Angle(BCE)&Angle(ACE); ["Equal(MeasureOfAngle(ACE),Add(MeasureOfAngle(ACB),MeasureOfAngle(BCE)))"]  
-4; flat_angle(1,ABF); Collinear(ABF); ["Equal(MeasureOfAngle(ABF),180)"]  
-5; angle_addition(1,CBA,ABF); Angle(CBA)&Angle(ABF)&Angle(CBF); ["Equal(MeasureOfAngle(CBF),Add(MeasureOfAngle(CBA),MeasureOfAngle(ABF)))"]
-
+1; adjacent_complementary_angle(1,ECB,BCA); Collinear(ECA)&Angle(ECB)&Angle(BCA); ["Equal(Add(MeasureOfAngle(ECB),MeasureOfAngle(BCA)),180)"]  
+2; triangle_property_angle_sum(1,ABC); Polygon(ABC); ["Equal(Add(MeasureOfAngle(ABC),MeasureOfAngle(BCA),MeasureOfAngle(CAB)),180)"]  
+3; adjacent_complementary_angle(1,CBF,CBA); Collinear(AFB)&Angle(CBF)&Angle(CBA); ["Equal(Add(MeasureOfAngle(CBF),MeasureOfAngle(CBA)),180)"]  
+***MODEL_RESPONSE_END***
+RETRIES_MESSAGES:
+#RETRIES:
+0
 
 GT_EQUATIONS:
 ma_ecb-130

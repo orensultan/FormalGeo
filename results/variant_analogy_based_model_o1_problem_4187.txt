@@ -44,23 +44,30 @@ MeasureOfAngle(BAC);ma_bac;None
 Outputs:
 Outputs for Problem B:
 
+***MODEL_RESPONSE_BEGIN***
 EQUATIONS:
-ll_ab=2
-ll_bc=1
-ma_acb=90
+ll_ab-2
+ll_bc-1
+ma_acb-90
+
 GOAL_SYMBOL:
 sin(pi*ma_bac/180)
+
 ANSWER:
 1/2
+
 THEOREM_SEQUENCE:
 1; sine_theorem(1,ACB); Polygon(ACB); ["Equal(Mul(LengthOfLine(AC),Sin(MeasureOfAngle(ACB))),Mul(LengthOfLine(AB),Sin(MeasureOfAngle(CBA))))"]
 2; sine_theorem(1,CBA); Polygon(CBA); ["Equal(Mul(LengthOfLine(CB),Sin(MeasureOfAngle(CBA))),Mul(LengthOfLine(CA),Sin(MeasureOfAngle(BAC))))"]
-
+***MODEL_RESPONSE_END***
+RETRIES_MESSAGES:
+#RETRIES:
+0
 
 GT_EQUATIONS:
-ll_ab=2
-ll_bc=1
-ma_acb=90
+ll_ab-2
+ll_bc-1
+ma_acb-90
 GT_GOAL_SYMBOL:
 sin(pi*ma_bac/180)
 GT_ANSWER:

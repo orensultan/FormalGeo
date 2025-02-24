@@ -144,17 +144,14 @@ Outputs for Problem B:
 EQUATIONS:
 ma_abe-80
 ma_dae-ma_abe
-
 GOAL_SYMBOL:
 ma_cde
-
 ANSWER:
-100
-
+20
 THEOREM_SEQUENCE:
-1; parallel_property_alternate_interior_angle(1,AB,DC); ParallelBetweenLine(AB,DC)&Line(AD); ["Equal(MeasureOfAngle(BAD),MeasureOfAngle(CDA))"]
-2; triangle_property_angle_sum(1,ADE); Polygon(ADE); ["Equal(Add(MeasureOfAngle(ADE),MeasureOfAngle(DEA),MeasureOfAngle(EAD)),180)"]
-3; angle_addition(1,CDA,ADE); Angle(CDA)&Angle(ADE)&Angle(CDE); ["Equal(MeasureOfAngle(CDE),Add(MeasureOfAngle(CDA),MeasureOfAngle(ADE)))"]
+1; triangle_property_angle_sum(1,ABE); Polygon(ABE); ["Equal(Add(MeasureOfAngle(ABE),MeasureOfAngle(BEA),MeasureOfAngle(EAB)),180)"]
+2; triangle_property_angle_sum(1,DAE); Polygon(DAE); ["Equal(Add(MeasureOfAngle(DAE),MeasureOfAngle(AED),MeasureOfAngle(EDA)),180)"]
+3; triangle_property_angle_sum(1,CDE); Polygon(CDE); ["Equal(Add(MeasureOfAngle(CDE),MeasureOfAngle(DEC),MeasureOfAngle(ECD)),180)"]
 
 
 GT_EQUATIONS:
