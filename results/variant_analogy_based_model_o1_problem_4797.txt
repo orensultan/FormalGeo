@@ -27,10 +27,6 @@ Shape(AO,OB,OBA)
 Shape(OB,OBA,AO)
 Shape(DC,OAC,AD)
 Shape(OAC,AD,DC)
-Shape(OAC,CO,OB,OBA)
-Shape(CO,OB,OBA,OAC)
-Shape(OB,OBA,OAC,CO)
-Shape(OBA,OAC,CO,OB)
 Shape(CO,OA,AD,DC)
 Shape(OA,AD,DC,CO)
 Shape(AD,DC,CO,OA)
@@ -39,6 +35,10 @@ Shape(OA,OAC,CB,BO)
 Shape(OAC,CB,BO,OA)
 Shape(CB,BO,OA,OAC)
 Shape(BO,OA,OAC,CB)
+Shape(OAC,CO,OB,OBA)
+Shape(CO,OB,OBA,OAC)
+Shape(OB,OBA,OAC,CO)
+Shape(OBA,OAC,CO,OB)
 Shape(OCB,BO,OC)
 Shape(BO,OC,OCB)
 Shape(OC,OCB,BO)
@@ -46,13 +46,13 @@ Shape(OC,CB,OBA,AO)
 Shape(CB,OBA,AO,OC)
 Shape(OBA,AO,OC,CB)
 Shape(AO,OC,CB,OBA)
-Shape(OAC,CB,OBA)
-Shape(CB,OBA,OAC)
-Shape(OBA,OAC,CB)
 Shape(OA,OAC,OCB,BO)
 Shape(OAC,OCB,BO,OA)
 Shape(OCB,BO,OA,OAC)
 Shape(BO,OA,OAC,OCB)
+Shape(OAC,CB,OBA)
+Shape(CB,OBA,OAC)
+Shape(OBA,OAC,CB)
 Shape(OCB,OBA,AO,OC)
 Shape(OBA,AO,OC,OCB)
 Shape(AO,OC,OCB,OBA)
@@ -135,9 +135,9 @@ Angle(BOC)
 Angle(OCB)
 Angle(CBO)
 Angle(ADC)
-Angle(COB)
 Angle(OAD)
 Angle(DCO)
+Angle(COB)
 Angle(AOC)
 Angle(BAD)
 Angle(OCD)
@@ -181,6 +181,7 @@ MeasureOfAngle(OBC);ma_abc;None
 Outputs:
 Outputs for Problem B:
 
+***MODEL_RESPONSE_BEGIN***
 EQUATIONS:
 ma_coa-70
 
@@ -188,13 +189,17 @@ GOAL_SYMBOL:
 ma_adb
 
 ANSWER:
-35
+55
 
 THEOREM_SEQUENCE:
-1; tangent_of_circle_property_perpendicular(1,DA,O,O); IsTangentOfCircle(DA,O)&Angle(OAD)&IsCentreOfCircle(O,O); ["PerpendicularBetweenLine(OA,DA)"]  
-2; arc_property_center_angle(1,OCA,O); Arc(OCA)&Angle(AOC)&IsCentreOfCircle(O,O); ["Equal(MeasureOfArc(OCA),MeasureOfAngle(AOC))"]  
-3; arc_property_circumference_angle_external(1,OCA,B); Cocircular(O,CAB)&Angle(ABC); ["Equal(MeasureOfAngle(ABC),Mul(MeasureOfArc(OCA),1/2))"]  
-
+1; tangent_of_circle_property_perpendicular(1,DA,O,O); IsTangentOfCircle(DA,O)&Angle(OAD)&IsCentreOfCircle(O,O); ["PerpendicularBetweenLine(DA,OA)"]  
+2; arc_property_center_angle(1,OAC,O); Arc(OAC)&Angle(AOC)&IsCentreOfCircle(O,O); ["Equal(MeasureOfArc(OAC),MeasureOfAngle(AOC))"]  
+3; arc_property_circumference_angle_external(1,OAC,B); Cocircular(O,BAC)&Angle(CBA); ["Equal(MeasureOfAngle(CBA),Mul(MeasureOfArc(OAC),1/2))"]  
+4; triangle_property_angle_sum(1,ADB); Polygon(ADB); ["Equal(Add(MeasureOfAngle(ADB),MeasureOfAngle(DBA),MeasureOfAngle(BAD)),180)"]  
+***MODEL_RESPONSE_END***
+RETRIES_MESSAGES:
+#RETRIES:
+0
 
 GT_EQUATIONS:
 ma_coa-70

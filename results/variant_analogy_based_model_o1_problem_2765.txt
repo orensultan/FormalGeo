@@ -230,6 +230,7 @@ MeasureOfAngle(IAK);ma_qak;None
 Outputs:
 Outputs for Problem B:
 
+***MODEL_RESPONSE_BEGIN***
 EQUATIONS:
 ma_aen-64
 
@@ -240,9 +241,13 @@ ANSWER:
 64
 
 THEOREM_SEQUENCE:
-1; parallel_property_collinear_extend(3,AK,WJ,Z); ParallelBetweenLine(AK,WJ)&Collinear(AZK); ["ParallelBetweenLine(AZ,WJ)","ParallelBetweenLine(ZK,WJ)"]
-2; parallel_property_collinear_extend(3,IL,RN,D); ParallelBetweenLine(IL,RN)&Collinear(IDL); ["ParallelBetweenLine(ID,RN)","ParallelBetweenLine(DL,RN)"]
-
+1; parallel_property_collinear_extend(3,IL,RN,D); ParallelBetweenLine(IL,RN)&Collinear(IDL); ["ParallelBetweenLine(ID,RN)","ParallelBetweenLine(DL,RN)"]
+2; parallel_property_collinear_extend(3,ID,RN,Z); ParallelBetweenLine(ID,RN)&Collinear(IDZ); ["ParallelBetweenLine(IZ,RN)","ParallelBetweenLine(DZ,RN)"]
+***MODEL_RESPONSE_END***
+RETRIES_MESSAGES:
+#retry: 1; message: Tier1 error. Theorem  not defined in current GDL. Please rewrite the proof sequence, you are allowed to use only theorems from the GDL.
+#RETRIES:
+1
 
 GT_EQUATIONS:
 ma_aen-64

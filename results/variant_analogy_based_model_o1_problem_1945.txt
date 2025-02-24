@@ -38,8 +38,11 @@ Cocircular(B,XZ)
 Cocircular(B,ZX)
 Cocircular(B,YZ)
 Cocircular(B,ZY)
+Cocircular(B,ZYX)
 Cocircular(B,YZX)
+Cocircular(B,XZY)
 Cocircular(B,ZXY)
+Cocircular(B,YXZ)
 Point(X)
 Point(W)
 Point(Y)
@@ -79,8 +82,9 @@ MeasureOfAngle(JFG);ma_jfg;None
 Outputs:
 Outputs for Problem B:
 
+***MODEL_RESPONSE_BEGIN***
 EQUATIONS:
-ma_ybx=106
+ma_ybx-106
 
 GOAL_SYMBOL:
 ma_xwy
@@ -90,12 +94,15 @@ ANSWER:
 
 THEOREM_SEQUENCE:
 1; tangent_of_circle_property_perpendicular(1,WX,B,B); IsTangentOfCircle(WX,B)&Angle(BXW)&IsCentreOfCircle(B,B); ["PerpendicularBetweenLine(BX,WX)"]  
-2; tangent_of_circle_property_perpendicular(1,WY,B,B); IsTangentOfCircle(WY,B)&Angle(BYW)&IsCentreOfCircle(B,B); ["PerpendicularBetweenLine(BY,WY)"]  
-3; quadrilateral_property_angle_sum(1,XWYB); Polygon(XWYB); ["Equal(Add(MeasureOfAngle(XWY),MeasureOfAngle(WYB),MeasureOfAngle(YBX),MeasureOfAngle(BXW)),360)"]  
-
+2; tangent_of_circle_property_perpendicular(2,WY,B,B); IsTangentOfCircle(WY,B)&Angle(BYW)&IsCentreOfCircle(B,B); ["PerpendicularBetweenLine(BY,WY)"]  
+3; quadrilateral_property_angle_sum(1,XBYW); Polygon(XBYW); ["Equal(Add(MeasureOfAngle(XBY),MeasureOfAngle(BYW),MeasureOfAngle(YWX),MeasureOfAngle(WXB)),360)"]
+***MODEL_RESPONSE_END***
+RETRIES_MESSAGES:
+#RETRIES:
+0
 
 GT_EQUATIONS:
-ma_ybx=106
+ma_ybx-106
 GT_GOAL_SYMBOL:
 ma_xwy
 GT_ANSWER:

@@ -95,10 +95,9 @@ def print_problem(json, verbose=False):
                    json['theorem_seqs'], abstract_theorem_seqs, json['theorem_seqs_dag'], abstract_theorem_seq_dag)
 
 
-def save_problems():
+def save_problems(directory_path):
     count = 0
     problems = {}
-    directory_path = 'formalgeo7k_v1/problems'
     for filename in os.listdir(directory_path):
         count += 1
         if filename.endswith('.json'):
@@ -108,7 +107,6 @@ def save_problems():
                 problem = print_problem(json_data)
                 problems[problem.id] = problem
     print_problem_level_dist(problems)
-    # target_problem = problems[2999]
     return problems
 
 

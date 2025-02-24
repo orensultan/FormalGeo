@@ -26,14 +26,14 @@ Shape(FBD,DE,EB)
 Shape(DE,EB,FBD)
 Shape(AE,ED,FDA)
 Shape(ED,FDA,AE)
-Shape(FAC,CE,ED,FDA)
-Shape(CE,ED,FDA,FAC)
-Shape(ED,FDA,FAC,CE)
-Shape(FDA,FAC,CE,ED)
 Shape(EA,FAC,FCB,BE)
 Shape(FAC,FCB,BE,EA)
 Shape(FCB,BE,EA,FAC)
 Shape(BE,EA,FAC,FCB)
+Shape(FAC,CE,ED,FDA)
+Shape(CE,ED,FDA,FAC)
+Shape(ED,FDA,FAC,CE)
+Shape(FDA,FAC,CE,ED)
 Shape(EC,FCB,FBD,DE)
 Shape(FCB,FBD,DE,EC)
 Shape(FBD,DE,EC,FCB)
@@ -42,16 +42,16 @@ Shape(EB,FBD,FDA,AE)
 Shape(FBD,FDA,AE,EB)
 Shape(FDA,AE,EB,FBD)
 Shape(AE,EB,FBD,FDA)
-Shape(FAC,CE,EB,FBD,FDA)
-Shape(CE,EB,FBD,FDA,FAC)
-Shape(EB,FBD,FDA,FAC,CE)
-Shape(FBD,FDA,FAC,CE,EB)
-Shape(FDA,FAC,CE,EB,FBD)
 Shape(EA,FAC,FCB,FBD,DE)
 Shape(FAC,FCB,FBD,DE,EA)
 Shape(FCB,FBD,DE,EA,FAC)
 Shape(FBD,DE,EA,FAC,FCB)
 Shape(DE,EA,FAC,FCB,FBD)
+Shape(FAC,CE,EB,FBD,FDA)
+Shape(CE,EB,FBD,FDA,FAC)
+Shape(EB,FBD,FDA,FAC,CE)
+Shape(FBD,FDA,FAC,CE,EB)
+Shape(FDA,FAC,CE,EB,FBD)
 Shape(EC,FCB,FBD,FDA,AE)
 Shape(FCB,FBD,FDA,AE,EC)
 Shape(FBD,FDA,AE,EC,FCB)
@@ -85,20 +85,36 @@ Cocircular(F,CD)
 Cocircular(F,AC)
 Cocircular(F,CA)
 Cocircular(F,BDA)
+Cocircular(F,ADB)
 Cocircular(F,DAB)
+Cocircular(F,BAD)
 Cocircular(F,ABD)
+Cocircular(F,DBA)
 Cocircular(F,BDC)
+Cocircular(F,CDB)
 Cocircular(F,DCB)
+Cocircular(F,BCD)
 Cocircular(F,CBD)
+Cocircular(F,DBC)
 Cocircular(F,BAC)
+Cocircular(F,CAB)
 Cocircular(F,ACB)
+Cocircular(F,BCA)
 Cocircular(F,CBA)
+Cocircular(F,ABC)
 Cocircular(F,DAC)
+Cocircular(F,CAD)
 Cocircular(F,ACD)
+Cocircular(F,DCA)
 Cocircular(F,CDA)
+Cocircular(F,ADC)
+Cocircular(F,CADB)
 Cocircular(F,DACB)
+Cocircular(F,BCAD)
 Cocircular(F,ACBD)
+Cocircular(F,DBCA)
 Cocircular(F,CBDA)
+Cocircular(F,ADBC)
 Point(A)
 Point(B)
 Point(E)
@@ -136,8 +152,8 @@ Angle(CEA)
 Angle(BEC)
 Angle(DEB)
 Angle(AED)
-Angle(CEB)
 Angle(DEA)
+Angle(CEB)
 Angle(AEC)
 Angle(BED)
 Circle(F)
@@ -155,11 +171,12 @@ LengthOfLine(FD);ll_df;2
 Outputs:
 Outputs for Problem B:
 
+***MODEL_RESPONSE_BEGIN***
 EQUATIONS:
 ll_ae-x
-ll_be=6
-ll_ec=3
-ll_ed=4
+ll_be-6
+ll_ec-3
+ll_ed-4
 
 GOAL_SYMBOL:
 x
@@ -168,14 +185,17 @@ ANSWER:
 2
 
 THEOREM_SEQUENCE:
-1; circle_property_circular_power_chord_and_chord(1,AEB,CED,F); Cocircular(F,AB)&Cocircular(F,CD)&Collinear(AEB)&Collinear(CED); ["Equal(Mul(LengthOfLine(EA),LengthOfLine(EB)),Mul(LengthOfLine(EC),LengthOfLine(ED)))"]
-
+1; circle_property_circular_power_chord_and_chord(1,AEB,CED,F); Cocircular(F,AB)&Cocircular(F,CD)&Collinear(AEB)&Collinear(CED); ["Equal(Mul(LengthOfLine(AE),LengthOfLine(EB)),Mul(LengthOfLine(CE),LengthOfLine(ED)))"]
+***MODEL_RESPONSE_END***
+RETRIES_MESSAGES:
+#RETRIES:
+0
 
 GT_EQUATIONS:
 ll_ae-x
-ll_be=6
-ll_ec=3
-ll_ed=4
+ll_be-6
+ll_ec-3
+ll_ed-4
 GT_GOAL_SYMBOL:
 x
 GT_ANSWER:
@@ -183,4 +203,3 @@ GT_ANSWER:
 GT_THEOREM_SEQUENCE:
 1;circle_property_circular_power_chord_and_chord(1,BEA,DEC,F);Cocircular(F,BA)&Cocircular(F,DC)&Collinear(BEA)&Collinear(DEC);["Equal(Mul(LengthOfLine(ED),LengthOfLine(EC)),Mul(LengthOfLine(EB),LengthOfLine(EA)))"]
 
-problem_id: 2669: Success

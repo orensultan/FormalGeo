@@ -164,7 +164,7 @@ def theorem_verifier(solver, theorem_seqs):
 
 
 
-def def_call_gpt_o1_preview(model, messages):
+def call_gpt_o1(model, messages):
     response = openai.ChatCompletion.create(
         model=model,
         messages=messages
@@ -203,7 +203,7 @@ def call_gpt(model, messages, temperature=0, wait_time=1, retry_wait_time=6, max
             raise Exception(f"Unexpected error: {e}")
 
 def gpt_response(messages, model_name):
-    resp = def_call_gpt_o1_preview(model=model_name, messages=messages) if model_name != 'o1-preview' else def_call_gpt_o1_preview(model=model_name, messages=messages)
+    resp = call_gpt_o1(model=model_name, messages=messages) if model_name in ['o1-preview', 'o1', 'o1-mini', 'o3-mini'] else call_gpt(model=model_name, messages=messages)
     return resp
 
 def find_relevant_theorems(args, theorems, problems_set):
@@ -340,22 +340,35 @@ def get_prompt_template_content(args, gdl_relevant_theorems, similar_problems, p
 
 
 
-def generate_and_verify(args, gdl_relevant_theorems, similar_problems, problem2, max_retries=5):
+def generate_and_verify(args, gdl_relevant_theorems, similar_problems, problem2, max_retries_in_run):
     content = get_prompt_template_content(args, gdl_relevant_theorems, similar_problems, problem2)
     messages = create_messages(content)
 
     attempts = 0
     theorem_verifier_result = ""
     resp = ""
-    while attempts < max_retries:
+    retries_messages = []
+    while attempts < max_retries_in_run:
         resp = gpt_response(messages, args.model_name)
         generated_theorem_sequence_list = get_processed_model_resp(resp)
 
         verifier = Verifier(problem2.id, generated_theorem_sequence_list)
         theorem_verifier_result = verifier.verify()
-        if problem2.id == 2916 and len(generated_theorem_sequence_list) == 1 and (generated_theorem_sequence_list[0] == "parallel_property_alternate_interior_angle(2,AB,CD)" or generated_theorem_sequence_list[0] == "parallel_property_corresponding_angle(2,AB,CD,E)"):
-            # theorem_verifier_result = "your THEOREM_SEQUENCE is incomplete. Your task was to find the measure of ∠ECD but this measure is still underconstrained, the value cannot be determined. Please fix the proof."
-            theorem_verifier_result = "verification failed. Your task was to find the measure of ∠ECD but this measure is still underconstrained. Specifically, you found that the measure of angle BCD is equal to the measure of angle CBA, but the measure of CBA is unknown. Please note that when you see Collinear(EBC) it means B is the midpoint between E and C. Please fix the proof."
+        # if problem2.id == 2916 and len(generated_theorem_sequence_list) == 1 and (generated_theorem_sequence_list[0] == "parallel_property_alternate_interior_angle(2,AB,CD)" or generated_theorem_sequence_list[0] == "parallel_property_corresponding_angle(2,AB,CD,E)"):
+        #     # theorem_verifier_result = "your THEOREM_SEQUENCE is incomplete. Your task was to find the measure of ∠ECD but this measure is still underconstrained, the value cannot be determined. Please fix the proof."
+        #     theorem_verifier_result = "verification failed. Your task was to find the measure of angle ECD but this measure is still underconstrained. Specifically, you found that the measure of angle BCD is equal to the measure of angle CBA, but the measure of CBA, but you did not find the measure of CBA. Please fix the proof. You should modify only the THEOREM_SEQUENCE."
+        # if problem2.id == 69 and attempts == 0:
+        #     theorem_verifier_result = "Verification failed. In step 1 we are given that the measure of angle DFG is 65, but you did not find the measure of angle FGD. Please fix the proof."
+        # if problem2.id == 358 and attempts == 0:
+        #     theorem_verifier_result = "Verification failed. In the conclusion of step 1 we are given the measure of angle BCA and the length of line AC, but you did not find the measure of angle ABC.  Please fix the proof."
+        # if problem2.id == 127 and attempts == 0:
+        #     theorem_verifier_result = "Verification failed. In the conclusion we are given the measure of angle HGJ is 42, but you did not find the measure of angle AGH. Please fix the proof."
+        # if problem2.id == 2200 and attempts == 0:
+        #     theorem_verifier_result = "Verification failed. In step 1 you call the theorem with Polygon(BAC) which does not exist in CONSTRUCTION_CDL_EXTENDED. Please retry with an existing Polygon and  fix the proof."
+        # if problem2.id == 4254 and attempts == 0:
+        #     theorem_verifier_result = "Verification failed. In conclusion of step 1 you find the measure of angle PDA which equals to 180 - 80 - 55 = 45. But you have been asked to find the mesaure of angle CBA. Please fix the proof."
+        # if problem2.id == 3634:
+        #     theorem_verifier_result = "Verification failed. You did not find the measure of angle BCE. In step 1 you found that the measure of angle FEC plus measure of angle ECD is equal to 180. We are given that the measure of angle FEC is 160. Hence we conclude the measure of angle ECD = 180 - 160 = 20. In step 2 you conclude that measure of angle BCD is the sum of measure of angle BCE and measure of angle ECD which is 20. In order to conclude the measure for angle BCE, you should first find the measure of angle BCD. Try to use what you are given in order to find the measure of angle BCD as part of the proof. Please retry and fix the proof."
 
         if theorem_verifier_result == "Success":
             print("Theorem sequence verified correctly")
@@ -366,8 +379,9 @@ def generate_and_verify(args, gdl_relevant_theorems, similar_problems, problem2,
         print(f"Verifier result: {theorem_verifier_result}")
         print(f"Retry attempt: {attempts + 1}")
         attempts += 1
+        retries_messages.append(theorem_verifier_result)
 
-    return messages, resp, theorem_verifier_result
+    return messages, resp, theorem_verifier_result, retries_messages
 
 
 
@@ -395,9 +409,10 @@ chosen_problems_by_level = {
 }
 
 chosen_problems_by_level = {
+ 4 : [5399]
 # 1: [1975, 1490, 1726, 178, 2669, 2614, 51, 2323, 192, 2624],
 # 2: [2141, 69, 2916, 358, 4473, 4483, 5645, 127, 2410, 4523],
-#  3: [ 4187, 5244, 5062, 844, 1945, 2200, 4099, 2765, 4476, 4254 ]
+# 3: [ 4187, 5244, 5062, 844, 1945, 2200, 4099, 2765, 4476, 4254 ]
 # 4: [ 2114, 464, 5510, 3272, 5230, 3634, 6924, 4797, 5399, 6155]
 # 5: [5440, 6485 , 696, 847, 5563, 532, 5431, 437, 5080, 6660]
 # 6: [4923, 3298, 759, 4910, 5805, 5708, 6417, 5835, 5808, 5779],
@@ -405,9 +420,9 @@ chosen_problems_by_level = {
 # 8: [3983, 2761, 2875, 3434, 6806, 1258, 246, 4793, 2106, 6760],
 # 9: [4892, 5092, 5522, 4796, 3418, 6850, 6790, 5116, 2851, 716]
 # 10: [4134, 3419, 2196, 4489, 6146, 6018, 6376, 5353, 3114, 5197]
-10: [4489]
-
 }
+
+
 
 
 
@@ -500,10 +515,19 @@ def get_gt_result(problem2):
     return gt
 
 
-def write_result(file_path, problem2_given, problem2_resp, problem2_gt):
+def write_result(file_path, problem2_given, problem2_resp, problem2_gt, retries_messages, run_id):
     with open(file_path, "w") as file:
         file.write(problem2_given + "\n")
+        file.write("***MODEL_RESPONSE_BEGIN***" + "\n")
         file.write(problem2_resp + "\n")
+        file.write("***MODEL_RESPONSE_END***" + "\n")
+        file.write("RETRIES_MESSAGES:\n")
+        for i, message in enumerate(retries_messages):
+            file.write("#retry: " + str(i + 1) + '; message: ' + message + "\n")
+        file.write("#RETRIES:\n")
+        file.write(str(len(retries_messages)) + "\n")
+        file.write("#RUNS:\n")
+        file.write(str(run_id) + "\n")
         file.write(problem2_gt + "\n")
     print(f"Content written to {file_path}")
 
@@ -516,9 +540,8 @@ def process_problem(problem_id, solver = None, problems=None):
     # display_image(problem_id)
     return problem
 
-def main(args, problems):
-    # chosen_problems_by_level = get_chosen_problems_by_level(problems)
-    # print_similar_problems_theorems_coverage(chosen_problems_by_level)
+
+def run(args, problems, run_id):
     for _, problems_id in chosen_problems_by_level.items():
         for problem2_id in problems_id:
             if args.variant in ["analogy_based", "analogy_based_all_theorems"]:
@@ -527,16 +550,19 @@ def main(args, problems):
                 similar_problem_ids = retrieve_random_proofs(problem2_id, n=args.similar_problems)
             similar_problems = [process_problem(problem_id, solver, problems) for problem_id in similar_problem_ids]
             problem2 = process_problem(problem2_id, solver, problems)
-
             similar_problems_theorems = get_theorems_from_similar_problems(similar_problems)
             gdl_relevant_theorems = find_relevant_theorems(args, theorems, similar_problems_theorems)
             # write_theorems_coverage_stats(similar_problems_theorems, problem2)
-            messages, problem2_resp, verifier_result = generate_and_verify(args, gdl_relevant_theorems, similar_problems, problem2)
+            messages, problem2_resp, verifier_result, retries_messages = generate_and_verify(args,
+                                                                                             gdl_relevant_theorems,
+                                                                                             similar_problems, problem2,
+                                                                                             args.max_retries_in_run)
             problem2_gt = get_gt_result(problem2)
             start_index = messages[0]['content'].find("Inputs for Problem B:")
             problem2_given = messages[0]['content'][start_index:]
-            output_path = "results/" + "variant_" + args.variant + "_model_" + args.model_name + "_problem_" + str(problem2.id) + ".txt"
-            write_result(output_path, problem2_given, problem2_resp, problem2_gt)
+            output_path = f"results/level_{problem2.level}/variant_{args.variant}_model_{args.model_name}_problem_{problem2.id}.txt"
+            write_result(output_path, problem2_given, problem2_resp, problem2_gt, retries_messages, run_id)
+
 
 
 
@@ -547,7 +573,13 @@ if __name__ == "__main__":
     parser.add_argument("--prompt_path", dest="prompt_path", type=str, default="src/formalgeo/prompt/geometry_similar_problems_prompt_291224.txt")
     parser.add_argument("--similar_problems", dest="similar_problems", type=int, default=100)
     parser.add_argument("--in_context_few_shot", dest="in_context_few_shot", type=int, default=5)
+    parser.add_argument("--max_retries_in_run", dest="max_retries_in_run", type=int, default=5)
+    parser.add_argument("--max_runs", dest="max_runs", type=int, default=5)
     args = parser.parse_args()
-
-    problems = save_problems()
-    main(args, problems)
+    problems = save_problems('formalgeo7k_v1/problems')
+    for i in range(args.max_runs):
+        run(args, problems, i)
+        break
+    chosen_problems_by_level = get_chosen_problems_by_level(problems)
+    print(chosen_problems_by_level)
+    # print_similar_problems_theorems_coverage(chosen_problems_by_level)

@@ -98,20 +98,36 @@ Cocircular(O,DB)
 Cocircular(O,CD)
 Cocircular(O,DC)
 Cocircular(O,ABC)
+Cocircular(O,CBA)
 Cocircular(O,BCA)
+Cocircular(O,ACB)
 Cocircular(O,CAB)
+Cocircular(O,BAC)
 Cocircular(O,ABD)
+Cocircular(O,DBA)
 Cocircular(O,BDA)
+Cocircular(O,ADB)
 Cocircular(O,DAB)
+Cocircular(O,BAD)
 Cocircular(O,ACD)
+Cocircular(O,DCA)
 Cocircular(O,CDA)
+Cocircular(O,ADC)
 Cocircular(O,DAC)
+Cocircular(O,CAD)
 Cocircular(O,BCD)
+Cocircular(O,DCB)
 Cocircular(O,CDB)
+Cocircular(O,BDC)
 Cocircular(O,DBC)
+Cocircular(O,CBD)
+Cocircular(O,DCBA)
 Cocircular(O,BCDA)
+Cocircular(O,ADCB)
 Cocircular(O,CDAB)
+Cocircular(O,BADC)
 Cocircular(O,DABC)
+Cocircular(O,CBAD)
 Point(B)
 Point(A)
 Point(C)
@@ -156,8 +172,9 @@ MeasureOfAngle(DOB);ma_dob;None
 Outputs:
 Outputs for Problem B:
 
+***MODEL_RESPONSE_BEGIN***
 EQUATIONS:
-ma_abc=80
+ma_abc-80
 
 GOAL_SYMBOL:
 ma_cda
@@ -166,11 +183,15 @@ ANSWER:
 100
 
 THEOREM_SEQUENCE:
-1; quadrilateral_property_angle_sum(1,ABCD); Polygon(ABCD); ["Equal(Add(MeasureOfAngle(ABC),MeasureOfAngle(BCD),MeasureOfAngle(CDA),MeasureOfAngle(DAB)),360)"]
-
+1; arc_property_circumference_angle_external(1,OAC,B); Cocircular(O,ABC)&Angle(ABC); ["Equal(MeasureOfAngle(ABC),Mul(MeasureOfArc(OAC),1/2))"]  
+2; arc_property_circumference_angle_internal(1,OAC,D); Cocircular(O,ADC)&Angle(CDA); ["Equal(MeasureOfAngle(CDA),Sub(180,Mul(MeasureOfArc(OAC),1/2)))"]  
+***MODEL_RESPONSE_END***
+RETRIES_MESSAGES:
+#RETRIES:
+0
 
 GT_EQUATIONS:
-ma_abc=80
+ma_abc-80
 GT_GOAL_SYMBOL:
 ma_cda
 GT_ANSWER:
@@ -179,4 +200,3 @@ GT_THEOREM_SEQUENCE:
 1;arc_property_circumference_angle_external(1,OCA,B);Cocircular(O,CAB)&Angle(ABC);["Equal(MeasureOfAngle(ABC),Mul(MeasureOfArc(OCA),1/2))"]
 2;arc_property_circumference_angle_internal(1,OCA,D);Cocircular(O,CDA)&Angle(CDA);["Equal(MeasureOfAngle(CDA),Sub(180,Mul(MeasureOfArc(OCA),1/2)))"]
 
-problem_id: 4473: Success

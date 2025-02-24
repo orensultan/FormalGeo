@@ -78,7 +78,7 @@ problem_id: 3412: Success
 problem_id: 3027: Success
 problem_id: 3983: Success
 problem_id: 2761: Success
-problem_id: 2875: Failed at products constraint of a theorem step. Please try to modify the theorem step 'parallel_property_alternate_interior_angle' with parameters ('A', 'B', 'D', 'C'). For these parameters, there is an invalid predicate: ParallelBetweenLine(ABDC). Available predicates: ParallelBetweenLine(ADBC), ParallelBetweenLine(CBDA), ParallelBetweenLine(BACD), ParallelBetweenLine(DCAB)
+problem_id: 2875: Success
 problem_id: 3434: Success
 problem_id: 6806: Success
 problem_id: 1258: Success
