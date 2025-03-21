@@ -6,7 +6,7 @@ from formalgeo.data import download_dataset, DatasetLoader
 from formalgeo.solver import Interactor
 from formalgeo.parse import parse_one_theorem
 import pandas as pd
-
+import collections
 
 from formalgeo.tools import show_solution
 from Problem import get_theorem, replace_symbols
@@ -15,6 +15,8 @@ import time
 import openai
 
 from src.formalgeo.verifier import Verifier
+
+from geometric_verifier import verify_geometric_proof
 
 openai.api_key = "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"
 openai.api_key = "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"
@@ -340,20 +342,26 @@ def get_prompt_template_content(args, gdl_relevant_theorems, similar_problems, p
 
 
 
-def generate_and_verify(args, gdl_relevant_theorems, similar_problems, problem2, max_retries_in_run):
+def generate_and_verify(args, gdl_relevant_theorems, similar_problems, problem2, max_retries_in_run, run_id):
     content = get_prompt_template_content(args, gdl_relevant_theorems, similar_problems, problem2)
     messages = create_messages(content)
-
+    start_index = messages[0]['content'].find("Inputs for Problem B:")
+    problem2_given = messages[0]['content'][start_index:]
+    problem2_gt = get_gt_result(problem2)
+    file_path = f"results/level_{problem2.level}/variant_{args.variant}_model_{args.model_name}_problem_{problem2.id}_to_verify.txt"
     attempts = 0
-    theorem_verifier_result = ""
+    verifier_result = ""
     resp = ""
     retries_messages = []
     while attempts < max_retries_in_run:
         resp = gpt_response(messages, args.model_name)
+        write_result(file_path, problem2_given, resp, problem2_gt, retries_messages, run_id)
         generated_theorem_sequence_list = get_processed_model_resp(resp)
 
         verifier = Verifier(problem2.id, generated_theorem_sequence_list)
-        theorem_verifier_result = verifier.verify()
+        verify_symbols_syntax_result = verifier.verify_symbols_syntax()
+        verify_geometric_proof_result, feedback = verify_geometric_proof(file_path, print_output=False)
+
         # if problem2.id == 2916 and len(generated_theorem_sequence_list) == 1 and (generated_theorem_sequence_list[0] == "parallel_property_alternate_interior_angle(2,AB,CD)" or generated_theorem_sequence_list[0] == "parallel_property_corresponding_angle(2,AB,CD,E)"):
         #     # theorem_verifier_result = "your THEOREM_SEQUENCE is incomplete. Your task was to find the measure of ∠ECD but this measure is still underconstrained, the value cannot be determined. Please fix the proof."
         #     theorem_verifier_result = "verification failed. Your task was to find the measure of angle ECD but this measure is still underconstrained. Specifically, you found that the measure of angle BCD is equal to the measure of angle CBA, but the measure of CBA, but you did not find the measure of CBA. Please fix the proof. You should modify only the THEOREM_SEQUENCE."
@@ -369,19 +377,23 @@ def generate_and_verify(args, gdl_relevant_theorems, similar_problems, problem2,
         #     theorem_verifier_result = "Verification failed. In conclusion of step 1 you find the measure of angle PDA which equals to 180 - 80 - 55 = 45. But you have been asked to find the mesaure of angle CBA. Please fix the proof."
         # if problem2.id == 3634:
         #     theorem_verifier_result = "Verification failed. You did not find the measure of angle BCE. In step 1 you found that the measure of angle FEC plus measure of angle ECD is equal to 180. We are given that the measure of angle FEC is 160. Hence we conclude the measure of angle ECD = 180 - 160 = 20. In step 2 you conclude that measure of angle BCD is the sum of measure of angle BCE and measure of angle ECD which is 20. In order to conclude the measure for angle BCE, you should first find the measure of angle BCD. Try to use what you are given in order to find the measure of angle BCD as part of the proof. Please retry and fix the proof."
-
-        if theorem_verifier_result == "Success":
+        if verify_symbols_syntax_result == "Success" and not feedback:
+            verifier_result = verify_symbols_syntax_result
             print("Theorem sequence verified correctly")
             break
+        else:
+            messages.append({"role": "assistant", "content": resp})
+            if verify_symbols_syntax_result != "Success":
+                verifier_result = verify_symbols_syntax_result
+            else: # feedback is not empty
+                verifier_result = feedback
+            messages.append({"role": "user", "content": f"Verifier result: {verifier_result}"})
+            print(f"Verifier result: {verifier_result}")
+            print(f"Retry attempt: {attempts + 1}")
+            attempts += 1
+            retries_messages.append(verifier_result)
 
-        messages.append({"role": "assistant", "content": resp})
-        messages.append({"role": "user", "content": f"Verifier result: {theorem_verifier_result}"})
-        print(f"Verifier result: {theorem_verifier_result}")
-        print(f"Retry attempt: {attempts + 1}")
-        attempts += 1
-        retries_messages.append(theorem_verifier_result)
-
-    return messages, resp, theorem_verifier_result, retries_messages
+    return messages, resp, verifier_result, retries_messages
 
 
 
@@ -409,13 +421,13 @@ chosen_problems_by_level = {
 }
 
 chosen_problems_by_level = {
+1 : [1975]
 # 1: [1975, 1490, 1726, 178, 2669, 2614, 51, 2323, 192, 2624],
 # 2: [2141, 69, 2916, 358, 4473, 4483, 5645, 127, 2410, 4523],
 # 3: [ 4187, 5244, 5062, 844, 1945, 2200, 4099, 2765, 4476, 4254 ]
 # 4: [ 2114, 464, 5510, 3272, 5230, 3634, 6924, 4797, 5399, 6155]
 # 5: [5440, 6485 , 696, 847, 5563, 532, 5431, 437, 5080, 6660]
 # 6: [4923, 3298, 759, 4910, 5805, 5708, 6417, 5835, 5808, 5779],
-7 : [3412]
 # 7: [3580, 4898, 6802, 6247, 449, 1854, 5208, 6322, 3412, 3027],
 # 8: [3983, 2761, 2875, 3434, 6806, 1258, 246, 4793, 2106, 6760],
 # 9: [4892, 5092, 5522, 4796, 3418, 6850, 6790, 5116, 2851, 716]
@@ -556,7 +568,7 @@ def run(args, problems, run_id):
             messages, problem2_resp, verifier_result, retries_messages = generate_and_verify(args,
                                                                                              gdl_relevant_theorems,
                                                                                              similar_problems, problem2,
-                                                                                             args.max_retries_in_run)
+                                                                                             args.max_retries_in_run, run_id)
             problem2_gt = get_gt_result(problem2)
             start_index = messages[0]['content'].find("Inputs for Problem B:")
             problem2_given = messages[0]['content'][start_index:]
@@ -581,5 +593,4 @@ if __name__ == "__main__":
         run(args, problems, i)
         break
     chosen_problems_by_level = get_chosen_problems_by_level(problems)
-    print(chosen_problems_by_level)
     # print_similar_problems_theorems_coverage(chosen_problems_by_level)

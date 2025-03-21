@@ -181,7 +181,7 @@ gt = [EXAMPLE_2_GROUND_TRUTH, EXAMPLE_3_GROUND_TRUTH, EXAMPLE_4_GROUND_TRUTH, EX
 #             raise Exception(f"Unexpected error: {e}")
 
 
-def call_gpt(model, messages, temperature=1, wait_time=1, retry_wait_time=6, max_retries=10):
+def call_gpt(model, messages, temperature=0, wait_time=1, retry_wait_time=6, max_retries=10):
     # Filter out messages with 'system' role
     filtered_messages = [msg for msg in messages if msg['role'] != 'system']
 
@@ -326,9 +326,9 @@ def run_multiple_times(examples, gt, model_name, num_runs):
     # print(f"Correct theorems with parameters std: {correct_theorems_w_params_std:.2f}")
 
 
-model_name = 'gpt-4o'
+model_name = 'gpt-4o-mini'
 
-run_multiple_times(examples, gt, model_name=model_name, num_runs=1)
+run_multiple_times(examples_NaturalLanguage, gt, model_name=model_name, num_runs=1)
 
 
 

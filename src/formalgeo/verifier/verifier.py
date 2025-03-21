@@ -10,7 +10,7 @@ class Verifier:
         self.solver = Interactor(dl.predicate_GDL, dl.theorem_GDL)
         self.solver.load_problem(dl.get_problem(problem_id))
 
-    def verify(self):
+    def verify_symbols_syntax(self):
         if len(self.theorem_seqs) == 0:
             return "Verification failed. The THEOREM_SEQUENCE you provided is empty. Please generate a proof again, using the similar problems I provided (A1, A2, A3, A4, A5), along with the GDL_DICTIONARY of theorems."
         for theorem in self.theorem_seqs:
