@@ -11285,8 +11285,3 @@ if __name__ == "__main__":
         print(feedback)
     else:
         print("Verification succeeded")
-
-
-
-
-##
