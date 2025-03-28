@@ -386,7 +386,15 @@ def generate_and_verify(args, gdl_relevant_theorems, similar_problems, problem2,
             if verify_symbols_syntax_result != "Success":
                 verifier_result = verify_symbols_syntax_result
             else: # feedback is not empty
-                verifier_result = feedback
+                model_response = ""
+                if "ANSWER:" in resp:
+                    # Get everything after ANSWER: including the ANSWER: itself
+                    answer_section = resp.split("ANSWER:")[1]
+                    # Split by THEOREM_SEQUENCE to get just the ANSWER part
+                    answer_part = answer_section.split("THEOREM_SEQUENCE:")[0].strip()
+                    # Add RETRY prefix to both sections
+                    model_response = f"RETRY_ANSWER:\n{answer_part}\nRETRY_THEOREM_SEQUENCE:\n{answer_section.split('THEOREM_SEQUENCE:')[1].strip()}"
+                verifier_result = f"{feedback}\nModel Answer:\n{model_response}"
             messages.append({"role": "user", "content": f"Verifier result: {verifier_result}"})
             print(f"Verifier result: {verifier_result}")
             print(f"Retry attempt: {attempts + 1}")
@@ -421,7 +429,7 @@ chosen_problems_by_level = {
 }
 
 chosen_problems_by_level = {
-2 : [2410]
+3 : [4187]
 # 1: [1975, 1490, 1726, 178, 2669, 2614, 51, 2323, 192, 2624],
 # 2: [2141, 69, 2916, 358, 4473, 4483, 5645, 127, 2410, 4523],
 # 3: [ 4187, 5244, 5062, 844, 1945, 2200, 4099, 2765, 4476, 4254 ]

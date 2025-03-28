@@ -1,3 +1,4 @@
+
 from z3 import *
 import re
 from dataclasses import dataclass
@@ -7,13 +8,13 @@ from typing import Tuple, Optional
 from fractions import Fraction
 import logging
 
-
 CONSTRUCTION_CDL = 'CONSTRUCTION_CDL'
 TEXT_CDL = 'TEXT_CDL'
 GOAL_CDL = 'GOAL_CDL'
 CONSTRUCTION_CDL_EXTENDED = 'CONSTRUCTION_CDL_EXTENDED'
 THEOREM_SEQUENCE = 'THEOREM_SEQUENCE'
 ANSWER = 'ANSWER'
+
 
 class ErrorTier(Enum):
     TIER1_THEOREM_CALL = 1  # Incorrect theorem call
@@ -35,8 +36,6 @@ class GeometricPoint:
 
 class GeometricTheorem:
     def __init__(self):
-
-
 
         # Solver and basic geometric elements
         self.solver = Solver()
@@ -64,11 +63,8 @@ class GeometricTheorem:
         self.mirror_congruent_triangles = []
         self.midsegments = {}
 
-
-
         self.quadrilateral_diagonals = set()
         self.quadrilateral_right_angles = set()
-
 
         # Add these new attributes for length handling
         self.lengths = {}  # Store line lengths
@@ -111,6 +107,8 @@ class GeometricTheorem:
 
         self.proven_area_relationships = []
 
+        self.added_basic_constraints = set()
+
     def extract_variables(self, expression: str) -> Set[str]:
         """Extract variable names from an algebraic expression"""
         # Use regex to find single letters that aren't part of numbers
@@ -132,8 +130,6 @@ class GeometricTheorem:
             # Constrain the angle to be between 0 and 180.
             self.solver.add(self.angles[angle_name] > 0, self.angles[angle_name] <= 180)
         return self.angles[angle_name]
-
-
 
     def add_length(self, p1: str, p2: str) -> Real:
         """Return the Z3 variable for the length of the segment between p1 and p2.
@@ -174,7 +170,6 @@ class GeometricTheorem:
         canonical_pair = min((r1, r2) for r1 in rotations1 for r2 in rotations2)
 
         return canonical_pair
-
 
     def canonicalize_congruent_triangle_pair(self, tri1: str, tri2: str) -> Tuple[str, str]:
         """
@@ -355,8 +350,17 @@ class GeometricTheorem:
         if constraint_str.startswith('#'):
             return constraint_str
 
-        # Replace angle_ABC with ∠ABC for better readability
-        constraint_str = re.sub(r'angle_(\w+)', r'∠\1', constraint_str)
+        # Remove leading "0 + " that commonly appears in sum expressions
+        constraint_str = re.sub(r'^0\s*\+\s*', '', constraint_str)
+
+        # Replace angle_ABC with ∠ABC for better readability, but be careful of word boundaries
+        constraint_str = re.sub(r'(^|[^a-zA-Z0-9_])angle_(\w+)', r'\1∠\2', constraint_str)
+
+        # Replace length_AB with |AB| for better readability
+        constraint_str = re.sub(r'(^|[^a-zA-Z0-9_])length_(\w+)', r'\1|\2|', constraint_str)
+
+        # Replace arc_ABC with arc(ABC) for better readability
+        constraint_str = re.sub(r'(^|[^a-zA-Z0-9_])arc_(\w+)', r'\1arc(\2)', constraint_str)
 
         # Replace common Z3 operators
         constraint_str = constraint_str.replace(' == ', ' = ')
@@ -370,9 +374,182 @@ class GeometricTheorem:
 
         return constraint_str
 
+    def gather_relevant_geometric_data(self, excluded_categories=None, goal_variable=None):
+        """
+        Collect all non-empty geometric facts that might be relevant for feedback.
 
+        Args:
+            excluded_categories: List of category names to exclude from the output
+            goal_variable: If specified, filter facts to only show those relevant to this variable
+        """
+        if excluded_categories is None:
+            excluded_categories = []  # Don't exclude any categories by default
 
+        geometric_data = {}
 
+        # Get related angles and lengths if goal_variable is provided
+        related_points = set()
+        if goal_variable and hasattr(self, 'text_cdl_lines'):
+            for line in self.text_cdl_lines:
+                if goal_variable in line:
+                    # Extract angle points related to goal variable
+                    angle_match = re.search(r'Equal\(MeasureOfAngle\((\w+)\),(.*?)\)', line)
+                    if angle_match and goal_variable in angle_match.group(2):
+                        angle_points = angle_match.group(1)
+                        for point in angle_points:
+                            related_points.add(point)
+
+                    # Extract length points related to goal variable
+                    length_match = re.search(r'Equal\(LengthOfLine\((\w+)\),(.*?)\)', line)
+                    if length_match and goal_variable in length_match.group(2):
+                        length_points = length_match.group(1)
+                        for point in length_points:
+                            related_points.add(point)
+
+        # Parallel lines - with proper deduplication
+        if self.parallel_pairs:
+            formatted_pairs = set()
+            for p1, p2 in self.parallel_pairs:
+                # Normalize each line by sorting characters within the line
+                line1 = ''.join(sorted(p1))
+                line2 = ''.join(sorted(p2))
+
+                # Normalize the pair by sorting the normalized lines
+                sorted_pair = tuple(sorted([line1, line2]))
+                formatted_pairs.add(f"{sorted_pair[0]} ∥ {sorted_pair[1]}")
+
+            if formatted_pairs and "Parallel Lines" not in excluded_categories:
+                geometric_data["Parallel Lines"] = sorted(formatted_pairs)
+
+        # Perpendicular lines - with proper deduplication
+        if self.perpendicular_pairs:
+            formatted_pairs = set()
+            for p1, p2 in self.perpendicular_pairs:
+                # Normalize each line by sorting characters within the line
+                line1 = ''.join(sorted(p1))
+                line2 = ''.join(sorted(p2))
+
+                # Normalize the pair by sorting the normalized lines
+                sorted_pair = tuple(sorted([line1, line2]))
+                formatted_pairs.add(f"{sorted_pair[0]} ⊥ {sorted_pair[1]}")
+
+            if formatted_pairs and "Perpendicular Lines" not in excluded_categories:
+                geometric_data["Perpendicular Lines"] = sorted(formatted_pairs)
+
+        # Collinear facts - filter by relevant points if goal_variable provided
+        if self.collinear_facts and "Collinear Points" not in excluded_categories:
+            filtered_facts = []
+
+            for points in self.collinear_facts:
+                # If we have a goal variable, only include collinear facts containing related points
+                if goal_variable and related_points:
+                    if any(p in related_points for p in points):
+                        filtered_facts.append(f"Collinear {''.join(points)}")
+                else:
+                    # Otherwise include all collinear facts
+                    filtered_facts.append(f"Collinear {''.join(points)}")
+
+            if filtered_facts:
+                geometric_data["Collinear Points"] = sorted(set(filtered_facts))
+
+        # Right triangles
+        if self.right_triangles and "Right Triangles" not in excluded_categories:
+            formatted_triangles = [f"Right triangle {tri}" for tri in self.right_triangles]
+            if formatted_triangles:
+                geometric_data["Right Triangles"] = sorted(set(formatted_triangles))
+
+        # Similar triangles
+        if self.similar_triangles and "Similar Triangles" not in excluded_categories:
+            formatted_pairs = [f"{tri1} similar to {tri2}" for tri1, tri2 in self.similar_triangles]
+            if formatted_pairs:
+                geometric_data["Similar Triangles"] = sorted(set(formatted_pairs))
+
+        # Congruent triangles
+        if hasattr(self,
+                   'congruent_triangles') and self.congruent_triangles and "Congruent Triangles" not in excluded_categories:
+            formatted_pairs = [f"{tri1} congruent to {tri2}" for tri1, tri2 in self.congruent_triangles]
+            if formatted_pairs:
+                geometric_data["Congruent Triangles"] = sorted(set(formatted_pairs))
+
+        # Mirror Congruent triangles
+        if hasattr(self,
+                   'mirror_congruent_triangles') and self.mirror_congruent_triangles and "Mirror Congruent Triangles" not in excluded_categories:
+            formatted_pairs = [f"{tri1} mirror congruent to {tri2}" for tri1, tri2 in self.mirror_congruent_triangles]
+            if formatted_pairs:
+                geometric_data["Mirror Congruent Triangles"] = sorted(set(formatted_pairs))
+
+        # Mirror Similar triangles
+        if hasattr(self,
+                   'mirror_similar_triangles') and self.mirror_similar_triangles and "Mirror Similar Triangles" not in excluded_categories:
+            formatted_pairs = [f"{tri1} mirror similar to {tri2}" for tri1, tri2 in self.mirror_similar_triangles]
+            if formatted_pairs:
+                geometric_data["Mirror Similar Triangles"] = sorted(set(formatted_pairs))
+
+        # Cocircular facts
+        if hasattr(self,
+                   'cocircular_facts') and self.cocircular_facts and "Cocircular Points" not in excluded_categories:
+            formatted_cocircular = []
+            for fact in self.cocircular_facts:
+                if fact and len(fact) > 1:
+                    circle = fact[0]
+                    points = ''.join(fact[1:])
+                    formatted_cocircular.append(f"Points {points} on circle {circle}")
+            if formatted_cocircular:
+                geometric_data["Cocircular Points"] = sorted(set(formatted_cocircular))
+
+        # Circles
+        if hasattr(self, 'circle_centers') and self.circle_centers and "Circles" not in excluded_categories:
+            formatted_centers = [f"Circle {circle} with center {center}" for circle, center in
+                                 self.circle_centers.items()]
+            if formatted_centers:
+                geometric_data["Circles"] = sorted(set(formatted_centers))
+
+        # Circle diameters
+        if hasattr(self,
+                   'is_diameter_of_circle') and self.is_diameter_of_circle and "Circle Diameters" not in excluded_categories:
+            formatted_diameters = [f"Line {line} is diameter of circle {circle}" for line, circle in
+                                   self.is_diameter_of_circle]
+            if formatted_diameters:
+                geometric_data["Circle Diameters"] = sorted(set(formatted_diameters))
+
+        # Tangent facts
+        if hasattr(self, 'tangent_facts') and self.tangent_facts and "Tangent Lines" not in excluded_categories:
+            formatted_tangents = [f"Line {line} is tangent to circle {circle}" for line, circle in self.tangent_facts]
+            if formatted_tangents:
+                geometric_data["Tangent Lines"] = sorted(set(formatted_tangents))
+
+        # Squares
+        if hasattr(self, 'squares') and self.squares and "Squares" not in excluded_categories:
+            formatted_squares = [f"Square {square}" for square in self.squares]
+            if formatted_squares:
+                geometric_data["Squares"] = sorted(set(formatted_squares))
+
+        # Rectangles
+        if hasattr(self, 'rectangles') and self.rectangles and "Rectangles" not in excluded_categories:
+            formatted_rectangles = [f"Rectangle {rect}" for rect in self.rectangles]
+            if formatted_rectangles:
+                geometric_data["Rectangles"] = sorted(set(formatted_rectangles))
+
+        # Rhombi
+        if hasattr(self, 'rhombi') and self.rhombi and "Rhombi" not in excluded_categories:
+            formatted_rhombi = [f"Rhombus {rhom}" for rhom in self.rhombi]
+            if formatted_rhombi:
+                geometric_data["Rhombi"] = sorted(set(formatted_rhombi))
+
+        # Kites
+        if hasattr(self, 'kites') and self.kites and "Kites" not in excluded_categories:
+            formatted_kites = [f"Kite {kite}" for kite in self.kites]
+            if formatted_kites:
+                geometric_data["Kites"] = sorted(set(formatted_kites))
+
+        # Polygons
+        if self.polygons and "Polygons" not in excluded_categories:
+            formatted_polygons = [f"Polygon {poly}" for poly in self.polygons]
+            if formatted_polygons:
+                geometric_data["Polygons"] = sorted(set(formatted_polygons))
+
+        # Remove empty categories
+        return {k: v for k, v in geometric_data.items() if v}
 
     def add_mirror_similar_triangles(self, tri1: str, tri2: str):
         """Record that triangles tri1 and tri2 are mirror similar (by AA)
@@ -388,16 +565,16 @@ class GeometricTheorem:
             print(f"Created mirror similar ratio variable: {var_name}")
         # self.add_all_side_mirror_ratio_constraints(tri1, tri2)
 
-    def generate_detailed_feedback(self, goal_type, goal_token, expected_value, computed_value=None,
+    def generate_detailed_feedback(self, goal_type, goal_token, model_answer, verifier_expected_answer=None,
                                    status="multiple_values", additional_info=None):
-        """Generate feedback in the user's preferred format."""
+        """Generate feedback in the user's preferred format with improved content filtering."""
 
         # For general variable goals, use the specialized function
         if goal_type == "general" and len(goal_token) == 1 and goal_token.isalpha():
             # It's a single letter variable like 'p'
-            return self.generate_detailed_feedback_for_variable(goal_token, expected_value, computed_value, status)
+            return self.generate_detailed_feedback_for_variable(goal_token, model_answer, verifier_expected_answer,
+                                                                status)
 
-        # Original implementation continues for other goal types...
         # Initialize the report with verification status
         report = "verification failed.\n\n"
 
@@ -428,41 +605,34 @@ class GeometricTheorem:
             report += f"- Goal: value of {goal_token}\n"
 
         # Add your answer and expected/computed value
-        report += f"- Your answer: {expected_value}\n"
+        # Add your answer
+        report += f"- Model answer: {model_answer}\n"
 
-        if computed_value is not None and status == "incompatible":
-            report += f"- Expected answer: {computed_value}\n"
-        else:
-            report += f"- Expected answer: undetermined\n"
+        # Only add expected answer line if there is an incompatible value
+        if verifier_expected_answer is not None and status == "incompatible":
+            report += f"- Verifier expected answer: {verifier_expected_answer}\n"
 
         report += "- Error: "
 
         if status == "unsatisfiable":
             report += "Your proof contains contradictory constraints. Check for incorrect values in premises, improper theorem application, or conclusions that contradict earlier assertions.\n"
-
         elif status == "incompatible":
-            report += f"Your proof determines the {goal_type} of {goal_token} to be {computed_value}, not {expected_value}. Check your theorem applications.\n"
-
+            report += f"From your proof, the verifier determines the {goal_type} of {goal_token} to be {verifier_expected_answer}, not {model_answer} as you stated in your solution. Check your theorem applications and your answer.\n"
         elif status == "multiple_values":
-            report += f"Your proof doesn't uniquely determine the value. It could be {expected_value}"
-            if computed_value is not None:
-                report += f" or {computed_value}"
-            report += ". You need additional constraints.\n"
+            report += f"Your proof doesn't uniquely determine the value. You need to use additional theorems\n"
 
-        # Extract points from goal_token
-        goal_points = list(goal_token)
+        # Add all geometric facts for context - MODIFIED TO USE "Related premises" INSTEAD
+        report += "- Available premises:\n"
+        geometric_data = self.gather_relevant_geometric_data()
 
-        # Collect relevant premises
-        report += "- Related premises:\n"
-        related_facts = self.collect_related_facts(goal_points, goal_type)
-
-        if related_facts:
-            for category, facts in related_facts.items():
+        if geometric_data:
+            for category, facts in geometric_data.items():
                 if facts:  # Only show categories with facts
+                    report += f"  {category}:\n"
                     for fact in facts:
-                        report += f"{fact}\n"
+                        report += f"    {fact}\n"
         else:
-            report += "- none found for this goal\n"
+            report += "  No relevant geometric facts found.\n"
 
         # Add theorems related to the goal
         report += "- Theorems related to the goal:\n"
@@ -479,15 +649,23 @@ class GeometricTheorem:
                     is_related = True
                     break
 
-            # Check more carefully depending on goal type
-            if not is_related and goal_type in ["angle", "arc_measure", "arc_length"]:
-                for conclusion in theorem_info["conclusions"]:
-                    pattern = rf'MeasureOf(Angle|Arc)\((\w+)\)'
-                    matches = re.findall(pattern, conclusion)
-                    for match in matches:
-                        if set(match[1]) == set(goal_token):
-                            is_related = True
-                            break
+                # Check more carefully depending on goal type
+                if not is_related and goal_type in ["angle", "arc_measure", "arc_length"]:
+                    for conclusion in theorem_info["conclusions"]:
+                        pattern = rf'MeasureOf(Angle|Arc)\((\w+)\)'
+                        matches = re.findall(pattern, conclusion)
+                        for match in matches:
+                            if set(match[1]) == set(goal_token):
+                                is_related = True
+                                break
+
+            # Check if mentioned in the premise
+            if goal_token in theorem_info["premise"]:
+                is_related = True
+
+            # Check if mentioned in args
+            if any(goal_token in arg for arg in theorem_info["args"]):
+                is_related = True
 
             if is_related:
                 related_theorems.append({
@@ -499,9 +677,9 @@ class GeometricTheorem:
 
         if related_theorems:
             for theorem in related_theorems:
-                report += f"Step {theorem['step']} - {theorem['theorem']}({', '.join(theorem['args'])}): {theorem['conclusion']}\n"
+                report += f"  Step {theorem['step']} - {theorem['theorem']}({', '.join(theorem['args'])}): {theorem['conclusion']}\n"
         else:
-            report += "- none found that constrain this goal\n"
+            report += "  None found that constrain this goal\n"
 
         # Add solver constraints
         report += "- Solver constraints directly related to this goal:\n"
@@ -543,8 +721,9 @@ class GeometricTheorem:
             c_str = str(c)
             for var_name in var_names:
                 if var_name in c_str:
-                    # Add to set to eliminate duplicates
-                    unique_constraints.add(c_str)
+                    # Format constraint for readability
+                    formatted = self.format_constraint(c_str)
+                    unique_constraints.add(formatted)
                     break
 
         # Convert to list and sort for consistent output
@@ -552,20 +731,18 @@ class GeometricTheorem:
 
         if relevant_constraints:
             for constraint in relevant_constraints:
-                report += f"{constraint}\n"
+                report += f"  {constraint}\n"
         else:
-            report += "- none found\n"
+            report += "  None found\n"
 
         # Final message
         report += "\nPlease fix the proof."
 
         return report
 
-    def generate_detailed_feedback_for_variable(self, variable_name, expected_value, computed_value=None,
+    def generate_detailed_feedback_for_variable(self, variable_name, model_answer, verifier_expected_answer=None,
                                                 status="multiple_values"):
         """Generate detailed feedback specifically for a variable goal with improved formatting."""
-        import time
-        import traceback
 
         # Initialize the report with verification status
         report = "verification failed.\n\n"
@@ -574,118 +751,100 @@ class GeometricTheorem:
         report += f"- Goal: value of {variable_name}\n"
 
         # Add your answer and expected/computed value
-        report += f"- Your answer: {expected_value}\n"
+        # Add your answer
+        report += f"- Model answer: {model_answer}\n"
 
-        if computed_value is not None and status == "incompatible":
-            report += f"- Expected answer: {computed_value}\n"
-        else:
-            report += f"- Expected answer: undetermined\n"
+        # Only add expected answer line if there is an incompatible value
+        if verifier_expected_answer is not None and status == "incompatible":
+            report += f"- Verifier expected answer: {verifier_expected_answer}\n"
 
         report += "- Error: "
 
         if status == "unsatisfiable":
             report += "Your proof contains contradictory constraints. Check for incorrect values in premises, improper theorem application, or conclusions that contradict earlier assertions.\n"
-
         elif status == "incompatible":
-            report += f"Your proof determines the value of {variable_name} to be {computed_value}, not {expected_value}. Check your theorem applications.\n"
-
+            report += f"From your proof, the verifier determines the value of {variable_name} to be {verifier_expected_answer}, not {model_answer} as you stated in your solution. Check your theorem applications and your answer.\n"
         elif status == "multiple_values":
-            report += f"Your proof doesn't uniquely determine the value of {variable_name}. It could be {expected_value}"
-            if computed_value is not None:
-                report += f" or {computed_value}"
-            report += ". You need additional constraints.\n"
+            report += f"Your proof doesn't uniquely determine the value. You need  to use additional theorems.\n"
 
-        # Try to use the full reference collection first
+        # Add direct constraints from premises and relevant geometric facts - KEEP SAME TITLE
+        report += "- Available premises:\n"
+
+        # First get direct constraints (equations with the variable)
+        direct_constraints = self.get_direct_variable_constraints(variable_name)
+
+        # Get geometric facts filtered to show only those relevant to this variable
+        geometric_data = self.gather_relevant_geometric_data(goal_variable=variable_name)
+
+        # First show equations with the variable as a separate group
+        if direct_constraints:
+            report += "  Equations:\n"
+            for constraint in direct_constraints:
+                report += f"    {constraint}\n"
+
+        # Then show geometric facts organized by category
+        if geometric_data:
+            for category, facts in geometric_data.items():
+                if facts:  # Only show categories with facts
+                    report += f"  {category}:\n"
+                    for fact in facts:
+                        report += f"    {fact}\n"
+
+        if not direct_constraints and not geometric_data:
+            report += "  None found for this variable\n"
+
+        # Now look for theorems that relate to the variable using the new function
+        report += "- Theorems related to the goal:\n"
+        related_theorems = self.find_related_theorems_for_variable(variable_name)
+
+        if related_theorems:
+            for theorem in related_theorems:
+                report += f"  Step {theorem['step']} - {theorem['theorem']}({', '.join(theorem['args'])}): {theorem['conclusion']}\n"
+        else:
+            report += "  None found that constrain this goal\n"
+
+        # Add solver constraints
+        report += "- Solver constraints directly related to this goal:\n"
+        unique_constraints = set()
+
         try:
-            start_time = time.time()
-            references = self.collect_variable_references(variable_name)
-            collection_time = time.time() - start_time
+            result = self.find_relevant_constraints(variable_name)
 
-            if collection_time > 1.0:  # If it took more than 1 second, log it
-                print(f"Warning: Variable reference collection took {collection_time:.2f}s")
+            # Add direct constraints first
+            for constraint in result["direct_constraints"]:
+                unique_constraints.add(constraint)
 
-            # Add the references to the report
-            report += "- Related premises:\n"
+            # Then add related constraints
+            for constraint in result["related_constraints"]:
+                unique_constraints.add(constraint)
 
-            has_premises = False
+            # Convert to list and sort
+            all_constraints = list(unique_constraints)
 
-            if references["angle_expressions"]:
-                for expr in references["angle_expressions"]:
-                    report += f"{expr}\n"
-                    has_premises = True
+            def constraint_sort_key(constraint):
+                priority = 0 if variable_name in constraint else 1
+                return (priority, constraint)
 
-            if references["length_expressions"]:
-                for expr in references["length_expressions"]:
-                    report += f"- {expr}\n"
-                    has_premises = True
+            all_constraints.sort(key=constraint_sort_key)
 
-            if references["arc_expressions"]:
-                for expr in references["arc_expressions"]:
-                    report += f"- {expr}\n"
-                    has_premises = True
-
-            if references["algebraic_constraints"]:
-                for constraint in references["algebraic_constraints"]:
-                    report += f"- {constraint}\n"
-                    has_premises = True
-
-            if not has_premises:
-                report += "- none found for this variable\n"
-
-            # Add theorems related to the variable
-            report += "- Theorems related to the goal:\n"
-
-            if references["related_theorems"]:
-                for theorem in references["related_theorems"]:
-                    report += f"Step {theorem['step']} - {theorem['theorem']}({', '.join(theorem['args'])}): {theorem['conclusion']}\n"
+            if all_constraints:
+                for constraint in all_constraints:
+                    report += f"  {constraint}\n"
             else:
-                report += "None found that constrain this goal\n"
-
-            # Add solver constraints with our new generalized approach
-            report += "- Solver constraints directly related to this goal:\n"
-
-            if references["solver_constraints"]:
-                for constraint in references["solver_constraints"]:
-                    report += f"{constraint}\n"
-            else:
-                report += "None found\n"
-
-            # Add related constraints
-            if references["related_constraints"]:
-                report += "- Related constraints:\n"
-                for constraint in references["related_constraints"]:
-                    report += f"{constraint}\n"
-
+                report += "  None found\n"
         except Exception as e:
-            # If the full collection fails, fall back to the simpler approach
-            print(f"Error in full reference collection: {e}")
-            traceback.print_exc()
-
-            # Use the direct constraints extractor as a fallback
-            direct_constraints = self.get_direct_variable_constraints(variable_name)
-
-            report += "- Related premises:\n"
-            if direct_constraints:
-                for constraint in direct_constraints:
-                    report += f"{constraint}\n"
-            else:
-                report += "- none found for this variable\n"
-
-            report += "- Theorems related to the goal:\n"
-            report += "- detailed theorem analysis unavailable (using fallback mode)\n"
-
-            report += "- Solver constraints directly related to this goal:\n"
-            report += "- detailed constraint analysis unavailable (using fallback mode)\n"
+            print(f"Error finding constraints: {e}")
+            report += f"  Error finding constraints: {e}\n"
 
         # Final message
         report += "\nPlease fix the proof."
 
         return report
 
-    def find_relevant_constraints(self, variable_name, max_constraints=100):
+    def find_relevant_constraints(self, variable_name, max_constraints=200):
         """
-        Find all constraints relevant to a variable in a completely generalized way.
-        This approach finds both direct constraints and related constraints.
+        Find all constraints relevant to a variable.
+        This will find both direct constraints and constraints on related variables.
 
         Args:
             variable_name (str): The name of the variable to search for
@@ -696,72 +855,70 @@ class GeometricTheorem:
         """
         result = {
             "direct_constraints": [],  # Constraints that directly contain the variable
-            "related_constraints": []  # Constraints between variables that appear with our target
+            "related_constraints": []  # Constraints on variables that appear with our target
         }
 
         # Regular expression to match the variable as a standalone identifier
         var_pattern = re.compile(r'(^|[^a-zA-Z0-9_])' + re.escape(variable_name) + r'([^a-zA-Z0-9_]|$)')
 
-        # We'll keep track of which variables appear in constraints with our target variable
+        # Track variables related to our target
         related_vars = set()
 
-        # First pass: find all constraints that directly involve our variable
-        # and collect variables that appear alongside it
-        direct_constraints = []
+        # Keep track of all constraint strings we've seen to avoid duplicates
+        seen_constraints = set()
 
+        # First pass: find all direct constraints and collect related variables
         for c in self.solver.assertions():
             c_str = str(c)
 
-            # Skip pi and constants we don't care about
+            # Skip pi constant definitions
             if "pi ==" in c_str:
                 continue
 
             # Check if this constraint directly involves our variable
             if var_pattern.search(c_str):
-                direct_constraints.append(c_str)
+                formatted = self.format_constraint(c_str)
 
-                # Find all variable mentions in this constraint
-                # We'll look for angle_XXX, length_XXX, etc.
-                var_mentions = re.findall(r'([a-zA-Z_]+_[a-zA-Z]+)', c_str)
-                related_vars.update(var_mentions)
+                # Only add if we haven't seen this formatted constraint before
+                if formatted not in seen_constraints:
+                    result["direct_constraints"].append(formatted)
+                    seen_constraints.add(formatted)
 
-        # For each direct constraint, format and add to our results
-        for c_str in direct_constraints:
-            result["direct_constraints"].append(self.format_constraint(c_str))
+                # Find variables in this constraint using different variable patterns
+                for var_prefix in ["angle_", "length_", "arc_"]:
+                    var_matches = re.findall(r'(' + var_prefix + r'\w+)', c_str)
+                    for var_match in var_matches:
+                        related_vars.add(var_match)
 
-            # Respect the max constraints limit
-            if len(result["direct_constraints"]) >= max_constraints // 2:
-                break
+        # Second pass: find all constraints on related variables
+        for c in self.solver.assertions():
+            c_str = str(c)
 
-        # Second pass: find constraints between variables that appear with our target
-        # but which don't directly contain our target variable
-        if related_vars:
-            for c in self.solver.assertions():
-                c_str = str(c)
+            # Skip pi constants
+            if "pi ==" in c_str:
+                continue
 
-                # Skip constraints we've already included and pi constants
-                if c_str in direct_constraints or "pi ==" in c_str:
-                    continue
+            # Format constraint first to compare against seen_constraints
+            formatted = self.format_constraint(c_str)
 
-                # Check if this constraint involves at least two of our related variables
-                mentioned_vars = 0
-                for var in related_vars:
-                    if var in c_str:
-                        mentioned_vars += 1
-                        if mentioned_vars >= 2:
-                            result["related_constraints"].append(self.format_constraint(c_str))
-                            break
+            # Skip if we've already seen this constraint
+            if formatted in seen_constraints:
+                continue
 
-                # Respect the max constraints limit
-                if len(result["related_constraints"]) >= max_constraints // 2:
+            # Check if any related variable appears in this constraint
+            for var in related_vars:
+                if var in c_str:
+                    # Add to related constraints and mark as seen
+                    result["related_constraints"].append(formatted)
+                    seen_constraints.add(formatted)
                     break
 
+        # Limit the number of constraints returned
+        if max_constraints > 0:
+            result["direct_constraints"] = result["direct_constraints"][:max_constraints // 2]
+            result["related_constraints"] = result["related_constraints"][:max_constraints // 2]
+
         return result
-
-
-
-
-
 
     def add_all_side_mirror_ratio_constraints(self, tri1: str, tri2: str):
         """For mirror similar triangles, add side‐ratio constraints for each corresponding side.
@@ -854,16 +1011,6 @@ class GeometricTheorem:
             candidates.append(candidate)
 
         return min(candidates)
-
-
-
-
-
-
-
-
-
-
 
     def canonicalize_triangle_pair(self, tri1: str, tri2: str) -> Tuple[str, str]:
         """
@@ -1048,7 +1195,6 @@ class GeometricTheorem:
 
         return ratio_var  # Return the ratio variable for convenience
 
-
     def calculate_perimeter(self, triangle: str) -> Optional[Real]:
         """Calculate perimeter of a triangle"""
         if len(triangle) != 3:
@@ -1080,7 +1226,6 @@ class GeometricTheorem:
 
         # Add 90° angle constraint
         angle_var = self.add_angle(points[0], points[1], points[2])
-
 
     def normalize_similar_triangles(self, tri1: str, tri2: str) -> Optional[Tuple[str, str]]:
         if len(tri1) != 3 or len(tri2) != 3:
@@ -1299,112 +1444,6 @@ class GeometricTheorem:
             print(f"Error parsing expression '{expr}': {str(e)}")
             raise
 
-    def generate_length_analysis_report(self, line_name, expected_value, alt_value=None,
-                                        solver_state="multiple_values"):
-        """Generate a focused report about why the line length goal couldn't be uniquely determined"""
-
-        # Create the report content as a string
-        report = f"Analysis Report for {self.question_name}\n"
-        report += "=" * 60 + "\n\n"
-        report += f"Goal: Length of line {line_name}\n"
-        report += f"Your answer: {expected_value}\n\n"
-
-        # Extract points involved in the line
-        line_points = list(line_name)
-
-        # Get all related facts from our knowledge base
-        related_facts = self.collect_related_facts_for_line(line_points)
-
-        if related_facts:
-            report += "Relevant geometric facts:\n"
-            report += "-" * 60 + "\n"
-            for category, facts in related_facts.items():
-                if facts:  # Only show categories with facts
-                    report += f"{category}:\n"
-                    for fact in facts:
-                        report += f"  - {fact}\n"
-                    report += "\n"
-        else:
-            report += "No facts directly involving line " + line_name + " were found in the premises.\n\n"
-
-        # Find theorems that mention the line or its components
-        report += f"Theorems related to line {line_name} in your proof:\n"
-        report += "-" * 60 + "\n"
-
-        related_theorems = self.find_related_theorems_for_line(line_name, line_points)
-
-        if related_theorems:
-            for theorem in related_theorems:
-                report += f"Step {theorem['step']} - {theorem['theorem']}({', '.join(theorem['args'])}):\n"
-                report += f"  Conclusion: {theorem['conclusion']}\n\n"
-        else:
-            report += f"No theorems directly involving line {line_name} were found in your proof.\n\n"
-
-        # Add solver constraints related to this line
-        report += "Solver constraints directly related to this line:\n"
-        report += "-" * 60 + "\n"
-
-        # Normalize the line name for looking up in solver
-        normalized_line = self.normalize_line_name(line_name)
-        length_var_name = f"length_{normalized_line}"
-
-        # More precise constraint filtering
-        relevant_constraints = []
-        for c in self.solver.assertions():
-            c_str = str(c)
-            # Only include constraints that directly mention the exact line variable name
-            if length_var_name in c_str:
-                # Check for direct relationships with this line
-                patterns = [
-                    f"{length_var_name} " in c_str,
-                    f"{length_var_name}=" in c_str,
-                    f"{length_var_name}+" in c_str,
-                    f"{length_var_name}-" in c_str,
-                    f"{length_var_name}*" in c_str,
-                    f"{length_var_name}/" in c_str
-                ]
-                if any(patterns):
-                    relevant_constraints.append(c_str)
-
-            # Also include constraints that set the line value
-            elif f" == {length_var_name}" in c_str:
-                relevant_constraints.append(c_str)
-
-        if relevant_constraints:
-            for i, constraint in enumerate(relevant_constraints):
-                report += f"{i + 1}. {constraint}\n"
-            report += "\n"
-        else:
-            report += "No direct constraints found involving this line length.\n\n"
-
-        # Add different explanations based on solver state
-        report += "- Error: "
-        report += "-" * 60 + "\n"
-
-        if solver_state == "unsatisfiable":
-            report += f"The solver found the constraints to be contradictory when trying to evaluate length of {line_name}.\n"
-            report += "This means there's an inconsistency in your geometric setup or theorem applications.\n"
-            report += "Check for contradictory premises or incorrectly applied theorems.\n"
-        elif solver_state == "incompatible":
-            report += f"The geometric constraints in your proof uniquely determine the length of {line_name} to be {alt_value}, not Your answer: {expected_value}.\n"
-            report += "This means your proof leads to a different value than your submitted answer.\n\n"
-            report += "Check that:\n"
-            report += "1. Your side length values are correctly specified\n"
-            report += "2. You've applied the theorems correctly\n"
-            report += "3. Your calculations are accurate\n"
-        elif solver_state == "undefined":
-            report += f"The line {line_name} is not defined in your proof's context.\n"
-            report += "This usually means you haven't created constraints for this line in your theorems.\n"
-            report += "Check that you've properly established this line using appropriate theorems.\n"
-        else:  # multiple_values
-            report += f"Your proof doesn't uniquely determine the length of line {line_name}.\n"
-            report += "Multiple solutions are possible with the current constraints.\n"
-            if alt_value is not None:
-                report += f"It could be Your answer: {expected_value} but also {alt_value}\n"
-            report += "You need to add more constraints by applying additional theorems.\n"
-
-        return report
-
     def collect_related_facts_for_line(self, line_points):
         """Collect only facts where at least one point is part of the line"""
         related_facts = {}
@@ -1487,6 +1526,48 @@ class GeometricTheorem:
         # Remove empty categories
         return {k: v for k, v in related_facts.items() if v}
 
+    def generate_premise_error_feedback(self, theorem_name, args, premise, conclusions, error):
+        """Generate user-friendly feedback for premise errors with complete theorem call information"""
+
+        feedback = "verification failed.\n\n"
+
+        # Format the complete theorem call information
+        args_str = ",".join(args)
+        conclusions_str = str(conclusions)
+
+        # Mention the theorem that was attempted with full details
+        feedback += f"- You tried to use theorem: {theorem_name}({args_str});{premise};{conclusions_str}\n"
+
+        # Explain the missing premise
+        feedback += f"- Missing premise: {error.message}\n"
+
+        # Show the details if available, but filter out empty collections
+        if error.details and not (
+                "Available parallel pairs: set()" in error.details or
+                "Known parallel pairs: set()" in error.details or
+                "Available" in error.details and "set()" in error.details or
+                "Known" in error.details and "set()" in error.details
+        ):
+            feedback += f"- Details: {error.details}\n"
+
+        # Changed wording as requested
+        feedback += "Available premises up to the failed theorem:\n"
+        geometric_data = self.gather_relevant_geometric_data()
+
+        if geometric_data:
+            for category, facts in geometric_data.items():
+                if facts:  # Only show categories with facts
+                    feedback += f"  {category}:\n"
+                    for fact in facts:
+                        feedback += f"    {fact}\n"
+        else:
+            feedback += "  No relevant geometric facts found.\n"
+
+        # Final message
+        feedback += "\nPlease ensure your theorem application meets all required premises."
+
+        return feedback
+
     def find_related_theorems_for_line(self, line_name, line_points):
         """Find theorems that directly relate to the line"""
         related_theorems = []
@@ -1529,9 +1610,6 @@ class GeometricTheorem:
                 })
 
         return related_theorems
-
-
-
 
     def add_algebraic_angle(self, angle_name: str, expression: str):
         """Add an angle with an algebraic expression"""
@@ -1616,11 +1694,6 @@ class GeometricTheorem:
                         self.solver.add(self.triangle_areas[tri_name] >= 0)
                     self.solver.add(self.triangle_areas[tri_name] == area_val)
                     print(f"[apply_triangle_area_sine] Set AreaOfTriangle({tri_name}) = {area_val:.3f}")
-
-
-
-
-
 
     def triangle_angles(self, triangle: str) -> List[str]:
         """
@@ -1729,7 +1802,7 @@ class GeometricTheorem:
         # If no pattern matches, raise an error
         raise ValueError(f"Unsupported Sub expression format: {goal_expr}")
 
-    def check_value_constraint(self, goal_var, expected_value, epsilon=1e-8):
+    def check_value_constraint(self, goal_var, model_answer, epsilon=1e-8):
         """
         Check if a variable matches an expected value with appropriate constraints.
 
@@ -1747,13 +1820,13 @@ class GeometricTheorem:
                 temp_solver1.add(c)
 
             # Add constraint that goal_var == expected (within epsilon)
-            temp_solver1.add(And(goal_var >= expected_value - epsilon, goal_var <= expected_value + epsilon))
+            temp_solver1.add(And(goal_var >= model_answer - epsilon, goal_var <= model_answer + epsilon))
 
             if temp_solver1.check() != sat:
                 # Get current value
                 try:
-                    computed_value = float(model.eval(goal_var).as_decimal(10).rstrip('?'))
-                    return False, computed_value, "incompatible"
+                    verifier_expected_answer = float(model.eval(goal_var).as_decimal(10).rstrip('?'))
+                    return False, verifier_expected_answer, "incompatible"
                 except Exception as e:
                     return False, None, f"Error computing value: {str(e)}"
 
@@ -1763,18 +1836,18 @@ class GeometricTheorem:
                 temp_solver2.add(c)
 
             # Add constraint: goal_var != expected (outside epsilon range)
-            temp_solver2.add(Or(goal_var < expected_value - epsilon, goal_var > expected_value + epsilon))
+            temp_solver2.add(Or(goal_var < model_answer - epsilon, goal_var > model_answer + epsilon))
 
             if temp_solver2.check() == sat:
                 try:
                     alt_model = temp_solver2.model()
-                    alt_value = float(alt_model.eval(goal_var).as_decimal(10).rstrip('?'))
-                    return False, alt_value, "multiple_values"
+                    verifier_expected_answer = float(alt_model.eval(goal_var).as_decimal(10).rstrip('?'))
+                    return False, verifier_expected_answer, "multiple_values"
                 except Exception as e:
                     return False, None, f"Error computing alternative value: {str(e)}"
 
             # If we get here, the constraints uniquely determine the value
-            return True, expected_value, "unique"
+            return True, model_answer, "unique"
         else:
             return False, None, "unsatisfiable"
 
@@ -1793,7 +1866,6 @@ class GeometricTheorem:
 
         # Evaluate the expression
         return eval(expr, mapping)
-
 
     def validate_theorem_premises(self, theorem_name: str, args: List[str], premise: str) -> Tuple[
         bool, Optional[GeometricError]]:
@@ -1879,6 +1951,303 @@ class GeometricTheorem:
                     ))
             elif version == "2":
                 print("2")
+
+
+
+        elif theorem_name == "arc_addition_measure":
+            version = args[0]
+            if version == "1":
+                if len(args) < 3:
+                    return return_error(GeometricError(
+                        tier=ErrorTier.TIER1_THEOREM_CALL,
+                        message="Insufficient arguments for arc_addition_measure",
+                        details="Expected: arc_addition_measure(1, arc1, arc2)"
+                    ))
+
+                arc1_token = args[1].strip()  # e.g., "ODA"
+                arc2_token = args[2].strip()  # e.g., "OAB"
+
+                # Parse the premise to check if it contains the required Arc facts
+                premise_parts = premise.split('&')
+
+                # Check for the three required arcs in the premise
+                arc_parts = [p for p in premise_parts if p.startswith("Arc(")]
+                if len(arc_parts) < 3:
+                    return return_error(GeometricError(
+                        tier=ErrorTier.TIER2_PREMISE,
+                        message="Missing arc facts in premise",
+                        details="arc_addition_measure requires three Arc facts (two component arcs and the total arc)"
+                    ))
+
+                # Verify that the arcs mentioned in the theorem call appear in the premise
+                arc1_found = any(p == f"Arc({arc1_token})" for p in arc_parts)
+                arc2_found = any(p == f"Arc({arc2_token})" for p in arc_parts)
+
+                if not arc1_found:
+                    return return_error(GeometricError(
+                        tier=ErrorTier.TIER2_PREMISE,
+                        message=f"Arc({arc1_token}) not found in premise",
+                        details=f"The first component arc must be declared in the premise"
+                    ))
+
+                if not arc2_found:
+                    return return_error(GeometricError(
+                        tier=ErrorTier.TIER2_PREMISE,
+                        message=f"Arc({arc2_token}) not found in premise",
+                        details=f"The second component arc must be declared in the premise"
+                    ))
+
+                # Extract the total arc from the third arc in the premise
+                # The total arc should be the remaining arc that isn't arc1 or arc2
+                total_arc_token = None
+                for p in arc_parts:
+                    arc_match = re.match(r'Arc\((\w+)\)', p)
+                    if arc_match:
+                        current_arc = arc_match.group(1)
+                        if current_arc != arc1_token and current_arc != arc2_token:
+                            total_arc_token = current_arc
+                            break
+
+                if not total_arc_token:
+                    return return_error(GeometricError(
+                        tier=ErrorTier.TIER2_PREMISE,
+                        message="Could not identify the total arc in premise",
+                        details="The premise must contain a third distinct arc that will be the sum of the two component arcs"
+                    ))
+
+                # Verify that all arcs exist in the system
+                normalized_arc1 = self.normalize_arc(arc1_token)
+                normalized_arc2 = self.normalize_arc(arc2_token)
+                normalized_total = self.normalize_arc(total_arc_token)
+
+                arc_var_name1 = f"arc_{normalized_arc1}"
+                arc_var_name2 = f"arc_{normalized_arc2}"
+                total_arc_var_name = f"arc_{normalized_total}"
+
+                # Check if arcs have been declared
+                arcs_ok = True
+                missing_arcs = []
+
+                if arc_var_name1 not in self.arcs:
+                    arcs_ok = False
+                    missing_arcs.append(arc1_token)
+
+                if arc_var_name2 not in self.arcs:
+                    arcs_ok = False
+                    missing_arcs.append(arc2_token)
+
+                if total_arc_var_name not in self.arcs:
+                    arcs_ok = False
+                    missing_arcs.append(total_arc_token)
+
+                if not arcs_ok:
+                    return return_error(GeometricError(
+                        tier=ErrorTier.TIER2_PREMISE,
+                        message=f"One or more arcs not defined in the system: {', '.join(missing_arcs)}",
+                        details="All arcs must be properly defined before using arc_addition_measure"
+                    ))
+
+                return True, None
+            else:
+                return return_error(GeometricError(
+                    tier=ErrorTier.TIER1_THEOREM_CALL,
+                    message=f"Unsupported version {version} for arc_addition_measure",
+                    details=f"Version provided: {version}"
+                ))
+
+        elif theorem_name == "isosceles_triangle_property_line_coincidence":
+            version = args[0]
+            if version == "2":
+                if len(args) < 3:
+                    return return_error(GeometricError(
+                        tier=ErrorTier.TIER1_THEOREM_CALL,
+                        message="Insufficient arguments for isosceles_triangle_property_line_coincidence",
+                        details="Expected: isosceles_triangle_property_line_coincidence(2, triangle, point)"
+                    ))
+
+                triangle = args[1].strip()  # e.g., "CDE"
+                point = args[2].strip()  # e.g., "F"
+
+                # Parse the premise components
+                premise_parts = premise.split('&')
+
+                # Check for IsoscelesTriangle fact
+                isosceles_found = False
+                for part in premise_parts:
+                    if part.startswith("IsoscelesTriangle"):
+                        match = re.match(r'IsoscelesTriangle\((\w+)\)', part)
+                        if match and match.group(1) == triangle:
+                            isosceles_found = True
+                            break
+
+                # Also check our stored isosceles triangles
+                if not isosceles_found and hasattr(self, "isosceles_triangles"):
+                    # Check if any rotation of the triangle is in our isosceles set
+                    triangle_rotations = [triangle[i:] + triangle[:i] for i in range(len(triangle))]
+                    if any(rot in self.isosceles_triangles for rot in triangle_rotations):
+                        isosceles_found = True
+
+                if not isosceles_found:
+                    return return_error(GeometricError(
+                        tier=ErrorTier.TIER2_PREMISE,
+                        message=f"Triangle {triangle} is not established as isosceles",
+                        details=f"Need IsoscelesTriangle({triangle}) in premise or previous theorem"
+                    ))
+
+                # Check for IsMedianOfTriangle fact
+                line = triangle[0] + point  # e.g., "CF"
+                median_found = False
+
+                for part in premise_parts:
+                    if part.startswith("IsMedianOfTriangle"):
+                        match = re.match(r'IsMedianOfTriangle\((\w+),(\w+)\)', part)
+                        if match and match.group(1) == line and match.group(2) == triangle:
+                            median_found = True
+                            break
+
+                # Also check our stored medians if they exist
+                if not median_found and hasattr(self, "medians"):
+                    if (line, triangle) in self.medians:
+                        median_found = True
+
+                if not median_found:
+                    return return_error(GeometricError(
+                        tier=ErrorTier.TIER2_PREMISE,
+                        message=f"Line {line} is not established as a median of triangle {triangle}",
+                        details=f"Need IsMedianOfTriangle({line},{triangle}) in premise or previous theorem"
+                    ))
+
+                # Verify that the line starts at a vertex of the triangle and ends at point F
+                if line[0] not in triangle:
+                    return return_error(GeometricError(
+                        tier=ErrorTier.TIER2_PREMISE,
+                        message=f"Line {line} does not start at a vertex of triangle {triangle}",
+                        details="For this theorem, the line must start at a vertex of the triangle"
+                    ))
+
+                if line[1] != point:
+                    return return_error(GeometricError(
+                        tier=ErrorTier.TIER2_PREMISE,
+                        message=f"Line {line} does not end at point {point}",
+                        details="For this theorem, the line must end at the specified point"
+                    ))
+
+                # Validate that the triangle is well-formed (3 distinct vertices)
+                if len(triangle) != 3 or len(set(triangle)) != 3:
+                    return return_error(GeometricError(
+                        tier=ErrorTier.TIER2_PREMISE,
+                        message=f"Invalid triangle {triangle}",
+                        details="Triangle must have exactly 3 distinct vertices"
+                    ))
+
+                return True, None
+            else:
+                return return_error(GeometricError(
+                    tier=ErrorTier.TIER1_THEOREM_CALL,
+                    message=f"Unsupported version {version} for isosceles_triangle_property_line_coincidence"
+                ))
+
+        elif theorem_name == "diameter_of_circle_judgment_pass_centre":
+            version = args[0]
+            if version == "1":
+                if len(args) < 3:
+                    return return_error(GeometricError(
+                        tier=ErrorTier.TIER1_THEOREM_CALL,
+                        message="Insufficient arguments for diameter_of_circle_judgment_pass_centre",
+                        details="Expected: diameter_of_circle_judgment_pass_centre(1, collinear_points, circle)"
+                    ))
+
+                collinear_points = args[1].strip()  # e.g., "AOB"
+                circle_token = args[2].strip()  # e.g., "O"
+
+                # Check that the circle center is included in the collinear points
+                if circle_token not in collinear_points:
+                    return return_error(GeometricError(
+                        tier=ErrorTier.TIER2_PREMISE,
+                        message=f"Circle center {circle_token} not in collinear points {collinear_points}",
+                        details="For a diameter, the collinear points must include the center of the circle"
+                    ))
+
+                # Parse the premise components
+                premise_parts = premise.split('&')
+
+                # Check for Cocircular fact
+                cocircular_found = False
+                for part in premise_parts:
+                    if part.startswith("Cocircular"):
+                        match = re.match(r'Cocircular\((\w+),(\w+)\)', part)
+                        if match:
+                            circ, points = match.groups()
+                            if circ == circle_token:
+                                # The endpoints of the potential diameter
+                                endpoints = [p for p in collinear_points if p != circle_token]
+
+                                # Check if all endpoints are on the circle
+                                if all(p in points for p in endpoints):
+                                    cocircular_found = True
+                                    break
+
+                if not cocircular_found:
+                    return return_error(GeometricError(
+                        tier=ErrorTier.TIER2_PREMISE,
+                        message="Missing valid Cocircular fact in premise",
+                        details=f"Points in {collinear_points} excluding {circle_token} must be on circle {circle_token}"
+                    ))
+
+                # Check for Collinear fact
+                collinear_found = False
+                for part in premise_parts:
+                    if part.startswith("Collinear"):
+                        match = re.match(r'Collinear\((\w+)\)', part)
+                        if match:
+                            col_points = match.group(1)
+                            # Normalize both collinear strings for comparison
+                            norm_premise = self.normalize_collinear_points(col_points)
+                            norm_arg = self.normalize_collinear_points(collinear_points)
+
+                            if norm_premise == norm_arg:
+                                collinear_found = True
+                                break
+
+                            # Also check if the collinear points in the premise contain all points in the argument
+                            if all(p in col_points for p in collinear_points):
+                                collinear_found = True
+                                break
+
+                if not collinear_found:
+                    stored_collinear = [''.join(fact) for fact in self.collinear_facts]
+                    return return_error(GeometricError(
+                        tier=ErrorTier.TIER2_PREMISE,
+                        message=f"Collinear({collinear_points}) not established",
+                        details=f"Known collinear facts: {stored_collinear}"
+                    ))
+
+                # Check for IsCentreOfCircle fact
+                center_found = False
+                for part in premise_parts:
+                    if part.startswith("IsCentreOfCircle"):
+                        match = re.match(r'IsCentreOfCircle\((\w+),(\w+)\)', part)
+                        if match:
+                            center, circ = match.groups()
+                            if center == circle_token and circ == circle_token:
+                                center_found = True
+                                break
+
+                if not center_found:
+                    if circle_token not in self.circle_centers or self.circle_centers[circle_token] != circle_token:
+                        return return_error(GeometricError(
+                            tier=ErrorTier.TIER2_PREMISE,
+                            message=f"Circle center fact for {circle_token} not established",
+                            details=f"Need IsCentreOfCircle({circle_token},{circle_token}) in premise"
+                        ))
+
+                return True, None
+            else:
+                return return_error(GeometricError(
+                    tier=ErrorTier.TIER1_THEOREM_CALL,
+                    message=f"Unsupported version {version} for diameter_of_circle_judgment_pass_centre"
+                ))
+
 
 
         elif theorem_name == "mirror_congruent_triangle_judgment_aas":
@@ -4213,8 +4582,7 @@ class GeometricTheorem:
             # Check against stored parallel pairs
             possible_pairs = (line1, line2)
 
-
-            if not possible_pairs in self.parallel_pairs :
+            if not possible_pairs in self.parallel_pairs:
                 return return_error(GeometricError(
                     tier=ErrorTier.TIER2_PREMISE,
                     message=f"Lines {line1} and {line2} not proven parallel",
@@ -5684,8 +6052,6 @@ class GeometricTheorem:
 
             print("\nAvailable sections:", list(sections.keys()))
 
-
-
             # just a scan
             normal_collinear_set = set()
             if CONSTRUCTION_CDL in sections:
@@ -5716,7 +6082,6 @@ class GeometricTheorem:
                         # Skip SYMBOLS_AND_VALUES, EQUATIONS
                     if line.startswith('SYMBOLS_AND_VALUES:') or line.startswith('EQUATIONS:'):
                         continue
-
 
                     if line.startswith('Parallelogram('):
                         match = re.match(r'Parallelogram\((\w+)\)', line)
@@ -6729,8 +7094,6 @@ class GeometricTheorem:
                             tri1, tri2 = match.groups()
                             self.add_similar_triangles(tri1, tri2)
 
-
-
             print("\nCollected facts:")
             print("Collinear points:", self.collinear_facts)
             print("Parallel pairs:", self.parallel_pairs)
@@ -6775,15 +7138,24 @@ class GeometricTheorem:
                             print(f"Conclusions: {conclusions}")
 
                             # Validate premises first
+                            # Validate premises first
+                            # Validate premises first
                             is_valid, error = self.validate_theorem_premises(theorem_name, args, premise)
                             if not is_valid:
                                 print(f"\nError in {error.tier.name}:")
                                 print(f"Message: {error.message}")
                                 if error.details:
                                     print(f"Details: {error.details}")
-                                return False,f"Error in {error.tier.name}: {error.message}"
 
+                                if error.tier == ErrorTier.TIER2_PREMISE:
+                                    # Use the special formatted feedback for premise errors
+                                    return False, self.generate_premise_error_feedback(theorem_name, args, premise,
+                                                                                       conclusions, error)
+                                else:
+                                    return False, f"Error in {error.tier.name}: {error.message}"
 
+                            # Then process theorem step
+                            # Then process theorem step
                             # Then process theorem step
                             error = self.adding_conclution(theorem_name, args, premise, conclusions)
                             if error:
@@ -6791,7 +7163,13 @@ class GeometricTheorem:
                                 print(f"Message: {error.message}")
                                 if error.details:
                                     print(f"Details: {error.details}")
-                                return False, f"Error in {error.tier.name}: {error.message}"
+
+                                if error.tier == ErrorTier.TIER2_PREMISE:
+                                    # Use the special formatted feedback for premise errors
+                                    return False, self.generate_premise_error_feedback(theorem_name, args, premise,
+                                                                                       conclusions, error)
+                                else:
+                                    return False, f"Error in {error.tier.name}: {error.message}"
 
             if GOAL_CDL in sections:
                 goal_line = sections[GOAL_CDL][0]
@@ -6833,12 +7211,13 @@ class GeometricTheorem:
                         # Fall back to Fraction
                         from fractions import Fraction
                         return float(Fraction(answer_str))
+
                 answer_str = sections[ANSWER][0].strip() if (ANSWER in sections and sections[ANSWER]) else None
                 if answer_str is None:
                     return False, "No answer provided in ANSWER section."
 
                 try:
-                    expected_value = parse_special_answer(answer_str)
+                    model_answer = parse_special_answer(answer_str)
                 except Exception as e:
                     return False, f"Error parsing answer '{answer_str}': {str(e)}"
                     # Arc measure goal: Value(MeasureOfArc(X))
@@ -6847,7 +7226,7 @@ class GeometricTheorem:
                 if arc_measure_match:
                     arc_token = arc_measure_match.group(1)
                     print(f"\nGoal arc measure: {arc_token}")
-                    print(f"Expected measure: {expected_value}")
+                    print(f"Expected measure: {model_answer}")
 
                     normalized_arc = self.normalize_arc(arc_token)
                     arc_var_name = f"arc_{normalized_arc}"
@@ -6858,18 +7237,18 @@ class GeometricTheorem:
                         return False, error_msg
 
                     arc_var = self.arcs[arc_var_name]
-                    success, value, status = self.check_value_constraint(arc_var, expected_value)
+                    success, value, status = self.check_value_constraint(arc_var, model_answer)
 
                     if success:
-                        print(f"Success: Arc measure {arc_token} is uniquely determined to be {expected_value}.")
+                        print(f"Success: Arc measure {arc_token} is uniquely determined to be {model_answer}.")
                         return True, ""
                     else:
                         # Generate detailed feedback report
                         detailed_feedback = self.generate_detailed_feedback(
                             goal_type="arc_measure",
                             goal_token=arc_token,
-                            expected_value=expected_value,
-                            computed_value=value,
+                            model_answer=model_answer,
+                            verifier_expected_answer=value,
                             status=status
                         )
                         print(f"Detailed feedback generated for arc measure goal.")
@@ -6880,24 +7259,24 @@ class GeometricTheorem:
                 if arc_length_match:
                     arc_token = arc_length_match.group(1)
                     print(f"\nGoal arc length: {arc_token}")
-                    print(f"Expected arc length: {expected_value}")
+                    print(f"Expected arc length: {model_answer}")
 
                     normalized_arc = self.normalize_arc(arc_token)
                     length_var_name = f"lengthArc_{normalized_arc}"
                     arc_length_var = Real(length_var_name)
 
-                    success, value, status = self.check_value_constraint(arc_length_var, expected_value)
+                    success, value, status = self.check_value_constraint(arc_length_var, model_answer)
 
                     if success:
-                        print(f"Success: Arc length {arc_token} is uniquely determined to be {expected_value}.")
+                        print(f"Success: Arc length {arc_token} is uniquely determined to be {model_answer}.")
                         return True, ""
                     else:
                         # Generate detailed feedback report
                         detailed_feedback = self.generate_detailed_feedback(
                             goal_type="arc_length",
                             goal_token=arc_token,
-                            expected_value=expected_value,
-                            computed_value=value,
+                            model_answer=model_answer,
+                            verifier_expected_answer=value,
                             status=status
                         )
                         print(f"Detailed feedback generated for arc length goal.")
@@ -6909,17 +7288,17 @@ class GeometricTheorem:
                     line2 = sum_lengths_match.group(2)
 
                     print(f"\nGoal sum of lengths: LengthOfLine({line1}) + LengthOfLine({line2})")
-                    print(f"Expected answer: {expected_value}")
+                    print(f"Expected answer: {model_answer}")
 
                     len1 = self.add_length(line1[0], line1[1])
                     len2 = self.add_length(line2[0], line2[1])
                     sum_expr = len1 + len2
 
-                    success, value, status = self.check_value_constraint(sum_expr, expected_value)
+                    success, value, status = self.check_value_constraint(sum_expr, model_answer)
 
                     if success:
                         print(
-                            f"Success: The sum of lengths {line1} + {line2} is uniquely determined to be {expected_value}.")
+                            f"Success: The sum of lengths {line1} + {line2} is uniquely determined to be {model_answer}.")
                         return True, ""
                     else:
                         # Generate detailed feedback report
@@ -6927,8 +7306,8 @@ class GeometricTheorem:
                         detailed_feedback = self.generate_detailed_feedback(
                             goal_type="sum",
                             goal_token=goal_token,
-                            expected_value=expected_value,
-                            computed_value=value,
+                            model_answer=model_answer,
+                            verifier_expected_answer=value,
                             status=status
                         )
                         print(f"Detailed feedback generated for sum of lengths goal.")
@@ -6939,95 +7318,167 @@ class GeometricTheorem:
                 if cos_match:
                     angle_token = cos_match.group(1)
                     print(f"\nGoal cosine: Cos(MeasureOfAngle({angle_token}))")
-                    print(f"Expected value: {expected_value}")
+                    print(f"Expected value: {model_answer}")
 
-                    # Check if a direct cosine variable exists
+                    # Try direct cosine variable first (exact as in the goal)
                     cos_var_name = f"cos_{angle_token}"
                     if cos_var_name in self.variables:
+                        print(f"Found cosine variable: {cos_var_name}")
                         cos_var = self.variables[cos_var_name]
-                        success, value, status = self.check_value_constraint(cos_var, expected_value)
+                        success, value, status = self.check_value_constraint(cos_var, model_answer)
 
                         if success:
-                            print(f"Success: cos({angle_token}) is uniquely determined to be {expected_value}.")
+                            print(f"Success: cos({angle_token}) is uniquely determined to be {model_answer}.")
                             return True, ""
                         else:
                             # Generate detailed feedback report
                             detailed_feedback = self.generate_detailed_feedback(
                                 goal_type="cosine",
                                 goal_token=angle_token,
-                                expected_value=expected_value,
-                                computed_value=value,
+                                model_answer=model_answer,
+                                verifier_expected_answer=value,
                                 status=status
                             )
                             print(f"Detailed feedback generated for cosine goal.")
                             return False, detailed_feedback
-                    else:
-                        # Try to verify from the angle if no cosine variable exists
-                        angle_var = self.add_angle(angle_token[0], angle_token[1], angle_token[2])
 
-                        if self.solver.check() == sat:
-                            model = self.solver.model()
-                            try:
-                                current_angle = float(model.eval(angle_var).as_decimal(10).rstrip('?'))
-                                import math
-                                current_cos = math.cos(math.radians(current_angle))
-                                print(f"Derived cos({angle_token}) = {current_cos} from angle = {current_angle}°")
+                    # If no direct cosine variable exists, try to derive it from the law of cosines
+                    print(f"No cosine variable found, attempting to derive from the law of cosines")
 
-                                epsilon = 1e-5
-                                if abs(current_cos - expected_value) < epsilon:
-                                    print(
-                                        f"Success: cos({angle_token}) = {current_cos} ≈ {expected_value} (within tolerance)")
-                                    return True, ""
-                                else:
-                                    # Generate detailed feedback with additional info about derived values
-                                    additional_info = f"Derived angle value: {current_angle}°\nDerived cosine: {current_cos}"
-                                    detailed_feedback = self.generate_detailed_feedback(
-                                        goal_type="cosine",
-                                        goal_token=angle_token,
-                                        expected_value=expected_value,
-                                        computed_value=current_cos,
-                                        status="incompatible",
-                                        additional_info=additional_info
-                                    )
-                                    print(f"Detailed feedback generated for cosine goal.")
-                                    return False, detailed_feedback
-                            except Exception as e:
-                                error_msg = f"Error calculating cosine from angle: {str(e)}"
-                                print(f"Error: {error_msg}")
-                                return False, error_msg
-                        else:
-                            detailed_feedback = self.generate_detailed_feedback(
-                                goal_type="cosine",
-                                goal_token=angle_token,
-                                expected_value=expected_value,
-                                status="unsatisfiable"
-                            )
-                            print(f"Detailed feedback generated for cosine goal.")
-                            return False, detailed_feedback
+                    # Get the angle variable
+                    angle_var = self.add_angle(angle_token[0], angle_token[1], angle_token[2])
+
+                    if self.solver.check() == sat:
+                        model = self.solver.model()
+
+                        # Try to compute from the angle if that exists
+                        try:
+                            current_angle = float(model.eval(angle_var).as_decimal(10).rstrip('?'))
+                            import math
+                            current_cos = math.cos(math.radians(current_angle))
+                            print(f"Derived cos({angle_token}) = {current_cos} from angle = {current_angle}°")
+
+                            # Check if this matches the expected value
+                            epsilon = 1e-5
+                            if abs(current_cos - model_answer) < epsilon:
+                                print(
+                                    f"Success: cos({angle_token}) = {current_cos} ≈ {model_answer} (within tolerance)")
+                                return True, ""
+                            else:
+                                # Generate detailed feedback with additional info about derived values
+                                additional_info = f"Derived angle value: {current_angle}°\nDerived cosine: {current_cos}"
+                                detailed_feedback = self.generate_detailed_feedback(
+                                    goal_type="cosine",
+                                    goal_token=angle_token,
+                                    model_answer=model_answer,
+                                    verifier_expected_answer=current_cos,
+                                    status="incompatible",
+                                    additional_info=additional_info
+                                )
+                                print(f"Detailed feedback generated for cosine goal.")
+                                return False, detailed_feedback
+                        except Exception as e:
+                            print(f"Could not derive cosine from angle: {e}")
+
+                        # If we couldn't get from the angle directly, try from the triangle sides
+                        try:
+                            # Extract the triangle vertices from the angle token (e.g., CBA -> vertices are C,B,A)
+                            vertex_between = angle_token[1]  # The middle letter is the vertex between the two sides
+                            vertex_left = angle_token[0]  # The first letter is the left ray endpoint
+                            vertex_right = angle_token[2]  # The third letter is the right ray endpoint
+
+                            # Get the three sides of the triangle
+                            side_vertex_left = self.add_length(vertex_between, vertex_left)
+                            side_vertex_right = self.add_length(vertex_between, vertex_right)
+                            side_opposite = self.add_length(vertex_left, vertex_right)
+
+                            # Get their values from the model
+                            side_a_val = float(model.eval(side_vertex_left).as_decimal(10).rstrip('?'))
+                            side_b_val = float(model.eval(side_vertex_right).as_decimal(10).rstrip('?'))
+                            side_c_val = float(model.eval(side_opposite).as_decimal(10).rstrip('?'))
+
+                            print(
+                                f"Triangle sides: {vertex_between}{vertex_left}={side_a_val}, {vertex_between}{vertex_right}={side_b_val}, {vertex_left}{vertex_right}={side_c_val}")
+
+                            # Apply the law of cosines to compute the cosine
+                            if side_a_val > 0 and side_b_val > 0:  # Avoid division by zero
+                                # cos(C) = (a² + b² - c²) / (2ab) where C is the angle at the vertex between sides a and b
+                                computed_cos = (side_a_val ** 2 + side_b_val ** 2 - side_c_val ** 2) / (
+                                            2 * side_a_val * side_b_val)
+
+                                if -1 <= computed_cos <= 1:  # Valid cosine value
+                                    print(f"Computed cos({angle_token}) = {computed_cos} from triangle sides")
+
+                                    # Create the cosine variable if it doesn't exist
+                                    if cos_var_name not in self.variables:
+                                        self.variables[cos_var_name] = Real(cos_var_name)
+                                        self.solver.add(self.variables[cos_var_name] >= -1)
+                                        self.solver.add(self.variables[cos_var_name] <= 1)
+
+                                    # Check if this value can be constrained without conflict
+                                    test_solver = Solver()
+                                    for c in self.solver.assertions():
+                                        test_solver.add(c)
+
+                                    test_solver.add(self.variables[cos_var_name] == computed_cos)
+
+                                    if test_solver.check() == sat:
+                                        self.solver.add(self.variables[cos_var_name] == computed_cos)
+                                        print(f"Added constraint: {cos_var_name} = {computed_cos}")
+
+                                    # Check if the value matches the expected answer
+                                    epsilon = 1e-5
+                                    if abs(computed_cos - model_answer) < epsilon:
+                                        print(
+                                            f"Success: cos({angle_token}) = {computed_cos} ≈ {model_answer} (within tolerance)")
+                                        return True, ""
+                                    else:
+                                        additional_info = f"Computed from sides: cos({angle_token}) = {computed_cos}"
+                                        detailed_feedback = self.generate_detailed_feedback(
+                                            goal_type="cosine",
+                                            goal_token=angle_token,
+                                            model_answer=model_answer,
+                                            verifier_expected_answer=computed_cos,
+                                            status="incompatible",
+                                            additional_info=additional_info
+                                        )
+                                        return False, detailed_feedback
+                        except Exception as e:
+                            print(f"Error computing cosine from triangle sides: {e}")
+
+                    # If we couldn't derive a value, return detailed feedback
+                    detailed_feedback = self.generate_detailed_feedback(
+                        goal_type="cosine",
+                        goal_token=angle_token,
+                        model_answer=model_answer,
+                        status="unsatisfiable" if self.solver.check() != sat else "multiple_values"
+                    )
+                    print(f"Detailed feedback generated for cosine goal.")
+                    return False, detailed_feedback
 
                 sin_match = re.search(r'Value\(Sin\(MeasureOfAngle\((\w+)\)\)\)', goal_line)
                 if sin_match:
                     angle_token = sin_match.group(1)
                     print(f"\nGoal sine: Sin(MeasureOfAngle({angle_token}))")
-                    print(f"Expected value: {expected_value}")
+                    print(f"Expected value: {model_answer}")
 
                     # Check sine variable if it exists
                     sin_var_name = f"sin_{angle_token}"
                     sin_var = None
                     if sin_var_name in self.variables:
                         sin_var = self.variables[sin_var_name]
-                        success, value, status = self.check_value_constraint(sin_var, expected_value)
+                        success, value, status = self.check_value_constraint(sin_var, model_answer)
 
                         if success:
-                            print(f"Success: sin({angle_token}) = {expected_value} is verified.")
+                            print(f"Success: sin({angle_token}) = {model_answer} is verified.")
                             return True, ""
                         else:
                             # Generate detailed feedback report
                             detailed_feedback = self.generate_detailed_feedback(
                                 goal_type="sine",
                                 goal_token=angle_token,
-                                expected_value=expected_value,
-                                computed_value=value,
+                                model_answer=model_answer,
+                                verifier_expected_answer=value,
                                 status=status
                             )
                             print(f"Detailed feedback generated for sine goal.")
@@ -7044,9 +7495,9 @@ class GeometricTheorem:
                                 current_sin = math.sin(math.radians(current_angle))
 
                                 epsilon = 1e-5
-                                if abs(current_sin - expected_value) < epsilon:
+                                if abs(current_sin - model_answer) < epsilon:
                                     print(
-                                        f"Success: sin({angle_token}) = {current_sin} ≈ {expected_value} (within tolerance)")
+                                        f"Success: sin({angle_token}) = {current_sin} ≈ {model_answer} (within tolerance)")
                                     return True, ""
                                 else:
                                     # Generate detailed feedback with additional info about derived values
@@ -7054,8 +7505,8 @@ class GeometricTheorem:
                                     detailed_feedback = self.generate_detailed_feedback(
                                         goal_type="sine",
                                         goal_token=angle_token,
-                                        expected_value=expected_value,
-                                        computed_value=current_sin,
+                                        model_answer=model_answer,
+                                        verifier_expected_answer=current_sin,
                                         status="incompatible",
                                         additional_info=additional_info
                                     )
@@ -7069,7 +7520,7 @@ class GeometricTheorem:
                             detailed_feedback = self.generate_detailed_feedback(
                                 goal_type="sine",
                                 goal_token=angle_token,
-                                expected_value=expected_value,
+                                model_answer=model_answer,
                                 status="unsatisfiable"
                             )
                             print(f"Detailed feedback generated for sine goal.")
@@ -7077,14 +7528,14 @@ class GeometricTheorem:
 
                 # Sine goal and other goal types would follow a similar pattern, using the common
                 # check_value_constraint function where possible and handling special cases as needed
-                    # 6. Division of lengths goal: Value(Div(LengthOfLine(AF),LengthOfLine(AC)))
+                # 6. Division of lengths goal: Value(Div(LengthOfLine(AF),LengthOfLine(AC)))
                 length_div_match = re.search(r'Value\(Div\(LengthOfLine\((\w+)\),LengthOfLine\((\w+)\)\)\)', goal_line)
                 if length_div_match:
                     line1 = length_div_match.group(1)  # Numerator line
                     line2 = length_div_match.group(2)  # Denominator line
 
                     print(f"\nGoal division of lengths: Div(LengthOfLine({line1}),LengthOfLine({line2}))")
-                    print(f"Your answer: {expected_value}")
+                    print(f"Your answer: {model_answer}")
 
                     len1 = self.add_length(line1[0], line1[1])
                     len2 = self.add_length(line2[0], line2[1])
@@ -7101,7 +7552,7 @@ class GeometricTheorem:
                                 print("Error: Division by zero in length ratio")
                                 return False, error_msg
 
-                            computed_value = val1 / val2
+                            verifier_expected_answer = val1 / val2
 
                             # Check if the division is uniquely determined
                             temp_solver = Solver()
@@ -7111,8 +7562,8 @@ class GeometricTheorem:
                             # We want to check if len1/len2 can have a different value
                             temp_solver.add(
                                 Or(
-                                    len1 < (expected_value - epsilon) * len2,
-                                    len1 > (expected_value + epsilon) * len2
+                                    len1 < (model_answer - epsilon) * len2,
+                                    len1 > (model_answer + epsilon) * len2
                                 )
                             )
 
@@ -7135,31 +7586,31 @@ class GeometricTheorem:
                                 detailed_feedback = self.generate_detailed_feedback(
                                     goal_type="ratio",
                                     goal_token=goal_token,
-                                    expected_value=expected_value,
-                                    computed_value=alt_ratio,
+                                    model_answer=model_answer,
+                                    verifier_expected_answer=alt_ratio,
                                     status=status,
-                                    additional_info=f"Current computed ratio: {computed_value:.6f}\nAlternative ratio: {alt_ratio:.6f if alt_ratio else 'undefined (division by zero)'}"
+                                    additional_info=f"Current computed ratio: {verifier_expected_answer:.6f}\nAlternative ratio: {alt_ratio:.6f if alt_ratio else 'undefined (division by zero)'}"
                                 )
                                 print(f"Detailed feedback generated for division goal.")
                                 return False, detailed_feedback
 
                             # Check if computed value matches expected value
-                            if abs(computed_value - expected_value) >= epsilon:
+                            if abs(verifier_expected_answer - model_answer) >= epsilon:
                                 # Generate detailed feedback for incompatible value
                                 goal_token = f"{line1}/{line2}"
                                 detailed_feedback = self.generate_detailed_feedback(
                                     goal_type="ratio",
                                     goal_token=goal_token,
-                                    expected_value=expected_value,
-                                    computed_value=computed_value,
+                                    model_answer=model_answer,
+                                    verifier_expected_answer=verifier_expected_answer,
                                     status="incompatible",
-                                    additional_info=f"Your proof constrains the ratio to {computed_value:.6f}"
+                                    additional_info=f"Your proof constrains the ratio to {verifier_expected_answer:.6f}"
                                 )
                                 print(f"Detailed feedback generated for division goal.")
                                 return False, detailed_feedback
 
                             print(
-                                f"Success: The length ratio {line1}/{line2} is uniquely determined to be Your answer: {expected_value}.")
+                                f"Success: The length ratio {line1}/{line2} is uniquely determined to be Your answer: {model_answer}.")
                             return True, ""
                         except Exception as e:
                             error_msg = f"Error converting length values: {str(e)}"
@@ -7171,7 +7622,7 @@ class GeometricTheorem:
                         detailed_feedback = self.generate_detailed_feedback(
                             goal_type="ratio",
                             goal_token=goal_token,
-                            expected_value=expected_value,
+                            model_answer=model_answer,
                             status="unsatisfiable"
                         )
                         print(f"Detailed feedback generated for division goal.")
@@ -7182,7 +7633,7 @@ class GeometricTheorem:
                     triangle = perimeter_match.group(1)
                     print(f"\nDetected perimeter goal: PerimeterOfTriangle({triangle})")
                     print(f"\nGoal triangle perimeter: {triangle}")
-                    print(f"Expected answer: {expected_value}")
+                    print(f"Expected answer: {model_answer}")
 
                     if triangle in self.triangle_perimeters:
                         perimeter_var = self.triangle_perimeters[triangle]
@@ -7190,18 +7641,18 @@ class GeometricTheorem:
                         perimeter_var = self.calculate_perimeter(triangle)
                         self.triangle_perimeters[triangle] = perimeter_var
 
-                    success, value, status = self.check_value_constraint(perimeter_var, expected_value)
+                    success, value, status = self.check_value_constraint(perimeter_var, model_answer)
 
                     if success:
-                        print(f"Success: The triangle perimeter is uniquely determined to be {expected_value}.")
+                        print(f"Success: The triangle perimeter is uniquely determined to be {model_answer}.")
                         return True, ""
                     else:
                         # Generate detailed feedback report
                         detailed_feedback = self.generate_detailed_feedback(
                             goal_type="perimeter",
                             goal_token=triangle,
-                            expected_value=expected_value,
-                            computed_value=value,
+                            model_answer=model_answer,
+                            verifier_expected_answer=value,
                             status=status,
                             additional_info=f"Triangle sides:\n" +
                                             f"  {triangle[0]}{triangle[1]}: {self.add_length(triangle[0], triangle[1])}\n" +
@@ -7216,23 +7667,23 @@ class GeometricTheorem:
                 if length_match:
                     line_name = length_match.group(1)
                     print(f"\nGoal line: {line_name}")
-                    print(f"Expected answer: {expected_value}")
+                    print(f"Expected answer: {model_answer}")
 
                     # Get the length variable
                     length_var = self.add_length(line_name[0], line_name[1])
 
-                    success, value, status = self.check_value_constraint(length_var, expected_value)
+                    success, value, status = self.check_value_constraint(length_var, model_answer)
 
                     if success:
-                        print(f"Success: The length {line_name} is uniquely determined to be {expected_value}.")
+                        print(f"Success: The length {line_name} is uniquely determined to be {model_answer}.")
                         return True, ""
                     else:
                         # Generate detailed feedback report
                         detailed_feedback = self.generate_detailed_feedback(
                             goal_type="length",
                             goal_token=line_name,
-                            expected_value=expected_value,
-                            computed_value=value,
+                            model_answer=model_answer,
+                            verifier_expected_answer=value,
                             status=status
                         )
                         print(f"Detailed feedback generated for length goal.")
@@ -7242,22 +7693,22 @@ class GeometricTheorem:
                 if angle_match:
                     goal_angle = angle_match.group(1)
                     print(f"\nGoal angle: {goal_angle}")
-                    print(f"Expected answer: {expected_value}")
+                    print(f"Expected answer: {model_answer}")
 
                     angle_var = self.add_angle(goal_angle[0], goal_angle[1], goal_angle[2])
 
-                    success, value, status = self.check_value_constraint(angle_var, expected_value)
+                    success, value, status = self.check_value_constraint(angle_var, model_answer)
 
                     if success:
-                        print(f"Success: Angle {goal_angle} is uniquely determined to be {expected_value}.")
+                        print(f"Success: Angle {goal_angle} is uniquely determined to be {model_answer}.")
                         return True, ""
                     else:
                         # Generate detailed feedback report
                         detailed_feedback = self.generate_detailed_feedback(
                             goal_type="angle",
                             goal_token=goal_angle,
-                            expected_value=expected_value,
-                            computed_value=value,
+                            model_answer=model_answer,
+                            verifier_expected_answer=value,
                             status=status
                         )
                         print(f"Detailed feedback generated for angle goal.")
@@ -7269,7 +7720,7 @@ class GeometricTheorem:
                     quad_name = quad_area_match.group(1)
                     print(f"\nDetected quadrilateral area goal: AreaOfQuadrilateral({quad_name})")
                     print(f"\nGoal quadrilateral area: {quad_name}")
-                    print(f"Expected area: {expected_value}")
+                    print(f"Expected area: {model_answer}")
 
                     if quad_name in self.quad_areas:
                         quad_area_var = self.quad_areas[quad_name]
@@ -7277,18 +7728,18 @@ class GeometricTheorem:
                         quad_area_var = Real(f"areaQuadr_{quad_name}")
                         self.quad_areas[quad_name] = quad_area_var
 
-                    success, value, status = self.check_value_constraint(quad_area_var, expected_value)
+                    success, value, status = self.check_value_constraint(quad_area_var, model_answer)
 
                     if success:
-                        print(f"Success: The quadrilateral area is uniquely determined to be {expected_value}.")
+                        print(f"Success: The quadrilateral area is uniquely determined to be {model_answer}.")
                         return True, ""
                     else:
                         # Generate detailed feedback report
                         detailed_feedback = self.generate_detailed_feedback(
                             goal_type="quad_area",
                             goal_token=quad_name,
-                            expected_value=expected_value,
-                            computed_value=value,
+                            model_answer=model_answer,
+                            verifier_expected_answer=value,
                             status=status
                         )
                         print(f"Detailed feedback generated for quadrilateral area goal.")
@@ -7319,24 +7770,48 @@ class GeometricTheorem:
 
                                 # Check the value constraint for the difference
                                 diff_expr = angle1_var - angle2_var
-                                success, value, status = self.check_value_constraint(diff_expr, expected_value)
+                                success, value, status = self.check_value_constraint(diff_expr, model_answer)
 
                                 if success:
                                     print(
-                                        f"Success: Angle difference {angle1_name} - {angle2_name} = {expected_value} is verified.")
+                                        f"Success: Angle difference {angle1_name} - {angle2_name} = {model_answer} is verified.")
                                     return True, ""
                                 else:
                                     # Generate detailed feedback for angle subtraction
                                     detailed_feedback = self.generate_detailed_feedback(
                                         goal_type="general",
                                         goal_token=f"Sub({expr1_str},{expr2_str})",
-                                        expected_value=expected_value,
-                                        computed_value=value,
+                                        model_answer=model_answer,
+                                        verifier_expected_answer=value,
                                         status=status,
                                         additional_info=f"Angle 1: {angle1_name}\nAngle 2: {angle2_name}"
                                     )
                                     print(f"Detailed feedback generated for angle subtraction goal.")
                                     return False, detailed_feedback
+
+                    # Special handling for single variables (most common case)
+                    elif len(goal_expr) == 1 and goal_expr.isalpha() and goal_expr in self.variables:
+                        # Get the Z3 variable directly
+                        var = self.variables[goal_expr]
+
+                        # Use the existing check_value_constraint function that handles multiple solutions
+                        success, value, status = self.check_value_constraint(var, model_answer)
+
+                        if success:
+                            print(f"Success: Variable {goal_expr} is uniquely determined to be {model_answer}.")
+                            return True, ""
+                        else:
+                            # Generate detailed feedback with proper status
+                            detailed_feedback = self.generate_detailed_feedback(
+                                goal_type="general",
+                                goal_token=goal_expr,
+                                model_answer=model_answer,
+                                verifier_expected_answer=value,
+                                status=status,
+                                additional_info=f"Variable {goal_expr} is {'not uniquely determined' if status == 'multiple_values' else 'incompatible with expected value'}"
+                            )
+                            print(f"Detailed feedback generated for variable goal.")
+                            return False, detailed_feedback
 
                     # For other general expressions, build a mapping for evaluation
                     if self.solver.check() == sat:
@@ -7375,20 +7850,20 @@ class GeometricTheorem:
                                     print("Error converting triangle area for", tri, ":", e)
 
                             # Evaluate the expression
-                            computed_value = self.evaluate_expression(goal_expr, mapping)
+                            verifier_expected_answer = self.evaluate_expression(goal_expr, mapping)
 
-                            if abs(computed_value - expected_value) < epsilon:
-                                print(f"Success: General goal expression matches expected value {expected_value}.")
+                            if abs(verifier_expected_answer - model_answer) < epsilon:
+                                print(f"Success: General goal expression matches expected value {model_answer}.")
                                 return True, ""
                             else:
                                 # Generate detailed feedback for general expression
                                 detailed_feedback = self.generate_detailed_feedback(
                                     goal_type="general",
                                     goal_token=goal_expr,
-                                    expected_value=expected_value,
-                                    computed_value=computed_value,
+                                    model_answer=model_answer,
+                                    verifier_expected_answer=verifier_expected_answer,
                                     status="incompatible",
-                                    additional_info=f"Evaluated expression: {goal_expr}\nComputed value: {computed_value}\nExpected value: {expected_value}"
+                                    additional_info=f"Evaluated expression: {goal_expr}\nComputed value: {verifier_expected_answer}\nExpected value: {model_answer}"
                                 )
                                 print(f"Detailed feedback generated for general goal expression.")
                                 return False, detailed_feedback
@@ -7401,7 +7876,7 @@ class GeometricTheorem:
                         detailed_feedback = self.generate_detailed_feedback(
                             goal_type="general",
                             goal_token=goal_expr,
-                            expected_value=expected_value,
+                            model_answer=model_answer,
                             status="unsatisfiable"
                         )
                         print(f"Detailed feedback generated for general goal expression.")
@@ -7428,254 +7903,205 @@ class GeometricTheorem:
             return False, f"Error during proof verification: {str(e)}"
 
     def collect_related_facts(self, goal_points, goal_type=None):
-        """Collect only facts that directly involve the complete goal token"""
+        """
+        Collect only facts that directly involve the goal token and are meaningful for debugging
+        Filters out trivial elements like individual points and basic angles
+        """
         related_facts = {}
         goal_points_set = set(goal_points)
         goal_token = ''.join(goal_points)
 
-        # 1. Points directly in the goal
-        related_facts["Points"] = list(goal_points)
-
-        # Adjust filtering strategy based on goal type
-        exact_match_required = True
-        if goal_type == "length" and len(goal_points) == 2:
-            # For length goals, we only need the exact 2 points
-            exact_match_required = True
-        elif goal_type == "arc_measure" or goal_type == "arc_length":
-            # For arc goals, we need exactly those points
-            exact_match_required = True
-        elif goal_type == "angle":
-            # For angle goals, we need exactly those 3 points
-            exact_match_required = True
-        else:
-            # For other goals, we'll require exact matches too
-            exact_match_required = True
-
-        # 2. Angles that contain ALL goal points
-        related_angles = []
-        seen_angles = set()  # Track normalized angle names to avoid duplicates
-
-        for angle_name, angle_var in self.angles.items():
-            # Extract points from angle name (typically in format "angle_ABC")
-            angle_points = angle_name.split('_')[1] if '_' in angle_name else angle_name
-            angle_points_set = set(angle_points)
-
-            # Check if this angle should be included based on our filtering strategy
-            include_angle = False
-            if exact_match_required:
-                # Only include if angle has exactly the same points as the goal
-                include_angle = angle_points_set == goal_points_set
-            else:
-                # Include if angle contains ALL goal points (may have extra points)
-                include_angle = goal_points_set.issubset(angle_points_set)
-
-            if include_angle:
-                # Normalize to avoid duplicates like CED/DEC
-                normalized = self.normalize_angle_name(angle_points)
-                if normalized not in seen_angles:
-                    related_angles.append(f"Angle {angle_points}")
-                    seen_angles.add(normalized)
-
-        # Also check for non-normalized angle names that might be specifically used
-        if goal_type == "angle":
-            if goal_token not in [a.split()[1] for a in related_angles]:
-                normalized = self.normalize_angle_name(goal_token)
-                if normalized in seen_angles:
-                    related_angles.append(f"Angle {goal_token}")
-
-        related_facts["Angles"] = related_angles
-
-        # 3. Look for relevant values in the solver constraints based on goal type
-        if goal_type in ["angle", "arc_measure", "arc_length"]:
-            angle_values = []
-
-            # Check all constraints to find angle/arc values
-            for c in self.solver.assertions():
-                c_str = str(c)
-
-                # For angles
-                if goal_type == "angle":
-                    angle_match = re.search(r'angle_(\w+) == (\d+)', c_str)
-                    if angle_match:
-                        angle_name = angle_match.group(1)
-                        angle_value = angle_match.group(2)
-
-                        # Only include if it has exactly the same set of points as the goal
-                        angle_points_set = set(angle_name)
-                        if angle_points_set == goal_points_set:
-                            angle_values.append(f"∠{angle_name}={angle_value}°")
-
-                # For arcs
-                elif goal_type in ["arc_measure", "arc_length"]:
-                    arc_match = re.search(r'arc_(\w+) == (\d+)', c_str)
-                    if arc_match:
-                        arc_name = arc_match.group(1)
-                        arc_value = arc_match.group(2)
-
-                        # Only include if it has exactly the same set of points as the goal
-                        arc_points_set = set(arc_name)
-                        if arc_points_set == goal_points_set:
-                            angle_values.append(f"arc {arc_name}={arc_value}°")
-
-            if angle_values:
-                related_facts["Values"] = angle_values
-
-        # 4. For length goals, look for specific length values
-        if goal_type == "length" and len(goal_points) == 2:
-            length_values = []
-
-            # Check all constraints to find length values
-            for c in self.solver.assertions():
-                c_str = str(c)
-
-                length_match = re.search(r'length_(\w+) == (\d+)', c_str)
-                if length_match:
-                    length_name = length_match.group(1)
-                    length_value = length_match.group(2)
-
-                    # Only include if it involves exactly our two points
-                    length_points_set = set(length_name)
-                    if length_points_set == goal_points_set:
-                        length_values.append(f"|{length_name}|={length_value}")
-
-            if length_values:
-                related_facts["Length Values"] = length_values
-
-        # 5. Look for perpendicular lines involving goal points - adjust based on goal type
+        # 1. Check for perpendicular lines relevant to the goal
         perp_facts = []
-        for line1, line2 in self.perpendicular_pairs:
-            line1_set = set(line1)
-            line2_set = set(line2)
+        seen_perp_pairs = set()
 
-            include_perp = False
-            if goal_type == "length" and len(goal_points) == 2:
-                # For length goals: Include if either line exactly matches our goal
-                include_perp = (line1_set == goal_points_set or line2_set == goal_points_set)
-            elif exact_match_required:
-                # For strict matching: only include if both lines are made up entirely of goal points
-                include_perp = line1_set.issubset(goal_points_set) and line2_set.issubset(goal_points_set)
-            else:
-                # For less strict matching: include if any point from both lines is in our goal
-                include_perp = (line1_set.intersection(goal_points_set) and line2_set.intersection(goal_points_set))
+        for pair in self.perpendicular_pairs:
+            line1, line2 = pair
 
-            if include_perp:
-                perp_facts.append(f"{line1}⊥{line2}")
+            # Check if at least one point from goal is in these lines
+            if any(p in line1 for p in goal_points) or any(p in line2 for p in goal_points):
+                # Create a normalized key to avoid duplicates
+                key = tuple(sorted([line1, line2]))
+                if key not in seen_perp_pairs:
+                    seen_perp_pairs.add(key)
+                    perp_facts.append(f"{line1} ⊥ {line2}")
 
         if perp_facts:
             related_facts["Perpendicular Lines"] = perp_facts
 
-        # 6. Arcs that involve goal points - adjust based on goal type
-        related_arcs = []
-        for arc_name in self.arcs:
-            # Extract arc points (typically in format "arc_ABC")
-            arc_points = arc_name.split('_')[1] if '_' in arc_name else arc_name
-            arc_points_set = set(arc_points)
+        # 2. Check for specific angle values in TEXT_CDL
+        if goal_type == "angle":
+            angle_values = []
 
-            include_arc = False
-            if exact_match_required:
-                # Only include if arc has exactly the same points as the goal
-                include_arc = arc_points_set == goal_points_set
-            else:
-                # Include if arc contains ALL goal points (may have extra points)
-                include_arc = goal_points_set.issubset(arc_points_set)
+            if hasattr(self, 'text_cdl_lines'):
+                for line in self.text_cdl_lines:
+                    # Look for direct values for this angle
+                    angle_match = re.search(r'Equal\(MeasureOfAngle\(' + re.escape(goal_token) + r'\),(.+?)\)', line)
+                    if angle_match:
+                        value = angle_match.group(1).strip()
+                        angle_values.append(f"∠{goal_token} = {value}")
 
-            if include_arc:
-                related_arcs.append(f"Arc {arc_points}")
+            if angle_values:
+                related_facts["Angle Values"] = angle_values
 
-        if related_arcs:
-            related_facts["Arcs"] = related_arcs
+        # 3. Check for parallel lines involving goal points
+        parallel_facts = []
+        seen_parallel = set()
 
-        # 7. Circles where the goal points are part of key relationships
-        related_circles = []
-        for circle, center in self.circle_centers.items():
-            # Adjust based on goal type
-            include_circle = False
+        for pair in self.parallel_pairs:
+            line1, line2 = pair
 
-            if exact_match_required:
-                # Only include if circle and center are exactly our goal points
-                include_circle = set([circle, center]) == goal_points_set
-            else:
-                # More relaxed matching
-                include_circle = circle in goal_points_set and center in goal_points_set
+            # Check if at least one point from goal is in these lines
+            if any(p in line1 for p in goal_points) or any(p in line2 for p in goal_points):
+                # Create a normalized key to avoid duplicates
+                key = tuple(sorted([line1, line2]))
+                if key not in seen_parallel:
+                    seen_parallel.add(key)
+                    parallel_facts.append(f"{line1} ∥ {line2}")
 
-            if include_circle:
-                related_circles.append(f"Circle {circle} with center {center}")
+        if parallel_facts:
+            related_facts["Parallel Lines"] = parallel_facts
 
-        if related_circles:
-            related_facts["Circles"] = related_circles
+        # 4. Check for special quadrilaterals
+        # First, find relevant quadrilaterals that contain points from our goal
+        special_quads = []
+        seen_quads = set()
 
-        # 8. Cocircular facts that contain goal points
-        related_cocircular = []
-        seen_cocircular = set()  # To avoid duplicates
+        for quad in self.polygons:
+            if len(quad) == 4 and any(p in quad for p in goal_points):
+                # Skip if we've already seen a cyclic variation of this quad
+                normalized = min(quad[i:] + quad[:i] for i in range(len(quad)))
+                if normalized in seen_quads:
+                    continue
+                seen_quads.add(normalized)
 
-        for fact in self.cocircular_facts:
-            fact_set = set(fact)
+                properties = []
+                # Check for various quadrilateral types
+                if quad in self.parallelograms or any(
+                        var in self.parallelograms for var in get_cyclic_variations(quad)):
+                    properties.append("parallelogram")
 
-            include_cocircular = False
-            if exact_match_required:
-                # Only include if cocircular fact has exactly our goal points
-                include_cocircular = fact_set == goal_points_set
-            else:
-                # Include if fact contains ALL goal points
-                include_cocircular = goal_points_set.issubset(fact_set)
+                if hasattr(self, 'rectangles'):
+                    if quad in self.rectangles or any(
+                            var in self.rectangles for var in get_cyclic_variations_rectangle(quad)):
+                        properties.append("rectangle")
 
-            if include_cocircular:
-                # Create a canonical representation to avoid duplicates
-                sorted_fact = ','.join(sorted(fact))
-                if sorted_fact not in seen_cocircular:
-                    related_cocircular.append(f"Cocircular {','.join(fact)}")
-                    seen_cocircular.add(sorted_fact)
+                if hasattr(self, 'squares'):
+                    if quad in self.squares or any(
+                            var in self.squares for var in get_cyclic_variations_rectangle(quad)):
+                        properties.append("square")
 
-        if related_cocircular:
-            related_facts["Cocircular Points"] = related_cocircular
+                if hasattr(self, 'rhombi'):
+                    if quad in self.rhombi or any(var in self.rhombi for var in get_cyclic_variations_rectangle(quad)):
+                        properties.append("rhombus")
 
-        # 9. Collinear facts that contain goal points
-        related_collinear = []
+                if properties:
+                    special_quads.append(f"Quadrilateral {quad} ({', '.join(properties)})")
 
+        if special_quads:
+            related_facts["Special Quadrilaterals"] = special_quads
+
+        # 5. Check for collinear facts involving goal points
+        collinear_facts = []
         for collinear in self.collinear_facts:
-            collinear_set = set(collinear)
+            if any(p in collinear for p in goal_points) and len(collinear) >= 3:
+                collinear_facts.append(f"Collinear {''.join(collinear)}")
 
-            include_collinear = False
-            if exact_match_required:
-                # Only include if collinear fact has exactly our goal points
-                include_collinear = collinear_set == goal_points_set
-            else:
-                # Include if fact contains ALL goal points
-                include_collinear = goal_points_set.issubset(collinear_set)
+        if collinear_facts:
+            related_facts["Collinear Points"] = collinear_facts
 
-            if include_collinear:
-                related_collinear.append(f"Collinear {''.join(collinear)}")
+        # 6. Check for special triangles
+        special_triangles = []
+        seen_triangles = set()
 
-        if related_collinear:
-            related_facts["Collinear Sets"] = related_collinear
+        for triangle in self.polygons:
+            if len(triangle) == 3 and any(p in triangle for p in goal_points):
+                # Skip if we've already seen a cyclic variation
+                normalized = self.normalize_triangle(triangle)
+                if normalized in seen_triangles:
+                    continue
+                seen_triangles.add(normalized)
 
-        # 10. Check for polygons containing goal points
-        related_polygons = []
+                properties = []
+                # Check for right triangle
+                if triangle in self.right_triangles or normalized in self.right_triangles:
+                    properties.append("right")
 
-        for polygon in self.polygons:
-            polygon_set = set(polygon)
+                # Check for isosceles
+                if hasattr(self, 'isosceles_triangles'):
+                    if triangle in self.isosceles_triangles or normalized in self.isosceles_triangles:
+                        properties.append("isosceles")
 
-            include_polygon = False
-            if exact_match_required:
-                # Only include if polygon has exactly our goal points
-                include_polygon = polygon_set == goal_points_set
-            else:
-                # Include if polygon contains ALL goal points
-                include_polygon = goal_points_set.issubset(polygon_set)
+                if properties:
+                    special_triangles.append(f"Triangle {triangle} ({', '.join(properties)})")
 
-            if include_polygon:
-                if len(polygon) == 3:
-                    related_polygons.append(f"Triangle {polygon}")
-                elif len(polygon) == 4:
-                    related_polygons.append(f"Quadrilateral {polygon}")
-                else:
-                    related_polygons.append(f"Polygon {polygon}")
-
-        if related_polygons:
-            related_facts["Polygons"] = related_polygons
+        if special_triangles:
+            related_facts["Special Triangles"] = special_triangles
 
         # Remove empty categories
         return {k: v for k, v in related_facts.items() if v}
+
+    def find_related_theorems_for_variable(self, variable_name):
+        """Find theorems that directly or indirectly constrain a variable goal."""
+        related_theorems = []
+
+        # First, identify all angle or length expressions defined in terms of the goal variable
+        related_expressions = []
+        related_angles = []
+        related_lengths = []
+
+        if hasattr(self, 'text_cdl_lines'):
+            for line in self.text_cdl_lines:
+                if variable_name in line:
+                    # Look for angles defined in terms of goal_variable
+                    angle_match = re.search(r'Equal\(MeasureOfAngle\((\w+)\),(.*?)\)', line)
+                    if angle_match and variable_name in angle_match.group(2):
+                        angle_token = angle_match.group(1)
+                        related_expressions.append(f"MeasureOfAngle({angle_token})")
+                        related_angles.append(angle_token)
+
+                    # Look for lengths defined in terms of goal_variable
+                    length_match = re.search(r'Equal\(LengthOfLine\((\w+)\),(.*?)\)', line)
+                    if length_match and variable_name in length_match.group(2):
+                        length_token = length_match.group(1)
+                        related_expressions.append(f"LengthOfLine({length_token})")
+                        related_lengths.append(length_token)
+
+        # Now search for theorems that constrain these expressions
+        for theorem_info in self.theorem_sequence:
+            is_related = False
+
+            # Check if goal variable is directly mentioned
+            if variable_name in theorem_info["premise"] or any(variable_name in arg for arg in theorem_info["args"]):
+                is_related = True
+
+            # Check if any conclusion constrains a related expression
+            if not is_related:
+                for conclusion in theorem_info["conclusions"]:
+                    # Check for direct mentions of related expressions
+                    for expr in related_expressions:
+                        if expr in conclusion:
+                            is_related = True
+                            break
+
+                    # Also check for any angle tokens in the conclusion
+                    for angle in related_angles:
+                        if angle in conclusion:
+                            is_related = True
+                            break
+
+                    if is_related:
+                        break
+
+            if is_related:
+                related_theorems.append({
+                    "step": theorem_info["step_number"],
+                    "theorem": theorem_info["theorem_name"],
+                    "args": theorem_info["args"],
+                    "conclusion": ", ".join(theorem_info["conclusions"])
+                })
+
+        return related_theorems
 
     def find_related_theorems(self, goal_angle, goal_points):
         """Find only theorems that EXACTLY relate to the goal angle, with no false positives"""
@@ -7711,19 +8137,6 @@ class GeometricTheorem:
                 })
 
         return related_theorems
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     def add_all_side_ratios_for_similar_triangles(self, tri1: str, tri2: str):
         # 1) Get the 3 vertices in order, e.g. tri1='BAE', tri2='CAD'
@@ -7883,7 +8296,10 @@ class GeometricTheorem:
             "midsegment_of_triangle_property_length",
             "parallel_judgment_par_par",
             "mirror_congruent_triangle_judgment_sas",
-            "mirror_congruent_triangle_property_angle_equal"
+            "mirror_congruent_triangle_property_angle_equal",
+            "arc_addition_measure",
+            "diameter_of_circle_judgment_pass_centre",
+            "isosceles_triangle_property_line_coincidence"
         ]
 
         if theorem_name not in valid_theorems:
@@ -7892,13 +8308,6 @@ class GeometricTheorem:
                 message=f"Unknown theorem: {theorem_name}",
                 details=f"Valid theorems are: {valid_theorems}"
             )
-
-
-
-
-
-
-
 
         if theorem_name == "parallelogram_property_opposite_angle_equal":
             version = args[0]
@@ -7916,6 +8325,143 @@ class GeometricTheorem:
 
             elif version == "2":
                 print("2")
+
+
+        elif theorem_name == "arc_addition_measure":
+            version = args[0]
+            if version == "1":
+                # Expected conclusion: "Equal(MeasureOfArc(ODB),Add(MeasureOfArc(ODA),MeasureOfArc(OAB)))"
+                # We need to extract the three arc names: total_arc, arc1, and arc2
+                match = re.search(
+                    r'Equal\(MeasureOfArc\((\w+)\),Add\(MeasureOfArc\((\w+)\),MeasureOfArc\((\w+)\)\)\)',
+                    conclusions[0]
+                )
+
+                if match:
+                    total_arc, arc1, arc2 = match.groups()  # e.g., "ODB", "ODA", "OAB"
+
+                    # Get (or create) Z3 variables for all three arcs
+                    total_arc_var = self.add_arc(total_arc)
+                    arc1_var = self.add_arc(arc1)
+                    arc2_var = self.add_arc(arc2)
+
+                    # Add the constraint that total_arc = arc1 + arc2
+                    self.solver.add(total_arc_var == arc1_var + arc2_var)
+
+                    print(
+                        f"Added arc addition constraint: MeasureOfArc({total_arc}) = MeasureOfArc({arc1}) + MeasureOfArc({arc2})")
+                    return None
+                else:
+                    return GeometricError(
+                        tier=ErrorTier.TIER1_THEOREM_CALL,
+                        message="Conclusion format error for arc_addition_measure",
+                        details=f"Expected pattern Equal(MeasureOfArc(XX),Add(MeasureOfArc(YY),MeasureOfArc(ZZ))) but got {conclusions[0]}"
+                    )
+            else:
+                return GeometricError(
+                    tier=ErrorTier.TIER1_THEOREM_CALL,
+                    message=f"Unsupported version {version} for arc_addition_measure"
+                )
+
+
+        elif theorem_name == "isosceles_triangle_property_line_coincidence":
+            version = args[0]
+            if version == "2":
+                # For version 2, expect two conclusions:
+                # 1. IsAltitudeOfTriangle(CF,CDE) - the line is an altitude of the triangle
+                # 2. IsBisectorOfAngle(CF,ECD) - the line is an angle bisector
+
+                if len(conclusions) < 2:
+                    return GeometricError(
+                        tier=ErrorTier.TIER1_THEOREM_CALL,
+                        message="Insufficient conclusions for isosceles_triangle_property_line_coincidence",
+                        details=f"Expected two conclusions but got {len(conclusions)}"
+                    )
+
+                # Process the altitude conclusion
+                altitude_match = re.search(r'IsAltitudeOfTriangle\((\w+),(\w+)\)', conclusions[0])
+                if not altitude_match:
+                    return GeometricError(
+                        tier=ErrorTier.TIER1_THEOREM_CALL,
+                        message="Invalid altitude conclusion format",
+                        details=f"Expected IsAltitudeOfTriangle(...) but got {conclusions[0]}"
+                    )
+
+                altitude_line, triangle = altitude_match.groups()  # e.g., "CF", "CDE"
+
+                # Store the altitude information
+                if not hasattr(self, "triangle_altitudes"):
+                    self.triangle_altitudes = {}
+
+                if triangle not in self.triangle_altitudes:
+                    self.triangle_altitudes[triangle] = []
+
+                self.triangle_altitudes[triangle].append(altitude_line)
+
+                # Determine the vertices involved
+                altitude_start = altitude_line[0]  # e.g., "C"
+                altitude_end = altitude_line[1]  # e.g., "F"
+
+                # Find the opposite side to the altitude's starting point
+                opposite_vertices = [v for v in triangle if v != altitude_start]  # e.g., ["D", "E"]
+
+                # Determine that the angle at altitude_end is 90 degrees
+                # For altitude CF in triangle CDE, need angle CFD = 90° and CFE = 90°
+                for opposite_vertex in opposite_vertices:
+                    angle_name = altitude_end + altitude_start + opposite_vertex  # e.g., "FCD"
+                    angle_var = self.add_angle(angle_name[0], angle_name[1], angle_name[2])
+                    self.solver.add(angle_var == 90)
+                    print(f"Added 90° angle constraint for altitude: angle {angle_name} = 90°")
+
+                # Process the angle bisector conclusion
+                bisector_match = re.search(r'IsBisectorOfAngle\((\w+),(\w+)\)', conclusions[1])
+                if not bisector_match:
+                    return GeometricError(
+                        tier=ErrorTier.TIER1_THEOREM_CALL,
+                        message="Invalid angle bisector conclusion format",
+                        details=f"Expected IsBisectorOfAngle(...) but got {conclusions[1]}"
+                    )
+
+                bisector_line, angle = bisector_match.groups()  # e.g., "CF", "ECD"
+
+                # Store the angle bisector information
+                if not hasattr(self, "angle_bisectors"):
+                    self.angle_bisectors = []
+
+                self.angle_bisectors.append((bisector_line, angle))
+
+                # Determine the angles on both sides of the bisector
+                if len(angle) == 3:
+                    # The middle letter is the vertex
+                    vertex = angle[1]  # e.g., "C"
+                    # The other two letters are points forming the angle with the vertex
+                    angle_side1 = angle[0]  # e.g., "E"
+                    angle_side2 = angle[2]  # e.g., "D"
+
+                    # We need to find the third point in the bisector line
+                    bisector_other = bisector_line[1] if bisector_line[0] == vertex else bisector_line[0]  # e.g., "F"
+
+                    # Create angles on both sides of the bisector
+                    angle1 = angle_side1 + vertex + bisector_other  # e.g., "ECF"
+                    angle2 = bisector_other + vertex + angle_side2  # e.g., "FCD"
+
+                    # Create Z3 variables for these angles
+                    angle1_var = self.add_angle(angle1[0], angle1[1], angle1[2])
+                    angle2_var = self.add_angle(angle2[0], angle2[1], angle2[2])
+
+                    # Add constraint that both angles are equal (definition of angle bisector)
+                    self.solver.add(angle1_var == angle2_var)
+                    print(f"Added angle bisector constraint: angle {angle1} = angle {angle2}")
+
+                print(
+                    f"Added isosceles triangle property: line {altitude_line} is both an altitude and angle bisector of triangle {triangle}")
+                return None
+            else:
+                return GeometricError(
+                    tier=ErrorTier.TIER1_THEOREM_CALL,
+                    message=f"Unsupported version {version} for isosceles_triangle_property_line_coincidence"
+                )
+
 
 
         elif theorem_name == "mirror_congruent_triangle_judgment_sas":
@@ -7936,6 +8482,66 @@ class GeometricTheorem:
                         message="Conclusion format error for mirror_congruent_triangle_judgment_sas",
                         details=f"Expected MirrorCongruentBetweenTriangle(...) but got {conclusions[0]}"
                     )
+
+
+
+
+        elif theorem_name == "diameter_of_circle_judgment_pass_centre":
+            version = args[0]
+            if version == "1":
+                # Expected conclusion: "IsDiameterOfCircle(AB,O)"
+                match = re.search(r'IsDiameterOfCircle\((\w+),(\w+)\)', conclusions[0])
+
+                if match:
+                    diameter_line, circle_name = match.groups()  # e.g., "AB", "O"
+
+                    # Record that this line is a diameter of the given circle
+                    self.is_diameter_of_circle.append((diameter_line, circle_name))
+
+                    # Also add the reversed line as a diameter
+                    self.is_diameter_of_circle.append((diameter_line[::-1], circle_name))
+
+                    # If circle_radii and circle_diameters exist, set up the relationship
+                    if hasattr(self, "circle_radii") and hasattr(self, "circle_diameters"):
+                        if circle_name in self.circle_radii:
+                            # Get or create diameter variable
+                            diam_name = f"diameter_{circle_name}"
+                            if diam_name not in self.circle_diameters:
+                                self.circle_diameters[diam_name] = Real(diam_name)
+                                self.solver.add(self.circle_diameters[diam_name] >= 0)
+
+                            # Get or create length variable for the diameter line
+                            diameter_var = self.add_length(diameter_line[0], diameter_line[1])
+
+                            # Set diameter length = diameter variable
+                            self.solver.add(diameter_var == self.circle_diameters[diam_name])
+
+                            # Set diameter = 2 * radius relationship
+                            radius_var = self.circle_radii[circle_name]
+                            self.solver.add(self.circle_diameters[diam_name] == 2 * radius_var)
+
+                    print(f"Added diameter fact: {diameter_line} is a diameter of circle {circle_name}")
+                    return None
+                else:
+                    return GeometricError(
+                        tier=ErrorTier.TIER1_THEOREM_CALL,
+                        message="Conclusion format error for diameter_of_circle_judgment_pass_centre",
+                        details=f"Expected IsDiameterOfCircle(XX,Y) pattern but got {conclusions[0]}"
+                    )
+            else:
+                return GeometricError(
+                    tier=ErrorTier.TIER1_THEOREM_CALL,
+                    message=f"Unsupported version {version} for diameter_of_circle_judgment_pass_centre"
+                )
+
+
+
+
+
+
+
+
+
 
         elif theorem_name == "mirror_congruent_triangle_property_angle_equal":
             version = args[0]
@@ -8651,6 +9257,8 @@ class GeometricTheorem:
                     message=f"Unsupported version {version} for round_angle"
                 )
 
+
+
         elif theorem_name == "cosine_theorem":
 
             version = args[0]
@@ -8678,7 +9286,11 @@ class GeometricTheorem:
 
                     )
 
+                # Extract the sides and angle from the theorem
+
                 side1, side2, side3, angle_str = match.groups()
+
+                print(f"Parsed cosine theorem: sides={side1},{side2},{side3}, angle={angle_str}")
 
                 # Get (or create) variables for the sides and angle
 
@@ -8688,134 +9300,28 @@ class GeometricTheorem:
 
                 side3_var = self.add_length(side3[0], side3[1])
 
+                # Use the angle exactly as specified in the theorem
+
                 angle_var = self.add_angle(angle_str[0], angle_str[1], angle_str[2])
 
-                # First check if the angle already has a unique value
+                # Create cosine variable for this specific angle
 
-                angle_has_unique_value = False
+                cos_var_name = f"cos_{angle_str}"
 
-                angle_value = None
+                if cos_var_name not in self.variables:
+                    self.variables[cos_var_name] = Real(cos_var_name)
 
-                if self.solver.check() == sat:
+                    # Add bounds for cosine
 
-                    model = self.solver.model()
+                    self.solver.add(self.variables[cos_var_name] >= -1)
 
-                    # Get current angle value from model
+                    self.solver.add(self.variables[cos_var_name] <= 1)
 
-                    try:
+                cos_var = self.variables[cos_var_name]
 
-                        model_angle_val = float(model.eval(angle_var).as_decimal(10).rstrip('?'))
+                # Form the law of cosines constraint
 
-                        # Check if this angle is uniquely determined
-
-                        temp_solver = Solver()
-
-                        for c in self.solver.assertions():
-                            temp_solver.add(c)
-
-                        # Try to find a different valid angle value
-
-                        epsilon = 1e-8
-
-                        temp_solver.add(
-                            Or(angle_var < model_angle_val - epsilon, angle_var > model_angle_val + epsilon))
-
-                        if temp_solver.check() == unsat:
-                            # Angle is uniquely determined!
-
-                            angle_has_unique_value = True
-
-                            angle_value = model_angle_val
-
-                            print(f"Angle {angle_str} already uniquely determined to be {angle_value}°")
-
-                    except Exception as e:
-
-                        print(f"Error checking angle uniqueness: {e}")
-
-                # In the cosine theorem section
-                if angle_has_unique_value:
-                    # Angle already has a unique value, calculate cosine directly
-                    import math
-                    cos_val = math.cos(math.radians(angle_value))
-
-                    # Create a sine variable for this angle
-                    sin_var_name = f"sin_{angle_str}"
-                    if sin_var_name not in self.variables:
-                        self.variables[sin_var_name] = Real(sin_var_name)
-                        self.solver.add(self.variables[sin_var_name] >= -1)
-                        self.solver.add(self.variables[sin_var_name] <= 1)
-
-                    # Add the sine value as well
-                    sin_val = math.sin(math.radians(angle_value))
-
-                    # TEST before adding constraints
-                    test_solver = Solver()
-                    for c in self.solver.assertions():
-                        test_solver.add(c)
-
-                    # Test cosine law constraint
-                    test_solver.add(
-                        side1_var * side1_var ==
-                        side2_var * side2_var + side3_var * side3_var -
-                        2 * side2_var * side3_var * cos_val
-                    )
-
-                    # Only add constraint if it doesn't conflict
-                    if test_solver.check() == sat:
-                        self.solver.add(
-                            side1_var * side1_var ==
-                            side2_var * side2_var + side3_var * side3_var -
-                            2 * side2_var * side3_var * cos_val
-                        )
-                        self.solver.add(self.variables[sin_var_name] == sin_val)
-                        print(
-                            f"Added cosine law constraint with known angle: {side1}^2 = {side2}^2 + {side3}^2 - 2*{side2}*{side3}*{cos_val}")
-                        print(f"Added sine value for future reference: sin({angle_str}) = {sin_val}")
-                    else:
-                        print(
-                            f"Warning: Cosine law constraint with value {cos_val} would make solver unsatisfiable - skipping")
-
-                    # Angle already has a unique value, calculate cosine directly
-
-                    import math
-
-                    cos_val = math.cos(math.radians(angle_value))
-
-                    # Add the law of cosines constraint using this numeric cosine value
-
-                    self.solver.add(
-
-                        side1_var * side1_var ==
-
-                        side2_var * side2_var + side3_var * side3_var -
-
-                        2 * side2_var * side3_var * cos_val
-
-                    )
-
-                    print(
-                        f"Added cosine law constraint with known angle: {side1}^2 = {side2}^2 + {side3}^2 - 2*{side2}*{side3}*{cos_val}")
-
-
-                else:
-
-                    # Angle doesn't have a unique value, create cosine variable
-
-                    cos_var_name = f"cos_{angle_str}"
-
-                    if cos_var_name not in self.variables:
-                        self.variables[cos_var_name] = Real(cos_var_name)
-
-                    cos_var = self.variables[cos_var_name]
-
-                    # Add constraints: -1 ≤ cos(angle) ≤ 1
-
-                    self.solver.add(cos_var >= -1, cos_var <= 1)
-
-                    # Add the law of cosines constraint using the cosine variable
-
-                    self.solver.add(
+                law_of_cosines = (
 
                         side1_var * side1_var ==
 
@@ -8823,20 +9329,34 @@ class GeometricTheorem:
 
                         2 * side2_var * side3_var * cos_var
 
-                    )
+                )
 
-                    print(
-                        f"Added cosine law constraint with variable: {side1}^2 = {side2}^2 + {side3}^2 - 2*{side2}*{side3}*cos({angle_str})")
+                # Check if adding this constraint would create a conflict
 
-                    # Try to compute sides and derive cosine and angle
+                test_solver = Solver()
+
+                for c in self.solver.assertions():
+                    test_solver.add(c)
+
+                test_solver.add(law_of_cosines)
+
+                if test_solver.check() == sat:
+
+                    # Safe to add the constraint
+
+                    self.solver.add(law_of_cosines)
+
+                    print(f"Added law of cosines constraint for {angle_str}")
+
+                    # If the solver has unique values for the sides, try to derive the cosine value
 
                     if self.solver.check() == sat:
 
                         model = self.solver.model()
 
-                        # Try to get side values from the model
-
                         try:
+
+                            # Test if sides have unique values
 
                             side1_val = float(model.eval(side1_var).as_decimal(10).rstrip('?'))
 
@@ -8844,23 +9364,21 @@ class GeometricTheorem:
 
                             side3_val = float(model.eval(side3_var).as_decimal(10).rstrip('?'))
 
-                            # Calculate expected cosine value from the sides
-
                             if side2_val > 0 and side3_val > 0:  # Avoid division by zero
+
+                                # Calculate expected cosine using the law of cosines
 
                                 expected_cos = (side2_val ** 2 + side3_val ** 2 - side1_val ** 2) / (
                                             2 * side2_val * side3_val)
 
-                                if -1 <= expected_cos <= 1:
+                                if -1 <= expected_cos <= 1:  # Valid cosine value
 
-                                    # Check if this cosine value is uniquely determined
+                                    # Check if the cosine can be uniquely determined
 
                                     temp_solver = Solver()
 
                                     for c in self.solver.assertions():
                                         temp_solver.add(c)
-
-                                    # Try to find a different valid value for the cosine
 
                                     epsilon = 1e-8
 
@@ -8868,27 +9386,41 @@ class GeometricTheorem:
                                         Or(cos_var < expected_cos - epsilon, cos_var > expected_cos + epsilon))
 
                                     if temp_solver.check() == unsat:
-                                        # Cosine is uniquely determined!
 
-                                        self.solver.add(cos_var == expected_cos)
+                                        # The cosine value is uniquely determined
 
-                                        print(f"Added constraint: cos({angle_str}) = {expected_cos}")
+                                        print(f"Cosine value for {angle_str} is uniquely determined as {expected_cos}")
 
-                                        # Calculate the angle from cosine
+                                        # Safely update the angle value if we can
 
                                         import math
 
                                         angle_val = math.degrees(math.acos(expected_cos))
 
-                                        # Add the angle constraint
+                                        angle_test = Solver()
 
-                                        self.solver.add(angle_var == angle_val)
+                                        for c in self.solver.assertions():
+                                            angle_test.add(c)
 
-                                        print(f"Added derived angle constraint: {angle_str} = {angle_val}°")
+                                        angle_test.add(angle_var == angle_val)
+
+                                        if angle_test.check() == sat:
+                                            self.solver.add(angle_var == angle_val)
+
+                                            print(f"Set angle {angle_str} = {angle_val}°")
 
                         except Exception as e:
 
-                            print(f"Error determining angle from sides: {e}")
+                            print(f"Note: Could not determine unique values for sides or angle: {e}")
+
+                else:
+
+                    print(f"Warning: Law of cosines constraint would create a conflict - not adding")
+
+                # Make sure solver is still satisfiable
+
+                if self.solver.check() != sat:
+                    print("WARNING: Solver became unsatisfiable after cosine theorem application")
 
         elif theorem_name == "flat_angle":
             version = args[0]
@@ -11230,6 +11762,7 @@ class GeometricTheorem:
             elif version == "2":
                 print("2")
 
+
 def get_cyclic_variations_rectangle(para_name: str) -> Set[str]:
     """Return all cyclic variations of a polygon name.
     For instance, "PNML" returns {"PNML", "NMLP", "MLPN", "LPNM"}.
@@ -11254,7 +11787,7 @@ def get_cyclic_variations(para_name: str) -> Set[str]:
     return variations
 
 
-def verify_geometric_proof(filename: str, print_output = True) -> tuple:
+def verify_geometric_proof(filename: str, print_output=True) -> tuple:
     """Main function to verify a geometric proof"""
     import contextlib
     import sys
@@ -11279,7 +11812,7 @@ def verify_geometric_proof(filename: str, print_output = True) -> tuple:
 #/Users/eitan/Desktop/lean/lean_python/questions/the new format for questions after jan_17/new_3_questions/question1/question1_correct
 if __name__ == "__main__":
     result, feedback = verify_geometric_proof(
-        "/Users/osultan/PycharmProjects/FormalGeo/results/level_1/variant_analogy_based_model_o1_problem_178_to_verify.txt",print_output=False)
+        "/Users/osultan/PycharmProjects/FormalGeo/results/level_3/variant_analogy_based_model_o1_problem_4187.txt",print_output=False)
 
     if feedback:
         print(feedback)
