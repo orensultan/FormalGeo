@@ -261,64 +261,17 @@ GOAL_SYMBOL:
 ma_ghd
 
 ANSWER:
-138
+42
 
 THEOREM_SEQUENCE:
-1; quadrilateral_property_angle_sum(DAGH); Polygon(DAGH); ["Equal(Add(MeasureOfAngle(DAG),MeasureOfAngle(AGH),MeasureOfAngle(GHD),MeasureOfAngle(HDA)),360)"]
+1; adjacent_complementary_angle(1,AGH,HGJ); Collinear(AGJ)&Angle(AGH)&Angle(HGJ); ["Equal(Add(MeasureOfAngle(AGH),MeasureOfAngle(HGJ)),180)"]
 2; parallel_property_ipsilateral_internal_angle(1,GA,HD); ParallelBetweenLine(GA,HD)&Line(GH); ["Equal(Add(MeasureOfAngle(AGH),MeasureOfAngle(GHD)),180)"]
 ***MODEL_RESPONSE_END***
 RETRIES_MESSAGES:
-#retry: 1; message: Tier1 error. Theorem <parallel_property_ipsilateral_internal_angle> branch error. Expected dict_keys(['1']) but got None. Please rewrite your response, you should change only the call to theorem <parallel_property_ipsilateral_internal_angle> by adding the branch number from the dict_keys as the first argument
-#retry: 2; message: verification failed.
-
-- Goal: measure of angle GHD
-- Model answer: 138.0
-- Error: Your proof doesn't uniquely determine the value. You need to use additional theorems
-- Available premises:
-  Parallel Lines: AG ∥ DH
-  Collinear Points: ADL, AGJ, CDK, CHD, CHDK, CHK, DAM, EAG, EAGJ, EAJ, EGJ, FGH, FGHI, FGI, FHI, GHI, HDK, LAM, LDAM, LDM
-  Polygons: AGHD, DAGH, GHDA, HDAG
-- Theorems related to the goal:
-  Step 1 - parallel_property_ipsilateral_internal_angle(1, GA, HD): Equal(Add(MeasureOfAngle(AGH),MeasureOfAngle(GHD)),180)
-- Solver constraints directly related to this goal:
-  ∠AGH + ∠DHG = 180
-  ∠DHG <= 180
-  ∠DHG = ∠DHF
-  ∠DHG > 0
-
-Please fix the proof.
-Model Answer:
-138
-
-THEOREM_SEQUENCE:
-1; parallel_property_ipsilateral_internal_angle(1,GA,HD); ParallelBetweenLine(GA,HD)&Line(GH); ["Equal(Add(MeasureOfAngle(AGH),MeasureOfAngle(GHD)),180)"]
-#retry: 3; message: verification failed.
-
-- Goal: measure of angle GHD
-- Model answer: 138.0
-- Error: Your proof doesn't uniquely determine the value. You need to use additional theorems
-- Available premises:
-  Parallel Lines: AG ∥ DH
-  Collinear Points: ADL, AGJ, CDK, CHD, CHDK, CHK, DAM, EAG, EAGJ, EAJ, EGJ, FGH, FGHI, FGI, FHI, GHI, HDK, LAM, LDAM, LDM
-  Polygons: AGHD, DAGH, GHDA, HDAG
-- Theorems related to the goal:
-  Step 1 - parallel_property_ipsilateral_internal_angle(1, GA, HD): Equal(Add(MeasureOfAngle(AGH),MeasureOfAngle(GHD)),180)
-- Solver constraints directly related to this goal:
-  ∠AGH + ∠DHG = 180
-  ∠DHG <= 180
-  ∠DHG = ∠DHF
-  ∠DHG > 0
-
-Please fix the proof.
-Model Answer:
-138
-
-THEOREM_SEQUENCE:
-1; parallel_property_ipsilateral_internal_angle(1,GA,HD); ParallelBetweenLine(GA,HD)&Line(GH); ["Equal(Add(MeasureOfAngle(AGH),MeasureOfAngle(GHD)),180)"]
-#retry: 4; message: Tier1 error. Theorem  not defined in current GDL. Please rewrite the proof sequence, you are allowed to use only theorems from the GDL.
-#retry: 5; message: Tier1 error. Theorem <quadrilateral_property_angle_sum> branch error. Expected dict_keys(['1']) but got None. Please rewrite your response, you should change only the call to theorem <quadrilateral_property_angle_sum> by adding the branch number from the dict_keys as the first argument
+#retry: 1; message: Tier1 error. Theorem <adjacent_complementary_angle> branch error. Expected dict_keys(['1']) but got None. Please rewrite your response, you should change only the call to theorem <adjacent_complementary_angle> by adding the branch number from the dict_keys as the first argument
+#retry: 2; message: Tier1 error. Theorem <parallel_property_ipsilateral_internal_angle> branch error. Expected dict_keys(['1']) but got None. Please rewrite your response, you should change only the call to theorem <parallel_property_ipsilateral_internal_angle> by adding the branch number from the dict_keys as the first argument
 #RETRIES:
-5
+2
 #RUNS:
 0
 
