@@ -1,0 +1,46 @@
+Analysis Report for unknown_question
+============================================================
+
+Goal: Measure of angle GAD
+Expected value: 69.0°
+
+Error: Constraints don't allow the expected angle 69.0°
+The geometric constraints are incompatible with the expected answer.
+
+Analysis Report for unknown_question
+============================================================
+
+You tried to find the goal angle GAD
+
+In the premises you've had:
+------------------------------------------------------------
+Points:
+  - G
+  - A
+  - D
+
+Angles:
+  - Angle AGD
+  - Angle ADG
+  - Angle DAG
+
+Polygons:
+  - Polygon ADG
+  - Polygon AGD
+
+These are the theorems that have to do with goal GAD in your proof:
+------------------------------------------------------------
+Step 2 - triangle_property_angle_sum(1, ADG):
+  Conclusion: Equal(Add(MeasureOfAngle(ADG),MeasureOfAngle(DGA),MeasureOfAngle(GAD)),180)
+
+Solver constraints directly related to this goal:
+------------------------------------------------------------
+1. angle_DAG > 0
+2. angle_DAG <= 180
+3. angle_DAG == angle_BAD
+4. angle_DAG == angle_BAD
+5. angle_ADG + angle_AGD + angle_DAG == 180
+
+The constraints in your proof are consistent, but don't allow angle GAD to be 69.0°.
+This means your proof implies a different value for this angle than expected.
+

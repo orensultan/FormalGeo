@@ -1,0 +1,38 @@
+Analysis Report for unknown_question
+============================================================
+
+Goal: Measure of angle ABC
+Your answer: 141.0°
+
+Error: Your answer was 141.0°, but the proof uniquely determines angle ABC to be 140.0°
+The geometric constraints lead to a different value than your submitted answer.
+
+Analysis Report for unknown_question
+============================================================
+
+You tried to find the goal angle ABC
+
+In the premises you've had:
+------------------------------------------------------------
+Points:
+  - A
+  - B
+  - C
+
+Angles:
+  - Angle ABC
+
+These are the theorems that have to do with goal ABC in your proof:
+------------------------------------------------------------
+Step 1 - quadrilateral_property_angle_sum(1, ABCD):
+  Conclusion: Equal(Add(MeasureOfAngle(ABC),MeasureOfAngle(BCD),MeasureOfAngle(CDA),MeasureOfAngle(DAB)),360)
+
+Solver constraints directly related to this goal:
+------------------------------------------------------------
+1. angle_ABC > 0
+2. angle_ABC <= 180
+3. 0 + angle_ABC + angle_BCD + angle_ADC + angle_BAD == 360
+
+The constraints in your proof uniquely determine angle ABC to be 140.0°, not 141.0°.
+This means your proof leads to a different value than your submitted answer.
+
