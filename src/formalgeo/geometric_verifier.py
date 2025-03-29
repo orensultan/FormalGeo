@@ -374,6 +374,9 @@ class GeometricTheorem:
 
         return constraint_str
 
+
+
+
     def gather_relevant_geometric_data(self, excluded_categories=None, goal_variable=None):
         """
         Collect all non-empty geometric facts that might be relevant for feedback.
@@ -6051,6 +6054,49 @@ class GeometricTheorem:
                     sections[current_section].append(line)
 
             print("\nAvailable sections:", list(sections.keys()))
+
+            # Extract content between MODEL_RESPONSE_BEGIN and MODEL_RESPONSE_END if present
+            model_response_content = None
+            if len(content) > 0:
+                start_marker = "***MODEL_RESPONSE_BEGIN***"
+                end_marker = "***MODEL_RESPONSE_END***"
+                start_idx = content.find(start_marker)
+
+                if start_idx != -1:
+                    start_idx += len(start_marker)
+                    end_idx = content.find(end_marker, start_idx)
+
+                    if end_idx != -1:
+                        model_response_content = content[start_idx:end_idx].strip()
+
+                        # Parse sections within the model response content
+                        model_sections = {}
+                        current_model_section = None
+
+                        for line in model_response_content.split('\n'):
+                            line = line.strip()
+                            if not line:
+                                continue
+
+                            if line == "ANSWER:":
+                                current_model_section = ANSWER
+                                model_sections[current_model_section] = []
+                            elif line == "THEOREM_SEQUENCE:":
+                                current_model_section = THEOREM_SEQUENCE
+                                model_sections[current_model_section] = []
+                            elif current_model_section and line.endswith(':'):
+                                current_model_section = line[:-1]
+                                model_sections[current_model_section] = []
+                            elif current_model_section:
+                                model_sections[current_model_section].append(line)
+
+                        # Override the original sections with the model response sections
+                        if ANSWER in model_sections:
+                            sections[ANSWER] = model_sections[ANSWER]
+                        if THEOREM_SEQUENCE in model_sections:
+                            sections[THEOREM_SEQUENCE] = model_sections[THEOREM_SEQUENCE]
+
+                        print("Successfully extracted content from between model response markers")
 
             # just a scan
             normal_collinear_set = set()
@@ -11808,6 +11854,8 @@ def verify_geometric_proof(filename: str, print_output=True) -> tuple:
         except Exception as e:
             print(f"Error: {str(e)}")
             return False, f"Error: {str(e)}"
+
+
 
 #/Users/eitan/Desktop/lean/lean_python/questions/the new format for questions after jan_17/new_3_questions/question1/question1_correct
 if __name__ == "__main__":
