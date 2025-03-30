@@ -341,6 +341,15 @@ def get_prompt_template_content(args, gdl_relevant_theorems, similar_problems, p
     return content
 
 
+def add_model_answer_to_feedback(feedback, resp):
+    model_response = ""
+    if "ANSWER:" in resp:
+        answer_section = resp.split("ANSWER:")[1]
+        answer_part = answer_section.split("THEOREM_SEQUENCE:")[0].strip()
+        model_response = f"RETRY_ANSWER:\n{answer_part}\nRETRY_THEOREM_SEQUENCE:\n{answer_section.split('THEOREM_SEQUENCE:')[1].strip()}"
+    return f"{feedback}\nModel Answer:\n{model_response}"
+
+
 
 def generate_and_verify(args, gdl_relevant_theorems, similar_problems, problem2, max_retries_in_run, run_id):
     content = get_prompt_template_content(args, gdl_relevant_theorems, similar_problems, problem2)
@@ -360,7 +369,7 @@ def generate_and_verify(args, gdl_relevant_theorems, similar_problems, problem2,
 
         verifier = Verifier(problem2.id, generated_theorem_sequence_list)
         verify_symbols_syntax_result = verifier.verify_symbols_syntax()
-        verify_geometric_proof_result, feedback = verify_geometric_proof(file_path, print_output=False)
+        verify_geometric_proof_result, feedback, error_tier = verify_geometric_proof(file_path, print_output=False)
 
         # if problem2.id == 2916 and len(generated_theorem_sequence_list) == 1 and (generated_theorem_sequence_list[0] == "parallel_property_alternate_interior_angle(2,AB,CD)" or generated_theorem_sequence_list[0] == "parallel_property_corresponding_angle(2,AB,CD,E)"):
         #     # theorem_verifier_result = "your THEOREM_SEQUENCE is incomplete. Your task was to find the measure of ∠ECD but this measure is still underconstrained, the value cannot be determined. Please fix the proof."
@@ -384,17 +393,9 @@ def generate_and_verify(args, gdl_relevant_theorems, similar_problems, problem2,
         else:
             messages.append({"role": "assistant", "content": resp})
             if verify_symbols_syntax_result != "Success":
-                verifier_result = verify_symbols_syntax_result
-            else: # feedback is not empty
-                model_response = ""
-                if "ANSWER:" in resp:
-                    # Get everything after ANSWER: including the ANSWER: itself
-                    answer_section = resp.split("ANSWER:")[1]
-                    # Split by THEOREM_SEQUENCE to get just the ANSWER part
-                    answer_part = answer_section.split("THEOREM_SEQUENCE:")[0].strip()
-                    # Add RETRY prefix to both sections
-                    model_response = f"RETRY_ANSWER:\n{answer_part}\nRETRY_THEOREM_SEQUENCE:\n{answer_section.split('THEOREM_SEQUENCE:')[1].strip()}"
-                verifier_result = f"{feedback}\nModel Answer:\n{model_response}"
+                verifier_result = add_model_answer_to_feedback(verify_symbols_syntax_result, resp)
+            else:
+                verifier_result = add_model_answer_to_feedback(feedback, resp)
             messages.append({"role": "user", "content": f"Verifier result: {verifier_result}"})
             print(f"Verifier result: {verifier_result}")
             print(f"Retry attempt: {attempts + 1}")
@@ -429,7 +430,7 @@ chosen_problems_by_level = {
 }
 
 chosen_problems_by_level = {
-3 : [4254]
+2 : [2141]
 # 1: [1975, 1490, 1726, 178, 2669, 2614, 51, 2323, 192, 2624],
 # 2: [2141, 69, 2916, 358, 4473, 4483, 5645, 127, 2410, 4523],
 # 3: [ 4187, 5244, 5062, 844, 1945, 2200, 4099, 2765, 4476, 4254 ]

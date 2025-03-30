@@ -56,6 +56,7 @@ ANSWER:
 THEOREM_SEQUENCE:
 1; sine_theorem(1,ACB); Polygon(ACB); ["Equal(Mul(LengthOfLine(AC),Sin(MeasureOfAngle(ACB))),Mul(LengthOfLine(AB),Sin(MeasureOfAngle(CBA))))"]
 2; sine_theorem(1,CBA); Polygon(CBA); ["Equal(Mul(LengthOfLine(CB),Sin(MeasureOfAngle(CBA))),Mul(LengthOfLine(CA),Sin(MeasureOfAngle(BAC))))"]
+
 ***MODEL_RESPONSE_END***
 RETRIES_MESSAGES:
 #RETRIES:
