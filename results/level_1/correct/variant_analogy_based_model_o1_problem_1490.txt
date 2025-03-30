@@ -28,14 +28,14 @@ Shape(FC,CB,BF)
 Shape(CB,BF,FC)
 Shape(FB,BA,AF)
 Shape(BA,AF,FB)
-Shape(AD,DF,FB,BA)
-Shape(DF,FB,BA,AD)
-Shape(FB,BA,AD,DF)
-Shape(BA,AD,DF,FB)
 Shape(FA,AD,DC,CF)
 Shape(AD,DC,CF,FA)
 Shape(DC,CF,FA,AD)
 Shape(CF,FA,AD,DC)
+Shape(AD,DF,FB,BA)
+Shape(DF,FB,BA,AD)
+Shape(FB,BA,AD,DF)
+Shape(BA,AD,DF,FB)
 Shape(FD,DC,CB,BF)
 Shape(DC,CB,BF,FD)
 Shape(CB,BF,FD,DC)
@@ -44,16 +44,16 @@ Shape(FC,CB,BA,AF)
 Shape(CB,BA,AF,FC)
 Shape(BA,AF,FC,CB)
 Shape(AF,FC,CB,BA)
-Shape(AD,DF,FC,CB,BA)
-Shape(DF,FC,CB,BA,AD)
-Shape(FC,CB,BA,AD,DF)
-Shape(CB,BA,AD,DF,FC)
-Shape(BA,AD,DF,FC,CB)
 Shape(FA,AD,DC,CB,BF)
 Shape(AD,DC,CB,BF,FA)
 Shape(DC,CB,BF,FA,AD)
 Shape(CB,BF,FA,AD,DC)
 Shape(BF,FA,AD,DC,CB)
+Shape(AD,DF,FC,CB,BA)
+Shape(DF,FC,CB,BA,AD)
+Shape(FC,CB,BA,AD,DF)
+Shape(CB,BA,AD,DF,FC)
+Shape(BA,AD,DF,FC,CB)
 Shape(DC,CF,FB,BA,AD)
 Shape(CF,FB,BA,AD,DC)
 Shape(FB,BA,AD,DC,CF)
@@ -111,13 +111,13 @@ Angle(CBF)
 Angle(AFB)
 Angle(FBA)
 Angle(BAF)
+Angle(ADC)
 Angle(DBA)
 Angle(BAD)
-Angle(ADC)
 Angle(DCB)
 Angle(CBA)
-Angle(DFC)
 Angle(BFA)
+Angle(DFC)
 Angle(CFB)
 Angle(AFD)
 Angle(ADB)
@@ -135,9 +135,9 @@ Angle(BCF)
 Angle(FBC)
 Angle(ABF)
 Angle(FAB)
+Angle(CDA)
 Angle(ABD)
 Angle(DAB)
-Angle(CDA)
 Angle(BCD)
 Angle(ABC)
 Angle(BDA)
@@ -171,18 +171,18 @@ Polygon(FAB)
 Polygon(FBA)
 Polygon(BAF)
 Polygon(BFA)
-Polygon(ADB)
-Polygon(ABD)
-Polygon(DAB)
-Polygon(DBA)
-Polygon(BAD)
-Polygon(BDA)
 Polygon(ADC)
 Polygon(ACD)
 Polygon(DAC)
 Polygon(DCA)
 Polygon(CAD)
 Polygon(CDA)
+Polygon(ADB)
+Polygon(ABD)
+Polygon(DAB)
+Polygon(DBA)
+Polygon(BAD)
+Polygon(BDA)
 Polygon(DCB)
 Polygon(DBC)
 Polygon(CDB)
@@ -195,16 +195,16 @@ Polygon(BCA)
 Polygon(BAC)
 Polygon(ACB)
 Polygon(ABC)
-Polygon(ADFCB)
-Polygon(DFCBA)
-Polygon(FCBAD)
-Polygon(CBADF)
-Polygon(BADFC)
 Polygon(FADCB)
 Polygon(ADCBF)
 Polygon(DCBFA)
 Polygon(CBFAD)
 Polygon(BFADC)
+Polygon(ADFCB)
+Polygon(DFCBA)
+Polygon(FCBAD)
+Polygon(CBADF)
+Polygon(BADFC)
 Polygon(DCFBA)
 Polygon(CFBAD)
 Polygon(FBADC)
@@ -249,7 +249,7 @@ Outputs for Problem B:
 
 ***MODEL_RESPONSE_BEGIN***
 EQUATIONS:
-ll_ab-3*y+8
+ll_ba-3*y+8
 ll_ad-13
 ll_cb-2*x-7
 ll_cd-10
@@ -267,9 +267,86 @@ THEOREM_SEQUENCE:
 1; adjacent_complementary_angle(1,AFB,BFC); Collinear(AFC)&Angle(AFB)&Angle(BFC); ["Equal(Add(MeasureOfAngle(AFB),MeasureOfAngle(BFC)),180)"]
 ***MODEL_RESPONSE_END***
 RETRIES_MESSAGES:
-#retry: 1; message: Tier1 error. Theorem <adjacent_complementary_angle> branch error. Expected dict_keys(['1']) but got None. Please rewrite your response, you should change only the call to theorem <adjacent_complementary_angle> by adding the branch number from the dict_keys as the first argument
+#retry: 1; message: verification failed.
+
+- Goal: measure of angle AFB
+- Model answer: 131.0
+- Error: Your proof doesn't uniquely determine the value. You need to use additional theorems to constrain the value.
+- Available premises:
+  Parallel Lines:
+    AB ∥ CD
+    AD ∥ BC
+  Collinear Points:
+    AFC
+    BFD
+  Polygons:
+    ABC
+    ABD
+    ABF
+    ACB
+    ACD
+    ADB
+    ADC
+    ADCB
+    ADCBF
+    ADCFB
+    ADF
+    ADFCB
+    AFB
+    AFD
+    AFDCB
+    BADC
+    BADCF
+    BADFC
+    BAFDC
+    BCD
+    BCF
+    BDC
+    BFADC
+    BFC
+    CBAD
+    CBADF
+    CBAFD
+    CBFAD
+    CDF
+    CFBAD
+    CFD
+    DCBA
+    DCBAF
+    DCBFA
+    DCFBA
+    DFCBA
+    FADCB
+    FBADC
+    FCBAD
+    FDCBA
+- Theorems related to the goal:
+  None found that constrain this goal
+- Solver constraints directly related to this goal:
+  ∠AFB <= 180
+  ∠AFB > 0
+
+Please fix the proof.
+Model Answer:
+RETRY_ANSWER:
+131
+RETRY_THEOREM_SEQUENCE:
+1; vertical_angle(1,DFA,BFC); Collinear(DFB)&Collinear(AFC)&Angle(DFA)&Angle(BFC); ["Equal(MeasureOfAngle(DFA),MeasureOfAngle(BFC))"]
+2; triangle_property_angle_sum(1,ADF); Polygon(ADF); ["Equal(Add(MeasureOfAngle(ADF),MeasureOfAngle(DFA),MeasureOfAngle(FAD)),180)"]
+#retry: 2; message: Tier1 error. Theorem <adjacent_complementary_angle> branch error. Expected dict_keys(['1']) but got None. Please rewrite your response, you should change only the call to theorem <adjacent_complementary_angle> by adding the branch number from the dict_keys as the first argument
+Model Answer:
+RETRY_ANSWER:
+131
+RETRY_THEOREM_SEQUENCE:
+1; adjacent_complementary_angle(AFB,BFC); Collinear(AFC)&Angle(AFB)&Angle(BFC); ["Equal(Add(MeasureOfAngle(AFB),MeasureOfAngle(BFC)),180)"]
+#retry: 3; message: Tier1 error. Theorem <adjacent_complementary_angle> para length error. Expected 6 but got ('A', 'F', 'B', 'B', 'F', 'C', ':', '1').
+Model Answer:
+RETRY_ANSWER:
+131
+RETRY_THEOREM_SEQUENCE:
+1; adjacent_complementary_angle(AFB,BFC):1; Collinear(AFC)&Angle(AFB)&Angle(BFC); ["Equal(Add(MeasureOfAngle(AFB),MeasureOfAngle(BFC)),180)"]
 #RETRIES:
-1
+3
 #RUNS:
 0
 
