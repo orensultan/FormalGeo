@@ -11032,15 +11032,7 @@ class GeometricTheorem:
 
                 else:
 
-                    return GeometricError(
-
-                        tier=ErrorTier.TIER1_THEOREM_CALL,
-
-                        message="Conclusion format error for cosine_theorem",
-
-                        details=f"Expected pattern not found in: {conclusions[0]}"
-
-                    )
+                    tier = ErrorTier.TIER1_THEOREM_CALL,
 
             else:
 

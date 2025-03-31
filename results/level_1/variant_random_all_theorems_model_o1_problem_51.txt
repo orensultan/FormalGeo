@@ -228,10 +228,10 @@ ParallelBetweenLine(LW,EX)
 ParallelBetweenLine(KZ,NX)
 ParallelBetweenLine(NX,KZ)
 SYMBOLS_AND_VALUES:
-MeasureOfAngle(LWX);ma_lwx;53
-MeasureOfAngle(LWN);ma_lwx;53
-MeasureOfAngle(EZK);ma_xzk;None
-MeasureOfAngle(XZK);ma_xzk;None
+LengthOfArc(OAB);la_oab;None
+LengthOfArc(OBC);la_obc;None
+MeasureOfAngle(CDB);ma_cdb;20
+MeasureOfAngle(BOA);ma_boa;None
 
 Outputs:
 Outputs for Problem B:
@@ -250,8 +250,15 @@ THEOREM_SEQUENCE:
 1; parallel_property_ipsilateral_internal_angle(1,WL,XE); ParallelBetweenLine(WL,XE)&Line(WX); ["Equal(Add(MeasureOfAngle(LWX),MeasureOfAngle(WXE)),180)"]
 ***MODEL_RESPONSE_END***
 RETRIES_MESSAGES:
+#retry: 1; message: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
+Verification failed. Theorem <parallel_property_ipsilateral_internal_angle> branch error. Expected dict_keys(['1']) but got None. Please rewrite your response, you should change only the call to theorem <parallel_property_ipsilateral_internal_angle> by adding the branch number from the dict_keys as the first argument
+Model Answer:
+RETRY_ANSWER:
+23
+RETRY_THEOREM_SEQUENCE:
+1; parallel_property_ipsilateral_internal_angle(WL,XE); ParallelBetweenLine(WL,XE)&Line(WX); ["Equal(Add(MeasureOfAngle(LWX),MeasureOfAngle(WXE)),180)"]
 #RETRIES:
-0
+1
 #RUNS:
 0
 
