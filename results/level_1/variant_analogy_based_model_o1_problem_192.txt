@@ -163,13 +163,22 @@ mar_bvt-68
 GOAL_SYMBOL:
 mar_bsu
 ANSWER:
-114
+22
 THEOREM_SEQUENCE:
-1; circle_property_circular_power_segment_and_segment_angle(1,RST,RUV,B); Cocircular(B,SUVT)&Collinear(RST)&Collinear(RUV); ["Equal(Sub(MeasureOfArc(BSU),MeasureOfArc(BVT)),Mul(MeasureOfAngle(SRU),2))"]
+1; circle_property_circular_power_segment_and_segment_angle(1,RST,RUV,B); Cocircular(B,SUVT)&Collinear(RST)&Collinear(RUV); ["Equal(Sub(MeasureOfArc(BVT),MeasureOfArc(BSU)),Mul(MeasureOfAngle(SRU),2))"]
 ***MODEL_RESPONSE_END***
 RETRIES_MESSAGES:
+#retry: 1; message: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
+Verification failed. Conclusions mismatch:
+Model conclusions: Equal(Sub(MeasureOfArc(BSU),MeasureOfArc(BVT)),Mul(MeasureOfAngle(SRU),2))
+Expected conclusions: Equal(Sub(MeasureOfArc(BVT),MeasureOfArc(BSU)),Mul(MeasureOfAngle(SRU),2))
+Model Answer:
+RETRY_ANSWER:
+114
+RETRY_THEOREM_SEQUENCE:
+1; circle_property_circular_power_segment_and_segment_angle(1,RST,RUV,B); Cocircular(B,SUVT)&Collinear(RST)&Collinear(RUV); ["Equal(Sub(MeasureOfArc(BSU),MeasureOfArc(BVT)),Mul(MeasureOfAngle(SRU),2))"]
 #RETRIES:
-0
+1
 #RUNS:
 0
 

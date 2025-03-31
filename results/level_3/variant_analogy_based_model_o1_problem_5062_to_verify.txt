@@ -207,96 +207,56 @@ GOAL_SYMBOL:
 AreaOfQuadrilateral(ABCD)
 
 ANSWER:
-16
+49
 
 THEOREM_SEQUENCE:
+1; mirror_similar_triangle_property_line_ratio(1,AED,BFA); MirrorSimilarBetweenTriangle(AED,BFA); ["Equal(LengthOfLine(ED),Mul(LengthOfLine(FA),RatioOfMirrorSimilarTriangle(AED,BFA)))"]
+2; parallelogram_judgment_parallel_and_parallel(1,ABCD); Polygon(ABCD)&ParallelBetweenLine(AD,BC)&ParallelBetweenLine(BA,CD); ["Parallelogram(ABCD)"]
+3; parallelogram_property_opposite_line_equal(1,ABCD); Parallelogram(ABCD); ["Equal(LengthOfLine(AD),LengthOfLine(BC))"]
+4; rectangle_judgment_right_angle(1,ABCD); Parallelogram(ABCD)&Equal(MeasureOfAngle(ABC),90); ["Rectangle(ABCD)"]
+5; parallelogram_area_formula_common(ABCD); Parallelogram(ABCD); ["Equal(AreaOfQuadrilateral(ABCD),Mul(HeightOfQuadrilateral(ABCD),LengthOfLine(BC)))"]
 ***MODEL_RESPONSE_END***
 RETRIES_MESSAGES:
-#retry: 1; message: verification failed.
-
-- You tried to use theorem: parallelogram_area_formula_common(1,ABCD);Parallelogram(ABCD);['Equal(AreaOfQuadrilateral(ABCD),Mul(HeightOfQuadrilateral(ABCD),LengthOfLine(BC)))']
-- Missing premise: No height established for quadrilateral ABCD
-- Details: Height must be established through an altitude theorem first
-Available premises up to the failed theorem:
-  Parallel Lines:
-    AB ∥ CD
-    AD ∥ BC
-  Perpendicular Lines:
-    AB ⊥ AD
-    AB ⊥ BC
-    AD ⊥ CD
-    BC ⊥ CD
-  Collinear Points:
-    Collinear AFE
-    Collinear CED
-  Mirror Similar Triangles:
-    ABF mirror similar to ADE
-  Squares:
-    Square ABCD
-  Rhombi:
-    Rhombus ABCD
-    Rhombus BCDA
-    Rhombus CDAB
-    Rhombus DABC
-  Kites:
-    Kite ABCD
-    Kite BCDA
-    Kite CDAB
-    Kite DABC
-  Polygons:
-    Polygon ABCD
-    Polygon ABCE
-    Polygon ABF
-    Polygon ABFED
-    Polygon ADE
-    Polygon AED
-    Polygon AFB
-    Polygon AFBCD
-    Polygon BCDA
-    Polygon BCDAF
-    Polygon BCEA
-    Polygon BCEF
-    Polygon BFEDA
-    Polygon CDAB
-    Polygon CDAFB
-    Polygon CEAB
-    Polygon CEFB
-    Polygon DABC
-    Polygon DABFE
-    Polygon DAFBC
-    Polygon EABC
-    Polygon EDABF
-    Polygon EFBC
-    Polygon FBCDA
-    Polygon FBCE
-    Polygon FEDAB
-
-Please ensure your theorem application meets all required premises.
+#retry: 1; message: Tier1 error. Theorem <mirror_similar_triangle_property_line_ratio> branch error. Expected dict_keys(['1']) but got None. Please rewrite your response, you should change only the call to theorem <mirror_similar_triangle_property_line_ratio> by adding the branch number from the dict_keys as the first argument
 Model Answer:
 RETRY_ANSWER:
-16
+49
 RETRY_THEOREM_SEQUENCE:
-1; mirror_similar_triangle_property_line_ratio(1,AED,BFA); MirrorSimilarBetweenTriangle(AED,BFA); ["Equal(LengthOfLine(AE),Mul(LengthOfLine(BF),RatioOfMirrorSimilarTriangle(AED,BFA)))"]
-2; parallelogram_area_formula_common(1,ABCD); Parallelogram(ABCD); ["Equal(AreaOfQuadrilateral(ABCD),Mul(HeightOfQuadrilateral(ABCD),LengthOfLine(BC)))"]
-#retry: 2; message: Error during proof verification: cannot unpack non-iterable NoneType object
+1; mirror_similar_triangle_property_line_ratio(ABC,DEF); MirrorSimilarBetweenTriangle(AED,BFA); ["Equal(LengthOfLine(ED),Mul(LengthOfLine(FA),RatioOfMirrorSimilarTriangle(AED,BFA)))"]
+2; parallelogram_judgment_parallel_and_parallel(ABCD); Polygon(ABCD)&ParallelBetweenLine(AD,BC)&ParallelBetweenLine(BA,CD); ["Parallelogram(ABCD)"]
+3; parallelogram_property_opposite_line_equal(ABCD); Parallelogram(ABCD); ["Equal(LengthOfLine(AD),LengthOfLine(BC))"]
+4; rectangle_judgment_right_angle(ABCD); Parallelogram(ABCD)&Equal(MeasureOfAngle(ABC),90); ["Rectangle(ABCD)"]
+5; parallelogram_area_formula_common(ABCD); Parallelogram(ABCD); ["Equal(AreaOfQuadrilateral(ABCD),Mul(HeightOfQuadrilateral(ABCD),LengthOfLine(BC)))"]
+#retry: 2; message: Tier1 error. Theorem <parallelogram_judgment_parallel_and_parallel> branch error. Expected dict_keys(['1']) but got None. Please rewrite your response, you should change only the call to theorem <parallelogram_judgment_parallel_and_parallel> by adding the branch number from the dict_keys as the first argument
 Model Answer:
 RETRY_ANSWER:
-16
+49
 RETRY_THEOREM_SEQUENCE:
-1; mirror_similar_triangle_property_line_ratio(1,AED,BFA); MirrorSimilarBetweenTriangle(AED,BFA); ["Equal(LengthOfLine(AE),Mul(LengthOfLine(BF),RatioOfMirrorSimilarTriangle(AED,BFA)))"]
-2; parallelogram_area_formula_sine(1,ABCD); Parallelogram(ABCD); ["Equal(AreaOfQuadrilateral(ABCD),Mul(LengthOfLine(AB),LengthOfLine(BC),Sin(MeasureOfAngle(ABC))))"]
-#retry: 3; message: Error during proof verification: cannot unpack non-iterable NoneType object
+1; mirror_similar_triangle_property_line_ratio(1,AED,BFA); MirrorSimilarBetweenTriangle(AED,BFA); ["Equal(LengthOfLine(ED),Mul(LengthOfLine(FA),RatioOfMirrorSimilarTriangle(AED,BFA)))"]
+2; parallelogram_judgment_parallel_and_parallel(ABCD); Polygon(ABCD)&ParallelBetweenLine(AD,BC)&ParallelBetweenLine(BA,CD); ["Parallelogram(ABCD)"]
+3; parallelogram_property_opposite_line_equal(ABCD); Parallelogram(ABCD); ["Equal(LengthOfLine(AD),LengthOfLine(BC))"]
+4; rectangle_judgment_right_angle(ABCD); Parallelogram(ABCD)&Equal(MeasureOfAngle(ABC),90); ["Rectangle(ABCD)"]
+5; parallelogram_area_formula_common(ABCD); Parallelogram(ABCD); ["Equal(AreaOfQuadrilateral(ABCD),Mul(HeightOfQuadrilateral(ABCD),LengthOfLine(BC)))"]
+#retry: 3; message: Tier1 error. Theorem <parallelogram_property_opposite_line_equal> branch error. Expected dict_keys(['1']) but got None. Please rewrite your response, you should change only the call to theorem <parallelogram_property_opposite_line_equal> by adding the branch number from the dict_keys as the first argument
 Model Answer:
 RETRY_ANSWER:
-16
+49
 RETRY_THEOREM_SEQUENCE:
-1; parallelogram_area_formula_sine(1,ABCD); Parallelogram(ABCD)&PerpendicularBetweenLine(AB,BC); ["Equal(AreaOfQuadrilateral(ABCD),Mul(LengthOfLine(AB),LengthOfLine(BC),Sin(MeasureOfAngle(ABC))))"]
-#retry: 4; message: Error during proof verification: cannot unpack non-iterable NoneType object
+1; mirror_similar_triangle_property_line_ratio(1,AED,BFA); MirrorSimilarBetweenTriangle(AED,BFA); ["Equal(LengthOfLine(ED),Mul(LengthOfLine(FA),RatioOfMirrorSimilarTriangle(AED,BFA)))"]
+2; parallelogram_judgment_parallel_and_parallel(1,ABCD); Polygon(ABCD)&ParallelBetweenLine(AD,BC)&ParallelBetweenLine(BA,CD); ["Parallelogram(ABCD)"]
+3; parallelogram_property_opposite_line_equal(ABCD); Parallelogram(ABCD); ["Equal(LengthOfLine(AD),LengthOfLine(BC))"]
+4; rectangle_judgment_right_angle(ABCD); Parallelogram(ABCD)&Equal(MeasureOfAngle(ABC),90); ["Rectangle(ABCD)"]
+5; parallelogram_area_formula_common(ABCD); Parallelogram(ABCD); ["Equal(AreaOfQuadrilateral(ABCD),Mul(HeightOfQuadrilateral(ABCD),LengthOfLine(BC)))"]
+#retry: 4; message: Tier1 error. Theorem <rectangle_judgment_right_angle> branch error. Expected dict_keys(['1']) but got None. Please rewrite your response, you should change only the call to theorem <rectangle_judgment_right_angle> by adding the branch number from the dict_keys as the first argument
 Model Answer:
 RETRY_ANSWER:
-16
+49
 RETRY_THEOREM_SEQUENCE:
-1; parallelogram_area_formula_sine(1,ABCD); Square(ABCD); ["Equal(AreaOfQuadrilateral(ABCD),Mul(LengthOfLine(AB),LengthOfLine(BC),Sin(MeasureOfAngle(ABC))))"]
+1; mirror_similar_triangle_property_line_ratio(1,AED,BFA); MirrorSimilarBetweenTriangle(AED,BFA); ["Equal(LengthOfLine(ED),Mul(LengthOfLine(FA),RatioOfMirrorSimilarTriangle(AED,BFA)))"]
+2; parallelogram_judgment_parallel_and_parallel(1,ABCD); Polygon(ABCD)&ParallelBetweenLine(AD,BC)&ParallelBetweenLine(BA,CD); ["Parallelogram(ABCD)"]
+3; parallelogram_property_opposite_line_equal(1,ABCD); Parallelogram(ABCD); ["Equal(LengthOfLine(AD),LengthOfLine(BC))"]
+4; rectangle_judgment_right_angle(ABCD); Parallelogram(ABCD)&Equal(MeasureOfAngle(ABC),90); ["Rectangle(ABCD)"]
+5; parallelogram_area_formula_common(ABCD); Parallelogram(ABCD); ["Equal(AreaOfQuadrilateral(ABCD),Mul(HeightOfQuadrilateral(ABCD),LengthOfLine(BC)))"]
 #RETRIES:
 4
 #RUNS:

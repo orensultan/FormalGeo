@@ -77,9 +77,9 @@ ERROR_EVALUATING_TRIG = "Error evaluating {0} variable: {1}"
 ERROR_CALCULATING_ALT_TRIG = "Error calculating from alternate trig function: {0}"
 
 class ErrorTier(Enum):
-    TIER1_THEOREM_CALL = 1  # Incorrect theorem call
-    TIER2_PREMISE = 2  # Premise violation
-    TIER3_GOAL_NOT_REACHED = 3  # Failed to reach goal
+    TIER1_THEOREM_CALL_SYNTAX_VIOLATION = 1
+    TIER2_PREMISE_VIOLATION = 2
+    TIER3_GOAL_NOT_REACHED = 3
 
 
 @dataclass
@@ -2335,7 +2335,50 @@ class GeometricTheorem:
             elif version == "2":
                 print("2")
 
+        elif theorem_name == "parallelogram_area_formula_sine":
+            version = args[0]
+            if version == "1":
+                if len(args) < 2:
+                    return return_error(GeometricError(
+                        tier=ErrorTier.TIER1_THEOREM_CALL,
+                        message="Missing parallelogram name for parallelogram_area_formula_sine",
+                        details="Expected parallelogram_area_formula_sine(1, quadrilateral)"
+                    ))
 
+                quad_name = args[1].strip()
+
+                # Parse the premise for the parallelogram declaration
+                parallelogram_match = re.search(r'Parallelogram\((\w+)\)', premise)
+                if not parallelogram_match:
+                    return return_error(GeometricError(
+                        tier=ErrorTier.TIER2_PREMISE,
+                        message="Missing parallelogram declaration in premise",
+                        details=f"Premise must contain Parallelogram({quad_name})"
+                    ))
+
+                premise_para = parallelogram_match.group(1)
+                if premise_para != quad_name:
+                    return return_error(GeometricError(
+                        tier=ErrorTier.TIER2_PREMISE,
+                        message=f"Parallelogram in premise ({premise_para}) doesn't match the one in theorem call ({quad_name})",
+                        details="The parallelogram names must match"
+                    ))
+
+                # Check if this parallelogram is defined in the system
+                # This checks if any cyclic variation of the parallelogram is in self.parallelograms
+                if not any(var in self.parallelograms for var in get_cyclic_variations(quad_name)):
+                    return return_error(GeometricError(
+                        tier=ErrorTier.TIER2_PREMISE,
+                        message=f"Parallelogram {quad_name} is not defined in the system",
+                        details=f"Available parallelograms: {', '.join(self.parallelograms)}"
+                    ))
+
+                return True, None
+            else:
+                return return_error(GeometricError(
+                    tier=ErrorTier.TIER1_THEOREM_CALL,
+                    message=f"Unsupported version {version} for parallelogram_area_formula_sine"
+                ))
 
         elif theorem_name == "arc_addition_measure":
             version = args[0]
@@ -8560,7 +8603,8 @@ class GeometricTheorem:
             "mirror_congruent_triangle_property_angle_equal",
             "arc_addition_measure",
             "diameter_of_circle_judgment_pass_centre",
-            "isosceles_triangle_property_line_coincidence"
+            "isosceles_triangle_property_line_coincidence",
+            "parallelogram_area_formula_sine"
         ]
 
         if theorem_name not in valid_theorems:
@@ -8623,6 +8667,147 @@ class GeometricTheorem:
                     tier=ErrorTier.TIER1_THEOREM_CALL,
                     message=f"Unsupported version {version} for arc_addition_measure"
                 )
+
+
+        elif theorem_name == "parallelogram_area_formula_sine":
+            version = args[0]
+            if version == "1":
+                # Expected conclusion format: "Equal(AreaOfQuadrilateral(DACB),Mul(LengthOfLine(DA),LengthOfLine(AC),Sin(MeasureOfAngle(DAC))))"
+                c = conclusions[0]
+                pat = r"Equal\(AreaOfQuadrilateral\((\w+)\),Mul\(LengthOfLine\((\w+)\),LengthOfLine\((\w+)\),Sin\(MeasureOfAngle\((\w{3})\)\)\)\)"
+                mm = re.match(pat, c)
+                if mm:
+                    quad_name, side1, side2, angle_name = mm.groups()
+                    # Ensure an area variable exists for the quadrilateral.
+                    if quad_name not in self.quad_areas:
+                        self.quad_areas[quad_name] = Real(f"areaQuadr_{quad_name}")
+                        self.solver.add(self.quad_areas[quad_name] >= 0)
+                    area_var = self.quad_areas[quad_name]
+                    # Get the side length variables.
+                    side1_var = self.add_length(side1[0], side1[1])
+                    side2_var = self.add_length(side2[0], side2[1])
+                    # Get the angle variable.
+                    angle_var = self.add_angle(angle_name[0], angle_name[1], angle_name[2])
+
+                    # Try to evaluate the angle numerically so we can compute its sine.
+                    if self.solver.check() == sat:
+                        model = self.solver.model()
+
+                        # Check if angle is uniquely determined
+                        angle_unique = False
+                        angle_val = None
+                        sin_val = None
+
+                        try:
+                            # Get the current angle value from the model
+                            a_val_str = model.eval(angle_var).as_decimal(10)
+                            if a_val_str.endswith('?'):
+                                a_val_str = a_val_str[:-1]
+                            angle_val = float(a_val_str)
+
+                            # Check if this value is uniquely determined
+                            temp_solver = Solver()
+                            for c in self.solver.assertions():
+                                temp_solver.add(c)
+
+                            epsilon = 1e-6
+                            temp_solver.add(Or(
+                                angle_var < angle_val - epsilon,
+                                angle_var > angle_val + epsilon
+                            ))
+
+                            if temp_solver.check() == unsat:
+                                # Angle is uniquely determined
+                                angle_unique = True
+                                import math
+                                sin_val = math.sin(math.radians(angle_val))
+                                print(f"Angle {angle_name} has unique value {angle_val}°, sin = {sin_val}")
+
+                                # Add the constraint with the computed sine value
+                                self.solver.add(area_var == side1_var * side2_var * sin_val)
+                                print(
+                                    f"Added parallelogram area constraint with known sine value: AreaOfQuadrilateral({quad_name}) = LengthOfLine({side1}) * LengthOfLine({side2}) * {sin_val}")
+                            else:
+                                # Angle is not uniquely determined, create a variable for the sine
+                                sin_var_name = f"sin_{angle_name}"
+                                if sin_var_name not in self.variables:
+                                    self.variables[sin_var_name] = Real(sin_var_name)
+                                    self.solver.add(self.variables[sin_var_name] >= 0)
+                                    self.solver.add(self.variables[sin_var_name] <= 1)
+                                sin_var = self.variables[sin_var_name]
+
+                                # Add the constraint with the sine variable
+                                self.solver.add(area_var == side1_var * side2_var * sin_var)
+                                print(
+                                    f"Added parallelogram area constraint with sine variable: AreaOfQuadrilateral({quad_name}) = LengthOfLine({side1}) * LengthOfLine({side2}) * sin({angle_name})")
+                        except Exception as e:
+                            print(f"Error checking angle: {e}")
+                            # Create a variable for the sine as a fallback
+                            sin_var_name = f"sin_{angle_name}"
+                            if sin_var_name not in self.variables:
+                                self.variables[sin_var_name] = Real(sin_var_name)
+                                self.solver.add(self.variables[sin_var_name] >= 0)
+                                self.solver.add(self.variables[sin_var_name] <= 1)
+                            sin_var = self.variables[sin_var_name]
+
+                            # Add the constraint with the sine variable
+                            self.solver.add(area_var == side1_var * side2_var * sin_var)
+                            print(
+                                f"Added parallelogram area constraint with sine variable (after error): AreaOfQuadrilateral({quad_name}) = LengthOfLine({side1}) * LengthOfLine({side2}) * sin({angle_name})")
+
+                        return None
+                    else:
+                        # Get the contradictory constraints to provide better feedback
+                        contradictory_constraints = self.find_contradictory_constraints()
+                        details = "No specific contradictory constraints found."
+
+                        if contradictory_constraints:
+                            details = "Contradictory constraints:\n"
+                            for constraint in contradictory_constraints:
+                                details += f"  {constraint}\n"
+
+                        # Include angle constraints
+                        angle_constraints = []
+                        for c in self.solver.assertions():
+                            c_str = str(c)
+                            if f"angle_{angle_name}" in c_str or f"sin_" in c_str:
+                                angle_constraints.append(self.format_constraint(c_str))
+
+                        if angle_constraints:
+                            details += "\nRelevant angle constraints:\n"
+                            for constraint in angle_constraints:
+                                details += f"  {constraint}\n"
+
+                        # Include length constraints
+                        length_constraints = []
+                        for c in self.solver.assertions():
+                            c_str = str(c)
+                            if (f"length_{side1}" in c_str or
+                                    f"length_{side2}" in c_str):
+                                length_constraints.append(self.format_constraint(c_str))
+
+                        if length_constraints:
+                            details += "\nRelevant length constraints:\n"
+                            for constraint in length_constraints:
+                                details += f"  {constraint}\n"
+
+                        return GeometricError(
+                            tier=ErrorTier.TIER2_PREMISE,
+                            message="Solver unsat when trying to evaluate angles for parallelogram_area_formula_sine",
+                            details=details
+                        )
+                else:
+                    return GeometricError(
+                        tier=ErrorTier.TIER1_THEOREM_CALL,
+                        message="Conclusion format error for parallelogram_area_formula_sine",
+                        details=f"Expected pattern Equal(AreaOfQuadrilateral(XXXX),Mul(LengthOfLine(XX),LengthOfLine(XX),Sin(MeasureOfAngle(XXX)))) but got {conclusions[0]}"
+                    )
+            else:
+                return GeometricError(
+                    tier=ErrorTier.TIER1_THEOREM_CALL,
+                    message=f"Unsupported version {version} for parallelogram_area_formula_sine"
+                )
+
 
 
         elif theorem_name == "isosceles_triangle_property_line_coincidence":
@@ -12237,7 +12422,7 @@ def verify_geometric_proof(filename: str, print_output=True) -> tuple:
 
 if __name__ == "__main__":
     result, feedback, error_tier = verify_geometric_proof(
-        "/Users/osultan/PycharmProjects/FormalGeo/results/level_2/variant_analogy_based_model_o1_problem_2141.txt",print_output=False)
+        "/Users/osultan/PycharmProjects/FormalGeo/results/level_1/variant_analogy_based_model_o1_problem_1490.txt",print_output=False)
 
     if feedback:
         print(feedback)
