@@ -365,9 +365,8 @@ def generate_and_verify(args, gdl_relevant_theorems, similar_problems, problem2,
     while attempts < max_retries_in_run:
         resp = gpt_response(messages, args.model_name)
         write_result(file_path, problem2_given, resp, problem2_gt, retries_messages, run_id)
-        generated_theorem_sequence_list = get_processed_model_resp(resp)
 
-        verifier = Verifier(problem2.id, generated_theorem_sequence_list)
+        verifier = Verifier(problem2.id, resp)
         verify_symbols_syntax_result = verifier.verify_symbols_syntax()
         verify_geometric_proof_result, feedback, error_tier = verify_geometric_proof(file_path, print_output=False)
 
@@ -394,8 +393,10 @@ def generate_and_verify(args, gdl_relevant_theorems, similar_problems, problem2,
             messages.append({"role": "assistant", "content": resp})
             if verify_symbols_syntax_result != "Success":
                 verifier_result = add_model_answer_to_feedback(verify_symbols_syntax_result, resp)
+                error_tier = "TIER1_THEOREM_CALL_SYNTAX_VIOLATION"
             else:
                 verifier_result = add_model_answer_to_feedback(feedback, resp)
+            verifier_result = "ERROR_TIER: " + error_tier + "\n" + verifier_result
             messages.append({"role": "user", "content": f"Verifier result: {verifier_result}"})
             print(f"Verifier result: {verifier_result}")
             print(f"Retry attempt: {attempts + 1}")
@@ -430,7 +431,7 @@ chosen_problems_by_level = {
 }
 
 chosen_problems_by_level = {
-2 : [2141]
+1 : [1490]
 # 1: [1975, 1490, 1726, 178, 2669, 2614, 51, 2323, 192, 2624],
 # 2: [2141, 69, 2916, 358, 4473, 4483, 5645, 127, 2410, 4523],
 # 3: [ 4187, 5244, 5062, 844, 1945, 2200, 4099, 2765, 4476, 4254 ]
