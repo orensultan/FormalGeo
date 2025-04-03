@@ -17,6 +17,7 @@ import openai
 from src.formalgeo.verifier import Verifier
 
 from geometric_verifier import verify_geometric_proof
+from src.formalgeo.config.config import MAX_RETRIES_IN_RUN, MAX_RUNS, SIMILAR_PROBLEMS, IN_CONTEXT_FEW_SHOT
 
 openai.api_key = "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"
 openai.api_key = "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"
@@ -326,7 +327,7 @@ def get_prompt_template_content(args, gdl_relevant_theorems, similar_problems, p
     initial_prompt = initial_prompt.replace('{GDL}', gdl_relevant_theorems_str)
     content = initial_prompt
 
-    for i in range(args.in_context_few_shot):
+    for i in range(IN_CONTEXT_FEW_SHOT):
         problem = similar_problems[i]
         problem_dict = get_problem_fields(problem)
         theorems_seqs_expl = convert_json_list_to_custom_format(get_theorem_seqs_expl(problem.theorem_seqs))
@@ -351,18 +352,18 @@ def add_model_answer_to_feedback(feedback, resp):
 
 
 
-def generate_and_verify(args, gdl_relevant_theorems, similar_problems, problem2, max_retries_in_run, run_id):
+def generate_and_verify(args, gdl_relevant_theorems, similar_problems, problem2, run_id):
     content = get_prompt_template_content(args, gdl_relevant_theorems, similar_problems, problem2)
     messages = create_messages(content)
     start_index = messages[0]['content'].find("Inputs for Problem B:")
     problem2_given = messages[0]['content'][start_index:]
     problem2_gt = get_gt_result(problem2)
-    file_path = f"results/level_{problem2.level}/variant_{args.variant}_model_{args.model_name}_problem_{problem2.id}_to_verify.txt"
+    file_path = f"results/level_{problem2.level}/variant_{args.variant}_model_{args.model_name}_problem_{problem2.id}_run_{run_id}_to_verify.txt"
     attempts = 0
     verifier_result = ""
     resp = ""
     retries_messages = []
-    while attempts < max_retries_in_run:
+    while attempts < MAX_RETRIES_IN_RUN:
         resp = gpt_response(messages, args.model_name)
         write_result(file_path, problem2_given, resp, problem2_gt, retries_messages, run_id)
 
@@ -431,7 +432,7 @@ chosen_problems_by_level = {
 }
 
 chosen_problems_by_level = {
-1 : [1726]
+1 : [178]
 # 1: [1975, 1490, 1726, 178, 2669, 2614, 51, 2323, 192, 2624],
 # 2: [2141, 69, 2916, 358, 4473, 4483, 5645, 127, 2410, 4523],
 # 3: [ 4187, 5244, 5062, 844, 1945, 2200, 4099, 2765, 4476, 4254 ]
@@ -472,7 +473,7 @@ def print_similar_problems_theorems_coverage(chosen_problems_by_level):
             problem_id_to_level[problem_id] = level
 
     true_count_by_level = collections.defaultdict(int)
-    file_name = f'cover_theorems_{args.similar_problems}.csv'
+    file_name = f'cover_theorems_{SIMILAR_PROBLEMS}.csv'
 
     df = pd.read_csv(file_name)
     df['IsCovered'] = df['IsCovered'].astype(str) == 'True'
@@ -545,7 +546,7 @@ def write_result(file_path, problem2_given, problem2_resp, problem2_gt, retries_
         file.write("***MODEL_RESPONSE_END***" + "\n")
         file.write("RETRIES_MESSAGES:\n")
         for i, message in enumerate(retries_messages):
-            file.write("#retry: " + str(i + 1) + '; message: ' + message + "\n")
+            file.write("#run: " + str(run_id) + "; #retry: " + str(i + 1) + '; message: ' + message + "\n")
         file.write("#RETRIES:\n")
         file.write(str(len(retries_messages)) + "\n")
         file.write("#RUNS:\n")
@@ -563,28 +564,25 @@ def process_problem(problem_id, solver = None, problems=None):
     return problem
 
 
-def run(args, problems, run_id):
-    for _, problems_id in chosen_problems_by_level.items():
-        for problem2_id in problems_id:
-            if args.variant in ["analogy_based", "analogy_based_all_theorems"]:
-                similar_problem_ids = retrieve_similar_proofs(problem2_id, n=args.similar_problems)
-            else:
-                similar_problem_ids = retrieve_random_proofs(problem2_id, n=args.similar_problems)
-            similar_problems = [process_problem(problem_id, solver, problems) for problem_id in similar_problem_ids]
-            problem2 = process_problem(problem2_id, solver, problems)
-            similar_problems_theorems = get_theorems_from_similar_problems(similar_problems)
-            gdl_relevant_theorems = find_relevant_theorems(args, theorems, similar_problems_theorems)
-            # write_theorems_coverage_stats(similar_problems_theorems, problem2)
-            messages, problem2_resp, verifier_result, retries_messages = generate_and_verify(args,
-                                                                                             gdl_relevant_theorems,
-                                                                                             similar_problems, problem2,
-                                                                                             args.max_retries_in_run, run_id)
-            problem2_gt = get_gt_result(problem2)
-            start_index = messages[0]['content'].find("Inputs for Problem B:")
-            problem2_given = messages[0]['content'][start_index:]
-            output_path = f"results/level_{problem2.level}/variant_{args.variant}_model_{args.model_name}_problem_{problem2.id}.txt"
-            write_result(output_path, problem2_given, problem2_resp, problem2_gt, retries_messages, run_id)
-
+def run(args, problem2_id, problems, run_id):
+    if args.variant in ["analogy_based", "analogy_based_all_theorems"]:
+        similar_problem_ids = retrieve_similar_proofs(problem2_id, n=SIMILAR_PROBLEMS)
+    else:
+        similar_problem_ids = retrieve_random_proofs(problem2_id, n=SIMILAR_PROBLEMS)
+    similar_problems = [process_problem(problem_id, solver, problems) for problem_id in similar_problem_ids]
+    problem2 = process_problem(problem2_id, solver, problems)
+    similar_problems_theorems = get_theorems_from_similar_problems(similar_problems)
+    gdl_relevant_theorems = find_relevant_theorems(args, theorems, similar_problems_theorems)
+    # write_theorems_coverage_stats(similar_problems_theorems, problem2)
+    messages, problem2_resp, verifier_result, retries_messages = generate_and_verify(args,
+                                                                                     gdl_relevant_theorems,
+                                                                                     similar_problems, problem2, run_id)
+    problem2_gt = get_gt_result(problem2)
+    start_index = messages[0]['content'].find("Inputs for Problem B:")
+    problem2_given = messages[0]['content'][start_index:]
+    output_path = f"results/level_{problem2.level}/variant_{args.variant}_model_{args.model_name}_problem_{problem2.id}_run_{run_id}.txt"
+    write_result(output_path, problem2_given, problem2_resp, problem2_gt, retries_messages, run_id)
+    return len(retries_messages) < MAX_RETRIES_IN_RUN
 
 
 
@@ -593,14 +591,14 @@ if __name__ == "__main__":
     parser.add_argument("--variant", dest="variant", type=str, default="random_all_theorems")
     parser.add_argument("--model_name", dest="model_name", type=str, default="o1")
     parser.add_argument("--prompt_path", dest="prompt_path", type=str, default="src/formalgeo/prompt/geometry_similar_problems_prompt_291224.txt")
-    parser.add_argument("--similar_problems", dest="similar_problems", type=int, default=100)
-    parser.add_argument("--in_context_few_shot", dest="in_context_few_shot", type=int, default=5)
-    parser.add_argument("--max_retries_in_run", dest="max_retries_in_run", type=int, default=5)
-    parser.add_argument("--max_runs", dest="max_runs", type=int, default=5)
     args = parser.parse_args()
     problems = save_problems('formalgeo7k_v1/problems')
-    for i in range(args.max_runs):
-        run(args, problems, i)
-        break
-    chosen_problems_by_level = get_chosen_problems_by_level(problems)
+    for _, problems_id in chosen_problems_by_level.items():
+        for problem2_id in problems_id:
+            for i in range(MAX_RUNS):
+                is_success = run(args, problem2_id, problems, i)
+                if is_success:
+                    break
+    # chosen_problems_by_level = get_chosen_problems_by_level(problems)
     # print_similar_problems_theorems_coverage(chosen_problems_by_level)
+

@@ -77,9 +77,9 @@ ERROR_EVALUATING_TRIG = "Error evaluating {0} variable: {1}"
 ERROR_CALCULATING_ALT_TRIG = "Error calculating from alternate trig function: {0}"
 
 class ErrorTier(Enum):
-    TIER1_THEOREM_CALL_SYNTAX_VIOLATION = 1
-    TIER2_PREMISE_VIOLATION = 2
-    TIER3_GOAL_NOT_REACHED = 3
+    TIER1_THEOREM_CALL = 1  # Incorrect theorem call
+    TIER2_PREMISE = 2  # Premise violation
+    TIER3_GOAL_NOT_REACHED = 3  # Failed to reach goal
 
 
 @dataclass
@@ -11032,7 +11032,15 @@ class GeometricTheorem:
 
                 else:
 
-                    tier = ErrorTier.TIER1_THEOREM_CALL,
+                    return GeometricError(
+
+                        tier=ErrorTier.TIER1_THEOREM_CALL,
+
+                        message="Conclusion format error for cosine_theorem",
+
+                        details=f"Expected pattern not found in: {conclusions[0]}"
+
+                    )
 
             else:
 
@@ -12414,7 +12422,7 @@ def verify_geometric_proof(filename: str, print_output=True) -> tuple:
 
 if __name__ == "__main__":
     result, feedback, error_tier = verify_geometric_proof(
-        "/Users/osultan/PycharmProjects/FormalGeo/results/level_1/variant_analogy_based_model_o1_problem_1490.txt",print_output=False)
+        "/Users/osultan/PycharmProjects/FormalGeo/results/level_1/variant_random_all_theorems_model_o1_problem_51_run_2.txt",print_output=False)
 
     if feedback:
         print(feedback)
