@@ -238,7 +238,7 @@ Outputs for Problem B:
 
 ***MODEL_RESPONSE_BEGIN***
 EQUATIONS:
-(3*a+40)+(2*a+25)-180
+3*a+40 + 2*a+25-180
 
 GOAL_SYMBOL:
 a
@@ -250,15 +250,8 @@ THEOREM_SEQUENCE:
 1; parallel_property_ipsilateral_internal_angle(1,WL,XE); ParallelBetweenLine(WL,XE)&Line(WX); ["Equal(Add(MeasureOfAngle(LWX),MeasureOfAngle(WXE)),180)"]
 ***MODEL_RESPONSE_END***
 RETRIES_MESSAGES:
-#retry: 1; message: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
-Verification failed. Theorem <parallel_property_ipsilateral_internal_angle> branch error. Expected dict_keys(['1']) but got None. Please rewrite your response, you should change only the call to theorem <parallel_property_ipsilateral_internal_angle> by adding the branch number from the dict_keys as the first argument
-Model Answer:
-RETRY_ANSWER:
-23
-RETRY_THEOREM_SEQUENCE:
-1; parallel_property_ipsilateral_internal_angle(WL,XE); ParallelBetweenLine(WL,XE)&Line(WX); ["Equal(Add(MeasureOfAngle(LWX),MeasureOfAngle(WXE)),180)"]
 #RETRIES:
-1
+0
 #RUNS:
 0
 
