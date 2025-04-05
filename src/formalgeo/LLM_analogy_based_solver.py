@@ -370,7 +370,7 @@ def generate_and_verify(args, gdl_relevant_theorems, similar_problems, problem2,
         verifier = Verifier(problem2.id, resp)
         verify_symbols_syntax_result = verifier.verify_symbols_syntax()
         verify_geometric_proof_result, feedback, error_tier = verify_geometric_proof(file_path, print_output=False)
-
+        error_tier = error_tier.name if error_tier else error_tier
         # if problem2.id == 2916 and len(generated_theorem_sequence_list) == 1 and (generated_theorem_sequence_list[0] == "parallel_property_alternate_interior_angle(2,AB,CD)" or generated_theorem_sequence_list[0] == "parallel_property_corresponding_angle(2,AB,CD,E)"):
         #     # theorem_verifier_result = "your THEOREM_SEQUENCE is incomplete. Your task was to find the measure of ∠ECD but this measure is still underconstrained, the value cannot be determined. Please fix the proof."
         #     theorem_verifier_result = "verification failed. Your task was to find the measure of angle ECD but this measure is still underconstrained. Specifically, you found that the measure of angle BCD is equal to the measure of angle CBA, but the measure of CBA, but you did not find the measure of CBA. Please fix the proof. You should modify only the THEOREM_SEQUENCE."
@@ -432,7 +432,7 @@ chosen_problems_by_level = {
 }
 
 chosen_problems_by_level = {
-1 : [178]
+2 : [69]
 # 1: [1975, 1490, 1726, 178, 2669, 2614, 51, 2323, 192, 2624],
 # 2: [2141, 69, 2916, 358, 4473, 4483, 5645, 127, 2410, 4523],
 # 3: [ 4187, 5244, 5062, 844, 1945, 2200, 4099, 2765, 4476, 4254 ]

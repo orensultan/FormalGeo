@@ -57,22 +57,18 @@ Outputs for Problem B:
 
 ***MODEL_RESPONSE_BEGIN***
 EQUATIONS:
-LengthOfLine(CB)-18
-LengthOfLine(CD)-12
-MeasureOfAngle(BAD)-115
+ll_cb-18
+ll_cd-12
+ma_bad-115
 
 GOAL_SYMBOL:
-MeasureOfAngle(ADC)
+ma_adc
 
 ANSWER:
 65
 
 THEOREM_SEQUENCE:
-(There is no direct theorem in the given GDL that shows consecutive angles of a parallelogram are supplementary. 
-Hence, no strictly valid chain of GDL theorems can be formed to prove ∠BAD + ∠ADC = 180. 
-In standard geometry, the needed fact is that “Consecutive angles of a parallelogram are supplementary.” 
-This specific statement, however, is not provided in the GDL. 
-Therefore, using only theorems from the GDL, the proof cannot be completed.)
+1; parallel_property_ipsilateral_internal_angle(1,AB,DC); ParallelBetweenLine(AB,DC)&Line(AD); ["Equal(Add(MeasureOfAngle(BAD),MeasureOfAngle(ADC)),180)"]
 ***MODEL_RESPONSE_END***
 RETRIES_MESSAGES:
 #run: 0; #retry: 1; message: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
@@ -81,59 +77,9 @@ Model Answer:
 RETRY_ANSWER:
 65
 RETRY_THEOREM_SEQUENCE:
-1; parallel_property_ipsilateral_internal_angle(BA,DC); ParallelBetweenLine(BA,DC)&Line(AD); ["Equal(Add(MeasureOfAngle(BAD),MeasureOfAngle(ADC)),180)"]
-#run: 0; #retry: 2; message: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
-Verification failed. Premises mismatch:
-Model premises: ParallelBetweenLine(BA,DC)&Line(AD)
-Expected premises: ParallelBetweenLine(BA,DC)&Line(BD)
-Model Answer:
-RETRY_ANSWER:
-65
-RETRY_THEOREM_SEQUENCE:
-1; parallel_property_ipsilateral_internal_angle(1,BA,DC); ParallelBetweenLine(BA,DC)&Line(AD); ["Equal(Add(MeasureOfAngle(BAD),MeasureOfAngle(ADC)),180)"]
-#run: 0; #retry: 3; message: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
-Verification failed. Conclusions mismatch:
-Model conclusions: Equal(Add(MeasureOfAngle(BAD),MeasureOfAngle(ADC)),180)
-Expected conclusions: Equal(Add(MeasureOfAngle(ABD),MeasureOfAngle(BDC)),180)
-Model Answer:
-RETRY_ANSWER:
-65
-RETRY_THEOREM_SEQUENCE:
-1; parallel_property_ipsilateral_internal_angle(1,BA,DC); ParallelBetweenLine(BA,DC)&Line(BD); ["Equal(Add(MeasureOfAngle(BAD),MeasureOfAngle(ADC)),180)"]
-#run: 0; #retry: 4; message: ERROR_TIER: TIER3_GOAL_NOT_REACHED
-verification failed.
-
-- Goal: measure of angle ADC
-- Model answer: 65.0
-- Error: Your proof doesn't uniquely determine the value. You need to use additional theorems to constrain the value.
-- Available premises:
-  Parallel Lines: AB ∥ CD, AD ∥ BC
-  Polygons: ADCB, BADC, CBAD, DCBA
-- Theorems related to the goal:
-  None found that constrain this goal
-- Solver constraints directly related to this goal:
-  ∠ADC <= 180
-  ∠ADC > 0
-
-Please fix the proof.
-Model Answer:
-RETRY_ANSWER:
-65
-RETRY_THEOREM_SEQUENCE:
-1; parallel_property_ipsilateral_internal_angle(1,BA,DC); ParallelBetweenLine(BA,DC)&Line(BD); ["Equal(Add(MeasureOfAngle(ABD),MeasureOfAngle(BDC)),180)"]
-#run: 0; #retry: 5; message: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
-Verification failed. Theorem  not defined in current GDL. Please rewrite the proof sequence, you are allowed to use only theorems from the GDL.
-Model Answer:
-RETRY_ANSWER:
-65
-RETRY_THEOREM_SEQUENCE:
-(There is no direct theorem in the given GDL that shows consecutive angles of a parallelogram are supplementary. 
-Hence, no strictly valid chain of GDL theorems can be formed to prove ∠BAD + ∠ADC = 180. 
-In standard geometry, the needed fact is that “Consecutive angles of a parallelogram are supplementary.” 
-This specific statement, however, is not provided in the GDL. 
-Therefore, using only theorems from the GDL, the proof cannot be completed.)
+1; parallel_property_ipsilateral_internal_angle(AB,DC); ParallelBetweenLine(AB,DC)&Line(AD); ["Equal(Add(MeasureOfAngle(BAD),MeasureOfAngle(ADC)),180)"]
 #RETRIES:
-5
+1
 #RUNS:
 0
 

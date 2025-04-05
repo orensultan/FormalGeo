@@ -5,6 +5,17 @@ import re
 from collections import defaultdict
 import json
 from src.formalgeo.config.config import MAX_RUNS, MAX_RETRIES_IN_RUN
+
+def convert_to_float(number_str):
+    """Convert a number string to float, handling fractions."""
+    try:
+        if '/' in number_str:
+            numerator, denominator = number_str.split('/')
+            return round(float(numerator) / float(denominator), 2)
+        return round(float(number_str), 2)
+    except (ValueError, ZeroDivisionError):
+        return None
+
 def calculate_success_rates(base_path):
     results = defaultdict(lambda: defaultdict(dict))
     for level in range(1, 3):
@@ -64,84 +75,238 @@ def calculate_success_rates(base_path):
                 any_first_try_success = False
                 any_theorem_success = False
                 
-                # Check if last run exists for this problem
-                last_run = f"run_{MAX_RUNS-1}"
-                has_last_run = any(last_run in f for f in files)
-                theorem_with_retries_success = not has_last_run  # Success if no last run
+                print(f"\nProcessing problem {problem_id} for {variant}")
                 
                 # Get GT_ANSWER from any file (they should all have the same GT_ANSWER)
                 gt_answer = None
+                gt_answer_float = None
                 for result_file in files:
                     file_path = os.path.join(level_dir, result_file)
                     with open(file_path, 'r') as f:
-                        content = f.read()
-                        gt_answer_match = re.search(r'GT_ANSWER:\s*\n(\d+)', content)
-                        if gt_answer_match:
-                            gt_answer = gt_answer_match.group(1)
-                            break
+                        lines = f.readlines()
+                        for i, line in enumerate(lines):
+                            if line.strip() == "GT_ANSWER:":
+                                if i + 1 < len(lines):
+                                    gt_answer = lines[i + 1].strip()
+                                    gt_answer_float = convert_to_float(gt_answer)
+                                    print(f"Found GT_ANSWER in {result_file}: {gt_answer} -> {gt_answer_float}")
+                                    break
                 
-                if gt_answer is None:
+                if gt_answer_float is None:
+                    print(f"Warning: No GT_ANSWER found for problem {problem_id}")
                     continue
                 
-                # Process all runs for this problem
+                # Find run_0 file for first try check
+                run_0_file = None
                 for result_file in files:
-                    file_path = os.path.join(level_dir, result_file)
+                    if 'run_0' in result_file:
+                        run_0_file = result_file
+                        break
+                
+                if run_0_file:
+                    file_path = os.path.join(level_dir, run_0_file)
                     with open(file_path, 'r') as f:
-                        content = f.read()
-
-                        # Find the model response section
-                        model_response_match = re.search(r'\*\*\*MODEL_RESPONSE_BEGIN\*\*\*(.*?)\*\*\*MODEL_RESPONSE_END\*\*\*', content, re.DOTALL)
-                        if not model_response_match:
-                            continue
-
-                        model_response = model_response_match.group(1)
-
-                        # Check both ANSWER and RETRY_ANSWER on new lines
-                        answer_match = re.search(r'ANSWER:\s*\n(\d+)', model_response)
-                        retry_answer_match = re.search(r'RETRY_ANSWER:\s*\n(\d+)', model_response)
-                        retries_match = re.search(r'#RETRIES:\s*(\d+)', content)
-                        runs_match = re.search(r'#RUNS:\s*(\d+)', content)
-
-                        if (answer_match or retry_answer_match) and retries_match and runs_match:
-                            # Parse retries and runs as integers
-                            retries = int(retries_match.group(1))
-                            runs = int(runs_match.group(1))
+                        lines = f.readlines()
+                        
+                        # Check for RETRY_ANSWER in the entire file
+                        retry_answer = None
+                        retry_answer_float = None
+                        print(f"Looking for RETRY_ANSWER in {run_0_file}...")
+                        for i, line in enumerate(lines):
+                            if line.strip() == "RETRY_ANSWER:":
+                                if i + 1 < len(lines):
+                                    retry_answer = lines[i + 1].strip()
+                                    retry_answer_float = convert_to_float(retry_answer)
+                                    print(f"Found RETRY_ANSWER in {run_0_file}: {retry_answer} -> {retry_answer_float}")
+                                    print(f"GT_ANSWER: {gt_answer} -> {gt_answer_float}")
+                                    if retry_answer_float is not None and retry_answer_float == gt_answer_float:
+                                        print(f"Setting first try success for {run_0_file} due to matching RETRY_ANSWER")
+                                        any_first_try_success = True
+                                        any_answer_correct = True
+                                    break
+                        
+                        # Only check ANSWER in model response section if no RETRY_ANSWER was found
+                        if retry_answer_float is None:
+                            print(f"No RETRY_ANSWER found in {run_0_file}, checking for ANSWER in model response section...")
                             
-                            # Check if any answer matches ground truth
-                            answer_correct = False
-                            if answer_match and answer_match.group(1) == gt_answer:
-                                answer_correct = True
-                            if retry_answer_match and retry_answer_match.group(1) == gt_answer:
-                                answer_correct = True
+                            # Find model response section
+                            model_response_start = -1
+                            model_response_end = -1
+                            for i, line in enumerate(lines):
+                                if line.strip() == "***MODEL_RESPONSE_BEGIN***":
+                                    model_response_start = i
+                                elif line.strip() == "***MODEL_RESPONSE_END***":
+                                    model_response_end = i
+                                    break
                             
-                            # First try success (both RETRIES and RUNS are 0)
-                            is_first_try_success = retries == 0 and runs == 0
-                            
-                            # Update success flags for this problem
-                            if answer_correct:
-                                any_answer_correct = True
-                                if is_first_try_success:
+                            if model_response_start != -1 and model_response_end != -1:
+                                model_response = lines[model_response_start:model_response_end + 1]
+                                
+                                answer = None
+                                answer_float = None
+                                for i, line in enumerate(model_response):
+                                    if line.strip() == "ANSWER:":
+                                        if i + 1 < len(model_response):
+                                            answer = model_response[i + 1].strip()
+                                            answer_float = convert_to_float(answer)
+                                            print(f"Found ANSWER in model response section of {run_0_file}: {answer} -> {answer_float}")
+                                            break
+                                
+                                if answer_float is not None and answer_float == gt_answer_float:
+                                    print(f"Setting first try success for {run_0_file} due to matching ANSWER")
                                     any_first_try_success = True
-                            
-                            if is_first_try_success:
+                                    any_answer_correct = True
+                        
+                        # Check for theorem sequence success (first try) in run_0
+                        retries = None
+                        runs = None
+                        print(f"\nChecking theorem sequence success for {run_0_file}:")
+                        
+                        # Find RETRIES_MESSAGES section
+                        retries_messages_start = -1
+                        for i, line in enumerate(lines):
+                            if line.strip() == "RETRIES_MESSAGES:":
+                                retries_messages_start = i
+                                break
+                        
+                        if retries_messages_start != -1:
+                            # Look for RETRIES and RUNS in RETRIES_MESSAGES section
+                            for i, line in enumerate(lines[retries_messages_start:]):
+                                if line.strip() == "#RETRIES:":
+                                    try:
+                                        # Get the next line for the value
+                                        if i + 1 < len(lines[retries_messages_start:]):
+                                            retries_str = lines[retries_messages_start + i + 1].strip()
+                                            retries = int(retries_str)
+                                            print(f"  Found RETRIES line: {line.strip()}")
+                                            print(f"  Parsed RETRIES value: {retries}")
+                                    except (ValueError, IndexError):
+                                        print(f"  Error parsing RETRIES from line: {line.strip()}")
+                                        continue
+                                elif line.strip() == "#RUNS:":
+                                    try:
+                                        # Get the next line for the value
+                                        if i + 1 < len(lines[retries_messages_start:]):
+                                            runs_str = lines[retries_messages_start + i + 1].strip()
+                                            runs = int(runs_str)
+                                            print(f"  Found RUNS line: {line.strip()}")
+                                            print(f"  Parsed RUNS value: {runs}")
+                                    except (ValueError, IndexError):
+                                        print(f"  Error parsing RUNS from line: {line.strip()}")
+                                        continue
+                        
+                        print(f"  Final values - RETRIES: {retries}, RUNS: {runs}")
+                        
+                        # Only count as success if both RETRIES and RUNS are 0
+                        if retries is not None and runs is not None:
+                            if retries == 0 and runs == 0:
+                                print(f"  Setting theorem sequence first try success for {run_0_file} due to RETRIES=0 and RUNS=0")
                                 any_theorem_success = True
-                            
-                            # Check theorem sequence success with retries
-                            if has_last_run and last_run in result_file:
-                                if retries == MAX_RETRIES_IN_RUN:
-                                    theorem_with_retries_success = False
+                            else:
+                                print(f"  No theorem sequence first try success for {run_0_file} - RETRIES={retries}, RUNS={runs}")
+                        else:
+                            print(f"  Missing RETRIES or RUNS in {run_0_file}")
+                
+                print(f"Problem {problem_id} final flags:")
+                print(f"any_first_try_success: {any_first_try_success}")
+                print(f"any_answer_correct: {any_answer_correct}")
+                print(f"any_theorem_success: {any_theorem_success}")
                 
                 # Update counters based on problem-level success
-                if any_answer_correct:
-                    variant_stats[variant]["successful_answers_with_retries"] += 1
-                    if any_first_try_success:
-                        variant_stats[variant]["successful_answers_first_try"] += 1
+                if any_first_try_success:
+                    variant_stats[variant]["successful_answers_first_try"] += 1
+                    print(f"Incrementing first try success counter for {variant}")
                 
                 if any_theorem_success:
                     variant_stats[variant]["successful_theorems_first_try"] += 1
+                    print(f"Incrementing theorem sequence first try success counter for {variant}")
+                
+                # Check for theorem sequence success with verifier feedback
+                theorem_with_retries_success = True
+                
+                # Check if last run exists and has max retries
+                last_run = f"run_{MAX_RUNS-1}"
+                for result_file in files:
+                    if last_run in result_file:
+                        file_path = os.path.join(level_dir, result_file)
+                        with open(file_path, 'r') as f:
+                            lines = f.readlines()
+                            for i, line in enumerate(lines):
+                                if line.strip() == "#RETRIES:":
+                                    if i + 1 < len(lines):
+                                        retries_str = lines[i + 1].strip()
+                                        if retries_str:
+                                            retries = int(retries_str)
+                                            if retries == MAX_RETRIES_IN_RUN:
+                                                print(f"Found max retries in {result_file}, setting failure")
+                                                theorem_with_retries_success = False
+                                                break
                 
                 if theorem_with_retries_success:
                     variant_stats[variant]["successful_theorems_with_retries"] += 1
+                    print(f"Incrementing theorem sequence with retries success counter for {variant}")
+                
+                # Process all runs for answer success with retries
+                for result_file in files:
+                    file_path = os.path.join(level_dir, result_file)
+                    with open(file_path, 'r') as f:
+                        lines = f.readlines()
+                        
+                        # Check for RETRY_ANSWER in the entire file
+                        retry_answer = None
+                        retry_answer_float = None
+                        print(f"Looking for RETRY_ANSWER in {result_file}...")
+                        for i, line in enumerate(lines):
+                            if line.strip() == "RETRY_ANSWER:":
+                                if i + 1 < len(lines):
+                                    retry_answer = lines[i + 1].strip()
+                                    retry_answer_float = convert_to_float(retry_answer)
+                                    print(f"Found RETRY_ANSWER in {result_file}: {retry_answer} -> {retry_answer_float}")
+                                    print(f"GT_ANSWER: {gt_answer} -> {gt_answer_float}")
+                                    if retry_answer_float is not None and retry_answer_float == gt_answer_float:
+                                        print(f"Setting with retries success for {result_file} due to matching RETRY_ANSWER")
+                                        any_answer_correct = True
+                                        break
+                        
+                        # If no RETRY_ANSWER found, check for ANSWER in model response section
+                        if not any_answer_correct:
+                            print(f"No matching RETRY_ANSWER found in {result_file}, checking for ANSWER in model response section...")
+                            
+                            # Find model response section
+                            model_response_start = -1
+                            model_response_end = -1
+                            for i, line in enumerate(lines):
+                                if line.strip() == "***MODEL_RESPONSE_BEGIN***":
+                                    model_response_start = i
+                                elif line.strip() == "***MODEL_RESPONSE_END***":
+                                    model_response_end = i
+                                    break
+                            
+                            if model_response_start != -1 and model_response_end != -1:
+                                model_response = lines[model_response_start:model_response_end + 1]
+                                
+                                answer = None
+                                answer_float = None
+                                for i, line in enumerate(model_response):
+                                    if line.strip() == "ANSWER:":
+                                        if i + 1 < len(model_response):
+                                            answer = model_response[i + 1].strip()
+                                            answer_float = convert_to_float(answer)
+                                            print(f"Found ANSWER in model response section of {result_file}: {answer} -> {answer_float}")
+                                            break
+                                
+                                if answer_float is not None and answer_float == gt_answer_float:
+                                    print(f"Setting with retries success for {result_file} due to matching ANSWER")
+                                    any_answer_correct = True
+                        
+                        # If we found a matching answer, no need to check other files
+                        if any_answer_correct:
+                            break
+                
+                # Update counter for answer success with retries
+                if any_answer_correct:
+                    variant_stats[variant]["successful_answers_with_retries"] += 1
+                    print(f"Incrementing with retries success counter for {variant}")
 
         # Calculate and store success rates for each variant
         for variant, stats in variant_stats.items():
