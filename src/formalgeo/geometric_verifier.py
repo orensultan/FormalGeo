@@ -77,8 +77,8 @@ ERROR_EVALUATING_TRIG = "Error evaluating {0} variable: {1}"
 ERROR_CALCULATING_ALT_TRIG = "Error calculating from alternate trig function: {0}"
 
 class ErrorTier(Enum):
-    TIER1_THEOREM_CALL = 1  # Incorrect theorem call
-    TIER2_PREMISE = 2  # Premise violation
+    TIER1_THEOREM_CALL_SYNTAX_VIOLATION = 1  # Incorrect theorem call
+    TIER2_PREMISE_VIOLATION = 2  # Premise violation
     TIER3_GOAL_NOT_REACHED = 3  # Failed to reach goal
 
 
@@ -115,7 +115,7 @@ class GeometricTheorem:
         self.altitudes = {}
         self.quad_areas = {}
         self.quad_heights = {}
-
+        self.quadrilateral_perimeters = {}
         # For handling both algebraic and numeric expressions
         self.variables = {}
         self.found_tier_1_or_2_error = False
@@ -156,6 +156,7 @@ class GeometricTheorem:
         # 2) We'll store any 'IsDiameterOfCircle(...)' statements here
         self.is_diameter_of_circle = []  # list of (line, circleName)
 
+        self.midsegments_of_quadrilaterals = {}
         # 3) We’ll also store any 'Cocircular(...)' facts, if needed
         self.cocircular_facts = []  # e.g. [("D", "B", "C", "A")] means D,B,C,A are on the same circle.
 
@@ -1047,10 +1048,140 @@ class GeometricTheorem:
         else:
             return False, None, "unknown"
 
+    def normalize_quadrilateral(self, quad_name: str) -> str:
+        """
+        Normalize a quadrilateral name to handle different permutations.
+        For a quadrilateral, we find all cyclic permutations and return the
+        lexicographically smallest one.
+        """
+        # Get all cyclic permutations
+        permutations = []
+        n = len(quad_name)
+        for i in range(n):
+            permutation = quad_name[i:] + quad_name[:i]
+            permutations.append(permutation)
 
+        # Return the lexicographically smallest permutation
+        return min(permutations)
 
+    def is_midsegment_of_quadrilateral(self, segment: str, quad: str) -> bool:
+        """
+        Check if the given segment is stored as a midsegment of the given quadrilateral.
+        This handles normalization of the quadrilateral name.
+        """
+        # Normalize quadrilateral name
+        norm_quad = self.normalize_quadrilateral(quad)
 
+        # Check all permutations of the segment (FE vs EF)
+        segments = [segment, segment[::-1]]
 
+        # Check if any combination exists in our stored midsegments
+        for seg in segments:
+            if (seg, norm_quad) in self.midsegments_of_quadrilaterals:
+                return True
+
+        return False
+
+    def identify_midsegment_quadrilateral(self, segment: str, quad: str) -> bool:
+        """
+        Check if a segment can be identified as a midsegment of a quadrilateral
+        by analyzing if it connects midpoints of opposite sides.
+        """
+        if len(segment) != 2 or len(quad) != 4:
+            return False
+
+        # Check if we have midpoint information about the segment endpoints
+        e_midpoint_of = []
+        f_midpoint_of = []
+
+        # Use previously established midpoint information
+        if hasattr(self, "midpoints"):
+            for (p1, p2), midpoint in self.midpoints.items():
+                if midpoint == segment[0]:  # First point of segment (e.g., "E")
+                    e_midpoint_of.append((p1, p2))
+                elif midpoint == segment[1]:  # Second point of segment (e.g., "F")
+                    f_midpoint_of.append((p1, p2))
+
+        # If we don't have enough midpoint information, return False
+        if not e_midpoint_of or not f_midpoint_of:
+            return False
+
+        # Get the sides of the quadrilateral (in order)
+        sides = [
+            (quad[0], quad[1]),
+            (quad[1], quad[2]),
+            (quad[2], quad[3]),
+            (quad[3], quad[0])
+        ]
+
+        # Convert sides to sets for easier comparison (AB == BA)
+        sides_sets = [set(side) for side in sides]
+
+        # Check if E and F are midpoints of opposite sides
+        for e_side in e_midpoint_of:
+            e_side_set = set(e_side)
+            e_side_idx = -1
+
+            # Find which side E is the midpoint of
+            for i, side_set in enumerate(sides_sets):
+                if e_side_set == side_set:
+                    e_side_idx = i
+                    break
+
+            if e_side_idx == -1:
+                continue
+
+            # Check if F is the midpoint of the opposite side
+            opposite_idx = (e_side_idx + 2) % 4
+            opposite_side_set = sides_sets[opposite_idx]
+
+            for f_side in f_midpoint_of:
+                if set(f_side) == opposite_side_set:
+                    return True
+
+        return False
+
+    def check_midsegment_with_permutations(self, segment: str, quad: str) -> bool:
+        """
+        Check if a segment is a midsegment of a quadrilateral considering all
+        possible permutations of the quadrilateral.
+        """
+        # Check all cyclic permutations of the quadrilateral
+        for i in range(len(quad)):
+            perm = quad[i:] + quad[:i]
+
+            # Check both segment orientations
+            if self.is_midsegment_of_quadrilateral(segment, perm) or \
+                    self.is_midsegment_of_quadrilateral(segment[::-1], perm):
+                return True
+
+            # Also try to identify it geometrically
+            if self.identify_midsegment_quadrilateral(segment, perm) or \
+                    self.identify_midsegment_quadrilateral(segment[::-1], perm):
+                # If identified, store it for future reference
+                norm_quad = self.normalize_quadrilateral(perm)
+                self.midsegments_of_quadrilaterals[(segment, norm_quad)] = True
+                self.midsegments_of_quadrilaterals[(segment[::-1], norm_quad)] = True
+                return True
+
+        return False
+
+    def get_opposite_sides_of_quadrilateral(self, quad: str) -> list:
+        """
+        Get the pairs of opposite sides in a quadrilateral.
+        """
+        if len(quad) != 4:
+            return []
+
+        # For a quadrilateral with vertices in cyclic order A,B,C,D:
+        # - Side 1: AB, Side 2: BC, Side 3: CD, Side 4: DA
+        # - Opposite sides are: (AB, CD) and (BC, DA)
+        sides = [
+            (quad[0] + quad[1], quad[2] + quad[3]),  # Sides 1 and 3
+            (quad[1] + quad[2], quad[3] + quad[0])  # Sides 2 and 4
+        ]
+
+        return sides
 
     def add_mirror_similar_triangles(self, tri1: str, tri2: str):
         """Record that triangles tri1 and tri2 are mirror similar (by AA)
@@ -2250,8 +2381,7 @@ class GeometricTheorem:
         # Evaluate the expression
         return eval(expr, mapping)
 
-    def validate_theorem_premises(self, theorem_name: str, args: List[str], premise: str) -> Tuple[
-        bool, Optional[GeometricError]]:
+    def validate_theorem_premises(self, theorem_name: str, args: List[str], premise: str) -> Tuple[ bool, Optional[GeometricError]]:
         """Validate theorem premises and return appropriate error if validation fails"""
 
         # Helper function to return error and set the flag
@@ -2264,7 +2394,7 @@ class GeometricTheorem:
             if version == "1":
                 if len(args) < 3:
                     return return_error(GeometricError(
-                        tier=ErrorTier.TIER1_THEOREM_CALL,
+                        tier=ErrorTier.TIER1_THEOREM_CALL_SYNTAX_VIOLATION,
                         message="Missing angle arguments",
                         details="adjacent_complementary_angle requires two angles"
                     ))
@@ -2290,7 +2420,7 @@ class GeometricTheorem:
 
                         if not collinear_found:
                             return return_error(GeometricError(
-                                tier=ErrorTier.TIER2_PREMISE,
+                                tier=ErrorTier.TIER2_PREMISE_VIOLATION,
                                 message=f"Points {points} are not proven collinear",
                                 details=f"Known collinear facts: {self.collinear_facts}"
                             ))
@@ -2307,7 +2437,7 @@ class GeometricTheorem:
 
                         if not shared_point:
                             return return_error(GeometricError(
-                                tier=ErrorTier.TIER2_PREMISE,
+                                tier=ErrorTier.TIER2_PREMISE_VIOLATION,
                                 message=f"Angles {angle1} and {angle2} must share a vertex",
                                 details="Required for adjacent complementary angles"
                             ))
@@ -2315,7 +2445,7 @@ class GeometricTheorem:
                         # Check that the shared point is in the collinear set
                         if shared_point not in points:
                             return return_error(GeometricError(
-                                tier=ErrorTier.TIER2_PREMISE,
+                                tier=ErrorTier.TIER2_PREMISE_VIOLATION,
                                 message=f"Shared point {shared_point} must be on the collinear line {points}",
                                 details="Vertex must be on the collinear line"
                             ))
@@ -2323,24 +2453,174 @@ class GeometricTheorem:
                         return True, None
                     else:
                         return return_error(GeometricError(
-                            tier=ErrorTier.TIER2_PREMISE,
+                            tier=ErrorTier.TIER2_PREMISE_VIOLATION,
                             message="Invalid collinear points format in premise"
                         ))
                 else:
                     return return_error(GeometricError(
-                        tier=ErrorTier.TIER2_PREMISE,
+                        tier=ErrorTier.TIER2_PREMISE_VIOLATION,
                         message="Missing collinear points in premise",
                         details="adjacent_complementary_angle theorem requires collinear points"
                     ))
-            elif version == "2":
-                print("2")
+            else:
+                return_error(GeometricError(
+                    tier=ErrorTier.TIER1_THEOREM_CALL_SYNTAX_VIOLATION,
+                    message=f"Unsupported version {version} for adjacent_complementary_angle"
+                ))
+
+
+
+        elif theorem_name == "tangent_of_circle_property_length_equal":
+            version = args[0]
+            if version == "1":
+                if len(args) < 4:
+                    return return_error(GeometricError(
+                        tier=ErrorTier.TIER1_THEOREM_CALL_SYNTAX_VIOLATION,
+                        message="Insufficient arguments for tangent_of_circle_property_length_equal",
+                        details="Expected: tangent_of_circle_property_length_equal(1, tangent1, tangent2, circle)"
+                    ))
+
+                tangent1 = args[1].strip()  # e.g., "AM"
+                tangent2 = args[2].strip()  # e.g., "AG"
+                circle = args[3].strip()  # e.g., "O"
+
+                # Verify the tangent facts in the premise
+                tangent1_match = re.search(
+                    r'IsTangentOfCircle\(' + re.escape(tangent1) + ',' + re.escape(circle) + r'\)', premise)
+                tangent2_match = re.search(
+                    r'IsTangentOfCircle\(' + re.escape(tangent2) + ',' + re.escape(circle) + r'\)', premise)
+
+                if not tangent1_match:
+                    return return_error(GeometricError(
+                        tier=ErrorTier.TIER2_PREMISE_VIOLATION,
+                        message=f"Missing IsTangentOfCircle({tangent1},{circle}) in premise",
+                        details=f"Both tangent lines must be established as tangents to the circle"
+                    ))
+
+                if not tangent2_match:
+                    return return_error(GeometricError(
+                        tier=ErrorTier.TIER2_PREMISE_VIOLATION,
+                        message=f"Missing IsTangentOfCircle({tangent2},{circle}) in premise",
+                        details=f"Both tangent lines must be established as tangents to the circle"
+                    ))
+
+                # Verify both segments start from the same point
+                if tangent1[0] != tangent2[0]:
+                    return return_error(GeometricError(
+                        tier=ErrorTier.TIER2_PREMISE_VIOLATION,
+                        message=f"Tangent segments {tangent1} and {tangent2} do not share the same starting point",
+                        details=f"For this theorem, both tangent segments must start from the same external point"
+                    ))
+
+                # Also check if these tangent facts are stored in the system
+                if (tangent1, circle) not in self.tangent_facts:
+                    return return_error(GeometricError(
+                        tier=ErrorTier.TIER2_PREMISE_VIOLATION,
+                        message=f"Tangent fact IsTangentOfCircle({tangent1},{circle}) not established in the system",
+                        details=f"Known tangent facts: {self.tangent_facts}"
+                    ))
+
+                if (tangent2, circle) not in self.tangent_facts:
+                    return return_error(GeometricError(
+                        tier=ErrorTier.TIER2_PREMISE_VIOLATION,
+                        message=f"Tangent fact IsTangentOfCircle({tangent2},{circle}) not established in the system",
+                        details=f"Known tangent facts: {self.tangent_facts}"
+                    ))
+
+                return True, None
+            else:
+                return return_error(GeometricError(
+                    tier=ErrorTier.TIER1_THEOREM_CALL_SYNTAX_VIOLATION,
+                    message="these is no such version for the theorem",
+                    details="these is no such version for the theorem tangent_of_circle_property_length_equal"
+                ))
+
+
+
+        elif theorem_name == "quadrilateral_perimeter_formula":
+            version = args[0]
+            if version == "1":
+                if len(args) < 2:
+                    return return_error(GeometricError(
+                        tier=ErrorTier.TIER1_THEOREM_CALL_SYNTAX_VIOLATION,
+                        message="Missing quadrilateral name for quadrilateral_perimeter_formula",
+                        details="Expected: quadrilateral_perimeter_formula(1, quadrilateral)"
+                    ))
+
+                quad = args[1].strip()  # e.g., "ABCD"
+
+                # Verify that the quadrilateral is defined in the premise
+                polygon_match = re.search(r'Polygon\(' + re.escape(quad) + r'\)', premise)
+
+                if not polygon_match:
+                    return return_error(GeometricError(
+                        tier=ErrorTier.TIER2_PREMISE_VIOLATION,
+                        message=f"Missing Polygon({quad}) in premise",
+                        details="The quadrilateral must be established as a polygon"
+                    ))
+
+                # Also check if the quadrilateral is stored in the system's polygons
+                if quad not in self.polygons and self.normalize_quadrilateral(quad) not in self.polygons:
+                    return return_error(GeometricError(
+                        tier=ErrorTier.TIER2_PREMISE_VIOLATION,
+                        message=f"Polygon {quad} is not defined in the system",
+                        details=f"Known polygons: {self.polygons}"
+                    ))
+
+                return True, None
+            else:
+                return return_error(GeometricError(
+                    tier=ErrorTier.TIER1_THEOREM_CALL_SYNTAX_VIOLATION,
+                    message="these is no such version for the theorem quadrilateral_perimeter_formula",
+                    details="these is no such version for the theorem quadrilateral_perimeter_formula"
+                ))
+
+
+
+
+
+        elif theorem_name == "midsegment_of_quadrilateral_property_length":
+            version = args[0]
+            if version == "1":
+                if len(args) < 3:
+                    return return_error(GeometricError(
+                        tier=ErrorTier.TIER1_THEOREM_CALL_SYNTAX_VIOLATION,
+                        message="Insufficient arguments for midsegment_of_quadrilateral_property_length",
+                        details="Expected: midsegment_of_quadrilateral_property_length(1, segment, quadrilateral)"
+                    ))
+
+                segment = args[1].strip()
+                quad = args[2].strip()
+
+                # Try to extract the midsegment relationship from the premise
+                midsegment_match = re.search(
+                    r'IsMidsegmentOfQuadrilateral\(' + re.escape(segment) + ',' + re.escape(quad) + r'\)', premise)
+
+                # If not found directly in premise, check if it's in our stored data with permutations
+                if not midsegment_match:
+                    if not self.check_midsegment_with_permutations(segment, quad):
+                        return return_error(GeometricError(
+                            tier=ErrorTier.TIER2_PREMISE_VIOLATION,
+                            message=f"Missing IsMidsegmentOfQuadrilateral({segment},{quad}) in premise",
+                            details="The line must be established as a midsegment of the quadrilateral"
+                        ))
+
+                return True, None
+            else:
+                return return_error(GeometricError(
+                    tier=ErrorTier.TIER1_THEOREM_CALL_SYNTAX_VIOLATION,
+                    message="these is no such version for the theorem",
+                    details="these is no such version for the theorem midsegment_of_quadrilateral_property_length"
+                ))
+
+
 
         elif theorem_name == "parallelogram_area_formula_sine":
             version = args[0]
             if version == "1":
                 if len(args) < 2:
                     return return_error(GeometricError(
-                        tier=ErrorTier.TIER1_THEOREM_CALL,
+                        tier=ErrorTier.TIER1_THEOREM_CALL_SYNTAX_VIOLATION,
                         message="Missing parallelogram name for parallelogram_area_formula_sine",
                         details="Expected parallelogram_area_formula_sine(1, quadrilateral)"
                     ))
@@ -2351,7 +2631,7 @@ class GeometricTheorem:
                 parallelogram_match = re.search(r'Parallelogram\((\w+)\)', premise)
                 if not parallelogram_match:
                     return return_error(GeometricError(
-                        tier=ErrorTier.TIER2_PREMISE,
+                        tier=ErrorTier.TIER2_PREMISE_VIOLATION,
                         message="Missing parallelogram declaration in premise",
                         details=f"Premise must contain Parallelogram({quad_name})"
                     ))
@@ -2359,7 +2639,7 @@ class GeometricTheorem:
                 premise_para = parallelogram_match.group(1)
                 if premise_para != quad_name:
                     return return_error(GeometricError(
-                        tier=ErrorTier.TIER2_PREMISE,
+                        tier=ErrorTier.TIER2_PREMISE_VIOLATION,
                         message=f"Parallelogram in premise ({premise_para}) doesn't match the one in theorem call ({quad_name})",
                         details="The parallelogram names must match"
                     ))
@@ -2368,7 +2648,7 @@ class GeometricTheorem:
                 # This checks if any cyclic variation of the parallelogram is in self.parallelograms
                 if not any(var in self.parallelograms for var in get_cyclic_variations(quad_name)):
                     return return_error(GeometricError(
-                        tier=ErrorTier.TIER2_PREMISE,
+                        tier=ErrorTier.TIER2_PREMISE_VIOLATION,
                         message=f"Parallelogram {quad_name} is not defined in the system",
                         details=f"Available parallelograms: {', '.join(self.parallelograms)}"
                     ))
@@ -2376,16 +2656,18 @@ class GeometricTheorem:
                 return True, None
             else:
                 return return_error(GeometricError(
-                    tier=ErrorTier.TIER1_THEOREM_CALL,
-                    message=f"Unsupported version {version} for parallelogram_area_formula_sine"
+                    tier=ErrorTier.TIER1_THEOREM_CALL_SYNTAX_VIOLATION,
+                    message="these is no such version for the theorem",
+                    details="these is no such version for the theorem parallelogram_area_formula_sine"
                 ))
+
 
         elif theorem_name == "arc_addition_measure":
             version = args[0]
             if version == "1":
                 if len(args) < 3:
                     return return_error(GeometricError(
-                        tier=ErrorTier.TIER1_THEOREM_CALL,
+                        tier=ErrorTier.TIER1_THEOREM_CALL_SYNTAX_VIOLATION,
                         message="Insufficient arguments for arc_addition_measure",
                         details="Expected: arc_addition_measure(1, arc1, arc2)"
                     ))
@@ -2400,7 +2682,7 @@ class GeometricTheorem:
                 arc_parts = [p for p in premise_parts if p.startswith("Arc(")]
                 if len(arc_parts) < 3:
                     return return_error(GeometricError(
-                        tier=ErrorTier.TIER2_PREMISE,
+                        tier=ErrorTier.TIER2_PREMISE_VIOLATION,
                         message="Missing arc facts in premise",
                         details="arc_addition_measure requires three Arc facts (two component arcs and the total arc)"
                     ))
@@ -2411,14 +2693,14 @@ class GeometricTheorem:
 
                 if not arc1_found:
                     return return_error(GeometricError(
-                        tier=ErrorTier.TIER2_PREMISE,
+                        tier=ErrorTier.TIER2_PREMISE_VIOLATION,
                         message=f"Arc({arc1_token}) not found in premise",
                         details=f"The first component arc must be declared in the premise"
                     ))
 
                 if not arc2_found:
                     return return_error(GeometricError(
-                        tier=ErrorTier.TIER2_PREMISE,
+                        tier=ErrorTier.TIER2_PREMISE_VIOLATION,
                         message=f"Arc({arc2_token}) not found in premise",
                         details=f"The second component arc must be declared in the premise"
                     ))
@@ -2436,7 +2718,7 @@ class GeometricTheorem:
 
                 if not total_arc_token:
                     return return_error(GeometricError(
-                        tier=ErrorTier.TIER2_PREMISE,
+                        tier=ErrorTier.TIER2_PREMISE_VIOLATION,
                         message="Could not identify the total arc in premise",
                         details="The premise must contain a third distinct arc that will be the sum of the two component arcs"
                     ))
@@ -2468,7 +2750,7 @@ class GeometricTheorem:
 
                 if not arcs_ok:
                     return return_error(GeometricError(
-                        tier=ErrorTier.TIER2_PREMISE,
+                        tier=ErrorTier.TIER2_PREMISE_VIOLATION,
                         message=f"One or more arcs not defined in the system: {', '.join(missing_arcs)}",
                         details="All arcs must be properly defined before using arc_addition_measure"
                     ))
@@ -2476,109 +2758,265 @@ class GeometricTheorem:
                 return True, None
             else:
                 return return_error(GeometricError(
-                    tier=ErrorTier.TIER1_THEOREM_CALL,
-                    message=f"Unsupported version {version} for arc_addition_measure",
-                    details=f"Version provided: {version}"
+                    tier=ErrorTier.TIER1_THEOREM_CALL_SYNTAX_VIOLATION,
+                    message="these is no such version for the theorem",
+                    details="these is no such version for the theorem arc_addition_measure"
                 ))
 
+
+
         elif theorem_name == "isosceles_triangle_property_line_coincidence":
+
             version = args[0]
-            if version == "2":
+
+            if version in {"1", "2", "3"}:
+
                 if len(args) < 3:
                     return return_error(GeometricError(
-                        tier=ErrorTier.TIER1_THEOREM_CALL,
+
+                        tier=ErrorTier.TIER1_THEOREM_CALL_SYNTAX_VIOLATION,
+
                         message="Insufficient arguments for isosceles_triangle_property_line_coincidence",
-                        details="Expected: isosceles_triangle_property_line_coincidence(2, triangle, point)"
+
+                        details=f"Expected: isosceles_triangle_property_line_coincidence({version}, triangle, point)"
+
                     ))
 
-                triangle = args[1].strip()  # e.g., "CDE"
-                point = args[2].strip()  # e.g., "F"
+                triangle = args[1].strip()  # e.g., "ABC"
+
+                point = args[2].strip()  # e.g., "M"
+
+                line = triangle[0] + point  # e.g., "AM"
 
                 # Parse the premise components
+
                 premise_parts = premise.split('&')
 
-                # Check for IsoscelesTriangle fact
+                # Check for IsoscelesTriangle fact (required in all versions)
+
                 isosceles_found = False
+
                 for part in premise_parts:
+
                     if part.startswith("IsoscelesTriangle"):
+
                         match = re.match(r'IsoscelesTriangle\((\w+)\)', part)
+
                         if match and match.group(1) == triangle:
                             isosceles_found = True
+
                             break
 
                 # Also check our stored isosceles triangles
+
                 if not isosceles_found and hasattr(self, "isosceles_triangles"):
+
                     # Check if any rotation of the triangle is in our isosceles set
+
                     triangle_rotations = [triangle[i:] + triangle[:i] for i in range(len(triangle))]
+
                     if any(rot in self.isosceles_triangles for rot in triangle_rotations):
                         isosceles_found = True
 
                 if not isosceles_found:
                     return return_error(GeometricError(
-                        tier=ErrorTier.TIER2_PREMISE,
+
+                        tier=ErrorTier.TIER2_PREMISE_VIOLATION,
+
                         message=f"Triangle {triangle} is not established as isosceles",
+
                         details=f"Need IsoscelesTriangle({triangle}) in premise or previous theorem"
+
                     ))
 
-                # Check for IsMedianOfTriangle fact
-                line = triangle[0] + point  # e.g., "CF"
-                median_found = False
+                # Version-specific checks
 
-                for part in premise_parts:
-                    if part.startswith("IsMedianOfTriangle"):
-                        match = re.match(r'IsMedianOfTriangle\((\w+),(\w+)\)', part)
-                        if match and match.group(1) == line and match.group(2) == triangle:
+                if version == "1":
+
+                    # Check for IsAltitudeOfTriangle fact
+
+                    altitude_found = False
+
+                    for part in premise_parts:
+
+                        if part.startswith("IsAltitudeOfTriangle"):
+
+                            match = re.match(r'IsAltitudeOfTriangle\((\w+),(\w+)\)', part)
+
+                            if match and match.group(1) == line and match.group(2) == triangle:
+                                altitude_found = True
+
+                                break
+
+                    # Also check stored altitude data
+
+                    if not altitude_found and hasattr(self, "triangle_altitudes"):
+
+                        if triangle in self.triangle_altitudes and line in self.triangle_altitudes[triangle]:
+                            altitude_found = True
+
+                    if not altitude_found:
+                        return return_error(GeometricError(
+
+                            tier=ErrorTier.TIER2_PREMISE_VIOLATION,
+
+                            message=f"Line {line} is not established as an altitude of triangle {triangle}",
+
+                            details=f"Version 1 requires IsAltitudeOfTriangle({line},{triangle})"
+
+                        ))
+
+
+                elif version == "2":
+
+                    # Check for IsMedianOfTriangle fact
+
+                    median_found = False
+
+                    for part in premise_parts:
+
+                        if part.startswith("IsMedianOfTriangle"):
+
+                            match = re.match(r'IsMedianOfTriangle\((\w+),(\w+)\)', part)
+
+                            if match and match.group(1) == line and match.group(2) == triangle:
+                                median_found = True
+
+                                break
+
+                    # Also check stored medians
+
+                    if not median_found and hasattr(self, "medians"):
+
+                        if (line, triangle) in self.medians:
                             median_found = True
-                            break
 
-                # Also check our stored medians if they exist
-                if not median_found and hasattr(self, "medians"):
-                    if (line, triangle) in self.medians:
-                        median_found = True
+                    if not median_found:
+                        return return_error(GeometricError(
 
-                if not median_found:
-                    return return_error(GeometricError(
-                        tier=ErrorTier.TIER2_PREMISE,
-                        message=f"Line {line} is not established as a median of triangle {triangle}",
-                        details=f"Need IsMedianOfTriangle({line},{triangle}) in premise or previous theorem"
-                    ))
+                            tier=ErrorTier.TIER2_PREMISE_VIOLATION,
 
-                # Verify that the line starts at a vertex of the triangle and ends at point F
-                if line[0] not in triangle:
-                    return return_error(GeometricError(
-                        tier=ErrorTier.TIER2_PREMISE,
-                        message=f"Line {line} does not start at a vertex of triangle {triangle}",
-                        details="For this theorem, the line must start at a vertex of the triangle"
-                    ))
+                            message=f"Line {line} is not established as a median of triangle {triangle}",
 
-                if line[1] != point:
-                    return return_error(GeometricError(
-                        tier=ErrorTier.TIER2_PREMISE,
-                        message=f"Line {line} does not end at point {point}",
-                        details="For this theorem, the line must end at the specified point"
-                    ))
+                            details=f"Version 2 requires IsMedianOfTriangle({line},{triangle})"
+
+                        ))
+
+
+                elif version == "3":
+
+                    # Check for Collinear fact
+
+                    opposite_vertices = [v for v in triangle if v != line[0]]  # e.g., ["B", "C"]
+
+                    expected_collinear = point + opposite_vertices[0] + opposite_vertices[1]  # e.g., "MBC"
+
+                    collinear_found = False
+
+                    for part in premise_parts:
+
+                        if part.startswith("Collinear"):
+
+                            match = re.match(r'Collinear\((\w+)\)', part)
+
+                            if match:
+
+                                collinear_str = match.group(1)
+
+                                if self.normalize_collinear_points(collinear_str) == self.normalize_collinear_points(
+                                        expected_collinear):
+                                    collinear_found = True
+
+                                    break
+
+                    # Also check stored collinear facts
+
+                    if not collinear_found:
+
+                        for fact in self.collinear_facts:
+
+                            if self.normalize_collinear_points(''.join(fact)) == self.normalize_collinear_points(
+                                    expected_collinear):
+                                collinear_found = True
+
+                                break
+
+                    if not collinear_found:
+                        return return_error(GeometricError(
+
+                            tier=ErrorTier.TIER2_PREMISE_VIOLATION,
+
+                            message=f"Points {expected_collinear} are not proven collinear",
+
+                            details=f"Version 3 requires Collinear({expected_collinear})"
+
+                        ))
+
+                    # Check for IsBisectorOfAngle fact
+
+                    angle_name = opposite_vertices[0] + line[0] + opposite_vertices[1]  # "BAC" or "CAB"
+
+                    expected_bisector = f"IsBisectorOfAngle({line},{angle_name})"
+
+                    bisector_found = False
+
+                    for part in premise_parts:
+
+                        if part.startswith("IsBisectorOfAngle"):
+
+                            if part == expected_bisector:
+                                bisector_found = True
+
+                                break
+
+                    # Also check stored angle bisectors
+
+                    if not bisector_found and hasattr(self, "angle_bisectors"):
+
+                        if (line, angle_name) in self.angle_bisectors:
+                            bisector_found = True
+
+                    if not bisector_found:
+                        return return_error(GeometricError(
+
+                            tier=ErrorTier.TIER2_PREMISE_VIOLATION,
+
+                            message=f"Line {line} is not established as a bisector of angle {angle_name}",
+
+                            details=f"Version 3 requires {expected_bisector}"
+
+                        ))
 
                 # Validate that the triangle is well-formed (3 distinct vertices)
+
                 if len(triangle) != 3 or len(set(triangle)) != 3:
                     return return_error(GeometricError(
-                        tier=ErrorTier.TIER2_PREMISE,
+
+                        tier=ErrorTier.TIER2_PREMISE_VIOLATION,
+
                         message=f"Invalid triangle {triangle}",
+
                         details="Triangle must have exactly 3 distinct vertices"
+
                     ))
 
                 return True, None
+
             else:
+
                 return return_error(GeometricError(
-                    tier=ErrorTier.TIER1_THEOREM_CALL,
-                    message=f"Unsupported version {version} for isosceles_triangle_property_line_coincidence"
+                    tier=ErrorTier.TIER1_THEOREM_CALL_SYNTAX_VIOLATION,
+                    message="these is no such version for the theorem",
+                    details="these is no such version for the theorem isosceles_triangle_property_line_coincidence"
                 ))
+
 
         elif theorem_name == "diameter_of_circle_judgment_pass_centre":
             version = args[0]
             if version == "1":
                 if len(args) < 3:
                     return return_error(GeometricError(
-                        tier=ErrorTier.TIER1_THEOREM_CALL,
+                        tier=ErrorTier.TIER1_THEOREM_CALL_SYNTAX_VIOLATION,
                         message="Insufficient arguments for diameter_of_circle_judgment_pass_centre",
                         details="Expected: diameter_of_circle_judgment_pass_centre(1, collinear_points, circle)"
                     ))
@@ -2589,7 +3027,7 @@ class GeometricTheorem:
                 # Check that the circle center is included in the collinear points
                 if circle_token not in collinear_points:
                     return return_error(GeometricError(
-                        tier=ErrorTier.TIER2_PREMISE,
+                        tier=ErrorTier.TIER2_PREMISE_VIOLATION,
                         message=f"Circle center {circle_token} not in collinear points {collinear_points}",
                         details="For a diameter, the collinear points must include the center of the circle"
                     ))
@@ -2615,7 +3053,7 @@ class GeometricTheorem:
 
                 if not cocircular_found:
                     return return_error(GeometricError(
-                        tier=ErrorTier.TIER2_PREMISE,
+                        tier=ErrorTier.TIER2_PREMISE_VIOLATION,
                         message="Missing valid Cocircular fact in premise",
                         details=f"Points in {collinear_points} excluding {circle_token} must be on circle {circle_token}"
                     ))
@@ -2643,7 +3081,7 @@ class GeometricTheorem:
                 if not collinear_found:
                     stored_collinear = [''.join(fact) for fact in self.collinear_facts]
                     return return_error(GeometricError(
-                        tier=ErrorTier.TIER2_PREMISE,
+                        tier=ErrorTier.TIER2_PREMISE_VIOLATION,
                         message=f"Collinear({collinear_points}) not established",
                         details=f"Known collinear facts: {stored_collinear}"
                     ))
@@ -2662,17 +3100,19 @@ class GeometricTheorem:
                 if not center_found:
                     if circle_token not in self.circle_centers or self.circle_centers[circle_token] != circle_token:
                         return return_error(GeometricError(
-                            tier=ErrorTier.TIER2_PREMISE,
+                            tier=ErrorTier.TIER2_PREMISE_VIOLATION,
                             message=f"Circle center fact for {circle_token} not established",
                             details=f"Need IsCentreOfCircle({circle_token},{circle_token}) in premise"
                         ))
 
                 return True, None
-            else:
                 return return_error(GeometricError(
-                    tier=ErrorTier.TIER1_THEOREM_CALL,
-                    message=f"Unsupported version {version} for diameter_of_circle_judgment_pass_centre"
+                    tier=ErrorTier.TIER1_THEOREM_CALL_SYNTAX_VIOLATION,
+                    message="these is no such version for the theorem",
+                    details="these is no such version for the theorem diameter_of_circle_judgment_pass_centre"
                 ))
+
+
 
 
 
@@ -2680,33 +3120,76 @@ class GeometricTheorem:
 
             version = args[0]
 
-            if version == "2":  # Handle version 2 as specified
+            if version in {"1", "2", "3"}:  # Handle all three versions
 
                 if len(args) < 3:
                     return return_error(GeometricError(
 
-                        tier=ErrorTier.TIER1_THEOREM_CALL,
+                        tier=ErrorTier.TIER1_THEOREM_CALL_SYNTAX_VIOLATION,
 
                         message="Insufficient arguments for mirror_congruent_triangle_judgment_aas",
 
-                        details="Expected: mirror_congruent_triangle_judgment_aas(2, triangle1, triangle2)"
+                        details="Expected: mirror_congruent_triangle_judgment_aas(version, triangle1, triangle2)"
 
                     ))
 
-                # Basic check for required premise components
+                tri1, tri2 = args[1].strip(), args[2].strip()
 
-                if "Polygon" not in premise or "Equal(MeasureOfAngle" not in premise or "Equal(LengthOfLine" not in premise:
+                # Check for polygon definitions
+
+                polygon_matches = re.findall(r'Polygon\((\w+)\)', premise)
+
+                if len(polygon_matches) < 2:
                     return return_error(GeometricError(
 
-                        tier=ErrorTier.TIER2_PREMISE,
+                        tier=ErrorTier.TIER2_PREMISE_VIOLATION,
 
-                        message="Missing required elements in premise",
+                        message="Missing polygon definitions in premise",
 
-                        details="mirror_congruent_triangle_judgment_aas requires polygons, angle equalities, and a side equality"
+                        details="mirror_congruent_triangle_judgment_aas requires both triangles to be defined"
+
+                    ))
+
+                # Check for angle equalities
+
+                angle_equalities = re.findall(r'Equal\(MeasureOfAngle\((\w+)\),MeasureOfAngle\((\w+)\)\)', premise)
+
+                if len(angle_equalities) < 2:
+                    return return_error(GeometricError(
+
+                        tier=ErrorTier.TIER2_PREMISE_VIOLATION,
+
+                        message="Insufficient angle equalities in premise",
+
+                        details="mirror_congruent_triangle_judgment_aas requires at least 2 equal angle pairs"
+
+                    ))
+
+                # Check for side equality
+
+                side_equality = re.search(r'Equal\(LengthOfLine\((\w+)\),LengthOfLine\((\w+)\)\)', premise)
+
+                if not side_equality:
+                    return return_error(GeometricError(
+
+                        tier=ErrorTier.TIER2_PREMISE_VIOLATION,
+
+                        message="Missing side equality in premise",
+
+                        details="mirror_congruent_triangle_judgment_aas requires one equal side pair"
 
                     ))
 
                 return True, None
+
+            else:
+
+                return return_error(GeometricError(
+                    tier=ErrorTier.TIER1_THEOREM_CALL_SYNTAX_VIOLATION,
+                    message="these is no such version for the theorem",
+                    details="these is no such version for the theorem mirror_congruent_triangle_judgment_aas"
+                ))
+
 
 
         elif theorem_name == "mirror_congruent_triangle_judgment_sas":
@@ -2714,7 +3197,7 @@ class GeometricTheorem:
             if version == "1":
                 if len(args) < 3:
                     return return_error(GeometricError(
-                        tier=ErrorTier.TIER1_THEOREM_CALL,
+                        tier=ErrorTier.TIER1_THEOREM_CALL_SYNTAX_VIOLATION,
                         message="Insufficient arguments for mirror_congruent_triangle_judgment_sas",
                         details="Expected: mirror_congruent_triangle_judgment_sas(1, triangle1, triangle2)"
                     ))
@@ -2723,7 +3206,7 @@ class GeometricTheorem:
                 polygon_count = premise.count("Polygon(")
                 if polygon_count < 2:
                     return return_error(GeometricError(
-                        tier=ErrorTier.TIER2_PREMISE,
+                        tier=ErrorTier.TIER2_PREMISE_VIOLATION,
                         message="Missing polygon definitions in premise",
                         details="mirror_congruent_triangle_judgment_sas requires both triangles to be defined"
                     ))
@@ -2732,7 +3215,7 @@ class GeometricTheorem:
                 side_equalities = len(re.findall(r'Equal\(LengthOfLine\((\w+)\),LengthOfLine\((\w+)\)\)', premise))
                 if side_equalities < 2:  # Need at least 2 side equalities for SAS
                     return return_error(GeometricError(
-                        tier=ErrorTier.TIER2_PREMISE,
+                        tier=ErrorTier.TIER2_PREMISE_VIOLATION,
                         message="Insufficient side equalities in premise",
                         details="mirror_congruent_triangle_judgment_sas requires at least 2 equal sides"
                     ))
@@ -2741,19 +3224,26 @@ class GeometricTheorem:
                 angle_equality = len(re.findall(r'Equal\(MeasureOfAngle\((\w+)\),MeasureOfAngle\((\w+)\)\)', premise))
                 if angle_equality < 1:  # Need at least 1 angle equality for SAS
                     return return_error(GeometricError(
-                        tier=ErrorTier.TIER2_PREMISE,
+                        tier=ErrorTier.TIER2_PREMISE_VIOLATION,
                         message="Missing angle equality in premise",
                         details="mirror_congruent_triangle_judgment_sas requires at least 1 equal angle"
                     ))
 
                 return True, None
+            else:
+                return return_error(GeometricError(
+                    tier=ErrorTier.TIER1_THEOREM_CALL_SYNTAX_VIOLATION,
+                    message="these is no such version for the theorem",
+                    details="these is no such version for the theorem mirror_congruent_triangle_judgment_sas"
+                ))
+
 
         elif theorem_name == "mirror_congruent_triangle_property_angle_equal":
             version = args[0]
             if version == "1":
                 if len(args) < 3:
                     return return_error(GeometricError(
-                        tier=ErrorTier.TIER1_THEOREM_CALL,
+                        tier=ErrorTier.TIER1_THEOREM_CALL_SYNTAX_VIOLATION,
                         message="Insufficient arguments for mirror_congruent_triangle_property_angle_equal",
                         details="Expected: mirror_congruent_triangle_property_angle_equal(1, triangle1, triangle2)"
                     ))
@@ -2764,7 +3254,7 @@ class GeometricTheorem:
                 mirror_congruent_match = re.search(r'MirrorCongruentBetweenTriangle\((\w+),(\w+)\)', premise)
                 if not mirror_congruent_match:
                     return return_error(GeometricError(
-                        tier=ErrorTier.TIER2_PREMISE,
+                        tier=ErrorTier.TIER2_PREMISE_VIOLATION,
                         message="Missing MirrorCongruentBetweenTriangle(...) in premise",
                         details="mirror_congruent_triangle_property_angle_equal requires mirror congruent triangles"
                     ))
@@ -2778,7 +3268,7 @@ class GeometricTheorem:
                 # Check triangles match using canonical form
                 if theorem_pair != premise_pair:
                     return return_error(GeometricError(
-                        tier=ErrorTier.TIER2_PREMISE,
+                        tier=ErrorTier.TIER2_PREMISE_VIOLATION,
                         message=f"Triangles in premise ({premise_tri1}, {premise_tri2}) don't match those in theorem call ({tri1}, {tri2})",
                         details="Triangles must match between premise and theorem call"
                     ))
@@ -2786,19 +3276,26 @@ class GeometricTheorem:
                 canonical_pair = self.canonicalize_mirror_congruent_triangle_pair(tri1, tri2)
                 if canonical_pair not in self.mirror_congruent_triangles:
                     return return_error(GeometricError(
-                        tier=ErrorTier.TIER2_PREMISE,
+                        tier=ErrorTier.TIER2_PREMISE_VIOLATION,
                         message=f"Triangles {tri1} and {tri2} not proven mirror congruent",
                         details="Required for mirror_congruent_triangle_property_angle_equal"
                     ))
 
                 return True, None
+            else:
+                return return_error(GeometricError(
+                    tier=ErrorTier.TIER1_THEOREM_CALL_SYNTAX_VIOLATION,
+                    message="these is no such version for the theorem",
+                    details="these is no such version for the theorem mirror_congruent_triangle_property_angle_equal"
+                ))
+
 
         elif theorem_name == "parallel_judgment_par_par":
             version = args[0]
             if version == "1":
                 if len(args) < 4:
                     return return_error(GeometricError(
-                        tier=ErrorTier.TIER1_THEOREM_CALL,
+                        tier=ErrorTier.TIER1_THEOREM_CALL_SYNTAX_VIOLATION,
                         message="Insufficient arguments for parallel_judgment_par_par",
                         details="Expected: parallel_judgment_par_par(1, line1, middle_line, line2)"
                     ))
@@ -2808,7 +3305,7 @@ class GeometricTheorem:
                 # Check that the premise contains both parallel relationships
                 if "ParallelBetweenLine" not in premise:
                     return return_error(GeometricError(
-                        tier=ErrorTier.TIER2_PREMISE,
+                        tier=ErrorTier.TIER2_PREMISE_VIOLATION,
                         message="Missing ParallelBetweenLine in premise",
                         details="parallel_judgment_par_par requires two parallel line relationships"
                     ))
@@ -2835,19 +3332,26 @@ class GeometricTheorem:
 
                 if not parallel1_found:
                     return return_error(GeometricError(
-                        tier=ErrorTier.TIER2_PREMISE,
+                        tier=ErrorTier.TIER2_PREMISE_VIOLATION,
                         message=f"Missing parallel relationship between {line1} and {middle_line} in premise",
                         details="Required for parallel_judgment_par_par"
                     ))
 
                 if not parallel2_found:
                     return return_error(GeometricError(
-                        tier=ErrorTier.TIER2_PREMISE,
+                        tier=ErrorTier.TIER2_PREMISE_VIOLATION,
                         message=f"Missing parallel relationship between {middle_line} and {line2} in premise",
                         details="Required for parallel_judgment_par_par"
                     ))
 
                 return True, None
+            else:
+                return return_error(GeometricError(
+                    tier=ErrorTier.TIER1_THEOREM_CALL_SYNTAX_VIOLATION,
+                    message="these is no such version for the theorem",
+                    details="these is no such version for the theorem parallel_judgment_par_par"
+                ))
+
 
 
 
@@ -2860,7 +3364,7 @@ class GeometricTheorem:
                 if len(args) < 3:
                     return return_error(GeometricError(
 
-                        tier=ErrorTier.TIER1_THEOREM_CALL,
+                        tier=ErrorTier.TIER1_THEOREM_CALL_SYNTAX_VIOLATION,
 
                         message="Insufficient arguments for mirror_congruent_triangle_property_line_equal",
 
@@ -2877,7 +3381,7 @@ class GeometricTheorem:
                 if not mirror_congruent_match:
                     return return_error(GeometricError(
 
-                        tier=ErrorTier.TIER2_PREMISE,
+                        tier=ErrorTier.TIER2_PREMISE_VIOLATION,
 
                         message="Missing MirrorCongruentBetweenTriangle(...) in premise",
 
@@ -2898,7 +3402,7 @@ class GeometricTheorem:
                 if theorem_pair != premise_pair:
                     return return_error(GeometricError(
 
-                        tier=ErrorTier.TIER2_PREMISE,
+                        tier=ErrorTier.TIER2_PREMISE_VIOLATION,
 
                         message=f"Triangles in premise ({premise_tri1}, {premise_tri2}) don't match those in theorem call ({tri1}, {tri2})",
 
@@ -2911,7 +3415,7 @@ class GeometricTheorem:
                 if canonical_pair not in self.mirror_congruent_triangles:
                     return return_error(GeometricError(
 
-                        tier=ErrorTier.TIER2_PREMISE,
+                        tier=ErrorTier.TIER2_PREMISE_VIOLATION,
 
                         message=f"Triangles {tri1} and {tri2} not proven mirror congruent",
 
@@ -2920,6 +3424,13 @@ class GeometricTheorem:
                     ))
 
                 return True, None
+            else:
+                return return_error(GeometricError(
+                    tier=ErrorTier.TIER1_THEOREM_CALL_SYNTAX_VIOLATION,
+                    message="these is no such version for the theorem",
+                    details="these is no such version for the theorem mirror_congruent_triangle_property_line_equal"
+                ))
+
 
 
         elif theorem_name == "midsegment_of_triangle_judgment_midpoint":
@@ -2931,7 +3442,7 @@ class GeometricTheorem:
                 if len(args) < 3:
                     return return_error(GeometricError(
 
-                        tier=ErrorTier.TIER1_THEOREM_CALL,
+                        tier=ErrorTier.TIER1_THEOREM_CALL_SYNTAX_VIOLATION,
 
                         message="Insufficient arguments for midsegment_of_triangle_judgment_midpoint",
 
@@ -2944,7 +3455,7 @@ class GeometricTheorem:
                 if "Polygon" not in premise or "Equal(LengthOfLine" not in premise:
                     return return_error(GeometricError(
 
-                        tier=ErrorTier.TIER2_PREMISE,
+                        tier=ErrorTier.TIER2_PREMISE_VIOLATION,
 
                         message="Missing required components in premise",
 
@@ -2953,6 +3464,13 @@ class GeometricTheorem:
                     ))
 
                 return True, None
+            else:
+                return return_error(GeometricError(
+                    tier=ErrorTier.TIER1_THEOREM_CALL_SYNTAX_VIOLATION,
+                    message="these is no such version for the theorem",
+                    details="these is no such version for the theorem midsegment_of_triangle_judgment_midpoint"
+                ))
+
 
 
         elif theorem_name == "midsegment_of_triangle_property_length":
@@ -2964,7 +3482,7 @@ class GeometricTheorem:
                 if len(args) < 3:
                     return return_error(GeometricError(
 
-                        tier=ErrorTier.TIER1_THEOREM_CALL,
+                        tier=ErrorTier.TIER1_THEOREM_CALL_SYNTAX_VIOLATION,
 
                         message="Insufficient arguments for midsegment_of_triangle_property_length",
 
@@ -2982,7 +3500,7 @@ class GeometricTheorem:
                 if not midsegment_match:
                     return return_error(GeometricError(
 
-                        tier=ErrorTier.TIER2_PREMISE,
+                        tier=ErrorTier.TIER2_PREMISE_VIOLATION,
 
                         message=f"Missing IsMidsegmentOfTriangle({segment},{triangle}) in premise",
 
@@ -2991,13 +3509,27 @@ class GeometricTheorem:
                     ))
 
                 return True, None
+            else:
+                return return_error(GeometricError(
+                    tier=ErrorTier.TIER1_THEOREM_CALL_SYNTAX_VIOLATION,
+                    message="these is no such version for the theorem",
+                    details="these is no such version for the theorem midsegment_of_triangle_property_length"
+                ))
+
 
         elif theorem_name == "congruent_triangle_property_angle_equal":
             version = args[0]
+            if version != "1":  # Updated to include version "2"
+                return return_error(GeometricError(
+                    tier=ErrorTier.TIER1_THEOREM_CALL_SYNTAX_VIOLATION,
+                    message="these is no such version for the theorem",
+                    details="these is no such version for the theorem congruent_triangle_property_angle_equal"
+                ))
+
             if version == "1":
                 if len(args) < 3:
                     return return_error(GeometricError(
-                        tier=ErrorTier.TIER1_THEOREM_CALL,
+                        tier=ErrorTier.TIER1_THEOREM_CALL_SYNTAX_VIOLATION,
                         message="Insufficient arguments for congruent_triangle_property_angle_equal",
                         details="Expected: congruent_triangle_property_angle_equal(1, triangle1, triangle2)"
                     ))
@@ -3008,7 +3540,7 @@ class GeometricTheorem:
                 congruent_match = re.search(r'CongruentBetweenTriangle\((\w+),(\w+)\)', premise)
                 if not congruent_match:
                     return return_error(GeometricError(
-                        tier=ErrorTier.TIER2_PREMISE,
+                        tier=ErrorTier.TIER2_PREMISE_VIOLATION,
                         message="Missing CongruentBetweenTriangle(...) in premise",
                         details="congruent_triangle_property_angle_equal requires congruent triangles"
                     ))
@@ -3022,7 +3554,7 @@ class GeometricTheorem:
                 # Check if triangles in premise match those in theorem call using canonical form
                 if theorem_pair != premise_pair:
                     return return_error(GeometricError(
-                        tier=ErrorTier.TIER2_PREMISE,
+                        tier=ErrorTier.TIER2_PREMISE_VIOLATION,
                         message=f"Triangles in premise ({premise_tri1}, {premise_tri2}) don't match those in theorem call ({tri1}, {tri2})",
                         details="Triangles must match between premise and theorem call"
                     ))
@@ -3031,7 +3563,7 @@ class GeometricTheorem:
                 canonical_pair = self.canonicalize_congruent_triangle_pair(tri1, tri2)
                 if canonical_pair not in self.congruent_triangles:
                     return return_error(GeometricError(
-                        tier=ErrorTier.TIER2_PREMISE,
+                        tier=ErrorTier.TIER2_PREMISE_VIOLATION,
                         message=f"Triangles {tri1} and {tri2} not proven congruent",
                         details="Required for congruent_triangle_property_angle_equal"
                     ))
@@ -3041,13 +3573,19 @@ class GeometricTheorem:
         elif theorem_name == "congruent_triangle_property_line_equal":
 
             version = args[0]
+            if version != "1":  # Updated to include version "2"
+                return return_error(GeometricError(
+                    tier=ErrorTier.TIER1_THEOREM_CALL_SYNTAX_VIOLATION,
+                    message="these is no such version for the theorem",
+                    details="these is no such version for the theorem congruent_triangle_property_line_equal"
+                ))
 
             if version == "1":
 
                 if len(args) < 3:
                     return return_error(GeometricError(
 
-                        tier=ErrorTier.TIER1_THEOREM_CALL,
+                        tier=ErrorTier.TIER1_THEOREM_CALL_SYNTAX_VIOLATION,
 
                         message="Insufficient arguments for congruent_triangle_property_line_equal",
 
@@ -3064,7 +3602,7 @@ class GeometricTheorem:
                 if not congruent_match:
                     return return_error(GeometricError(
 
-                        tier=ErrorTier.TIER2_PREMISE,
+                        tier=ErrorTier.TIER2_PREMISE_VIOLATION,
 
                         message="Missing CongruentBetweenTriangle(...) in premise",
 
@@ -3085,7 +3623,7 @@ class GeometricTheorem:
                 if theorem_pair != premise_pair:
                     return return_error(GeometricError(
 
-                        tier=ErrorTier.TIER2_PREMISE,
+                        tier=ErrorTier.TIER2_PREMISE_VIOLATION,
 
                         message=f"Triangles in premise ({premise_tri1}, {premise_tri2}) don't match those in theorem call ({tri1}, {tri2})",
 
@@ -3100,7 +3638,7 @@ class GeometricTheorem:
                 if canonical_pair not in self.congruent_triangles:
                     return return_error(GeometricError(
 
-                        tier=ErrorTier.TIER2_PREMISE,
+                        tier=ErrorTier.TIER2_PREMISE_VIOLATION,
 
                         message=f"Triangles {tri1} and {tri2} not proven congruent",
 
@@ -3113,10 +3651,18 @@ class GeometricTheorem:
 
         elif theorem_name == "median_of_triangle_judgment":
             version = args[0]
+
+            if version != "1":  # Updated to include version "2"
+                return return_error(GeometricError(
+                    tier=ErrorTier.TIER1_THEOREM_CALL_SYNTAX_VIOLATION,
+                    message="these is no such version for the theorem",
+                    details="these is no such version for the theorem median_of_triangle_judgment"
+                ))
+
             if version == "1":
                 if len(args) < 3:
                     return return_error(GeometricError(
-                        tier=ErrorTier.TIER1_THEOREM_CALL,
+                        tier=ErrorTier.TIER1_THEOREM_CALL_SYNTAX_VIOLATION,
                         message="Missing arguments for median_of_triangle_judgment",
                         details="Expected median_of_triangle_judgment(1, median_line, triangle)"
                     ))
@@ -3127,7 +3673,7 @@ class GeometricTheorem:
                 # Check if the triangle exists in our polygon database
                 # if self.normalize_triangle(triangle) not in self.polygons:
                 #     return return_error(GeometricError(
-                #         tier=ErrorTier.TIER2_PREMISE,
+                #         tier=ErrorTier.TIER2_PREMISE_VIOLATION,
                 #         message=f"Triangle {triangle} is not defined in the geometric data",
                 #         details=f"Known polygons: {self.polygons}"
                 #     ))
@@ -3136,7 +3682,7 @@ class GeometricTheorem:
                 # line_match = re.search(r'Line\((\w+)\)', premise)
                 # if not line_match or line_match.group(1) != median_line:
                 #     return return_error(GeometricError(
-                #         tier=ErrorTier.TIER2_PREMISE,
+                #         tier=ErrorTier.TIER2_PREMISE_VIOLATION,
                 #         message=f"Line {median_line} is not defined in the premise",
                 #         details="A median must be a defined line"
                 #     ))
@@ -3154,7 +3700,7 @@ class GeometricTheorem:
                 collinear_match = re.search(r'Collinear\((\w+)\)', premise)
                 if not collinear_match:
                     return return_error(GeometricError(
-                        tier=ErrorTier.TIER2_PREMISE,
+                        tier=ErrorTier.TIER2_PREMISE_VIOLATION,
                         message="Missing collinearity in premise",
                         details="A median requires collinearity of the foot and the opposite side"
                     ))
@@ -3164,7 +3710,7 @@ class GeometricTheorem:
                 # Check that the median foot and the other vertices are collinear
                 if not (median_foot in collinear_points and all(v in collinear_points for v in other_vertices)):
                     return return_error(GeometricError(
-                        tier=ErrorTier.TIER2_PREMISE,
+                        tier=ErrorTier.TIER2_PREMISE_VIOLATION,
                         message="Incorrect collinearity for median judgment",
                         details=f"Need collinearity between median foot {median_foot} and opposite vertices {other_vertices}"
                     ))
@@ -3173,7 +3719,7 @@ class GeometricTheorem:
                 length_eq_match = re.search(r'Equal\(LengthOfLine\((\w+)\),LengthOfLine\((\w+)\)\)', premise)
                 if not length_eq_match:
                     return return_error(GeometricError(
-                        tier=ErrorTier.TIER2_PREMISE,
+                        tier=ErrorTier.TIER2_PREMISE_VIOLATION,
                         message="Missing length equality in premise",
                         details="A median requires equal lengths on both sides of the foot"
                     ))
@@ -3186,7 +3732,7 @@ class GeometricTheorem:
 
                 if not ((side1 in expected_segments) and (side2 in expected_segments)):
                     return return_error(GeometricError(
-                        tier=ErrorTier.TIER2_PREMISE,
+                        tier=ErrorTier.TIER2_PREMISE_VIOLATION,
                         message="Incorrect length equality for median judgment",
                         details=f"The lengths must be for segments connecting the median foot to the opposite vertices"
                     ))
@@ -3197,10 +3743,16 @@ class GeometricTheorem:
         # In the validate_theorem_premises method
         elif theorem_name == "right_triangle_property_length_of_median":
             version = args[0]
+            if version != "1":  # Updated to include version "2"
+                return return_error(GeometricError(
+                    tier=ErrorTier.TIER1_THEOREM_CALL_SYNTAX_VIOLATION,
+                    message="these is no such version for the theorem",
+                    details="these is no such version for the theorem parallelogram_property_diagonal_bisection"
+                ))
             if version == "1":
                 if len(args) < 3:
                     return return_error(GeometricError(
-                        tier=ErrorTier.TIER1_THEOREM_CALL,
+                        tier=ErrorTier.TIER1_THEOREM_CALL_SYNTAX_VIOLATION,
                         message="Missing arguments for right_triangle_property_length_of_median",
                         details="Expected right_triangle_property_length_of_median(1, triangle, median_endpoint)"
                     ))
@@ -3211,7 +3763,7 @@ class GeometricTheorem:
                 # Check if the triangle is a right triangle
                 if self.normalize_triangle(triangle) not in self.right_triangles:
                     return return_error(GeometricError(
-                        tier=ErrorTier.TIER2_PREMISE,
+                        tier=ErrorTier.TIER2_PREMISE_VIOLATION,
                         message=f"Triangle {triangle} is not proven to be a right triangle",
                         details=f"Known right triangles: {self.right_triangles}"
                     ))
@@ -3234,7 +3786,7 @@ class GeometricTheorem:
 
                 if not median_found:
                     return return_error(GeometricError(
-                        tier=ErrorTier.TIER2_PREMISE,
+                        tier=ErrorTier.TIER2_PREMISE_VIOLATION,
                         message=f"Median ending at {median_endpoint} for triangle {triangle} not established",
                         details="Need to first establish the median using median_of_triangle_judgment"
                     ))
@@ -3263,7 +3815,7 @@ class GeometricTheorem:
 
                 if right_angle_vertex is None:
                     return return_error(GeometricError(
-                        tier=ErrorTier.TIER2_PREMISE,
+                        tier=ErrorTier.TIER2_PREMISE_VIOLATION,
                         message=f"Could not determine the right angle in triangle {triangle}",
                         details="A right triangle must have one angle of 90 degrees"
                     ))
@@ -3276,7 +3828,7 @@ class GeometricTheorem:
 
                 if median_start != right_angle_vertex:
                     return return_error(GeometricError(
-                        tier=ErrorTier.TIER2_PREMISE,
+                        tier=ErrorTier.TIER2_PREMISE_VIOLATION,
                         message=f"Median {median_line} is not from the right angle to the hypotenuse",
                         details=f"The median must start at the right angle vertex {right_angle_vertex}"
                     ))
@@ -3290,7 +3842,7 @@ class GeometricTheorem:
             if version == "1":
                 if len(args) < 3:
                     return return_error(GeometricError(
-                        tier=ErrorTier.TIER1_THEOREM_CALL,
+                        tier=ErrorTier.TIER1_THEOREM_CALL_SYNTAX_VIOLATION,
                         message="Missing arguments for median_of_triangle_judgment",
                         details="Expected median_of_triangle_judgment(1, median_line, triangle)"
                     ))
@@ -3301,7 +3853,7 @@ class GeometricTheorem:
                 # Check if the triangle exists in our polygon database
                 if self.normalize_triangle(triangle) not in self.polygons:
                     return return_error(GeometricError(
-                        tier=ErrorTier.TIER2_PREMISE,
+                        tier=ErrorTier.TIER2_PREMISE_VIOLATION,
                         message=f"Triangle {triangle} is not defined in the geometric data",
                         details=f"Known polygons: {self.polygons}"
                     ))
@@ -3323,7 +3875,7 @@ class GeometricTheorem:
 
                 if not collinear_found:
                     return return_error(GeometricError(
-                        tier=ErrorTier.TIER2_PREMISE,
+                        tier=ErrorTier.TIER2_PREMISE_VIOLATION,
                         message="Missing collinearity for median judgment",
                         details=f"Need collinearity between median foot {median_foot} and opposite vertices {other_vertices}"
                     ))
@@ -3348,7 +3900,7 @@ class GeometricTheorem:
                 temp_solver.add(length1_var != length2_var)
                 if temp_solver.check() != unsat:
                     return return_error(GeometricError(
-                        tier=ErrorTier.TIER2_PREMISE,
+                        tier=ErrorTier.TIER2_PREMISE_VIOLATION,
                         message="Equal segment lengths not established for median",
                         details=f"Segments {normalized_segment1} and {normalized_segment2} must be equal"
                     ))
@@ -3359,10 +3911,17 @@ class GeometricTheorem:
 
         elif theorem_name == "incenter_of_triangle_judgment_intersection":
             version = args[0]
+            if version != "1":  # Updated to include version "2"
+                return return_error(GeometricError(
+                    tier=ErrorTier.TIER1_THEOREM_CALL_SYNTAX_VIOLATION,
+                    message="these is no such version for the theorem",
+                    details="these is no such version for the theorem incenter_of_triangle_judgment_intersection"
+                ))
+
             if version == "1":
                 if len(args) < 3:
                     return return_error(GeometricError(
-                        tier=ErrorTier.TIER1_THEOREM_CALL,
+                        tier=ErrorTier.TIER1_THEOREM_CALL_SYNTAX_VIOLATION,
                         message="Missing arguments for incenter_of_triangle_judgment_intersection",
                         details="Expected incenter_of_triangle_judgment_intersection(1, point, triangle)"
                     ))
@@ -3374,7 +3933,7 @@ class GeometricTheorem:
                 polygon_match = re.search(r'Polygon\((\w+)\)', premise)
                 if not polygon_match or polygon_match.group(1) != triangle:
                     return return_error(GeometricError(
-                        tier=ErrorTier.TIER2_PREMISE,
+                        tier=ErrorTier.TIER2_PREMISE_VIOLATION,
                         message=f"Missing or incorrect polygon in premise",
                         details=f"Expected Polygon({triangle})"
                     ))
@@ -3385,7 +3944,7 @@ class GeometricTheorem:
 
                 if len(bisector_matches) < 2:
                     return return_error(GeometricError(
-                        tier=ErrorTier.TIER2_PREMISE,
+                        tier=ErrorTier.TIER2_PREMISE_VIOLATION,
                         message="Missing angle bisector facts",
                         details="Need at least two angle bisectors to determine incenter"
                     ))
@@ -3395,19 +3954,20 @@ class GeometricTheorem:
                     # Check if the line contains the point O
                     if point not in line:
                         return return_error(GeometricError(
-                            tier=ErrorTier.TIER2_PREMISE,
+                            tier=ErrorTier.TIER2_PREMISE_VIOLATION,
                             message=f"Angle bisector {line} does not contain point {point}",
                             details="Angle bisector must contain the incenter"
                         ))
 
                 return True, None
 
+
         elif theorem_name == "vertical_angle":
             version = args[0]
             if version == "1":
                 if len(args) < 3:
                     return return_error(GeometricError(
-                        tier=ErrorTier.TIER1_THEOREM_CALL,
+                        tier=ErrorTier.TIER1_THEOREM_CALL_SYNTAX_VIOLATION,
                         message="Insufficient arguments for vertical_angle",
                         details="Expected vertical_angle(1, angle1, angle2)"
                     ))
@@ -3421,7 +3981,7 @@ class GeometricTheorem:
                 # Check for at least 4 parts (2 collinear facts and 2 angle facts)
                 if len(premise_parts) < 4:
                     return return_error(GeometricError(
-                        tier=ErrorTier.TIER2_PREMISE,
+                        tier=ErrorTier.TIER2_PREMISE_VIOLATION,
                         message="Incomplete premise for vertical_angle",
                         details="Expected 2 collinear facts and 2 angle facts"
                     ))
@@ -3430,7 +3990,7 @@ class GeometricTheorem:
                 collinear_parts = [p for p in premise_parts if p.startswith("Collinear")]
                 if len(collinear_parts) < 2:
                     return return_error(GeometricError(
-                        tier=ErrorTier.TIER2_PREMISE,
+                        tier=ErrorTier.TIER2_PREMISE_VIOLATION,
                         message="Missing collinear facts in premise",
                         details="Vertical angle theorem requires two collinear facts"
                     ))
@@ -3438,7 +3998,7 @@ class GeometricTheorem:
                 collinear_matches = [re.match(r'Collinear\((\w+)\)', part) for part in collinear_parts]
                 if not all(collinear_matches):
                     return return_error(GeometricError(
-                        tier=ErrorTier.TIER2_PREMISE,
+                        tier=ErrorTier.TIER2_PREMISE_VIOLATION,
                         message="Invalid collinear fact format",
                         details="Expected Collinear(XXX)"
                     ))
@@ -3451,7 +4011,7 @@ class GeometricTheorem:
                     if not any(self.normalize_collinear_points(''.join(fact)) == normalized
                                for fact in self.collinear_facts):
                         return return_error(GeometricError(
-                            tier=ErrorTier.TIER2_PREMISE,
+                            tier=ErrorTier.TIER2_PREMISE_VIOLATION,
                             message=f"Collinear fact for {points} not established",
                             details=f"Known collinear facts: {[''.join(p) for p in self.collinear_facts]}"
                         ))
@@ -3460,7 +4020,7 @@ class GeometricTheorem:
                 # For vertical angles, both angles must share the same vertex (middle point)
                 if angle1[1] != angle2[1]:
                     return return_error(GeometricError(
-                        tier=ErrorTier.TIER2_PREMISE,
+                        tier=ErrorTier.TIER2_PREMISE_VIOLATION,
                         message="Angles do not share a common vertex",
                         details=f"Angles {angle1} and {angle2} must have the same middle point for vertical angles"
                     ))
@@ -3471,7 +4031,7 @@ class GeometricTheorem:
                 # Verify common vertex is in both collinear lines
                 if not all(common_vertex in points for points in collinear_points):
                     return return_error(GeometricError(
-                        tier=ErrorTier.TIER2_PREMISE,
+                        tier=ErrorTier.TIER2_PREMISE_VIOLATION,
                         message=f"Vertex {common_vertex} not in both collinear lines",
                         details="The angle vertex must be the intersection point of the lines"
                     ))
@@ -3480,7 +4040,7 @@ class GeometricTheorem:
                 angle_parts = [p for p in premise_parts if p.startswith("Angle")]
                 if len(angle_parts) < 2:
                     return return_error(GeometricError(
-                        tier=ErrorTier.TIER2_PREMISE,
+                        tier=ErrorTier.TIER2_PREMISE_VIOLATION,
                         message="Missing angle facts in premise",
                         details="Vertical angle theorem requires two angle facts"
                     ))
@@ -3488,14 +4048,14 @@ class GeometricTheorem:
                 # Check that the specified angles are in the angle parts
                 if not any(p == f"Angle({angle1})" for p in angle_parts):
                     return return_error(GeometricError(
-                        tier=ErrorTier.TIER2_PREMISE,
+                        tier=ErrorTier.TIER2_PREMISE_VIOLATION,
                         message=f"Angle fact for {angle1} missing in premise",
                         details=f"Expected Angle({angle1})"
                     ))
 
                 if not any(p == f"Angle({angle2})" for p in angle_parts):
                     return return_error(GeometricError(
-                        tier=ErrorTier.TIER2_PREMISE,
+                        tier=ErrorTier.TIER2_PREMISE_VIOLATION,
                         message=f"Angle fact for {angle2} missing in premise",
                         details=f"Expected Angle({angle2})"
                     ))
@@ -3504,9 +4064,11 @@ class GeometricTheorem:
                 return True, None
             else:
                 return return_error(GeometricError(
-                    tier=ErrorTier.TIER1_THEOREM_CALL,
-                    message=f"Unsupported version {version} for vertical_angle"
+                    tier=ErrorTier.TIER1_THEOREM_CALL_SYNTAX_VIOLATION,
+                    message="these is no such version for the theorem",
+                    details="these is no such version for the theorem vertical_angle"
                 ))
+
 
 
 
@@ -3515,7 +4077,7 @@ class GeometricTheorem:
             if version == "1":
                 if len(args) < 2:
                     return return_error(GeometricError(
-                        tier=ErrorTier.TIER1_THEOREM_CALL,
+                        tier=ErrorTier.TIER1_THEOREM_CALL_SYNTAX_VIOLATION,
                         message="Missing triangle argument for isosceles_triangle_judgment_angle_equal",
                         details="Expected isosceles_triangle_judgment_angle_equal(1, triangle)"
                     ))
@@ -3531,7 +4093,7 @@ class GeometricTheorem:
 
                 if not polygon_match:
                     return return_error(GeometricError(
-                        tier=ErrorTier.TIER2_PREMISE,
+                        tier=ErrorTier.TIER2_PREMISE_VIOLATION,
                         message="Missing or invalid polygon fact in premise",
                         details="Expected Polygon(...) in premise"
                     ))
@@ -3539,7 +4101,7 @@ class GeometricTheorem:
                 polygon_name = polygon_match.group(1)
                 if polygon_name != triangle:
                     return return_error(GeometricError(
-                        tier=ErrorTier.TIER2_PREMISE,
+                        tier=ErrorTier.TIER2_PREMISE_VIOLATION,
                         message=f"Polygon in premise ({polygon_name}) doesn't match triangle in theorem call ({triangle})",
                         details="Polygon and triangle argument must match"
                     ))
@@ -3548,7 +4110,7 @@ class GeometricTheorem:
                 norm_triangle = self.normalize_triangle(triangle)
                 if norm_triangle not in self.polygons:
                     return return_error(GeometricError(
-                        tier=ErrorTier.TIER2_PREMISE,
+                        tier=ErrorTier.TIER2_PREMISE_VIOLATION,
                         message=f"Polygon {triangle} is not defined in the system",
                         details="The construction data did not define this polygon"
                     ))
@@ -3556,7 +4118,7 @@ class GeometricTheorem:
                 # Check for the angle equality in the premise
                 if len(premise_parts) < 2:
                     return return_error(GeometricError(
-                        tier=ErrorTier.TIER2_PREMISE,
+                        tier=ErrorTier.TIER2_PREMISE_VIOLATION,
                         message="Missing angle equality in premise",
                         details="Expected Equal(MeasureOfAngle(...),MeasureOfAngle(...)) in premise"
                     ))
@@ -3567,7 +4129,7 @@ class GeometricTheorem:
 
                 if not angle_match:
                     return return_error(GeometricError(
-                        tier=ErrorTier.TIER2_PREMISE,
+                        tier=ErrorTier.TIER2_PREMISE_VIOLATION,
                         message="Invalid angle equality format in premise",
                         details="Expected Equal(MeasureOfAngle(XXX),MeasureOfAngle(YYY)) format"
                     ))
@@ -3577,7 +4139,7 @@ class GeometricTheorem:
                 # Verify that this angle equality actually holds in our current constraints
                 if not self.check_angle_equality(angle1, angle2):
                     return return_error(GeometricError(
-                        tier=ErrorTier.TIER2_PREMISE,
+                        tier=ErrorTier.TIER2_PREMISE_VIOLATION,
                         message=f"Angles {angle1} and {angle2} are not proven equal in the system",
                         details="The current constraints don't force these angles to be equal"
                     ))
@@ -3585,16 +4147,18 @@ class GeometricTheorem:
                 return True, None
             else:
                 return return_error(GeometricError(
-                    tier=ErrorTier.TIER1_THEOREM_CALL,
-                    message=f"Unsupported version {version} for isosceles_triangle_judgment_angle_equal"
+                    tier=ErrorTier.TIER1_THEOREM_CALL_SYNTAX_VIOLATION,
+                    message="these is no such version for the theorem",
+                    details="these is no such version for the theorem isosceles_triangle_judgment_angle_equal"
                 ))
+
 
         elif theorem_name == "parallelogram_judgment_parallel_and_parallel":
             version = args[0]
             if version == "1":
                 if len(args) < 2:
                     return return_error(GeometricError(
-                        tier=ErrorTier.TIER1_THEOREM_CALL,
+                        tier=ErrorTier.TIER1_THEOREM_CALL_SYNTAX_VIOLATION,
                         message="Missing quadrilateral name for parallelogram_judgment_parallel_and_parallel",
                         details="Expected parallelogram_judgment_parallel_and_parallel(1, quadrilateral)"
                     ))
@@ -3610,7 +4174,7 @@ class GeometricTheorem:
 
                 if not polygon_match:
                     return return_error(GeometricError(
-                        tier=ErrorTier.TIER2_PREMISE,
+                        tier=ErrorTier.TIER2_PREMISE_VIOLATION,
                         message="Missing polygon fact in premise",
                         details="Expected Polygon(...) in premise"
                     ))
@@ -3618,7 +4182,7 @@ class GeometricTheorem:
                 polygon_name = polygon_match.group(1)
                 if polygon_name != quad_name:
                     return return_error(GeometricError(
-                        tier=ErrorTier.TIER2_PREMISE,
+                        tier=ErrorTier.TIER2_PREMISE_VIOLATION,
                         message=f"Polygon in premise ({polygon_name}) doesn't match quadrilateral in theorem call ({quad_name})",
                         details="Polygon and quadrilateral argument must match"
                     ))
@@ -3626,7 +4190,7 @@ class GeometricTheorem:
                 # Check if this polygon is defined in our system
                 if quad_name not in self.polygons and ''.join(sorted(quad_name)) not in self.polygons:
                     return return_error(GeometricError(
-                        tier=ErrorTier.TIER2_PREMISE,
+                        tier=ErrorTier.TIER2_PREMISE_VIOLATION,
                         message=f"Polygon {quad_name} is not defined in the system",
                         details="Cannot verify parallelogram properties for undefined polygon"
                     ))
@@ -3634,7 +4198,7 @@ class GeometricTheorem:
                 # Check for the two parallel line statements
                 if len(premise_parts) < 3:
                     return return_error(GeometricError(
-                        tier=ErrorTier.TIER2_PREMISE,
+                        tier=ErrorTier.TIER2_PREMISE_VIOLATION,
                         message="Missing parallel side conditions",
                         details="Need two ParallelBetweenLine statements in premise"
                     ))
@@ -3644,7 +4208,7 @@ class GeometricTheorem:
                     parallel_match = re.match(r'ParallelBetweenLine\((\w+),(\w+)\)', part.strip())
                     if not parallel_match:
                         return return_error(GeometricError(
-                            tier=ErrorTier.TIER2_PREMISE,
+                            tier=ErrorTier.TIER2_PREMISE_VIOLATION,
                             message=f"Invalid parallel line format in premise part {i + 1}",
                             details=f"Expected ParallelBetweenLine(XX,YY) but got {part}"
                         ))
@@ -3666,7 +4230,7 @@ class GeometricTheorem:
 
                     if not any(pair in self.parallel_pairs for pair in possible_pairs):
                         return return_error(GeometricError(
-                            tier=ErrorTier.TIER2_PREMISE,
+                            tier=ErrorTier.TIER2_PREMISE_VIOLATION,
                             message=f"Parallel relationship between {line1} and {line2} not established",
                             details=f"Known parallel pairs: {self.parallel_pairs}"
                         ))
@@ -3678,9 +4242,11 @@ class GeometricTheorem:
                 return True, None
             elif version == "2":
                 return return_error(GeometricError(
-                    tier=ErrorTier.TIER1_THEOREM_CALL,
-                    message="Version 2 for parallelogram_judgment_parallel_and_parallel not implemented"
+                    tier=ErrorTier.TIER1_THEOREM_CALL_SYNTAX_VIOLATION,
+                    message="these is no such version for the theorem",
+                    details="these is no such version for the theorem parallelogram_judgment_parallel_and_parallel"
                 ))
+
 
 
 
@@ -3690,7 +4256,7 @@ class GeometricTheorem:
             if version == "1":
                 if len(args) < 3:
                     return return_error(GeometricError(
-                        tier=ErrorTier.TIER1_THEOREM_CALL,
+                        tier=ErrorTier.TIER1_THEOREM_CALL_SYNTAX_VIOLATION,
                         message="Insufficient arguments for perpendicular_bisector_property_distance_equal",
                         details="Expected format: perpendicular_bisector_property_distance_equal(1, bisector, bisected)"
                     ))
@@ -3716,7 +4282,7 @@ class GeometricTheorem:
 
                 if not relationship_exists:
                     return return_error(GeometricError(
-                        tier=ErrorTier.TIER2_PREMISE,
+                        tier=ErrorTier.TIER2_PREMISE_VIOLATION,
                         message=f"Perpendicular bisector relationship not established: {bisector} is not a perpendicular bisector of {bisected}",
                         details="Required for perpendicular_bisector_property_distance_equal theorem"
                     ))
@@ -3725,9 +4291,11 @@ class GeometricTheorem:
                 return True, None
             else:
                 return return_error(GeometricError(
-                    tier=ErrorTier.TIER1_THEOREM_CALL,
-                    message=f"Unsupported version {version} for perpendicular_bisector_property_distance_equal"
+                    tier=ErrorTier.TIER1_THEOREM_CALL_SYNTAX_VIOLATION,
+                    message="these is no such version for the theorem",
+                    details="these is no such version for the theorem perpendicular_bisector_property_distance_equal"
                 ))
+
 
 
         elif theorem_name == "triangle_area_formula_common":
@@ -3735,7 +4303,7 @@ class GeometricTheorem:
             if version == "1":
                 if len(args) < 2:
                     return return_error(GeometricError(
-                        tier=ErrorTier.TIER1_THEOREM_CALL,
+                        tier=ErrorTier.TIER1_THEOREM_CALL_SYNTAX_VIOLATION,
                         message="Missing triangle name for triangle_area_formula_common",
                         details="Expected triangle_area_formula_common(1, triangle)"
                     ))
@@ -3746,7 +4314,7 @@ class GeometricTheorem:
                 normalized_triangle = self.normalize_triangle(triangle)
                 if normalized_triangle not in self.polygons:
                     return return_error(GeometricError(
-                        tier=ErrorTier.TIER2_PREMISE,
+                        tier=ErrorTier.TIER2_PREMISE_VIOLATION,
                         message=f"Triangle {triangle} not defined in the geometric data",
                         details=f"Known polygons: {self.polygons}"
                     ))
@@ -3754,7 +4322,7 @@ class GeometricTheorem:
                 # Check if a height has been established for this triangle
                 if hasattr(self, "triangle_heights") and triangle not in self.triangle_heights:
                     return return_error(GeometricError(
-                        tier=ErrorTier.TIER2_PREMISE,
+                        tier=ErrorTier.TIER2_PREMISE_VIOLATION,
                         message=f"No height established for triangle {triangle}",
                         details="Height must be established through an altitude theorem first"
                     ))
@@ -3762,112 +4330,247 @@ class GeometricTheorem:
                 return True, None
             else:
                 return return_error(GeometricError(
-                    tier=ErrorTier.TIER1_THEOREM_CALL,
-                    message=f"Unsupported version {version} for triangle_area_formula_common"
+                    tier=ErrorTier.TIER1_THEOREM_CALL_SYNTAX_VIOLATION,
+                    message="these is no such version for the theorem",
+                    details="these is no such version for the theorem triangle_area_formula_common"
                 ))
+
+
 
 
         elif theorem_name == "altitude_of_triangle_judgment":
+
             version = args[0]
-            if version == "1":
-                if len(args) < 3:
-                    return return_error(GeometricError(
-                        tier=ErrorTier.TIER1_THEOREM_CALL,
-                        message="Insufficient arguments for altitude_of_triangle_judgment",
-                        details="Expected format: altitude_of_triangle_judgment(1, altitude_line, triangle)"
-                    ))
 
-                altitude_line = args[1].strip()  # e.g., "DN"
-                triangle = args[2].strip()  # e.g., "DAB"
-
-                # Parse the premise parts
-                premise_parts = premise.split('&')
-
-                # Check for polygon fact
-                polygon_found = False
-                polygon_match = re.search(r'Polygon\((\w+)\)', premise)
-                if polygon_match:
-                    polygon_name = polygon_match.group(1)
-                    normalized_polygon = self.normalize_triangle(polygon_name)
-                    if normalized_polygon in self.polygons:
-                        polygon_found = True
-                        if normalized_polygon != self.normalize_triangle(triangle):
-                            return return_error(GeometricError(
-                                tier=ErrorTier.TIER2_PREMISE,
-                                message=f"Polygon in premise ({polygon_name}) doesn't match the triangle in theorem call ({triangle})",
-                                details="Polygon and triangle argument must match"
-                            ))
-
-                if not polygon_found:
-                    return return_error(GeometricError(
-                        tier=ErrorTier.TIER2_PREMISE,
-                        message="Missing valid polygon fact in premise",
-                        details="altitude_of_triangle_judgment requires a valid Polygon fact"
-                    ))
-
-                # Check for line fact
-                line_found = False
-                for part in premise_parts:
-                    if part.startswith("Line(") and altitude_line in part:
-                        line_found = True
-                        break
-
-                if not line_found:
-                    return return_error(GeometricError(
-                        tier=ErrorTier.TIER2_PREMISE,
-                        message=f"Missing line fact for {altitude_line}",
-                        details="altitude_of_triangle_judgment requires a Line fact for the altitude"
-                    ))
-
-                # Check for collinearity fact (for the foot of the altitude)
-                collinear_found = False
-                collinear_match = re.search(r'Collinear\((\w+)\)', premise)
-                if collinear_match:
-                    collinear_points = collinear_match.group(1)
-                    # Check if any stored collinear fact matches this
-                    for fact in self.collinear_facts:
-                        fact_str = ''.join(fact)
-                        if all(p in fact_str for p in collinear_points):
-                            collinear_found = True
-                            break
-
-                if not collinear_found:
-                    return return_error(GeometricError(
-                        tier=ErrorTier.TIER2_PREMISE,
-                        message="Missing valid collinearity fact in premise",
-                        details="altitude_of_triangle_judgment requires a valid Collinear fact"
-                    ))
-
-                # Check for right angle fact
-                right_angle_found = False
-                angle_match = re.search(r'Equal\(MeasureOfAngle\((\w{3})\),90\)', premise)
-                if angle_match:
-                    angle_name = angle_match.group(1)
-                    angle_var = self.add_angle(angle_name[0], angle_name[1], angle_name[2])
-
-                    # Check if this angle is constrained to be 90 degrees
-                    temp_solver = Solver()
-                    for c in self.solver.assertions():
-                        temp_solver.add(c)
-
-                    temp_solver.add(angle_var != 90)
-                    if temp_solver.check() == unsat:
-                        right_angle_found = True
-
-                if not right_angle_found:
-                    return return_error(GeometricError(
-                        tier=ErrorTier.TIER2_PREMISE,
-                        message="Missing valid right angle fact in premise",
-                        details="altitude_of_triangle_judgment requires an angle equal to 90 degrees"
-                    ))
-
-                # All checks passed
-                return True, None
-            else:
+            if version not in {"1", "2", "3"}:
                 return return_error(GeometricError(
-                    tier=ErrorTier.TIER1_THEOREM_CALL,
-                    message=f"Unsupported version {version} for altitude_of_triangle_judgment"
+                    tier=ErrorTier.TIER1_THEOREM_CALL_SYNTAX_VIOLATION,
+                    message="these is no such version for the theorem",
+                    details="these is no such version for the theorem altitude_of_triangle_judgment"
                 ))
+
+            if len(args) < 3:
+                return return_error(GeometricError(
+
+                    tier=ErrorTier.TIER1_THEOREM_CALL_SYNTAX_VIOLATION,
+
+                    message="Insufficient arguments for altitude_of_triangle_judgment",
+
+                    details="Expected format: altitude_of_triangle_judgment(version, altitude_line, triangle)"
+
+                ))
+
+            altitude_line = args[1].strip()  # e.g., "AD"
+
+            triangle = args[2].strip()  # e.g., "ABC"
+
+            # Parse the premise parts
+
+            premise_parts = premise.split('&')
+
+            # Check for polygon fact
+
+            polygon_match = re.search(r'Polygon\(' + re.escape(triangle) + r'\)', premise)
+
+            if not polygon_match:
+                return return_error(GeometricError(
+
+                    tier=ErrorTier.TIER2_PREMISE_VIOLATION,
+
+                    message=f"Missing Polygon({triangle}) fact in premise",
+
+                    details="altitude_of_triangle_judgment requires the triangle to be defined"
+
+                ))
+
+            # Verify the triangle exists in our system
+
+            normalized_triangle = self.normalize_triangle(triangle)
+
+            if normalized_triangle not in self.polygons:
+                return return_error(GeometricError(
+
+                    tier=ErrorTier.TIER2_PREMISE_VIOLATION,
+
+                    message=f"Triangle {triangle} is not defined in the system",
+
+                    details=f"Known polygons: {self.polygons}"
+
+                ))
+
+            # Check for line fact
+
+            line_match = re.search(r'Line\(' + re.escape(altitude_line) + r'\)', premise)
+
+            if not line_match:
+                return return_error(GeometricError(
+
+                    tier=ErrorTier.TIER2_PREMISE_VIOLATION,
+
+                    message=f"Missing Line({altitude_line}) fact in premise",
+
+                    details="altitude_of_triangle_judgment requires the altitude line to be defined"
+
+                ))
+
+            # Determine expected collinearity and right angle based on version
+
+            expected_collinear = None
+
+            expected_angle = None
+
+            # Extract opposite side vertices (those not connected to altitude's vertex)
+
+            altitude_vertex = altitude_line[0]  # e.g., "A"
+
+            opposite_vertices = [v for v in triangle if v != altitude_vertex]  # e.g., ["B", "C"]
+
+            altitude_foot = altitude_line[1]  # e.g., "D"
+
+            if version == "1":
+
+                # Version 1: Collinear(BDC) & Equal(MeasureOfAngle(BDA),90)
+
+                expected_collinear = f"{opposite_vertices[0]}{altitude_foot}{opposite_vertices[1]}"  # "BDC"
+
+                expected_angle = f"{opposite_vertices[0]}{altitude_foot}{altitude_vertex}"  # "BDA"
+
+            elif version == "2":
+
+                # Version 2: Collinear(DBC) & Equal(MeasureOfAngle(ADB),90)
+
+                expected_collinear = f"{altitude_foot}{opposite_vertices[0]}{opposite_vertices[1]}"  # "DBC"
+
+                expected_angle = f"{altitude_vertex}{altitude_foot}{opposite_vertices[0]}"  # "ADB"
+
+            elif version == "3":
+
+                # Version 3: Collinear(BCD) & Equal(MeasureOfAngle(CDA),90)
+
+                expected_collinear = f"{opposite_vertices[0]}{opposite_vertices[1]}{altitude_foot}"  # "BCD"
+
+                expected_angle = f"{opposite_vertices[1]}{altitude_foot}{altitude_vertex}"  # "CDA"
+
+            # Check for collinearity fact
+
+            collinear_match = re.search(r'Collinear\((\w+)\)', premise)
+
+            if not collinear_match:
+                return return_error(GeometricError(
+
+                    tier=ErrorTier.TIER2_PREMISE_VIOLATION,
+
+                    message="Missing collinearity fact in premise",
+
+                    details=f"Version {version} requires Collinear({expected_collinear})"
+
+                ))
+
+            collinear_points = collinear_match.group(1)
+
+            # Normalize for comparison to handle different orderings
+
+            normalized_expected = ''.join(sorted(expected_collinear))
+
+            normalized_actual = ''.join(sorted(collinear_points))
+
+            if normalized_expected != normalized_actual:
+                return return_error(GeometricError(
+
+                    tier=ErrorTier.TIER2_PREMISE_VIOLATION,
+
+                    message=f"Collinearity mismatch: expected Collinear({expected_collinear}), got Collinear({collinear_points})",
+
+                    details=f"Version {version} requires specific collinearity"
+
+                ))
+
+            # Check if this collinearity exists in our system
+
+            collinear_found = False
+
+            for fact in self.collinear_facts:
+
+                fact_str = ''.join(fact)
+
+                normalized_fact = ''.join(sorted(fact_str))
+
+                if normalized_fact == normalized_actual:
+                    collinear_found = True
+
+                    break
+
+            if not collinear_found:
+                return return_error(GeometricError(
+
+                    tier=ErrorTier.TIER2_PREMISE_VIOLATION,
+
+                    message=f"Collinearity fact Collinear({collinear_points}) not established",
+
+                    details=f"Known collinear facts: {[''.join(fact) for fact in self.collinear_facts]}"
+
+                ))
+
+            # Check for right angle fact
+
+            angle_match = re.search(r'Equal\(MeasureOfAngle\((\w{3})\),90\)', premise)
+
+            if not angle_match:
+                return return_error(GeometricError(
+
+                    tier=ErrorTier.TIER2_PREMISE_VIOLATION,
+
+                    message="Missing right angle fact in premise",
+
+                    details=f"Version {version} requires Equal(MeasureOfAngle({expected_angle}),90)"
+
+                ))
+
+            angle_name = angle_match.group(1)
+
+            # Since angles can be represented in different orders, normalize by ensuring
+
+            # the middle point is the same and the endpoints are the same (order doesn't matter)
+
+            if angle_name[1] != expected_angle[1] or sorted([angle_name[0], angle_name[2]]) != sorted(
+                    [expected_angle[0], expected_angle[2]]):
+                return return_error(GeometricError(
+
+                    tier=ErrorTier.TIER2_PREMISE_VIOLATION,
+
+                    message=f"Angle mismatch: expected MeasureOfAngle({expected_angle}), got MeasureOfAngle({angle_name})",
+
+                    details=f"Version {version} requires a specific right angle"
+
+                ))
+
+            # Verify the angle is actually 90 degrees in the solver
+
+            angle_var = self.add_angle(angle_name[0], angle_name[1], angle_name[2])
+
+            if self.solver.check() == sat:
+
+                temp_solver = Solver()
+
+                for c in self.solver.assertions():
+                    temp_solver.add(c)
+
+                temp_solver.add(angle_var != 90)
+
+                if temp_solver.check() != unsat:
+                    return return_error(GeometricError(
+
+                        tier=ErrorTier.TIER2_PREMISE_VIOLATION,
+
+                        message=f"Angle {angle_name} is not constrained to be 90°",
+
+                        details="The right angle constraint must be enforced by the solver"
+
+                    ))
+
+            # All checks passed
+
+            return True, None
 
         elif theorem_name == "flat_angle":
             # Expected arguments: version, angle
@@ -3875,7 +4578,7 @@ class GeometricTheorem:
             if version == "1":
                 if len(args) < 2:
                     return return_error(GeometricError(
-                        tier=ErrorTier.TIER1_THEOREM_CALL,
+                        tier=ErrorTier.TIER1_THEOREM_CALL_SYNTAX_VIOLATION,
                         message="Insufficient arguments for flat_angle",
                         details="Expected format: flat_angle(1, angle)"
                     ))
@@ -3899,7 +4602,7 @@ class GeometricTheorem:
 
                 if not collinear_found:
                     return return_error(GeometricError(
-                        tier=ErrorTier.TIER2_PREMISE,
+                        tier=ErrorTier.TIER2_PREMISE_VIOLATION,
                         message=f"Points {angle_name} are not proven collinear",
                         details="Required collinearity for flat_angle theorem is not established"
                     ))
@@ -3908,9 +4611,11 @@ class GeometricTheorem:
                 return True, None
             else:
                 return return_error(GeometricError(
-                    tier=ErrorTier.TIER1_THEOREM_CALL,
-                    message=f"Unsupported version {version} for flat_angle"
+                    tier=ErrorTier.TIER1_THEOREM_CALL_SYNTAX_VIOLATION,
+                    message="these is no such version for the theorem",
+                    details="these is no such version for the theorem flat_angle"
                 ))
+
 
 
 
@@ -3924,7 +4629,7 @@ class GeometricTheorem:
                 if len(args) < 4:
                     return return_error(GeometricError(
 
-                        tier=ErrorTier.TIER1_THEOREM_CALL,
+                        tier=ErrorTier.TIER1_THEOREM_CALL_SYNTAX_VIOLATION,
 
                         message="Insufficient arguments for circle_property_circular_power_chord_and_chord",
 
@@ -3967,7 +4672,7 @@ class GeometricTheorem:
                 if len(chord1_points_on_circle) < 2:
                     return return_error(GeometricError(
 
-                        tier=ErrorTier.TIER2_PREMISE,
+                        tier=ErrorTier.TIER2_PREMISE_VIOLATION,
 
                         message=f"Not enough points from chord {chord1} are on circle {circle_token}",
 
@@ -3978,7 +4683,7 @@ class GeometricTheorem:
                 if len(chord2_points_on_circle) < 2:
                     return return_error(GeometricError(
 
-                        tier=ErrorTier.TIER2_PREMISE,
+                        tier=ErrorTier.TIER2_PREMISE_VIOLATION,
 
                         message=f"Not enough points from chord {chord2} are on circle {circle_token}",
 
@@ -4019,7 +4724,7 @@ class GeometricTheorem:
                 if not collinear1_found:
                     return return_error(GeometricError(
 
-                        tier=ErrorTier.TIER2_PREMISE,
+                        tier=ErrorTier.TIER2_PREMISE_VIOLATION,
 
                         message=f"Missing collinearity fact for points in {chord1}",
 
@@ -4030,7 +4735,7 @@ class GeometricTheorem:
                 if not collinear2_found:
                     return return_error(GeometricError(
 
-                        tier=ErrorTier.TIER2_PREMISE,
+                        tier=ErrorTier.TIER2_PREMISE_VIOLATION,
 
                         message=f"Missing collinearity fact for points in {chord2}",
 
@@ -4045,21 +4750,27 @@ class GeometricTheorem:
             else:
 
                 return return_error(GeometricError(
-
-                    tier=ErrorTier.TIER1_THEOREM_CALL,
-
-                    message=f"Unsupported version {version} for circle_property_circular_power_chord_and_chord"
-
+                    tier=ErrorTier.TIER1_THEOREM_CALL_SYNTAX_VIOLATION,
+                    message="these is no such version for the theorem",
+                    details="these is no such version for the theorem circle_property_circular_power_chord_and_chord"
                 ))
+
 
 
         elif theorem_name == "round_angle":
             # Expected arguments: version, angle1, angle2
             version = args[0]
+            if version != "-99":
+                return return_error(GeometricError(
+                    tier=ErrorTier.TIER1_THEOREM_CALL_SYNTAX_VIOLATION,
+                    message="this theorem is not supported by this solver please give a profe without it",
+                    details="the round_angle is not supported by this solver please give a profe without it"
+                ))
+
             if version == "1":
                 if len(args) < 3:
                     return return_error(GeometricError(
-                        tier=ErrorTier.TIER1_THEOREM_CALL,
+                        tier=ErrorTier.TIER1_THEOREM_CALL_SYNTAX_VIOLATION,
                         message="Insufficient arguments for round_angle",
                         details="Expected format: round_angle(1, angle1, angle2)"
                     ))
@@ -4076,14 +4787,14 @@ class GeometricTheorem:
 
                 if angle1_var_name not in self.angles:
                     return return_error(GeometricError(
-                        tier=ErrorTier.TIER2_PREMISE,
+                        tier=ErrorTier.TIER2_PREMISE_VIOLATION,
                         message=f"Angle {angle1} is not defined",
                         details="Required angle for round_angle theorem is not established"
                     ))
 
                 if angle2_var_name not in self.angles:
                     return return_error(GeometricError(
-                        tier=ErrorTier.TIER2_PREMISE,
+                        tier=ErrorTier.TIER2_PREMISE_VIOLATION,
                         message=f"Angle {angle2} is not defined",
                         details="Required angle for round_angle theorem is not established"
                     ))
@@ -4092,7 +4803,7 @@ class GeometricTheorem:
                 return True, None
             else:
                 return return_error(GeometricError(
-                    tier=ErrorTier.TIER1_THEOREM_CALL,
+                    tier=ErrorTier.TIER1_THEOREM_CALL_SYNTAX_VIOLATION,
                     message=f"Unsupported version {version} for round_angle"
                 ))
 
@@ -4104,7 +4815,7 @@ class GeometricTheorem:
             if version == "1":
                 if len(args) < 2:
                     return return_error(GeometricError(
-                        tier=ErrorTier.TIER1_THEOREM_CALL,
+                        tier=ErrorTier.TIER1_THEOREM_CALL_SYNTAX_VIOLATION,
                         message="Missing triangle argument for cosine_theorem",
                         details="Expected cosine_theorem(1, triangle)"
                     ))
@@ -4115,19 +4826,26 @@ class GeometricTheorem:
                 # Check if the triangle exists in the polygons stored in the class attributes
                 if normalized_triangle not in self.polygons:
                     return return_error(GeometricError(
-                        tier=ErrorTier.TIER2_PREMISE,
+                        tier=ErrorTier.TIER2_PREMISE_VIOLATION,
                         message=f"Triangle {triangle} not defined in the geometric data",
                         details=f"Known polygons: {self.polygons}"
                     ))
 
                 return True, None
+            else:
+                return return_error(GeometricError(
+                    tier=ErrorTier.TIER1_THEOREM_CALL_SYNTAX_VIOLATION,
+                    message="these is no such version for the theorem",
+                    details="these is no such version for the theorem cosine_theorem"
+                ))
+
 
         elif theorem_name == "line_addition":
             version = args[0]
             if version == "1":
                 if len(args) < 3:
                     return return_error(GeometricError(
-                        tier=ErrorTier.TIER1_THEOREM_CALL,
+                        tier=ErrorTier.TIER1_THEOREM_CALL_SYNTAX_VIOLATION,
                         message="Missing arguments for line_addition",
                         details="Expected: line_addition(1, line1, line2)"
                     ))
@@ -4139,7 +4857,7 @@ class GeometricTheorem:
                 collinear_match = re.search(r'Collinear\((\w+)\)', premise)
                 if not collinear_match:
                     return return_error(GeometricError(
-                        tier=ErrorTier.TIER2_PREMISE,
+                        tier=ErrorTier.TIER2_PREMISE_VIOLATION,
                         message="Missing collinearity fact in premise",
                         details="line_addition requires collinear points"
                     ))
@@ -4151,7 +4869,7 @@ class GeometricTheorem:
                 if not any(self.normalize_collinear_points(''.join(fact)) == normalized_collinear
                            for fact in self.collinear_facts):
                     return return_error(GeometricError(
-                        tier=ErrorTier.TIER2_PREMISE,
+                        tier=ErrorTier.TIER2_PREMISE_VIOLATION,
                         message=f"Points {collinear_points} not proven collinear",
                         details=f"Known collinear facts: {self.collinear_facts}"
                     ))
@@ -4160,7 +4878,7 @@ class GeometricTheorem:
                 if not (all(p in collinear_points for p in line1) and
                         all(p in collinear_points for p in line2)):
                     return return_error(GeometricError(
-                        tier=ErrorTier.TIER2_PREMISE,
+                        tier=ErrorTier.TIER2_PREMISE_VIOLATION,
                         message="Lines must be part of the collinear sequence",
                         details=f"Lines {line1} and {line2} must be formed by points in {collinear_points}"
                     ))
@@ -4169,12 +4887,18 @@ class GeometricTheorem:
                 common_point = set(line1).intersection(set(line2))
                 if not common_point:
                     return return_error(GeometricError(
-                        tier=ErrorTier.TIER2_PREMISE,
+                        tier=ErrorTier.TIER2_PREMISE_VIOLATION,
                         message="Lines must share an endpoint",
                         details=f"Lines {line1} and {line2} must have a common point"
                     ))
 
                 return True, None
+            else:
+                return return_error(GeometricError(
+                        tier=ErrorTier.TIER1_THEOREM_CALL_SYNTAX_VIOLATION,
+                        message="these is no such version for the theorem",
+                        details="these is no such version for the theorem line_addition"
+                    ))
 
 
 
@@ -4184,7 +4908,7 @@ class GeometricTheorem:
             if version == "1":
                 if len(args) < 3:
                     return return_error(GeometricError(
-                        tier=ErrorTier.TIER1_THEOREM_CALL,
+                        tier=ErrorTier.TIER1_THEOREM_CALL_SYNTAX_VIOLATION,
                         message="Missing arguments for perpendicular_bisector_judgment_distance_equal",
                         details="Expected: perpendicular_bisector_judgment_distance_equal(1, bisector_line, bisected_line)"
                     ))
@@ -4199,7 +4923,7 @@ class GeometricTheorem:
                 collinear_part = next((p for p in premise_parts if p.startswith('Collinear(')), None)
                 if not collinear_part:
                     return return_error(GeometricError(
-                        tier=ErrorTier.TIER2_PREMISE,
+                        tier=ErrorTier.TIER2_PREMISE_VIOLATION,
                         message="Missing collinearity fact in premise",
                         details="Required for perpendicular bisector"
                     ))
@@ -4212,7 +4936,7 @@ class GeometricTheorem:
                     if not any(self.normalize_collinear_points(''.join(fact)) == normalized_collinear
                                for fact in self.collinear_facts):
                         return return_error(GeometricError(
-                            tier=ErrorTier.TIER2_PREMISE,
+                            tier=ErrorTier.TIER2_PREMISE_VIOLATION,
                             message=f"Points {collinear_points} not proven collinear",
                             details=f"Known collinear facts: {self.collinear_facts}"
                         ))
@@ -4221,7 +4945,7 @@ class GeometricTheorem:
                 angle_eq_part = next((p for p in premise_parts if p.startswith('Equal(MeasureOfAngle(')), None)
                 if not angle_eq_part:
                     return return_error(GeometricError(
-                        tier=ErrorTier.TIER2_PREMISE,
+                        tier=ErrorTier.TIER2_PREMISE_VIOLATION,
                         message="Missing right angle fact in premise",
                         details="Perpendicular bisector requires 90° angle"
                     ))
@@ -4230,7 +4954,7 @@ class GeometricTheorem:
                 angle_match = re.search(r'Equal\(MeasureOfAngle\((\w{3})\),90\)', angle_eq_part)
                 if not angle_match:
                     return return_error(GeometricError(
-                        tier=ErrorTier.TIER2_PREMISE,
+                        tier=ErrorTier.TIER2_PREMISE_VIOLATION,
                         message="Angle value must be 90 degrees",
                         details="Required for perpendicular bisector"
                     ))
@@ -4239,113 +4963,424 @@ class GeometricTheorem:
                 length_eq_part = next((p for p in premise_parts if 'LengthOfLine' in p), None)
                 if not length_eq_part:
                     return return_error(GeometricError(
-                        tier=ErrorTier.TIER2_PREMISE,
+                        tier=ErrorTier.TIER2_PREMISE_VIOLATION,
                         message="Missing length equality in premise",
                         details="Required for perpendicular bisector"
                     ))
 
                 # All premise checks passed, return success
                 return True, None
+            else:
+                return return_error(GeometricError(
+                    tier=ErrorTier.TIER1_THEOREM_CALL_SYNTAX_VIOLATION,
+                    message="these is no such version for the theorem",
+                    details="these is no such version for the theorem perpendicular_bisector_judgment_distance_equal"
+                ))
+
+
 
         elif theorem_name == "altitude_of_quadrilateral_judgment_diagonal":
+
+            version = args[0].strip()
+
+            if version not in {"1", "2"}:
+                return return_error(GeometricError(
+                    tier=ErrorTier.TIER1_THEOREM_CALL_SYNTAX_VIOLATION,
+                    message="these is no such version for the theorem",
+                    details="these is no such version for the theorem altitude_of_quadrilateral_judgment_diagonal"
+                ))
+
 
             if len(args) < 2:
                 return return_error(GeometricError(
 
-                    tier=ErrorTier.TIER1_THEOREM_CALL,
+                    tier=ErrorTier.TIER1_THEOREM_CALL_SYNTAX_VIOLATION,
 
-                    message="Missing arguments for altitude_of_quadrilateral_judgment_diagonal"
+                    message="Missing arguments for altitude_of_quadrilateral_judgment_diagonal",
+
+                    details="Expected: altitude_of_quadrilateral_judgment_diagonal(version, quadrilateral)"
 
                 ))
 
-            quad = args[1].strip()  # e.g., "DACB"
+            quad = args[1].strip()  # e.g., "ABCD"
 
-            # Parse premise to check for parallelogram or trapezoid
+            # Check shape type in premise
 
-            premise_parts = premise.split('&')
+            shape_match = re.search(r'\(Parallelogram\(' + re.escape(quad) +
 
-            first_part = premise_parts[0].strip('()')  # Remove outer parentheses
+                                    r'\)\|Trapezoid\(' + re.escape(quad) + r'\)\)', premise)
 
-            shape_options = first_part.split('|')  # Split on OR operator
-
-            is_valid = False
-
-            for shape_fact in shape_options:
-
-                if shape_fact.startswith('Parallelogram('):
-
-                    para_match = re.match(r'Parallelogram\((\w+)\)', shape_fact)
-
-                    if para_match and para_match.group(1) == quad:
-
-                        if quad in self.parallelograms:
-                            is_valid = True
-
-                            break
-
-                elif shape_fact.startswith('Trapezoid('):
-
-                    trap_match = re.match(r'Trapezoid\((\w+)\)', shape_fact)
-
-                    if trap_match and trap_match.group(1) == quad:
-
-                        if hasattr(self, 'trapezoids') and quad in self.trapezoids:
-
-                            # If it's a trapezoid, also check for the right angle
-
-                            angle_match = re.search(r'Equal\(MeasureOfAngle\((\w{3})\),90\)', premise)
-
-                            if angle_match:
-
-                                angle_name = angle_match.group(1)
-
-                                angle_var = self.add_angle(angle_name[0], angle_name[1], angle_name[2])
-
-                                if self.solver.check() == sat:
-
-                                    # Check if the angle is constrained to 90 degrees
-
-                                    temp_solver = Solver()
-
-                                    for c in self.solver.assertions():
-                                        temp_solver.add(c)
-
-                                    temp_solver.add(angle_var != 90)
-
-                                    if temp_solver.check() == unsat:
-                                        is_valid = True
-
-                                        break
-
-            if not is_valid:
+            if not shape_match:
                 return return_error(GeometricError(
 
-                    tier=ErrorTier.TIER2_PREMISE,
+                    tier=ErrorTier.TIER2_PREMISE_VIOLATION,
 
-                    message=f"Shape {quad} is not proven to be a parallelogram or a trapezoid with right angle",
+                    message=f"Missing shape definition for {quad} in premise",
 
-                    details=f"Known parallelograms: {self.parallelograms}"
+                    details="Required: (Parallelogram(ABCD)|Trapezoid(ABCD))"
 
                 ))
+
+            # Verify the quadrilateral is a parallelogram or trapezoid
+
+            is_valid_shape = False
+
+            if quad in self.parallelograms:
+
+                is_valid_shape = True
+
+            elif hasattr(self, 'trapezoids') and quad in self.trapezoids:
+
+                is_valid_shape = True
+
+            if not is_valid_shape:
+                return return_error(GeometricError(
+
+                    tier=ErrorTier.TIER2_PREMISE_VIOLATION,
+
+                    message=f"Quadrilateral {quad} is not defined as a parallelogram or trapezoid",
+
+                    details="Required for altitude_of_quadrilateral_judgment_diagonal"
+
+                ))
+
+            # Determine expected diagonal and angle based on version
+
+            expected_diagonal = None
+
+            expected_angle = None
+
+            if version == "1":
+
+                # Version 1: Line(AC) & Equal(MeasureOfAngle(BCA),90)
+
+                expected_diagonal = f"{quad[0]}{quad[2]}"  # AC
+
+                expected_angle = f"{quad[1]}{quad[2]}{quad[0]}"  # BCA
+
+            elif version == "2":
+
+                # Version 2: Line(DB) & Equal(MeasureOfAngle(DBC),90)
+
+                expected_diagonal = f"{quad[3]}{quad[1]}"  # DB
+
+                expected_angle = f"{quad[3]}{quad[1]}{quad[2]}"  # DBC
+
+            # Check for Line fact
+
+            line_match = re.search(r'Line\((\w+)\)', premise)
+
+            if not line_match:
+                return return_error(GeometricError(
+
+                    tier=ErrorTier.TIER2_PREMISE_VIOLATION,
+
+                    message="Missing Line fact in premise",
+
+                    details=f"Version {version} requires Line({expected_diagonal})"
+
+                ))
+
+            diagonal = line_match.group(1)
+
+            if diagonal != expected_diagonal and diagonal != expected_diagonal[::-1]:
+                return return_error(GeometricError(
+
+                    tier=ErrorTier.TIER2_PREMISE_VIOLATION,
+
+                    message=f"Line mismatch: expected Line({expected_diagonal}), got Line({diagonal})",
+
+                    details=f"Version {version} requires a specific diagonal"
+
+                ))
+
+            # Check for right angle
+
+            angle_match = re.search(r'Equal\(MeasureOfAngle\((\w{3})\),90\)', premise)
+
+            if not angle_match:
+                return return_error(GeometricError(
+
+                    tier=ErrorTier.TIER2_PREMISE_VIOLATION,
+
+                    message="Missing right angle fact in premise",
+
+                    details=f"Version {version} requires Equal(MeasureOfAngle({expected_angle}),90)"
+
+                ))
+
+            angle_name = angle_match.group(1)
+
+            # Normalize angle for comparison
+
+            if sorted(angle_name) != sorted(expected_angle) or angle_name[1] != expected_angle[1]:
+                return return_error(GeometricError(
+
+                    tier=ErrorTier.TIER2_PREMISE_VIOLATION,
+
+                    message=f"Angle mismatch: expected MeasureOfAngle({expected_angle}), got MeasureOfAngle({angle_name})",
+
+                    details=f"Version {version} requires a specific right angle"
+
+                ))
+
+            # Verify the angle is actually 90 degrees in the solver
+
+            angle_var = self.add_angle(angle_name[0], angle_name[1], angle_name[2])
+
+            if self.solver.check() == sat:
+
+                temp_solver = Solver()
+
+                for c in self.solver.assertions():
+                    temp_solver.add(c)
+
+                temp_solver.add(angle_var != 90)
+
+                if temp_solver.check() != unsat:
+                    return return_error(GeometricError(
+
+                        tier=ErrorTier.TIER2_PREMISE_VIOLATION,
+
+                        message=f"Angle {angle_name} is not constrained to be 90°",
+
+                        details="The right angle constraint must be enforced by the solver"
+
+                    ))
 
             return True, None
 
 
+
+
+
         elif theorem_name == "altitude_of_quadrilateral_judgment_left_vertex":
-            if len(args) < 3:
-                return (False, GeometricError(
-                    tier=ErrorTier.TIER1_THEOREM_CALL,
-                    message="Missing arguments for altitude_of_quadrilateral_judgment_left_vertex."
-                ))
-            quad = args[2].strip()
-            # Check that the quadrilateral is recorded as a parallelogram or trapezoid.
-            if not (quad in self.parallelograms or quad in self.trapezoids):
-                return (False, GeometricError(
-                    tier=ErrorTier.TIER2_PREMISE,
-                    message=f"Quadrilateral {quad} is not defined as a parallelogram or trapezoid."
+
+            version = args[0].strip()
+
+            if version not in {"1", "2", "3"}:
+                return return_error(GeometricError(
+                    tier=ErrorTier.TIER1_THEOREM_CALL_SYNTAX_VIOLATION,
+                    message="these is no such version for the theorem",
+                    details="these is no such version for the theorem altitude_of_quadrilateral_judgment_left_vertex"
                 ))
 
-            return (True, None)
+            if len(args) < 3:
+                return return_error(GeometricError(
+
+                    tier=ErrorTier.TIER1_THEOREM_CALL_SYNTAX_VIOLATION,
+
+                    message="Missing arguments for altitude_of_quadrilateral_judgment_left_vertex",
+
+                    details="Expected: altitude_of_quadrilateral_judgment_left_vertex(version, altitude_line, quadrilateral)"
+
+                ))
+
+            altitude_line = args[1].strip()  # e.g., "AF"
+
+            quad_name = args[2].strip()  # e.g., "ABCD"
+
+            # Check the quadrilateral is a parallelogram or trapezoid
+
+            if not (quad_name in self.parallelograms or
+
+                    (hasattr(self, 'trapezoids') and quad_name in self.trapezoids)):
+                return return_error(GeometricError(
+
+                    tier=ErrorTier.TIER2_PREMISE_VIOLATION,
+
+                    message=f"Quadrilateral {quad_name} is not defined as a parallelogram or trapezoid",
+
+                    details="Required for altitude_of_quadrilateral_judgment_left_vertex"
+
+                ))
+
+            # Check for shape type in premise
+
+            shape_match = re.search(r'\(Parallelogram\(' + re.escape(quad_name) +
+
+                                    r'\)\|Trapezoid\(' + re.escape(quad_name) + r'\)\)', premise)
+
+            if not shape_match:
+                return return_error(GeometricError(
+
+                    tier=ErrorTier.TIER2_PREMISE_VIOLATION,
+
+                    message=f"Missing shape definition for {quad_name} in premise",
+
+                    details="Required: (Parallelogram(ABCD)|Trapezoid(ABCD))"
+
+                ))
+
+            # Check for Line fact
+
+            line_match = re.search(r'Line\(' + re.escape(altitude_line) + r'\)', premise)
+
+            if not line_match:
+                return return_error(GeometricError(
+
+                    tier=ErrorTier.TIER2_PREMISE_VIOLATION,
+
+                    message=f"Missing Line({altitude_line}) fact in premise",
+
+                    details="Required for altitude definition"
+
+                ))
+
+            # Version-specific checks for collinearity
+
+            expected_collinear = None
+
+            if version == "1":
+
+                # Version 1: Collinear(BFC)
+
+                point_B = quad_name[1]  # Second vertex
+
+                point_C = quad_name[2]  # Third vertex
+
+                point_F = altitude_line[1]  # Second point of altitude
+
+                expected_collinear = f"{point_B}{point_F}{point_C}"
+
+            elif version == "2":
+
+                # Version 2: Collinear(FBC)
+
+                point_F = altitude_line[1]  # Second point of altitude
+
+                point_B = quad_name[1]  # Second vertex
+
+                point_C = quad_name[2]  # Third vertex
+
+                expected_collinear = f"{point_F}{point_B}{point_C}"
+
+            elif version == "3":
+
+                # Version 3: Collinear(BCF)
+
+                point_B = quad_name[1]  # Second vertex
+
+                point_C = quad_name[2]  # Third vertex
+
+                point_F = altitude_line[1]  # Second point of altitude
+
+                expected_collinear = f"{point_B}{point_C}{point_F}"
+
+            # Check for collinearity fact
+
+            collinear_match = re.search(r'Collinear\((\w+)\)', premise)
+
+            if not collinear_match:
+                return return_error(GeometricError(
+
+                    tier=ErrorTier.TIER2_PREMISE_VIOLATION,
+
+                    message="Missing Collinear fact in premise",
+
+                    details=f"Version {version} requires Collinear({expected_collinear})"
+
+                ))
+
+            # Get the actual collinear points from premise
+
+            collinear_points = collinear_match.group(1)
+
+            # Check that the expected points are in the collinearity fact
+
+            # We use a normalized version to handle different orderings
+
+            normalized_expected = ''.join(sorted(expected_collinear))
+
+            normalized_actual = ''.join(sorted(collinear_points))
+
+            if normalized_expected != normalized_actual:
+                return return_error(GeometricError(
+
+                    tier=ErrorTier.TIER2_PREMISE_VIOLATION,
+
+                    message=f"Collinearity mismatch: expected Collinear({expected_collinear}), got Collinear({collinear_points})",
+
+                    details=f"Version {version} requires specific collinearity"
+
+                ))
+
+            # Version-specific checks for right angle
+
+            expected_angle = None
+
+            if version == "1":
+
+                # Version 1: Equal(MeasureOfAngle(BFA),90)
+
+                point_B = quad_name[1]  # Second vertex
+
+                point_F = altitude_line[1]  # Second point of altitude
+
+                point_A = altitude_line[0]  # First point of altitude
+
+                expected_angle = f"{point_B}{point_F}{point_A}"
+
+            elif version == "2":
+
+                # Version 2: Equal(MeasureOfAngle(AFB),90)
+
+                point_A = altitude_line[0]  # First point of altitude
+
+                point_F = altitude_line[1]  # Second point of altitude
+
+                point_B = quad_name[1]  # Second vertex
+
+                expected_angle = f"{point_A}{point_F}{point_B}"
+
+            elif version == "3":
+
+                # Version 3: Equal(MeasureOfAngle(CFA),90)
+
+                point_C = quad_name[2]  # Third vertex
+
+                point_F = altitude_line[1]  # Second point of altitude
+
+                point_A = altitude_line[0]  # First point of altitude
+
+                expected_angle = f"{point_C}{point_F}{point_A}"
+
+            # Check for right angle fact
+
+            angle_match = re.search(r'Equal\(MeasureOfAngle\((\w{3})\),90\)', premise)
+
+            if not angle_match:
+                return return_error(GeometricError(
+
+                    tier=ErrorTier.TIER2_PREMISE_VIOLATION,
+
+                    message="Missing right angle fact in premise",
+
+                    details=f"Version {version} requires Equal(MeasureOfAngle({expected_angle}),90)"
+
+                ))
+
+            # Get the actual angle from premise
+
+            angle_name = angle_match.group(1)
+
+            # Check that it's the expected angle
+
+            # Since angles can be specified in different orders, normalize by ensuring the middle point is the same
+
+            if angle_name[1] != expected_angle[1] or sorted([angle_name[0], angle_name[2]]) != sorted(
+                    [expected_angle[0], expected_angle[2]]):
+                return return_error(GeometricError(
+
+                    tier=ErrorTier.TIER2_PREMISE_VIOLATION,
+
+                    message=f"Angle mismatch: expected MeasureOfAngle({expected_angle}), got MeasureOfAngle({angle_name})",
+
+                    details=f"Version {version} requires a specific right angle"
+
+                ))
+
+            return True, None
 
 
 
@@ -4354,29 +5389,47 @@ class GeometricTheorem:
 
 
         elif theorem_name == "parallelogram_property_opposite_line_equal":
+            version = args[0]
+
+            if version != "1":  # Updated to include version "2"
+                return return_error(GeometricError(
+                    tier=ErrorTier.TIER1_THEOREM_CALL_SYNTAX_VIOLATION,
+                    message="these is no such version for the theorem",
+                    details="these is no such version for the theorem parallelogram_property_opposite_line_equal"
+                ))
+
             if len(args) < 2:
                 return (False, GeometricError(
-                    tier=ErrorTier.TIER1_THEOREM_CALL,
+                    tier=ErrorTier.TIER1_THEOREM_CALL_SYNTAX_VIOLATION,
                     message="Missing parallelogram name for parallelogram_property_opposite_line_equal."
                 ))
             para = args[1].strip()
             if para not in self.parallelograms:
                 return (False, GeometricError(
-                    tier=ErrorTier.TIER2_PREMISE,
+                    tier=ErrorTier.TIER2_PREMISE_VIOLATION,
                     message=f"Parallelogram {para} is not defined."
                 ))
             return (True, None)
 
         elif theorem_name == "parallelogram_area_formula_common":
+            version = args[0]
+
+            if version != "1":  # Updated to include version "2"
+                return return_error(GeometricError(
+                    tier=ErrorTier.TIER1_THEOREM_CALL_SYNTAX_VIOLATION,
+                    message="these is no such version for the theorem",
+                    details="these is no such version for the theorem parallelogram_area_formula_common"
+                ))
+
             if len(args) < 2:
                 return (False, GeometricError(
-                    tier=ErrorTier.TIER1_THEOREM_CALL,
+                    tier=ErrorTier.TIER1_THEOREM_CALL_SYNTAX_VIOLATION,
                     message="Missing quadrilateral name for parallelogram_area_formula_common."
                 ))
             quad = args[1].strip()
             if quad not in self.parallelograms:
                 return (False, GeometricError(
-                    tier=ErrorTier.TIER2_PREMISE,
+                    tier=ErrorTier.TIER2_PREMISE_VIOLATION,
                     message=f"Quadrilateral {quad} is not defined as a parallelogram."
                 ))
             return (True, None)
@@ -4391,7 +5444,7 @@ class GeometricTheorem:
             if len(args) < 2:
                 return return_error(GeometricError(
 
-                    tier=ErrorTier.TIER1_THEOREM_CALL,
+                    tier=ErrorTier.TIER1_THEOREM_CALL_SYNTAX_VIOLATION,
 
                     message="Missing triangle name for isosceles_triangle_property_angle_equal."
 
@@ -4412,7 +5465,7 @@ class GeometricTheorem:
             if not (variations & self.isosceles_triangles):
                 return return_error(GeometricError(
 
-                    tier=ErrorTier.TIER2_PREMISE,
+                    tier=ErrorTier.TIER2_PREMISE_VIOLATION,
 
                     message=f"Triangle {tri} is not recorded as isosceles.",
 
@@ -4436,11 +5489,19 @@ class GeometricTheorem:
             # Expected theorem call: isosceles_triangle_judgment_line_equal(1, T)
 
             # where T is a triangle name (for example, "JPN").
+            version = args[0]
+
+            if version != "1":  # Updated to include version "2"
+                return return_error(GeometricError(
+                    tier=ErrorTier.TIER1_THEOREM_CALL_SYNTAX_VIOLATION,
+                    message="these is no such version for the theorem",
+                    details="these is no such version for the theorem isosceles_triangle_judgment_line_equal"
+                ))
 
             if len(args) < 2:
                 return return_error(GeometricError(
 
-                    tier=ErrorTier.TIER1_THEOREM_CALL,
+                    tier=ErrorTier.TIER1_THEOREM_CALL_SYNTAX_VIOLATION,
 
                     message="Missing triangle name for isosceles_triangle_judgment_line_equal."
 
@@ -4453,7 +5514,7 @@ class GeometricTheorem:
             if self.normalize_triangle(tri) not in self.polygons:
                 return return_error(GeometricError(
 
-                    tier=ErrorTier.TIER2_PREMISE,
+                    tier=ErrorTier.TIER2_PREMISE_VIOLATION,
 
                     message=f"Polygon for triangle {tri} is missing",
 
@@ -4490,7 +5551,7 @@ class GeometricTheorem:
             if not found_equality:
                 return return_error(GeometricError(
 
-                    tier=ErrorTier.TIER2_PREMISE,
+                    tier=ErrorTier.TIER2_PREMISE_VIOLATION,
 
                     message="Expected equality between two sides sharing a vertex not found in the premise.",
 
@@ -4510,7 +5571,7 @@ class GeometricTheorem:
             if len(args) < 2:
                 return return_error(GeometricError(
 
-                    tier=ErrorTier.TIER1_THEOREM_CALL,
+                    tier=ErrorTier.TIER1_THEOREM_CALL_SYNTAX_VIOLATION,
 
                     message="Missing rectangle name for rectangle_property_diagonal_equal."
 
@@ -4523,7 +5584,7 @@ class GeometricTheorem:
             if not (rect_name in self.rectangles):
                 return return_error(GeometricError(
 
-                    tier=ErrorTier.TIER2_PREMISE,
+                    tier=ErrorTier.TIER2_PREMISE_VIOLATION,
 
                     message=f"Rectangle {rect_name} is not defined.",
 
@@ -4542,9 +5603,18 @@ class GeometricTheorem:
             # Expected theorem call: parallelogram_property_diagonal_bisection(1, PNML, J)
             # The premise should include a parallelogram fact for PNML and
             # collinear facts showing that the intersection point J lies on both diagonals.
+            version = args[0]
+
+            if version != "1":  # Updated to include version "2"
+                return return_error(GeometricError(
+                    tier=ErrorTier.TIER1_THEOREM_CALL_SYNTAX_VIOLATION,
+                    message="these is no such version for the theorem",
+                    details="these is no such version for the theorem parallelogram_property_diagonal_bisection"
+                ))
+
             if len(args) < 3:
                 return return_error(GeometricError(
-                    tier=ErrorTier.TIER1_THEOREM_CALL,
+                    tier=ErrorTier.TIER1_THEOREM_CALL_SYNTAX_VIOLATION,
                     message="Insufficient arguments for parallelogram_property_diagonal_bisection."
                 ))
             para_name = args[1].strip()  # e.g., "PNML"
@@ -4554,7 +5624,7 @@ class GeometricTheorem:
             # (Assume that when parsing TEXT_CDL, all cyclic variations of any parallelogram are added to self.parallelograms.)
             if not (get_cyclic_variations(para_name) & self.parallelograms):
                 return return_error(GeometricError(
-                    tier=ErrorTier.TIER2_PREMISE,
+                    tier=ErrorTier.TIER2_PREMISE_VIOLATION,
                     message=f"Parallelogram {para_name} is not defined.",
                     details=f"Defined parallelograms: {self.parallelograms}"
                 ))
@@ -4564,7 +5634,7 @@ class GeometricTheorem:
             #    diag1: from the 1st vertex to the 3rd, and diag2: from the 2nd vertex to the 4th.
             if len(para_name) < 4:
                 return return_error(GeometricError(
-                    tier=ErrorTier.TIER1_THEOREM_CALL,
+                    tier=ErrorTier.TIER1_THEOREM_CALL_SYNTAX_VIOLATION,
                     message=f"Parallelogram name {para_name} is invalid (expected 4 letters)."
                 ))
             diag1_expected = para_name[0] + mid_candidate + para_name[2]  # e.g., "PJM"
@@ -4585,7 +5655,7 @@ class GeometricTheorem:
                 if not found_diag2:
                     missing.append(diag2_expected)
                 return return_error(GeometricError(
-                    tier=ErrorTier.TIER2_PREMISE,
+                    tier=ErrorTier.TIER2_PREMISE_VIOLATION,
                     message=f"Expected collinear fact(s) {', '.join(missing)} not found.",
                     details=f"Stored collinear facts: {[''.join(f) for f in self.collinear_facts]}"
                 ))
@@ -4598,7 +5668,14 @@ class GeometricTheorem:
         elif theorem_name == "circle_property_circular_power_tangent_and_segment_line":
             # Expected arguments: version, token1, token2, token3.
             # For example: (1, "DC", "DBF", "E")
-            version = args[0].strip()  # e.g., "1"
+            version = args[0]
+
+            if version !="1":  # Updated to include version "2"
+                return return_error(GeometricError(
+                    tier=ErrorTier.TIER1_THEOREM_CALL_SYNTAX_VIOLATION,
+                    message="these is no such version for the theorem",
+                    details="these is no such version for the theorem circle_property_circular_power_tangent_and_segment_line"
+                ))
             token1 = args[1].strip()  # e.g., "DC"
             token2 = args[2].strip()  # e.g., "DBF"  (assumed to be a three–letter string)
             token3 = args[3].strip()  # e.g., "E"
@@ -4606,7 +5683,7 @@ class GeometricTheorem:
             # --- Check that the tangent fact has been recorded.
             if (token1, token3) not in self.tangent_facts:
                 return return_error(GeometricError(
-                    tier=ErrorTier.TIER2_PREMISE,
+                    tier=ErrorTier.TIER2_PREMISE_VIOLATION,
                     message=f"Tangent fact IsTangentOfCircle({token1},{token3}) not found in accumulated data.",
                     details=f"Stored tangent facts: {self.tangent_facts}"
                 ))
@@ -4623,7 +5700,7 @@ class GeometricTheorem:
                     break
             if not found_cocircular:
                 return return_error(GeometricError(
-                    tier=ErrorTier.TIER2_PREMISE,
+                    tier=ErrorTier.TIER2_PREMISE_VIOLATION,
                     message=f"Expected cocircular fact with center {token3} and chord {chord} not found.",
                     details=f"Stored cocircular facts: {self.cocircular_facts}"
                 ))
@@ -4638,11 +5715,12 @@ class GeometricTheorem:
                     break
             if not found_collinear:
                 return return_error(GeometricError(
-                    tier=ErrorTier.TIER2_PREMISE,
+                    tier=ErrorTier.TIER2_PREMISE_VIOLATION,
                     message=f"Expected collinear fact Collinear({token2}) not found.",
                     details=f"Stored collinear facts: {[''.join(f) for f in self.collinear_facts]}"
                 ))
             return True, None
+
 
 
 
@@ -4653,15 +5731,12 @@ class GeometricTheorem:
 
             version = args[0].strip()
 
-            if version not in {"1", "3"}:
+            if version not in {"1", "2", "3"}:  # Updated to include version "2"
+
                 return return_error(GeometricError(
-
-                    tier=ErrorTier.TIER1_THEOREM_CALL,
-
-                    message=f"Unsupported version {version} for parallel_property_collinear_extend.",
-
-                    details=f"Version provided: {version}"
-
+                    tier=ErrorTier.TIER1_THEOREM_CALL_SYNTAX_VIOLATION,
+                    message="these is no such version for the theorem",
+                    details="these is no such version for the theorem parallel_property_collinear_extend"
                 ))
 
             token1 = args[1].strip()  # e.g., "GA"
@@ -4672,17 +5747,23 @@ class GeometricTheorem:
 
             # Determine the expected collinear fact from the tokens.
 
-            if version == "3":
-
-                # Expected: token1[0] + token3 + token1[1]
-
-                expected_collinear = token1[0] + token3 + token1[1]
-
-            elif version == "1":
+            if version == "1":
 
                 # Expected: token3 + token1
 
                 expected_collinear = token3 + token1
+
+            elif version == "2":
+
+                # Expected: token1 + token3 (ABM)
+
+                expected_collinear = token1 + token3
+
+            elif version == "3":
+
+                # Expected: token1[0] + token3 + token1[1] (AMB)
+
+                expected_collinear = token1[0] + token3 + token1[1]
 
             normalized_expected = self.normalize_collinear_points(expected_collinear)
 
@@ -4702,7 +5783,7 @@ class GeometricTheorem:
             if not found_collinear:
                 return return_error(GeometricError(
 
-                    tier=ErrorTier.TIER2_PREMISE,
+                    tier=ErrorTier.TIER2_PREMISE_VIOLATION,
 
                     message=f"Expected collinear fact Collinear({expected_collinear}) not found.",
 
@@ -4710,7 +5791,7 @@ class GeometricTheorem:
 
                 ))
 
-            # (Optional:) Also check that a parallel relation between token1 and token2 already exists.
+            # Check that a parallel relation between token1 and token2 already exists.
 
             found_parallel = False
 
@@ -4736,7 +5817,7 @@ class GeometricTheorem:
             if not found_parallel:
                 return return_error(GeometricError(
 
-                    tier=ErrorTier.TIER2_PREMISE,
+                    tier=ErrorTier.TIER2_PREMISE_VIOLATION,
 
                     message=f"Expected parallel relation ParallelBetweenLine({token1},{token2}) not found.",
 
@@ -4755,7 +5836,14 @@ class GeometricTheorem:
         elif theorem_name == "circle_property_circular_power_segment_and_segment_line":
             # Expected arguments: version, token1, token2, token3.
             # For example: (1, "AFB", "AGC", "E")
-            version = args[0].strip()  # (unused here but could be used if needed)
+            version = args[0]
+
+            if version != "1":
+                return return_error(GeometricError(
+                    tier=ErrorTier.TIER1_THEOREM_CALL_SYNTAX_VIOLATION,
+                    message="these is no such version for the theorem",
+                    details="these is no such version for the theorem circle_property_circular_power_segment_and_segment_line"
+                ))  # (unused here but could be used if needed)
             token1 = args[1].strip()  # e.g., "AFB"
             token2 = args[2].strip()  # e.g., "AGC"
             token3 = args[3].strip()  # e.g., "E"
@@ -4771,7 +5859,7 @@ class GeometricTheorem:
                     break
             if not found_cocircular1:
                 return return_error(GeometricError(
-                    tier=ErrorTier.TIER2_PREMISE,
+                    tier=ErrorTier.TIER2_PREMISE_VIOLATION,
                     message=f"Expected cocircular fact Cocircular({token3},{chord1}) not found.",
                     details=f"Stored cocircular facts: {self.cocircular_facts}"
                 ))
@@ -4785,7 +5873,7 @@ class GeometricTheorem:
                     break
             if not found_cocircular2:
                 return return_error(GeometricError(
-                    tier=ErrorTier.TIER2_PREMISE,
+                    tier=ErrorTier.TIER2_PREMISE_VIOLATION,
                     message=f"Expected cocircular fact Cocircular({token3},{chord2}) not found.",
                     details=f"Stored cocircular facts: {self.cocircular_facts}"
                 ))
@@ -4800,13 +5888,13 @@ class GeometricTheorem:
                                    for fact in self.collinear_facts)
             if not found_collinear1:
                 return return_error(GeometricError(
-                    tier=ErrorTier.TIER2_PREMISE,
+                    tier=ErrorTier.TIER2_PREMISE_VIOLATION,
                     message=f"Expected collinear fact Collinear({token1}) not found.",
                     details=f"Stored collinear facts: {[''.join(f) for f in self.collinear_facts]}"
                 ))
             if not found_collinear2:
                 return return_error(GeometricError(
-                    tier=ErrorTier.TIER2_PREMISE,
+                    tier=ErrorTier.TIER2_PREMISE_VIOLATION,
                     message=f"Expected collinear fact Collinear({token2}) not found.",
                     details=f"Stored collinear facts: {[''.join(f) for f in self.collinear_facts]}"
                 ))
@@ -4819,10 +5907,18 @@ class GeometricTheorem:
         elif theorem_name == "radius_of_circle_property_length_equal":
             # Check that the premise includes a centre fact.
             # Suppose args[2] holds the circle token, e.g. "O".
+            version = args[0]
+
+            if version !="1":
+                return return_error(GeometricError(
+                    tier=ErrorTier.TIER1_THEOREM_CALL_SYNTAX_VIOLATION,
+                    message="these is no such version for the theorem",
+                    details="these is no such version for the theorem radius_of_circle_property_length_equal"
+                ))
             circle_token = args[2].strip()
             if circle_token not in self.circle_centers:
                 return return_error(GeometricError(
-                    tier=ErrorTier.TIER2_PREMISE,
+                    tier=ErrorTier.TIER2_PREMISE_VIOLATION,
                     message=f"Centre for circle {circle_token} not recorded.",
                     details=f"Accumulated centres: {self.circle_centers}"
                 ))
@@ -4830,136 +5926,441 @@ class GeometricTheorem:
             # Optionally, you can also check that a Line fact for the given line is present.
             if "Line(" not in premise:
                 return return_error(GeometricError(
-                    tier=ErrorTier.TIER2_PREMISE,
+                    tier=ErrorTier.TIER2_PREMISE_VIOLATION,
                     message="Premise for radius_of_circle_property_length_equal must include a Line fact.",
                     details=f"Premise provided: {premise}"
                 ))
             return True, None
 
+
         elif theorem_name == "circle_property_chord_perpendicular_bisect_chord":
-            # Extract the circle and points from premise
-            cocirc_match = re.search(r'Cocircular\((\w+),(\w+)\)', premise)
-            if not cocirc_match:
+
+            version = args[0].strip()
+
+            if version not in {"1", "2"}:
                 return return_error(GeometricError(
-                    tier=ErrorTier.TIER2_PREMISE,
-                    message="Missing Cocircular fact in premise"
+                    tier=ErrorTier.TIER1_THEOREM_CALL_SYNTAX_VIOLATION,
+                    message="these is no such version for the theorem",
+                    details="these is no such version for the theorem circle_property_chord_perpendicular_bisect_chord"
                 ))
 
-            circle, points = cocirc_match.groups()
+            if len(args) < 4:
+                return return_error(GeometricError(
+
+                    tier=ErrorTier.TIER1_THEOREM_CALL_SYNTAX_VIOLATION,
+
+                    message="Insufficient arguments for circle_property_chord_perpendicular_bisect_chord",
+
+                    details="Expected: circle_property_chord_perpendicular_bisect_chord(version, circle, bisector_line, chord)"
+
+                ))
+
+            circle_token = args[1].strip()  # e.g., "O"
+
+            bisector_line = args[2].strip()  # e.g., "PM"
+
+            chord_token = args[3].strip()  # e.g., "AB"
+
+            # Extract the cocircular fact from the premise
+
+            cocirc_match = re.search(r'Cocircular\(' + re.escape(circle_token) + r',(\w+)\)', premise)
+
+            if not cocirc_match:
+                return return_error(GeometricError(
+
+                    tier=ErrorTier.TIER2_PREMISE_VIOLATION,
+
+                    message=f"Missing Cocircular({circle_token},...) fact in premise",
+
+                    details="Required for perpendicular bisector property"
+
+                ))
+
+            points = cocirc_match.group(1)
+
+            # Check if all chord points are in the cocircular set
+
+            if not all(p in points for p in chord_token):
+                return return_error(GeometricError(
+
+                    tier=ErrorTier.TIER2_PREMISE_VIOLATION,
+
+                    message=f"Chord points {chord_token} not all in cocircular set {points}",
+
+                    details="All chord points must lie on the circle"
+
+                ))
+
             # Check against stored cocircular facts
+
             found = False
+
             for fact in self.cocircular_facts:
-                if fact[0] == circle and sorted(fact[1:]) == sorted(list(points)):
+
+                if fact[0] == circle_token and all(p in ''.join(fact[1:]) for p in chord_token):
                     found = True
+
                     break
 
             if not found:
                 return return_error(GeometricError(
-                    tier=ErrorTier.TIER2_PREMISE,
-                    message=f"Cocircular fact not established",
+
+                    tier=ErrorTier.TIER2_PREMISE_VIOLATION,
+
+                    message=f"Cocircular fact for {circle_token} and points including {chord_token} not established",
+
                     details=f"Known cocircular facts: {self.cocircular_facts}"
+
                 ))
+
+            # Extract and check collinearity
+
+            midpoint_letter = None
+
+            collinear_match = re.search(r'Collinear\((\w+)\)', premise)
+
+            if collinear_match:
+
+                collinear_points = collinear_match.group(1)
+
+                # Check all chord points are in the collinear set
+
+                if not all(p in collinear_points for p in chord_token):
+                    return return_error(GeometricError(
+
+                        tier=ErrorTier.TIER2_PREMISE_VIOLATION,
+
+                        message=f"Not all chord points in collinear set: {chord_token} vs {collinear_points}",
+
+                        details="Chord endpoints must be part of the collinear fact"
+
+                    ))
+
+                # Identify the potential midpoint (point in collinear set not in chord)
+
+                midpoint_candidates = [p for p in collinear_points if p not in chord_token]
+
+                if midpoint_candidates:
+
+                    midpoint_letter = midpoint_candidates[0]
+
+                else:
+
+                    return return_error(GeometricError(
+
+                        tier=ErrorTier.TIER2_PREMISE_VIOLATION,
+
+                        message="Could not identify midpoint from collinear fact",
+
+                        details=f"Collinear points: {collinear_points}, chord: {chord_token}"
+
+                    ))
+
+            else:
+
+                return return_error(GeometricError(
+
+                    tier=ErrorTier.TIER2_PREMISE_VIOLATION,
+
+                    message="Missing collinear fact in premise",
+
+                    details="Required for identifying the chord's midpoint"
+
+                ))
+
+            # Check that the midpoint is on the bisector line
+
+            if midpoint_letter not in bisector_line:
+                return return_error(GeometricError(
+
+                    tier=ErrorTier.TIER2_PREMISE_VIOLATION,
+
+                    message=f"Midpoint {midpoint_letter} is not on bisector line {bisector_line}",
+
+                    details="The bisector line must pass through the chord's midpoint"
+
+                ))
+
+            # Check center of circle fact
+
+            center_match = re.search(r'IsCentreOfCircle\((\w+),' + re.escape(circle_token) + r'\)', premise)
+
+            if not center_match:
+                return return_error(GeometricError(
+
+                    tier=ErrorTier.TIER2_PREMISE_VIOLATION,
+
+                    message=f"Missing IsCentreOfCircle(...,{circle_token}) fact in premise",
+
+                    details="Required for perpendicular bisector property"
+
+                ))
+
+            center_letter = center_match.group(1)
+
+            # Verify the center is in the bisector line
+
+            if center_letter not in bisector_line:
+                return return_error(GeometricError(
+
+                    tier=ErrorTier.TIER2_PREMISE_VIOLATION,
+
+                    message=f"Center {center_letter} is not on bisector line {bisector_line}",
+
+                    details="The bisector line must pass through the center of the circle"
+
+                ))
+
+            # Version-specific checks
+
+            if version == "1":
+
+                # Check for the right angle (perpendicular)
+
+                angle_match = re.search(r'Equal\(MeasureOfAngle\((\w{3})\),90\)', premise)
+
+                if not angle_match:
+                    return return_error(GeometricError(
+
+                        tier=ErrorTier.TIER2_PREMISE_VIOLATION,
+
+                        message="Missing right angle fact in premise for version 1",
+
+                        details="Version 1 requires Equal(MeasureOfAngle(...),90)"
+
+                    ))
+
+                angle_name = angle_match.group(1)
+
+                # Verify the angle involves both the midpoint and a chord endpoint
+
+                if midpoint_letter not in angle_name or not any(p in angle_name for p in chord_token):
+                    return return_error(GeometricError(
+
+                        tier=ErrorTier.TIER2_PREMISE_VIOLATION,
+
+                        message=f"Right angle {angle_name} does not properly involve chord and midpoint",
+
+                        details=f"Expected an angle including {midpoint_letter} and at least one of {chord_token}"
+
+                    ))
+
+
+            elif version == "2":
+
+                # Check for equal lengths (bisection)
+
+                length_match = re.search(
+
+                    r'Equal\(LengthOfLine\((\w{2})\),LengthOfLine\((\w{2})\)\)', premise
+
+                )
+
+                if not length_match:
+                    return return_error(GeometricError(
+
+                        tier=ErrorTier.TIER2_PREMISE_VIOLATION,
+
+                        message="Missing length equality fact in premise for version 2",
+
+                        details="Version 2 requires Equal(LengthOfLine(...),LengthOfLine(...))"
+
+                    ))
+
+                segment1, segment2 = length_match.groups()
+
+                # Verify these segments represent the two parts of the chord
+
+                valid_segments = False
+
+                for s1, s2 in [(segment1, segment2), (segment2, segment1)]:
+
+                    if (midpoint_letter in s1 and chord_token[0] in s1 and
+
+                            midpoint_letter in s2 and chord_token[1] in s2):
+                        valid_segments = True
+
+                        break
+
+                if not valid_segments:
+                    return return_error(GeometricError(
+
+                        tier=ErrorTier.TIER2_PREMISE_VIOLATION,
+
+                        message=f"Length equality {segment1}={segment2} doesn't represent chord bisection",
+
+                        details=f"Expected equality between segments {chord_token[0]}{midpoint_letter} and {midpoint_letter}{chord_token[1]}"
+
+                    ))
+
             return True, None
 
 
         elif theorem_name == "midsegment_of_triangle_judgment_parallel":
             version = args[0].strip()
-            if version == "2":
-                if len(args) < 3:
+            if version not in {"1", "2", "3"}:
+                return return_error(GeometricError(
+                    tier=ErrorTier.TIER1_THEOREM_CALL_SYNTAX_VIOLATION,
+                    message="these is no such version for the theorem",
+                    details="these is no such version for the theorem midsegment_of_triangle_judgment_parallel"
+                ))
+
+            if len(args) < 3:
+                return return_error(GeometricError(
+                    tier=ErrorTier.TIER1_THEOREM_CALL_SYNTAX_VIOLATION,
+                    message="Insufficient arguments for midsegment_of_triangle_judgment_parallel",
+                    details="Expected: midsegment_of_triangle_judgment_parallel(version, line, triangle)"
+                ))
+
+            line = args[1].strip()  # e.g. "DE"
+            tri = args[2].strip()  # e.g. "ABC"
+
+            # Check triangle exists
+            if self.normalize_triangle(tri) not in self.polygons:
+                return return_error(GeometricError(
+                    tier=ErrorTier.TIER2_PREMISE_VIOLATION,
+                    message=f"Triangle {tri} not defined",
+                    details=f"Known polygons: {self.polygons}"
+                ))
+
+            # Check for polygon fact
+            polygon_match = re.search(r'Polygon\(' + re.escape(tri) + r'\)', premise)
+            if not polygon_match:
+                return return_error(GeometricError(
+                    tier=ErrorTier.TIER2_PREMISE_VIOLATION,
+                    message=f"Missing Polygon({tri}) fact in premise",
+                    details="Midsegment theorem requires the triangle to be defined"
+                ))
+
+            # Extract collinear facts from premise
+            collinear_matches = re.findall(r'Collinear\((\w+)\)', premise)
+            if len(collinear_matches) < 2:
+                return return_error(GeometricError(
+                    tier=ErrorTier.TIER2_PREMISE_VIOLATION,
+                    message="Missing required collinear points",
+                    details="Midsegment theorem requires two collinear facts"
+                ))
+
+            # Check each collinear fact against stored facts
+            for collinear_points in collinear_matches:
+                normalized = self.normalize_collinear_points(collinear_points)
+                if not any(self.normalize_collinear_points(''.join(fact)) == normalized
+                           for fact in self.collinear_facts):
                     return return_error(GeometricError(
-                        tier=ErrorTier.TIER1_THEOREM_CALL,
-                        message="Insufficient arguments for midsegment_of_triangle_judgment_parallel",
-                        details="Expected: midsegment_of_triangle_judgment_parallel(2, line, triangle)"
+                        tier=ErrorTier.TIER2_PREMISE_VIOLATION,
+                        message=f"Points {collinear_points} not proven collinear",
+                        details=f"Known collinear facts: {self.collinear_facts}"
                     ))
 
-                line = args[1].strip()  # e.g. "HD"
-                tri = args[2].strip()  # e.g. "CFB"
+            # Check for Line fact
+            line_match = re.search(r'Line\(' + re.escape(line) + r'\)', premise)
+            if not line_match:
+                return return_error(GeometricError(
+                    tier=ErrorTier.TIER2_PREMISE_VIOLATION,
+                    message=f"Missing Line({line}) fact in premise",
+                    details="Midsegment theorem requires the line to be defined"
+                ))
 
-                # Check triangle exists
-                if self.normalize_triangle(tri) not in self.polygons:
+            # Extract and check parallel fact
+            parallel_match = re.search(r'ParallelBetweenLine\(' + re.escape(line) + r',(\w+)\)', premise) or \
+                             re.search(r'ParallelBetweenLine\((\w+),' + re.escape(line) + r'\)', premise)
+            if not parallel_match:
+                return return_error(GeometricError(
+                    tier=ErrorTier.TIER2_PREMISE_VIOLATION,
+                    message="Missing parallel line relation",
+                    details=f"Midsegment theorem requires {line} to be parallel to a side of the triangle"
+                ))
+
+            other_line = parallel_match.group(1)
+            possible_pairs = [
+                (line, other_line),
+                (other_line, line),
+                (line[::-1], other_line),
+                (line, other_line[::-1]),
+                (other_line[::-1], line),
+                (other_line, line[::-1])
+            ]
+
+            if not any(pair in self.parallel_pairs for pair in possible_pairs):
+                return return_error(GeometricError(
+                    tier=ErrorTier.TIER2_PREMISE_VIOLATION,
+                    message=f"Lines {line} and {other_line} not proven parallel",
+                    details=f"Known parallel pairs: {self.parallel_pairs}"
+                ))
+
+            # Check for the appropriate length equality based on version
+            if version == "1":
+                # Version 1: Equal(LengthOfLine(AD),LengthOfLine(BD))
+                # Need to find the specific length equality matching the pattern
+                length_equal_found = False
+                for vertex in tri:
+                    for endpoint in line:
+                        pattern = f"Equal\\(LengthOfLine\\({vertex}{endpoint}\\),LengthOfLine\\(\\w{endpoint}\\)\\)"
+                        if re.search(pattern, premise):
+                            length_equal_found = True
+                            break
+                    if length_equal_found:
+                        break
+
+                if not length_equal_found:
                     return return_error(GeometricError(
-                        tier=ErrorTier.TIER2_PREMISE,
-                        message=f"Triangle {tri} not defined",
-                        details=f"Known polygons: {self.polygons}"
+                        tier=ErrorTier.TIER2_PREMISE_VIOLATION,
+                        message="Missing length equality for version 1",
+                        details="Version 1 requires equal lengths from triangle vertex to midsegment endpoints"
                     ))
 
-                # Extract collinear facts from premise
-                collinear_matches = re.findall(r'Collinear\((\w+)\)', premise)
-                if len(collinear_matches) < 2:
+            elif version == "2":
+                # Version 2: Equal(LengthOfLine(AE),LengthOfLine(CE))
+                # Similar pattern matching for the second type of length equality
+                length_equal_found = False
+                for vertex in tri:
+                    for endpoint in line:
+                        pattern = f"Equal\\(LengthOfLine\\({vertex}{endpoint}\\),LengthOfLine\\(\\w{endpoint}\\)\\)"
+                        if re.search(pattern, premise):
+                            length_equal_found = True
+                            break
+                    if length_equal_found:
+                        break
+
+                if not length_equal_found:
                     return return_error(GeometricError(
-                        tier=ErrorTier.TIER2_PREMISE,
-                        message="Missing required collinear points",
-                        details="Midsegment theorem requires two collinear facts"
+                        tier=ErrorTier.TIER2_PREMISE_VIOLATION,
+                        message="Missing length equality for version 2",
+                        details="Version 2 requires equal lengths from triangle vertex to midsegment endpoints"
                     ))
 
-                # Check each collinear fact against stored facts
-                for collinear_points in collinear_matches:
-                    normalized = self.normalize_collinear_points(collinear_points)
-                    if not any(self.normalize_collinear_points(''.join(fact)) == normalized
-                               for fact in self.collinear_facts):
-                        return return_error(GeometricError(
-                            tier=ErrorTier.TIER2_PREMISE,
-                            message=f"Points {collinear_points} not proven collinear",
-                            details=f"Known collinear facts: {self.collinear_facts}"
-                        ))
-
-                # Extract and check parallel fact
-                parallel_match = re.search(r'ParallelBetweenLine\((\w+),(\w+)\)', premise)
-                if not parallel_match:
-                    return return_error(GeometricError(
-                        tier=ErrorTier.TIER2_PREMISE,
-                        message="Missing parallel line relation",
-                        details="Midsegment theorem requires parallel lines"
-                    ))
-
-                line1, line2 = parallel_match.groups()
-                possible_pairs = [
-                    (line1, line2),
-                    (line2, line1),
-                    (line1[::-1], line2),
-                    (line1, line2[::-1]),
-                    (line2[::-1], line1),
-                    (line2, line1[::-1])
-                ]
-
-                if not any(pair in self.parallel_pairs for pair in possible_pairs):
-                    return return_error(GeometricError(
-                        tier=ErrorTier.TIER2_PREMISE,
-                        message=f"Lines {line1} and {line2} not proven parallel",
-                        details=f"Known parallel pairs: {self.parallel_pairs}"
-                    ))
-
-                # Extract and check length equality
-                length_match = re.search(r'Equal\(LengthOfLine\((\w+)\),LengthOfLine\((\w+)\)\)', premise)
+            elif version == "3":
+                # Version 3: Equal(LengthOfLine(BC),Mul(LengthOfLine(DE),2))
+                length_match = re.search(
+                    r'Equal\(LengthOfLine\((\w+)\),Mul\(LengthOfLine\(' + re.escape(line) + r'\),2\)\)', premise)
                 if not length_match:
                     return return_error(GeometricError(
-                        tier=ErrorTier.TIER2_PREMISE,
-                        message="Missing length equality",
-                        details="Midsegment theorem requires equal lengths"
+                        tier=ErrorTier.TIER2_PREMISE_VIOLATION,
+                        message="Missing required length relationship for version 3",
+                        details=f"Version 3 requires that a side of the triangle equals twice the length of {line}"
                     ))
 
-                length1, length2 = length_match.groups()
-                if not self.check_length_equality(length1, length2):
-                    return return_error(GeometricError(
-                        tier=ErrorTier.TIER2_PREMISE,
-                        message=f"Lengths {length1} and {length2} not proven equal",
-                        details="Required for midsegment theorem"
-                    ))
-
-                return True, None
+            return True, None
 
 
 
 
 
         elif theorem_name == "arc_length_formula":
+            version = args[0]
 
+            if version != "1":
+                return return_error(GeometricError(
+                    tier=ErrorTier.TIER1_THEOREM_CALL_SYNTAX_VIOLATION,
+                    message="these is no such version for the theorem",
+                    details="these is no such version for the theorem arc_length_formula"
+                ))
             arc_match = re.search(r'Arc\((\w+)\)', premise)
 
             if not arc_match:
                 return return_error(GeometricError(
 
-                    tier=ErrorTier.TIER2_PREMISE,
+                    tier=ErrorTier.TIER2_PREMISE_VIOLATION,
 
                     message="Missing arc definition"
 
@@ -4972,7 +6373,7 @@ class GeometricTheorem:
             if f"arc_{normalized_arc}" not in self.arcs:
                 return return_error(GeometricError(
 
-                    tier=ErrorTier.TIER2_PREMISE,
+                    tier=ErrorTier.TIER2_PREMISE_VIOLATION,
 
                     message=f"Arc {arc_name} not established",
 
@@ -4985,10 +6386,18 @@ class GeometricTheorem:
 
         elif theorem_name == "arc_property_circumference_angle_internal":
             # Extract angle from premise
+            version = args[0]
+
+            if version != "1":
+                return return_error(GeometricError(
+                    tier=ErrorTier.TIER1_THEOREM_CALL_SYNTAX_VIOLATION,
+                    message="these is no such version for the theorem",
+                    details="these is no such version for the theorem arc_property_circumference_angle_internal"
+                ))
             angle_match = re.search(r'Angle\((\w{3})\)', premise)
             if not angle_match:
                 return return_error(GeometricError(
-                    tier=ErrorTier.TIER2_PREMISE,
+                    tier=ErrorTier.TIER2_PREMISE_VIOLATION,
                     message="Missing angle in premise"
                 ))
 
@@ -4996,11 +6405,22 @@ class GeometricTheorem:
 
 
         elif theorem_name == "parallel_property_ipsilateral_internal_angle":
+
+            # Extract angle from premise
+            version = args[0]
+
+            if version != "1":
+                return return_error(GeometricError(
+                    tier=ErrorTier.TIER1_THEOREM_CALL_SYNTAX_VIOLATION,
+                    message="these is no such version for the theorem",
+                    details="these is no such version for the theorem parallel_property_ipsilateral_internal_angle"
+                ))
+
             # The premise should include a ParallelBetweenLine clause and a Line clause.
             parallel_match = re.search(r'ParallelBetweenLine\((\w+),(\w+)\)', premise)
             if not parallel_match:
                 return return_error(GeometricError(
-                    tier=ErrorTier.TIER2_PREMISE,
+                    tier=ErrorTier.TIER2_PREMISE_VIOLATION,
                     message="Missing parallel lines in premise"
                 ))
 
@@ -5010,7 +6430,7 @@ class GeometricTheorem:
 
             if not possible_pairs in self.parallel_pairs:
                 return return_error(GeometricError(
-                    tier=ErrorTier.TIER2_PREMISE,
+                    tier=ErrorTier.TIER2_PREMISE_VIOLATION,
                     message=f"Lines {line1} and {line2} not proven parallel",
                     details=f"Known parallel pairs: {self.parallel_pairs}"
                 ))
@@ -5020,13 +6440,20 @@ class GeometricTheorem:
         elif theorem_name == "circle_property_circular_power_segment_and_segment_angle":
 
             # Extract the cocircular fact tokens from the premise.
+            version = args[0]
 
+            if version not in ["1","2"]:
+                return return_error(GeometricError(
+                    tier=ErrorTier.TIER1_THEOREM_CALL_SYNTAX_VIOLATION,
+                    message="these is no such version for the theorem",
+                    details="these is no such version for the theorem circle_property_circular_power_segment_and_segment_angle"
+                ))
             cocirc_match = re.search(r'Cocircular\((\w),(\w+)\)', premise)
 
             if not cocirc_match:
                 return return_error(GeometricError(
 
-                    tier=ErrorTier.TIER2_PREMISE,
+                    tier=ErrorTier.TIER2_PREMISE_VIOLATION,
 
                     message="Premise is missing a valid Cocircular(...) fact.",
 
@@ -5056,7 +6483,7 @@ class GeometricTheorem:
             if not found:
                 return return_error(GeometricError(
 
-                    tier=ErrorTier.TIER2_PREMISE,
+                    tier=ErrorTier.TIER2_PREMISE_VIOLATION,
 
                     message=f"Cocircular({circle_token},{arc_group_token}) not established",
 
@@ -5082,7 +6509,7 @@ class GeometricTheorem:
                 if not found_coll:
                     return return_error(GeometricError(
 
-                        tier=ErrorTier.TIER2_PREMISE,
+                        tier=ErrorTier.TIER2_PREMISE_VIOLATION,
 
                         message=f"Collinear({collinear_token}) not established",
 
@@ -5101,10 +6528,18 @@ class GeometricTheorem:
         elif theorem_name == "triangle_perimeter_formula":
             # Check that the premise contains a valid triangle.
             # Expecting something like: Polygon(ABC)
+            version = args[0]
+
+            if version != "1":
+                return return_error(GeometricError(
+                    tier=ErrorTier.TIER1_THEOREM_CALL_SYNTAX_VIOLATION,
+                    message="these is no such version for the theorem",
+                    details="these is no such version for the theorem triangle_perimeter_formula"
+                ))
             poly_match = re.search(r'Polygon\((\w+)\)', premise)
             if not poly_match:
                 return return_error(GeometricError(
-                    tier=ErrorTier.TIER2_PREMISE,
+                    tier=ErrorTier.TIER2_PREMISE_VIOLATION,
                     message="Missing or invalid Polygon() in premise for sine_theorem"
                 ))
             return True, None
@@ -5123,13 +6558,21 @@ class GeometricTheorem:
             # that these facts have already been accumulated.
 
             # Check for the tangent fact.
+            version = args[0]
+
+            if version not in  ["1","2"]:
+                return return_error(GeometricError(
+                    tier=ErrorTier.TIER1_THEOREM_CALL_SYNTAX_VIOLATION,
+                    message="these is no such version for the theorem",
+                    details="these is no such version for the theorem tangent_of_circle_property_perpendicular"
+                ))
 
             tan_m = re.search(r'IsTangentOfCircle\((\w+),(\w+)\)', premise)
 
             if not tan_m:
                 return return_error(GeometricError(
 
-                    tier=ErrorTier.TIER2_PREMISE,
+                    tier=ErrorTier.TIER2_PREMISE_VIOLATION,
 
                     message="Missing IsTangentOfCircle(...) in premise for tangent_of_circle_property_perpendicular",
 
@@ -5142,7 +6585,7 @@ class GeometricTheorem:
             if (tangent_line_from_premise, center_from_tangent) not in self.tangent_facts:
                 return return_error(GeometricError(
 
-                    tier=ErrorTier.TIER2_PREMISE,
+                    tier=ErrorTier.TIER2_PREMISE_VIOLATION,
 
                     message=f"Tangent fact IsTangentOfCircle({tangent_line_from_premise},{center_from_tangent}) not established",
 
@@ -5157,7 +6600,7 @@ class GeometricTheorem:
             if not angle_m:
                 return return_error(GeometricError(
 
-                    tier=ErrorTier.TIER2_PREMISE,
+                    tier=ErrorTier.TIER2_PREMISE_VIOLATION,
 
                     message="Missing Angle(...) in premise for tangent_of_circle_property_perpendicular",
 
@@ -5176,7 +6619,7 @@ class GeometricTheorem:
             if not centre_m:
                 return return_error(GeometricError(
 
-                    tier=ErrorTier.TIER2_PREMISE,
+                    tier=ErrorTier.TIER2_PREMISE_VIOLATION,
 
                     message="Missing IsCentreOfCircle(...) in premise for tangent_of_circle_property_perpendicular",
 
@@ -5189,7 +6632,7 @@ class GeometricTheorem:
             if centre_from_fact not in self.circle_centers:
                 return return_error(GeometricError(
 
-                    tier=ErrorTier.TIER2_PREMISE,
+                    tier=ErrorTier.TIER2_PREMISE_VIOLATION,
 
                     message=f"Centre {centre_from_fact} not established",
 
@@ -5201,7 +6644,14 @@ class GeometricTheorem:
 
 
         elif theorem_name == "arc_property_center_angle":
+            version = args[0]
 
+            if version != "1":
+                return return_error(GeometricError(
+                    tier=ErrorTier.TIER1_THEOREM_CALL_SYNTAX_VIOLATION,
+                    message="these is no such version for the theorem",
+                    details="these is no such version for the theorem arc_property_center_angle"
+                ))
             # Expected premise: e.g. "Arc(OMN)&Angle(NOM)&IsCentreOfCircle(O,O)"
 
             # Extract the arc fact.
@@ -5211,7 +6661,7 @@ class GeometricTheorem:
             if not arc_m:
                 return return_error(GeometricError(
 
-                    tier=ErrorTier.TIER2_PREMISE,
+                    tier=ErrorTier.TIER2_PREMISE_VIOLATION,
 
                     message="Missing Arc(...) in premise for arc_property_center_angle",
 
@@ -5226,7 +6676,7 @@ class GeometricTheorem:
             if f"arc_{normalized_arc}" not in self.arcs:
                 return return_error(GeometricError(
 
-                    tier=ErrorTier.TIER2_PREMISE,
+                    tier=ErrorTier.TIER2_PREMISE_VIOLATION,
 
                     message=f"Arc {arc_name} not established",
 
@@ -5241,7 +6691,7 @@ class GeometricTheorem:
             if not angle_m:
                 return return_error(GeometricError(
 
-                    tier=ErrorTier.TIER2_PREMISE,
+                    tier=ErrorTier.TIER2_PREMISE_VIOLATION,
 
                     message="Missing Angle(...) in premise for arc_property_center_angle",
 
@@ -5260,7 +6710,7 @@ class GeometricTheorem:
             if not centre_m:
                 return return_error(GeometricError(
 
-                    tier=ErrorTier.TIER2_PREMISE,
+                    tier=ErrorTier.TIER2_PREMISE_VIOLATION,
 
                     message="Missing IsCentreOfCircle(...) in premise for arc_property_center_angle",
 
@@ -5273,7 +6723,7 @@ class GeometricTheorem:
             if centre_from_fact not in self.circle_centers:
                 return return_error(GeometricError(
 
-                    tier=ErrorTier.TIER2_PREMISE,
+                    tier=ErrorTier.TIER2_PREMISE_VIOLATION,
 
                     message=f"Centre {centre_from_fact} not established",
 
@@ -5285,7 +6735,14 @@ class GeometricTheorem:
 
 
         elif theorem_name == "arc_property_circumference_angle_external":
+            version = args[0]
 
+            if version != "1":
+                return return_error(GeometricError(
+                    tier=ErrorTier.TIER1_THEOREM_CALL_SYNTAX_VIOLATION,
+                    message="these is no such version for the theorem",
+                    details="these is no such version for the theorem arc_property_circumference_angle_external"
+                ))
             # Expected premise: e.g. "Cocircular(O,MNB)&Angle(NBM)"
 
             # Extract the cocircular fact.
@@ -5295,7 +6752,7 @@ class GeometricTheorem:
             if not cocirc_m:
                 return return_error(GeometricError(
 
-                    tier=ErrorTier.TIER2_PREMISE,
+                    tier=ErrorTier.TIER2_PREMISE_VIOLATION,
 
                     message="Missing Cocircular(...) in premise for arc_property_circumference_angle_external",
 
@@ -5323,7 +6780,7 @@ class GeometricTheorem:
             if not found:
                 return return_error(GeometricError(
 
-                    tier=ErrorTier.TIER2_PREMISE,
+                    tier=ErrorTier.TIER2_PREMISE_VIOLATION,
 
                     message=f"Cocircular({circle_from_cocirc},{points_str}) not established",
 
@@ -5338,7 +6795,7 @@ class GeometricTheorem:
             if not angle_m:
                 return return_error(GeometricError(
 
-                    tier=ErrorTier.TIER2_PREMISE,
+                    tier=ErrorTier.TIER2_PREMISE_VIOLATION,
 
                     message="Missing Angle(...) in premise for arc_property_circumference_angle_external",
 
@@ -5353,7 +6810,7 @@ class GeometricTheorem:
             # if f"angle_{normalized_angle}" not in self.angles:
             #     return return_error(GeometricError(
             #
-            #         tier=ErrorTier.TIER2_PREMISE,
+            #         tier=ErrorTier.TIER2_PREMISE_VIOLATION,
             #
             #         message=f"Angle {angle_str} not established",
             #
@@ -5376,7 +6833,7 @@ class GeometricTheorem:
             if not arc_m:
                 return return_error(GeometricError(
 
-                    tier=ErrorTier.TIER2_PREMISE,
+                    tier=ErrorTier.TIER2_PREMISE_VIOLATION,
 
                     message="Missing Arc(...) in premise for arc_property_center_angle",
 
@@ -5391,7 +6848,7 @@ class GeometricTheorem:
             if f"arc_{normalized_arc}" not in self.arcs:
                 return return_error(GeometricError(
 
-                    tier=ErrorTier.TIER2_PREMISE,
+                    tier=ErrorTier.TIER2_PREMISE_VIOLATION,
 
                     message=f"Arc {arc_name} not established",
 
@@ -5406,7 +6863,7 @@ class GeometricTheorem:
             if not angle_m:
                 return return_error(GeometricError(
 
-                    tier=ErrorTier.TIER2_PREMISE,
+                    tier=ErrorTier.TIER2_PREMISE_VIOLATION,
 
                     message="Missing Angle(...) in premise for arc_property_center_angle",
 
@@ -5421,7 +6878,7 @@ class GeometricTheorem:
             if f"angle_{normalized_angle}" not in self.angles:
                 return return_error(GeometricError(
 
-                    tier=ErrorTier.TIER2_PREMISE,
+                    tier=ErrorTier.TIER2_PREMISE_VIOLATION,
 
                     message=f"Angle {angle_str} not established",
 
@@ -5436,7 +6893,7 @@ class GeometricTheorem:
             if not centre_m:
                 return return_error(GeometricError(
 
-                    tier=ErrorTier.TIER2_PREMISE,
+                    tier=ErrorTier.TIER2_PREMISE_VIOLATION,
 
                     message="Missing IsCentreOfCircle(...) in premise for arc_property_center_angle",
 
@@ -5449,7 +6906,7 @@ class GeometricTheorem:
             if centre_from_fact not in self.circle_centers:
                 return return_error(GeometricError(
 
-                    tier=ErrorTier.TIER2_PREMISE,
+                    tier=ErrorTier.TIER2_PREMISE_VIOLATION,
 
                     message=f"Centre {centre_from_fact} not established",
 
@@ -5471,7 +6928,7 @@ class GeometricTheorem:
             if not cocirc_m:
                 return return_error(GeometricError(
 
-                    tier=ErrorTier.TIER2_PREMISE,
+                    tier=ErrorTier.TIER2_PREMISE_VIOLATION,
 
                     message="Missing Cocircular(...) in premise for arc_property_circumference_angle_external",
 
@@ -5499,7 +6956,7 @@ class GeometricTheorem:
             if not found:
                 return return_error(GeometricError(
 
-                    tier=ErrorTier.TIER2_PREMISE,
+                    tier=ErrorTier.TIER2_PREMISE_VIOLATION,
 
                     message=f"Cocircular({circle_from_cocirc},{points_str}) not established",
 
@@ -5514,7 +6971,7 @@ class GeometricTheorem:
             if not angle_m:
                 return return_error(GeometricError(
 
-                    tier=ErrorTier.TIER2_PREMISE,
+                    tier=ErrorTier.TIER2_PREMISE_VIOLATION,
 
                     message="Missing Angle(...) in premise for arc_property_circumference_angle_external",
 
@@ -5529,7 +6986,7 @@ class GeometricTheorem:
             if f"angle_{normalized_angle}" not in self.angles:
                 return return_error(GeometricError(
 
-                    tier=ErrorTier.TIER2_PREMISE,
+                    tier=ErrorTier.TIER2_PREMISE_VIOLATION,
 
                     message=f"Angle {angle_str} not established",
 
@@ -5547,23 +7004,30 @@ class GeometricTheorem:
         elif theorem_name == "sine_theorem":
             # Check that the premise contains a valid triangle.
             # Expecting something like: Polygon(ABC)
+            version = args[0]
+            if version != "1":
+                return return_error(GeometricError(
+                    tier=ErrorTier.TIER1_THEOREM_CALL_SYNTAX_VIOLATION,
+                    message="these is no such version for the theorem",
+                    details="these is no such version for the theorem sine_theorem"
+                ))
             poly_match = re.search(r'Polygon\((\w+)\)', premise)
             if not poly_match:
                 return return_error(GeometricError(
-                    tier=ErrorTier.TIER2_PREMISE,
+                    tier=ErrorTier.TIER2_PREMISE_VIOLATION,
                     message="Missing or invalid Polygon() in premise for sine_theorem"
                 ))
             triangle_points = poly_match.group(1)
             if len(triangle_points) != 3:
                 return return_error(GeometricError(
-                    tier=ErrorTier.TIER2_PREMISE,
+                    tier=ErrorTier.TIER2_PREMISE_VIOLATION,
                     message=f"Polygon({triangle_points}) does not represent a triangle (3 vertices expected)"
                 ))
             # Optionally, if the theorem call provides a triangle (as args[1]),
             # verify that it matches the Polygon fact.
             if len(args) >= 2 and args[1].strip() != triangle_points:
                 return return_error(GeometricError(
-                    tier=ErrorTier.TIER2_PREMISE,
+                    tier=ErrorTier.TIER2_PREMISE_VIOLATION,
                     message=f"Polygon in premise ({triangle_points}) does not match the triangle in theorem call ({args[1].strip()})"
                 ))
             return True, None
@@ -5575,12 +7039,19 @@ class GeometricTheorem:
             # 2) Check Cocircular(DBCA) is in self.cocircular_facts
             # 3) Check 'Angle(BCA)' => just means that angle is recognized
             # If any fail -> Tier2 premise error
+            version = args[0]
+            if version != "1":
+                return return_error(GeometricError(
+                    tier=ErrorTier.TIER1_THEOREM_CALL_SYNTAX_VIOLATION,
+                    message="these is no such version for the theorem",
+                    details="these is no such version for the theorem diameter_of_circle_property_right_angle"
+                ))
 
             # 1) check diameter premise
             diam_m = re.search(r'IsDiameterOfCircle\((\w+),(\w+)\)', premise)
             if not diam_m:
                 return return_error(GeometricError(
-                    tier=ErrorTier.TIER2_PREMISE,
+                    tier=ErrorTier.TIER2_PREMISE_VIOLATION,
                     message="Missing or invalid IsDiameterOfCircle(...) in premise"
                 ))
             line_name, circle_name = diam_m.groups()
@@ -5588,7 +7059,7 @@ class GeometricTheorem:
             if (line_name, circle_name) not in self.is_diameter_of_circle and (
                     line_name[::-1], circle_name) not in self.is_diameter_of_circle:
                 return return_error(GeometricError(
-                    tier=ErrorTier.TIER2_PREMISE,
+                    tier=ErrorTier.TIER2_PREMISE_VIOLATION,
                     message=f"Line {line_name} is not recorded as a diameter of circle {circle_name}"
                 ))
 
@@ -5597,7 +7068,7 @@ class GeometricTheorem:
             cocirc_m = re.search(r'Cocircular\((\w+),(\w+)\)', premise)
             if not cocirc_m:
                 return return_error(GeometricError(
-                    tier=ErrorTier.TIER2_PREMISE,
+                    tier=ErrorTier.TIER2_PREMISE_VIOLATION,
                     message="Missing Cocircular(...) in premise"
                 ))
             circle_from_cocirc, points_str = cocirc_m.groups()
@@ -5614,7 +7085,7 @@ class GeometricTheorem:
                         break
             if not found_cocirc:
                 return return_error(GeometricError(
-                    tier=ErrorTier.TIER2_PREMISE,
+                    tier=ErrorTier.TIER2_PREMISE_VIOLATION,
                     message=f"Cocircular({circle_from_cocirc},{points_str}) was not established"
                 ))
 
@@ -5622,7 +7093,7 @@ class GeometricTheorem:
             angle_m = re.search(r'Angle\((\w+)\)', premise)
             if not angle_m:
                 return return_error(GeometricError(
-                    tier=ErrorTier.TIER2_PREMISE,
+                    tier=ErrorTier.TIER2_PREMISE_VIOLATION,
                     message="Missing Angle(...) in premise"
                 ))
             # If all good:
@@ -5642,7 +7113,7 @@ class GeometricTheorem:
                 if len(args) < 2:
                     return return_error(GeometricError(
 
-                        tier=ErrorTier.TIER1_THEOREM_CALL,
+                        tier=ErrorTier.TIER1_THEOREM_CALL_SYNTAX_VIOLATION,
 
                         message="Missing triangle argument for right_triangle_property_pythagorean",
 
@@ -5657,7 +7128,7 @@ class GeometricTheorem:
                 if self.normalize_triangle(triangle) not in self.right_triangles:
                     return return_error(GeometricError(
 
-                        tier=ErrorTier.TIER2_PREMISE,
+                        tier=ErrorTier.TIER2_PREMISE_VIOLATION,
 
                         message=f"RightTriangle({triangle}) is not recorded.",
 
@@ -5666,8 +7137,13 @@ class GeometricTheorem:
                     ))
 
                 return True, None
-            elif version == "2":
-                print("2")
+            else:
+                return return_error(GeometricError(
+                    tier=ErrorTier.TIER1_THEOREM_CALL_SYNTAX_VIOLATION,
+                    message="these is no such version for the theorem",
+                    details="these is no such version for the theorem right_triangle_property_pythagorean"
+                ))
+
 
 
 
@@ -5676,10 +7152,18 @@ class GeometricTheorem:
             # premise example: Polygon(CAB)
             # conclusion: "Equal(AreaOfTriangle(CAB),Mul(LengthOfLine(CA),LengthOfLine(CB),Sin(MeasureOfAngle(ACB)),1/2))"
             # Just check premise has "Polygon(CAB)"
+            version = args[0]
+            if version != "1":
+                return return_error(GeometricError(
+                    tier=ErrorTier.TIER1_THEOREM_CALL_SYNTAX_VIOLATION,
+                    message="these is no such version for the theorem",
+                    details="these is no such version for the theorem triangle_area_formula_sine"
+                ))
+
             pm = re.search(r'Polygon\((\w+)\)', premise)
             if not pm:
                 return return_error(GeometricError(
-                    tier=ErrorTier.TIER2_PREMISE,
+                    tier=ErrorTier.TIER2_PREMISE_VIOLATION,
                     message="triangle_area_formula_sine requires Polygon(...) in premise"
                 ))
             # That’s enough for a basic Tier2 check
@@ -5688,17 +7172,24 @@ class GeometricTheorem:
         elif theorem_name == "diameter_of_circle_property_length_equal":
             # premise: "IsDiameterOfCircle(BA,D)"
             # conclusion: "Equal(LengthOfLine(BA),DiameterOfCircle(D))"
+            version = args[0]
+            if version != "1":
+                return return_error(GeometricError(
+                    tier=ErrorTier.TIER1_THEOREM_CALL_SYNTAX_VIOLATION,
+                    message="these is no such version for the theorem",
+                    details="these is no such version for the theorem diameter_of_circle_property_length_equal"
+                ))
             diam_m = re.search(r'IsDiameterOfCircle\((\w+),(\w+)\)', premise)
             if not diam_m:
                 return return_error(GeometricError(
-                    tier=ErrorTier.TIER2_PREMISE,
+                    tier=ErrorTier.TIER2_PREMISE_VIOLATION,
                     message="Missing IsDiameterOfCircle(...) in premise"
                 ))
             line_name, circle_name = diam_m.groups()
             if (line_name, circle_name) not in self.is_diameter_of_circle and (
                     line_name[::-1], circle_name) not in self.is_diameter_of_circle:
                 return return_error(GeometricError(
-                    tier=ErrorTier.TIER2_PREMISE,
+                    tier=ErrorTier.TIER2_PREMISE_VIOLATION,
                     message=f"Line {line_name} is not recorded as diameter of circle {circle_name}"
                 ))
             return True, None
@@ -5706,73 +7197,53 @@ class GeometricTheorem:
         elif theorem_name == "circle_property_length_of_radius_and_diameter":
             # premise: "Circle(D)"
             # conclusion: "Equal(DiameterOfCircle(D),Mul(RadiusOfCircle(D),2))"
+            version = args[0]
+            if version != "1":
+                return return_error(GeometricError(
+                    tier=ErrorTier.TIER1_THEOREM_CALL_SYNTAX_VIOLATION,
+                    message="these is no such version for the theorem",
+                    details="these is no such version for the theorem circle_property_length_of_radius_and_diameter"
+                ))
             circ_m = re.search(r'Circle\((\w+)\)', premise)
             if not circ_m:
                 return return_error(GeometricError(
-                    tier=ErrorTier.TIER2_PREMISE,
+                    tier=ErrorTier.TIER2_PREMISE_VIOLATION,
                     message="Missing Circle(...) in premise"
                 ))
             circle_name = circ_m.group(1)
             if circle_name not in self.circle_radii:
                 return return_error(GeometricError(
-                    tier=ErrorTier.TIER2_PREMISE,
+                    tier=ErrorTier.TIER2_PREMISE_VIOLATION,
                     message=f"Circle {circle_name} not known"
                 ))
             return True, None
 
         elif theorem_name == "circle_area_formula":
+            version = args[0]
+            if version != "1":
+                return return_error(GeometricError(
+                    tier=ErrorTier.TIER1_THEOREM_CALL_SYNTAX_VIOLATION,
+                    message="these is no such version for the theorem",
+                    details="these is no such version for the theorem circle_area_formula"
+                ))
             # premise: "Circle(D)"
             # conclusion: "Equal(AreaOfCircle(D),Mul(pi,RadiusOfCircle(D),RadiusOfCircle(D)))"
             circ_m = re.search(r'Circle\((\w+)\)', premise)
             if not circ_m:
                 return return_error(GeometricError(
-                    tier=ErrorTier.TIER2_PREMISE,
+                    tier=ErrorTier.TIER2_PREMISE_VIOLATION,
                     message="Missing Circle(...) in premise for circle_area_formula"
                 ))
             circle_name = circ_m.group(1)
             if circle_name not in self.circle_radii:
                 return return_error(GeometricError(
-                    tier=ErrorTier.TIER2_PREMISE,
+                    tier=ErrorTier.TIER2_PREMISE_VIOLATION,
                     message=f"Circle {circle_name} is not declared"
                 ))
             return True, None
 
 
-        elif theorem_name == "square_property_definition":
 
-            # We expect the premise to contain 'Square(ABCD)' or 'Square(HEFG)', etc.
-
-            match = re.search(r'Square\((\w+)\)', premise)
-
-            if not match:
-                return return_error(GeometricError(
-
-                    tier=ErrorTier.TIER2_PREMISE,
-
-                    message="Missing Square(...) in premise",
-
-                    details="square_property_definition theorem requires 'Square(XXXX)' in the premise"
-
-                ))
-
-            shape_name = match.group(1)
-
-            # Now check if shape_name is recorded in self.squares
-
-            if shape_name not in self.squares:
-                return return_error(GeometricError(
-
-                    tier=ErrorTier.TIER2_PREMISE,
-
-                    message=f"{shape_name} not found in self.squares",
-
-                    details=f"Found squares: {self.squares}"
-
-                ))
-
-            # If we get here, we accept the premise as valid
-
-            return True, None
 
 
         elif theorem_name == "right_triangle_judgment_angle":
@@ -5781,7 +7252,7 @@ class GeometricTheorem:
             if version == "1":
                 if len(args) < 2:
                     return return_error(GeometricError(
-                        tier=ErrorTier.TIER1_THEOREM_CALL,
+                        tier=ErrorTier.TIER1_THEOREM_CALL_SYNTAX_VIOLATION,
                         message="Missing triangle argument for right_triangle_judgment_angle",
                         details="Expected right_triangle_judgment_angle(1, triangle)"
                     ))
@@ -5837,19 +7308,24 @@ class GeometricTheorem:
                                     print(f"Warning: Solver is unsatisfiable when checking angle {angle_str}.")
                 # if not polygon_found:
                 #     return return_error(GeometricError(
-                #         tier=ErrorTier.TIER2_PREMISE,
+                #         tier=ErrorTier.TIER2_PREMISE_VIOLATION,
                 #         message=f"Polygon fact for triangle {triangle} is missing in the premise.",
                 #         details=f"Premise provided: {premise}"
                 #     ))
                 if not angle_90_found:
                     return return_error(GeometricError(
-                        tier=ErrorTier.TIER2_PREMISE,
+                        tier=ErrorTier.TIER2_PREMISE_VIOLATION,
                         message=f"Angle measure 90° for triangle {triangle} is not established in the premise.",
                         details=f"Premise provided: {premise}"
                     ))
                 return True, None
-            elif version == "2":
-                print("2")
+            else:
+                return return_error(GeometricError(
+                    tier=ErrorTier.TIER1_THEOREM_CALL_SYNTAX_VIOLATION,
+                    message="these is no such version for the theorem",
+                    details="these is no such version for the theorem right_triangle_judgment_angle"
+                ))
+
 
 
         elif theorem_name == "triangle_property_angle_sum":
@@ -5859,25 +7335,29 @@ class GeometricTheorem:
                 poly_match = re.search(r'Polygon\((\w+)\)', premise)
                 if not poly_match:
                     return return_error(GeometricError(
-                        tier=ErrorTier.TIER2_PREMISE,
+                        tier=ErrorTier.TIER2_PREMISE_VIOLATION,
                         message="Missing or invalid Polygon() in premise for triangle_property_angle_sum"
                     ))
                 triangle_points = poly_match.group(1)
                 if len(triangle_points) != 3:
                     return return_error(GeometricError(
-                        tier=ErrorTier.TIER2_PREMISE,
+                        tier=ErrorTier.TIER2_PREMISE_VIOLATION,
                         message=f"Polygon({triangle_points}) does not represent a triangle (3 vertices expected)"
                     ))
                 # Optionally, check that the triangle provided in the theorem call (e.g., args[1]) matches the Polygon.
                 if len(args) >= 2 and args[1].strip() != triangle_points:
                     return return_error(GeometricError(
-                        tier=ErrorTier.TIER2_PREMISE,
+                        tier=ErrorTier.TIER2_PREMISE_VIOLATION,
                         message=f"Polygon in premise ({triangle_points}) does not match the triangle in theorem call ({args[1].strip()})"
                     ))
                 # Premise is valid.
                 return True, None
-            elif version == "2":
-                return True, None
+            else:
+                return return_error(GeometricError(
+                    tier=ErrorTier.TIER1_THEOREM_CALL_SYNTAX_VIOLATION,
+                    message="these is no such version for the theorem",
+                    details="these is no such version for the theorem triangle_property_angle_sum"
+                ))
 
 
 
@@ -5885,11 +7365,17 @@ class GeometricTheorem:
 
 
         elif theorem_name == "mirror_similar_triangle_judgment_aa":
-
+            version = args[0]
+            if version != "1":
+                return return_error(GeometricError(
+                    tier=ErrorTier.TIER1_THEOREM_CALL_SYNTAX_VIOLATION,
+                    message="these is no such version for the theorem",
+                    details="these is no such version for the theorem mirror_similar_triangle_judgment_aa"
+                ))
             if len(args) < 3:
                 return return_error(GeometricError(
 
-                    tier=ErrorTier.TIER1_THEOREM_CALL,
+                    tier=ErrorTier.TIER1_THEOREM_CALL_SYNTAX_VIOLATION,
 
                     message="Insufficient arguments for mirror_similar_triangle_judgment_aa",
 
@@ -5904,7 +7390,7 @@ class GeometricTheorem:
             if self.normalize_triangle(triangle1) not in self.polygons:
                 return return_error(GeometricError(
 
-                    tier=ErrorTier.TIER2_PREMISE,
+                    tier=ErrorTier.TIER2_PREMISE_VIOLATION,
 
                     message=f"Polygon for triangle {triangle1} is missing",
 
@@ -5915,7 +7401,7 @@ class GeometricTheorem:
             if self.normalize_triangle(triangle2) not in self.polygons:
                 return return_error(GeometricError(
 
-                    tier=ErrorTier.TIER2_PREMISE,
+                    tier=ErrorTier.TIER2_PREMISE_VIOLATION,
 
                     message=f"Polygon for triangle {triangle2} is missing",
 
@@ -5950,7 +7436,7 @@ class GeometricTheorem:
                         if not self.check_angle_equality(ang1, ang2):
                             return return_error(GeometricError(
 
-                                tier=ErrorTier.TIER2_PREMISE,
+                                tier=ErrorTier.TIER2_PREMISE_VIOLATION,
 
                                 message=f"Premise angle equality {ang1} = {ang2} does not hold.",
 
@@ -5962,7 +7448,7 @@ class GeometricTheorem:
 
                         return return_error(GeometricError(
 
-                            tier=ErrorTier.TIER2_PREMISE,
+                            tier=ErrorTier.TIER2_PREMISE_VIOLATION,
 
                             message=f"Angle equality clause '{conj}' is not in the expected format.",
 
@@ -5974,10 +7460,17 @@ class GeometricTheorem:
 
 
         elif theorem_name == "mirror_similar_triangle_property_line_ratio":
+            version = args[0]
+            if version != "1":
+                return return_error(GeometricError(
+                    tier=ErrorTier.TIER1_THEOREM_CALL_SYNTAX_VIOLATION,
+                    message="these is no such version for the theorem",
+                    details="these is no such version for the theorem mirror_similar_triangle_property_line_ratio"
+                ))
             similar_match = re.search(r'MirrorSimilarBetweenTriangle\((\w+),(\w+)\)', premise)
             if not similar_match:
                 return return_error(GeometricError(
-                    tier=ErrorTier.TIER2_PREMISE,
+                    tier=ErrorTier.TIER2_PREMISE_VIOLATION,
                     message="Missing MirrorSimilarBetweenTriangle(...) in premise",
                     details="mirror_similar_triangle_property_line_ratio requires mirror similar triangles"
                 ))
@@ -5985,7 +7478,7 @@ class GeometricTheorem:
             canonical_pair = self.canonicalize_mirror_triangle_pair(tri1, tri2)
             if canonical_pair not in self.mirror_similar_triangles:
                 return return_error(GeometricError(
-                    tier=ErrorTier.TIER2_PREMISE,
+                    tier=ErrorTier.TIER2_PREMISE_VIOLATION,
                     message=f"Triangles {tri1} and {tri2} are not proven mirror similar",
                     details=f"Known mirror similar triangles: {self.mirror_similar_triangles}"
                 ))
@@ -5999,11 +7492,16 @@ class GeometricTheorem:
             version = args[0]
 
             # Common check: the premise must include a ParallelBetweenLine fact.
-
+            if version not in ["1","2"]:
+                return_error(GeometricError(
+                    tier=ErrorTier.TIER1_THEOREM_CALL_SYNTAX_VIOLATION,
+                    message=f"no such version for the theorem",
+                    details=f"no such version for the theorem parallel_property_corresponding_angle"
+                ))
             if "ParallelBetweenLine" not in premise:
                 return return_error(GeometricError(
 
-                    tier=ErrorTier.TIER2_PREMISE,
+                    tier=ErrorTier.TIER2_PREMISE_VIOLATION,
 
                     message="Missing parallel lines in premise",
 
@@ -6016,7 +7514,7 @@ class GeometricTheorem:
             if not line_match:
                 return return_error(GeometricError(
 
-                    tier=ErrorTier.TIER2_PREMISE,
+                    tier=ErrorTier.TIER2_PREMISE_VIOLATION,
 
                     message="Invalid parallel lines format in premise"
 
@@ -6047,7 +7545,7 @@ class GeometricTheorem:
                        for pair in possible_pairs):
                 return return_error(GeometricError(
 
-                    tier=ErrorTier.TIER2_PREMISE,
+                    tier=ErrorTier.TIER2_PREMISE_VIOLATION,
 
                     message=f"Lines {line1} and {line2} not proven parallel",
 
@@ -6074,7 +7572,7 @@ class GeometricTheorem:
                     if token4 not in points:
                         return return_error(GeometricError(
 
-                            tier=ErrorTier.TIER2_PREMISE,
+                            tier=ErrorTier.TIER2_PREMISE_VIOLATION,
 
                             message=f"Premise for version 2 must include a Collinear fact containing '{token4}'",
 
@@ -6086,7 +7584,7 @@ class GeometricTheorem:
 
                     return return_error(GeometricError(
 
-                        tier=ErrorTier.TIER2_PREMISE,
+                        tier=ErrorTier.TIER2_PREMISE_VIOLATION,
 
                         message="Premise for version 2 must include a Collinear fact.",
 
@@ -6113,7 +7611,7 @@ class GeometricTheorem:
 
                     return return_error(GeometricError(
 
-                        tier=ErrorTier.TIER2_PREMISE,
+                        tier=ErrorTier.TIER2_PREMISE_VIOLATION,
 
                         message="Missing similar triangles in premise",
 
@@ -6128,7 +7626,7 @@ class GeometricTheorem:
 
                     return return_error(GeometricError(
 
-                        tier=ErrorTier.TIER2_PREMISE,
+                        tier=ErrorTier.TIER2_PREMISE_VIOLATION,
 
                         message=f"Triangles {tri1} and {tri2} are not proven similar",
 
@@ -6140,9 +7638,13 @@ class GeometricTheorem:
 
                 return True, None
 
-            elif version == "2":
+            else:
+                return return_error(GeometricError(
+                    tier=ErrorTier.TIER1_THEOREM_CALL_SYNTAX_VIOLATION,
+                    message="these is no such version for the theorem",
+                    details="these is no such version for the theorem similar_triangle_property_line_ratio"
+                ))
 
-                print("2")
 
 
         elif theorem_name == "parallelogram_property_opposite_angle_equal":
@@ -6152,7 +7654,7 @@ class GeometricTheorem:
                 if len(args) < 2:
                     return return_error(GeometricError(
 
-                        tier=ErrorTier.TIER1_THEOREM_CALL,
+                        tier=ErrorTier.TIER1_THEOREM_CALL_SYNTAX_VIOLATION,
 
                         message="Missing parallelogram argument",
 
@@ -6167,7 +7669,7 @@ class GeometricTheorem:
                 if not premise_match:
                     return return_error(GeometricError(
 
-                        tier=ErrorTier.TIER2_PREMISE,
+                        tier=ErrorTier.TIER2_PREMISE_VIOLATION,
 
                         message="Invalid parallelogram format in premise"
 
@@ -6186,7 +7688,7 @@ class GeometricTheorem:
                 if not (theorem_variations & premise_variations):
                     return return_error(GeometricError(
 
-                        tier=ErrorTier.TIER2_PREMISE,
+                        tier=ErrorTier.TIER2_PREMISE_VIOLATION,
 
                         message=f"Theorem uses parallelogram {theorem_para} but premise specifies {premise_para}",
 
@@ -6199,7 +7701,7 @@ class GeometricTheorem:
                 if not any(var in self.parallelograms for var in theorem_variations):
                     return return_error(GeometricError(
 
-                        tier=ErrorTier.TIER2_PREMISE,
+                        tier=ErrorTier.TIER2_PREMISE_VIOLATION,
 
                         message=f"Parallelogram {theorem_para} is not defined in TEXT_CDL",
 
@@ -6207,8 +7709,16 @@ class GeometricTheorem:
 
                     ))
                 return True, None
-            elif version == "2":
-                print("2")
+            else:
+                return return_error(GeometricError(
+
+                    tier=ErrorTier.TIER1_THEOREM_CALL_SYNTAX_VIOLATION,
+
+                    message="no such version",
+
+                    details="no such version for parallelogram_property_opposite_angle_equal"
+
+                ))
 
 
 
@@ -6219,7 +7729,7 @@ class GeometricTheorem:
             if version == "1":
                 if len(args) < 3:
                     return return_error(GeometricError(
-                        tier=ErrorTier.TIER1_THEOREM_CALL,
+                        tier=ErrorTier.TIER1_THEOREM_CALL_SYNTAX_VIOLATION,
                         message="Insufficient arguments for similar_triangle_judgment_aa",
                         details="Expected similar_triangle_judgment_aa(1, triangle1, triangle2)"
                     ))
@@ -6231,13 +7741,13 @@ class GeometricTheorem:
                 norm_triangle2 = self.normalize_triangle(triangle2)
                 if norm_triangle1 not in self.polygons:
                     return return_error(GeometricError(
-                        tier=ErrorTier.TIER2_PREMISE,
+                        tier=ErrorTier.TIER2_PREMISE_VIOLATION,
                         message=f"Polygon for triangle {triangle1} is missing from the input data.",
                         details="The construction data did not define this polygon."
                     ))
                 if norm_triangle2 not in self.polygons:
                     return return_error(GeometricError(
-                        tier=ErrorTier.TIER2_PREMISE,
+                        tier=ErrorTier.TIER2_PREMISE_VIOLATION,
                         message=f"Polygon for triangle {triangle2} is missing from the input data.",
                         details="The construction data did not define this polygon."
                     ))
@@ -6245,13 +7755,13 @@ class GeometricTheorem:
                 poly_matches = re.findall(r'Polygon\((\w+)\)', premise)
                 if not any(triangle1 == poly or set(triangle1) == set(poly) for poly in poly_matches):
                     return return_error(GeometricError(
-                        tier=ErrorTier.TIER2_PREMISE,
+                        tier=ErrorTier.TIER2_PREMISE_VIOLATION,
                         message=f"Polygon for triangle {triangle1} is missing in the premise",
                         details="similar_triangle_judgment_aa requires a Polygon fact for the triangle"
                     ))
                 if not any(triangle2 == poly or set(triangle2) == set(poly) for poly in poly_matches):
                     return return_error(GeometricError(
-                        tier=ErrorTier.TIER2_PREMISE,
+                        tier=ErrorTier.TIER2_PREMISE_VIOLATION,
                         message=f"Polygon for triangle {triangle2} is missing in the premise",
                         details="similar_triangle_judgment_aa requires a Polygon fact for the triangle"
                     ))
@@ -6273,21 +7783,26 @@ class GeometricTheorem:
                             # Use the solver to check that these two angles are forced equal.
                             if not self.check_angle_equality(ang1, ang2):
                                 return return_error(GeometricError(
-                                    tier=ErrorTier.TIER2_PREMISE,
+                                    tier=ErrorTier.TIER2_PREMISE_VIOLATION,
                                     message=f"Premise angle equality {ang1} = {ang2} does not hold.",
                                     details="The constraints do not force these two angles to be equal."
                                 ))
                         else:
                             # If the pattern does not match, you might choose to ignore or return an error.
                             return return_error(GeometricError(
-                                tier=ErrorTier.TIER2_PREMISE,
+                                tier=ErrorTier.TIER2_PREMISE_VIOLATION,
                                 message=f"Angle equality clause '{conj}' is not in the expected format.",
                                 details="Expected format: Equal(MeasureOfAngle(XXX),MeasureOfAngle(YYY))"
                             ))
                 # If we got here, all parts of the premise are valid.
                 return True, None
-            elif version == "2":
-                print("2")
+            else:
+                return return_error(GeometricError(
+                    tier=ErrorTier.TIER1_THEOREM_CALL_SYNTAX_VIOLATION,
+                    message="these is no such version for the theorem",
+                    details="these is no such version for the theorem similar_triangle_judgment_aa"
+                ))
+
 
 
 
@@ -6304,7 +7819,7 @@ class GeometricTheorem:
                 if "ParallelBetweenLine" not in premise:
                     return return_error(GeometricError(
 
-                        tier=ErrorTier.TIER2_PREMISE,
+                        tier=ErrorTier.TIER2_PREMISE_VIOLATION,
 
                         message="Missing parallel lines in premise (version 1)",
 
@@ -6317,7 +7832,7 @@ class GeometricTheorem:
                 if not line_match:
                     return return_error(GeometricError(
 
-                        tier=ErrorTier.TIER2_PREMISE,
+                        tier=ErrorTier.TIER2_PREMISE_VIOLATION,
 
                         message="Invalid parallel lines format in premise (version 1)"
 
@@ -6347,7 +7862,7 @@ class GeometricTheorem:
                         (pair in self.parallel_pairs or pair[::-1] in self.parallel_pairs) for pair in possible_pairs):
                     return return_error(GeometricError(
 
-                        tier=ErrorTier.TIER2_PREMISE,
+                        tier=ErrorTier.TIER2_PREMISE_VIOLATION,
 
                         message=f"Lines {line1} and {line2} not proven parallel (version 1)",
 
@@ -6366,7 +7881,7 @@ class GeometricTheorem:
                 if "ParallelBetweenLine" not in premise:
                     return return_error(GeometricError(
 
-                        tier=ErrorTier.TIER2_PREMISE,
+                        tier=ErrorTier.TIER2_PREMISE_VIOLATION,
 
                         message="Missing parallel lines in premise (version 2)",
 
@@ -6377,7 +7892,7 @@ class GeometricTheorem:
                 if "Line(" not in premise:
                     return return_error(GeometricError(
 
-                        tier=ErrorTier.TIER2_PREMISE,
+                        tier=ErrorTier.TIER2_PREMISE_VIOLATION,
 
                         message="Missing Line fact in premise (version 2)",
 
@@ -6388,6 +7903,12 @@ class GeometricTheorem:
                 # (Optionally, further checks can be added here.)
 
                 return True, None
+            else:
+                return return_error(GeometricError(
+                    tier=ErrorTier.TIER1_THEOREM_CALL_SYNTAX_VIOLATION,
+                    message=f"no such version for the theorem",
+                    details="no such version for the theorem parallel_property_alternate_interior_angle"
+                ))
 
 
         elif theorem_name == "angle_addition":
@@ -6396,7 +7917,7 @@ class GeometricTheorem:
             if version == "1":
                 if len(args) < 3:
                     return return_error(GeometricError(
-                        tier=ErrorTier.TIER1_THEOREM_CALL,
+                        tier=ErrorTier.TIER1_THEOREM_CALL_SYNTAX_VIOLATION,
                         message="Missing angle arguments",
                         details="angle_addition requires at least two angles"
                     ))
@@ -6406,14 +7927,14 @@ class GeometricTheorem:
 
                 if len(angle1) != 3 or len(angle2) != 3:
                     return return_error(GeometricError(
-                        tier=ErrorTier.TIER1_THEOREM_CALL,
+                        tier=ErrorTier.TIER1_THEOREM_CALL_SYNTAX_VIOLATION,
                         message="Invalid angle format",
                         details="Each angle must be specified by exactly 3 points"
                     ))
 
                 if angle1[1] != angle2[1]:
                     return return_error(GeometricError(
-                        tier=ErrorTier.TIER2_PREMISE,
+                        tier=ErrorTier.TIER2_PREMISE_VIOLATION,
                         message=f"Angles {angle1} and {angle2} must share a vertex",
                         details="Required for angle addition"
                     ))
@@ -6423,11 +7944,19 @@ class GeometricTheorem:
 
 
         elif theorem_name == "quadrilateral_property_angle_sum":
+            version = args[0]
+            if version != "1":
+                return return_error(GeometricError(
 
+                    tier=ErrorTier.TIER1_THEOREM_CALL_SYNTAX_VIOLATION,
+                    message="these is no such version for the theorem",
+                    details="these is no such version for the theorem for quadrilateral_property_angle_sum"
+
+                ))
             if len(args) < 2:
                 return return_error(GeometricError(
 
-                    tier=ErrorTier.TIER1_THEOREM_CALL,
+                    tier=ErrorTier.TIER1_THEOREM_CALL_SYNTAX_VIOLATION,
 
                     message="Missing quadrilateral name"
 
@@ -6438,7 +7967,7 @@ class GeometricTheorem:
             if quad_name not in self.polygons:
                 return return_error(GeometricError(
 
-                    tier=ErrorTier.TIER2_PREMISE,
+                    tier=ErrorTier.TIER2_PREMISE_VIOLATION,
 
                     message=f"Quadrilateral {quad_name} not defined",
 
@@ -6832,6 +8361,20 @@ class GeometricTheorem:
                                 angle_name, expression = value_match.group(1), value_match.group(2).strip()
                                 print(f"Found angle expression in TEXT_CDL: {angle_name} = {expression}")
                                 self.add_algebraic_angle(angle_name, expression)
+                    elif line.startswith('IsMidsegmentOfQuadrilateral('):
+                        match = re.match(r'IsMidsegmentOfQuadrilateral\((\w+),(\w+)\)', line)
+                        if match:
+                            segment, quad = match.groups()
+
+                            # Normalize quadrilateral name
+                            norm_quad = self.normalize_quadrilateral(quad)
+
+                            # Store both orientations of the segment
+                            self.midsegments_of_quadrilaterals[(segment, norm_quad)] = True
+                            self.midsegments_of_quadrilaterals[(segment[::-1], norm_quad)] = True
+
+                            print(f"Recorded midsegment of quadrilateral: {segment} is a midsegment of {quad}")
+
                     elif line.startswith('Equal(LengthOfLine('):
                         # Try first to match length equality between two lines
                         equality_match = re.match(r'Equal\(LengthOfLine\((\w+)\),LengthOfLine\((\w+)\)\)', line)
@@ -7612,11 +9155,21 @@ class GeometricTheorem:
                             is_valid, error = self.validate_theorem_premises(theorem_name, args, premise)
                             if not is_valid:
                                 print(f"\nError in {error.tier.name}:")
-                                print(f"Message: {error.message}")
-                                if error.details:
-                                    print(f"Details: {error.details}")
+                                # --- MODIFICATION START ---
+                                if error.tier == ErrorTier.TIER1_THEOREM_CALL_SYNTAX_VIOLATION:
+                                    # For TIER1, print details first if available, then message as fallback
+                                    if error.details:
+                                        print(f"Details: {error.details}")
+                                    else:
+                                        print(f"Message: {error.message}")  # Fallback if no details
+                                else:
+                                    # For TIER2/TIER3, print message first, then details if available
+                                    print(f"Message: {error.message}")
+                                    if error.details:
+                                        print(f"Details: {error.details}")
+                                # --- MODIFICATION END ---
 
-                                if error.tier == ErrorTier.TIER2_PREMISE:
+                                if error.tier == ErrorTier.TIER2_PREMISE_VIOLATION:
                                     # Use the special formatted feedback for premise errors
                                     return False, self.generate_premise_error_feedback(theorem_name, args, premise,
                                                                                        conclusions, error)
@@ -7629,11 +9182,21 @@ class GeometricTheorem:
                             error = self.adding_conclution(theorem_name, args, premise, conclusions)
                             if error:
                                 print(f"\nError in {error.tier.name}:")
-                                print(f"Message: {error.message}")
-                                if error.details:
-                                    print(f"Details: {error.details}")
+                                # --- MODIFICATION START ---
+                                if error.tier == ErrorTier.TIER1_THEOREM_CALL_SYNTAX_VIOLATION:
+                                    # For TIER1, print details first if available, then message as fallback
+                                    if error.details:
+                                        print(f"Details: {error.details}")
+                                    else:
+                                        print(f"Message: {error.message}")  # Fallback if no details
+                                else:
+                                    # For TIER2/TIER3, print message first, then details if available
+                                    print(f"Message: {error.message}")
+                                    if error.details:
+                                        print(f"Details: {error.details}")
+                                # --- MODIFICATION END ---
 
-                                if error.tier == ErrorTier.TIER2_PREMISE:
+                                if error.tier == ErrorTier.TIER2_PREMISE_VIOLATION:
                                     # Use the special formatted feedback for premise errors
                                     return False, self.generate_premise_error_feedback(theorem_name, args, premise,
                                                                                        conclusions, error)
@@ -7750,6 +9313,43 @@ class GeometricTheorem:
                         )
                         print(f"Detailed feedback generated for arc length goal.")
                         return False, detailed_feedback
+
+                # Add this after other goal type checks like arc_measure, length, etc.
+                quad_perimeter_match = re.search(r'Value\(PerimeterOfQuadrilateral\((\w+)\)\)', goal_line)
+                if quad_perimeter_match:
+                    quad_name = quad_perimeter_match.group(1)
+                    print(f"\nGoal quadrilateral perimeter: {quad_name}")
+                    print(f"Expected perimeter: {model_answer}")
+
+                    # Create or get the perimeter variable for this quadrilateral
+                    if not hasattr(self, "quadrilateral_perimeters"):
+                        self.quadrilateral_perimeters = {}
+
+                    if quad_name not in self.quadrilateral_perimeters:
+                        perimeter_var = Real(f"perimeter_{quad_name}")
+                        self.quadrilateral_perimeters[quad_name] = perimeter_var
+                    else:
+                        perimeter_var = self.quadrilateral_perimeters[quad_name]
+
+                    # Check if the perimeter matches the model answer
+                    success, value, status = self.check_value_constraint(perimeter_var, model_answer)
+
+                    if success:
+                        print(
+                            f"Success: Quadrilateral perimeter {quad_name} is uniquely determined to be {model_answer}.")
+                        return True, ""
+                    else:
+                        # Generate detailed feedback report
+                        detailed_feedback = self.generate_detailed_feedback(
+                            goal_type="quadrilateral_perimeter",
+                            goal_token=quad_name,
+                            model_answer=model_answer,
+                            verifier_expected_answer=value,
+                            status=status
+                        )
+                        print(f"Detailed feedback generated for quadrilateral perimeter goal.")
+                        return False, detailed_feedback
+
 
                 sum_lengths_match = re.search(r'Value\(Add\(LengthOfLine\((\w+)\),LengthOfLine\((\w+)\)\)\)', goal_line)
                 if sum_lengths_match:
@@ -8527,6 +10127,145 @@ class GeometricTheorem:
         temp_solver.add(var1 != var2)
         return temp_solver.check() == unsat
 
+    def apply_trig_constraints(self):
+        """
+        Applies numeric constraints to sine and cosine variables
+        when the corresponding angles have unique values.
+        """
+        import math
+        from z3 import sat, unsat, Solver, Or
+
+        # First, check if the solver is satisfiable
+        if self.solver.check() != sat:
+            print("Solver is unsatisfiable, cannot apply trig constraints")
+            return 0
+
+        # Get the current model
+        model = self.solver.model()
+
+        # Look for all sin_XXX and cos_XXX variables in self.variables
+        trig_vars = []
+
+        for var_name, var in self.variables.items():
+            if var_name.startswith("sin_") or var_name.startswith("cos_"):
+                parts = var_name.split("_", 1)
+                if len(parts) == 2:
+                    func, angle_name = parts
+                    angle_var_name = f"angle_{angle_name}"
+
+                    if angle_var_name in self.angles:
+                        trig_vars.append({
+                            "trig_var_name": var_name,
+                            "angle_var_name": angle_var_name,
+                            "angle_var": self.angles[angle_var_name],
+                            "trig_var": self.variables[var_name],
+                            "func": func,
+                            "angle_name": angle_name
+                        })
+
+        if not trig_vars:
+            return 0
+
+        # For each trig variable, check if the angle has a unique value
+        constraints_added = 0
+
+        for data in trig_vars:
+            angle_var = data["angle_var"]
+            trig_var = data["trig_var"]
+            func = data["func"]
+            angle_name = data["angle_name"]
+            trig_var_name = data["trig_var_name"]
+
+            # Try to get the current angle value from the model
+            try:
+                angle_val_str = model.eval(angle_var).as_decimal(10)
+                if angle_val_str.endswith('?'):
+                    angle_val_str = angle_val_str[:-1]
+                angle_val = float(angle_val_str)
+
+                # Check if this angle value is uniquely determined
+                temp_solver = Solver()
+                for c in self.solver.assertions():
+                    temp_solver.add(c)
+
+                epsilon = 1e-6
+                temp_solver.add(Or(
+                    angle_var < angle_val - epsilon,
+                    angle_var > angle_val + epsilon
+                ))
+
+                if temp_solver.check() == unsat:
+                    # Calculate exact trig value based on special cases or general formula
+                    if abs(angle_val - 90) < epsilon:
+                        # 90 degrees
+                        if func == "sin":
+                            exact_trig_val = 1.0
+                        else:  # cos
+                            exact_trig_val = 0.0
+                    elif abs(angle_val - 0) < epsilon:
+                        # 0 degrees
+                        if func == "sin":
+                            exact_trig_val = 0.0
+                        else:  # cos
+                            exact_trig_val = 1.0
+                    elif abs(angle_val - 180) < epsilon:
+                        # 180 degrees
+                        if func == "sin":
+                            exact_trig_val = 0.0
+                        else:  # cos
+                            exact_trig_val = -1.0
+                    elif abs(angle_val - 45) < epsilon or abs(angle_val - 135) < epsilon:
+                        # 45 or 135 degrees
+                        sqrt2_over_2 = math.sqrt(2) / 2
+                        if func == "sin":
+                            exact_trig_val = sqrt2_over_2
+                        else:  # cos
+                            exact_trig_val = sqrt2_over_2 if abs(angle_val - 45) < epsilon else -sqrt2_over_2
+                    elif abs(angle_val - 30) < epsilon or abs(angle_val - 150) < epsilon:
+                        # 30 or 150 degrees
+                        if func == "sin":
+                            exact_trig_val = 0.5
+                        else:  # cos
+                            exact_trig_val = math.sqrt(3) / 2 if abs(angle_val - 30) < epsilon else -math.sqrt(3) / 2
+                    elif abs(angle_val - 60) < epsilon or abs(angle_val - 120) < epsilon:
+                        # 60 or 120 degrees
+                        if func == "sin":
+                            exact_trig_val = math.sqrt(3) / 2
+                        else:  # cos
+                            exact_trig_val = 0.5 if abs(angle_val - 60) < epsilon else -0.5
+                    else:
+                        # General case
+                        if func == "sin":
+                            exact_trig_val = math.sin(math.radians(angle_val))
+                        else:  # cos
+                            exact_trig_val = math.cos(math.radians(angle_val))
+
+                    # Round to help with numerical stability
+                    exact_trig_val = round(exact_trig_val, 10)
+
+                    # Check if the trig variable is already constrained to this value
+                    trig_temp_solver = Solver()
+                    for c in self.solver.assertions():
+                        trig_temp_solver.add(c)
+
+                    trig_temp_solver.add(Or(
+                        trig_var < exact_trig_val - epsilon,
+                        trig_var > exact_trig_val + epsilon
+                    ))
+
+                    if trig_temp_solver.check() == sat:
+                        # Trig variable can have a different value, add constraint
+                        self.solver.add(trig_var == exact_trig_val)
+                        constraints_added += 1
+                        print(f"Added constraint: {func}({angle_name}) = {exact_trig_val} (angle = {angle_val}°)")
+
+            except Exception as e:
+                print(f"Error processing angle {angle_name}: {e}")
+
+        return constraints_added
+
+
+
     def adding_conclution(self, theorem_name: str, args: List[str], premise: str, conclusions: List[str]) -> \
             Optional[GeometricError]:
         print(f"\nProcessing theorem step: {theorem_name}")
@@ -8548,7 +10287,6 @@ class GeometricTheorem:
             "similar_triangle_judgment_aa",
             "triangle_perimeter_formula",
             "triangle_property_angle_sum",
-            "square_property_definition",
             "diameter_of_circle_property_right_angle",
             "triangle_area_formula_sine",
             "diameter_of_circle_property_length_equal",
@@ -8604,12 +10342,15 @@ class GeometricTheorem:
             "arc_addition_measure",
             "diameter_of_circle_judgment_pass_centre",
             "isosceles_triangle_property_line_coincidence",
-            "parallelogram_area_formula_sine"
+            "parallelogram_area_formula_sine",
+            "midsegment_of_quadrilateral_property_length",
+            "tangent_of_circle_property_length_equal",
+            "quadrilateral_perimeter_formula"
         ]
 
         if theorem_name not in valid_theorems:
             return GeometricError(
-                tier=ErrorTier.TIER1_THEOREM_CALL,
+                tier=ErrorTier.TIER1_THEOREM_CALL_SYNTAX_VIOLATION,
                 message=f"Unknown theorem: {theorem_name}",
                 details=f"Valid theorems are: {valid_theorems}"
             )
@@ -8628,9 +10369,133 @@ class GeometricTheorem:
                     print(f"Added parallelogram opposite angle equality: {angle1} = {angle2}")
 
 
-            elif version == "2":
-                print("2")
 
+
+        # For the tangent_of_circle_property_length_equal theorem
+        elif theorem_name == "tangent_of_circle_property_length_equal":
+            version = args[0]
+            if version == "1":
+                # Extract the two tangent lines and the circle from the args
+                line1 = args[1].strip()  # e.g., "AM"
+                line2 = args[2].strip()  # e.g., "AG"
+                circle = args[3].strip()  # e.g., "O"
+
+                # Check conclusion format
+                match = re.search(r'Equal\(LengthOfLine\((\w+)\),LengthOfLine\((\w+)\)\)', conclusions[0])
+                if match:
+                    # Get length variables for both tangent lines
+                    len1_var = self.add_length(line1[0], line1[1])
+                    len2_var = self.add_length(line2[0], line2[1])
+
+                    # Add the constraint that they are equal
+                    self.solver.add(len1_var == len2_var)
+
+                    print(f"Added tangent length equality constraint: {line1} = {line2}")
+                    return None
+                else:
+                    return GeometricError(
+                        tier=ErrorTier.TIER1_THEOREM_CALL_SYNTAX_VIOLATION,
+                        message="Conclusion format error for tangent_of_circle_property_length_equal",
+                        details=f"Expected Equal(LengthOfLine(XX),LengthOfLine(YY)) but got {conclusions[0]}"
+                    )
+            else:
+                return GeometricError(
+                    tier=ErrorTier.TIER1_THEOREM_CALL_SYNTAX_VIOLATION,
+                    message=f"Unsupported version {version} for tangent_of_circle_property_length_equal"
+                )
+
+        # For the quadrilateral_perimeter_formula theorem
+        elif theorem_name == "quadrilateral_perimeter_formula":
+            version = args[0]
+            if version == "1":
+                if len(args) < 2:
+                    return GeometricError(
+                        tier=ErrorTier.TIER1_THEOREM_CALL_SYNTAX_VIOLATION,
+                        message="Missing quadrilateral name for quadrilateral_perimeter_formula",
+                        details="Expected: quadrilateral_perimeter_formula(1, quadrilateral)"
+                    )
+
+                quad = args[1].strip()  # e.g., "ABCD"
+
+                # Extract the sides from the conclusion using a more flexible pattern
+                # Handle different possible formats of the conclusion
+                match = re.search(
+                    r'Equal\(Add\(LengthOfLine\((\w+)\),LengthOfLine\((\w+)\),LengthOfLine\((\w+)\),LengthOfLine\((\w+)\)\),(PerimeterOfQuadrilateral\((\w+)\)|perimeter_(\w+))\)',
+                    conclusions[0]
+                )
+
+                if match:
+                    side1, side2, side3, side4 = match.groups()[:4]
+                    # The perimeter part could be in different forms, so handle that flexibly
+                    perimeter_quad = match.group(6) if match.group(6) else match.group(7) if match.group(7) else quad
+
+                    # Verify that the quadrilateral names match if a name was specified
+                    if perimeter_quad != quad:
+                        return GeometricError(
+                            tier=ErrorTier.TIER1_THEOREM_CALL_SYNTAX_VIOLATION,
+                            message=f"Quadrilateral name mismatch: {perimeter_quad} vs {quad}",
+                            details=f"The quadrilateral in the conclusion must match the one in the theorem call"
+                        )
+
+                    # Create length variables for each side
+                    side1_var = self.add_length(side1[0], side1[1])
+                    side2_var = self.add_length(side2[0], side2[1])
+                    side3_var = self.add_length(side3[0], side3[1])
+                    side4_var = self.add_length(side4[0], side4[1])
+
+                    # Create or get perimeter variable
+                    if not hasattr(self, "quadrilateral_perimeters"):
+                        self.quadrilateral_perimeters = {}
+
+                    perimeter_var = Real(f"perimeter_{quad}")
+                    self.quadrilateral_perimeters[quad] = perimeter_var
+
+                    # Add constraint: perimeter = sum of sides
+                    self.solver.add(perimeter_var == side1_var + side2_var + side3_var + side4_var)
+
+                    print(
+                        f"Added quadrilateral perimeter constraint: perimeter({quad}) = {side1} + {side2} + {side3} + {side4}")
+                    return None
+                else:
+                    # Try a simpler pattern that doesn't rely on the PerimeterOfQuadrilateral term
+                    match = re.search(
+                        r'Equal\(Add\(LengthOfLine\((\w+)\),LengthOfLine\((\w+)\),LengthOfLine\((\w+)\),LengthOfLine\((\w+)\)\),(.*?)\)',
+                        conclusions[0]
+                    )
+
+                    if match:
+                        side1, side2, side3, side4 = match.groups()[:4]
+
+                        # Create length variables for each side
+                        side1_var = self.add_length(side1[0], side1[1])
+                        side2_var = self.add_length(side2[0], side2[1])
+                        side3_var = self.add_length(side3[0], side3[1])
+                        side4_var = self.add_length(side4[0], side4[1])
+
+                        # Create or get perimeter variable
+                        if not hasattr(self, "quadrilateral_perimeters"):
+                            self.quadrilateral_perimeters = {}
+
+                        perimeter_var = Real(f"perimeter_{quad}")
+                        self.quadrilateral_perimeters[quad] = perimeter_var
+
+                        # Add constraint: perimeter = sum of sides
+                        self.solver.add(perimeter_var == side1_var + side2_var + side3_var + side4_var)
+
+                        print(
+                            f"Added quadrilateral perimeter constraint: perimeter({quad}) = {side1} + {side2} + {side3} + {side4}")
+                        return None
+                    else:
+                        return GeometricError(
+                            tier=ErrorTier.TIER1_THEOREM_CALL_SYNTAX_VIOLATION,
+                            message="Conclusion format error for quadrilateral_perimeter_formula",
+                            details=f"Expected conclusion with four side lengths but got {conclusions[0]}"
+                        )
+            else:
+                return GeometricError(
+                    tier=ErrorTier.TIER1_THEOREM_CALL_SYNTAX_VIOLATION,
+                    message=f"Unsupported version {version} for quadrilateral_perimeter_formula"
+                )
 
         elif theorem_name == "arc_addition_measure":
             version = args[0]
@@ -8658,17 +10523,55 @@ class GeometricTheorem:
                     return None
                 else:
                     return GeometricError(
-                        tier=ErrorTier.TIER1_THEOREM_CALL,
+                        tier=ErrorTier.TIER1_THEOREM_CALL_SYNTAX_VIOLATION,
                         message="Conclusion format error for arc_addition_measure",
                         details=f"Expected pattern Equal(MeasureOfArc(XX),Add(MeasureOfArc(YY),MeasureOfArc(ZZ))) but got {conclusions[0]}"
                     )
             else:
                 return GeometricError(
-                    tier=ErrorTier.TIER1_THEOREM_CALL,
+                    tier=ErrorTier.TIER1_THEOREM_CALL_SYNTAX_VIOLATION,
                     message=f"Unsupported version {version} for arc_addition_measure"
                 )
 
+        elif theorem_name == "midsegment_of_quadrilateral_property_length":
+            version = args[0]
+            if version == "1":
+                segment = args[1].strip()
+                quad = args[2].strip()
 
+                # Check the conclusion format
+                # Expected conclusion: "Equal(Add(LengthOfLine(AD),LengthOfLine(BC)),Mul(LengthOfLine(EF),2))"
+                match = re.search(
+                    r'Equal\(Add\(LengthOfLine\((\w+)\),LengthOfLine\((\w+)\)\),Mul\(LengthOfLine\(' +
+                    re.escape(segment) + r'\),2\)\)',
+                    conclusions[0]
+                )
+
+                if match:
+                    side1, side2 = match.groups()
+
+                    # Get length variables for all segments
+                    segment_var = self.add_length(segment[0], segment[1])
+                    side1_var = self.add_length(side1[0], side1[1])
+                    side2_var = self.add_length(side2[0], side2[1])
+
+                    # Add the constraint: segment = (side1 + side2) / 2
+                    # Or equivalently: 2 * segment = side1 + side2
+                    self.solver.add(segment_var * 2 == side1_var + side2_var)
+
+                    print(f"Added midsegment property constraint: 2 * {segment} = {side1} + {side2}")
+                    return None
+                else:
+                    return GeometricError(
+                        tier=ErrorTier.TIER1_THEOREM_CALL_SYNTAX_VIOLATION,
+                        message="Conclusion format error for midsegment_of_quadrilateral_property_length",
+                        details=f"Expected pattern Equal(Add(LengthOfLine(XX),LengthOfLine(YY)),Mul(LengthOfLine({segment}),2)) but got {conclusions[0]}"
+                    )
+            else:
+                return GeometricError(
+                    tier=ErrorTier.TIER1_THEOREM_CALL_SYNTAX_VIOLATION,
+                    message=f"Unsupported version {version} for midsegment_of_quadrilateral_property_length"
+                )
         elif theorem_name == "parallelogram_area_formula_sine":
             version = args[0]
             if version == "1":
@@ -8792,120 +10695,222 @@ class GeometricTheorem:
                                 details += f"  {constraint}\n"
 
                         return GeometricError(
-                            tier=ErrorTier.TIER2_PREMISE,
+                            tier=ErrorTier.TIER2_PREMISE_VIOLATION,
                             message="Solver unsat when trying to evaluate angles for parallelogram_area_formula_sine",
                             details=details
                         )
                 else:
                     return GeometricError(
-                        tier=ErrorTier.TIER1_THEOREM_CALL,
+                        tier=ErrorTier.TIER1_THEOREM_CALL_SYNTAX_VIOLATION,
                         message="Conclusion format error for parallelogram_area_formula_sine",
                         details=f"Expected pattern Equal(AreaOfQuadrilateral(XXXX),Mul(LengthOfLine(XX),LengthOfLine(XX),Sin(MeasureOfAngle(XXX)))) but got {conclusions[0]}"
                     )
             else:
                 return GeometricError(
-                    tier=ErrorTier.TIER1_THEOREM_CALL,
+                    tier=ErrorTier.TIER1_THEOREM_CALL_SYNTAX_VIOLATION,
                     message=f"Unsupported version {version} for parallelogram_area_formula_sine"
                 )
 
 
 
+
         elif theorem_name == "isosceles_triangle_property_line_coincidence":
+
             version = args[0]
-            if version == "2":
-                # For version 2, expect two conclusions:
-                # 1. IsAltitudeOfTriangle(CF,CDE) - the line is an altitude of the triangle
-                # 2. IsBisectorOfAngle(CF,ECD) - the line is an angle bisector
 
-                if len(conclusions) < 2:
+            if version in {"1", "2", "3"}:
+
+                if len(args) < 3:
                     return GeometricError(
-                        tier=ErrorTier.TIER1_THEOREM_CALL,
-                        message="Insufficient conclusions for isosceles_triangle_property_line_coincidence",
-                        details=f"Expected two conclusions but got {len(conclusions)}"
+
+                        tier=ErrorTier.TIER1_THEOREM_CALL_SYNTAX_VIOLATION,
+
+                        message="Insufficient arguments for isosceles_triangle_property_line_coincidence",
+
+                        details=f"Expected: isosceles_triangle_property_line_coincidence({version}, triangle, point)"
+
                     )
 
-                # Process the altitude conclusion
-                altitude_match = re.search(r'IsAltitudeOfTriangle\((\w+),(\w+)\)', conclusions[0])
-                if not altitude_match:
-                    return GeometricError(
-                        tier=ErrorTier.TIER1_THEOREM_CALL,
-                        message="Invalid altitude conclusion format",
-                        details=f"Expected IsAltitudeOfTriangle(...) but got {conclusions[0]}"
-                    )
+                triangle = args[1].strip()  # e.g., "ABC"
 
-                altitude_line, triangle = altitude_match.groups()  # e.g., "CF", "CDE"
+                point = args[2].strip()  # e.g., "M"
 
-                # Store the altitude information
-                if not hasattr(self, "triangle_altitudes"):
-                    self.triangle_altitudes = {}
+                line = triangle[0] + point  # e.g., "AM"
 
-                if triangle not in self.triangle_altitudes:
-                    self.triangle_altitudes[triangle] = []
+                # Determine the conclusions based on version
 
-                self.triangle_altitudes[triangle].append(altitude_line)
+                if version == "1":
 
-                # Determine the vertices involved
-                altitude_start = altitude_line[0]  # e.g., "C"
-                altitude_end = altitude_line[1]  # e.g., "F"
+                    # Conclusions: IsMedianOfTriangle(AM,ABC), IsBisectorOfAngle(AM,CAB)
 
-                # Find the opposite side to the altitude's starting point
-                opposite_vertices = [v for v in triangle if v != altitude_start]  # e.g., ["D", "E"]
+                    # Process the first conclusion - Making it a median
 
-                # Determine that the angle at altitude_end is 90 degrees
-                # For altitude CF in triangle CDE, need angle CFD = 90° and CFE = 90°
-                for opposite_vertex in opposite_vertices:
-                    angle_name = altitude_end + altitude_start + opposite_vertex  # e.g., "FCD"
-                    angle_var = self.add_angle(angle_name[0], angle_name[1], angle_name[2])
-                    self.solver.add(angle_var == 90)
-                    print(f"Added 90° angle constraint for altitude: angle {angle_name} = 90°")
+                    if not hasattr(self, "medians"):
+                        self.medians = []
 
-                # Process the angle bisector conclusion
-                bisector_match = re.search(r'IsBisectorOfAngle\((\w+),(\w+)\)', conclusions[1])
-                if not bisector_match:
-                    return GeometricError(
-                        tier=ErrorTier.TIER1_THEOREM_CALL,
-                        message="Invalid angle bisector conclusion format",
-                        details=f"Expected IsBisectorOfAngle(...) but got {conclusions[1]}"
-                    )
+                    self.medians.append((line, triangle))
 
-                bisector_line, angle = bisector_match.groups()  # e.g., "CF", "ECD"
+                    print(f"Added median fact: {line} is a median of triangle {triangle}")
 
-                # Store the angle bisector information
-                if not hasattr(self, "angle_bisectors"):
-                    self.angle_bisectors = []
+                    # Process the second conclusion - Making it an angle bisector
 
-                self.angle_bisectors.append((bisector_line, angle))
+                    opposite_vertices = [v for v in triangle if v != line[0]]  # e.g., ["B", "C"]
 
-                # Determine the angles on both sides of the bisector
-                if len(angle) == 3:
-                    # The middle letter is the vertex
-                    vertex = angle[1]  # e.g., "C"
-                    # The other two letters are points forming the angle with the vertex
-                    angle_side1 = angle[0]  # e.g., "E"
-                    angle_side2 = angle[2]  # e.g., "D"
+                    angle_name = opposite_vertices[0] + line[0] + opposite_vertices[1]  # e.g., "BAC"
 
-                    # We need to find the third point in the bisector line
-                    bisector_other = bisector_line[1] if bisector_line[0] == vertex else bisector_line[0]  # e.g., "F"
+                    if not hasattr(self, "angle_bisectors"):
+                        self.angle_bisectors = []
 
-                    # Create angles on both sides of the bisector
-                    angle1 = angle_side1 + vertex + bisector_other  # e.g., "ECF"
-                    angle2 = bisector_other + vertex + angle_side2  # e.g., "FCD"
-
-                    # Create Z3 variables for these angles
-                    angle1_var = self.add_angle(angle1[0], angle1[1], angle1[2])
-                    angle2_var = self.add_angle(angle2[0], angle2[1], angle2[2])
+                    self.angle_bisectors.append((line, angle_name))
 
                     # Add constraint that both angles are equal (definition of angle bisector)
+
+                    vertex = line[0]  # e.g., "A"
+
+                    angle_side1 = opposite_vertices[0]  # e.g., "B"
+
+                    angle_side2 = opposite_vertices[1]  # e.g., "C"
+
+                    bisector_other = point  # e.g., "M"
+
+                    angle1 = angle_side1 + vertex + bisector_other  # e.g., "BAM"
+
+                    angle2 = bisector_other + vertex + angle_side2  # e.g., "MAC"
+
+                    angle1_var = self.add_angle(angle1[0], angle1[1], angle1[2])
+
+                    angle2_var = self.add_angle(angle2[0], angle2[1], angle2[2])
+
                     self.solver.add(angle1_var == angle2_var)
+
                     print(f"Added angle bisector constraint: angle {angle1} = angle {angle2}")
 
-                print(
-                    f"Added isosceles triangle property: line {altitude_line} is both an altitude and angle bisector of triangle {triangle}")
+
+                elif version == "2":
+
+                    # Conclusions: IsAltitudeOfTriangle(AM,ABC), IsBisectorOfAngle(AM,CAB)
+
+                    # Process the altitude conclusion
+
+                    if not hasattr(self, "triangle_altitudes"):
+                        self.triangle_altitudes = {}
+
+                    if triangle not in self.triangle_altitudes:
+                        self.triangle_altitudes[triangle] = []
+
+                    self.triangle_altitudes[triangle].append(line)
+
+                    # Determine the vertices involved
+
+                    altitude_start = line[0]  # e.g., "A"
+
+                    altitude_end = line[1]  # e.g., "M"
+
+                    # Find the opposite side to the altitude's starting point
+
+                    opposite_vertices = [v for v in triangle if v != altitude_start]  # e.g., ["B", "C"]
+
+                    # Add right angle constraints
+
+                    for opposite_vertex in opposite_vertices:
+                        angle_name = altitude_end + altitude_start + opposite_vertex  # e.g., "MAB"
+
+                        angle_var = self.add_angle(angle_name[0], angle_name[1], angle_name[2])
+
+                        self.solver.add(angle_var == 90)
+
+                        print(f"Added 90° angle constraint for altitude: angle {angle_name} = 90°")
+
+                    # Process the angle bisector conclusion
+
+                    if not hasattr(self, "angle_bisectors"):
+                        self.angle_bisectors = []
+
+                    angle_name = opposite_vertices[0] + altitude_start + opposite_vertices[1]  # e.g., "BAC"
+
+                    self.angle_bisectors.append((line, angle_name))
+
+                    # Add angle bisector constraints
+
+                    vertex = altitude_start  # e.g., "A"
+
+                    angle_side1 = opposite_vertices[0]  # e.g., "B"
+
+                    angle_side2 = opposite_vertices[1]  # e.g., "C"
+
+                    bisector_other = altitude_end  # e.g., "M"
+
+                    angle1 = angle_side1 + vertex + bisector_other  # e.g., "BAM"
+
+                    angle2 = bisector_other + vertex + angle_side2  # e.g., "MAC"
+
+                    angle1_var = self.add_angle(angle1[0], angle1[1], angle1[2])
+
+                    angle2_var = self.add_angle(angle2[0], angle2[1], angle2[2])
+
+                    self.solver.add(angle1_var == angle2_var)
+
+                    print(f"Added angle bisector constraint: angle {angle1} = angle {angle2}")
+
+
+                elif version == "3":
+
+                    # Conclusions: IsAltitudeOfTriangle(AM,ABC), IsMedianOfTriangle(AM,ABC)
+
+                    # Process the altitude conclusion
+
+                    if not hasattr(self, "triangle_altitudes"):
+                        self.triangle_altitudes = {}
+
+                    if triangle not in self.triangle_altitudes:
+                        self.triangle_altitudes[triangle] = []
+
+                    self.triangle_altitudes[triangle].append(line)
+
+                    # Determine the vertices involved
+
+                    altitude_start = line[0]  # e.g., "A"
+
+                    altitude_end = line[1]  # e.g., "M"
+
+                    # Find the opposite side to the altitude's starting point
+
+                    opposite_vertices = [v for v in triangle if v != altitude_start]  # e.g., ["B", "C"]
+
+                    # Add right angle constraints
+
+                    for opposite_vertex in opposite_vertices:
+                        angle_name = altitude_end + altitude_start + opposite_vertex  # e.g., "MAB"
+
+                        angle_var = self.add_angle(angle_name[0], angle_name[1], angle_name[2])
+
+                        self.solver.add(angle_var == 90)
+
+                        print(f"Added 90° angle constraint for altitude: angle {angle_name} = 90°")
+
+                    # Process the median conclusion
+
+                    if not hasattr(self, "medians"):
+                        self.medians = []
+
+                    self.medians.append((line, triangle))
+
+                    print(f"Added median fact: {line} is a median of triangle {triangle}")
+
+                print(f"Added isosceles triangle property for version {version}: line {line} in triangle {triangle}")
+
                 return None
+
             else:
+
                 return GeometricError(
-                    tier=ErrorTier.TIER1_THEOREM_CALL,
-                    message=f"Unsupported version {version} for isosceles_triangle_property_line_coincidence"
+
+                    tier=ErrorTier.TIER1_THEOREM_CALL_SYNTAX_VIOLATION,
+
+                    message=f"Unsupported version {version} for isosceles_triangle_property_line_coincidence",
+
+                    details="Supported versions are 1, 2, and 3"
+
                 )
 
 
@@ -8924,7 +10929,7 @@ class GeometricTheorem:
                     print(f"Added mirror congruent triangles via SAS: {tri1} and {tri2} (canonical: {canonical_pair})")
                 else:
                     return GeometricError(
-                        tier=ErrorTier.TIER1_THEOREM_CALL,
+                        tier=ErrorTier.TIER1_THEOREM_CALL_SYNTAX_VIOLATION,
                         message="Conclusion format error for mirror_congruent_triangle_judgment_sas",
                         details=f"Expected MirrorCongruentBetweenTriangle(...) but got {conclusions[0]}"
                     )
@@ -8970,13 +10975,13 @@ class GeometricTheorem:
                     return None
                 else:
                     return GeometricError(
-                        tier=ErrorTier.TIER1_THEOREM_CALL,
+                        tier=ErrorTier.TIER1_THEOREM_CALL_SYNTAX_VIOLATION,
                         message="Conclusion format error for diameter_of_circle_judgment_pass_centre",
                         details=f"Expected IsDiameterOfCircle(XX,Y) pattern but got {conclusions[0]}"
                     )
             else:
                 return GeometricError(
-                    tier=ErrorTier.TIER1_THEOREM_CALL,
+                    tier=ErrorTier.TIER1_THEOREM_CALL_SYNTAX_VIOLATION,
                     message=f"Unsupported version {version} for diameter_of_circle_judgment_pass_centre"
                 )
 
@@ -9002,7 +11007,7 @@ class GeometricTheorem:
                         f"Added mirror congruent triangle property: MeasureOfAngle({angle1}) = MeasureOfAngle({angle2})")
                 else:
                     return GeometricError(
-                        tier=ErrorTier.TIER1_THEOREM_CALL,
+                        tier=ErrorTier.TIER1_THEOREM_CALL_SYNTAX_VIOLATION,
                         message="Conclusion format error for mirror_congruent_triangle_property_angle_equal",
                         details=f"Expected format: Equal(MeasureOfAngle(XXX),MeasureOfAngle(YYY)) but got {conclusions[0]}"
                     )
@@ -9019,7 +11024,7 @@ class GeometricTheorem:
                 match = re.search(r'Equal\(Mul\(LengthOfLine\((\w+)\),2\),LengthOfLine\((\w+)\)\)', conclusions[0])
                 if not match:
                     return GeometricError(
-                        tier=ErrorTier.TIER1_THEOREM_CALL,
+                        tier=ErrorTier.TIER1_THEOREM_CALL_SYNTAX_VIOLATION,
                         message="Invalid conclusion format for right_triangle_property_length_of_median",
                         details="Expected format: Equal(Mul(LengthOfLine(median),2),LengthOfLine(hypotenuse))"
                     )
@@ -9038,11 +11043,12 @@ class GeometricTheorem:
                 return None
 
 
+
         elif theorem_name == "mirror_congruent_triangle_judgment_aas":
 
             version = args[0]
 
-            if version == "2":
+            if version in {"1", "2", "3"}:  # Handle all three versions
 
                 match = re.search(r'MirrorCongruentBetweenTriangle\((\w+),(\w+)\)', conclusions[0])
 
@@ -9055,19 +11061,31 @@ class GeometricTheorem:
                     if canonical_pair not in self.mirror_congruent_triangles:
                         self.mirror_congruent_triangles.append(canonical_pair)
 
-                    print(f"Added mirror congruent triangles: {tri1} and {tri2} (canonical: {canonical_pair})")
+                    print(f"Added mirror congruent triangles via AAS: {tri1} and {tri2} (canonical: {canonical_pair})")
 
                 else:
 
                     return GeometricError(
 
-                        tier=ErrorTier.TIER1_THEOREM_CALL,
+                        tier=ErrorTier.TIER1_THEOREM_CALL_SYNTAX_VIOLATION,
 
                         message="Conclusion format error for mirror_congruent_triangle_judgment_aas",
 
                         details=f"Expected MirrorCongruentBetweenTriangle(...) but got {conclusions[0]}"
 
                     )
+
+            else:
+
+                return GeometricError(
+
+                    tier=ErrorTier.TIER1_THEOREM_CALL_SYNTAX_VIOLATION,
+
+                    message=f"Unsupported version {version} for mirror_congruent_triangle_judgment_aas",
+
+                    details="Supported versions are 1, 2, and 3"
+
+                )
 
 
         elif theorem_name == "parallel_judgment_par_par":
@@ -9084,7 +11102,7 @@ class GeometricTheorem:
                     print(f"Added transitive parallel relationship: {line1} || {line2} (by transitivity)")
                 else:
                     return GeometricError(
-                        tier=ErrorTier.TIER1_THEOREM_CALL,
+                        tier=ErrorTier.TIER1_THEOREM_CALL_SYNTAX_VIOLATION,
                         message="Conclusion format error for parallel_judgment_par_par",
                         details=f"Expected ParallelBetweenLine(...) but got {conclusions[0]}"
                     )
@@ -9113,7 +11131,7 @@ class GeometricTheorem:
 
                     return GeometricError(
 
-                        tier=ErrorTier.TIER1_THEOREM_CALL,
+                        tier=ErrorTier.TIER1_THEOREM_CALL_SYNTAX_VIOLATION,
 
                         message="Conclusion format error for mirror_congruent_triangle_property_line_equal",
 
@@ -9140,7 +11158,7 @@ class GeometricTheorem:
 
                     return GeometricError(
 
-                        tier=ErrorTier.TIER1_THEOREM_CALL,
+                        tier=ErrorTier.TIER1_THEOREM_CALL_SYNTAX_VIOLATION,
 
                         message="Conclusion format error for midsegment_of_triangle_judgment_midpoint",
 
@@ -9193,7 +11211,7 @@ class GeometricTheorem:
 
                     return GeometricError(
 
-                        tier=ErrorTier.TIER1_THEOREM_CALL,
+                        tier=ErrorTier.TIER1_THEOREM_CALL_SYNTAX_VIOLATION,
 
                         message="Conclusion format error for midsegment_of_triangle_property_length",
 
@@ -9216,7 +11234,7 @@ class GeometricTheorem:
                     print(f"Added congruent triangle property: LengthOfLine({line1}) = LengthOfLine({line2})")
                 else:
                     return GeometricError(
-                        tier=ErrorTier.TIER1_THEOREM_CALL,
+                        tier=ErrorTier.TIER1_THEOREM_CALL_SYNTAX_VIOLATION,
                         message="Conclusion format error for congruent_triangle_property_line_equal",
                         details=f"Expected format: Equal(LengthOfLine(XX),LengthOfLine(YY)) but got {conclusions[0]}"
                     )
@@ -9233,7 +11251,7 @@ class GeometricTheorem:
                     print(f"Added congruent triangle property: MeasureOfAngle({angle1}) = MeasureOfAngle({angle2})")
                 else:
                     return GeometricError(
-                        tier=ErrorTier.TIER1_THEOREM_CALL,
+                        tier=ErrorTier.TIER1_THEOREM_CALL_SYNTAX_VIOLATION,
                         message="Conclusion format error for congruent_triangle_property_angle_equal",
                         details=f"Expected format: Equal(MeasureOfAngle(XXX),MeasureOfAngle(YYY)) but got {conclusions[0]}"
                     )
@@ -9252,7 +11270,7 @@ class GeometricTheorem:
                 if not median_match:
                     return GeometricError(
 
-                        tier=ErrorTier.TIER1_THEOREM_CALL,
+                        tier=ErrorTier.TIER1_THEOREM_CALL_SYNTAX_VIOLATION,
 
                         message="Invalid conclusion format for median_of_triangle_judgment",
 
@@ -9279,7 +11297,7 @@ class GeometricTheorem:
             incenter_match = re.search(r'IsIncenterOfTriangle\((\w+),(\w+)\)', conclusions[0])
             if not incenter_match:
                 return GeometricError(
-                    tier=ErrorTier.TIER1_THEOREM_CALL,
+                    tier=ErrorTier.TIER1_THEOREM_CALL_SYNTAX_VIOLATION,
                     message="Invalid conclusion format for incenter_of_triangle_judgment_intersection",
                     details="Expected format: IsIncenterOfTriangle(point,triangle)"
                 )
@@ -9318,13 +11336,13 @@ class GeometricTheorem:
                     return None
                 else:
                     return GeometricError(
-                        tier=ErrorTier.TIER1_THEOREM_CALL,
+                        tier=ErrorTier.TIER1_THEOREM_CALL_SYNTAX_VIOLATION,
                         message="Conclusion format error for vertical_angle",
                         details=f"Expected format: Equal(MeasureOfAngle(XXX),MeasureOfAngle(YYY)) but got {conclusions[0]}"
                     )
             else:
                 return GeometricError(
-                    tier=ErrorTier.TIER1_THEOREM_CALL,
+                    tier=ErrorTier.TIER1_THEOREM_CALL_SYNTAX_VIOLATION,
                     message=f"Unsupported version {version} for vertical_angle"
                 )
 
@@ -9408,7 +11426,7 @@ class GeometricTheorem:
                 # Check if we have at least the quadrilateral name
                 if len(args) < 2:
                     return GeometricError(
-                        tier=ErrorTier.TIER1_THEOREM_CALL,
+                        tier=ErrorTier.TIER1_THEOREM_CALL_SYNTAX_VIOLATION,
                         message="Missing quadrilateral name for parallelogram_judgment_parallel_and_parallel",
                         details="Expected parallelogram_judgment_parallel_and_parallel(1, quadrilateral)"
                     )
@@ -9424,7 +11442,7 @@ class GeometricTheorem:
 
                 if not polygon_match or polygon_match.group(1) != quad_name:
                     return GeometricError(
-                        tier=ErrorTier.TIER2_PREMISE,
+                        tier=ErrorTier.TIER2_PREMISE_VIOLATION,
                         message=f"Missing or incorrect polygon premise for {quad_name}",
                         details=f"Expected Polygon({quad_name}) in premise"
                     )
@@ -9432,7 +11450,7 @@ class GeometricTheorem:
                 # Check for parallel sides
                 if len(premise_parts) < 3:
                     return GeometricError(
-                        tier=ErrorTier.TIER2_PREMISE,
+                        tier=ErrorTier.TIER2_PREMISE_VIOLATION,
                         message="Missing parallel sides conditions",
                         details="Need two ParallelBetweenLine statements in premise"
                     )
@@ -9443,7 +11461,7 @@ class GeometricTheorem:
 
                 if not all(parallel_matches):
                     return GeometricError(
-                        tier=ErrorTier.TIER2_PREMISE,
+                        tier=ErrorTier.TIER2_PREMISE_VIOLATION,
                         message="Invalid parallel lines format in premise",
                         details="Expected format: ParallelBetweenLine(XX,YY)"
                     )
@@ -9464,7 +11482,7 @@ class GeometricTheorem:
 
                     if not any(p in self.parallel_pairs or p[::-1] in self.parallel_pairs for p in possible_pairs):
                         return GeometricError(
-                            tier=ErrorTier.TIER2_PREMISE,
+                            tier=ErrorTier.TIER2_PREMISE_VIOLATION,
                             message=f"Parallel relation {pair} not established",
                             details=f"Known parallel pairs: {self.parallel_pairs}"
                         )
@@ -9507,13 +11525,13 @@ class GeometricTheorem:
                     return None
                 else:
                     return GeometricError(
-                        tier=ErrorTier.TIER1_THEOREM_CALL,
+                        tier=ErrorTier.TIER1_THEOREM_CALL_SYNTAX_VIOLATION,
                         message="Conclusion format error for perpendicular_bisector_property_distance_equal",
                         details=f"Expected Equal(LengthOfLine(...),LengthOfLine(...)) but got {conclusions[0]}"
                     )
             else:
                 return GeometricError(
-                    tier=ErrorTier.TIER1_THEOREM_CALL,
+                    tier=ErrorTier.TIER1_THEOREM_CALL_SYNTAX_VIOLATION,
                     message=f"Unsupported version {version} for perpendicular_bisector_property_distance_equal"
                 )
 
@@ -9601,7 +11619,7 @@ class GeometricTheorem:
 
                     return GeometricError(
 
-                        tier=ErrorTier.TIER1_THEOREM_CALL,
+                        tier=ErrorTier.TIER1_THEOREM_CALL_SYNTAX_VIOLATION,
 
                         message="Conclusion format error for triangle_area_formula_common",
 
@@ -9613,7 +11631,7 @@ class GeometricTheorem:
 
                 return GeometricError(
 
-                    tier=ErrorTier.TIER1_THEOREM_CALL,
+                    tier=ErrorTier.TIER1_THEOREM_CALL_SYNTAX_VIOLATION,
 
                     message=f"Unsupported version {version} for triangle_area_formula_common"
 
@@ -9622,53 +11640,145 @@ class GeometricTheorem:
 
 
 
+
         elif theorem_name == "altitude_of_triangle_judgment":
+
             version = args[0]
-            if version == "1":
-                # Parse conclusion: "IsAltitudeOfTriangle(DN,DAB)"
-                match = re.search(r'IsAltitudeOfTriangle\((\w+),(\w+)\)', conclusions[0])
 
-                if match:
-                    altitude, triangle = match.groups()
-
-                    # Initialize triangle altitudes dictionary if it doesn't exist
-                    if not hasattr(self, "triangle_altitudes"):
-                        self.triangle_altitudes = {}
-
-                    # Initialize heights dictionary if it doesn't exist
-                    if not hasattr(self, "triangle_heights"):
-                        self.triangle_heights = {}
-
-                    # Add altitude information
-                    if triangle not in self.triangle_altitudes:
-                        self.triangle_altitudes[triangle] = []
-                    self.triangle_altitudes[triangle].append(altitude)
-
-                    # Create height variable for this triangle
-                    if triangle not in self.triangle_heights:
-                        height_var = Real(f"heightTriangle_{triangle}")
-                        self.triangle_heights[triangle] = height_var
-                        self.solver.add(height_var >= 0)
-
-                        # The height equals the altitude length
-                        altitude_length = self.add_length(altitude[0], altitude[1])
-                        # Note: In some geometric systems, the altitude might not be the full length
-                        # If needed, you might have to compute the height differently
-                        self.solver.add(height_var == altitude_length)
-
-                    print(f"Added altitude fact: {altitude} is an altitude of triangle {triangle}")
-                    return None
-                else:
-                    return GeometricError(
-                        tier=ErrorTier.TIER1_THEOREM_CALL,
-                        message="Conclusion format error for altitude_of_triangle_judgment",
-                        details=f"Expected IsAltitudeOfTriangle(...) pattern but got {conclusions[0]}"
-                    )
-            else:
+            if version not in {"1", "2", "3"}:
                 return GeometricError(
-                    tier=ErrorTier.TIER1_THEOREM_CALL,
-                    message=f"Unsupported version {version} for altitude_of_triangle_judgment"
+
+                    tier=ErrorTier.TIER1_THEOREM_CALL_SYNTAX_VIOLATION,
+
+                    message=f"Unsupported version {version} for altitude_of_triangle_judgment",
+
+                    details="Supported versions are 1, 2, and 3"
+
                 )
+
+            # Parse conclusion: "IsAltitudeOfTriangle(AD,ABC)"
+
+            match = re.search(r'IsAltitudeOfTriangle\((\w+),(\w+)\)', conclusions[0])
+
+            if not match:
+                return GeometricError(
+
+                    tier=ErrorTier.TIER1_THEOREM_CALL_SYNTAX_VIOLATION,
+
+                    message="Conclusion format error for altitude_of_triangle_judgment",
+
+                    details=f"Expected IsAltitudeOfTriangle(...) pattern but got {conclusions[0]}"
+
+                )
+
+            altitude_line = match.group(1)  # e.g., "AD"
+
+            triangle = match.group(2)  # e.g., "ABC"
+
+            # Extract altitude vertex, foot, and opposite vertices
+
+            altitude_vertex = altitude_line[0]  # e.g., "A"
+
+            altitude_foot = altitude_line[1]  # e.g., "D"
+
+            opposite_vertices = [v for v in triangle if v != altitude_vertex]  # e.g., ["B", "C"]
+
+            # Initialize triangle altitudes dictionary if it doesn't exist
+
+            if not hasattr(self, "triangle_altitudes"):
+                self.triangle_altitudes = {}
+
+            # Initialize heights dictionary if it doesn't exist
+
+            if not hasattr(self, "triangle_heights"):
+                self.triangle_heights = {}
+
+            # Add altitude information
+
+            if triangle not in self.triangle_altitudes:
+                self.triangle_altitudes[triangle] = []
+
+            self.triangle_altitudes[triangle].append(altitude_line)
+
+            # Create height variable for this triangle
+
+            if triangle not in self.triangle_heights:
+                height_var = Real(f"heightTriangle_{triangle}")
+
+                self.triangle_heights[triangle] = height_var
+
+                self.solver.add(height_var >= 0)
+
+                # The height equals the altitude length
+
+                altitude_length = self.add_length(altitude_line[0], altitude_line[1])
+
+                self.solver.add(height_var == altitude_length)
+
+            # Add collinearity constraint for the altitude foot and opposite side
+
+            collinear_points = None
+
+            if version == "1":
+
+                # Version 1: Collinear(BDC)
+
+                collinear_points = [opposite_vertices[0], altitude_foot, opposite_vertices[1]]
+
+            elif version == "2":
+
+                # Version 2: Collinear(DBC)
+
+                collinear_points = [altitude_foot, opposite_vertices[0], opposite_vertices[1]]
+
+            elif version == "3":
+
+                # Version 3: Collinear(BCD)
+
+                collinear_points = [opposite_vertices[0], opposite_vertices[1], altitude_foot]
+
+            # If we don't already have this collinearity fact, add it to collinear_facts
+
+            if collinear_points and not any(''.join(sorted(collinear_points)) == ''.join(sorted(fact))
+
+                                            for fact in self.collinear_facts):
+                self.collinear_facts.append(collinear_points)
+
+                print(
+                    f"Added collinearity constraint: {collinear_points[0]}{collinear_points[1]}{collinear_points[2]} are collinear")
+
+            # Add right angle constraint
+
+            angle_name = None
+
+            if version == "1":
+
+                # Version 1: Equal(MeasureOfAngle(BDA),90)
+
+                angle_name = f"{opposite_vertices[0]}{altitude_foot}{altitude_vertex}"  # "BDA"
+
+            elif version == "2":
+
+                # Version 2: Equal(MeasureOfAngle(ADB),90)
+
+                angle_name = f"{altitude_vertex}{altitude_foot}{opposite_vertices[0]}"  # "ADB"
+
+            elif version == "3":
+
+                # Version 3: Equal(MeasureOfAngle(CDA),90)
+
+                angle_name = f"{opposite_vertices[1]}{altitude_foot}{altitude_vertex}"  # "CDA"
+
+            if angle_name:
+                angle_var = self.add_angle(angle_name[0], angle_name[1], angle_name[2])
+
+                self.solver.add(angle_var == 90)
+
+                print(f"Added right angle constraint: angle {angle_name} = 90°")
+
+            print(f"Added altitude fact: {altitude_line} is an altitude of triangle {triangle} (version {version})")
+
+            return None
 
         elif theorem_name == "round_angle":
             version = args[0]
@@ -9693,13 +11803,13 @@ class GeometricTheorem:
                     return None
                 else:
                     return GeometricError(
-                        tier=ErrorTier.TIER1_THEOREM_CALL,
+                        tier=ErrorTier.TIER1_THEOREM_CALL_SYNTAX_VIOLATION,
                         message="Conclusion format error for round_angle",
                         details=f"Expected pattern Equal(Add(MeasureOfAngle(XXX),MeasureOfAngle(YYY)),360) but got {conclusions[0]}"
                     )
             else:
                 return GeometricError(
-                    tier=ErrorTier.TIER1_THEOREM_CALL,
+                    tier=ErrorTier.TIER1_THEOREM_CALL_SYNTAX_VIOLATION,
                     message=f"Unsupported version {version} for round_angle"
                 )
 
@@ -9738,13 +11848,13 @@ class GeometricTheorem:
                     return None
                 else:
                     return GeometricError(
-                        tier=ErrorTier.TIER1_THEOREM_CALL,
+                        tier=ErrorTier.TIER1_THEOREM_CALL_SYNTAX_VIOLATION,
                         message="Conclusion format error for flat_angle",
                         details=f"Expected pattern Equal(MeasureOfAngle(XXX),180) but got {conclusions[0]}"
                     )
             else:
                 return GeometricError(
-                    tier=ErrorTier.TIER1_THEOREM_CALL,
+                    tier=ErrorTier.TIER1_THEOREM_CALL_SYNTAX_VIOLATION,
                     message=f"Unsupported version {version} for flat_angle"
                 )
 
@@ -9776,44 +11886,88 @@ class GeometricTheorem:
                     return None
                 else:
                     return GeometricError(
-                        tier=ErrorTier.TIER1_THEOREM_CALL,
+                        tier=ErrorTier.TIER1_THEOREM_CALL_SYNTAX_VIOLATION,
                         message="Conclusion format error for circle_property_circular_power_chord_and_chord",
                         details=f"Expected pattern Equal(Mul(...),Mul(...)) but got {conclusions[0]}"
                     )
             else:
                 return GeometricError(
-                    tier=ErrorTier.TIER1_THEOREM_CALL,
+                    tier=ErrorTier.TIER1_THEOREM_CALL_SYNTAX_VIOLATION,
                     message=f"Unsupported version {version} for circle_property_circular_power_chord_and_chord"
                 )
 
 
 
+
         elif theorem_name == "altitude_of_quadrilateral_judgment_diagonal":
 
-            # Expected conclusion: ["IsAltitudeOfQuadrilateral(DC,DACB)"]
+            version = args[0].strip()
+
+            if version not in {"1", "2"}:
+                return GeometricError(
+
+                    tier=ErrorTier.TIER1_THEOREM_CALL_SYNTAX_VIOLATION,
+
+                    message=f"Unsupported version {version} for altitude_of_quadrilateral_judgment_diagonal",
+
+                    details="Supported versions are 1 and 2"
+
+                )
+
+            quad = args[1].strip()  # e.g., "ABCD"
+
+            # Determine the diagonal based on version
+
+            diagonal = None
+
+            if version == "1":
+
+                diagonal = f"{quad[0]}{quad[2]}"  # AC
+
+            elif version == "2":
+
+                diagonal = f"{quad[3]}{quad[1]}"  # DB
+
+            # Expected conclusion format
+
+            expected_conclusion = f"IsAltitudeOfQuadrilateral({diagonal},{quad})"
+
+            # Verify conclusion matches expected format
 
             altitude_match = re.search(r'IsAltitudeOfQuadrilateral\((\w+),(\w+)\)', conclusions[0])
 
             if not altitude_match:
                 return GeometricError(
 
-                    tier=ErrorTier.TIER1_THEOREM_CALL,
+                    tier=ErrorTier.TIER1_THEOREM_CALL_SYNTAX_VIOLATION,
 
                     message="Invalid conclusion format for altitude_of_quadrilateral_judgment_diagonal",
 
-                    details="Expected format: IsAltitudeOfQuadrilateral(line,quad)"
+                    details=f"Expected format: {expected_conclusion}"
 
                 )
 
-            print("Parsing altitude fact...")
+            line = altitude_match.group(1)  # First capture group (e.g., AC or DB)
 
-            print(f"Full conclusion: {conclusions[0]}")
+            conclusion_quad = altitude_match.group(2)  # Second capture group (e.g., ABCD)
 
-            line = altitude_match.group(1)  # First capture group (DC)
+            # Verify conclusion matches expected values
 
-            quad = altitude_match.group(2)  # Second capture group (DACB)
+            if line != diagonal or conclusion_quad != quad:
+                return GeometricError(
 
-            print(f"Extracted line: {line}, quad: {quad}")
+                    tier=ErrorTier.TIER1_THEOREM_CALL_SYNTAX_VIOLATION,
+
+                    message="Conclusion doesn't match expected values",
+
+                    details=f"Expected {expected_conclusion}, got IsAltitudeOfQuadrilateral({line},{conclusion_quad})"
+
+                )
+
+            # Initialize the altitudes structure if needed
+
+            if not hasattr(self, 'altitudes'):
+                self.altitudes = {}
 
             # Store the altitude information
 
@@ -9824,6 +11978,9 @@ class GeometricTheorem:
 
             # Create a height variable for this quad and link it to the altitude length
 
+            if not hasattr(self, 'quad_heights'):
+                self.quad_heights = {}
+
             if quad not in self.quad_heights:
                 height_var = Real(f"heightQuadr_{quad}")
 
@@ -9831,13 +11988,35 @@ class GeometricTheorem:
 
                 self.solver.add(height_var >= 0)
 
-                # The height equals the length of the altitude line
+            # Set the height equal to the length of the altitude line
 
-                altitude_length = self.add_length(line[0], line[1])
+            altitude_length = self.add_length(line[0], line[1])
 
-                self.solver.add(height_var == altitude_length)
+            self.solver.add(self.quad_heights[quad] == altitude_length)
 
-            print(f"Added altitude fact: {line} is an altitude of {quad} and stored corresponding height")
+            # Add right angle constraint
+
+            if version == "1":
+
+                # Version 1: Equal(MeasureOfAngle(BCA),90)
+
+                angle_name = f"{quad[1]}{quad[2]}{quad[0]}"  # BCA
+
+            elif version == "2":
+
+                # Version 2: Equal(MeasureOfAngle(DBC),90)
+
+                angle_name = f"{quad[3]}{quad[1]}{quad[2]}"  # DBC
+
+            angle_var = self.add_angle(angle_name[0], angle_name[1], angle_name[2])
+
+            self.solver.add(angle_var == 90)
+
+            print(f"Added altitude fact for version {version}: {line} is an altitude of {quad}")
+
+            print(f"Added right angle constraint: angle {angle_name} = 90°")
+
+            print(f"Set quadrilateral height: {quad} height = {line}")
 
             return None
 
@@ -9850,7 +12029,7 @@ class GeometricTheorem:
             if not match:
                 return GeometricError(
 
-                    tier=ErrorTier.TIER1_THEOREM_CALL,
+                    tier=ErrorTier.TIER1_THEOREM_CALL_SYNTAX_VIOLATION,
 
                     message="Invalid conclusion format for perpendicular_bisector_judgment_distance_equal"
 
@@ -9879,7 +12058,7 @@ class GeometricTheorem:
             if not bisector_point:
                 return GeometricError(
 
-                    tier=ErrorTier.TIER1_THEOREM_CALL,
+                    tier=ErrorTier.TIER1_THEOREM_CALL_SYNTAX_VIOLATION,
 
                     message="Could not find bisector point on the bisected line",
 
@@ -9948,44 +12127,141 @@ class GeometricTheorem:
 
         elif theorem_name == "altitude_of_quadrilateral_judgment_left_vertex":
 
-            # Expected conclusion: "IsAltitudeOfQuadrilateral(AE,ACDB)"
+            version = args[0].strip()
 
-            altitude_line = args[1].strip()
+            if version not in {"1", "2", "3"}:
+                return GeometricError(
 
-            quad_name = args[2].strip()
+                    tier=ErrorTier.TIER1_THEOREM_CALL_SYNTAX_VIOLATION,
+
+                    message=f"Unsupported version {version} for altitude_of_quadrilateral_judgment_left_vertex",
+
+                    details="Supported versions are 1, 2, and 3"
+
+                )
+
+            altitude_line = args[1].strip()  # e.g., "AF"
+
+            quad_name = args[2].strip()  # e.g., "ABCD"
+
+            # Expected conclusion format
 
             altitude_fact = f"IsAltitudeOfQuadrilateral({altitude_line},{quad_name})"
 
-            # Initialize altitudes as a set if it doesn't exist
+            # Initialize the altitudes collection appropriately
 
             if not hasattr(self, 'altitudes'):
 
                 self.altitudes = set()
 
-            # Convert from dict to set if it's currently a dict
-
-            elif isinstance(self.altitudes, dict):
+            elif isinstance(self.altitudes, dict):  # Handle potential conversion from dict to set
 
                 self.altitudes = set(self.altitudes.keys())
 
-            # Now we can safely add to it as a set
+            # Record the altitude fact
 
             self.altitudes.add(altitude_fact)
 
-            # Also, if you have a quad_heights dictionary, set the height
+            # Set up the height variable in quad_heights if that collection exists
 
             if hasattr(self, 'quad_heights'):
-                # Get the length of the altitude line
-
                 height_var = self.add_length(altitude_line[0], altitude_line[1])
 
                 self.quad_heights[quad_name] = height_var
 
                 print(f"Set quadrilateral height: {quad_name} height = {altitude_line}")
 
+            # Set up the right angle constraint based on version
+
+            if version == "1":
+
+                # Version 1: Equal(MeasureOfAngle(BFA),90)
+
+                point_B = quad_name[1]  # Second vertex
+
+                point_F = altitude_line[1]  # Second point of altitude
+
+                point_A = altitude_line[0]  # First point of altitude
+
+                angle_var = self.add_angle(point_B, point_F, point_A)
+
+                self.solver.add(angle_var == 90)
+
+                print(f"Added right angle constraint for version 1: angle({point_B}{point_F}{point_A}) = 90°")
+
+
+            elif version == "2":
+
+                # Version 2: Equal(MeasureOfAngle(AFB),90)
+
+                point_A = altitude_line[0]  # First point of altitude
+
+                point_F = altitude_line[1]  # Second point of altitude
+
+                point_B = quad_name[1]  # Second vertex
+
+                angle_var = self.add_angle(point_A, point_F, point_B)
+
+                self.solver.add(angle_var == 90)
+
+                print(f"Added right angle constraint for version 2: angle({point_A}{point_F}{point_B}) = 90°")
+
+
+            elif version == "3":
+
+                # Version 3: Equal(MeasureOfAngle(CFA),90)
+
+                point_C = quad_name[2]  # Third vertex
+
+                point_F = altitude_line[1]  # Second point of altitude
+
+                point_A = altitude_line[0]  # First point of altitude
+
+                angle_var = self.add_angle(point_C, point_F, point_A)
+
+                self.solver.add(angle_var == 90)
+
+                print(f"Added right angle constraint for version 3: angle({point_C}{point_F}{point_A}) = 90°")
+
+            # Add a collinearity constraint for the foot of the altitude
+
+            collinear_points = None
+
+            if version == "1":
+
+                # Version 1: Collinear(BFC)
+
+                collinear_points = [quad_name[1], altitude_line[1], quad_name[2]]
+
+            elif version == "2":
+
+                # Version 2: Collinear(FBC)
+
+                collinear_points = [altitude_line[1], quad_name[1], quad_name[2]]
+
+            elif version == "3":
+
+                # Version 3: Collinear(BCF)
+
+                collinear_points = [quad_name[1], quad_name[2], altitude_line[1]]
+
+            # If we don't already have this collinearity fact, add it to collinear_facts
+
+            if collinear_points and not any(''.join(collinear_points) == ''.join(fact)
+
+                                            or ''.join(collinear_points) == ''.join(fact[::-1])
+
+                                            for fact in self.collinear_facts):
+                self.collinear_facts.append(collinear_points)
+
+                print(
+                    f"Added collinearity constraint: {collinear_points[0]}{collinear_points[1]}{collinear_points[2]} are collinear")
+
             print(f"Recorded altitude fact: {altitude_fact}")
 
             return None
+
+
         elif theorem_name == "parallelogram_property_opposite_line_equal":
             # Expected conclusion: "Equal(LengthOfLine(DC),LengthOfLine(BA))"
             match = re.search(r'Equal\(LengthOfLine\((\w+)\),LengthOfLine\((\w+)\)\)', conclusions[0])
@@ -9998,7 +12274,7 @@ class GeometricTheorem:
                 return None
             else:
                 return GeometricError(
-                    tier=ErrorTier.TIER1_THEOREM_CALL,
+                    tier=ErrorTier.TIER1_THEOREM_CALL_SYNTAX_VIOLATION,
                     message="Conclusion format error for parallelogram_property_opposite_line_equal."
                 )
 
@@ -10022,7 +12298,7 @@ class GeometricTheorem:
                 if quad not in self.quad_heights:
                     return GeometricError(
 
-                        tier=ErrorTier.TIER2_PREMISE,
+                        tier=ErrorTier.TIER2_PREMISE_VIOLATION,
 
                         message=f"No height established for quadrilateral {quad}",
 
@@ -10060,7 +12336,7 @@ class GeometricTheorem:
 
                 return GeometricError(
 
-                    tier=ErrorTier.TIER1_THEOREM_CALL,
+                    tier=ErrorTier.TIER1_THEOREM_CALL_SYNTAX_VIOLATION,
 
                     message="Conclusion format error for parallelogram_area_formula_common."
 
@@ -10094,10 +12370,19 @@ class GeometricTheorem:
         elif theorem_name == "isosceles_triangle_property_angle_equal":
             # Expected theorem call: isosceles_triangle_property_angle_equal(1, T)
             # where T is a triangle name, e.g., "JPN".
+            version = args[0]
+
+            if version != "1":  # Updated to include version "2"
+                return return_error(GeometricError(
+                    tier=ErrorTier.TIER1_THEOREM_CALL_SYNTAX_VIOLATION,
+                    message="these is no such version for the theorem",
+                    details="these is no such version for the theorem isosceles_triangle_property_angle_equal"
+                ))
+
             tri = args[1].strip()
             if len(tri) != 3:
                 return GeometricError(
-                    tier=ErrorTier.TIER1_THEOREM_CALL,
+                    tier=ErrorTier.TIER1_THEOREM_CALL_SYNTAX_VIOLATION,
                     message="Triangle name must have exactly 3 letters."
                 )
             # For a general triangle T = XYZ, one common convention is to assume the apex is at the first vertex.
@@ -10144,7 +12429,7 @@ class GeometricTheorem:
                     factor_value = float(eval(factor_expr, {"pi": 3.141592653589793}))
                 except Exception as e:
                     return GeometricError(
-                        tier=ErrorTier.TIER1_THEOREM_CALL,
+                        tier=ErrorTier.TIER1_THEOREM_CALL_SYNTAX_VIOLATION,
                         message="Error evaluating multiplier expression in arc_length_formula",
                         details=str(e)
                     )
@@ -10162,7 +12447,7 @@ class GeometricTheorem:
                     f"Added arc length constraint: {length_var_name} = {arc_measure} * {factor_value} * RadiusOfCircle({circle_id})")
             else:
                 return GeometricError(
-                    tier=ErrorTier.TIER1_THEOREM_CALL,
+                    tier=ErrorTier.TIER1_THEOREM_CALL_SYNTAX_VIOLATION,
                     message="Conclusion format error for arc_length_formula",
                     details=f"Expected pattern not found in: {conclusions[0]}"
                 )
@@ -10210,13 +12495,13 @@ class GeometricTheorem:
             # Expected argument: the rectangle name (e.g., "PNML")
             if len(args) < 2:
                 return GeometricError(
-                    tier=ErrorTier.TIER1_THEOREM_CALL,
+                    tier=ErrorTier.TIER1_THEOREM_CALL_SYNTAX_VIOLATION,
                     message="Missing rectangle name for rectangle_property_diagonal_equal."
                 )
             rect = args[1].strip()  # e.g., "PNML"
             if len(rect) < 4:
                 return GeometricError(
-                    tier=ErrorTier.TIER1_THEOREM_CALL,
+                    tier=ErrorTier.TIER1_THEOREM_CALL_SYNTAX_VIOLATION,
                     message=f"Rectangle name {rect} is invalid (expected at least 4 letters)."
                 )
             # For a rectangle with vertices in cyclic order, the diagonals are:
@@ -10243,7 +12528,7 @@ class GeometricTheorem:
             # then we add the constraint: LengthOfLine(PJ) == LengthOfLine(JM).
             if len(args) < 3:
                 return GeometricError(
-                    tier=ErrorTier.TIER1_THEOREM_CALL,
+                    tier=ErrorTier.TIER1_THEOREM_CALL_SYNTAX_VIOLATION,
                     message="Insufficient arguments for parallelogram_property_diagonal_bisection."
                 )
             para_name = args[1].strip()  # e.g., "PNML"
@@ -10265,9 +12550,22 @@ class GeometricTheorem:
 
 
 
+
         elif theorem_name == "parallel_property_collinear_extend":
 
             version = args[0].strip()
+
+            if version not in {"1", "2", "3"}:  # Updated to include version "2"
+
+                return GeometricError(
+
+                    tier=ErrorTier.TIER1_THEOREM_CALL_SYNTAX_VIOLATION,
+
+                    message=f"Unsupported version {version} for parallel_property_collinear_extend.",
+
+                    details=f"Version provided: {version}"
+
+                )
 
             token1 = args[1].strip()  # e.g., "GA"
 
@@ -10304,21 +12602,29 @@ class GeometricTheorem:
                 for var in variations:
                     self.parallel_pairs.add(var)
 
-            # For the conclusion, form the new parallel lines.
+            # For the conclusion, form the new parallel lines based on the version.
 
-            if version == "3":
+            if version == "1":
 
-                # For version 3, form new_line1 as token1[0] + token3 and new_line2 as token3 + token1[1]
+                # For version 1: token3 + token1[0] and token3 + token1[1]
 
-                new_line1 = token1[0] + token3  # e.g., for token1="GA" and token3="J": "GJ"
+                new_line1 = token3 + token1[0]  # e.g., "JG"
 
                 new_line2 = token3 + token1[1]  # e.g., "JA"
 
-            elif version == "1":
+            elif version == "2":
 
-                # For version 1, form new_line1 as token3 + token1[0] and new_line2 as token3 + token1[1]
+                # For version 2: token1[0] + token3 and token1[1] + token3
 
-                new_line1 = token3 + token1[0]  # e.g., "JG"
+                new_line1 = token1[0] + token3  # e.g., "AM"
+
+                new_line2 = token1[1] + token3  # e.g., "BM"
+
+            elif version == "3":
+
+                # For version 3: token1[0] + token3 and token3 + token1[1]
+
+                new_line1 = token1[0] + token3  # e.g., "GJ"
 
                 new_line2 = token3 + token1[1]  # e.g., "JA"
 
@@ -10359,39 +12665,127 @@ class GeometricTheorem:
                     f"Added constraint: (MeasureOfArc({arc1}) - MeasureOfArc({arc2})) == {factor_val} * MeasureOfAngle({angle_str})")
             else:
                 return GeometricError(
-                    tier=ErrorTier.TIER1_THEOREM_CALL,
+                    tier=ErrorTier.TIER1_THEOREM_CALL_SYNTAX_VIOLATION,
                     message="Conclusion format error for circle_property_circular_power_segment_and_segment_angle",
                     details=f"Expected pattern not found in: {conclusions[0]}"
                 )
 
+
         elif theorem_name == "midsegment_of_triangle_judgment_parallel":
+
             version = args[0]
-            if version == "1":
-                # (Your version 1 handling here.)
-                print("no\n no\n yet")
-            elif version == "2":
-                # Expected conclusion: ["IsMidsegmentOfTriangle(HD,CFB)"]
-                m = re.search(r'IsMidsegmentOfTriangle\((\w+),(\w+)\)', conclusions[0])
-                if m:
-                    midseg_line, triangle_token = m.groups()
-                    # We expect these tokens to match the ones from the theorem call.
-                    # For version 2, args[1] should be "HD" and args[2] should be "CFB".
-                    if midseg_line != args[1] or triangle_token != args[2]:
-                        return GeometricError(
-                            tier=ErrorTier.TIER1_THEOREM_CALL,
-                            message="Conclusion does not match expected tokens for midsegment_of_triangle_judgment_parallel (version 2)",
-                            details=f"Expected IsMidsegmentOfTriangle({args[1]},{args[2]}), got IsMidsegmentOfTriangle({midseg_line},{triangle_token})"
-                        )
-                    # Optionally, you might also record this fact.
-                    self.tangent_facts.add(("IsMidsegmentOfTriangle", (args[1], args[2])))
-                    print(
-                        f"[Version 2] Added midsegment judgment: IsMidsegmentOfTriangle({midseg_line},{triangle_token})")
-                else:
+
+            if version not in {"1", "2", "3"}:
+                return GeometricError(
+
+                    tier=ErrorTier.TIER1_THEOREM_CALL_SYNTAX_VIOLATION,
+
+                    message=f"Unsupported version {version} for midsegment_of_triangle_judgment_parallel",
+
+                    details="Supported versions are 1, 2, and 3"
+
+                )
+
+            if len(args) < 3:
+                return GeometricError(
+
+                    tier=ErrorTier.TIER1_THEOREM_CALL_SYNTAX_VIOLATION,
+
+                    message="Insufficient arguments for midsegment_of_triangle_judgment_parallel",
+
+                    details="Expected: midsegment_of_triangle_judgment_parallel(version, line, triangle)"
+
+                )
+
+            midseg_line = args[1].strip()
+
+            triangle_token = args[2].strip()
+
+            # Expected conclusion: ["IsMidsegmentOfTriangle(DE,ABC)"]
+
+            m = re.search(r'IsMidsegmentOfTriangle\((\w+),(\w+)\)', conclusions[0])
+
+            if m:
+
+                conclusion_line, conclusion_triangle = m.groups()
+
+                # We expect these tokens to match the ones from the theorem call
+
+                if conclusion_line != midseg_line or conclusion_triangle != triangle_token:
                     return GeometricError(
-                        tier=ErrorTier.TIER1_THEOREM_CALL,
-                        message="Conclusion format error for midsegment_of_triangle_judgment_parallel (version 2)",
-                        details="Expected format: IsMidsegmentOfTriangle(HD,CFB)"
+
+                        tier=ErrorTier.TIER1_THEOREM_CALL_SYNTAX_VIOLATION,
+
+                        message=f"Conclusion does not match expected tokens for midsegment_of_triangle_judgment_parallel",
+
+                        details=f"Expected IsMidsegmentOfTriangle({midseg_line},{triangle_token}), got IsMidsegmentOfTriangle({conclusion_line},{conclusion_triangle})"
+
                     )
+
+                # Record this midsegment fact
+
+                if not hasattr(self, "midsegments"):
+                    self.midsegments = set()
+
+                # Store the midsegment fact
+
+                midsegment_fact = ("IsMidsegmentOfTriangle", (midseg_line, triangle_token))
+
+                self.midsegments.add(midsegment_fact)
+
+                print(
+                    f"[Version {version}] Added midsegment judgment: IsMidsegmentOfTriangle({midseg_line},{triangle_token})")
+
+                # For version 3, we might also want to set up the length relationship
+
+                if version == "3":
+
+                    # Find the side of the triangle that is parallel to the midsegment
+
+                    # This would typically be the side that doesn't share any vertices with the midsegment
+
+                    midseg_endpoints = set(midseg_line)
+
+                    triangle_sides = [(triangle_token[i], triangle_token[(i + 1) % 3]) for i in range(3)]
+
+                    # Find the side that doesn't share vertices with the midsegment
+
+                    parallel_side = None
+
+                    for side in triangle_sides:
+
+                        if not any(endpoint in side for endpoint in midseg_endpoints):
+                            parallel_side = ''.join(side)
+
+                            break
+
+                    if parallel_side:
+                        # Create length variables
+
+                        side_var = self.add_length(parallel_side[0], parallel_side[1])
+
+                        midseg_var = self.add_length(midseg_line[0], midseg_line[1])
+
+                        # Add the constraint: parallel_side = 2 * midsegment
+
+                        self.solver.add(side_var == 2 * midseg_var)
+
+                        print(
+                            f"Added midsegment length constraint: LengthOfLine({parallel_side}) = 2 * LengthOfLine({midseg_line})")
+
+                return None
+
+            else:
+
+                return GeometricError(
+
+                    tier=ErrorTier.TIER1_THEOREM_CALL_SYNTAX_VIOLATION,
+
+                    message="Conclusion format error for midsegment_of_triangle_judgment_parallel",
+
+                    details=f"Expected format: IsMidsegmentOfTriangle({midseg_line},{triangle_token})"
+
+                )
 
 
 
@@ -10416,7 +12810,7 @@ class GeometricTheorem:
                     factor_value = float(eval(factor_expr, {"pi": 3.141592653589793}))
                 except Exception as e:
                     return GeometricError(
-                        tier=ErrorTier.TIER1_THEOREM_CALL,
+                        tier=ErrorTier.TIER1_THEOREM_CALL_SYNTAX_VIOLATION,
                         message="Error evaluating multiplier expression in arc_property_circumference_angle_internal",
                         details=str(e)
                     )
@@ -10427,7 +12821,7 @@ class GeometricTheorem:
                     f"Added arc circumference internal angle constraint: MeasureOfAngle({angle_token}) = 180 - {factor_value} * MeasureOfArc({arc_token})")
             else:
                 return GeometricError(
-                    tier=ErrorTier.TIER1_THEOREM_CALL,
+                    tier=ErrorTier.TIER1_THEOREM_CALL_SYNTAX_VIOLATION,
                     message="Conclusion format error for arc_property_circumference_angle_internal",
                     details=f"Expected pattern not found in: {conclusions[0]}"
                 )
@@ -10438,28 +12832,40 @@ class GeometricTheorem:
 
 
 
+
         elif theorem_name == "circle_property_chord_perpendicular_bisect_chord":
 
-            # Expecting arguments: [version, circle_token, bisector_line, chord_token]
+            version = args[0].strip()
+
+            if version not in {"1", "2"}:
+                return GeometricError(
+
+                    tier=ErrorTier.TIER1_THEOREM_CALL_SYNTAX_VIOLATION,
+
+                    message=f"Unsupported version {version} for circle_property_chord_perpendicular_bisect_chord",
+
+                    details="Supported versions are 1 and 2"
+
+                )
 
             if len(args) < 4:
                 return GeometricError(
 
-                    tier=ErrorTier.TIER1_THEOREM_CALL,
+                    tier=ErrorTier.TIER1_THEOREM_CALL_SYNTAX_VIOLATION,
 
                     message="Missing arguments for circle_property_chord_perpendicular_bisect_chord",
 
-                    details="Expected format: circle_property_chord_perpendicular_bisect_chord(1, <circle>, <bisector_line>, <chord>)"
+                    details="Expected format: circle_property_chord_perpendicular_bisect_chord(version, <circle>, <bisector_line>, <chord>)"
 
                 )
 
             circle_token = args[1].strip()  # e.g., "O"
 
-            bisector_line = args[2].strip()  # e.g., "OP"
+            bisector_line = args[2].strip()  # e.g., "PM"
 
-            chord_token = args[3].strip()  # e.g., "BC"
+            chord_token = args[3].strip()  # e.g., "AB"
 
-            # Record the fact for later use.
+            # Record the fact for later use
 
             if not hasattr(self, "bisector_facts"):
                 self.bisector_facts = set()
@@ -10468,17 +12874,11 @@ class GeometricTheorem:
 
             print(f"Recorded fact: {bisector_line} is the perpendicular bisector of {chord_token}")
 
-            # Look for a collinearity fact that shows both endpoints of the chord are collinear with a third point.
-
-            # For example, if chord_token is "BC" and a collinearity fact "Collinear(BPC)" exists,
-
-            # then the extra point "P" is our candidate midpoint.
+            # Find the midpoint from collinear facts
 
             midpoint = None
 
             for fact in self.collinear_facts:
-
-                # fact is a list of points (e.g., ['B','P','C'])
 
                 if set(chord_token).issubset(set(fact)):
 
@@ -10491,37 +12891,32 @@ class GeometricTheorem:
 
             if midpoint is not None:
 
-                print(f"Found candidate midpoint for chord {chord_token}: {midpoint}")
+                print(f"Found midpoint for chord {chord_token}: {midpoint}")
 
-                # Check that the bisector line passes through this midpoint.
+                # Verify the midpoint is on the bisector line
 
                 if midpoint in bisector_line:
 
-                    # Identify the other endpoint of the bisector line.
+                    # Find the other endpoint of the bisector line
 
-                    other_bisector = None
+                    other_endpoint = next((pt for pt in bisector_line if pt != midpoint), None)
 
-                    for pt in bisector_line:
+                    if other_endpoint is not None:
 
-                        if pt != midpoint:
-                            other_bisector = pt
+                        # For both versions, add constraints for both perpendicular and equal segments
 
-                            break
+                        # 1. Add perpendicular constraint (90° angle)
 
-                    if other_bisector is not None:
+                        angle1 = self.add_angle(chord_token[0], midpoint, other_endpoint)
 
-                        # Add perpendicular constraints on both "sides" of the chord.
-
-                        angle1 = self.add_angle(chord_token[0], midpoint, other_bisector)
-
-                        angle2 = self.add_angle(other_bisector, midpoint, chord_token[1])
+                        angle2 = self.add_angle(other_endpoint, midpoint, chord_token[1])
 
                         self.solver.add(angle1 == 90, angle2 == 90)
 
                         print(
-                            f"Added perpendicular constraints: angle({chord_token[0]}{midpoint}{other_bisector}) and angle({other_bisector}{midpoint}{chord_token[1]}) are both 90°")
+                            f"Added perpendicular constraints: angle({chord_token[0]}{midpoint}{other_endpoint}) and angle({other_endpoint}{midpoint}{chord_token[1]}) = 90°")
 
-                        # **New step:** Also add the bisection constraint: the chord is divided equally.
+                        # 2. Add bisection constraint (equal segments)
 
                         len_first = self.add_length(chord_token[0], midpoint)
 
@@ -10530,7 +12925,20 @@ class GeometricTheorem:
                         self.solver.add(len_first == len_second)
 
                         print(
-                            f"Added chord bisection constraint: LengthOfLine({chord_token[0]}{midpoint}) == LengthOfLine({midpoint}{chord_token[1]})")
+                            f"Added chord bisection constraint: {chord_token[0]}{midpoint} = {midpoint}{chord_token[1]}")
+
+                        # 3. Record the perpendicular bisector relationship
+
+                        if not hasattr(self, "perpendicular_bisectors"):
+                            self.perpendicular_bisectors = set()
+
+                        self.perpendicular_bisectors.add((bisector_line, chord_token))
+
+                        print(f"Recorded perpendicular bisector relationship: {bisector_line} ⊥ {chord_token}")
+
+                        # Add conclusion to tangent_facts as mentioned in original code
+
+                        self.tangent_facts.add(("IsPerpendicularBisectorOfLine", (bisector_line, chord_token)))
 
                     else:
 
@@ -10538,13 +12946,13 @@ class GeometricTheorem:
 
                 else:
 
-                    print(
-                        f"Midpoint {midpoint} is not on the bisector line {bisector_line}; cannot add perpendicular constraint.")
+                    print(f"Midpoint {midpoint} is not on bisector line {bisector_line}; cannot add constraints.")
 
             else:
 
-                print(
-                    f"No collinear fact found that identifies a midpoint for chord {chord_token}; cannot add perpendicular constraint.")
+                print(f"No midpoint identified for chord {chord_token}; cannot add constraints.")
+
+            return None
 
 
 
@@ -10555,7 +12963,7 @@ class GeometricTheorem:
             # Expecting arguments: [version, line_token, circle_token] e.g., ("1", "OA", "O")
             if len(args) < 3:
                 return GeometricError(
-                    tier=ErrorTier.TIER1_THEOREM_CALL,
+                    tier=ErrorTier.TIER1_THEOREM_CALL_SYNTAX_VIOLATION,
                     message="Missing arguments for radius_of_circle_property_length_equal",
                     details="Expected format: radius_of_circle_property_length_equal(1, <line>, <circle>)"
                 )
@@ -10590,7 +12998,7 @@ class GeometricTheorem:
                 print(f"Added ipsilateral internal angle constraint: {angle1_token} + {angle2_token} = 180")
             else:
                 return GeometricError(
-                    tier=ErrorTier.TIER1_THEOREM_CALL,
+                    tier=ErrorTier.TIER1_THEOREM_CALL_SYNTAX_VIOLATION,
                     message="Conclusion format error for parallel_property_ipsilateral_internal_angle",
                     details=f"Expected pattern not found in: {conclusions[0]}"
                 )
@@ -10650,7 +13058,7 @@ class GeometricTheorem:
 
                 return GeometricError(
 
-                    tier=ErrorTier.TIER1_THEOREM_CALL,
+                    tier=ErrorTier.TIER1_THEOREM_CALL_SYNTAX_VIOLATION,
 
                     message=f"Unsupported version {version} for tangent_of_circle_property_perpendicular"
 
@@ -10693,7 +13101,7 @@ class GeometricTheorem:
 
                     return GeometricError(
 
-                        tier=ErrorTier.TIER1_THEOREM_CALL,
+                        tier=ErrorTier.TIER1_THEOREM_CALL_SYNTAX_VIOLATION,
 
                         message="Conclusion format error for arc_property_center_angle",
 
@@ -10705,7 +13113,7 @@ class GeometricTheorem:
 
                 return GeometricError(
 
-                    tier=ErrorTier.TIER1_THEOREM_CALL,
+                    tier=ErrorTier.TIER1_THEOREM_CALL_SYNTAX_VIOLATION,
 
                     message=f"Version {version} for arc_property_center_angle not implemented"
 
@@ -10754,7 +13162,7 @@ class GeometricTheorem:
 
                     return GeometricError(
 
-                        tier=ErrorTier.TIER1_THEOREM_CALL,
+                        tier=ErrorTier.TIER1_THEOREM_CALL_SYNTAX_VIOLATION,
 
                         message="Conclusion format error for arc_property_circumference_angle_external",
 
@@ -10766,7 +13174,7 @@ class GeometricTheorem:
 
                 return GeometricError(
 
-                    tier=ErrorTier.TIER1_THEOREM_CALL,
+                    tier=ErrorTier.TIER1_THEOREM_CALL_SYNTAX_VIOLATION,
 
                     message=f"Version {version} for arc_property_circumference_angle_external not implemented"
 
@@ -10816,7 +13224,7 @@ class GeometricTheorem:
                 self.add_mirror_similar_triangles(tri1, tri2)
             else:
                 return GeometricError(
-                    tier=ErrorTier.TIER1_THEOREM_CALL,
+                    tier=ErrorTier.TIER1_THEOREM_CALL_SYNTAX_VIOLATION,
                     message="Conclusion format error for mirror_similar_triangle_judgment_aa",
                     details=f"Expected format: MirrorSimilarBetweenTriangle(XXX,YYY) but got {conclusions[0]}"
                 )
@@ -10850,7 +13258,7 @@ class GeometricTheorem:
                     if side2 != side4 or side3 != side5:
                         return GeometricError(
 
-                            tier=ErrorTier.TIER1_THEOREM_CALL,
+                            tier=ErrorTier.TIER1_THEOREM_CALL_SYNTAX_VIOLATION,
 
                             message="Conclusion format error for cosine_theorem",
 
@@ -11022,7 +13430,7 @@ class GeometricTheorem:
 
                         return GeometricError(
 
-                            tier=ErrorTier.TIER2_PREMISE,
+                            tier=ErrorTier.TIER2_PREMISE_VIOLATION,
 
                             message="Solver unsat when trying to evaluate angles for cosine theorem",
 
@@ -11034,7 +13442,7 @@ class GeometricTheorem:
 
                     return GeometricError(
 
-                        tier=ErrorTier.TIER1_THEOREM_CALL,
+                        tier=ErrorTier.TIER1_THEOREM_CALL_SYNTAX_VIOLATION,
 
                         message="Conclusion format error for cosine_theorem",
 
@@ -11046,7 +13454,7 @@ class GeometricTheorem:
 
                 return GeometricError(
 
-                    tier=ErrorTier.TIER1_THEOREM_CALL,
+                    tier=ErrorTier.TIER1_THEOREM_CALL_SYNTAX_VIOLATION,
 
                     message=f"Unsupported version {version} for cosine_theorem"
 
@@ -11084,7 +13492,14 @@ class GeometricTheorem:
                     angle2_var = self.add_angle(angle2_str[0], angle2_str[1], angle2_str[2])
 
                     # Create or get sine variables for both angles
-
+                    start_first, vertex_first, end_first = angle1_str[0], angle1_str[1], angle1_str[2]
+                    start_second, vertex_second, end_second = angle2_str[0], angle2_str[1], angle2_str[2]
+                    if start_first > end_first:
+                        # Swap start and end if needed to maintain alphabetical order
+                        angle1_str = end_first + vertex_first + start_first
+                    if start_second > end_second:
+                        # Swap start and end if needed to maintain alphabetical order
+                        angle2_str = end_second + vertex_second + start_second
                     sin1_var_name = f"sin_{angle1_str}"
 
                     sin2_var_name = f"sin_{angle2_str}"
@@ -11347,7 +13762,7 @@ class GeometricTheorem:
 
                         return GeometricError(
 
-                            tier=ErrorTier.TIER2_PREMISE,
+                            tier=ErrorTier.TIER2_PREMISE_VIOLATION,
 
                             message="Solver unsat when trying to evaluate angles for sine theorem",
 
@@ -11359,7 +13774,7 @@ class GeometricTheorem:
 
                     return GeometricError(
 
-                        tier=ErrorTier.TIER1_THEOREM_CALL,
+                        tier=ErrorTier.TIER1_THEOREM_CALL_SYNTAX_VIOLATION,
 
                         message="Conclusion format error for sine_theorem",
 
@@ -11388,7 +13803,7 @@ class GeometricTheorem:
                 norm_tris = self.canonicalize_mirror_triangle_pair(tri1, tri2)
                 if not norm_tris:
                     return GeometricError(
-                        tier=ErrorTier.TIER1_THEOREM_CALL,
+                        tier=ErrorTier.TIER1_THEOREM_CALL_SYNTAX_VIOLATION,
                         message=f"Invalid triangle names in mirror_similar_triangle_property_line_ratio: {tri1}, {tri2}"
                     )
                 if norm_tris not in self.mirror_triangle_ratios:
@@ -11402,7 +13817,7 @@ class GeometricTheorem:
                     f"Added mirror similar triangle ratio constraint: LengthOfLine({line1}) = LengthOfLine({line2}) * RatioOfMirrorSimilarTriangle({tri1},{tri2})")
             else:
                 return GeometricError(
-                    tier=ErrorTier.TIER1_THEOREM_CALL,
+                    tier=ErrorTier.TIER1_THEOREM_CALL_SYNTAX_VIOLATION,
                     message="Conclusion format error for mirror_similar_triangle_property_line_ratio",
                     details=f"Expected format: Equal(LengthOfLine(XXX),Mul(LengthOfLine(YYY),RatioOfMirrorSimilarTriangle(ZZZ,WWW))) but got {conclusions[0]}"
                 )
@@ -11481,7 +13896,7 @@ class GeometricTheorem:
 
                         return GeometricError(
 
-                            tier=ErrorTier.TIER2_PREMISE,
+                            tier=ErrorTier.TIER2_PREMISE_VIOLATION,
 
                             message="Cannot convert angle value to float in triangle_area_formula_sine step",
 
@@ -11506,7 +13921,7 @@ class GeometricTheorem:
 
                     return GeometricError(
 
-                        tier=ErrorTier.TIER2_PREMISE,
+                        tier=ErrorTier.TIER2_PREMISE_VIOLATION,
 
                         message="Solver unsat when evaluating angle for triangle_area_formula_sine",
 
@@ -11516,7 +13931,7 @@ class GeometricTheorem:
 
                 return GeometricError(
 
-                    tier=ErrorTier.TIER1_THEOREM_CALL,
+                    tier=ErrorTier.TIER1_THEOREM_CALL_SYNTAX_VIOLATION,
 
                     message="Conclusion format error for triangle_area_formula_sine",
 
@@ -11534,7 +13949,7 @@ class GeometricTheorem:
             if version == "1":
                 if len(args) < 2:
                     return GeometricError(
-                        tier=ErrorTier.TIER1_THEOREM_CALL,
+                        tier=ErrorTier.TIER1_THEOREM_CALL_SYNTAX_VIOLATION,
                         message="Missing triangle argument for right_triangle_judgment_angle",
                         details="Expected right_triangle_judgment_angle(1, triangle)"
                     )
@@ -11670,7 +14085,7 @@ class GeometricTheorem:
 
                     return GeometricError(
 
-                        tier=ErrorTier.TIER1_THEOREM_CALL,
+                        tier=ErrorTier.TIER1_THEOREM_CALL_SYNTAX_VIOLATION,
 
                         message="Conclusion format error for parallel_property_corresponding_angle (version 1)",
 
@@ -11702,7 +14117,7 @@ class GeometricTheorem:
 
                     return GeometricError(
 
-                        tier=ErrorTier.TIER1_THEOREM_CALL,
+                        tier=ErrorTier.TIER1_THEOREM_CALL_SYNTAX_VIOLATION,
 
                         message="Conclusion format error for parallel_property_corresponding_angle (version 2)",
 
@@ -11714,67 +14129,7 @@ class GeometricTheorem:
 
 
 
-        elif theorem_name == "square_property_definition":
 
-            # Typically, the user’s THEOREM_SEQUENCE step might look like:
-
-            #   square_property_definition(1,ABCD);
-
-            #   Square(ABCD);
-
-            #   ["Equal(LengthOfLine(AB),LengthOfLine(BC))",
-
-            #    "Equal(LengthOfLine(BC),LengthOfLine(CD))",
-
-            #    "Equal(LengthOfLine(CD),LengthOfLine(DA))",
-
-            #    "Equal(MeasureOfAngle(ABC),90)",
-
-            #    "Equal(MeasureOfAngle(BCD),90)",
-
-            #    "Equal(MeasureOfAngle(CDA),90)",
-
-            #    "Equal(MeasureOfAngle(DAB),90)"]
-
-            for c in conclusions:
-
-                # 1) Parse side-equality: "Equal(LengthOfLine(AB),LengthOfLine(BC))"
-
-                m1 = re.match(r'Equal\(LengthOfLine\((\w+)\),LengthOfLine\((\w+)\)\)', c)
-
-                if m1:
-                    l1, l2 = m1.groups()
-
-                    var1 = self.add_length(l1[0], l1[1])
-
-                    var2 = self.add_length(l2[0], l2[1])
-
-                    self.solver.add(var1 == var2)
-
-                    print(f"Square property: {l1} == {l2}")
-
-                    continue
-
-                # 2) Parse angle = 90: "Equal(MeasureOfAngle(ABC),90)"
-
-                m2 = re.match(r'Equal\(MeasureOfAngle\((\w+)\),(\d+)\)', c)
-
-                if m2:
-                    angle_name, deg_str = m2.groups()
-
-                    deg_val = float(deg_str)
-
-                    angle_var = self.add_angle(angle_name[0], angle_name[1], angle_name[2])
-
-                    self.solver.add(angle_var == deg_val)
-
-                    print(f"Square property: angle {angle_name} == {deg_val}")
-
-                    continue
-
-                # etc. You can add other patterns if you want to unify sides with numbers, etc.
-
-            return None
 
 
         elif theorem_name == "triangle_property_angle_sum":
@@ -11814,15 +14169,15 @@ class GeometricTheorem:
 
                     return GeometricError(
 
-                        tier=ErrorTier.TIER1_THEOREM_CALL,
+                        tier=ErrorTier.TIER1_THEOREM_CALL_SYNTAX_VIOLATION,
 
                         message="Conclusion format error for triangle_property_angle_sum",
 
                         details=f"Expected pattern Equal(Add(MeasureOfAngle(XXX),MeasureOfAngle(YYY),MeasureOfAngle(ZZZ)),180) but got {conclusions[0]}"
 
                     )
-            elif version == "2":
-                print("second")
+
+
 
 
 
@@ -11837,7 +14192,7 @@ class GeometricTheorem:
                     self.add_similar_triangles(tri1, tri2)
                 else:
                     return GeometricError(
-                        tier=ErrorTier.TIER1_THEOREM_CALL,
+                        tier=ErrorTier.TIER1_THEOREM_CALL_SYNTAX_VIOLATION,
                         message="Conclusion format error for similar_triangle_judgment_aa",
                         details=f"Expected SimilarBetweenTriangle(...) but got {conclusions[0]}"
                     )
@@ -11874,7 +14229,7 @@ class GeometricTheorem:
                     if not norm_tris:
                         return GeometricError(
 
-                            tier=ErrorTier.TIER1_THEOREM_CALL,
+                            tier=ErrorTier.TIER1_THEOREM_CALL_SYNTAX_VIOLATION,
 
                             message=f"Invalid triangle names: {tri1}, {tri2}"
 
@@ -12035,6 +14390,7 @@ class GeometricTheorem:
 
         elif theorem_name == "triangle_perimeter_formula":
 
+
             match = re.search(
 
                 r'Equal\(PerimeterOfTriangle\((\w+)\),Add\(LengthOfLine\((\w+)\),LengthOfLine\((\w+)\),LengthOfLine\((\w+)\)\)\)',
@@ -12117,7 +14473,7 @@ class GeometricTheorem:
             if not match:
                 return GeometricError(
 
-                    tier=ErrorTier.TIER1_THEOREM_CALL,
+                    tier=ErrorTier.TIER1_THEOREM_CALL_SYNTAX_VIOLATION,
 
                     message="Invalid conclusion format for line_addition",
 
@@ -12193,7 +14549,7 @@ class GeometricTheorem:
 
                     return GeometricError(
 
-                        tier=ErrorTier.TIER1_THEOREM_CALL,
+                        tier=ErrorTier.TIER1_THEOREM_CALL_SYNTAX_VIOLATION,
 
                         message="Conclusion format error for right_triangle_property_pythagorean",
 
@@ -12234,7 +14590,7 @@ class GeometricTheorem:
 
                     return GeometricError(
 
-                        tier=ErrorTier.TIER1_THEOREM_CALL,
+                        tier=ErrorTier.TIER1_THEOREM_CALL_SYNTAX_VIOLATION,
 
                         message="Conclusion format error for parallel_property_alternate_interior_angle (version 1)",
 
@@ -12268,7 +14624,7 @@ class GeometricTheorem:
 
                     return GeometricError(
 
-                        tier=ErrorTier.TIER1_THEOREM_CALL,
+                        tier=ErrorTier.TIER1_THEOREM_CALL_SYNTAX_VIOLATION,
 
                         message="Conclusion format error for parallel_property_alternate_interior_angle (version 2)",
 
@@ -12280,7 +14636,7 @@ class GeometricTheorem:
         elif theorem_name == "quadrilateral_property_angle_sum":
 
             if len(args) < 2:
-                return GeometricError(tier=ErrorTier.TIER1_THEOREM_CALL,
+                return GeometricError(tier=ErrorTier.TIER1_THEOREM_CALL_SYNTAX_VIOLATION,
 
                                       message="Invalid number of arguments",
 
@@ -12334,15 +14690,26 @@ class GeometricTheorem:
 
                 else:
 
-                    return GeometricError(tier=ErrorTier.TIER1_THEOREM_CALL,
+                    return GeometricError(tier=ErrorTier.TIER1_THEOREM_CALL_SYNTAX_VIOLATION,
 
                                           message="Conclusion format error for angle_addition",
 
                                           details="Expected format: Equal(MeasureOfAngle(XXX),Add(MeasureOfAngle(YYY),MeasureOfAngle(ZZZ)))")
 
                 return None
-            elif version == "2":
-                print("2")
+            else:
+                return GeometricError(tier=ErrorTier.TIER1_THEOREM_CALL_SYNTAX_VIOLATION,
+
+                                      message="these is no such version for the theorem",
+
+                                      details="these is no such version for the theorem angle_addition")
+
+
+        constraints_added = self.apply_trig_constraints()
+        if constraints_added > 0:
+            print(f"Added {constraints_added} trigonometric constraints after theorem {theorem_name}")
+
+        return None  # or return the error if there was one
 
 
 def get_cyclic_variations_rectangle(para_name: str) -> Set[str]:
@@ -12373,8 +14740,8 @@ def verify_geometric_proof(filename: str, print_output=True) -> tuple:
     """
     Main function to verify a geometric proof.
     Returns (result, feedback, error_tier) where error_tier is one of:
-    - "TIER1_THEOREM_CALL" for incorrect theorem calls
-    - "TIER2_PREMISE" for premise violations
+    - "TIER1_THEOREM_CALL_SYNTAX_VIOLATION" for incorrect theorem calls
+    - "TIER2_PREMISE_VIOLATION" for premise violations
     - "TIER3_GOAL_NOT_REACHED" for failures to reach the goal
     - None for successful verifications
     """
@@ -12397,22 +14764,22 @@ def verify_geometric_proof(filename: str, print_output=True) -> tuple:
             error_tier = None
             if not result and feedback:
                 # Look for specific error tier mentions
-                if "Error in TIER1_THEOREM_CALL" in feedback:
-                    error_tier = "TIER1_THEOREM_CALL"
-                elif "Error in TIER2_PREMISE" in feedback:
-                    error_tier = "TIER2_PREMISE"
+                if "Error in TIER1_THEOREM_CALL_SYNTAX_VIOLATION" in feedback:
+                    error_tier = ErrorTier.TIER1_THEOREM_CALL_SYNTAX_VIOLATION
+                elif "Error in TIER2_PREMISE_VIOLATION" in feedback:
+                    error_tier = ErrorTier.TIER2_PREMISE_VIOLATION
                 elif "Error in TIER3_GOAL_NOT_REACHED" in feedback:
-                    error_tier = "TIER3_GOAL_NOT_REACHED"
+                    error_tier = ErrorTier.TIER3_GOAL_NOT_REACHED
                 # Check for premise error patterns in detailed feedback
                 elif feedback.startswith("verification failed.") and (
                         "Missing premise:" in feedback or "- You tried to use theorem:" in feedback):
-                    error_tier = "TIER2_PREMISE"
+                    error_tier = ErrorTier.TIER2_PREMISE_VIOLATION
                 # Check for goal error patterns in detailed feedback
                 elif feedback.startswith("verification failed.") and "- Goal:" in feedback:
-                    error_tier = "TIER3_GOAL_NOT_REACHED"
+                    error_tier = ErrorTier.TIER3_GOAL_NOT_REACHED
                 # Default to TIER1 for other errors
                 else:
-                    error_tier = "TIER1_THEOREM_CALL"
+                    error_tier = ErrorTier.TIER1_THEOREM_CALL_SYNTAX_VIOLATION
 
             print(f"\nOverall verification {'succeeded' if result else 'failed'}")
             return result, feedback, error_tier
