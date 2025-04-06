@@ -5,14 +5,39 @@ import re
 from collections import defaultdict
 import json
 from src.formalgeo.config.config import MAX_RUNS, MAX_RETRIES_IN_RUN
+import math
+
+def evaluate_expression(expr):
+    """Evaluate a mathematical expression string."""
+    try:
+        # Handle special cases
+        if expr.lower() == 'none' or expr.lower() == 'null':
+            return None
+        
+        # Replace sqrt with math.sqrt
+        expr = expr.replace('sqrt', 'math.sqrt')
+        
+        # Evaluate the expression
+        result = eval(expr)
+        return round(result, 6)  # Round to 6 decimal places for comparison
+    except:
+        return None
 
 def convert_to_float(number_str):
-    """Convert a number string to float, handling fractions."""
+    """Convert a number string to float, handling fractions and expressions."""
     try:
+        # First try to evaluate as an expression
+        expr_result = evaluate_expression(number_str)
+        if expr_result is not None:
+            return expr_result
+            
+        # If not an expression, try fraction
         if '/' in number_str:
             numerator, denominator = number_str.split('/')
-            return round(float(numerator) / float(denominator), 2)
-        return round(float(number_str), 2)
+            return round(float(numerator) / float(denominator), 6)
+            
+        # If not a fraction, try direct float conversion
+        return round(float(number_str), 6)
     except (ValueError, ZeroDivisionError):
         return None
 
