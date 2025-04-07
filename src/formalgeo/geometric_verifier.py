@@ -14789,7 +14789,7 @@ def verify_geometric_proof(filename: str, print_output=True) -> tuple:
 
 if __name__ == "__main__":
     result, feedback, error_tier = verify_geometric_proof(
-        "/Users/osultan/PycharmProjects/FormalGeo/results/level_2/variant_random_all_theorems_model_o1_problem_69_run_0.txt",print_output=False)
+        "/Users/osultan/PycharmProjects/FormalGeo/results/level_2/variant_random_all_theorems_model_o1_problem_991_run_0.txt",print_output=False)
 
     if feedback:
         print(feedback)

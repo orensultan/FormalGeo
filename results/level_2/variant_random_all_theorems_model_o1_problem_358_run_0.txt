@@ -50,85 +50,31 @@ Outputs for Problem B:
 
 ***MODEL_RESPONSE_BEGIN***
 EQUATIONS:
-h-(53033/12500)
+ll_ba - h
+ll_ca - 3
+ma_bac - 45
 
 GOAL_SYMBOL:
 h
 
 ANSWER:
-53033/12500
+3*sqrt(2)
 
 THEOREM_SEQUENCE:
-1; right_triangle_judgment_angle(1,ACB); Polygon(ACB)&Equal(MeasureOfAngle(ACB),90); ["RightTriangle(ACB)"]  
-2; triangle_property_angle_sum(1,ACB); Polygon(ACB); ["Equal(Add(MeasureOfAngle(ACB),MeasureOfAngle(CBA),MeasureOfAngle(BAC)),180)"]  
-3; right_triangle_property_pythagorean(1,ACB); RightTriangle(ACB); ["Equal(Add(Pow(LengthOfLine(AC),2),Pow(LengthOfLine(CB),2)),Pow(LengthOfLine(AB),2))"]
+1; triangle_property_angle_sum(1,ABC); Polygon(ABC); ["Equal(Add(MeasureOfAngle(ABC),MeasureOfAngle(BCA),MeasureOfAngle(CAB)),180)"]
+2; sine_theorem(1,ABC); Polygon(ABC); ["Equal(Mul(LengthOfLine(AB),Sin(MeasureOfAngle(ABC))),Mul(LengthOfLine(AC),Sin(MeasureOfAngle(BCA))))"]
 ***MODEL_RESPONSE_END***
 RETRIES_MESSAGES:
 #run: 0; #retry: 1; message: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
-Error parsing answer '3√2': Invalid literal for Fraction: '3√2'
+Verification failed. Theorem <triangle_property_angle_sum> branch error. Expected dict_keys(['1']) but got None. Please rewrite your response, you should change only the call to theorem <triangle_property_angle_sum> by adding the branch number from the dict_keys as the first argument
 Model Answer:
 RETRY_ANSWER:
-3√2
+3*sqrt(2)
 RETRY_THEOREM_SEQUENCE:
-1; right_triangle_judgment_angle(1,ACB); Polygon(ACB)&Equal(MeasureOfAngle(ACB),90); ["RightTriangle(ACB)"]  
-2; triangle_property_angle_sum(1,ACB); Polygon(ACB); ["Equal(Add(MeasureOfAngle(ACB),MeasureOfAngle(CBA),MeasureOfAngle(BAC)),180)"]  
-3; right_triangle_property_pythagorean(1,ACB); RightTriangle(ACB); ["Equal(Add(Pow(LengthOfLine(AC),2),Pow(LengthOfLine(CB),2)),Pow(LengthOfLine(AB),2))"]
-#run: 0; #retry: 2; message: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
-Error parsing answer '3*(2^(1/2))': Invalid literal for Fraction: '3*(2^(1/2))'
-Model Answer:
-RETRY_ANSWER:
-3*(2^(1/2))
-RETRY_THEOREM_SEQUENCE:
-1; right_triangle_judgment_angle(1,ACB); Polygon(ACB)&Equal(MeasureOfAngle(ACB),90); ["RightTriangle(ACB)"]  
-2; triangle_property_angle_sum(1,ACB); Polygon(ACB); ["Equal(Add(MeasureOfAngle(ACB),MeasureOfAngle(CBA),MeasureOfAngle(BAC)),180)"]  
-3; right_triangle_property_pythagorean(1,ACB); RightTriangle(ACB); ["Equal(Add(Pow(LengthOfLine(AC),2),Pow(LengthOfLine(CB),2)),Pow(LengthOfLine(AB),2))"]
-#run: 0; #retry: 3; message: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
-Verification failed. Conclusions mismatch:
-Model conclusions: Equal(Add(Pow(LengthOfLine(AC),2),Pow(LengthOfLine(BC),2)),Pow(LengthOfLine(AB),2))
-Expected conclusions: Equal(Add(Pow(LengthOfLine(AC),2),Pow(LengthOfLine(CB),2)),Pow(LengthOfLine(AB),2))
-Model Answer:
-RETRY_ANSWER:
-3*2^(1/2)
-RETRY_THEOREM_SEQUENCE:
-1; right_triangle_judgment_angle(1,ACB); Polygon(ACB)&Equal(MeasureOfAngle(ACB),90); ["RightTriangle(ACB)"]  
-2; triangle_property_angle_sum(1,ACB); Polygon(ACB); ["Equal(Add(MeasureOfAngle(ACB),MeasureOfAngle(CBA),MeasureOfAngle(BAC)),180)"]  
-3; right_triangle_property_pythagorean(1,ACB); RightTriangle(ACB); ["Equal(Add(Pow(LengthOfLine(AC),2),Pow(LengthOfLine(BC),2)),Pow(LengthOfLine(AB),2))"]
-#run: 0; #retry: 4; message: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
-Error parsing answer '3*2^(1/2)': Invalid literal for Fraction: '3*2^(1/2)'
-Model Answer:
-RETRY_ANSWER:
-3*2^(1/2)
-RETRY_THEOREM_SEQUENCE:
-1; right_triangle_judgment_angle(1,ACB); Polygon(ACB)&Equal(MeasureOfAngle(ACB),90); ["RightTriangle(ACB)"]
-2; triangle_property_angle_sum(1,ACB); Polygon(ACB); ["Equal(Add(MeasureOfAngle(ACB),MeasureOfAngle(CBA),MeasureOfAngle(BAC)),180)"]
-3; right_triangle_property_pythagorean(1,ACB); RightTriangle(ACB); ["Equal(Add(Pow(LengthOfLine(AC),2),Pow(LengthOfLine(CB),2)),Pow(LengthOfLine(AB),2))"]
-#run: 0; #retry: 5; message: ERROR_TIER: TIER3_GOAL_NOT_REACHED
-verification failed.
-
-- Goal: value of h
-- Model answer: 4.24264
-- Error: Your proof doesn't uniquely determine the value. You need to use additional theorems to constrain the value.
-- Available premises:
-  Perpendicular Lines: AC ⊥ BC
-  Right Triangles: ACB
-  Polygons: ABC, ACB
-- Theorems related to the goal:
-  Step 1 - right_triangle_judgment_angle(1, ACB): RightTriangle(ACB)
-  Step 3 - right_triangle_property_pythagorean(1, ACB): Equal(Add(Pow(LengthOfLine(AC),2),Pow(LengthOfLine(CB),2)),Pow(LengthOfLine(AB),2))
-- Solver constraints directly related to this goal:
-  None found
-
-Variable h is not uniquely determined
-Please fix the proof.
-Model Answer:
-RETRY_ANSWER:
-53033/12500
-RETRY_THEOREM_SEQUENCE:
-1; right_triangle_judgment_angle(1,ACB); Polygon(ACB)&Equal(MeasureOfAngle(ACB),90); ["RightTriangle(ACB)"]  
-2; triangle_property_angle_sum(1,ACB); Polygon(ACB); ["Equal(Add(MeasureOfAngle(ACB),MeasureOfAngle(CBA),MeasureOfAngle(BAC)),180)"]  
-3; right_triangle_property_pythagorean(1,ACB); RightTriangle(ACB); ["Equal(Add(Pow(LengthOfLine(AC),2),Pow(LengthOfLine(CB),2)),Pow(LengthOfLine(AB),2))"]
+1; triangle_property_angle_sum(ABC); Polygon(ABC); ["Equal(Add(MeasureOfAngle(ABC),MeasureOfAngle(BCA),MeasureOfAngle(CAB)),180)"]
+2; sine_theorem(ABC); Polygon(ABC); ["Equal(Mul(LengthOfLine(AB),Sin(MeasureOfAngle(ABC))),Mul(LengthOfLine(AC),Sin(MeasureOfAngle(BCA))))"]
 #RETRIES:
-5
+1
 #RUNS:
 0
 

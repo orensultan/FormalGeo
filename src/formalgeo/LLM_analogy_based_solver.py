@@ -432,9 +432,9 @@ chosen_problems_by_level = {
 }
 
 chosen_problems_by_level = {
-2 : [4473]
+2 : [991]
 # 1: [1975, 1490, 1726, 178, 2669, 2614, 51, 2323, 192, 2624],
-# 2: [2141, 69, 2916, 358, 4473, 4483, 5645, 127, 2410, 4523],
+# 2: [991, 69, 144, 358, 4473, 4483, 5645, 127, 2410, 4523],
 # 3: [ 4187, 5244, 5062, 844, 1945, 2200, 4099, 2765, 4476, 4254 ]
 # 4: [ 2114, 464, 5510, 3272, 5230, 3634, 6924, 4797, 5399, 6155]
 # 5: [5440, 6485 , 696, 847, 5563, 532, 5431, 437, 5080, 6660]
@@ -508,7 +508,7 @@ def get_chosen_problems_by_level(problems):
     chosen_problems_by_level = {}
     for level, problem_ids in level_to_problems.items():
         if 1 <= level <= 10:
-            sample_problem_ids = random.sample(problem_ids, 10)
+            sample_problem_ids = random.sample(problem_ids, 2)
             chosen_problems_by_level[level] = sample_problem_ids
     return chosen_problems_by_level
 
@@ -593,12 +593,12 @@ if __name__ == "__main__":
     parser.add_argument("--prompt_path", dest="prompt_path", type=str, default="src/formalgeo/prompt/geometry_similar_problems_prompt_291224.txt")
     args = parser.parse_args()
     problems = save_problems('formalgeo7k_v1/problems')
+    # chosen_problems_by_level = get_chosen_problems_by_level(problems)
     for _, problems_id in chosen_problems_by_level.items():
         for problem2_id in problems_id:
             for i in range(MAX_RUNS):
                 is_success = run(args, problem2_id, problems, i)
                 if is_success:
                     break
-    # chosen_problems_by_level = get_chosen_problems_by_level(problems)
     # print_similar_problems_theorems_coverage(chosen_problems_by_level)
 

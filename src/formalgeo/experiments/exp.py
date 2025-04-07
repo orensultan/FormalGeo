@@ -17,8 +17,11 @@ def evaluate_expression(expr):
         # Replace sqrt with math.sqrt
         expr = expr.replace('sqrt', 'math.sqrt')
         
-        # Evaluate the expression
-        result = eval(expr)
+        # Handle implicit multiplication
+        expr = re.sub(r'(\d+)([a-zA-Z(])', r'\1*\2', expr)
+        
+        # Evaluate the expression with math module
+        result = eval(expr, {"math": math})
         return round(result, 6)  # Round to 6 decimal places for comparison
     except:
         return None
@@ -391,22 +394,35 @@ def plot_success_rates(results):
                         data['random']['theorem_first_try'].append(results[level_key][variant]["success_rate_theorem_sequence_first_try"])
                         data['random']['theorem_with_retries'].append(results[level_key][variant]["success_rate_theorem_sequence_with_retries"])
     
+    # Set style parameters
+    plt.rcParams['font.size'] = 12
+    plt.rcParams['axes.labelsize'] = 12
+    plt.rcParams['axes.titlesize'] = 14
+    plt.rcParams['xtick.labelsize'] = 11
+    plt.rcParams['ytick.labelsize'] = 11
+    plt.rcParams['legend.fontsize'] = 11
+    plt.rcParams['figure.facecolor'] = 'white'
+    plt.rcParams['axes.facecolor'] = 'white'
+    plt.rcParams['grid.color'] = '#d3d3d3'
+    plt.rcParams['grid.linestyle'] = '--'
+    plt.rcParams['grid.alpha'] = 0.7
+    
     # Create answer success rate plot
     plt.figure(figsize=(10, 6))
     # Random examples - both lines in blue
-    plt.plot(levels, data['random']['answer_first_try'], 'o-', color='#1f77b4', label='Random examples (first try)', linewidth=2, markersize=8)
-    plt.plot(levels, data['random']['answer_with_retries'], 's--', color='#1f77b4', label='Random examples (with verifier feedback)', linewidth=2, markersize=8)
+    plt.plot(levels, data['random']['answer_first_try'], 'o-', color='#1f77b4', label='Random examples (first try)', linewidth=2, markersize=8, markeredgewidth=1.5)
+    plt.plot(levels, data['random']['answer_with_retries'], 's--', color='#1f77b4', label='Random examples (with verifier feedback)', linewidth=2, markersize=8, markeredgewidth=1.5)
     # Analogous examples - both lines in orange
-    plt.plot(levels, data['analogy_based']['answer_first_try'], 'o-', color='#ff7f0e', label='Analogous examples (first try)', linewidth=2, markersize=8)
-    plt.plot(levels, data['analogy_based']['answer_with_retries'], 's--', color='#ff7f0e', label='Analogous examples (with verifier feedback)', linewidth=2, markersize=8)
+    plt.plot(levels, data['analogy_based']['answer_first_try'], 'o-', color='#ff7f0e', label='Analogous examples (first try)', linewidth=2, markersize=8, markeredgewidth=1.5)
+    plt.plot(levels, data['analogy_based']['answer_with_retries'], 's--', color='#ff7f0e', label='Analogous examples (with verifier feedback)', linewidth=2, markersize=8, markeredgewidth=1.5)
     
     plt.xlabel('Level', fontsize=12)
     plt.ylabel('Success Rate', fontsize=12)
     plt.title('o1 Model Answer Success Rate Comparison Across Levels', fontsize=14)
-    plt.grid(True, linestyle='--', alpha=0.7)
+    plt.grid(True)
     plt.legend(fontsize=10)
     plt.gca().yaxis.set_major_formatter(plt.FuncFormatter(lambda y, _: '{:.0%}'.format(y)))
-    plt.ylim(0, 1)
+    plt.ylim(0, 1.05)  # Slightly above 100% to show markers
     plt.xticks(levels)
     plt.axhline(y=0, color='k', linestyle='-', alpha=0.3)
     plt.tight_layout()
@@ -416,19 +432,19 @@ def plot_success_rates(results):
     # Create theorem sequence success rate plot
     plt.figure(figsize=(10, 6))
     # Random examples - both lines in blue
-    plt.plot(levels, data['random']['theorem_first_try'], 'o-', color='#1f77b4', label='Random examples (first try)', linewidth=2, markersize=8)
-    plt.plot(levels, data['random']['theorem_with_retries'], 's--', color='#1f77b4', label='Random examples (with verifier feedback)', linewidth=2, markersize=8)
+    plt.plot(levels, data['random']['theorem_first_try'], 'o-', color='#1f77b4', label='Random examples (first try)', linewidth=2, markersize=8, markeredgewidth=1.5)
+    plt.plot(levels, data['random']['theorem_with_retries'], 's--', color='#1f77b4', label='Random examples (with verifier feedback)', linewidth=2, markersize=8, markeredgewidth=1.5)
     # Analogous examples - both lines in orange
-    plt.plot(levels, data['analogy_based']['theorem_first_try'], 'o-', color='#ff7f0e', label='Analogous examples (first try)', linewidth=2, markersize=8)
-    plt.plot(levels, data['analogy_based']['theorem_with_retries'], 's--', color='#ff7f0e', label='Analogous examples (with verifier feedback)', linewidth=2, markersize=8)
+    plt.plot(levels, data['analogy_based']['theorem_first_try'], 'o-', color='#ff7f0e', label='Analogous examples (first try)', linewidth=2, markersize=8, markeredgewidth=1.5)
+    plt.plot(levels, data['analogy_based']['theorem_with_retries'], 's--', color='#ff7f0e', label='Analogous examples (with verifier feedback)', linewidth=2, markersize=8, markeredgewidth=1.5)
     
     plt.xlabel('Level', fontsize=12)
     plt.ylabel('Success Rate', fontsize=12)
     plt.title('o1 Model Theorem Sequence Success Rate Comparison Across Levels', fontsize=14)
-    plt.grid(True, linestyle='--', alpha=0.7)
+    plt.grid(True)
     plt.legend(fontsize=10)
     plt.gca().yaxis.set_major_formatter(plt.FuncFormatter(lambda y, _: '{:.0%}'.format(y)))
-    plt.ylim(0, 1)
+    plt.ylim(0, 1.05)  # Slightly above 100% to show markers
     plt.xticks(levels)
     plt.axhline(y=0, color='k', linestyle='-', alpha=0.3)
     plt.tight_layout()
