@@ -103,8 +103,7 @@ ANSWER:
 45*sqrt(3)/2
 
 THEOREM_SEQUENCE:
-1; triangle_property_angle_sum(1,DAC); Polygon(DAC); ["Equal(Add(MeasureOfAngle(DAC),MeasureOfAngle(ACD),MeasureOfAngle(CDA)),180)"]
-2; parallelogram_area_formula_sine(1,DACB); Parallelogram(DACB); ["Equal(AreaOfQuadrilateral(DACB),Mul(LengthOfLine(DA),LengthOfLine(AC),Sin(MeasureOfAngle(DAC))))"]
+1; parallelogram_area_formula_sine(1,DACB); Parallelogram(DACB); ["Equal(AreaOfQuadrilateral(DACB),Mul(LengthOfLine(DA),LengthOfLine(AC),Sin(MeasureOfAngle(DAC))))"]
 ***MODEL_RESPONSE_END***
 RETRIES_MESSAGES:
 #RETRIES:
