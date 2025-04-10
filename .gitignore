@@ -10,3 +10,6 @@ src/FormalGeo.egg-info
 
 # tests
 results.csv
+
+# large data files
+problems_similarity_results.csv
