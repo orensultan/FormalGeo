@@ -34,12 +34,13 @@ Polygon(BCA)
 Polygon(CAB)
 Polygon(CBA)
 SYMBOLS_AND_VALUES:
-LengthOfLine(AC);ll_ac;100
-LengthOfLine(CA);ll_ac;100
-MeasureOfAngle(ABC);ma_abc;45
-MeasureOfAngle(BCA);ma_bca;90
-LengthOfLine(AB);ll_ab;None
-LengthOfLine(BA);ll_ab;None
+LengthOfLine(PA);ll_pa;80
+LengthOfLine(AP);ll_pa;80
+MeasureOfAngle(APB);ma_apb;105
+MeasureOfAngle(BAP);ma_bap;30
+MeasureOfAngle(PBA);ma_pba;45
+LengthOfLine(BP);ll_bp;None
+LengthOfLine(PB);ll_bp;None
 
 Outputs:
 Outputs for Problem B:
@@ -49,13 +50,10 @@ EQUATIONS:
 -3/4+ll_ab/ll_bc
 ll_ab-6
 ma_abc-90
-
 GOAL_SYMBOL:
 ll_ac
-
 ANSWER:
 10
-
 THEOREM_SEQUENCE:
 1; right_triangle_judgment_angle(1,ABC); Polygon(ABC)&Equal(MeasureOfAngle(ABC),90); ["RightTriangle(ABC)"]
 2; right_triangle_property_pythagorean(1,ABC); RightTriangle(ABC); ["Equal(Add(Pow(LengthOfLine(AB),2),Pow(LengthOfLine(BC),2)),Pow(LengthOfLine(AC),2))"]

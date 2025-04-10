@@ -237,8 +237,8 @@ LengthOfLine(DA);ll_da;29
 LengthOfLine(AD);ll_da;29
 LengthOfLine(DC);ll_dc;25
 LengthOfLine(CD);ll_dc;25
-MeasureOfAngle(ADB);ma_adb;34
-MeasureOfAngle(ADF);ma_adb;34
+MeasureOfAngle(ADB);ma_adf;34
+MeasureOfAngle(ADF);ma_adf;34
 MeasureOfAngle(DCA);ma_dcf;54
 MeasureOfAngle(DCF);ma_dcf;54
 MeasureOfAngle(FAD);ma_fad;49
@@ -249,10 +249,10 @@ Outputs for Problem B:
 
 ***MODEL_RESPONSE_BEGIN***
 EQUATIONS:
-ll_ba-3*y+8
-ll_da-13
+ll_ab-3*y+8
+ll_ad-13
 ll_cb-2*x-7
-ll_dc-10
+ll_cd-10
 ma_adf-59
 ma_bfc-49
 ma_fba-20
@@ -264,18 +264,12 @@ ANSWER:
 131
 
 THEOREM_SEQUENCE:
-1; adjacent_complementary_angle(1,AFB,BFC); Collinear(AFC)&Angle(AFB)&Angle(BFC); ["Equal(Add(MeasureOfAngle(AFB),MeasureOfAngle(BFC)),180)"]
+1; flat_angle(1,AFC); Collinear(AFC); ["Equal(MeasureOfAngle(AFC),180)"]  
+2; angle_addition(1,AFB,BFC); Angle(AFB)&Angle(BFC)&Angle(AFC); ["Equal(MeasureOfAngle(AFC),Add(MeasureOfAngle(AFB),MeasureOfAngle(BFC)))"]
 ***MODEL_RESPONSE_END***
 RETRIES_MESSAGES:
-#retry: 1; message: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
-Verification failed. Theorem <adjacent_complementary_angle> branch error. Expected dict_keys(['1']) but got None. Please rewrite your response, you should change only the call to theorem <adjacent_complementary_angle> by adding the branch number from the dict_keys as the first argument
-Model Answer:
-RETRY_ANSWER:
-131
-RETRY_THEOREM_SEQUENCE:
-1; adjacent_complementary_angle(AFB,BFC); Collinear(AFC)&Angle(AFB)&Angle(BFC); ["Equal(Add(MeasureOfAngle(AFB),MeasureOfAngle(BFC)),180)"]
 #RETRIES:
-1
+0
 #RUNS:
 0
 

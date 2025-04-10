@@ -9,7 +9,11 @@ from utils import display_image
 
 def retrieve_random_proofs(problem_id, n=1):
     data = pd.read_csv('results.csv')
-    filtered_data = data[data["problem1_id"] == problem_id]
+
+    # Filter rows where the given problem_id appears in either problem1_id or problem2_id
+    filtered_data = data[(data["problem1_id"] == problem_id) | (data["problem2_id"] == problem_id)]
+
+    # Compute predicted similarity
     filtered_data["predicted_similarity"] = filtered_data.apply(
         lambda row: load_model_and_predict(
             model_save_path,
@@ -19,18 +23,34 @@ def retrieve_random_proofs(problem_id, n=1):
         ),
         axis=1
     )
-    top_rows = filtered_data.sample(n=n, random_state=42)  # Set a random_state for reproducibility if needed
+
+    print(f"Filtered data size: {len(filtered_data)}")
+
+    # Sample randomly from the filtered data
+    top_rows = filtered_data.sample(n=min(n, len(filtered_data)), random_state=42)
+
     print("predicted similarities")
     print(top_rows['predicted_similarity'])
     print("ground truth similarities")
     print(top_rows['abstract_theorem_seqs_jaccard_similarity'])
 
-    return top_rows["problem2_id"].values.tolist()
+    # Return the other problem id from each row, cast to int
+    random_problem_ids = [
+        int(row["problem2_id"]) if row["problem1_id"] == problem_id else int(row["problem1_id"])
+        for _, row in top_rows.iterrows()
+    ]
+
+    return random_problem_ids
+
 
 
 def retrieve_similar_proofs(problem_id, n=1):
     data = pd.read_csv('results.csv')
-    filtered_data = data[data["problem1_id"] == problem_id]
+
+    # Filter rows where the given problem_id appears in either problem1_id or problem2_id
+    filtered_data = data[(data["problem1_id"] == problem_id) | (data["problem2_id"] == problem_id)]
+
+    # Compute predicted similarity
     filtered_data["predicted_similarity"] = filtered_data.apply(
         lambda row: load_model_and_predict(
             model_save_path,
@@ -40,13 +60,24 @@ def retrieve_similar_proofs(problem_id, n=1):
         ),
         axis=1
     )
+
+    # Sort by predicted similarity and take top n
     top_rows = filtered_data.sort_values(by="predicted_similarity", ascending=False).head(n)
+
     print("predicted similarities")
     print(top_rows['predicted_similarity'])
     print("ground truth similarities")
     print(top_rows['abstract_theorem_seqs_jaccard_similarity'])
 
-    return top_rows["problem2_id"].values.tolist()
+    # Return the other problem id from each row, cast to int
+    similar_problem_ids = [
+        int(row["problem2_id"]) if row["problem1_id"] == problem_id else int(row["problem1_id"])
+        for _, row in top_rows.iterrows()
+    ]
+
+    return similar_problem_ids
+
+
 
 
 def main():

@@ -68,26 +68,17 @@ Polygon(ABCD)
 Polygon(BCDA)
 Polygon(CDAB)
 SYMBOLS_AND_VALUES:
-LengthOfLine(AC);ll_ac;10
-LengthOfLine(CA);ll_ac;10
-LengthOfLine(BC);ll_bc;7
-LengthOfLine(CB);ll_bc;7
-MeasureOfAngle(AED);ma_aed;90
-MeasureOfAngle(DEB);ma_deb;90
-LengthOfLine(AE);ll_ae;None
-LengthOfLine(EA);ll_ae;None
-LengthOfLine(EB);ll_eb;None
-LengthOfLine(BE);ll_eb;None
-PerimeterOfTriangle(BCD);pt_bcd;None
-PerimeterOfTriangle(CDB);pt_bcd;None
-PerimeterOfTriangle(DBC);pt_bcd;None
+MeasureOfAngle(ABC);ma_obc;50
+MeasureOfAngle(EBC);ma_obc;50
+MeasureOfAngle(OBC);ma_obc;50
+MeasureOfAngle(CDB);ma_edb;None
+MeasureOfAngle(EDB);ma_edb;None
 
 Outputs:
 Outputs for Problem B:
 
 ***MODEL_RESPONSE_BEGIN***
 EQUATIONS:
-ma_abd-x
 ma_cda-61
 ma_dab-69
 ma_dbc-55

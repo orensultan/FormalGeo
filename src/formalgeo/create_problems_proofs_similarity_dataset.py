@@ -2,6 +2,9 @@ import os
 import json
 import csv
 import re
+
+import pandas as pd
+
 from Problem import Problem
 from collections import Counter
 import argparse
@@ -110,7 +113,7 @@ def save_problems(directory_path):
     return problems
 
 
-def write_problems_proofs_similarity_dataset():
+def write_problems_proofs_similarity_dataset(output_file = 'problems_similarity_results.csv'):
     keys = list(problems.keys())
     count = 0
     results = []
@@ -155,11 +158,11 @@ def write_problems_proofs_similarity_dataset():
 
             print()
 
-    with open('results.csv', mode='w', newline='') as file:
+    with open(output_file, mode='w', newline='') as file:
         writer = csv.writer(file)
         writer.writerow(column_names)
         writer.writerows(results)
-    print("Data has been saved to results.csv")
+    print("Data has been saved to " + output_file)
 
 def calc_Jaccard_sim_between_multisets(l1, l2):
     multiset1 = Counter(l1)
@@ -180,10 +183,15 @@ def main():
 
     args = parser.parse_args()
 
+    output_file = 'problems_similarity_results.csv'
     if args.run_generate_dataset:
-        write_problems_proofs_similarity_dataset()
+        write_problems_proofs_similarity_dataset(output_file = output_file)
+
+    df = pd.read_csv(output_file)
+    result = df.groupby('problem1_id')['problem2_id'].nunique().reset_index()
+    result.columns = ['problem1_id', 'num_unique_problem2']
 
 
 if __name__ == "__main__":
-    problems = save_problems()
+    problems = save_problems('formalgeo7k_v1/problems')
     main()

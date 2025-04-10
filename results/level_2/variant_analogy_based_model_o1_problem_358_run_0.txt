@@ -35,27 +35,30 @@ Polygon(BAC)
 Polygon(ACB)
 Polygon(ABC)
 SYMBOLS_AND_VALUES:
-LengthOfLine(AB);ll_ab;None
-LengthOfLine(BA);ll_ab;None
+LengthOfLine(AB);ll_ab;12
+LengthOfLine(BA);ll_ab;12
+LengthOfLine(AC);ll_ac;None
+LengthOfLine(CA);ll_ac;None
 Free(h);h;None
-LengthOfLine(AC);ll_ac;15
-LengthOfLine(CA);ll_ac;15
-MeasureOfAngle(ACB);ma_acb;60
-MeasureOfAngle(BAC);ma_bac;90
+MeasureOfAngle(ABC);ma_abc;30
+MeasureOfAngle(BCA);ma_bca;90
 
 Outputs:
 Outputs for Problem B:
 
 ***MODEL_RESPONSE_BEGIN***
 EQUATIONS:
--h+ll_ab
-ll_ca-3
+-h+ll_ba
+ll_ac-3
 ma_bac-45
 ma_acb-90
+
 GOAL_SYMBOL:
 h
+
 ANSWER:
 3*sqrt(2)
+
 THEOREM_SEQUENCE:
 1; triangle_property_angle_sum(1,ABC); Polygon(ABC); ["Equal(Add(MeasureOfAngle(ABC),MeasureOfAngle(BCA),MeasureOfAngle(CAB)),180)"]
 2; sine_theorem(1,ABC); Polygon(ABC); ["Equal(Mul(LengthOfLine(AB),Sin(MeasureOfAngle(ABC))),Mul(LengthOfLine(AC),Sin(MeasureOfAngle(BCA))))"]

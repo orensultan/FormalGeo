@@ -171,17 +171,16 @@ Polygon(BCG)
 Polygon(CGB)
 Polygon(CBG)
 SYMBOLS_AND_VALUES:
-MeasureOfAngle(EAH);ma_eah;38
-MeasureOfAngle(EAD);ma_eah;38
-MeasureOfAngle(BAH);ma_eah;38
-MeasureOfAngle(BAD);ma_eah;38
-MeasureOfAngle(GEB);ma_geb;52
-MeasureOfAngle(FHE);ma_ahe;90
-MeasureOfAngle(FHG);ma_ahe;90
-MeasureOfAngle(AHE);ma_ahe;90
-MeasureOfAngle(AHG);ma_ahe;90
-MeasureOfAngle(CHF);ma_cha;None
-MeasureOfAngle(CHA);ma_cha;None
+MeasureOfAngle(ADG);ma_adg;36
+MeasureOfAngle(ADF);ma_adg;36
+MeasureOfAngle(ADC);ma_adg;36
+MeasureOfAngle(AGF);ma_agf;104
+MeasureOfAngle(AGC);ma_agf;104
+MeasureOfAngle(EFC);ma_efc;40
+MeasureOfAngle(ABC);ma_abc;90
+MeasureOfAngle(GBC);ma_abc;90
+MeasureOfAngle(FBC);ma_fbc;None
+MeasureOfAngle(EBC);ma_fbc;None
 
 Outputs:
 Outputs for Problem B:

@@ -26,14 +26,14 @@ Shape(FBD,DE,EB)
 Shape(DE,EB,FBD)
 Shape(AE,ED,FDA)
 Shape(ED,FDA,AE)
-Shape(FAC,CE,ED,FDA)
-Shape(CE,ED,FDA,FAC)
-Shape(ED,FDA,FAC,CE)
-Shape(FDA,FAC,CE,ED)
 Shape(EA,FAC,FCB,BE)
 Shape(FAC,FCB,BE,EA)
 Shape(FCB,BE,EA,FAC)
 Shape(BE,EA,FAC,FCB)
+Shape(FAC,CE,ED,FDA)
+Shape(CE,ED,FDA,FAC)
+Shape(ED,FDA,FAC,CE)
+Shape(FDA,FAC,CE,ED)
 Shape(EC,FCB,FBD,DE)
 Shape(FCB,FBD,DE,EC)
 Shape(FBD,DE,EC,FCB)
@@ -42,16 +42,16 @@ Shape(EB,FBD,FDA,AE)
 Shape(FBD,FDA,AE,EB)
 Shape(FDA,AE,EB,FBD)
 Shape(AE,EB,FBD,FDA)
-Shape(FAC,CE,EB,FBD,FDA)
-Shape(CE,EB,FBD,FDA,FAC)
-Shape(EB,FBD,FDA,FAC,CE)
-Shape(FBD,FDA,FAC,CE,EB)
-Shape(FDA,FAC,CE,EB,FBD)
 Shape(EA,FAC,FCB,FBD,DE)
 Shape(FAC,FCB,FBD,DE,EA)
 Shape(FCB,FBD,DE,EA,FAC)
 Shape(FBD,DE,EA,FAC,FCB)
 Shape(DE,EA,FAC,FCB,FBD)
+Shape(FAC,CE,EB,FBD,FDA)
+Shape(CE,EB,FBD,FDA,FAC)
+Shape(EB,FBD,FDA,FAC,CE)
+Shape(FBD,FDA,FAC,CE,EB)
+Shape(FDA,FAC,CE,EB,FBD)
 Shape(FCB,BE,ED,FDA,FAC)
 Shape(BE,ED,FDA,FAC,FCB)
 Shape(ED,FDA,FAC,FCB,BE)
@@ -152,37 +152,30 @@ Angle(CEA)
 Angle(BEC)
 Angle(DEB)
 Angle(AED)
-Angle(CEB)
 Angle(DEA)
+Angle(CEB)
 Angle(BED)
 Angle(AEC)
 Circle(F)
 SYMBOLS_AND_VALUES:
-MeasureOfAngle(ACE);ma_bcd;45
-MeasureOfAngle(ACD);ma_bcd;45
-MeasureOfAngle(BCE);ma_bcd;45
-MeasureOfAngle(BCD);ma_bcd;45
-MeasureOfAngle(EAB);ma_eab;90
-MeasureOfAngle(EAC);ma_eab;90
-MeasureOfAngle(FBA);ma_fba;63
-MeasureOfAngle(EDH);ma_edh;None
+MeasureOfAngle(ABC);ma_obc;50
+MeasureOfAngle(EBC);ma_obc;50
+MeasureOfAngle(OBC);ma_obc;50
+MeasureOfAngle(CDB);ma_edb;None
+MeasureOfAngle(EDB);ma_edb;None
 
 Outputs:
 Outputs for Problem B:
 
 ***MODEL_RESPONSE_BEGIN***
 EQUATIONS:
-ll_ae - x
-ll_be - 6
-ll_ec - 3
-ll_ed - 4
-
+ll_be-6
+ll_ec-3
+ll_ed-4
 GOAL_SYMBOL:
 x
-
 ANSWER:
 2
-
 THEOREM_SEQUENCE:
 1; circle_property_circular_power_chord_and_chord(1,AEB,CED,F); Cocircular(F,AB)&Cocircular(F,CD)&Collinear(AEB)&Collinear(CED); ["Equal(Mul(LengthOfLine(EC),LengthOfLine(ED)),Mul(LengthOfLine(EA),LengthOfLine(EB)))"]
 ***MODEL_RESPONSE_END***

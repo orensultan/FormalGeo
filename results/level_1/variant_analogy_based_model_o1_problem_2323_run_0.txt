@@ -34,29 +34,24 @@ Polygon(CAB)
 Polygon(ABC)
 Polygon(ACB)
 SYMBOLS_AND_VALUES:
-LengthOfLine(AB);ll_ab;None
-LengthOfLine(BA);ll_ab;None
+LengthOfLine(AB);ll_ab;5
+LengthOfLine(BA);ll_ab;5
+LengthOfLine(CA);ll_ca;None
+LengthOfLine(AC);ll_ca;None
 Free(x);x;None
-LengthOfLine(BC);ll_bc;24
-LengthOfLine(CB);ll_bc;24
-MeasureOfAngle(ACB);ma_acb;47
-MeasureOfAngle(BAC);ma_bac;30
+MeasureOfAngle(ABC);ma_abc;90
+MeasureOfAngle(BCA);ma_bca;30
 
 Outputs:
 Outputs for Problem B:
 
 ***MODEL_RESPONSE_BEGIN***
 EQUATIONS:
-ma_abc-40
-ma_bca-x
-ma_cab-25
-
+ma_abc-40 ma_bca-x ma_cab-25
 GOAL_SYMBOL:
 x
-
 ANSWER:
 115
-
 THEOREM_SEQUENCE:
 1; triangle_property_angle_sum(1,ABC); Polygon(ABC); ["Equal(Add(MeasureOfAngle(ABC),MeasureOfAngle(BCA),MeasureOfAngle(CAB)),180)"]
 ***MODEL_RESPONSE_END***

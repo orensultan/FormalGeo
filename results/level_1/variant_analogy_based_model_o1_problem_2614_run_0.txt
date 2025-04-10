@@ -69,19 +69,20 @@ Polygon(BCDA)
 Polygon(CDAB)
 SYMBOLS_AND_VALUES:
 MeasureOfAngle(ABC);ma_abc;40
-MeasureOfAngle(ACD);ma_acd;65
-MeasureOfAngle(BCA);ma_bca;None
+MeasureOfAngle(DAC);ma_dac;60
+MeasureOfAngle(BCD);ma_bcd;None
 
 Outputs:
 Outputs for Problem B:
 
 ***MODEL_RESPONSE_BEGIN***
 EQUATIONS:
-ma_abd−x
-ma_cda−61
-ma_dab−69
-ma_dbc−55
-ma_bcd−90
+ma_abd-x
+ma_cda-61
+ma_dab-69
+ma_dbc-55
+ma_bcd-90
+Add(ma_abc,ma_bcd,ma_cda,ma_dab)-360
 
 GOAL_SYMBOL:
 ma_abc

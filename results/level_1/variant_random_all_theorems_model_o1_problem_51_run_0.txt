@@ -228,24 +228,22 @@ ParallelBetweenLine(LW,EX)
 ParallelBetweenLine(KZ,NX)
 ParallelBetweenLine(NX,KZ)
 SYMBOLS_AND_VALUES:
-LengthOfArc(OAB);la_oab;None
-LengthOfArc(OBC);la_obc;None
-MeasureOfAngle(CDB);ma_cdb;20
-MeasureOfAngle(BOA);ma_boa;None
+MeasureOfAngle(ABC);ma_obc;50
+MeasureOfAngle(EBC);ma_obc;50
+MeasureOfAngle(OBC);ma_obc;50
+MeasureOfAngle(CDB);ma_edb;None
+MeasureOfAngle(EDB);ma_edb;None
 
 Outputs:
 Outputs for Problem B:
 
 ***MODEL_RESPONSE_BEGIN***
 EQUATIONS:
-3*a+40 + 2*a+25-180
-
+(3*a+40)+(2*a+25)-180
 GOAL_SYMBOL:
 a
-
 ANSWER:
 23
-
 THEOREM_SEQUENCE:
 1; parallel_property_ipsilateral_internal_angle(1,WL,XE); ParallelBetweenLine(WL,XE)&Line(WX); ["Equal(Add(MeasureOfAngle(LWX),MeasureOfAngle(WXE)),180)"]
 ***MODEL_RESPONSE_END***

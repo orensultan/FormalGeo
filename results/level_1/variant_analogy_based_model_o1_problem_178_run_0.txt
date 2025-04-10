@@ -46,24 +46,28 @@ ParallelBetweenLine(CD,BA)
 ParallelBetweenLine(DA,CB)
 ParallelBetweenLine(BC,AD)
 SYMBOLS_AND_VALUES:
-LengthOfLine(RS);ll_rs;5
-LengthOfLine(SR);ll_rs;5
-LengthOfLine(SP);ll_sp;3
-LengthOfLine(PS);ll_sp;3
-MeasureOfAngle(PQR);ma_pqr;128
-LengthOfLine(PQ);ll_pq;None
-LengthOfLine(QP);ll_pq;None
+LengthOfLine(CB);ll_cb;18
+LengthOfLine(BC);ll_cb;18
+LengthOfLine(CD);ll_cd;12
+LengthOfLine(DC);ll_cd;12
+MeasureOfAngle(BAD);ma_bad;115
+MeasureOfAngle(DCB);ma_dcb;None
 
 Outputs:
 Outputs for Problem B:
 
 ***MODEL_RESPONSE_BEGIN***
 EQUATIONS:
-ll_cb-18 ll_cd-12 ma_bad-115
+ll_cb-18
+ll_cd-12
+ma_bad-115
+
 GOAL_SYMBOL:
 ma_adc
+
 ANSWER:
 65
+
 THEOREM_SEQUENCE:
 1; parallel_property_ipsilateral_internal_angle(1,AB,DC); ParallelBetweenLine(AB,DC)&Line(AD); ["Equal(Add(MeasureOfAngle(BAD),MeasureOfAngle(ADC)),180)"]
 ***MODEL_RESPONSE_END***

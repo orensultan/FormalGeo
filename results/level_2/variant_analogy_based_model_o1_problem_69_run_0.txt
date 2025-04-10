@@ -76,16 +76,12 @@ Polygon(EFD)
 Polygon(FDE)
 Polygon(FED)
 SYMBOLS_AND_VALUES:
-MeasureOfAngle(ADC);ma_adc;90
-MeasureOfAngle(CAD);ma_cad;30
-MeasureOfAngle(CAB);ma_cad;30
-MeasureOfAngle(BCA);ma_bca;90
-PerimeterOfTriangle(CDB);pt_cdb;None
-PerimeterOfTriangle(DBC);pt_cdb;None
-PerimeterOfTriangle(BCD);pt_cdb;None
-PerimeterOfTriangle(ABC);pt_abc;None
-PerimeterOfTriangle(BCA);pt_abc;None
-PerimeterOfTriangle(CAB);pt_abc;None
+MeasureOfAngle(AEC);ma_aec;74
+MeasureOfAngle(EAB);ma_eab;15
+MeasureOfAngle(BCA);ma_eca;90
+MeasureOfAngle(ECA);ma_eca;90
+MeasureOfAngle(ABE);ma_abe;None
+MeasureOfAngle(ABC);ma_abe;None
 
 Outputs:
 Outputs for Problem B:
@@ -100,7 +96,7 @@ ANSWER:
 THEOREM_SEQUENCE:
 1; flat_angle(1,EGF); Collinear(EGF); ["Equal(MeasureOfAngle(EGF),180)"]
 2; angle_addition(1,EGD,DGF); Angle(EGD)&Angle(DGF)&Angle(EGF); ["Equal(MeasureOfAngle(EGF),Add(MeasureOfAngle(EGD),MeasureOfAngle(DGF)))"]
-3; triangle_property_angle_sum(1,FDG); Polygon(FDG); ["Equal(Add(MeasureOfAngle(FDG),MeasureOfAngle(DGF),MeasureOfAngle(GFD)),180)"]
+3; triangle_property_angle_sum(1,DGF); Polygon(DGF); ["Equal(Add(MeasureOfAngle(DGF),MeasureOfAngle(GFD),MeasureOfAngle(FDG)),180)"]
 ***MODEL_RESPONSE_END***
 RETRIES_MESSAGES:
 #run: 0; #retry: 1; message: ERROR_TIER: TIER3_GOAL_NOT_REACHED
@@ -114,9 +110,9 @@ verification failed.
   Collinear Points: EGF
   Polygons: DEF, DEG, DFE, DFG, DGE, DGF
 - Theorems related to the goal:
-  Step 1 - triangle_property_angle_sum(1, FDG): Equal(Add(MeasureOfAngle(FDG),MeasureOfAngle(DGF),MeasureOfAngle(GFD)),180)
+  Step 1 - triangle_property_angle_sum(1, DGF): Equal(Add(MeasureOfAngle(DGF),MeasureOfAngle(GFD),MeasureOfAngle(FDG)),180)
 - Solver constraints directly related to this goal:
-  ∠FDG + ∠DGF + ∠DFG = 180
+  ∠DGF + ∠DFG + ∠FDG = 180
   ∠FDG <= 180
   ∠FDG > 0
 
@@ -125,7 +121,7 @@ Model Answer:
 RETRY_ANSWER:
 25
 RETRY_THEOREM_SEQUENCE:
-1; triangle_property_angle_sum(1,FDG); Polygon(FDG); ["Equal(Add(MeasureOfAngle(FDG),MeasureOfAngle(DGF),MeasureOfAngle(GFD)),180)"]
+1; triangle_property_angle_sum(1,DGF); Polygon(DGF); ["Equal(Add(MeasureOfAngle(DGF),MeasureOfAngle(GFD),MeasureOfAngle(FDG)),180)"]
 #run: 0; #retry: 2; message: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
 Verification failed. Theorem <flat_angle> branch error. Expected dict_keys(['1']) but got None. Please rewrite your response, you should change only the call to theorem <flat_angle> by adding the branch number from the dict_keys as the first argument
 Model Answer:
@@ -133,8 +129,8 @@ RETRY_ANSWER:
 25
 RETRY_THEOREM_SEQUENCE:
 1; flat_angle(EGF); Collinear(EGF); ["Equal(MeasureOfAngle(EGF),180)"]
-2; angle_addition(EGD,DGF); Angle(EGD)&Angle(DGF)&Angle(EGF); ["Equal(MeasureOfAngle(EGF),Add(MeasureOfAngle(EGD),MeasureOfAngle(DGF)))"]
-3; triangle_property_angle_sum(1,FDG); Polygon(FDG); ["Equal(Add(MeasureOfAngle(FDG),MeasureOfAngle(DGF),MeasureOfAngle(GFD)),180)"]
+2; angle_addition(1,EGD,DGF); Angle(EGD)&Angle(DGF)&Angle(EGF); ["Equal(MeasureOfAngle(EGF),Add(MeasureOfAngle(EGD),MeasureOfAngle(DGF)))"]
+3; triangle_property_angle_sum(1,DGF); Polygon(DGF); ["Equal(Add(MeasureOfAngle(DGF),MeasureOfAngle(GFD),MeasureOfAngle(FDG)),180)"]
 #RETRIES:
 2
 #RUNS:

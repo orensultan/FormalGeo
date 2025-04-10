@@ -221,7 +221,7 @@ Polygon(BCDA)
 Polygon(CDAB)
 Circle(O)
 SYMBOLS_AND_VALUES:
-MeasureOfAngle(ABC);ma_abc;135
+MeasureOfAngle(ADC);ma_adc;130
 MeasureOfAngle(COA);ma_coa;None
 
 Outputs:
@@ -235,7 +235,7 @@ ma_dob
 ANSWER:
 140
 THEOREM_SEQUENCE:
-1; arc_property_circumference_angle_internal(1,OBD,C); Cocircular(O,BCD)&Angle(BCD); ["Equal(MeasureOfAngle(BCD),Sub(180,Mul(MeasureOfArc(OBD),1/2)))"]
+1; arc_property_circumference_angle_internal(1,OBD,C); Cocircular(O,BCD)&Angle(BCD); ["Equal(MeasureOfAngle(BCD),Sub(180,Mul(MeasureOfArc(OBD),1/2)))"]  
 2; arc_property_center_angle(1,OBD,O); Arc(OBD)&Angle(DOB)&IsCentreOfCircle(O,O); ["Equal(MeasureOfArc(OBD),MeasureOfAngle(DOB))"]
 ***MODEL_RESPONSE_END***
 RETRIES_MESSAGES:

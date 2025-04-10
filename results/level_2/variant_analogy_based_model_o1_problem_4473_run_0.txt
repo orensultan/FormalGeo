@@ -166,8 +166,8 @@ Polygon(CDAB)
 Polygon(DABC)
 Circle(O)
 SYMBOLS_AND_VALUES:
-MeasureOfAngle(BCD);ma_bcd;110
-MeasureOfAngle(DOB);ma_dob;None
+MeasureOfAngle(DAB);ma_dab;115
+MeasureOfAngle(BOD);ma_bod;None
 
 Outputs:
 Outputs for Problem B:
@@ -175,30 +175,17 @@ Outputs for Problem B:
 ***MODEL_RESPONSE_BEGIN***
 EQUATIONS:
 ma_abc-80
-
 GOAL_SYMBOL:
 ma_cda
-
 ANSWER:
 100
-
 THEOREM_SEQUENCE:
-1; arc_property_circumference_angle_external(1,OAC,B); Cocircular(O,ACB)&Angle(CBA); ["Equal(MeasureOfAngle(CBA),Mul(MeasureOfArc(OAC),1/2))"]  
-2; arc_property_circumference_angle_internal(1,OAC,D); Cocircular(O,ADC)&Angle(ADC); ["Equal(MeasureOfAngle(ADC),Sub(180,Mul(MeasureOfArc(OAC),1/2)))"]
+1; arc_property_circumference_angle_external(1,OCA,B); Cocircular(O,CAB)&Angle(ABC); ["Equal(MeasureOfAngle(ABC),Mul(MeasureOfArc(OCA),1/2))"]
+2; arc_property_circumference_angle_internal(1,OCA,D); Cocircular(O,CDA)&Angle(CDA); ["Equal(MeasureOfAngle(CDA),Sub(180,Mul(MeasureOfArc(OCA),1/2)))"]
 ***MODEL_RESPONSE_END***
 RETRIES_MESSAGES:
-#run: 0; #retry: 1; message: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
-Verification failed. Premises mismatch:
-Model premises: Cocircular(O,ABC)&Angle(ABC)
-Expected premises: Cocircular(O,ACB)&Angle(CBA)
-Model Answer:
-RETRY_ANSWER:
-100
-RETRY_THEOREM_SEQUENCE:
-1; arc_property_circumference_angle_external(1,OAC,B); Cocircular(O,ABC)&Angle(ABC); ["Equal(MeasureOfAngle(ABC),Mul(MeasureOfArc(OAC),1/2))"]
-2; arc_property_circumference_angle_internal(1,OAC,D); Cocircular(O,ADC)&Angle(CDA); ["Equal(MeasureOfAngle(CDA),Sub(180,Mul(MeasureOfArc(OAC),1/2)))"]
 #RETRIES:
-1
+0
 #RUNS:
 0
 

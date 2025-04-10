@@ -135,20 +135,16 @@ Polygon(ECDBA)
 Polygon(CDBAE)
 Polygon(DBAEC)
 SYMBOLS_AND_VALUES:
-MeasureOfAngle(BDA);ma_bdf;78
-MeasureOfAngle(BDF);ma_bdf;78
-MeasureOfAngle(EGB);ma_egf;120
-MeasureOfAngle(EGF);ma_egf;120
-MeasureOfAngle(FBD);ma_fbd;50
-MeasureOfAngle(GBD);ma_fbd;50
-MeasureOfAngle(CBD);ma_fbd;50
-MeasureOfAngle(HBD);ma_fbd;50
-MeasureOfAngle(AEC);ma_gec;56
-MeasureOfAngle(GEC);ma_gec;56
-MeasureOfAngle(GAF);ma_gaf;None
-MeasureOfAngle(GAD);ma_gaf;None
-MeasureOfAngle(EAF);ma_gaf;None
-MeasureOfAngle(EAD);ma_gaf;None
+MeasureOfAngle(ABD);ma_abe;24
+MeasureOfAngle(ABE);ma_abe;24
+MeasureOfAngle(BCE);ma_bce;109
+MeasureOfAngle(BCA);ma_bce;109
+MeasureOfAngle(CAB);ma_eab;33
+MeasureOfAngle(EAB);ma_eab;33
+MeasureOfAngle(EDA);ma_eda;95
+MeasureOfAngle(BDA);ma_eda;95
+MeasureOfAngle(DAC);ma_dae;None
+MeasureOfAngle(DAE);ma_dae;None
 
 Outputs:
 Outputs for Problem B:
@@ -164,7 +160,7 @@ ma_dec
 ANSWER:
 95
 THEOREM_SEQUENCE:
-1; triangle_property_angle_sum(1,ECD); Polygon(ECD); ["Equal(Add(MeasureOfAngle(ECD),MeasureOfAngle(CDE),MeasureOfAngle(DEC)),180)"]
+1; triangle_property_angle_sum(1,DEC); Polygon(DEC); ["Equal(Add(MeasureOfAngle(DEC),MeasureOfAngle(ECD),MeasureOfAngle(CDE)),180)"]
 ***MODEL_RESPONSE_END***
 RETRIES_MESSAGES:
 #RETRIES:

@@ -46,11 +46,15 @@ ParallelBetweenLine(CD,BA)
 ParallelBetweenLine(DA,CB)
 ParallelBetweenLine(BC,AD)
 SYMBOLS_AND_VALUES:
-MeasureOfAngle(BCD);ma_bce;40
-MeasureOfAngle(BCE);ma_bce;40
-MeasureOfAngle(DBA);ma_dba;None
-MeasureOfAngle(DBO);ma_dba;None
-MeasureOfAngle(DBE);ma_dba;None
+MeasureOfAngle(BCA);ma_bca;90
+MeasureOfAngle(OCA);ma_bca;90
+MeasureOfAngle(PCA);ma_bca;90
+LengthOfLine(CA);ll_ca;None
+LengthOfLine(AC);ll_ca;None
+LengthOfLine(CB);ll_cb;None
+LengthOfLine(BC);ll_cb;None
+MeasureOfAngle(FEA);ma_fea;None
+MeasureOfAngle(ACH);ma_ach;None
 
 Outputs:
 Outputs for Problem B:
@@ -71,15 +75,8 @@ THEOREM_SEQUENCE:
 1; parallel_property_ipsilateral_internal_angle(1,AB,DC); ParallelBetweenLine(AB,DC)&Line(AD); ["Equal(Add(MeasureOfAngle(BAD),MeasureOfAngle(ADC)),180)"]
 ***MODEL_RESPONSE_END***
 RETRIES_MESSAGES:
-#run: 0; #retry: 1; message: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
-Verification failed. Theorem <parallel_property_ipsilateral_internal_angle> branch error. Expected dict_keys(['1']) but got None. Please rewrite your response, you should change only the call to theorem <parallel_property_ipsilateral_internal_angle> by adding the branch number from the dict_keys as the first argument
-Model Answer:
-RETRY_ANSWER:
-65
-RETRY_THEOREM_SEQUENCE:
-1; parallel_property_ipsilateral_internal_angle(AB,DC); ParallelBetweenLine(AB,DC)&Line(AD); ["Equal(Add(MeasureOfAngle(BAD),MeasureOfAngle(ADC)),180)"]
 #RETRIES:
-1
+0
 #RUNS:
 0
 

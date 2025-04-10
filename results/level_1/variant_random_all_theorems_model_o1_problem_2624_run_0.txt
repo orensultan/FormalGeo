@@ -52,35 +52,35 @@ Shape(JA,AB,BE,EH,HJ)
 Shape(AB,BE,EH,HJ,JA)
 Shape(BE,EH,HJ,JA,AB)
 Shape(EH,HJ,JA,AB,BE)
+Shape(AB,BH,HJ,JL,LA)
+Shape(BH,HJ,JL,LA,AB)
+Shape(HJ,JL,LA,AB,BH)
+Shape(JL,LA,AB,BH,HJ)
+Shape(LA,AB,BH,HJ,JL)
 Shape(BH,HJ,JA,AC,CD,DB)
 Shape(HJ,JA,AC,CD,DB,BH)
 Shape(JA,AC,CD,DB,BH,HJ)
 Shape(AC,CD,DB,BH,HJ,JA)
 Shape(CD,DB,BH,HJ,JA,AC)
 Shape(DB,BH,HJ,JA,AC,CD)
-Shape(AB,BH,HJ,JL,LA)
-Shape(BH,HJ,JL,LA,AB)
-Shape(HJ,JL,LA,AB,BH)
-Shape(JL,LA,AB,BH,HJ)
-Shape(LA,AB,BH,HJ,JL)
 Shape(BA,AC,CD,DK,KE,EB)
 Shape(AC,CD,DK,KE,EB,BA)
 Shape(CD,DK,KE,EB,BA,AC)
 Shape(DK,KE,EB,BA,AC,CD)
 Shape(KE,EB,BA,AC,CD,DK)
 Shape(EB,BA,AC,CD,DK,KE)
-Shape(DB,BA,AC,CG,GF,FD)
-Shape(BA,AC,CG,GF,FD,DB)
-Shape(AC,CG,GF,FD,DB,BA)
-Shape(CG,GF,FD,DB,BA,AC)
-Shape(GF,FD,DB,BA,AC,CG)
-Shape(FD,DB,BA,AC,CG,GF)
 Shape(CD,DB,BA,AL,LI,IC)
 Shape(DB,BA,AL,LI,IC,CD)
 Shape(BA,AL,LI,IC,CD,DB)
 Shape(AL,LI,IC,CD,DB,BA)
 Shape(LI,IC,CD,DB,BA,AL)
 Shape(IC,CD,DB,BA,AL,LI)
+Shape(DB,BA,AC,CG,GF,FD)
+Shape(BA,AC,CG,GF,FD,DB)
+Shape(AC,CG,GF,FD,DB,BA)
+Shape(CG,GF,FD,DB,BA,AC)
+Shape(GF,FD,DB,BA,AC,CG)
+Shape(FD,DB,BA,AC,CG,GF)
 Shape(EH,HB,BD,DK,KE)
 Shape(HB,BD,DK,KE,EH)
 Shape(BD,DK,KE,EH,HB)
@@ -393,11 +393,11 @@ Angle(FKD)
 Angle(KDF)
 Angle(AEH)
 Angle(EHJ)
-Angle(JCD)
 Angle(HJL)
+Angle(JCD)
 Angle(CKE)
-Angle(AGF)
 Angle(BLI)
+Angle(AGF)
 Angle(HDK)
 Angle(KEH)
 Angle(JLI)
@@ -407,25 +407,25 @@ Angle(GFK)
 Angle(BFK)
 Angle(FKE)
 Angle(ABD)
+Angle(CAB)
 Angle(EBH)
-Angle(JGF)
 Angle(JAL)
 Angle(IDB)
-Angle(CAB)
+Angle(JGF)
 Angle(HBA)
 Angle(CDF)
+Angle(BAJ)
+Angle(GCD)
 Angle(ACI)
 Angle(KDB)
 Angle(DBE)
 Angle(DHJ)
 Angle(LAC)
-Angle(BAJ)
-Angle(GCD)
 Angle(HFK)
-Angle(DCA)
 Angle(IKE)
 Angle(ICG)
 Angle(FBA)
+Angle(DCA)
 Angle(FDK)
 ..(GAL)
 ..(FBL)
@@ -491,8 +491,8 @@ Angle(FDK)
 ..(JHE)
 ..(LJH)
 ..(EKC)
-..(FGA)
 ..(ILB)
+..(FGA)
 ..(HEK)
 ..(ILJ)
 ..(GIL)
@@ -575,26 +575,26 @@ Polygon(HJAE)
 Polygon(JAEH)
 Polygon(AEHJ)
 Polygon(EHJA)
-Polygon(HJCD)
-Polygon(JCDH)
-Polygon(CDHJ)
-Polygon(DHJC)
 Polygon(BHJL)
 Polygon(HJLB)
 Polygon(JLBH)
 Polygon(LBHJ)
+Polygon(HJCD)
+Polygon(JCDH)
+Polygon(CDHJ)
+Polygon(DHJC)
 Polygon(ACKE)
 Polygon(CKEA)
 Polygon(KEAC)
 Polygon(EACK)
-Polygon(BAGF)
-Polygon(AGFB)
-Polygon(GFBA)
-Polygon(FBAG)
 Polygon(DBLI)
 Polygon(BLID)
 Polygon(LIDB)
 Polygon(IDBL)
+Polygon(BAGF)
+Polygon(AGFB)
+Polygon(GFBA)
+Polygon(FBAG)
 Polygon(EHDK)
 Polygon(HDKE)
 Polygon(DKEH)
@@ -626,7 +626,7 @@ Polygon(BDKEHJA)
 Polygon(DKEHJAB)
 Polygon(KEHJABD)
 Polygon(EHJABDK)
-Polygon(BHJCKE)
+Polygon(ABHJLIC)
 ..(GFKEBHJLACI)
 ..(FKEBHJLACIG)
 ..(KEBHJLACIGF)
@@ -732,18 +732,22 @@ ParallelBetweenLine(JA,HB)
 ParallelBetweenLine(IC,LA)
 ParallelBetweenLine(LA,IC)
 SYMBOLS_AND_VALUES:
-MeasureOfAngle(RQP);ma_rqs;33
-MeasureOfAngle(RQS);ma_rqs;33
-MeasureOfAngle(TSQ);ma_tsq;None
-MeasureOfAngle(TSP);ma_tsq;None
-Free(z);z;None
+MeasureOfAngle(BCA);ma_bca;90
+MeasureOfAngle(OCA);ma_bca;90
+MeasureOfAngle(PCA);ma_bca;90
+LengthOfLine(CA);ll_ca;None
+LengthOfLine(AC);ll_ca;None
+LengthOfLine(CB);ll_cb;None
+LengthOfLine(BC);ll_cb;None
+MeasureOfAngle(FEA);ma_fea;None
+MeasureOfAngle(ACH);ma_ach;None
 
 Outputs:
 Outputs for Problem B:
 
 ***MODEL_RESPONSE_BEGIN***
 EQUATIONS:
-(3*p - 10) + (4*p + 15) - 180 = 0
+(3*p-10)+(4*p+15)-180
 
 GOAL_SYMBOL:
 p
@@ -752,36 +756,24 @@ ANSWER:
 25
 
 THEOREM_SEQUENCE:
-1; parallel_property_ipsilateral_internal_angle(1,AJ,BH); ParallelBetweenLine(AJ,BH)&Line(AB); ["Equal(Add(MeasureOfAngle(JAB),MeasureOfAngle(ABH)),180)"]
+1; parallel_property_ipsilateral_internal_angle(1,BH,AJ); ParallelBetweenLine(BH,AJ)&Line(BA); ["Equal(Add(MeasureOfAngle(HBA),MeasureOfAngle(BAJ)),180)"]
 ***MODEL_RESPONSE_END***
 RETRIES_MESSAGES:
 #run: 0; #retry: 1; message: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
-Verification failed. Theorem <parallel_property_ipsilateral_internal_angle> branch error. Expected dict_keys(['1']) but got None. Please rewrite your response, you should change only the call to theorem <parallel_property_ipsilateral_internal_angle> by adding the branch number from the dict_keys as the first argument
+Verification failed.
+Theorem: parallel_property_ipsilateral_internal_angle(1,BH,AJ)
+The language model outputs the following premises: ParallelBetweenLine(BH,AJ)&Line(AJ)
+The correct premises for the theorem: ParallelBetweenLine(BH,AJ)&Line(BA)
+The language model outputs the following conclusions: Equal(Add(MeasureOfAngle(ABH),MeasureOfAngle(JAE)),180)
+The correct conclusions for the theorem: Equal(Add(MeasureOfAngle(HBA),MeasureOfAngle(BAJ)),180)
+
 Model Answer:
 RETRY_ANSWER:
 25
 RETRY_THEOREM_SEQUENCE:
-1; parallel_property_ipsilateral_internal_angle(AJ,BH); ParallelBetweenLine(AJ,BH)&Line(AE); ["Equal(Add(MeasureOfAngle(ABH),MeasureOfAngle(JAE)),180)"]
-#run: 0; #retry: 2; message: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
-Verification failed. Premises mismatch:
-Model premises: ParallelBetweenLine(AJ,BH)&Line(AE)
-Expected premises: ParallelBetweenLine(AJ,BH)&Line(AB)
-Model Answer:
-RETRY_ANSWER:
-25
-RETRY_THEOREM_SEQUENCE:
-1; parallel_property_ipsilateral_internal_angle(1,AJ,BH); ParallelBetweenLine(AJ,BH)&Line(AE); ["Equal(Add(MeasureOfAngle(ABH),MeasureOfAngle(JAE)),180)"]
-#run: 0; #retry: 3; message: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
-Verification failed. Conclusions mismatch:
-Model conclusions: Equal(Add(MeasureOfAngle(ABH),MeasureOfAngle(JAE)),180)
-Expected conclusions: Equal(Add(MeasureOfAngle(JAB),MeasureOfAngle(ABH)),180)
-Model Answer:
-RETRY_ANSWER:
-25
-RETRY_THEOREM_SEQUENCE:
-1; parallel_property_ipsilateral_internal_angle(1,AJ,BH); ParallelBetweenLine(AJ,BH)&Line(AB); ["Equal(Add(MeasureOfAngle(ABH),MeasureOfAngle(JAE)),180)"]
+1; parallel_property_ipsilateral_internal_angle(1,BH,AJ); ParallelBetweenLine(BH,AJ)&Line(AJ); ["Equal(Add(MeasureOfAngle(ABH),MeasureOfAngle(JAE)),180)"]
 #RETRIES:
-3
+1
 #RUNS:
 0
 

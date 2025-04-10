@@ -230,15 +230,15 @@ ParallelBetweenLine(NX,KZ)
 SYMBOLS_AND_VALUES:
 MeasureOfAngle(LWX);ma_lwx;53
 MeasureOfAngle(LWN);ma_lwx;53
-MeasureOfAngle(EZK);ma_xzk;None
-MeasureOfAngle(XZK);ma_xzk;None
+MeasureOfAngle(ZYM);ma_zym;None
+MeasureOfAngle(KYM);ma_zym;None
 
 Outputs:
 Outputs for Problem B:
 
 ***MODEL_RESPONSE_BEGIN***
 EQUATIONS:
-(3*a+40)+(2*a+25)-180
+(3*a+40)+(2*a+25)-180=0
 
 GOAL_SYMBOL:
 a

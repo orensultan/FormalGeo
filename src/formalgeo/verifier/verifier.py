@@ -83,11 +83,13 @@ class Verifier:
             theory_json = get_theorem(theorem)
             premises, conclusions = json.loads(theory_json)['premise'], json.loads(theory_json)['conclusion']
             premises = replace_symbols(premises, letters)
+            return_str = ""
             if model_premises != premises:
-                return f"Verification failed. Premises mismatch:\nModel premises: {model_premises}\nExpected premises: {premises}"
+                return_str += f"The language model outputs the following premises: {model_premises}\nThe correct premises for the theorem: {premises}\n"
             for i in range(len(conclusions)):
                 conclusions[i] = replace_symbols(conclusions[i], letters)
                 if ast.literal_eval(model_conclusions)[i] != conclusions[i]:
-                    return f"Verification failed. Conclusions mismatch:\nModel conclusions: {ast.literal_eval(model_conclusions)[i]}\nExpected conclusions: {conclusions[i]}"
-
+                    return_str += f"The language model outputs the following conclusions: {ast.literal_eval(model_conclusions)[i]}\nThe correct conclusions for the theorem: {conclusions[i]}\n"
+            if return_str != "":
+                return "Verification failed.\nTheorem: " + theorem + "\n" + return_str
         return "Success"
