@@ -2,6 +2,9 @@ import re
 import json
 import os
 import argparse
+import logging
+import sys
+import io
 from formalgeo.data import download_dataset, DatasetLoader
 from formalgeo.solver import Interactor
 from formalgeo.parse import parse_one_theorem
@@ -177,6 +180,34 @@ def call_gpt_o1(model, messages):
     return response.choices[0].message['content']
 
 
+def setup_logging(output_file):
+    # Create log file name by replacing .txt with .log
+    log_file = output_file.replace('.txt', '.log')
+    
+    # Create a file to capture all console output
+    log_file_handle = open(log_file, 'w')
+    
+    # Create a stream that writes to both console and file
+    class Tee(io.TextIOBase):
+        def __init__(self, file1, file2):
+            self.file1 = file1
+            self.file2 = file2
+            
+        def write(self, data):
+            self.file1.write(data)
+            self.file2.write(data)
+            self.file2.flush()
+            
+        def flush(self):
+            self.file1.flush()
+            self.file2.flush()
+    
+    # Redirect both stdout and stderr to our Tee stream
+    sys.stdout = Tee(sys.stdout, log_file_handle)
+    sys.stderr = Tee(sys.stderr, log_file_handle)
+    
+    return log_file_handle
+
 def call_gpt(model, messages, temperature=0, wait_time=1, retry_wait_time=6, max_retries=10):
     retries = 0
     while retries <= max_retries:
@@ -197,14 +228,14 @@ def call_gpt(model, messages, temperature=0, wait_time=1, retry_wait_time=6, max
                 return res
 
         except openai.error.OpenAIError as e:
-            print(f"OpenAIError: {e}. Retrying in {retry_wait_time} seconds...")
+            logging.error(f"OpenAIError: {e}. Retrying in {retry_wait_time} seconds...")
             time.sleep(retry_wait_time)
             retries += 1
             if retries > max_retries:
-                print("Failed after maximum retries.")
+                logging.error("Failed after maximum retries.")
                 raise Exception(f"Failed after {max_retries} attempts due to OpenAI errors.")
         except Exception as e:
-            print(f"Unexpected error: {e}. Not retrying.")
+            logging.error(f"Unexpected error: {e}. Not retrying.")
             raise Exception(f"Unexpected error: {e}")
 
 def gpt_response(messages, model_name):
@@ -434,7 +465,7 @@ chosen_problems_by_level = {
 }
 
 chosen_problems_by_level = {
-2: [127]
+1: [1726]
 # 1: [1975, 1490, 1726, 178, 2669, 2614, 51, 2323, 192, 2624],
 # 2: [991, 69, 144, 358, 4473, 4483, 5645, 127, 2410, 4523],
 # 3: [ 4187, 5244, 5062, 844, 1945, 2200, 4099, 2765, 4476, 4254 ]
@@ -576,15 +607,34 @@ def run(args, problem2_id, problems, run_id):
     similar_problems_theorems = get_theorems_from_similar_problems(similar_problems)
     gdl_relevant_theorems = find_relevant_theorems(args, theorems, similar_problems_theorems)
     write_theorems_coverage_stats(similar_problems_theorems, problem2, args.variant, 20)
-    messages, problem2_resp, verifier_result, retries_messages = generate_and_verify(args,
-                                                                                     gdl_relevant_theorems,
-                                                                                     similar_problems, problem2, run_id)
-    problem2_gt = get_gt_result(problem2)
-    start_index = messages[0]['content'].find("Inputs for Problem B:")
-    problem2_given = messages[0]['content'][start_index:]
+    
+    # Set up logging for this run
     output_path = f"results/level_{problem2.level}/variant_{args.variant}_model_{args.model_name}_problem_{problem2.id}_run_{run_id}.txt"
-    write_result(output_path, problem2_given, problem2_resp, problem2_gt, retries_messages, run_id)
-    return len(retries_messages) < MAX_RETRIES_IN_RUN
+    log_file_handle = setup_logging(output_path)
+    
+    try:
+        messages, problem2_resp, verifier_result, retries_messages = generate_and_verify(args,
+                                                                                         gdl_relevant_theorems,
+                                                                                         similar_problems, problem2, run_id)
+        problem2_gt = get_gt_result(problem2)
+        start_index = messages[0]['content'].find("Inputs for Problem B:")
+        problem2_given = messages[0]['content'][start_index:]
+        
+        # Write the original output file
+        write_result(output_path, problem2_given, problem2_resp, problem2_gt, retries_messages, run_id)
+        
+        return len(retries_messages) < MAX_RETRIES_IN_RUN
+    except Exception as e:
+        # Print the full traceback to the log file
+        import traceback
+        traceback.print_exc(file=sys.stderr)
+        raise  # Re-raise the exception after logging it
+    finally:
+        # Close the log file handle
+        log_file_handle.close()
+        # Restore stdout and stderr
+        sys.stdout = sys.__stdout__
+        sys.stderr = sys.__stderr__
 
 
 def run_theorems_coverage(args):
@@ -609,15 +659,16 @@ if __name__ == "__main__":
     parser.add_argument("--prompt_path", dest="prompt_path", type=str, default="src/formalgeo/prompt/geometry_similar_problems_prompt_291224.txt")
     args = parser.parse_args()
     problems = save_problems('formalgeo7k_v1/problems')
-    # run_theorems_coverage(args)
-    for _, problems_id in chosen_problems_by_level.items():
-        for problem2_id in problems_id:
-            for i in range(MAX_RUNS):
-                is_success = run(args, problem2_id, problems, i)
-                if is_success:
-                    break
-    # print_similar_problems_theorems_coverage(args.variant, chosen_problems_by_level)
-
-
-
-
+    
+    try:
+        for _, problems_id in chosen_problems_by_level.items():
+            for problem2_id in problems_id:
+                for i in range(MAX_RUNS):
+                    is_success = run(args, problem2_id, problems, i)
+                    if is_success:
+                        break
+    except Exception as e:
+        # Print the full traceback to stderr (which will be captured in the log file)
+        import traceback
+        traceback.print_exc(file=sys.stderr)
+        raise  # Re-raise the exception after logging it

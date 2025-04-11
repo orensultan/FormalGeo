@@ -239,11 +239,16 @@ Outputs for Problem B:
 
 ***MODEL_RESPONSE_BEGIN***
 EQUATIONS:
-(3*a+40)+(2*a+25)-180
+ma_lwx-(3*a+40)
+ma_wxe-(2*a+25)
+ma_xzk-(5*b-26)
+
 GOAL_SYMBOL:
 a
+
 ANSWER:
 23
+
 THEOREM_SEQUENCE:
 1; parallel_property_ipsilateral_internal_angle(1,WL,XE); ParallelBetweenLine(WL,XE)&Line(WX); ["Equal(Add(MeasureOfAngle(LWX),MeasureOfAngle(WXE)),180)"]
 ***MODEL_RESPONSE_END***

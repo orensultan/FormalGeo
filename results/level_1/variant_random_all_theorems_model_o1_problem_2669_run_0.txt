@@ -52,16 +52,16 @@ Shape(CE,EB,FBD,FDA,FAC)
 Shape(EB,FBD,FDA,FAC,CE)
 Shape(FBD,FDA,FAC,CE,EB)
 Shape(FDA,FAC,CE,EB,FBD)
-Shape(FCB,BE,ED,FDA,FAC)
-Shape(BE,ED,FDA,FAC,FCB)
-Shape(ED,FDA,FAC,FCB,BE)
-Shape(FDA,FAC,FCB,BE,ED)
-Shape(FAC,FCB,BE,ED,FDA)
 Shape(EC,FCB,FBD,FDA,AE)
 Shape(FCB,FBD,FDA,AE,EC)
 Shape(FBD,FDA,AE,EC,FCB)
 Shape(FDA,AE,EC,FCB,FBD)
 Shape(AE,EC,FCB,FBD,FDA)
+Shape(FCB,BE,ED,FDA,FAC)
+Shape(BE,ED,FDA,FAC,FCB)
+Shape(ED,FDA,FAC,FCB,BE)
+Shape(FDA,FAC,FCB,BE,ED)
+Shape(FAC,FCB,BE,ED,FDA)
 Shape(FAC,FCB,FBD,FDA)
 Shape(FCB,FBD,FDA,FAC)
 Shape(FBD,FDA,FAC,FCB)
@@ -154,8 +154,8 @@ Angle(DEB)
 Angle(AED)
 Angle(DEA)
 Angle(CEB)
-Angle(BED)
 Angle(AEC)
+Angle(BED)
 Circle(F)
 SYMBOLS_AND_VALUES:
 MeasureOfAngle(ABC);ma_obc;50
@@ -169,13 +169,14 @@ Outputs for Problem B:
 
 ***MODEL_RESPONSE_BEGIN***
 EQUATIONS:
-ll_be-6
-ll_ec-3
-ll_ed-4
+6*x-12
+
 GOAL_SYMBOL:
 x
+
 ANSWER:
 2
+
 THEOREM_SEQUENCE:
 1; circle_property_circular_power_chord_and_chord(1,AEB,CED,F); Cocircular(F,AB)&Cocircular(F,CD)&Collinear(AEB)&Collinear(CED); ["Equal(Mul(LengthOfLine(EC),LengthOfLine(ED)),Mul(LengthOfLine(EA),LengthOfLine(EB)))"]
 ***MODEL_RESPONSE_END***
@@ -186,9 +187,20 @@ Model Answer:
 RETRY_ANSWER:
 2
 RETRY_THEOREM_SEQUENCE:
-1; circle_property_circular_power_chord_and_chord(AEB,CED,F); Cocircular(F,AB)&Cocircular(F,CD)&Collinear(AEB)&Collinear(CED); ["Equal(Mul(LengthOfLine(EC),LengthOfLine(ED)),Mul(LengthOfLine(EA),LengthOfLine(EB)))"]
+1; circle_property_circular_power_chord_and_chord(AEB,CED,F); Cocircular(F,BDAC)&Collinear(AEB)&Collinear(CED); ["Equal(Mul(LengthOfLine(EC),LengthOfLine(ED)),Mul(LengthOfLine(EA),LengthOfLine(EB)))"]
+#run: 0; #retry: 2; message: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
+Verification failed.
+Theorem: circle_property_circular_power_chord_and_chord(1,AEB,CED,F)
+The language model outputs the following premises: Cocircular(F,BDAC)&Collinear(AEB)&Collinear(CED)
+The correct premises for the theorem: Cocircular(F,AB)&Cocircular(F,CD)&Collinear(AEB)&Collinear(CED)
+
+Model Answer:
+RETRY_ANSWER:
+2
+RETRY_THEOREM_SEQUENCE:
+1; circle_property_circular_power_chord_and_chord(1,AEB,CED,F); Cocircular(F,BDAC)&Collinear(AEB)&Collinear(CED); ["Equal(Mul(LengthOfLine(EC),LengthOfLine(ED)),Mul(LengthOfLine(EA),LengthOfLine(EB)))"]
 #RETRIES:
-1
+2
 #RUNS:
 0
 

@@ -75,6 +75,7 @@ def calculate_success_rates(base_path):
         # Group files by variant and problem_id
         problem_groups = defaultdict(lambda: defaultdict(list))
         for result_file in os.listdir(level_dir):
+            # Only process .txt files, ignore .log files and other extensions
             if not result_file.endswith('.txt'):
                 continue
 

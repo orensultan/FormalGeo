@@ -79,6 +79,7 @@ Outputs for Problem B:
 
 ***MODEL_RESPONSE_BEGIN***
 EQUATIONS:
+ma_abd-x
 ma_cda-61
 ma_dab-69
 ma_dbc-55
