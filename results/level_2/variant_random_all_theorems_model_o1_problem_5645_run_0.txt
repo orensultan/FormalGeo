@@ -34,30 +34,21 @@ Polygon(BCA)
 Polygon(CAB)
 Polygon(CBA)
 SYMBOLS_AND_VALUES:
-LengthOfLine(AB);ll_ab;10
-LengthOfLine(BA);ll_ab;10
-LengthOfLine(BC);ll_bc;8
-LengthOfLine(CB);ll_bc;8
-MeasureOfAngle(CDE);ma_cde;90
-MeasureOfAngle(EDA);ma_eda;90
-LengthOfLine(CD);ll_cd;None
-LengthOfLine(DC);ll_cd;None
-LengthOfLine(DA);ll_da;None
-LengthOfLine(AD);ll_da;None
-PerimeterOfTriangle(EBC);pt_ebc;None
-PerimeterOfTriangle(BCE);pt_ebc;None
-PerimeterOfTriangle(CEB);pt_ebc;None
+MeasureOfAngle(ABC);ma_obc;50
+MeasureOfAngle(EBC);ma_obc;50
+MeasureOfAngle(OBC);ma_obc;50
+MeasureOfAngle(CDB);ma_edb;None
+MeasureOfAngle(EDB);ma_edb;None
 
 Outputs:
 Outputs for Problem B:
 
 ***MODEL_RESPONSE_BEGIN***
 EQUATIONS:
-Div(LengthOfLine(AB),LengthOfLine(BC))-3/4
-LengthOfLine(AB)-6
-MeasureOfAngle(ABC)-90
+-3/4+ll_ab/ll_bc
+ll_ab-6
 GOAL_SYMBOL:
-LengthOfLine(AC)
+ll_ac
 ANSWER:
 10
 THEOREM_SEQUENCE:

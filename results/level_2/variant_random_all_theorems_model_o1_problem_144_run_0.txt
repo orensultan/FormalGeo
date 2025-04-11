@@ -35,30 +35,18 @@ Polygon(BCA)
 Polygon(CAB)
 Polygon(CBA)
 SYMBOLS_AND_VALUES:
-MeasureOfAngle(EAD);ma_cab;40
-MeasureOfAngle(EAB);ma_cab;40
-MeasureOfAngle(CAD);ma_cab;40
-MeasureOfAngle(CAB);ma_cab;40
-MeasureOfAngle(ADE);ma_ade;90
-MeasureOfAngle(EDB);ma_edb;90
-LengthOfLine(AD);ll_ad;None
-LengthOfLine(DA);ll_ad;None
-LengthOfLine(DB);ll_db;None
-LengthOfLine(BD);ll_db;None
-LengthOfLine(AB);ll_ab;None
-LengthOfLine(BA);ll_ab;None
-LengthOfLine(AC);ll_ac;None
-LengthOfLine(CA);ll_ac;None
-MeasureOfAngle(EBC);ma_ebc;None
+MeasureOfAngle(ABC);ma_obc;50
+MeasureOfAngle(EBC);ma_obc;50
+MeasureOfAngle(OBC);ma_obc;50
+MeasureOfAngle(CDB);ma_edb;None
+MeasureOfAngle(EDB);ma_edb;None
 
 Outputs:
 Outputs for Problem B:
 
 ***MODEL_RESPONSE_BEGIN***
 EQUATIONS:
-ll_ab-x
-ll_ac-x
-ll_bc-5*sqrt(2)
+2*x^2-50
 
 GOAL_SYMBOL:
 x

@@ -171,93 +171,122 @@ Polygon(BCG)
 Polygon(CGB)
 Polygon(CBG)
 SYMBOLS_AND_VALUES:
-MeasureOfAngle(CAQ);ma_cab;45
-MeasureOfAngle(CAH);ma_cab;45
-MeasureOfAngle(CAB);ma_cab;45
-MeasureOfAngle(OAQ);ma_cab;45
-MeasureOfAngle(OAH);ma_cab;45
-MeasureOfAngle(OAB);ma_cab;45
-MeasureOfAngle(RAQ);ma_cab;45
-MeasureOfAngle(RAH);ma_cab;45
-MeasureOfAngle(RAB);ma_cab;45
-MeasureOfAngle(ODF);ma_edf;30
-MeasureOfAngle(ODQ);ma_edf;30
-MeasureOfAngle(ODR);ma_edf;30
-MeasureOfAngle(PDF);ma_edf;30
-MeasureOfAngle(PDQ);ma_edf;30
-MeasureOfAngle(PDR);ma_edf;30
-MeasureOfAngle(EDF);ma_edf;30
-MeasureOfAngle(EDQ);ma_edf;30
-MeasureOfAngle(EDR);ma_edf;30
-MeasureOfAngle(PCO);ma_bca;90
-MeasureOfAngle(PCR);ma_bca;90
-MeasureOfAngle(PCA);ma_bca;90
-MeasureOfAngle(SCO);ma_bca;90
-MeasureOfAngle(SCR);ma_bca;90
-MeasureOfAngle(SCA);ma_bca;90
-MeasureOfAngle(BCO);ma_bca;90
-MeasureOfAngle(BCR);ma_bca;90
-MeasureOfAngle(BCA);ma_bca;90
-MeasureOfAngle(SED);ma_fed;90
-MeasureOfAngle(SEO);ma_fed;90
-MeasureOfAngle(SEP);ma_fed;90
-MeasureOfAngle(HED);ma_fed;90
-MeasureOfAngle(HEO);ma_fed;90
-MeasureOfAngle(HEP);ma_fed;90
-MeasureOfAngle(FED);ma_fed;90
-MeasureOfAngle(FEO);ma_fed;90
-MeasureOfAngle(FEP);ma_fed;90
-MeasureOfAngle(ARD);ma_ard;None
-MeasureOfAngle(ESB);ma_esb;None
+MeasureOfAngle(ABC);ma_obc;50
+MeasureOfAngle(EBC);ma_obc;50
+MeasureOfAngle(OBC);ma_obc;50
+MeasureOfAngle(CDB);ma_edb;None
+MeasureOfAngle(EDB);ma_edb;None
 
 Outputs:
 Outputs for Problem B:
 
 ***MODEL_RESPONSE_BEGIN***
 EQUATIONS:
-ma_adg-36 ma_age-104 ma_fec-40
+ma_adg-36
+ma_age-104
+ma_fec-40
 
 GOAL_SYMBOL:
 ma_gad
 
 ANSWER:
-68
+40
 
 THEOREM_SEQUENCE:
-1; flat_angle(1,DGE); Collinear(DGE); ["Equal(MeasureOfAngle(DGE),180)"]
-2; angle_addition(1,DGA,AGE); Angle(DGA)&Angle(AGE)&Angle(DGE); ["Equal(MeasureOfAngle(DGE),Add(MeasureOfAngle(DGA),MeasureOfAngle(AGE)))"]
-3; triangle_property_angle_sum(1,ADG); Polygon(ADG); ["Equal(Add(MeasureOfAngle(ADG),MeasureOfAngle(DGA),MeasureOfAngle(GAD)),180)"]
+1; triangle_property_angle_sum(1,ADG); Polygon(ADG); ["Equal(Add(MeasureOfAngle(ADG),MeasureOfAngle(DGA),MeasureOfAngle(GAD)),180)"]
 ***MODEL_RESPONSE_END***
 RETRIES_MESSAGES:
 #run: 0; #retry: 1; message: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
-Verification failed. Theorem <flat_angle> branch error. Expected dict_keys(['1']) but got None. Please rewrite your response, you should change only the call to theorem <flat_angle> by adding the branch number from the dict_keys as the first argument
-Model Answer:
-RETRY_ANSWER:
-68
-RETRY_THEOREM_SEQUENCE:
-1; flat_angle(DGE); Collinear(DGE); ["Equal(MeasureOfAngle(DGE),180)"]  
-2; angle_addition(DGA,AGE); Angle(DGA)&Angle(AGE)&Angle(DGE); ["Equal(MeasureOfAngle(DGE),Add(MeasureOfAngle(DGA),MeasureOfAngle(AGE)))"]  
-3; triangle_property_angle_sum(ADG); Polygon(ADG); ["Equal(Add(MeasureOfAngle(ADG),MeasureOfAngle(DGA),MeasureOfAngle(GAD)),180)"]
-#run: 0; #retry: 2; message: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
-Verification failed. Theorem <angle_addition> branch error. Expected dict_keys(['1']) but got None. Please rewrite your response, you should change only the call to theorem <angle_addition> by adding the branch number from the dict_keys as the first argument
-Model Answer:
-RETRY_ANSWER:
-68
-RETRY_THEOREM_SEQUENCE:
-1; flat_angle(1,DGE); Collinear(DGE); ["Equal(MeasureOfAngle(DGE),180)"]  
-2; angle_addition(DGA,AGE); Angle(DGA)&Angle(AGE)&Angle(DGE); ["Equal(MeasureOfAngle(DGE),Add(MeasureOfAngle(DGA),MeasureOfAngle(AGE)))"]  
-3; triangle_property_angle_sum(ADG); Polygon(ADG); ["Equal(Add(MeasureOfAngle(ADG),MeasureOfAngle(DGA),MeasureOfAngle(GAD)),180)"]
-#run: 0; #retry: 3; message: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
 Verification failed. Theorem <triangle_property_angle_sum> branch error. Expected dict_keys(['1']) but got None. Please rewrite your response, you should change only the call to theorem <triangle_property_angle_sum> by adding the branch number from the dict_keys as the first argument
 Model Answer:
 RETRY_ANSWER:
-68
+40
 RETRY_THEOREM_SEQUENCE:
-1; flat_angle(1,DGE); Collinear(DGE); ["Equal(MeasureOfAngle(DGE),180)"]  
-2; angle_addition(1,DGA,AGE); Angle(DGA)&Angle(AGE)&Angle(DGE); ["Equal(MeasureOfAngle(DGE),Add(MeasureOfAngle(DGA),MeasureOfAngle(AGE)))"]  
-3; triangle_property_angle_sum(ADG); Polygon(ADG); ["Equal(Add(MeasureOfAngle(ADG),MeasureOfAngle(DGA),MeasureOfAngle(GAD)),180)"]
+1; triangle_property_angle_sum(ADG); Polygon(ADG); ["Equal(Add(MeasureOfAngle(ADG),MeasureOfAngle(DGA),MeasureOfAngle(GAD)),180)"]
+#run: 0; #retry: 2; message: ERROR_TIER: TIER3_GOAL_NOT_REACHED
+verification failed.
+
+- Goal: measure of angle GAD
+- Model answer: 40.0
+- Error: Your proof doesn't uniquely determine the value. You need to use additional theorems to constrain the value.
+- Available premises:
+  Perpendicular Lines: BC ⊥ BG
+  Collinear Points: AGB, BEF, CED, CEG, CEGD, CGD, DGE
+  Polygons: ADG, AGD, BCE, BCG, BEC, BGC
+- Theorems related to the goal:
+  Step 1 - triangle_property_angle_sum(1, ADG): Equal(Add(MeasureOfAngle(ADG),MeasureOfAngle(DGA),MeasureOfAngle(GAD)),180)
+- Solver constraints directly related to this goal:
+  ∠ADG + ∠AGD + ∠DAG = 180
+  ∠DAG <= 180
+  ∠DAG = ∠BAD
+  ∠DAG > 0
+
+Please fix the proof.
+Model Answer:
+RETRY_ANSWER:
+40
+RETRY_THEOREM_SEQUENCE:
+1; triangle_property_angle_sum(1,ADG); Polygon(ADG); ["Equal(Add(MeasureOfAngle(ADG),MeasureOfAngle(DGA),MeasureOfAngle(GAD)),180)"]
+#run: 0; #retry: 3; message: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
+Verification failed.
+Theorem: vertical_angle(1,AGE,DGA)
+The language model outputs the following premises: Collinear(DGEC)&Collinear(AGB)&Angle(AGE)&Angle(DGA)
+The correct premises for the theorem: Collinear(AGD)&Collinear(EGA)&Angle(AGE)&Angle(DGA)
+
+Model Answer:
+RETRY_ANSWER:
+40
+RETRY_THEOREM_SEQUENCE:
+1; triangle_property_angle_sum(1,ADG); Polygon(ADG); ["Equal(Add(MeasureOfAngle(ADG),MeasureOfAngle(DGA),MeasureOfAngle(GAD)),180)"]
+2; vertical_angle(1,AGE,DGA); Collinear(DGEC)&Collinear(AGB)&Angle(AGE)&Angle(DGA); ["Equal(MeasureOfAngle(AGE),MeasureOfAngle(DGA))"]
+#run: 0; #retry: 4; message: ERROR_TIER: TIER2_PREMISE_VIOLATION
+verification failed.
+
+- Error: You tried to use theorem: vertical_angle(1,AGE,DGA);Collinear(AGD)&Collinear(EGA)&Angle(AGE)&Angle(DGA);['Equal(MeasureOfAngle(AGE),MeasureOfAngle(DGA))']
+Missing premise: Collinear fact for AGD not established
+Details: Known collinear facts: ['CEGD', 'AGB', 'BEF', 'CEG', 'CED', 'CGD', 'DGE', 'DGE', 'DGE', 'CGD', 'CGD', 'CED', 'CED', 'CEG', 'CEG', 'AGB', 'BEF']
+- Available premises:
+  Perpendicular Lines: BC ⊥ BG
+  Collinear Points: AGB, BEF, CED, CEG, CEGD, CGD, DGE
+  Polygons: ADG, AGD, BCE, BCG, BEC, BGC
+- Theorems related to the goal:
+  None found that constrain this goal
+- Solver constraints directly related to this goal:
+  None found
+
+Please fix the proof.
+Model Answer:
+RETRY_ANSWER:
+40
+RETRY_THEOREM_SEQUENCE:
+1; triangle_property_angle_sum(1,ADG); Polygon(ADG); ["Equal(Add(MeasureOfAngle(ADG),MeasureOfAngle(DGA),MeasureOfAngle(GAD)),180)"]
+2; vertical_angle(1,AGE,DGA); Collinear(AGD)&Collinear(EGA)&Angle(AGE)&Angle(DGA); ["Equal(MeasureOfAngle(AGE),MeasureOfAngle(DGA))"]
+#run: 0; #retry: 5; message: ERROR_TIER: TIER3_GOAL_NOT_REACHED
+verification failed.
+
+- Goal: measure of angle GAD
+- Model answer: 40.0
+- Error: Your proof doesn't uniquely determine the value. You need to use additional theorems to constrain the value.
+- Available premises:
+  Perpendicular Lines: BC ⊥ BG
+  Collinear Points: AGB, BEF, CED, CEG, CEGD, CGD, DGE
+  Polygons: ADG, AGD, BCE, BCG, BEC, BGC
+- Theorems related to the goal:
+  Step 1 - triangle_property_angle_sum(1, ADG): Equal(Add(MeasureOfAngle(ADG),MeasureOfAngle(DGA),MeasureOfAngle(GAD)),180)
+- Solver constraints directly related to this goal:
+  ∠ADG + ∠AGD + ∠DAG = 180
+  ∠DAG <= 180
+  ∠DAG = ∠BAD
+  ∠DAG > 0
+
+Please fix the proof.
+Model Answer:
+RETRY_ANSWER:
+40
+RETRY_THEOREM_SEQUENCE:
+1; triangle_property_angle_sum(1,ADG); Polygon(ADG); ["Equal(Add(MeasureOfAngle(ADG),MeasureOfAngle(DGA),MeasureOfAngle(GAD)),180)"]
 #RETRIES:
-3
+5
 #RUNS:
 0
 

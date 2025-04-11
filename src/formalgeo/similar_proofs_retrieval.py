@@ -6,9 +6,10 @@ from create_problems_proofs_similarity_dataset import save_problems
 from utils import display_image
 
 
+problems_similarity_csv = 'problems_similarity_results.csv'
 
 def retrieve_random_proofs(problem_id, n=1):
-    data = pd.read_csv('results.csv')
+    data = pd.read_csv(problems_similarity_csv)
 
     # Filter rows where the given problem_id appears in either problem1_id or problem2_id
     filtered_data = data[(data["problem1_id"] == problem_id) | (data["problem2_id"] == problem_id)]
@@ -45,7 +46,7 @@ def retrieve_random_proofs(problem_id, n=1):
 
 
 def retrieve_similar_proofs(problem_id, n=1):
-    data = pd.read_csv('results.csv')
+    data = pd.read_csv(problems_similarity_csv)
 
     # Filter rows where the given problem_id appears in either problem1_id or problem2_id
     filtered_data = data[(data["problem1_id"] == problem_id) | (data["problem2_id"] == problem_id)]
@@ -81,7 +82,7 @@ def retrieve_similar_proofs(problem_id, n=1):
 
 
 def main():
-    data = pd.read_csv('results.csv')
+    data = pd.read_csv(problems_similarity_csv)
     print(1)
 
 if __name__ == "__main__":

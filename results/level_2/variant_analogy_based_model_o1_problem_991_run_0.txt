@@ -302,11 +302,10 @@ Angle(PVT)
 Angle(TVS)
 Circle(V)
 SYMBOLS_AND_VALUES:
-DiameterOfCircle(O);dc_o;None
-LengthOfLine(AB);ll_ab;None
-LengthOfLine(BA);ll_ab;None
-MeasureOfAngle(DOC);ma_doc;40
-MeasureOfAngle(AOE);ma_aoe;None
+LengthOfLine(PO);ll_po;12
+LengthOfLine(OP);ll_po;12
+RadiusOfCircle(O);rc_o;6
+AreaOfSector(OBA);as_oba;None
 
 Outputs:
 Outputs for Problem B:
@@ -315,83 +314,20 @@ Outputs for Problem B:
 EQUATIONS:
 ma_svt-75
 ma_tvp-72
-ma_rvs-90
 
 GOAL_SYMBOL:
 mar_vps
 
 ANSWER:
-213
+147
 
 THEOREM_SEQUENCE:
 1; angle_addition(1,SVT,TVP); Angle(SVT)&Angle(TVP)&Angle(SVP); ["Equal(MeasureOfAngle(SVP),Add(MeasureOfAngle(SVT),MeasureOfAngle(TVP)))"]
+2; arc_property_center_angle(1,VPS,V); Arc(VPS)&Angle(SVP)&IsCentreOfCircle(V,V); ["Equal(MeasureOfArc(VPS),MeasureOfAngle(SVP))"]
 ***MODEL_RESPONSE_END***
 RETRIES_MESSAGES:
-#run: 0; #retry: 1; message: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
-Verification failed. Premises mismatch:
-Model premises: Arc(VPS)&Angle(PVS)&IsCentreOfCircle(V,V)
-Expected premises: Arc(VPS)&Angle(SVP)&IsCentreOfCircle(V,V)
-Model Answer:
-RETRY_ANSWER:
-213
-RETRY_THEOREM_SEQUENCE:
-1; angle_addition(1,SVT,TVP); Angle(SVT)&Angle(TVP)&Angle(SVP); ["Equal(MeasureOfAngle(SVP),Add(MeasureOfAngle(SVT),MeasureOfAngle(TVP)))"]  
-2; round_angle(1,SVP,PVS); Angle(SVP)&Angle(PVS); ["Equal(Add(MeasureOfAngle(SVP),MeasureOfAngle(PVS)),360)"]  
-3; arc_property_center_angle(1,VPS,V); Arc(VPS)&Angle(PVS)&IsCentreOfCircle(V,V); ["Equal(MeasureOfArc(VPS),MeasureOfAngle(PVS))"]
-#run: 0; #retry: 2; message: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
-Error in TIER1_THEOREM_CALL_SYNTAX_VIOLATION: this theorem is not supported by this solver please give a profe without it
-Model Answer:
-RETRY_ANSWER:
-213
-RETRY_THEOREM_SEQUENCE:
-1; angle_addition(1,SVT,TVP); Angle(SVT)&Angle(TVP)&Angle(SVP); ["Equal(MeasureOfAngle(SVP),Add(MeasureOfAngle(SVT),MeasureOfAngle(TVP)))"]  
-2; round_angle(1,SVP,PVS); Angle(SVP)&Angle(PVS); ["Equal(Add(MeasureOfAngle(SVP),MeasureOfAngle(PVS)),360)"]  
-3; arc_property_center_angle(1,VPS,V); Arc(VPS)&Angle(SVP)&IsCentreOfCircle(V,V); ["Equal(MeasureOfArc(VPS),MeasureOfAngle(SVP))"]
-#run: 0; #retry: 3; message: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
-Verification failed. Premises mismatch:
-Model premises: Arc(VSP)&Angle(SVP)&IsCentreOfCircle(V,V)
-Expected premises: Arc(VSP)&Angle(PVS)&IsCentreOfCircle(V,V)
-Model Answer:
-RETRY_ANSWER:
-213
-RETRY_THEOREM_SEQUENCE:
-1; angle_addition(1,SVT,TVP); Angle(SVT)&Angle(TVP)&Angle(SVP); ["Equal(MeasureOfAngle(SVP),Add(MeasureOfAngle(SVT),MeasureOfAngle(TVP)))"]
-2; arc_property_center_angle(1,VSP,V); Arc(VSP)&Angle(SVP)&IsCentreOfCircle(V,V); ["Equal(MeasureOfArc(VSP),MeasureOfAngle(SVP))"]
-#run: 0; #retry: 4; message: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
-Verification failed. Premises mismatch:
-Model premises: Arc(VPS)&Angle(PVS)&IsCentreOfCircle(V,V)
-Expected premises: Arc(VPS)&Angle(SVP)&IsCentreOfCircle(V,V)
-Model Answer:
-RETRY_ANSWER:
-213
-RETRY_THEOREM_SEQUENCE:
-1; angle_addition(1,SVT,TVP); Angle(SVT)&Angle(TVP)&Angle(SVP); ["Equal(MeasureOfAngle(SVP),Add(MeasureOfAngle(SVT),MeasureOfAngle(TVP)))"]
-2; arc_property_center_angle(1,VPS,V); Arc(VPS)&Angle(PVS)&IsCentreOfCircle(V,V); ["Equal(MeasureOfArc(VPS),MeasureOfAngle(PVS))"]
-#run: 0; #retry: 5; message: ERROR_TIER: TIER3_GOAL_NOT_REACHED
-verification failed.
-
-- Goal: measure of arc VPS
-- Model answer: 213.0
-- Error: Your proof doesn't uniquely determine the value. You need to use additional theorems to constrain the value.
-- Available premises:
-  Perpendicular Lines: RV ⊥ SV
-  Collinear Points: QVS
-  Cocircular Points: P on circle V, PQ on circle V, PQR on circle V, PQRS on circle V, PQRST on circle V, PQRT on circle V, PQS on circle V, PQST on circle V, PQT on circle V, PR on circle V, PRS on circle V, PRST on circle V, PRT on circle V, PS on circle V, PST on circle V, PT on circle V, Q on circle V, QR on circle V, QRS on circle V, QRST on circle V, QRT on circle V, QS on circle V, QST on circle V, QT on circle V, R on circle V, RS on circle V, RST on circle V, RT on circle V, S on circle V, ST on circle V, T on circle V
-  Circles: V center: V
-- Theorems related to the goal:
-  None found that constrain this goal
-- Solver constraints directly related to this goal:
-  arc(VPS) <= 360
-  arc(VPS) >= 0
-
-Please fix the proof.
-Model Answer:
-RETRY_ANSWER:
-213
-RETRY_THEOREM_SEQUENCE:
-1; angle_addition(1,SVT,TVP); Angle(SVT)&Angle(TVP)&Angle(SVP); ["Equal(MeasureOfAngle(SVP),Add(MeasureOfAngle(SVT),MeasureOfAngle(TVP)))"]
 #RETRIES:
-5
+0
 #RUNS:
 0
 

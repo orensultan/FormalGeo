@@ -55,15 +55,12 @@ ll_ab - x
 ll_ac - x
 ll_bc - 5*sqrt(2)
 ma_cab - 90
-
 GOAL_SYMBOL:
 x
-
 ANSWER:
 5
-
 THEOREM_SEQUENCE:
-1; right_triangle_judgment_angle(1,CAB); Polygon(CAB)&Equal(MeasureOfAngle(CAB),90); ["RightTriangle(CAB)"]  
+1; right_triangle_judgment_angle(1,CAB); Polygon(CAB)&Equal(MeasureOfAngle(CAB),90); ["RightTriangle(CAB)"]
 2; right_triangle_property_pythagorean(1,CAB); RightTriangle(CAB); ["Equal(Add(Pow(LengthOfLine(CA),2),Pow(LengthOfLine(AB),2)),Pow(LengthOfLine(CB),2))"]
 ***MODEL_RESPONSE_END***
 RETRIES_MESSAGES:

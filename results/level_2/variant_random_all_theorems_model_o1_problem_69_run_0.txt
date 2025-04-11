@@ -76,26 +76,11 @@ Polygon(EFD)
 Polygon(FDE)
 Polygon(FED)
 SYMBOLS_AND_VALUES:
-MeasureOfAngle(EAB);ma_cab;60
-MeasureOfAngle(FAB);ma_cab;60
-MeasureOfAngle(CAB);ma_cab;60
-RadiusOfCircle(O);rc_o;2
-MeasureOfAngle(COF);ma_cod;None
-MeasureOfAngle(COD);ma_cod;None
-MeasureOfAngle(FOE);ma_dob;None
-MeasureOfAngle(FOB);ma_dob;None
-MeasureOfAngle(DOE);ma_dob;None
-MeasureOfAngle(DOB);ma_dob;None
-MeasureOfAngle(BDO);ma_bdo;90
-MeasureOfAngle(BDF);ma_bdo;90
-MeasureOfAngle(ODC);ma_odc;90
-MeasureOfAngle(FDC);ma_odc;90
-LengthOfLine(BD);ll_bd;None
-LengthOfLine(DB);ll_bd;None
-LengthOfLine(DC);ll_dc;None
-LengthOfLine(CD);ll_dc;None
-LengthOfLine(OD);ll_od;None
-LengthOfLine(DO);ll_od;None
+MeasureOfAngle(ABC);ma_obc;50
+MeasureOfAngle(EBC);ma_obc;50
+MeasureOfAngle(OBC);ma_obc;50
+MeasureOfAngle(CDB);ma_edb;None
+MeasureOfAngle(EDB);ma_edb;None
 
 Outputs:
 Outputs for Problem B:
@@ -114,7 +99,7 @@ ANSWER:
 THEOREM_SEQUENCE:
 1; flat_angle(1,EGF); Collinear(EGF); ["Equal(MeasureOfAngle(EGF),180)"]
 2; angle_addition(1,EGD,DGF); Angle(EGD)&Angle(DGF)&Angle(EGF); ["Equal(MeasureOfAngle(EGF),Add(MeasureOfAngle(EGD),MeasureOfAngle(DGF)))"]
-3; triangle_property_angle_sum(1,DGF); Polygon(DGF); ["Equal(Add(MeasureOfAngle(DGF),MeasureOfAngle(GFD),MeasureOfAngle(FDG)),180)"]
+3; triangle_property_angle_sum(1,DFG); Polygon(DFG); ["Equal(Add(MeasureOfAngle(DFG),MeasureOfAngle(FGD),MeasureOfAngle(GDF)),180)"]
 ***MODEL_RESPONSE_END***
 RETRIES_MESSAGES:
 #run: 0; #retry: 1; message: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
@@ -123,8 +108,21 @@ Model Answer:
 RETRY_ANSWER:
 25
 RETRY_THEOREM_SEQUENCE:
-1; triangle_property_angle_sum(DEF); Polygon(FDG); ["Equal(Add(MeasureOfAngle(FDG),MeasureOfAngle(DGF),MeasureOfAngle(GFD)),180)"]
-#run: 0; #retry: 2; message: ERROR_TIER: TIER3_GOAL_NOT_REACHED
+1; triangle_property_angle_sum(DEF); Polygon(DEF); ["Equal(Add(MeasureOfAngle(DEF),MeasureOfAngle(DFE),MeasureOfAngle(FED)),180)"]
+2; triangle_property_angle_sum(DFG); Polygon(DFG); ["Equal(Add(MeasureOfAngle(FDG),MeasureOfAngle(GFD),MeasureOfAngle(FGD)),180)"]
+#run: 0; #retry: 2; message: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
+Verification failed.
+Theorem: triangle_property_angle_sum(1,DEF)
+The language model outputs the following conclusions: Equal(Add(MeasureOfAngle(DEF),MeasureOfAngle(DFE),MeasureOfAngle(FED)),180)
+The correct conclusions for the theorem: Equal(Add(MeasureOfAngle(DEF),MeasureOfAngle(EFD),MeasureOfAngle(FDE)),180)
+
+Model Answer:
+RETRY_ANSWER:
+25
+RETRY_THEOREM_SEQUENCE:
+1; triangle_property_angle_sum(1,DEF); Polygon(DEF); ["Equal(Add(MeasureOfAngle(DEF),MeasureOfAngle(DFE),MeasureOfAngle(FED)),180)"]
+2; triangle_property_angle_sum(1,DFG); Polygon(DFG); ["Equal(Add(MeasureOfAngle(FDG),MeasureOfAngle(GFD),MeasureOfAngle(FGD)),180)"]
+#run: 0; #retry: 3; message: ERROR_TIER: TIER3_GOAL_NOT_REACHED
 verification failed.
 
 - Goal: measure of angle FDG
@@ -135,9 +133,9 @@ verification failed.
   Collinear Points: EGF
   Polygons: DEF, DEG, DFE, DFG, DGE, DGF
 - Theorems related to the goal:
-  Step 1 - triangle_property_angle_sum(1, FDG): Equal(Add(MeasureOfAngle(FDG),MeasureOfAngle(DGF),MeasureOfAngle(GFD)),180)
+  None found that constrain this goal
 - Solver constraints directly related to this goal:
-  ∠FDG + ∠DGF + ∠DFG = 180
+  ∠DFG + ∠DGF + ∠FDG = 180
   ∠FDG <= 180
   ∠FDG > 0
 
@@ -146,15 +144,8 @@ Model Answer:
 RETRY_ANSWER:
 25
 RETRY_THEOREM_SEQUENCE:
-1; triangle_property_angle_sum(1,FDG); Polygon(FDG); ["Equal(Add(MeasureOfAngle(FDG),MeasureOfAngle(DGF),MeasureOfAngle(GFD)),180)"]
-#run: 0; #retry: 3; message: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
-Verification failed. Theorem Given not defined in current GDL. Please rewrite the proof sequence, you are allowed to use only theorems from the GDL.
-Model Answer:
-RETRY_ANSWER:
-25
-RETRY_THEOREM_SEQUENCE:
-1; Given; PerpendicularBetweenLine(EG,DG)&Collinear(EGF); ["Equal(MeasureOfAngle(DGF),90)"]
-2; triangle_property_angle_sum(1,FDG); Polygon(FDG); ["Equal(Add(MeasureOfAngle(FDG),MeasureOfAngle(DGF),MeasureOfAngle(GFD)),180)"]
+1; triangle_property_angle_sum(1,DEF); Polygon(DEF); ["Equal(Add(MeasureOfAngle(DEF),MeasureOfAngle(EFD),MeasureOfAngle(FDE)),180)"]
+2; triangle_property_angle_sum(1,DFG); Polygon(DFG); ["Equal(Add(MeasureOfAngle(DFG),MeasureOfAngle(FGD),MeasureOfAngle(GDF)),180)"]
 #RETRIES:
 3
 #RUNS:

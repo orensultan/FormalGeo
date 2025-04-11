@@ -48,10 +48,10 @@ Outputs for Problem B:
 
 ***MODEL_RESPONSE_BEGIN***
 EQUATIONS:
--h+ll_ba
-ll_ac-3
-ma_bac-45
-ma_acb-90
+ll_ba - h
+ll_ca - 3
+ma_bac - 45
+ma_bca - 90
 
 GOAL_SYMBOL:
 h

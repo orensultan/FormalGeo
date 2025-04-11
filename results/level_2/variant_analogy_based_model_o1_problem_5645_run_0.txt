@@ -50,12 +50,15 @@ EQUATIONS:
 -3/4+ll_ab/ll_bc
 ll_ab-6
 ma_abc-90
+
 GOAL_SYMBOL:
 ll_ac
+
 ANSWER:
 10
+
 THEOREM_SEQUENCE:
-1; right_triangle_judgment_angle(1,ABC); Polygon(ABC)&Equal(MeasureOfAngle(ABC),90); ["RightTriangle(ABC)"]
+1; right_triangle_judgment_angle(1,ABC); Polygon(ABC)&Equal(MeasureOfAngle(ABC),90); ["RightTriangle(ABC)"]  
 2; right_triangle_property_pythagorean(1,ABC); RightTriangle(ABC); ["Equal(Add(Pow(LengthOfLine(AB),2),Pow(LengthOfLine(BC),2)),Pow(LengthOfLine(AC),2))"]
 ***MODEL_RESPONSE_END***
 RETRIES_MESSAGES:

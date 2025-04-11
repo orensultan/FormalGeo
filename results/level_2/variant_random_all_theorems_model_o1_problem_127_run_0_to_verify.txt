@@ -234,8 +234,11 @@ Polygon(HDAG)
 ParallelBetweenLine(DH,AG)
 ParallelBetweenLine(AG,DH)
 SYMBOLS_AND_VALUES:
-MeasureOfAngle(AOB);ma_aob;110
-MeasureOfAngle(BCA);ma_bca;None
+MeasureOfAngle(ABC);ma_obc;50
+MeasureOfAngle(EBC);ma_obc;50
+MeasureOfAngle(OBC);ma_obc;50
+MeasureOfAngle(CDB);ma_edb;None
+MeasureOfAngle(EDB);ma_edb;None
 
 Outputs:
 Outputs for Problem B:
@@ -252,52 +255,20 @@ ANSWER:
 54
 
 THEOREM_SEQUENCE:
-1; (no_applicable_gdl_theorem); (no_relevant_premise); ["Solution follows by a direct angle chase not covered by available GDL theorems."]
+1; parallel_property_ipsilateral_internal_angle(1,GA,HD); ParallelBetweenLine(GA,HD)&Line(GH); ["Equal(Add(MeasureOfAngle(AGH),MeasureOfAngle(GHD)),180)"]
 ***MODEL_RESPONSE_END***
 RETRIES_MESSAGES:
-#run: 1; #retry: 1; message: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
-Verification failed. Theorem  not defined in current GDL. Please rewrite the proof sequence, you are allowed to use only theorems from the GDL.
+#run: 0; #retry: 1; message: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
+Verification failed. Theorem <parallel_property_ipsilateral_internal_angle> branch error. Expected dict_keys(['1']) but got None. Please rewrite your response, you should change only the call to theorem <parallel_property_ipsilateral_internal_angle> by adding the branch number from the dict_keys as the first argument
 Model Answer:
 RETRY_ANSWER:
 54
 RETRY_THEOREM_SEQUENCE:
-1; (no_applicable_gdl_theorem); (no_useful_premise); ["Result follows from parallel lines and angle chase outside the scope of GDL"]
-#run: 1; #retry: 2; message: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
-Verification failed. The THEOREM_SEQUENCE you provided is empty. Please generate a proof again, using the similar problems I provided (A1, A2, A3, A4, A5), along with the GDL_DICTIONARY of theorems.
-Model Answer:
-RETRY_ANSWER:
-54
-RETRY_THEOREM_SEQUENCE:
-
-#run: 1; #retry: 3; message: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
-Verification failed. Theorem <parallel_property_alternate_interior_angle> branch error. Expected dict_keys(['1', '2']) but got None. Please rewrite your response, you should change only the call to theorem <parallel_property_alternate_interior_angle> by adding the branch number from the dict_keys as the first argument
-Model Answer:
-RETRY_ANSWER:
-54
-RETRY_THEOREM_SEQUENCE:
-1; parallel_property_alternate_interior_angle(GA,HD); ParallelBetweenLine(GA,HD)&Line(GH); ["Equal(MeasureOfAngle(AGH),MeasureOfAngle(HDG))"]
-2; angle_addition(ABC,CBD); Angle(ADK)&Angle(HGJ)&Angle(GHD); ["Equal(MeasureOfAngle(GHD),Add(MeasureOfAngle(ADK),MeasureOfAngle(HGJ)))"]
-#run: 1; #retry: 4; message: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
-Verification failed. Premises mismatch:
-Model premises: ParallelBetweenLine(GA,HD)&Line(AD)
-Expected premises: ParallelBetweenLine(GA,HD)&Line(GD)
-Model Answer:
-RETRY_ANSWER:
-54
-RETRY_THEOREM_SEQUENCE:
-1; parallel_property_alternate_interior_angle(1,GA,HD); ParallelBetweenLine(GA,HD)&Line(AD); ["Equal(MeasureOfAngle(GAD),MeasureOfAngle(HDA))"]
-2; angle_addition(1,ADK,HGJ); Angle(ADK)&Angle(HGJ)&Angle(GHD); ["Equal(MeasureOfAngle(GHD),Add(MeasureOfAngle(ADK),MeasureOfAngle(HGJ)))"]
-#run: 1; #retry: 5; message: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
-Verification failed. Theorem  not defined in current GDL. Please rewrite the proof sequence, you are allowed to use only theorems from the GDL.
-Model Answer:
-RETRY_ANSWER:
-54
-RETRY_THEOREM_SEQUENCE:
-1; (no_applicable_gdl_theorem); (no_relevant_premise); ["Solution follows by a direct angle chase not covered by available GDL theorems."]
+1; parallel_property_ipsilateral_internal_angle(GA,HD); ParallelBetweenLine(GA,HD)&Line(GH); ["Equal(Add(MeasureOfAngle(AGH),MeasureOfAngle(GHD)),180)"]
 #RETRIES:
-5
-#RUNS:
 1
+#RUNS:
+0
 
 
 GT_EQUATIONS:
