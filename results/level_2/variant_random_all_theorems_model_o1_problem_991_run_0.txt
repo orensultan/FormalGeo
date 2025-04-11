@@ -27,14 +27,14 @@ Shape(VTS,SV,VT)
 Shape(SV,VT,VTS)
 Shape(VSR,RV,VS)
 Shape(RV,VS,VSR)
-Shape(VR,VRQ,VQP,PV)
-Shape(VRQ,VQP,PV,VR)
-Shape(VQP,PV,VR,VRQ)
-Shape(PV,VR,VRQ,VQP)
 Shape(VRQ,QV,VS,VSR)
 Shape(QV,VS,VSR,VRQ)
 Shape(VS,VSR,VRQ,QV)
 Shape(VSR,VRQ,QV,VS)
+Shape(VR,VRQ,VQP,PV)
+Shape(VRQ,VQP,PV,VR)
+Shape(VQP,PV,VR,VRQ)
+Shape(PV,VR,VRQ,VQP)
 Shape(VQ,VQP,VPT,TV)
 Shape(VQP,VPT,TV,VQ)
 Shape(VPT,TV,VQ,VQP)
@@ -47,16 +47,16 @@ Shape(VT,VTS,VSR,RV)
 Shape(VTS,VSR,RV,VT)
 Shape(VSR,RV,VT,VTS)
 Shape(RV,VT,VTS,VSR)
-Shape(VR,VRQ,VQP,VPT,TV)
-Shape(VRQ,VQP,VPT,TV,VR)
-Shape(VQP,VPT,TV,VR,VRQ)
-Shape(VPT,TV,VR,VRQ,VQP)
-Shape(TV,VR,VRQ,VQP,VPT)
 Shape(VRQ,QV,VT,VTS,VSR)
 Shape(QV,VT,VTS,VSR,VRQ)
 Shape(VT,VTS,VSR,VRQ,QV)
 Shape(VTS,VSR,VRQ,QV,VT)
 Shape(VSR,VRQ,QV,VT,VTS)
+Shape(VR,VRQ,VQP,VPT,TV)
+Shape(VRQ,VQP,VPT,TV,VR)
+Shape(VQP,VPT,TV,VR,VRQ)
+Shape(VPT,TV,VR,VRQ,VQP)
+Shape(TV,VR,VRQ,VQP,VPT)
 Shape(VQ,VQP,VPT,VTS,SV)
 Shape(VQP,VPT,VTS,SV,VQ)
 Shape(VPT,VTS,SV,VQ,VQP)
@@ -72,18 +72,18 @@ Shape(VPT,VTS,VSR,RV,VP)
 Shape(VTS,VSR,RV,VP,VPT)
 Shape(VSR,RV,VP,VPT,VTS)
 Shape(RV,VP,VPT,VTS,VSR)
-Shape(VR,VRQ,VQP,VPT,VTS,SV)
-Shape(VRQ,VQP,VPT,VTS,SV,VR)
-Shape(VQP,VPT,VTS,SV,VR,VRQ)
-Shape(VPT,VTS,SV,VR,VRQ,VQP)
-Shape(VTS,SV,VR,VRQ,VQP,VPT)
-Shape(SV,VR,VRQ,VQP,VPT,VTS)
 Shape(VRQ,QV,VP,VPT,VTS,VSR)
 Shape(QV,VP,VPT,VTS,VSR,VRQ)
 Shape(VP,VPT,VTS,VSR,VRQ,QV)
 Shape(VPT,VTS,VSR,VRQ,QV,VP)
 Shape(VTS,VSR,VRQ,QV,VP,VPT)
 Shape(VSR,VRQ,QV,VP,VPT,VTS)
+Shape(VR,VRQ,VQP,VPT,VTS,SV)
+Shape(VRQ,VQP,VPT,VTS,SV,VR)
+Shape(VQP,VPT,VTS,SV,VR,VRQ)
+Shape(VPT,VTS,SV,VR,VRQ,VQP)
+Shape(VTS,SV,VR,VRQ,VQP,VPT)
+Shape(SV,VR,VRQ,VQP,VPT,VTS)
 Shape(VQ,VQP,VPT,VTS,VSR,RV)
 Shape(VQP,VPT,VTS,VSR,RV,VQ)
 Shape(VPT,VTS,VSR,RV,VQ,VQP)
@@ -291,20 +291,22 @@ Angle(PVR)
 Angle(TVQ)
 Angle(SVP)
 Angle(RVT)
-Angle(TVR)
 Angle(QVT)
+Angle(TVR)
 Angle(PVS)
 Angle(RVP)
-Angle(SVR)
 Angle(QVP)
+Angle(SVR)
 Angle(RVQ)
 Angle(PVT)
 Angle(TVS)
 Circle(V)
 SYMBOLS_AND_VALUES:
-MeasureOfAngle(BCD);ma_bcd;110
-MeasureOfAngle(CBA);ma_cba;30
-MeasureOfAngle(CDE);ma_cde;None
+MeasureOfAngle(ABC);ma_obc;50
+MeasureOfAngle(EBC);ma_obc;50
+MeasureOfAngle(OBC);ma_obc;50
+MeasureOfAngle(CDB);ma_edb;None
+MeasureOfAngle(EDB);ma_edb;None
 
 Outputs:
 Outputs for Problem B:
@@ -332,13 +334,17 @@ Model Answer:
 RETRY_ANSWER:
 147
 RETRY_THEOREM_SEQUENCE:
-1; arc_property_center_angle(OAB,P); Arc(VST)&Angle(SVT)&IsCentreOfCircle(V,V); ["Equal(MeasureOfArc(VST),MeasureOfAngle(SVT))"]  
-2; arc_property_center_angle(OAB,P); Arc(VTP)&Angle(TVP)&IsCentreOfCircle(V,V); ["Equal(MeasureOfArc(VTP),MeasureOfAngle(TVP))"]  
+1; arc_property_center_angle(OAB,P); Arc(VST)&Angle(SVT)&IsCentreOfCircle(V,V); ["Equal(MeasureOfArc(VST),MeasureOfAngle(SVT))"]
+2; arc_property_center_angle(OAB,P); Arc(VTP)&Angle(TVP)&IsCentreOfCircle(V,V); ["Equal(MeasureOfArc(VTP),MeasureOfAngle(TVP))"]
 3; arc_addition_measure(OAB,OBC); Arc(VST)&Arc(VTP)&Arc(VSP); ["Equal(MeasureOfArc(VSP),Add(MeasureOfArc(VST),MeasureOfArc(VTP)))"]
 #run: 0; #retry: 2; message: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
-Verification failed. Premises mismatch:
-Model premises: Arc(VST)&Angle(SVT)&IsCentreOfCircle(V,V)
-Expected premises: Arc(VST)&Angle(TVS)&IsCentreOfCircle(V,V)
+Verification failed.
+Theorem: arc_property_center_angle(1,VST,V)
+The language model outputs the following premises: Arc(VST)&Angle(SVT)&IsCentreOfCircle(V,V)
+The correct premises for the theorem: Arc(VST)&Angle(TVS)&IsCentreOfCircle(V,V)
+The language model outputs the following conclusions: Equal(MeasureOfArc(VST),MeasureOfAngle(SVT))
+The correct conclusions for the theorem: Equal(MeasureOfArc(VST),MeasureOfAngle(TVS))
+
 Model Answer:
 RETRY_ANSWER:
 147
@@ -347,9 +353,13 @@ RETRY_THEOREM_SEQUENCE:
 2; arc_property_center_angle(1,VTP,V); Arc(VTP)&Angle(TVP)&IsCentreOfCircle(V,V); ["Equal(MeasureOfArc(VTP),MeasureOfAngle(TVP))"]
 3; arc_addition_measure(1,VST,VTP); Arc(VST)&Arc(VTP)&Arc(VSP); ["Equal(MeasureOfArc(VSP),Add(MeasureOfArc(VST),MeasureOfArc(VTP)))"]
 #run: 0; #retry: 3; message: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
-Verification failed. Premises mismatch:
-Model premises: Arc(VTP)&Angle(TVP)&IsCentreOfCircle(V,V)
-Expected premises: Arc(VTP)&Angle(PVT)&IsCentreOfCircle(V,V)
+Verification failed.
+Theorem: arc_property_center_angle(1,VTP,V)
+The language model outputs the following premises: Arc(VTP)&Angle(TVP)&IsCentreOfCircle(V,V)
+The correct premises for the theorem: Arc(VTP)&Angle(PVT)&IsCentreOfCircle(V,V)
+The language model outputs the following conclusions: Equal(MeasureOfArc(VTP),MeasureOfAngle(TVP))
+The correct conclusions for the theorem: Equal(MeasureOfArc(VTP),MeasureOfAngle(PVT))
+
 Model Answer:
 RETRY_ANSWER:
 147
