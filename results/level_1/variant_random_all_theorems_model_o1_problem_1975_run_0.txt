@@ -147,30 +147,16 @@ Outputs for Problem B:
 ***MODEL_RESPONSE_BEGIN***
 EQUATIONS:
 ma_cba-36 ma_cde-57 ma_dbe-42 ma_ecd-28
-
 GOAL_SYMBOL:
 ma_dec
-
 ANSWER:
 95
-
 THEOREM_SEQUENCE:
 1; triangle_property_angle_sum(1,CDE); Polygon(CDE); ["Equal(Add(MeasureOfAngle(CDE),MeasureOfAngle(DEC),MeasureOfAngle(ECD)),180)"]
 ***MODEL_RESPONSE_END***
 RETRIES_MESSAGES:
-#run: 0; #retry: 1; message: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
-Verification failed.
-Theorem: triangle_property_angle_sum(1,CDE)
-The language model outputs the following conclusions: Equal(Add(MeasureOfAngle(CDE),MeasureOfAngle(ECD),MeasureOfAngle(DEC)),180)
-The correct conclusions for the theorem: Equal(Add(MeasureOfAngle(CDE),MeasureOfAngle(DEC),MeasureOfAngle(ECD)),180)
-
-Model Answer:
-RETRY_ANSWER:
-95
-RETRY_THEOREM_SEQUENCE:
-1; triangle_property_angle_sum(1,CDE); Polygon(CDE); ["Equal(Add(MeasureOfAngle(CDE),MeasureOfAngle(ECD),MeasureOfAngle(DEC)),180)"]
 #RETRIES:
-1
+0
 #RUNS:
 0
 

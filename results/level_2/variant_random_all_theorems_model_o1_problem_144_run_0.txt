@@ -46,7 +46,7 @@ Outputs for Problem B:
 
 ***MODEL_RESPONSE_BEGIN***
 EQUATIONS:
-2*x^2-50
+2*Pow(x,2)-50
 
 GOAL_SYMBOL:
 x
@@ -58,15 +58,8 @@ THEOREM_SEQUENCE:
 1; cosine_theorem(1,ABC); Polygon(ABC); ["Equal(Add(Pow(LengthOfLine(BC),2),Mul(2,LengthOfLine(AB),LengthOfLine(AC),Cos(MeasureOfAngle(CAB)))),Add(Pow(LengthOfLine(AB),2),Pow(LengthOfLine(AC),2)))"]
 ***MODEL_RESPONSE_END***
 RETRIES_MESSAGES:
-#run: 0; #retry: 1; message: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
-Verification failed. Theorem <cosine_theorem> branch error. Expected dict_keys(['1']) but got None. Please rewrite your response, you should change only the call to theorem <cosine_theorem> by adding the branch number from the dict_keys as the first argument
-Model Answer:
-RETRY_ANSWER:
-5
-RETRY_THEOREM_SEQUENCE:
-1; cosine_theorem(ABC); Polygon(ABC); ["Equal(Add(Pow(LengthOfLine(BC),2),Mul(2,LengthOfLine(AB),LengthOfLine(AC),Cos(MeasureOfAngle(CAB)))),Add(Pow(LengthOfLine(AB),2),Pow(LengthOfLine(AC),2)))"]
 #RETRIES:
-1
+0
 #RUNS:
 0
 

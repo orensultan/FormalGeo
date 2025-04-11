@@ -15,8 +15,9 @@ def evaluate_expression(expr):
         if expr.lower() == 'none' or expr.lower() == 'null':
             return None
 
-        # Replace sqrt with math.sqrt
+        # Replace sqrt with math.sqrt and √ with math.sqrt
         expr = expr.replace('sqrt', 'math.sqrt')
+        expr = expr.replace('√', 'math.sqrt')
 
         # Handle implicit multiplication
         expr = re.sub(r'(\d+)([a-zA-Z(])', r'\1*\2', expr)
