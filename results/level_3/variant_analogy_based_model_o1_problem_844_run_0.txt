@@ -75,16 +75,14 @@ ParallelBetweenLine(CA,BD)
 ParallelBetweenLine(AD,CB)
 ParallelBetweenLine(BC,DA)
 SYMBOLS_AND_VALUES:
-LengthOfLine(AB);ll_ab;3
-LengthOfLine(BA);ll_ab;3
-LengthOfLine(AC);ll_ac;4
-LengthOfLine(CA);ll_ac;4
-LengthOfLine(BC);ll_bc;5
-LengthOfLine(CB);ll_bc;5
-AreaOfQuadrilateral(ABCD);aq_abcd;None
-AreaOfQuadrilateral(BCDA);aq_abcd;None
-AreaOfQuadrilateral(CDAB);aq_abcd;None
-AreaOfQuadrilateral(DABC);aq_abcd;None
+LengthOfLine(CB);ll_cb;4
+LengthOfLine(BC);ll_cb;4
+MeasureOfAngle(CBO);ma_cbo;45
+MeasureOfAngle(BOC);ma_boc;90
+AreaOfQuadrilateral(CBOA);aq_cboa;None
+AreaOfQuadrilateral(BOAC);aq_cboa;None
+AreaOfQuadrilateral(OACB);aq_cboa;None
+AreaOfQuadrilateral(ACBO);aq_cboa;None
 
 Outputs:
 Outputs for Problem B:
@@ -103,7 +101,8 @@ ANSWER:
 45*sqrt(3)/2
 
 THEOREM_SEQUENCE:
-1; parallelogram_area_formula_sine(1,DACB); Parallelogram(DACB); ["Equal(AreaOfQuadrilateral(DACB),Mul(LengthOfLine(DA),LengthOfLine(AC),Sin(MeasureOfAngle(DAC))))"]
+1; triangle_property_angle_sum(1,DAC); Polygon(DAC); ["Equal(Add(MeasureOfAngle(DAC),MeasureOfAngle(ACD),MeasureOfAngle(CDA)),180)"]
+2; parallelogram_area_formula_sine(1,DACB); Parallelogram(DACB); ["Equal(AreaOfQuadrilateral(DACB),Mul(LengthOfLine(DA),LengthOfLine(AC),Sin(MeasureOfAngle(DAC))))"]
 ***MODEL_RESPONSE_END***
 RETRIES_MESSAGES:
 #RETRIES:

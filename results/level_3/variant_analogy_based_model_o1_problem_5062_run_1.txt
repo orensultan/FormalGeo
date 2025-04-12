@@ -176,24 +176,28 @@ PerpendicularBetweenLine(DA,BA)
 MirrorSimilarBetweenTriangle(EDA,ABF)
 MirrorSimilarBetweenTriangle(DAE,FAB)
 SYMBOLS_AND_VALUES:
-LengthOfLine(EF);ll_ef;4
-LengthOfLine(FE);ll_ef;4
-LengthOfLine(AE);ll_ae;None
-LengthOfLine(EA);ll_ae;None
-LengthOfLine(EB);ll_eb;None
-LengthOfLine(BE);ll_eb;None
-LengthOfLine(AB);ll_ab;None
-LengthOfLine(BA);ll_ab;None
+LengthOfLine(PQ);ll_pq;3
+LengthOfLine(QP);ll_pq;3
+LengthOfLine(AP);ll_ap;None
+LengthOfLine(PA);ll_ap;None
+LengthOfLine(PD);ll_pd;None
+LengthOfLine(DP);ll_pd;None
+LengthOfLine(AQ);ll_aq;None
+LengthOfLine(QA);ll_aq;None
+LengthOfLine(QC);ll_qc;None
+LengthOfLine(CQ);ll_qc;None
 LengthOfLine(AD);ll_ad;None
 LengthOfLine(DA);ll_ad;None
-LengthOfLine(CB);ll_cb;None
-LengthOfLine(BC);ll_cb;None
+LengthOfLine(AB);ll_ab;None
+LengthOfLine(BA);ll_ab;None
 LengthOfLine(CD);ll_cd;None
 LengthOfLine(DC);ll_cd;None
-PerimeterOfQuadrilateral(ABCD);pq_abcd;None
-PerimeterOfQuadrilateral(BCDA);pq_abcd;None
-PerimeterOfQuadrilateral(CDAB);pq_abcd;None
-PerimeterOfQuadrilateral(DABC);pq_abcd;None
+LengthOfLine(CB);ll_cb;None
+LengthOfLine(BC);ll_cb;None
+PerimeterOfQuadrilateral(ADCB);pq_adcb;None
+PerimeterOfQuadrilateral(DCBA);pq_adcb;None
+PerimeterOfQuadrilateral(CBAD);pq_adcb;None
+PerimeterOfQuadrilateral(BADC);pq_adcb;None
 
 Outputs:
 Outputs for Problem B:
@@ -207,75 +211,72 @@ GOAL_SYMBOL:
 AreaOfQuadrilateral(ABCD)
 
 ANSWER:
-12
+49
 
 THEOREM_SEQUENCE:
-1; mirror_similar_triangle_judgment_aa(1,AED,BFA); Polygon(AED)&Polygon(BFA)&Equal(MeasureOfAngle(AED),MeasureOfAngle(FAB))&Equal(MeasureOfAngle(EDA),MeasureOfAngle(BFA)); ["MirrorSimilarBetweenTriangle(AED,BFA)"]
-2; mirror_similar_triangle_property_line_ratio(1,AED,BFA); MirrorSimilarBetweenTriangle(AED,BFA); ["Equal(LengthOfLine(ED),Mul(LengthOfLine(FA),RatioOfMirrorSimilarTriangle(AED,BFA)))"]
-3; parallelogram_judgment_parallel_and_parallel(ABCD); Polygon(ABCD)&ParallelBetweenLine(AD,BC)&ParallelBetweenLine(AB,CD); ["Parallelogram(ABCD)"]
-4; rectangle_judgment_right_angle(ABCD); Parallelogram(ABCD)&Equal(MeasureOfAngle(ABC),90); ["Rectangle(ABCD)"]
-5; parallelogram_area_formula_sine(ABCD); Parallelogram(ABCD); ["Equal(AreaOfQuadrilateral(ABCD),Mul(LengthOfLine(AB),LengthOfLine(BC),Sin(MeasureOfAngle(ABC))))"]
+1; line_addition(AB,BC); Collinear(AED); ["Equal(LengthOfLine(AD),Add(LengthOfLine(AE),LengthOfLine(ED)))"]
+2; line_addition(AB,BC); Collinear(BFA); ["Equal(LengthOfLine(BA),Add(LengthOfLine(BF),LengthOfLine(FA)))"]
+3; mirror_similar_triangle_property_line_ratio(AED,BFA); MirrorSimilarBetweenTriangle(AED,BFA); ["Equal(LengthOfLine(ED),Mul(LengthOfLine(FA),RatioOfMirrorSimilarTriangle(AED,BFA)))"]
+4; parallelogram_judgment_parallel_and_parallel(1,ABCD); Polygon(ABCD)&ParallelBetweenLine(AD,BC)&ParallelBetweenLine(BA,CD); ["Parallelogram(ABCD)"]
+5; rectangle_judgment_right_angle(1,ABCD); Parallelogram(ABCD)&Equal(MeasureOfAngle(ABC),90); ["Rectangle(ABCD)"]
+6; parallelogram_area_formula_sine(1,ABCD); Parallelogram(ABCD); ["Equal(AreaOfQuadrilateral(ABCD),Mul(LengthOfLine(AB),LengthOfLine(BC),Sin(MeasureOfAngle(ABC))))"]
 ***MODEL_RESPONSE_END***
 RETRIES_MESSAGES:
 #run: 1; #retry: 1; message: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
-Verification failed. Theorem <mirror_similar_triangle_judgment_aa> branch error. Expected dict_keys(['1']) but got None. Please rewrite your response, you should change only the call to theorem <mirror_similar_triangle_judgment_aa> by adding the branch number from the dict_keys as the first argument
+Verification failed. The THEOREM_SEQUENCE you provided is empty. Please generate a proof again, using the similar problems I provided (A1, A2, A3, A4, A5), along with the GDL_DICTIONARY of theorems.
 Model Answer:
 RETRY_ANSWER:
-12
+49
 RETRY_THEOREM_SEQUENCE:
-1; mirror_similar_triangle_judgment_aa(AED,BFA); Polygon(AED)&Polygon(BFA)&(angle conditions); ["MirrorSimilarBetweenTriangle(AED,BFA)"]
-2; mirror_similar_triangle_property_line_ratio(AED,BFA); MirrorSimilarBetweenTriangle(AED,BFA); ["Equal(LengthOfLine(AE),Mul(LengthOfLine(BF),RatioOfMirrorSimilarTriangle(AED,BFA)))"]
-3; parallelogram_judgment_parallel_and_parallel(ABCD); Polygon(ABCD)&ParallelBetweenLine(AD,BC)&ParallelBetweenLine(AB,CD); ["Parallelogram(ABCD)"]
-4; rectangle_judgment_right_angle(ABCD); Parallelogram(ABCD)&Equal(MeasureOfAngle(ABC),90); ["Rectangle(ABCD)"]
-5; parallelogram_area_formula_sine(ABCD); Parallelogram(ABCD); ["Equal(AreaOfQuadrilateral(ABCD),Mul(LengthOfLine(AB),LengthOfLine(BC),Sin(MeasureOfAngle(ABC))))"]
+
 #run: 1; #retry: 2; message: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
-Verification failed. Premises mismatch:
-Model premises: Polygon(AED)&Polygon(BFA)&(angle conditions)
-Expected premises: Polygon(AED)&Polygon(BFA)&Equal(MeasureOfAngle(AED),MeasureOfAngle(FAB))&Equal(MeasureOfAngle(EDA),MeasureOfAngle(BFA))
+Verification failed.
+Theorem: parallelogram_judgment_parallel_and_parallel(1,ABCD)
+The language model outputs the following premises: Polygon(ABCD)&ParallelBetweenLine(AD,BC)&ParallelBetweenLine(AB,CD)
+The correct premises for the theorem: Polygon(ABCD)&ParallelBetweenLine(AD,BC)&ParallelBetweenLine(BA,CD)
+
 Model Answer:
 RETRY_ANSWER:
-12
+49
 RETRY_THEOREM_SEQUENCE:
-1; mirror_similar_triangle_judgment_aa(1,AED,BFA); Polygon(AED)&Polygon(BFA)&(angle conditions); ["MirrorSimilarBetweenTriangle(AED,BFA)"]
-2; mirror_similar_triangle_property_line_ratio(AED,BFA); MirrorSimilarBetweenTriangle(AED,BFA); ["Equal(LengthOfLine(AE),Mul(LengthOfLine(BF),RatioOfMirrorSimilarTriangle(AED,BFA)))"]
-3; parallelogram_judgment_parallel_and_parallel(ABCD); Polygon(ABCD)&ParallelBetweenLine(AD,BC)&ParallelBetweenLine(AB,CD); ["Parallelogram(ABCD)"]
-4; rectangle_judgment_right_angle(ABCD); Parallelogram(ABCD)&Equal(MeasureOfAngle(ABC),90); ["Rectangle(ABCD)"]
-5; parallelogram_area_formula_sine(ABCD); Parallelogram(ABCD); ["Equal(AreaOfQuadrilateral(ABCD),Mul(LengthOfLine(AB),LengthOfLine(BC),Sin(MeasureOfAngle(ABC))))"]
+1; mirror_similar_triangle_property_line_ratio(1,AED,BFA); MirrorSimilarBetweenTriangle(AED,BFA); ["Equal(LengthOfLine(ED),Mul(LengthOfLine(FA),RatioOfMirrorSimilarTriangle(AED,BFA)))"]
+2; parallelogram_judgment_parallel_and_parallel(1,ABCD); Polygon(ABCD)&ParallelBetweenLine(AD,BC)&ParallelBetweenLine(AB,CD); ["Parallelogram(ABCD)"]
+3; rectangle_judgment_right_angle(1,ABCD); Parallelogram(ABCD)&Equal(MeasureOfAngle(ABC),90); ["Rectangle(ABCD)"]
+4; parallelogram_property_opposite_line_equal(1,ABCD); Parallelogram(ABCD); ["Equal(LengthOfLine(BA),LengthOfLine(CD))"]
+5; parallelogram_area_formula_sine(1,ABCD); Parallelogram(ABCD); ["Equal(AreaOfQuadrilateral(ABCD),Mul(LengthOfLine(AB),LengthOfLine(BC),Sin(MeasureOfAngle(ABC))))"]
 #run: 1; #retry: 3; message: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
-Verification failed. Theorem <mirror_similar_triangle_property_line_ratio> branch error. Expected dict_keys(['1']) but got None. Please rewrite your response, you should change only the call to theorem <mirror_similar_triangle_property_line_ratio> by adding the branch number from the dict_keys as the first argument
+Error during proof verification: cannot unpack non-iterable NoneType object
 Model Answer:
 RETRY_ANSWER:
-12
+49
 RETRY_THEOREM_SEQUENCE:
-1; mirror_similar_triangle_judgment_aa(1,AED,BFA); Polygon(AED)&Polygon(BFA)&Equal(MeasureOfAngle(AED),MeasureOfAngle(FAB))&Equal(MeasureOfAngle(EDA),MeasureOfAngle(BFA)); ["MirrorSimilarBetweenTriangle(AED,BFA)"]
-2; mirror_similar_triangle_property_line_ratio(AED,BFA); MirrorSimilarBetweenTriangle(AED,BFA); ["Equal(LengthOfLine(AE),Mul(LengthOfLine(BF),RatioOfMirrorSimilarTriangle(AED,BFA)))"]
-3; parallelogram_judgment_parallel_and_parallel(ABCD); Polygon(ABCD)&ParallelBetweenLine(AD,BC)&ParallelBetweenLine(AB,CD); ["Parallelogram(ABCD)"]
-4; rectangle_judgment_right_angle(ABCD); Parallelogram(ABCD)&Equal(MeasureOfAngle(ABC),90); ["Rectangle(ABCD)"]
-5; parallelogram_area_formula_sine(ABCD); Parallelogram(ABCD); ["Equal(AreaOfQuadrilateral(ABCD),Mul(LengthOfLine(AB),LengthOfLine(BC),Sin(MeasureOfAngle(ABC))))"]
+1; mirror_similar_triangle_property_line_ratio(1,AED,BFA); MirrorSimilarBetweenTriangle(AED,BFA); ["Equal(LengthOfLine(ED),Mul(LengthOfLine(FA),RatioOfMirrorSimilarTriangle(AED,BFA)))"]
+2; parallelogram_judgment_parallel_and_parallel(1,ABCD); Polygon(ABCD)&ParallelBetweenLine(AD,BC)&ParallelBetweenLine(BA,CD); ["Parallelogram(ABCD)"]
+3; rectangle_judgment_right_angle(1,ABCD); Parallelogram(ABCD)&Equal(MeasureOfAngle(ABC),90); ["Rectangle(ABCD)"]
+4; parallelogram_property_opposite_line_equal(1,ABCD); Parallelogram(ABCD); ["Equal(LengthOfLine(BA),LengthOfLine(CD))"]
+5; parallelogram_area_formula_sine(1,ABCD); Parallelogram(ABCD); ["Equal(AreaOfQuadrilateral(ABCD),Mul(LengthOfLine(AB),LengthOfLine(BC),Sin(MeasureOfAngle(ABC))))"]
 #run: 1; #retry: 4; message: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
-Verification failed. Conclusions mismatch:
-Model conclusions: Equal(LengthOfLine(AE),Mul(LengthOfLine(BF),RatioOfMirrorSimilarTriangle(AED,BFA)))
-Expected conclusions: Equal(LengthOfLine(ED),Mul(LengthOfLine(FA),RatioOfMirrorSimilarTriangle(AED,BFA)))
+Error during proof verification: cannot unpack non-iterable NoneType object
 Model Answer:
 RETRY_ANSWER:
-12
+49
 RETRY_THEOREM_SEQUENCE:
-1; mirror_similar_triangle_judgment_aa(1,AED,BFA); Polygon(AED)&Polygon(BFA)&Equal(MeasureOfAngle(AED),MeasureOfAngle(FAB))&Equal(MeasureOfAngle(EDA),MeasureOfAngle(BFA)); ["MirrorSimilarBetweenTriangle(AED,BFA)"]
-2; mirror_similar_triangle_property_line_ratio(1,AED,BFA); MirrorSimilarBetweenTriangle(AED,BFA); ["Equal(LengthOfLine(AE),Mul(LengthOfLine(BF),RatioOfMirrorSimilarTriangle(AED,BFA)))"]
-3; parallelogram_judgment_parallel_and_parallel(ABCD); Polygon(ABCD)&ParallelBetweenLine(AD,BC)&ParallelBetweenLine(AB,CD); ["Parallelogram(ABCD)"]
-4; rectangle_judgment_right_angle(ABCD); Parallelogram(ABCD)&Equal(MeasureOfAngle(ABC),90); ["Rectangle(ABCD)"]
-5; parallelogram_area_formula_sine(ABCD); Parallelogram(ABCD); ["Equal(AreaOfQuadrilateral(ABCD),Mul(LengthOfLine(AB),LengthOfLine(BC),Sin(MeasureOfAngle(ABC))))"]
+1; mirror_similar_triangle_property_line_ratio(1,AED,BFA); MirrorSimilarBetweenTriangle(AED,BFA); ["Equal(LengthOfLine(ED),Mul(LengthOfLine(FA),RatioOfMirrorSimilarTriangle(AED,BFA)))"]
+2; parallelogram_judgment_parallel_and_parallel(1,ABCD); Polygon(ABCD)&ParallelBetweenLine(AD,BC)&ParallelBetweenLine(BA,CD); ["Parallelogram(ABCD)"]
+3; rectangle_judgment_right_angle(1,ABCD); Parallelogram(ABCD)&Equal(MeasureOfAngle(ABC),90); ["Rectangle(ABCD)"]
+4; parallelogram_area_formula_sine(1,ABCD); Parallelogram(ABCD); ["Equal(AreaOfQuadrilateral(ABCD),Mul(LengthOfLine(AB),LengthOfLine(BC),Sin(MeasureOfAngle(ABC))))"]
 #run: 1; #retry: 5; message: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
-Verification failed. Theorem <parallelogram_judgment_parallel_and_parallel> branch error. Expected dict_keys(['1']) but got None. Please rewrite your response, you should change only the call to theorem <parallelogram_judgment_parallel_and_parallel> by adding the branch number from the dict_keys as the first argument
+Verification failed. Theorem <line_addition> branch error. Expected dict_keys(['1']) but got None. Please rewrite your response, you should change only the call to theorem <line_addition> by adding the branch number from the dict_keys as the first argument
 Model Answer:
 RETRY_ANSWER:
-12
+49
 RETRY_THEOREM_SEQUENCE:
-1; mirror_similar_triangle_judgment_aa(1,AED,BFA); Polygon(AED)&Polygon(BFA)&Equal(MeasureOfAngle(AED),MeasureOfAngle(FAB))&Equal(MeasureOfAngle(EDA),MeasureOfAngle(BFA)); ["MirrorSimilarBetweenTriangle(AED,BFA)"]
-2; mirror_similar_triangle_property_line_ratio(1,AED,BFA); MirrorSimilarBetweenTriangle(AED,BFA); ["Equal(LengthOfLine(ED),Mul(LengthOfLine(FA),RatioOfMirrorSimilarTriangle(AED,BFA)))"]
-3; parallelogram_judgment_parallel_and_parallel(ABCD); Polygon(ABCD)&ParallelBetweenLine(AD,BC)&ParallelBetweenLine(AB,CD); ["Parallelogram(ABCD)"]
-4; rectangle_judgment_right_angle(ABCD); Parallelogram(ABCD)&Equal(MeasureOfAngle(ABC),90); ["Rectangle(ABCD)"]
-5; parallelogram_area_formula_sine(ABCD); Parallelogram(ABCD); ["Equal(AreaOfQuadrilateral(ABCD),Mul(LengthOfLine(AB),LengthOfLine(BC),Sin(MeasureOfAngle(ABC))))"]
+1; line_addition(AB,BC); Collinear(AED); ["Equal(LengthOfLine(AD),Add(LengthOfLine(AE),LengthOfLine(ED)))"]
+2; line_addition(AB,BC); Collinear(BFA); ["Equal(LengthOfLine(BA),Add(LengthOfLine(BF),LengthOfLine(FA)))"]
+3; mirror_similar_triangle_property_line_ratio(AED,BFA); MirrorSimilarBetweenTriangle(AED,BFA); ["Equal(LengthOfLine(ED),Mul(LengthOfLine(FA),RatioOfMirrorSimilarTriangle(AED,BFA)))"]
+4; parallelogram_judgment_parallel_and_parallel(1,ABCD); Polygon(ABCD)&ParallelBetweenLine(AD,BC)&ParallelBetweenLine(BA,CD); ["Parallelogram(ABCD)"]
+5; rectangle_judgment_right_angle(1,ABCD); Parallelogram(ABCD)&Equal(MeasureOfAngle(ABC),90); ["Rectangle(ABCD)"]
+6; parallelogram_area_formula_sine(1,ABCD); Parallelogram(ABCD); ["Equal(AreaOfQuadrilateral(ABCD),Mul(LengthOfLine(AB),LengthOfLine(BC),Sin(MeasureOfAngle(ABC))))"]
 #RETRIES:
 5
 #RUNS:
