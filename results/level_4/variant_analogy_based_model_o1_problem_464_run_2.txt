@@ -302,12 +302,11 @@ Angle(APC)
 Angle(XPA)
 Circle(P)
 SYMBOLS_AND_VALUES:
-MeasureOfAngle(UZY);ma_uzy;None
-Free(x);x;None
-MeasureOfAngle(VZU);ma_vzu;None
-MeasureOfAngle(XZW);ma_xzw;None
-MeasureOfAngle(YZX);ma_yzx;None
-MeasureOfArc(ZYW);mar_zyw;None
+LengthOfLine(OP);ll_op;6
+LengthOfLine(PO);ll_op;6
+MeasureOfAngle(POB);ma_pob;90
+LengthOfLine(OC);ll_oc;None
+LengthOfLine(CO);ll_oc;None
 
 Outputs:
 Outputs for Problem B:
@@ -325,74 +324,91 @@ ANSWER:
 60
 
 THEOREM_SEQUENCE:
-1; arc_property_center_angle(1,PAC,P); Arc(PAC)&Angle(CPA)&IsCentreOfCircle(P,P); ["Equal(MeasureOfArc(PAC),MeasureOfAngle(CPA))"]  
-2; arc_property_center_angle(1,PCY,P); Arc(PCY)&Angle(YPC)&IsCentreOfCircle(P,P); ["Equal(MeasureOfArc(PCY),MeasureOfAngle(YPC))"]  
-3; angle_addition(1,APC,CPY); Angle(APC)&Angle(CPY)&Angle(APY); ["Equal(MeasureOfAngle(APY),Add(MeasureOfAngle(APC),MeasureOfAngle(CPY)))"]  
-4; adjacent_complementary_angle(1,APY,BPY); Collinear(APB)&Angle(APY)&Angle(BPY); ["Equal(Add(MeasureOfAngle(APY),MeasureOfAngle(BPY)),180)"]
+1; flat_angle(1,BPA); Collinear(BPA); ["Equal(MeasureOfAngle(BPA),180)"]  
+2; arc_property_center_angle(1,PAC,P); Arc(PAC)&Angle(CPA)&IsCentreOfCircle(P,P); ["Equal(MeasureOfArc(PAC),MeasureOfAngle(CPA))"]  
+3; arc_property_center_angle(1,PCY,P); Arc(PCY)&Angle(YPC)&IsCentreOfCircle(P,P); ["Equal(MeasureOfArc(PCY),MeasureOfAngle(YPC))"]  
+4; angle_addition(1,BPA,APC); Angle(BPA)&Angle(APC)&Angle(BPC); ["Equal(MeasureOfAngle(BPC),Add(MeasureOfAngle(BPA),MeasureOfAngle(APC)))"]  
+5; angle_addition(1,BPC,CPY); Angle(BPC)&Angle(CPY)&Angle(BPY); ["Equal(MeasureOfAngle(BPY),Add(MeasureOfAngle(BPC),MeasureOfAngle(CPY)))"]  
+6; round_angle(1,BPY,YPB); Angle(BPY)&Angle(YPB); ["Equal(Add(MeasureOfAngle(BPY),MeasureOfAngle(YPB)),360)"]
 ***MODEL_RESPONSE_END***
 RETRIES_MESSAGES:
 #run: 2; #retry: 1; message: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
-Verification failed. Theorem <arc_property_center_angle> branch error. Expected dict_keys(['1']) but got None. Please rewrite your response, you should change only the call to theorem <arc_property_center_angle> by adding the branch number from the dict_keys as the first argument
+Verification failed. Theorem <flat_angle> branch error. Expected dict_keys(['1']) but got None. Please rewrite your response, you should change only the call to theorem <flat_angle> by adding the branch number from the dict_keys as the first argument
 Model Answer:
 RETRY_ANSWER:
 60
 RETRY_THEOREM_SEQUENCE:
-1; arc_property_center_angle(PAC,P); Arc(PAC)&Angle(CPA)&IsCentreOfCircle(P,P); ["Equal(MeasureOfArc(PAC),MeasureOfAngle(CPA))"]  
-2; arc_property_center_angle(PCY,P); Arc(PCY)&Angle(CYP)&IsCentreOfCircle(P,P); ["Equal(MeasureOfArc(PCY),MeasureOfAngle(CYP))"]  
-3; angle_addition(APC,CPY); Angle(APC)&Angle(CPY)&Angle(APY); ["Equal(MeasureOfAngle(APY),Add(MeasureOfAngle(APC),MeasureOfAngle(CPY)))"]  
-4; adjacent_complementary_angle(APY,BPY); Collinear(APB)&Angle(APY)&Angle(BPY); ["Equal(Add(MeasureOfAngle(APY),MeasureOfAngle(BPY)),180)"]
+1; flat_angle(ABC); Collinear(BPA); ["Equal(MeasureOfAngle(BPA),180)"]  
+2; arc_property_center_angle(OAB,P); Arc(PCY)&Angle(CPY)&IsCentreOfCircle(P,P); ["Equal(MeasureOfArc(PCY),MeasureOfAngle(CPY))"]
 #run: 2; #retry: 2; message: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
 Verification failed.
 Theorem: arc_property_center_angle(1,PCY,P)
-The language model outputs the following premises: Arc(PCY)&Angle(CYP)&IsCentreOfCircle(P,P)
+The language model outputs the following premises: Arc(PCY)&Angle(CPY)&IsCentreOfCircle(P,P)
 The correct premises for the theorem: Arc(PCY)&Angle(YPC)&IsCentreOfCircle(P,P)
-The language model outputs the following conclusions: Equal(MeasureOfArc(PCY),MeasureOfAngle(CYP))
+The language model outputs the following conclusions: Equal(MeasureOfArc(PCY),MeasureOfAngle(CPY))
 The correct conclusions for the theorem: Equal(MeasureOfArc(PCY),MeasureOfAngle(YPC))
 
 Model Answer:
 RETRY_ANSWER:
 60
 RETRY_THEOREM_SEQUENCE:
-1; arc_property_center_angle(1,PAC,P); Arc(PAC)&Angle(CPA)&IsCentreOfCircle(P,P); ["Equal(MeasureOfArc(PAC),MeasureOfAngle(CPA))"]  
-2; arc_property_center_angle(1,PCY,P); Arc(PCY)&Angle(CYP)&IsCentreOfCircle(P,P); ["Equal(MeasureOfArc(PCY),MeasureOfAngle(CYP))"]  
-3; angle_addition(APC,CPY); Angle(APC)&Angle(CPY)&Angle(APY); ["Equal(MeasureOfAngle(APY),Add(MeasureOfAngle(APC),MeasureOfAngle(CPY)))"]  
-4; adjacent_complementary_angle(APY,BPY); Collinear(APB)&Angle(APY)&Angle(BPY); ["Equal(Add(MeasureOfAngle(APY),MeasureOfAngle(BPY)),180)"]
-#run: 2; #retry: 3; message: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
-Verification failed. Theorem <angle_addition> branch error. Expected dict_keys(['1']) but got None. Please rewrite your response, you should change only the call to theorem <angle_addition> by adding the branch number from the dict_keys as the first argument
+1; flat_angle(1,BPA); Collinear(BPA); ["Equal(MeasureOfAngle(BPA),180)"]  
+2; arc_property_center_angle(1,PCY,P); Arc(PCY)&Angle(CPY)&IsCentreOfCircle(P,P); ["Equal(MeasureOfArc(PCY),MeasureOfAngle(CPY))"]
+#run: 2; #retry: 3; message: ERROR_TIER: TIER3_GOAL_NOT_REACHED
+verification failed.
+
+- Goal: measure of arc PCY
+- Model answer: 60.0
+- Error: Your proof doesn't uniquely determine the value. You need to use additional theorems to constrain the value.
+- Available premises:
+  Collinear Points: APB
+  Cocircular Points: A on circle P, AB on circle P, ABC on circle P, ABCX on circle P, ABCXY on circle P, ABCY on circle P, ABX on circle P, ABXY on circle P, ABY on circle P, AC on circle P, ACX on circle P, ACXY on circle P, ACY on circle P, AX on circle P, AXY on circle P, AY on circle P, B on circle P, BC on circle P, BCX on circle P, BCXY on circle P, BCY on circle P, BX on circle P, BXY on circle P, BY on circle P, C on circle P, CX on circle P, CXY on circle P, CY on circle P, X on circle P, XY on circle P, Y on circle P
+  Circles: P center: P
+- Theorems related to the goal:
+  Step 2 - arc_property_center_angle(1, PCY, P): Equal(MeasureOfArc(PCY),MeasureOfAngle(YPC))
+- Solver constraints directly related to this goal:
+  arc(PCY) <= 360
+  arc(PCY) = 3*x - 3
+  arc(PCY) = ∠CPY
+  arc(PCY) >= 0
+
+Please fix the proof.
 Model Answer:
 RETRY_ANSWER:
 60
 RETRY_THEOREM_SEQUENCE:
-1; arc_property_center_angle(1,PAC,P); Arc(PAC)&Angle(CPA)&IsCentreOfCircle(P,P); ["Equal(MeasureOfArc(PAC),MeasureOfAngle(CPA))"]  
-2; arc_property_center_angle(1,PCY,P); Arc(PCY)&Angle(YPC)&IsCentreOfCircle(P,P); ["Equal(MeasureOfArc(PCY),MeasureOfAngle(YPC))"]  
-3; angle_addition(APC,CPY); Angle(APC)&Angle(CPY)&Angle(APY); ["Equal(MeasureOfAngle(APY),Add(MeasureOfAngle(APC),MeasureOfAngle(CPY)))"]  
-4; adjacent_complementary_angle(APY,BPY); Collinear(APB)&Angle(APY)&Angle(BPY); ["Equal(Add(MeasureOfAngle(APY),MeasureOfAngle(BPY)),180)"]
+1; flat_angle(1,BPA); Collinear(BPA); ["Equal(MeasureOfAngle(BPA),180)"]  
+2; arc_property_center_angle(1,PCY,P); Arc(PCY)&Angle(YPC)&IsCentreOfCircle(P,P); ["Equal(MeasureOfArc(PCY),MeasureOfAngle(YPC))"]
 #run: 2; #retry: 4; message: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
-Verification failed. Theorem <adjacent_complementary_angle> branch error. Expected dict_keys(['1']) but got None. Please rewrite your response, you should change only the call to theorem <adjacent_complementary_angle> by adding the branch number from the dict_keys as the first argument
-Model Answer:
-RETRY_ANSWER:
-60
-RETRY_THEOREM_SEQUENCE:
-1; arc_property_center_angle(1,PAC,P); Arc(PAC)&Angle(CPA)&IsCentreOfCircle(P,P); ["Equal(MeasureOfArc(PAC),MeasureOfAngle(CPA))"]  
-2; arc_property_center_angle(1,PCY,P); Arc(PCY)&Angle(YPC)&IsCentreOfCircle(P,P); ["Equal(MeasureOfArc(PCY),MeasureOfAngle(YPC))"]  
-3; angle_addition(1,APC,CPY); Angle(APC)&Angle(CPY)&Angle(APY); ["Equal(MeasureOfAngle(APY),Add(MeasureOfAngle(APC),MeasureOfAngle(CPY)))"]  
-4; adjacent_complementary_angle(APY,BPY); Collinear(APB)&Angle(APY)&Angle(BPY); ["Equal(Add(MeasureOfAngle(APY),MeasureOfAngle(BPY)),180)"]
-#run: 2; #retry: 5; message: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
 Verification failed.
-Theorem: adjacent_complementary_angle(1,APY,BPY)
-The language model outputs the following premises: Collinear(APB)&Angle(APY)&Angle(BPY)
-The correct premises for the theorem: Collinear(APY)&Angle(APB)&Angle(BPY)
-The language model outputs the following conclusions: Equal(Add(MeasureOfAngle(APY),MeasureOfAngle(BPY)),180)
-The correct conclusions for the theorem: Equal(Add(MeasureOfAngle(APB),MeasureOfAngle(BPY)),180)
+Theorem: arc_property_center_angle(1,PAC,P)
+The language model outputs the following premises: Arc(PAC)&Angle(APC)&IsCentreOfCircle(P,P)
+The correct premises for the theorem: Arc(PAC)&Angle(CPA)&IsCentreOfCircle(P,P)
+The language model outputs the following conclusions: Equal(MeasureOfArc(PAC),MeasureOfAngle(APC))
+The correct conclusions for the theorem: Equal(MeasureOfArc(PAC),MeasureOfAngle(CPA))
 
 Model Answer:
 RETRY_ANSWER:
 60
 RETRY_THEOREM_SEQUENCE:
-1; arc_property_center_angle(1,PAC,P); Arc(PAC)&Angle(CPA)&IsCentreOfCircle(P,P); ["Equal(MeasureOfArc(PAC),MeasureOfAngle(CPA))"]  
-2; arc_property_center_angle(1,PCY,P); Arc(PCY)&Angle(YPC)&IsCentreOfCircle(P,P); ["Equal(MeasureOfArc(PCY),MeasureOfAngle(YPC))"]  
-3; angle_addition(1,APC,CPY); Angle(APC)&Angle(CPY)&Angle(APY); ["Equal(MeasureOfAngle(APY),Add(MeasureOfAngle(APC),MeasureOfAngle(CPY)))"]  
-4; adjacent_complementary_angle(1,APY,BPY); Collinear(APB)&Angle(APY)&Angle(BPY); ["Equal(Add(MeasureOfAngle(APY),MeasureOfAngle(BPY)),180)"]
+1; flat_angle(1,BPA); Collinear(BPA); ["Equal(MeasureOfAngle(BPA),180)"]  
+2; arc_property_center_angle(1,PAC,P); Arc(PAC)&Angle(APC)&IsCentreOfCircle(P,P); ["Equal(MeasureOfArc(PAC),MeasureOfAngle(APC))"]  
+3; arc_property_center_angle(1,PCY,P); Arc(PCY)&Angle(CPY)&IsCentreOfCircle(P,P); ["Equal(MeasureOfArc(PCY),MeasureOfAngle(CPY))"]  
+4; angle_addition(1,BPA,APC); Angle(BPA)&Angle(APC)&Angle(BPC); ["Equal(MeasureOfAngle(BPC),Add(MeasureOfAngle(BPA),MeasureOfAngle(APC)))"]  
+5; angle_addition(1,BPC,CPY); Angle(BPC)&Angle(CPY)&Angle(BPY); ["Equal(MeasureOfAngle(BPY),Add(MeasureOfAngle(BPC),MeasureOfAngle(CPY)))"]  
+6; round_angle(1,BPY,YPB); Angle(BPY)&Angle(YPB); ["Equal(Add(MeasureOfAngle(BPY),MeasureOfAngle(YPB)),360)"]
+#run: 2; #retry: 5; message: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
+Error in TIER1_THEOREM_CALL_SYNTAX_VIOLATION: this theorem is not supported by this solver please give a profe without it
+Model Answer:
+RETRY_ANSWER:
+60
+RETRY_THEOREM_SEQUENCE:
+1; flat_angle(1,BPA); Collinear(BPA); ["Equal(MeasureOfAngle(BPA),180)"]  
+2; arc_property_center_angle(1,PAC,P); Arc(PAC)&Angle(CPA)&IsCentreOfCircle(P,P); ["Equal(MeasureOfArc(PAC),MeasureOfAngle(CPA))"]  
+3; arc_property_center_angle(1,PCY,P); Arc(PCY)&Angle(YPC)&IsCentreOfCircle(P,P); ["Equal(MeasureOfArc(PCY),MeasureOfAngle(YPC))"]  
+4; angle_addition(1,BPA,APC); Angle(BPA)&Angle(APC)&Angle(BPC); ["Equal(MeasureOfAngle(BPC),Add(MeasureOfAngle(BPA),MeasureOfAngle(APC)))"]  
+5; angle_addition(1,BPC,CPY); Angle(BPC)&Angle(CPY)&Angle(BPY); ["Equal(MeasureOfAngle(BPY),Add(MeasureOfAngle(BPC),MeasureOfAngle(CPY)))"]  
+6; round_angle(1,BPY,YPB); Angle(BPY)&Angle(YPB); ["Equal(Add(MeasureOfAngle(BPY),MeasureOfAngle(YPB)),360)"]
 #RETRIES:
 5
 #RUNS:

@@ -207,66 +207,60 @@ Polygon(ABC)
 Polygon(BCA)
 Polygon(BAC)
 SYMBOLS_AND_VALUES:
-LengthOfLine(AB);ll_ab;5
-LengthOfLine(BA);ll_ab;5
-LengthOfLine(AC);ll_ac;4
-LengthOfLine(CA);ll_ac;4
-MeasureOfAngle(BCA);ma_bca;90
-MeasureOfAngle(CDB);ma_cdb;90
-MeasureOfAngle(BCD);ma_bcd;None
+MeasureOfAngle(ACB);ma_acb;30
+MeasureOfAngle(ACD);ma_acb;30
+MeasureOfAngle(FCB);ma_acb;30
+MeasureOfAngle(FCD);ma_acb;30
+MeasureOfAngle(DBA);ma_cba;70
+MeasureOfAngle(CBA);ma_cba;70
+MeasureOfAngle(DAF);ma_dac;35
+MeasureOfAngle(DAC);ma_dac;35
+MeasureOfAngle(FAE);ma_cae;None
+MeasureOfAngle(CAE);ma_cae;None
 
 Outputs:
 Outputs for Problem B:
 
 ***MODEL_RESPONSE_BEGIN***
 EQUATIONS:
-at_abc-65
-at_abc-Add(at_dca,at_dab)
-ll_ab-13
-ll_ac-13
-ma_cmd-90
-ma_and-90
+AreaOfTriangle(ABC)-65
+LengthOfLine(AB)-13
+LengthOfLine(AC)-13
+MeasureOfAngle(CMD)-90
 
 GOAL_SYMBOL:
-ll_dn+ll_dm
+LengthOfLine(DN)+LengthOfLine(DM)
 
 ANSWER:
-10
+No valid proof can be constructed from the provided GDL to conclude DN+DM = 13.
 
 THEOREM_SEQUENCE:
-1; isosceles_triangle_judgment_line_equal(1,ABC); Polygon(ABC)&Equal(LengthOfLine(AB),LengthOfLine(AC)); ["IsoscelesTriangle(ABC)"]
-2; triangle_area_formula_common(1,ABC); Polygon(ABC); ["Equal(AreaOfTriangle(ABC),Mul(HeightOfTriangle(ABC),LengthOfLine(BC),1/2))"]
-3; triangle_area_formula_common(1,DCA); Polygon(DCA); ["Equal(AreaOfTriangle(DCA),Mul(HeightOfTriangle(DCA),LengthOfLine(CA),1/2))"]
-4; triangle_area_formula_common(1,DAB); Polygon(DAB); ["Equal(AreaOfTriangle(DAB),Mul(HeightOfTriangle(DAB),LengthOfLine(AB),1/2))"]
-5; right_triangle_judgment_angle(1,CMD); Polygon(CMD)&Equal(MeasureOfAngle(CMD),90); ["RightTriangle(CMD)"]
-6; right_triangle_judgment_angle(1,AND); Polygon(AND)&Equal(MeasureOfAngle(AND),90); ["RightTriangle(AND)"]
+(Unable to construct a valid sequence of GDL theorems that derives DN+DM = 13.)
 ***MODEL_RESPONSE_END***
 RETRIES_MESSAGES:
 #run: 0; #retry: 1; message: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
 Verification failed. Theorem <isosceles_triangle_judgment_line_equal> branch error. Expected dict_keys(['1']) but got None. Please rewrite your response, you should change only the call to theorem <isosceles_triangle_judgment_line_equal> by adding the branch number from the dict_keys as the first argument
 Model Answer:
 RETRY_ANSWER:
-10
+13
 RETRY_THEOREM_SEQUENCE:
 1; isosceles_triangle_judgment_line_equal(ABC); Polygon(ABC)&Equal(LengthOfLine(AB),LengthOfLine(AC)); ["IsoscelesTriangle(ABC)"]
-2; triangle_area_formula_common(ABC); Polygon(ABC); ["Equal(AreaOfTriangle(ABC),Mul(HeightOfTriangle(ABC),LengthOfLine(BC),1/2))"]
-3; right_triangle_judgment_angle(CMD); Polygon(CMD)&Equal(MeasureOfAngle(CMD),90); ["RightTriangle(CMD)"]
-4; right_triangle_judgment_angle(AND); Polygon(AND)&Equal(MeasureOfAngle(AND),90); ["RightTriangle(AND)"]
+2; right_triangle_judgment_angle(CMD); Polygon(CMD)&Equal(MeasureOfAngle(CMD),90); ["RightTriangle(CMD)"]
+3; right_triangle_judgment_angle(AND); Polygon(AND)&Equal(MeasureOfAngle(AND),90); ["RightTriangle(AND)"]
 #run: 0; #retry: 2; message: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
-Verification failed. Theorem <triangle_area_formula_common> branch error. Expected dict_keys(['1']) but got None. Please rewrite your response, you should change only the call to theorem <triangle_area_formula_common> by adding the branch number from the dict_keys as the first argument
+Verification failed. Theorem <right_triangle_judgment_angle> branch error. Expected dict_keys(['1']) but got None. Please rewrite your response, you should change only the call to theorem <right_triangle_judgment_angle> by adding the branch number from the dict_keys as the first argument
 Model Answer:
 RETRY_ANSWER:
-10
+13
 RETRY_THEOREM_SEQUENCE:
 1; isosceles_triangle_judgment_line_equal(1,ABC); Polygon(ABC)&Equal(LengthOfLine(AB),LengthOfLine(AC)); ["IsoscelesTriangle(ABC)"]
-2; triangle_area_formula_common(ABC); Polygon(ABC); ["Equal(AreaOfTriangle(ABC),Mul(HeightOfTriangle(ABC),LengthOfLine(BC),1/2))"]
-3; right_triangle_judgment_angle(1,CMD); Polygon(CMD)&Equal(MeasureOfAngle(CMD),90); ["RightTriangle(CMD)"]
-4; right_triangle_judgment_angle(1,AND); Polygon(AND)&Equal(MeasureOfAngle(AND),90); ["RightTriangle(AND)"]
+2; right_triangle_judgment_angle(CMD); Polygon(CMD)&Equal(MeasureOfAngle(CMD),90); ["RightTriangle(CMD)"]
+3; right_triangle_judgment_angle(AND); Polygon(AND)&Equal(MeasureOfAngle(AND),90); ["RightTriangle(AND)"]
 #run: 0; #retry: 3; message: ERROR_TIER: TIER3_GOAL_NOT_REACHED
 verification failed.
 
 - Goal: sum of lines DN + DM
-- Model answer: 10.0
+- Model answer: 13.0
 - Error: Your proof doesn't uniquely determine the value. You need to use additional theorems to constrain the value.
 - Available premises:
   Perpendicular Lines: AN ⊥ DN
@@ -282,52 +276,22 @@ verification failed.
 Please fix the proof.
 Model Answer:
 RETRY_ANSWER:
-10
+13
 RETRY_THEOREM_SEQUENCE:
 1; isosceles_triangle_judgment_line_equal(1,ABC); Polygon(ABC)&Equal(LengthOfLine(AB),LengthOfLine(AC)); ["IsoscelesTriangle(ABC)"]
-2; triangle_area_formula_common(1,ABC); Polygon(ABC); ["Equal(AreaOfTriangle(ABC),Mul(HeightOfTriangle(ABC),LengthOfLine(BC),1/2))"]
-3; right_triangle_judgment_angle(1,CMD); Polygon(CMD)&Equal(MeasureOfAngle(CMD),90); ["RightTriangle(CMD)"]
-4; right_triangle_judgment_angle(1,AND); Polygon(AND)&Equal(MeasureOfAngle(AND),90); ["RightTriangle(AND)"]
+2; right_triangle_judgment_angle(1,CMD); Polygon(CMD)&Equal(MeasureOfAngle(CMD),90); ["RightTriangle(CMD)"]
+3; right_triangle_judgment_angle(1,AND); Polygon(AND)&Equal(MeasureOfAngle(AND),90); ["RightTriangle(AND)"]
 #run: 0; #retry: 4; message: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
-Verification failed. Conclusions mismatch:
-Model conclusions: Equal(AreaOfTriangle(DCA),Mul(HeightOfTriangle(DCA),LengthOfLine(DC),1/2))
-Expected conclusions: Equal(AreaOfTriangle(DCA),Mul(HeightOfTriangle(DCA),LengthOfLine(CA),1/2))
+Verification failed. The THEOREM_SEQUENCE you provided is empty. Please generate a proof again, using the similar problems I provided (A1, A2, A3, A4, A5), along with the GDL_DICTIONARY of theorems.
+Model Answer:
+
+#run: 0; #retry: 5; message: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
+Verification failed. Theorem  not defined in current GDL. Please rewrite the proof sequence, you are allowed to use only theorems from the GDL.
 Model Answer:
 RETRY_ANSWER:
-10
+No valid proof can be constructed from the provided GDL to conclude DN+DM = 13.
 RETRY_THEOREM_SEQUENCE:
-1; isosceles_triangle_judgment_line_equal(1,ABC); Polygon(ABC)&Equal(LengthOfLine(AB),LengthOfLine(AC)); ["IsoscelesTriangle(ABC)"]
-2; triangle_area_formula_common(1,ABC); Polygon(ABC); ["Equal(AreaOfTriangle(ABC),Mul(HeightOfTriangle(ABC),LengthOfLine(BC),1/2))"]
-3; triangle_area_formula_common(1,DCA); Polygon(DCA); ["Equal(AreaOfTriangle(DCA),Mul(HeightOfTriangle(DCA),LengthOfLine(DC),1/2))"]
-4; triangle_area_formula_common(1,DAB); Polygon(DAB); ["Equal(AreaOfTriangle(DAB),Mul(HeightOfTriangle(DAB),LengthOfLine(DB),1/2))"]
-5; right_triangle_judgment_angle(1,CMD); Polygon(CMD)&Equal(MeasureOfAngle(CMD),90); ["RightTriangle(CMD)"]
-6; right_triangle_judgment_angle(1,AND); Polygon(AND)&Equal(MeasureOfAngle(AND),90); ["RightTriangle(AND)"]
-#run: 0; #retry: 5; message: ERROR_TIER: TIER2_PREMISE_VIOLATION
-verification failed.
-
-- Error: You tried to use theorem: triangle_area_formula_common(1,DCA);Polygon(DCA);['Equal(AreaOfTriangle(DCA),Mul(HeightOfTriangle(DCA),LengthOfLine(CA),1/2))']
-Missing premise: No height established for triangle DCA
-Details: Height must be established through an altitude theorem first
-- Available premises:
-  Perpendicular Lines: AN ⊥ DN
-  Collinear Points: AMC, ANB, BDC
-  Polygons: ABC, ABD, ABDM, ACB, ACD, ADB, ADC, ADM, ADN, AMD, AND, ANDC, ANDM, BDMA, BDN, BND, CAND, CDM, CMD, DCAN, DMAB, DMAN, MABD, MAND, NDCA, NDMA
-- Theorems related to the goal:
-  None found that constrain this goal
-- Solver constraints directly related to this goal:
-  None found
-
-Please fix the proof.
-Model Answer:
-RETRY_ANSWER:
-10
-RETRY_THEOREM_SEQUENCE:
-1; isosceles_triangle_judgment_line_equal(1,ABC); Polygon(ABC)&Equal(LengthOfLine(AB),LengthOfLine(AC)); ["IsoscelesTriangle(ABC)"]
-2; triangle_area_formula_common(1,ABC); Polygon(ABC); ["Equal(AreaOfTriangle(ABC),Mul(HeightOfTriangle(ABC),LengthOfLine(BC),1/2))"]
-3; triangle_area_formula_common(1,DCA); Polygon(DCA); ["Equal(AreaOfTriangle(DCA),Mul(HeightOfTriangle(DCA),LengthOfLine(CA),1/2))"]
-4; triangle_area_formula_common(1,DAB); Polygon(DAB); ["Equal(AreaOfTriangle(DAB),Mul(HeightOfTriangle(DAB),LengthOfLine(AB),1/2))"]
-5; right_triangle_judgment_angle(1,CMD); Polygon(CMD)&Equal(MeasureOfAngle(CMD),90); ["RightTriangle(CMD)"]
-6; right_triangle_judgment_angle(1,AND); Polygon(AND)&Equal(MeasureOfAngle(AND),90); ["RightTriangle(AND)"]
+(Unable to construct a valid sequence of GDL theorems that derives DN+DM = 13.)
 #RETRIES:
 5
 #RUNS:

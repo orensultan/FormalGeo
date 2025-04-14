@@ -2467,12 +2467,83 @@ class GeometricTheorem:
                         details="adjacent_complementary_angle theorem requires collinear points"
                     ))
             else:
-                return_error(GeometricError(
+                return return_error(GeometricError(
                     tier=ErrorTier.TIER1_THEOREM_CALL_SYNTAX_VIOLATION,
-                    message=f"Unsupported version {version} for adjacent_complementary_angle"
+                    message="these is no such version for the theorem",
+                    details="these is no such version for the theorem adjacent_complementary_angle"
                 ))
 
+        elif theorem_name == "perpendicular_judgment_angle":
+            version = args[0]
+            if version == "1":
+                if len(args) < 3:
+                    return return_error(GeometricError(
+                        tier=ErrorTier.TIER1_THEOREM_CALL_SYNTAX_VIOLATION,
+                        message="Insufficient arguments for perpendicular_judgment_angle",
+                        details="Expected: perpendicular_judgment_angle(1, line1, line2)"
+                    ))
 
+                line1, line2 = args[1].strip(), args[2].strip()
+
+                # Extract the shared point between the lines
+                shared_point = None
+                for p in line1:
+                    if p in line2:
+                        shared_point = p
+                        break
+
+                if shared_point is None:
+                    return return_error(GeometricError(
+                        tier=ErrorTier.TIER2_PREMISE_VIOLATION,
+                        message=f"Lines {line1} and {line2} do not share a common point",
+                        details="perpendicular_judgment_angle requires lines to intersect at a point"
+                    ))
+
+                # Construct the expected angle
+                other_point1 = next(p for p in line1 if p != shared_point)
+                other_point2 = next(p for p in line2 if p != shared_point)
+                expected_angle = other_point1 + shared_point + other_point2  # e.g., "EGD"
+
+                # Check that the angle is defined in the premise
+                angle_match = re.search(r'Angle\((\w+)\)', premise)
+                if not angle_match:
+                    return return_error(GeometricError(
+                        tier=ErrorTier.TIER2_PREMISE_VIOLATION,
+                        message="Missing angle definition in premise",
+                        details="perpendicular_judgment_angle requires Angle(...) in premise"
+                    ))
+
+                premise_angle = angle_match.group(1)
+
+                # Check that the angle in premise is the one formed by our lines
+                # Note: We normalize both angles for comparison to handle different orderings
+                normalized_premise_angle = self.normalize_angle_name(premise_angle)
+                normalized_expected_angle = self.normalize_angle_name(expected_angle)
+
+                if normalized_premise_angle != normalized_expected_angle:
+                    return return_error(GeometricError(
+                        tier=ErrorTier.TIER2_PREMISE_VIOLATION,
+                        message=f"Premise angle {premise_angle} does not match the angle formed by lines {line1} and {line2}",
+                        details=f"Expected angle {expected_angle} or equivalent"
+                    ))
+
+                # Check that the angle measure is specified as 90 degrees
+                angle_measure_match = re.search(r'Equal\(MeasureOfAngle\(' + re.escape(premise_angle) + r'\),90\)',
+                                                premise)
+                if not angle_measure_match:
+                    return return_error(GeometricError(
+                        tier=ErrorTier.TIER2_PREMISE_VIOLATION,
+                        message="Missing 90-degree angle specification in premise",
+                        details=f"Need Equal(MeasureOfAngle({premise_angle}),90) in premise"
+                    ))
+
+                return True, None
+            else:
+                return return_error(GeometricError(
+                    tier=ErrorTier.TIER1_THEOREM_CALL_SYNTAX_VIOLATION,
+                    message="these is no such version for the theorem",
+                    details="these is no such version for the theorem perpendicular_judgment_angle"
+                ))
 
         elif theorem_name == "tangent_of_circle_property_length_equal":
             version = args[0]
@@ -2539,7 +2610,72 @@ class GeometricTheorem:
                     details="these is no such version for the theorem tangent_of_circle_property_length_equal"
                 ))
 
+        elif theorem_name == "round_arc":
+            version = args[0]
+            if version == "1":
+                if len(args) < 3:
+                    return return_error(GeometricError(
+                        tier=ErrorTier.TIER1_THEOREM_CALL_SYNTAX_VIOLATION,
+                        message="Insufficient arguments for round_arc",
+                        details="Expected: round_arc(1, arc1, arc2)"
+                    ))
 
+                arc1, arc2 = args[1].strip(), args[2].strip()
+
+                # Check that both arcs are defined in the premise
+                arc1_match = re.search(r'Arc\(' + re.escape(arc1) + r'\)', premise)
+                arc2_match = re.search(r'Arc\(' + re.escape(arc2) + r'\)', premise)
+
+                if not arc1_match:
+                    return return_error(GeometricError(
+                        tier=ErrorTier.TIER2_PREMISE_VIOLATION,
+                        message=f"Missing Arc({arc1}) in premise",
+                        details="round_arc requires both arcs to be defined"
+                    ))
+
+                if not arc2_match:
+                    return return_error(GeometricError(
+                        tier=ErrorTier.TIER2_PREMISE_VIOLATION,
+                        message=f"Missing Arc({arc2}) in premise",
+                        details="round_arc requires both arcs to be defined"
+                    ))
+
+                # Verify that both arcs share the same circle (first character)
+                if arc1[0] != arc2[0]:
+                    return return_error(GeometricError(
+                        tier=ErrorTier.TIER2_PREMISE_VIOLATION,
+                        message=f"Arcs {arc1} and {arc2} do not share the same circle",
+                        details="round_arc requires both arcs to be on the same circle"
+                    ))
+
+                # Check if the arcs are defined in the system
+                normalized_arc1 = self.normalize_arc(arc1)
+                normalized_arc2 = self.normalize_arc(arc2)
+
+                arc_var_name1 = f"arc_{normalized_arc1}"
+                arc_var_name2 = f"arc_{normalized_arc2}"
+
+                if arc_var_name1 not in self.arcs:
+                    return return_error(GeometricError(
+                        tier=ErrorTier.TIER2_PREMISE_VIOLATION,
+                        message=f"Arc {arc1} not defined in the system",
+                        details=f"Known arcs: {list(self.arcs.keys())}"
+                    ))
+
+                if arc_var_name2 not in self.arcs:
+                    return return_error(GeometricError(
+                        tier=ErrorTier.TIER2_PREMISE_VIOLATION,
+                        message=f"Arc {arc2} not defined in the system",
+                        details=f"Known arcs: {list(self.arcs.keys())}"
+                    ))
+
+                return True, None
+            else:
+                return return_error(GeometricError(
+                    tier=ErrorTier.TIER1_THEOREM_CALL_SYNTAX_VIOLATION,
+                    message=f"Unsupported version for round_arc",
+                    details="Unsupported version for round_arc"
+                ))
 
         elif theorem_name == "quadrilateral_perimeter_formula":
             version = args[0]
@@ -8332,8 +8468,11 @@ class GeometricTheorem:
                         details="Required for angle addition"
                     ))
                 return True, None
-            elif version == "2":
-                print("2")
+            return return_error(GeometricError(
+                tier=ErrorTier.TIER1_THEOREM_CALL_SYNTAX_VIOLATION,
+                message=f"no such version for the theorem angle_addition",
+                details="no such version for the theorem angle_addition"
+            ))
 
 
         elif theorem_name == "quadrilateral_property_angle_sum":
@@ -9930,6 +10069,13 @@ class GeometricTheorem:
 
                     # Handle √ symbol format: 6(√6-1)
                     if '√' in answer_str:
+                        # Handle pattern like "3√2" (coefficient times square root without parentheses)
+                        pattern = r'^(\d+)√(\d+)$'
+                        match = re.match(pattern, answer_str)
+                        if match:
+                            coef, rad = match.groups()
+                            return float(coef) * math.sqrt(float(rad))
+
                         # Handle pattern like "6(√6-1)"
                         pattern = r'(\d+)\(√(\d+)(-|\+)(\d+)\)'
                         match = re.match(pattern, answer_str)
@@ -9941,22 +10087,49 @@ class GeometricTheorem:
                             else:  # op == '+'
                                 return a * (math.sqrt(b) + c)
 
-                        # General replacement of √ symbol
-                        modified_str = re.sub(r'√(\d+)', r'math.sqrt(\1)', answer_str)
+                        # Handle pattern like "√2" (just the square root)
+                        pattern = r'^√(\d+)$'
+                        match = re.match(pattern, answer_str)
+                        if match:
+                            rad = match.group(1)
+                            return math.sqrt(float(rad))
+
+                        # General approach: Replace all √ with math.sqrt and evaluate
+                        # First handle square roots of expressions: √(...)
+                        modified_str = re.sub(r'√\(([^)]+)\)', r'math.sqrt(\1)', answer_str)
+                        # Then handle square roots of simple numbers: √2
+                        modified_str = re.sub(r'√(\d+)', r'math.sqrt(\1)', modified_str)
                         # Handle implicit multiplication
                         modified_str = re.sub(r'(\d+)\(', r'\1*(', modified_str)
+
                         try:
                             return float(eval(modified_str, {"math": math}))
-                        except Exception:
+                        except Exception as e:
+                            print(f"Error during eval of √ expression: {e}")
                             pass
 
                     # Standard eval with math functions
                     try:
                         return float(eval(answer_str, {"pi": math.pi, "sqrt": math.sqrt}))
-                    except Exception:
+                    except Exception as e:
+                        print(f"Error during standard eval: {e}")
                         # Fall back to Fraction
-                        from fractions import Fraction
-                        return float(Fraction(answer_str))
+                        try:
+                            from fractions import Fraction
+                            return float(Fraction(answer_str))
+                        except Exception as e:
+                            print(f"Error during Fraction conversion: {e}")
+                            # Try handling symbolic math expressions
+                            if '*sqrt' in answer_str:
+                                parts = answer_str.split('*sqrt')
+                                if len(parts) == 2 and parts[1].startswith('(') and parts[1].endswith(')'):
+                                    try:
+                                        coef = float(parts[0])
+                                        rad = float(parts[1][1:-1])  # Remove parentheses
+                                        return coef * math.sqrt(rad)
+                                    except Exception:
+                                        pass
+                            raise
 
                 answer_str = sections[ANSWER][0].strip() if (ANSWER in sections and sections[ANSWER]) else None
                 if answer_str is None:
@@ -11143,7 +11316,9 @@ class GeometricTheorem:
             "similar_triangle_property_area_square_ratio",
             "congruent_arc_judgment_chord_equal",
             "congruent_arc_property_measure_equal",
-            "equilateral_triangle_property_angle"
+            "equilateral_triangle_property_angle",
+            "round_arc",
+            "perpendicular_judgment_angle"
         ]
 
         if theorem_name not in valid_theorems:
@@ -11166,8 +11341,91 @@ class GeometricTheorem:
                     self.solver.add(angle1_var == angle2_var)
                     print(f"Added parallelogram opposite angle equality: {angle1} = {angle2}")
 
+        elif theorem_name == "perpendicular_judgment_angle":
+            version = args[0]
+            if version == "1":
+                # Extract the two perpendicular lines from the conclusion
+                perpendicular_match = re.search(r'PerpendicularBetweenLine\((\w+),(\w+)\)', conclusions[0])
+                if not perpendicular_match:
+                    return GeometricError(
+                        tier=ErrorTier.TIER1_THEOREM_CALL_SYNTAX_VIOLATION,
+                        message="Conclusion format error for perpendicular_judgment_angle",
+                        details=f"Expected PerpendicularBetweenLine(...) pattern but got {conclusions[0]}"
+                    )
 
+                line1, line2 = perpendicular_match.groups()
 
+                # Initialize the perpendicular_pairs set if it doesn't exist
+                if not hasattr(self, "perpendicular_pairs"):
+                    self.perpendicular_pairs = set()
+
+                # Add both directions to the perpendicular pairs
+                self.perpendicular_pairs.add((line1, line2))
+                self.perpendicular_pairs.add((line2, line1))
+
+                # Also add reversed line representations
+                self.perpendicular_pairs.add((line1[::-1], line2))
+                self.perpendicular_pairs.add((line2, line1[::-1]))
+                self.perpendicular_pairs.add((line1, line2[::-1]))
+                self.perpendicular_pairs.add((line2[::-1], line1))
+                self.perpendicular_pairs.add((line1[::-1], line2[::-1]))
+                self.perpendicular_pairs.add((line2[::-1], line1[::-1]))
+
+                # Find the shared point between the lines
+                shared_point = None
+                for p in line1:
+                    if p in line2:
+                        shared_point = p
+                        break
+
+                if shared_point is not None:
+                    # Construct the angle formed by these lines
+                    other_point1 = next(p for p in line1 if p != shared_point)
+                    other_point2 = next(p for p in line2 if p != shared_point)
+                    angle_name = other_point1 + shared_point + other_point2
+
+                    # Add the 90-degree constraint to this angle
+                    angle_var = self.add_angle(angle_name[0], angle_name[1], angle_name[2])
+                    self.solver.add(angle_var == 90)
+                    print(f"Added perpendicular constraint: angle {angle_name} = 90°")
+
+                print(f"Added perpendicular relationship: {line1} ⊥ {line2}")
+                return None
+            else:
+                return GeometricError(
+                    tier=ErrorTier.TIER1_THEOREM_CALL_SYNTAX_VIOLATION,
+                    message=f"Unsupported version {version} for perpendicular_judgment_angle",
+                    details="Only version 1 is supported"
+                )
+        elif theorem_name == "round_arc":
+            version = args[0]
+            if version == "1":
+                # Parse the conclusion to extract the arcs
+                match = re.search(r'Equal\(Add\(MeasureOfArc\((\w+)\),MeasureOfArc\((\w+)\)\),360\)', conclusions[0])
+                if not match:
+                    return GeometricError(
+                        tier=ErrorTier.TIER1_THEOREM_CALL_SYNTAX_VIOLATION,
+                        message="Conclusion format error for round_arc",
+                        details=f"Expected Equal(Add(MeasureOfArc(...),MeasureOfArc(...)),360) pattern but got {conclusions[0]}"
+                    )
+
+                arc1, arc2 = match.groups()
+
+                # Get or create arc measure variables
+                arc1_var = self.add_arc(arc1)
+                arc2_var = self.add_arc(arc2)
+
+                # Add the constraint that the sum of arc measures equals 360 degrees
+                self.solver.add(arc1_var + arc2_var == 360)
+
+                print(f"Added round arc constraint: MeasureOfArc({arc1}) + MeasureOfArc({arc2}) = 360°")
+                return None
+            else:
+                return GeometricError(
+                    tier=ErrorTier.TIER1_THEOREM_CALL_SYNTAX_VIOLATION,
+                    message=f"Unsupported version {version} for round_arc",
+                    details="Only version 1 is supported"
+                )
 
         # For the tangent_of_circle_property_length_equal theorem
         elif theorem_name == "tangent_of_circle_property_length_equal":
@@ -16013,6 +16271,8 @@ def verify_geometric_proof(filename: str, print_output=True) -> tuple:
         except Exception as e:
             print(f"Error: {str(e)}")
             return False, f"Error: {str(e)}", None
+
+
 
 if __name__ == "__main__":
     result, feedback, error_tier = verify_geometric_proof(

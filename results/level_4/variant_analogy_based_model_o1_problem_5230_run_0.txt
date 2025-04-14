@@ -79,41 +79,46 @@ Angle(BDO)
 IsMidpointOfLine(C,OA)
 IsMidpointOfLine(D,BO)
 SYMBOLS_AND_VALUES:
-LengthOfLine(AB);ll_ab;10
-LengthOfLine(BA);ll_ab;10
-LengthOfLine(NB);ll_nb;2
-LengthOfLine(BN);ll_nb;2
-LengthOfLine(AM);ll_am;None
-LengthOfLine(MA);ll_am;None
-LengthOfLine(MB);ll_mb;None
-LengthOfLine(BM);ll_mb;None
-LengthOfLine(MN);ll_mn;None
-LengthOfLine(NM);ll_mn;None
+LengthOfLine(CB);ll_cb;4
+LengthOfLine(BC);ll_cb;4
+LengthOfLine(DB);ll_db;7
+LengthOfLine(BD);ll_db;7
+LengthOfLine(AD);ll_ad;None
+LengthOfLine(DA);ll_ad;None
+LengthOfLine(DC);ll_dc;None
+LengthOfLine(CD);ll_dc;None
+LengthOfLine(AB);ll_ab;None
+LengthOfLine(BA);ll_ab;None
 
 Outputs:
 Outputs for Problem B:
 
 ***MODEL_RESPONSE_BEGIN***
 EQUATIONS:
-ll_ab-10
-ll_ac-ll_co
-ll_od-ll_db
-
+ll_ab-10 ll_ac-ll_co ll_od-ll_db
 GOAL_SYMBOL:
-ll_cd
-
+ll_dc
 ANSWER:
 5
-
 THEOREM_SEQUENCE:
-1; line_addition(1,AC,CO); Collinear(ACO); ["Equal(LengthOfLine(AO),Add(LengthOfLine(AC),LengthOfLine(CO)))"]  
-2; line_addition(1,OD,DB); Collinear(ODB); ["Equal(LengthOfLine(OB),Add(LengthOfLine(OD),LengthOfLine(DB)))"]  
-3; line_addition(1,AO,OB); Collinear(AOB); ["Equal(LengthOfLine(AB),Add(LengthOfLine(AO),LengthOfLine(OB)))"]  
-4; line_addition(1,CO,OD); Collinear(COD); ["Equal(LengthOfLine(CD),Add(LengthOfLine(CO),LengthOfLine(OD)))"]  
+1; line_addition(1,AC,CO); Collinear(ACO); ["Equal(LengthOfLine(AO),Add(LengthOfLine(AC),LengthOfLine(CO)))"]
+2; line_addition(1,OD,DB); Collinear(ODB); ["Equal(LengthOfLine(OB),Add(LengthOfLine(OD),LengthOfLine(DB)))"]
+3; line_addition(1,AO,OB); Collinear(AOB); ["Equal(LengthOfLine(AB),Add(LengthOfLine(AO),LengthOfLine(OB)))"]
+4; line_addition(1,CO,OD); Collinear(COD); ["Equal(LengthOfLine(CD),Add(LengthOfLine(CO),LengthOfLine(OD)))"]
 ***MODEL_RESPONSE_END***
 RETRIES_MESSAGES:
+#run: 0; #retry: 1; message: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
+Verification failed. Theorem <line_addition> branch error. Expected dict_keys(['1']) but got None. Please rewrite your response, you should change only the call to theorem <line_addition> by adding the branch number from the dict_keys as the first argument
+Model Answer:
+RETRY_ANSWER:
+5
+RETRY_THEOREM_SEQUENCE:
+1; line_addition(AC,CO); Collinear(ACO); ["Equal(LengthOfLine(AO),Add(LengthOfLine(AC),LengthOfLine(CO)))"]
+2; line_addition(OD,DB); Collinear(ODB); ["Equal(LengthOfLine(OB),Add(LengthOfLine(OD),LengthOfLine(DB)))"]
+3; line_addition(AO,OB); Collinear(AOB); ["Equal(LengthOfLine(AB),Add(LengthOfLine(AO),LengthOfLine(OB)))"]
+4; line_addition(CO,OD); Collinear(COD); ["Equal(LengthOfLine(CD),Add(LengthOfLine(CO),LengthOfLine(OD)))"]
 #RETRIES:
-0
+1
 #RUNS:
 0
 
