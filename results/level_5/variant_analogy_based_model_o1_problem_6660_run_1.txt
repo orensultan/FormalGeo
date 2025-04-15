@@ -320,11 +320,11 @@ Polygon(CBA)
 Circle(O)
 IsDiameterOfCircle(DB,O)
 SYMBOLS_AND_VALUES:
-MeasureOfAngle(ABD);ma_ebd;59
-MeasureOfAngle(OBD);ma_ebd;59
-MeasureOfAngle(EBD);ma_ebd;59
-MeasureOfAngle(ECB);ma_ecb;None
-MeasureOfAngle(DCB);ma_ecb;None
+MeasureOfAngle(EDA);ma_cda;54
+MeasureOfAngle(CDA);ma_cda;54
+MeasureOfAngle(EAC);ma_bac;None
+MeasureOfAngle(OAC);ma_bac;None
+MeasureOfAngle(BAC);ma_bac;None
 
 Outputs:
 Outputs for Problem B:
@@ -340,16 +340,76 @@ ANSWER:
 70
 
 THEOREM_SEQUENCE:
-1; diameter_of_circle_property_right_angle(1,BAD,O); IsDiameterOfCircle(BD,O)&Cocircular(O,BAD)&Angle(BAD); ["PerpendicularBetweenLine(BA,DA)"]  
-2; triangle_property_angle_sum(1,ABD); Polygon(ABD); ["Equal(Add(MeasureOfAngle(ABD),MeasureOfAngle(BAD),MeasureOfAngle(BDA)),180)"]  
-3; arc_property_circumference_angle_external(1,OAB,D); Cocircular(O,BDA)&Angle(BDA); ["Equal(MeasureOfAngle(BDA),Mul(MeasureOfArc(OAB),1/2))"]  
-4; arc_property_circumference_angle_external(1,OAB,C); Cocircular(O,BCA)&Angle(BCA); ["Equal(MeasureOfAngle(BCA),Mul(MeasureOfArc(OAB),1/2))"]  
+1; diameter_of_circle_property_right_angle(1,BAD,O); IsDiameterOfCircle(DB,O)&Cocircular(O,BAD)&Angle(BAD); ["PerpendicularBetweenLine(BA,DA)"]  
+2; triangle_property_angle_sum(1,ABD); Polygon(ABD); ["Equal(Add(MeasureOfAngle(ABD),MeasureOfAngle(BDA),MeasureOfAngle(DAB)),180)"]  
+3; arc_property_circumference_angle_external(1,OBA,D); Cocircular(O,BAD)&Angle(ADB); ["Equal(MeasureOfAngle(ADB),Mul(MeasureOfArc(OBA),1/2))"]  
+4; arc_property_circumference_angle_external(1,OBA,C); Cocircular(O,BAC)&Angle(ACB); ["Equal(MeasureOfAngle(ACB),Mul(MeasureOfArc(OBA),1/2))"]  
 ***MODEL_RESPONSE_END***
 RETRIES_MESSAGES:
+#run: 1; #retry: 1; message: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
+Verification failed.
+Theorem: diameter_of_circle_property_right_angle(1,BAD,O)
+The language model outputs the following premises: IsDiameterOfCircle(BD,O)&Cocircular(O,BAD)&Angle(BAD)
+The correct premises for the theorem: IsDiameterOfCircle(DB,O)&Cocircular(O,BAD)&Angle(BAD)
+
+Model Answer:
+RETRY_ANSWER:
+70
+RETRY_THEOREM_SEQUENCE:
+1; diameter_of_circle_property_right_angle(1,BAD,O); IsDiameterOfCircle(BD,O)&Cocircular(O,BAD)&Angle(BAD); ["PerpendicularBetweenLine(BA,DA)"]  
+2; triangle_property_angle_sum(1,ABD); Polygon(ABD); ["Equal(Add(MeasureOfAngle(ABD),MeasureOfAngle(BAD),MeasureOfAngle(BDA)),180)"]  
+3; arc_property_circumference_angle_external(1,OBA,D); Cocircular(O,DBA)&Angle(BDA); ["Equal(MeasureOfAngle(BDA),Mul(MeasureOfArc(OBA),1/2))"]  
+4; arc_property_circumference_angle_external(1,OBA,C); Cocircular(O,CBA)&Angle(BCA); ["Equal(MeasureOfAngle(BCA),Mul(MeasureOfArc(OBA),1/2))"]
+#run: 1; #retry: 2; message: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
+Verification failed.
+Theorem: triangle_property_angle_sum(1,ABD)
+The language model outputs the following conclusions: Equal(Add(MeasureOfAngle(ABD),MeasureOfAngle(BAD),MeasureOfAngle(BDA)),180)
+The correct conclusions for the theorem: Equal(Add(MeasureOfAngle(ABD),MeasureOfAngle(BDA),MeasureOfAngle(DAB)),180)
+
+Model Answer:
+RETRY_ANSWER:
+70
+RETRY_THEOREM_SEQUENCE:
+1; diameter_of_circle_property_right_angle(1,BAD,O); IsDiameterOfCircle(DB,O)&Cocircular(O,BAD)&Angle(BAD); ["PerpendicularBetweenLine(BA,DA)"]  
+2; triangle_property_angle_sum(1,ABD); Polygon(ABD); ["Equal(Add(MeasureOfAngle(ABD),MeasureOfAngle(BAD),MeasureOfAngle(BDA)),180)"]  
+3; arc_property_circumference_angle_external(1,OBA,D); Cocircular(O,DBA)&Angle(BDA); ["Equal(MeasureOfAngle(BDA),Mul(MeasureOfArc(OBA),1/2))"]  
+4; arc_property_circumference_angle_external(1,OBA,C); Cocircular(O,CBA)&Angle(BCA); ["Equal(MeasureOfAngle(BCA),Mul(MeasureOfArc(OBA),1/2))"]
+#run: 1; #retry: 3; message: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
+Verification failed.
+Theorem: arc_property_circumference_angle_external(1,OBA,D)
+The language model outputs the following premises: Cocircular(O,DBA)&Angle(BDA)
+The correct premises for the theorem: Cocircular(O,BAD)&Angle(ADB)
+The language model outputs the following conclusions: Equal(MeasureOfAngle(BDA),Mul(MeasureOfArc(OBA),1/2))
+The correct conclusions for the theorem: Equal(MeasureOfAngle(ADB),Mul(MeasureOfArc(OBA),1/2))
+
+Model Answer:
+RETRY_ANSWER:
+70
+RETRY_THEOREM_SEQUENCE:
+1; diameter_of_circle_property_right_angle(1,BAD,O); IsDiameterOfCircle(DB,O)&Cocircular(O,BAD)&Angle(BAD); ["PerpendicularBetweenLine(BA,DA)"]  
+2; triangle_property_angle_sum(1,ABD); Polygon(ABD); ["Equal(Add(MeasureOfAngle(ABD),MeasureOfAngle(BDA),MeasureOfAngle(DAB)),180)"]  
+3; arc_property_circumference_angle_external(1,OBA,D); Cocircular(O,DBA)&Angle(BDA); ["Equal(MeasureOfAngle(BDA),Mul(MeasureOfArc(OBA),1/2))"]  
+4; arc_property_circumference_angle_external(1,OBA,C); Cocircular(O,CBA)&Angle(BCA); ["Equal(MeasureOfAngle(BCA),Mul(MeasureOfArc(OBA),1/2))"]
+#run: 1; #retry: 4; message: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
+Verification failed.
+Theorem: arc_property_circumference_angle_external(1,OBA,C)
+The language model outputs the following premises: Cocircular(O,CBA)&Angle(BCA)
+The correct premises for the theorem: Cocircular(O,BAC)&Angle(ACB)
+The language model outputs the following conclusions: Equal(MeasureOfAngle(BCA),Mul(MeasureOfArc(OBA),1/2))
+The correct conclusions for the theorem: Equal(MeasureOfAngle(ACB),Mul(MeasureOfArc(OBA),1/2))
+
+Model Answer:
+RETRY_ANSWER:
+70
+RETRY_THEOREM_SEQUENCE:
+1; diameter_of_circle_property_right_angle(1,BAD,O); IsDiameterOfCircle(DB,O)&Cocircular(O,BAD)&Angle(BAD); ["PerpendicularBetweenLine(BA,DA)"]
+2; triangle_property_angle_sum(1,ABD); Polygon(ABD); ["Equal(Add(MeasureOfAngle(ABD),MeasureOfAngle(BDA),MeasureOfAngle(DAB)),180)"]
+3; arc_property_circumference_angle_external(1,OBA,D); Cocircular(O,BAD)&Angle(ADB); ["Equal(MeasureOfAngle(ADB),Mul(MeasureOfArc(OBA),1/2))"]
+4; arc_property_circumference_angle_external(1,OBA,C); Cocircular(O,CBA)&Angle(BCA); ["Equal(MeasureOfAngle(BCA),Mul(MeasureOfArc(OBA),1/2))"]
 #RETRIES:
-0
+4
 #RUNS:
-0
+1
 
 
 GT_EQUATIONS:

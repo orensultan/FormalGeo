@@ -528,12 +528,12 @@ SYMBOLS_AND_VALUES:
 DiameterOfCircle(A);dc_a;10
 DiameterOfCircle(B);dc_b;30
 DiameterOfCircle(C);dc_c;10
-LengthOfLine(AZ);ll_az;2
-LengthOfLine(ZA);ll_az;2
-LengthOfLine(CW);ll_cw;2
-LengthOfLine(WC);ll_cw;2
-LengthOfLine(BY);ll_by;None
-LengthOfLine(YB);ll_by;None
+LengthOfLine(AD);ll_ad;2
+LengthOfLine(DA);ll_ad;2
+LengthOfLine(CH);ll_ch;2
+LengthOfLine(HC);ll_ch;2
+LengthOfLine(BX);ll_bx;None
+LengthOfLine(XB);ll_bx;None
 
 Outputs:
 Outputs for Problem B:
@@ -548,18 +548,40 @@ GOAL_SYMBOL:
 ll_by
 
 ANSWER:
-5
+3
 
 THEOREM_SEQUENCE:
-1; circle_property_length_of_radius_and_diameter(1,A); Circle(A); ["Equal(DiameterOfCircle(A),Mul(RadiusOfCircle(A),2))"]
-2; circle_property_length_of_radius_and_diameter(1,B); Circle(B); ["Equal(DiameterOfCircle(B),Mul(RadiusOfCircle(B),2))"]
-3; radius_of_circle_property_length_equal(1,AB,B); Cocircular(B,A)&Line(AB)&IsCentreOfCircle(B,B); ["Equal(LengthOfLine(AB),RadiusOfCircle(B))"]
-4; radius_of_circle_property_length_equal(1,AY,A); Cocircular(A,Y)&Line(AY)&IsCentreOfCircle(A,A); ["Equal(LengthOfLine(AY),RadiusOfCircle(A))"]
-5; line_addition(1,AY,YB); Collinear(ABY); ["Equal(LengthOfLine(AB),Add(LengthOfLine(AY),LengthOfLine(YB)))"]
+1; circle_property_length_of_radius_and_diameter(1,B); Circle(B); ["Equal(DiameterOfCircle(B),Mul(RadiusOfCircle(B),2))"]  
+2; circle_property_length_of_radius_and_diameter(1,C); Circle(C); ["Equal(DiameterOfCircle(C),Mul(RadiusOfCircle(C),2))"]  
+3; radius_of_circle_property_length_equal(1,BC,B); Cocircular(B,C)&Line(BC)&IsCentreOfCircle(B,B); ["Equal(LengthOfLine(BC),RadiusOfCircle(B))"]  
+4; radius_of_circle_property_length_equal(1,CY,C); Cocircular(C,Y)&Line(CY)&IsCentreOfCircle(C,C); ["Equal(LengthOfLine(CY),RadiusOfCircle(C))"]  
+5; line_addition(1,BY,YC); Collinear(BYC); ["Equal(LengthOfLine(BC),Add(LengthOfLine(BY),LengthOfLine(YC)))"]  
 ***MODEL_RESPONSE_END***
 RETRIES_MESSAGES:
+#run: 0; #retry: 1; message: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
+Verification failed. Theorem <line_addition> para length error. Expected 4 but got ('B', 'C', ' ', 'B', 'Y', 'C').
+Model Answer:
+RETRY_ANSWER:
+3
+RETRY_THEOREM_SEQUENCE:
+1; circle_property_length_of_radius_and_diameter(1,B); Circle(B); ["Equal(DiameterOfCircle(B),Mul(RadiusOfCircle(B),2))"]
+2; circle_property_length_of_radius_and_diameter(1,C); Circle(C); ["Equal(DiameterOfCircle(C),Mul(RadiusOfCircle(C),2))"]
+3; radius_of_circle_property_length_equal(1,BC,B); Cocircular(B,C)&Line(BC)&IsCentreOfCircle(B,B); ["Equal(LengthOfLine(BC),RadiusOfCircle(B))"]
+4; radius_of_circle_property_length_equal(1,CY,C); Cocircular(C,Y)&Line(CY)&IsCentreOfCircle(C,C); ["Equal(LengthOfLine(CY),RadiusOfCircle(C))"]
+5; line_addition(BC, BYC); Collinear(BYC); ["Equal(LengthOfLine(BC),Add(LengthOfLine(BY),LengthOfLine(YC)))"]
+#run: 0; #retry: 2; message: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
+Verification failed. Theorem <line_addition> branch error. Expected dict_keys(['1']) but got None. Please rewrite your response, you should change only the call to theorem <line_addition> by adding the branch number from the dict_keys as the first argument
+Model Answer:
+RETRY_ANSWER:
+3
+RETRY_THEOREM_SEQUENCE:
+1; circle_property_length_of_radius_and_diameter(1,B); Circle(B); ["Equal(DiameterOfCircle(B),Mul(RadiusOfCircle(B),2))"]
+2; circle_property_length_of_radius_and_diameter(1,C); Circle(C); ["Equal(DiameterOfCircle(C),Mul(RadiusOfCircle(C),2))"]
+3; radius_of_circle_property_length_equal(1,BC,B); Cocircular(B,C)&Line(BC)&IsCentreOfCircle(B,B); ["Equal(LengthOfLine(BC),RadiusOfCircle(B))"]
+4; radius_of_circle_property_length_equal(1,CY,C); Cocircular(C,Y)&Line(CY)&IsCentreOfCircle(C,C); ["Equal(LengthOfLine(CY),RadiusOfCircle(C))"]
+5; line_addition(BY,YC); Collinear(BYC); ["Equal(LengthOfLine(BC),Add(LengthOfLine(BY),LengthOfLine(YC)))"]
 #RETRIES:
-0
+2
 #RUNS:
 0
 
