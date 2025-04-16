@@ -73,23 +73,23 @@ class Verifier:
 
     def verify_symbols_syntax(self):
         if len(self.theorem_seqs) == 0:
-            return "Verification failed. The THEOREM_SEQUENCE you provided is empty. Please generate a proof again, using the similar problems I provided (A1, A2, A3, A4, A5), along with the GDL_DICTIONARY of theorems."
+            return "Failure: The THEOREM_SEQUENCE you provided is empty. Please generate a proof again, using the similar problems I provided (A1, A2, A3, A4, A5), along with the GDL_DICTIONARY of theorems."
         for theorem, model_premises, model_conclusions in self.theorem_seqs:
             t_name, t_branch, t_para = parse_one_theorem(theorem)
             tier1_verification_result = self.solver.verify_tier1(t_name, t_branch, t_para)
             if tier1_verification_result != "Success":
-                return "Verification failed. " + tier1_verification_result
+                return f"Failure: {tier1_verification_result}"
             letters = self.get_letters(t_name, t_para)
             theory_json = get_theorem(theorem)
             premises, conclusions = json.loads(theory_json)['premise'], json.loads(theory_json)['conclusion']
             premises = replace_symbols(premises, letters)
             return_str = ""
             if model_premises != premises:
-                return_str += f"The language model outputs the following premises: {model_premises}\nThe correct premises for the theorem: {premises}\n"
+                return_str += f"You outputs the following premises: {model_premises}\nBut the correct premises for the theorem: {premises}\n"
             for i in range(len(conclusions)):
                 conclusions[i] = replace_symbols(conclusions[i], letters)
                 if ast.literal_eval(model_conclusions)[i] != conclusions[i]:
-                    return_str += f"The language model outputs the following conclusions: {ast.literal_eval(model_conclusions)[i]}\nThe correct conclusions for the theorem: {conclusions[i]}\n"
+                    return_str += f"You outputs the following conclusions: {ast.literal_eval(model_conclusions)[i]}\nBut the correct conclusions for the theorem: {conclusions[i]}\n"
             if return_str != "":
-                return "Verification failed.\nTheorem: " + theorem + "\n" + return_str
+                return f"Theorem: {theorem}\n{return_str}"
         return "Success"

@@ -1,0 +1,208 @@
+Inputs for Problem B:
+DESCRIPTION:
+As shown in the diagram, BA=9, BD=6, BE=4, ED is parallel to CA. Find the length of line EC.
+CONSTRUCTION_CDL:
+Shape(BE,ED,DB)
+Shape(AD,DE,EC,CA)
+Collinear(BDA)
+Collinear(BEC)
+TEXT_CDL:
+Equal(LengthOfLine(BA),9)
+Equal(LengthOfLine(BD),6)
+Equal(LengthOfLine(BE),4)
+ParallelBetweenLine(ED,CA)
+GOAL_CDL:
+Value(LengthOfLine(EC))
+CONSTRUCTION_CDL_EXTENDED:
+Shape(ED,DB,BE)
+Shape(DB,BE,ED)
+Shape(DE,EC,CA,AD)
+Shape(EC,CA,AD,DE)
+Shape(CA,AD,DE,EC)
+Shape(DB,BE,EC,CA,AD)
+Shape(BE,EC,CA,AD,DB)
+Shape(EC,CA,AD,DB,BE)
+Shape(CA,AD,DB,BE,EC)
+Shape(AD,DB,BE,EC,CA)
+Collinear(ADB)
+Collinear(CEB)
+Point(B)
+Point(A)
+Point(D)
+Point(C)
+Point(E)
+Line(BA)
+Line(AB)
+Line(BD)
+Line(DB)
+Line(DA)
+Line(AD)
+Line(BC)
+Line(CB)
+Line(BE)
+Line(EB)
+Line(EC)
+Line(CE)
+Line(ED)
+Line(DE)
+Line(CA)
+Line(AC)
+Angle(BDA)
+Angle(ADB)
+Angle(BEC)
+Angle(CEB)
+Angle(BED)
+Angle(EDB)
+Angle(DBE)
+Angle(ADE)
+Angle(DEC)
+Angle(ECA)
+Angle(CAD)
+Angle(BCA)
+Angle(CED)
+Angle(EDA)
+Angle(DBC)
+Angle(ABE)
+Angle(ABC)
+Angle(CAB)
+Angle(DEB)
+Angle(BDE)
+Angle(EBD)
+Angle(ACE)
+Angle(DAC)
+Angle(ACB)
+Angle(CBD)
+Angle(EBA)
+Angle(CBA)
+Angle(BAC)
+Polygon(BED)
+Polygon(BDE)
+Polygon(EBD)
+Polygon(EDB)
+Polygon(DBE)
+Polygon(DEB)
+Polygon(ADEC)
+Polygon(DECA)
+Polygon(ECAD)
+Polygon(CADE)
+Polygon(BCA)
+Polygon(BAC)
+Polygon(CBA)
+Polygon(CAB)
+Polygon(ABC)
+Polygon(ACB)
+ParallelBetweenLine(AC,DE)
+ParallelBetweenLine(DE,AC)
+SYMBOLS_AND_VALUES:
+LengthOfLine(AD);ll_ad;42
+LengthOfLine(DA);ll_ad;42
+LengthOfLine(EA);ll_ea;18
+LengthOfLine(AE);ll_ea;18
+LengthOfLine(EC);ll_ec;12
+LengthOfLine(CE);ll_ec;12
+LengthOfLine(DG);ll_dg;None
+LengthOfLine(GD);ll_dg;None
+
+Outputs:
+Outputs for Problem B:
+
+***MODEL_RESPONSE_BEGIN***
+EQUATIONS:
+ll_ba-9 ll_bd-6 ll_be-4
+
+GOAL_SYMBOL:
+ll_ec
+
+ANSWER:
+2
+
+THEOREM_SEQUENCE:
+1; parallel_property_corresponding_angle(1,ED,CA,B); ParallelBetweenLine(ED,CA)&Collinear(BEC); ["Equal(MeasureOfAngle(BDE),MeasureOfAngle(ECA))"]
+2; parallel_property_corresponding_angle(2,ED,CA,B); ParallelBetweenLine(ED,CA)&Collinear(ECB); ["Equal(MeasureOfAngle(DEB),MeasureOfAngle(CAE))"]
+3; similar_triangle_judgment_aa(1,BDE,ECA); Polygon(BDE)&Polygon(ECA)&Equal(MeasureOfAngle(BDE),MeasureOfAngle(ECA))&Equal(MeasureOfAngle(DEB),MeasureOfAngle(CAE)); ["SimilarBetweenTriangle(BDE,ECA)"]
+4; line_addition(1,BE,EC); Collinear(BEC); ["Equal(LengthOfLine(BC),Add(LengthOfLine(BE),LengthOfLine(EC)))"]
+***MODEL_RESPONSE_END***
+RETRIES_MESSAGES:
+#run: 0; #retry: 1; message: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
+Verification failed.
+Theorem: parallel_property_corresponding_angle(1,ED,CA,B)
+The language model outputs the following premises: ParallelBetweenLine(ED,CA)&Collinear(BDA)
+The correct premises for the theorem: ParallelBetweenLine(ED,CA)&Collinear(BEC)
+The language model outputs the following conclusions: Equal(MeasureOfAngle(BDE),MeasureOfAngle(BCA))
+The correct conclusions for the theorem: Equal(MeasureOfAngle(BED),MeasureOfAngle(ECA))
+
+Model Answer:
+RETRY_ANSWER:
+2
+RETRY_THEOREM_SEQUENCE:
+1; parallel_property_corresponding_angle(1,ED,CA,B); ParallelBetweenLine(ED,CA)&Collinear(BDA); ["Equal(MeasureOfAngle(BDE),MeasureOfAngle(BCA))"]
+2; parallel_property_corresponding_angle(2,CA,ED,B); ParallelBetweenLine(CA,ED)&Collinear(BEC); ["Equal(MeasureOfAngle(BED),MeasureOfAngle(BAC))"]
+3; similar_triangle_judgment_aa(1,BDE,BCA); Polygon(BDE)&Polygon(BCA)&Equal(MeasureOfAngle(BDE),MeasureOfAngle(BCA))&Equal(MeasureOfAngle(BED),MeasureOfAngle(BAC)); ["SimilarBetweenTriangle(BDE,BCA)"]
+4; similar_triangle_property_line_ratio(1,BDE,BCA); SimilarBetweenTriangle(BDE,BCA); ["Equal(LengthOfLine(BD),Mul(LengthOfLine(BC),RatioOfSimilarTriangle(BDE,BCA)))"]
+5; line_addition(1,BE,EC); Collinear(BEC); ["Equal(LengthOfLine(BC),Add(LengthOfLine(BE),LengthOfLine(EC)))"]
+#run: 0; #retry: 2; message: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
+Verification failed.
+Theorem: parallel_property_corresponding_angle(1,ED,CA,B)
+The language model outputs the following conclusions: Equal(MeasureOfAngle(BED),MeasureOfAngle(BCA))
+The correct conclusions for the theorem: Equal(MeasureOfAngle(BED),MeasureOfAngle(ECA))
+
+Model Answer:
+RETRY_ANSWER:
+2
+RETRY_THEOREM_SEQUENCE:
+1; parallel_property_corresponding_angle(1,ED,CA,B); ParallelBetweenLine(ED,CA)&Collinear(BEC); ["Equal(MeasureOfAngle(BED),MeasureOfAngle(BCA))"]
+2; parallel_property_corresponding_angle(2,ED,CA,B); ParallelBetweenLine(ED,CA)&Collinear(BDA); ["Equal(MeasureOfAngle(BDE),MeasureOfAngle(BAC))"]
+3; similar_triangle_judgment_aa(1,BDE,BCA); Polygon(BDE)&Polygon(BCA)&Equal(MeasureOfAngle(BED),MeasureOfAngle(BCA))&Equal(MeasureOfAngle(BDE),MeasureOfAngle(BAC)); ["SimilarBetweenTriangle(BDE,BCA)"]
+4; line_addition(1,BE,EC); Collinear(BEC); ["Equal(LengthOfLine(BC),Add(LengthOfLine(BE),LengthOfLine(EC)))"]
+#run: 0; #retry: 3; message: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
+Verification failed.
+Theorem: parallel_property_corresponding_angle(2,ED,CA,B)
+The language model outputs the following premises: ParallelBetweenLine(ED,CA)&Collinear(BDA)
+The correct premises for the theorem: ParallelBetweenLine(ED,CA)&Collinear(ECB)
+The language model outputs the following conclusions: Equal(MeasureOfAngle(BDE),MeasureOfAngle(EAC))
+The correct conclusions for the theorem: Equal(MeasureOfAngle(DEC),MeasureOfAngle(ACB))
+
+Model Answer:
+RETRY_ANSWER:
+2
+RETRY_THEOREM_SEQUENCE:
+1; parallel_property_corresponding_angle(1,ED,CA,B); ParallelBetweenLine(ED,CA)&Collinear(BEC); ["Equal(MeasureOfAngle(BED),MeasureOfAngle(ECA))"]
+2; parallel_property_corresponding_angle(2,ED,CA,B); ParallelBetweenLine(ED,CA)&Collinear(BDA); ["Equal(MeasureOfAngle(BDE),MeasureOfAngle(EAC))"]
+3; similar_triangle_judgment_aa(1,BDE,ECA); Polygon(BDE)&Polygon(ECA)&Equal(MeasureOfAngle(BED),MeasureOfAngle(ECA))&Equal(MeasureOfAngle(BDE),MeasureOfAngle(EAC)); ["SimilarBetweenTriangle(BDE,ECA)"]
+4; line_addition(1,BE,EC); Collinear(BEC); ["Equal(LengthOfLine(BC),Add(LengthOfLine(BE),LengthOfLine(EC)))"]
+#run: 0; #retry: 4; message: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
+Verification failed.
+Theorem: similar_triangle_judgment_aa(1,BDE,ECA)
+The language model outputs the following premises: Polygon(BDE)&Polygon(ECA)&Equal(MeasureOfAngle(BED),MeasureOfAngle(ECA))&Equal(MeasureOfAngle(DEC),MeasureOfAngle(ACB))
+The correct premises for the theorem: Polygon(BDE)&Polygon(ECA)&Equal(MeasureOfAngle(BDE),MeasureOfAngle(ECA))&Equal(MeasureOfAngle(DEB),MeasureOfAngle(CAE))
+
+Model Answer:
+RETRY_ANSWER:
+2
+RETRY_THEOREM_SEQUENCE:
+1; parallel_property_corresponding_angle(1,ED,CA,B); ParallelBetweenLine(ED,CA)&Collinear(BEC); ["Equal(MeasureOfAngle(BED),MeasureOfAngle(ECA))"]
+2; parallel_property_corresponding_angle(2,ED,CA,B); ParallelBetweenLine(ED,CA)&Collinear(ECB); ["Equal(MeasureOfAngle(DEC),MeasureOfAngle(ACB))"]
+3; similar_triangle_judgment_aa(1,BDE,ECA); Polygon(BDE)&Polygon(ECA)&Equal(MeasureOfAngle(BED),MeasureOfAngle(ECA))&Equal(MeasureOfAngle(DEC),MeasureOfAngle(ACB)); ["SimilarBetweenTriangle(BDE,ECA)"]
+4; line_addition(1,BE,EC); Collinear(BEC); ["Equal(LengthOfLine(BC),Add(LengthOfLine(BE),LengthOfLine(EC)))"]
+#RETRIES:
+4
+#RUNS:
+0
+
+
+GT_EQUATIONS:
+ll_ba-9
+ll_bd-6
+ll_be-4
+GT_GOAL_SYMBOL:
+ll_ec
+GT_ANSWER:
+2
+GT_THEOREM_SEQUENCE:
+1;parallel_property_corresponding_angle(1,ED,CA,B);ParallelBetweenLine(ED,CA)&Collinear(BEC);["Equal(MeasureOfAngle(BED),MeasureOfAngle(ECA))"]
+2;parallel_property_corresponding_angle(2,AC,DE,B);ParallelBetweenLine(AC,DE)&Collinear(ADB);["Equal(MeasureOfAngle(CAD),MeasureOfAngle(EDB))"]
+3;similar_triangle_judgment_aa(1,BED,BCA);Polygon(BED)&Polygon(BCA)&Equal(MeasureOfAngle(BED),MeasureOfAngle(BCA))&Equal(MeasureOfAngle(EDB),MeasureOfAngle(CAB));["SimilarBetweenTriangle(BED,BCA)"]
+4;similar_triangle_property_line_ratio(1,EDB,CAB);SimilarBetweenTriangle(EDB,CAB);["Equal(LengthOfLine(DB),Mul(LengthOfLine(AB),RatioOfSimilarTriangle(EDB,CAB)))"]
+5;similar_triangle_property_line_ratio(1,DBE,ABC);SimilarBetweenTriangle(DBE,ABC);["Equal(LengthOfLine(BE),Mul(LengthOfLine(BC),RatioOfSimilarTriangle(DBE,ABC)))"]
+6;line_addition(1,BE,EC);Collinear(BEC);["Equal(LengthOfLine(BC),Add(LengthOfLine(BE),LengthOfLine(EC)))"]
+

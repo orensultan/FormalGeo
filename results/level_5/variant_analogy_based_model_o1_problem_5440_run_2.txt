@@ -40,11 +40,6 @@ Shape(DF,FH,HG,GA,AD)
 Shape(FH,HG,GA,AD,DF)
 Shape(HG,GA,AD,DF,FH)
 Shape(GA,AD,DF,FH,HG)
-Shape(HG,GA,AF,FB,BH)
-Shape(GA,AF,FB,BH,HG)
-Shape(AF,FB,BH,HG,GA)
-Shape(FB,BH,HG,GA,AF)
-Shape(BH,HG,GA,AF,FB)
 Shape(GA,AF,FH,HC,CG)
 Shape(AF,FH,HC,CG,GA)
 Shape(FH,HC,CG,GA,AF)
@@ -55,6 +50,11 @@ Shape(FH,HG,GE,EA,AF)
 Shape(HG,GE,EA,AF,FH)
 Shape(GE,EA,AF,FH,HG)
 Shape(EA,AF,FH,HG,GE)
+Shape(HG,GA,AF,FB,BH)
+Shape(GA,AF,FB,BH,HG)
+Shape(AF,FB,BH,HG,GA)
+Shape(FB,BH,HG,GA,AF)
+Shape(BH,HG,GA,AF,FB)
 Shape(CG,GH,HB,BC)
 Shape(GH,HB,BC,CG)
 Shape(HB,BC,CG,GH)
@@ -63,12 +63,6 @@ Shape(BC,CH,HF,FB)
 Shape(CH,HF,FB,BC)
 Shape(HF,FB,BC,CH)
 Shape(FB,BC,CH,HF)
-Shape(AD,DF,FB,BH,HG,GA)
-Shape(DF,FB,BH,HG,GA,AD)
-Shape(FB,BH,HG,GA,AD,DF)
-Shape(BH,HG,GA,AD,DF,FB)
-Shape(HG,GA,AD,DF,FB,BH)
-Shape(GA,AD,DF,FB,BH,HG)
 Shape(AD,DF,FH,HC,CG,GA)
 Shape(DF,FH,HC,CG,GA,AD)
 Shape(FH,HC,CG,GA,AD,DF)
@@ -81,30 +75,36 @@ Shape(FH,HG,GE,EA,AD,DF)
 Shape(HG,GE,EA,AD,DF,FH)
 Shape(GE,EA,AD,DF,FH,HG)
 Shape(EA,AD,DF,FH,HG,GE)
-Shape(HG,GA,AF,FB,BC,CH)
-Shape(GA,AF,FB,BC,CH,HG)
-Shape(AF,FB,BC,CH,HG,GA)
-Shape(FB,BC,CH,HG,GA,AF)
-Shape(BC,CH,HG,GA,AF,FB)
-Shape(CH,HG,GA,AF,FB,BC)
+Shape(AD,DF,FB,BH,HG,GA)
+Shape(DF,FB,BH,HG,GA,AD)
+Shape(FB,BH,HG,GA,AD,DF)
+Shape(BH,HG,GA,AD,DF,FB)
+Shape(HG,GA,AD,DF,FB,BH)
+Shape(GA,AD,DF,FB,BH,HG)
 Shape(GA,AF,FH,HB,BC,CG)
 Shape(AF,FH,HB,BC,CG,GA)
 Shape(FH,HB,BC,CG,GA,AF)
 Shape(HB,BC,CG,GA,AF,FH)
 Shape(BC,CG,GA,AF,FH,HB)
 Shape(CG,GA,AF,FH,HB,BC)
-Shape(GE,EA,AF,FB,BH,HG)
-Shape(EA,AF,FB,BH,HG,GE)
-Shape(AF,FB,BH,HG,GE,EA)
-Shape(FB,BH,HG,GE,EA,AF)
-Shape(BH,HG,GE,EA,AF,FB)
-Shape(HG,GE,EA,AF,FB,BH)
+Shape(HG,GA,AF,FB,BC,CH)
+Shape(GA,AF,FB,BC,CH,HG)
+Shape(AF,FB,BC,CH,HG,GA)
+Shape(FB,BC,CH,HG,GA,AF)
+Shape(BC,CH,HG,GA,AF,FB)
+Shape(CH,HG,GA,AF,FB,BC)
 Shape(GE,EA,AF,FH,HC,CG)
 Shape(EA,AF,FH,HC,CG,GE)
 Shape(AF,FH,HC,CG,GE,EA)
 Shape(FH,HC,CG,GE,EA,AF)
 Shape(HC,CG,GE,EA,AF,FH)
 Shape(CG,GE,EA,AF,FH,HC)
+Shape(GE,EA,AF,FB,BH,HG)
+Shape(EA,AF,FB,BH,HG,GE)
+Shape(AF,FB,BH,HG,GE,EA)
+Shape(FB,BH,HG,GE,EA,AF)
+Shape(BH,HG,GE,EA,AF,FB)
+Shape(HG,GE,EA,AF,FB,BH)
 Shape(HC,CG,GA,AF,FB,BH)
 Shape(CG,GA,AF,FB,BH,HC)
 Shape(GA,AF,FB,BH,HC,CG)
@@ -116,23 +116,16 @@ Shape(GH,HF,FB,BC,CG)
 Shape(HF,FB,BC,CG,GH)
 Shape(FB,BC,CG,GH,HF)
 Shape(BC,CG,GH,HF,FB)
-..(CH,HG,GA,AD,DF,FB,BC)
-..(HG,GA,AD,DF,FB,BC,CH)
-..(GA,AD,DF,FB,BC,CH,HG)
-..(AD,DF,FH,HB,BC,CG,GA)
-..(DF,FH,HB,BC,CG,GA,AD)
-..(FH,HB,BC,CG,GA,AD,DF)
-..(HB,BC,CG,GA,AD,DF,FH)
 ..(BC,CG,GA,AD,DF,FH,HB)
 ..(CG,GA,AD,DF,FH,HB,BC)
 ..(GA,AD,DF,FH,HB,BC,CG)
-..(AD,DF,FB,BH,HG,GE,EA)
-..(DF,FB,BH,HG,GE,EA,AD)
-..(FB,BH,HG,GE,EA,AD,DF)
-..(BH,HG,GE,EA,AD,DF,FB)
-..(HG,GE,EA,AD,DF,FB,BH)
-..(GE,EA,AD,DF,FB,BH,HG)
-..(EA,AD,DF,FB,BH,HG,GE)
+..(AD,DF,FB,BC,CH,HG,GA)
+..(DF,FB,BC,CH,HG,GA,AD)
+..(FB,BC,CH,HG,GA,AD,DF)
+..(BC,CH,HG,GA,AD,DF,FB)
+..(CH,HG,GA,AD,DF,FB,BC)
+..(HG,GA,AD,DF,FB,BC,CH)
+..(GA,AD,DF,FB,BC,CH,HG)
 ..(AD,DF,FH,HC,CG,GE,EA)
 ..(DF,FH,HC,CG,GE,EA,AD)
 ..(FH,HC,CG,GE,EA,AD,DF)
@@ -140,6 +133,13 @@ Shape(BC,CG,GH,HF,FB)
 ..(CG,GE,EA,AD,DF,FH,HC)
 ..(GE,EA,AD,DF,FH,HC,CG)
 ..(EA,AD,DF,FH,HC,CG,GE)
+..(AD,DF,FB,BH,HG,GE,EA)
+..(DF,FB,BH,HG,GE,EA,AD)
+..(FB,BH,HG,GE,EA,AD,DF)
+..(BH,HG,GE,EA,AD,DF,FB)
+..(HG,GE,EA,AD,DF,FB,BH)
+..(GE,EA,AD,DF,FB,BH,HG)
+..(EA,AD,DF,FB,BH,HG,GE)
 ..(AD,DF,FB,BH,HC,CG,GA)
 ..(DF,FB,BH,HC,CG,GA,AD)
 ..(FB,BH,HC,CG,GA,AD,DF)
@@ -152,13 +152,6 @@ Shape(BC,CG,GH,HF,FB)
 ..(FB,BC,CG,GA,AF)
 ..(BC,CG,GA,AF,FB)
 ..(CG,GA,AF,FB,BC)
-..(GE,EA,AF,FB,BC,CH,HG)
-..(EA,AF,FB,BC,CH,HG,GE)
-..(AF,FB,BC,CH,HG,GE,EA)
-..(FB,BC,CH,HG,GE,EA,AF)
-..(BC,CH,HG,GE,EA,AF,FB)
-..(CH,HG,GE,EA,AF,FB,BC)
-..(HG,GE,EA,AF,FB,BC,CH)
 ..(GE,EA,AF,FH,HB,BC,CG)
 ..(EA,AF,FH,HB,BC,CG,GE)
 ..(AF,FH,HB,BC,CG,GE,EA)
@@ -166,6 +159,13 @@ Shape(BC,CG,GH,HF,FB)
 ..(HB,BC,CG,GE,EA,AF,FH)
 ..(BC,CG,GE,EA,AF,FH,HB)
 ..(CG,GE,EA,AF,FH,HB,BC)
+..(GE,EA,AF,FB,BC,CH,HG)
+..(EA,AF,FB,BC,CH,HG,GE)
+..(AF,FB,BC,CH,HG,GE,EA)
+..(FB,BC,CH,HG,GE,EA,AF)
+..(BC,CH,HG,GE,EA,AF,FB)
+..(CH,HG,GE,EA,AF,FB,BC)
+..(HG,GE,EA,AF,FB,BC,CH)
 ..(GE,EA,AF,FB,BH,HC,CG)
 ..(EA,AF,FB,BH,HC,CG,GE)
 ..(AF,FB,BH,HC,CG,GE,EA)
@@ -179,14 +179,6 @@ Shape(BC,CG,GH,HF,FB)
 ..(BC,CG,GA,AD,DF,FB)
 ..(CG,GA,AD,DF,FB,BC)
 ..(GA,AD,DF,FB,BC,CG)
-..(AD,DF,FB,BC,CH,HG,GE,EA)
-..(DF,FB,BC,CH,HG,GE,EA,AD)
-..(FB,BC,CH,HG,GE,EA,AD,DF)
-..(BC,CH,HG,GE,EA,AD,DF,FB)
-..(CH,HG,GE,EA,AD,DF,FB,BC)
-..(HG,GE,EA,AD,DF,FB,BC,CH)
-..(GE,EA,AD,DF,FB,BC,CH,HG)
-..(EA,AD,DF,FB,BC,CH,HG,GE)
 ..(AD,DF,FH,HB,BC,CG,GE,EA)
 ..(DF,FH,HB,BC,CG,GE,EA,AD)
 ..(FH,HB,BC,CG,GE,EA,AD,DF)
@@ -195,6 +187,14 @@ Shape(BC,CG,GH,HF,FB)
 ..(CG,GE,EA,AD,DF,FH,HB,BC)
 ..(GE,EA,AD,DF,FH,HB,BC,CG)
 ..(EA,AD,DF,FH,HB,BC,CG,GE)
+..(AD,DF,FB,BC,CH,HG,GE,EA)
+..(DF,FB,BC,CH,HG,GE,EA,AD)
+..(FB,BC,CH,HG,GE,EA,AD,DF)
+..(BC,CH,HG,GE,EA,AD,DF,FB)
+..(CH,HG,GE,EA,AD,DF,FB,BC)
+..(HG,GE,EA,AD,DF,FB,BC,CH)
+..(GE,EA,AD,DF,FB,BC,CH,HG)
+..(EA,AD,DF,FB,BC,CH,HG,GE)
 ..(AD,DF,FB,BH,HC,CG,GE,EA)
 ..(DF,FB,BH,HC,CG,GE,EA,AD)
 ..(FB,BH,HC,CG,GE,EA,AD,DF)
@@ -332,21 +332,21 @@ Angle(FBH)
 Angle(BHF)
 Angle(DHG)
 Angle(GAD)
-Angle(ABH)
 Angle(FCG)
 Angle(HEA)
 Angle(EAF)
+Angle(ABH)
 Angle(GBC)
 Angle(BCG)
 Angle(CFB)
 Angle(FBC)
-Angle(DFB)
-Angle(BGA)
 Angle(DCG)
 Angle(CAD)
+Angle(DFB)
+Angle(BGA)
+Angle(FHB)
 Angle(ABC)
 Angle(CHG)
-Angle(FHB)
 Angle(CGE)
 Angle(CAF)
 Angle(BHC)
@@ -412,15 +412,15 @@ Angle(CBH)
 Angle(HCB)
 Angle(BFH)
 Angle(HBF)
-Angle(HBA)
 Angle(GCF)
 Angle(AEH)
+Angle(HBA)
 Angle(CBG)
 Angle(GCB)
 Angle(BFC)
 Angle(CBF)
-Angle(BFD)
 Angle(GCD)
+Angle(BFD)
 Angle(CBA)
 Angle(EGC)
 Angle(AEB)
@@ -483,12 +483,6 @@ Polygon(ADHG)
 Polygon(DHGA)
 Polygon(HGAD)
 Polygon(GADH)
-Polygon(GAB)
-Polygon(GBA)
-Polygon(AGB)
-Polygon(ABG)
-Polygon(BGA)
-Polygon(BAG)
 Polygon(AFC)
 Polygon(ACF)
 Polygon(FAC)
@@ -499,6 +493,12 @@ Polygon(AFHE)
 Polygon(FHEA)
 Polygon(HEAF)
 Polygon(EAFH)
+Polygon(GAB)
+Polygon(GBA)
+Polygon(AGB)
+Polygon(ABG)
+Polygon(BGA)
+Polygon(BAG)
 Polygon(CGB)
 Polygon(CBG)
 Polygon(GCB)
@@ -511,11 +511,6 @@ Polygon(CBF)
 Polygon(CFB)
 Polygon(FBC)
 Polygon(FCB)
-Polygon(ADFBG)
-Polygon(DFBGA)
-Polygon(FBGAD)
-Polygon(BGADF)
-Polygon(GADFB)
 Polygon(ADC)
 Polygon(ACD)
 Polygon(DAC)
@@ -528,27 +523,32 @@ Polygon(HDE)
 Polygon(HED)
 Polygon(EDH)
 Polygon(EHD)
-Polygon(HGABC)
-Polygon(GABCH)
-Polygon(ABCHG)
-Polygon(BCHGA)
-Polygon(CHGAB)
+Polygon(ADFBG)
+Polygon(DFBGA)
+Polygon(FBGAD)
+Polygon(BGADF)
+Polygon(GADFB)
 Polygon(AFHBC)
 Polygon(FHBCA)
 Polygon(HBCAF)
 Polygon(BCAFH)
 Polygon(CAFHB)
+Polygon(HGABC)
+Polygon(GABCH)
+Polygon(ABCHG)
+Polygon(BCHGA)
+Polygon(CHGAB)
+Polygon(GEAFC)
+Polygon(EAFCG)
+Polygon(AFCGE)
+Polygon(FCGEA)
+Polygon(CGEAF)
 Polygon(EAB)
 Polygon(EBA)
 Polygon(AEB)
 Polygon(ABE)
 Polygon(BEA)
 Polygon(BAE)
-Polygon(GEAFC)
-Polygon(EAFCG)
-Polygon(AFCGE)
-Polygon(FCGEA)
-Polygon(CGEAF)
 Polygon(HCAB)
 Polygon(CABH)
 Polygon(ABHC)
@@ -558,6 +558,11 @@ Polygon(GHFBC)
 Polygon(HFBCG)
 Polygon(FBCGH)
 Polygon(BCGHF)
+Polygon(ADHBC)
+Polygon(DHBCA)
+Polygon(HBCAD)
+Polygon(BCADH)
+Polygon(CADHB)
 Polygon(ADFBCHG)
 Polygon(DFBCHGA)
 Polygon(FBCHGAD)
@@ -565,19 +570,14 @@ Polygon(BCHGADF)
 Polygon(CHGADFB)
 Polygon(HGADFBC)
 Polygon(GADFBCH)
-Polygon(ADHBC)
-Polygon(DHBCA)
-Polygon(HBCAD)
-Polygon(BCADH)
-Polygon(CADHB)
-Polygon(DFBE)
-Polygon(FBED)
-Polygon(BEDF)
-Polygon(EDFB)
 Polygon(DCGE)
 Polygon(CGED)
 Polygon(GEDC)
 Polygon(EDCG)
+Polygon(DFBE)
+Polygon(FBED)
+Polygon(BEDF)
+Polygon(EDFB)
 Polygon(ADFBHC)
 Polygon(DFBHCA)
 Polygon(FBHCAD)
@@ -590,11 +590,6 @@ Polygon(BAC)
 Polygon(BCA)
 Polygon(CAB)
 Polygon(CBA)
-Polygon(EABCH)
-Polygon(ABCHE)
-Polygon(BCHEA)
-Polygon(CHEAB)
-Polygon(HEABC)
 Polygon(GEAFHBC)
 Polygon(EAFHBCG)
 Polygon(AFHBCGE)
@@ -602,6 +597,11 @@ Polygon(FHBCGEA)
 Polygon(HBCGEAF)
 Polygon(BCGEAFH)
 Polygon(CGEAFHB)
+Polygon(EABCH)
+Polygon(ABCHE)
+Polygon(BCHEA)
+Polygon(CHEAB)
+Polygon(HEABC)
 Polygon(GEABHC)
 Polygon(EABHCG)
 Polygon(ABHCGE)
@@ -613,18 +613,18 @@ Polygon(DFBCA)
 Polygon(FBCAD)
 Polygon(BCADF)
 Polygon(CADFB)
-Polygon(DFBCHE)
-Polygon(FBCHED)
-Polygon(BCHEDF)
-Polygon(CHEDFB)
-Polygon(HEDFBC)
-Polygon(EDFBCH)
 Polygon(DHBCGE)
 Polygon(HBCGED)
 Polygon(BCGEDH)
 Polygon(CGEDHB)
 Polygon(GEDHBC)
 Polygon(EDHBCG)
+Polygon(DFBCHE)
+Polygon(FBCHED)
+Polygon(BCHEDF)
+Polygon(CHEDFB)
+Polygon(HEDFBC)
+Polygon(EDFBCH)
 Polygon(DFBHCGE)
 Polygon(FBHCGED)
 Polygon(BHCGEDF)
@@ -672,81 +672,97 @@ GOAL_SYMBOL:
 ll_de
 
 ANSWER:
-0
+1.5
 
 THEOREM_SEQUENCE:
-1; bisector_of_angle_judgment_angle_equal(1,BE,ABC); Angle(ABE)&Angle(EBC)&Equal(MeasureOfAngle(ABE),MeasureOfAngle(EBC)); ["IsBisectorOfAngle(BE,ABC)"]
-2; bisector_of_angle_judgment_angle_equal(1,CD,BCA); Angle(BCD)&Angle(DCA)&Equal(MeasureOfAngle(BCD),MeasureOfAngle(DCA)); ["IsBisectorOfAngle(CD,BCA)"]
-3; similar_triangle_judgment_aa(1,ABC,DEC); Polygon(ABC)&Polygon(DEC)&Equal(MeasureOfAngle(ABC),MeasureOfAngle(DEC))&Equal(MeasureOfAngle(BCA),MeasureOfAngle(ECD)); ["SimilarBetweenTriangle(ABC,DEC)"]
-4; similar_triangle_property_line_ratio(1,ABC,DEC); SimilarBetweenTriangle(ABC,DEC); ["Equal(LengthOfLine(BC),Mul(LengthOfLine(EC),RatioOfSimilarTriangle(ABC,DEC)))"]
+1; bisector_of_angle_property_line_ratio(1,CD,BCA); IsBisectorOfAngle(CD,BCA)&Collinear(ADB); ["Equal(Mul(LengthOfLine(AD),LengthOfLine(CB)),Mul(LengthOfLine(DB),LengthOfLine(CA)))"]
+2; bisector_of_angle_property_line_ratio(1,BE,ABC); IsBisectorOfAngle(BE,ABC)&Collinear(CEA); ["Equal(Mul(LengthOfLine(CE),LengthOfLine(BA)),Mul(LengthOfLine(EA),LengthOfLine(BC)))"]
+3; parallel_property_alternate_interior_angle(1,DE,BC); ParallelBetweenLine(DE,BC)&Line(DC); ["Equal(MeasureOfAngle(EDC),MeasureOfAngle(BCD))"]
+4; parallel_property_alternate_interior_angle(2,DE,BC); ParallelBetweenLine(DE,BC)&Line(AB); ["Equal(MeasureOfAngle(AED),MeasureOfAngle(BCA))"]
+5; similar_triangle_judgment_aa(1,ABC,ADE); Polygon(ABC)&Polygon(ADE)&Equal(MeasureOfAngle(ABC),MeasureOfAngle(ADE))&Equal(MeasureOfAngle(BCA),MeasureOfAngle(AED)); ["SimilarBetweenTriangle(ABC,ADE)"]
+6; similar_triangle_property_line_ratio(1,ABC,ADE); SimilarBetweenTriangle(ABC,ADE); ["Equal(LengthOfLine(DE),Mul(LengthOfLine(BC),RatioOfSimilarTriangle(ABC,ADE)))"]
 ***MODEL_RESPONSE_END***
 RETRIES_MESSAGES:
 #run: 2; #retry: 1; message: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
-Verification failed. Theorem <bisector_of_angle_judgment_angle_equal> branch error. Expected dict_keys(['1']) but got None. Please rewrite your response, you should change only the call to theorem <bisector_of_angle_judgment_angle_equal> by adding the branch number from the dict_keys as the first argument
+Failure: Theorem <bisector_of_angle_property_line_ratio> branch error. Expected dict_keys(['1']) but got None. Please rewrite your response, you should change only the call to theorem <bisector_of_angle_property_line_ratio> by adding the branch number from the dict_keys as the first argument
 Model Answer:
 RETRY_ANSWER:
-0
+1.5
 RETRY_THEOREM_SEQUENCE:
-1; bisector_of_angle_judgment_angle_equal(BE,ABC); Angle(ABE)&Angle(EBC)&Equal(MeasureOfAngle(ABE),MeasureOfAngle(EBC)); ["IsBisectorOfAngle(BE,ABC)"]  
-2; bisector_of_angle_judgment_angle_equal(CD,BCA); Angle(BCD)&Angle(DCA)&Equal(MeasureOfAngle(BCD),MeasureOfAngle(DCA)); ["IsBisectorOfAngle(CD,BCA)"]  
-3; parallel_property_corresponding_angle(DE,BC,A); ParallelBetweenLine(DE,BC)&Collinear(AEC); ["Equal(MeasureOfAngle(DAE),MeasureOfAngle(ABC))"]  
-4; parallel_property_corresponding_angle(DE,BC,A); ParallelBetweenLine(DE,BC)&Collinear(ABD); ["Equal(MeasureOfAngle(DEA),MeasureOfAngle(ACB))"]  
-
-────────────────────────────────────────────────────────
-Explanation of “ANSWER = 0”:
-
-From the given data (AB = 4, AC = 3), together with the requirements that BE and CD are internal angle bisectors of angles B and C respectively, and that DE ∥ BC, one finds (via the standard angle‐bisector and parallel‐line/similarity arguments) that the only way to satisfy all those constraints simultaneously is in a degenerate configuration where triangle ABC collapses so that BC = AB − AC = 1 (or “worse,” forcing r = 1 in the similarity ratio).  In every nondegenerate attempt, one obtains contradictions in the side‐length/angle‐bisector ratios.  
-
-Hence, the configuration that respects all of the stated conditions is degenerate, forcing D to coincide with B and E to coincide with C in effect.  Consequently, segment DE has zero length.
+1; bisector_of_angle_property_line_ratio(CD,BCA); IsBisectorOfAngle(CD,BCA)&Collinear(DAB); ["Equal(Mul(LengthOfLine(AD),LengthOfLine(BC)),Mul(LengthOfLine(DB),LengthOfLine(AC)))"]
+2; bisector_of_angle_property_line_ratio(BE,ABC); IsBisectorOfAngle(BE,ABC)&Collinear(AEC); ["Equal(Mul(LengthOfLine(AE),LengthOfLine(BC)),Mul(LengthOfLine(EC),LengthOfLine(AB)))"]
+3; parallel_property_alternate_interior_angle(1,DE,BC); ParallelBetweenLine(DE,BC)&Line(AC); ["Equal(MeasureOfAngle(ADE),MeasureOfAngle(ABC))"]
+4; parallel_property_alternate_interior_angle(2,DE,BC); ParallelBetweenLine(DE,BC)&Line(AB); ["Equal(MeasureOfAngle(AED),MeasureOfAngle(BCA))"]
+5; similar_triangle_judgment_aa(1,ABC,ADE); Polygon(ABC)&Polygon(ADE)&Equal(MeasureOfAngle(ABC),MeasureOfAngle(ADE))&Equal(MeasureOfAngle(BCA),MeasureOfAngle(AED)); ["SimilarBetweenTriangle(ABC,ADE)"]
+6; similar_triangle_property_line_ratio(1,ABC,ADE); SimilarBetweenTriangle(ABC,ADE); ["Equal(LengthOfLine(DE),Mul(LengthOfLine(BC),RatioOfSimilarTriangle(ABC,ADE)))"]
 #run: 2; #retry: 2; message: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
-Verification failed.
-Theorem: parallel_property_corresponding_angle(1,DE,BC,A)
-The language model outputs the following premises: ParallelBetweenLine(DE,BC)&Collinear(AEC)
-The correct premises for the theorem: ParallelBetweenLine(DE,BC)&Collinear(ADB)
-The language model outputs the following conclusions: Equal(MeasureOfAngle(DAE),MeasureOfAngle(ABC))
-The correct conclusions for the theorem: Equal(MeasureOfAngle(ADE),MeasureOfAngle(DBC))
+Theorem: bisector_of_angle_property_line_ratio(1,CD,BCA)
+You outputs the following premises: IsBisectorOfAngle(CD,BCA)&Collinear(DAB)
+But the correct premises for the theorem: IsBisectorOfAngle(CD,BCA)&Collinear(ADB)
+You outputs the following conclusions: Equal(Mul(LengthOfLine(AD),LengthOfLine(BC)),Mul(LengthOfLine(DB),LengthOfLine(AC)))
+But the correct conclusions for the theorem: Equal(Mul(LengthOfLine(AD),LengthOfLine(CB)),Mul(LengthOfLine(DB),LengthOfLine(CA)))
 
 Model Answer:
 RETRY_ANSWER:
-0
+1.5
 RETRY_THEOREM_SEQUENCE:
-1; bisector_of_angle_judgment_angle_equal(1,BE,ABC); Angle(ABE)&Angle(EBC)&Equal(MeasureOfAngle(ABE),MeasureOfAngle(EBC)); ["IsBisectorOfAngle(BE,ABC)"]  
-2; bisector_of_angle_judgment_angle_equal(1,CD,BCA); Angle(BCD)&Angle(DCA)&Equal(MeasureOfAngle(BCD),MeasureOfAngle(DCA)); ["IsBisectorOfAngle(CD,BCA)"]  
-3; parallel_property_corresponding_angle(1,DE,BC,A); ParallelBetweenLine(DE,BC)&Collinear(AEC); ["Equal(MeasureOfAngle(DAE),MeasureOfAngle(ABC))"]  
-4; parallel_property_corresponding_angle(1,DE,BC,A); ParallelBetweenLine(DE,BC)&Collinear(ABD); ["Equal(MeasureOfAngle(DEA),MeasureOfAngle(ACB))"]
+1; bisector_of_angle_property_line_ratio(1,CD,BCA); IsBisectorOfAngle(CD,BCA)&Collinear(DAB); ["Equal(Mul(LengthOfLine(AD),LengthOfLine(BC)),Mul(LengthOfLine(DB),LengthOfLine(AC)))"]
+2; bisector_of_angle_property_line_ratio(1,BE,ABC); IsBisectorOfAngle(BE,ABC)&Collinear(AEC); ["Equal(Mul(LengthOfLine(AE),LengthOfLine(BC)),Mul(LengthOfLine(EC),LengthOfLine(AB)))"]
+3; parallel_property_alternate_interior_angle(1,DE,BC); ParallelBetweenLine(DE,BC)&Line(AC); ["Equal(MeasureOfAngle(ADE),MeasureOfAngle(ABC))"]
+4; parallel_property_alternate_interior_angle(2,DE,BC); ParallelBetweenLine(DE,BC)&Line(AB); ["Equal(MeasureOfAngle(AED),MeasureOfAngle(BCA))"]
+5; similar_triangle_judgment_aa(1,ABC,ADE); Polygon(ABC)&Polygon(ADE)&Equal(MeasureOfAngle(ABC),MeasureOfAngle(ADE))&Equal(MeasureOfAngle(BCA),MeasureOfAngle(AED)); ["SimilarBetweenTriangle(ABC,ADE)"]
+6; similar_triangle_property_line_ratio(1,ABC,ADE); SimilarBetweenTriangle(ABC,ADE); ["Equal(LengthOfLine(DE),Mul(LengthOfLine(BC),RatioOfSimilarTriangle(ABC,ADE)))"]
 #run: 2; #retry: 3; message: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
-Error during proof verification: cannot unpack non-iterable NoneType object
-Model Answer:
-RETRY_ANSWER:
-0
-RETRY_THEOREM_SEQUENCE:
-1; bisector_of_angle_judgment_angle_equal(1,BE,ABC); Angle(ABE)&Angle(EBC)&Equal(MeasureOfAngle(ABE),MeasureOfAngle(EBC)); ["IsBisectorOfAngle(BE,ABC)"]
-2; bisector_of_angle_judgment_angle_equal(1,CD,BCA); Angle(BCD)&Angle(DCA)&Equal(MeasureOfAngle(BCD),MeasureOfAngle(DCA)); ["IsBisectorOfAngle(CD,BCA)"]
-3; parallel_property_corresponding_angle(1,DE,BC,A); ParallelBetweenLine(DE,BC)&Collinear(ADB); ["Equal(MeasureOfAngle(ADE),MeasureOfAngle(DBC))"]
-#run: 2; #retry: 4; message: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
-Verification failed.
-Theorem: similar_triangle_property_line_ratio(1,ABC,DEC)
-The language model outputs the following conclusions: Equal(LengthOfLine(BC),Mul(LengthOfLine(ED),RatioOfSimilarTriangle(ABC,DEC)))
-The correct conclusions for the theorem: Equal(LengthOfLine(BC),Mul(LengthOfLine(EC),RatioOfSimilarTriangle(ABC,DEC)))
+Theorem: bisector_of_angle_property_line_ratio(1,BE,ABC)
+You outputs the following premises: IsBisectorOfAngle(BE,ABC)&Collinear(AEC)
+But the correct premises for the theorem: IsBisectorOfAngle(BE,ABC)&Collinear(CEA)
+You outputs the following conclusions: Equal(Mul(LengthOfLine(AE),LengthOfLine(CB)),Mul(LengthOfLine(EC),LengthOfLine(AB)))
+But the correct conclusions for the theorem: Equal(Mul(LengthOfLine(CE),LengthOfLine(BA)),Mul(LengthOfLine(EA),LengthOfLine(BC)))
 
 Model Answer:
 RETRY_ANSWER:
-0
+1.5
 RETRY_THEOREM_SEQUENCE:
-1; bisector_of_angle_judgment_angle_equal(1,BE,ABC); Angle(ABE)&Angle(EBC)&Equal(MeasureOfAngle(ABE),MeasureOfAngle(EBC)); ["IsBisectorOfAngle(BE,ABC)"]
-2; bisector_of_angle_judgment_angle_equal(1,CD,BCA); Angle(BCD)&Angle(DCA)&Equal(MeasureOfAngle(BCD),MeasureOfAngle(DCA)); ["IsBisectorOfAngle(CD,BCA)"]
-3; similar_triangle_judgment_aa(1,ABC,DEC); Polygon(ABC)&Polygon(DEC)&Equal(MeasureOfAngle(ABC),MeasureOfAngle(DEC))&Equal(MeasureOfAngle(BCA),MeasureOfAngle(ECD)); ["SimilarBetweenTriangle(ABC,DEC)"]
-4; similar_triangle_property_line_ratio(1,ABC,DEC); SimilarBetweenTriangle(ABC,DEC); ["Equal(LengthOfLine(BC),Mul(LengthOfLine(ED),RatioOfSimilarTriangle(ABC,DEC)))"]
-#run: 2; #retry: 5; message: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
-Error during proof verification: cannot unpack non-iterable NoneType object
+1; bisector_of_angle_property_line_ratio(1,CD,BCA); IsBisectorOfAngle(CD,BCA)&Collinear(ADB); ["Equal(Mul(LengthOfLine(AD),LengthOfLine(CB)),Mul(LengthOfLine(DB),LengthOfLine(CA)))"]
+2; bisector_of_angle_property_line_ratio(1,BE,ABC); IsBisectorOfAngle(BE,ABC)&Collinear(AEC); ["Equal(Mul(LengthOfLine(AE),LengthOfLine(CB)),Mul(LengthOfLine(EC),LengthOfLine(AB)))"]
+3; parallel_property_alternate_interior_angle(1,DE,BC); ParallelBetweenLine(DE,BC)&Line(AC); ["Equal(MeasureOfAngle(ADE),MeasureOfAngle(ABC))"]
+4; parallel_property_alternate_interior_angle(2,DE,BC); ParallelBetweenLine(DE,BC)&Line(AB); ["Equal(MeasureOfAngle(AED),MeasureOfAngle(BCA))"]
+5; similar_triangle_judgment_aa(1,ABC,ADE); Polygon(ABC)&Polygon(ADE)&Equal(MeasureOfAngle(ABC),MeasureOfAngle(ADE))&Equal(MeasureOfAngle(BCA),MeasureOfAngle(AED)); ["SimilarBetweenTriangle(ABC,ADE)"]
+6; similar_triangle_property_line_ratio(1,ABC,ADE); SimilarBetweenTriangle(ABC,ADE); ["Equal(LengthOfLine(DE),Mul(LengthOfLine(BC),RatioOfSimilarTriangle(ABC,ADE)))"]
+#run: 2; #retry: 4; message: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
+Theorem: parallel_property_alternate_interior_angle(1,DE,BC)
+You outputs the following premises: ParallelBetweenLine(DE,BC)&Line(AC)
+But the correct premises for the theorem: ParallelBetweenLine(DE,BC)&Line(DC)
+You outputs the following conclusions: Equal(MeasureOfAngle(ADE),MeasureOfAngle(ABC))
+But the correct conclusions for the theorem: Equal(MeasureOfAngle(EDC),MeasureOfAngle(BCD))
+
 Model Answer:
 RETRY_ANSWER:
-0
+1.5
 RETRY_THEOREM_SEQUENCE:
-1; bisector_of_angle_judgment_angle_equal(1,BE,ABC); Angle(ABE)&Angle(EBC)&Equal(MeasureOfAngle(ABE),MeasureOfAngle(EBC)); ["IsBisectorOfAngle(BE,ABC)"]
-2; bisector_of_angle_judgment_angle_equal(1,CD,BCA); Angle(BCD)&Angle(DCA)&Equal(MeasureOfAngle(BCD),MeasureOfAngle(DCA)); ["IsBisectorOfAngle(CD,BCA)"]
-3; similar_triangle_judgment_aa(1,ABC,DEC); Polygon(ABC)&Polygon(DEC)&Equal(MeasureOfAngle(ABC),MeasureOfAngle(DEC))&Equal(MeasureOfAngle(BCA),MeasureOfAngle(ECD)); ["SimilarBetweenTriangle(ABC,DEC)"]
-4; similar_triangle_property_line_ratio(1,ABC,DEC); SimilarBetweenTriangle(ABC,DEC); ["Equal(LengthOfLine(BC),Mul(LengthOfLine(EC),RatioOfSimilarTriangle(ABC,DEC)))"]
+1; bisector_of_angle_property_line_ratio(1,CD,BCA); IsBisectorOfAngle(CD,BCA)&Collinear(ADB); ["Equal(Mul(LengthOfLine(AD),LengthOfLine(CB)),Mul(LengthOfLine(DB),LengthOfLine(CA)))"]
+2; bisector_of_angle_property_line_ratio(1,BE,ABC); IsBisectorOfAngle(BE,ABC)&Collinear(CEA); ["Equal(Mul(LengthOfLine(CE),LengthOfLine(BA)),Mul(LengthOfLine(EA),LengthOfLine(BC)))"]
+3; parallel_property_alternate_interior_angle(1,DE,BC); ParallelBetweenLine(DE,BC)&Line(AC); ["Equal(MeasureOfAngle(ADE),MeasureOfAngle(ABC))"]
+4; parallel_property_alternate_interior_angle(2,DE,BC); ParallelBetweenLine(DE,BC)&Line(AB); ["Equal(MeasureOfAngle(AED),MeasureOfAngle(BCA))"]
+5; similar_triangle_judgment_aa(1,ABC,ADE); Polygon(ABC)&Polygon(ADE)&Equal(MeasureOfAngle(ABC),MeasureOfAngle(ADE))&Equal(MeasureOfAngle(BCA),MeasureOfAngle(AED)); ["SimilarBetweenTriangle(ABC,ADE)"]
+6; similar_triangle_property_line_ratio(1,ABC,ADE); SimilarBetweenTriangle(ABC,ADE); ["Equal(LengthOfLine(DE),Mul(LengthOfLine(BC),RatioOfSimilarTriangle(ABC,ADE)))"]
+#run: 2; #retry: 5; message: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
+Theorem: parallel_property_alternate_interior_angle(2,DE,BC)
+You outputs the following premises: ParallelBetweenLine(DE,BC)&Line(AB)
+But the correct premises for the theorem: ParallelBetweenLine(DE,BC)&Line(EB)
+You outputs the following conclusions: Equal(MeasureOfAngle(AED),MeasureOfAngle(BCA))
+But the correct conclusions for the theorem: Equal(MeasureOfAngle(BED),MeasureOfAngle(EBC))
+
+Model Answer:
+RETRY_ANSWER:
+1.5
+RETRY_THEOREM_SEQUENCE:
+1; bisector_of_angle_property_line_ratio(1,CD,BCA); IsBisectorOfAngle(CD,BCA)&Collinear(ADB); ["Equal(Mul(LengthOfLine(AD),LengthOfLine(CB)),Mul(LengthOfLine(DB),LengthOfLine(CA)))"]
+2; bisector_of_angle_property_line_ratio(1,BE,ABC); IsBisectorOfAngle(BE,ABC)&Collinear(CEA); ["Equal(Mul(LengthOfLine(CE),LengthOfLine(BA)),Mul(LengthOfLine(EA),LengthOfLine(BC)))"]
+3; parallel_property_alternate_interior_angle(1,DE,BC); ParallelBetweenLine(DE,BC)&Line(DC); ["Equal(MeasureOfAngle(EDC),MeasureOfAngle(BCD))"]
+4; parallel_property_alternate_interior_angle(2,DE,BC); ParallelBetweenLine(DE,BC)&Line(AB); ["Equal(MeasureOfAngle(AED),MeasureOfAngle(BCA))"]
+5; similar_triangle_judgment_aa(1,ABC,ADE); Polygon(ABC)&Polygon(ADE)&Equal(MeasureOfAngle(ABC),MeasureOfAngle(ADE))&Equal(MeasureOfAngle(BCA),MeasureOfAngle(AED)); ["SimilarBetweenTriangle(ABC,ADE)"]
+6; similar_triangle_property_line_ratio(1,ABC,ADE); SimilarBetweenTriangle(ABC,ADE); ["Equal(LengthOfLine(DE),Mul(LengthOfLine(BC),RatioOfSimilarTriangle(ABC,ADE)))"]
 #RETRIES:
 5
 #RUNS:

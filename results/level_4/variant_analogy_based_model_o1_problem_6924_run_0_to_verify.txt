@@ -415,22 +415,8 @@ RETRY_THEOREM_SEQUENCE:
 1; arc_property_circumference_angle_external(1,ODA,B); Cocircular(O,DAB)&Angle(ABD); ["Equal(MeasureOfAngle(ABD),Mul(MeasureOfArc(ODA),1/2))"]  
 2; arc_property_circumference_angle_external(1,ODA,E); Cocircular(O,ADE)&Angle(DEA); ["Equal(MeasureOfAngle(DEA),Mul(MeasureOfArc(ODA),1/2))"]  
 3; arc_property_center_angle(1,OCB,O); Arc(OCB)&Angle(COB)&IsCentreOfCircle(O,O); ["Equal(MeasureOfArc(OCB),MeasureOfAngle(COB))"]
-#run: 0; #retry: 5; message: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
-Fixed: Theorem: arc_property_center_angle(1,OCB,O)
-You outputs the following premises: Arc(OCB)&Angle(COB)&IsCentreOfCircle(O,O)
-But the correct premises for the theorem: Arc(OCB)&Angle(BOC)&IsCentreOfCircle(O,O)
-You outputs the following conclusions: Equal(MeasureOfArc(OCB),MeasureOfAngle(COB))
-But the correct conclusions for the theorem: Equal(MeasureOfArc(OCB),MeasureOfAngle(BOC))
-
-Model Answer:
-RETRY_ANSWER:
-100
-RETRY_THEOREM_SEQUENCE:
-1; arc_property_circumference_angle_external(1,ODA,B); Cocircular(O,DAB)&Angle(ABD); ["Equal(MeasureOfAngle(ABD),Mul(MeasureOfArc(ODA),1/2))"]  
-2; arc_property_circumference_angle_external(1,ODA,E); Cocircular(O,DAE)&Angle(AED); ["Equal(MeasureOfAngle(AED),Mul(MeasureOfArc(ODA),1/2))"]  
-3; arc_property_center_angle(1,OCB,O); Arc(OCB)&Angle(COB)&IsCentreOfCircle(O,O); ["Equal(MeasureOfArc(OCB),MeasureOfAngle(COB))"]
 #RETRIES:
-5
+4
 #RUNS:
 0
 

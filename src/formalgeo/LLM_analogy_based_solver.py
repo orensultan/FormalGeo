@@ -20,7 +20,8 @@ import openai
 from src.formalgeo.verifier import Verifier
 
 from geometric_verifier import verify_geometric_proof
-from src.formalgeo.config.config import MAX_RETRIES_IN_RUN, MAX_RUNS, SIMILAR_PROBLEMS, IN_CONTEXT_FEW_SHOT, SAMPLED_PROBLEMS_IN_LEVEL
+from src.formalgeo.config.config import MAX_RETRIES_IN_RUN, MAX_RUNS, SIMILAR_PROBLEMS, IN_CONTEXT_FEW_SHOT, \
+    SAMPLED_PROBLEMS_IN_LEVEL
 
 openai.api_key = "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"
 openai.api_key = "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"
@@ -33,8 +34,6 @@ from similar_proofs_retrieval import retrieve_random_proofs
 
 import ast
 import re
-
-
 
 dl = DatasetLoader(dataset_name="formalgeo7k_v1", datasets_path="formalgeo7k_v1")
 solver = Interactor(dl.predicate_GDL, dl.theorem_GDL)
@@ -65,13 +64,13 @@ def get_theorem_seqs_expl(theorem_seqs):
     return theorems_seqs_expl
 
 
-
 def get_letters(t_name, t_para):
     letters = {}
     for i in range(len(solver.parsed_theorem_GDL[t_name]["vars"])):
         key = solver.parsed_theorem_GDL[t_name]["vars"][i].upper()
         letters[key] = t_para[i]
     return letters
+
 
 def remove_trailing_empty_lines(text):
     return '\n'.join(line for line in text.splitlines() if line.strip())
@@ -165,11 +164,7 @@ def theorem_verifier(solver, theorem_seqs):
             #     if len(invalid_premises) > 0:
             #         return "Theorem sequence step: " + theorem + ". premise: " + premise + ". " + invalid_premises
 
-
     return res
-
-
-
 
 
 def call_gpt_o1(model, messages):
@@ -183,30 +178,31 @@ def call_gpt_o1(model, messages):
 def setup_logging(output_file):
     # Create log file name by replacing .txt with .log
     log_file = output_file.replace('.txt', '.log')
-    
+
     # Create a file to capture all console output
     log_file_handle = open(log_file, 'w')
-    
+
     # Create a stream that writes to both console and file
     class Tee(io.TextIOBase):
         def __init__(self, file1, file2):
             self.file1 = file1
             self.file2 = file2
-            
+
         def write(self, data):
             self.file1.write(data)
             self.file2.write(data)
             self.file2.flush()
-            
+
         def flush(self):
             self.file1.flush()
             self.file2.flush()
-    
+
     # Redirect both stdout and stderr to our Tee stream
     sys.stdout = Tee(sys.stdout, log_file_handle)
     sys.stderr = Tee(sys.stderr, log_file_handle)
-    
+
     return log_file_handle
+
 
 def call_gpt(model, messages, temperature=0, wait_time=1, retry_wait_time=6, max_retries=10):
     retries = 0
@@ -238,9 +234,13 @@ def call_gpt(model, messages, temperature=0, wait_time=1, retry_wait_time=6, max
             logging.error(f"Unexpected error: {e}. Not retrying.")
             raise Exception(f"Unexpected error: {e}")
 
+
 def gpt_response(messages, model_name):
-    resp = call_gpt_o1(model=model_name, messages=messages) if model_name in ['o1-preview', 'o1', 'o1-mini', 'o3-mini'] else call_gpt(model=model_name, messages=messages)
+    resp = call_gpt_o1(model=model_name, messages=messages) if model_name in ['o1-preview', 'o1', 'o1-mini',
+                                                                              'o3-mini'] else call_gpt(model=model_name,
+                                                                                                       messages=messages)
     return resp
+
 
 def find_relevant_theorems(args, theorems, problems_set):
     relevant_theorems = {}
@@ -254,6 +254,7 @@ def find_relevant_theorems(args, theorems, problems_set):
                 relevant_theorems[key] = theorems[key]
     return relevant_theorems
 
+
 def get_problem_fields(problem):
     construction_cdl = "\n".join(problem.construction_cdl)
     text_cdl = "\n".join(problem.text_cdl)
@@ -261,7 +262,8 @@ def get_problem_fields(problem):
     theorem_seqs = "\n".join(f"{i + 1};{problem.theorem_seqs[i]}" for i in range(len(problem.theorem_seqs)))
     equations = "\n".join(problem.equations)
     return {'construction_cdl': construction_cdl, 'text_cdl': text_cdl,
-            'construction_cdl_extended': construction_cdl_extended, 'theorem_seqs': theorem_seqs, 'equations': equations}
+            'construction_cdl_extended': construction_cdl_extended, 'theorem_seqs': theorem_seqs,
+            'equations': equations}
 
 
 def convert_json_list_to_custom_format(json_list):
@@ -288,10 +290,14 @@ def convert_json_list_to_custom_format(json_list):
     # Join all the formatted strings into a single string with line breaks
     return "\n".join(result)
 
+
 def get_processed_model_resp(resp):
-    generated_theorem_sequence = resp.split("THEOREM_SEQUENCE:\n")[1] if len(resp.split("THEOREM_SEQUENCE:\n")) > 1 else ""
-    generated_theorem_sequence = convert_theorem_seqs_format_string(generated_theorem_sequence) if generated_theorem_sequence != "" else ""
-    generated_theorem_sequence_list = [line.split(";")[1].strip() for line in generated_theorem_sequence.strip().split("\n")] if generated_theorem_sequence != "" else []
+    generated_theorem_sequence = resp.split("THEOREM_SEQUENCE:\n")[1] if len(
+        resp.split("THEOREM_SEQUENCE:\n")) > 1 else ""
+    generated_theorem_sequence = convert_theorem_seqs_format_string(
+        generated_theorem_sequence) if generated_theorem_sequence != "" else ""
+    generated_theorem_sequence_list = [line.split(";")[1].strip() for line in generated_theorem_sequence.strip().split(
+        "\n")] if generated_theorem_sequence != "" else []
     return generated_theorem_sequence_list
 
 
@@ -323,11 +329,6 @@ def convert_theorem_seqs_format_string(input_str):
     return "\n".join(converted_list)
 
 
-
-
-
-
-
 def create_messages(content):
     # Constructing the initial message with the user role
     initial_message = {"role": "user", "content": content}
@@ -338,13 +339,13 @@ def create_messages(content):
     return messages
 
 
-
 def get_theorems_from_similar_problems(similar_problems):
     relevant_theorems = set()
     for problem in similar_problems:
         for theorem in problem.abstract_theorem_seqs:
             relevant_theorems.add(theorem)
     return relevant_theorems
+
 
 def get_theorems_problem_to_solve(problem):
     relevant_theorems = set()
@@ -382,7 +383,6 @@ def add_model_answer_to_feedback(feedback, resp):
         answer_part = answer_section.split("THEOREM_SEQUENCE:")[0].strip()
         model_response = f"RETRY_ANSWER:\n{answer_part}\nRETRY_THEOREM_SEQUENCE:\n{answer_section.split('THEOREM_SEQUENCE:')[1].strip()}"
     return f"{feedback}\nModel Answer:\n{model_response}"
-
 
 
 def generate_and_verify(args, gdl_relevant_theorems, similar_problems, problem2, run_id):
@@ -440,7 +440,6 @@ def generate_and_verify(args, gdl_relevant_theorems, similar_problems, problem2,
     return messages, resp, verifier_result, retries_messages
 
 
-
 def get_level_to_problems(problems):
     level_to_problems = {}
     for problem_id, problem_obj in problems.items():
@@ -465,27 +464,23 @@ chosen_problems_by_level = {
 }
 
 chosen_problems_by_level = {
-5: [5440]
-# 1: [1975, 1490, 1726, 178, 2669, 2614, 51, 2323, 192, 2624],
-# 2: [991, 69, 144, 358, 4473, 4483, 5645, 127, 2410, 4523],
-# 3: [ 4187, 5244, 5062, 844, 1945, 2200, 4099, 2765, 4476, 4254 ]
-# 4: [ 2114, 464, 5510, 3272, 5230, 3634, 6924, 4797, 5399, 6155]
-# 5: [5440, 6485 , 696, 847, 5563, 532, 5431, 437, 5080, 6660]
-# 6: [4923, 3298, 759, 4910, 5805, 5708, 6417, 5835, 5808, 5779],
-# 7: [3580, 4898, 6802, 6247, 449, 1854, 5208, 6322, 3412, 3027],
-# 8: [3983, 2761, 2875, 3434, 6806, 1258, 246, 4793, 2106, 6760],
-# 9: [4892, 5092, 5522, 4796, 3418, 6850, 6790, 5116, 2851, 716]
-# 10: [4134, 3419, 2196, 4489, 6146, 6018, 6376, 5353, 3114, 5197]
+    5: [5440]
+    # 1: [1975, 1490, 1726, 178, 2669, 2614, 51, 2323, 192, 2624],
+    # 2: [991, 69, 144, 358, 4473, 4483, 5645, 127, 2410, 4523],
+    # 3: [ 4187, 5244, 5062, 844, 1945, 2200, 4099, 2765, 4476, 4254 ]
+    # 4: [ 2114, 464, 5510, 3272, 5230, 3634, 6924, 4797, 5399, 6155]
+    # 5: [5440, 6485 , 696, 847, 5563, 532, 5431, 437, 5080, 6660]
+    # 6: [4923, 3298, 759, 4910, 5805, 5708, 6417, 5835, 5808, 5779],
+    # 7: [3580, 4898, 6802, 6247, 449, 1854, 5208, 6322, 3412, 3027],
+    # 8: [3983, 2761, 2875, 3434, 6806, 1258, 246, 4793, 2106, 6760],
+    # 9: [4892, 5092, 5522, 4796, 3418, 6850, 6790, 5116, 2851, 716]
+    # 10: [4134, 3419, 2196, 4489, 6146, 6018, 6376, 5353, 3114, 5197]
 }
-
-
-
-
-
 
 import matplotlib.pyplot as plt
 import collections
 import random
+
 
 def plot_true_count_by_level(true_count_by_level):
     x_values = list(true_count_by_level.keys())
@@ -498,6 +493,7 @@ def plot_true_count_by_level(true_count_by_level):
     plt.ylabel('Values (0 to 10)')
     plt.title('Histogram of defaultdict')
     plt.show()
+
 
 def print_similar_problems_theorems_coverage(variant, chosen_problems_by_level):
     problem_id_to_level = {}
@@ -534,7 +530,6 @@ def print_similar_problems_theorems_coverage(variant, chosen_problems_by_level):
     print(f"Average SimilarProblemsTheorems: {avg_similar_problems:.2f}")
 
 
-
 def get_chosen_problems_by_level(problems):
     random.seed(42)
     level_to_problems = get_level_to_problems(problems)
@@ -546,12 +541,13 @@ def get_chosen_problems_by_level(problems):
     return chosen_problems_by_level
 
 
-
 def write_theorems_coverage_stats(similar_problems_theorems, problem2, variant, num_examples):
     problem_to_solve_theorems = get_theorems_problem_to_solve(problem2)
     all_present = problem_to_solve_theorems.issubset(similar_problems_theorems)
     file_name = f'cover_theorems_{variant}_{num_examples}.csv'
-    new_data = pd.DataFrame([[problem2.id, all_present, len(problem_to_solve_theorems), len(similar_problems_theorems)]], columns=['ProblemID', 'IsCovered', 'ProblemToSolveTheorems', 'SimilarProblemsTheorems'])
+    new_data = pd.DataFrame(
+        [[problem2.id, all_present, len(problem_to_solve_theorems), len(similar_problems_theorems)]],
+        columns=['ProblemID', 'IsCovered', 'ProblemToSolveTheorems', 'SimilarProblemsTheorems'])
     if os.path.exists(file_name):
         existing_data = pd.read_csv(file_name)
         updated_data = pd.concat([existing_data, new_data], ignore_index=True)
@@ -587,7 +583,8 @@ def write_result(file_path, problem2_given, problem2_resp, problem2_gt, retries_
         file.write(problem2_gt + "\n")
     print(f"Content written to {file_path}")
 
-def process_problem(problem_id, solver = None, problems=None):
+
+def process_problem(problem_id, solver=None, problems=None):
     problem = problems[problem_id]
     problem.print_problem()
     problem.enrich_problem()
@@ -607,22 +604,23 @@ def run(args, problem2_id, problems, run_id):
     similar_problems_theorems = get_theorems_from_similar_problems(similar_problems)
     gdl_relevant_theorems = find_relevant_theorems(args, theorems, similar_problems_theorems)
     write_theorems_coverage_stats(similar_problems_theorems, problem2, args.variant, 20)
-    
+
     # Set up logging for this run
     output_path = f"results/level_{problem2.level}/variant_{args.variant}_model_{args.model_name}_problem_{problem2.id}_run_{run_id}.txt"
     log_file_handle = setup_logging(output_path)
-    
+
     try:
         messages, problem2_resp, verifier_result, retries_messages = generate_and_verify(args,
                                                                                          gdl_relevant_theorems,
-                                                                                         similar_problems, problem2, run_id)
+                                                                                         similar_problems, problem2,
+                                                                                         run_id)
         problem2_gt = get_gt_result(problem2)
         start_index = messages[0]['content'].find("Inputs for Problem B:")
         problem2_given = messages[0]['content'][start_index:]
-        
+
         # Write the original output file
         write_result(output_path, problem2_given, problem2_resp, problem2_gt, retries_messages, run_id)
-        
+
         return len(retries_messages) < MAX_RETRIES_IN_RUN
     except Exception as e:
         # Print the full traceback to the log file
@@ -652,14 +650,16 @@ def run_theorems_coverage(args):
 
     print_similar_problems_theorems_coverage(args.variant, chosen_problems_by_level)
 
+
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("--variant", dest="variant", type=str, default="analogy_based")
     parser.add_argument("--model_name", dest="model_name", type=str, default="o1")
-    parser.add_argument("--prompt_path", dest="prompt_path", type=str, default="src/formalgeo/prompt/geometry_similar_problems_prompt_291224.txt")
+    parser.add_argument("--prompt_path", dest="prompt_path", type=str,
+                        default="src/formalgeo/prompt/geometry_similar_problems_prompt_291224.txt")
     args = parser.parse_args()
     problems = save_problems('formalgeo7k_v1/problems')
-    
+
     try:
         for _, problems_id in chosen_problems_by_level.items():
             for problem2_id in problems_id:
@@ -670,5 +670,6 @@ if __name__ == "__main__":
     except Exception as e:
         # Print the full traceback to stderr (which will be captured in the log file)
         import traceback
+
         traceback.print_exc(file=sys.stderr)
         raise  # Re-raise the exception after logging it

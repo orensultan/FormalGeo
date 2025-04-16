@@ -1,4 +1,4 @@
-Content written to results/level_4/variant_analogy_based_model_o1_problem_3272_run_0_to_verify.txt
+Content written to results/level_6/variant_analogy_based_model_o1_problem_5708_run_0_to_verify.txt
 predicates to add:
 Line
 predicates to add:
@@ -23,20 +23,6 @@ predicates to add:
 Line
 predicates to add:
 Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Circle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
 predicates to add:
 Line
 predicates to add:
@@ -99,48 +85,23 @@ Line
 predicates to add:
 Line
 predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
 Polygon
 has Polygon
 has Polygon
 has Polygon
 has Polygon
-has Polygon
-has Polygon
-has Polygon
-predicates to add:
-Line
-predicates to add:
-Line
 predicates to add:
 Line
 predicates to add:
 Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
 predicates to add:
 Line
 predicates to add:
@@ -171,157 +132,19 @@ has Polygon
 has Polygon
 has Polygon
 predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
 Angle
 predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
 Angle
-predicates to add:
-Line
 predicates to add:
 Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Line
 predicates to add:
 Angle
 predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
 Angle
-predicates to add:
-Line
 predicates to add:
-Line
-predicates to add:
 Angle
-predicates to add:
-Line
-predicates to add:
-Line
 predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
 Angle
-predicates to add:
-Line
 predicates to add:
 Angle
 predicates to add:
@@ -343,23 +166,13 @@ Line
 predicates to add:
 Angle
 predicates to add:
-Line
-predicates to add:
 Angle
-predicates to add:
-Line
-predicates to add:
-Line
 predicates to add:
-Line
-predicates to add:
 Angle
 predicates to add:
 Line
 predicates to add:
 Line
-predicates to add:
-Angle
 predicates to add:
 Angle
 predicates to add:
@@ -372,18 +185,10 @@ predicates to add:
 Angle
 predicates to add:
 Angle
-predicates to add:
-Line
 predicates to add:
-Line
-predicates to add:
 Angle
 predicates to add:
 Angle
-predicates to add:
-Line
-predicates to add:
-Line
 predicates to add:
 Angle
 predicates to add:
@@ -391,44 +196,14 @@ Angle
 predicates to add:
 Angle
 predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
 Angle
 predicates to add:
 Line
 predicates to add:
 Line
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Angle
 predicates to add:
 Angle
 predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
 Line
 predicates to add:
 Line
@@ -441,8 +216,6 @@ Line
 predicates to add:
 Angle
 predicates to add:
-Angle
-predicates to add:
 Line
 predicates to add:
 Line
@@ -462,10 +235,6 @@ predicates to add:
 Line
 predicates to add:
 Line
-predicates to add:
-Angle
-predicates to add:
-Angle
 predicates to add:
 Angle
 predicates to add:
@@ -497,30 +266,27 @@ Line
 predicates to add:
 Equation
 predicates to add:
-IsCentreOfCircle
+Equation
 predicates to add:
-IsDiameterOfCircle
+Equation
 predicates to add:
-IsCentreOfCircle
+ParallelBetweenLine
 predicates to add:
-IsDiameterOfCircle
+ParallelBetweenLine
 Verifier result: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
-Fixed: Theorem: arc_property_center_angle(1,ODB,O)
-You outputs the following premises: Arc(ODB)&Angle(DOB)&IsCentreOfCircle(O,O)
-But the correct premises for the theorem: Arc(ODB)&Angle(BOD)&IsCentreOfCircle(O,O)
-You outputs the following conclusions: Equal(MeasureOfArc(ODB),MeasureOfAngle(DOB))
-But the correct conclusions for the theorem: Equal(MeasureOfArc(ODB),MeasureOfAngle(BOD))
-
+Verification failed. Theorem <line_addition> para length error. Expected 4 but got ('A', 'B', 'A', 'D', 'D', 'B').
 Model Answer:
 RETRY_ANSWER:
-63
+9
 RETRY_THEOREM_SEQUENCE:
-1; flat_angle(1,AOB); Collinear(AOB); ["Equal(MeasureOfAngle(AOB),180)"]  
-2; angle_addition(1,AOD,DOB); Angle(AOD)&Angle(DOB)&Angle(AOB); ["Equal(MeasureOfAngle(AOB),Add(MeasureOfAngle(AOD),MeasureOfAngle(DOB)))"]  
-3; arc_property_center_angle(1,ODB,O); Arc(ODB)&Angle(DOB)&IsCentreOfCircle(O,O); ["Equal(MeasureOfArc(ODB),MeasureOfAngle(DOB))"]  
-4; arc_property_circumference_angle_external(1,ODB,C); Cocircular(O,CDB)&Angle(DCB); ["Equal(MeasureOfAngle(DCB),Mul(MeasureOfArc(ODB),1/2))"]
+1; line_addition(AB,AD,DB); Collinear(ADB); ["Equal(LengthOfLine(AB),Add(LengthOfLine(AD),LengthOfLine(DB)))"]
+2; parallel_property_corresponding_angle(AB,DE,BC); ParallelBetweenLine(DE,BC)&Collinear(ADB); ["Equal(MeasureOfAngle(ADE),MeasureOfAngle(DBC))"]
+3; parallel_property_corresponding_angle(AC,CB,ED); ParallelBetweenLine(CB,ED)&Collinear(CEA); ["Equal(MeasureOfAngle(BCE),MeasureOfAngle(DEA))"]
+4; similar_triangle_judgment_aa(ADE,ABC); Polygon(ADE)&Polygon(ABC)&Equal(MeasureOfAngle(ADE),MeasureOfAngle(ABC))&Equal(MeasureOfAngle(DEA),MeasureOfAngle(BCA)); ["SimilarBetweenTriangle(ADE,ABC)"]
+5; similar_triangle_property_line_ratio(ADE,ABC); SimilarBetweenTriangle(ADE,ABC); ["Equal(LengthOfLine(DE),Mul(LengthOfLine(BC),RatioOfSimilarTriangle(ADE,ABC)))"]
+6; similar_triangle_property_line_ratio(EAD,CAB); SimilarBetweenTriangle(EAD,CAB); ["Equal(LengthOfLine(AD),Mul(LengthOfLine(AB),RatioOfSimilarTriangle(EAD,CAB)))"]
 Retry attempt: 1
-Content written to results/level_4/variant_analogy_based_model_o1_problem_3272_run_0_to_verify.txt
+Content written to results/level_6/variant_analogy_based_model_o1_problem_5708_run_0_to_verify.txt
 predicates to add:
 Line
 predicates to add:
@@ -545,20 +311,6 @@ predicates to add:
 Line
 predicates to add:
 Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Circle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
 predicates to add:
 Line
 predicates to add:
@@ -621,48 +373,23 @@ Line
 predicates to add:
 Line
 predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
 Polygon
 has Polygon
 has Polygon
 has Polygon
 has Polygon
-has Polygon
-has Polygon
-has Polygon
-predicates to add:
-Line
-predicates to add:
-Line
 predicates to add:
 Line
 predicates to add:
 Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
 predicates to add:
 Line
 predicates to add:
@@ -693,157 +420,19 @@ has Polygon
 has Polygon
 has Polygon
 predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
 Angle
 predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
 Angle
-predicates to add:
-Line
 predicates to add:
 Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Line
 predicates to add:
 Angle
 predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
 Angle
-predicates to add:
-Line
 predicates to add:
-Line
-predicates to add:
 Angle
-predicates to add:
-Line
-predicates to add:
-Line
 predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
 Angle
-predicates to add:
-Line
 predicates to add:
 Angle
 predicates to add:
@@ -865,23 +454,13 @@ Line
 predicates to add:
 Angle
 predicates to add:
-Line
-predicates to add:
 Angle
-predicates to add:
-Line
-predicates to add:
-Line
 predicates to add:
-Line
-predicates to add:
 Angle
 predicates to add:
 Line
 predicates to add:
 Line
-predicates to add:
-Angle
 predicates to add:
 Angle
 predicates to add:
@@ -894,18 +473,10 @@ predicates to add:
 Angle
 predicates to add:
 Angle
-predicates to add:
-Line
 predicates to add:
-Line
-predicates to add:
 Angle
 predicates to add:
 Angle
-predicates to add:
-Line
-predicates to add:
-Line
 predicates to add:
 Angle
 predicates to add:
@@ -913,44 +484,14 @@ Angle
 predicates to add:
 Angle
 predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
 Angle
 predicates to add:
 Line
 predicates to add:
 Line
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Angle
 predicates to add:
 Angle
 predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
 Line
 predicates to add:
 Line
@@ -963,8 +504,6 @@ Line
 predicates to add:
 Angle
 predicates to add:
-Angle
-predicates to add:
 Line
 predicates to add:
 Line
@@ -984,10 +523,6 @@ predicates to add:
 Line
 predicates to add:
 Line
-predicates to add:
-Angle
-predicates to add:
-Angle
 predicates to add:
 Angle
 predicates to add:
@@ -1019,30 +554,27 @@ Line
 predicates to add:
 Equation
 predicates to add:
-IsCentreOfCircle
+Equation
 predicates to add:
-IsDiameterOfCircle
+Equation
 predicates to add:
-IsCentreOfCircle
+ParallelBetweenLine
 predicates to add:
-IsDiameterOfCircle
+ParallelBetweenLine
 Verifier result: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
-Fixed: Theorem: arc_property_circumference_angle_external(1,ODB,C)
-You outputs the following premises: Cocircular(O,CDB)&Angle(DCB)
-But the correct premises for the theorem: Cocircular(O,DBC)&Angle(BCD)
-You outputs the following conclusions: Equal(MeasureOfAngle(DCB),Mul(MeasureOfArc(ODB),1/2))
-But the correct conclusions for the theorem: Equal(MeasureOfAngle(BCD),Mul(MeasureOfArc(ODB),1/2))
-
+No answer provided in ANSWER section.
 Model Answer:
 RETRY_ANSWER:
-63
+9
 RETRY_THEOREM_SEQUENCE:
-1; flat_angle(1,AOB); Collinear(AOB); ["Equal(MeasureOfAngle(AOB),180)"]  
-2; angle_addition(1,AOD,DOB); Angle(AOD)&Angle(DOB)&Angle(AOB); ["Equal(MeasureOfAngle(AOB),Add(MeasureOfAngle(AOD),MeasureOfAngle(DOB)))"]  
-3; arc_property_center_angle(1,ODB,O); Arc(ODB)&Angle(BOD)&IsCentreOfCircle(O,O); ["Equal(MeasureOfArc(ODB),MeasureOfAngle(BOD))"]  
-4; arc_property_circumference_angle_external(1,ODB,C); Cocircular(O,CDB)&Angle(DCB); ["Equal(MeasureOfAngle(DCB),Mul(MeasureOfArc(ODB),1/2))"]
+1; line_addition(1,AD,DB); Collinear(ADB); ["Equal(LengthOfLine(AB),Add(LengthOfLine(AD),LengthOfLine(DB)))"]
+2; parallel_property_corresponding_angle(1,DE,BC,A); ParallelBetweenLine(DE,BC)&Collinear(ADB); ["Equal(MeasureOfAngle(ADE),MeasureOfAngle(DBC))"]
+3; parallel_property_corresponding_angle(2,CB,ED,A); ParallelBetweenLine(CB,ED)&Collinear(CEA); ["Equal(MeasureOfAngle(BCE),MeasureOfAngle(DEA))"]
+4; similar_triangle_judgment_aa(1,ADE,ABC); Polygon(ADE)&Polygon(ABC)&Equal(MeasureOfAngle(ADE),MeasureOfAngle(ABC))&Equal(MeasureOfAngle(DEA),MeasureOfAngle(BCA)); ["SimilarBetweenTriangle(ADE,ABC)"]
+5; similar_triangle_property_line_ratio(1,ADE,ABC); SimilarBetweenTriangle(ADE,ABC); ["Equal(LengthOfLine(DE),Mul(LengthOfLine(BC),RatioOfSimilarTriangle(ADE,ABC)))"]
+6; similar_triangle_property_line_ratio(1,EAD,CAB); SimilarBetweenTriangle(EAD,CAB); ["Equal(LengthOfLine(AD),Mul(LengthOfLine(AB),RatioOfSimilarTriangle(EAD,CAB)))"]
 Retry attempt: 2
-Content written to results/level_4/variant_analogy_based_model_o1_problem_3272_run_0_to_verify.txt
+Content written to results/level_6/variant_analogy_based_model_o1_problem_5708_run_0_to_verify.txt
 predicates to add:
 Line
 predicates to add:
@@ -1067,20 +599,6 @@ predicates to add:
 Line
 predicates to add:
 Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Circle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
 predicates to add:
 Line
 predicates to add:
@@ -1143,48 +661,23 @@ Line
 predicates to add:
 Line
 predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
 Polygon
 has Polygon
 has Polygon
 has Polygon
 has Polygon
-has Polygon
-has Polygon
-has Polygon
-predicates to add:
-Line
-predicates to add:
-Line
 predicates to add:
 Line
 predicates to add:
 Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
 predicates to add:
 Line
 predicates to add:
@@ -1215,157 +708,19 @@ has Polygon
 has Polygon
 has Polygon
 predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
 Angle
 predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
 Angle
-predicates to add:
-Line
 predicates to add:
 Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Line
 predicates to add:
 Angle
 predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
 Angle
-predicates to add:
-Line
 predicates to add:
-Line
-predicates to add:
 Angle
-predicates to add:
-Line
-predicates to add:
-Line
 predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
 Angle
-predicates to add:
-Line
 predicates to add:
 Angle
 predicates to add:
@@ -1387,23 +742,13 @@ Line
 predicates to add:
 Angle
 predicates to add:
-Line
-predicates to add:
 Angle
-predicates to add:
-Line
-predicates to add:
-Line
 predicates to add:
-Line
-predicates to add:
 Angle
 predicates to add:
 Line
 predicates to add:
 Line
-predicates to add:
-Angle
 predicates to add:
 Angle
 predicates to add:
@@ -1416,18 +761,10 @@ predicates to add:
 Angle
 predicates to add:
 Angle
-predicates to add:
-Line
 predicates to add:
-Line
-predicates to add:
 Angle
 predicates to add:
 Angle
-predicates to add:
-Line
-predicates to add:
-Line
 predicates to add:
 Angle
 predicates to add:
@@ -1435,44 +772,14 @@ Angle
 predicates to add:
 Angle
 predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
 Angle
 predicates to add:
 Line
 predicates to add:
 Line
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Angle
 predicates to add:
 Angle
 predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
 Line
 predicates to add:
 Line
@@ -1485,8 +792,6 @@ Line
 predicates to add:
 Angle
 predicates to add:
-Angle
-predicates to add:
 Line
 predicates to add:
 Line
@@ -1506,10 +811,6 @@ predicates to add:
 Line
 predicates to add:
 Line
-predicates to add:
-Angle
-predicates to add:
-Angle
 predicates to add:
 Angle
 predicates to add:
@@ -1541,12 +842,311 @@ Line
 predicates to add:
 Equation
 predicates to add:
-IsCentreOfCircle
+Equation
 predicates to add:
-IsDiameterOfCircle
+Equation
 predicates to add:
-IsCentreOfCircle
+ParallelBetweenLine
 predicates to add:
-IsDiameterOfCircle
-Theorem sequence verified correctly
-Content written to results/level_4/variant_analogy_based_model_o1_problem_3272_run_0.txt
+ParallelBetweenLine
+Verifier result: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
+No answer provided in ANSWER section.
+Model Answer:
+RETRY_ANSWER:
+9
+RETRY_THEOREM_SEQUENCE:
+1; line_addition(1,AD,DB); Collinear(ADB); ["Equal(LengthOfLine(AB),Add(LengthOfLine(AD),LengthOfLine(DB)))"]
+2; parallel_property_corresponding_angle(1,DE,BC,A); ParallelBetweenLine(DE,BC)&Collinear(ADB); ["Equal(MeasureOfAngle(ADE),MeasureOfAngle(DBC))"]
+3; parallel_property_corresponding_angle(2,CB,ED,A); ParallelBetweenLine(CB,ED)&Collinear(CEA); ["Equal(MeasureOfAngle(BCE),MeasureOfAngle(DEA))"]
+4; similar_triangle_judgment_aa(1,ADE,ABC); Polygon(ADE)&Polygon(ABC)&Equal(MeasureOfAngle(ADE),MeasureOfAngle(ABC))&Equal(MeasureOfAngle(DEA),MeasureOfAngle(BCA)); ["SimilarBetweenTriangle(ADE,ABC)"]
+5; similar_triangle_property_line_ratio(1,ADE,ABC); SimilarBetweenTriangle(ADE,ABC); ["Equal(LengthOfLine(DE),Mul(LengthOfLine(BC),RatioOfSimilarTriangle(ADE,ABC)))"]
+6; similar_triangle_property_line_ratio(1,EAD,CAB); SimilarBetweenTriangle(EAD,CAB); ["Equal(LengthOfLine(AD),Mul(LengthOfLine(AB),RatioOfSimilarTriangle(EAD,CAB)))"]
+Retry attempt: 3
+Content written to results/level_6/variant_analogy_based_model_o1_problem_5708_run_0_to_verify.txt
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Polygon
+has Polygon
+has Polygon
+has Polygon
+has Polygon
+has Polygon
+has Polygon
+has Polygon
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Polygon
+has Polygon
+has Polygon
+has Polygon
+has Polygon
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Polygon
+has Polygon
+has Polygon
+has Polygon
+has Polygon
+has Polygon
+has Polygon
+has Polygon
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Equation
+predicates to add:
+Equation
+predicates to add:
+Equation
+predicates to add:
+ParallelBetweenLine
+predicates to add:
+ParallelBetweenLine
+Verifier result: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
+No answer provided in ANSWER section.
+Model Answer:
+RETRY_ANSWER:
+9
+RETRY_THEOREM_SEQUENCE:
+1; line_addition(1,AD,DB); Collinear(ADB); ["Equal(LengthOfLine(AB),Add(LengthOfLine(AD),LengthOfLine(DB)))"]
+2; parallel_property_corresponding_angle(1,DE,BC,A); ParallelBetweenLine(DE,BC)&Collinear(ADB); ["Equal(MeasureOfAngle(ADE),MeasureOfAngle(DBC))"]
+3; parallel_property_corresponding_angle(2,CB,ED,A); ParallelBetweenLine(CB,ED)&Collinear(CEA); ["Equal(MeasureOfAngle(BCE),MeasureOfAngle(DEA))"]
+4; similar_triangle_judgment_aa(1,ADE,ABC); Polygon(ADE)&Polygon(ABC)&Equal(MeasureOfAngle(ADE),MeasureOfAngle(ABC))&Equal(MeasureOfAngle(DEA),MeasureOfAngle(BCA)); ["SimilarBetweenTriangle(ADE,ABC)"]
+5; similar_triangle_property_line_ratio(1,ADE,ABC); SimilarBetweenTriangle(ADE,ABC); ["Equal(LengthOfLine(DE),Mul(LengthOfLine(BC),RatioOfSimilarTriangle(ADE,ABC)))"]
+6; similar_triangle_property_line_ratio(1,EAD,CAB); SimilarBetweenTriangle(EAD,CAB); ["Equal(LengthOfLine(AD),Mul(LengthOfLine(AB),RatioOfSimilarTriangle(EAD,CAB)))"]
+Retry attempt: 4

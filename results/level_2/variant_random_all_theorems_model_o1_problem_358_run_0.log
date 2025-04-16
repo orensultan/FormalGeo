@@ -74,14 +74,31 @@ predicates to add:
 Equation
 predicates to add:
 PerpendicularBetweenLine
-Verifier result: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
-Error parsing answer '3√2': Invalid literal for Fraction: '3√2'
+Verifier result: ERROR_TIER: TIER3_GOAL_NOT_REACHED
+verification failed.
+
+- Goal: value of h
+- Model answer: 4.242640687119286
+- Error: Your proof doesn't uniquely determine the value. You need to use additional theorems to constrain the value.
+- Available premises:
+  Perpendicular Lines: AC ⊥ BC
+  Right Triangles: ACB
+  Polygons: ABC, ACB
+- Theorems related to the goal:
+  Step 2 - right_triangle_judgment_angle(1, ACB): RightTriangle(ACB)
+  Step 3 - right_triangle_property_pythagorean(1, ACB): Equal(Add(Pow(LengthOfLine(AC),2),Pow(LengthOfLine(CB),2)),Pow(LengthOfLine(AB),2))
+- Solver constraints directly related to this goal:
+  None found
+
+Variable h is not uniquely determined
+Please fix the proof.
 Model Answer:
 RETRY_ANSWER:
 3√2
 RETRY_THEOREM_SEQUENCE:
-1; triangle_property_angle_sum(1,ABC); Polygon(ABC); ["Equal(Add(MeasureOfAngle(ABC),MeasureOfAngle(BCA),MeasureOfAngle(CAB)),180)"]  
-2; sine_theorem(1,ABC); Polygon(ABC); ["Equal(Mul(LengthOfLine(AB),Sin(MeasureOfAngle(ABC))),Mul(LengthOfLine(AC),Sin(MeasureOfAngle(BCA))))"]
+1; triangle_property_angle_sum(1,ACB); Polygon(ACB); ["Equal(Add(MeasureOfAngle(ACB),MeasureOfAngle(CBA),MeasureOfAngle(BAC)),180)"]
+2; right_triangle_judgment_angle(1,ACB); Polygon(ACB)&Equal(MeasureOfAngle(ACB),90); ["RightTriangle(ACB)"]
+3; right_triangle_property_pythagorean(1,ACB); RightTriangle(ACB); ["Equal(Add(Pow(LengthOfLine(AC),2),Pow(LengthOfLine(CB),2)),Pow(LengthOfLine(AB),2))"]
 Retry attempt: 1
 Content written to results/level_2/variant_random_all_theorems_model_o1_problem_358_run_0_to_verify.txt
 predicates to add:

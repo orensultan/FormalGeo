@@ -106,90 +106,25 @@ ANSWER:
 82
 
 THEOREM_SEQUENCE:
-1; triangle_property_angle_sum(1,BDE); Polygon(BDE); ["Equal(Add(MeasureOfAngle(BDE),MeasureOfAngle(DEB),MeasureOfAngle(EBD)),180)"]
-2; vertical_angle(1,DEB,CEA); Collinear(DEC)&Collinear(BEA)&Angle(DEB)&Angle(CEA); ["Equal(MeasureOfAngle(DEB),MeasureOfAngle(CEA))"]
-3; triangle_property_angle_sum(1,ACE); Polygon(ACE); ["Equal(Add(MeasureOfAngle(ACE),MeasureOfAngle(CEA),MeasureOfAngle(EAC)),180)"]
+1; triangle_property_angle_sum(1,BDE); Polygon(BDE); ["Equal(Add(MeasureOfAngle(BDE),MeasureOfAngle(DEB),MeasureOfAngle(EBD)),180)"]  
+2; vertical_angle(1,DEB,CEA); Collinear(DEC)&Collinear(BEA)&Angle(DEB)&Angle(CEA); ["Equal(MeasureOfAngle(DEB),MeasureOfAngle(CEA))"]  
+3; triangle_property_angle_sum(1,EAC); Polygon(EAC); ["Equal(Add(MeasureOfAngle(EAC),MeasureOfAngle(ACE),MeasureOfAngle(CEA)),180)"]  
 ***MODEL_RESPONSE_END***
 RETRIES_MESSAGES:
 #run: 0; #retry: 1; message: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
-Verification failed.
-Theorem: vertical_angle(1,DEB,CEA)
-The language model outputs the following premises: Collinear(BEA)&Collinear(DEC)&Angle(DEB)&Angle(CEA)
-The correct premises for the theorem: Collinear(DEC)&Collinear(BEA)&Angle(DEB)&Angle(CEA)
+Fixed: Theorem: vertical_angle(1,DEB,CEA)
+You outputs the following premises: Collinear(BEA)&Collinear(DEC)&Angle(DEB)&Angle(CEA)
+But the correct premises for the theorem: Collinear(DEC)&Collinear(BEA)&Angle(DEB)&Angle(CEA)
 
-Model Answer:
-RETRY_ANSWER:
-42
-RETRY_THEOREM_SEQUENCE:
-1; triangle_property_angle_sum(1,BDE); Polygon(BDE); ["Equal(Add(MeasureOfAngle(BDE),MeasureOfAngle(DEB),MeasureOfAngle(EBD)),180)"]
-2; triangle_property_angle_sum(1,EAC); Polygon(EAC); ["Equal(Add(MeasureOfAngle(EAC),MeasureOfAngle(ACE),MeasureOfAngle(CEA)),180)"]
-3; vertical_angle(1,DEB,CEA); Collinear(BEA)&Collinear(DEC)&Angle(DEB)&Angle(CEA); ["Equal(MeasureOfAngle(DEB),MeasureOfAngle(CEA))"]
-#run: 0; #retry: 2; message: ERROR_TIER: TIER3_GOAL_NOT_REACHED
-verification failed.
-
-- Goal: measure of angle BAC
-- Model answer: 42.0
-- Verifier expected answer: 82.0
-- Error: From your proof, the verifier determines the angle of BAC to be 82.0, not 42.0 as you stated in your solution. Check your theorem applications and your answer.
-- Available premises:
-  Collinear Points: AEB, CED
-  Polygons: ACE, AEC, BDE, BED
-- Theorems related to the goal:
-  None found that constrain this goal
-- Solver constraints directly related to this goal:
-  ∠BAC <= 180
-  ∠BAC > 0
-  ∠CAE = ∠BAC
-
-Please fix the proof.
-Model Answer:
-RETRY_ANSWER:
-42
-RETRY_THEOREM_SEQUENCE:
-1; triangle_property_angle_sum(1,BDE); Polygon(BDE); ["Equal(Add(MeasureOfAngle(BDE),MeasureOfAngle(DEB),MeasureOfAngle(EBD)),180)"]
-2; triangle_property_angle_sum(1,EAC); Polygon(EAC); ["Equal(Add(MeasureOfAngle(EAC),MeasureOfAngle(ACE),MeasureOfAngle(CEA)),180)"]
-3; vertical_angle(1,DEB,CEA); Collinear(DEC)&Collinear(BEA)&Angle(DEB)&Angle(CEA); ["Equal(MeasureOfAngle(DEB),MeasureOfAngle(CEA))"]
-#run: 0; #retry: 3; message: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
-Verification failed. Theorem <angle_addition> branch error. Expected dict_keys(['1']) but got None. Please rewrite your response, you should change only the call to theorem <angle_addition> by adding the branch number from the dict_keys as the first argument
 Model Answer:
 RETRY_ANSWER:
 82
 RETRY_THEOREM_SEQUENCE:
-1; triangle_property_angle_sum(1,BDE); Polygon(BDE); ["Equal(Add(MeasureOfAngle(BDE),MeasureOfAngle(DEB),MeasureOfAngle(EBD)),180)"]
-2; vertical_angle(1,DEB,CEA); Collinear(DEC)&Collinear(BEA)&Angle(DEB)&Angle(CEA); ["Equal(MeasureOfAngle(DEB),MeasureOfAngle(CEA))"]
+1; triangle_property_angle_sum(1,BDE); Polygon(BDE); ["Equal(Add(MeasureOfAngle(BDE),MeasureOfAngle(DEB),MeasureOfAngle(EBD)),180)"]  
+2; vertical_angle(1,DEB,CEA); Collinear(BEA)&Collinear(DEC)&Angle(DEB)&Angle(CEA); ["Equal(MeasureOfAngle(DEB),MeasureOfAngle(CEA))"]  
 3; triangle_property_angle_sum(1,EAC); Polygon(EAC); ["Equal(Add(MeasureOfAngle(EAC),MeasureOfAngle(ACE),MeasureOfAngle(CEA)),180)"]
-4; angle_addition(BDE,EDC); Angle(BDE)&Angle(EDC)&Angle(BDC); ["Equal(MeasureOfAngle(BDC),Add(MeasureOfAngle(BDE),MeasureOfAngle(EDC)))"]
-#run: 0; #retry: 4; message: ERROR_TIER: TIER3_GOAL_NOT_REACHED
-verification failed.
-
-- Goal: measure of angle BAC
-- Model answer: 82.0
-- Error: Your proof contains contradictory constraints. Check for incorrect values in premises, improper theorem application, or conclusions that contradict earlier assertions.
-  Contradictory constraints:
-    ∠BDE = ∠BDC
-    ∠CDE > 0
-    ∠BDC = ∠BDE + ∠CDE
-- Available premises:
-  Collinear Points: AEB, CED
-  Polygons: ACE, AEC, BDE, BED
-- Theorems related to the goal:
-  None found that constrain this goal
-- Solver constraints directly related to this goal:
-  ∠BAC <= 180
-  ∠BAC > 0
-  ∠CAE = ∠BAC
-
-Please fix the proof.
-Model Answer:
-RETRY_ANSWER:
-82
-RETRY_THEOREM_SEQUENCE:
-1; triangle_property_angle_sum(1,BDE); Polygon(BDE); ["Equal(Add(MeasureOfAngle(BDE),MeasureOfAngle(DEB),MeasureOfAngle(EBD)),180)"]
-2; vertical_angle(1,DEB,CEA); Collinear(DEC)&Collinear(BEA)&Angle(DEB)&Angle(CEA); ["Equal(MeasureOfAngle(DEB),MeasureOfAngle(CEA))"]
-3; triangle_property_angle_sum(1,EAC); Polygon(EAC); ["Equal(Add(MeasureOfAngle(EAC),MeasureOfAngle(ACE),MeasureOfAngle(CEA)),180)"]
-4; angle_addition(1,BDE,EDC); Angle(BDE)&Angle(EDC)&Angle(BDC); ["Equal(MeasureOfAngle(BDC),Add(MeasureOfAngle(BDE),MeasureOfAngle(EDC)))"]
 #RETRIES:
-4
+1
 #RUNS:
 0
 

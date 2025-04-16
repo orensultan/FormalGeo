@@ -27,6 +27,10 @@ Shape(AO,OB,OBA)
 Shape(OB,OBA,AO)
 Shape(DC,OAC,AD)
 Shape(OAC,AD,DC)
+Shape(OA,OAC,CB,BO)
+Shape(OAC,CB,BO,OA)
+Shape(CB,BO,OA,OAC)
+Shape(BO,OA,OAC,CB)
 Shape(CO,OA,AD,DC)
 Shape(OA,AD,DC,CO)
 Shape(AD,DC,CO,OA)
@@ -35,10 +39,6 @@ Shape(OAC,CO,OB,OBA)
 Shape(CO,OB,OBA,OAC)
 Shape(OB,OBA,OAC,CO)
 Shape(OBA,OAC,CO,OB)
-Shape(OA,OAC,CB,BO)
-Shape(OAC,CB,BO,OA)
-Shape(CB,BO,OA,OAC)
-Shape(BO,OA,OAC,CB)
 Shape(OCB,BO,OC)
 Shape(BO,OC,OCB)
 Shape(OC,OCB,BO)
@@ -46,13 +46,13 @@ Shape(OC,CB,OBA,AO)
 Shape(CB,OBA,AO,OC)
 Shape(OBA,AO,OC,CB)
 Shape(AO,OC,CB,OBA)
-Shape(OAC,CB,OBA)
-Shape(CB,OBA,OAC)
-Shape(OBA,OAC,CB)
 Shape(OA,OAC,OCB,BO)
 Shape(OAC,OCB,BO,OA)
 Shape(OCB,BO,OA,OAC)
 Shape(BO,OA,OAC,OCB)
+Shape(OAC,CB,OBA)
+Shape(CB,OBA,OAC)
+Shape(OBA,OAC,CB)
 Shape(OCB,OBA,AO,OC)
 Shape(OBA,AO,OC,OCB)
 Shape(AO,OC,OCB,OBA)
@@ -189,65 +189,91 @@ GOAL_SYMBOL:
 ma_adb
 
 ANSWER:
-55
+No valid proof can be constructed from the given premises to conclude ∠ADB = 90.
 
 THEOREM_SEQUENCE:
-1; arc_property_center_angle(1,OCA,O); Arc(OCA)&Angle(AOC)&IsCentreOfCircle(O,O); ["Equal(MeasureOfArc(OCA),MeasureOfAngle(AOC))"]
-2; circle_property_angle_of_osculation(1,OCA,D); Arc(OCA)&Angle(ACD)&IsTangentOfCircle(DC,O); ["Equal(MeasureOfAngle(ACD),Mul(MeasureOfArc(OCA),1/2))"]
-3; diameter_of_circle_property_right_angle(1,BCA,O); IsDiameterOfCircle(AB,O)&Cocircular(O,BCA)&Angle(BCA); ["PerpendicularBetweenLine(BC,AC)"]
+No valid sequence of theorems will establish that ∠ADB = 90 under the current problem constraints and data.
 ***MODEL_RESPONSE_END***
 RETRIES_MESSAGES:
 #run: 0; #retry: 1; message: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
-Verification failed. Theorem <arc_property_center_angle> branch error. Expected dict_keys(['1']) but got None. Please rewrite your response, you should change only the call to theorem <arc_property_center_angle> by adding the branch number from the dict_keys as the first argument
-Model Answer:
-RETRY_ANSWER:
-55
-RETRY_THEOREM_SEQUENCE:
-1; arc_property_center_angle(OCA,O); Arc(OCA)&Angle(AOC)&IsCentreOfCircle(O,O); ["Equal(MeasureOfArc(OCA),MeasureOfAngle(AOC))"]  
-2; circle_property_angle_of_osculation(OCA,D); Arc(OCA)&Angle(CAD)&IsTangentOfCircle(DA,O); ["Equal(MeasureOfAngle(CAD),Mul(MeasureOfArc(OCA),1/2))"]  
-3; diameter_of_circle_property_right_angle(BCA,O); IsDiameterOfCircle(AB,O)&Cocircular(O,BCA)&Angle(BCA); ["PerpendicularBetweenLine(BC,AC)"]
-#run: 0; #retry: 2; message: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
-Verification failed. Theorem <circle_property_angle_of_osculation> branch error. Expected dict_keys(['1', '2']) but got None. Please rewrite your response, you should change only the call to theorem <circle_property_angle_of_osculation> by adding the branch number from the dict_keys as the first argument
-Model Answer:
-RETRY_ANSWER:
-55
-RETRY_THEOREM_SEQUENCE:
-1; arc_property_center_angle(1,OCA,O); Arc(OCA)&Angle(AOC)&IsCentreOfCircle(O,O); ["Equal(MeasureOfArc(OCA),MeasureOfAngle(AOC))"]
-2; circle_property_angle_of_osculation(OCA,D); Arc(OCA)&Angle(CAD)&IsTangentOfCircle(DA,O); ["Equal(MeasureOfAngle(CAD),Mul(MeasureOfArc(OCA),1/2))"]
-3; diameter_of_circle_property_right_angle(BCA,O); IsDiameterOfCircle(AB,O)&Cocircular(O,BCA)&Angle(BCA); ["PerpendicularBetweenLine(BC,AC)"]
-#run: 0; #retry: 3; message: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
-Verification failed.
-Theorem: circle_property_angle_of_osculation(1,OCA,D)
-The language model outputs the following premises: Arc(OCA)&Angle(CAD)&IsTangentOfCircle(DA,O)
-The correct premises for the theorem: Arc(OCA)&Angle(ACD)&IsTangentOfCircle(DC,O)
-The language model outputs the following conclusions: Equal(MeasureOfAngle(CAD),Mul(MeasureOfArc(OCA),1/2))
-The correct conclusions for the theorem: Equal(MeasureOfAngle(ACD),Mul(MeasureOfArc(OCA),1/2))
+Theorem: arc_property_center_angle(1,OCA,O)
+You outputs the following premises: Arc(OCA)&Angle(COA)&IsCentreOfCircle(O,O)
+But the correct premises for the theorem: Arc(OCA)&Angle(AOC)&IsCentreOfCircle(O,O)
+You outputs the following conclusions: Equal(MeasureOfArc(OCA),MeasureOfAngle(COA))
+But the correct conclusions for the theorem: Equal(MeasureOfArc(OCA),MeasureOfAngle(AOC))
 
 Model Answer:
 RETRY_ANSWER:
-55
+90
 RETRY_THEOREM_SEQUENCE:
-1; arc_property_center_angle(1,OCA,O); Arc(OCA)&Angle(AOC)&IsCentreOfCircle(O,O); ["Equal(MeasureOfArc(OCA),MeasureOfAngle(AOC))"]
-2; circle_property_angle_of_osculation(1,OCA,D); Arc(OCA)&Angle(CAD)&IsTangentOfCircle(DA,O); ["Equal(MeasureOfAngle(CAD),Mul(MeasureOfArc(OCA),1/2))"]
-3; diameter_of_circle_property_right_angle(BCA,O); IsDiameterOfCircle(AB,O)&Cocircular(O,BCA)&Angle(BCA); ["PerpendicularBetweenLine(BC,AC)"]
-#run: 0; #retry: 4; message: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
-Verification failed. Theorem <diameter_of_circle_property_right_angle> branch error. Expected dict_keys(['1']) but got None. Please rewrite your response, you should change only the call to theorem <diameter_of_circle_property_right_angle> by adding the branch number from the dict_keys as the first argument
-Model Answer:
-RETRY_ANSWER:
-55
-RETRY_THEOREM_SEQUENCE:
-1; arc_property_center_angle(1,OCA,O); Arc(OCA)&Angle(AOC)&IsCentreOfCircle(O,O); ["Equal(MeasureOfArc(OCA),MeasureOfAngle(AOC))"]
-2; circle_property_angle_of_osculation(1,OCA,D); Arc(OCA)&Angle(ACD)&IsTangentOfCircle(DC,O); ["Equal(MeasureOfAngle(ACD),Mul(MeasureOfArc(OCA),1/2))"]
-3; diameter_of_circle_property_right_angle(BCA,O); IsDiameterOfCircle(AB,O)&Cocircular(O,BCA)&Angle(BCA); ["PerpendicularBetweenLine(BC,AC)"]
-#run: 0; #retry: 5; message: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
-Error during proof verification: cannot unpack non-iterable NoneType object
-Model Answer:
-RETRY_ANSWER:
-55
-RETRY_THEOREM_SEQUENCE:
-1; arc_property_center_angle(1,OCA,O); Arc(OCA)&Angle(AOC)&IsCentreOfCircle(O,O); ["Equal(MeasureOfArc(OCA),MeasureOfAngle(AOC))"]
-2; circle_property_angle_of_osculation(1,OCA,D); Arc(OCA)&Angle(ACD)&IsTangentOfCircle(DC,O); ["Equal(MeasureOfAngle(ACD),Mul(MeasureOfArc(OCA),1/2))"]
+1; arc_property_center_angle(1,OCA,O); Arc(OCA)&Angle(COA)&IsCentreOfCircle(O,O); ["Equal(MeasureOfArc(OCA),MeasureOfAngle(COA))"]
+2; arc_property_circumference_angle_external(1,OCA,B); Cocircular(O,CAB)&Angle(CBA); ["Equal(MeasureOfAngle(CBA),Mul(MeasureOfArc(OCA),1/2))"]
 3; diameter_of_circle_property_right_angle(1,BCA,O); IsDiameterOfCircle(AB,O)&Cocircular(O,BCA)&Angle(BCA); ["PerpendicularBetweenLine(BC,AC)"]
+4; triangle_property_angle_sum(1,ABC); Polygon(ABC); ["Equal(Add(MeasureOfAngle(ABC),MeasureOfAngle(BCA),MeasureOfAngle(CAB)),180)"]
+#run: 0; #retry: 2; message: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
+Theorem: arc_property_circumference_angle_external(1,OCA,B)
+You outputs the following premises: Cocircular(O,CAB)&Angle(CBA)
+But the correct premises for the theorem: Cocircular(O,CAB)&Angle(ABC)
+You outputs the following conclusions: Equal(MeasureOfAngle(CBA),Mul(MeasureOfArc(OCA),1/2))
+But the correct conclusions for the theorem: Equal(MeasureOfAngle(ABC),Mul(MeasureOfArc(OCA),1/2))
+
+Model Answer:
+RETRY_ANSWER:
+90
+RETRY_THEOREM_SEQUENCE:
+1; arc_property_center_angle(1,OCA,O); Arc(OCA)&Angle(AOC)&IsCentreOfCircle(O,O); ["Equal(MeasureOfArc(OCA),MeasureOfAngle(AOC))"]
+2; arc_property_circumference_angle_external(1,OCA,B); Cocircular(O,CAB)&Angle(CBA); ["Equal(MeasureOfAngle(CBA),Mul(MeasureOfArc(OCA),1/2))"]
+3; diameter_of_circle_property_right_angle(1,BCA,O); IsDiameterOfCircle(AB,O)&Cocircular(O,BCA)&Angle(BCA); ["PerpendicularBetweenLine(BC,AC)"]
+4; triangle_property_angle_sum(1,ABC); Polygon(ABC); ["Equal(Add(MeasureOfAngle(ABC),MeasureOfAngle(BCA),MeasureOfAngle(CAB)),180)"]
+#run: 0; #retry: 3; message: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
+Theorem: arc_property_circumference_angle_external(1,OCA,B)
+You outputs the following premises: Cocircular(O,ACB)&Angle(ABC)
+But the correct premises for the theorem: Cocircular(O,CAB)&Angle(ABC)
+
+Model Answer:
+RETRY_ANSWER:
+90
+RETRY_THEOREM_SEQUENCE:
+1; arc_property_center_angle(1,OCA,O); Arc(OCA)&Angle(AOC)&IsCentreOfCircle(O,O); ["Equal(MeasureOfArc(OCA),MeasureOfAngle(AOC))"]
+2; arc_property_circumference_angle_external(1,OCA,B); Cocircular(O,ACB)&Angle(ABC); ["Equal(MeasureOfAngle(ABC),Mul(MeasureOfArc(OCA),1/2))"]
+3; diameter_of_circle_property_right_angle(1,BCA,O); IsDiameterOfCircle(AB,O)&Cocircular(O,BCA)&Angle(BCA); ["PerpendicularBetweenLine(BC,AC)"]
+4; triangle_property_angle_sum(1,ABC); Polygon(ABC); ["Equal(Add(MeasureOfAngle(ABC),MeasureOfAngle(BCA),MeasureOfAngle(CAB)),180)"]
+#run: 0; #retry: 4; message: ERROR_TIER: TIER3_GOAL_NOT_REACHED
+verification failed.
+
+- Goal: measure of angle ADB
+- Model answer: 90.0
+- Error: Your proof doesn't uniquely determine the value. You need to use additional theorems to constrain the value.
+- Available premises:
+  Collinear Points: AOB, BCD
+  Cocircular Points: A on circle O, AB on circle O, ABC on circle O, AC on circle O, B on circle O, BC on circle O, C on circle O
+  Circles: O center: O
+  Circle Diameters: AB diameter of O
+  Tangent Lines: DA tangent to O
+  Polygons: ABD, ADB, ADCO, BCO, BOC, COAD, DCOA, OADC
+- Theorems related to the goal:
+  None found that constrain this goal
+- Solver constraints directly related to this goal:
+  ∠ADB <= 180
+  ∠ADB > 0
+  ∠ADC = ∠ADB
+
+Please fix the proof.
+Model Answer:
+RETRY_ANSWER:
+90
+RETRY_THEOREM_SEQUENCE:
+1; arc_property_center_angle(1,OCA,O); Arc(OCA)&Angle(AOC)&IsCentreOfCircle(O,O); ["Equal(MeasureOfArc(OCA),MeasureOfAngle(AOC))"]
+2; arc_property_circumference_angle_external(1,OCA,B); Cocircular(O,CAB)&Angle(ABC); ["Equal(MeasureOfAngle(ABC),Mul(MeasureOfArc(OCA),1/2))"]
+3; diameter_of_circle_property_right_angle(1,BCA,O); IsDiameterOfCircle(AB,O)&Cocircular(O,BCA)&Angle(BCA); ["PerpendicularBetweenLine(BC,AC)"]
+4; triangle_property_angle_sum(1,ABC); Polygon(ABC); ["Equal(Add(MeasureOfAngle(ABC),MeasureOfAngle(BCA),MeasureOfAngle(CAB)),180)"]
+#run: 0; #retry: 5; message: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
+Failure: Theorem  not defined in current GDL. Please rewrite the proof sequence, you are allowed to use only theorems from the GDL.
+Model Answer:
+RETRY_ANSWER:
+No valid proof can be constructed from the given premises to conclude ∠ADB = 90.
+RETRY_THEOREM_SEQUENCE:
+No valid sequence of theorems will establish that ∠ADB = 90 under the current problem constraints and data.
 #RETRIES:
 5
 #RUNS:

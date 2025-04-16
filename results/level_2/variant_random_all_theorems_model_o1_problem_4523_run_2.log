@@ -108,16 +108,6 @@ Line
 predicates to add:
 Line
 predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
 Line
 predicates to add:
 Angle
@@ -162,18 +152,6 @@ Angle
 predicates to add:
 Line
 predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
 Angle
 predicates to add:
 Line
@@ -185,6 +163,8 @@ predicates to add:
 Line
 predicates to add:
 Angle
+predicates to add:
+Line
 predicates to add:
 Line
 predicates to add:
@@ -214,9 +194,7 @@ Angle
 predicates to add:
 Line
 predicates to add:
-Line
-predicates to add:
-Line
+Angle
 predicates to add:
 Line
 predicates to add:
@@ -237,6 +215,28 @@ predicates to add:
 Line
 predicates to add:
 Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
 predicates to add:
 Line
 predicates to add:
@@ -324,12 +324,11 @@ Equation
 predicates to add:
 IsCentreOfCircle
 Verifier result: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
-Verification failed.
-Theorem: arc_property_circumference_angle_external(1,OBD,C)
-The language model outputs the following premises: Cocircular(O,BDC)&Angle(BCD)
-The correct premises for the theorem: Cocircular(O,BDC)&Angle(DCB)
-The language model outputs the following conclusions: Equal(MeasureOfAngle(BCD),Mul(MeasureOfArc(OBD),1/2))
-The correct conclusions for the theorem: Equal(MeasureOfAngle(DCB),Mul(MeasureOfArc(OBD),1/2))
+Fixed: Theorem: arc_property_circumference_angle_external(1,OBD,C)
+You outputs the following premises: Cocircular(O,BDC)&Angle(BCD)
+But the correct premises for the theorem: Cocircular(O,BDC)&Angle(DCB)
+You outputs the following conclusions: Equal(MeasureOfAngle(BCD),Mul(MeasureOfArc(OBD),1/2))
+But the correct conclusions for the theorem: Equal(MeasureOfAngle(DCB),Mul(MeasureOfArc(OBD),1/2))
 
 Model Answer:
 RETRY_ANSWER:
@@ -448,16 +447,6 @@ Line
 predicates to add:
 Line
 predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
 Line
 predicates to add:
 Angle
@@ -502,18 +491,6 @@ Angle
 predicates to add:
 Line
 predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
 Angle
 predicates to add:
 Line
@@ -525,6 +502,8 @@ predicates to add:
 Line
 predicates to add:
 Angle
+predicates to add:
+Line
 predicates to add:
 Line
 predicates to add:
@@ -554,9 +533,7 @@ Angle
 predicates to add:
 Line
 predicates to add:
-Line
-predicates to add:
-Line
+Angle
 predicates to add:
 Line
 predicates to add:
@@ -577,6 +554,28 @@ predicates to add:
 Line
 predicates to add:
 Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
 predicates to add:
 Line
 predicates to add:
@@ -798,16 +797,6 @@ Line
 predicates to add:
 Line
 predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
 Line
 predicates to add:
 Angle
@@ -852,18 +841,6 @@ Angle
 predicates to add:
 Line
 predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
 Angle
 predicates to add:
 Line
@@ -875,6 +852,8 @@ predicates to add:
 Line
 predicates to add:
 Angle
+predicates to add:
+Line
 predicates to add:
 Line
 predicates to add:
@@ -904,9 +883,7 @@ Angle
 predicates to add:
 Line
 predicates to add:
-Line
-predicates to add:
-Line
+Angle
 predicates to add:
 Line
 predicates to add:
@@ -927,6 +904,28 @@ predicates to add:
 Line
 predicates to add:
 Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
 predicates to add:
 Line
 predicates to add:
@@ -1013,25 +1012,15 @@ predicates to add:
 Equation
 predicates to add:
 IsCentreOfCircle
-Traceback (most recent call last):
-  File "/Users/osultan/PycharmProjects/FormalGeo/src/formalgeo/geometric_verifier.py", line 9869, in parse_and_verify_proof
-    is_valid, error = self.validate_theorem_premises(theorem_name, args, premise)
-TypeError: cannot unpack non-iterable NoneType object
 Verifier result: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
-Verification failed.
-Theorem: arc_property_circumference_angle_external(1,OBD,C)
-The language model outputs the following premises: Cocircular(O,BDC)&Angle(BCD)
-The correct premises for the theorem: Cocircular(O,BDC)&Angle(DCB)
-The language model outputs the following conclusions: Equal(MeasureOfAngle(BCD),Mul(MeasureOfArc(OBD),1/2))
-The correct conclusions for the theorem: Equal(MeasureOfAngle(DCB),Mul(MeasureOfArc(OBD),1/2))
-
+Failure: Theorem <round_arc> branch error. Expected dict_keys(['1']) but got None. Please rewrite your response, you should change only the call to theorem <round_arc> by adding the branch number from the dict_keys as the first argument
 Model Answer:
 RETRY_ANSWER:
 140
 RETRY_THEOREM_SEQUENCE:
-1; arc_property_circumference_angle_external(1,OBD,C); Cocircular(O,BDC)&Angle(BCD); ["Equal(MeasureOfAngle(BCD),Mul(MeasureOfArc(OBD),1/2))"]
-2; round_arc(OBD,DBO); Arc(OBD)&Arc(DBO); ["Equal(Add(MeasureOfArc(OBD),MeasureOfArc(DBO)),360)"]
-3; arc_property_center_angle(1,DBO,O); Arc(DBO)&Angle(DOB)&IsCentreOfCircle(O,O); ["Equal(MeasureOfArc(DBO),MeasureOfAngle(DOB))"]
+1; arc_property_circumference_angle_external(1,OBD,C); Cocircular(O,BDC)&Angle(DCB); ["Equal(MeasureOfAngle(DCB),Mul(MeasureOfArc(OBD),1/2))"]  
+2; round_arc(OBD,ODB); Arc(OBD)&Arc(ODB); ["Equal(Add(MeasureOfArc(OBD),MeasureOfArc(ODB)),360)"]  
+3; arc_property_center_angle(1,ODB,O); Arc(ODB)&Angle(DOB)&IsCentreOfCircle(O,O); ["Equal(MeasureOfArc(ODB),MeasureOfAngle(DOB))"]
 Retry attempt: 3
 Content written to results/level_2/variant_random_all_theorems_model_o1_problem_4523_run_2_to_verify.txt
 predicates to add:
@@ -1143,16 +1132,6 @@ Line
 predicates to add:
 Line
 predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
 Line
 predicates to add:
 Angle
@@ -1197,18 +1176,6 @@ Angle
 predicates to add:
 Line
 predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
 Angle
 predicates to add:
 Line
@@ -1220,6 +1187,8 @@ predicates to add:
 Line
 predicates to add:
 Angle
+predicates to add:
+Line
 predicates to add:
 Line
 predicates to add:
@@ -1249,9 +1218,7 @@ Angle
 predicates to add:
 Line
 predicates to add:
-Line
-predicates to add:
-Line
+Angle
 predicates to add:
 Line
 predicates to add:
@@ -1272,6 +1239,28 @@ predicates to add:
 Line
 predicates to add:
 Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
 predicates to add:
 Line
 predicates to add:
@@ -1358,19 +1347,20 @@ predicates to add:
 Equation
 predicates to add:
 IsCentreOfCircle
-Traceback (most recent call last):
-  File "/Users/osultan/PycharmProjects/FormalGeo/src/formalgeo/geometric_verifier.py", line 9869, in parse_and_verify_proof
-    is_valid, error = self.validate_theorem_premises(theorem_name, args, premise)
-TypeError: cannot unpack non-iterable NoneType object
 Verifier result: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
-Verification failed. Theorem <round_arc> branch error. Expected dict_keys(['1']) but got None. Please rewrite your response, you should change only the call to theorem <round_arc> by adding the branch number from the dict_keys as the first argument
+Fixed: Theorem: arc_property_center_angle(1,ODB,O)
+You outputs the following premises: Arc(ODB)&Angle(DOB)&IsCentreOfCircle(O,O)
+But the correct premises for the theorem: Arc(ODB)&Angle(BOD)&IsCentreOfCircle(O,O)
+You outputs the following conclusions: Equal(MeasureOfArc(ODB),MeasureOfAngle(DOB))
+But the correct conclusions for the theorem: Equal(MeasureOfArc(ODB),MeasureOfAngle(BOD))
+
 Model Answer:
 RETRY_ANSWER:
 140
 RETRY_THEOREM_SEQUENCE:
 1; arc_property_circumference_angle_external(1,OBD,C); Cocircular(O,BDC)&Angle(DCB); ["Equal(MeasureOfAngle(DCB),Mul(MeasureOfArc(OBD),1/2))"]
-2; round_arc(OBD,DBO); Arc(OBD)&Arc(DBO); ["Equal(Add(MeasureOfArc(OBD),MeasureOfArc(DBO)),360)"]
-3; arc_property_center_angle(1,DBO,O); Arc(DBO)&Angle(DOB)&IsCentreOfCircle(O,O); ["Equal(MeasureOfArc(DBO),MeasureOfAngle(DOB))"]
+2; round_arc(1,OBD,ODB); Arc(OBD)&Arc(ODB); ["Equal(Add(MeasureOfArc(OBD),MeasureOfArc(ODB)),360)"]
+3; arc_property_center_angle(1,ODB,O); Arc(ODB)&Angle(DOB)&IsCentreOfCircle(O,O); ["Equal(MeasureOfArc(ODB),MeasureOfAngle(DOB))"]
 Retry attempt: 4
 Content written to results/level_2/variant_random_all_theorems_model_o1_problem_4523_run_2_to_verify.txt
 predicates to add:
@@ -1482,16 +1472,6 @@ Line
 predicates to add:
 Line
 predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
 Line
 predicates to add:
 Angle
@@ -1536,18 +1516,6 @@ Angle
 predicates to add:
 Line
 predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
 Angle
 predicates to add:
 Line
@@ -1559,6 +1527,8 @@ predicates to add:
 Line
 predicates to add:
 Angle
+predicates to add:
+Line
 predicates to add:
 Line
 predicates to add:
@@ -1588,9 +1558,7 @@ Angle
 predicates to add:
 Line
 predicates to add:
-Line
-predicates to add:
-Line
+Angle
 predicates to add:
 Line
 predicates to add:
@@ -1611,6 +1579,28 @@ predicates to add:
 Line
 predicates to add:
 Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
 predicates to add:
 Line
 predicates to add:
@@ -1697,24 +1687,34 @@ predicates to add:
 Equation
 predicates to add:
 IsCentreOfCircle
-Traceback (most recent call last):
-  File "/Users/osultan/PycharmProjects/FormalGeo/src/formalgeo/geometric_verifier.py", line 9869, in parse_and_verify_proof
-    is_valid, error = self.validate_theorem_premises(theorem_name, args, premise)
-TypeError: cannot unpack non-iterable NoneType object
-Verifier result: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
-Verification failed.
-Theorem: round_arc(1,OBD,DBO)
-The language model outputs the following premises: Arc(OBD)&Arc(DBO)
-The correct premises for the theorem: Arc(DOB)&Arc(DBO)
-The language model outputs the following conclusions: Equal(Add(MeasureOfArc(OBD),MeasureOfArc(DBO)),360)
-The correct conclusions for the theorem: Equal(Add(MeasureOfArc(DOB),MeasureOfArc(DBO)),360)
+Verifier result: ERROR_TIER: TIER3_GOAL_NOT_REACHED
+verification failed.
 
+- Goal: measure of angle DOB
+- Model answer: 140.0
+- Error: Your proof contains contradictory constraints. Check for incorrect values in premises, improper theorem application, or conclusions that contradict earlier assertions.
+  Contradictory constraints:
+    arc(OBD) + arc(OBD) = 360
+    ∠BCD = 110
+    ∠BCD = arc(OBD)*1/2
+- Available premises:
+  Cocircular Points: A on circle O, AB on circle O, ABC on circle O, ABCD on circle O, ABD on circle O, AC on circle O, ACD on circle O, AD on circle O, B on circle O, BC on circle O, BCD on circle O, BD on circle O, C on circle O, CD on circle O, D on circle O
+  Circles: O center: O
+  Polygons: ABCD, ABOD, BCDA, BCDO, BODA, CDAB, CDOB, DABC, DABO, DOBC, OBCD, ODAB
+- Theorems related to the goal:
+  None found that constrain this goal
+- Solver constraints directly related to this goal:
+  arc(OBD) = ∠BOD
+  ∠BOD <= 180
+  ∠BOD > 0
+
+Please fix the proof.
 Model Answer:
 RETRY_ANSWER:
 140
 RETRY_THEOREM_SEQUENCE:
 1; arc_property_circumference_angle_external(1,OBD,C); Cocircular(O,BDC)&Angle(DCB); ["Equal(MeasureOfAngle(DCB),Mul(MeasureOfArc(OBD),1/2))"]
-2; round_arc(1,OBD,DBO); Arc(OBD)&Arc(DBO); ["Equal(Add(MeasureOfArc(OBD),MeasureOfArc(DBO)),360)"]
-3; arc_property_center_angle(1,DBO,O); Arc(DBO)&Angle(DOB)&IsCentreOfCircle(O,O); ["Equal(MeasureOfArc(DBO),MeasureOfAngle(DOB))"]
+2; round_arc(1,OBD,ODB); Arc(OBD)&Arc(ODB); ["Equal(Add(MeasureOfArc(OBD),MeasureOfArc(ODB)),360)"]
+3; arc_property_center_angle(1,ODB,O); Arc(ODB)&Angle(BOD)&IsCentreOfCircle(O,O); ["Equal(MeasureOfArc(ODB),MeasureOfAngle(BOD))"]
 Retry attempt: 5
 Content written to results/level_2/variant_random_all_theorems_model_o1_problem_4523_run_2.txt
