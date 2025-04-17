@@ -1,3 +1,4 @@
+
 from z3 import *
 import re
 from dataclasses import dataclass
@@ -16745,6 +16746,7 @@ def verify_geometric_proof(filename: str, print_output=True) -> tuple:
         except Exception as e:
             print(f"Error: {str(e)}")
             return False, f"Error: {str(e)}", None
+
 
 if __name__ == "__main__":
     result, feedback, error_tier = verify_geometric_proof(

@@ -208,15 +208,22 @@ def call_gpt(model, messages, temperature=0, wait_time=1, retry_wait_time=6, max
     retries = 0
     while retries <= max_retries:
         try:
-            response = openai.ChatCompletion.create(
-                model=model,
-                messages=messages,
-                max_tokens=4096,
-                temperature=temperature,
-                top_p=1,
-                frequency_penalty=0,
-                presence_penalty=0,
-            )
+            if model == 'o1':
+                response = openai.ChatCompletion.create(
+                    model=model,
+                    messages=messages,
+                    max_tokens=4096,
+                    temperature=temperature,
+                    top_p=1,
+                    frequency_penalty=0,
+                    presence_penalty=0,
+                )
+            elif model in ['o3', 'o4-mini']:
+                response = openai.ChatCompletion.create(
+                    model=model,
+                    messages=messages,
+                    max_completion_tokens=4096,
+                )
 
             if response and response.choices and response.choices[0]:
                 res = response.choices[0].message['content'].strip()
@@ -236,7 +243,7 @@ def call_gpt(model, messages, temperature=0, wait_time=1, retry_wait_time=6, max
 
 
 def gpt_response(messages, model_name):
-    resp = call_gpt_o1(model=model_name, messages=messages) if model_name in ['o1-preview', 'o1', 'o1-mini',
+    resp = call_gpt_o1(model=model_name, messages=messages) if model_name in ['o1-preview', 'o1', 'o3', 'o1-mini',
                                                                               'o3-mini'] else call_gpt(model=model_name,
                                                                                                        messages=messages)
     return resp
@@ -464,7 +471,7 @@ chosen_problems_by_level = {
 }
 
 chosen_problems_by_level = {
-    5: [5440]
+    2: [4523]
     # 1: [1975, 1490, 1726, 178, 2669, 2614, 51, 2323, 192, 2624],
     # 2: [991, 69, 144, 358, 4473, 4483, 5645, 127, 2410, 4523],
     # 3: [ 4187, 5244, 5062, 844, 1945, 2200, 4099, 2765, 4476, 4254 ]
@@ -653,7 +660,7 @@ def run_theorems_coverage(args):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    parser.add_argument("--variant", dest="variant", type=str, default="analogy_based")
+    parser.add_argument("--variant", dest="variant", type=str, default="random_all_theorems")
     parser.add_argument("--model_name", dest="model_name", type=str, default="o1")
     parser.add_argument("--prompt_path", dest="prompt_path", type=str,
                         default="src/formalgeo/prompt/geometry_similar_problems_prompt_291224.txt")
