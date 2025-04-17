@@ -643,12 +643,13 @@ Equation
 predicates to add:
 PerpendicularBetweenLine
 Verifier result: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
-Failure: Theorem <angle_addition> branch error. Expected dict_keys(['1']) but got None. Please rewrite your response, you should change only the call to theorem <angle_addition> by adding the branch number from the dict_keys as the first argument
+Failure: The THEOREM_SEQUENCE you provided is empty. Please generate a proof again, using the similar problems I provided (A1, A2, A3, A4, A5), along with the GDL_DICTIONARY of theorems.
 Model Answer:
 RETRY_ANSWER:
 68
 RETRY_THEOREM_SEQUENCE:
-1; angle_addition(ABC,CBD); Angle(ADG)&Angle(GAD)&Angle(AGE); ["Equal(MeasureOfAngle(AGE),Add(MeasureOfAngle(ADG),MeasureOfAngle(GAD)))"]
+1; flat_angle(DGE); Collinear(DGEC); ["Equal(MeasureOfAngle(DGE),180)"]  
+2; angle_addition(AGD,DGE); Angle(AGD)&Angle(DGE)&Angle(AGE); ["Equal(MeasureOfAngle(AGE),Add(MeasureOfAngle(ADG),MeasureOfAngle(GAD)))"]
 Retry attempt: 1
 Content written to results/level_2/variant_random_all_theorems_model_o1_problem_2410_run_0_to_verify.txt
 predicates to add:
@@ -1295,17 +1296,13 @@ Equation
 predicates to add:
 PerpendicularBetweenLine
 Verifier result: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
-Fixed: Theorem: angle_addition(1,ADG,GAD)
-You outputs the following premises: Angle(ADG)&Angle(GAD)&Angle(AGE)
-But the correct premises for the theorem: Angle(AAG)&Angle(GAD)&Angle(AAD)
-You outputs the following conclusions: Equal(MeasureOfAngle(AGE),Add(MeasureOfAngle(ADG),MeasureOfAngle(GAD)))
-But the correct conclusions for the theorem: Equal(MeasureOfAngle(AAD),Add(MeasureOfAngle(AAG),MeasureOfAngle(GAD)))
-
+Failure: Theorem <flat_angle> para length error. Expected 3 but got ('D', 'G', 'E', '1').
 Model Answer:
 RETRY_ANSWER:
 68
 RETRY_THEOREM_SEQUENCE:
-1; angle_addition(1,ADG,GAD); Angle(ADG)&Angle(GAD)&Angle(AGE); ["Equal(MeasureOfAngle(AGE),Add(MeasureOfAngle(ADG),MeasureOfAngle(GAD)))"]
+1; flat_angle(DGE,1); Collinear(DGEC); ["Equal(MeasureOfAngle(DGE),180)"]
+2; angle_addition(AGD,DGE,1); Angle(AGD)&Angle(DGE)&Angle(AGE); ["Equal(MeasureOfAngle(AGE),Add(MeasureOfAngle(AGD),MeasureOfAngle(DGE)))"]
 Retry attempt: 2
 Content written to results/level_2/variant_random_all_theorems_model_o1_problem_2410_run_0_to_verify.txt
 predicates to add:
@@ -1951,30 +1948,17 @@ predicates to add:
 Equation
 predicates to add:
 PerpendicularBetweenLine
-Verifier result: ERROR_TIER: TIER3_GOAL_NOT_REACHED
-verification failed.
+Verifier result: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
+Theorem: right_triangle_judgment_angle(1,GCB)
+You output the following premises: PerpendicularBetweenLine(GB,CB)&Polygon(GCB)
+But the correct premises: Polygon(GCB)&Equal(MeasureOfAngle(GCB),90)
 
-- Goal: measure of angle GAD
-- Model answer: 68.0
-- Error: Your proof doesn't uniquely determine the value. You need to use additional theorems to constrain the value.
-- Available premises:
-  Perpendicular Lines: BC ⊥ BG
-  Collinear Points: AGB, BEF, CED, CEG, CEGD, CGD, DGE
-  Polygons: ADG, AGD, BCE, BCG, BEC, BGC
-- Theorems related to the goal:
-  Step 1 - angle_addition(1, AAG, GAD): Equal(MeasureOfAngle(AAD),Add(MeasureOfAngle(AAG),MeasureOfAngle(GAD)))
-- Solver constraints directly related to this goal:
-  ∠AAD = ∠AAG + ∠DAG
-  ∠DAG <= 180
-  ∠DAG = ∠BAD
-  ∠DAG > 0
-
-Please fix the proof.
 Model Answer:
 RETRY_ANSWER:
 68
 RETRY_THEOREM_SEQUENCE:
-1; angle_addition(1,AAG,GAD); Angle(AAG)&Angle(GAD)&Angle(AAD); ["Equal(MeasureOfAngle(AAD),Add(MeasureOfAngle(AAG),MeasureOfAngle(GAD)))"]
+1; right_triangle_judgment_angle(1,GCB); PerpendicularBetweenLine(GB,CB)&Polygon(GCB); ["RightTriangle(GCB)"]
+2; triangle_property_angle_sum(1,GCB); Polygon(GCB); ["Equal(Add(MeasureOfAngle(GCB),MeasureOfAngle(CGB),MeasureOfAngle(GBC)),180)"]
 Retry attempt: 3
 Content written to results/level_2/variant_random_all_theorems_model_o1_problem_2410_run_0_to_verify.txt
 predicates to add:
@@ -2621,17 +2605,14 @@ Equation
 predicates to add:
 PerpendicularBetweenLine
 Verifier result: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
-Fixed: Theorem: triangle_property_angle_sum(1,ADG)
-You outputs the following conclusions: Equal(Add(MeasureOfAngle(ADG),MeasureOfAngle(AGD),MeasureOfAngle(GAD)),180)
-But the correct conclusions for the theorem: Equal(Add(MeasureOfAngle(ADG),MeasureOfAngle(DGA),MeasureOfAngle(GAD)),180)
-
+Failure: Theorem <flat_angle> para length error. Expected 3 but got ('D', 'G', 'E', '1').
 Model Answer:
 RETRY_ANSWER:
 68
 RETRY_THEOREM_SEQUENCE:
-1; triangle_property_angle_sum(1,ADG); Polygon(ADG); ["Equal(Add(MeasureOfAngle(ADG),MeasureOfAngle(AGD),MeasureOfAngle(GAD)),180)"]
-2; flat_angle(1,DGE); Collinear(DGE); ["Equal(MeasureOfAngle(DGE),180)"]
-3; angle_addition(AGD,DGE); Angle(AGD)&Angle(DGE)&Angle(AGE); ["Equal(MeasureOfAngle(AGE),Add(MeasureOfAngle(AGD),MeasureOfAngle(DGE)))"]
+1; flat_angle(DGE,1); Collinear(DGE); ["Equal(MeasureOfAngle(DGE),180)"]
+2; angle_addition(DGA,AGE,1); Angle(DGA)&Angle(AGE)&Angle(DGE); ["Equal(MeasureOfAngle(DGE),Add(MeasureOfAngle(DGA),MeasureOfAngle(AGE)))"]
+3; triangle_property_angle_sum(ADG,1); Polygon(ADG); ["Equal(Add(MeasureOfAngle(ADG),MeasureOfAngle(DGA),MeasureOfAngle(GAD)),180)"]
 Retry attempt: 4
 Content written to results/level_2/variant_random_all_theorems_model_o1_problem_2410_run_0_to_verify.txt
 predicates to add:
@@ -3277,29 +3258,16 @@ predicates to add:
 Equation
 predicates to add:
 PerpendicularBetweenLine
-Verifier result: ERROR_TIER: TIER3_GOAL_NOT_REACHED
-verification failed.
+Verifier result: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
+Theorem: triangle_property_angle_sum(1,GCB)
+You output the following conclusions: Equal(Add(MeasureOfAngle(GCB),MeasureOfAngle(CGB),MeasureOfAngle(GBC)),180)
+But the correct conclusions: Equal(Add(MeasureOfAngle(GCB),MeasureOfAngle(CBG),MeasureOfAngle(BGC)),180)
 
-- Goal: measure of angle GAD
-- Model answer: 68.0
-- Error: Your proof doesn't uniquely determine the value. You need to use additional theorems to constrain the value.
-- Available premises:
-  Perpendicular Lines: BC ⊥ BG
-  Collinear Points: AGB, BEF, CED, CEG, CEGD, CGD, DGE
-  Polygons: ADG, AGD, BCE, BCG, BEC, BGC
-- Theorems related to the goal:
-  Step 1 - triangle_property_angle_sum(1, ADG): Equal(Add(MeasureOfAngle(ADG),MeasureOfAngle(DGA),MeasureOfAngle(GAD)),180)
-- Solver constraints directly related to this goal:
-  ∠ADG + ∠AGD + ∠DAG = 180
-  ∠DAG <= 180
-  ∠DAG = ∠BAD
-  ∠DAG > 0
-
-Please fix the proof.
 Model Answer:
 RETRY_ANSWER:
 68
 RETRY_THEOREM_SEQUENCE:
-1; triangle_property_angle_sum(1,ADG); Polygon(ADG); ["Equal(Add(MeasureOfAngle(ADG),MeasureOfAngle(DGA),MeasureOfAngle(GAD)),180)"]
+1; right_triangle_judgment_angle(1,GCB); Polygon(GCB)&Equal(MeasureOfAngle(GCB),90); ["RightTriangle(GCB)"]
+2; triangle_property_angle_sum(1,GCB); Polygon(GCB); ["Equal(Add(MeasureOfAngle(GCB),MeasureOfAngle(CGB),MeasureOfAngle(GBC)),180)"]
 Retry attempt: 5
 Content written to results/level_2/variant_random_all_theorems_model_o1_problem_2410_run_0.txt

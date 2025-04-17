@@ -23,16 +23,16 @@ Shape(DA,AF,FE,ED)
 Shape(BC,CE,EF,FB)
 Shape(CE,EF,FB,BC)
 Shape(EF,FB,BC,CE)
-Shape(AB,BF,FE,ED,DA)
-Shape(BF,FE,ED,DA,AB)
-Shape(FE,ED,DA,AB,BF)
-Shape(ED,DA,AB,BF,FE)
-Shape(DA,AB,BF,FE,ED)
 Shape(FA,AB,BC,CE,EF)
 Shape(AB,BC,CE,EF,FA)
 Shape(BC,CE,EF,FA,AB)
 Shape(CE,EF,FA,AB,BC)
 Shape(EF,FA,AB,BC,CE)
+Shape(AB,BF,FE,ED,DA)
+Shape(BF,FE,ED,DA,AB)
+Shape(FE,ED,DA,AB,BF)
+Shape(ED,DA,AB,BF,FE)
+Shape(DA,AB,BF,FE,ED)
 Shape(ED,DA,AF,FB,BC,CE)
 Shape(DA,AF,FB,BC,CE,ED)
 Shape(AF,FB,BC,CE,ED,DA)
@@ -86,10 +86,10 @@ Angle(FBC)
 Angle(BCE)
 Angle(CEF)
 Angle(EFB)
+Angle(ABC)
 Angle(BFE)
 Angle(FED)
 Angle(DAB)
-Angle(ABC)
 Angle(DAF)
 Angle(AFB)
 Angle(CDA)
@@ -106,8 +106,8 @@ Angle(ADE)
 Angle(EAD)
 Angle(CBF)
 Angle(ECB)
-Angle(BAD)
 Angle(CBA)
+Angle(BAD)
 Angle(FAD)
 Angle(ADC)
 Angle(BAE)
@@ -128,15 +128,15 @@ Polygon(FBCE)
 Polygon(BCEF)
 Polygon(CEFB)
 Polygon(EFBC)
+Polygon(ABCE)
+Polygon(BCEA)
+Polygon(CEAB)
+Polygon(EABC)
 Polygon(ABFED)
 Polygon(BFEDA)
 Polygon(FEDAB)
 Polygon(EDABF)
 Polygon(DABFE)
-Polygon(ABCE)
-Polygon(BCEA)
-Polygon(CEAB)
-Polygon(EABC)
 Polygon(DAFBC)
 Polygon(AFBCD)
 Polygon(FBCDA)
@@ -211,54 +211,34 @@ GOAL_SYMBOL:
 AreaOfQuadrilateral(ABCD)
 
 ANSWER:
-25
+49
 
 THEOREM_SEQUENCE:
-1; mirror_similar_triangle_property_line_ratio(1,AED,BFA); MirrorSimilarBetweenTriangle(AED,BFA); ["Equal(LengthOfLine(ED),Mul(LengthOfLine(FA),RatioOfMirrorSimilarTriangle(AED,BFA)))"]
-2; parallelogram_judgment_parallel_and_parallel(1,ABCD); Polygon(ABCD)&ParallelBetweenLine(AD,BC)&ParallelBetweenLine(BA,CD); ["Parallelogram(ABCD)"]
-3; rectangle_judgment_right_angle(1,ABCD); Parallelogram(ABCD)&Equal(MeasureOfAngle(ABC),90); ["Rectangle(ABCD)"]
-4; parallelogram_property_opposite_line_equal(1,ABCD); Parallelogram(ABCD); ["Equal(LengthOfLine(AB),LengthOfLine(CD))"]
-5; parallelogram_property_opposite_line_equal(1,ABCD); Parallelogram(ABCD); ["Equal(LengthOfLine(BC),LengthOfLine(DA))"]
-6; parallelogram_area_formula_sine(1,ABCD); Parallelogram(ABCD); ["Equal(AreaOfQuadrilateral(ABCD),Mul(LengthOfLine(AB),LengthOfLine(BC),Sin(MeasureOfAngle(ABC))))"]
+1; line_addition(1,AF,FE); Collinear(AFE); ["Equal(LengthOfLine(AE),Add(LengthOfLine(AF),LengthOfLine(FE)))"]
+2; line_addition(1,DE,EC); Collinear(DEC); ["Equal(LengthOfLine(DC),Add(LengthOfLine(DE),LengthOfLine(EC)))"]
+3; mirror_similar_triangle_property_line_ratio(1,AED,BFA); MirrorSimilarBetweenTriangle(AED,BFA); ["Equal(LengthOfLine(ED),Mul(LengthOfLine(FA),RatioOfMirrorSimilarTriangle(AED,BFA)))"]
+4; parallelogram_judgment_parallel_and_parallel(1,ABCD); Polygon(ABCD)&ParallelBetweenLine(AD,BC)&ParallelBetweenLine(BA,CD); ["Parallelogram(ABCD)"]
+5; rectangle_judgment_right_angle(1,ABCD); Parallelogram(ABCD)&Equal(MeasureOfAngle(ABC),90); ["Rectangle(ABCD)"]
+6; parallelogram_property_opposite_line_equal(1,ABCD); Parallelogram(ABCD); ["Equal(LengthOfLine(BA),LengthOfLine(CD))"]
+7; parallelogram_area_formula_sine(1,ABCD); Parallelogram(ABCD); ["Equal(AreaOfQuadrilateral(ABCD),Mul(LengthOfLine(AB),LengthOfLine(BC),Sin(MeasureOfAngle(ABC))))"]
 ***MODEL_RESPONSE_END***
 RETRIES_MESSAGES:
-#run: 2; #retry: 1; message: ERROR_TIER: TIER2_PREMISE_VIOLATION
-verification failed.
+#run: 2; #retry: 1; message: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
+Theorem: mirror_similar_triangle_property_line_ratio(1,AED,BFA)
+You output the following conclusions: Equal(LengthOfLine(AE),Mul(LengthOfLine(BF),RatioOfMirrorSimilarTriangle(AED,BFA)))
+But the correct conclusions: Equal(LengthOfLine(ED),Mul(LengthOfLine(FA),RatioOfMirrorSimilarTriangle(AED,BFA)))
 
-- Error: You tried to use theorem: parallelogram_area_formula_common(1,ABCD);Parallelogram(ABCD);['Equal(AreaOfQuadrilateral(ABCD),Mul(HeightOfQuadrilateral(ABCD),LengthOfLine(BC)))']
-Missing premise: No height established for quadrilateral ABCD
-Details: Height must be established through an altitude theorem first
-- Available premises:
-  Parallel Lines: AB ∥ CD, AD ∥ BC
-  Perpendicular Lines: AB ⊥ AD, AB ⊥ BC, AD ⊥ CD, BC ⊥ CD
-  Collinear Points: AFE, CED
-  Mirror Similar Triangles: ABF mirror similar to ADE
-  Squares: ABCD
-  Rectangles: ABCD, BCDA, CDAB, DABC
-  Rhombi: ABCD, BCDA, CDAB, DABC
-  Kites: ABCD, BCDA, CDAB, DABC
-  Polygons: ABCD, ABCE, ABF, ABFED, ADE, AED, AFB, AFBCD, BCDA, BCDAF, BCEA, BCEF, BFEDA, CDAB, CDAFB, CEAB, CEFB, DABC, DABFE, DAFBC, EABC, EDABF, EFBC, FBCDA, FBCE, FEDAB
-- Theorems related to the goal:
-  None found that constrain this goal
-- Solver constraints directly related to this goal:
-  None found
-
-Please fix the proof.
 Model Answer:
 RETRY_ANSWER:
-25
+49
 RETRY_THEOREM_SEQUENCE:
-1; mirror_similar_triangle_property_line_ratio(1,AED,BFA); MirrorSimilarBetweenTriangle(AED,BFA); ["Equal(LengthOfLine(ED),Mul(LengthOfLine(FA),RatioOfMirrorSimilarTriangle(AED,BFA)))"]
-2; parallelogram_judgment_parallel_and_parallel(1,ABCD); Polygon(ABCD)&ParallelBetweenLine(AD,BC)&ParallelBetweenLine(BA,CD); ["Parallelogram(ABCD)"]
-3; rectangle_judgment_right_angle(1,ABCD); Parallelogram(ABCD)&Equal(MeasureOfAngle(ABC),90); ["Rectangle(ABCD)"]
-4; parallelogram_property_opposite_line_equal(1,ABCD); Parallelogram(ABCD); ["Equal(LengthOfLine(BA),LengthOfLine(CD))"]
-5; rectangle_property_diagonal_equal(1,ABCD); Rectangle(ABCD)&Line(AC)&Line(BD); ["Equal(LengthOfLine(AC),LengthOfLine(BD))"]
-6; parallelogram_area_formula_common(1,ABCD); Parallelogram(ABCD); ["Equal(AreaOfQuadrilateral(ABCD),Mul(HeightOfQuadrilateral(ABCD),LengthOfLine(BC)))"]
+1; mirror_similar_triangle_property_line_ratio(1,AED,BFA); MirrorSimilarBetweenTriangle(AED,BFA); ["Equal(LengthOfLine(AE),Mul(LengthOfLine(BF),RatioOfMirrorSimilarTriangle(AED,BFA)))"]
+2; parallelogram_area_formula_sine(1,ABCD); Parallelogram(ABCD); ["Equal(AreaOfQuadrilateral(ABCD),Mul(LengthOfLine(AB),LengthOfLine(BC),Sin(MeasureOfAngle(ABC))))"]
 #run: 2; #retry: 2; message: ERROR_TIER: TIER3_GOAL_NOT_REACHED
 verification failed.
 
 - Goal: area of quadrilateral ABCD
-- Model answer: 25.0
+- Model answer: 49.0
 - Error: Your proof doesn't uniquely determine the value. You need to use additional theorems to constrain the value.
 - Available premises:
   Parallel Lines: AB ∥ CD, AD ∥ BC
@@ -278,26 +258,15 @@ verification failed.
 Please fix the proof.
 Model Answer:
 RETRY_ANSWER:
-25
+49
 RETRY_THEOREM_SEQUENCE:
 1; mirror_similar_triangle_property_line_ratio(1,AED,BFA); MirrorSimilarBetweenTriangle(AED,BFA); ["Equal(LengthOfLine(ED),Mul(LengthOfLine(FA),RatioOfMirrorSimilarTriangle(AED,BFA)))"]
 2; parallelogram_area_formula_sine(1,ABCD); Parallelogram(ABCD); ["Equal(AreaOfQuadrilateral(ABCD),Mul(LengthOfLine(AB),LengthOfLine(BC),Sin(MeasureOfAngle(ABC))))"]
-#run: 2; #retry: 3; message: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
-Failure: Theorem  not defined in current GDL. Please rewrite the proof sequence, you are allowed to use only theorems from the GDL.
-Model Answer:
-RETRY_ANSWER:
-25
-RETRY_THEOREM_SEQUENCE:
-1; mirror_similar_triangle_property_line_ratio(1,AED,BFA); MirrorSimilarBetweenTriangle(AED,BFA); ["Equal(LengthOfLine(ED),Mul(LengthOfLine(FA),RatioOfMirrorSimilarTriangle(AED,BFA)))"]
-2; rectangle_judgment_right_angle(1,ABCD); Parallelogram(ABCD)&Equal(MeasureOfAngle(ABC),90); ["Rectangle(ABCD)"]
-3; parallelogram_property_opposite_line_equal(1,ABCD); Parallelogram(ABCD); ["Equal(LengthOfLine(BA),LengthOfLine(CD))"]
-4; (equation_manipulation); ll_ae=4&ll_bf=3&MirrorSimilarBetweenTriangle(AED,BFA)&Square(ABCD); ["Equal(LengthOfLine(AB),5)"]
-5; parallelogram_area_formula_sine(1,ABCD); Parallelogram(ABCD); ["Equal(AreaOfQuadrilateral(ABCD),Mul(LengthOfLine(AB),LengthOfLine(BC),Sin(MeasureOfAngle(ABC))))"]
-#run: 2; #retry: 4; message: ERROR_TIER: TIER3_GOAL_NOT_REACHED
+#run: 2; #retry: 3; message: ERROR_TIER: TIER3_GOAL_NOT_REACHED
 verification failed.
 
 - Goal: area of quadrilateral ABCD
-- Model answer: 25.0
+- Model answer: 49.0
 - Error: Your proof doesn't uniquely determine the value. You need to use additional theorems to constrain the value.
 - Available premises:
   Parallel Lines: AB ∥ CD, AD ∥ BC
@@ -310,10 +279,8 @@ verification failed.
   Kites: ABCD, BCDA, CDAB, DABC
   Polygons: ABCD, ABCE, ABF, ABFED, ADE, AED, AFB, AFBCD, BCDA, BCDAF, BCEA, BCEF, BFEDA, CDAB, CDAFB, CEAB, CEFB, DABC, DABFE, DAFBC, EABC, EDABF, EFBC, FBCDA, FBCE, FEDAB
 - Theorems related to the goal:
-  Step 2 - parallelogram_judgment_parallel_and_parallel(1, ABCD): Parallelogram(ABCD)
-  Step 3 - rectangle_judgment_right_angle(1, ABCD): Rectangle(ABCD)
-  Step 4 - parallelogram_property_opposite_line_equal(1, ABCD): Equal(LengthOfLine(BA),LengthOfLine(CD))
-  Step 5 - rectangle_property_diagonal_equal(1, ABCD): Equal(LengthOfLine(AC),LengthOfLine(BD))
+  Step 4 - parallelogram_judgment_parallel_and_parallel(1, ABCD): Parallelogram(ABCD)
+  Step 5 - rectangle_judgment_right_angle(1, ABCD): Rectangle(ABCD)
   Step 6 - parallelogram_area_formula_sine(1, ABCD): Equal(AreaOfQuadrilateral(ABCD),Mul(LengthOfLine(AB),LengthOfLine(BC),Sin(MeasureOfAngle(ABC))))
 - Solver constraints directly related to this goal:
   areaQuadr_ABCD = |AB|*|BC|*1
@@ -322,29 +289,72 @@ verification failed.
 Please fix the proof.
 Model Answer:
 RETRY_ANSWER:
-25
+49
 RETRY_THEOREM_SEQUENCE:
-1; mirror_similar_triangle_property_line_ratio(1,AED,BFA); MirrorSimilarBetweenTriangle(AED,BFA); ["Equal(LengthOfLine(ED),Mul(LengthOfLine(FA),RatioOfMirrorSimilarTriangle(AED,BFA)))"]
-2; parallelogram_judgment_parallel_and_parallel(1,ABCD); Polygon(ABCD)&ParallelBetweenLine(AD,BC)&ParallelBetweenLine(BA,CD); ["Parallelogram(ABCD)"]
-3; rectangle_judgment_right_angle(1,ABCD); Parallelogram(ABCD)&Equal(MeasureOfAngle(ABC),90); ["Rectangle(ABCD)"]
-4; parallelogram_property_opposite_line_equal(1,ABCD); Parallelogram(ABCD); ["Equal(LengthOfLine(BA),LengthOfLine(CD))"]
-5; rectangle_property_diagonal_equal(1,ABCD); Rectangle(ABCD)&Line(AC)&Line(BD); ["Equal(LengthOfLine(AC),LengthOfLine(BD))"]
+1; line_addition(1,AF,FE); Collinear(AFE); ["Equal(LengthOfLine(AE),Add(LengthOfLine(AF),LengthOfLine(FE)))"]
+2; line_addition(1,DE,EC); Collinear(DEC); ["Equal(LengthOfLine(DC),Add(LengthOfLine(DE),LengthOfLine(EC)))"]
+3; mirror_similar_triangle_property_line_ratio(1,AED,BFA); MirrorSimilarBetweenTriangle(AED,BFA); ["Equal(LengthOfLine(ED),Mul(LengthOfLine(FA),RatioOfMirrorSimilarTriangle(AED,BFA)))"]
+4; parallelogram_judgment_parallel_and_parallel(1,ABCD); Polygon(ABCD)&ParallelBetweenLine(AD,BC)&ParallelBetweenLine(BA,CD); ["Parallelogram(ABCD)"]
+5; rectangle_judgment_right_angle(1,ABCD); Parallelogram(ABCD)&Equal(MeasureOfAngle(ABC),90); ["Rectangle(ABCD)"]
 6; parallelogram_area_formula_sine(1,ABCD); Parallelogram(ABCD); ["Equal(AreaOfQuadrilateral(ABCD),Mul(LengthOfLine(AB),LengthOfLine(BC),Sin(MeasureOfAngle(ABC))))"]
-#run: 2; #retry: 5; message: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
-Fixed: Theorem: parallelogram_property_opposite_line_equal(1,ABCD)
-You outputs the following conclusions: Equal(LengthOfLine(AB),LengthOfLine(CD))
-But the correct conclusions for the theorem: Equal(LengthOfLine(BA),LengthOfLine(CD))
+#run: 2; #retry: 4; message: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
+Theorem: parallelogram_property_opposite_line_equal(1,ABCD)
+You output the following premises: Rectangle(ABCD)
+But the correct premises: Parallelogram(ABCD)
+You output the following conclusions: Equal(LengthOfLine(AB),LengthOfLine(CD))
+But the correct conclusions: Equal(LengthOfLine(BA),LengthOfLine(CD))
 
 Model Answer:
 RETRY_ANSWER:
-25
+49
 RETRY_THEOREM_SEQUENCE:
-1; mirror_similar_triangle_property_line_ratio(1,AED,BFA); MirrorSimilarBetweenTriangle(AED,BFA); ["Equal(LengthOfLine(ED),Mul(LengthOfLine(FA),RatioOfMirrorSimilarTriangle(AED,BFA)))"]
-2; parallelogram_judgment_parallel_and_parallel(1,ABCD); Polygon(ABCD)&ParallelBetweenLine(AD,BC)&ParallelBetweenLine(BA,CD); ["Parallelogram(ABCD)"]
-3; rectangle_judgment_right_angle(1,ABCD); Parallelogram(ABCD)&Equal(MeasureOfAngle(ABC),90); ["Rectangle(ABCD)"]
-4; parallelogram_property_opposite_line_equal(1,ABCD); Parallelogram(ABCD); ["Equal(LengthOfLine(AB),LengthOfLine(CD))"]
-5; parallelogram_property_opposite_line_equal(1,ABCD); Parallelogram(ABCD); ["Equal(LengthOfLine(BC),LengthOfLine(DA))"]
-6; parallelogram_area_formula_sine(1,ABCD); Parallelogram(ABCD); ["Equal(AreaOfQuadrilateral(ABCD),Mul(LengthOfLine(AB),LengthOfLine(BC),Sin(MeasureOfAngle(ABC))))"]
+1; line_addition(1,AF,FE); Collinear(AFE); ["Equal(LengthOfLine(AE),Add(LengthOfLine(AF),LengthOfLine(FE)))"]
+2; line_addition(1,DE,EC); Collinear(DEC); ["Equal(LengthOfLine(DC),Add(LengthOfLine(DE),LengthOfLine(EC)))"]
+3; mirror_similar_triangle_property_line_ratio(1,AED,BFA); MirrorSimilarBetweenTriangle(AED,BFA); ["Equal(LengthOfLine(ED),Mul(LengthOfLine(FA),RatioOfMirrorSimilarTriangle(AED,BFA)))"]
+4; parallelogram_judgment_parallel_and_parallel(1,ABCD); Polygon(ABCD)&ParallelBetweenLine(AD,BC)&ParallelBetweenLine(BA,CD); ["Parallelogram(ABCD)"]
+5; rectangle_judgment_right_angle(1,ABCD); Parallelogram(ABCD)&Equal(MeasureOfAngle(ABC),90); ["Rectangle(ABCD)"]
+6; parallelogram_property_opposite_line_equal(1,ABCD); Rectangle(ABCD); ["Equal(LengthOfLine(AB),LengthOfLine(CD))"]
+7; parallelogram_property_opposite_line_equal(1,BCDA); Rectangle(ABCD); ["Equal(LengthOfLine(BC),LengthOfLine(DA))"]
+8; rhombus_judgment_equal_and_equal(1,ABCD); Polygon(ABCD)&Equal(LengthOfLine(AB),LengthOfLine(BC))&Equal(LengthOfLine(BA),LengthOfLine(CD)); ["Kite(ABCD)"] 
+9; rectangle_judgment_right_angle(1,BCDA); Parallelogram(BCDA)&Equal(MeasureOfAngle(BCD),90); ["Rectangle(BCDA)"]
+10; parallelogram_area_formula_sine(1,ABCD); Parallelogram(ABCD); ["Equal(AreaOfQuadrilateral(ABCD),Mul(LengthOfLine(AB),LengthOfLine(BC),Sin(MeasureOfAngle(ABC))))"]
+#run: 2; #retry: 5; message: ERROR_TIER: TIER3_GOAL_NOT_REACHED
+verification failed.
+
+- Goal: area of quadrilateral ABCD
+- Model answer: 49.0
+- Error: Your proof doesn't uniquely determine the value. You need to use additional theorems to constrain the value.
+- Available premises:
+  Parallel Lines: AB ∥ CD, AD ∥ BC
+  Perpendicular Lines: AB ⊥ AD, AB ⊥ BC, AD ⊥ CD, BC ⊥ CD
+  Collinear Points: AFE, CED
+  Mirror Similar Triangles: ABF mirror similar to ADE
+  Squares: ABCD
+  Rectangles: ABCD, BCDA, CDAB, DABC
+  Rhombi: ABCD, BCDA, CDAB, DABC
+  Kites: ABCD, BCDA, CDAB, DABC
+  Polygons: ABCD, ABCE, ABF, ABFED, ADE, AED, AFB, AFBCD, BCDA, BCDAF, BCEA, BCEF, BFEDA, CDAB, CDAFB, CEAB, CEFB, DABC, DABFE, DAFBC, EABC, EDABF, EFBC, FBCDA, FBCE, FEDAB
+- Theorems related to the goal:
+  Step 4 - parallelogram_judgment_parallel_and_parallel(1, ABCD): Parallelogram(ABCD)
+  Step 5 - rectangle_judgment_right_angle(1, ABCD): Rectangle(ABCD)
+  Step 6 - parallelogram_property_opposite_line_equal(1, ABCD): Equal(LengthOfLine(BA),LengthOfLine(CD))
+  Step 7 - parallelogram_area_formula_sine(1, ABCD): Equal(AreaOfQuadrilateral(ABCD),Mul(LengthOfLine(AB),LengthOfLine(BC),Sin(MeasureOfAngle(ABC))))
+- Solver constraints directly related to this goal:
+  areaQuadr_ABCD = |AB|*|BC|*1
+  areaQuadr_ABCD >= 0
+
+Please fix the proof.
+Model Answer:
+RETRY_ANSWER:
+49
+RETRY_THEOREM_SEQUENCE:
+1; line_addition(1,AF,FE); Collinear(AFE); ["Equal(LengthOfLine(AE),Add(LengthOfLine(AF),LengthOfLine(FE)))"]
+2; line_addition(1,DE,EC); Collinear(DEC); ["Equal(LengthOfLine(DC),Add(LengthOfLine(DE),LengthOfLine(EC)))"]
+3; mirror_similar_triangle_property_line_ratio(1,AED,BFA); MirrorSimilarBetweenTriangle(AED,BFA); ["Equal(LengthOfLine(ED),Mul(LengthOfLine(FA),RatioOfMirrorSimilarTriangle(AED,BFA)))"]
+4; parallelogram_judgment_parallel_and_parallel(1,ABCD); Polygon(ABCD)&ParallelBetweenLine(AD,BC)&ParallelBetweenLine(BA,CD); ["Parallelogram(ABCD)"]
+5; rectangle_judgment_right_angle(1,ABCD); Parallelogram(ABCD)&Equal(MeasureOfAngle(ABC),90); ["Rectangle(ABCD)"]
+6; parallelogram_property_opposite_line_equal(1,ABCD); Parallelogram(ABCD); ["Equal(LengthOfLine(BA),LengthOfLine(CD))"]
+7; parallelogram_area_formula_sine(1,ABCD); Parallelogram(ABCD); ["Equal(AreaOfQuadrilateral(ABCD),Mul(LengthOfLine(AB),LengthOfLine(BC),Sin(MeasureOfAngle(ABC))))"]
 #RETRIES:
 5
 #RUNS:

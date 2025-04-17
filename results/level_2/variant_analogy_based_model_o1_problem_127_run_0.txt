@@ -1,0 +1,330 @@
+Inputs for Problem B:
+DESCRIPTION:
+As shown in the diagram, ∠ADK=96°, ∠HGJ=42°, GA∥HD. Find the measure of ∠GHD.
+CONSTRUCTION_CDL:
+Shape(KD,DL)
+Shape(LD,DH)
+Shape(DH,HI)
+Shape(IH,HC)
+Shape(CH,HG)
+Shape(HG,GJ)
+Shape(JG,GF)
+Shape(FG,GA)
+Shape(GA,AM)
+Shape(MA,AF)
+Shape(FA,AD)
+Shape(AD,DK)
+Shape(DA,AG,GH,HD)
+Collinear(KDHC)
+Collinear(EAGJ)
+Collinear(LDAM)
+Collinear(IHGF)
+TEXT_CDL:
+Equal(MeasureOfAngle(ADK),96)
+Equal(MeasureOfAngle(HGJ),42)
+ParallelBetweenLine(GA,HD)
+GOAL_CDL:
+Value(MeasureOfAngle(GHD))
+CONSTRUCTION_CDL_EXTENDED:
+Shape(AG,GH,HD,DA)
+Shape(GH,HD,DA,AG)
+Shape(HD,DA,AG,GH)
+Collinear(CHDK)
+Collinear(KDH)
+Collinear(HDK)
+Collinear(KDC)
+Collinear(CDK)
+Collinear(KHC)
+Collinear(CHK)
+Collinear(DHC)
+Collinear(CHD)
+Collinear(JGAE)
+Collinear(EAG)
+Collinear(GAE)
+Collinear(EAJ)
+Collinear(JAE)
+Collinear(EGJ)
+Collinear(JGE)
+Collinear(AGJ)
+Collinear(JGA)
+Collinear(MADL)
+Collinear(LDA)
+Collinear(ADL)
+Collinear(LDM)
+Collinear(MDL)
+Collinear(LAM)
+Collinear(MAL)
+Collinear(DAM)
+Collinear(MAD)
+Collinear(FGHI)
+Collinear(IHG)
+Collinear(GHI)
+Collinear(IHF)
+Collinear(FHI)
+Collinear(IGF)
+Collinear(FGI)
+Collinear(HGF)
+Collinear(FGH)
+Point(K)
+Point(C)
+Point(D)
+Point(H)
+Point(E)
+Point(J)
+Point(A)
+Point(G)
+Point(L)
+Point(M)
+Point(I)
+Point(F)
+Line(KC)
+Line(CK)
+Line(KD)
+Line(DK)
+Line(DH)
+Line(HD)
+Line(DC)
+Line(CD)
+Line(KH)
+Line(HK)
+Line(HC)
+Line(CH)
+Line(EJ)
+Line(JE)
+Line(EA)
+Line(AE)
+Line(AG)
+Line(GA)
+Line(AJ)
+Line(JA)
+Line(EG)
+Line(GE)
+Line(GJ)
+Line(JG)
+Line(LM)
+Line(ML)
+Line(LD)
+Line(DL)
+Line(DA)
+Line(AD)
+Line(DM)
+Line(MD)
+Line(LA)
+Line(AL)
+Line(AM)
+Line(MA)
+Line(IF)
+Line(FI)
+Line(IH)
+Line(HI)
+Line(HG)
+Line(GH)
+Line(HF)
+Line(FH)
+Line(IG)
+Line(GI)
+Line(GF)
+Line(FG)
+Line(AF)
+Line(FA)
+Angle(KDH)
+Angle(HDK)
+Angle(KDC)
+Angle(CDK)
+Angle(KHC)
+Angle(CHK)
+Angle(DHC)
+Angle(CHD)
+Angle(EAG)
+Angle(GAE)
+Angle(EAJ)
+Angle(JAE)
+Angle(EGJ)
+Angle(JGE)
+Angle(AGJ)
+Angle(JGA)
+Angle(LDA)
+Angle(ADL)
+Angle(LDM)
+Angle(MDL)
+Angle(LAM)
+Angle(MAL)
+Angle(DAM)
+Angle(MAD)
+Angle(IHG)
+Angle(GHI)
+Angle(IHF)
+Angle(FHI)
+Angle(IGF)
+Angle(FGI)
+Angle(HGF)
+Angle(FGH)
+Angle(DAG)
+Angle(AGH)
+Angle(GHD)
+Angle(HDA)
+Angle(KDA)
+Angle(HDL)
+Angle(CDL)
+Angle(KHG)
+Angle(DHG)
+Angle(CHI)
+Angle(EAM)
+Angle(EGF)
+Angle(AGF)
+Angle(JGH)
+Angle(LDK)
+Angle(ADH)
+Angle(MDH)
+Angle(LAF)
+Angle(DAF)
+Angle(MAG)
+Angle(IHD)
+Angle(GHC)
+Angle(FHC)
+Angle(IGA)
+Angle(HGA)
+Angle(FGJ)
+Angle(KDM)
+Angle(DHF)
+Angle(IHK)
+Angle(HGE)
+Angle(JGI)
+Angle(GAL)
+Angle(GAD)
+Angle(FAM)
+Angle(ADC)
+Angle(DAE)
+Angle(HDM)
+Angle(CDA)
+Angle(CDM)
+Angle(KHI)
+Angle(CHF)
+Angle(EAL)
+Angle(EAD)
+Angle(JAM)
+Angle(EGH)
+Angle(EGI)
+Angle(AGI)
+Angle(LDC)
+Angle(MDK)
+Angle(LAG)
+Angle(MAE)
+Angle(GHK)
+Angle(FHD)
+Angle(FHK)
+Angle(IGJ)
+Angle(FGE)
+Angle(FAE)
+Angle(KHF)
+Angle(JAL)
+Angle(JAD)
+Angle(MDC)
+Angle(LAE)
+Angle(IGE)
+Angle(FAL)
+Angle(LAJ)
+Angle(DAJ)
+Angle(MAJ)
+Angle(EAF)
+Polygon(DAGH)
+Polygon(AGHD)
+Polygon(GHDA)
+Polygon(HDAG)
+ParallelBetweenLine(DH,AG)
+ParallelBetweenLine(AG,DH)
+SYMBOLS_AND_VALUES:
+MeasureOfAngle(GKM);ma_gkm;62
+MeasureOfAngle(HBF);ma_hbf;38
+MeasureOfAngle(NCJ);ma_ncj;None
+
+Outputs:
+Outputs for Problem B:
+
+***MODEL_RESPONSE_BEGIN***
+EQUATIONS:
+ma_adk-96
+ma_hgj-42
+
+GOAL_SYMBOL:
+ma_ghd
+
+ANSWER:
+42
+
+THEOREM_SEQUENCE:
+1; angle_addition(1,AGH,HGJ); Angle(AGH)&Angle(HGJ)&Angle(AGJ); ["Equal(MeasureOfAngle(AGJ),Add(MeasureOfAngle(AGH),MeasureOfAngle(HGJ)))"]  
+2; flat_angle(1,AGJ); Collinear(AGJ); ["Equal(MeasureOfAngle(AGJ),180)"]  
+3; parallel_property_ipsilateral_internal_angle(1,GA,HD); ParallelBetweenLine(GA,HD)&Line(GH); ["Equal(Add(MeasureOfAngle(AGH),MeasureOfAngle(GHD)),180)"]
+***MODEL_RESPONSE_END***
+RETRIES_MESSAGES:
+#run: 0; #retry: 1; message: ERROR_TIER: TIER3_GOAL_NOT_REACHED
+verification failed.
+
+- Goal: measure of angle GHD
+- Model answer: 42.0
+- Error: Your proof doesn't uniquely determine the value. You need to use additional theorems to constrain the value.
+- Available premises:
+  Parallel Lines: AG ∥ DH
+  Collinear Points: ADL, AGJ, CDK, CHD, CHDK, CHK, DAM, EAG, EAGJ, EAJ, EGJ, FGH, FGHI, FGI, FHI, GHI, HDK, LAM, LDAM, LDM
+  Polygons: AGHD, DAGH, GHDA, HDAG
+- Theorems related to the goal:
+  Step 1 - parallel_property_ipsilateral_internal_angle(1, GA, HD): Equal(Add(MeasureOfAngle(AGH),MeasureOfAngle(GHD)),180)
+- Solver constraints directly related to this goal:
+  ∠AGH + ∠DHG = 180
+  ∠DHG <= 180
+  ∠DHG = ∠DHF
+  ∠DHG = ∠GHK
+  ∠DHG > 0
+
+Please fix the proof.
+Model Answer:
+RETRY_ANSWER:
+42
+RETRY_THEOREM_SEQUENCE:
+1; parallel_property_ipsilateral_internal_angle(1,GA,HD); ParallelBetweenLine(GA,HD)&Line(GH); ["Equal(Add(MeasureOfAngle(AGH),MeasureOfAngle(GHD)),180)"]
+#run: 0; #retry: 2; message: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
+Failure: Theorem  not defined in current GDL. Please rewrite the proof sequence, you are allowed to use only theorems from the GDL.
+Model Answer:
+RETRY_ANSWER:
+138
+RETRY_THEOREM_SEQUENCE:
+1; (Collinearity-Based Angle Equality); Collinear(KDH)&Angle(ADK)&Angle(ADH); ["Equal(MeasureOfAngle(ADH),MeasureOfAngle(ADK))"]  
+2; (Collinearity-Based Angle Equality); Collinear(AGJ)&Angle(HGJ)&Angle(HGA); ["Equal(MeasureOfAngle(HGA),MeasureOfAngle(HGJ))"]  
+3; parallel_property_ipsilateral_internal_angle(1,GA,HD); ParallelBetweenLine(GA,HD)&Line(GH); ["Equal(Add(MeasureOfAngle(AGH),MeasureOfAngle(GHD)),180)"]
+
+Explanation of Additional Steps:
+
+• Step 1 uses the fact that K, D, H are collinear, so line DK is the same as DH.  Hence ∠ADK and ∠ADH are actually the same angle at D.  
+• Step 2 uses the fact that A, G, J are collinear, so line GJ is the same as GA.  Hence ∠HGJ and ∠HGA (which is the same as ∠AGH by reversing the letters around the vertex G) are equal.  
+• Step 3 then applies the parallel-property (ipsilateral internal angles) on GA ∥ HD with GH as the transversal.  That gives ∠AGH + ∠GHD = 180.  Substituting ∠AGH = 42 from Step 2 yields ∠GHD = 138.
+#run: 0; #retry: 3; message: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
+Theorem: parallel_property_ipsilateral_internal_angle(1,GA,HD)
+You output the following premises: ParallelBetweenLine(GA,HD)&Line(AD)
+But the correct premises: ParallelBetweenLine(GA,HD)&Line(GH)
+You output the following conclusions: Equal(Add(MeasureOfAngle(DAG),MeasureOfAngle(HDA)),180)
+But the correct conclusions: Equal(Add(MeasureOfAngle(AGH),MeasureOfAngle(GHD)),180)
+
+Model Answer:
+RETRY_ANSWER:
+138
+RETRY_THEOREM_SEQUENCE:
+1; parallel_property_ipsilateral_internal_angle(1,GA,HD); ParallelBetweenLine(GA,HD)&Line(AD); ["Equal(Add(MeasureOfAngle(DAG),MeasureOfAngle(HDA)),180)"]
+2; quadrilateral_property_angle_sum(DAGH); Polygon(DAGH); ["Equal(Add(MeasureOfAngle(DAG),MeasureOfAngle(AGH),MeasureOfAngle(GHD),MeasureOfAngle(HDA)),360)"]
+#RETRIES:
+3
+#RUNS:
+0
+
+
+GT_EQUATIONS:
+ma_adk-96
+ma_hgj-42
+GT_GOAL_SYMBOL:
+ma_ghd
+GT_ANSWER:
+42
+GT_THEOREM_SEQUENCE:
+1;parallel_property_collinear_extend(1,GA,HD,J);ParallelBetweenLine(GA,HD)&Collinear(JGA);["ParallelBetweenLine(JG,HD)", "ParallelBetweenLine(JA,HD)"]
+2;parallel_property_alternate_interior_angle(2,DH,GJ);ParallelBetweenLine(DH,GJ)&Line(HG);["Equal(MeasureOfAngle(GHD),MeasureOfAngle(HGJ))"]
+

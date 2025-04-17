@@ -236,26 +236,39 @@ GOAL_SYMBOL:
 ma_ezd
 
 ANSWER:
-No valid proof with current GDL
+116
 
 THEOREM_SEQUENCE:
-No valid theorem sequence can be constructed with the given theorems and data
+(No valid sequence of theorems from the given GDL can be constructed to prove ∠EZD = 116 from ∠AEN = 64 and the stated parallels.)
 ***MODEL_RESPONSE_END***
 RETRIES_MESSAGES:
 #run: 0; #retry: 1; message: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
-Verification failed.
 Theorem: parallel_property_ipsilateral_internal_angle(1,IL,RN)
-The language model outputs the following premises: ParallelBetweenLine(IL,RN)&Line(AE)
-The correct premises for the theorem: ParallelBetweenLine(IL,RN)&Line(IR)
-The language model outputs the following conclusions: Equal(Add(MeasureOfAngle(AEN),MeasureOfAngle(EZD)),180)
-The correct conclusions for the theorem: Equal(Add(MeasureOfAngle(LIR),MeasureOfAngle(IRN)),180)
+You output the following premises: ParallelBetweenLine(IL,RN)&Line(AEN)
+But the correct premises: ParallelBetweenLine(IL,RN)&Line(IR)
+You output the following conclusions: Equal(Add(MeasureOfAngle(AEN),MeasureOfAngle(ENR)),180)
+But the correct conclusions: Equal(Add(MeasureOfAngle(LIR),MeasureOfAngle(IRN)),180)
 
 Model Answer:
 RETRY_ANSWER:
 116
 RETRY_THEOREM_SEQUENCE:
-1; parallel_property_ipsilateral_internal_angle(1,IL,RN); ParallelBetweenLine(IL,RN)&Line(AE); ["Equal(Add(MeasureOfAngle(AEN),MeasureOfAngle(EZD)),180)"]
-#run: 0; #retry: 2; message: ERROR_TIER: TIER3_GOAL_NOT_REACHED
+1; parallel_property_ipsilateral_internal_angle(1,IL,RN); ParallelBetweenLine(IL,RN)&Line(AEN); ["Equal(Add(MeasureOfAngle(AEN),MeasureOfAngle(ENR)),180)"]
+2; parallel_property_ipsilateral_internal_angle(1,WJ,AK); ParallelBetweenLine(WJ,AK)&Line(ZEA); ["Equal(Add(MeasureOfAngle(ZEA),MeasureOfAngle(EZD)),180)"]
+#run: 0; #retry: 2; message: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
+Theorem: parallel_property_ipsilateral_internal_angle(1,WJ,AK)
+You output the following premises: ParallelBetweenLine(WJ,AK)&Line(ZEA)
+But the correct premises: ParallelBetweenLine(WJ,AK)&Line(WA)
+You output the following conclusions: Equal(Add(MeasureOfAngle(ZEA),MeasureOfAngle(EZD)),180)
+But the correct conclusions: Equal(Add(MeasureOfAngle(JWA),MeasureOfAngle(WAK)),180)
+
+Model Answer:
+RETRY_ANSWER:
+116
+RETRY_THEOREM_SEQUENCE:
+1; parallel_property_ipsilateral_internal_angle(1,IL,RN); ParallelBetweenLine(IL,RN)&Line(IR); ["Equal(Add(MeasureOfAngle(LIR),MeasureOfAngle(IRN)),180)"]
+2; parallel_property_ipsilateral_internal_angle(1,WJ,AK); ParallelBetweenLine(WJ,AK)&Line(ZEA); ["Equal(Add(MeasureOfAngle(ZEA),MeasureOfAngle(EZD)),180)"]
+#run: 0; #retry: 3; message: ERROR_TIER: TIER3_GOAL_NOT_REACHED
 verification failed.
 
 - Goal: measure of angle EZD
@@ -278,27 +291,21 @@ RETRY_ANSWER:
 116
 RETRY_THEOREM_SEQUENCE:
 1; parallel_property_ipsilateral_internal_angle(1,IL,RN); ParallelBetweenLine(IL,RN)&Line(IR); ["Equal(Add(MeasureOfAngle(LIR),MeasureOfAngle(IRN)),180)"]
-#run: 0; #retry: 3; message: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
-Verification failed. Theorem  not defined in current GDL. Please rewrite the proof sequence, you are allowed to use only theorems from the GDL.
-Model Answer:
-RETRY_ANSWER:
-No valid proof with current GDL
-RETRY_THEOREM_SEQUENCE:
-No valid theorem sequence can be constructed with the given theorems and data
+2; parallel_property_ipsilateral_internal_angle(1,WJ,AK); ParallelBetweenLine(WJ,AK)&Line(WA); ["Equal(Add(MeasureOfAngle(JWA),MeasureOfAngle(WAK)),180)"]
 #run: 0; #retry: 4; message: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
-Verification failed. Theorem  not defined in current GDL. Please rewrite the proof sequence, you are allowed to use only theorems from the GDL.
+Failure: Theorem  not defined in current GDL. Please rewrite the proof sequence, you are allowed to use only theorems from the GDL.
 Model Answer:
 RETRY_ANSWER:
-No valid proof with current GDL
+116
 RETRY_THEOREM_SEQUENCE:
-No valid theorem sequence can be constructed with the given theorems and data
+(Unfortunately, with the given information and GDL entries, there is no direct chain of valid theorems that will prove ∠EZD = 116 solely from ∠AEN = 64 and the stated parallel lines. No further valid derivation steps can be constructed to constrain ∠EZD uniquely. Hence, no fully valid proof sequence is possible with the current data.)
 #run: 0; #retry: 5; message: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
-Verification failed. Theorem  not defined in current GDL. Please rewrite the proof sequence, you are allowed to use only theorems from the GDL.
+Failure: Theorem  not defined in current GDL. Please rewrite the proof sequence, you are allowed to use only theorems from the GDL.
 Model Answer:
 RETRY_ANSWER:
-No valid proof with current GDL
+116
 RETRY_THEOREM_SEQUENCE:
-No valid theorem sequence can be constructed with the given theorems and data
+(No valid sequence of theorems from the given GDL can be constructed to prove ∠EZD = 116 from ∠AEN = 64 and the stated parallels.)
 #RETRIES:
 5
 #RUNS:
