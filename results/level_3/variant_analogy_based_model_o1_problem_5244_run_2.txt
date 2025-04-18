@@ -25,24 +25,24 @@ Shape(EF,FB,BA,AE)
 Shape(FB,BA,AE,EF)
 Shape(BA,AE,EF,FB)
 Shape(AE,EF,FB,BA)
-Shape(AE,EB,BC,CA)
-Shape(EB,BC,CA,AE)
-Shape(BC,CA,AE,EB)
-Shape(CA,AE,EB,BC)
 Shape(EB,BA,AD,DE)
 Shape(BA,AD,DE,EB)
 Shape(AD,DE,EB,BA)
 Shape(DE,EB,BA,AD)
-Shape(EF,FB,BC,CA,AE)
-Shape(FB,BC,CA,AE,EF)
-Shape(BC,CA,AE,EF,FB)
-Shape(CA,AE,EF,FB,BC)
-Shape(AE,EF,FB,BC,CA)
+Shape(AE,EB,BC,CA)
+Shape(EB,BC,CA,AE)
+Shape(BC,CA,AE,EB)
+Shape(CA,AE,EB,BC)
 Shape(EF,FB,BA,AD,DE)
 Shape(FB,BA,AD,DE,EF)
 Shape(BA,AD,DE,EF,FB)
 Shape(AD,DE,EF,FB,BA)
 Shape(DE,EF,FB,BA,AD)
+Shape(EF,FB,BC,CA,AE)
+Shape(FB,BC,CA,AE,EF)
+Shape(BC,CA,AE,EF,FB)
+Shape(CA,AE,EF,FB,BC)
+Shape(AE,EF,FB,BC,CA)
 Shape(BC,CA,AD,DE,EB)
 Shape(CA,AD,DE,EB,BC)
 Shape(AD,DE,EB,BC,CA)
@@ -97,12 +97,12 @@ Angle(ADE)
 Angle(DEA)
 Angle(FBA)
 Angle(AEF)
-Angle(EBC)
-Angle(CAE)
 Angle(BAD)
 Angle(DEB)
-Angle(FBC)
+Angle(EBC)
+Angle(CAE)
 Angle(DEF)
+Angle(FBC)
 Angle(CDE)
 Angle(DAB)
 Angle(EAC)
@@ -121,10 +121,10 @@ Angle(EDA)
 Angle(AED)
 Angle(ABF)
 Angle(FEA)
-Angle(CBE)
 Angle(BED)
-Angle(CBF)
+Angle(CBE)
 Angle(FED)
+Angle(CBF)
 Angle(EDC)
 Angle(DCB)
 Polygon(FBE)
@@ -155,24 +155,24 @@ Polygon(EFBA)
 Polygon(FBAE)
 Polygon(BAEF)
 Polygon(AEFB)
-Polygon(AEBC)
-Polygon(EBCA)
-Polygon(BCAE)
-Polygon(CAEB)
 Polygon(EBAD)
 Polygon(BADE)
 Polygon(ADEB)
 Polygon(DEBA)
-Polygon(EFBCA)
-Polygon(FBCAE)
-Polygon(BCAEF)
-Polygon(CAEFB)
-Polygon(AEFBC)
+Polygon(AEBC)
+Polygon(EBCA)
+Polygon(BCAE)
+Polygon(CAEB)
 Polygon(EFBAD)
 Polygon(FBADE)
 Polygon(BADEF)
 Polygon(ADEFB)
 Polygon(DEFBA)
+Polygon(EFBCA)
+Polygon(FBCAE)
+Polygon(BCAEF)
+Polygon(CAEFB)
+Polygon(AEFBC)
 Polygon(BCDE)
 Polygon(CDEB)
 Polygon(DEBC)
@@ -213,10 +213,15 @@ GOAL_SYMBOL:
 ma_cab+ma_ead
 
 ANSWER:
-No unique solution with given data
+58
 
 THEOREM_SEQUENCE:
-No valid proof steps can derive a unique value for MeasureOfAngle(CAB)+MeasureOfAngle(EAD) under the current constraints.
+1; mirror_congruent_triangle_property_angle_equal(1,EFB,EBA); MirrorCongruentBetweenTriangle(EFB,EBA); ["Equal(MeasureOfAngle(BEF),MeasureOfAngle(AEB))"]
+2; triangle_property_angle_sum(1,EFB); Polygon(EFB); ["Equal(Add(MeasureOfAngle(EFB),MeasureOfAngle(FBE),MeasureOfAngle(BEF)),180)"]
+3; triangle_property_angle_sum(1,EBA); Polygon(EBA); ["Equal(Add(MeasureOfAngle(EBA),MeasureOfAngle(BAE),MeasureOfAngle(AEB)),180)"]
+4; flat_angle(1,CAD); Collinear(CAD); ["Equal(MeasureOfAngle(CAD),180)"]
+5; angle_addition(1,CAB,BAD); Angle(CAB)&Angle(BAD)&Angle(CAD); ["Equal(MeasureOfAngle(CAD),Add(MeasureOfAngle(CAB),MeasureOfAngle(BAD)))"]
+6; angle_addition(1,BAE,EAD); Angle(BAE)&Angle(EAD)&Angle(BAD); ["Equal(MeasureOfAngle(BAD),Add(MeasureOfAngle(BAE),MeasureOfAngle(EAD)))"]
 ***MODEL_RESPONSE_END***
 RETRIES_MESSAGES:
 #run: 2; #retry: 1; message: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
@@ -228,8 +233,9 @@ Model Answer:
 RETRY_ANSWER:
 58
 RETRY_THEOREM_SEQUENCE:
-1; mirror_congruent_triangle_property_angle_equal(1,EFB,EBA); MirrorCongruentBetweenTriangle(EFB,EBA); ["Equal(MeasureOfAngle(EFB),MeasureOfAngle(EBA))"]
-2; triangle_property_angle_sum(1,EBA); Polygon(EBA); ["Equal(Add(MeasureOfAngle(EBA),MeasureOfAngle(BAE),MeasureOfAngle(AEB)),180)"]
+1; mirror_congruent_triangle_property_angle_equal(1,EFB,EBA); MirrorCongruentBetweenTriangle(EFB,EBA); ["Equal(MeasureOfAngle(EFB),MeasureOfAngle(EBA))","Equal(MeasureOfAngle(EBF),MeasureOfAngle(EAB))","Equal(MeasureOfAngle(BEF),MeasureOfAngle(BEA))"]  
+2; triangle_property_angle_sum(1,EFB); Polygon(EFB); ["Equal(Add(MeasureOfAngle(EFB),MeasureOfAngle(FBE),MeasureOfAngle(BEF)),180)"]  
+3; triangle_property_angle_sum(1,EBA); Polygon(EBA); ["Equal(Add(MeasureOfAngle(EBA),MeasureOfAngle(BAE),MeasureOfAngle(AEB)),180)"]
 #run: 2; #retry: 2; message: ERROR_TIER: TIER3_GOAL_NOT_REACHED
 verification failed.
 
@@ -252,29 +258,74 @@ Model Answer:
 RETRY_ANSWER:
 58
 RETRY_THEOREM_SEQUENCE:
-1; mirror_congruent_triangle_property_angle_equal(1,EFB,EBA); MirrorCongruentBetweenTriangle(EFB,EBA); ["Equal(MeasureOfAngle(BEF),MeasureOfAngle(AEB))"]
-2; triangle_property_angle_sum(1,EBA); Polygon(EBA); ["Equal(Add(MeasureOfAngle(EBA),MeasureOfAngle(BAE),MeasureOfAngle(AEB)),180)"]
+1; mirror_congruent_triangle_property_angle_equal(1,EFB,EBA); MirrorCongruentBetweenTriangle(EFB,EBA); ["Equal(MeasureOfAngle(BEF),MeasureOfAngle(AEB))"]  
+2; triangle_property_angle_sum(1,EFB); Polygon(EFB); ["Equal(Add(MeasureOfAngle(EFB),MeasureOfAngle(FBE),MeasureOfAngle(BEF)),180)"]  
+3; triangle_property_angle_sum(1,EBA); Polygon(EBA); ["Equal(Add(MeasureOfAngle(EBA),MeasureOfAngle(BAE),MeasureOfAngle(AEB)),180)"]
 #run: 2; #retry: 3; message: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
-Failure: Theorem  not defined in current GDL. Please rewrite the proof sequence, you are allowed to use only theorems from the GDL.
+Theorem: mirror_congruent_triangle_property_angle_equal(1,EFB,EBA)
+You output the following conclusions: Equal(MeasureOfAngle(EFB),MeasureOfAngle(EBA))
+But the correct conclusions: Equal(MeasureOfAngle(BEF),MeasureOfAngle(AEB))
+
 Model Answer:
 RETRY_ANSWER:
-No unique solution with given data
+58
 RETRY_THEOREM_SEQUENCE:
-No valid proof steps can derive a unique value for MeasureOfAngle(CAB) + MeasureOfAngle(EAD) under the current constraints
-#run: 2; #retry: 4; message: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
-Failure: Theorem  not defined in current GDL. Please rewrite the proof sequence, you are allowed to use only theorems from the GDL.
+1; mirror_congruent_triangle_property_angle_equal(1,EFB,EBA); MirrorCongruentBetweenTriangle(EFB,EBA); ["Equal(MeasureOfAngle(EFB),MeasureOfAngle(EBA))"]
+2; triangle_property_angle_sum(1,EBA); Polygon(EBA); ["Equal(Add(MeasureOfAngle(EBA),MeasureOfAngle(BAE),MeasureOfAngle(AEB)),180)"]
+
+(Explanation: From step 1, ∠EFB = ∠EBA = 122°, so in triangle EBA, the other two angles at A sum to 58°. By the given diagram, we identify ∠CAB = ∠BAE and ∠EAD = ∠AEB. Therefore, ∠CAB + ∠EAD = 58°.)
+#run: 2; #retry: 4; message: ERROR_TIER: TIER3_GOAL_NOT_REACHED
+verification failed.
+
+- Goal: sum_angle CAB+EAD
+- Model answer: 58.0
+- Error: Your proof doesn't uniquely determine the value. You need to use additional theorems to constrain the value.
+- Available premises:
+  Collinear Points: CAD
+  Mirror Congruent Triangles: BEF mirror congruent to AEB
+  Polygons: ABC, ABE, ACB, ADE, ADEB, ADEFB, AEB, AEBC, AED, AEFB, AEFBC, BADE, BADEF, BAEF, BCAE, BCAEF, BCDE, BCDEF, BEF, BFE, CAEB, CAEFB, CDEB, CDEFB, DEBA, DEBC, DEFBA, DEFBC, EBAD, EBCA, EBCD, EFBA, EFBAD, EFBCA, EFBCD, FBADE, FBAE, FBCAE, FBCDE
+- Theorems related to the goal:
+  None found that constrain this goal
+- Solver constraints directly related to this goal:
+  None found
+
+Angle 1: CAB
+Angle 2: EAD
+Please fix the proof.
 Model Answer:
 RETRY_ANSWER:
-No unique solution with given data
+58
 RETRY_THEOREM_SEQUENCE:
-No valid proof steps can derive a unique value for MeasureOfAngle(CAB) + MeasureOfAngle(EAD) under the current constraints.
-#run: 2; #retry: 5; message: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
-Failure: Theorem  not defined in current GDL. Please rewrite the proof sequence, you are allowed to use only theorems from the GDL.
+1; mirror_congruent_triangle_property_angle_equal(1,EFB,EBA); MirrorCongruentBetweenTriangle(EFB,EBA); ["Equal(MeasureOfAngle(BEF),MeasureOfAngle(AEB))"]  
+2; triangle_property_angle_sum(1,EBA); Polygon(EBA); ["Equal(Add(MeasureOfAngle(EBA),MeasureOfAngle(BAE),MeasureOfAngle(AEB)),180)"]
+#run: 2; #retry: 5; message: ERROR_TIER: TIER3_GOAL_NOT_REACHED
+verification failed.
+
+- Goal: sum_angle CAB+EAD
+- Model answer: 58.0
+- Error: Your proof doesn't uniquely determine the value. You need to use additional theorems to constrain the value.
+- Available premises:
+  Collinear Points: CAD
+  Mirror Congruent Triangles: BEF mirror congruent to AEB
+  Polygons: ABC, ABE, ACB, ADE, ADEB, ADEFB, AEB, AEBC, AED, AEFB, AEFBC, BADE, BADEF, BAEF, BCAE, BCAEF, BCDE, BCDEF, BEF, BFE, CAEB, CAEFB, CDEB, CDEFB, DEBA, DEBC, DEFBA, DEFBC, EBAD, EBCA, EBCD, EFBA, EFBAD, EFBCA, EFBCD, FBADE, FBAE, FBCAE, FBCDE
+- Theorems related to the goal:
+  None found that constrain this goal
+- Solver constraints directly related to this goal:
+  None found
+
+Angle 1: CAB
+Angle 2: EAD
+Please fix the proof.
 Model Answer:
 RETRY_ANSWER:
-No unique solution with given data
+58
 RETRY_THEOREM_SEQUENCE:
-No valid proof steps can derive a unique value for MeasureOfAngle(CAB)+MeasureOfAngle(EAD) under the current constraints.
+1; mirror_congruent_triangle_property_angle_equal(1,EFB,EBA); MirrorCongruentBetweenTriangle(EFB,EBA); ["Equal(MeasureOfAngle(BEF),MeasureOfAngle(AEB))"]
+2; triangle_property_angle_sum(1,EFB); Polygon(EFB); ["Equal(Add(MeasureOfAngle(EFB),MeasureOfAngle(FBE),MeasureOfAngle(BEF)),180)"]
+3; triangle_property_angle_sum(1,EBA); Polygon(EBA); ["Equal(Add(MeasureOfAngle(EBA),MeasureOfAngle(BAE),MeasureOfAngle(AEB)),180)"]
+4; flat_angle(1,CAD); Collinear(CAD); ["Equal(MeasureOfAngle(CAD),180)"]
+5; angle_addition(1,CAB,BAD); Angle(CAB)&Angle(BAD)&Angle(CAD); ["Equal(MeasureOfAngle(CAD),Add(MeasureOfAngle(CAB),MeasureOfAngle(BAD)))"]
+6; angle_addition(1,BAE,EAD); Angle(BAE)&Angle(EAD)&Angle(BAD); ["Equal(MeasureOfAngle(BAD),Add(MeasureOfAngle(BAE),MeasureOfAngle(EAD)))"]
 #RETRIES:
 5
 #RUNS:

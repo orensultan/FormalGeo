@@ -246,6 +246,37 @@ Angle
 predicates to add:
 Line
 predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Polygon
+has Polygon
+has Polygon
+has Polygon
+has Polygon
+has Polygon
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
 Line
 predicates to add:
 Line
@@ -281,37 +312,6 @@ Angle
 predicates to add:
 Line
 predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Polygon
-has Polygon
-has Polygon
-has Polygon
-has Polygon
-has Polygon
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
 Line
 predicates to add:
 Line
@@ -509,19 +509,19 @@ Line
 predicates to add:
 Angle
 predicates to add:
+Angle
+predicates to add:
 Line
 predicates to add:
 Line
 predicates to add:
 Angle
 predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
 Line
 predicates to add:
 Line
+predicates to add:
+Angle
 predicates to add:
 Angle
 predicates to add:
@@ -563,8 +563,9 @@ Model Answer:
 RETRY_ANSWER:
 58
 RETRY_THEOREM_SEQUENCE:
-1; mirror_congruent_triangle_property_angle_equal(1,EFB,EBA); MirrorCongruentBetweenTriangle(EFB,EBA); ["Equal(MeasureOfAngle(EFB),MeasureOfAngle(EBA))"]
-2; triangle_property_angle_sum(1,EBA); Polygon(EBA); ["Equal(Add(MeasureOfAngle(EBA),MeasureOfAngle(BAE),MeasureOfAngle(AEB)),180)"]
+1; mirror_congruent_triangle_property_angle_equal(1,EFB,EBA); MirrorCongruentBetweenTriangle(EFB,EBA); ["Equal(MeasureOfAngle(EFB),MeasureOfAngle(EBA))","Equal(MeasureOfAngle(EBF),MeasureOfAngle(EAB))","Equal(MeasureOfAngle(BEF),MeasureOfAngle(BEA))"]  
+2; triangle_property_angle_sum(1,EFB); Polygon(EFB); ["Equal(Add(MeasureOfAngle(EFB),MeasureOfAngle(FBE),MeasureOfAngle(BEF)),180)"]  
+3; triangle_property_angle_sum(1,EBA); Polygon(EBA); ["Equal(Add(MeasureOfAngle(EBA),MeasureOfAngle(BAE),MeasureOfAngle(AEB)),180)"]
 Retry attempt: 1
 Content written to results/level_3/variant_analogy_based_model_o1_problem_5244_run_2_to_verify.txt
 predicates to add:
@@ -814,6 +815,37 @@ Angle
 predicates to add:
 Line
 predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Polygon
+has Polygon
+has Polygon
+has Polygon
+has Polygon
+has Polygon
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
 Line
 predicates to add:
 Line
@@ -849,37 +881,6 @@ Angle
 predicates to add:
 Line
 predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Polygon
-has Polygon
-has Polygon
-has Polygon
-has Polygon
-has Polygon
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
 Line
 predicates to add:
 Line
@@ -1077,19 +1078,19 @@ Line
 predicates to add:
 Angle
 predicates to add:
+Angle
+predicates to add:
 Line
 predicates to add:
 Line
 predicates to add:
 Angle
 predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
 Line
 predicates to add:
 Line
+predicates to add:
+Angle
 predicates to add:
 Angle
 predicates to add:
@@ -1144,8 +1145,9 @@ Model Answer:
 RETRY_ANSWER:
 58
 RETRY_THEOREM_SEQUENCE:
-1; mirror_congruent_triangle_property_angle_equal(1,EFB,EBA); MirrorCongruentBetweenTriangle(EFB,EBA); ["Equal(MeasureOfAngle(BEF),MeasureOfAngle(AEB))"]
-2; triangle_property_angle_sum(1,EBA); Polygon(EBA); ["Equal(Add(MeasureOfAngle(EBA),MeasureOfAngle(BAE),MeasureOfAngle(AEB)),180)"]
+1; mirror_congruent_triangle_property_angle_equal(1,EFB,EBA); MirrorCongruentBetweenTriangle(EFB,EBA); ["Equal(MeasureOfAngle(BEF),MeasureOfAngle(AEB))"]  
+2; triangle_property_angle_sum(1,EFB); Polygon(EFB); ["Equal(Add(MeasureOfAngle(EFB),MeasureOfAngle(FBE),MeasureOfAngle(BEF)),180)"]  
+3; triangle_property_angle_sum(1,EBA); Polygon(EBA); ["Equal(Add(MeasureOfAngle(EBA),MeasureOfAngle(BAE),MeasureOfAngle(AEB)),180)"]
 Retry attempt: 2
 Content written to results/level_3/variant_analogy_based_model_o1_problem_5244_run_2_to_verify.txt
 predicates to add:
@@ -1395,6 +1397,37 @@ Angle
 predicates to add:
 Line
 predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Polygon
+has Polygon
+has Polygon
+has Polygon
+has Polygon
+has Polygon
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
 Line
 predicates to add:
 Line
@@ -1430,37 +1463,6 @@ Angle
 predicates to add:
 Line
 predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Polygon
-has Polygon
-has Polygon
-has Polygon
-has Polygon
-has Polygon
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
 Line
 predicates to add:
 Line
@@ -1658,19 +1660,19 @@ Line
 predicates to add:
 Angle
 predicates to add:
+Angle
+predicates to add:
 Line
 predicates to add:
 Line
 predicates to add:
 Angle
 predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
 Line
 predicates to add:
 Line
+predicates to add:
+Angle
 predicates to add:
 Angle
 predicates to add:
@@ -1704,12 +1706,18 @@ Equation
 predicates to add:
 MirrorCongruentBetweenTriangle
 Verifier result: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
-Failure: Theorem  not defined in current GDL. Please rewrite the proof sequence, you are allowed to use only theorems from the GDL.
+Theorem: mirror_congruent_triangle_property_angle_equal(1,EFB,EBA)
+You output the following conclusions: Equal(MeasureOfAngle(EFB),MeasureOfAngle(EBA))
+But the correct conclusions: Equal(MeasureOfAngle(BEF),MeasureOfAngle(AEB))
+
 Model Answer:
 RETRY_ANSWER:
-No unique solution with given data
+58
 RETRY_THEOREM_SEQUENCE:
-No valid proof steps can derive a unique value for MeasureOfAngle(CAB) + MeasureOfAngle(EAD) under the current constraints
+1; mirror_congruent_triangle_property_angle_equal(1,EFB,EBA); MirrorCongruentBetweenTriangle(EFB,EBA); ["Equal(MeasureOfAngle(EFB),MeasureOfAngle(EBA))"]
+2; triangle_property_angle_sum(1,EBA); Polygon(EBA); ["Equal(Add(MeasureOfAngle(EBA),MeasureOfAngle(BAE),MeasureOfAngle(AEB)),180)"]
+
+(Explanation: From step 1, ∠EFB = ∠EBA = 122°, so in triangle EBA, the other two angles at A sum to 58°. By the given diagram, we identify ∠CAB = ∠BAE and ∠EAD = ∠AEB. Therefore, ∠CAB + ∠EAD = 58°.)
 Retry attempt: 3
 Content written to results/level_3/variant_analogy_based_model_o1_problem_5244_run_2_to_verify.txt
 predicates to add:
@@ -1959,6 +1967,37 @@ Angle
 predicates to add:
 Line
 predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Polygon
+has Polygon
+has Polygon
+has Polygon
+has Polygon
+has Polygon
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
 Line
 predicates to add:
 Line
@@ -1994,37 +2033,6 @@ Angle
 predicates to add:
 Line
 predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Polygon
-has Polygon
-has Polygon
-has Polygon
-has Polygon
-has Polygon
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
 Line
 predicates to add:
 Line
@@ -2222,19 +2230,19 @@ Line
 predicates to add:
 Angle
 predicates to add:
+Angle
+predicates to add:
 Line
 predicates to add:
 Line
 predicates to add:
 Angle
 predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
 Line
 predicates to add:
 Line
+predicates to add:
+Angle
 predicates to add:
 Angle
 predicates to add:
@@ -2267,13 +2275,30 @@ predicates to add:
 Equation
 predicates to add:
 MirrorCongruentBetweenTriangle
-Verifier result: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
-Failure: Theorem  not defined in current GDL. Please rewrite the proof sequence, you are allowed to use only theorems from the GDL.
+Verifier result: ERROR_TIER: TIER3_GOAL_NOT_REACHED
+verification failed.
+
+- Goal: sum_angle CAB+EAD
+- Model answer: 58.0
+- Error: Your proof doesn't uniquely determine the value. You need to use additional theorems to constrain the value.
+- Available premises:
+  Collinear Points: CAD
+  Mirror Congruent Triangles: BEF mirror congruent to AEB
+  Polygons: ABC, ABE, ACB, ADE, ADEB, ADEFB, AEB, AEBC, AED, AEFB, AEFBC, BADE, BADEF, BAEF, BCAE, BCAEF, BCDE, BCDEF, BEF, BFE, CAEB, CAEFB, CDEB, CDEFB, DEBA, DEBC, DEFBA, DEFBC, EBAD, EBCA, EBCD, EFBA, EFBAD, EFBCA, EFBCD, FBADE, FBAE, FBCAE, FBCDE
+- Theorems related to the goal:
+  None found that constrain this goal
+- Solver constraints directly related to this goal:
+  None found
+
+Angle 1: CAB
+Angle 2: EAD
+Please fix the proof.
 Model Answer:
 RETRY_ANSWER:
-No unique solution with given data
+58
 RETRY_THEOREM_SEQUENCE:
-No valid proof steps can derive a unique value for MeasureOfAngle(CAB) + MeasureOfAngle(EAD) under the current constraints.
+1; mirror_congruent_triangle_property_angle_equal(1,EFB,EBA); MirrorCongruentBetweenTriangle(EFB,EBA); ["Equal(MeasureOfAngle(BEF),MeasureOfAngle(AEB))"]  
+2; triangle_property_angle_sum(1,EBA); Polygon(EBA); ["Equal(Add(MeasureOfAngle(EBA),MeasureOfAngle(BAE),MeasureOfAngle(AEB)),180)"]
 Retry attempt: 4
 Content written to results/level_3/variant_analogy_based_model_o1_problem_5244_run_2_to_verify.txt
 predicates to add:
@@ -2523,6 +2548,37 @@ Angle
 predicates to add:
 Line
 predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Polygon
+has Polygon
+has Polygon
+has Polygon
+has Polygon
+has Polygon
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
 Line
 predicates to add:
 Line
@@ -2558,37 +2614,6 @@ Angle
 predicates to add:
 Line
 predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Polygon
-has Polygon
-has Polygon
-has Polygon
-has Polygon
-has Polygon
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
 Line
 predicates to add:
 Line
@@ -2786,19 +2811,19 @@ Line
 predicates to add:
 Angle
 predicates to add:
+Angle
+predicates to add:
 Line
 predicates to add:
 Line
 predicates to add:
 Angle
 predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
 Line
 predicates to add:
 Line
+predicates to add:
+Angle
 predicates to add:
 Angle
 predicates to add:
@@ -2831,12 +2856,33 @@ predicates to add:
 Equation
 predicates to add:
 MirrorCongruentBetweenTriangle
-Verifier result: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
-Failure: Theorem  not defined in current GDL. Please rewrite the proof sequence, you are allowed to use only theorems from the GDL.
+Verifier result: ERROR_TIER: TIER3_GOAL_NOT_REACHED
+verification failed.
+
+- Goal: sum_angle CAB+EAD
+- Model answer: 58.0
+- Error: Your proof doesn't uniquely determine the value. You need to use additional theorems to constrain the value.
+- Available premises:
+  Collinear Points: CAD
+  Mirror Congruent Triangles: BEF mirror congruent to AEB
+  Polygons: ABC, ABE, ACB, ADE, ADEB, ADEFB, AEB, AEBC, AED, AEFB, AEFBC, BADE, BADEF, BAEF, BCAE, BCAEF, BCDE, BCDEF, BEF, BFE, CAEB, CAEFB, CDEB, CDEFB, DEBA, DEBC, DEFBA, DEFBC, EBAD, EBCA, EBCD, EFBA, EFBAD, EFBCA, EFBCD, FBADE, FBAE, FBCAE, FBCDE
+- Theorems related to the goal:
+  None found that constrain this goal
+- Solver constraints directly related to this goal:
+  None found
+
+Angle 1: CAB
+Angle 2: EAD
+Please fix the proof.
 Model Answer:
 RETRY_ANSWER:
-No unique solution with given data
+58
 RETRY_THEOREM_SEQUENCE:
-No valid proof steps can derive a unique value for MeasureOfAngle(CAB)+MeasureOfAngle(EAD) under the current constraints.
+1; mirror_congruent_triangle_property_angle_equal(1,EFB,EBA); MirrorCongruentBetweenTriangle(EFB,EBA); ["Equal(MeasureOfAngle(BEF),MeasureOfAngle(AEB))"]
+2; triangle_property_angle_sum(1,EFB); Polygon(EFB); ["Equal(Add(MeasureOfAngle(EFB),MeasureOfAngle(FBE),MeasureOfAngle(BEF)),180)"]
+3; triangle_property_angle_sum(1,EBA); Polygon(EBA); ["Equal(Add(MeasureOfAngle(EBA),MeasureOfAngle(BAE),MeasureOfAngle(AEB)),180)"]
+4; flat_angle(1,CAD); Collinear(CAD); ["Equal(MeasureOfAngle(CAD),180)"]
+5; angle_addition(1,CAB,BAD); Angle(CAB)&Angle(BAD)&Angle(CAD); ["Equal(MeasureOfAngle(CAD),Add(MeasureOfAngle(CAB),MeasureOfAngle(BAD)))"]
+6; angle_addition(1,BAE,EAD); Angle(BAE)&Angle(EAD)&Angle(BAD); ["Equal(MeasureOfAngle(BAD),Add(MeasureOfAngle(BAE),MeasureOfAngle(EAD)))"]
 Retry attempt: 5
 Content written to results/level_3/variant_analogy_based_model_o1_problem_5244_run_2.txt

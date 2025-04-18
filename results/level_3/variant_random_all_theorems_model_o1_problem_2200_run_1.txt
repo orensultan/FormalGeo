@@ -1,0 +1,207 @@
+Inputs for Problem B:
+DESCRIPTION:
+As shown in the diagram, ∠ABD=75°, ∠ACD=28°, ∠BDC=35°. Find the measure of ∠BAC.
+CONSTRUCTION_CDL:
+Shape(BD,DE,EB)
+Shape(EA,AC,CE)
+Collinear(BEA)
+Collinear(DEC)
+TEXT_CDL:
+Equal(MeasureOfAngle(ABD),75)
+Equal(MeasureOfAngle(ACD),28)
+Equal(MeasureOfAngle(BDC),35)
+GOAL_CDL:
+Value(MeasureOfAngle(BAC))
+CONSTRUCTION_CDL_EXTENDED:
+Shape(DE,EB,BD)
+Shape(EB,BD,DE)
+Shape(AC,CE,EA)
+Shape(CE,EA,AC)
+Collinear(AEB)
+Collinear(CED)
+Point(B)
+Point(A)
+Point(E)
+Point(D)
+Point(C)
+Line(BA)
+Line(AB)
+Line(BE)
+Line(EB)
+Line(EA)
+Line(AE)
+Line(DC)
+Line(CD)
+Line(DE)
+Line(ED)
+Line(EC)
+Line(CE)
+Line(BD)
+Line(DB)
+Line(AC)
+Line(CA)
+Angle(BEA)
+Angle(AEB)
+Angle(DEC)
+Angle(CED)
+Angle(BDE)
+Angle(DEB)
+Angle(EBD)
+Angle(EAC)
+Angle(ACE)
+Angle(CEA)
+Angle(DEA)
+Angle(CEB)
+Angle(BDC)
+Angle(ABD)
+Angle(BAC)
+Angle(ACD)
+Angle(EDB)
+Angle(BED)
+Angle(DBE)
+Angle(CAE)
+Angle(ECA)
+Angle(AEC)
+Angle(AED)
+Angle(BEC)
+Angle(CDB)
+Angle(DBA)
+Angle(CAB)
+Angle(DCA)
+Polygon(BDE)
+Polygon(BED)
+Polygon(DBE)
+Polygon(DEB)
+Polygon(EBD)
+Polygon(EDB)
+Polygon(EAC)
+Polygon(ECA)
+Polygon(AEC)
+Polygon(ACE)
+Polygon(CEA)
+Polygon(CAE)
+SYMBOLS_AND_VALUES:
+MeasureOfAngle(ABC);ma_obc;50
+MeasureOfAngle(EBC);ma_obc;50
+MeasureOfAngle(OBC);ma_obc;50
+MeasureOfAngle(CDB);ma_edb;None
+MeasureOfAngle(EDB);ma_edb;None
+
+Outputs:
+Outputs for Problem B:
+
+***MODEL_RESPONSE_BEGIN***
+EQUATIONS:
+ma_abd-75
+ma_acd-28
+ma_bdc-35
+
+GOAL_SYMBOL:
+ma_bac
+
+ANSWER:
+42
+
+THEOREM_SEQUENCE:
+1; flat_angle(1,BEA); Collinear(BEA); ["Equal(MeasureOfAngle(BEA),180)"]  
+2; angle_addition(1,BED,DEA); Angle(BED)&Angle(DEA)&Angle(BEA); ["Equal(MeasureOfAngle(BEA),Add(MeasureOfAngle(BED),MeasureOfAngle(DEA)))"]  
+3; flat_angle(1,DEC); Collinear(DEC); ["Equal(MeasureOfAngle(DEC),180)"]  
+4; angle_addition(1,DEA,AEC); Angle(DEA)&Angle(AEC)&Angle(DEC); ["Equal(MeasureOfAngle(DEC),Add(MeasureOfAngle(DEA),MeasureOfAngle(AEC)))"]  
+5; vertical_angle(1,BED,AEC); Collinear(BEA)&Collinear(DEC)&Angle(BED)&Angle(AEC); ["Equal(MeasureOfAngle(BED),MeasureOfAngle(AEC))"]  
+***MODEL_RESPONSE_END***
+RETRIES_MESSAGES:
+#run: 1; #retry: 1; message: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
+Failure: The THEOREM_SEQUENCE you provided is empty. Please generate a proof again, using the similar problems I provided (A1, A2, A3, A4, A5), along with the GDL_DICTIONARY of theorems.
+Model Answer:
+RETRY_ANSWER:
+42
+RETRY_THEOREM_SEQUENCE:
+
+#run: 1; #retry: 2; message: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
+Failure: Theorem <triangle_property_angle_sum> branch error. Expected dict_keys(['1']) but got None. Please rewrite your response, you should change only the call to theorem <triangle_property_angle_sum> by adding the branch number from the dict_keys as the first argument
+Model Answer:
+RETRY_ANSWER:
+42
+RETRY_THEOREM_SEQUENCE:
+1; triangle_property_angle_sum(ABC); Polygon(ABC); ["Equal(Add(MeasureOfAngle(ABC),MeasureOfAngle(BCA),MeasureOfAngle(BAC)),180)"]
+#run: 1; #retry: 3; message: ERROR_TIER: TIER3_GOAL_NOT_REACHED
+verification failed.
+
+- Goal: measure of angle BAC
+- Model answer: 42.0
+- Error: Your proof doesn't uniquely determine the value. You need to use additional theorems to constrain the value.
+- Available premises:
+  Collinear Points: AEB, CED
+  Polygons: ACE, AEC, BDE, BED
+- Theorems related to the goal:
+  None found that constrain this goal
+- Solver constraints directly related to this goal:
+  ∠BAC <= 180
+  ∠BAC > 0
+  ∠CAE = ∠BAC
+
+Please fix the proof.
+Model Answer:
+RETRY_ANSWER:
+42
+RETRY_THEOREM_SEQUENCE:
+1; flat_angle(1,BEA); Collinear(BEA); ["Equal(MeasureOfAngle(BEA),180)"]  
+2; flat_angle(1,DEC); Collinear(DEC); ["Equal(MeasureOfAngle(DEC),180)"]
+#run: 1; #retry: 4; message: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
+Theorem: angle_addition(1,ABD,BDC)
+You output the following premises: Angle(ABD)&Angle(BDC)&Angle(ABC)
+But the correct premises: Angle(ADB)&Angle(BDC)&Angle(ADC)
+You output the following conclusions: Equal(MeasureOfAngle(ABC),Add(MeasureOfAngle(ABD),MeasureOfAngle(BDC)))
+But the correct conclusions: Equal(MeasureOfAngle(ADC),Add(MeasureOfAngle(ADB),MeasureOfAngle(BDC)))
+
+Model Answer:
+RETRY_ANSWER:
+42
+RETRY_THEOREM_SEQUENCE:
+1; angle_addition(1,ABD,BDC); Angle(ABD)&Angle(BDC)&Angle(ABC); ["Equal(MeasureOfAngle(ABC),Add(MeasureOfAngle(ABD),MeasureOfAngle(BDC)))"]  
+2; angle_addition(1,ABC,ACD); Angle(ABC)&Angle(ACD)&Angle(BAC); ["Equal(MeasureOfAngle(BAC),Add(MeasureOfAngle(ABC),MeasureOfAngle(ACD)))"]
+#run: 1; #retry: 5; message: ERROR_TIER: TIER3_GOAL_NOT_REACHED
+verification failed.
+
+- Goal: measure of angle BAC
+- Model answer: 42.0
+- Error: Your proof doesn't uniquely determine the value. You need to use additional theorems to constrain the value.
+- Available premises:
+  Collinear Points: AEB, CED
+  Polygons: ACE, AEC, BDE, BED
+- Theorems related to the goal:
+  None found that constrain this goal
+- Solver constraints directly related to this goal:
+  ∠BAC <= 180
+  ∠BAC > 0
+  ∠CAE = ∠BAC
+
+Please fix the proof.
+Model Answer:
+RETRY_ANSWER:
+42
+RETRY_THEOREM_SEQUENCE:
+1; flat_angle(1,BEA); Collinear(BEA); ["Equal(MeasureOfAngle(BEA),180)"]  
+2; angle_addition(1,BED,DEA); Angle(BED)&Angle(DEA)&Angle(BEA); ["Equal(MeasureOfAngle(BEA),Add(MeasureOfAngle(BED),MeasureOfAngle(DEA)))"]  
+3; flat_angle(1,DEC); Collinear(DEC); ["Equal(MeasureOfAngle(DEC),180)"]  
+4; angle_addition(1,DEA,AEC); Angle(DEA)&Angle(AEC)&Angle(DEC); ["Equal(MeasureOfAngle(DEC),Add(MeasureOfAngle(DEA),MeasureOfAngle(AEC)))"]  
+5; vertical_angle(1,BED,AEC); Collinear(BEA)&Collinear(DEC)&Angle(BED)&Angle(AEC); ["Equal(MeasureOfAngle(BED),MeasureOfAngle(AEC))"]
+#RETRIES:
+5
+#RUNS:
+1
+
+
+GT_EQUATIONS:
+ma_abd-75
+ma_acd-28
+ma_bdc-35
+GT_GOAL_SYMBOL:
+ma_bac
+GT_ANSWER:
+82
+GT_THEOREM_SEQUENCE:
+1;triangle_property_angle_sum(1,BDE);Polygon(BDE);["Equal(Add(MeasureOfAngle(BDE),MeasureOfAngle(DEB),MeasureOfAngle(EBD)),180)"]
+2;vertical_angle(1,DEB,CEA);Collinear(DEC)&Collinear(BEA)&Angle(DEB)&Angle(CEA);["Equal(MeasureOfAngle(DEB),MeasureOfAngle(CEA))"]
+3;triangle_property_angle_sum(1,EAC);Polygon(EAC);["Equal(Add(MeasureOfAngle(EAC),MeasureOfAngle(ACE),MeasureOfAngle(CEA)),180)"]
+

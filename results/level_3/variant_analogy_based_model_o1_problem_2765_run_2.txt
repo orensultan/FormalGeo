@@ -239,37 +239,17 @@ ANSWER:
 116
 
 THEOREM_SEQUENCE:
-1; flat_angle(1,AZE); Collinear(AZE); ["Equal(MeasureOfAngle(AZE),180)"]
-2; flat_angle(1,DZI); Collinear(DZI); ["Equal(MeasureOfAngle(DZI),180)"]
+1; flat_angle(1,AEZ); Collinear(AEZ); ["Equal(MeasureOfAngle(AEZ),180)"]
+2; angle_addition(1,AEN,NEZ); Angle(AEN)&Angle(NEZ)&Angle(AEZ); ["Equal(MeasureOfAngle(AEZ),Add(MeasureOfAngle(AEN),MeasureOfAngle(NEZ)))"]
+3; triangle_property_angle_sum(1,EZD); Polygon(EZD); ["Equal(Add(MeasureOfAngle(EZD),MeasureOfAngle(ZDE),MeasureOfAngle(DEZ)),180)"]
 ***MODEL_RESPONSE_END***
 RETRIES_MESSAGES:
-#run: 2; #retry: 1; message: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
-Theorem: parallel_property_ipsilateral_internal_angle(1,AK,IL)
-You output the following premises: ParallelBetweenLine(AK,IL)&Line(AZ)
-But the correct premises: ParallelBetweenLine(AK,IL)&Line(AI)
-You output the following conclusions: Equal(Add(MeasureOfAngle(AEZ),MeasureOfAngle(EZD)),180)
-But the correct conclusions: Equal(Add(MeasureOfAngle(KAI),MeasureOfAngle(AIL)),180)
-
-Model Answer:
-RETRY_ANSWER:
-116
-RETRY_THEOREM_SEQUENCE:
-1; parallel_property_ipsilateral_internal_angle(1,AK,IL); ParallelBetweenLine(AK,IL)&Line(AZ); ["Equal(Add(MeasureOfAngle(AEZ),MeasureOfAngle(EZD)),180)"]
-#run: 2; #retry: 2; message: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
-No answer provided in ANSWER section.
-Model Answer:
-RETRY_ANSWER:
-116
-
-RETRY_
-RETRY_THEOREM_SEQUENCE:
-1; parallel_property_ipsilateral_internal_angle(1,AK,IL); ParallelBetweenLine(AK,IL)&Line(AI); ["Equal(Add(MeasureOfAngle(KAI),MeasureOfAngle(AIL)),180)"]
-#run: 2; #retry: 3; message: ERROR_TIER: TIER2_PREMISE_VIOLATION
+#run: 2; #retry: 1; message: ERROR_TIER: TIER2_PREMISE_VIOLATION
 verification failed.
 
-- Error: You tried to use theorem: parallel_property_ipsilateral_internal_angle(1,AK,IL);ParallelBetweenLine(AK,IL)&Line(AI);['Equal(Add(MeasureOfAngle(KAI),MeasureOfAngle(AIL)),180)']
-Missing premise: Lines AK and IL not proven parallel
-Details: Known parallel pairs: {('NR', 'LI'), ('LI', 'NR'), ('WJ', 'KA'), ('KA', 'WJ'), ('LI', 'RN'), ('RN', 'IL'), ('AK', 'JW'), ('RN', 'LI'), ('JW', 'AK'), ('KA', 'JW'), ('NR', 'IL'), ('IL', 'RN'), ('JW', 'KA'), ('IL', 'NR'), ('WJ', 'AK'), ('AK', 'WJ')}
+- Error: You tried to use theorem: adjacent_complementary_angle(1,AEN,NEZ);Collinear(AEZ)&Angle(AEN)&Angle(NEZ);['Equal(Add(MeasureOfAngle(AEN),MeasureOfAngle(NEZ)),180)']
+Missing premise: Points AEZ are not proven collinear
+Details: Known collinear facts: [['I', 'D', 'Z', 'Q', 'L'], ['N', 'E', 'H', 'R'], ['J', 'H', 'D', 'W'], ['A', 'Z', 'E', 'K'], ['L', 'Q', 'Z'], ['D', 'Q', 'L'], ['I', 'Q', 'L'], ['D', 'Z', 'L'], ['I', 'Z', 'L'], ['I', 'D', 'L'], ['D', 'Z', 'Q'], ['I', 'Z', 'Q'], ['I', 'D', 'Q'], ['I', 'D', 'Z'], ['I', 'D', 'Z'], ['I', 'D', 'Z'], ['I', 'D', 'Q'], ['I', 'D', 'Q'], ['I', 'D', 'L'], ['I', 'D', 'L'], ['I', 'Z', 'Q'], ['I', 'Z', 'Q'], ['I', 'Z', 'L'], ['I', 'Z', 'L'], ['I', 'Q', 'L'], ['I', 'Q', 'L'], ['D', 'Z', 'Q'], ['D', 'Z', 'Q'], ['D', 'Z', 'L'], ['D', 'Z', 'L'], ['D', 'Q', 'L'], ['D', 'Q', 'L'], ['L', 'Q', 'Z'], ['L', 'Q', 'Z'], ['H', 'E', 'N'], ['N', 'E', 'R'], ['N', 'H', 'R'], ['E', 'H', 'R'], ['E', 'H', 'R'], ['E', 'H', 'R'], ['N', 'H', 'R'], ['N', 'H', 'R'], ['N', 'E', 'R'], ['N', 'E', 'R'], ['H', 'E', 'N'], ['H', 'E', 'N'], ['D', 'H', 'J'], ['J', 'H', 'W'], ['J', 'D', 'W'], ['H', 'D', 'W'], ['H', 'D', 'W'], ['H', 'D', 'W'], ['J', 'D', 'W'], ['J', 'D', 'W'], ['J', 'H', 'W'], ['J', 'H', 'W'], ['D', 'H', 'J'], ['D', 'H', 'J'], ['K', 'E', 'Z'], ['A', 'E', 'K'], ['A', 'Z', 'K'], ['A', 'Z', 'E'], ['A', 'Z', 'E'], ['A', 'Z', 'E'], ['A', 'Z', 'K'], ['A', 'Z', 'K'], ['A', 'E', 'K'], ['A', 'E', 'K'], ['K', 'E', 'Z'], ['K', 'E', 'Z']]
 - Available premises:
   Parallel Lines: AK ∥ JW, IL ∥ NR
   Collinear Points: AEK, AZE, AZEK, AZK, DHJ, DQL, DZL, DZQ, EHR, HDW, HEN, IDL, IDQ, IDZ, IDZQL, IQL, IZL, IZQ, JDW, JHDW, JHW, KEZ, LQZ, NEHR, NER, NHR
@@ -283,15 +263,9 @@ Model Answer:
 RETRY_ANSWER:
 116
 RETRY_THEOREM_SEQUENCE:
-1; parallel_property_ipsilateral_internal_angle(1,AK,IL); ParallelBetweenLine(AK,IL)&Line(AI); ["Equal(Add(MeasureOfAngle(KAI),MeasureOfAngle(AIL)),180)"]
-#run: 2; #retry: 4; message: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
-Failure: The THEOREM_SEQUENCE you provided is empty. Please generate a proof again, using the similar problems I provided (A1, A2, A3, A4, A5), along with the GDL_DICTIONARY of theorems.
-Model Answer:
-RETRY_ANSWER:
-116
-RETRY_THEOREM_SEQUENCE:
-
-#run: 2; #retry: 5; message: ERROR_TIER: TIER3_GOAL_NOT_REACHED
+1; adjacent_complementary_angle(1,AEN,NEZ); Collinear(AEZ)&Angle(AEN)&Angle(NEZ); ["Equal(Add(MeasureOfAngle(AEN),MeasureOfAngle(NEZ)),180)"]
+2; parallel_property_alternate_interior_angle(1,EN,DZ); ParallelBetweenLine(EN,DZ)&Line(EZ); ["Equal(MeasureOfAngle(NEZ),MeasureOfAngle(DZE))"]
+#run: 2; #retry: 2; message: ERROR_TIER: TIER3_GOAL_NOT_REACHED
 verification failed.
 
 - Goal: measure of angle EZD
@@ -314,7 +288,59 @@ RETRY_ANSWER:
 116
 RETRY_THEOREM_SEQUENCE:
 1; flat_angle(1,AZE); Collinear(AZE); ["Equal(MeasureOfAngle(AZE),180)"]
-2; flat_angle(1,DZI); Collinear(DZI); ["Equal(MeasureOfAngle(DZI),180)"]
+2; angle_addition(1,AEN,NEZ); Angle(AEN)&Angle(NEZ)&Angle(AEZ); ["Equal(MeasureOfAngle(AEZ),Add(MeasureOfAngle(AEN),MeasureOfAngle(NEZ)))"]
+#run: 2; #retry: 3; message: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
+Failure: Theorem <-- use collinearity> not defined in current GDL. Please rewrite the proof sequence, you are allowed to use only theorems from the GDL.
+Model Answer:
+RETRY_ANSWER:
+116
+RETRY_THEOREM_SEQUENCE:
+1; flat_angle(1,AEZ); Collinear(AEZ); ["Equal(MeasureOfAngle(AEZ),180)"]
+2; angle_addition(1,AEN,NEZ); Angle(AEN)&Angle(NEZ)&Angle(AEZ); ["Equal(MeasureOfAngle(AEZ),Add(MeasureOfAngle(AEN),MeasureOfAngle(NEZ)))"]
+3; parallel_property_collinear_extend(3,IL,RN,D); ParallelBetweenLine(IL,RN)&Collinear(IDL); ["ParallelBetweenLine(ID,RN)","ParallelBetweenLine(DL,RN)"]
+4; -- use collinearity(HEN) to rename RN as EN, and collinearity(IDZ) to rename ID as ZD --
+5; parallel_property_alternate_interior_angle(1,EN,ZD); ParallelBetweenLine(EN,ZD)&Line(EZ); ["Equal(MeasureOfAngle(NEZ),MeasureOfAngle(ZDE))"]
+6; triangle_property_angle_sum(EZD); Polygon(EZD); ["Equal(Add(MeasureOfAngle(EZD),MeasureOfAngle(ZDE),MeasureOfAngle(DEZ)),180)"]
+#run: 2; #retry: 4; message: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
+Failure: Theorem <triangle_property_angle_sum> branch error. Expected dict_keys(['1']) but got None. Please rewrite your response, you should change only the call to theorem <triangle_property_angle_sum> by adding the branch number from the dict_keys as the first argument
+Model Answer:
+RETRY_ANSWER:
+116
+RETRY_THEOREM_SEQUENCE:
+1; flat_angle(1,AEZ); Collinear(AEZ); ["Equal(MeasureOfAngle(AEZ),180)"]
+2; angle_addition(1,AEN,NEZ); Angle(AEN)&Angle(NEZ)&Angle(AEZ); ["Equal(MeasureOfAngle(AEZ),Add(MeasureOfAngle(AEN),MeasureOfAngle(NEZ)))"]
+3; triangle_property_angle_sum(EZD); Polygon(EZD); ["Equal(Add(MeasureOfAngle(EZD),MeasureOfAngle(ZDE),MeasureOfAngle(DEZ)),180)"]
+#run: 2; #retry: 5; message: ERROR_TIER: TIER3_GOAL_NOT_REACHED
+verification failed.
+
+- Goal: measure of angle EZD
+- Model answer: 116.0
+- Error: Your proof contains contradictory constraints. Check for incorrect values in premises, improper theorem application, or conclusions that contradict earlier assertions.
+  Contradictory constraints:
+    ∠NEZ = ∠AEN
+    ∠AEN = 64
+    ∠AEZ = 180
+    ∠AEZ = ∠AEN + ∠NEZ
+- Available premises:
+  Parallel Lines: AK ∥ JW, IL ∥ NR
+  Collinear Points: AEK, AZE, AZEK, AZK, DHJ, DQL, DZL, DZQ, EHR, HDW, HEN, IDL, IDQ, IDZ, IDZQL, IQL, IZL, IZQ, JDW, JHDW, JHW, KEZ, LQZ, NEHR, NER, NHR
+- Theorems related to the goal:
+  Step 3 - triangle_property_angle_sum(1, EZD): Equal(Add(MeasureOfAngle(EZD),MeasureOfAngle(ZDE),MeasureOfAngle(DEZ)),180)
+- Solver constraints directly related to this goal:
+  ∠DZE + ∠EDZ + ∠DEZ = 180
+  ∠DZE <= 180
+  ∠DZE = ∠DZK
+  ∠DZE = ∠EZI
+  ∠DZE > 0
+
+Please fix the proof.
+Model Answer:
+RETRY_ANSWER:
+116
+RETRY_THEOREM_SEQUENCE:
+1; flat_angle(1,AEZ); Collinear(AEZ); ["Equal(MeasureOfAngle(AEZ),180)"]
+2; angle_addition(1,AEN,NEZ); Angle(AEN)&Angle(NEZ)&Angle(AEZ); ["Equal(MeasureOfAngle(AEZ),Add(MeasureOfAngle(AEN),MeasureOfAngle(NEZ)))"]
+3; triangle_property_angle_sum(1,EZD); Polygon(EZD); ["Equal(Add(MeasureOfAngle(EZD),MeasureOfAngle(ZDE),MeasureOfAngle(DEZ)),180)"]
 #RETRIES:
 5
 #RUNS:
