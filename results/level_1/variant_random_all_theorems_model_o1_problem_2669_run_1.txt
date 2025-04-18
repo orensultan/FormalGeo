@@ -26,14 +26,14 @@ Shape(FBD,DE,EB)
 Shape(DE,EB,FBD)
 Shape(AE,ED,FDA)
 Shape(ED,FDA,AE)
-Shape(FAC,CE,ED,FDA)
-Shape(CE,ED,FDA,FAC)
-Shape(ED,FDA,FAC,CE)
-Shape(FDA,FAC,CE,ED)
 Shape(EA,FAC,FCB,BE)
 Shape(FAC,FCB,BE,EA)
 Shape(FCB,BE,EA,FAC)
 Shape(BE,EA,FAC,FCB)
+Shape(FAC,CE,ED,FDA)
+Shape(CE,ED,FDA,FAC)
+Shape(ED,FDA,FAC,CE)
+Shape(FDA,FAC,CE,ED)
 Shape(EC,FCB,FBD,DE)
 Shape(FCB,FBD,DE,EC)
 Shape(FBD,DE,EC,FCB)
@@ -42,26 +42,26 @@ Shape(EB,FBD,FDA,AE)
 Shape(FBD,FDA,AE,EB)
 Shape(FDA,AE,EB,FBD)
 Shape(AE,EB,FBD,FDA)
-Shape(FAC,CE,EB,FBD,FDA)
-Shape(CE,EB,FBD,FDA,FAC)
-Shape(EB,FBD,FDA,FAC,CE)
-Shape(FBD,FDA,FAC,CE,EB)
-Shape(FDA,FAC,CE,EB,FBD)
 Shape(EA,FAC,FCB,FBD,DE)
 Shape(FAC,FCB,FBD,DE,EA)
 Shape(FCB,FBD,DE,EA,FAC)
 Shape(FBD,DE,EA,FAC,FCB)
 Shape(DE,EA,FAC,FCB,FBD)
-Shape(FCB,BE,ED,FDA,FAC)
-Shape(BE,ED,FDA,FAC,FCB)
-Shape(ED,FDA,FAC,FCB,BE)
-Shape(FDA,FAC,FCB,BE,ED)
-Shape(FAC,FCB,BE,ED,FDA)
+Shape(FAC,CE,EB,FBD,FDA)
+Shape(CE,EB,FBD,FDA,FAC)
+Shape(EB,FBD,FDA,FAC,CE)
+Shape(FBD,FDA,FAC,CE,EB)
+Shape(FDA,FAC,CE,EB,FBD)
 Shape(EC,FCB,FBD,FDA,AE)
 Shape(FCB,FBD,FDA,AE,EC)
 Shape(FBD,FDA,AE,EC,FCB)
 Shape(FDA,AE,EC,FCB,FBD)
 Shape(AE,EC,FCB,FBD,FDA)
+Shape(FCB,BE,ED,FDA,FAC)
+Shape(BE,ED,FDA,FAC,FCB)
+Shape(ED,FDA,FAC,FCB,BE)
+Shape(FDA,FAC,FCB,BE,ED)
+Shape(FAC,FCB,BE,ED,FDA)
 Shape(FAC,FCB,FBD,FDA)
 Shape(FCB,FBD,FDA,FAC)
 Shape(FBD,FDA,FAC,FCB)
@@ -152,56 +152,43 @@ Angle(CEA)
 Angle(BEC)
 Angle(DEB)
 Angle(AED)
-Angle(CEB)
 Angle(DEA)
-Angle(BED)
+Angle(CEB)
 Angle(AEC)
+Angle(BED)
 Circle(F)
 SYMBOLS_AND_VALUES:
-LengthOfLine(AD);ll_ad;None
-LengthOfLine(DA);ll_ad;None
-Free(x);x;None
-LengthOfLine(CD);ll_cd;6
-LengthOfLine(DC);ll_cd;6
-LengthOfLine(DB);ll_db;3
-LengthOfLine(BD);ll_db;3
-LengthOfLine(DF);ll_df;2
-LengthOfLine(FD);ll_df;2
+MeasureOfAngle(ABC);ma_obc;50
+MeasureOfAngle(EBC);ma_obc;50
+MeasureOfAngle(OBC);ma_obc;50
+MeasureOfAngle(CDB);ma_edb;None
+MeasureOfAngle(EDB);ma_edb;None
 
 Outputs:
 Outputs for Problem B:
 
 ***MODEL_RESPONSE_BEGIN***
 EQUATIONS:
-ll_ae-x
-ll_be-6
-ll_ec-3
-ll_ed-4
-
+6*x-12
 GOAL_SYMBOL:
 x
-
 ANSWER:
 2
-
 THEOREM_SEQUENCE:
 1; circle_property_circular_power_chord_and_chord(1,AEB,CED,F); Cocircular(F,AB)&Cocircular(F,CD)&Collinear(AEB)&Collinear(CED); ["Equal(Mul(LengthOfLine(EC),LengthOfLine(ED)),Mul(LengthOfLine(EA),LengthOfLine(EB)))"]
 ***MODEL_RESPONSE_END***
 RETRIES_MESSAGES:
-#run: 0; #retry: 1; message: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
-Theorem: circle_property_circular_power_chord_and_chord(1,AEB,CED,F)
-You output the following conclusions: Equal(Mul(LengthOfLine(AE),LengthOfLine(EB)),Mul(LengthOfLine(EC),LengthOfLine(ED)))
-But the correct conclusions: Equal(Mul(LengthOfLine(EC),LengthOfLine(ED)),Mul(LengthOfLine(EA),LengthOfLine(EB)))
-
+#run: 1; #retry: 1; message: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
+Failure: Theorem <circle_property_circular_power_chord_and_chord> branch error. Expected dict_keys(['1']) but got None. Please rewrite your response, you should change only the call to theorem <circle_property_circular_power_chord_and_chord> by adding the branch number from the dict_keys as the first argument
 Model Answer:
 RETRY_ANSWER:
 2
 RETRY_THEOREM_SEQUENCE:
-1; circle_property_circular_power_chord_and_chord(1,AEB,CED,F); Cocircular(F,AB)&Cocircular(F,CD)&Collinear(AEB)&Collinear(CED); ["Equal(Mul(LengthOfLine(AE),LengthOfLine(EB)),Mul(LengthOfLine(EC),LengthOfLine(ED)))"]
+1; circle_property_circular_power_chord_and_chord(AEB,CED,F); Cocircular(F,AB)&Cocircular(F,CD)&Collinear(AEB)&Collinear(CED); ["Equal(Mul(LengthOfLine(EC),LengthOfLine(ED)),Mul(LengthOfLine(EA),LengthOfLine(EB)))"]
 #RETRIES:
 1
 #RUNS:
-0
+1
 
 
 GT_EQUATIONS:

@@ -160,12 +160,12 @@ Equation
 predicates to add:
 Equation
 Verifier result: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
-Verification failed. Theorem <circle_property_circular_power_segment_and_segment_angle> branch error. Expected dict_keys(['1', '2']) but got None. Please rewrite your response, you should change only the call to theorem <circle_property_circular_power_segment_and_segment_angle> by adding the branch number from the dict_keys as the first argument
+Failure: The THEOREM_SEQUENCE you provided is empty. Please generate a proof again, using the similar problems I provided (A1, A2, A3, A4, A5), along with the GDL_DICTIONARY of theorems.
 Model Answer:
 RETRY_ANSWER:
-22
+114
 RETRY_THEOREM_SEQUENCE:
-1; circle_property_circular_power_segment_and_segment_angle(SRT,RUV,B); Cocircular(B,SUVT)&Collinear(RST)&Collinear(RUV); ["Equal(Sub(MeasureOfArc(BVT),MeasureOfArc(BSU)),Mul(MeasureOfAngle(SRU),2))"]
+
 Retry attempt: 1
 Content written to results/level_1/variant_random_all_theorems_model_o1_problem_192_run_0_to_verify.txt
 predicates to add:
@@ -329,19 +329,361 @@ Equation
 predicates to add:
 Equation
 Verifier result: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
-Verification failed.
-Theorem: circle_property_circular_power_segment_and_segment_angle(1,SRT,RUV,B)
-The language model outputs the following premises: Cocircular(B,SUVT)&Collinear(RST)&Collinear(RUV)
-The correct premises for the theorem: Cocircular(B,RUVT)&Collinear(RRT)&Collinear(RUV)
-The language model outputs the following conclusions: Equal(Sub(MeasureOfArc(BVT),MeasureOfArc(BSU)),Mul(MeasureOfAngle(SRU),2))
-The correct conclusions for the theorem: Equal(Sub(MeasureOfArc(BVT),MeasureOfArc(BRU)),Mul(MeasureOfAngle(RRU),2))
+Theorem: circle_property_circular_power_segment_and_segment_angle(1,BSU,BVT,B)
+You output the following premises: Cocircular(B,SUVT)&Collinear(RST)&Collinear(RUV)
+But the correct premises: Cocircular(B,SVTU)&Collinear(BSU)&Collinear(BVT)
+You output the following conclusions: Equal(Sub(MeasureOfArc(BSU),MeasureOfArc(BVT)),Mul(MeasureOfAngle(SRU),2))
+But the correct conclusions: Equal(Sub(MeasureOfArc(BTU),MeasureOfArc(BSV)),Mul(MeasureOfAngle(SBV),2))
 
 Model Answer:
 RETRY_ANSWER:
-22
+114
 RETRY_THEOREM_SEQUENCE:
-1; circle_property_circular_power_segment_and_segment_angle(1,SRT,RUV,B); Cocircular(B,SUVT)&Collinear(RST)&Collinear(RUV); ["Equal(Sub(MeasureOfArc(BVT),MeasureOfArc(BSU)),Mul(MeasureOfAngle(SRU),2))"]
+1; circle_property_circular_power_segment_and_segment_angle(1,BSU,BVT,B); Cocircular(B,SUVT)&Collinear(RST)&Collinear(RUV); ["Equal(Sub(MeasureOfArc(BSU),MeasureOfArc(BVT)),Mul(MeasureOfAngle(SRU),2))"]
 Retry attempt: 2
+Content written to results/level_1/variant_random_all_theorems_model_o1_problem_192_run_0_to_verify.txt
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Circle
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Equation
+predicates to add:
+Equation
+predicates to add:
+Equation
+predicates to add:
+Equation
+Verifier result: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
+Failure: The THEOREM_SEQUENCE you provided is empty. Please generate a proof again, using the similar problems I provided (A1, A2, A3, A4, A5), along with the GDL_DICTIONARY of theorems.
+Model Answer:
+RETRY_ANSWER:
+114
+RETRY_THEOREM_SEQUENCE:
+(No directly applicable theorem from the GDL matches the “external secant-secant angle = half the difference of arcs” relationship that would formally derive arc(BSU) − arc(BVT) = 2×∠SRU. Therefore, no GDL steps can be provided. The result follows from a known circle-secant external angle theorem not listed in the GDL.)
+Retry attempt: 3
+Content written to results/level_1/variant_random_all_theorems_model_o1_problem_192_run_0_to_verify.txt
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Circle
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Equation
+predicates to add:
+Equation
+predicates to add:
+Equation
+predicates to add:
+Equation
+Verifier result: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
+Theorem: arc_property_circumference_angle_external(1,BSU,R)
+You output the following premises: Cocircular(B,SVTU)&Angle(SRU)
+But the correct premises: Cocircular(B,SUR)&Angle(URS)
+You output the following conclusions: Equal(MeasureOfAngle(SRU),Mul(Sub(MeasureOfArc(BSU),MeasureOfArc(BVT)),1/2))
+But the correct conclusions: Equal(MeasureOfAngle(URS),Mul(MeasureOfArc(BSU),1/2))
+
+Model Answer:
+RETRY_ANSWER:
+114
+RETRY_THEOREM_SEQUENCE:
+1; arc_property_circumference_angle_external(1,BSU,R); Cocircular(B,SVTU)&Angle(SRU); ["Equal(MeasureOfAngle(SRU),Mul(Sub(MeasureOfArc(BSU),MeasureOfArc(BVT)),1/2))"]
+Retry attempt: 4
 Content written to results/level_1/variant_random_all_theorems_model_o1_problem_192_run_0_to_verify.txt
 predicates to add:
 Line
@@ -506,8 +848,8 @@ Equation
 Verifier result: ERROR_TIER: TIER2_PREMISE_VIOLATION
 verification failed.
 
-- Error: You tried to use theorem: circle_property_circular_power_segment_and_segment_angle(1,SRT,RUV,B);Cocircular(B,RUVT)&Collinear(RRT)&Collinear(RUV);['Equal(Sub(MeasureOfArc(BVT),MeasureOfArc(BRU)),Mul(MeasureOfAngle(RRU),2))']
-Missing premise: Cocircular(B,RUVT) not established
+- Error: You tried to use theorem: arc_property_circumference_angle_external(1,BSU,R);Cocircular(B,SUR)&Angle(URS);['Equal(MeasureOfAngle(URS),Mul(MeasureOfArc(BSU),1/2))']
+Missing premise: Cocircular(B,SUR) not established
 Details: Accumulated cocircular facts: [('B', 'S'), ('B', 'U'), ('B', 'V'), ('B', 'T'), ('B', 'S', 'U'), ('B', 'S', 'U'), ('B', 'S', 'V'), ('B', 'S', 'V'), ('B', 'S', 'T'), ('B', 'S', 'T'), ('B', 'U', 'V'), ('B', 'U', 'V'), ('B', 'T', 'U'), ('B', 'T', 'U'), ('B', 'T', 'V'), ('B', 'T', 'V'), ('B', 'S', 'U', 'V'), ('B', 'S', 'U', 'V'), ('B', 'S', 'U', 'V'), ('B', 'S', 'U', 'V'), ('B', 'S', 'U', 'V'), ('B', 'S', 'U', 'V'), ('B', 'S', 'T', 'U'), ('B', 'S', 'T', 'U'), ('B', 'S', 'T', 'U'), ('B', 'S', 'T', 'U'), ('B', 'S', 'T', 'U'), ('B', 'S', 'T', 'U'), ('B', 'S', 'T', 'V'), ('B', 'S', 'T', 'V'), ('B', 'S', 'T', 'V'), ('B', 'S', 'T', 'V'), ('B', 'S', 'T', 'V'), ('B', 'S', 'T', 'V'), ('B', 'T', 'U', 'V'), ('B', 'T', 'U', 'V'), ('B', 'T', 'U', 'V'), ('B', 'T', 'U', 'V'), ('B', 'T', 'U', 'V'), ('B', 'T', 'U', 'V'), ('B', 'S', 'T', 'U', 'V'), ('B', 'S', 'T', 'U', 'V'), ('B', 'S', 'T', 'U', 'V'), ('B', 'S', 'T', 'U', 'V'), ('B', 'S', 'T', 'U', 'V'), ('B', 'S', 'T', 'U', 'V'), ('B', 'S', 'T', 'U', 'V')]
 - Available premises:
   Collinear Points: RST, RUV
@@ -520,170 +862,8 @@ Details: Accumulated cocircular facts: [('B', 'S'), ('B', 'U'), ('B', 'V'), ('B'
 Please fix the proof.
 Model Answer:
 RETRY_ANSWER:
-22
+114
 RETRY_THEOREM_SEQUENCE:
-1; circle_property_circular_power_segment_and_segment_angle(1,SRT,RUV,B); Cocircular(B,RUVT)&Collinear(RRT)&Collinear(RUV); ["Equal(Sub(MeasureOfArc(BVT),MeasureOfArc(BRU)),Mul(MeasureOfAngle(RRU),2))"]
-Retry attempt: 3
-Content written to results/level_1/variant_random_all_theorems_model_o1_problem_192_run_0_to_verify.txt
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Circle
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Equation
-predicates to add:
-Equation
-predicates to add:
-Equation
-predicates to add:
-Equation
-Theorem sequence verified correctly
+1; arc_property_circumference_angle_external(1,BSU,R); Cocircular(B,SUR)&Angle(URS); ["Equal(MeasureOfAngle(URS),Mul(MeasureOfArc(BSU),1/2))"]
+Retry attempt: 5
 Content written to results/level_1/variant_random_all_theorems_model_o1_problem_192_run_0.txt

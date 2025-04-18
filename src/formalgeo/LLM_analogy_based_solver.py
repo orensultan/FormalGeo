@@ -471,7 +471,7 @@ chosen_problems_by_level = {
 }
 
 chosen_problems_by_level = {
-    2: [127]
+    1: [1726]
     # 1: [1975, 1490, 1726, 178, 2669, 2614, 51, 2323, 192, 2624],
     # 2: [991, 69, 144, 358, 4473, 4483, 5645, 127, 2410, 4523],
     # 3: [ 4187, 5244, 5062, 844, 1945, 2200, 4099, 2765, 4476, 4254 ]
@@ -660,7 +660,7 @@ def run_theorems_coverage(args):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    parser.add_argument("--variant", dest="variant", type=str, default="analogy_based")
+    parser.add_argument("--variant", dest="variant", type=str, default="random_all_theorems")
     parser.add_argument("--model_name", dest="model_name", type=str, default="o1")
     parser.add_argument("--prompt_path", dest="prompt_path", type=str,
                         default="src/formalgeo/prompt/geometry_similar_problems_prompt_291224.txt")

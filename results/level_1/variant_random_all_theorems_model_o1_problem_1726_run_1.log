@@ -1,85 +1,4 @@
-Content written to results/level_1/variant_random_all_theorems_model_o1_problem_1726_run_0_to_verify.txt
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Polygon
-has Polygon
-has Polygon
-has Polygon
-has Polygon
-has Polygon
-has Polygon
-has Polygon
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Equation
-predicates to add:
-Equation
-predicates to add:
-Equation
-predicates to add:
-Equation
-predicates to add:
-Equation
-predicates to add:
-Equation
-Verifier result: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
-Theorem: cosine_theorem(1,BCA)
-You output the following conclusions: Equal(Add(Pow(LengthOfLine(CA),2),Mul(2,LengthOfLine(BC),LengthOfLine(BA),Cos(MeasureOfAngle(CBA)))),Add(Pow(LengthOfLine(BC),2),Pow(LengthOfLine(BA),2)))
-But the correct conclusions: Equal(Add(Pow(LengthOfLine(CA),2),Mul(2,LengthOfLine(BC),LengthOfLine(BA),Cos(MeasureOfAngle(ABC)))),Add(Pow(LengthOfLine(BC),2),Pow(LengthOfLine(BA),2)))
-
-Model Answer:
-RETRY_ANSWER:
-41/63
-RETRY_THEOREM_SEQUENCE:
-1; cosine_theorem(1,BCA); Polygon(BCA); ["Equal(Add(Pow(LengthOfLine(CA),2),Mul(2,LengthOfLine(BC),LengthOfLine(BA),Cos(MeasureOfAngle(CBA)))),Add(Pow(LengthOfLine(BC),2),Pow(LengthOfLine(BA),2)))"]
-Retry attempt: 1
-Content written to results/level_1/variant_random_all_theorems_model_o1_problem_1726_run_0_to_verify.txt
+Content written to results/level_1/variant_random_all_theorems_model_o1_problem_1726_run_1_to_verify.txt
 predicates to add:
 Line
 predicates to add:
@@ -151,97 +70,16 @@ predicates to add:
 Equation
 Verifier result: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
 Theorem: cosine_theorem(1,ABC)
-You output the following conclusions: Equal(Add(Pow(LengthOfLine(AC),2),Mul(2,LengthOfLine(AB),LengthOfLine(BC),Cos(MeasureOfAngle(ABC)))),Add(Pow(LengthOfLine(AB),2),Pow(LengthOfLine(BC),2)))
+You output the following conclusions: Equal(Add(Pow(LengthOfLine(AB),2),Pow(LengthOfLine(CB),2)),Add(Pow(LengthOfLine(CA),2),Mul(2,LengthOfLine(AB),LengthOfLine(CB),Cos(MeasureOfAngle(CBA)))))
 But the correct conclusions: Equal(Add(Pow(LengthOfLine(BC),2),Mul(2,LengthOfLine(AB),LengthOfLine(AC),Cos(MeasureOfAngle(CAB)))),Add(Pow(LengthOfLine(AB),2),Pow(LengthOfLine(AC),2)))
 
 Model Answer:
 RETRY_ANSWER:
 41/63
 RETRY_THEOREM_SEQUENCE:
-1; cosine_theorem(1,ABC); Polygon(ABC); ["Equal(Add(Pow(LengthOfLine(AC),2),Mul(2,LengthOfLine(AB),LengthOfLine(BC),Cos(MeasureOfAngle(ABC)))),Add(Pow(LengthOfLine(AB),2),Pow(LengthOfLine(BC),2)))"]
-Retry attempt: 2
-Content written to results/level_1/variant_random_all_theorems_model_o1_problem_1726_run_0_to_verify.txt
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Polygon
-has Polygon
-has Polygon
-has Polygon
-has Polygon
-has Polygon
-has Polygon
-has Polygon
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Equation
-predicates to add:
-Equation
-predicates to add:
-Equation
-predicates to add:
-Equation
-predicates to add:
-Equation
-predicates to add:
-Equation
-Verifier result: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
-Theorem: cosine_theorem(1,BCA)
-You output the following conclusions: Equal(Add(Pow(LengthOfLine(CA),2),Mul(2,LengthOfLine(BC),LengthOfLine(BA),Cos(MeasureOfAngle(CBA)))),Add(Pow(LengthOfLine(BC),2),Pow(LengthOfLine(BA),2)))
-But the correct conclusions: Equal(Add(Pow(LengthOfLine(CA),2),Mul(2,LengthOfLine(BC),LengthOfLine(BA),Cos(MeasureOfAngle(ABC)))),Add(Pow(LengthOfLine(BC),2),Pow(LengthOfLine(BA),2)))
-
-Model Answer:
-RETRY_ANSWER:
-41/63
-RETRY_THEOREM_SEQUENCE:
-1; cosine_theorem(1,BCA); Polygon(BCA); ["Equal(Add(Pow(LengthOfLine(CA),2),Mul(2,LengthOfLine(BC),LengthOfLine(BA),Cos(MeasureOfAngle(CBA)))),Add(Pow(LengthOfLine(BC),2),Pow(LengthOfLine(BA),2)))"]
-Retry attempt: 3
-Content written to results/level_1/variant_random_all_theorems_model_o1_problem_1726_run_0_to_verify.txt
+1; cosine_theorem(1,ABC); Polygon(ABC); ["Equal(Add(Pow(LengthOfLine(AB),2),Pow(LengthOfLine(CB),2)),Add(Pow(LengthOfLine(CA),2),Mul(2,LengthOfLine(AB),LengthOfLine(CB),Cos(MeasureOfAngle(CBA)))))"]
+Retry attempt: 1
+Content written to results/level_1/variant_random_all_theorems_model_o1_problem_1726_run_1_to_verify.txt
 predicates to add:
 Line
 predicates to add:
@@ -332,9 +170,9 @@ Model Answer:
 RETRY_ANSWER:
 41/63
 RETRY_THEOREM_SEQUENCE:
-1; cosine_theorem(1,BCA); Polygon(BCA); ["Equal(Add(Pow(LengthOfLine(CA),2),Mul(2,LengthOfLine(BC),LengthOfLine(BA),Cos(MeasureOfAngle(ABC)))),Add(Pow(LengthOfLine(BC),2),Pow(LengthOfLine(BA),2)))"]
-Retry attempt: 4
-Content written to results/level_1/variant_random_all_theorems_model_o1_problem_1726_run_0_to_verify.txt
+1; cosine_theorem(1,ABC); Polygon(ABC); ["Equal(Add(Pow(LengthOfLine(BC),2),Mul(2,LengthOfLine(AB),LengthOfLine(AC),Cos(MeasureOfAngle(CAB)))),Add(Pow(LengthOfLine(AB),2),Pow(LengthOfLine(AC),2)))"]
+Retry attempt: 2
+Content written to results/level_1/variant_random_all_theorems_model_o1_problem_1726_run_1_to_verify.txt
 predicates to add:
 Line
 predicates to add:
@@ -405,14 +243,187 @@ Equation
 predicates to add:
 Equation
 Verifier result: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
-Theorem: cosine_theorem(1,ACB)
-You output the following conclusions: Equal(Add(Pow(LengthOfLine(CA),2),Mul(2,LengthOfLine(AB),LengthOfLine(BC),Cos(MeasureOfAngle(CBA)))),Add(Pow(LengthOfLine(AB),2),Pow(LengthOfLine(BC),2)))
-But the correct conclusions: Equal(Add(Pow(LengthOfLine(CB),2),Mul(2,LengthOfLine(AC),LengthOfLine(AB),Cos(MeasureOfAngle(BAC)))),Add(Pow(LengthOfLine(AC),2),Pow(LengthOfLine(AB),2)))
+Theorem: cosine_theorem(1,CBA)
+You output the following conclusions: Equal(Add(Pow(LengthOfLine(CA),2),Mul(2,LengthOfLine(CB),LengthOfLine(BA),Cos(MeasureOfAngle(CBA)))),Add(Pow(LengthOfLine(CB),2),Pow(LengthOfLine(BA),2)))
+But the correct conclusions: Equal(Add(Pow(LengthOfLine(BA),2),Mul(2,LengthOfLine(CB),LengthOfLine(CA),Cos(MeasureOfAngle(ACB)))),Add(Pow(LengthOfLine(CB),2),Pow(LengthOfLine(CA),2)))
 
 Model Answer:
 RETRY_ANSWER:
 41/63
 RETRY_THEOREM_SEQUENCE:
-1; cosine_theorem(1,ACB); Polygon(ACB); ["Equal(Add(Pow(LengthOfLine(CA),2),Mul(2,LengthOfLine(AB),LengthOfLine(BC),Cos(MeasureOfAngle(CBA)))),Add(Pow(LengthOfLine(AB),2),Pow(LengthOfLine(BC),2)))"]
+1; cosine_theorem(1,CBA); Polygon(CBA); ["Equal(Add(Pow(LengthOfLine(CA),2),Mul(2,LengthOfLine(CB),LengthOfLine(BA),Cos(MeasureOfAngle(CBA)))),Add(Pow(LengthOfLine(CB),2),Pow(LengthOfLine(BA),2)))"]
+Retry attempt: 3
+Content written to results/level_1/variant_random_all_theorems_model_o1_problem_1726_run_1_to_verify.txt
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Polygon
+has Polygon
+has Polygon
+has Polygon
+has Polygon
+has Polygon
+has Polygon
+has Polygon
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Equation
+predicates to add:
+Equation
+predicates to add:
+Equation
+predicates to add:
+Equation
+predicates to add:
+Equation
+predicates to add:
+Equation
+Verifier result: ERROR_TIER: TIER3_GOAL_NOT_REACHED
+verification failed.
+
+- Goal: cosine of angle CBA
+- Model answer: 0.6507936507936508
+- Error: Your proof doesn't provide enough information to determine this value. You need to add theorems that specifically constrain cosine CBA.
+- Available premises:
+  Polygons: ABC, ACB
+- Theorems related to the goal:
+  None found that constrain this goal
+- Solver constraints directly related to this goal:
+  cos_CBA <= 1
+  cos_CBA >= -1
+  ∠ABC + ∠ACB + ∠BAC = 180
+  ∠ABC <= 180
+  ∠ABC > 0
+
+Please fix the proof.
+Model Answer:
+RETRY_ANSWER:
+41/63
+RETRY_THEOREM_SEQUENCE:
+1; triangle_property_angle_sum(1,ABC); Polygon(ABC); ["Equal(Add(MeasureOfAngle(ABC),MeasureOfAngle(BCA),MeasureOfAngle(CAB)),180)"]
+2; cosine_theorem(1,ABC); Polygon(ABC); ["Equal(Add(Pow(LengthOfLine(BC),2),Mul(2,LengthOfLine(AB),LengthOfLine(AC),Cos(MeasureOfAngle(CAB)))),Add(Pow(LengthOfLine(AB),2),Pow(LengthOfLine(AC),2)))"]
+Retry attempt: 4
+Content written to results/level_1/variant_random_all_theorems_model_o1_problem_1726_run_1_to_verify.txt
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Polygon
+has Polygon
+has Polygon
+has Polygon
+has Polygon
+has Polygon
+has Polygon
+has Polygon
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Equation
+predicates to add:
+Equation
+predicates to add:
+Equation
+predicates to add:
+Equation
+predicates to add:
+Equation
+predicates to add:
+Equation
+Verifier result: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
+Failure: Theorem  not defined in current GDL. Please rewrite the proof sequence, you are allowed to use only theorems from the GDL.
+Model Answer:
+RETRY_ANSWER:
+41/63
+RETRY_THEOREM_SEQUENCE:
+— No valid GDL-based expansion for cos(CBA) is available. The provided geometry-theorem dictionary only includes the cosine theorem referencing angle CAB (the vertex at A). No version references the angle at B directly. Consequently, there is no valid proof sequence within the given GDL that yields cos(CBA).
 Retry attempt: 5
-Content written to results/level_1/variant_random_all_theorems_model_o1_problem_1726_run_0.txt
+Content written to results/level_1/variant_random_all_theorems_model_o1_problem_1726_run_1.txt

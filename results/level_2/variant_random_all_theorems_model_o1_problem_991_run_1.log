@@ -1,18 +1,4 @@
-Content written to results/level_1/variant_random_all_theorems_model_o1_problem_2669_run_0_to_verify.txt
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
+Content written to results/level_2/variant_random_all_theorems_model_o1_problem_991_run_1_to_verify.txt
 predicates to add:
 Line
 predicates to add:
@@ -62,53 +48,9 @@ Line
 predicates to add:
 Line
 predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
 Line
 predicates to add:
 Angle
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
 predicates to add:
 Line
 predicates to add:
@@ -133,6 +75,170 @@ predicates to add:
 Line
 predicates to add:
 Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
 predicates to add:
 Angle
 predicates to add:
@@ -183,6 +289,12 @@ predicates to add:
 Angle
 predicates to add:
 Equation
+predicates to add:
+Equation
+predicates to add:
+IsCentreOfCircle
+predicates to add:
+PerpendicularBetweenLine
 predicates to add:
 Equation
 predicates to add:
@@ -191,41 +303,17 @@ predicates to add:
 Equation
 predicates to add:
 IsCentreOfCircle
-/Users/osultan/anaconda3/envs/FormalGeo_env/lib/python3.10/site-packages/formalgeo/problem/problem.py:482: UserWarning: EE check not passed: [IsCentreOfCircle, ('F', 'F'), (-1,), ('prerequisite', None, None)]
-  warnings.warn(w_msg)
 predicates to add:
-Equation
-predicates to add:
-Equation
-predicates to add:
-Equation
-predicates to add:
-Equation
-predicates to add:
-IsCentreOfCircle
+PerpendicularBetweenLine
 Verifier result: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
-Failure: Theorem <circle_property_circular_power_segment_and_segment_line> branch error. Expected dict_keys(['1']) but got None. Please rewrite your response, you should change only the call to theorem <circle_property_circular_power_segment_and_segment_line> by adding the branch number from the dict_keys as the first argument
+Failure: Theorem <angle_addition> branch error. Expected dict_keys(['1']) but got None. Please rewrite your response, you should change only the call to theorem <angle_addition> by adding the branch number from the dict_keys as the first argument
 Model Answer:
 RETRY_ANSWER:
-2
+147
 RETRY_THEOREM_SEQUENCE:
-1; circle_property_circular_power_segment_and_segment_line(EAB,ECD,F); Cocircular(F,BDAC)&Collinear(AEB)&Collinear(CED); ["Equal(Mul(LengthOfLine(AE),LengthOfLine(EB)),Mul(LengthOfLine(EC),LengthOfLine(ED)))"]
+1; angle_addition(ABC,CBD); Angle(SVT)&Angle(TVP)&Angle(SVP); ["Equal(MeasureOfAngle(SVP),Add(MeasureOfAngle(SVT),MeasureOfAngle(TVP)))"]
 Retry attempt: 1
-Content written to results/level_1/variant_random_all_theorems_model_o1_problem_2669_run_0_to_verify.txt
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
+Content written to results/level_2/variant_random_all_theorems_model_o1_problem_991_run_1_to_verify.txt
 predicates to add:
 Line
 predicates to add:
@@ -275,53 +363,9 @@ Line
 predicates to add:
 Line
 predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
 Line
 predicates to add:
 Angle
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
 predicates to add:
 Line
 predicates to add:
@@ -346,6 +390,170 @@ predicates to add:
 Line
 predicates to add:
 Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
 predicates to add:
 Angle
 predicates to add:
@@ -396,6 +604,12 @@ predicates to add:
 Angle
 predicates to add:
 Equation
+predicates to add:
+Equation
+predicates to add:
+IsCentreOfCircle
+predicates to add:
+PerpendicularBetweenLine
 predicates to add:
 Equation
 predicates to add:
@@ -405,268 +619,354 @@ Equation
 predicates to add:
 IsCentreOfCircle
 predicates to add:
-Equation
-predicates to add:
-Equation
-predicates to add:
-Equation
-predicates to add:
-Equation
-predicates to add:
-IsCentreOfCircle
-Verifier result: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
-Theorem: circle_property_circular_power_segment_and_segment_line(1,EAB,ECD,F)
-You output the following premises: Cocircular(F,BDAC)&Collinear(AEB)&Collinear(CED)
-But the correct premises: Cocircular(F,AB)&Cocircular(F,CD)&Collinear(EAB)&Collinear(ECD)
-You output the following conclusions: Equal(Mul(LengthOfLine(AE),LengthOfLine(EB)),Mul(LengthOfLine(EC),LengthOfLine(ED)))
-But the correct conclusions: Equal(Mul(LengthOfLine(EA),LengthOfLine(EB)),Mul(LengthOfLine(EC),LengthOfLine(ED)))
-
-Model Answer:
-RETRY_ANSWER:
-2
-RETRY_THEOREM_SEQUENCE:
-1; circle_property_circular_power_segment_and_segment_line(1,EAB,ECD,F); Cocircular(F,BDAC)&Collinear(AEB)&Collinear(CED); ["Equal(Mul(LengthOfLine(AE),LengthOfLine(EB)),Mul(LengthOfLine(EC),LengthOfLine(ED)))"]
-Retry attempt: 2
-Content written to results/level_1/variant_random_all_theorems_model_o1_problem_2669_run_0_to_verify.txt
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Circle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Equation
-predicates to add:
-Equation
-predicates to add:
-Equation
-predicates to add:
-Equation
-predicates to add:
-IsCentreOfCircle
-predicates to add:
-Equation
-predicates to add:
-Equation
-predicates to add:
-Equation
-predicates to add:
-Equation
-predicates to add:
-IsCentreOfCircle
-Verifier result: ERROR_TIER: TIER2_PREMISE_VIOLATION
+PerpendicularBetweenLine
+Verifier result: ERROR_TIER: TIER3_GOAL_NOT_REACHED
 verification failed.
 
-- Error: You tried to use theorem: circle_property_circular_power_segment_and_segment_line(1,EAB,ECD,F);Cocircular(F,AB)&Cocircular(F,CD)&Collinear(EAB)&Collinear(ECD);['Equal(Mul(LengthOfLine(EA),LengthOfLine(EB)),Mul(LengthOfLine(EC),LengthOfLine(ED)))']
-Missing premise: Expected collinear fact Collinear(EAB) not found.
-Details: Stored collinear facts: ['AEB', 'CED', 'AEB', 'CED']
+- Goal: measure of arc VPS
+- Model answer: 147.0
+- Error: Your proof doesn't uniquely determine the value. You need to use additional theorems to constrain the value.
 - Available premises:
-  Collinear Points: AEB, CED
-  Cocircular Points: A on circle F, AB on circle F, ABC on circle F, ABCD on circle F, ABD on circle F, AC on circle F, ACD on circle F, AD on circle F, B on circle F, BC on circle F, BCD on circle F, BD on circle F, C on circle F, CD on circle F, D on circle F
-  Circles: F center: F
+  Perpendicular Lines: RV ⊥ SV
+  Collinear Points: QVS
+  Cocircular Points: P on circle V, PQ on circle V, PQR on circle V, PQRS on circle V, PQRST on circle V, PQRT on circle V, PQS on circle V, PQST on circle V, PQT on circle V, PR on circle V, PRS on circle V, PRST on circle V, PRT on circle V, PS on circle V, PST on circle V, PT on circle V, Q on circle V, QR on circle V, QRS on circle V, QRST on circle V, QRT on circle V, QS on circle V, QST on circle V, QT on circle V, R on circle V, RS on circle V, RST on circle V, RT on circle V, S on circle V, ST on circle V, T on circle V
+  Circles: V center: V
 - Theorems related to the goal:
   None found that constrain this goal
 - Solver constraints directly related to this goal:
-  None found
+  arc(VPS) <= 360
+  arc(VPS) >= 0
 
 Please fix the proof.
 Model Answer:
 RETRY_ANSWER:
-2
+147
 RETRY_THEOREM_SEQUENCE:
-1; circle_property_circular_power_segment_and_segment_line(1,EAB,ECD,F); Cocircular(F,AB)&Cocircular(F,CD)&Collinear(EAB)&Collinear(ECD); ["Equal(Mul(LengthOfLine(EA),LengthOfLine(EB)),Mul(LengthOfLine(EC),LengthOfLine(ED)))"]
+1; angle_addition(1,SVT,TVP); Angle(SVT)&Angle(TVP)&Angle(SVP); ["Equal(MeasureOfAngle(SVP),Add(MeasureOfAngle(SVT),MeasureOfAngle(TVP)))"]
+Retry attempt: 2
+Content written to results/level_2/variant_random_all_theorems_model_o1_problem_991_run_1_to_verify.txt
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Circle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Equation
+predicates to add:
+Equation
+predicates to add:
+IsCentreOfCircle
+predicates to add:
+PerpendicularBetweenLine
+predicates to add:
+Equation
+predicates to add:
+Equation
+predicates to add:
+Equation
+predicates to add:
+IsCentreOfCircle
+predicates to add:
+PerpendicularBetweenLine
+Verifier result: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
+Theorem: arc_property_center_angle(1,VST,V)
+You output the following premises: Arc(VST)&Angle(SVT)&IsCentreOfCircle(V,V)
+But the correct premises: Arc(VST)&Angle(TVS)&IsCentreOfCircle(V,V)
+You output the following conclusions: Equal(MeasureOfArc(VST),MeasureOfAngle(SVT))
+But the correct conclusions: Equal(MeasureOfArc(VST),MeasureOfAngle(TVS))
+
+Model Answer:
+RETRY_ANSWER:
+147
+RETRY_THEOREM_SEQUENCE:
+1; arc_property_center_angle(1,VST,V); Arc(VST)&Angle(SVT)&IsCentreOfCircle(V,V); ["Equal(MeasureOfArc(VST),MeasureOfAngle(SVT))"]
+2; arc_property_center_angle(1,VTP,V); Arc(VTP)&Angle(TVP)&IsCentreOfCircle(V,V); ["Equal(MeasureOfArc(VTP),MeasureOfAngle(TVP))"]
+3; arc_addition_measure(1,VST,VTP); Arc(VST)&Arc(VTP)&Arc(VSP); ["Equal(MeasureOfArc(VSP),Add(MeasureOfArc(VST),MeasureOfArc(VTP)))"]
 Retry attempt: 3
-Content written to results/level_1/variant_random_all_theorems_model_o1_problem_2669_run_0_to_verify.txt
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
+Content written to results/level_2/variant_random_all_theorems_model_o1_problem_991_run_1_to_verify.txt
 predicates to add:
 Line
 predicates to add:
@@ -716,53 +1016,9 @@ Line
 predicates to add:
 Line
 predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
 Line
 predicates to add:
 Angle
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
 predicates to add:
 Line
 predicates to add:
@@ -787,6 +1043,170 @@ predicates to add:
 Line
 predicates to add:
 Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
 predicates to add:
 Angle
 predicates to add:
@@ -837,6 +1257,12 @@ predicates to add:
 Angle
 predicates to add:
 Equation
+predicates to add:
+Equation
+predicates to add:
+IsCentreOfCircle
+predicates to add:
+PerpendicularBetweenLine
 predicates to add:
 Equation
 predicates to add:
@@ -846,43 +1272,23 @@ Equation
 predicates to add:
 IsCentreOfCircle
 predicates to add:
-Equation
-predicates to add:
-Equation
-predicates to add:
-Equation
-predicates to add:
-Equation
-predicates to add:
-IsCentreOfCircle
+PerpendicularBetweenLine
 Verifier result: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
-Theorem: circle_property_circular_power_segment_and_segment_line(1,AEB,CED,F)
-You output the following premises: Cocircular(F,AB)&Cocircular(F,CD)&Collinear(AEB)&Collinear(CED)
-But the correct premises: Cocircular(F,EB)&Cocircular(F,ED)&Collinear(CEB)&Collinear(CED)
-You output the following conclusions: Equal(Mul(LengthOfLine(AE),LengthOfLine(EB)),Mul(LengthOfLine(EC),LengthOfLine(ED)))
-But the correct conclusions: Equal(Mul(LengthOfLine(CE),LengthOfLine(CB)),Mul(LengthOfLine(CE),LengthOfLine(CD)))
+Theorem: arc_property_center_angle(1,VTP,V)
+You output the following premises: Arc(VTP)&Angle(TVP)&IsCentreOfCircle(V,V)
+But the correct premises: Arc(VTP)&Angle(PVT)&IsCentreOfCircle(V,V)
+You output the following conclusions: Equal(MeasureOfArc(VTP),MeasureOfAngle(TVP))
+But the correct conclusions: Equal(MeasureOfArc(VTP),MeasureOfAngle(PVT))
 
 Model Answer:
 RETRY_ANSWER:
-2
+147
 RETRY_THEOREM_SEQUENCE:
-1; circle_property_circular_power_segment_and_segment_line(1,AEB,CED,F); Cocircular(F,AB)&Cocircular(F,CD)&Collinear(AEB)&Collinear(CED); ["Equal(Mul(LengthOfLine(AE),LengthOfLine(EB)),Mul(LengthOfLine(EC),LengthOfLine(ED)))"]
+1; arc_property_center_angle(1,VST,V); Arc(VST)&Angle(TVS)&IsCentreOfCircle(V,V); ["Equal(MeasureOfArc(VST),MeasureOfAngle(TVS))"]
+2; arc_property_center_angle(1,VTP,V); Arc(VTP)&Angle(TVP)&IsCentreOfCircle(V,V); ["Equal(MeasureOfArc(VTP),MeasureOfAngle(TVP))"]
+3; arc_addition_measure(1,VST,VTP); Arc(VST)&Arc(VTP)&Arc(VSP); ["Equal(MeasureOfArc(VSP),Add(MeasureOfArc(VST),MeasureOfArc(VTP)))"]
 Retry attempt: 4
-Content written to results/level_1/variant_random_all_theorems_model_o1_problem_2669_run_0_to_verify.txt
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
+Content written to results/level_2/variant_random_all_theorems_model_o1_problem_991_run_1_to_verify.txt
 predicates to add:
 Line
 predicates to add:
@@ -932,53 +1338,9 @@ Line
 predicates to add:
 Line
 predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
 Line
 predicates to add:
 Angle
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
 predicates to add:
 Line
 predicates to add:
@@ -1003,6 +1365,170 @@ predicates to add:
 Line
 predicates to add:
 Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
 predicates to add:
 Angle
 predicates to add:
@@ -1053,6 +1579,12 @@ predicates to add:
 Angle
 predicates to add:
 Equation
+predicates to add:
+Equation
+predicates to add:
+IsCentreOfCircle
+predicates to add:
+PerpendicularBetweenLine
 predicates to add:
 Equation
 predicates to add:
@@ -1062,24 +1594,6 @@ Equation
 predicates to add:
 IsCentreOfCircle
 predicates to add:
-Equation
-predicates to add:
-Equation
-predicates to add:
-Equation
-predicates to add:
-Equation
-predicates to add:
-IsCentreOfCircle
-Verifier result: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
-Theorem: circle_property_circular_power_chord_and_chord(1,AEB,CED,F)
-You output the following conclusions: Equal(Mul(LengthOfLine(AE),LengthOfLine(EB)),Mul(LengthOfLine(CE),LengthOfLine(ED)))
-But the correct conclusions: Equal(Mul(LengthOfLine(EC),LengthOfLine(ED)),Mul(LengthOfLine(EA),LengthOfLine(EB)))
-
-Model Answer:
-RETRY_ANSWER:
-2
-RETRY_THEOREM_SEQUENCE:
-1; circle_property_circular_power_chord_and_chord(1,AEB,CED,F); Cocircular(F,AB)&Cocircular(F,CD)&Collinear(AEB)&Collinear(CED); ["Equal(Mul(LengthOfLine(AE),LengthOfLine(EB)),Mul(LengthOfLine(CE),LengthOfLine(ED)))"]
-Retry attempt: 5
-Content written to results/level_1/variant_random_all_theorems_model_o1_problem_2669_run_0.txt
+PerpendicularBetweenLine
+Theorem sequence verified correctly
+Content written to results/level_2/variant_random_all_theorems_model_o1_problem_991_run_1.txt

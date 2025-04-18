@@ -54,38 +54,46 @@ ll_ca-16
 ll_cb-15
 
 GOAL_SYMBOL:
-cos(MeasureOfAngle(CBA))
+cosCBA
 
 ANSWER:
 41/63
 
 THEOREM_SEQUENCE:
-1; cosine_theorem(1,BAC); Polygon(BAC); ["Equal(Add(Pow(LengthOfLine(AC),2),Mul(2,LengthOfLine(BA),LengthOfLine(BC),Cos(MeasureOfAngle(CBA)))),Add(Pow(LengthOfLine(BA),2),Pow(LengthOfLine(BC),2)))"]
+1; cosine_theorem(1,ACB); Polygon(ACB); ["Equal(Add(Pow(LengthOfLine(CA),2),Mul(2,LengthOfLine(AB),LengthOfLine(BC),Cos(MeasureOfAngle(CBA)))),Add(Pow(LengthOfLine(AB),2),Pow(LengthOfLine(BC),2)))"]
 ***MODEL_RESPONSE_END***
 RETRIES_MESSAGES:
 #run: 0; #retry: 1; message: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
-Verification failed.
-Theorem: cosine_theorem(1,CBA)
-The language model outputs the following conclusions: Equal(Add(Pow(LengthOfLine(CA),2),Mul(2,LengthOfLine(CB),LengthOfLine(BA),Cos(MeasureOfAngle(CBA)))),Add(Pow(LengthOfLine(CB),2),Pow(LengthOfLine(BA),2)))
-The correct conclusions for the theorem: Equal(Add(Pow(LengthOfLine(BA),2),Mul(2,LengthOfLine(CB),LengthOfLine(CA),Cos(MeasureOfAngle(ACB)))),Add(Pow(LengthOfLine(CB),2),Pow(LengthOfLine(CA),2)))
-
-Model Answer:
-RETRY_ANSWER:
-41/63
-RETRY_THEOREM_SEQUENCE:
-1; cosine_theorem(1,CBA); Polygon(CBA); ["Equal(Add(Pow(LengthOfLine(CA),2),Mul(2,LengthOfLine(CB),LengthOfLine(BA),Cos(MeasureOfAngle(CBA)))),Add(Pow(LengthOfLine(CB),2),Pow(LengthOfLine(BA),2)))"]
-#run: 0; #retry: 2; message: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
-Verification failed.
 Theorem: cosine_theorem(1,BCA)
-The language model outputs the following conclusions: Equal(Add(Pow(LengthOfLine(CA),2),Mul(2,LengthOfLine(BC),LengthOfLine(BA),Cos(MeasureOfAngle(CBA)))),Add(Pow(LengthOfLine(BC),2),Pow(LengthOfLine(BA),2)))
-The correct conclusions for the theorem: Equal(Add(Pow(LengthOfLine(CA),2),Mul(2,LengthOfLine(BC),LengthOfLine(BA),Cos(MeasureOfAngle(ABC)))),Add(Pow(LengthOfLine(BC),2),Pow(LengthOfLine(BA),2)))
+You output the following conclusions: Equal(Add(Pow(LengthOfLine(CA),2),Mul(2,LengthOfLine(BC),LengthOfLine(BA),Cos(MeasureOfAngle(CBA)))),Add(Pow(LengthOfLine(BC),2),Pow(LengthOfLine(BA),2)))
+But the correct conclusions: Equal(Add(Pow(LengthOfLine(CA),2),Mul(2,LengthOfLine(BC),LengthOfLine(BA),Cos(MeasureOfAngle(ABC)))),Add(Pow(LengthOfLine(BC),2),Pow(LengthOfLine(BA),2)))
 
 Model Answer:
 RETRY_ANSWER:
 41/63
 RETRY_THEOREM_SEQUENCE:
 1; cosine_theorem(1,BCA); Polygon(BCA); ["Equal(Add(Pow(LengthOfLine(CA),2),Mul(2,LengthOfLine(BC),LengthOfLine(BA),Cos(MeasureOfAngle(CBA)))),Add(Pow(LengthOfLine(BC),2),Pow(LengthOfLine(BA),2)))"]
-#run: 0; #retry: 3; message: ERROR_TIER: TIER3_GOAL_NOT_REACHED
+#run: 0; #retry: 2; message: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
+Theorem: cosine_theorem(1,ABC)
+You output the following conclusions: Equal(Add(Pow(LengthOfLine(AC),2),Mul(2,LengthOfLine(AB),LengthOfLine(BC),Cos(MeasureOfAngle(ABC)))),Add(Pow(LengthOfLine(AB),2),Pow(LengthOfLine(BC),2)))
+But the correct conclusions: Equal(Add(Pow(LengthOfLine(BC),2),Mul(2,LengthOfLine(AB),LengthOfLine(AC),Cos(MeasureOfAngle(CAB)))),Add(Pow(LengthOfLine(AB),2),Pow(LengthOfLine(AC),2)))
+
+Model Answer:
+RETRY_ANSWER:
+41/63
+RETRY_THEOREM_SEQUENCE:
+1; cosine_theorem(1,ABC); Polygon(ABC); ["Equal(Add(Pow(LengthOfLine(AC),2),Mul(2,LengthOfLine(AB),LengthOfLine(BC),Cos(MeasureOfAngle(ABC)))),Add(Pow(LengthOfLine(AB),2),Pow(LengthOfLine(BC),2)))"]
+#run: 0; #retry: 3; message: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
+Theorem: cosine_theorem(1,BCA)
+You output the following conclusions: Equal(Add(Pow(LengthOfLine(CA),2),Mul(2,LengthOfLine(BC),LengthOfLine(BA),Cos(MeasureOfAngle(CBA)))),Add(Pow(LengthOfLine(BC),2),Pow(LengthOfLine(BA),2)))
+But the correct conclusions: Equal(Add(Pow(LengthOfLine(CA),2),Mul(2,LengthOfLine(BC),LengthOfLine(BA),Cos(MeasureOfAngle(ABC)))),Add(Pow(LengthOfLine(BC),2),Pow(LengthOfLine(BA),2)))
+
+Model Answer:
+RETRY_ANSWER:
+41/63
+RETRY_THEOREM_SEQUENCE:
+1; cosine_theorem(1,BCA); Polygon(BCA); ["Equal(Add(Pow(LengthOfLine(CA),2),Mul(2,LengthOfLine(BC),LengthOfLine(BA),Cos(MeasureOfAngle(CBA)))),Add(Pow(LengthOfLine(BC),2),Pow(LengthOfLine(BA),2)))"]
+#run: 0; #retry: 4; message: ERROR_TIER: TIER3_GOAL_NOT_REACHED
 verification failed.
 
 - Goal: cosine of angle CBA
@@ -107,19 +115,18 @@ RETRY_ANSWER:
 41/63
 RETRY_THEOREM_SEQUENCE:
 1; cosine_theorem(1,BCA); Polygon(BCA); ["Equal(Add(Pow(LengthOfLine(CA),2),Mul(2,LengthOfLine(BC),LengthOfLine(BA),Cos(MeasureOfAngle(ABC)))),Add(Pow(LengthOfLine(BC),2),Pow(LengthOfLine(BA),2)))"]
-#run: 0; #retry: 4; message: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
-Verification failed.
-Theorem: cosine_theorem(1,BAC)
-The language model outputs the following conclusions: Equal(Add(Pow(LengthOfLine(AC),2),Mul(2,LengthOfLine(BA),LengthOfLine(BC),Cos(MeasureOfAngle(ABC)))),Add(Pow(LengthOfLine(BA),2),Pow(LengthOfLine(BC),2)))
-The correct conclusions for the theorem: Equal(Add(Pow(LengthOfLine(AC),2),Mul(2,LengthOfLine(BA),LengthOfLine(BC),Cos(MeasureOfAngle(CBA)))),Add(Pow(LengthOfLine(BA),2),Pow(LengthOfLine(BC),2)))
+#run: 0; #retry: 5; message: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
+Theorem: cosine_theorem(1,ACB)
+You output the following conclusions: Equal(Add(Pow(LengthOfLine(CA),2),Mul(2,LengthOfLine(AB),LengthOfLine(BC),Cos(MeasureOfAngle(CBA)))),Add(Pow(LengthOfLine(AB),2),Pow(LengthOfLine(BC),2)))
+But the correct conclusions: Equal(Add(Pow(LengthOfLine(CB),2),Mul(2,LengthOfLine(AC),LengthOfLine(AB),Cos(MeasureOfAngle(BAC)))),Add(Pow(LengthOfLine(AC),2),Pow(LengthOfLine(AB),2)))
 
 Model Answer:
 RETRY_ANSWER:
 41/63
 RETRY_THEOREM_SEQUENCE:
-1; cosine_theorem(1,BAC); Polygon(BAC); ["Equal(Add(Pow(LengthOfLine(AC),2),Mul(2,LengthOfLine(BA),LengthOfLine(BC),Cos(MeasureOfAngle(ABC)))),Add(Pow(LengthOfLine(BA),2),Pow(LengthOfLine(BC),2)))"]
+1; cosine_theorem(1,ACB); Polygon(ACB); ["Equal(Add(Pow(LengthOfLine(CA),2),Mul(2,LengthOfLine(AB),LengthOfLine(BC),Cos(MeasureOfAngle(CBA)))),Add(Pow(LengthOfLine(AB),2),Pow(LengthOfLine(BC),2)))"]
 #RETRIES:
-4
+5
 #RUNS:
 0
 

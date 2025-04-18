@@ -536,15 +536,19 @@ Angle
 predicates to add:
 Line
 predicates to add:
+Angle
+predicates to add:
 Line
 predicates to add:
 Line
 predicates to add:
+Line
+predicates to add:
 Angle
 predicates to add:
 Line
 predicates to add:
-Angle
+Line
 predicates to add:
 Polygon
 has Polygon
@@ -578,18 +582,14 @@ Angle
 predicates to add:
 Line
 predicates to add:
-Line
+Angle
 predicates to add:
 Polygon
 has Polygon
 has Polygon
 has Polygon
 has Polygon
-predicates to add:
-Line
 predicates to add:
-Angle
-predicates to add:
 Line
 predicates to add:
 Angle
@@ -924,7 +924,7 @@ Angle
 predicates to add:
 Line
 predicates to add:
-Angle
+Line
 predicates to add:
 Line
 predicates to add:
@@ -940,7 +940,7 @@ Angle
 predicates to add:
 Line
 predicates to add:
-Line
+Angle
 predicates to add:
 Polygon
 has Polygon
@@ -965,7 +965,7 @@ Angle
 predicates to add:
 Line
 predicates to add:
-Line
+Angle
 predicates to add:
 Line
 predicates to add:
@@ -982,7 +982,11 @@ predicates to add:
 Line
 predicates to add:
 Angle
+predicates to add:
+Line
 predicates to add:
+Line
+predicates to add:
 Polygon
 has Polygon
 has Polygon
@@ -990,7 +994,6 @@ has Polygon
 has Polygon
 has Polygon
 has Polygon
-has Polygon
 predicates to add:
 Line
 predicates to add:
@@ -1003,13 +1006,9 @@ predicates to add:
 Line
 predicates to add:
 Angle
-predicates to add:
-Line
 predicates to add:
 Line
 predicates to add:
-Line
-predicates to add:
 Angle
 predicates to add:
 Line
@@ -1018,7 +1017,7 @@ Angle
 predicates to add:
 Line
 predicates to add:
-Angle
+Line
 predicates to add:
 Line
 predicates to add:
@@ -1026,19 +1025,17 @@ Angle
 predicates to add:
 Line
 predicates to add:
-Line
+Angle
 predicates to add:
 Line
 predicates to add:
 Angle
 predicates to add:
 Polygon
-has Polygon
 has Polygon
 has Polygon
 has Polygon
 has Polygon
-has Polygon
 predicates to add:
 Line
 predicates to add:
@@ -1054,7 +1051,7 @@ Angle
 predicates to add:
 Line
 predicates to add:
-Angle
+Line
 predicates to add:
 Line
 predicates to add:
@@ -1076,6 +1073,10 @@ Line
 predicates to add:
 Line
 predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
 Polygon
 has Polygon
 has Polygon
@@ -1103,10 +1104,6 @@ predicates to add:
 Line
 predicates to add:
 Angle
-predicates to add:
-Line
-predicates to add:
-Line
 predicates to add:
 Line
 predicates to add:
@@ -1118,13 +1115,16 @@ Angle
 predicates to add:
 Line
 predicates to add:
-Angle
+Line
 predicates to add:
 Polygon
 has Polygon
 has Polygon
 has Polygon
 has Polygon
+has Polygon
+has Polygon
+has Polygon
 predicates to add:
 Line
 predicates to add:
@@ -1141,13 +1141,9 @@ predicates to add:
 Line
 predicates to add:
 Angle
-predicates to add:
-Line
 predicates to add:
 Line
 predicates to add:
-Line
-predicates to add:
 Angle
 predicates to add:
 Line
@@ -1304,7 +1300,7 @@ Angle
 predicates to add:
 Line
 predicates to add:
-Angle
+Line
 predicates to add:
 Line
 predicates to add:
@@ -1320,7 +1316,7 @@ Angle
 predicates to add:
 Line
 predicates to add:
-Line
+Angle
 predicates to add:
 Polygon
 has Polygon
@@ -1344,7 +1340,7 @@ Angle
 predicates to add:
 Line
 predicates to add:
-Line
+Angle
 predicates to add:
 Line
 predicates to add:
@@ -1360,7 +1356,7 @@ Angle
 predicates to add:
 Line
 predicates to add:
-Angle
+Line
 predicates to add:
 Polygon
 has Polygon
@@ -1428,6 +1424,10 @@ Angle
 predicates to add:
 Line
 predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
 Angle
 predicates to add:
 Line
@@ -1563,10 +1563,6 @@ predicates to add:
 Line
 predicates to add:
 Angle
-predicates to add:
-Line
-predicates to add:
-Line
 predicates to add:
 Line
 predicates to add:
@@ -1578,13 +1574,16 @@ Angle
 predicates to add:
 Line
 predicates to add:
-Angle
+Line
 predicates to add:
 Polygon
 has Polygon
 has Polygon
 has Polygon
 has Polygon
+has Polygon
+has Polygon
+has Polygon
 predicates to add:
 Line
 predicates to add:
@@ -1597,13 +1596,9 @@ predicates to add:
 Line
 predicates to add:
 Angle
-predicates to add:
-Line
 predicates to add:
 Line
 predicates to add:
-Line
-predicates to add:
 Angle
 predicates to add:
 Line
@@ -1612,7 +1607,7 @@ Angle
 predicates to add:
 Line
 predicates to add:
-Angle
+Line
 predicates to add:
 Line
 predicates to add:
@@ -1620,7 +1615,7 @@ Angle
 predicates to add:
 Line
 predicates to add:
-Line
+Angle
 predicates to add:
 Line
 predicates to add:
@@ -1631,8 +1626,6 @@ has Polygon
 has Polygon
 has Polygon
 has Polygon
-has Polygon
-has Polygon
 predicates to add:
 Line
 predicates to add:
@@ -1645,6 +1638,10 @@ predicates to add:
 Line
 predicates to add:
 Angle
+predicates to add:
+Line
+predicates to add:
+Line
 predicates to add:
 Line
 predicates to add:
@@ -1661,10 +1658,14 @@ predicates to add:
 Line
 predicates to add:
 Angle
+predicates to add:
+Line
 predicates to add:
 Line
 predicates to add:
 Line
+predicates to add:
+Angle
 predicates to add:
 Polygon
 has Polygon
@@ -1673,7 +1674,6 @@ has Polygon
 has Polygon
 has Polygon
 has Polygon
-has Polygon
 predicates to add:
 Line
 predicates to add:
@@ -1793,10 +1793,6 @@ has Polygon
 has Polygon
 has Polygon
 has Polygon
-predicates to add:
-Line
-predicates to add:
-Angle
 predicates to add:
 Line
 predicates to add:
@@ -1826,18 +1822,16 @@ Line
 predicates to add:
 Angle
 predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
 Polygon
-has Polygon
 has Polygon
 has Polygon
 has Polygon
 has Polygon
 has Polygon
-has Polygon
+predicates to add:
+Line
+predicates to add:
+Angle
 predicates to add:
 Line
 predicates to add:
@@ -1873,6 +1867,12 @@ has Polygon
 has Polygon
 has Polygon
 has Polygon
+has Polygon
+has Polygon
+predicates to add:
+Line
+predicates to add:
+Angle
 predicates to add:
 Line
 predicates to add:
@@ -1914,26 +1914,7 @@ has Polygon
 has Polygon
 has Polygon
 has Polygon
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Angle
+has Polygon
 predicates to add:
 Line
 predicates to add:
@@ -1942,13 +1923,6 @@ predicates to add:
 Line
 predicates to add:
 Angle
-predicates to add:
-Polygon
-has Polygon
-has Polygon
-has Polygon
-has Polygon
-has Polygon
 predicates to add:
 Line
 predicates to add:
@@ -1959,13 +1933,9 @@ predicates to add:
 Angle
 predicates to add:
 Line
-predicates to add:
-Angle
 predicates to add:
 Line
 predicates to add:
-Angle
-predicates to add:
 Line
 predicates to add:
 Angle
@@ -1993,8 +1963,6 @@ has Polygon
 has Polygon
 has Polygon
 has Polygon
-has Polygon
-has Polygon
 predicates to add:
 Line
 predicates to add:
@@ -2033,18 +2001,12 @@ predicates to add:
 Angle
 predicates to add:
 Polygon
-has Polygon
 has Polygon
 has Polygon
 has Polygon
 has Polygon
 has Polygon
 has Polygon
-has Polygon
-predicates to add:
-Line
-predicates to add:
-Angle
 predicates to add:
 Line
 predicates to add:
@@ -2060,14 +2022,6 @@ Angle
 predicates to add:
 Line
 predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
 Angle
 predicates to add:
 Line
@@ -2088,7 +2042,6 @@ has Polygon
 has Polygon
 has Polygon
 has Polygon
-has Polygon
 predicates to add:
 Line
 predicates to add:
@@ -2127,6 +2080,8 @@ predicates to add:
 Angle
 predicates to add:
 Polygon
+has Polygon
+has Polygon
 has Polygon
 has Polygon
 has Polygon
@@ -2316,8 +2271,11 @@ Line
 predicates to add:
 Angle
 predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
 Polygon
-has Polygon
 has Polygon
 has Polygon
 has Polygon
@@ -2396,19 +2354,12 @@ Line
 predicates to add:
 Angle
 predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
 Polygon
-has Polygon
 has Polygon
 has Polygon
 has Polygon
 has Polygon
 has Polygon
-has Polygon
-has Polygon
 predicates to add:
 Line
 predicates to add:
@@ -2444,6 +2395,10 @@ has Polygon
 has Polygon
 has Polygon
 has Polygon
+predicates to add:
+Line
+predicates to add:
+Angle
 predicates to add:
 Line
 predicates to add:
@@ -2474,11 +2429,14 @@ predicates to add:
 Angle
 predicates to add:
 Polygon
+has Polygon
 has Polygon
 has Polygon
 has Polygon
 has Polygon
 has Polygon
+has Polygon
+has Polygon
 predicates to add:
 Line
 predicates to add:
@@ -2555,6 +2513,7 @@ predicates to add:
 Angle
 predicates to add:
 Polygon
+has Polygon
 has Polygon
 has Polygon
 has Polygon
@@ -2599,15 +2558,17 @@ Line
 predicates to add:
 Angle
 predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
 Polygon
-has Polygon
 has Polygon
 has Polygon
 has Polygon
 has Polygon
 has Polygon
 has Polygon
-has Polygon
 predicates to add:
 Line
 predicates to add:
@@ -2644,10 +2605,6 @@ predicates to add:
 Line
 predicates to add:
 Angle
-predicates to add:
-Line
-predicates to add:
-Line
 predicates to add:
 Polygon
 has Polygon
@@ -2656,10 +2613,8 @@ has Polygon
 has Polygon
 has Polygon
 has Polygon
-predicates to add:
-Line
-predicates to add:
-Angle
+has Polygon
+has Polygon
 predicates to add:
 Line
 predicates to add:
@@ -2700,6 +2655,7 @@ has Polygon
 has Polygon
 has Polygon
 has Polygon
+has Polygon
 predicates to add:
 Line
 predicates to add:
@@ -2715,7 +2671,7 @@ Angle
 predicates to add:
 Line
 predicates to add:
-Line
+Angle
 predicates to add:
 Line
 predicates to add:
@@ -2744,7 +2700,6 @@ has Polygon
 has Polygon
 has Polygon
 has Polygon
-has Polygon
 predicates to add:
 Line
 predicates to add:
@@ -2760,7 +2715,7 @@ Angle
 predicates to add:
 Line
 predicates to add:
-Angle
+Line
 predicates to add:
 Line
 predicates to add:
@@ -2783,7 +2738,6 @@ predicates to add:
 Angle
 predicates to add:
 Polygon
-has Polygon
 has Polygon
 has Polygon
 has Polygon
@@ -2827,18 +2781,16 @@ predicates to add:
 Line
 predicates to add:
 Angle
-predicates to add:
-Line
-predicates to add:
-Line
 predicates to add:
 Polygon
+has Polygon
 has Polygon
 has Polygon
 has Polygon
 has Polygon
 has Polygon
 has Polygon
+has Polygon
 predicates to add:
 Line
 predicates to add:
@@ -2854,7 +2806,7 @@ Angle
 predicates to add:
 Line
 predicates to add:
-Angle
+Line
 predicates to add:
 Line
 predicates to add:
@@ -2884,7 +2836,10 @@ has Polygon
 has Polygon
 has Polygon
 has Polygon
-has Polygon
+predicates to add:
+Line
+predicates to add:
+Angle
 predicates to add:
 Line
 predicates to add:
@@ -2926,6 +2881,7 @@ has Polygon
 has Polygon
 has Polygon
 has Polygon
+has Polygon
 predicates to add:
 Line
 predicates to add:
@@ -2941,7 +2897,7 @@ Angle
 predicates to add:
 Line
 predicates to add:
-Line
+Angle
 predicates to add:
 Line
 predicates to add:
@@ -2958,9 +2914,13 @@ predicates to add:
 Line
 predicates to add:
 Angle
+predicates to add:
+Line
 predicates to add:
 Line
 predicates to add:
+Line
+predicates to add:
 Angle
 predicates to add:
 Polygon
@@ -2970,12 +2930,7 @@ has Polygon
 has Polygon
 has Polygon
 has Polygon
-has Polygon
-predicates to add:
-Line
 predicates to add:
-Angle
-predicates to add:
 Line
 predicates to add:
 Angle
@@ -3016,7 +2971,6 @@ has Polygon
 has Polygon
 has Polygon
 has Polygon
-has Polygon
 predicates to add:
 Line
 predicates to add:
@@ -3052,11 +3006,11 @@ Angle
 predicates to add:
 Line
 predicates to add:
-Line
+Angle
 predicates to add:
 Line
 predicates to add:
-Angle
+Line
 predicates to add:
 Polygon
 has Polygon
@@ -3081,10 +3035,6 @@ predicates to add:
 Line
 predicates to add:
 Angle
-predicates to add:
-Line
-predicates to add:
-Line
 predicates to add:
 Line
 predicates to add:
@@ -3107,6 +3057,8 @@ predicates to add:
 Angle
 predicates to add:
 Polygon
+has Polygon
+has Polygon
 has Polygon
 has Polygon
 has Polygon
@@ -3148,10 +3100,9 @@ Angle
 predicates to add:
 Line
 predicates to add:
-Angle
+Line
 predicates to add:
 Polygon
-has Polygon
 has Polygon
 has Polygon
 has Polygon
@@ -3178,7 +3129,7 @@ Angle
 predicates to add:
 Line
 predicates to add:
-Angle
+Line
 predicates to add:
 Line
 predicates to add:
@@ -3207,8 +3158,6 @@ has Polygon
 has Polygon
 has Polygon
 has Polygon
-has Polygon
-has Polygon
 predicates to add:
 Line
 predicates to add:
@@ -3244,9 +3193,10 @@ Angle
 predicates to add:
 Line
 predicates to add:
-Line
+Angle
 predicates to add:
 Polygon
+has Polygon
 has Polygon
 has Polygon
 has Polygon
@@ -3289,19 +3239,21 @@ Angle
 predicates to add:
 Line
 predicates to add:
-Line
+Angle
 predicates to add:
 Line
 predicates to add:
 Angle
 predicates to add:
 Polygon
+has Polygon
 has Polygon
 has Polygon
 has Polygon
 has Polygon
 has Polygon
 has Polygon
+has Polygon
 predicates to add:
 Line
 predicates to add:
@@ -3424,23 +3376,19 @@ Angle
 predicates to add:
 Line
 predicates to add:
-Angle
+Line
 predicates to add:
 Line
 predicates to add:
 Angle
 predicates to add:
 Polygon
-has Polygon
-has Polygon
 has Polygon
 has Polygon
 has Polygon
 has Polygon
 has Polygon
 has Polygon
-has Polygon
-has Polygon
 predicates to add:
 Line
 predicates to add:
@@ -3624,6 +3572,10 @@ has Polygon
 has Polygon
 has Polygon
 has Polygon
+predicates to add:
+Line
+predicates to add:
+Angle
 predicates to add:
 Line
 predicates to add:
@@ -3710,6 +3662,10 @@ has Polygon
 has Polygon
 has Polygon
 has Polygon
+predicates to add:
+Line
+predicates to add:
+Angle
 predicates to add:
 Line
 predicates to add:
@@ -3755,14 +3711,7 @@ has Polygon
 has Polygon
 has Polygon
 has Polygon
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Angle
+has Polygon
 predicates to add:
 Line
 predicates to add:
@@ -3797,7 +3746,6 @@ predicates to add:
 Angle
 predicates to add:
 Polygon
-has Polygon
 has Polygon
 has Polygon
 has Polygon
@@ -4181,7 +4129,15 @@ has Polygon
 has Polygon
 has Polygon
 has Polygon
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
 predicates to add:
+Angle
+predicates to add:
 Line
 predicates to add:
 Angle
@@ -4215,6 +4171,9 @@ predicates to add:
 Angle
 predicates to add:
 Polygon
+has Polygon
+has Polygon
+has Polygon
 has Polygon
 has Polygon
 has Polygon
@@ -4460,10 +4419,6 @@ Line
 predicates to add:
 Angle
 predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
 Polygon
 has Polygon
 has Polygon
@@ -4514,7 +4469,6 @@ predicates to add:
 Angle
 predicates to add:
 Polygon
-has Polygon
 has Polygon
 has Polygon
 has Polygon
@@ -4523,7 +4477,6 @@ has Polygon
 has Polygon
 has Polygon
 has Polygon
-has Polygon
 predicates to add:
 Line
 predicates to add:
@@ -4616,6 +4569,7 @@ predicates to add:
 Angle
 predicates to add:
 Polygon
+has Polygon
 has Polygon
 has Polygon
 has Polygon
@@ -4624,6 +4578,7 @@ has Polygon
 has Polygon
 has Polygon
 has Polygon
+has Polygon
 predicates to add:
 Line
 predicates to add:
@@ -4680,11 +4635,7 @@ has Polygon
 has Polygon
 has Polygon
 has Polygon
-predicates to add:
-Line
 predicates to add:
-Angle
-predicates to add:
 Line
 predicates to add:
 Angle
@@ -4729,7 +4680,6 @@ has Polygon
 has Polygon
 has Polygon
 has Polygon
-has Polygon
 predicates to add:
 Line
 predicates to add:
@@ -4830,11 +4780,7 @@ has Polygon
 has Polygon
 has Polygon
 has Polygon
-predicates to add:
-Line
 predicates to add:
-Angle
-predicates to add:
 Line
 predicates to add:
 Angle
@@ -4884,8 +4830,10 @@ has Polygon
 has Polygon
 has Polygon
 has Polygon
-has Polygon
-has Polygon
+predicates to add:
+Line
+predicates to add:
+Angle
 predicates to add:
 Line
 predicates to add:
@@ -4928,6 +4876,8 @@ predicates to add:
 Angle
 predicates to add:
 Polygon
+has Polygon
+has Polygon
 has Polygon
 has Polygon
 has Polygon
@@ -5124,12 +5074,7 @@ Line
 predicates to add:
 Angle
 predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
 Polygon
-has Polygon
 has Polygon
 has Polygon
 has Polygon
@@ -5137,12 +5082,6 @@ has Polygon
 has Polygon
 has Polygon
 has Polygon
-has Polygon
-has Polygon
-predicates to add:
-Line
-predicates to add:
-Angle
 predicates to add:
 Line
 predicates to add:
@@ -5232,6 +5171,10 @@ Line
 predicates to add:
 Angle
 predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
 Polygon
 has Polygon
 has Polygon
@@ -5240,6 +5183,7 @@ has Polygon
 has Polygon
 has Polygon
 has Polygon
+has Polygon
 predicates to add:
 Line
 predicates to add:
@@ -5290,6 +5234,14 @@ has Polygon
 has Polygon
 has Polygon
 has Polygon
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Angle
 predicates to add:
 Line
 predicates to add:
@@ -5335,10 +5287,9 @@ has Polygon
 has Polygon
 has Polygon
 has Polygon
-predicates to add:
-Line
-predicates to add:
-Angle
+has Polygon
+has Polygon
+has Polygon
 predicates to add:
 Line
 predicates to add:
@@ -5384,9 +5335,6 @@ has Polygon
 has Polygon
 has Polygon
 has Polygon
-has Polygon
-has Polygon
-has Polygon
 predicates to add:
 Line
 predicates to add:
@@ -5479,6 +5427,7 @@ predicates to add:
 Angle
 predicates to add:
 Polygon
+has Polygon
 has Polygon
 has Polygon
 has Polygon
@@ -5487,6 +5436,7 @@ has Polygon
 has Polygon
 has Polygon
 has Polygon
+has Polygon
 predicates to add:
 Line
 predicates to add:
@@ -5543,6 +5493,10 @@ has Polygon
 has Polygon
 has Polygon
 has Polygon
+predicates to add:
+Line
+predicates to add:
+Angle
 predicates to add:
 Line
 predicates to add:
@@ -5581,6 +5535,7 @@ predicates to add:
 Angle
 predicates to add:
 Polygon
+has Polygon
 has Polygon
 has Polygon
 has Polygon
@@ -5588,7 +5543,11 @@ has Polygon
 has Polygon
 has Polygon
 has Polygon
+predicates to add:
+Line
 predicates to add:
+Angle
+predicates to add:
 Line
 predicates to add:
 Angle
@@ -5626,6 +5585,8 @@ predicates to add:
 Angle
 predicates to add:
 Polygon
+has Polygon
+has Polygon
 has Polygon
 has Polygon
 has Polygon
@@ -5633,6 +5594,7 @@ has Polygon
 has Polygon
 has Polygon
 has Polygon
+has Polygon
 predicates to add:
 Line
 predicates to add:
@@ -5685,10 +5647,6 @@ has Polygon
 has Polygon
 has Polygon
 has Polygon
-predicates to add:
-Line
-predicates to add:
-Angle
 predicates to add:
 Line
 predicates to add:
@@ -5727,9 +5685,6 @@ predicates to add:
 Angle
 predicates to add:
 Polygon
-has Polygon
-has Polygon
-has Polygon
 has Polygon
 has Polygon
 has Polygon
@@ -5737,10 +5692,6 @@ has Polygon
 has Polygon
 has Polygon
 has Polygon
-predicates to add:
-Line
-predicates to add:
-Angle
 predicates to add:
 Line
 predicates to add:
@@ -5786,11 +5737,6 @@ has Polygon
 has Polygon
 has Polygon
 has Polygon
-has Polygon
-predicates to add:
-Line
-predicates to add:
-Angle
 predicates to add:
 Line
 predicates to add:
@@ -5833,7 +5779,6 @@ predicates to add:
 Angle
 predicates to add:
 Polygon
-has Polygon
 has Polygon
 has Polygon
 has Polygon
@@ -5842,7 +5787,6 @@ has Polygon
 has Polygon
 has Polygon
 has Polygon
-has Polygon
 predicates to add:
 Line
 predicates to add:
@@ -6031,6 +5975,10 @@ has Polygon
 has Polygon
 has Polygon
 has Polygon
+predicates to add:
+Line
+predicates to add:
+Angle
 predicates to add:
 Line
 predicates to add:
@@ -6082,10 +6030,7 @@ has Polygon
 has Polygon
 has Polygon
 has Polygon
-predicates to add:
-Line
-predicates to add:
-Angle
+has Polygon
 predicates to add:
 Line
 predicates to add:
@@ -6137,7 +6082,6 @@ has Polygon
 has Polygon
 has Polygon
 has Polygon
-has Polygon
 predicates to add:
 Line
 predicates to add:
@@ -6717,6 +6661,14 @@ has Polygon
 has Polygon
 has Polygon
 has Polygon
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Angle
 predicates to add:
 Line
 predicates to add:
@@ -6755,6 +6707,7 @@ predicates to add:
 Angle
 predicates to add:
 Polygon
+has Polygon
 has Polygon
 has Polygon
 has Polygon
@@ -6811,11 +6764,7 @@ has Polygon
 has Polygon
 has Polygon
 has Polygon
-predicates to add:
-Line
 predicates to add:
-Angle
-predicates to add:
 Line
 predicates to add:
 Angle
@@ -6849,15 +6798,16 @@ predicates to add:
 Angle
 predicates to add:
 Polygon
-has Polygon
-has Polygon
 has Polygon
 has Polygon
 has Polygon
 has Polygon
 has Polygon
 has Polygon
-has Polygon
+predicates to add:
+Line
+predicates to add:
+Angle
 predicates to add:
 Line
 predicates to add:
@@ -6892,6 +6842,9 @@ predicates to add:
 Angle
 predicates to add:
 Polygon
+has Polygon
+has Polygon
+has Polygon
 has Polygon
 has Polygon
 has Polygon
@@ -6945,14 +6898,6 @@ has Polygon
 has Polygon
 has Polygon
 has Polygon
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Angle
 predicates to add:
 Line
 predicates to add:
@@ -7000,7 +6945,6 @@ has Polygon
 has Polygon
 has Polygon
 has Polygon
-has Polygon
 predicates to add:
 Line
 predicates to add:
@@ -7389,10 +7333,57 @@ has Polygon
 has Polygon
 has Polygon
 has Polygon
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Angle
 predicates to add:
 Line
 predicates to add:
 Angle
+predicates to add:
+Polygon
+has Polygon
+has Polygon
+has Polygon
+has Polygon
+has Polygon
+has Polygon
+has Polygon
+has Polygon
+has Polygon
 predicates to add:
 Line
 predicates to add:
@@ -7449,9 +7440,11 @@ has Polygon
 has Polygon
 has Polygon
 has Polygon
-has Polygon
-has Polygon
+predicates to add:
+Line
 predicates to add:
+Angle
+predicates to add:
 Line
 predicates to add:
 Angle
@@ -7497,6 +7490,8 @@ predicates to add:
 Angle
 predicates to add:
 Polygon
+has Polygon
+has Polygon
 has Polygon
 has Polygon
 has Polygon
@@ -7548,6 +7543,10 @@ Line
 predicates to add:
 Angle
 predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
 Polygon
 has Polygon
 has Polygon
@@ -7558,6 +7557,11 @@ has Polygon
 has Polygon
 has Polygon
 has Polygon
+has Polygon
+predicates to add:
+Line
+predicates to add:
+Angle
 predicates to add:
 Line
 predicates to add:
@@ -7600,6 +7604,7 @@ predicates to add:
 Angle
 predicates to add:
 Polygon
+has Polygon
 has Polygon
 has Polygon
 has Polygon
@@ -7660,11 +7665,7 @@ has Polygon
 has Polygon
 has Polygon
 has Polygon
-predicates to add:
-Line
 predicates to add:
-Angle
-predicates to add:
 Line
 predicates to add:
 Angle
@@ -7715,7 +7716,6 @@ has Polygon
 has Polygon
 has Polygon
 has Polygon
-has Polygon
 predicates to add:
 Line
 predicates to add:
@@ -7772,6 +7772,10 @@ has Polygon
 has Polygon
 has Polygon
 has Polygon
+predicates to add:
+Line
+predicates to add:
+Angle
 predicates to add:
 Line
 predicates to add:
@@ -7814,6 +7818,7 @@ predicates to add:
 Angle
 predicates to add:
 Polygon
+has Polygon
 has Polygon
 has Polygon
 has Polygon
@@ -7930,6 +7935,10 @@ has Polygon
 has Polygon
 has Polygon
 has Polygon
+predicates to add:
+Line
+predicates to add:
+Angle
 predicates to add:
 Line
 predicates to add:
@@ -7986,6 +7995,8 @@ has Polygon
 has Polygon
 has Polygon
 has Polygon
+has Polygon
+has Polygon
 predicates to add:
 Line
 predicates to add:
@@ -8093,11 +8104,7 @@ has Polygon
 has Polygon
 has Polygon
 has Polygon
-predicates to add:
-Line
 predicates to add:
-Angle
-predicates to add:
 Line
 predicates to add:
 Angle
@@ -8148,11 +8155,6 @@ has Polygon
 has Polygon
 has Polygon
 has Polygon
-has Polygon
-predicates to add:
-Line
-predicates to add:
-Angle
 predicates to add:
 Line
 predicates to add:
@@ -8199,7 +8201,6 @@ predicates to add:
 Angle
 predicates to add:
 Polygon
-has Polygon
 has Polygon
 has Polygon
 has Polygon
@@ -8210,7 +8211,6 @@ has Polygon
 has Polygon
 has Polygon
 has Polygon
-has Polygon
 predicates to add:
 Line
 predicates to add:
@@ -9019,10 +9019,6 @@ predicates to add:
 Line
 predicates to add:
 Angle
-predicates to add:
-Line
-predicates to add:
-Line
 predicates to add:
 Polygon
 has Polygon
@@ -9115,6 +9111,10 @@ predicates to add:
 Line
 predicates to add:
 Angle
+predicates to add:
+Line
+predicates to add:
+Line
 predicates to add:
 Polygon
 has Polygon
@@ -9125,10 +9125,6 @@ has Polygon
 has Polygon
 has Polygon
 has Polygon
-predicates to add:
-Line
-predicates to add:
-Angle
 predicates to add:
 Line
 predicates to add:
@@ -9175,6 +9171,7 @@ predicates to add:
 Angle
 predicates to add:
 Polygon
+has Polygon
 has Polygon
 has Polygon
 has Polygon
@@ -9242,7 +9239,11 @@ has Polygon
 has Polygon
 has Polygon
 has Polygon
+predicates to add:
+Line
 predicates to add:
+Angle
+predicates to add:
 Line
 predicates to add:
 Angle
@@ -9298,7 +9299,6 @@ has Polygon
 has Polygon
 has Polygon
 has Polygon
-has Polygon
 predicates to add:
 Line
 predicates to add:
@@ -9418,6 +9418,10 @@ has Polygon
 has Polygon
 has Polygon
 has Polygon
+predicates to add:
+Line
+predicates to add:
+Angle
 predicates to add:
 Line
 predicates to add:
@@ -9438,6 +9442,10 @@ predicates to add:
 Line
 predicates to add:
 Angle
+predicates to add:
+Line
+predicates to add:
+Line
 predicates to add:
 Line
 predicates to add:
@@ -9464,7 +9472,6 @@ predicates to add:
 Angle
 predicates to add:
 Polygon
-has Polygon
 has Polygon
 has Polygon
 has Polygon
@@ -9495,14 +9502,6 @@ predicates to add:
 Line
 predicates to add:
 Angle
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
 predicates to add:
 Line
 predicates to add:
@@ -9539,10 +9538,7 @@ has Polygon
 has Polygon
 has Polygon
 has Polygon
-predicates to add:
-Line
-predicates to add:
-Angle
+has Polygon
 predicates to add:
 Line
 predicates to add:
@@ -9589,7 +9585,6 @@ predicates to add:
 Angle
 predicates to add:
 Polygon
-has Polygon
 has Polygon
 has Polygon
 has Polygon
@@ -9601,7 +9596,11 @@ has Polygon
 has Polygon
 has Polygon
 has Polygon
+predicates to add:
+Line
 predicates to add:
+Angle
+predicates to add:
 Line
 predicates to add:
 Angle
@@ -9658,6 +9657,7 @@ has Polygon
 has Polygon
 has Polygon
 has Polygon
+has Polygon
 predicates to add:
 Line
 predicates to add:
@@ -11274,11 +11274,11 @@ Line
 predicates to add:
 Angle
 predicates to add:
-Line
+Angle
 predicates to add:
 Line
 predicates to add:
-Angle
+Line
 predicates to add:
 Angle
 predicates to add:
@@ -11341,12 +11341,6 @@ predicates to add:
 Line
 predicates to add:
 Line
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Angle
 predicates to add:
 Angle
 predicates to add:
@@ -11359,10 +11353,8 @@ predicates to add:
 Line
 predicates to add:
 Angle
-predicates to add:
-Line
 predicates to add:
-Line
+Angle
 predicates to add:
 Angle
 predicates to add:
@@ -11385,6 +11377,8 @@ predicates to add:
 Line
 predicates to add:
 Line
+predicates to add:
+Angle
 predicates to add:
 Angle
 predicates to add:
@@ -11395,6 +11389,10 @@ predicates to add:
 Angle
 predicates to add:
 Angle
+predicates to add:
+Line
+predicates to add:
+Line
 predicates to add:
 Angle
 predicates to add:
@@ -11421,6 +11419,8 @@ predicates to add:
 Line
 predicates to add:
 Line
+predicates to add:
+Angle
 predicates to add:
 Angle
 predicates to add:
@@ -11640,18 +11640,17 @@ ParallelBetweenLine
 predicates to add:
 ParallelBetweenLine
 Verifier result: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
-Verification failed.
-Theorem: parallel_property_ipsilateral_internal_angle(1,AJ,BH)
-The language model outputs the following premises: ParallelBetweenLine(AJ,BH)&Line(AE)
-The correct premises for the theorem: ParallelBetweenLine(AJ,BH)&Line(AB)
-The language model outputs the following conclusions: Equal(Add(MeasureOfAngle(ABH),MeasureOfAngle(JAE)),180)
-The correct conclusions for the theorem: Equal(Add(MeasureOfAngle(JAB),MeasureOfAngle(ABH)),180)
+Theorem: parallel_property_ipsilateral_internal_angle(1,BH,AJ)
+You output the following premises: ParallelBetweenLine(BH,AJ)&Line(AH)
+But the correct premises: ParallelBetweenLine(BH,AJ)&Line(BA)
+You output the following conclusions: Equal(Add(MeasureOfAngle(ABH),MeasureOfAngle(JAE)),180)
+But the correct conclusions: Equal(Add(MeasureOfAngle(HBA),MeasureOfAngle(BAJ)),180)
 
 Model Answer:
 RETRY_ANSWER:
 25
 RETRY_THEOREM_SEQUENCE:
-1; parallel_property_ipsilateral_internal_angle(1,AJ,BH); ParallelBetweenLine(AJ,BH)&Line(AE); ["Equal(Add(MeasureOfAngle(ABH),MeasureOfAngle(JAE)),180)"]
+1; parallel_property_ipsilateral_internal_angle(1,BH,AJ); ParallelBetweenLine(BH,AJ)&Line(AH); ["Equal(Add(MeasureOfAngle(ABH),MeasureOfAngle(JAE)),180)"]
 Retry attempt: 1
 Content written to results/level_1/variant_random_all_theorems_model_o1_problem_2624_run_0_to_verify.txt
 predicates to add:
@@ -12191,15 +12190,19 @@ Angle
 predicates to add:
 Line
 predicates to add:
+Angle
+predicates to add:
 Line
 predicates to add:
 Line
 predicates to add:
+Line
+predicates to add:
 Angle
 predicates to add:
 Line
 predicates to add:
-Angle
+Line
 predicates to add:
 Polygon
 has Polygon
@@ -12233,18 +12236,14 @@ Angle
 predicates to add:
 Line
 predicates to add:
-Line
+Angle
 predicates to add:
 Polygon
 has Polygon
 has Polygon
 has Polygon
 has Polygon
-predicates to add:
-Line
 predicates to add:
-Angle
-predicates to add:
 Line
 predicates to add:
 Angle
@@ -12579,7 +12578,7 @@ Angle
 predicates to add:
 Line
 predicates to add:
-Angle
+Line
 predicates to add:
 Line
 predicates to add:
@@ -12595,7 +12594,7 @@ Angle
 predicates to add:
 Line
 predicates to add:
-Line
+Angle
 predicates to add:
 Polygon
 has Polygon
@@ -12620,7 +12619,7 @@ Angle
 predicates to add:
 Line
 predicates to add:
-Line
+Angle
 predicates to add:
 Line
 predicates to add:
@@ -12637,7 +12636,11 @@ predicates to add:
 Line
 predicates to add:
 Angle
+predicates to add:
+Line
 predicates to add:
+Line
+predicates to add:
 Polygon
 has Polygon
 has Polygon
@@ -12645,7 +12648,6 @@ has Polygon
 has Polygon
 has Polygon
 has Polygon
-has Polygon
 predicates to add:
 Line
 predicates to add:
@@ -12658,13 +12660,9 @@ predicates to add:
 Line
 predicates to add:
 Angle
-predicates to add:
-Line
 predicates to add:
 Line
 predicates to add:
-Line
-predicates to add:
 Angle
 predicates to add:
 Line
@@ -12673,7 +12671,7 @@ Angle
 predicates to add:
 Line
 predicates to add:
-Angle
+Line
 predicates to add:
 Line
 predicates to add:
@@ -12681,19 +12679,17 @@ Angle
 predicates to add:
 Line
 predicates to add:
-Line
+Angle
 predicates to add:
 Line
 predicates to add:
 Angle
 predicates to add:
 Polygon
-has Polygon
 has Polygon
 has Polygon
 has Polygon
 has Polygon
-has Polygon
 predicates to add:
 Line
 predicates to add:
@@ -12709,7 +12705,7 @@ Angle
 predicates to add:
 Line
 predicates to add:
-Angle
+Line
 predicates to add:
 Line
 predicates to add:
@@ -12731,6 +12727,10 @@ Line
 predicates to add:
 Line
 predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
 Polygon
 has Polygon
 has Polygon
@@ -12758,10 +12758,6 @@ predicates to add:
 Line
 predicates to add:
 Angle
-predicates to add:
-Line
-predicates to add:
-Line
 predicates to add:
 Line
 predicates to add:
@@ -12773,13 +12769,16 @@ Angle
 predicates to add:
 Line
 predicates to add:
-Angle
+Line
 predicates to add:
 Polygon
 has Polygon
 has Polygon
 has Polygon
 has Polygon
+has Polygon
+has Polygon
+has Polygon
 predicates to add:
 Line
 predicates to add:
@@ -12796,13 +12795,9 @@ predicates to add:
 Line
 predicates to add:
 Angle
-predicates to add:
-Line
 predicates to add:
 Line
 predicates to add:
-Line
-predicates to add:
 Angle
 predicates to add:
 Line
@@ -12959,7 +12954,7 @@ Angle
 predicates to add:
 Line
 predicates to add:
-Angle
+Line
 predicates to add:
 Line
 predicates to add:
@@ -12975,7 +12970,7 @@ Angle
 predicates to add:
 Line
 predicates to add:
-Line
+Angle
 predicates to add:
 Polygon
 has Polygon
@@ -12999,7 +12994,7 @@ Angle
 predicates to add:
 Line
 predicates to add:
-Line
+Angle
 predicates to add:
 Line
 predicates to add:
@@ -13015,7 +13010,7 @@ Angle
 predicates to add:
 Line
 predicates to add:
-Angle
+Line
 predicates to add:
 Polygon
 has Polygon
@@ -13083,6 +13078,10 @@ Angle
 predicates to add:
 Line
 predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
 Angle
 predicates to add:
 Line
@@ -13218,10 +13217,6 @@ predicates to add:
 Line
 predicates to add:
 Angle
-predicates to add:
-Line
-predicates to add:
-Line
 predicates to add:
 Line
 predicates to add:
@@ -13233,13 +13228,16 @@ Angle
 predicates to add:
 Line
 predicates to add:
-Angle
+Line
 predicates to add:
 Polygon
 has Polygon
 has Polygon
 has Polygon
 has Polygon
+has Polygon
+has Polygon
+has Polygon
 predicates to add:
 Line
 predicates to add:
@@ -13252,13 +13250,9 @@ predicates to add:
 Line
 predicates to add:
 Angle
-predicates to add:
-Line
 predicates to add:
 Line
 predicates to add:
-Line
-predicates to add:
 Angle
 predicates to add:
 Line
@@ -13267,7 +13261,7 @@ Angle
 predicates to add:
 Line
 predicates to add:
-Angle
+Line
 predicates to add:
 Line
 predicates to add:
@@ -13275,7 +13269,7 @@ Angle
 predicates to add:
 Line
 predicates to add:
-Line
+Angle
 predicates to add:
 Line
 predicates to add:
@@ -13286,8 +13280,6 @@ has Polygon
 has Polygon
 has Polygon
 has Polygon
-has Polygon
-has Polygon
 predicates to add:
 Line
 predicates to add:
@@ -13300,6 +13292,10 @@ predicates to add:
 Line
 predicates to add:
 Angle
+predicates to add:
+Line
+predicates to add:
+Line
 predicates to add:
 Line
 predicates to add:
@@ -13316,10 +13312,14 @@ predicates to add:
 Line
 predicates to add:
 Angle
+predicates to add:
+Line
 predicates to add:
 Line
 predicates to add:
 Line
+predicates to add:
+Angle
 predicates to add:
 Polygon
 has Polygon
@@ -13328,7 +13328,6 @@ has Polygon
 has Polygon
 has Polygon
 has Polygon
-has Polygon
 predicates to add:
 Line
 predicates to add:
@@ -13448,10 +13447,6 @@ has Polygon
 has Polygon
 has Polygon
 has Polygon
-predicates to add:
-Line
-predicates to add:
-Angle
 predicates to add:
 Line
 predicates to add:
@@ -13481,18 +13476,16 @@ Line
 predicates to add:
 Angle
 predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
 Polygon
-has Polygon
 has Polygon
 has Polygon
 has Polygon
 has Polygon
 has Polygon
-has Polygon
+predicates to add:
+Line
+predicates to add:
+Angle
 predicates to add:
 Line
 predicates to add:
@@ -13528,6 +13521,12 @@ has Polygon
 has Polygon
 has Polygon
 has Polygon
+has Polygon
+has Polygon
+predicates to add:
+Line
+predicates to add:
+Angle
 predicates to add:
 Line
 predicates to add:
@@ -13569,26 +13568,7 @@ has Polygon
 has Polygon
 has Polygon
 has Polygon
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Angle
+has Polygon
 predicates to add:
 Line
 predicates to add:
@@ -13597,13 +13577,6 @@ predicates to add:
 Line
 predicates to add:
 Angle
-predicates to add:
-Polygon
-has Polygon
-has Polygon
-has Polygon
-has Polygon
-has Polygon
 predicates to add:
 Line
 predicates to add:
@@ -13614,13 +13587,9 @@ predicates to add:
 Angle
 predicates to add:
 Line
-predicates to add:
-Angle
 predicates to add:
 Line
 predicates to add:
-Angle
-predicates to add:
 Line
 predicates to add:
 Angle
@@ -13648,8 +13617,6 @@ has Polygon
 has Polygon
 has Polygon
 has Polygon
-has Polygon
-has Polygon
 predicates to add:
 Line
 predicates to add:
@@ -13688,18 +13655,12 @@ predicates to add:
 Angle
 predicates to add:
 Polygon
-has Polygon
 has Polygon
 has Polygon
 has Polygon
 has Polygon
 has Polygon
 has Polygon
-has Polygon
-predicates to add:
-Line
-predicates to add:
-Angle
 predicates to add:
 Line
 predicates to add:
@@ -13715,14 +13676,6 @@ Angle
 predicates to add:
 Line
 predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
 Angle
 predicates to add:
 Line
@@ -13743,7 +13696,6 @@ has Polygon
 has Polygon
 has Polygon
 has Polygon
-has Polygon
 predicates to add:
 Line
 predicates to add:
@@ -13782,6 +13734,8 @@ predicates to add:
 Angle
 predicates to add:
 Polygon
+has Polygon
+has Polygon
 has Polygon
 has Polygon
 has Polygon
@@ -13971,8 +13925,11 @@ Line
 predicates to add:
 Angle
 predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
 Polygon
-has Polygon
 has Polygon
 has Polygon
 has Polygon
@@ -14051,19 +14008,12 @@ Line
 predicates to add:
 Angle
 predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
 Polygon
-has Polygon
 has Polygon
 has Polygon
 has Polygon
 has Polygon
 has Polygon
-has Polygon
-has Polygon
 predicates to add:
 Line
 predicates to add:
@@ -14099,6 +14049,10 @@ has Polygon
 has Polygon
 has Polygon
 has Polygon
+predicates to add:
+Line
+predicates to add:
+Angle
 predicates to add:
 Line
 predicates to add:
@@ -14129,11 +14083,14 @@ predicates to add:
 Angle
 predicates to add:
 Polygon
+has Polygon
 has Polygon
 has Polygon
 has Polygon
 has Polygon
 has Polygon
+has Polygon
+has Polygon
 predicates to add:
 Line
 predicates to add:
@@ -14210,6 +14167,7 @@ predicates to add:
 Angle
 predicates to add:
 Polygon
+has Polygon
 has Polygon
 has Polygon
 has Polygon
@@ -14254,15 +14212,17 @@ Line
 predicates to add:
 Angle
 predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
 Polygon
-has Polygon
 has Polygon
 has Polygon
 has Polygon
 has Polygon
 has Polygon
 has Polygon
-has Polygon
 predicates to add:
 Line
 predicates to add:
@@ -14299,10 +14259,6 @@ predicates to add:
 Line
 predicates to add:
 Angle
-predicates to add:
-Line
-predicates to add:
-Line
 predicates to add:
 Polygon
 has Polygon
@@ -14311,10 +14267,8 @@ has Polygon
 has Polygon
 has Polygon
 has Polygon
-predicates to add:
-Line
-predicates to add:
-Angle
+has Polygon
+has Polygon
 predicates to add:
 Line
 predicates to add:
@@ -14355,6 +14309,7 @@ has Polygon
 has Polygon
 has Polygon
 has Polygon
+has Polygon
 predicates to add:
 Line
 predicates to add:
@@ -14370,7 +14325,7 @@ Angle
 predicates to add:
 Line
 predicates to add:
-Line
+Angle
 predicates to add:
 Line
 predicates to add:
@@ -14399,7 +14354,6 @@ has Polygon
 has Polygon
 has Polygon
 has Polygon
-has Polygon
 predicates to add:
 Line
 predicates to add:
@@ -14415,7 +14369,7 @@ Angle
 predicates to add:
 Line
 predicates to add:
-Angle
+Line
 predicates to add:
 Line
 predicates to add:
@@ -14438,7 +14392,6 @@ predicates to add:
 Angle
 predicates to add:
 Polygon
-has Polygon
 has Polygon
 has Polygon
 has Polygon
@@ -14482,18 +14435,16 @@ predicates to add:
 Line
 predicates to add:
 Angle
-predicates to add:
-Line
-predicates to add:
-Line
 predicates to add:
 Polygon
+has Polygon
 has Polygon
 has Polygon
 has Polygon
 has Polygon
 has Polygon
 has Polygon
+has Polygon
 predicates to add:
 Line
 predicates to add:
@@ -14509,7 +14460,7 @@ Angle
 predicates to add:
 Line
 predicates to add:
-Angle
+Line
 predicates to add:
 Line
 predicates to add:
@@ -14539,7 +14490,10 @@ has Polygon
 has Polygon
 has Polygon
 has Polygon
-has Polygon
+predicates to add:
+Line
+predicates to add:
+Angle
 predicates to add:
 Line
 predicates to add:
@@ -14581,6 +14535,7 @@ has Polygon
 has Polygon
 has Polygon
 has Polygon
+has Polygon
 predicates to add:
 Line
 predicates to add:
@@ -14596,7 +14551,7 @@ Angle
 predicates to add:
 Line
 predicates to add:
-Line
+Angle
 predicates to add:
 Line
 predicates to add:
@@ -14613,9 +14568,13 @@ predicates to add:
 Line
 predicates to add:
 Angle
+predicates to add:
+Line
 predicates to add:
 Line
 predicates to add:
+Line
+predicates to add:
 Angle
 predicates to add:
 Polygon
@@ -14625,12 +14584,7 @@ has Polygon
 has Polygon
 has Polygon
 has Polygon
-has Polygon
-predicates to add:
-Line
 predicates to add:
-Angle
-predicates to add:
 Line
 predicates to add:
 Angle
@@ -14671,7 +14625,6 @@ has Polygon
 has Polygon
 has Polygon
 has Polygon
-has Polygon
 predicates to add:
 Line
 predicates to add:
@@ -14707,11 +14660,11 @@ Angle
 predicates to add:
 Line
 predicates to add:
-Line
+Angle
 predicates to add:
 Line
 predicates to add:
-Angle
+Line
 predicates to add:
 Polygon
 has Polygon
@@ -14736,10 +14689,6 @@ predicates to add:
 Line
 predicates to add:
 Angle
-predicates to add:
-Line
-predicates to add:
-Line
 predicates to add:
 Line
 predicates to add:
@@ -14762,6 +14711,8 @@ predicates to add:
 Angle
 predicates to add:
 Polygon
+has Polygon
+has Polygon
 has Polygon
 has Polygon
 has Polygon
@@ -14803,10 +14754,9 @@ Angle
 predicates to add:
 Line
 predicates to add:
-Angle
+Line
 predicates to add:
 Polygon
-has Polygon
 has Polygon
 has Polygon
 has Polygon
@@ -14833,7 +14783,7 @@ Angle
 predicates to add:
 Line
 predicates to add:
-Angle
+Line
 predicates to add:
 Line
 predicates to add:
@@ -14862,8 +14812,6 @@ has Polygon
 has Polygon
 has Polygon
 has Polygon
-has Polygon
-has Polygon
 predicates to add:
 Line
 predicates to add:
@@ -14899,9 +14847,10 @@ Angle
 predicates to add:
 Line
 predicates to add:
-Line
+Angle
 predicates to add:
 Polygon
+has Polygon
 has Polygon
 has Polygon
 has Polygon
@@ -14944,19 +14893,21 @@ Angle
 predicates to add:
 Line
 predicates to add:
-Line
+Angle
 predicates to add:
 Line
 predicates to add:
 Angle
 predicates to add:
 Polygon
+has Polygon
 has Polygon
 has Polygon
 has Polygon
 has Polygon
 has Polygon
 has Polygon
+has Polygon
 predicates to add:
 Line
 predicates to add:
@@ -15079,23 +15030,19 @@ Angle
 predicates to add:
 Line
 predicates to add:
-Angle
+Line
 predicates to add:
 Line
 predicates to add:
 Angle
 predicates to add:
 Polygon
-has Polygon
-has Polygon
 has Polygon
 has Polygon
 has Polygon
 has Polygon
 has Polygon
 has Polygon
-has Polygon
-has Polygon
 predicates to add:
 Line
 predicates to add:
@@ -15279,6 +15226,10 @@ has Polygon
 has Polygon
 has Polygon
 has Polygon
+predicates to add:
+Line
+predicates to add:
+Angle
 predicates to add:
 Line
 predicates to add:
@@ -15365,6 +15316,10 @@ has Polygon
 has Polygon
 has Polygon
 has Polygon
+predicates to add:
+Line
+predicates to add:
+Angle
 predicates to add:
 Line
 predicates to add:
@@ -15410,14 +15365,7 @@ has Polygon
 has Polygon
 has Polygon
 has Polygon
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Angle
+has Polygon
 predicates to add:
 Line
 predicates to add:
@@ -15452,7 +15400,6 @@ predicates to add:
 Angle
 predicates to add:
 Polygon
-has Polygon
 has Polygon
 has Polygon
 has Polygon
@@ -15836,7 +15783,15 @@ has Polygon
 has Polygon
 has Polygon
 has Polygon
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
 predicates to add:
+Angle
+predicates to add:
 Line
 predicates to add:
 Angle
@@ -15870,6 +15825,9 @@ predicates to add:
 Angle
 predicates to add:
 Polygon
+has Polygon
+has Polygon
+has Polygon
 has Polygon
 has Polygon
 has Polygon
@@ -16115,10 +16073,6 @@ Line
 predicates to add:
 Angle
 predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
 Polygon
 has Polygon
 has Polygon
@@ -16169,7 +16123,6 @@ predicates to add:
 Angle
 predicates to add:
 Polygon
-has Polygon
 has Polygon
 has Polygon
 has Polygon
@@ -16178,7 +16131,6 @@ has Polygon
 has Polygon
 has Polygon
 has Polygon
-has Polygon
 predicates to add:
 Line
 predicates to add:
@@ -16271,6 +16223,7 @@ predicates to add:
 Angle
 predicates to add:
 Polygon
+has Polygon
 has Polygon
 has Polygon
 has Polygon
@@ -16279,6 +16232,7 @@ has Polygon
 has Polygon
 has Polygon
 has Polygon
+has Polygon
 predicates to add:
 Line
 predicates to add:
@@ -16335,11 +16289,7 @@ has Polygon
 has Polygon
 has Polygon
 has Polygon
-predicates to add:
-Line
 predicates to add:
-Angle
-predicates to add:
 Line
 predicates to add:
 Angle
@@ -16384,7 +16334,6 @@ has Polygon
 has Polygon
 has Polygon
 has Polygon
-has Polygon
 predicates to add:
 Line
 predicates to add:
@@ -16485,11 +16434,7 @@ has Polygon
 has Polygon
 has Polygon
 has Polygon
-predicates to add:
-Line
 predicates to add:
-Angle
-predicates to add:
 Line
 predicates to add:
 Angle
@@ -16539,8 +16484,10 @@ has Polygon
 has Polygon
 has Polygon
 has Polygon
-has Polygon
-has Polygon
+predicates to add:
+Line
+predicates to add:
+Angle
 predicates to add:
 Line
 predicates to add:
@@ -16583,6 +16530,8 @@ predicates to add:
 Angle
 predicates to add:
 Polygon
+has Polygon
+has Polygon
 has Polygon
 has Polygon
 has Polygon
@@ -16779,12 +16728,7 @@ Line
 predicates to add:
 Angle
 predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
 Polygon
-has Polygon
 has Polygon
 has Polygon
 has Polygon
@@ -16792,12 +16736,6 @@ has Polygon
 has Polygon
 has Polygon
 has Polygon
-has Polygon
-has Polygon
-predicates to add:
-Line
-predicates to add:
-Angle
 predicates to add:
 Line
 predicates to add:
@@ -16887,6 +16825,10 @@ Line
 predicates to add:
 Angle
 predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
 Polygon
 has Polygon
 has Polygon
@@ -16895,6 +16837,7 @@ has Polygon
 has Polygon
 has Polygon
 has Polygon
+has Polygon
 predicates to add:
 Line
 predicates to add:
@@ -16945,6 +16888,14 @@ has Polygon
 has Polygon
 has Polygon
 has Polygon
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Angle
 predicates to add:
 Line
 predicates to add:
@@ -16990,10 +16941,9 @@ has Polygon
 has Polygon
 has Polygon
 has Polygon
-predicates to add:
-Line
-predicates to add:
-Angle
+has Polygon
+has Polygon
+has Polygon
 predicates to add:
 Line
 predicates to add:
@@ -17039,9 +16989,6 @@ has Polygon
 has Polygon
 has Polygon
 has Polygon
-has Polygon
-has Polygon
-has Polygon
 predicates to add:
 Line
 predicates to add:
@@ -17134,6 +17081,7 @@ predicates to add:
 Angle
 predicates to add:
 Polygon
+has Polygon
 has Polygon
 has Polygon
 has Polygon
@@ -17142,6 +17090,7 @@ has Polygon
 has Polygon
 has Polygon
 has Polygon
+has Polygon
 predicates to add:
 Line
 predicates to add:
@@ -17198,6 +17147,10 @@ has Polygon
 has Polygon
 has Polygon
 has Polygon
+predicates to add:
+Line
+predicates to add:
+Angle
 predicates to add:
 Line
 predicates to add:
@@ -17236,6 +17189,7 @@ predicates to add:
 Angle
 predicates to add:
 Polygon
+has Polygon
 has Polygon
 has Polygon
 has Polygon
@@ -17243,7 +17197,11 @@ has Polygon
 has Polygon
 has Polygon
 has Polygon
+predicates to add:
+Line
 predicates to add:
+Angle
+predicates to add:
 Line
 predicates to add:
 Angle
@@ -17281,6 +17239,8 @@ predicates to add:
 Angle
 predicates to add:
 Polygon
+has Polygon
+has Polygon
 has Polygon
 has Polygon
 has Polygon
@@ -17288,6 +17248,7 @@ has Polygon
 has Polygon
 has Polygon
 has Polygon
+has Polygon
 predicates to add:
 Line
 predicates to add:
@@ -17340,10 +17301,6 @@ has Polygon
 has Polygon
 has Polygon
 has Polygon
-predicates to add:
-Line
-predicates to add:
-Angle
 predicates to add:
 Line
 predicates to add:
@@ -17382,9 +17339,6 @@ predicates to add:
 Angle
 predicates to add:
 Polygon
-has Polygon
-has Polygon
-has Polygon
 has Polygon
 has Polygon
 has Polygon
@@ -17392,10 +17346,6 @@ has Polygon
 has Polygon
 has Polygon
 has Polygon
-predicates to add:
-Line
-predicates to add:
-Angle
 predicates to add:
 Line
 predicates to add:
@@ -17441,11 +17391,6 @@ has Polygon
 has Polygon
 has Polygon
 has Polygon
-has Polygon
-predicates to add:
-Line
-predicates to add:
-Angle
 predicates to add:
 Line
 predicates to add:
@@ -17488,7 +17433,6 @@ predicates to add:
 Angle
 predicates to add:
 Polygon
-has Polygon
 has Polygon
 has Polygon
 has Polygon
@@ -17497,7 +17441,6 @@ has Polygon
 has Polygon
 has Polygon
 has Polygon
-has Polygon
 predicates to add:
 Line
 predicates to add:
@@ -17686,6 +17629,10 @@ has Polygon
 has Polygon
 has Polygon
 has Polygon
+predicates to add:
+Line
+predicates to add:
+Angle
 predicates to add:
 Line
 predicates to add:
@@ -17737,10 +17684,7 @@ has Polygon
 has Polygon
 has Polygon
 has Polygon
-predicates to add:
-Line
-predicates to add:
-Angle
+has Polygon
 predicates to add:
 Line
 predicates to add:
@@ -17792,7 +17736,6 @@ has Polygon
 has Polygon
 has Polygon
 has Polygon
-has Polygon
 predicates to add:
 Line
 predicates to add:
@@ -18372,6 +18315,14 @@ has Polygon
 has Polygon
 has Polygon
 has Polygon
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Angle
 predicates to add:
 Line
 predicates to add:
@@ -18410,6 +18361,7 @@ predicates to add:
 Angle
 predicates to add:
 Polygon
+has Polygon
 has Polygon
 has Polygon
 has Polygon
@@ -18466,11 +18418,7 @@ has Polygon
 has Polygon
 has Polygon
 has Polygon
-predicates to add:
-Line
 predicates to add:
-Angle
-predicates to add:
 Line
 predicates to add:
 Angle
@@ -18504,15 +18452,16 @@ predicates to add:
 Angle
 predicates to add:
 Polygon
-has Polygon
-has Polygon
 has Polygon
 has Polygon
 has Polygon
 has Polygon
 has Polygon
 has Polygon
-has Polygon
+predicates to add:
+Line
+predicates to add:
+Angle
 predicates to add:
 Line
 predicates to add:
@@ -18547,6 +18496,9 @@ predicates to add:
 Angle
 predicates to add:
 Polygon
+has Polygon
+has Polygon
+has Polygon
 has Polygon
 has Polygon
 has Polygon
@@ -18600,14 +18552,6 @@ has Polygon
 has Polygon
 has Polygon
 has Polygon
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Angle
 predicates to add:
 Line
 predicates to add:
@@ -18655,7 +18599,6 @@ has Polygon
 has Polygon
 has Polygon
 has Polygon
-has Polygon
 predicates to add:
 Line
 predicates to add:
@@ -19044,10 +18987,57 @@ has Polygon
 has Polygon
 has Polygon
 has Polygon
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Angle
 predicates to add:
 Line
 predicates to add:
 Angle
+predicates to add:
+Polygon
+has Polygon
+has Polygon
+has Polygon
+has Polygon
+has Polygon
+has Polygon
+has Polygon
+has Polygon
+has Polygon
 predicates to add:
 Line
 predicates to add:
@@ -19104,9 +19094,11 @@ has Polygon
 has Polygon
 has Polygon
 has Polygon
-has Polygon
-has Polygon
+predicates to add:
+Line
 predicates to add:
+Angle
+predicates to add:
 Line
 predicates to add:
 Angle
@@ -19152,6 +19144,8 @@ predicates to add:
 Angle
 predicates to add:
 Polygon
+has Polygon
+has Polygon
 has Polygon
 has Polygon
 has Polygon
@@ -19203,6 +19197,10 @@ Line
 predicates to add:
 Angle
 predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
 Polygon
 has Polygon
 has Polygon
@@ -19213,6 +19211,11 @@ has Polygon
 has Polygon
 has Polygon
 has Polygon
+has Polygon
+predicates to add:
+Line
+predicates to add:
+Angle
 predicates to add:
 Line
 predicates to add:
@@ -19255,6 +19258,7 @@ predicates to add:
 Angle
 predicates to add:
 Polygon
+has Polygon
 has Polygon
 has Polygon
 has Polygon
@@ -19315,11 +19319,7 @@ has Polygon
 has Polygon
 has Polygon
 has Polygon
-predicates to add:
-Line
 predicates to add:
-Angle
-predicates to add:
 Line
 predicates to add:
 Angle
@@ -19370,7 +19370,6 @@ has Polygon
 has Polygon
 has Polygon
 has Polygon
-has Polygon
 predicates to add:
 Line
 predicates to add:
@@ -19427,6 +19426,10 @@ has Polygon
 has Polygon
 has Polygon
 has Polygon
+predicates to add:
+Line
+predicates to add:
+Angle
 predicates to add:
 Line
 predicates to add:
@@ -19469,6 +19472,7 @@ predicates to add:
 Angle
 predicates to add:
 Polygon
+has Polygon
 has Polygon
 has Polygon
 has Polygon
@@ -19585,6 +19589,10 @@ has Polygon
 has Polygon
 has Polygon
 has Polygon
+predicates to add:
+Line
+predicates to add:
+Angle
 predicates to add:
 Line
 predicates to add:
@@ -19641,6 +19649,8 @@ has Polygon
 has Polygon
 has Polygon
 has Polygon
+has Polygon
+has Polygon
 predicates to add:
 Line
 predicates to add:
@@ -19748,11 +19758,7 @@ has Polygon
 has Polygon
 has Polygon
 has Polygon
-predicates to add:
-Line
 predicates to add:
-Angle
-predicates to add:
 Line
 predicates to add:
 Angle
@@ -19803,11 +19809,6 @@ has Polygon
 has Polygon
 has Polygon
 has Polygon
-has Polygon
-predicates to add:
-Line
-predicates to add:
-Angle
 predicates to add:
 Line
 predicates to add:
@@ -19854,7 +19855,6 @@ predicates to add:
 Angle
 predicates to add:
 Polygon
-has Polygon
 has Polygon
 has Polygon
 has Polygon
@@ -19865,7 +19865,6 @@ has Polygon
 has Polygon
 has Polygon
 has Polygon
-has Polygon
 predicates to add:
 Line
 predicates to add:
@@ -20674,10 +20673,6 @@ predicates to add:
 Line
 predicates to add:
 Angle
-predicates to add:
-Line
-predicates to add:
-Line
 predicates to add:
 Polygon
 has Polygon
@@ -20770,6 +20765,10 @@ predicates to add:
 Line
 predicates to add:
 Angle
+predicates to add:
+Line
+predicates to add:
+Line
 predicates to add:
 Polygon
 has Polygon
@@ -20780,10 +20779,6 @@ has Polygon
 has Polygon
 has Polygon
 has Polygon
-predicates to add:
-Line
-predicates to add:
-Angle
 predicates to add:
 Line
 predicates to add:
@@ -20830,6 +20825,7 @@ predicates to add:
 Angle
 predicates to add:
 Polygon
+has Polygon
 has Polygon
 has Polygon
 has Polygon
@@ -20897,7 +20893,11 @@ has Polygon
 has Polygon
 has Polygon
 has Polygon
+predicates to add:
+Line
 predicates to add:
+Angle
+predicates to add:
 Line
 predicates to add:
 Angle
@@ -20953,7 +20953,6 @@ has Polygon
 has Polygon
 has Polygon
 has Polygon
-has Polygon
 predicates to add:
 Line
 predicates to add:
@@ -21073,6 +21072,10 @@ has Polygon
 has Polygon
 has Polygon
 has Polygon
+predicates to add:
+Line
+predicates to add:
+Angle
 predicates to add:
 Line
 predicates to add:
@@ -21093,6 +21096,10 @@ predicates to add:
 Line
 predicates to add:
 Angle
+predicates to add:
+Line
+predicates to add:
+Line
 predicates to add:
 Line
 predicates to add:
@@ -21119,7 +21126,6 @@ predicates to add:
 Angle
 predicates to add:
 Polygon
-has Polygon
 has Polygon
 has Polygon
 has Polygon
@@ -21150,14 +21156,6 @@ predicates to add:
 Line
 predicates to add:
 Angle
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
 predicates to add:
 Line
 predicates to add:
@@ -21194,10 +21192,7 @@ has Polygon
 has Polygon
 has Polygon
 has Polygon
-predicates to add:
-Line
-predicates to add:
-Angle
+has Polygon
 predicates to add:
 Line
 predicates to add:
@@ -21244,7 +21239,6 @@ predicates to add:
 Angle
 predicates to add:
 Polygon
-has Polygon
 has Polygon
 has Polygon
 has Polygon
@@ -21256,7 +21250,11 @@ has Polygon
 has Polygon
 has Polygon
 has Polygon
+predicates to add:
+Line
 predicates to add:
+Angle
+predicates to add:
 Line
 predicates to add:
 Angle
@@ -21313,6 +21311,7 @@ has Polygon
 has Polygon
 has Polygon
 has Polygon
+has Polygon
 predicates to add:
 Line
 predicates to add:
@@ -22929,11 +22928,11 @@ Line
 predicates to add:
 Angle
 predicates to add:
-Line
+Angle
 predicates to add:
 Line
 predicates to add:
-Angle
+Line
 predicates to add:
 Angle
 predicates to add:
@@ -22996,12 +22995,6 @@ predicates to add:
 Line
 predicates to add:
 Line
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Angle
 predicates to add:
 Angle
 predicates to add:
@@ -23014,10 +23007,8 @@ predicates to add:
 Line
 predicates to add:
 Angle
-predicates to add:
-Line
 predicates to add:
-Line
+Angle
 predicates to add:
 Angle
 predicates to add:
@@ -23040,6 +23031,8 @@ predicates to add:
 Line
 predicates to add:
 Line
+predicates to add:
+Angle
 predicates to add:
 Angle
 predicates to add:
@@ -23050,6 +23043,10 @@ predicates to add:
 Angle
 predicates to add:
 Angle
+predicates to add:
+Line
+predicates to add:
+Line
 predicates to add:
 Angle
 predicates to add:
@@ -23076,6 +23073,8 @@ predicates to add:
 Line
 predicates to add:
 Line
+predicates to add:
+Angle
 predicates to add:
 Angle
 predicates to add:

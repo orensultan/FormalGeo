@@ -169,7 +169,10 @@ Outputs for Problem B:
 
 ***MODEL_RESPONSE_BEGIN***
 EQUATIONS:
-6*x-12
+ll_ae - x
+ll_be - 6
+ll_ec - 3
+ll_ed - 4
 
 GOAL_SYMBOL:
 x
@@ -178,29 +181,73 @@ ANSWER:
 2
 
 THEOREM_SEQUENCE:
-1; circle_property_circular_power_chord_and_chord(1,AEB,CED,F); Cocircular(F,AB)&Cocircular(F,CD)&Collinear(AEB)&Collinear(CED); ["Equal(Mul(LengthOfLine(EC),LengthOfLine(ED)),Mul(LengthOfLine(EA),LengthOfLine(EB)))"]
+1; circle_property_circular_power_chord_and_chord(1,AEB,CED,F); Cocircular(F,AB)&Cocircular(F,CD)&Collinear(AEB)&Collinear(CED); ["Equal(Mul(LengthOfLine(AE),LengthOfLine(EB)),Mul(LengthOfLine(CE),LengthOfLine(ED)))"]
 ***MODEL_RESPONSE_END***
 RETRIES_MESSAGES:
 #run: 0; #retry: 1; message: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
-Verification failed. Theorem <circle_property_circular_power_chord_and_chord> branch error. Expected dict_keys(['1']) but got None. Please rewrite your response, you should change only the call to theorem <circle_property_circular_power_chord_and_chord> by adding the branch number from the dict_keys as the first argument
+Failure: Theorem <circle_property_circular_power_segment_and_segment_line> branch error. Expected dict_keys(['1']) but got None. Please rewrite your response, you should change only the call to theorem <circle_property_circular_power_segment_and_segment_line> by adding the branch number from the dict_keys as the first argument
 Model Answer:
 RETRY_ANSWER:
 2
 RETRY_THEOREM_SEQUENCE:
-1; circle_property_circular_power_chord_and_chord(AEB,CED,F); Cocircular(F,BDAC)&Collinear(AEB)&Collinear(CED); ["Equal(Mul(LengthOfLine(EC),LengthOfLine(ED)),Mul(LengthOfLine(EA),LengthOfLine(EB)))"]
+1; circle_property_circular_power_segment_and_segment_line(EAB,ECD,F); Cocircular(F,BDAC)&Collinear(AEB)&Collinear(CED); ["Equal(Mul(LengthOfLine(AE),LengthOfLine(EB)),Mul(LengthOfLine(EC),LengthOfLine(ED)))"]
 #run: 0; #retry: 2; message: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
-Verification failed.
-Theorem: circle_property_circular_power_chord_and_chord(1,AEB,CED,F)
-The language model outputs the following premises: Cocircular(F,BDAC)&Collinear(AEB)&Collinear(CED)
-The correct premises for the theorem: Cocircular(F,AB)&Cocircular(F,CD)&Collinear(AEB)&Collinear(CED)
+Theorem: circle_property_circular_power_segment_and_segment_line(1,EAB,ECD,F)
+You output the following premises: Cocircular(F,BDAC)&Collinear(AEB)&Collinear(CED)
+But the correct premises: Cocircular(F,AB)&Cocircular(F,CD)&Collinear(EAB)&Collinear(ECD)
+You output the following conclusions: Equal(Mul(LengthOfLine(AE),LengthOfLine(EB)),Mul(LengthOfLine(EC),LengthOfLine(ED)))
+But the correct conclusions: Equal(Mul(LengthOfLine(EA),LengthOfLine(EB)),Mul(LengthOfLine(EC),LengthOfLine(ED)))
 
 Model Answer:
 RETRY_ANSWER:
 2
 RETRY_THEOREM_SEQUENCE:
-1; circle_property_circular_power_chord_and_chord(1,AEB,CED,F); Cocircular(F,BDAC)&Collinear(AEB)&Collinear(CED); ["Equal(Mul(LengthOfLine(EC),LengthOfLine(ED)),Mul(LengthOfLine(EA),LengthOfLine(EB)))"]
-#RETRIES:
+1; circle_property_circular_power_segment_and_segment_line(1,EAB,ECD,F); Cocircular(F,BDAC)&Collinear(AEB)&Collinear(CED); ["Equal(Mul(LengthOfLine(AE),LengthOfLine(EB)),Mul(LengthOfLine(EC),LengthOfLine(ED)))"]
+#run: 0; #retry: 3; message: ERROR_TIER: TIER2_PREMISE_VIOLATION
+verification failed.
+
+- Error: You tried to use theorem: circle_property_circular_power_segment_and_segment_line(1,EAB,ECD,F);Cocircular(F,AB)&Cocircular(F,CD)&Collinear(EAB)&Collinear(ECD);['Equal(Mul(LengthOfLine(EA),LengthOfLine(EB)),Mul(LengthOfLine(EC),LengthOfLine(ED)))']
+Missing premise: Expected collinear fact Collinear(EAB) not found.
+Details: Stored collinear facts: ['AEB', 'CED', 'AEB', 'CED']
+- Available premises:
+  Collinear Points: AEB, CED
+  Cocircular Points: A on circle F, AB on circle F, ABC on circle F, ABCD on circle F, ABD on circle F, AC on circle F, ACD on circle F, AD on circle F, B on circle F, BC on circle F, BCD on circle F, BD on circle F, C on circle F, CD on circle F, D on circle F
+  Circles: F center: F
+- Theorems related to the goal:
+  None found that constrain this goal
+- Solver constraints directly related to this goal:
+  None found
+
+Please fix the proof.
+Model Answer:
+RETRY_ANSWER:
 2
+RETRY_THEOREM_SEQUENCE:
+1; circle_property_circular_power_segment_and_segment_line(1,EAB,ECD,F); Cocircular(F,AB)&Cocircular(F,CD)&Collinear(EAB)&Collinear(ECD); ["Equal(Mul(LengthOfLine(EA),LengthOfLine(EB)),Mul(LengthOfLine(EC),LengthOfLine(ED)))"]
+#run: 0; #retry: 4; message: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
+Theorem: circle_property_circular_power_segment_and_segment_line(1,AEB,CED,F)
+You output the following premises: Cocircular(F,AB)&Cocircular(F,CD)&Collinear(AEB)&Collinear(CED)
+But the correct premises: Cocircular(F,EB)&Cocircular(F,ED)&Collinear(CEB)&Collinear(CED)
+You output the following conclusions: Equal(Mul(LengthOfLine(AE),LengthOfLine(EB)),Mul(LengthOfLine(EC),LengthOfLine(ED)))
+But the correct conclusions: Equal(Mul(LengthOfLine(CE),LengthOfLine(CB)),Mul(LengthOfLine(CE),LengthOfLine(CD)))
+
+Model Answer:
+RETRY_ANSWER:
+2
+RETRY_THEOREM_SEQUENCE:
+1; circle_property_circular_power_segment_and_segment_line(1,AEB,CED,F); Cocircular(F,AB)&Cocircular(F,CD)&Collinear(AEB)&Collinear(CED); ["Equal(Mul(LengthOfLine(AE),LengthOfLine(EB)),Mul(LengthOfLine(EC),LengthOfLine(ED)))"]
+#run: 0; #retry: 5; message: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
+Theorem: circle_property_circular_power_chord_and_chord(1,AEB,CED,F)
+You output the following conclusions: Equal(Mul(LengthOfLine(AE),LengthOfLine(EB)),Mul(LengthOfLine(CE),LengthOfLine(ED)))
+But the correct conclusions: Equal(Mul(LengthOfLine(EC),LengthOfLine(ED)),Mul(LengthOfLine(EA),LengthOfLine(EB)))
+
+Model Answer:
+RETRY_ANSWER:
+2
+RETRY_THEOREM_SEQUENCE:
+1; circle_property_circular_power_chord_and_chord(1,AEB,CED,F); Cocircular(F,AB)&Cocircular(F,CD)&Collinear(AEB)&Collinear(CED); ["Equal(Mul(LengthOfLine(AE),LengthOfLine(EB)),Mul(LengthOfLine(CE),LengthOfLine(ED)))"]
+#RETRIES:
+5
 #RUNS:
 0
 

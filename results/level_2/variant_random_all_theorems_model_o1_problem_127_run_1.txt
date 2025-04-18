@@ -247,86 +247,44 @@ Outputs for Problem B:
 EQUATIONS:
 ma_adk-96
 ma_hgj-42
+
 GOAL_SYMBOL:
 ma_ghd
+
 ANSWER:
 42
+
 THEOREM_SEQUENCE:
-1; flat_angle(1,AGJ); Collinear(AGJ); ["Equal(MeasureOfAngle(AGJ),180)"]
-2; angle_addition(1,AGH,HGJ); Angle(AGH)&Angle(HGJ)&Angle(AGJ); ["Equal(MeasureOfAngle(AGJ),Add(MeasureOfAngle(AGH),MeasureOfAngle(HGJ)))"]
+1; angle_addition(1,AGH,HGJ); Angle(AGH)&Angle(HGJ)&Angle(AGJ); ["Equal(MeasureOfAngle(AGJ),Add(MeasureOfAngle(AGH),MeasureOfAngle(HGJ)))"]
+2; flat_angle(1,AGJ); Collinear(AGJ); ["Equal(MeasureOfAngle(AGJ),180)"]
 3; parallel_property_ipsilateral_internal_angle(1,GA,HD); ParallelBetweenLine(GA,HD)&Line(GH); ["Equal(Add(MeasureOfAngle(AGH),MeasureOfAngle(GHD)),180)"]
 ***MODEL_RESPONSE_END***
 RETRIES_MESSAGES:
-#run: 1; #retry: 1; message: ERROR_TIER: TIER3_GOAL_NOT_REACHED
-verification failed.
-
-- Goal: measure of angle GHD
-- Model answer: 42.0
-- Error: Your proof doesn't uniquely determine the value. You need to use additional theorems to constrain the value.
-- Available premises:
-  Parallel Lines: AG ∥ DH
-  Collinear Points: ADL, AGJ, CDK, CHD, CHDK, CHK, DAM, EAG, EAGJ, EAJ, EGJ, FGH, FGHI, FGI, FHI, GHI, HDK, LAM, LDAM, LDM
-  Polygons: AGHD, DAGH, GHDA, HDAG
-- Theorems related to the goal:
-  Step 1 - parallel_property_ipsilateral_internal_angle(1, GA, HD): Equal(Add(MeasureOfAngle(AGH),MeasureOfAngle(GHD)),180)
-- Solver constraints directly related to this goal:
-  ∠AGH + ∠DHG = 180
-  ∠DHG <= 180
-  ∠DHG = ∠DHF
-  ∠DHG = ∠GHK
-  ∠DHG > 0
-
-Please fix the proof.
+#run: 1; #retry: 1; message: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
+Failure: Theorem <angle_addition> branch error. Expected dict_keys(['1']) but got None. Please rewrite your response, you should change only the call to theorem <angle_addition> by adding the branch number from the dict_keys as the first argument
 Model Answer:
 RETRY_ANSWER:
 42
 RETRY_THEOREM_SEQUENCE:
-1; parallel_property_ipsilateral_internal_angle(1,GA,HD); ParallelBetweenLine(GA,HD)&Line(GH); ["Equal(Add(MeasureOfAngle(AGH),MeasureOfAngle(GHD)),180)"]
-#run: 1; #retry: 2; message: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
-Verification failed. Theorem  not defined in current GDL. Please rewrite the proof sequence, you are allowed to use only theorems from the GDL.
-Model Answer:
-RETRY_ANSWER:
-138
-RETRY_THEOREM_SEQUENCE:
-1; (collinearity_angle_substitution); Collinear(KDHC)&Angle(ADK); ["Equal(MeasureOfAngle(ADH),96)"]
-2; (collinearity_angle_substitution); Collinear(EAGJ)&Angle(HGJ); ["Equal(MeasureOfAngle(AGH),42)"]
+1; angle_addition(ABC,CBD); Angle(AGH)&Angle(HGJ)&Angle(AGJ); ["Equal(MeasureOfAngle(AGJ),Add(MeasureOfAngle(AGH),MeasureOfAngle(HGJ)))"]
+2; flat_angle(ABC); Collinear(AGJ); ["Equal(MeasureOfAngle(AGJ),180)"]
 3; parallel_property_ipsilateral_internal_angle(1,GA,HD); ParallelBetweenLine(GA,HD)&Line(GH); ["Equal(Add(MeasureOfAngle(AGH),MeasureOfAngle(GHD)),180)"]
-#run: 1; #retry: 3; message: ERROR_TIER: TIER3_GOAL_NOT_REACHED
-verification failed.
+#run: 1; #retry: 2; message: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
+Theorem: angle_addition(1,ABC,CBD)
+You output the following premises: Angle(AGH)&Angle(HGJ)&Angle(AGJ)
+But the correct premises: Angle(ABC)&Angle(CBD)&Angle(ABD)
+You output the following conclusions: Equal(MeasureOfAngle(AGJ),Add(MeasureOfAngle(AGH),MeasureOfAngle(HGJ)))
+But the correct conclusions: Equal(MeasureOfAngle(ABD),Add(MeasureOfAngle(ABC),MeasureOfAngle(CBD)))
 
-- Goal: measure of angle GHD
-- Model answer: 138.0
-- Error: Your proof doesn't uniquely determine the value. You need to use additional theorems to constrain the value.
-- Available premises:
-  Parallel Lines: AG ∥ DH
-  Collinear Points: ADL, AGJ, CDK, CHD, CHDK, CHK, DAM, EAG, EAGJ, EAJ, EGJ, FGH, FGHI, FGI, FHI, GHI, HDK, LAM, LDAM, LDM
-  Polygons: AGHD, DAGH, GHDA, HDAG
-- Theorems related to the goal:
-  Step 1 - parallel_property_ipsilateral_internal_angle(1, GA, HD): Equal(Add(MeasureOfAngle(AGH),MeasureOfAngle(GHD)),180)
-- Solver constraints directly related to this goal:
-  ∠AGH + ∠DHG = 180
-  ∠DHG <= 180
-  ∠DHG = ∠DHF
-  ∠DHG = ∠GHK
-  ∠DHG > 0
-
-Please fix the proof.
-Model Answer:
-RETRY_ANSWER:
-138
-RETRY_THEOREM_SEQUENCE:
-1; parallel_property_ipsilateral_internal_angle(1,GA,HD); ParallelBetweenLine(GA,HD)&Line(GH); ["Equal(Add(MeasureOfAngle(AGH),MeasureOfAngle(GHD)),180)"]
-#run: 1; #retry: 4; message: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
-Verification failed. Theorem <flat_angle> branch error. Expected dict_keys(['1']) but got None. Please rewrite your response, you should change only the call to theorem <flat_angle> by adding the branch number from the dict_keys as the first argument
 Model Answer:
 RETRY_ANSWER:
 42
 RETRY_THEOREM_SEQUENCE:
-1; flat_angle(ABC); Collinear(AGJ); ["Equal(MeasureOfAngle(AGJ),180)"]
-2; angle_addition(ABC,CBD); Angle(AGH)&Angle(HGJ)&Angle(AGJ); ["Equal(MeasureOfAngle(AGJ),Add(MeasureOfAngle(AGH),MeasureOfAngle(HGJ)))"]
+1; angle_addition(1,ABC,CBD); Angle(AGH)&Angle(HGJ)&Angle(AGJ); ["Equal(MeasureOfAngle(AGJ),Add(MeasureOfAngle(AGH),MeasureOfAngle(HGJ)))"]
+2; flat_angle(ABC); Collinear(AGJ); ["Equal(MeasureOfAngle(AGJ),180)"]
 3; parallel_property_ipsilateral_internal_angle(1,GA,HD); ParallelBetweenLine(GA,HD)&Line(GH); ["Equal(Add(MeasureOfAngle(AGH),MeasureOfAngle(GHD)),180)"]
 #RETRIES:
-4
+2
 #RUNS:
 1
 

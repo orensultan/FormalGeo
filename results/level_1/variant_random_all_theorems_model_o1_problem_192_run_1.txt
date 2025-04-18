@@ -167,53 +167,34 @@ ANSWER:
 114
 
 THEOREM_SEQUENCE:
-1; arc_property_circumference_angle_external(1,BSU,R); Cocircular(B,SUR)&Angle(URS); ["Equal(MeasureOfAngle(URS),Mul(MeasureOfArc(BSU),1/2))"]
+1; (external_secant_angle_formula); Collinear(RST)&Collinear(RUV)&Cocircular(B,SVTU); ["Equal(Sub(MeasureOfArc(BSU),MeasureOfArc(BVT)),Mul(MeasureOfAngle(SRU),2))"]
 ***MODEL_RESPONSE_END***
 RETRIES_MESSAGES:
-#run: 0; #retry: 1; message: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
-Failure: The THEOREM_SEQUENCE you provided is empty. Please generate a proof again, using the similar problems I provided (A1, A2, A3, A4, A5), along with the GDL_DICTIONARY of theorems.
+#run: 1; #retry: 1; message: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
+Failure: Theorem <circle_property_circular_power_segment_and_segment_angle> branch error. Expected dict_keys(['1', '2']) but got None. Please rewrite your response, you should change only the call to theorem <circle_property_circular_power_segment_and_segment_angle> by adding the branch number from the dict_keys as the first argument
 Model Answer:
 RETRY_ANSWER:
 114
 RETRY_THEOREM_SEQUENCE:
-
-#run: 0; #retry: 2; message: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
-Theorem: circle_property_circular_power_segment_and_segment_angle(1,BSU,BVT,B)
-You output the following premises: Cocircular(B,SUVT)&Collinear(RST)&Collinear(RUV)
-But the correct premises: Cocircular(B,SVTU)&Collinear(BSU)&Collinear(BVT)
+1; circle_property_circular_power_segment_and_segment_angle(RSU,RVT,B); Cocircular(B,SUVT)&Collinear(RSU)&Collinear(RVT); ["Equal(Sub(MeasureOfArc(BSU),MeasureOfArc(BVT)),Mul(MeasureOfAngle(SRU),2))"]
+#run: 1; #retry: 2; message: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
+Theorem: circle_property_circular_power_segment_and_segment_angle(1,RSU,RVT,B)
+You output the following premises: Cocircular(B,SUVT)&Collinear(RSU)&Collinear(RVT)
+But the correct premises: Cocircular(B,SVTU)&Collinear(RSU)&Collinear(RVT)
 You output the following conclusions: Equal(Sub(MeasureOfArc(BSU),MeasureOfArc(BVT)),Mul(MeasureOfAngle(SRU),2))
-But the correct conclusions: Equal(Sub(MeasureOfArc(BTU),MeasureOfArc(BSV)),Mul(MeasureOfAngle(SBV),2))
+But the correct conclusions: Equal(Sub(MeasureOfArc(BTU),MeasureOfArc(BSV)),Mul(MeasureOfAngle(SRV),2))
 
 Model Answer:
 RETRY_ANSWER:
 114
 RETRY_THEOREM_SEQUENCE:
-1; circle_property_circular_power_segment_and_segment_angle(1,BSU,BVT,B); Cocircular(B,SUVT)&Collinear(RST)&Collinear(RUV); ["Equal(Sub(MeasureOfArc(BSU),MeasureOfArc(BVT)),Mul(MeasureOfAngle(SRU),2))"]
-#run: 0; #retry: 3; message: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
-Failure: The THEOREM_SEQUENCE you provided is empty. Please generate a proof again, using the similar problems I provided (A1, A2, A3, A4, A5), along with the GDL_DICTIONARY of theorems.
-Model Answer:
-RETRY_ANSWER:
-114
-RETRY_THEOREM_SEQUENCE:
-(No directly applicable theorem from the GDL matches the “external secant-secant angle = half the difference of arcs” relationship that would formally derive arc(BSU) − arc(BVT) = 2×∠SRU. Therefore, no GDL steps can be provided. The result follows from a known circle-secant external angle theorem not listed in the GDL.)
-#run: 0; #retry: 4; message: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
-Theorem: arc_property_circumference_angle_external(1,BSU,R)
-You output the following premises: Cocircular(B,SVTU)&Angle(SRU)
-But the correct premises: Cocircular(B,SUR)&Angle(URS)
-You output the following conclusions: Equal(MeasureOfAngle(SRU),Mul(Sub(MeasureOfArc(BSU),MeasureOfArc(BVT)),1/2))
-But the correct conclusions: Equal(MeasureOfAngle(URS),Mul(MeasureOfArc(BSU),1/2))
-
-Model Answer:
-RETRY_ANSWER:
-114
-RETRY_THEOREM_SEQUENCE:
-1; arc_property_circumference_angle_external(1,BSU,R); Cocircular(B,SVTU)&Angle(SRU); ["Equal(MeasureOfAngle(SRU),Mul(Sub(MeasureOfArc(BSU),MeasureOfArc(BVT)),1/2))"]
-#run: 0; #retry: 5; message: ERROR_TIER: TIER2_PREMISE_VIOLATION
+1; circle_property_circular_power_segment_and_segment_angle(1,RSU,RVT,B); Cocircular(B,SUVT)&Collinear(RSU)&Collinear(RVT); ["Equal(Sub(MeasureOfArc(BSU),MeasureOfArc(BVT)),Mul(MeasureOfAngle(SRU),2))"]
+#run: 1; #retry: 3; message: ERROR_TIER: TIER2_PREMISE_VIOLATION
 verification failed.
 
-- Error: You tried to use theorem: arc_property_circumference_angle_external(1,BSU,R);Cocircular(B,SUR)&Angle(URS);['Equal(MeasureOfAngle(URS),Mul(MeasureOfArc(BSU),1/2))']
-Missing premise: Cocircular(B,SUR) not established
-Details: Accumulated cocircular facts: [('B', 'S'), ('B', 'U'), ('B', 'V'), ('B', 'T'), ('B', 'S', 'U'), ('B', 'S', 'U'), ('B', 'S', 'V'), ('B', 'S', 'V'), ('B', 'S', 'T'), ('B', 'S', 'T'), ('B', 'U', 'V'), ('B', 'U', 'V'), ('B', 'T', 'U'), ('B', 'T', 'U'), ('B', 'T', 'V'), ('B', 'T', 'V'), ('B', 'S', 'U', 'V'), ('B', 'S', 'U', 'V'), ('B', 'S', 'U', 'V'), ('B', 'S', 'U', 'V'), ('B', 'S', 'U', 'V'), ('B', 'S', 'U', 'V'), ('B', 'S', 'T', 'U'), ('B', 'S', 'T', 'U'), ('B', 'S', 'T', 'U'), ('B', 'S', 'T', 'U'), ('B', 'S', 'T', 'U'), ('B', 'S', 'T', 'U'), ('B', 'S', 'T', 'V'), ('B', 'S', 'T', 'V'), ('B', 'S', 'T', 'V'), ('B', 'S', 'T', 'V'), ('B', 'S', 'T', 'V'), ('B', 'S', 'T', 'V'), ('B', 'T', 'U', 'V'), ('B', 'T', 'U', 'V'), ('B', 'T', 'U', 'V'), ('B', 'T', 'U', 'V'), ('B', 'T', 'U', 'V'), ('B', 'T', 'U', 'V'), ('B', 'S', 'T', 'U', 'V'), ('B', 'S', 'T', 'U', 'V'), ('B', 'S', 'T', 'U', 'V'), ('B', 'S', 'T', 'U', 'V'), ('B', 'S', 'T', 'U', 'V'), ('B', 'S', 'T', 'U', 'V'), ('B', 'S', 'T', 'U', 'V')]
+- Error: You tried to use theorem: circle_property_circular_power_segment_and_segment_angle(1,RSU,RVT,B);Cocircular(B,SVTU)&Collinear(RSU)&Collinear(RVT);['Equal(Sub(MeasureOfArc(BTU),MeasureOfArc(BSV)),Mul(MeasureOfAngle(SRV),2))']
+Missing premise: Collinear(RSU) not established
+Details: Known collinear facts: [['R', 'S', 'T'], ['R', 'U', 'V'], ['R', 'S', 'T'], ['R', 'U', 'V']]
 - Available premises:
   Collinear Points: RST, RUV
   Cocircular Points: S on circle B, ST on circle B, STU on circle B, STUV on circle B, STV on circle B, SU on circle B, SUV on circle B, SV on circle B, T on circle B, TU on circle B, TUV on circle B, TV on circle B, U on circle B, UV on circle B, V on circle B
@@ -227,11 +208,25 @@ Model Answer:
 RETRY_ANSWER:
 114
 RETRY_THEOREM_SEQUENCE:
-1; arc_property_circumference_angle_external(1,BSU,R); Cocircular(B,SUR)&Angle(URS); ["Equal(MeasureOfAngle(URS),Mul(MeasureOfArc(BSU),1/2))"]
+1; circle_property_circular_power_segment_and_segment_angle(1,RSU,RVT,B); Cocircular(B,SVTU)&Collinear(RSU)&Collinear(RVT); ["Equal(Sub(MeasureOfArc(BTU),MeasureOfArc(BSV)),Mul(MeasureOfAngle(SRV),2))"]
+#run: 1; #retry: 4; message: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
+Failure: The THEOREM_SEQUENCE you provided is empty. Please generate a proof again, using the similar problems I provided (A1, A2, A3, A4, A5), along with the GDL_DICTIONARY of theorems.
+Model Answer:
+RETRY_ANSWER:
+114
+RETRY_THEOREM_SEQUENCE:
+
+#run: 1; #retry: 5; message: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
+Failure: Theorem  not defined in current GDL. Please rewrite the proof sequence, you are allowed to use only theorems from the GDL.
+Model Answer:
+RETRY_ANSWER:
+114
+RETRY_THEOREM_SEQUENCE:
+1; (external_secant_angle_formula); Collinear(RST)&Collinear(RUV)&Cocircular(B,SVTU); ["Equal(Sub(MeasureOfArc(BSU),MeasureOfArc(BVT)),Mul(MeasureOfAngle(SRU),2))"]
 #RETRIES:
 5
 #RUNS:
-0
+1
 
 
 GT_EQUATIONS:
