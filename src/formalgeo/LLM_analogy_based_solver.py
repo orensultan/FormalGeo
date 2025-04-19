@@ -666,7 +666,6 @@ if __name__ == "__main__":
                         default="src/formalgeo/prompt/geometry_similar_problems_prompt_291224.txt")
     args = parser.parse_args()
     problems = save_problems('formalgeo7k_v1/problems')
-
     try:
         for _, problems_id in chosen_problems_by_level.items():
             for problem2_id in problems_id:

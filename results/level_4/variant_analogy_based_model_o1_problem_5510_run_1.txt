@@ -224,43 +224,61 @@ Outputs for Problem B:
 ***MODEL_RESPONSE_BEGIN***
 EQUATIONS:
 AreaOfTriangle(ABC)-65
-AreaOfTriangle(ABC)-Add(AreaOfTriangle(DCA),AreaOfTriangle(DAB))
-ll_ab-13
-ll_ac-13
-ma_cmd-90
-(ma_and-90)
+LengthOfLine(AB)-13
+LengthOfLine(AC)-13
 
 GOAL_SYMBOL:
-ll_dn+ll_dm
+LengthOfLine(DN)+LengthOfLine(DM)
 
 ANSWER:
-17
+No unique solution can be determined with the given data and available theorems.
 
 THEOREM_SEQUENCE:
-(There are no applicable theorems in the given GDL to fully constrain and derive the numeric value of DN + DM. Thus, no additional steps can be provided.)
+1; isosceles_triangle_judgment_line_equal(1,ABC); Polygon(ABC)&Equal(LengthOfLine(AB),LengthOfLine(AC)); ["IsoscelesTriangle(ABC)"]
+2; triangle_area_formula_common(1,ABC); Polygon(ABC); ["Equal(AreaOfTriangle(ABC),Mul(HeightOfTriangle(ABC),LengthOfLine(BC),1/2))"]
+3; right_triangle_judgment_angle(1,CMD); Polygon(CMD)&Equal(MeasureOfAngle(CMD),90); ["RightTriangle(CMD)"]
 ***MODEL_RESPONSE_END***
 RETRIES_MESSAGES:
 #run: 1; #retry: 1; message: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
-Failure: Theorem <right_triangle_judgment_angle> branch error. Expected dict_keys(['1']) but got None. Please rewrite your response, you should change only the call to theorem <right_triangle_judgment_angle> by adding the branch number from the dict_keys as the first argument
+Failure: Theorem <isosceles_triangle_judgment_line_equal> branch error. Expected dict_keys(['1']) but got None. Please rewrite your response, you should change only the call to theorem <isosceles_triangle_judgment_line_equal> by adding the branch number from the dict_keys as the first argument
 Model Answer:
 RETRY_ANSWER:
-17
+10
 RETRY_THEOREM_SEQUENCE:
-1; right_triangle_judgment_angle(CMD); Polygon(CMD)&Equal(MeasureOfAngle(CMD),90); ["RightTriangle(CMD)"]
-2; right_triangle_property_pythagorean(CMD); RightTriangle(CMD); ["Equal(Add(Pow(LengthOfLine(CM),2),Pow(LengthOfLine(MD),2)),Pow(LengthOfLine(CD),2))"]
-#run: 1; #retry: 2; message: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
-Failure: Theorem <right_triangle_property_pythagorean> branch error. Expected dict_keys(['1']) but got None. Please rewrite your response, you should change only the call to theorem <right_triangle_property_pythagorean> by adding the branch number from the dict_keys as the first argument
-Model Answer:
-RETRY_ANSWER:
-17
-RETRY_THEOREM_SEQUENCE:
-1; right_triangle_judgment_angle(1,CMD); Polygon(CMD)&Equal(MeasureOfAngle(CMD),90); ["RightTriangle(CMD)"]
-2; right_triangle_property_pythagorean(CMD); RightTriangle(CMD); ["Equal(Add(Pow(LengthOfLine(CM),2),Pow(LengthOfLine(MD),2)),Pow(LengthOfLine(CD),2))"]
-#run: 1; #retry: 3; message: ERROR_TIER: TIER3_GOAL_NOT_REACHED
+1; isosceles_triangle_judgment_line_equal(ABC); Polygon(ABC)&Equal(LengthOfLine(AB),LengthOfLine(AC)); ["IsoscelesTriangle(ABC)"]
+2; triangle_area_formula_common(ABC); Polygon(ABC); ["Equal(AreaOfTriangle(ABC),Mul(HeightOfTriangle(ABC),LengthOfLine(BC),1/2))"]
+#run: 1; #retry: 2; message: ERROR_TIER: TIER3_GOAL_NOT_REACHED
 verification failed.
 
 - Goal: sum of lines DN + DM
-- Model answer: 17.0
+- Model answer: 10.0
+- Error: Your proof doesn't uniquely determine the value. You need to use additional theorems to constrain the value.
+- Available premises:
+  Perpendicular Lines: AN ⊥ DN
+  Collinear Points: AMC, ANB, BDC
+  Polygons: ABC, ABD, ABDM, ACB, ACD, ADB, ADC, ADM, ADN, AMD, AND, ANDC, ANDM, BDMA, BDN, BND, CAND, CDM, CMD, DCAN, DMAB, DMAN, MABD, MAND, NDCA, NDMA
+- Theorems related to the goal:
+  None found that constrain this goal
+- Solver constraints directly related to this goal:
+  |DM| > 0
+  |DN| > 0
+
+Please fix the proof.
+Model Answer:
+RETRY_ANSWER:
+10
+RETRY_THEOREM_SEQUENCE:
+1; isosceles_triangle_judgment_line_equal(1,ABC); Polygon(ABC)&Equal(LengthOfLine(AB),LengthOfLine(AC)); ["IsoscelesTriangle(ABC)"]
+2; triangle_area_formula_common(1,ABC); Polygon(ABC); ["Equal(AreaOfTriangle(ABC),Mul(HeightOfTriangle(ABC),LengthOfLine(BC),1/2))"]
+#run: 1; #retry: 3; message: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
+Failure: The THEOREM_SEQUENCE you provided is empty. Please generate a proof again, using the similar problems I provided (A1, A2, A3, A4, A5), along with the GDL_DICTIONARY of theorems.
+Model Answer:
+
+#run: 1; #retry: 4; message: ERROR_TIER: TIER3_GOAL_NOT_REACHED
+verification failed.
+
+- Goal: sum of lines DN + DM
+- Model answer: 10.0
 - Error: Your proof doesn't uniquely determine the value. You need to use additional theorems to constrain the value.
 - Available premises:
   Perpendicular Lines: AN ⊥ DN
@@ -270,34 +288,26 @@ verification failed.
 - Theorems related to the goal:
   None found that constrain this goal
 - Solver constraints directly related to this goal:
-  |CD| > |DM|
-  |CM| + |DM| > |CD|
-  |CM|*|CM| + |DM|*|DM| ==
-|CD|*|CD|
   |DM| > 0
   |DN| > 0
 
 Please fix the proof.
 Model Answer:
 RETRY_ANSWER:
-17
+10
 RETRY_THEOREM_SEQUENCE:
-1; right_triangle_judgment_angle(1,CMD); Polygon(CMD)&Equal(MeasureOfAngle(CMD),90); ["RightTriangle(CMD)"]
-2; right_triangle_property_pythagorean(1,CMD); RightTriangle(CMD); ["Equal(Add(Pow(LengthOfLine(CM),2),Pow(LengthOfLine(MD),2)),Pow(LengthOfLine(CD),2))"]
-#run: 1; #retry: 4; message: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
-Failure: Theorem <> not defined in current GDL. Please rewrite the proof sequence, you are allowed to use only theorems from the GDL.
-Model Answer:
-RETRY_ANSWER:
-17
-RETRY_THEOREM_SEQUENCE:
-(Unable to construct a further valid proof with the current GDL. No theorem in the provided dictionary allows deriving RightTriangle(AND) or similar steps from PerpendicularBetweenLine(AN,DN) to constrain DN. Thus, the final numeric result cannot be shown under these GDL constraints.)
+1; isosceles_triangle_judgment_line_equal(1,ABC); Polygon(ABC)&Equal(LengthOfLine(AB),LengthOfLine(AC)); ["IsoscelesTriangle(ABC)"]  
+2; triangle_area_formula_common(1,ABC); Polygon(ABC); ["Equal(AreaOfTriangle(ABC),Mul(HeightOfTriangle(ABC),LengthOfLine(BC),1/2))"]  
+3; right_triangle_judgment_angle(1,CMD); Polygon(CMD)&Equal(MeasureOfAngle(CMD),90); ["RightTriangle(CMD)"]
 #run: 1; #retry: 5; message: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
-Failure: Theorem <> not defined in current GDL. Please rewrite the proof sequence, you are allowed to use only theorems from the GDL.
+The final answer should be a numeric answer, you gave an expression with algebraic variable. Please fix your proof.
 Model Answer:
 RETRY_ANSWER:
-17
+No unique solution can be determined with the given data and available theorems.
 RETRY_THEOREM_SEQUENCE:
-(There are no applicable theorems in the given GDL to fully constrain and derive the numeric value of DN + DM. Thus, no additional steps can be provided.)
+1; isosceles_triangle_judgment_line_equal(1,ABC); Polygon(ABC)&Equal(LengthOfLine(AB),LengthOfLine(AC)); ["IsoscelesTriangle(ABC)"]
+2; triangle_area_formula_common(1,ABC); Polygon(ABC); ["Equal(AreaOfTriangle(ABC),Mul(HeightOfTriangle(ABC),LengthOfLine(BC),1/2))"]
+3; right_triangle_judgment_angle(1,CMD); Polygon(CMD)&Equal(MeasureOfAngle(CMD),90); ["RightTriangle(CMD)"]
 #RETRIES:
 5
 #RUNS:

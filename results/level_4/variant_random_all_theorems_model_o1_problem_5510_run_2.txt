@@ -218,22 +218,18 @@ Outputs for Problem B:
 
 ***MODEL_RESPONSE_BEGIN***
 EQUATIONS:
-AreaOfTriangle(ABC)-65
-LengthOfLine(AB)-13
-LengthOfLine(AC)-13
-MeasureOfAngle(CMD)-90
+(1) AreaOfTriangle(ABC) - 65  
+(2) LengthOfLine(AB) - 13  
+(3) LengthOfLine(AC) - 13  
 
 GOAL_SYMBOL:
 Add(LengthOfLine(DN),LengthOfLine(DM))
 
 ANSWER:
-10
+No valid proof can be constructed with the currently provided theorems and constraints.
 
-THEOREM_SEQUENCE:
-1; isosceles_triangle_judgment_line_equal(1,ABC); Polygon(ABC)&Equal(LengthOfLine(AB),LengthOfLine(AC)); ["IsoscelesTriangle(ABC)"]
-2; triangle_area_formula_common(1,ABC); Polygon(ABC); ["Equal(AreaOfTriangle(ABC),Mul(HeightOfTriangle(ABC),LengthOfLine(BC),1/2))"]
-3; right_triangle_judgment_angle(1,CMD); Polygon(CMD)&Equal(MeasureOfAngle(CMD),90); ["RightTriangle(CMD)"]
-4; perpendicular_judgment_angle(1,AN,DN); Angle(AND)&Equal(MeasureOfAngle(AND),90); ["PerpendicularBetweenLine(AN,DN)"]
+THEOREM_SEQUENCE:  
+(No further theorems can be applied to derive Add(LengthOfLine(DN),LengthOfLine(DM)) = 10 under the given GDL.)
 ***MODEL_RESPONSE_END***
 RETRIES_MESSAGES:
 #run: 2; #retry: 1; message: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
@@ -244,39 +240,26 @@ RETRY_ANSWER:
 RETRY_THEOREM_SEQUENCE:
 1; isosceles_triangle_judgment_line_equal(ABC); Polygon(ABC)&Equal(LengthOfLine(AB),LengthOfLine(AC)); ["IsoscelesTriangle(ABC)"]  
 2; triangle_area_formula_common(ABC); Polygon(ABC); ["Equal(AreaOfTriangle(ABC),Mul(HeightOfTriangle(ABC),LengthOfLine(BC),1/2))"]  
-3; right_triangle_judgment_angle(CMD); Polygon(CMD)&Equal(MeasureOfAngle(CMD),90); ["RightTriangle(CMD)"]  
-4; perpendicular_judgment_angle(AN,DN); Angle(AND)&Equal(MeasureOfAngle(AND),90); ["PerpendicularBetweenLine(AN,DN)"]
+3; right_triangle_judgment_angle(CMD); Polygon(CMD)&Equal(MeasureOfAngle(CMD),90); ["RightTriangle(CMD)"]
 #run: 2; #retry: 2; message: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
 Failure: Theorem <triangle_area_formula_common> branch error. Expected dict_keys(['1']) but got None. Please rewrite your response, you should change only the call to theorem <triangle_area_formula_common> by adding the branch number from the dict_keys as the first argument
 Model Answer:
 RETRY_ANSWER:
 10
 RETRY_THEOREM_SEQUENCE:
-1; isosceles_triangle_judgment_line_equal(1,ABC); Polygon(ABC)&Equal(LengthOfLine(AB),LengthOfLine(AC)); ["IsoscelesTriangle(ABC)"]
-2; triangle_area_formula_common(ABC); Polygon(ABC); ["Equal(AreaOfTriangle(ABC),Mul(HeightOfTriangle(ABC),LengthOfLine(BC),1/2))"]
+1; isosceles_triangle_judgment_line_equal(1,ABC); Polygon(ABC)&Equal(LengthOfLine(AB),LengthOfLine(AC)); ["IsoscelesTriangle(ABC)"]  
+2; triangle_area_formula_common(ABC); Polygon(ABC); ["Equal(AreaOfTriangle(ABC),Mul(HeightOfTriangle(ABC),LengthOfLine(BC),1/2))"]  
 3; right_triangle_judgment_angle(CMD); Polygon(CMD)&Equal(MeasureOfAngle(CMD),90); ["RightTriangle(CMD)"]
-4; perpendicular_judgment_angle(AN,DN); Angle(AND)&Equal(MeasureOfAngle(AND),90); ["PerpendicularBetweenLine(AN,DN)"]
 #run: 2; #retry: 3; message: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
 Failure: Theorem <right_triangle_judgment_angle> branch error. Expected dict_keys(['1']) but got None. Please rewrite your response, you should change only the call to theorem <right_triangle_judgment_angle> by adding the branch number from the dict_keys as the first argument
 Model Answer:
 RETRY_ANSWER:
 10
 RETRY_THEOREM_SEQUENCE:
-1; isosceles_triangle_judgment_line_equal(1,ABC); Polygon(ABC)&Equal(LengthOfLine(AB),LengthOfLine(AC)); ["IsoscelesTriangle(ABC)"]
-2; triangle_area_formula_common(1,ABC); Polygon(ABC); ["Equal(AreaOfTriangle(ABC),Mul(HeightOfTriangle(ABC),LengthOfLine(BC),1/2))"]
+1; isosceles_triangle_judgment_line_equal(1,ABC); Polygon(ABC)&Equal(LengthOfLine(AB),LengthOfLine(AC)); ["IsoscelesTriangle(ABC)"]  
+2; triangle_area_formula_common(1,ABC); Polygon(ABC); ["Equal(AreaOfTriangle(ABC),Mul(HeightOfTriangle(ABC),LengthOfLine(BC),1/2))"]  
 3; right_triangle_judgment_angle(CMD); Polygon(CMD)&Equal(MeasureOfAngle(CMD),90); ["RightTriangle(CMD)"]
-4; perpendicular_judgment_angle(AN,DN); Angle(AND)&Equal(MeasureOfAngle(AND),90); ["PerpendicularBetweenLine(AN,DN)"]
-#run: 2; #retry: 4; message: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
-Failure: Theorem <perpendicular_judgment_angle> branch error. Expected dict_keys(['1']) but got None. Please rewrite your response, you should change only the call to theorem <perpendicular_judgment_angle> by adding the branch number from the dict_keys as the first argument
-Model Answer:
-RETRY_ANSWER:
-10
-RETRY_THEOREM_SEQUENCE:
-1; isosceles_triangle_judgment_line_equal(1,ABC); Polygon(ABC)&Equal(LengthOfLine(AB),LengthOfLine(AC)); ["IsoscelesTriangle(ABC)"]
-2; triangle_area_formula_common(1,ABC); Polygon(ABC); ["Equal(AreaOfTriangle(ABC),Mul(HeightOfTriangle(ABC),LengthOfLine(BC),1/2))"]
-3; right_triangle_judgment_angle(1,CMD); Polygon(CMD)&Equal(MeasureOfAngle(CMD),90); ["RightTriangle(CMD)"]
-4; perpendicular_judgment_angle(AN,DN); Angle(AND)&Equal(MeasureOfAngle(AND),90); ["PerpendicularBetweenLine(AN,DN)"]
-#run: 2; #retry: 5; message: ERROR_TIER: TIER3_GOAL_NOT_REACHED
+#run: 2; #retry: 4; message: ERROR_TIER: TIER3_GOAL_NOT_REACHED
 verification failed.
 
 - Goal: sum of lines DN + DM
@@ -298,10 +281,16 @@ Model Answer:
 RETRY_ANSWER:
 10
 RETRY_THEOREM_SEQUENCE:
-1; isosceles_triangle_judgment_line_equal(1,ABC); Polygon(ABC)&Equal(LengthOfLine(AB),LengthOfLine(AC)); ["IsoscelesTriangle(ABC)"]
-2; triangle_area_formula_common(1,ABC); Polygon(ABC); ["Equal(AreaOfTriangle(ABC),Mul(HeightOfTriangle(ABC),LengthOfLine(BC),1/2))"]
+1; isosceles_triangle_judgment_line_equal(1,ABC); Polygon(ABC)&Equal(LengthOfLine(AB),LengthOfLine(AC)); ["IsoscelesTriangle(ABC)"]  
+2; triangle_area_formula_common(1,ABC); Polygon(ABC); ["Equal(AreaOfTriangle(ABC),Mul(HeightOfTriangle(ABC),LengthOfLine(BC),1/2))"]  
 3; right_triangle_judgment_angle(1,CMD); Polygon(CMD)&Equal(MeasureOfAngle(CMD),90); ["RightTriangle(CMD)"]
-4; perpendicular_judgment_angle(1,AN,DN); Angle(AND)&Equal(MeasureOfAngle(AND),90); ["PerpendicularBetweenLine(AN,DN)"]
+#run: 2; #retry: 5; message: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
+Failure: The THEOREM_SEQUENCE you provided is empty. Please generate a proof again, using the similar problems I provided (A1, A2, A3, A4, A5), along with the GDL_DICTIONARY of theorems.
+Model Answer:
+RETRY_ANSWER:
+No valid proof can be constructed with the currently provided theorems and constraints.
+RETRY_THEOREM_SEQUENCE:
+(No further theorems can be applied to derive Add(LengthOfLine(DN),LengthOfLine(DM)) = 10 under the given GDL.)
 #RETRIES:
 5
 #RUNS:

@@ -18,6 +18,10 @@ def evaluate_expression(expr):
         # Replace sqrt with math.sqrt and √ with math.sqrt
         expr = expr.replace('sqrt', 'math.sqrt')
         expr = expr.replace('√', 'math.sqrt')
+        
+        # Replace pi with math.pi
+        expr = expr.replace('pi', 'math.pi')
+        expr = expr.replace('π', 'math.pi')
 
         # Handle implicit multiplication
         expr = re.sub(r'(\d+)([a-zA-Z(])', r'\1*\2', expr)
@@ -50,28 +54,40 @@ def convert_to_float(number_str):
 
 def calculate_success_rates(base_path):
     results = defaultdict(lambda: defaultdict(dict))
-    for level in range(1, 3):
+    
+    # Initialize counters for both variants
+    variant_stats = {
+        "variant_analogy_based_model_o1": {
+            "total_problems": 0,
+            "successful_answers_first_try": 0,
+            "successful_answers_with_retries": 0,
+            "successful_theorems_first_try": 0,
+            "successful_theorems_with_retries": 0
+        },
+        "variant_random_all_theorems_model_o1": {
+            "total_problems": 0,
+            "successful_answers_first_try": 0,
+            "successful_answers_with_retries": 0,
+            "successful_theorems_first_try": 0,
+            "successful_theorems_with_retries": 0
+        }
+    }
+
+    # Process each level
+    for level in range(1, 5):
         level_dir = os.path.join(base_path, f"level_{level}")
         if not os.path.exists(level_dir):
             continue
 
-        # Initialize counters for each variant
-        variant_stats = {
-            "variant_analogy_based_model_o1": {
-                "total_problems": 0,
-                "successful_answers_first_try": 0,
-                "successful_answers_with_retries": 0,
-                "successful_theorems_first_try": 0,
-                "successful_theorems_with_retries": 0
-            },
-            "variant_random_all_theorems_model_o1": {
+        # Reset variant stats for this level
+        for variant in variant_stats:
+            variant_stats[variant] = {
                 "total_problems": 0,
                 "successful_answers_first_try": 0,
                 "successful_answers_with_retries": 0,
                 "successful_theorems_first_try": 0,
                 "successful_theorems_with_retries": 0
             }
-        }
 
         # Group files by variant and problem_id
         problem_groups = defaultdict(lambda: defaultdict(list))
@@ -153,16 +169,14 @@ def calculate_success_rates(base_path):
                                     print(f"Found RETRY_ANSWER in {run_0_file}: {retry_answer} -> {retry_answer_float}")
                                     print(f"GT_ANSWER: {gt_answer} -> {gt_answer_float}")
                                     if retry_answer_float is not None and retry_answer_float == gt_answer_float:
-                                        print(
-                                            f"Setting first try success for {run_0_file} due to matching RETRY_ANSWER")
+                                        print(f"Setting first try success for {run_0_file} due to matching RETRY_ANSWER")
                                         any_first_try_success = True
                                         any_answer_correct = True
-                                    break
+                                        break
 
                         # Only check ANSWER in model response section if no RETRY_ANSWER was found
                         if retry_answer_float is None:
-                            print(
-                                f"No RETRY_ANSWER found in {run_0_file}, checking for ANSWER in model response section...")
+                            print(f"No RETRY_ANSWER found in {run_0_file}, checking for ANSWER in model response section...")
 
                             # Find model response section
                             model_response_start = -1
@@ -184,8 +198,7 @@ def calculate_success_rates(base_path):
                                         if i + 1 < len(model_response):
                                             answer = model_response[i + 1].strip()
                                             answer_float = convert_to_float(answer)
-                                            print(
-                                                f"Found ANSWER in model response section of {run_0_file}: {answer} -> {answer_float}")
+                                            print(f"Found ANSWER in model response section of {run_0_file}: {answer} -> {answer_float}")
                                             break
 
                                 if answer_float is not None and answer_float == gt_answer_float:
@@ -197,15 +210,18 @@ def calculate_success_rates(base_path):
                         retries = None
                         runs = None
                         print(f"\nChecking theorem sequence success for {run_0_file}:")
+                        print(f"  File path: {file_path}")
 
                         # Find RETRIES_MESSAGES section
                         retries_messages_start = -1
                         for i, line in enumerate(lines):
                             if line.strip() == "RETRIES_MESSAGES:":
                                 retries_messages_start = i
+                                print(f"  Found RETRIES_MESSAGES at line {i}")
                                 break
 
                         if retries_messages_start != -1:
+                            print(f"  Processing RETRIES_MESSAGES section starting at line {retries_messages_start}")
                             # Look for RETRIES and RUNS in RETRIES_MESSAGES section
                             for i, line in enumerate(lines[retries_messages_start:]):
                                 if line.strip() == "#RETRIES:":
@@ -233,17 +249,22 @@ def calculate_success_rates(base_path):
 
                         print(f"  Final values - RETRIES: {retries}, RUNS: {runs}")
 
-                        # Only count as success if both RETRIES and RUNS are 0
-                        if retries is not None and runs is not None:
+                        # Count as success if this is run_0 and we have valid RETRIES and RUNS values
+                        if 'run_0' in run_0_file and retries is not None and runs is not None:
                             if retries == 0 and runs == 0:
-                                print(
-                                    f"  Setting theorem sequence first try success for {run_0_file} due to RETRIES=0 and RUNS=0")
+                                print(f"  Setting theorem sequence first try success for {run_0_file} due to RETRIES=0 and RUNS=0")
                                 any_theorem_success = True
+                                print(f"  any_theorem_success set to True for problem {problem_id}")
                             else:
-                                print(
-                                    f"  No theorem sequence first try success for {run_0_file} - RETRIES={retries}, RUNS={runs}")
+                                print(f"  No theorem sequence first try success for {run_0_file} - RETRIES={retries}, RUNS={runs}")
                         else:
-                            print(f"  Missing RETRIES or RUNS in {run_0_file}")
+                            print(f"  Missing RETRIES or RUNS in {run_0_file} or not run_0")
+                            if 'run_0' not in run_0_file:
+                                print(f"  File is not run_0: {run_0_file}")
+                            if retries is None:
+                                print(f"  RETRIES is None")
+                            if runs is None:
+                                print(f"  RUNS is None")
 
                 print(f"Problem {problem_id} final flags:")
                 print(f"any_first_try_success: {any_first_try_success}")
@@ -258,6 +279,7 @@ def calculate_success_rates(base_path):
                 if any_theorem_success:
                     variant_stats[variant]["successful_theorems_first_try"] += 1
                     print(f"Incrementing theorem sequence first try success counter for {variant}")
+                    print(f"Current count for {variant}: {variant_stats[variant]['successful_theorems_first_try']}")
 
                 # Check for theorem sequence success with verifier feedback
                 theorem_with_retries_success = True
@@ -299,19 +321,16 @@ def calculate_success_rates(base_path):
                                 if i + 1 < len(lines):
                                     retry_answer = lines[i + 1].strip()
                                     retry_answer_float = convert_to_float(retry_answer)
-                                    print(
-                                        f"Found RETRY_ANSWER in {result_file}: {retry_answer} -> {retry_answer_float}")
+                                    print(f"Found RETRY_ANSWER in {result_file}: {retry_answer} -> {retry_answer_float}")
                                     print(f"GT_ANSWER: {gt_answer} -> {gt_answer_float}")
                                     if retry_answer_float is not None and retry_answer_float == gt_answer_float:
-                                        print(
-                                            f"Setting with retries success for {result_file} due to matching RETRY_ANSWER")
+                                        print(f"Setting with retries success for {result_file} due to matching RETRY_ANSWER")
                                         any_answer_correct = True
                                         break
 
                         # If no RETRY_ANSWER found, check for ANSWER in model response section
                         if not any_answer_correct:
-                            print(
-                                f"No matching RETRY_ANSWER found in {result_file}, checking for ANSWER in model response section...")
+                            print(f"No matching RETRY_ANSWER found in {result_file}, checking for ANSWER in model response section...")
 
                             # Find model response section
                             model_response_start = -1
@@ -333,8 +352,7 @@ def calculate_success_rates(base_path):
                                         if i + 1 < len(model_response):
                                             answer = model_response[i + 1].strip()
                                             answer_float = convert_to_float(answer)
-                                            print(
-                                                f"Found ANSWER in model response section of {result_file}: {answer} -> {answer_float}")
+                                            print(f"Found ANSWER in model response section of {result_file}: {answer} -> {answer_float}")
                                             break
 
                                 if answer_float is not None and answer_float == gt_answer_float:
@@ -350,21 +368,17 @@ def calculate_success_rates(base_path):
                     variant_stats[variant]["successful_answers_with_retries"] += 1
                     print(f"Incrementing with retries success counter for {variant}")
 
-        # Calculate and store success rates for each variant
+        # Calculate and store success rates for each variant at this level
         for variant, stats in variant_stats.items():
             total_problems = stats["total_problems"]
 
             # Answer success rates
-            answer_success_rate_first_try = stats[
-                                                "successful_answers_first_try"] / total_problems if total_problems > 0 else 0
-            answer_success_rate_with_retries = stats[
-                                                   "successful_answers_with_retries"] / total_problems if total_problems > 0 else 0
+            answer_success_rate_first_try = stats["successful_answers_first_try"] / total_problems if total_problems > 0 else 0
+            answer_success_rate_with_retries = stats["successful_answers_with_retries"] / total_problems if total_problems > 0 else 0
 
             # Theorem sequence success rates
-            theorem_success_rate_first_try = stats[
-                                                 "successful_theorems_first_try"] / total_problems if total_problems > 0 else 0
-            theorem_success_rate_with_retries = stats[
-                                                    "successful_theorems_with_retries"] / total_problems if total_problems > 0 else 0
+            theorem_success_rate_first_try = stats["successful_theorems_first_try"] / total_problems if total_problems > 0 else 0
+            theorem_success_rate_with_retries = stats["successful_theorems_with_retries"] / total_problems if total_problems > 0 else 0
 
             results[f"level{level}"][variant] = {
                 "success_rate_answer_first_try": answer_success_rate_first_try,
@@ -377,11 +391,7 @@ def calculate_success_rates(base_path):
 
 
 def plot_success_rates(results):
-    """Create two plots: one for answer success rates and one for theorem sequence success rates."""
-    levels = [1, 2]
-    variants = ["variant_analogy_based_model_o1", "variant_random_all_theorems_model_o1"]
-
-    # Prepare data for plotting
+    # Initialize data structure
     data = {
         'analogy_based': {
             'answer_first_try': [],
@@ -389,7 +399,7 @@ def plot_success_rates(results):
             'theorem_first_try': [],
             'theorem_with_retries': []
         },
-        'random': {
+        'random_all_theorems': {
             'answer_first_try': [],
             'answer_with_retries': [],
             'theorem_first_try': [],
@@ -397,29 +407,30 @@ def plot_success_rates(results):
         }
     }
 
+    # Process all levels
+    levels = range(1, 5)
     for level in levels:
         level_key = f"level{level}"
         if level_key in results:
-            for variant in variants:
-                if variant in results[level_key]:
-                    if variant == "variant_analogy_based_model_o1":
-                        data['analogy_based']['answer_first_try'].append(
-                            results[level_key][variant]["success_rate_answer_first_try"])
-                        data['analogy_based']['answer_with_retries'].append(
-                            results[level_key][variant]["success_rate_answer_with_retries"])
-                        data['analogy_based']['theorem_first_try'].append(
-                            results[level_key][variant]["success_rate_theorem_sequence_first_try"])
-                        data['analogy_based']['theorem_with_retries'].append(
-                            results[level_key][variant]["success_rate_theorem_sequence_with_retries"])
-                    else:
-                        data['random']['answer_first_try'].append(
-                            results[level_key][variant]["success_rate_answer_first_try"])
-                        data['random']['answer_with_retries'].append(
-                            results[level_key][variant]["success_rate_answer_with_retries"])
-                        data['random']['theorem_first_try'].append(
-                            results[level_key][variant]["success_rate_theorem_sequence_first_try"])
-                        data['random']['theorem_with_retries'].append(
-                            results[level_key][variant]["success_rate_theorem_sequence_with_retries"])
+            for variant in results[level_key]:
+                if variant == "variant_analogy_based_model_o1":
+                    data['analogy_based']['answer_first_try'].append(
+                        results[level_key][variant]["success_rate_answer_first_try"])
+                    data['analogy_based']['answer_with_retries'].append(
+                        results[level_key][variant]["success_rate_answer_with_retries"])
+                    data['analogy_based']['theorem_first_try'].append(
+                        results[level_key][variant]["success_rate_theorem_sequence_first_try"])
+                    data['analogy_based']['theorem_with_retries'].append(
+                        results[level_key][variant]["success_rate_theorem_sequence_with_retries"])
+                elif variant == "variant_random_all_theorems_model_o1":
+                    data['random_all_theorems']['answer_first_try'].append(
+                        results[level_key][variant]["success_rate_answer_first_try"])
+                    data['random_all_theorems']['answer_with_retries'].append(
+                        results[level_key][variant]["success_rate_answer_with_retries"])
+                    data['random_all_theorems']['theorem_first_try'].append(
+                        results[level_key][variant]["success_rate_theorem_sequence_first_try"])
+                    data['random_all_theorems']['theorem_with_retries'].append(
+                        results[level_key][variant]["success_rate_theorem_sequence_with_retries"])
 
     # Set style parameters
     plt.rcParams['font.size'] = 12
@@ -436,20 +447,20 @@ def plot_success_rates(results):
 
     # Create answer success rate plot
     plt.figure(figsize=(10, 6))
-    # Random examples - both lines in blue
-    plt.plot(levels, data['random']['answer_first_try'], 'o-', color='#1f77b4', label='Random examples (first try)',
-             linewidth=2, markersize=8, markeredgewidth=1.5)
-    plt.plot(levels, data['random']['answer_with_retries'], 's--', color='#1f77b4',
-             label='Random examples (with verifier feedback)', linewidth=2, markersize=8, markeredgewidth=1.5)
     # Analogous examples - both lines in orange
     plt.plot(levels, data['analogy_based']['answer_first_try'], 'o-', color='#ff7f0e',
              label='Analogous examples (first try)', linewidth=2, markersize=8, markeredgewidth=1.5)
     plt.plot(levels, data['analogy_based']['answer_with_retries'], 's--', color='#ff7f0e',
              label='Analogous examples (with verifier feedback)', linewidth=2, markersize=8, markeredgewidth=1.5)
+    # Random all theorems - both lines in blue
+    plt.plot(levels, data['random_all_theorems']['answer_first_try'], 'o-', color='#1f77b4',
+             label='Random all theorems (first try)', linewidth=2, markersize=8, markeredgewidth=1.5)
+    plt.plot(levels, data['random_all_theorems']['answer_with_retries'], 's--', color='#1f77b4',
+             label='Random all theorems (with verifier feedback)', linewidth=2, markersize=8, markeredgewidth=1.5)
 
     plt.xlabel('Level', fontsize=12)
     plt.ylabel('Success Rate', fontsize=12)
-    plt.title('o1 Model Answer Success Rate Comparison Across Levels', fontsize=14)
+    plt.title('o1 Model Answer Success Rate (All Levels)', fontsize=14)
     plt.grid(True)
     plt.legend(fontsize=10)
     plt.gca().yaxis.set_major_formatter(plt.FuncFormatter(lambda y, _: '{:.0%}'.format(y)))
@@ -462,20 +473,20 @@ def plot_success_rates(results):
 
     # Create theorem sequence success rate plot
     plt.figure(figsize=(10, 6))
-    # Random examples - both lines in blue
-    plt.plot(levels, data['random']['theorem_first_try'], 'o-', color='#1f77b4', label='Random examples (first try)',
-             linewidth=2, markersize=8, markeredgewidth=1.5)
-    plt.plot(levels, data['random']['theorem_with_retries'], 's--', color='#1f77b4',
-             label='Random examples (with verifier feedback)', linewidth=2, markersize=8, markeredgewidth=1.5)
     # Analogous examples - both lines in orange
     plt.plot(levels, data['analogy_based']['theorem_first_try'], 'o-', color='#ff7f0e',
              label='Analogous examples (first try)', linewidth=2, markersize=8, markeredgewidth=1.5)
     plt.plot(levels, data['analogy_based']['theorem_with_retries'], 's--', color='#ff7f0e',
              label='Analogous examples (with verifier feedback)', linewidth=2, markersize=8, markeredgewidth=1.5)
+    # Random all theorems - both lines in blue
+    plt.plot(levels, data['random_all_theorems']['theorem_first_try'], 'o-', color='#1f77b4',
+             label='Random all theorems (first try)', linewidth=2, markersize=8, markeredgewidth=1.5)
+    plt.plot(levels, data['random_all_theorems']['theorem_with_retries'], 's--', color='#1f77b4',
+             label='Random all theorems (with verifier feedback)', linewidth=2, markersize=8, markeredgewidth=1.5)
 
     plt.xlabel('Level', fontsize=12)
     plt.ylabel('Success Rate', fontsize=12)
-    plt.title('o1 Model Theorem Sequence Success Rate Comparison Across Levels', fontsize=14)
+    plt.title('o1 Model Theorem Sequence Success Rate (All Levels)', fontsize=14)
     plt.grid(True)
     plt.legend(fontsize=10)
     plt.gca().yaxis.set_major_formatter(plt.FuncFormatter(lambda y, _: '{:.0%}'.format(y)))
