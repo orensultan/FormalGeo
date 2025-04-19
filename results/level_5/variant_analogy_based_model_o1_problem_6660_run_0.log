@@ -319,6 +319,24 @@ Line
 predicates to add:
 Line
 predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
 Line
 predicates to add:
 Angle
@@ -338,48 +356,6 @@ predicates to add:
 Line
 predicates to add:
 Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
 predicates to add:
 Line
 predicates to add:
@@ -405,15 +381,9 @@ Line
 predicates to add:
 Line
 predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
 Line
 predicates to add:
 Angle
-predicates to add:
-Line
 predicates to add:
 Line
 predicates to add:
@@ -427,9 +397,39 @@ Angle
 predicates to add:
 Line
 predicates to add:
+Line
+predicates to add:
 Angle
 predicates to add:
 Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
 predicates to add:
 Line
 predicates to add:
@@ -685,15 +685,19 @@ IsCentreOfCircle
 predicates to add:
 IsDiameterOfCircle
 Verifier result: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
-Verification failed. Theorem <diameter_of_circle_property_right_angle> branch error. Expected dict_keys(['1']) but got None. Please rewrite your response, you should change only the call to theorem <diameter_of_circle_property_right_angle> by adding the branch number from the dict_keys as the first argument
+Theorem: arc_property_circumference_angle_external(1,OAD,B)
+You output the following premises: Cocircular(O,ABD)&Angle(ABD)
+But the correct premises: Cocircular(O,ADB)&Angle(DBA)
+You output the following conclusions: Equal(MeasureOfAngle(ABD),Mul(MeasureOfArc(OAD),1/2))
+But the correct conclusions: Equal(MeasureOfAngle(DBA),Mul(MeasureOfArc(OAD),1/2))
+
 Model Answer:
 RETRY_ANSWER:
-70
+110
 RETRY_THEOREM_SEQUENCE:
-1; diameter_of_circle_property_right_angle(BDC,O); IsDiameterOfCircle(BD,O)&Cocircular(O,BDC)&Angle(BDC); ["PerpendicularBetweenLine(BD,CD)"]
-2; triangle_property_angle_sum(ABD); Polygon(ABD); ["Equal(Add(MeasureOfAngle(ABD),MeasureOfAngle(BDA),MeasureOfAngle(DAB)),180)"]
-3; triangle_property_angle_sum(BCD); Polygon(BCD); ["Equal(Add(MeasureOfAngle(BCD),MeasureOfAngle(BDC),MeasureOfAngle(DCB)),180)"]
-4; triangle_property_angle_sum(ABC); Polygon(ABC); ["Equal(Add(MeasureOfAngle(ABC),MeasureOfAngle(BCA),MeasureOfAngle(CAB)),180)"]
+1; arc_property_circumference_angle_external(1,OAD,B); Cocircular(O,ABD)&Angle(ABD); ["Equal(MeasureOfAngle(ABD),Mul(MeasureOfArc(OAD),1/2))"]  
+2; arc_addition_measure(1,OAD,ODB); Arc(OAD)&Arc(ODB)&Arc(OAB); ["Equal(MeasureOfArc(OAB),Add(MeasureOfArc(OAD),MeasureOfArc(ODB)))"]  
+3; arc_property_circumference_angle_external(1,OAB,C); Cocircular(O,ABC)&Angle(BCA); ["Equal(MeasureOfAngle(BCA),Mul(MeasureOfArc(OAB),1/2))"]
 Retry attempt: 1
 Content written to results/level_5/variant_analogy_based_model_o1_problem_6660_run_0_to_verify.txt
 predicates to add:
@@ -1016,6 +1020,24 @@ Line
 predicates to add:
 Line
 predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
 Line
 predicates to add:
 Angle
@@ -1035,48 +1057,6 @@ predicates to add:
 Line
 predicates to add:
 Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
 predicates to add:
 Line
 predicates to add:
@@ -1102,15 +1082,9 @@ Line
 predicates to add:
 Line
 predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
 Line
 predicates to add:
 Angle
-predicates to add:
-Line
 predicates to add:
 Line
 predicates to add:
@@ -1124,9 +1098,39 @@ Angle
 predicates to add:
 Line
 predicates to add:
+Line
+predicates to add:
 Angle
 predicates to add:
 Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
 predicates to add:
 Line
 predicates to add:
@@ -1381,20 +1385,34 @@ predicates to add:
 IsCentreOfCircle
 predicates to add:
 IsDiameterOfCircle
-Verifier result: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
-Verification failed.
-Theorem: diameter_of_circle_property_right_angle(1,BDC,O)
-The language model outputs the following premises: IsDiameterOfCircle(BD,O)&Cocircular(O,BDC)&Angle(BDC)
-The correct premises for the theorem: IsDiameterOfCircle(CB,O)&Cocircular(O,BDC)&Angle(BDC)
+Verifier result: ERROR_TIER: TIER3_GOAL_NOT_REACHED
+verification failed.
 
+- Goal: measure of angle BCA
+- Model answer: 110.0
+- Error: Your proof doesn't uniquely determine the value. You need to use additional theorems to constrain the value.
+- Available premises:
+  Collinear Points: AMC, BMD, BOD, BOM, BOMD, DMO
+  Cocircular Points: A on circle O, AB on circle O, ABC on circle O, ABCD on circle O, ABD on circle O, AC on circle O, ACD on circle O, AD on circle O, B on circle O, BC on circle O, BCD on circle O, BD on circle O, C on circle O, CD on circle O, D on circle O
+  Circles: O center: O
+  Circle Diameters: BD diameter of O
+  Polygons: ABC, ABM, ACB, AMB, BCM, BMC
+- Theorems related to the goal:
+  Step 3 - arc_property_circumference_angle_external(1, OAB, C): Equal(MeasureOfAngle(BCA),Mul(MeasureOfArc(OAB),1/2))
+- Solver constraints directly related to this goal:
+  ∠ACB <= 180
+  ∠ACB = arc(OAB)*1/2
+  ∠ACB > 0
+  ∠BCM = ∠ACB
+
+Please fix the proof.
 Model Answer:
 RETRY_ANSWER:
-70
+110
 RETRY_THEOREM_SEQUENCE:
-1; diameter_of_circle_property_right_angle(1,BDC,O); IsDiameterOfCircle(BD,O)&Cocircular(O,BDC)&Angle(BDC); ["PerpendicularBetweenLine(BD,CD)"]
-2; triangle_property_angle_sum(ABD); Polygon(ABD); ["Equal(Add(MeasureOfAngle(ABD),MeasureOfAngle(BDA),MeasureOfAngle(DAB)),180)"]
-3; triangle_property_angle_sum(BCD); Polygon(BCD); ["Equal(Add(MeasureOfAngle(BCD),MeasureOfAngle(BDC),MeasureOfAngle(DCB)),180)"]
-4; triangle_property_angle_sum(ABC); Polygon(ABC); ["Equal(Add(MeasureOfAngle(ABC),MeasureOfAngle(BCA),MeasureOfAngle(CAB)),180)"]
+1; arc_property_circumference_angle_external(1,OAD,B); Cocircular(O,ADB)&Angle(DBA); ["Equal(MeasureOfAngle(DBA),Mul(MeasureOfArc(OAD),1/2))"]  
+2; arc_addition_measure(1,OAD,ODB); Arc(OAD)&Arc(ODB)&Arc(OAB); ["Equal(MeasureOfArc(OAB),Add(MeasureOfArc(OAD),MeasureOfArc(ODB)))"]  
+3; arc_property_circumference_angle_external(1,OAB,C); Cocircular(O,ABC)&Angle(BCA); ["Equal(MeasureOfAngle(BCA),Mul(MeasureOfArc(OAB),1/2))"]
 Retry attempt: 2
 Content written to results/level_5/variant_analogy_based_model_o1_problem_6660_run_0_to_verify.txt
 predicates to add:
@@ -1717,6 +1735,24 @@ Line
 predicates to add:
 Line
 predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
 Line
 predicates to add:
 Angle
@@ -1736,48 +1772,6 @@ predicates to add:
 Line
 predicates to add:
 Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
 predicates to add:
 Line
 predicates to add:
@@ -1803,15 +1797,9 @@ Line
 predicates to add:
 Line
 predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
 Line
 predicates to add:
 Angle
-predicates to add:
-Line
 predicates to add:
 Line
 predicates to add:
@@ -1825,9 +1813,39 @@ Angle
 predicates to add:
 Line
 predicates to add:
+Line
+predicates to add:
 Angle
 predicates to add:
 Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
 predicates to add:
 Line
 predicates to add:
@@ -2083,15 +2101,21 @@ IsCentreOfCircle
 predicates to add:
 IsDiameterOfCircle
 Verifier result: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
-Verification failed. Theorem <triangle_property_angle_sum> branch error. Expected dict_keys(['1']) but got None. Please rewrite your response, you should change only the call to theorem <triangle_property_angle_sum> by adding the branch number from the dict_keys as the first argument
+Theorem: arc_property_center_angle(1,OBD,O)
+You output the following premises: Arc(OBD)&Angle(BOD)&IsCentreOfCircle(O,O)
+But the correct premises: Arc(OBD)&Angle(DOB)&IsCentreOfCircle(O,O)
+You output the following conclusions: Equal(MeasureOfArc(OBD),MeasureOfAngle(BOD))
+But the correct conclusions: Equal(MeasureOfArc(OBD),MeasureOfAngle(DOB))
+
 Model Answer:
 RETRY_ANSWER:
-70
+110
 RETRY_THEOREM_SEQUENCE:
-1; diameter_of_circle_property_right_angle(1,BDC,O); IsDiameterOfCircle(CB,O)&Cocircular(O,BDC)&Angle(BDC); ["PerpendicularBetweenLine(BD,CD)"]
-2; triangle_property_angle_sum(ABD); Polygon(ABD); ["Equal(Add(MeasureOfAngle(ABD),MeasureOfAngle(BDA),MeasureOfAngle(DAB)),180)"]
-3; triangle_property_angle_sum(BCD); Polygon(BCD); ["Equal(Add(MeasureOfAngle(BCD),MeasureOfAngle(BDC),MeasureOfAngle(DCB)),180)"]
-4; triangle_property_angle_sum(ABC); Polygon(ABC); ["Equal(Add(MeasureOfAngle(ABC),MeasureOfAngle(BCA),MeasureOfAngle(CAB)),180)"]
+1; arc_property_circumference_angle_external(1,OAD,B); Cocircular(O,ADB)&Angle(DBA); ["Equal(MeasureOfAngle(DBA),Mul(MeasureOfArc(OAD),1/2))"]  
+2; flat_angle(1,BOD); Collinear(BOD); ["Equal(MeasureOfAngle(BOD),180)"]  
+3; arc_property_center_angle(1,OBD,O); Arc(OBD)&Angle(BOD)&IsCentreOfCircle(O,O); ["Equal(MeasureOfArc(OBD),MeasureOfAngle(BOD))"]  
+4; arc_addition_measure(1,OAD,ODB); Arc(OAD)&Arc(ODB)&Arc(OAB); ["Equal(MeasureOfArc(OAB),Add(MeasureOfArc(OAD),MeasureOfArc(ODB)))"]  
+5; arc_property_circumference_angle_external(1,OAB,C); Cocircular(O,ABC)&Angle(BCA); ["Equal(MeasureOfAngle(BCA),Mul(MeasureOfArc(OAB),1/2))"]
 Retry attempt: 3
 Content written to results/level_5/variant_analogy_based_model_o1_problem_6660_run_0_to_verify.txt
 predicates to add:
@@ -2414,6 +2438,24 @@ Line
 predicates to add:
 Line
 predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
 Line
 predicates to add:
 Angle
@@ -2433,48 +2475,6 @@ predicates to add:
 Line
 predicates to add:
 Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
 predicates to add:
 Line
 predicates to add:
@@ -2500,15 +2500,9 @@ Line
 predicates to add:
 Line
 predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
 Line
 predicates to add:
 Angle
-predicates to add:
-Line
 predicates to add:
 Line
 predicates to add:
@@ -2522,9 +2516,39 @@ Angle
 predicates to add:
 Line
 predicates to add:
+Line
+predicates to add:
 Angle
 predicates to add:
 Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
 predicates to add:
 Line
 predicates to add:
@@ -2779,731 +2803,5 @@ predicates to add:
 IsCentreOfCircle
 predicates to add:
 IsDiameterOfCircle
-Verifier result: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
-Verification failed.
-Theorem: triangle_property_angle_sum(1,BCD)
-The language model outputs the following conclusions: Equal(Add(MeasureOfAngle(BCD),MeasureOfAngle(BDC),MeasureOfAngle(DCB)),180)
-The correct conclusions for the theorem: Equal(Add(MeasureOfAngle(BCD),MeasureOfAngle(CDB),MeasureOfAngle(DBC)),180)
-
-Model Answer:
-RETRY_ANSWER:
-70
-RETRY_THEOREM_SEQUENCE:
-1; diameter_of_circle_property_right_angle(1,BDC,O); IsDiameterOfCircle(CB,O)&Cocircular(O,BDC)&Angle(BDC); ["PerpendicularBetweenLine(BD,CD)"]
-2; triangle_property_angle_sum(1,ABD); Polygon(ABD); ["Equal(Add(MeasureOfAngle(ABD),MeasureOfAngle(BDA),MeasureOfAngle(DAB)),180)"]
-3; triangle_property_angle_sum(1,BCD); Polygon(BCD); ["Equal(Add(MeasureOfAngle(BCD),MeasureOfAngle(BDC),MeasureOfAngle(DCB)),180)"]
-4; triangle_property_angle_sum(1,ABC); Polygon(ABC); ["Equal(Add(MeasureOfAngle(ABC),MeasureOfAngle(BCA),MeasureOfAngle(CAB)),180)"]
-Retry attempt: 4
-Content written to results/level_5/variant_analogy_based_model_o1_problem_6660_run_0_to_verify.txt
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Circle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Polygon
-has Polygon
-has Polygon
-has Polygon
-has Polygon
-has Polygon
-has Polygon
-has Polygon
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Polygon
-has Polygon
-has Polygon
-has Polygon
-has Polygon
-has Polygon
-has Polygon
-has Polygon
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Polygon
-has Polygon
-has Polygon
-has Polygon
-has Polygon
-has Polygon
-has Polygon
-has Polygon
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Equation
-predicates to add:
-IsCentreOfCircle
-predicates to add:
-IsDiameterOfCircle
-Verifier result: ERROR_TIER: TIER2_PREMISE_VIOLATION
-verification failed.
-
-- Error: You tried to use theorem: diameter_of_circle_property_right_angle(1,BDC,O);IsDiameterOfCircle(CB,O)&Cocircular(O,BDC)&Angle(BDC);['PerpendicularBetweenLine(BD,CD)']
-Missing premise: Line CB is not recorded as a diameter of circle O
-- Available premises:
-  Collinear Points: AMC, BMD, BOD, BOM, BOMD, DMO
-  Cocircular Points: A on circle O, AB on circle O, ABC on circle O, ABCD on circle O, ABD on circle O, AC on circle O, ACD on circle O, AD on circle O, B on circle O, BC on circle O, BCD on circle O, BD on circle O, C on circle O, CD on circle O, D on circle O
-  Circles: O center: O
-  Circle Diameters: BD diameter of O
-  Polygons: ABC, ABM, ACB, AMB, BCM, BMC
-- Theorems related to the goal:
-  None found that constrain this goal
-- Solver constraints directly related to this goal:
-  None found
-
-Please fix the proof.
-Model Answer:
-RETRY_ANSWER:
-70
-RETRY_THEOREM_SEQUENCE:
-1; diameter_of_circle_property_right_angle(1,BDC,O); IsDiameterOfCircle(CB,O)&Cocircular(O,BDC)&Angle(BDC); ["PerpendicularBetweenLine(BD,CD)"]
-2; triangle_property_angle_sum(1,ABD); Polygon(ABD); ["Equal(Add(MeasureOfAngle(ABD),MeasureOfAngle(BDA),MeasureOfAngle(DAB)),180)"]
-3; triangle_property_angle_sum(1,BCD); Polygon(BCD); ["Equal(Add(MeasureOfAngle(BCD),MeasureOfAngle(CDB),MeasureOfAngle(DBC)),180)"]
-4; triangle_property_angle_sum(1,ABC); Polygon(ABC); ["Equal(Add(MeasureOfAngle(ABC),MeasureOfAngle(BCA),MeasureOfAngle(CAB)),180)"]
-Retry attempt: 5
+Theorem sequence verified correctly
 Content written to results/level_5/variant_analogy_based_model_o1_problem_6660_run_0.txt

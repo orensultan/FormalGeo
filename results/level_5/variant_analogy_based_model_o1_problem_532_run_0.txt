@@ -114,10 +114,10 @@ Outputs for Problem B:
 
 ***MODEL_RESPONSE_BEGIN***
 EQUATIONS:
-ma_abe-(x+10)
-ma_bdg-31
-ma_caf-(x-11)
-ma_gch-(2*x-42)
+ma_abe - x - 10
+ma_bdg - 31
+ma_caf - x + 11
+ma_gch - 2*x + 42
 
 GOAL_SYMBOL:
 x
@@ -126,53 +126,58 @@ ANSWER:
 No valid solution
 
 THEOREM_SEQUENCE:
-1; flat_angle(1,FAB); Collinear(FAB); ["Equal(MeasureOfAngle(FAB),180)"]  
-2; flat_angle(1,DBE); Collinear(DBE); ["Equal(MeasureOfAngle(DBE),180)"]  
-3; flat_angle(1,CDG); Collinear(CDG); ["Equal(MeasureOfAngle(CDG),180)"]  
-4; flat_angle(1,ACH); Collinear(ACH); ["Equal(MeasureOfAngle(ACH),180)"]  
-5; angle_addition(1,CAF,FAB); Angle(CAF)&Angle(FAB)&Angle(CAB); ["Equal(MeasureOfAngle(CAB),Add(MeasureOfAngle(CAF),MeasureOfAngle(FAB)))"]  
-6; angle_addition(1,ABE,EBD); Angle(ABE)&Angle(EBD)&Angle(ABD); ["Equal(MeasureOfAngle(ABD),Add(MeasureOfAngle(ABE),MeasureOfAngle(EBD)))"]  
-7; angle_addition(1,BDC,CDG); Angle(BDC)&Angle(CDG)&Angle(BDG); ["Equal(MeasureOfAngle(BDG),Add(MeasureOfAngle(BDC),MeasureOfAngle(CDG)))"]  
-8; angle_addition(1,GCH,HCA); Angle(GCH)&Angle(HCA)&Angle(GCA); ["Equal(MeasureOfAngle(GCA),Add(MeasureOfAngle(GCH),MeasureOfAngle(HCA)))"]  
-9; quadrilateral_property_angle_sum(1,ACDB); Polygon(ACDB); ["Equal(Add(MeasureOfAngle(ACD),MeasureOfAngle(CDB),MeasureOfAngle(DBA),MeasureOfAngle(BAC)),360)"]  
 ***MODEL_RESPONSE_END***
 RETRIES_MESSAGES:
 #run: 0; #retry: 1; message: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
-Verification failed.
-Theorem: quadrilateral_property_angle_sum(1,ACDB)
-The language model outputs the following conclusions: Equal(Add(MeasureOfAngle(CAB),MeasureOfAngle(ACD),MeasureOfAngle(CDB),MeasureOfAngle(DBA)),360)
-The correct conclusions for the theorem: Equal(Add(MeasureOfAngle(ACD),MeasureOfAngle(CDB),MeasureOfAngle(DBA),MeasureOfAngle(BAC)),360)
+Theorem: angle_addition(1,CAF,FAH)
+You output the following premises: Angle(CAF)&Angle(FAH)&Angle(CFH)
+But the correct premises: Angle(CAF)&Angle(FAH)&Angle(CAH)
+You output the following conclusions: Equal(MeasureOfAngle(CFH),Add(MeasureOfAngle(CAF),MeasureOfAngle(FAH)))
+But the correct conclusions: Equal(MeasureOfAngle(CAH),Add(MeasureOfAngle(CAF),MeasureOfAngle(FAH)))
 
 Model Answer:
 RETRY_ANSWER:
 93
 RETRY_THEOREM_SEQUENCE:
-1; flat_angle(1,FAB); Collinear(FAB); ["Equal(MeasureOfAngle(FAB),180)"]  
-2; flat_angle(1,DBE); Collinear(DBE); ["Equal(MeasureOfAngle(DBE),180)"]  
-3; flat_angle(1,CDG); Collinear(CDG); ["Equal(MeasureOfAngle(CDG),180)"]  
-4; flat_angle(1,ACH); Collinear(ACH); ["Equal(MeasureOfAngle(ACH),180)"]  
-5; angle_addition(1,CAF,FAB); Angle(CAF)&Angle(FAB)&Angle(CAB); ["Equal(MeasureOfAngle(CAB),Add(MeasureOfAngle(CAF),MeasureOfAngle(FAB)))"]  
-6; angle_addition(1,ABE,EBD); Angle(ABE)&Angle(EBD)&Angle(ABD); ["Equal(MeasureOfAngle(ABD),Add(MeasureOfAngle(ABE),MeasureOfAngle(EBD)))"]  
-7; angle_addition(1,BDC,CDG); Angle(BDC)&Angle(CDG)&Angle(BDG); ["Equal(MeasureOfAngle(BDG),Add(MeasureOfAngle(BDC),MeasureOfAngle(CDG)))"]  
-8; angle_addition(1,GCH,HCA); Angle(GCH)&Angle(HCA)&Angle(GCA); ["Equal(MeasureOfAngle(GCA),Add(MeasureOfAngle(GCH),MeasureOfAngle(HCA)))"]  
-9; quadrilateral_property_angle_sum(1,ACDB); Polygon(ACDB); ["Equal(Add(MeasureOfAngle(CAB),MeasureOfAngle(ACD),MeasureOfAngle(CDB),MeasureOfAngle(DBA)),360)"]
-#run: 0; #retry: 2; message: ERROR_TIER: TIER3_GOAL_NOT_REACHED
+1; flat_angle(1,FAB); Collinear(FAB); ["Equal(MeasureOfAngle(FAB),180)"]
+2; flat_angle(1,DBE); Collinear(DBE); ["Equal(MeasureOfAngle(DBE),180)"]
+3; flat_angle(1,CDG); Collinear(CDG); ["Equal(MeasureOfAngle(CDG),180)"]
+4; flat_angle(1,ACH); Collinear(ACH); ["Equal(MeasureOfAngle(ACH),180)"]
+5; angle_addition(1,ABE,EBD); Angle(ABE)&Angle(EBD)&Angle(ABD); ["Equal(MeasureOfAngle(ABD),Add(MeasureOfAngle(ABE),MeasureOfAngle(EBD)))"]
+6; angle_addition(1,BDG,GDC); Angle(BDG)&Angle(GDC)&Angle(BDC); ["Equal(MeasureOfAngle(BDC),Add(MeasureOfAngle(BDG),MeasureOfAngle(GDC)))"]
+7; angle_addition(1,CAF,FAH); Angle(CAF)&Angle(FAH)&Angle(CFH); ["Equal(MeasureOfAngle(CFH),Add(MeasureOfAngle(CAF),MeasureOfAngle(FAH)))"]
+8; angle_addition(1,GCH,CHA); Angle(GCH)&Angle(CHA)&Angle(GCA); ["Equal(MeasureOfAngle(GCA),Add(MeasureOfAngle(GCH),MeasureOfAngle(CHA)))"]
+9; quadrilateral_property_angle_sum(1,ACDB); Polygon(ACDB); ["Equal(Add(MeasureOfAngle(ACD),MeasureOfAngle(CDB),MeasureOfAngle(DBA),MeasureOfAngle(BAC)),360)"]
+#run: 0; #retry: 2; message: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
+Theorem: angle_addition(1,GCH,CHA)
+You output the following premises: Angle(GCH)&Angle(CHA)&Angle(GCA)
+But the correct premises: Angle(GHC)&Angle(CHA)&Angle(GHA)
+You output the following conclusions: Equal(MeasureOfAngle(GCA),Add(MeasureOfAngle(GCH),MeasureOfAngle(CHA)))
+But the correct conclusions: Equal(MeasureOfAngle(GHA),Add(MeasureOfAngle(GHC),MeasureOfAngle(CHA)))
+
+Model Answer:
+RETRY_ANSWER:
+93
+RETRY_THEOREM_SEQUENCE:
+1; flat_angle(1,FAB); Collinear(FAB); ["Equal(MeasureOfAngle(FAB),180)"]
+2; flat_angle(1,DBE); Collinear(DBE); ["Equal(MeasureOfAngle(DBE),180)"]
+3; flat_angle(1,CDG); Collinear(CDG); ["Equal(MeasureOfAngle(CDG),180)"]
+4; flat_angle(1,ACH); Collinear(ACH); ["Equal(MeasureOfAngle(ACH),180)"]
+5; angle_addition(1,ABE,EBD); Angle(ABE)&Angle(EBD)&Angle(ABD); ["Equal(MeasureOfAngle(ABD),Add(MeasureOfAngle(ABE),MeasureOfAngle(EBD)))"]
+6; angle_addition(1,BDG,GDC); Angle(BDG)&Angle(GDC)&Angle(BDC); ["Equal(MeasureOfAngle(BDC),Add(MeasureOfAngle(BDG),MeasureOfAngle(GDC)))"]
+7; angle_addition(1,CAF,FAH); Angle(CAF)&Angle(FAH)&Angle(CAH); ["Equal(MeasureOfAngle(CAH),Add(MeasureOfAngle(CAF),MeasureOfAngle(FAH)))"]
+8; angle_addition(1,GCH,CHA); Angle(GCH)&Angle(CHA)&Angle(GCA); ["Equal(MeasureOfAngle(GCA),Add(MeasureOfAngle(GCH),MeasureOfAngle(CHA)))"]
+9; quadrilateral_property_angle_sum(1,ACDB); Polygon(ACDB); ["Equal(Add(MeasureOfAngle(ACD),MeasureOfAngle(CDB),MeasureOfAngle(DBA),MeasureOfAngle(BAC)),360)"]
+#run: 0; #retry: 3; message: ERROR_TIER: TIER3_GOAL_NOT_REACHED
 verification failed.
 
 - Goal: value of x
 - Model answer: 93.0
 - Error: Your proof contains contradictory constraints. Check for incorrect values in premises, improper theorem application, or conclusions that contradict earlier assertions.
   Contradictory constraints:
-    ∠ACD + ∠BDC + ∠ABD + ∠BAC = 360
-    ∠ACG = ∠GCH + ∠ACH
-    ∠BAC = ∠CAF + ∠BAF
-    ∠ACH = 180
-    ∠BAF = 180
-    ∠GCH = 2*x - 42
-    ∠CAF = x - 11
-    ∠ACD = ∠ACG
-    ∠ABD > 0
-    ∠BDC > 0
+    ∠CHG = ∠AHG
+    ∠AHC > 0
+    ∠AHG = ∠CHG + ∠AHC
 - Available premises:
   Collinear Points: ACH, BAF, CDG, DBE
   Polygons: ACDB, BACD, CDBA, DBAC
@@ -187,44 +192,29 @@ Model Answer:
 RETRY_ANSWER:
 93
 RETRY_THEOREM_SEQUENCE:
-1; flat_angle(1,FAB); Collinear(FAB); ["Equal(MeasureOfAngle(FAB),180)"]  
-2; flat_angle(1,DBE); Collinear(DBE); ["Equal(MeasureOfAngle(DBE),180)"]  
-3; flat_angle(1,CDG); Collinear(CDG); ["Equal(MeasureOfAngle(CDG),180)"]  
-4; flat_angle(1,ACH); Collinear(ACH); ["Equal(MeasureOfAngle(ACH),180)"]  
-5; angle_addition(1,CAF,FAB); Angle(CAF)&Angle(FAB)&Angle(CAB); ["Equal(MeasureOfAngle(CAB),Add(MeasureOfAngle(CAF),MeasureOfAngle(FAB)))"]  
-6; angle_addition(1,ABE,EBD); Angle(ABE)&Angle(EBD)&Angle(ABD); ["Equal(MeasureOfAngle(ABD),Add(MeasureOfAngle(ABE),MeasureOfAngle(EBD)))"]  
-7; angle_addition(1,BDC,CDG); Angle(BDC)&Angle(CDG)&Angle(BDG); ["Equal(MeasureOfAngle(BDG),Add(MeasureOfAngle(BDC),MeasureOfAngle(CDG)))"]  
-8; angle_addition(1,GCH,HCA); Angle(GCH)&Angle(HCA)&Angle(GCA); ["Equal(MeasureOfAngle(GCA),Add(MeasureOfAngle(GCH),MeasureOfAngle(HCA)))"]  
+1; flat_angle(1,FAB); Collinear(FAB); ["Equal(MeasureOfAngle(FAB),180)"]
+2; flat_angle(1,DBE); Collinear(DBE); ["Equal(MeasureOfAngle(DBE),180)"]
+3; flat_angle(1,CDG); Collinear(CDG); ["Equal(MeasureOfAngle(CDG),180)"]
+4; flat_angle(1,ACH); Collinear(ACH); ["Equal(MeasureOfAngle(ACH),180)"]
+5; angle_addition(1,ABE,EBD); Angle(ABE)&Angle(EBD)&Angle(ABD); ["Equal(MeasureOfAngle(ABD),Add(MeasureOfAngle(ABE),MeasureOfAngle(EBD)))"]
+6; angle_addition(1,BDG,GDC); Angle(BDG)&Angle(GDC)&Angle(BDC); ["Equal(MeasureOfAngle(BDC),Add(MeasureOfAngle(BDG),MeasureOfAngle(GDC)))"]
+7; angle_addition(1,CAF,FAH); Angle(CAF)&Angle(FAH)&Angle(CAH); ["Equal(MeasureOfAngle(CAH),Add(MeasureOfAngle(CAF),MeasureOfAngle(FAH)))"]
+8; angle_addition(1,GHC,CHA); Angle(GHC)&Angle(CHA)&Angle(GHA); ["Equal(MeasureOfAngle(GHA),Add(MeasureOfAngle(GHC),MeasureOfAngle(CHA)))"]
 9; quadrilateral_property_angle_sum(1,ACDB); Polygon(ACDB); ["Equal(Add(MeasureOfAngle(ACD),MeasureOfAngle(CDB),MeasureOfAngle(DBA),MeasureOfAngle(BAC)),360)"]
-#run: 0; #retry: 3; message: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
-Verification failed. Theorem  not defined in current GDL. Please rewrite the proof sequence, you are allowed to use only theorems from the GDL.
+#run: 0; #retry: 4; message: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
+Failure: Theorem <the given constraints lead to a contradiction, so no consistent value of x can be determined.)> not defined in current GDL. Please rewrite the proof sequence, you are allowed to use only theorems from the GDL.
 Model Answer:
 RETRY_ANSWER:
 No valid solution
 RETRY_THEOREM_SEQUENCE:
-(No theorems apply – the given constraints are contradictory, so the problem has no consistent solution.)
-#run: 0; #retry: 4; message: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
-Verification failed. The THEOREM_SEQUENCE you provided is empty. Please generate a proof again, using the similar problems I provided (A1, A2, A3, A4, A5), along with the GDL_DICTIONARY of theorems.
+(No applicable theorems; the given constraints lead to a contradiction, so no consistent value of x can be determined.)
+#run: 0; #retry: 5; message: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
+Failure: The THEOREM_SEQUENCE you provided is empty. Please generate a proof again, using the similar problems I provided (A1, A2, A3, A4, A5), along with the GDL_DICTIONARY of theorems.
 Model Answer:
 RETRY_ANSWER:
 No valid solution
 RETRY_THEOREM_SEQUENCE:
 
-#run: 0; #retry: 5; message: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
-Error parsing answer 'No valid solution': Invalid literal for Fraction: 'No valid solution'
-Model Answer:
-RETRY_ANSWER:
-No valid solution
-RETRY_THEOREM_SEQUENCE:
-1; flat_angle(1,FAB); Collinear(FAB); ["Equal(MeasureOfAngle(FAB),180)"]  
-2; flat_angle(1,DBE); Collinear(DBE); ["Equal(MeasureOfAngle(DBE),180)"]  
-3; flat_angle(1,CDG); Collinear(CDG); ["Equal(MeasureOfAngle(CDG),180)"]  
-4; flat_angle(1,ACH); Collinear(ACH); ["Equal(MeasureOfAngle(ACH),180)"]  
-5; angle_addition(1,CAF,FAB); Angle(CAF)&Angle(FAB)&Angle(CAB); ["Equal(MeasureOfAngle(CAB),Add(MeasureOfAngle(CAF),MeasureOfAngle(FAB)))"]  
-6; angle_addition(1,ABE,EBD); Angle(ABE)&Angle(EBD)&Angle(ABD); ["Equal(MeasureOfAngle(ABD),Add(MeasureOfAngle(ABE),MeasureOfAngle(EBD)))"]  
-7; angle_addition(1,BDC,CDG); Angle(BDC)&Angle(CDG)&Angle(BDG); ["Equal(MeasureOfAngle(BDG),Add(MeasureOfAngle(BDC),MeasureOfAngle(CDG)))"]  
-8; angle_addition(1,GCH,HCA); Angle(GCH)&Angle(HCA)&Angle(GCA); ["Equal(MeasureOfAngle(GCA),Add(MeasureOfAngle(GCH),MeasureOfAngle(HCA)))"]  
-9; quadrilateral_property_angle_sum(1,ACDB); Polygon(ACDB); ["Equal(Add(MeasureOfAngle(ACD),MeasureOfAngle(CDB),MeasureOfAngle(DBA),MeasureOfAngle(BAC)),360)"]
 #RETRIES:
 5
 #RUNS:

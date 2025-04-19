@@ -356,10 +356,6 @@ Angle
 predicates to add:
 Line
 predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
 Angle
 predicates to add:
 Line
@@ -369,6 +365,10 @@ predicates to add:
 Line
 predicates to add:
 Angle
+predicates to add:
+Line
+predicates to add:
+Line
 predicates to add:
 Polygon
 has Polygon
@@ -387,6 +387,10 @@ Angle
 predicates to add:
 Line
 predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
 Angle
 predicates to add:
 Line
@@ -396,10 +400,6 @@ predicates to add:
 Line
 predicates to add:
 Angle
-predicates to add:
-Line
-predicates to add:
-Line
 predicates to add:
 Polygon
 has Polygon
@@ -682,21 +682,21 @@ ParallelBetweenLine
 predicates to add:
 ParallelBetweenLine
 Verifier result: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
-Verification failed.
-Theorem: parallelogram_property_opposite_line_equal(1,ABCD)
-The language model outputs the following conclusions: Equal(LengthOfLine(AD),LengthOfLine(BC))
-The correct conclusions for the theorem: Equal(LengthOfLine(BA),LengthOfLine(CD))
+Theorem: parallelogram_property_diagonal_bisection(1,DABC,O)
+You output the following premises: Parallelogram(DABC)&Collinear(AOC)&Collinear(BOD)
+But the correct premises: Parallelogram(DABC)&Collinear(DOB)&Collinear(AOC)
+You output the following conclusions: IsMidpointOfLine(O,BD)
+But the correct conclusions: IsMidpointOfLine(O,DB)
 
 Model Answer:
 RETRY_ANSWER:
 2√13
 RETRY_THEOREM_SEQUENCE:
-1; parallelogram_property_opposite_line_equal(1,ABCD); Parallelogram(ABCD); ["Equal(LengthOfLine(AD),LengthOfLine(BC))"]
-2; right_triangle_judgment_angle(1,BCA); Polygon(BCA)&Equal(MeasureOfAngle(BCA),90); ["RightTriangle(BCA)"]
-3; right_triangle_property_pythagorean(1,BCA); RightTriangle(BCA); ["Equal(Add(Pow(LengthOfLine(BC),2),Pow(LengthOfLine(CA),2)),Pow(LengthOfLine(BA),2))"]
-4; parallelogram_property_diagonal_bisection(1,ABCD,O); Parallelogram(ABCD)&Collinear(AOC)&Collinear(BOD); ["IsMidpointOfLine(O,AC)"]
-5; parallelogram_property_diagonal_bisection(1,DABC,O); Parallelogram(DABC)&Collinear(BOD)&Collinear(AOC); ["IsMidpointOfLine(O,BD)"]
-6; line_addition(1,BO,OD); Collinear(BOD); ["Equal(LengthOfLine(BD),Add(LengthOfLine(BO),LengthOfLine(OD)))"]
+1; right_triangle_judgment_angle(1,BCA); Polygon(BCA)&Equal(MeasureOfAngle(BCA),90); ["RightTriangle(BCA)"]  
+2; right_triangle_property_pythagorean(1,BCA); RightTriangle(BCA); ["Equal(Add(Pow(LengthOfLine(BC),2),Pow(LengthOfLine(CA),2)),Pow(LengthOfLine(BA),2))"]  
+3; parallelogram_property_diagonal_bisection(1,ABCD,O); Parallelogram(ABCD)&Collinear(AOC)&Collinear(BOD); ["IsMidpointOfLine(O,AC)"]  
+4; parallelogram_property_diagonal_bisection(1,DABC,O); Parallelogram(DABC)&Collinear(AOC)&Collinear(BOD); ["IsMidpointOfLine(O,BD)"]  
+5; line_addition(1,BO,OD); Collinear(BOD); ["Equal(LengthOfLine(BD),Add(LengthOfLine(BO),LengthOfLine(OD)))"]
 Retry attempt: 1
 Content written to results/level_5/variant_analogy_based_model_o1_problem_5431_run_2_to_verify.txt
 predicates to add:
@@ -1056,10 +1056,6 @@ Angle
 predicates to add:
 Line
 predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
 Angle
 predicates to add:
 Line
@@ -1069,6 +1065,10 @@ predicates to add:
 Line
 predicates to add:
 Angle
+predicates to add:
+Line
+predicates to add:
+Line
 predicates to add:
 Polygon
 has Polygon
@@ -1087,6 +1087,10 @@ Angle
 predicates to add:
 Line
 predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
 Angle
 predicates to add:
 Line
@@ -1096,10 +1100,6 @@ predicates to add:
 Line
 predicates to add:
 Angle
-predicates to add:
-Line
-predicates to add:
-Line
 predicates to add:
 Polygon
 has Polygon
@@ -1382,21 +1382,16 @@ ParallelBetweenLine
 predicates to add:
 ParallelBetweenLine
 Verifier result: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
-Verification failed.
-Theorem: parallelogram_property_opposite_line_equal(1,BCDA)
-The language model outputs the following conclusions: Equal(LengthOfLine(BC),LengthOfLine(DA))
-The correct conclusions for the theorem: Equal(LengthOfLine(CB),LengthOfLine(DA))
-
+Error parsing answer '2√13': Invalid literal for Fraction: '2√13'
 Model Answer:
 RETRY_ANSWER:
 2√13
 RETRY_THEOREM_SEQUENCE:
-1; parallelogram_property_opposite_line_equal(1,BCDA); Parallelogram(BCDA); ["Equal(LengthOfLine(BC),LengthOfLine(DA))"]
-2; right_triangle_judgment_angle(1,BCA); Polygon(BCA)&Equal(MeasureOfAngle(BCA),90); ["RightTriangle(BCA)"]
-3; right_triangle_property_pythagorean(1,BCA); RightTriangle(BCA); ["Equal(Add(Pow(LengthOfLine(BC),2),Pow(LengthOfLine(CA),2)),Pow(LengthOfLine(BA),2))"]
-4; parallelogram_property_diagonal_bisection(1,ABCD,O); Parallelogram(ABCD)&Collinear(AOC)&Collinear(BOD); ["IsMidpointOfLine(O,AC)"]
-5; parallelogram_property_diagonal_bisection(1,DABC,O); Parallelogram(DABC)&Collinear(BOD)&Collinear(AOC); ["IsMidpointOfLine(O,BD)"]
-6; line_addition(1,BO,OD); Collinear(BOD); ["Equal(LengthOfLine(BD),Add(LengthOfLine(BO),LengthOfLine(OD)))"]
+1; right_triangle_judgment_angle(1,BCA); Polygon(BCA)&Equal(MeasureOfAngle(BCA),90); ["RightTriangle(BCA)"]  
+2; right_triangle_property_pythagorean(1,BCA); RightTriangle(BCA); ["Equal(Add(Pow(LengthOfLine(BC),2),Pow(LengthOfLine(CA),2)),Pow(LengthOfLine(BA),2))"]  
+3; parallelogram_property_diagonal_bisection(1,ABCD,O); Parallelogram(ABCD)&Collinear(AOC)&Collinear(BOD); ["IsMidpointOfLine(O,AC)"]  
+4; parallelogram_property_diagonal_bisection(1,DABC,O); Parallelogram(DABC)&Collinear(DOB)&Collinear(AOC); ["IsMidpointOfLine(O,DB)"]  
+5; line_addition(1,BO,OD); Collinear(BOD); ["Equal(LengthOfLine(BD),Add(LengthOfLine(BO),LengthOfLine(OD)))"]
 Retry attempt: 2
 Content written to results/level_5/variant_analogy_based_model_o1_problem_5431_run_2_to_verify.txt
 predicates to add:
@@ -1756,10 +1751,6 @@ Angle
 predicates to add:
 Line
 predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
 Angle
 predicates to add:
 Line
@@ -1769,6 +1760,10 @@ predicates to add:
 Line
 predicates to add:
 Angle
+predicates to add:
+Line
+predicates to add:
+Line
 predicates to add:
 Polygon
 has Polygon
@@ -1787,6 +1782,10 @@ Angle
 predicates to add:
 Line
 predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
 Angle
 predicates to add:
 Line
@@ -1796,10 +1795,6 @@ predicates to add:
 Line
 predicates to add:
 Angle
-predicates to add:
-Line
-predicates to add:
-Line
 predicates to add:
 Polygon
 has Polygon
@@ -2081,24 +2076,34 @@ predicates to add:
 ParallelBetweenLine
 predicates to add:
 ParallelBetweenLine
-Verifier result: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
-Verification failed.
-Theorem: parallelogram_property_diagonal_bisection(1,DABC,O)
-The language model outputs the following premises: Parallelogram(DABC)&Collinear(BOD)&Collinear(AOC)
-The correct premises for the theorem: Parallelogram(DABC)&Collinear(DOB)&Collinear(AOC)
-The language model outputs the following conclusions: IsMidpointOfLine(O,BD)
-The correct conclusions for the theorem: IsMidpointOfLine(O,DB)
+Verifier result: ERROR_TIER: TIER3_GOAL_NOT_REACHED
+verification failed.
 
+- Goal: length of line OB
+- Model answer: 7.21
+- Error: Your proof doesn't uniquely determine the value. You need to use additional theorems to constrain the value.
+- Available premises:
+  Parallel Lines: AB ∥ CD, AD ∥ BC
+  Collinear Points: AOC, BOD
+  Right Triangles: ABC
+  Polygons: ABC, ABCD, ABCDO, ABCOD, ABD, ABO, ABOCD, ACB, ACD, ADB, ADC, ADO, AOB, AOBCD, AOD, BCD, BCDA, BCDAO, BCDOA, BCO, BCODA, BDC, BOC, BOCDA, CDAB, CDABO, CDAOB, CDO, CDOAB, COD, CODAB, DABC, DABCO, DABOC, DAOBC, DOABC, OABCD, OBCDA, OCDAB, ODABC
+- Theorems related to the goal:
+  Step 4 - parallelogram_property_diagonal_bisection(1, DABC, O): IsMidpointOfLine(O,DB)
+- Solver constraints directly related to this goal:
+  |BD| = |BO| + |DO|
+  |BO| > 0
+  |DO| = |BO|
+
+Please fix the proof.
 Model Answer:
 RETRY_ANSWER:
-2√13
+7.21
 RETRY_THEOREM_SEQUENCE:
-1; parallelogram_property_opposite_line_equal(1,BCDA); Parallelogram(BCDA); ["Equal(LengthOfLine(CB),LengthOfLine(DA))"]
-2; right_triangle_judgment_angle(1,BCA); Polygon(BCA)&Equal(MeasureOfAngle(BCA),90); ["RightTriangle(BCA)"]
-3; right_triangle_property_pythagorean(1,BCA); RightTriangle(BCA); ["Equal(Add(Pow(LengthOfLine(BC),2),Pow(LengthOfLine(CA),2)),Pow(LengthOfLine(BA),2))"]
-4; parallelogram_property_diagonal_bisection(1,ABCD,O); Parallelogram(ABCD)&Collinear(AOC)&Collinear(BOD); ["IsMidpointOfLine(O,AC)"]
-5; parallelogram_property_diagonal_bisection(1,DABC,O); Parallelogram(DABC)&Collinear(BOD)&Collinear(AOC); ["IsMidpointOfLine(O,BD)"]
-6; line_addition(1,BO,OD); Collinear(BOD); ["Equal(LengthOfLine(BD),Add(LengthOfLine(BO),LengthOfLine(OD)))"]
+1; right_triangle_judgment_angle(1,BCA); Polygon(BCA)&Equal(MeasureOfAngle(BCA),90); ["RightTriangle(BCA)"]  
+2; right_triangle_property_pythagorean(1,BCA); RightTriangle(BCA); ["Equal(Add(Pow(LengthOfLine(BC),2),Pow(LengthOfLine(CA),2)),Pow(LengthOfLine(BA),2))"]  
+3; parallelogram_property_diagonal_bisection(1,ABCD,O); Parallelogram(ABCD)&Collinear(AOC)&Collinear(BOD); ["IsMidpointOfLine(O,AC)"]  
+4; parallelogram_property_diagonal_bisection(1,DABC,O); Parallelogram(DABC)&Collinear(DOB)&Collinear(AOC); ["IsMidpointOfLine(O,DB)"]  
+5; line_addition(1,BO,OD); Collinear(BOD); ["Equal(LengthOfLine(BD),Add(LengthOfLine(BO),LengthOfLine(OD)))"]
 Retry attempt: 3
 Content written to results/level_5/variant_analogy_based_model_o1_problem_5431_run_2_to_verify.txt
 predicates to add:
@@ -2458,10 +2463,6 @@ Angle
 predicates to add:
 Line
 predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
 Angle
 predicates to add:
 Line
@@ -2471,6 +2472,10 @@ predicates to add:
 Line
 predicates to add:
 Angle
+predicates to add:
+Line
+predicates to add:
+Line
 predicates to add:
 Polygon
 has Polygon
@@ -2489,6 +2494,10 @@ Angle
 predicates to add:
 Line
 predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
 Angle
 predicates to add:
 Line
@@ -2498,10 +2507,6 @@ predicates to add:
 Line
 predicates to add:
 Angle
-predicates to add:
-Line
-predicates to add:
-Line
 predicates to add:
 Polygon
 has Polygon
@@ -2783,35 +2788,23 @@ predicates to add:
 ParallelBetweenLine
 predicates to add:
 ParallelBetweenLine
-Verifier result: ERROR_TIER: TIER3_GOAL_NOT_REACHED
-verification failed.
+Verifier result: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
+Theorem: parallelogram_property_opposite_line_equal(1,ABCD)
+You output the following conclusions: Equal(LengthOfLine(AD),LengthOfLine(BC))
+But the correct conclusions: Equal(LengthOfLine(BA),LengthOfLine(CD))
 
-- Goal: length of line OB
-- Model answer: 7.211102550927978
-- Error: Your proof doesn't uniquely determine the value. You need to use additional theorems to constrain the value.
-- Available premises:
-  Parallel Lines: AB ∥ CD, AD ∥ BC
-  Collinear Points: AOC, BOD
-  Right Triangles: ABC
-  Polygons: ABC, ABCD, ABCDO, ABCOD, ABD, ABO, ABOCD, ACB, ACD, ADB, ADC, ADO, AOB, AOBCD, AOD, BCD, BCDA, BCDAO, BCDOA, BCO, BCODA, BDC, BOC, BOCDA, CDAB, CDABO, CDAOB, CDO, CDOAB, COD, CODAB, DABC, DABCO, DABOC, DAOBC, DOABC, OABCD, OBCDA, OCDAB, ODABC
-- Theorems related to the goal:
-  Step 5 - parallelogram_property_diagonal_bisection(1, DABC, O): IsMidpointOfLine(O,DB)
-- Solver constraints directly related to this goal:
-  |BD| = |BO| + |DO|
-  |BO| > 0
-  |DO| = |BO|
-
-Please fix the proof.
 Model Answer:
 RETRY_ANSWER:
-2√13
+2*sqrt(13)
 RETRY_THEOREM_SEQUENCE:
-1; parallelogram_property_opposite_line_equal(1,BCDA); Parallelogram(BCDA); ["Equal(LengthOfLine(CB),LengthOfLine(DA))"]
-2; right_triangle_judgment_angle(1,BCA); Polygon(BCA)&Equal(MeasureOfAngle(BCA),90); ["RightTriangle(BCA)"]
-3; right_triangle_property_pythagorean(1,BCA); RightTriangle(BCA); ["Equal(Add(Pow(LengthOfLine(BC),2),Pow(LengthOfLine(CA),2)),Pow(LengthOfLine(BA),2))"]
-4; parallelogram_property_diagonal_bisection(1,ABCD,O); Parallelogram(ABCD)&Collinear(AOC)&Collinear(BOD); ["IsMidpointOfLine(O,AC)"]
-5; parallelogram_property_diagonal_bisection(1,DABC,O); Parallelogram(DABC)&Collinear(DOB)&Collinear(AOC); ["IsMidpointOfLine(O,DB)"]
-6; line_addition(1,BO,OD); Collinear(BOD); ["Equal(LengthOfLine(BD),Add(LengthOfLine(BO),LengthOfLine(OD)))"]
+1; right_triangle_judgment_angle(1,BCA); Polygon(BCA)&Equal(MeasureOfAngle(BCA),90); ["RightTriangle(BCA)"]
+2; right_triangle_property_pythagorean(1,BCA); RightTriangle(BCA); ["Equal(Add(Pow(LengthOfLine(BC),2),Pow(LengthOfLine(CA),2)),Pow(LengthOfLine(BA),2))"]
+3; parallelogram_property_opposite_line_equal(1,ABCD); Parallelogram(ABCD); ["Equal(LengthOfLine(AD),LengthOfLine(BC))","Equal(LengthOfLine(AB),LengthOfLine(CD))"]
+4; parallel_property_ipsilateral_internal_angle(1,AD,BC); ParallelBetweenLine(AD,BC)&Line(AC); ["Equal(Add(MeasureOfAngle(DAC),MeasureOfAngle(ACB)),180)"]
+5; right_triangle_judgment_angle(1,DAC); Polygon(DAC)&Equal(MeasureOfAngle(DAC),90); ["RightTriangle(DAC)"]
+6; parallelogram_property_diagonal_bisection(1,ABCD,O); Parallelogram(ABCD)&Collinear(AOC)&Collinear(BOD); ["IsMidpointOfLine(O,AC)"]
+7; parallelogram_property_diagonal_bisection(1,DABC,O); Parallelogram(DABC)&Collinear(DOB)&Collinear(AOC); ["IsMidpointOfLine(O,DB)"]
+8; line_addition(1,BO,OD); Collinear(BOD); ["Equal(LengthOfLine(BD),Add(LengthOfLine(BO),LengthOfLine(OD)))"]
 Retry attempt: 4
 Content written to results/level_5/variant_analogy_based_model_o1_problem_5431_run_2_to_verify.txt
 predicates to add:
@@ -3171,10 +3164,6 @@ Angle
 predicates to add:
 Line
 predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
 Angle
 predicates to add:
 Line
@@ -3184,6 +3173,10 @@ predicates to add:
 Line
 predicates to add:
 Angle
+predicates to add:
+Line
+predicates to add:
+Line
 predicates to add:
 Polygon
 has Polygon
@@ -3202,6 +3195,10 @@ Angle
 predicates to add:
 Line
 predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
 Angle
 predicates to add:
 Line
@@ -3211,10 +3208,6 @@ predicates to add:
 Line
 predicates to add:
 Angle
-predicates to add:
-Line
-predicates to add:
-Line
 predicates to add:
 Polygon
 has Polygon
@@ -3496,22 +3489,33 @@ predicates to add:
 ParallelBetweenLine
 predicates to add:
 ParallelBetweenLine
-Verifier result: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
-Verification failed.
-Theorem: parallelogram_property_opposite_line_equal(1,ABCD)
-The language model outputs the following conclusions: Equal(LengthOfLine(BC),LengthOfLine(AD))
-The correct conclusions for the theorem: Equal(LengthOfLine(BA),LengthOfLine(CD))
+Verifier result: ERROR_TIER: TIER3_GOAL_NOT_REACHED
+verification failed.
 
+- Goal: length of line OB
+- Model answer: 7.211102550927978
+- Error: Your proof doesn't uniquely determine the value. You need to use additional theorems to constrain the value.
+- Available premises:
+  Parallel Lines: AB ∥ CD, AD ∥ BC
+  Collinear Points: AOC, BOD
+  Right Triangles: ABC
+  Polygons: ABC, ABCD, ABCDO, ABCOD, ABD, ABO, ABOCD, ACB, ACD, ADB, ADC, ADO, AOB, AOBCD, AOD, BCD, BCDA, BCDAO, BCDOA, BCO, BCODA, BDC, BOC, BOCDA, CDAB, CDABO, CDAOB, CDO, CDOAB, COD, CODAB, DABC, DABCO, DABOC, DAOBC, DOABC, OABCD, OBCDA, OCDAB, ODABC
+- Theorems related to the goal:
+  Step 4 - parallelogram_property_diagonal_bisection(1, DABC, O): IsMidpointOfLine(O,DB)
+- Solver constraints directly related to this goal:
+  |BD| = |BO| + |DO|
+  |BO| > 0
+  |DO| = |BO|
+
+Please fix the proof.
 Model Answer:
 RETRY_ANSWER:
-2√13
+2*sqrt(13)
 RETRY_THEOREM_SEQUENCE:
-1; parallelogram_property_opposite_line_equal(1,ABCD); Parallelogram(ABCD); ["Equal(LengthOfLine(BC),LengthOfLine(AD))"]
-2; right_triangle_judgment_angle(1,BCA); Polygon(BCA)&Equal(MeasureOfAngle(BCA),90); ["RightTriangle(BCA)"]
-3; right_triangle_property_pythagorean(1,BCA); RightTriangle(BCA); ["Equal(Add(Pow(LengthOfLine(BC),2),Pow(LengthOfLine(CA),2)),Pow(LengthOfLine(BA),2))"]
-4; parallelogram_property_diagonal_bisection(1,ABCD,O); Parallelogram(ABCD)&Collinear(AOC)&Collinear(BOD); ["IsMidpointOfLine(O,AC)"]
-5; parallelogram_property_diagonal_bisection(2,ABCD,O); Parallelogram(ABCD)&Collinear(AOC)&Collinear(BOD); ["IsMidpointOfLine(O,BD)"]
-6; line_addition(1,BO,OD); Collinear(BOD); ["Equal(LengthOfLine(BD),Add(LengthOfLine(BO),LengthOfLine(OD)))"]
-7; /* Parallelogram diagonals sum of squares (custom step) */ parallelogram_diagonals_square_sum(1,ABCD); Parallelogram(ABCD); ["Equal(Add(Pow(LengthOfLine(AC),2),Pow(LengthOfLine(BD),2)),Mul(2,Add(Pow(LengthOfLine(AB),2),Pow(LengthOfLine(BC),2))))"]
+1; right_triangle_judgment_angle(1,BCA); Polygon(BCA)&Equal(MeasureOfAngle(BCA),90); ["RightTriangle(BCA)"]
+2; right_triangle_property_pythagorean(1,BCA); RightTriangle(BCA); ["Equal(Add(Pow(LengthOfLine(BC),2),Pow(LengthOfLine(CA),2)),Pow(LengthOfLine(BA),2))"]
+3; parallelogram_property_diagonal_bisection(1,ABCD,O); Parallelogram(ABCD)&Collinear(AOC)&Collinear(BOD); ["IsMidpointOfLine(O,AC)"]
+4; parallelogram_property_diagonal_bisection(1,DABC,O); Parallelogram(DABC)&Collinear(DOB)&Collinear(AOC); ["IsMidpointOfLine(O,DB)"]
+5; line_addition(1,BO,OD); Collinear(BOD); ["Equal(LengthOfLine(BD),Add(LengthOfLine(BO),LengthOfLine(OD)))"]
 Retry attempt: 5
 Content written to results/level_5/variant_analogy_based_model_o1_problem_5431_run_2.txt
