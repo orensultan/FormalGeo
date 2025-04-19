@@ -95,9 +95,11 @@ Outputs for Problem B:
 
 ***MODEL_RESPONSE_BEGIN***
 EQUATIONS:
-ll_ab-10 ll_ac-ll_co ll_od-ll_db
+ll_ab-10
+ll_ac-ll_co
+ll_od-ll_db
 GOAL_SYMBOL:
-ll_dc
+ll_cd
 ANSWER:
 5
 THEOREM_SEQUENCE:
@@ -108,15 +110,15 @@ THEOREM_SEQUENCE:
 ***MODEL_RESPONSE_END***
 RETRIES_MESSAGES:
 #run: 0; #retry: 1; message: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
-Verification failed. Theorem <line_addition> branch error. Expected dict_keys(['1']) but got None. Please rewrite your response, you should change only the call to theorem <line_addition> by adding the branch number from the dict_keys as the first argument
+Failure: Theorem <line_addition> para length error. Expected 4 but got ('A', 'B', 'A', 'C', 'C', 'O').
 Model Answer:
 RETRY_ANSWER:
 5
 RETRY_THEOREM_SEQUENCE:
-1; line_addition(AC,CO); Collinear(ACO); ["Equal(LengthOfLine(AO),Add(LengthOfLine(AC),LengthOfLine(CO)))"]
-2; line_addition(OD,DB); Collinear(ODB); ["Equal(LengthOfLine(OB),Add(LengthOfLine(OD),LengthOfLine(DB)))"]
-3; line_addition(AO,OB); Collinear(AOB); ["Equal(LengthOfLine(AB),Add(LengthOfLine(AO),LengthOfLine(OB)))"]
-4; line_addition(CO,OD); Collinear(COD); ["Equal(LengthOfLine(CD),Add(LengthOfLine(CO),LengthOfLine(OD)))"]
+1; line_addition(AB,AC,CO); Collinear(ACO); ["Equal(LengthOfLine(AO),Add(LengthOfLine(AC),LengthOfLine(CO)))"]
+2; line_addition(AB,OD,DB); Collinear(ODB); ["Equal(LengthOfLine(OB),Add(LengthOfLine(OD),LengthOfLine(DB)))"]
+3; line_addition(AB,AO,OB); Collinear(AOB); ["Equal(LengthOfLine(AB),Add(LengthOfLine(AO),LengthOfLine(OB)))"]
+4; line_addition(AB,CO,OD); Collinear(COD); ["Equal(LengthOfLine(CD),Add(LengthOfLine(CO),LengthOfLine(OD)))"]
 #RETRIES:
 1
 #RUNS:

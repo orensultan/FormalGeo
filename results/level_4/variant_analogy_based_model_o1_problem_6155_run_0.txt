@@ -417,10 +417,13 @@ Outputs for Problem B:
 ***MODEL_RESPONSE_BEGIN***
 EQUATIONS:
 ma_cab-35
+
 GOAL_SYMBOL:
 ma_adc
+
 ANSWER:
 55
+
 THEOREM_SEQUENCE:
 1; diameter_of_circle_property_right_angle(1,BCA,O); IsDiameterOfCircle(AB,O)&Cocircular(O,BCA)&Angle(BCA); ["PerpendicularBetweenLine(BC,AC)"]
 2; triangle_property_angle_sum(1,ABC); Polygon(ABC); ["Equal(Add(MeasureOfAngle(ABC),MeasureOfAngle(BCA),MeasureOfAngle(CAB)),180)"]
@@ -428,18 +431,8 @@ THEOREM_SEQUENCE:
 4; arc_property_circumference_angle_external(1,OCA,B); Cocircular(O,CAB)&Angle(ABC); ["Equal(MeasureOfAngle(ABC),Mul(MeasureOfArc(OCA),1/2))"]
 ***MODEL_RESPONSE_END***
 RETRIES_MESSAGES:
-#run: 0; #retry: 1; message: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
-Verification failed. Theorem <diameter_of_circle_property_right_angle> branch error. Expected dict_keys(['1']) but got None. Please rewrite your response, you should change only the call to theorem <diameter_of_circle_property_right_angle> by adding the branch number from the dict_keys as the first argument
-Model Answer:
-RETRY_ANSWER:
-55
-RETRY_THEOREM_SEQUENCE:
-1; diameter_of_circle_property_right_angle(ABC,O); IsDiameterOfCircle(AB,O)&Cocircular(O,BCA)&Angle(BCA); ["PerpendicularBetweenLine(BC,AC)"]
-2; triangle_property_angle_sum(ABC); Polygon(ABC); ["Equal(Add(MeasureOfAngle(ABC),MeasureOfAngle(BCA),MeasureOfAngle(CAB)),180)"]
-3; arc_property_circumference_angle_external(OCA,D); Cocircular(O,CAD)&Angle(ADC); ["Equal(MeasureOfAngle(ADC),Mul(MeasureOfArc(OCA),1/2))"]
-4; arc_property_circumference_angle_external(OCA,B); Cocircular(O,CAB)&Angle(ABC); ["Equal(MeasureOfAngle(ABC),Mul(MeasureOfArc(OCA),1/2))"]
 #RETRIES:
-1
+0
 #RUNS:
 0
 

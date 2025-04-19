@@ -27,14 +27,14 @@ Shape(AO,OB,OBA)
 Shape(OB,OBA,AO)
 Shape(DC,OAC,AD)
 Shape(OAC,AD,DC)
-Shape(OA,OAC,CB,BO)
-Shape(OAC,CB,BO,OA)
-Shape(CB,BO,OA,OAC)
-Shape(BO,OA,OAC,CB)
 Shape(CO,OA,AD,DC)
 Shape(OA,AD,DC,CO)
 Shape(AD,DC,CO,OA)
 Shape(DC,CO,OA,AD)
+Shape(OA,OAC,CB,BO)
+Shape(OAC,CB,BO,OA)
+Shape(CB,BO,OA,OAC)
+Shape(BO,OA,OAC,CB)
 Shape(OAC,CO,OB,OBA)
 Shape(CO,OB,OBA,OAC)
 Shape(OB,OBA,OAC,CO)
@@ -189,60 +189,48 @@ GOAL_SYMBOL:
 ma_adb
 
 ANSWER:
-No valid proof can be constructed from the given premises to conclude ∠ADB = 90.
+55
 
 THEOREM_SEQUENCE:
-No valid sequence of theorems will establish that ∠ADB = 90 under the current problem constraints and data.
+1; radius_of_circle_property_length_equal(1,OA,O); Cocircular(O,A)&Line(OA)&IsCentreOfCircle(O,O); ["Equal(LengthOfLine(OA),RadiusOfCircle(O))"]
+2; radius_of_circle_property_length_equal(1,OC,O); Cocircular(O,C)&Line(OC)&IsCentreOfCircle(O,O); ["Equal(LengthOfLine(OC),RadiusOfCircle(O))"]
+3; isosceles_triangle_judgment_line_equal(1,OCA); Polygon(OCA)&Equal(LengthOfLine(OC),LengthOfLine(OA)); ["IsoscelesTriangle(OCA)"]
+4; isosceles_triangle_property_angle_equal(1,OCA); IsoscelesTriangle(OCA); ["Equal(MeasureOfAngle(OAC),MeasureOfAngle(OCA))"]
+5; triangle_property_angle_sum(1,OCA); Polygon(OCA); ["Equal(Add(MeasureOfAngle(COA),MeasureOfAngle(OAC),MeasureOfAngle(OCA)),180)"]
+6; tangent_of_circle_property_perpendicular(2,DA,O,O); IsTangentOfCircle(DA,O)&Angle(DAO)&IsCentreOfCircle(O,O); ["PerpendicularBetweenLine(DA,OA)"]
+7; angle_addition(OAC,CAD); Angle(OAC)&Angle(CAD)&Angle(OAD); ["Equal(MeasureOfAngle(OAD),Add(MeasureOfAngle(OAC),MeasureOfAngle(CAD)))"]
+8; diameter_of_circle_property_right_angle(1,BCA,O); IsDiameterOfCircle(AB,O)&Cocircular(O,BCA)&Angle(BCA); ["PerpendicularBetweenLine(BC,AC)"]
+9; triangle_property_angle_sum(1,ACD); Polygon(ACD); ["Equal(Add(MeasureOfAngle(ACD),MeasureOfAngle(CAD),MeasureOfAngle(CDA)),180)"]
 ***MODEL_RESPONSE_END***
 RETRIES_MESSAGES:
 #run: 0; #retry: 1; message: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
 Theorem: arc_property_center_angle(1,OCA,O)
-You outputs the following premises: Arc(OCA)&Angle(COA)&IsCentreOfCircle(O,O)
-But the correct premises for the theorem: Arc(OCA)&Angle(AOC)&IsCentreOfCircle(O,O)
-You outputs the following conclusions: Equal(MeasureOfArc(OCA),MeasureOfAngle(COA))
-But the correct conclusions for the theorem: Equal(MeasureOfArc(OCA),MeasureOfAngle(AOC))
+You output the following premises: Arc(OCA)&Angle(COA)&IsCentreOfCircle(O,O)
+But the correct premises: Arc(OCA)&Angle(AOC)&IsCentreOfCircle(O,O)
+You output the following conclusions: Equal(MeasureOfArc(OCA),MeasureOfAngle(COA))
+But the correct conclusions: Equal(MeasureOfArc(OCA),MeasureOfAngle(AOC))
 
 Model Answer:
 RETRY_ANSWER:
-90
+55
 RETRY_THEOREM_SEQUENCE:
-1; arc_property_center_angle(1,OCA,O); Arc(OCA)&Angle(COA)&IsCentreOfCircle(O,O); ["Equal(MeasureOfArc(OCA),MeasureOfAngle(COA))"]
-2; arc_property_circumference_angle_external(1,OCA,B); Cocircular(O,CAB)&Angle(CBA); ["Equal(MeasureOfAngle(CBA),Mul(MeasureOfArc(OCA),1/2))"]
-3; diameter_of_circle_property_right_angle(1,BCA,O); IsDiameterOfCircle(AB,O)&Cocircular(O,BCA)&Angle(BCA); ["PerpendicularBetweenLine(BC,AC)"]
-4; triangle_property_angle_sum(1,ABC); Polygon(ABC); ["Equal(Add(MeasureOfAngle(ABC),MeasureOfAngle(BCA),MeasureOfAngle(CAB)),180)"]
+1; tangent_of_circle_property_perpendicular(2,DA,O,O); IsTangentOfCircle(DA,O)&Angle(DAO)&IsCentreOfCircle(O,O); ["PerpendicularBetweenLine(DA,OA)"]
+2; arc_property_center_angle(1,OCA,O); Arc(OCA)&Angle(COA)&IsCentreOfCircle(O,O); ["Equal(MeasureOfArc(OCA),MeasureOfAngle(COA))"]
+3; diameter_of_circle_property_right_angle(BCA,O); IsDiameterOfCircle(AB,O)&Cocircular(O,BCA)&Angle(BCA); ["PerpendicularBetweenLine(BC,AC)"]
 #run: 0; #retry: 2; message: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
-Theorem: arc_property_circumference_angle_external(1,OCA,B)
-You outputs the following premises: Cocircular(O,CAB)&Angle(CBA)
-But the correct premises for the theorem: Cocircular(O,CAB)&Angle(ABC)
-You outputs the following conclusions: Equal(MeasureOfAngle(CBA),Mul(MeasureOfArc(OCA),1/2))
-But the correct conclusions for the theorem: Equal(MeasureOfAngle(ABC),Mul(MeasureOfArc(OCA),1/2))
-
+Failure: Theorem <diameter_of_circle_property_right_angle> branch error. Expected dict_keys(['1']) but got None. Please rewrite your response, you should change only the call to theorem <diameter_of_circle_property_right_angle> by adding the branch number from the dict_keys as the first argument
 Model Answer:
 RETRY_ANSWER:
-90
+55
 RETRY_THEOREM_SEQUENCE:
-1; arc_property_center_angle(1,OCA,O); Arc(OCA)&Angle(AOC)&IsCentreOfCircle(O,O); ["Equal(MeasureOfArc(OCA),MeasureOfAngle(AOC))"]
-2; arc_property_circumference_angle_external(1,OCA,B); Cocircular(O,CAB)&Angle(CBA); ["Equal(MeasureOfAngle(CBA),Mul(MeasureOfArc(OCA),1/2))"]
-3; diameter_of_circle_property_right_angle(1,BCA,O); IsDiameterOfCircle(AB,O)&Cocircular(O,BCA)&Angle(BCA); ["PerpendicularBetweenLine(BC,AC)"]
-4; triangle_property_angle_sum(1,ABC); Polygon(ABC); ["Equal(Add(MeasureOfAngle(ABC),MeasureOfAngle(BCA),MeasureOfAngle(CAB)),180)"]
-#run: 0; #retry: 3; message: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
-Theorem: arc_property_circumference_angle_external(1,OCA,B)
-You outputs the following premises: Cocircular(O,ACB)&Angle(ABC)
-But the correct premises for the theorem: Cocircular(O,CAB)&Angle(ABC)
-
-Model Answer:
-RETRY_ANSWER:
-90
-RETRY_THEOREM_SEQUENCE:
-1; arc_property_center_angle(1,OCA,O); Arc(OCA)&Angle(AOC)&IsCentreOfCircle(O,O); ["Equal(MeasureOfArc(OCA),MeasureOfAngle(AOC))"]
-2; arc_property_circumference_angle_external(1,OCA,B); Cocircular(O,ACB)&Angle(ABC); ["Equal(MeasureOfAngle(ABC),Mul(MeasureOfArc(OCA),1/2))"]
-3; diameter_of_circle_property_right_angle(1,BCA,O); IsDiameterOfCircle(AB,O)&Cocircular(O,BCA)&Angle(BCA); ["PerpendicularBetweenLine(BC,AC)"]
-4; triangle_property_angle_sum(1,ABC); Polygon(ABC); ["Equal(Add(MeasureOfAngle(ABC),MeasureOfAngle(BCA),MeasureOfAngle(CAB)),180)"]
-#run: 0; #retry: 4; message: ERROR_TIER: TIER3_GOAL_NOT_REACHED
+1; tangent_of_circle_property_perpendicular(2,DA,O,O); IsTangentOfCircle(DA,O)&Angle(DAO)&IsCentreOfCircle(O,O); ["PerpendicularBetweenLine(DA,OA)"]
+2; arc_property_center_angle(1,OCA,O); Arc(OCA)&Angle(AOC)&IsCentreOfCircle(O,O); ["Equal(MeasureOfArc(OCA),MeasureOfAngle(AOC))"]
+3; diameter_of_circle_property_right_angle(BCA,O); IsDiameterOfCircle(AB,O)&Cocircular(O,BCA)&Angle(BCA); ["PerpendicularBetweenLine(BC,AC)"]
+#run: 0; #retry: 3; message: ERROR_TIER: TIER3_GOAL_NOT_REACHED
 verification failed.
 
 - Goal: measure of angle ADB
-- Model answer: 90.0
+- Model answer: 55.0
 - Error: Your proof doesn't uniquely determine the value. You need to use additional theorems to constrain the value.
 - Available premises:
   Collinear Points: AOB, BCD
@@ -261,19 +249,47 @@ verification failed.
 Please fix the proof.
 Model Answer:
 RETRY_ANSWER:
-90
+55
 RETRY_THEOREM_SEQUENCE:
-1; arc_property_center_angle(1,OCA,O); Arc(OCA)&Angle(AOC)&IsCentreOfCircle(O,O); ["Equal(MeasureOfArc(OCA),MeasureOfAngle(AOC))"]
-2; arc_property_circumference_angle_external(1,OCA,B); Cocircular(O,CAB)&Angle(ABC); ["Equal(MeasureOfAngle(ABC),Mul(MeasureOfArc(OCA),1/2))"]
+1; tangent_of_circle_property_perpendicular(2,DA,O,O); IsTangentOfCircle(DA,O)&Angle(DAO)&IsCentreOfCircle(O,O); ["PerpendicularBetweenLine(DA,OA)"]
+2; arc_property_center_angle(1,OCA,O); Arc(OCA)&Angle(AOC)&IsCentreOfCircle(O,O); ["Equal(MeasureOfArc(OCA),MeasureOfAngle(AOC))"]
 3; diameter_of_circle_property_right_angle(1,BCA,O); IsDiameterOfCircle(AB,O)&Cocircular(O,BCA)&Angle(BCA); ["PerpendicularBetweenLine(BC,AC)"]
-4; triangle_property_angle_sum(1,ABC); Polygon(ABC); ["Equal(Add(MeasureOfAngle(ABC),MeasureOfAngle(BCA),MeasureOfAngle(CAB)),180)"]
-#run: 0; #retry: 5; message: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
-Failure: Theorem  not defined in current GDL. Please rewrite the proof sequence, you are allowed to use only theorems from the GDL.
+#run: 0; #retry: 4; message: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
+Theorem: isosceles_triangle_judgment_line_equal(1,COA)
+You output the following premises: Polygon(COA)&Equal(LengthOfLine(OA),LengthOfLine(OC))
+But the correct premises: Polygon(COA)&Equal(LengthOfLine(CO),LengthOfLine(CA))
+
 Model Answer:
 RETRY_ANSWER:
-No valid proof can be constructed from the given premises to conclude ∠ADB = 90.
+55
 RETRY_THEOREM_SEQUENCE:
-No valid sequence of theorems will establish that ∠ADB = 90 under the current problem constraints and data.
+1; radius_of_circle_property_length_equal(1,OA,O); Cocircular(O,A)&Line(OA)&IsCentreOfCircle(O,O); ["Equal(LengthOfLine(OA),RadiusOfCircle(O))"]
+2; radius_of_circle_property_length_equal(1,OC,O); Cocircular(O,C)&Line(OC)&IsCentreOfCircle(O,O); ["Equal(LengthOfLine(OC),RadiusOfCircle(O))"]
+3; isosceles_triangle_judgment_line_equal(1,COA); Polygon(COA)&Equal(LengthOfLine(OA),LengthOfLine(OC)); ["IsoscelesTriangle(COA)"]
+4; isosceles_triangle_property_angle_equal(1,COA); IsoscelesTriangle(COA); ["Equal(MeasureOfAngle(OAC),MeasureOfAngle(OCA))"]
+5; triangle_property_angle_sum(1,COA); Polygon(COA); ["Equal(Add(MeasureOfAngle(COA),MeasureOfAngle(OAC),MeasureOfAngle(OCA)),180)"]
+6; tangent_of_circle_property_perpendicular(2,DA,O,O); IsTangentOfCircle(DA,O)&Angle(DAO)&IsCentreOfCircle(O,O); ["PerpendicularBetweenLine(DA,OA)"]
+7; angle_addition(OAC,CAD); Angle(OAC)&Angle(CAD)&Angle(OAD); ["Equal(MeasureOfAngle(OAD),Add(MeasureOfAngle(OAC),MeasureOfAngle(CAD)))"]
+8; diameter_of_circle_property_right_angle(1,BCA,O); IsDiameterOfCircle(AB,O)&Cocircular(O,BCA)&Angle(BCA); ["PerpendicularBetweenLine(BC,AC)"]
+9; triangle_property_angle_sum(1,ACD); Polygon(ACD); ["Equal(Add(MeasureOfAngle(ACD),MeasureOfAngle(CAD),MeasureOfAngle(CDA)),180)"]
+#run: 0; #retry: 5; message: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
+Theorem: isosceles_triangle_property_angle_equal(1,OCA)
+You output the following conclusions: Equal(MeasureOfAngle(OAC),MeasureOfAngle(OCA))
+But the correct conclusions: Equal(MeasureOfAngle(OCA),MeasureOfAngle(CAO))
+
+Model Answer:
+RETRY_ANSWER:
+55
+RETRY_THEOREM_SEQUENCE:
+1; radius_of_circle_property_length_equal(1,OA,O); Cocircular(O,A)&Line(OA)&IsCentreOfCircle(O,O); ["Equal(LengthOfLine(OA),RadiusOfCircle(O))"]
+2; radius_of_circle_property_length_equal(1,OC,O); Cocircular(O,C)&Line(OC)&IsCentreOfCircle(O,O); ["Equal(LengthOfLine(OC),RadiusOfCircle(O))"]
+3; isosceles_triangle_judgment_line_equal(1,OCA); Polygon(OCA)&Equal(LengthOfLine(OC),LengthOfLine(OA)); ["IsoscelesTriangle(OCA)"]
+4; isosceles_triangle_property_angle_equal(1,OCA); IsoscelesTriangle(OCA); ["Equal(MeasureOfAngle(OAC),MeasureOfAngle(OCA))"]
+5; triangle_property_angle_sum(1,OCA); Polygon(OCA); ["Equal(Add(MeasureOfAngle(COA),MeasureOfAngle(OAC),MeasureOfAngle(OCA)),180)"]
+6; tangent_of_circle_property_perpendicular(2,DA,O,O); IsTangentOfCircle(DA,O)&Angle(DAO)&IsCentreOfCircle(O,O); ["PerpendicularBetweenLine(DA,OA)"]
+7; angle_addition(OAC,CAD); Angle(OAC)&Angle(CAD)&Angle(OAD); ["Equal(MeasureOfAngle(OAD),Add(MeasureOfAngle(OAC),MeasureOfAngle(CAD)))"]
+8; diameter_of_circle_property_right_angle(1,BCA,O); IsDiameterOfCircle(AB,O)&Cocircular(O,BCA)&Angle(BCA); ["PerpendicularBetweenLine(BC,AC)"]
+9; triangle_property_angle_sum(1,ACD); Polygon(ACD); ["Equal(Add(MeasureOfAngle(ACD),MeasureOfAngle(CAD),MeasureOfAngle(CDA)),180)"]
 #RETRIES:
 5
 #RUNS:
