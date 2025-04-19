@@ -1,0 +1,191 @@
+Inputs for Problem B:
+DESCRIPTION:
+As shown in the diagram, AO=BO, DO=BO, ∠OAC=28°. Find the measure of ∠BOD.
+CONSTRUCTION_CDL:
+Shape(OA,AC,CO)
+Shape(BO,OD)
+Shape(OC,CD,DO)
+Collinear(AOB)
+Collinear(ACD)
+TEXT_CDL:
+Equal(LengthOfLine(AO),LengthOfLine(BO))
+Equal(LengthOfLine(DO),LengthOfLine(BO))
+Equal(MeasureOfAngle(OAC),28)
+GOAL_CDL:
+Value(MeasureOfAngle(BOD))
+CONSTRUCTION_CDL_EXTENDED:
+Shape(AC,CO,OA)
+Shape(CO,OA,AC)
+Shape(CD,DO,OC)
+Shape(DO,OC,CD)
+Shape(OA,AC,CD,DO)
+Shape(AC,CD,DO,OA)
+Shape(CD,DO,OA,AC)
+Shape(DO,OA,AC,CD)
+Collinear(BOA)
+Collinear(DCA)
+Point(A)
+Point(B)
+Point(O)
+Point(D)
+Point(C)
+Line(AB)
+Line(BA)
+Line(AO)
+Line(OA)
+Line(OB)
+Line(BO)
+Line(AD)
+Line(DA)
+Line(AC)
+Line(CA)
+Line(CD)
+Line(DC)
+Line(CO)
+Line(OC)
+Line(OD)
+Line(DO)
+Angle(AOB)
+Angle(BOA)
+Angle(ACD)
+Angle(DCA)
+Angle(OAC)
+Angle(ACO)
+Angle(COA)
+Angle(OCD)
+Angle(CDO)
+Angle(DOC)
+Angle(ADO)
+Angle(DOA)
+Angle(COB)
+Angle(BOC)
+Angle(DOB)
+Angle(OAD)
+Angle(BAC)
+Angle(BAD)
+Angle(CAO)
+Angle(OCA)
+Angle(AOC)
+Angle(DCO)
+Angle(ODC)
+Angle(COD)
+Angle(ODA)
+Angle(AOD)
+Angle(DAO)
+Angle(CAB)
+Angle(DAB)
+Polygon(OAC)
+Polygon(OCA)
+Polygon(AOC)
+Polygon(ACO)
+Polygon(COA)
+Polygon(CAO)
+Polygon(OCD)
+Polygon(ODC)
+Polygon(COD)
+Polygon(CDO)
+Polygon(DOC)
+Polygon(DCO)
+Polygon(OAD)
+Polygon(ODA)
+Polygon(AOD)
+Polygon(ADO)
+Polygon(DOA)
+Polygon(DAO)
+SYMBOLS_AND_VALUES:
+MeasureOfAngle(ABC);ma_obc;50
+MeasureOfAngle(EBC);ma_obc;50
+MeasureOfAngle(OBC);ma_obc;50
+MeasureOfAngle(CDB);ma_edb;None
+MeasureOfAngle(EDB);ma_edb;None
+
+Outputs:
+Outputs for Problem B:
+
+***MODEL_RESPONSE_BEGIN***
+EQUATIONS:
+ma_oac-28
+
+GOAL_SYMBOL:
+ma_bod
+
+ANSWER:
+56
+
+THEOREM_SEQUENCE:
+***MODEL_RESPONSE_END***
+RETRIES_MESSAGES:
+#run: 2; #retry: 1; message: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
+Failure: The THEOREM_SEQUENCE you provided is empty. Please generate a proof again, using the similar problems I provided (A1, A2, A3, A4, A5), along with the GDL_DICTIONARY of theorems.
+Model Answer:
+RETRY_ANSWER:
+56
+RETRY_THEOREM_SEQUENCE:
+
+#run: 2; #retry: 2; message: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
+Failure: Theorem <isosceles_triangle_judgment_line_equal> branch error. Expected dict_keys(['1']) but got None. Please rewrite your response, you should change only the call to theorem <isosceles_triangle_judgment_line_equal> by adding the branch number from the dict_keys as the first argument
+Model Answer:
+RETRY_ANSWER:
+56
+RETRY_THEOREM_SEQUENCE:
+1; isosceles_triangle_judgment_line_equal(AOB); Polygon(AOB)&Equal(LengthOfLine(AO),LengthOfLine(BO)); ["IsoscelesTriangle(AOB)"]  
+2; isosceles_triangle_judgment_line_equal(BOD); Polygon(BOD)&Equal(LengthOfLine(BO),LengthOfLine(DO)); ["IsoscelesTriangle(BOD)"]
+#run: 2; #retry: 3; message: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
+Theorem: isosceles_triangle_judgment_line_equal(1,AOB)
+You output the following premises: Polygon(AOB)&Equal(LengthOfLine(AO),LengthOfLine(BO))
+But the correct premises: Polygon(AOB)&Equal(LengthOfLine(AO),LengthOfLine(AB))
+
+Model Answer:
+RETRY_ANSWER:
+56
+RETRY_THEOREM_SEQUENCE:
+1; isosceles_triangle_judgment_line_equal(1,AOB); Polygon(AOB)&Equal(LengthOfLine(AO),LengthOfLine(BO)); ["IsoscelesTriangle(AOB)"]  
+2; isosceles_triangle_judgment_line_equal(1,BOD); Polygon(BOD)&Equal(LengthOfLine(BO),LengthOfLine(DO)); ["IsoscelesTriangle(BOD)"]
+#run: 2; #retry: 4; message: ERROR_TIER: TIER2_PREMISE_VIOLATION
+verification failed.
+
+- Error: You tried to use theorem: isosceles_triangle_judgment_line_equal(1,AOB);Polygon(AOB)&Equal(LengthOfLine(AO),LengthOfLine(AB));['IsoscelesTriangle(AOB)']
+Missing premise: Polygon for triangle AOB is missing
+Details: The construction data did not define this polygon.
+- Available premises:
+  Collinear Points: ACD, AOB
+  Polygons: ACO, ADO, AOC, AOD, CDO, COD
+- Theorems related to the goal:
+  None found that constrain this goal
+- Solver constraints directly related to this goal:
+  None found
+
+Please fix the proof.
+Model Answer:
+RETRY_ANSWER:
+56
+RETRY_THEOREM_SEQUENCE:
+1; isosceles_triangle_judgment_line_equal(1,AOB); Polygon(AOB)&Equal(LengthOfLine(AO),LengthOfLine(AB)); ["IsoscelesTriangle(AOB)"]  
+2; isosceles_triangle_judgment_line_equal(1,BOD); Polygon(BOD)&Equal(LengthOfLine(BO),LengthOfLine(BD)); ["IsoscelesTriangle(BOD)"]
+#run: 2; #retry: 5; message: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
+Failure: The THEOREM_SEQUENCE you provided is empty. Please generate a proof again, using the similar problems I provided (A1, A2, A3, A4, A5), along with the GDL_DICTIONARY of theorems.
+Model Answer:
+RETRY_ANSWER:
+56
+RETRY_THEOREM_SEQUENCE:
+
+#RETRIES:
+5
+#RUNS:
+2
+
+
+GT_EQUATIONS:
+ll_ao-ll_bo
+-ll_bo+ll_do
+ma_oac-28
+GT_GOAL_SYMBOL:
+ma_bod
+GT_ANSWER:
+56
+GT_THEOREM_SEQUENCE:
+1;triangle_property_angle_sum(1,OAD);Polygon(OAD);["Equal(Add(MeasureOfAngle(OAD),MeasureOfAngle(ADO),MeasureOfAngle(DOA)),180)"]
+2;isosceles_triangle_judgment_line_equal(1,OAD);Polygon(OAD)&Equal(LengthOfLine(OA),LengthOfLine(OD));["IsoscelesTriangle(OAD)"]
+3;isosceles_triangle_property_angle_equal(1,OAD);IsoscelesTriangle(OAD);["Equal(MeasureOfAngle(OAD),MeasureOfAngle(ADO))"]
+4;adjacent_complementary_angle(1,BOD,DOA);Collinear(BOA)&Angle(BOD)&Angle(DOA);["Equal(Add(MeasureOfAngle(BOD),MeasureOfAngle(DOA)),180)"]
+

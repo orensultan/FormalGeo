@@ -130,16 +130,6 @@ Line
 predicates to add:
 Line
 predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
 Line
 predicates to add:
 Angle
@@ -170,16 +160,6 @@ Line
 predicates to add:
 Line
 predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
 Angle
 predicates to add:
 Line
@@ -193,6 +173,26 @@ predicates to add:
 Line
 predicates to add:
 Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
 predicates to add:
 Line
 predicates to add:
@@ -303,19 +303,30 @@ predicates to add:
 Equation
 predicates to add:
 IsCentreOfCircle
-Verifier result: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
-Verification failed.
-Theorem: arc_property_center_angle(1,PCY,P)
-The language model outputs the following premises: Arc(PCY)&Angle(CPY)&IsCentreOfCircle(P,P)
-The correct premises for the theorem: Arc(PCY)&Angle(YPC)&IsCentreOfCircle(P,P)
-The language model outputs the following conclusions: Equal(MeasureOfArc(PCY),MeasureOfAngle(CPY))
-The correct conclusions for the theorem: Equal(MeasureOfArc(PCY),MeasureOfAngle(YPC))
+Verifier result: ERROR_TIER: TIER3_GOAL_NOT_REACHED
+verification failed.
 
+- Goal: measure of arc PCY
+- Model answer: 60.0
+- Error: Your proof doesn't uniquely determine the value. You need to use additional theorems to constrain the value.
+- Available premises:
+  Collinear Points: APB
+  Cocircular Points: A on circle P, AB on circle P, ABC on circle P, ABCX on circle P, ABCXY on circle P, ABCY on circle P, ABX on circle P, ABXY on circle P, ABY on circle P, AC on circle P, ACX on circle P, ACXY on circle P, ACY on circle P, AX on circle P, AXY on circle P, AY on circle P, B on circle P, BC on circle P, BCX on circle P, BCXY on circle P, BCY on circle P, BX on circle P, BXY on circle P, BY on circle P, C on circle P, CX on circle P, CXY on circle P, CY on circle P, X on circle P, XY on circle P, Y on circle P
+  Circles: P center: P
+- Theorems related to the goal:
+  None found that constrain this goal
+- Solver constraints directly related to this goal:
+  arc(PCY) <= 360
+  arc(PCY) = 3*x - 3
+  arc(PCY) >= 0
+
+Please fix the proof.
 Model Answer:
 RETRY_ANSWER:
-3*x-3
+60
 RETRY_THEOREM_SEQUENCE:
-1; arc_property_center_angle(1,PCY,P); Arc(PCY)&Angle(CPY)&IsCentreOfCircle(P,P); ["Equal(MeasureOfArc(PCY),MeasureOfAngle(CPY))"]
+1; flat_angle(1,BPA); Collinear(BPA); ["Equal(MeasureOfAngle(BPA),180)"]
+2; arc_property_center_angle(1,PAB,P); Arc(PAB)&Angle(BPA)&IsCentreOfCircle(P,P); ["Equal(MeasureOfArc(PAB),MeasureOfAngle(BPA))"]
 Retry attempt: 1
 Content written to results/level_4/variant_analogy_based_model_o1_problem_464_run_1_to_verify.txt
 predicates to add:
@@ -449,16 +460,6 @@ Line
 predicates to add:
 Line
 predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
 Line
 predicates to add:
 Angle
@@ -489,16 +490,6 @@ Line
 predicates to add:
 Line
 predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
 Angle
 predicates to add:
 Line
@@ -512,6 +503,26 @@ predicates to add:
 Line
 predicates to add:
 Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
 predicates to add:
 Line
 predicates to add:
@@ -623,12 +634,14 @@ Equation
 predicates to add:
 IsCentreOfCircle
 Verifier result: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
-Error parsing answer '3*x-3': Invalid literal for Fraction: '3*x-3'
+Failure: Theorem <flat_angle> branch error. Expected dict_keys(['1']) but got None. Please rewrite your response, you should change only the call to theorem <flat_angle> by adding the branch number from the dict_keys as the first argument
 Model Answer:
 RETRY_ANSWER:
-3*x-3
+60
 RETRY_THEOREM_SEQUENCE:
-1; arc_property_center_angle(1,PCY,P); Arc(PCY)&Angle(YPC)&IsCentreOfCircle(P,P); ["Equal(MeasureOfArc(PCY),MeasureOfAngle(YPC))"]
+1; flat_angle(ABC); Collinear(BPA); ["Equal(MeasureOfAngle(BPA),180)"]
+2; arc_property_center_angle(PBA,P); Arc(PBA)&Angle(BPA)&IsCentreOfCircle(P,P); ["Equal(MeasureOfArc(PBA),MeasureOfAngle(BPA))"]
+3; arc_property_center_angle(PBY,P); Arc(PBY)&Angle(BPY)&IsCentreOfCircle(P,P); ["Equal(MeasureOfArc(PBY),MeasureOfAngle(BPY))"]
 Retry attempt: 2
 Content written to results/level_4/variant_analogy_based_model_o1_problem_464_run_1_to_verify.txt
 predicates to add:
@@ -762,16 +775,6 @@ Line
 predicates to add:
 Line
 predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
 Line
 predicates to add:
 Angle
@@ -802,16 +805,6 @@ Line
 predicates to add:
 Line
 predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
 Angle
 predicates to add:
 Line
@@ -825,6 +818,26 @@ predicates to add:
 Line
 predicates to add:
 Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
 predicates to add:
 Line
 predicates to add:
@@ -935,30 +948,20 @@ predicates to add:
 Equation
 predicates to add:
 IsCentreOfCircle
-Verifier result: ERROR_TIER: TIER3_GOAL_NOT_REACHED
-verification failed.
+Verifier result: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
+Theorem: arc_property_center_angle(1,PBA,P)
+You output the following premises: Arc(PBA)&Angle(BPA)&IsCentreOfCircle(P,P)
+But the correct premises: Arc(PBA)&Angle(APB)&IsCentreOfCircle(P,P)
+You output the following conclusions: Equal(MeasureOfArc(PBA),MeasureOfAngle(BPA))
+But the correct conclusions: Equal(MeasureOfArc(PBA),MeasureOfAngle(APB))
 
-- Goal: measure of arc PCY
-- Model answer: 127.5
-- Error: Your proof doesn't uniquely determine the value. You need to use additional theorems to constrain the value.
-- Available premises:
-  Collinear Points: APB
-  Cocircular Points: A on circle P, AB on circle P, ABC on circle P, ABCX on circle P, ABCXY on circle P, ABCY on circle P, ABX on circle P, ABXY on circle P, ABY on circle P, AC on circle P, ACX on circle P, ACXY on circle P, ACY on circle P, AX on circle P, AXY on circle P, AY on circle P, B on circle P, BC on circle P, BCX on circle P, BCXY on circle P, BCY on circle P, BX on circle P, BXY on circle P, BY on circle P, C on circle P, CX on circle P, CXY on circle P, CY on circle P, X on circle P, XY on circle P, Y on circle P
-  Circles: P center: P
-- Theorems related to the goal:
-  Step 1 - arc_property_center_angle(1, PCY, P): Equal(MeasureOfArc(PCY),MeasureOfAngle(YPC))
-- Solver constraints directly related to this goal:
-  arc(PCY) <= 360
-  arc(PCY) = 3*x - 3
-  arc(PCY) = ∠CPY
-  arc(PCY) >= 0
-
-Please fix the proof.
 Model Answer:
 RETRY_ANSWER:
-255/2
+60
 RETRY_THEOREM_SEQUENCE:
-1; arc_property_center_angle(1,PCY,P); Arc(PCY)&Angle(YPC)&IsCentreOfCircle(P,P); ["Equal(MeasureOfArc(PCY),MeasureOfAngle(YPC))"]
+1; flat_angle(1,BPA); Collinear(BPA); ["Equal(MeasureOfAngle(BPA),180)"]
+2; arc_property_center_angle(1,PBA,P); Arc(PBA)&Angle(BPA)&IsCentreOfCircle(P,P); ["Equal(MeasureOfArc(PBA),MeasureOfAngle(BPA))"]
+3; arc_property_center_angle(1,PBY,P); Arc(PBY)&Angle(BPY)&IsCentreOfCircle(P,P); ["Equal(MeasureOfArc(PBY),MeasureOfAngle(BPY))"]
 Retry attempt: 3
 Content written to results/level_4/variant_analogy_based_model_o1_problem_464_run_1_to_verify.txt
 predicates to add:
@@ -1092,16 +1095,6 @@ Line
 predicates to add:
 Line
 predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
 Line
 predicates to add:
 Angle
@@ -1132,16 +1125,6 @@ Line
 predicates to add:
 Line
 predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
 Angle
 predicates to add:
 Line
@@ -1155,6 +1138,26 @@ predicates to add:
 Line
 predicates to add:
 Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
 predicates to add:
 Line
 predicates to add:
@@ -1266,13 +1269,19 @@ Equation
 predicates to add:
 IsCentreOfCircle
 Verifier result: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
-Verification failed. Theorem <arc_property_center_angle> para length error. Expected 4 but got ('B', 'Y', 'P').
+Theorem: arc_property_center_angle(1,PBY,P)
+You output the following premises: Arc(PBY)&Angle(BPY)&IsCentreOfCircle(P,P)
+But the correct premises: Arc(PBY)&Angle(YPB)&IsCentreOfCircle(P,P)
+You output the following conclusions: Equal(MeasureOfArc(PBY),MeasureOfAngle(BPY))
+But the correct conclusions: Equal(MeasureOfArc(PBY),MeasureOfAngle(YPB))
+
 Model Answer:
 RETRY_ANSWER:
-255/2
+60
 RETRY_THEOREM_SEQUENCE:
-1; arc_property_center_angle(1,BY,P); Arc(BY)&Angle(BPY)&IsCentreOfCircle(P,P); ["Equal(MeasureOfArc(BY),MeasureOfAngle(BPY))"]
-2; circle_full_angle(1,PAC,PCY,BY); Arc(PAC)&Arc(PCY)&Arc(BY); ["Equal(Add(MeasureOfArc(PAC),MeasureOfArc(PCY),MeasureOfArc(BY)),360)"]
+1; flat_angle(1,BPA); Collinear(BPA); ["Equal(MeasureOfAngle(BPA),180)"]
+2; arc_property_center_angle(1,PBA,P); Arc(PBA)&Angle(APB)&IsCentreOfCircle(P,P); ["Equal(MeasureOfArc(PBA),MeasureOfAngle(APB))"]
+3; arc_property_center_angle(1,PBY,P); Arc(PBY)&Angle(BPY)&IsCentreOfCircle(P,P); ["Equal(MeasureOfArc(PBY),MeasureOfAngle(BPY))"]
 Retry attempt: 4
 Content written to results/level_4/variant_analogy_based_model_o1_problem_464_run_1_to_verify.txt
 predicates to add:
@@ -1406,16 +1415,6 @@ Line
 predicates to add:
 Line
 predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
 Line
 predicates to add:
 Angle
@@ -1446,16 +1445,6 @@ Line
 predicates to add:
 Line
 predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
 Angle
 predicates to add:
 Line
@@ -1469,6 +1458,26 @@ predicates to add:
 Line
 predicates to add:
 Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
 predicates to add:
 Line
 predicates to add:
@@ -1579,23 +1588,30 @@ predicates to add:
 Equation
 predicates to add:
 IsCentreOfCircle
-Verifier result: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
-Verification failed.
-Theorem: arc_property_center_angle(1,PAC,P)
-The language model outputs the following premises: Arc(PAC)&Angle(APC)&IsCentreOfCircle(P,P)
-The correct premises for the theorem: Arc(PAC)&Angle(CPA)&IsCentreOfCircle(P,P)
-The language model outputs the following conclusions: Equal(MeasureOfArc(PAC),MeasureOfAngle(APC))
-The correct conclusions for the theorem: Equal(MeasureOfArc(PAC),MeasureOfAngle(CPA))
+Verifier result: ERROR_TIER: TIER3_GOAL_NOT_REACHED
+verification failed.
 
+- Goal: measure of arc PCY
+- Model answer: 60.0
+- Error: Your proof doesn't uniquely determine the value. You need to use additional theorems to constrain the value.
+- Available premises:
+  Collinear Points: APB
+  Cocircular Points: A on circle P, AB on circle P, ABC on circle P, ABCX on circle P, ABCXY on circle P, ABCY on circle P, ABX on circle P, ABXY on circle P, ABY on circle P, AC on circle P, ACX on circle P, ACXY on circle P, ACY on circle P, AX on circle P, AXY on circle P, AY on circle P, B on circle P, BC on circle P, BCX on circle P, BCXY on circle P, BCY on circle P, BX on circle P, BXY on circle P, BY on circle P, C on circle P, CX on circle P, CXY on circle P, CY on circle P, X on circle P, XY on circle P, Y on circle P
+  Circles: P center: P
+- Theorems related to the goal:
+  None found that constrain this goal
+- Solver constraints directly related to this goal:
+  arc(PCY) <= 360
+  arc(PCY) = 3*x - 3
+  arc(PCY) >= 0
+
+Please fix the proof.
 Model Answer:
 RETRY_ANSWER:
 60
 RETRY_THEOREM_SEQUENCE:
-1; arc_property_center_angle(1,PAC,P); Arc(PAC)&Angle(APC)&IsCentreOfCircle(P,P); ["Equal(MeasureOfArc(PAC),MeasureOfAngle(APC))"]  
-2; arc_property_center_angle(1,PCY,P); Arc(PCY)&Angle(YPC)&IsCentreOfCircle(P,P); ["Equal(MeasureOfArc(PCY),MeasureOfAngle(YPC))"]  
-3; arc_property_center_angle(1,PBY,P); Arc(PBY)&Angle(BPY)&IsCentreOfCircle(P,P); ["Equal(MeasureOfArc(PBY),MeasureOfAngle(BPY))"]  
-4; flat_angle(1,BPA); Collinear(BPA); ["Equal(MeasureOfAngle(BPA),180)"]  
-5; angle_addition(1,APC,CPY); Angle(APC)&Angle(CPY)&Angle(APY); ["Equal(MeasureOfAngle(APY),Add(MeasureOfAngle(APC),MeasureOfAngle(CPY)))"]  
-6; angle_addition(1,APY,YPB); Angle(APY)&Angle(YPB)&Angle(APB); ["Equal(MeasureOfAngle(APB),Add(MeasureOfAngle(APY),MeasureOfAngle(YPB)))"]
+1; flat_angle(1,BPA); Collinear(BPA); ["Equal(MeasureOfAngle(BPA),180)"]  
+2; arc_property_center_angle(1,PBA,P); Arc(PBA)&Angle(APB)&IsCentreOfCircle(P,P); ["Equal(MeasureOfArc(PBA),MeasureOfAngle(APB))"]  
+3; arc_property_center_angle(1,PBY,P); Arc(PBY)&Angle(YPB)&IsCentreOfCircle(P,P); ["Equal(MeasureOfArc(PBY),MeasureOfAngle(YPB))"]
 Retry attempt: 5
 Content written to results/level_4/variant_analogy_based_model_o1_problem_464_run_1.txt
