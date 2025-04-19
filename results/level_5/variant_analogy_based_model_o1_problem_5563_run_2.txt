@@ -106,51 +106,12 @@ ANSWER:
 THEOREM_SEQUENCE:
 1; flat_angle(1,BDC); Collinear(BDC); ["Equal(MeasureOfAngle(BDC),180)"]
 2; angle_addition(1,BDA,ADC); Angle(BDA)&Angle(ADC)&Angle(BDC); ["Equal(MeasureOfAngle(BDC),Add(MeasureOfAngle(BDA),MeasureOfAngle(ADC)))"]
-3; triangle_property_angle_sum(1,ADC); Polygon(ADC); ["Equal(Add(MeasureOfAngle(ADC),MeasureOfAngle(DCA),MeasureOfAngle(CAD)),180)"]
-4; sine_theorem(1,ADC); Polygon(ADC); ["Equal(Mul(LengthOfLine(AD),Sin(MeasureOfAngle(ADC))),Mul(LengthOfLine(AC),Sin(MeasureOfAngle(DCA))))"]
+3; triangle_property_angle_sum(1,ABD); Polygon(ABD); ["Equal(Add(MeasureOfAngle(ABD),MeasureOfAngle(BDA),MeasureOfAngle(DAB)),180)"]
+4; sine_theorem(1,ABD); Polygon(ABD); ["Equal(Mul(LengthOfLine(BD),Sin(MeasureOfAngle(BDA))),Mul(LengthOfLine(AD),Sin(MeasureOfAngle(DAB))))"]
+5; sine_theorem(1,ADC); Polygon(ADC); ["Equal(Mul(LengthOfLine(AD),Sin(MeasureOfAngle(ADC))),Mul(LengthOfLine(AC),Sin(MeasureOfAngle(DCA))))"]
 ***MODEL_RESPONSE_END***
 RETRIES_MESSAGES:
-#run: 2; #retry: 1; message: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
-Verification failed. Theorem <flat_angle> branch error. Expected dict_keys(['1']) but got None. Please rewrite your response, you should change only the call to theorem <flat_angle> by adding the branch number from the dict_keys as the first argument
-Model Answer:
-RETRY_ANSWER:
-6
-RETRY_THEOREM_SEQUENCE:
-1; flat_angle(BDC); Collinear(BDC); ["Equal(MeasureOfAngle(BDC),180)"]
-2; angle_addition(BDA,ADC); Angle(BDA)&Angle(ADC)&Angle(BDC); ["Equal(MeasureOfAngle(BDC),Add(MeasureOfAngle(BDA),MeasureOfAngle(ADC)))"]
-3; triangle_property_angle_sum(ADC); Polygon(ADC); ["Equal(Add(MeasureOfAngle(ADC),MeasureOfAngle(DCA),MeasureOfAngle(CAD)),180)"]
-4; sine_theorem(ADC); Polygon(ADC); ["Equal(Mul(LengthOfLine(AD),Sin(MeasureOfAngle(ADC))),Mul(LengthOfLine(AC),Sin(MeasureOfAngle(DCA))))"]
-#run: 2; #retry: 2; message: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
-Verification failed. Theorem <angle_addition> branch error. Expected dict_keys(['1']) but got None. Please rewrite your response, you should change only the call to theorem <angle_addition> by adding the branch number from the dict_keys as the first argument
-Model Answer:
-RETRY_ANSWER:
-6
-RETRY_THEOREM_SEQUENCE:
-1; flat_angle(1,BDC); Collinear(BDC); ["Equal(MeasureOfAngle(BDC),180)"]
-2; angle_addition(BDA,ADC); Angle(BDA)&Angle(ADC)&Angle(BDC); ["Equal(MeasureOfAngle(BDC),Add(MeasureOfAngle(BDA),MeasureOfAngle(ADC)))"]
-3; triangle_property_angle_sum(ADC); Polygon(ADC); ["Equal(Add(MeasureOfAngle(ADC),MeasureOfAngle(DCA),MeasureOfAngle(CAD)),180)"]
-4; sine_theorem(ADC); Polygon(ADC); ["Equal(Mul(LengthOfLine(AD),Sin(MeasureOfAngle(ADC))),Mul(LengthOfLine(AC),Sin(MeasureOfAngle(DCA))))"]
-#run: 2; #retry: 3; message: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
-Verification failed. Theorem <triangle_property_angle_sum> branch error. Expected dict_keys(['1']) but got None. Please rewrite your response, you should change only the call to theorem <triangle_property_angle_sum> by adding the branch number from the dict_keys as the first argument
-Model Answer:
-RETRY_ANSWER:
-6
-RETRY_THEOREM_SEQUENCE:
-1; flat_angle(1,BDC); Collinear(BDC); ["Equal(MeasureOfAngle(BDC),180)"]
-2; angle_addition(1,BDA,ADC); Angle(BDA)&Angle(ADC)&Angle(BDC); ["Equal(MeasureOfAngle(BDC),Add(MeasureOfAngle(BDA),MeasureOfAngle(ADC)))"]
-3; triangle_property_angle_sum(ADC); Polygon(ADC); ["Equal(Add(MeasureOfAngle(ADC),MeasureOfAngle(DCA),MeasureOfAngle(CAD)),180)"]
-4; sine_theorem(ADC); Polygon(ADC); ["Equal(Mul(LengthOfLine(AD),Sin(MeasureOfAngle(ADC))),Mul(LengthOfLine(AC),Sin(MeasureOfAngle(DCA))))"]
-#run: 2; #retry: 4; message: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
-Verification failed. Theorem <sine_theorem> branch error. Expected dict_keys(['1']) but got None. Please rewrite your response, you should change only the call to theorem <sine_theorem> by adding the branch number from the dict_keys as the first argument
-Model Answer:
-RETRY_ANSWER:
-6
-RETRY_THEOREM_SEQUENCE:
-1; flat_angle(1,BDC); Collinear(BDC); ["Equal(MeasureOfAngle(BDC),180)"]
-2; angle_addition(1,BDA,ADC); Angle(BDA)&Angle(ADC)&Angle(BDC); ["Equal(MeasureOfAngle(BDC),Add(MeasureOfAngle(BDA),MeasureOfAngle(ADC)))"]
-3; triangle_property_angle_sum(1,ADC); Polygon(ADC); ["Equal(Add(MeasureOfAngle(ADC),MeasureOfAngle(DCA),MeasureOfAngle(CAD)),180)"]
-4; sine_theorem(ADC); Polygon(ADC); ["Equal(Mul(LengthOfLine(AD),Sin(MeasureOfAngle(ADC))),Mul(LengthOfLine(AC),Sin(MeasureOfAngle(DCA))))"]
-#run: 2; #retry: 5; message: ERROR_TIER: TIER3_GOAL_NOT_REACHED
+#run: 2; #retry: 1; message: ERROR_TIER: TIER3_GOAL_NOT_REACHED
 verification failed.
 
 - Goal: length of line AC
@@ -160,7 +121,7 @@ verification failed.
   Collinear Points: BDC
   Polygons: ABC, ABD, ACB, ACD, ADB, ADC
 - Theorems related to the goal:
-  Step 4 - sine_theorem(1, ADC): Equal(Mul(LengthOfLine(AD),Sin(MeasureOfAngle(ADC))),Mul(LengthOfLine(AC),Sin(MeasureOfAngle(DCA))))
+  Step 3 - sine_theorem(1, ADC): Equal(Mul(LengthOfLine(AD),Sin(MeasureOfAngle(ADC))),Mul(LengthOfLine(AC),Sin(MeasureOfAngle(DCA))))
 - Solver constraints directly related to this goal:
   |AC| > 0
   |AD|*24999999999999997/50000000000000000 = |AC|*1
@@ -172,8 +133,74 @@ RETRY_ANSWER:
 RETRY_THEOREM_SEQUENCE:
 1; flat_angle(1,BDC); Collinear(BDC); ["Equal(MeasureOfAngle(BDC),180)"]
 2; angle_addition(1,BDA,ADC); Angle(BDA)&Angle(ADC)&Angle(BDC); ["Equal(MeasureOfAngle(BDC),Add(MeasureOfAngle(BDA),MeasureOfAngle(ADC)))"]
-3; triangle_property_angle_sum(1,ADC); Polygon(ADC); ["Equal(Add(MeasureOfAngle(ADC),MeasureOfAngle(DCA),MeasureOfAngle(CAD)),180)"]
-4; sine_theorem(1,ADC); Polygon(ADC); ["Equal(Mul(LengthOfLine(AD),Sin(MeasureOfAngle(ADC))),Mul(LengthOfLine(AC),Sin(MeasureOfAngle(DCA))))"]
+3; sine_theorem(1,ADC); Polygon(ADC); ["Equal(Mul(LengthOfLine(AD),Sin(MeasureOfAngle(ADC))),Mul(LengthOfLine(AC),Sin(MeasureOfAngle(DCA))))"]
+#run: 2; #retry: 2; message: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
+Theorem: isosceles_triangle_judgment_angle_equal(1,ABD)
+You output the following premises: Polygon(ABD)&Equal(MeasureOfAngle(ABD),MeasureOfAngle(DAB))
+But the correct premises: Polygon(ABD)&Equal(MeasureOfAngle(ABD),MeasureOfAngle(BDA))
+
+Model Answer:
+RETRY_ANSWER:
+6
+RETRY_THEOREM_SEQUENCE:
+1; flat_angle(1,BDC); Collinear(BDC); ["Equal(MeasureOfAngle(BDC),180)"]
+2; angle_addition(1,BDA,ADC); Angle(BDA)&Angle(ADC)&Angle(BDC); ["Equal(MeasureOfAngle(BDC),Add(MeasureOfAngle(BDA),MeasureOfAngle(ADC)))"]
+3; triangle_property_angle_sum(1,ABD); Polygon(ABD); ["Equal(Add(MeasureOfAngle(ABD),MeasureOfAngle(BDA),MeasureOfAngle(DAB)),180)"]
+4; isosceles_triangle_judgment_angle_equal(1,ABD); Polygon(ABD)&Equal(MeasureOfAngle(ABD),MeasureOfAngle(DAB)); ["IsoscelesTriangle(ABD)"]
+5; sine_theorem(1,ADC); Polygon(ADC); ["Equal(Mul(LengthOfLine(AD),Sin(MeasureOfAngle(ADC))),Mul(LengthOfLine(AC),Sin(MeasureOfAngle(DCA))))"]
+#run: 2; #retry: 3; message: ERROR_TIER: TIER3_GOAL_NOT_REACHED
+verification failed.
+
+- Goal: length of line AC
+- Model answer: 6.0
+- Error: Your proof doesn't uniquely determine the value. You need to use additional theorems to constrain the value.
+- Available premises:
+  Collinear Points: BDC
+  Polygons: ABC, ABD, ACB, ACD, ADB, ADC
+- Theorems related to the goal:
+  Step 5 - sine_theorem(1, ADC): Equal(Mul(LengthOfLine(AD),Sin(MeasureOfAngle(ADC))),Mul(LengthOfLine(AC),Sin(MeasureOfAngle(DCA))))
+- Solver constraints directly related to this goal:
+  |AC| > 0
+  |AD|*24999999999999997/50000000000000000 = |AC|*1
+
+Please fix the proof.
+Model Answer:
+RETRY_ANSWER:
+6
+RETRY_THEOREM_SEQUENCE:
+1; triangle_property_angle_sum(1,ABD); Polygon(ABD); ["Equal(Add(MeasureOfAngle(ABD),MeasureOfAngle(BDA),MeasureOfAngle(DAB)),180)"]
+2; flat_angle(1,BDC); Collinear(BDC); ["Equal(MeasureOfAngle(BDC),180)"]
+3; angle_addition(1,BDA,ADC); Angle(BDA)&Angle(ADC)&Angle(BDC); ["Equal(MeasureOfAngle(BDC),Add(MeasureOfAngle(BDA),MeasureOfAngle(ADC)))"]
+4; sine_theorem(1,ABD); Polygon(ABD); ["Equal(Mul(LengthOfLine(AB),Sin(MeasureOfAngle(ABD))),Mul(LengthOfLine(AD),Sin(MeasureOfAngle(BDA))))"]
+5; sine_theorem(1,ADC); Polygon(ADC); ["Equal(Mul(LengthOfLine(AD),Sin(MeasureOfAngle(ADC))),Mul(LengthOfLine(AC),Sin(MeasureOfAngle(DCA))))"]
+#run: 2; #retry: 4; message: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
+Theorem: right_triangle_judgment_angle(1,ADC)
+You output the following premises: Polygon(ADC)&Equal(MeasureOfAngle(DCA),90)
+But the correct premises: Polygon(ADC)&Equal(MeasureOfAngle(ADC),90)
+
+Model Answer:
+RETRY_ANSWER:
+6
+RETRY_THEOREM_SEQUENCE:
+1; triangle_property_angle_sum(1,ABD); Polygon(ABD); ["Equal(Add(MeasureOfAngle(ABD),MeasureOfAngle(BDA),MeasureOfAngle(DAB)),180)"]
+2; flat_angle(1,BDC); Collinear(BDC); ["Equal(MeasureOfAngle(BDC),180)"]
+3; angle_addition(1,BDA,ADC); Angle(BDA)&Angle(ADC)&Angle(BDC); ["Equal(MeasureOfAngle(BDC),Add(MeasureOfAngle(BDA),MeasureOfAngle(ADC)))"]
+4; triangle_property_angle_sum(1,ADC); Polygon(ADC); ["Equal(Add(MeasureOfAngle(ADC),MeasureOfAngle(DCA),MeasureOfAngle(CAD)),180)"]
+5; right_triangle_judgment_angle(1,ADC); Polygon(ADC)&Equal(MeasureOfAngle(DCA),90); ["RightTriangle(ADC)"]
+#run: 2; #retry: 5; message: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
+Theorem: sine_theorem(1,ABD)
+You output the following conclusions: Equal(Mul(LengthOfLine(BD),Sin(MeasureOfAngle(BDA))),Mul(LengthOfLine(AD),Sin(MeasureOfAngle(DAB))))
+But the correct conclusions: Equal(Mul(LengthOfLine(AB),Sin(MeasureOfAngle(ABD))),Mul(LengthOfLine(AD),Sin(MeasureOfAngle(BDA))))
+
+Model Answer:
+RETRY_ANSWER:
+6
+RETRY_THEOREM_SEQUENCE:
+1; flat_angle(1,BDC); Collinear(BDC); ["Equal(MeasureOfAngle(BDC),180)"]
+2; angle_addition(1,BDA,ADC); Angle(BDA)&Angle(ADC)&Angle(BDC); ["Equal(MeasureOfAngle(BDC),Add(MeasureOfAngle(BDA),MeasureOfAngle(ADC)))"]
+3; triangle_property_angle_sum(1,ABD); Polygon(ABD); ["Equal(Add(MeasureOfAngle(ABD),MeasureOfAngle(BDA),MeasureOfAngle(DAB)),180)"]
+4; sine_theorem(1,ABD); Polygon(ABD); ["Equal(Mul(LengthOfLine(BD),Sin(MeasureOfAngle(BDA))),Mul(LengthOfLine(AD),Sin(MeasureOfAngle(DAB))))"]
+5; sine_theorem(1,ADC); Polygon(ADC); ["Equal(Mul(LengthOfLine(AD),Sin(MeasureOfAngle(ADC))),Mul(LengthOfLine(AC),Sin(MeasureOfAngle(DCA))))"]
 #RETRIES:
 5
 #RUNS:

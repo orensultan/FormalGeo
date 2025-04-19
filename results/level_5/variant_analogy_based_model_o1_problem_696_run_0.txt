@@ -264,108 +264,29 @@ GOAL_SYMBOL:
 y
 
 ANSWER:
--6+6*sqrt(6)
+6(√6-1)
 
 THEOREM_SEQUENCE:
 1; line_addition(1,DB,BF); Collinear(DBF); ["Equal(LengthOfLine(DF),Add(LengthOfLine(DB),LengthOfLine(BF)))"]
 2; circle_property_circular_power_tangent_and_segment_line(1,DC,DBF,E); IsTangentOfCircle(DC,E)&Cocircular(E,BF)&Collinear(DBF); ["Equal(Mul(LengthOfLine(DC),LengthOfLine(DC)),Mul(LengthOfLine(DB),LengthOfLine(DF)))"]
-3; line_addition(1,AF,BF); Collinear(AFB); ["Equal(LengthOfLine(AB),Add(LengthOfLine(AF),LengthOfLine(BF)))"]
-4; line_addition(1,AG,GC); Collinear(AGC); ["Equal(LengthOfLine(AC),Add(LengthOfLine(AG),LengthOfLine(CG)))"]
-5; circle_property_circular_power_segment_and_segment_line(1,AFB,AGC,E); Cocircular(E,BF)&Cocircular(E,GC)&Collinear(AFB)&Collinear(AGC); ["Equal(Mul(LengthOfLine(AF),LengthOfLine(AB)),Mul(LengthOfLine(AG),LengthOfLine(AC)))"]
+3; line_addition(1,AF,FB); Collinear(AFB); ["Equal(LengthOfLine(AB),Add(LengthOfLine(AF),LengthOfLine(FB)))"]
+4; line_addition(1,AG,GC); Collinear(AGC); ["Equal(LengthOfLine(AC),Add(LengthOfLine(AG),LengthOfLine(GC)))"]
+5; circle_property_circular_power_segment_and_segment_line(1,AFB,AGC,E); Cocircular(E,FB)&Cocircular(E,GC)&Collinear(AFB)&Collinear(AGC); ["Equal(Mul(LengthOfLine(AF),LengthOfLine(AB)),Mul(LengthOfLine(AG),LengthOfLine(AC)))"]
 ***MODEL_RESPONSE_END***
 RETRIES_MESSAGES:
 #run: 0; #retry: 1; message: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
-Verification failed. Theorem <line_addition> branch error. Expected dict_keys(['1']) but got None. Please rewrite your response, you should change only the call to theorem <line_addition> by adding the branch number from the dict_keys as the first argument
+Failure: Theorem <circle_property_circular_power_segment_and_segment_line> branch error. Expected dict_keys(['1']) but got None. Please rewrite your response, you should change only the call to theorem <circle_property_circular_power_segment_and_segment_line> by adding the branch number from the dict_keys as the first argument
 Model Answer:
 RETRY_ANSWER:
--6+6*sqrt(6)
-RETRY_THEOREM_SEQUENCE:
-1; line_addition(DB,BF); Collinear(DBF); ["Equal(LengthOfLine(DF),Add(LengthOfLine(DB),LengthOfLine(BF)))"]
-2; circle_property_circular_power_tangent_and_segment_line(DC,DBF,E); IsTangentOfCircle(DC,E)&Cocircular(E,BF)&Collinear(DBF); ["Equal(Mul(LengthOfLine(DC),LengthOfLine(DC)),Mul(LengthOfLine(DB),LengthOfLine(DF)))"]
-3; circle_property_circular_power_segment_and_segment_line(ABF,ACG,E); Cocircular(E,BF)&Cocircular(E,CG)&Collinear(ABF)&Collinear(ACG); ["Equal(Mul(LengthOfLine(AB),LengthOfLine(AF)),Mul(LengthOfLine(AC),LengthOfLine(AG)))"]
-#run: 0; #retry: 2; message: ERROR_TIER: TIER2_PREMISE_VIOLATION
-verification failed.
-
-- Error: You tried to use theorem: circle_property_circular_power_segment_and_segment_line(1,ABF,ACG,E);Cocircular(E,BF)&Cocircular(E,CG)&Collinear(ABF)&Collinear(ACG);['Equal(Mul(LengthOfLine(AB),LengthOfLine(AF)),Mul(LengthOfLine(AC),LengthOfLine(AG)))']
-Missing premise: Expected collinear fact Collinear(ABF) not found.
-Details: Stored collinear facts: ['AFBD', 'AGC', 'AFB', 'AFD', 'ABD', 'DBF', 'DBF', 'DBF', 'ABD', 'ABD', 'AFD', 'AFD', 'AFB', 'AFB', 'AGC']
-- Available premises:
-  Collinear Points: ABD, AFB, AFBD, AFD, AGC, DBF
-  Cocircular Points: B on circle E, BC on circle E, BCF on circle E, BCFG on circle E, BCG on circle E, BF on circle E, BFG on circle E, BG on circle E, C on circle E, CF on circle E, CFG on circle E, CG on circle E, F on circle E, FG on circle E, G on circle E
-  Circles: E center: E
-  Tangent Lines: DC tangent to E
-  Polygons: ACD, ADC
-- Theorems related to the goal:
-  None found that constrain this goal
-- Solver constraints directly related to this goal:
-  None found
-
-Please fix the proof.
-Model Answer:
-RETRY_ANSWER:
--6+6*sqrt(6)
+6(√6-1)
 RETRY_THEOREM_SEQUENCE:
 1; line_addition(1,DB,BF); Collinear(DBF); ["Equal(LengthOfLine(DF),Add(LengthOfLine(DB),LengthOfLine(BF)))"]
 2; circle_property_circular_power_tangent_and_segment_line(1,DC,DBF,E); IsTangentOfCircle(DC,E)&Cocircular(E,BF)&Collinear(DBF); ["Equal(Mul(LengthOfLine(DC),LengthOfLine(DC)),Mul(LengthOfLine(DB),LengthOfLine(DF)))"]
-3; circle_property_circular_power_segment_and_segment_line(1,ABF,ACG,E); Cocircular(E,BF)&Cocircular(E,CG)&Collinear(ABF)&Collinear(ACG); ["Equal(Mul(LengthOfLine(AB),LengthOfLine(AF)),Mul(LengthOfLine(AC),LengthOfLine(AG)))"]
-#run: 0; #retry: 3; message: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
-Verification failed.
-Theorem: circle_property_circular_power_segment_and_segment_line(1,AFB,AGC,E)
-The language model outputs the following premises: Cocircular(E,FB)&Cocircular(E,CG)&Collinear(AFB)&Collinear(AGC)
-The correct premises for the theorem: Cocircular(E,FB)&Cocircular(E,GC)&Collinear(AFB)&Collinear(AGC)
-
-Model Answer:
-RETRY_ANSWER:
--6+6*sqrt(6)
-RETRY_THEOREM_SEQUENCE:
-1; line_addition(1,DB,BF); Collinear(DBF); ["Equal(LengthOfLine(DF),Add(LengthOfLine(DB),LengthOfLine(BF)))"]
-2; circle_property_circular_power_tangent_and_segment_line(1,DC,DBF,E); IsTangentOfCircle(DC,E)&Cocircular(E,BF)&Collinear(DBF); ["Equal(Mul(LengthOfLine(DC),LengthOfLine(DC)),Mul(LengthOfLine(DB),LengthOfLine(DF)))"]
-3; circle_property_circular_power_segment_and_segment_line(1,AFB,AGC,E); Cocircular(E,FB)&Cocircular(E,CG)&Collinear(AFB)&Collinear(AGC); ["Equal(Mul(LengthOfLine(AF),LengthOfLine(AB)),Mul(LengthOfLine(AG),LengthOfLine(AC)))"]
-#run: 0; #retry: 4; message: ERROR_TIER: TIER3_GOAL_NOT_REACHED
-verification failed.
-
-- Goal: value of y
-- Model answer: 8.696938456699067
-- Error: Your proof doesn't uniquely determine the value. You need to use additional theorems to constrain the value.
-- Available premises:
-  Collinear Points: ABD, AFB, AFBD, AFD, AGC
-  Cocircular Points: B on circle E, BC on circle E, BCF on circle E, BCFG on circle E, BCG on circle E, BF on circle E, BFG on circle E, BG on circle E, C on circle E, CF on circle E, CFG on circle E, CG on circle E, F on circle E, FG on circle E, G on circle E
-  Circles: E center: E
-  Tangent Lines: DC tangent to E
-  Polygons: ACD, ADC
-- Theorems related to the goal:
-  None found that constrain this goal
-- Solver constraints directly related to this goal:
-  None found
-
-Variable y is not uniquely determined
-Please fix the proof.
-Model Answer:
-RETRY_ANSWER:
--6+6*sqrt(6)
-RETRY_THEOREM_SEQUENCE:
-1; line_addition(1,DB,BF); Collinear(DBF); ["Equal(LengthOfLine(DF),Add(LengthOfLine(DB),LengthOfLine(BF)))"]
-2; circle_property_circular_power_tangent_and_segment_line(1,DC,DBF,E); IsTangentOfCircle(DC,E)&Cocircular(E,BF)&Collinear(DBF); ["Equal(Mul(LengthOfLine(DC),LengthOfLine(DC)),Mul(LengthOfLine(DB),LengthOfLine(DF)))"]
-3; circle_property_circular_power_segment_and_segment_line(1,AFB,AGC,E); Cocircular(E,FB)&Cocircular(E,GC)&Collinear(AFB)&Collinear(AGC); ["Equal(Mul(LengthOfLine(AF),LengthOfLine(AB)),Mul(LengthOfLine(AG),LengthOfLine(AC)))"]
-#run: 0; #retry: 5; message: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
-Verification failed.
-Theorem: line_addition(1,AF,BF)
-The language model outputs the following premises: Collinear(AFB)
-The correct premises for the theorem: Collinear(ABF)
-The language model outputs the following conclusions: Equal(LengthOfLine(AB),Add(LengthOfLine(AF),LengthOfLine(BF)))
-The correct conclusions for the theorem: Equal(LengthOfLine(AF),Add(LengthOfLine(AB),LengthOfLine(BF)))
-
-Model Answer:
-RETRY_ANSWER:
--6+6*sqrt(6)
-RETRY_THEOREM_SEQUENCE:
-1; line_addition(1,DB,BF); Collinear(DBF); ["Equal(LengthOfLine(DF),Add(LengthOfLine(DB),LengthOfLine(BF)))"]
-2; circle_property_circular_power_tangent_and_segment_line(1,DC,DBF,E); IsTangentOfCircle(DC,E)&Cocircular(E,BF)&Collinear(DBF); ["Equal(Mul(LengthOfLine(DC),LengthOfLine(DC)),Mul(LengthOfLine(DB),LengthOfLine(DF)))"]
-3; line_addition(1,AF,BF); Collinear(AFB); ["Equal(LengthOfLine(AB),Add(LengthOfLine(AF),LengthOfLine(BF)))"]
-4; line_addition(1,AG,GC); Collinear(AGC); ["Equal(LengthOfLine(AC),Add(LengthOfLine(AG),LengthOfLine(CG)))"]
-5; circle_property_circular_power_segment_and_segment_line(1,AFB,AGC,E); Cocircular(E,BF)&Cocircular(E,GC)&Collinear(AFB)&Collinear(AGC); ["Equal(Mul(LengthOfLine(AF),LengthOfLine(AB)),Mul(LengthOfLine(AG),LengthOfLine(AC)))"]
+3; line_addition(1,AF,FB); Collinear(AFB); ["Equal(LengthOfLine(AB),Add(LengthOfLine(AF),LengthOfLine(FB)))"]
+4; line_addition(1,AG,GC); Collinear(AGC); ["Equal(LengthOfLine(AC),Add(LengthOfLine(AG),LengthOfLine(GC)))"]
+5; circle_property_circular_power_segment_and_segment_line(AFB,AGC,E); Cocircular(E,FB)&Cocircular(E,GC)&Collinear(AFB)&Collinear(AGC); ["Equal(Mul(LengthOfLine(AF),LengthOfLine(AB)),Mul(LengthOfLine(AG),LengthOfLine(AC)))"]
 #RETRIES:
-5
+1
 #RUNS:
 0
 
