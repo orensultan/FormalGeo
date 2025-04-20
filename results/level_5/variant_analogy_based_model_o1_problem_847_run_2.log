@@ -232,8 +232,9 @@ RETRY_ANSWER:
 6*sqrt(3)
 RETRY_THEOREM_SEQUENCE:
 1; isosceles_triangle_judgment_line_equal(1,ABC); Polygon(ABC)&Equal(LengthOfLine(AB),LengthOfLine(BC)); ["IsoscelesTriangle(ABC)"]  
-2; isosceles_triangle_property_angle_equal(1,ABC); IsoscelesTriangle(ABC); ["Equal(MeasureOfAngle(ABC),MeasureOfAngle(BCA))"]  
-3; triangle_property_angle_sum(1,ABC); Polygon(ABC); ["Equal(Add(MeasureOfAngle(ABC),MeasureOfAngle(BCA),MeasureOfAngle(CAB)),180)"]
+2; triangle_property_angle_sum(1,ABC); Polygon(ABC); ["Equal(Add(MeasureOfAngle(ABC),MeasureOfAngle(BCA),MeasureOfAngle(CAB)),180)"]  
+3; right_triangle_judgment_angle(1,CDB); Polygon(CDB)&Equal(MeasureOfAngle(CDB),90); ["RightTriangle(CDB)"]  
+4; right_triangle_property_pythagorean(1,CDB); RightTriangle(CDB); ["Equal(Add(Pow(LengthOfLine(CD),2),Pow(LengthOfLine(DB),2)),Pow(LengthOfLine(CB),2))"]
 Retry attempt: 1
 Content written to results/level_5/variant_analogy_based_model_o1_problem_847_run_2_to_verify.txt
 predicates to add:
@@ -459,30 +460,18 @@ predicates to add:
 Equation
 predicates to add:
 PerpendicularBetweenLine
-Verifier result: ERROR_TIER: TIER3_GOAL_NOT_REACHED
-verification failed.
+Verifier result: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
+Theorem: right_triangle_property_pythagorean(1,CDB)
+You output the following conclusions: Equal(Add(Pow(LengthOfLine(CD),2),Pow(LengthOfLine(DB),2)),Pow(LengthOfLine(BC),2))
+But the correct conclusions: Equal(Add(Pow(LengthOfLine(CD),2),Pow(LengthOfLine(DB),2)),Pow(LengthOfLine(CB),2))
 
-- Goal: value of h
-- Model answer: 10.392304845413264
-- Error: Your proof doesn't uniquely determine the value. You need to use additional theorems to constrain the value.
-- Available premises:
-  Perpendicular Lines: BD ⊥ CD
-  Collinear Points: ADC
-  Polygons: ABC, ABD, ACB, ADB, BCD, BDC
-- Theorems related to the goal:
-  Step 1 - triangle_area_formula_sine(1, ABC): Equal(AreaOfTriangle(ABC),Mul(LengthOfLine(AB),LengthOfLine(AC),Sin(MeasureOfAngle(CAB)),1/2))
-  Step 2 - triangle_area_formula_common(1, ABC): Equal(AreaOfTriangle(ABC),Mul(HeightOfTriangle(ABC),LengthOfLine(BC),1/2))
-- Solver constraints directly related to this goal:
-  None found
-
-Variable h is not uniquely determined
-Please fix the proof.
 Model Answer:
 RETRY_ANSWER:
 6*sqrt(3)
 RETRY_THEOREM_SEQUENCE:
-1; triangle_area_formula_sine(1,ABC); Polygon(ABC); ["Equal(AreaOfTriangle(ABC),Mul(LengthOfLine(AB),LengthOfLine(AC),Sin(MeasureOfAngle(CAB)),1/2))"]
-2; triangle_area_formula_common(1,ABC); Polygon(ABC); ["Equal(AreaOfTriangle(ABC),Mul(HeightOfTriangle(ABC),LengthOfLine(BC),1/2))"]
+1; cosine_theorem(1,ABC); Polygon(ABC); ["Equal(Add(Pow(LengthOfLine(BC),2),Mul(2,LengthOfLine(AB),LengthOfLine(AC),Cos(MeasureOfAngle(CAB)))),Add(Pow(LengthOfLine(AB),2),Pow(LengthOfLine(AC),2)))"]
+2; right_triangle_judgment_angle(1,CDB); Polygon(CDB)&Equal(MeasureOfAngle(CDB),90); ["RightTriangle(CDB)"]
+3; right_triangle_property_pythagorean(1,CDB); RightTriangle(CDB); ["Equal(Add(Pow(LengthOfLine(CD),2),Pow(LengthOfLine(DB),2)),Pow(LengthOfLine(BC),2))"]
 Retry attempt: 2
 Content written to results/level_5/variant_analogy_based_model_o1_problem_847_run_2_to_verify.txt
 predicates to add:
@@ -717,10 +706,12 @@ verification failed.
 - Available premises:
   Perpendicular Lines: BD ⊥ CD
   Collinear Points: ADC
+  Right Triangles: BCD
   Polygons: ABC, ABD, ACB, ADB, BCD, BDC
 - Theorems related to the goal:
-  Step 2 - triangle_area_formula_sine(1, ABC): Equal(AreaOfTriangle(ABC),Mul(LengthOfLine(AB),LengthOfLine(AC),Sin(MeasureOfAngle(CAB)),1/2))
-  Step 3 - triangle_area_formula_common(1, ABC): Equal(AreaOfTriangle(ABC),Mul(HeightOfTriangle(ABC),LengthOfLine(BC),1/2))
+  Step 1 - cosine_theorem(1, ABC): Equal(Add(Pow(LengthOfLine(BC),2),Mul(2,LengthOfLine(AB),LengthOfLine(AC),Cos(MeasureOfAngle(CAB)))),Add(Pow(LengthOfLine(AB),2),Pow(LengthOfLine(AC),2)))
+  Step 2 - right_triangle_judgment_angle(1, CDB): RightTriangle(CDB)
+  Step 3 - right_triangle_property_pythagorean(1, CDB): Equal(Add(Pow(LengthOfLine(CD),2),Pow(LengthOfLine(DB),2)),Pow(LengthOfLine(CB),2))
 - Solver constraints directly related to this goal:
   None found
 
@@ -730,9 +721,9 @@ Model Answer:
 RETRY_ANSWER:
 6*sqrt(3)
 RETRY_THEOREM_SEQUENCE:
-1; triangle_property_angle_sum(1,ABC); Polygon(ABC); ["Equal(Add(MeasureOfAngle(ABC),MeasureOfAngle(BCA),MeasureOfAngle(CAB)),180)"]
-2; triangle_area_formula_sine(1,ABC); Polygon(ABC); ["Equal(AreaOfTriangle(ABC),Mul(LengthOfLine(AB),LengthOfLine(AC),Sin(MeasureOfAngle(CAB)),1/2))"]
-3; triangle_area_formula_common(1,ABC); Polygon(ABC); ["Equal(AreaOfTriangle(ABC),Mul(HeightOfTriangle(ABC),LengthOfLine(BC),1/2))"]
+1; cosine_theorem(1,ABC); Polygon(ABC); ["Equal(Add(Pow(LengthOfLine(BC),2),Mul(2,LengthOfLine(AB),LengthOfLine(AC),Cos(MeasureOfAngle(CAB)))),Add(Pow(LengthOfLine(AB),2),Pow(LengthOfLine(AC),2)))"]  
+2; right_triangle_judgment_angle(1,CDB); Polygon(CDB)&Equal(MeasureOfAngle(CDB),90); ["RightTriangle(CDB)"]  
+3; right_triangle_property_pythagorean(1,CDB); RightTriangle(CDB); ["Equal(Add(Pow(LengthOfLine(CD),2),Pow(LengthOfLine(DB),2)),Pow(LengthOfLine(CB),2))"]
 Retry attempt: 3
 Content written to results/level_5/variant_analogy_based_model_o1_problem_847_run_2_to_verify.txt
 predicates to add:
@@ -967,9 +958,13 @@ verification failed.
 - Available premises:
   Perpendicular Lines: BD ⊥ CD
   Collinear Points: ADC
+  Right Triangles: BCD
   Polygons: ABC, ABD, ACB, ADB, BCD, BDC
 - Theorems related to the goal:
   Step 1 - cosine_theorem(1, ABC): Equal(Add(Pow(LengthOfLine(BC),2),Mul(2,LengthOfLine(AB),LengthOfLine(AC),Cos(MeasureOfAngle(CAB)))),Add(Pow(LengthOfLine(AB),2),Pow(LengthOfLine(AC),2)))
+  Step 2 - right_triangle_judgment_angle(1, CDB): RightTriangle(CDB)
+  Step 3 - right_triangle_property_pythagorean(1, CDB): Equal(Add(Pow(LengthOfLine(CD),2),Pow(LengthOfLine(DB),2)),Pow(LengthOfLine(CB),2))
+  Step 4 - line_addition(1, AD, DC): Equal(LengthOfLine(AC),Add(LengthOfLine(AD),LengthOfLine(DC)))
 - Solver constraints directly related to this goal:
   None found
 
@@ -980,6 +975,9 @@ RETRY_ANSWER:
 6*sqrt(3)
 RETRY_THEOREM_SEQUENCE:
 1; cosine_theorem(1,ABC); Polygon(ABC); ["Equal(Add(Pow(LengthOfLine(BC),2),Mul(2,LengthOfLine(AB),LengthOfLine(AC),Cos(MeasureOfAngle(CAB)))),Add(Pow(LengthOfLine(AB),2),Pow(LengthOfLine(AC),2)))"]
+2; right_triangle_judgment_angle(1,CDB); Polygon(CDB)&Equal(MeasureOfAngle(CDB),90); ["RightTriangle(CDB)"]
+3; right_triangle_property_pythagorean(1,CDB); RightTriangle(CDB); ["Equal(Add(Pow(LengthOfLine(CD),2),Pow(LengthOfLine(DB),2)),Pow(LengthOfLine(CB),2))"]
+4; line_addition(1,AD,DC); Collinear(ADC); ["Equal(LengthOfLine(AC),Add(LengthOfLine(AD),LengthOfLine(DC)))"]
 Retry attempt: 4
 Content written to results/level_5/variant_analogy_based_model_o1_problem_847_run_2_to_verify.txt
 predicates to add:
@@ -1217,7 +1215,8 @@ RETRY_THEOREM_SEQUENCE:
 1; isosceles_triangle_judgment_line_equal(1,ABC); Polygon(ABC)&Equal(LengthOfLine(AB),LengthOfLine(BC)); ["IsoscelesTriangle(ABC)"]  
 2; isosceles_triangle_property_angle_equal(1,ABC); IsoscelesTriangle(ABC); ["Equal(MeasureOfAngle(ABC),MeasureOfAngle(BCA))"]  
 3; triangle_property_angle_sum(1,ABC); Polygon(ABC); ["Equal(Add(MeasureOfAngle(ABC),MeasureOfAngle(BCA),MeasureOfAngle(CAB)),180)"]  
-4; triangle_area_formula_sine(1,ABC); Polygon(ABC); ["Equal(AreaOfTriangle(ABC),Mul(LengthOfLine(AB),LengthOfLine(AC),Sin(MeasureOfAngle(CAB)),1/2))"]  
-5; triangle_area_formula_common(1,ABC); Polygon(ABC); ["Equal(AreaOfTriangle(ABC),Mul(HeightOfTriangle(ABC),LengthOfLine(BC),1/2))"]
+4; adjacent_complementary_angle(1,ADB,BDC); Collinear(ADC)&Angle(ADB)&Angle(BDC); ["Equal(Add(MeasureOfAngle(ADB),MeasureOfAngle(BDC)),180)"]  
+5; sine_theorem(1,ABD); Polygon(ABD); ["Equal(Mul(LengthOfLine(AB),Sin(MeasureOfAngle(ABD))),Mul(LengthOfLine(AD),Sin(MeasureOfAngle(BDA))))"]  
+6; sine_theorem(1,CBD); Polygon(CBD); ["Equal(Mul(LengthOfLine(CB),Sin(MeasureOfAngle(CBD))),Mul(LengthOfLine(CD),Sin(MeasureOfAngle(BDC))))"]
 Retry attempt: 5
 Content written to results/level_5/variant_analogy_based_model_o1_problem_847_run_2.txt
