@@ -10356,37 +10356,15 @@ class GeometricTheorem:
                     """Parse answer strings including those with square root symbol."""
                     import math
                     import re
-                    import unicodedata
 
-                    # Remove whitespace and normalize Unicode characters
+                    # Store original symbolic form
+                    original_symbolic = answer_str.strip()
+
+                    # Remove whitespace
                     answer_str = answer_str.strip()
-                    # Normalize Unicode to ensure consistent handling of special characters
-                    answer_str = unicodedata.normalize('NFKC', answer_str)
 
-                    print(f"Parsing answer: '{answer_str}'")
-
-                    # Check for √ symbol (handle different Unicode variations)
-                    sqrt_symbols = ['√', '\u221A', '\u221a']  # Different possible encodings
-                    has_sqrt = any(sym in answer_str for sym in sqrt_symbols)
-
-                    if has_sqrt:
-                        print("Found square root symbol, trying patterns")
-
-                        # Normalize to use a single √ representation
-                        for sym in sqrt_symbols:
-                            if sym in answer_str:
-                                answer_str = answer_str.replace(sym, '√')
-
-                        # Handle pattern like "3√2" or "2√13" (coefficient times square root without parentheses)
-                        pattern = r'^(\d+)√(\d+)$'
-                        match = re.match(pattern, answer_str)
-                        if match:
-                            coef, rad = match.groups()
-                            print(f"Matched coefficient√radicand pattern: {coef}√{rad}")
-                            result = float(coef) * math.sqrt(float(rad))
-                            print(f"Evaluated to: {result}")
-                            return result
-
+                    # Handle √ symbol format: 6(√6-1)
+                    if '√' in answer_str:
                         # Handle pattern like "6(√6-1)"
                         pattern = r'(\d+)\(√(\d+)(-|\+)(\d+)\)'
                         match = re.match(pattern, answer_str)
@@ -10394,84 +10372,46 @@ class GeometricTheorem:
                             a, b, op, c = match.groups()
                             a, b, c = float(a), float(b), float(c)
                             if op == '-':
-                                result = a * (math.sqrt(b) - c)
+                                return a * (math.sqrt(b) - c), original_symbolic
                             else:  # op == '+'
-                                result = a * (math.sqrt(b) + c)
-                            print(f"Matched complex √ pattern, evaluated to: {result}")
-                            return result
+                                return a * (math.sqrt(b) + c), original_symbolic
 
-                        # Handle pattern like "√2" (just the square root)
-                        pattern = r'^√(\d+)$'
+                        # Handle pattern like "2√13"
+                        pattern = r'(\d*)(√\d+)'
                         match = re.match(pattern, answer_str)
                         if match:
-                            rad = match.group(1)
-                            result = math.sqrt(float(rad))
-                            print(f"Matched simple √ pattern: √{rad} = {result}")
-                            return result
+                            coef, sqrt_part = match.groups()
+                            coef = 1 if coef == '' else float(coef)
+                            sqrt_str = sqrt_part.replace('√', 'math.sqrt(') + ')'
+                            try:
+                                sqrt_val = eval(sqrt_str, {"math": math})
+                                return coef * sqrt_val, original_symbolic
+                            except Exception as e:
+                                print(f"Error evaluating {sqrt_str}: {e}")
+                                pass
 
-                        # General approach: Replace all √ with math.sqrt and evaluate
+                        # General replacement of √ symbol
                         try:
-                            # First handle square roots of expressions: √(...)
-                            modified_str = re.sub(r'√\(([^)]+)\)', r'math.sqrt(\1)', answer_str)
-                            # Then handle square roots of simple numbers: √2
-                            modified_str = re.sub(r'√(\d+)', r'math.sqrt(\1)', modified_str)
+                            modified_str = re.sub(r'(\d*)√(\d+)', r'\1*math.sqrt(\2)', answer_str)
                             # Handle implicit multiplication
                             modified_str = re.sub(r'(\d+)\(', r'\1*(', modified_str)
-                            # Handle implicit multiplication with √
-                            modified_str = re.sub(r'(\d+)math\.sqrt', r'\1*math.sqrt', modified_str)
-
-                            print(f"Trying general evaluation of: {modified_str}")
-                            result = float(eval(modified_str, {"math": math, "__builtins__": {"math": math}}))
-                            print(f"General evaluation succeeded: {result}")
-                            return result
+                            return float(eval(modified_str, {"math": math})), original_symbolic
                         except Exception as e:
-                            print(f"Error during eval of √ expression: {e}")
+                            print(f"Error evaluating modified string '{modified_str}': {e}")
+                            pass
 
                     # Standard eval with math functions
                     try:
-                        result = float(eval(answer_str, {"pi": math.pi, "sqrt": math.sqrt, "math": math}))
-                        print(f"Standard eval succeeded: {result}")
-                        return result
-                    except Exception as e:
-                        print(f"Error during standard eval: {e}")
-
-                    # Fall back to Fraction
-                    try:
+                        return float(eval(answer_str, {"pi": math.pi, "sqrt": math.sqrt})), original_symbolic
+                    except Exception:
+                        # Fall back to Fraction
                         from fractions import Fraction
-                        result = float(Fraction(answer_str))
-                        print(f"Fraction conversion succeeded: {result}")
-                        return result
-                    except Exception as e:
-                        print(f"Error during Fraction conversion: {e}")
-
-                    # Final fallback: handle as symbolic Python expression format
-                    if '*sqrt' in answer_str:
                         try:
-                            # Handle expressions like "3*sqrt(2)"
-                            safe_env = {"sqrt": math.sqrt, "math": math}
-                            result = float(eval(answer_str, {"__builtins__": {}}, safe_env))
-                            print(f"Symbolic expression evaluation succeeded: {result}")
-                            return result
+                            return float(Fraction(answer_str)), original_symbolic
                         except Exception as e:
-                            print(f"Error during symbolic expression evaluation: {e}")
-
-                            # Try more specific format parsing
-                            parts = answer_str.split('*sqrt')
-                            if len(parts) == 2 and parts[1].startswith('(') and parts[1].endswith(')'):
-                                try:
-                                    coef = float(parts[0])
-                                    rad = float(parts[1][1:-1])  # Remove parentheses
-                                    result = coef * math.sqrt(rad)
-                                    print(f"Manual symbolic parsing succeeded: {result}")
-                                    return result
-                                except Exception as e2:
-                                    print(f"Error during manual symbolic parsing: {e2}")
-
-                    # If all parsing attempts failed
-                    print(f"All parsing attempts failed for: {answer_str}")
-                    # Instead of raising an error, return a special value that will be detectable
-                    # This gives the application a chance to handle the error more gracefully
-                    return float('nan')  # Not a Number - can be checked with math.isnan()
+                            print(f"Error with Fraction conversion: {e}")
+                            # As a last resort, return a default value or raise an exception
+                            raise ValueError(f"Could not parse: {answer_str}")
 
                 answer_str = sections[ANSWER][0].strip() if (ANSWER in sections and sections[ANSWER]) else None
                 if answer_str is None:
@@ -10482,7 +10422,7 @@ class GeometricTheorem:
                     return False, "The final answer should be a numeric answer, you gave an expression with algebraic variable. Please fix your proof."
 
                 try:
-                    model_answer = parse_special_answer(answer_str)
+                    model_answer_numeric, model_answer_symbolic = parse_special_answer(answer_str)
                 except Exception as e:
                     return False, f"Error parsing answer '{answer_str}': {str(e)}"
                     # Arc measure goal: Value(MeasureOfArc(X))
@@ -10491,7 +10431,6 @@ class GeometricTheorem:
                 if arc_measure_match:
                     arc_token = arc_measure_match.group(1)
                     print(f"\nGoal arc measure: {arc_token}")
-                    print(f"Expected measure: {model_answer}")
 
                     normalized_arc = self.normalize_arc(arc_token)
                     arc_var_name = f"arc_{normalized_arc}"
@@ -10502,17 +10441,16 @@ class GeometricTheorem:
                         return False, error_msg
 
                     arc_var = self.arcs[arc_var_name]
-                    success, value, status = self.check_value_constraint(arc_var, model_answer)
+                    success, value, status = self.check_value_constraint(arc_var, model_answer_numeric)
 
                     if success:
-                        print(f"Success: Arc measure {arc_token} is uniquely determined to be {model_answer}.")
                         return True, ""
                     else:
                         # Generate detailed feedback report
                         detailed_feedback = self.generate_detailed_feedback(
                             goal_type="arc_measure",
                             goal_token=arc_token,
-                            model_answer=model_answer,
+                            model_answer=model_answer_symbolic,
                             verifier_expected_answer=value,
                             status=status
                         )
@@ -10524,23 +10462,23 @@ class GeometricTheorem:
                 if arc_length_match:
                     arc_token = arc_length_match.group(1)
                     print(f"\nGoal arc length: {arc_token}")
-                    print(f"Expected arc length: {model_answer}")
+
 
                     normalized_arc = self.normalize_arc(arc_token)
                     length_var_name = f"lengthArc_{normalized_arc}"
                     arc_length_var = Real(length_var_name)
 
-                    success, value, status = self.check_value_constraint(arc_length_var, model_answer)
+                    success, value, status = self.check_value_constraint(arc_length_var, model_answer_numeric)
 
                     if success:
-                        print(f"Success: Arc length {arc_token} is uniquely determined to be {model_answer}.")
+                        print(f"Success: Arc length {arc_token} is uniquely determined to be {model_answer_numeric}.")
                         return True, ""
                     else:
                         # Generate detailed feedback report
                         detailed_feedback = self.generate_detailed_feedback(
                             goal_type="arc_length",
                             goal_token=arc_token,
-                            model_answer=model_answer,
+                            model_answer=model_answer_symbolic,
                             verifier_expected_answer=value,
                             status=status
                         )
@@ -10551,7 +10489,7 @@ class GeometricTheorem:
                 if triangle_area_match:
                     triangle_name = triangle_area_match.group(1)  # e.g., "CDB"
                     print(f"\nGoal type: Triangle Area ({triangle_name})")
-                    print(f"Expected area: {model_answer}")
+                    print(f"Expected area: {model_answer_numeric}")
 
                     # Normalize the triangle name for dictionary lookup
                     normalized_triangle = ''.join(sorted(triangle_name))
@@ -10563,23 +10501,23 @@ class GeometricTheorem:
                         # Known areas for debugging:
                         known_areas = list(getattr(self, 'triangle_areas', {}).keys())
                         print(f"Known triangle areas: {known_areas}")
-                        return False, self.generate_detailed_feedback("triangle_area", triangle_name, model_answer,
+                        return False, self.generate_detailed_feedback("triangle_area", triangle_name, model_answer_symbolic,
                                                                       status="insufficient_info", error_message=error_msg)
 
                     triangle_area_var = self.triangle_areas[normalized_triangle]
                     self.solver.add(triangle_area_var>0)
                     # Check if the value matches the expected answer
-                    success, value, status = self.check_value_constraint(triangle_area_var, model_answer, epsilon=epsilon)
+                    success, value, status = self.check_value_constraint(triangle_area_var, model_answer_numeric, epsilon=epsilon)
 
                     if success:
-                        print(f"Success: The area of triangle {triangle_name} is uniquely determined to be {model_answer}.")
+                        print(f"Success: The area of triangle {triangle_name} is uniquely determined to be {model_answer_numeric}.")
                         return True, ""
                     else:
                         # Generate detailed feedback report
                         detailed_feedback = self.generate_detailed_feedback(
                             goal_type="triangle_area",
                             goal_token=triangle_name,
-                            model_answer=model_answer,
+                            model_answer=model_answer_symbolic,
                             verifier_expected_answer=value,
                             status=status
                         )
@@ -10595,7 +10533,7 @@ class GeometricTheorem:
                 if quad_perimeter_match:
                     quad_name = quad_perimeter_match.group(1)
                     print(f"\nGoal quadrilateral perimeter: {quad_name}")
-                    print(f"Expected perimeter: {model_answer}")
+                    print(f"Expected perimeter: {model_answer_numeric}")
 
                     # Create or get the perimeter variable for this quadrilateral
                     if not hasattr(self, "quadrilateral_perimeters"):
@@ -10608,18 +10546,18 @@ class GeometricTheorem:
                         perimeter_var = self.quadrilateral_perimeters[quad_name]
 
                     # Check if the perimeter matches the model answer
-                    success, value, status = self.check_value_constraint(perimeter_var, model_answer)
+                    success, value, status = self.check_value_constraint(perimeter_var, model_answer_numeric)
 
                     if success:
                         print(
-                            f"Success: Quadrilateral perimeter {quad_name} is uniquely determined to be {model_answer}.")
+                            f"Success: Quadrilateral perimeter {quad_name} is uniquely determined to be {model_answer_numeric}.")
                         return True, ""
                     else:
                         # Generate detailed feedback report
                         detailed_feedback = self.generate_detailed_feedback(
                             goal_type="quadrilateral_perimeter",
                             goal_token=quad_name,
-                            model_answer=model_answer,
+                            model_answer=model_answer_symbolic,
                             verifier_expected_answer=value,
                             status=status
                         )
@@ -10633,7 +10571,6 @@ class GeometricTheorem:
                     angle2_token = sum_angles_match.group(2)
                     goal_token = f"{angle1_token}+{angle2_token}"  # For feedback reporting
                     print(f"\nGoal type: Sum of Angles ({goal_token})")
-                    print(f"Expected sum: {model_answer}")
 
                     # Get the Z3 variables for the angles
                     angle1_var = self.add_angle(angle1_token[0], angle1_token[1], angle1_token[2])
@@ -10643,18 +10580,17 @@ class GeometricTheorem:
                     sum_expr = angle1_var + angle2_var
 
                     # Check if the value matches the expected answer
-                    success, value, status = self.check_value_constraint(sum_expr, model_answer, epsilon=epsilon)
+                    success, value, status = self.check_value_constraint(sum_expr, model_answer_numeric, epsilon=epsilon)
 
                     if success:
-                        print(
-                            f"Success: The sum of angles {angle1_token} + {angle2_token} is uniquely determined to be {model_answer}.")
+
                         return True, ""
                     else:
                         # Generate detailed feedback report
                         detailed_feedback = self.generate_detailed_feedback(
                             goal_type="sum_angle",  # Use a descriptive type
                             goal_token=goal_token,
-                            model_answer=model_answer,
+                            model_answer=model_answer_symbolic,
                             verifier_expected_answer=value,
                             status=status,
                             # Add info about individual angles if helpful
@@ -10669,17 +10605,15 @@ class GeometricTheorem:
                     line2 = sum_lengths_match.group(2)
 
                     print(f"\nGoal sum of lengths: LengthOfLine({line1}) + LengthOfLine({line2})")
-                    print(f"Expected answer: {model_answer}")
+
 
                     len1 = self.add_length(line1[0], line1[1])
                     len2 = self.add_length(line2[0], line2[1])
                     sum_expr = len1 + len2
 
-                    success, value, status = self.check_value_constraint(sum_expr, model_answer)
+                    success, value, status = self.check_value_constraint(sum_expr, model_answer_numeric)
 
                     if success:
-                        print(
-                            f"Success: The sum of lengths {line1} + {line2} is uniquely determined to be {model_answer}.")
                         return True, ""
                     else:
                         # Generate detailed feedback report
@@ -10687,7 +10621,7 @@ class GeometricTheorem:
                         detailed_feedback = self.generate_detailed_feedback(
                             goal_type="sum",
                             goal_token=goal_token,
-                            model_answer=model_answer,
+                            model_answer=model_answer_symbolic,
                             verifier_expected_answer=value,
                             status=status
                         )
@@ -10700,19 +10634,17 @@ class GeometricTheorem:
                 if cosine_match:
                     angle_token = cosine_match.group(1)
                     print(f"\nGoal cosine: Cos(MeasureOfAngle({angle_token}))")
-                    print(f"Expected value: {model_answer}")
 
-                    success, value, status = self.evaluate_trig_function("cos", angle_token, model_answer)
+                    success, value, status = self.evaluate_trig_function("cos", angle_token, model_answer_numeric)
 
                     if success:
-                        print(f"Success: cos({angle_token}) is uniquely determined to be {model_answer}.")
                         return True, ""
                     else:
                         # Generate detailed feedback report
                         detailed_feedback = self.generate_detailed_feedback(
                             goal_type="cosine",
                             goal_token=angle_token,
-                            model_answer=model_answer,
+                            model_answer=model_answer_symbolic,
                             verifier_expected_answer=value,
                             status=status
                         )
@@ -10723,19 +10655,17 @@ class GeometricTheorem:
                 if sin_match:
                     angle_token = sin_match.group(1)
                     print(f"\nGoal sine: Sin(MeasureOfAngle({angle_token}))")
-                    print(f"Expected value: {model_answer}")
 
-                    success, value, status = self.evaluate_trig_function("sin", angle_token, model_answer)
+                    success, value, status = self.evaluate_trig_function("sin", angle_token, model_answer_numeric)
 
                     if success:
-                        print(f"Success: sin({angle_token}) is uniquely determined to be {model_answer}.")
                         return True, ""
                     else:
                         # Generate detailed feedback report
                         detailed_feedback = self.generate_detailed_feedback(
                             goal_type="sine",
                             goal_token=angle_token,
-                            model_answer=model_answer,
+                            model_answer=model_answer_symbolic,
                             verifier_expected_answer=value,
                             status=status
                         )
@@ -10751,7 +10681,6 @@ class GeometricTheorem:
                     line2 = length_div_match.group(2)  # Denominator line
 
                     print(f"\nGoal division of lengths: Div(LengthOfLine({line1}),LengthOfLine({line2}))")
-                    print(f"Your answer: {model_answer}")
 
                     len1 = self.add_length(line1[0], line1[1])
                     len2 = self.add_length(line2[0], line2[1])
@@ -10778,8 +10707,8 @@ class GeometricTheorem:
                             # We want to check if len1/len2 can have a different value
                             temp_solver.add(
                                 Or(
-                                    len1 < (model_answer - epsilon) * len2,
-                                    len1 > (model_answer + epsilon) * len2
+                                    len1 < (model_answer_numeric - epsilon) * len2,
+                                    len1 > (model_answer_numeric + epsilon) * len2
                                 )
                             )
 
@@ -10802,7 +10731,7 @@ class GeometricTheorem:
                                 detailed_feedback = self.generate_detailed_feedback(
                                     goal_type="ratio",
                                     goal_token=goal_token,
-                                    model_answer=model_answer,
+                                    model_answer=model_answer_symbolic,
                                     verifier_expected_answer=alt_ratio,
                                     status=status,
                                     additional_info=""
@@ -10811,13 +10740,13 @@ class GeometricTheorem:
                                 return False, detailed_feedback
 
                             # Check if computed value matches expected value
-                            if abs(verifier_expected_answer - model_answer) >= epsilon:
+                            if abs(verifier_expected_answer - model_answer_numeric) >= epsilon:
                                 # Generate detailed feedback for incompatible value
                                 goal_token = f"{line1}/{line2}"
                                 detailed_feedback = self.generate_detailed_feedback(
                                     goal_type="ratio",
                                     goal_token=goal_token,
-                                    model_answer=model_answer,
+                                    model_answer=model_answer_symbolic,
                                     verifier_expected_answer=verifier_expected_answer,
                                     status="incompatible",
                                     additional_info=f"Your proof constrains the ratio to {verifier_expected_answer:.6f}"
@@ -10825,8 +10754,7 @@ class GeometricTheorem:
                                 print(f"Detailed feedback generated for division goal.")
                                 return False, detailed_feedback
 
-                            print(
-                                f"Success: The length ratio {line1}/{line2} is uniquely determined to be Your answer: {model_answer}.")
+
                             return True, ""
                         except Exception as e:
                             error_msg = f"Error converting length values: {str(e)}"
@@ -10838,7 +10766,7 @@ class GeometricTheorem:
                         detailed_feedback = self.generate_detailed_feedback(
                             goal_type="ratio",
                             goal_token=goal_token,
-                            model_answer=model_answer,
+                            model_answer=model_answer_symbolic,
                             status="unsatisfiable"
                         )
                         print(f"Detailed feedback generated for division goal.")
@@ -10849,7 +10777,6 @@ class GeometricTheorem:
                     triangle = perimeter_match.group(1)
                     print(f"\nDetected perimeter goal: PerimeterOfTriangle({triangle})")
                     print(f"\nGoal triangle perimeter: {triangle}")
-                    print(f"Expected answer: {model_answer}")
 
                     if triangle in self.triangle_perimeters:
                         perimeter_var = self.triangle_perimeters[triangle]
@@ -10857,17 +10784,16 @@ class GeometricTheorem:
                         perimeter_var = self.calculate_perimeter(triangle)
                         self.triangle_perimeters[triangle] = perimeter_var
 
-                    success, value, status = self.check_value_constraint(perimeter_var, model_answer)
+                    success, value, status = self.check_value_constraint(perimeter_var, model_answer_numeric)
 
                     if success:
-                        print(f"Success: The triangle perimeter is uniquely determined to be {model_answer}.")
                         return True, ""
                     else:
                         # Generate detailed feedback report
                         detailed_feedback = self.generate_detailed_feedback(
                             goal_type="perimeter",
                             goal_token=triangle,
-                            model_answer=model_answer,
+                            model_answer=model_answer_symbolic,
                             verifier_expected_answer=value,
                             status=status,
                             additional_info=f"Triangle sides:\n" +
@@ -10883,22 +10809,20 @@ class GeometricTheorem:
                 if length_match:
                     line_name = length_match.group(1)
                     print(f"\nGoal line: {line_name}")
-                    print(f"Expected answer: {model_answer}")
 
                     # Get the length variable
                     length_var = self.add_length(line_name[0], line_name[1])
 
-                    success, value, status = self.check_value_constraint(length_var, model_answer)
+                    success, value, status = self.check_value_constraint(length_var, model_answer_numeric)
 
                     if success:
-                        print(f"Success: The length {line_name} is uniquely determined to be {model_answer}.")
                         return True, ""
                     else:
                         # Generate detailed feedback report
                         detailed_feedback = self.generate_detailed_feedback(
                             goal_type="length",
                             goal_token=line_name,
-                            model_answer=model_answer,
+                            model_answer=model_answer_symbolic,
                             verifier_expected_answer=value,
                             status=status
                         )
@@ -10909,21 +10833,19 @@ class GeometricTheorem:
                 if angle_match:
                     goal_angle = angle_match.group(1)
                     print(f"\nGoal angle: {goal_angle}")
-                    print(f"Expected answer: {model_answer}")
 
                     angle_var = self.add_angle(goal_angle[0], goal_angle[1], goal_angle[2])
 
-                    success, value, status = self.check_value_constraint(angle_var, model_answer)
+                    success, value, status = self.check_value_constraint(angle_var, model_answer_numeric)
 
                     if success:
-                        print(f"Success: Angle {goal_angle} is uniquely determined to be {model_answer}.")
                         return True, ""
                     else:
                         # Generate detailed feedback report
                         detailed_feedback = self.generate_detailed_feedback(
                             goal_type="angle",
                             goal_token=goal_angle,
-                            model_answer=model_answer,
+                            model_answer=model_answer_symbolic,
                             verifier_expected_answer=value,
                             status=status
                         )
@@ -10936,7 +10858,6 @@ class GeometricTheorem:
                     quad_name = quad_area_match.group(1)
                     print(f"\nDetected quadrilateral area goal: AreaOfQuadrilateral({quad_name})")
                     print(f"\nGoal quadrilateral area: {quad_name}")
-                    print(f"Expected area: {model_answer}")
 
                     if quad_name in self.quad_areas:
                         quad_area_var = self.quad_areas[quad_name]
@@ -10944,17 +10865,17 @@ class GeometricTheorem:
                         quad_area_var = Real(f"AreaOfQuadrilateral_{quad_name}")
                         self.quad_areas[quad_name] = quad_area_var
 
-                    success, value, status = self.check_value_constraint(quad_area_var, model_answer)
+                    success, value, status = self.check_value_constraint(quad_area_var, model_answer_numeric)
 
                     if success:
-                        print(f"Success: The quadrilateral area is uniquely determined to be {model_answer}.")
+
                         return True, ""
                     else:
                         # Generate detailed feedback report
                         detailed_feedback = self.generate_detailed_feedback(
                             goal_type="quad_area",
                             goal_token=quad_name,
-                            model_answer=model_answer,
+                            model_answer=model_answer_symbolic,
                             verifier_expected_answer=value,
                             status=status
                         )
@@ -10986,18 +10907,16 @@ class GeometricTheorem:
 
                                 # Check the value constraint for the difference
                                 diff_expr = angle1_var - angle2_var
-                                success, value, status = self.check_value_constraint(diff_expr, model_answer)
+                                success, value, status = self.check_value_constraint(diff_expr, model_answer_numeric)
 
                                 if success:
-                                    print(
-                                        f"Success: Angle difference {angle1_name} - {angle2_name} = {model_answer} is verified.")
                                     return True, ""
                                 else:
                                     # Generate detailed feedback for angle subtraction
                                     detailed_feedback = self.generate_detailed_feedback(
                                         goal_type="general",
                                         goal_token=f"Sub({expr1_str},{expr2_str})",
-                                        model_answer=model_answer,
+                                        model_answer=model_answer_symbolic,
                                         verifier_expected_answer=value,
                                         status=status,
                                         additional_info=f"Angle 1: {angle1_name}\nAngle 2: {angle2_name}"
@@ -11011,17 +10930,16 @@ class GeometricTheorem:
                         var = self.variables[goal_expr]
 
                         # Use the existing check_value_constraint function that handles multiple solutions
-                        success, value, status = self.check_value_constraint(var, model_answer)
+                        success, value, status = self.check_value_constraint(var, model_answer_numeric)
 
                         if success:
-                            print(f"Success: Variable {goal_expr} is uniquely determined to be {model_answer}.")
                             return True, ""
                         else:
                             # Generate detailed feedback with proper status
                             detailed_feedback = self.generate_detailed_feedback(
                                 goal_type="general",
                                 goal_token=goal_expr,
-                                model_answer=model_answer,
+                                model_answer=model_answer_symbolic,
                                 verifier_expected_answer=value,
                                 status=status,
                                 additional_info=f"Variable {goal_expr} is {'not uniquely determined' if status == 'multiple_values' else 'incompatible with expected value'}"
@@ -11068,18 +10986,17 @@ class GeometricTheorem:
                             # Evaluate the expression
                             verifier_expected_answer = self.evaluate_expression(goal_expr, mapping)
 
-                            if abs(verifier_expected_answer - model_answer) < epsilon:
-                                print(f"Success: General goal expression matches expected value {model_answer}.")
+                            if abs(verifier_expected_answer - model_answer_numeric) < epsilon:
                                 return True, ""
                             else:
                                 # Generate detailed feedback for general expression
                                 detailed_feedback = self.generate_detailed_feedback(
                                     goal_type="general",
                                     goal_token=goal_expr,
-                                    model_answer=model_answer,
+                                    model_answer=model_answer_symbolic,
                                     verifier_expected_answer=verifier_expected_answer,
                                     status="incompatible",
-                                    additional_info=f"Evaluated expression: {goal_expr}\nComputed value: {verifier_expected_answer}\nExpected value: {model_answer}"
+                                    additional_info=f"Evaluated expression: {goal_expr}\nComputed value: {verifier_expected_answer}\nExpected value: {model_answer_symbolic}"
                                 )
                                 print(f"Detailed feedback generated for general goal expression.")
                                 return False, detailed_feedback
@@ -11092,7 +11009,7 @@ class GeometricTheorem:
                         detailed_feedback = self.generate_detailed_feedback(
                             goal_type="general",
                             goal_token=goal_expr,
-                            model_answer=model_answer,
+                            model_answer=model_answer_symbolic,
                             status="unsatisfiable"
                         )
                         print(f"Detailed feedback generated for general goal expression.")

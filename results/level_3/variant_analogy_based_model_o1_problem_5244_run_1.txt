@@ -25,24 +25,24 @@ Shape(EF,FB,BA,AE)
 Shape(FB,BA,AE,EF)
 Shape(BA,AE,EF,FB)
 Shape(AE,EF,FB,BA)
-Shape(EB,BA,AD,DE)
-Shape(BA,AD,DE,EB)
-Shape(AD,DE,EB,BA)
-Shape(DE,EB,BA,AD)
 Shape(AE,EB,BC,CA)
 Shape(EB,BC,CA,AE)
 Shape(BC,CA,AE,EB)
 Shape(CA,AE,EB,BC)
-Shape(EF,FB,BA,AD,DE)
-Shape(FB,BA,AD,DE,EF)
-Shape(BA,AD,DE,EF,FB)
-Shape(AD,DE,EF,FB,BA)
-Shape(DE,EF,FB,BA,AD)
+Shape(EB,BA,AD,DE)
+Shape(BA,AD,DE,EB)
+Shape(AD,DE,EB,BA)
+Shape(DE,EB,BA,AD)
 Shape(EF,FB,BC,CA,AE)
 Shape(FB,BC,CA,AE,EF)
 Shape(BC,CA,AE,EF,FB)
 Shape(CA,AE,EF,FB,BC)
 Shape(AE,EF,FB,BC,CA)
+Shape(EF,FB,BA,AD,DE)
+Shape(FB,BA,AD,DE,EF)
+Shape(BA,AD,DE,EF,FB)
+Shape(AD,DE,EF,FB,BA)
+Shape(DE,EF,FB,BA,AD)
 Shape(BC,CA,AD,DE,EB)
 Shape(CA,AD,DE,EB,BC)
 Shape(AD,DE,EB,BC,CA)
@@ -97,12 +97,12 @@ Angle(ADE)
 Angle(DEA)
 Angle(FBA)
 Angle(AEF)
-Angle(BAD)
-Angle(DEB)
 Angle(EBC)
 Angle(CAE)
-Angle(DEF)
+Angle(BAD)
+Angle(DEB)
 Angle(FBC)
+Angle(DEF)
 Angle(CDE)
 Angle(DAB)
 Angle(EAC)
@@ -121,10 +121,10 @@ Angle(EDA)
 Angle(AED)
 Angle(ABF)
 Angle(FEA)
-Angle(BED)
 Angle(CBE)
-Angle(FED)
+Angle(BED)
 Angle(CBF)
+Angle(FED)
 Angle(EDC)
 Angle(DCB)
 Polygon(FBE)
@@ -155,24 +155,24 @@ Polygon(EFBA)
 Polygon(FBAE)
 Polygon(BAEF)
 Polygon(AEFB)
-Polygon(EBAD)
-Polygon(BADE)
-Polygon(ADEB)
-Polygon(DEBA)
 Polygon(AEBC)
 Polygon(EBCA)
 Polygon(BCAE)
 Polygon(CAEB)
-Polygon(EFBAD)
-Polygon(FBADE)
-Polygon(BADEF)
-Polygon(ADEFB)
-Polygon(DEFBA)
+Polygon(EBAD)
+Polygon(BADE)
+Polygon(ADEB)
+Polygon(DEBA)
 Polygon(EFBCA)
 Polygon(FBCAE)
 Polygon(BCAEF)
 Polygon(CAEFB)
 Polygon(AEFBC)
+Polygon(EFBAD)
+Polygon(FBADE)
+Polygon(BADEF)
+Polygon(ADEFB)
+Polygon(DEFBA)
 Polygon(BCDE)
 Polygon(CDEB)
 Polygon(DEBC)
@@ -213,40 +213,32 @@ GOAL_SYMBOL:
 ma_cab+ma_ead
 
 ANSWER:
-No valid conclusion from given constraints
+58
 
 THEOREM_SEQUENCE:
+1; mirror_congruent_triangle_property_angle_equal(1,EFB,EBA); MirrorCongruentBetweenTriangle(EFB,EBA); ["Equal(MeasureOfAngle(FBE),MeasureOfAngle(BAE))"]
+2; mirror_congruent_triangle_property_angle_equal(2,EFB,EBA); MirrorCongruentBetweenTriangle(EFB,EBA); ["Equal(MeasureOfAngle(BEF),MeasureOfAngle(AEB))"]
+3; triangle_property_angle_sum(1,EFB); Polygon(EFB); ["Equal(Add(MeasureOfAngle(EFB),MeasureOfAngle(FBE),MeasureOfAngle(BEF)),180)"]
+4; triangle_property_angle_sum(2,EBA); Polygon(EBA); ["Equal(Add(MeasureOfAngle(EBA),MeasureOfAngle(BAE),MeasureOfAngle(AEB)),180)"]
+5; collinearity_property_angle_equality(1,CAD); Collinear(CAD); ["Equal(MeasureOfAngle(CAB),MeasureOfAngle(BAE))","Equal(MeasureOfAngle(EAD),MeasureOfAngle(AEB))"]
 ***MODEL_RESPONSE_END***
 RETRIES_MESSAGES:
 #run: 1; #retry: 1; message: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
 Theorem: mirror_congruent_triangle_property_angle_equal(1,EFB,EBA)
-You output the following conclusions: Equal(MeasureOfAngle(EFB),MeasureOfAngle(EAB))
+You output the following conclusions: Equal(MeasureOfAngle(EFB),MeasureOfAngle(EBA))
 But the correct conclusions: Equal(MeasureOfAngle(BEF),MeasureOfAngle(AEB))
 
 Model Answer:
 RETRY_ANSWER:
-244
+58
 RETRY_THEOREM_SEQUENCE:
-1; mirror_congruent_triangle_property_angle_equal(1,EFB,EBA); MirrorCongruentBetweenTriangle(EFB,EBA); ["Equal(MeasureOfAngle(EFB),MeasureOfAngle(EAB))"]
-2; triangle_property_angle_sum(1,EFB); Polygon(EFB); ["Equal(Add(MeasureOfAngle(EFB),MeasureOfAngle(FBE),MeasureOfAngle(BEF)),180)"]
-3; triangle_property_angle_sum(1,EBA); Polygon(EBA); ["Equal(Add(MeasureOfAngle(EAB),MeasureOfAngle(ABE),MeasureOfAngle(BEA)),180)"]
-#run: 1; #retry: 2; message: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
-Theorem: triangle_property_angle_sum(1,EBA)
-You output the following conclusions: Equal(Add(MeasureOfAngle(EAB),MeasureOfAngle(ABE),MeasureOfAngle(BEA)),180)
-But the correct conclusions: Equal(Add(MeasureOfAngle(EBA),MeasureOfAngle(BAE),MeasureOfAngle(AEB)),180)
-
-Model Answer:
-RETRY_ANSWER:
-244
-RETRY_THEOREM_SEQUENCE:
-1; mirror_congruent_triangle_property_angle_equal(1,EFB,EBA); MirrorCongruentBetweenTriangle(EFB,EBA); ["Equal(MeasureOfAngle(BEF),MeasureOfAngle(AEB))"]
-2; triangle_property_angle_sum(1,EFB); Polygon(EFB); ["Equal(Add(MeasureOfAngle(EFB),MeasureOfAngle(FBE),MeasureOfAngle(BEF)),180)"]
-3; triangle_property_angle_sum(1,EBA); Polygon(EBA); ["Equal(Add(MeasureOfAngle(EAB),MeasureOfAngle(ABE),MeasureOfAngle(BEA)),180)"]
-#run: 1; #retry: 3; message: ERROR_TIER: TIER3_GOAL_NOT_REACHED
+1; mirror_congruent_triangle_property_angle_equal(1,EFB,EBA); MirrorCongruentBetweenTriangle(EFB,EBA); ["Equal(MeasureOfAngle(EFB),MeasureOfAngle(EBA))"]
+2; triangle_property_angle_sum(1,EAB); Polygon(EAB); ["Equal(Add(MeasureOfAngle(EAB),MeasureOfAngle(ABE),MeasureOfAngle(BEA)),180)"]
+#run: 1; #retry: 2; message: ERROR_TIER: TIER3_GOAL_NOT_REACHED
 verification failed.
 
 - Goal: sum_angle CAB+EAD
-- Model answer: 244.0
+- Model answer: 58
 - Error: Your proof doesn't uniquely determine the value. You need to use additional theorems to constrain the value.
 - Available premises:
   Collinear Points: CAD
@@ -262,45 +254,56 @@ Angle 2: EAD
 Please fix the proof.
 Model Answer:
 RETRY_ANSWER:
-244
+58
 RETRY_THEOREM_SEQUENCE:
 1; mirror_congruent_triangle_property_angle_equal(1,EFB,EBA); MirrorCongruentBetweenTriangle(EFB,EBA); ["Equal(MeasureOfAngle(BEF),MeasureOfAngle(AEB))"]
-2; triangle_property_angle_sum(1,EFB); Polygon(EFB); ["Equal(Add(MeasureOfAngle(EFB),MeasureOfAngle(FBE),MeasureOfAngle(BEF)),180)"]
-3; triangle_property_angle_sum(1,EBA); Polygon(EBA); ["Equal(Add(MeasureOfAngle(EBA),MeasureOfAngle(BAE),MeasureOfAngle(AEB)),180)"]
-#run: 1; #retry: 4; message: ERROR_TIER: TIER3_GOAL_NOT_REACHED
-verification failed.
+2; triangle_property_angle_sum(1,EAB); Polygon(EAB); ["Equal(Add(MeasureOfAngle(EAB),MeasureOfAngle(ABE),MeasureOfAngle(BEA)),180)"]
+#run: 1; #retry: 3; message: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
+Theorem: angle_addition(1,FBE,BEF)
+You output the following premises: Angle(FBE)&Angle(BEF)&Angle(FEB)
+But the correct premises: Angle(FEB)&Angle(BEF)&Angle(FEF)
+You output the following conclusions: Equal(MeasureOfAngle(FEB),Add(MeasureOfAngle(FBE),MeasureOfAngle(BEF)))
+But the correct conclusions: Equal(MeasureOfAngle(FEF),Add(MeasureOfAngle(FEB),MeasureOfAngle(BEF)))
 
-- Goal: sum_angle CAB+EAD
-- Model answer: 244.0
-- Error: Your proof contains contradictory constraints. Check for incorrect values in premises, improper theorem application, or conclusions that contradict earlier assertions.
-- Available premises:
-  Collinear Points: CAD
-  Mirror Congruent Triangles: BEF mirror congruent to AEB
-  Polygons: ABC, ABE, ACB, ADE, ADEB, ADEFB, AEB, AEBC, AED, AEFB, AEFBC, BADE, BADEF, BAEF, BCAE, BCAEF, BCDE, BCDEF, BEF, BFE, CAEB, CAEFB, CDEB, CDEFB, DEBA, DEBC, DEFBA, DEFBC, EBAD, EBCA, EBCD, EFBA, EFBAD, EFBCA, EFBCD, FBADE, FBAE, FBCAE, FBCDE
-- Theorems related to the goal:
-  None found that constrain this goal
-- Solver constraints directly related to this goal:
-  None found
-
-Angle 1: CAB
-Angle 2: EAD
-Please fix the proof.
 Model Answer:
 RETRY_ANSWER:
-244
+58
 RETRY_THEOREM_SEQUENCE:
 1; mirror_congruent_triangle_property_angle_equal(1,EFB,EBA); MirrorCongruentBetweenTriangle(EFB,EBA); ["Equal(MeasureOfAngle(BEF),MeasureOfAngle(AEB))"]
 2; triangle_property_angle_sum(1,EFB); Polygon(EFB); ["Equal(Add(MeasureOfAngle(EFB),MeasureOfAngle(FBE),MeasureOfAngle(BEF)),180)"]
 3; triangle_property_angle_sum(1,EBA); Polygon(EBA); ["Equal(Add(MeasureOfAngle(EBA),MeasureOfAngle(BAE),MeasureOfAngle(AEB)),180)"]
-4; flat_angle(1,CAD); Collinear(CAD); ["Equal(MeasureOfAngle(CAD),180)"]
-5; angle_addition(1,EAC,CAD); Angle(EAC)&Angle(CAD)&Angle(EAD); ["Equal(MeasureOfAngle(EAD),Add(MeasureOfAngle(EAC),MeasureOfAngle(CAD)))"]
+4; angle_addition(1,FBE,BEF); Angle(FBE)&Angle(BEF)&Angle(FEB); ["Equal(MeasureOfAngle(FEB),Add(MeasureOfAngle(FBE),MeasureOfAngle(BEF)))"] 
+5; angle_addition(1,BAE,AEB); Angle(BAE)&Angle(AEB)&Angle(BEA); ["Equal(MeasureOfAngle(BEA),Add(MeasureOfAngle(BAE),MeasureOfAngle(AEB)))"]
+#run: 1; #retry: 4; message: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
+Theorem: angle_addition(1,BAE,AEB)
+You output the following premises: Angle(BAE)&Angle(AEB)&Angle(BEA)
+But the correct premises: Angle(BEA)&Angle(AEB)&Angle(BEB)
+You output the following conclusions: Equal(MeasureOfAngle(BEA),Add(MeasureOfAngle(BAE),MeasureOfAngle(AEB)))
+But the correct conclusions: Equal(MeasureOfAngle(BEB),Add(MeasureOfAngle(BEA),MeasureOfAngle(AEB)))
+
+Model Answer:
+RETRY_ANSWER:
+58
+RETRY_THEOREM_SEQUENCE:
+1; mirror_congruent_triangle_property_angle_equal(1,EFB,EBA); MirrorCongruentBetweenTriangle(EFB,EBA); ["Equal(MeasureOfAngle(BEF),MeasureOfAngle(AEB))"]
+2; triangle_property_angle_sum(1,EFB); Polygon(EFB); ["Equal(Add(MeasureOfAngle(EFB),MeasureOfAngle(FBE),MeasureOfAngle(BEF)),180)"]
+3; triangle_property_angle_sum(1,EBA); Polygon(EBA); ["Equal(Add(MeasureOfAngle(EBA),MeasureOfAngle(BAE),MeasureOfAngle(AEB)),180)"]
+4; angle_addition(1,FEB,BEF); Angle(FEB)&Angle(BEF)&Angle(FEF); ["Equal(MeasureOfAngle(FEF),Add(MeasureOfAngle(FEB),MeasureOfAngle(BEF)))"]
+5; angle_addition(1,BAE,AEB); Angle(BAE)&Angle(AEB)&Angle(BEA); ["Equal(MeasureOfAngle(BEA),Add(MeasureOfAngle(BAE),MeasureOfAngle(AEB)))"]
 #run: 1; #retry: 5; message: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
-Failure: The THEOREM_SEQUENCE you provided is empty. Please generate a proof again, using the similar problems I provided (A1, A2, A3, A4, A5), along with the GDL_DICTIONARY of theorems.
+Theorem: mirror_congruent_triangle_property_angle_equal(1,EFB,EBA)
+You output the following conclusions: Equal(MeasureOfAngle(FBE),MeasureOfAngle(BAE))
+But the correct conclusions: Equal(MeasureOfAngle(BEF),MeasureOfAngle(AEB))
+
 Model Answer:
 RETRY_ANSWER:
-No valid conclusion from given constraints
+58
 RETRY_THEOREM_SEQUENCE:
-
+1; mirror_congruent_triangle_property_angle_equal(1,EFB,EBA); MirrorCongruentBetweenTriangle(EFB,EBA); ["Equal(MeasureOfAngle(FBE),MeasureOfAngle(BAE))"]
+2; mirror_congruent_triangle_property_angle_equal(2,EFB,EBA); MirrorCongruentBetweenTriangle(EFB,EBA); ["Equal(MeasureOfAngle(BEF),MeasureOfAngle(AEB))"]
+3; triangle_property_angle_sum(1,EFB); Polygon(EFB); ["Equal(Add(MeasureOfAngle(EFB),MeasureOfAngle(FBE),MeasureOfAngle(BEF)),180)"]
+4; triangle_property_angle_sum(2,EBA); Polygon(EBA); ["Equal(Add(MeasureOfAngle(EBA),MeasureOfAngle(BAE),MeasureOfAngle(AEB)),180)"]
+5; collinearity_property_angle_equality(1,CAD); Collinear(CAD); ["Equal(MeasureOfAngle(CAB),MeasureOfAngle(BAE))","Equal(MeasureOfAngle(EAD),MeasureOfAngle(AEB))"]
 #RETRIES:
 5
 #RUNS:

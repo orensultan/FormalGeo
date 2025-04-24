@@ -167,12 +167,26 @@ def theorem_verifier(solver, theorem_seqs):
     return res
 
 
-def call_gpt_o1(model, messages):
-    response = openai.ChatCompletion.create(
-        model=model,
-        messages=messages
-    )
-    return response.choices[0].message['content']
+def call_gpt_o1(model, messages, max_retries=5):
+    for attempt in range(max_retries):
+        try:
+            response = openai.ChatCompletion.create(
+                model=model,
+                messages=messages
+            )
+            return response.choices[0].message['content']
+
+        except (openai.error.APIError, json.JSONDecodeError) as e:
+            print(f"[Attempt {attempt + 1}] Error: {e}")
+
+        except Exception as e:
+            print(f"[Attempt {attempt + 1}] Unexpected error: {e}")
+
+        sleep_time = 2 ** attempt  # Exponential backoff
+        print(f"Retrying in {sleep_time} seconds...")
+        time.sleep(sleep_time)
+
+    raise RuntimeError("call_gpt_o1 failed after multiple retries.")
 
 
 def setup_logging(output_file):
@@ -243,8 +257,7 @@ def call_gpt(model, messages, temperature=0, wait_time=1, retry_wait_time=6, max
 
 
 def gpt_response(messages, model_name):
-    resp = call_gpt_o1(model=model_name, messages=messages) if model_name in ['o1-preview', 'o1', 'o3', 'o1-mini',
-                                                                              'o3-mini'] else call_gpt(model=model_name,
+    resp = call_gpt_o1(model=model_name, messages=messages) if model_name in ['o1', 'o1-mini', 'o3', 'o3-mini', 'o4-mimi'] else call_gpt(model=model_name,
                                                                                                        messages=messages)
     return resp
 
@@ -471,7 +484,7 @@ def get_level_to_problems(problems):
 # }
 
 chosen_problems_by_level = {
-     5: [5431]
+     3: [2765],
     # 1: [1975, 1490, 1726, 178, 2669, 2614, 51, 2323, 192, 2624],
     # 2: [991, 69, 144, 358, 4473, 4483, 5645, 127, 2410, 4523],
     # 3: [ 4187, 5244, 5062, 844, 1945, 2200, 4099, 2765, 4476, 4254 ]

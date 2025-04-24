@@ -873,7 +873,7 @@ predicates to add:
 ParallelBetweenLine
 Verifier result: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
 Theorem: parallel_property_ipsilateral_internal_angle(1,IL,RN)
-You output the following premises: ParallelBetweenLine(IL,RN)&Line(AE)
+You output the following premises: ParallelBetweenLine(IL,RN)&Line(EN)
 But the correct premises: ParallelBetweenLine(IL,RN)&Line(IR)
 You output the following conclusions: Equal(Add(MeasureOfAngle(AEN),MeasureOfAngle(EZD)),180)
 But the correct conclusions: Equal(Add(MeasureOfAngle(LIR),MeasureOfAngle(IRN)),180)
@@ -882,7 +882,7 @@ Model Answer:
 RETRY_ANSWER:
 116
 RETRY_THEOREM_SEQUENCE:
-1; parallel_property_ipsilateral_internal_angle(1,IL,RN); ParallelBetweenLine(IL,RN)&Line(AE); ["Equal(Add(MeasureOfAngle(AEN),MeasureOfAngle(EZD)),180)"]
+1; parallel_property_ipsilateral_internal_angle(1,IL,RN); ParallelBetweenLine(IL,RN)&Line(EN); ["Equal(Add(MeasureOfAngle(AEN),MeasureOfAngle(EZD)),180)"]
 Retry attempt: 1
 Content written to results/level_3/variant_analogy_based_model_o1_problem_2765_run_1_to_verify.txt
 predicates to add:
@@ -2644,7 +2644,7 @@ Verifier result: ERROR_TIER: TIER3_GOAL_NOT_REACHED
 verification failed.
 
 - Goal: measure of angle EZD
-- Model answer: 116.0
+- Model answer: 116
 - Error: Your proof doesn't uniquely determine the value. You need to use additional theorems to constrain the value.
 - Available premises:
   Parallel Lines: AK ∥ JW, IL ∥ NR
@@ -3538,12 +3538,12 @@ ParallelBetweenLine
 predicates to add:
 ParallelBetweenLine
 Verifier result: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
-Failure: The THEOREM_SEQUENCE you provided is empty. Please generate a proof again, using the similar problems I provided (A1, A2, A3, A4, A5), along with the GDL_DICTIONARY of theorems.
+Failure: Theorem <> not defined in current GDL. Please rewrite the proof sequence, you are allowed to use only theorems from the GDL.
 Model Answer:
 RETRY_ANSWER:
-116
+No valid proof can be constructed with the given GDL.
 RETRY_THEOREM_SEQUENCE:
-
+No valid sequence of theorems can be formed.
 Retry attempt: 4
 Content written to results/level_3/variant_analogy_based_model_o1_problem_2765_run_1_to_verify.txt
 predicates to add:
@@ -4422,8 +4422,8 @@ Verifier result: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
 Failure: Theorem <> not defined in current GDL. Please rewrite the proof sequence, you are allowed to use only theorems from the GDL.
 Model Answer:
 RETRY_ANSWER:
-116
+No valid proof can be constructed with the given GDL.
 RETRY_THEOREM_SEQUENCE:
-(Unable to construct a valid proof with the given GDL and problem data.)
+No valid sequence of theorems can be formed.
 Retry attempt: 5
 Content written to results/level_3/variant_analogy_based_model_o1_problem_2765_run_1.txt

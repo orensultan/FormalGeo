@@ -28,6 +28,9 @@ Shape(BC,OCB)
 Shape(AD,ODA)
 Shape(DP,PB,OBD)
 Shape(PB,OBD,DP)
+Shape(BP,PC,OCB)
+Shape(PC,OCB,BP)
+Shape(OCB,BP,PC)
 Shape(PC,CB,OBD,DP)
 Shape(CB,OBD,DP,PC)
 Shape(OBD,DP,PC,CB)
@@ -36,20 +39,17 @@ Shape(CB,BP,PA,OAC)
 Shape(BP,PA,OAC,CB)
 Shape(PA,OAC,CB,BP)
 Shape(OAC,CB,BP,PA)
-Shape(BP,PC,OCB)
-Shape(PC,OCB,BP)
-Shape(OCB,BP,PC)
-Shape(DA,AP,PB,OBD)
-Shape(AP,PB,OBD,DA)
-Shape(PB,OBD,DA,AP)
-Shape(OBD,DA,AP,PB)
-Shape(AP,PD,ODA)
-Shape(PD,ODA,AP)
-Shape(ODA,AP,PD)
 Shape(PD,DA,OAC,CP)
 Shape(DA,OAC,CP,PD)
 Shape(OAC,CP,PD,DA)
 Shape(CP,PD,DA,OAC)
+Shape(AP,PD,ODA)
+Shape(PD,ODA,AP)
+Shape(ODA,AP,PD)
+Shape(DA,AP,PB,OBD)
+Shape(AP,PB,OBD,DA)
+Shape(PB,OBD,DA,AP)
+Shape(OBD,DA,AP,PB)
 Shape(PC,CB,OBD,DA,AP)
 Shape(CB,OBD,DA,AP,PC)
 Shape(OBD,DA,AP,PC,CB)
@@ -60,24 +60,24 @@ Shape(BP,PD,DA,OAC,CB)
 Shape(PD,DA,OAC,CB,BP)
 Shape(DA,OAC,CB,BP,PD)
 Shape(OAC,CB,BP,PD,DA)
+Shape(PA,OAC,OCB,BP)
+Shape(OAC,OCB,BP,PA)
+Shape(OCB,BP,PA,OAC)
+Shape(BP,PA,OAC,OCB)
 Shape(PA,OAC,CB,OBD,DP)
 Shape(OAC,CB,OBD,DP,PA)
 Shape(CB,OBD,DP,PA,OAC)
 Shape(OBD,DP,PA,OAC,CB)
 Shape(DP,PA,OAC,CB,OBD)
-Shape(PA,OAC,OCB,BP)
-Shape(OAC,OCB,BP,PA)
-Shape(OCB,BP,PA,OAC)
-Shape(BP,PA,OAC,OCB)
+Shape(OAC,CP,PD,ODA)
+Shape(CP,PD,ODA,OAC)
+Shape(PD,ODA,OAC,CP)
+Shape(ODA,OAC,CP,PD)
 Shape(OAC,CP,PB,OBD,DA)
 Shape(CP,PB,OBD,DA,OAC)
 Shape(PB,OBD,DA,OAC,CP)
 Shape(OBD,DA,OAC,CP,PB)
 Shape(DA,OAC,CP,PB,OBD)
-Shape(OAC,CP,PD,ODA)
-Shape(CP,PD,ODA,OAC)
-Shape(PD,ODA,OAC,CP)
-Shape(ODA,OAC,CP,PD)
 Shape(OCB,OBD,DP,PC)
 Shape(OBD,DP,PC,OCB)
 Shape(DP,PC,OCB,OBD)
@@ -91,25 +91,25 @@ Shape(CB,OBD,ODA,AP,PC)
 Shape(OBD,ODA,AP,PC,CB)
 Shape(ODA,AP,PC,CB,OBD)
 Shape(AP,PC,CB,OBD,ODA)
-Shape(CB,OBD,DA,OAC)
-Shape(OBD,DA,OAC,CB)
-Shape(DA,OAC,CB,OBD)
-Shape(OAC,CB,OBD,DA)
 Shape(CB,BP,PD,ODA,OAC)
 Shape(BP,PD,ODA,OAC,CB)
 Shape(PD,ODA,OAC,CB,BP)
 Shape(ODA,OAC,CB,BP,PD)
 Shape(OAC,CB,BP,PD,ODA)
-Shape(DA,AP,PC,OCB,OBD)
-Shape(AP,PC,OCB,OBD,DA)
-Shape(PC,OCB,OBD,DA,AP)
-Shape(OCB,OBD,DA,AP,PC)
-Shape(OBD,DA,AP,PC,OCB)
+Shape(CB,OBD,DA,OAC)
+Shape(OBD,DA,OAC,CB)
+Shape(DA,OAC,CB,OBD)
+Shape(OAC,CB,OBD,DA)
 Shape(PD,DA,OAC,OCB,BP)
 Shape(DA,OAC,OCB,BP,PD)
 Shape(OAC,OCB,BP,PD,DA)
 Shape(OCB,BP,PD,DA,OAC)
 Shape(BP,PD,DA,OAC,OCB)
+Shape(DA,AP,PC,OCB,OBD)
+Shape(AP,PC,OCB,OBD,DA)
+Shape(PC,OCB,OBD,DA,AP)
+Shape(OCB,OBD,DA,AP,PC)
+Shape(OBD,DA,AP,PC,OCB)
 Shape(PA,OAC,OCB,OBD,DP)
 Shape(OAC,OCB,OBD,DP,PA)
 Shape(OCB,OBD,DP,PA,OAC)
@@ -278,8 +278,7 @@ Outputs for Problem B:
 
 ***MODEL_RESPONSE_BEGIN***
 EQUATIONS:
-ma_apd-80
-ma_dap-55
+ma_apd-80 ma_dap-55
 
 GOAL_SYMBOL:
 ma_cbp
@@ -288,87 +287,57 @@ ANSWER:
 45
 
 THEOREM_SEQUENCE:
-1; triangle_property_angle_sum(1,APD); Polygon(APD); ["Equal(Add(MeasureOfAngle(APD),MeasureOfAngle(PDA),MeasureOfAngle(DAP)),180)"]
+1; triangle_property_angle_sum(1,APD); Polygon(APD); ["Equal(Add(MeasureOfAngle(APD),MeasureOfAngle(PDA),MeasureOfAngle(DAP)),180)"]  
+2; vertical_angle(1,APD,BPC); Collinear(APB)&Collinear(DPC)&Angle(APD)&Angle(BPC); ["Equal(MeasureOfAngle(APD),MeasureOfAngle(BPC))"]  
+3; arc_property_circumference_angle_external(1,OBD,A); Cocircular(O,BDA)&Angle(DAB); ["Equal(MeasureOfAngle(DAB),Mul(MeasureOfArc(OBD),1/2))"]  
+4; arc_property_circumference_angle_external(1,OBD,C); Cocircular(O,BDC)&Angle(DCB); ["Equal(MeasureOfAngle(DCB),Mul(MeasureOfArc(OBD),1/2))"]  
+5; triangle_property_angle_sum(1,BPC); Polygon(BPC); ["Equal(Add(MeasureOfAngle(BPC),MeasureOfAngle(PCB),MeasureOfAngle(CBP)),180)"]
 ***MODEL_RESPONSE_END***
 RETRIES_MESSAGES:
 #run: 0; #retry: 1; message: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
-Failure: Theorem <triangle_property_angle_sum> branch error. Expected dict_keys(['1']) but got None. Please rewrite your response, you should change only the call to theorem <triangle_property_angle_sum> by adding the branch number from the dict_keys as the first argument
+Failure: Theorem <vertical_angle> variation id is not supplied. Expected dict_keys(['1']) but got None.
+Your call: vertical_angle(A,P,D,B,P,C)
+Please rewrite your response by adding the variation id as the first argument. For example: For variation 1: vertical_angle(1,A,P,D,B,P,C)
+
 Model Answer:
 RETRY_ANSWER:
 45
 RETRY_THEOREM_SEQUENCE:
-1; triangle_property_angle_sum(ABC); Polygon(APD); ["Equal(Add(MeasureOfAngle(APD),MeasureOfAngle(PDA),MeasureOfAngle(DAP)),180)"]
-#run: 0; #retry: 2; message: ERROR_TIER: TIER3_GOAL_NOT_REACHED
-verification failed.
+1; triangle_property_angle_sum(1,APD); Polygon(APD); ["Equal(Add(MeasureOfAngle(APD),MeasureOfAngle(PDA),MeasureOfAngle(DAP)),180)"]  
+2; vertical_angle(APD,BPC); Collinear(APB)&Collinear(CPD)&Angle(APD)&Angle(BPC); ["Equal(MeasureOfAngle(APD),MeasureOfAngle(BPC))"]  
+3; arc_property_circumference_angle_external(1,OBD,A); Cocircular(O,BDA)&Angle(DAB); ["Equal(MeasureOfAngle(DAB),Mul(MeasureOfArc(OBD),1/2))"]  
+4; arc_property_circumference_angle_external(1,OBD,C); Cocircular(O,BDC)&Angle(DCB); ["Equal(MeasureOfAngle(DCB),Mul(MeasureOfArc(OBD),1/2))"]  
+5; triangle_property_angle_sum(1,BPC); Polygon(BPC); ["Equal(Add(MeasureOfAngle(BPC),MeasureOfAngle(BCP),MeasureOfAngle(CBP)),180)"]
+#run: 0; #retry: 2; message: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
+Theorem: vertical_angle(1,APD,BPC)
+You output the following premises: Collinear(APB)&Collinear(CPD)&Angle(APD)&Angle(BPC)
+But the correct premises: Collinear(APB)&Collinear(DPC)&Angle(APD)&Angle(BPC)
 
-- Goal: measure of angle CBP
-- Model answer: 45.0
-- Error: Your proof doesn't uniquely determine the value. You need to use additional theorems to constrain the value.
-- Available premises:
-  Collinear Points: APB, CPD
-  Cocircular Points: A on circle O, AB on circle O, ABC on circle O, ABCD on circle O, ABD on circle O, AC on circle O, ACD on circle O, AD on circle O, B on circle O, BC on circle O, BCD on circle O, BD on circle O, C on circle O, CD on circle O, D on circle O
-  Circles: O center: O
-  Polygons: ADP, APD, BCP, BPC
-- Theorems related to the goal:
-  None found that constrain this goal
-- Solver constraints directly related to this goal:
-  ∠CBP <= 180
-  ∠CBP = ∠ABC
-  ∠CBP > 0
-
-Please fix the proof.
 Model Answer:
 RETRY_ANSWER:
 45
 RETRY_THEOREM_SEQUENCE:
-1; triangle_property_angle_sum(1,APD); Polygon(APD); ["Equal(Add(MeasureOfAngle(APD),MeasureOfAngle(PDA),MeasureOfAngle(DAP)),180)"]
+1; triangle_property_angle_sum(1,APD); Polygon(APD); ["Equal(Add(MeasureOfAngle(APD),MeasureOfAngle(PDA),MeasureOfAngle(DAP)),180)"]  
+2; vertical_angle(1,APD,BPC); Collinear(APB)&Collinear(CPD)&Angle(APD)&Angle(BPC); ["Equal(MeasureOfAngle(APD),MeasureOfAngle(BPC))"]  
+3; arc_property_circumference_angle_external(1,OBD,A); Cocircular(O,BDA)&Angle(DAB); ["Equal(MeasureOfAngle(DAB),Mul(MeasureOfArc(OBD),1/2))"]  
+4; arc_property_circumference_angle_external(1,OBD,C); Cocircular(O,BDC)&Angle(DCB); ["Equal(MeasureOfAngle(DCB),Mul(MeasureOfArc(OBD),1/2))"]  
+5; triangle_property_angle_sum(1,BPC); Polygon(BPC); ["Equal(Add(MeasureOfAngle(BPC),MeasureOfAngle(BCP),MeasureOfAngle(CBP)),180)"]
 #run: 0; #retry: 3; message: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
-Failure: Theorem <collinearity_implies_equal_angles> not defined in current GDL. Please rewrite the proof sequence, you are allowed to use only theorems from the GDL.
+Theorem: triangle_property_angle_sum(1,BPC)
+You output the following conclusions: Equal(Add(MeasureOfAngle(BPC),MeasureOfAngle(BCP),MeasureOfAngle(CBP)),180)
+But the correct conclusions: Equal(Add(MeasureOfAngle(BPC),MeasureOfAngle(PCB),MeasureOfAngle(CBP)),180)
+
 Model Answer:
 RETRY_ANSWER:
 45
 RETRY_THEOREM_SEQUENCE:
-1; triangle_property_angle_sum(1,APD); Polygon(APD); ["Equal(Add(MeasureOfAngle(APD),MeasureOfAngle(PDA),MeasureOfAngle(DAP)),180)"]
-2; collinearity_implies_equal_angles(CPD,PDA,CDA); Collinear(CPD)&Angle(PDA)&Angle(CDA); ["Equal(MeasureOfAngle(PDA),MeasureOfAngle(CDA))"]
-3; cyclic_quadrilateral_same_subtended_angle(CBDA,CBA,CDA); Cocircular(O,CBDA)&Angle(CBA)&Angle(CDA); ["Equal(MeasureOfAngle(CBA),MeasureOfAngle(CDA))"]
-4; collinearity_implies_equal_angles(APB,CBP,CBA); Collinear(APB)&Angle(CBP)&Angle(CBA); ["Equal(MeasureOfAngle(CBP),MeasureOfAngle(CBA))"]
-#run: 0; #retry: 4; message: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
-Failure: Theorem <> not defined in current GDL. Please rewrite the proof sequence, you are allowed to use only theorems from the GDL.
-Model Answer:
-RETRY_ANSWER:
-45
-RETRY_THEOREM_SEQUENCE:
-1; triangle_property_angle_sum(1,APD); Polygon(APD); ["Equal(Add(MeasureOfAngle(APD),MeasureOfAngle(PDA),MeasureOfAngle(DAP)),180)"]
-
-────────────────────────────────────────────────────────
--- NOTE TO READER --
-Unfortunately, with the given GDL theorems, there is no direct way to link ∠PDA (deduced from triangle APD) to ∠CBP in order to constrain ∠CBP = 45 using only those GDL entries. The typical geometry fact that “the intersection of the diagonals in a cyclic quadrilateral leads to certain equal or supplementary angles” is not explicitly provided by any GDL theorem here. Therefore, the proof cannot be fully completed using only the listed GDL theorems. The steps above show how ∠PDA is found, but no GDL theorem is available to conclude ∠CBP = 45 purely from those premises.
-#run: 0; #retry: 5; message: ERROR_TIER: TIER3_GOAL_NOT_REACHED
-verification failed.
-
-- Goal: measure of angle CBP
-- Model answer: 45.0
-- Error: Your proof doesn't uniquely determine the value. You need to use additional theorems to constrain the value.
-- Available premises:
-  Collinear Points: APB, CPD
-  Cocircular Points: A on circle O, AB on circle O, ABC on circle O, ABCD on circle O, ABD on circle O, AC on circle O, ACD on circle O, AD on circle O, B on circle O, BC on circle O, BCD on circle O, BD on circle O, C on circle O, CD on circle O, D on circle O
-  Circles: O center: O
-  Polygons: ADP, APD, BCP, BPC
-- Theorems related to the goal:
-  None found that constrain this goal
-- Solver constraints directly related to this goal:
-  ∠CBP <= 180
-  ∠CBP = ∠ABC
-  ∠CBP > 0
-
-Please fix the proof.
-Model Answer:
-RETRY_ANSWER:
-45
-RETRY_THEOREM_SEQUENCE:
-1; triangle_property_angle_sum(1,APD); Polygon(APD); ["Equal(Add(MeasureOfAngle(APD),MeasureOfAngle(PDA),MeasureOfAngle(DAP)),180)"]
+1; triangle_property_angle_sum(1,APD); Polygon(APD); ["Equal(Add(MeasureOfAngle(APD),MeasureOfAngle(PDA),MeasureOfAngle(DAP)),180)"]  
+2; vertical_angle(1,APD,BPC); Collinear(APB)&Collinear(DPC)&Angle(APD)&Angle(BPC); ["Equal(MeasureOfAngle(APD),MeasureOfAngle(BPC))"]  
+3; arc_property_circumference_angle_external(1,OBD,A); Cocircular(O,BDA)&Angle(DAB); ["Equal(MeasureOfAngle(DAB),Mul(MeasureOfArc(OBD),1/2))"]  
+4; arc_property_circumference_angle_external(1,OBD,C); Cocircular(O,BDC)&Angle(DCB); ["Equal(MeasureOfAngle(DCB),Mul(MeasureOfArc(OBD),1/2))"]  
+5; triangle_property_angle_sum(1,BPC); Polygon(BPC); ["Equal(Add(MeasureOfAngle(BPC),MeasureOfAngle(BCP),MeasureOfAngle(CBP)),180)"]
 #RETRIES:
-5
+3
 #RUNS:
 0
 
