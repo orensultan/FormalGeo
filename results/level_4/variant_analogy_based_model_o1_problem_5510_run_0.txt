@@ -223,58 +223,32 @@ Outputs for Problem B:
 
 ***MODEL_RESPONSE_BEGIN***
 EQUATIONS:
-AreaOfTriangle(ABC)-65  
-AreaOfTriangle(ABC)-Add(AreaOfTriangle(DCA),AreaOfTriangle(DAB))  
-LengthOfLine(AB)-13  
-LengthOfLine(AC)-13  
-MeasureOfAngle(CMD)-90  
-(Implicitly, from “AN is perpendicular to DN”: MeasureOfAngle(AND)-90)  
+ll_ab-13
+ll_ac-13
+AreaOfTriangle(ABC)-65
+ma_cmd-90
 
 GOAL_SYMBOL:
-LengthOfLine(DN)+LengthOfLine(DM)
+ll_dn+ll_dm
 
 ANSWER:
-No valid proof can be constructed from the given theorems to determine DN + DM.
+13
 
 THEOREM_SEQUENCE:
-(Unable to complete a valid sequence with the provided GDL that uniquely yields DN + DM.)
+1; isosceles_triangle_judgment_line_equal(1,ABC); Polygon(ABC)&Equal(LengthOfLine(AB),LengthOfLine(AC)); ["IsoscelesTriangle(ABC)"]  
+2; triangle_area_formula_common(1,ABC); Polygon(ABC); ["Equal(AreaOfTriangle(ABC),Mul(HeightOfTriangle(ABC),LengthOfLine(BC),1/2))"]  
+3; line_addition(1,BD,DC); Collinear(BDC); ["Equal(LengthOfLine(BC),Add(LengthOfLine(BD),LengthOfLine(DC)))"]  
+4; triangle_area_formula_common(1,DAB); Polygon(DAB); ["Equal(AreaOfTriangle(DAB),Mul(HeightOfTriangle(DAB),LengthOfLine(AB),1/2))"]  
+5; triangle_area_formula_common(1,DCA); Polygon(DCA); ["Equal(AreaOfTriangle(DCA),Mul(HeightOfTriangle(DCA),LengthOfLine(CA),1/2))"]  
+6; right_triangle_judgment_angle(1,CMD); Polygon(CMD)&Equal(MeasureOfAngle(CMD),90); ["RightTriangle(CMD)"]  
+7; right_triangle_judgment_angle(1,AND); Polygon(AND)&Equal(MeasureOfAngle(AND),90); ["RightTriangle(AND)"]
 ***MODEL_RESPONSE_END***
 RETRIES_MESSAGES:
-#run: 0; #retry: 1; message: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
-Failure: Theorem <isosceles_triangle_judgment_line_equal> branch error. Expected dict_keys(['1']) but got None. Please rewrite your response, you should change only the call to theorem <isosceles_triangle_judgment_line_equal> by adding the branch number from the dict_keys as the first argument
-Model Answer:
-RETRY_ANSWER:
-13
-RETRY_THEOREM_SEQUENCE:
-1; isosceles_triangle_judgment_line_equal(ABC); Polygon(ABC)&Equal(LengthOfLine(AB),LengthOfLine(AC)); ["IsoscelesTriangle(ABC)"]  
-2; triangle_area_formula_common(ABC); Polygon(ABC); ["Equal(AreaOfTriangle(ABC),Mul(HeightOfTriangle(ABC),LengthOfLine(BC),1/2))"]  
-3; right_triangle_judgment_angle(CMD); Polygon(CMD)&Equal(MeasureOfAngle(CMD),90); ["RightTriangle(CMD)"]  
-4; right_triangle_judgment_angle(AND); Polygon(AND)&Equal(MeasureOfAngle(AND),90); ["RightTriangle(AND)"]
-#run: 0; #retry: 2; message: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
-Failure: Theorem <triangle_area_formula_common> branch error. Expected dict_keys(['1']) but got None. Please rewrite your response, you should change only the call to theorem <triangle_area_formula_common> by adding the branch number from the dict_keys as the first argument
-Model Answer:
-RETRY_ANSWER:
-13
-RETRY_THEOREM_SEQUENCE:
-1; isosceles_triangle_judgment_line_equal(1,ABC); Polygon(ABC)&Equal(LengthOfLine(AB),LengthOfLine(AC)); ["IsoscelesTriangle(ABC)"]  
-2; triangle_area_formula_common(ABC); Polygon(ABC); ["Equal(AreaOfTriangle(ABC),Mul(HeightOfTriangle(ABC),LengthOfLine(BC),1/2))"]  
-3; right_triangle_judgment_angle(CMD); Polygon(CMD)&Equal(MeasureOfAngle(CMD),90); ["RightTriangle(CMD)"]  
-4; right_triangle_judgment_angle(AND); Polygon(AND)&Equal(MeasureOfAngle(AND),90); ["RightTriangle(AND)"]
-#run: 0; #retry: 3; message: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
-Failure: Theorem <right_triangle_judgment_angle> branch error. Expected dict_keys(['1']) but got None. Please rewrite your response, you should change only the call to theorem <right_triangle_judgment_angle> by adding the branch number from the dict_keys as the first argument
-Model Answer:
-RETRY_ANSWER:
-13
-RETRY_THEOREM_SEQUENCE:
-1; isosceles_triangle_judgment_line_equal(1,ABC); Polygon(ABC)&Equal(LengthOfLine(AB),LengthOfLine(AC)); ["IsoscelesTriangle(ABC)"]
-2; triangle_area_formula_common(1,ABC); Polygon(ABC); ["Equal(AreaOfTriangle(ABC),Mul(HeightOfTriangle(ABC),LengthOfLine(BC),1/2))"]
-3; right_triangle_judgment_angle(CMD); Polygon(CMD)&Equal(MeasureOfAngle(CMD),90); ["RightTriangle(CMD)"]
-4; right_triangle_judgment_angle(AND); Polygon(AND)&Equal(MeasureOfAngle(AND),90); ["RightTriangle(AND)"]
-#run: 0; #retry: 4; message: ERROR_TIER: TIER3_GOAL_NOT_REACHED
+#run: 0; #retry: 1; message: ERROR_TIER: TIER3_GOAL_NOT_REACHED
 verification failed.
 
 - Goal: sum of lines DN + DM
-- Model answer: 13.0
+- Model answer: 13
 - Error: Your proof doesn't uniquely determine the value. You need to use additional theorems to constrain the value.
 - Available premises:
   Perpendicular Lines: AN ⊥ DN
@@ -293,16 +267,85 @@ RETRY_ANSWER:
 13
 RETRY_THEOREM_SEQUENCE:
 1; isosceles_triangle_judgment_line_equal(1,ABC); Polygon(ABC)&Equal(LengthOfLine(AB),LengthOfLine(AC)); ["IsoscelesTriangle(ABC)"]  
-2; triangle_area_formula_common(1,ABC); Polygon(ABC); ["Equal(AreaOfTriangle(ABC),Mul(HeightOfTriangle(ABC),LengthOfLine(BC),1/2))"]  
-3; right_triangle_judgment_angle(1,CMD); Polygon(CMD)&Equal(MeasureOfAngle(CMD),90); ["RightTriangle(CMD)"]  
-4; right_triangle_judgment_angle(1,AND); Polygon(AND)&Equal(MeasureOfAngle(AND),90); ["RightTriangle(AND)"]
-#run: 0; #retry: 5; message: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
-Failure: Theorem <> not defined in current GDL. Please rewrite the proof sequence, you are allowed to use only theorems from the GDL.
+2; right_triangle_judgment_angle(1,CMD); Polygon(CMD)&Equal(MeasureOfAngle(CMD),90); ["RightTriangle(CMD)"]  
+3; right_triangle_judgment_angle(1,AND); Polygon(AND)&Equal(MeasureOfAngle(AND),90); ["RightTriangle(AND)"]
+#run: 0; #retry: 2; message: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
+Theorem: line_addition(1,DB,DC)
+You output the following premises: Collinear(CDB)
+But the correct premises: Collinear(DDC)
+You output the following conclusions: Equal(LengthOfLine(BC),Add(LengthOfLine(DB),LengthOfLine(DC)))
+But the correct conclusions: Equal(LengthOfLine(DC),Add(LengthOfLine(DD),LengthOfLine(DC)))
+
 Model Answer:
 RETRY_ANSWER:
-No valid proof can be constructed from the given theorems to determine DN + DM.
+13
 RETRY_THEOREM_SEQUENCE:
-(Unable to complete a valid sequence with the provided GDL that uniquely yields DN + DM.)
+1; isosceles_triangle_judgment_line_equal(1,ABC); Polygon(ABC)&Equal(LengthOfLine(AB),LengthOfLine(AC)); ["IsoscelesTriangle(ABC)"]  
+2; triangle_area_formula_common(1,ABC); Polygon(ABC); ["Equal(AreaOfTriangle(ABC),Mul(HeightOfTriangle(ABC),LengthOfLine(BC),1/2))"]  
+3; line_addition(1,DB,DC); Collinear(CDB); ["Equal(LengthOfLine(BC),Add(LengthOfLine(DB),LengthOfLine(DC)))"]  
+4; triangle_area_formula_common(1,DAB); Polygon(DAB); ["Equal(AreaOfTriangle(DAB),Mul(HeightOfTriangle(DAB),LengthOfLine(DB),1/2))"]  
+5; triangle_area_formula_common(1,DCA); Polygon(DCA); ["Equal(AreaOfTriangle(DCA),Mul(HeightOfTriangle(DCA),LengthOfLine(DC),1/2))"]  
+6; right_triangle_judgment_angle(1,CMD); Polygon(CMD)&Equal(MeasureOfAngle(CMD),90); ["RightTriangle(CMD)"]  
+7; right_triangle_judgment_angle(1,AND); Polygon(AND)&Equal(MeasureOfAngle(AND),90); ["RightTriangle(AND)"]
+#run: 0; #retry: 3; message: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
+Failure: Theorem <line_addition> variation id is not supplied. Expected dict_keys(['1']) but got None.
+Your call: line_addition(B,D,D,C)
+Please rewrite your response by adding the variation id as the first argument. For example: For variation 1: line_addition(1,B,D,D,C)
+
+Model Answer:
+RETRY_ANSWER:
+13
+RETRY_THEOREM_SEQUENCE:
+1; isosceles_triangle_judgment_line_equal(1,ABC); Polygon(ABC)&Equal(LengthOfLine(AB),LengthOfLine(AC)); ["IsoscelesTriangle(ABC)"]  
+2; triangle_area_formula_common(1,ABC); Polygon(ABC); ["Equal(AreaOfTriangle(ABC),Mul(HeightOfTriangle(ABC),LengthOfLine(BC),1/2))"]  
+3; line_addition(BD,DC); Collinear(BDC); ["Equal(LengthOfLine(BC),Add(LengthOfLine(BD),LengthOfLine(DC)))"]  
+4; triangle_area_formula_common(1,DAB); Polygon(DAB); ["Equal(AreaOfTriangle(DAB),Mul(HeightOfTriangle(DAB),LengthOfLine(DB),1/2))"]  
+5; triangle_area_formula_common(1,DCA); Polygon(DCA); ["Equal(AreaOfTriangle(DCA),Mul(HeightOfTriangle(DCA),LengthOfLine(DC),1/2))"]  
+6; right_triangle_judgment_angle(1,CMD); Polygon(CMD)&Equal(MeasureOfAngle(CMD),90); ["RightTriangle(CMD)"]  
+7; right_triangle_judgment_angle(1,AND); Polygon(AND)&Equal(MeasureOfAngle(AND),90); ["RightTriangle(AND)"]
+#run: 0; #retry: 4; message: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
+Theorem: triangle_area_formula_common(1,DAB)
+You output the following conclusions: Equal(AreaOfTriangle(DAB),Mul(HeightOfTriangle(DAB),LengthOfLine(DB),1/2))
+But the correct conclusions: Equal(AreaOfTriangle(DAB),Mul(HeightOfTriangle(DAB),LengthOfLine(AB),1/2))
+
+Model Answer:
+RETRY_ANSWER:
+13
+RETRY_THEOREM_SEQUENCE:
+1; isosceles_triangle_judgment_line_equal(1,ABC); Polygon(ABC)&Equal(LengthOfLine(AB),LengthOfLine(AC)); ["IsoscelesTriangle(ABC)"]  
+2; triangle_area_formula_common(1,ABC); Polygon(ABC); ["Equal(AreaOfTriangle(ABC),Mul(HeightOfTriangle(ABC),LengthOfLine(BC),1/2))"]  
+3; line_addition(1,BD,DC); Collinear(BDC); ["Equal(LengthOfLine(BC),Add(LengthOfLine(BD),LengthOfLine(DC)))"]  
+4; triangle_area_formula_common(1,DAB); Polygon(DAB); ["Equal(AreaOfTriangle(DAB),Mul(HeightOfTriangle(DAB),LengthOfLine(DB),1/2))"]  
+5; triangle_area_formula_common(1,DCA); Polygon(DCA); ["Equal(AreaOfTriangle(DCA),Mul(HeightOfTriangle(DCA),LengthOfLine(DC),1/2))"]  
+6; right_triangle_judgment_angle(1,CMD); Polygon(CMD)&Equal(MeasureOfAngle(CMD),90); ["RightTriangle(CMD)"]  
+7; right_triangle_judgment_angle(1,AND); Polygon(AND)&Equal(MeasureOfAngle(AND),90); ["RightTriangle(AND)"]
+#run: 0; #retry: 5; message: ERROR_TIER: TIER2_PREMISE_VIOLATION
+verification failed.
+
+- Error: You tried to use theorem: triangle_area_formula_common(1,DAB);Polygon(DAB);['Equal(AreaOfTriangle(DAB),Mul(HeightOfTriangle(DAB),LengthOfLine(AB),1/2))']
+Missing premise: No height established for triangle DAB
+Details: Height must be established through an altitude theorem first
+- Available premises:
+  Perpendicular Lines: AN ⊥ DN
+  Collinear Points: AMC, ANB, BDC
+  Polygons: ABC, ABD, ABDM, ACB, ACD, ADB, ADC, ADM, ADN, AMD, AND, ANDC, ANDM, BDMA, BDN, BND, CAND, CDM, CMD, DCAN, DMAB, DMAN, MABD, MAND, NDCA, NDMA
+- Theorems related to the goal:
+  None found that constrain this goal
+- Solver constraints directly related to this goal:
+  None found
+
+Please fix the proof.
+Model Answer:
+RETRY_ANSWER:
+13
+RETRY_THEOREM_SEQUENCE:
+1; isosceles_triangle_judgment_line_equal(1,ABC); Polygon(ABC)&Equal(LengthOfLine(AB),LengthOfLine(AC)); ["IsoscelesTriangle(ABC)"]  
+2; triangle_area_formula_common(1,ABC); Polygon(ABC); ["Equal(AreaOfTriangle(ABC),Mul(HeightOfTriangle(ABC),LengthOfLine(BC),1/2))"]  
+3; line_addition(1,BD,DC); Collinear(BDC); ["Equal(LengthOfLine(BC),Add(LengthOfLine(BD),LengthOfLine(DC)))"]  
+4; triangle_area_formula_common(1,DAB); Polygon(DAB); ["Equal(AreaOfTriangle(DAB),Mul(HeightOfTriangle(DAB),LengthOfLine(AB),1/2))"]  
+5; triangle_area_formula_common(1,DCA); Polygon(DCA); ["Equal(AreaOfTriangle(DCA),Mul(HeightOfTriangle(DCA),LengthOfLine(CA),1/2))"]  
+6; right_triangle_judgment_angle(1,CMD); Polygon(CMD)&Equal(MeasureOfAngle(CMD),90); ["RightTriangle(CMD)"]  
+7; right_triangle_judgment_angle(1,AND); Polygon(AND)&Equal(MeasureOfAngle(AND),90); ["RightTriangle(AND)"]
 #RETRIES:
 5
 #RUNS:

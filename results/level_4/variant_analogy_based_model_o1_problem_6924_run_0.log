@@ -252,53 +252,7 @@ Angle
 predicates to add:
 Line
 predicates to add:
-Angle
-predicates to add:
 Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
 predicates to add:
 Line
 predicates to add:
@@ -324,8 +278,6 @@ Angle
 predicates to add:
 Line
 predicates to add:
-Angle
-predicates to add:
 Line
 predicates to add:
 Line
@@ -338,6 +290,16 @@ Angle
 predicates to add:
 Line
 predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
 Line
 predicates to add:
 Angle
@@ -349,6 +311,30 @@ predicates to add:
 Angle
 predicates to add:
 Line
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Angle
 predicates to add:
 Line
 predicates to add:
@@ -390,6 +376,22 @@ Angle
 predicates to add:
 Line
 predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
 Line
 predicates to add:
 Angle
@@ -397,8 +399,6 @@ predicates to add:
 Line
 predicates to add:
 Angle
-predicates to add:
-Line
 predicates to add:
 Line
 predicates to add:
@@ -760,18 +760,17 @@ Equation
 predicates to add:
 IsCentreOfCircle
 Verifier result: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
-Theorem: arc_property_circumference_angle_external(1,ODA,B)
-You output the following premises: Cocircular(O,ADB)&Angle(DBA)
-But the correct premises: Cocircular(O,DAB)&Angle(ABD)
-You output the following conclusions: Equal(MeasureOfAngle(DBA),Mul(MeasureOfArc(ODA),1/2))
-But the correct conclusions: Equal(MeasureOfAngle(ABD),Mul(MeasureOfArc(ODA),1/2))
+Failure: Theorem <flat_angle> variation id is not supplied. Expected dict_keys(['1']) but got None.
+Your call: flat_angle(D,E,C)
+Please rewrite your response by adding the variation id as the first argument. For example: For variation 1: flat_angle(1,D,E,C)
 
 Model Answer:
 RETRY_ANSWER:
-120
+100
 RETRY_THEOREM_SEQUENCE:
-1; arc_property_circumference_angle_external(1,ODA,B); Cocircular(O,ADB)&Angle(DBA); ["Equal(MeasureOfAngle(DBA),Mul(MeasureOfArc(ODA),1/2))"]  
-2; arc_property_center_angle(1,OCB,O); Arc(OCB)&Angle(COB)&IsCentreOfCircle(O,O); ["Equal(MeasureOfArc(OCB),MeasureOfAngle(COB))"]
+1; flat_angle(DEC); Collinear(DEC); ["Equal(MeasureOfAngle(DEC),180)"]  
+2; angle_addition(DEA,AEC); Angle(DEA)&Angle(AEC)&Angle(DEC); ["Equal(MeasureOfAngle(DEC),Add(MeasureOfAngle(DEA),MeasureOfAngle(AEC)))"]  
+3; arc_property_center_angle(1,OCB,O); Arc(OCB)&Angle(COB)&IsCentreOfCircle(O,O); ["Equal(MeasureOfArc(OCB),MeasureOfAngle(COB))"]
 Retry attempt: 1
 Content written to results/level_4/variant_analogy_based_model_o1_problem_6924_run_0_to_verify.txt
 predicates to add:
@@ -1027,53 +1026,7 @@ Angle
 predicates to add:
 Line
 predicates to add:
-Angle
-predicates to add:
 Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
 predicates to add:
 Line
 predicates to add:
@@ -1099,8 +1052,6 @@ Angle
 predicates to add:
 Line
 predicates to add:
-Angle
-predicates to add:
 Line
 predicates to add:
 Line
@@ -1113,6 +1064,16 @@ Angle
 predicates to add:
 Line
 predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
 Line
 predicates to add:
 Angle
@@ -1124,6 +1085,30 @@ predicates to add:
 Angle
 predicates to add:
 Line
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Angle
 predicates to add:
 Line
 predicates to add:
@@ -1165,6 +1150,22 @@ Angle
 predicates to add:
 Line
 predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
 Line
 predicates to add:
 Angle
@@ -1172,8 +1173,6 @@ predicates to add:
 Line
 predicates to add:
 Angle
-predicates to add:
-Line
 predicates to add:
 Line
 predicates to add:
@@ -1543,10 +1542,11 @@ But the correct conclusions: Equal(MeasureOfArc(OCB),MeasureOfAngle(BOC))
 
 Model Answer:
 RETRY_ANSWER:
-120
+100
 RETRY_THEOREM_SEQUENCE:
-1; arc_property_circumference_angle_external(1,ODA,B); Cocircular(O,DAB)&Angle(ABD); ["Equal(MeasureOfAngle(ABD),Mul(MeasureOfArc(ODA),1/2))"]  
-2; arc_property_center_angle(1,OCB,O); Arc(OCB)&Angle(COB)&IsCentreOfCircle(O,O); ["Equal(MeasureOfArc(OCB),MeasureOfAngle(COB))"]
+1; flat_angle(1,DEC); Collinear(DEC); ["Equal(MeasureOfAngle(DEC),180)"]  
+2; angle_addition(1,DEA,AEC); Angle(DEA)&Angle(AEC)&Angle(DEC); ["Equal(MeasureOfAngle(DEC),Add(MeasureOfAngle(DEA),MeasureOfAngle(AEC)))"]  
+3; arc_property_center_angle(1,OCB,O); Arc(OCB)&Angle(COB)&IsCentreOfCircle(O,O); ["Equal(MeasureOfArc(OCB),MeasureOfAngle(COB))"]
 Retry attempt: 2
 Content written to results/level_4/variant_analogy_based_model_o1_problem_6924_run_0_to_verify.txt
 predicates to add:
@@ -1802,53 +1802,7 @@ Angle
 predicates to add:
 Line
 predicates to add:
-Angle
-predicates to add:
 Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
 predicates to add:
 Line
 predicates to add:
@@ -1874,8 +1828,6 @@ Angle
 predicates to add:
 Line
 predicates to add:
-Angle
-predicates to add:
 Line
 predicates to add:
 Line
@@ -1888,6 +1840,16 @@ Angle
 predicates to add:
 Line
 predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
 Line
 predicates to add:
 Angle
@@ -1899,6 +1861,30 @@ predicates to add:
 Angle
 predicates to add:
 Line
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Angle
 predicates to add:
 Line
 predicates to add:
@@ -1940,6 +1926,22 @@ Angle
 predicates to add:
 Line
 predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
 Line
 predicates to add:
 Angle
@@ -1947,8 +1949,6 @@ predicates to add:
 Line
 predicates to add:
 Angle
-predicates to add:
-Line
 predicates to add:
 Line
 predicates to add:
@@ -2313,7 +2313,7 @@ Verifier result: ERROR_TIER: TIER3_GOAL_NOT_REACHED
 verification failed.
 
 - Goal: measure of angle COB
-- Model answer: 120.0
+- Model answer: 100
 - Error: Your proof doesn't uniquely determine the value. You need to use additional theorems to constrain the value.
 - Available premises:
   Collinear Points: AEB, AEO, AEOB, AOB, BOE, CED
@@ -2330,10 +2330,11 @@ verification failed.
 Please fix the proof.
 Model Answer:
 RETRY_ANSWER:
-120
+100
 RETRY_THEOREM_SEQUENCE:
-1; arc_property_circumference_angle_external(1,ODA,B); Cocircular(O,DAB)&Angle(ABD); ["Equal(MeasureOfAngle(ABD),Mul(MeasureOfArc(ODA),1/2))"]  
-2; arc_property_center_angle(1,OCB,O); Arc(OCB)&Angle(BOC)&IsCentreOfCircle(O,O); ["Equal(MeasureOfArc(OCB),MeasureOfAngle(BOC))"]
+1; flat_angle(1,DEC); Collinear(DEC); ["Equal(MeasureOfAngle(DEC),180)"]  
+2; angle_addition(1,DEA,AEC); Angle(DEA)&Angle(AEC)&Angle(DEC); ["Equal(MeasureOfAngle(DEC),Add(MeasureOfAngle(DEA),MeasureOfAngle(AEC)))"]  
+3; arc_property_center_angle(1,OCB,O); Arc(OCB)&Angle(BOC)&IsCentreOfCircle(O,O); ["Equal(MeasureOfArc(OCB),MeasureOfAngle(BOC))"]
 Retry attempt: 3
 Content written to results/level_4/variant_analogy_based_model_o1_problem_6924_run_0_to_verify.txt
 predicates to add:
@@ -2589,53 +2590,7 @@ Angle
 predicates to add:
 Line
 predicates to add:
-Angle
-predicates to add:
 Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
 predicates to add:
 Line
 predicates to add:
@@ -2661,8 +2616,6 @@ Angle
 predicates to add:
 Line
 predicates to add:
-Angle
-predicates to add:
 Line
 predicates to add:
 Line
@@ -2675,6 +2628,16 @@ Angle
 predicates to add:
 Line
 predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
 Line
 predicates to add:
 Angle
@@ -2686,6 +2649,30 @@ predicates to add:
 Angle
 predicates to add:
 Line
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Angle
 predicates to add:
 Line
 predicates to add:
@@ -2727,6 +2714,22 @@ Angle
 predicates to add:
 Line
 predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
 Line
 predicates to add:
 Angle
@@ -2734,8 +2737,6 @@ predicates to add:
 Line
 predicates to add:
 Angle
-predicates to add:
-Line
 predicates to add:
 Line
 predicates to add:
@@ -3097,20 +3098,20 @@ Equation
 predicates to add:
 IsCentreOfCircle
 Verifier result: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
-Theorem: adjacent_complementary_angle(1,DEA,AEB)
-You output the following premises: Collinear(AEOB)&Angle(DEA)&Angle(AEB)
-But the correct premises: Collinear(DEB)&Angle(DEA)&Angle(AEB)
+Theorem: vertical_angle(1,AEC,COB)
+You output the following premises: Collinear(AEOB)&Collinear(DEC)&Angle(AEC)&Angle(COB)
+But the correct premises: Collinear(AOC)&Collinear(COB)&Angle(AOC)&Angle(COB)
+You output the following conclusions: Equal(MeasureOfAngle(AEC),MeasureOfAngle(COB))
+But the correct conclusions: Equal(MeasureOfAngle(AOC),MeasureOfAngle(COB))
 
 Model Answer:
 RETRY_ANSWER:
-120
+100
 RETRY_THEOREM_SEQUENCE:
-1; arc_property_circumference_angle_external(1,ODA,B); Cocircular(O,DAB)&Angle(ABD); ["Equal(MeasureOfAngle(ABD),Mul(MeasureOfArc(ODA),1/2))"]  
-2; adjacent_complementary_angle(1,DEA,AEB); Collinear(AEOB)&Angle(DEA)&Angle(AEB); ["Equal(Add(MeasureOfAngle(DEA),MeasureOfAngle(AEB)),180)"]  
-3; arc_property_circumference_angle_external(1,OAB,E); Cocircular(O,ABD)&Angle(AEB); ["Equal(MeasureOfAngle(AEB),Mul(MeasureOfArc(OAB),1/2))"]  
-4; round_arc(OAB,BAO); Arc(OAB)&Arc(BAO); ["Equal(Add(MeasureOfArc(OAB),MeasureOfArc(BAO)),360)"]  
-5; arc_addition_measure(ODA,BAO); Arc(ODA)&Arc(BAO)&Arc(ODB); ["Equal(MeasureOfArc(ODB),Add(MeasureOfArc(ODA),MeasureOfArc(BAO)))"]  
-6; arc_property_center_angle(1,OCB,O); Arc(OCB)&Angle(BOC)&IsCentreOfCircle(O,O); ["Equal(MeasureOfArc(OCB),MeasureOfAngle(BOC))"]
+1; flat_angle(1,DEC); Collinear(DEC); ["Equal(MeasureOfAngle(DEC),180)"]  
+2; angle_addition(1,DEA,AEC); Angle(DEA)&Angle(AEC)&Angle(DEC); ["Equal(MeasureOfAngle(DEC),Add(MeasureOfAngle(DEA),MeasureOfAngle(AEC)))"]  
+3; arc_property_center_angle(1,OCB,O); Arc(OCB)&Angle(BOC)&IsCentreOfCircle(O,O); ["Equal(MeasureOfArc(OCB),MeasureOfAngle(BOC))"]  
+4; vertical_angle(1,AEC,COB); Collinear(AEOB)&Collinear(DEC)&Angle(AEC)&Angle(COB); ["Equal(MeasureOfAngle(AEC),MeasureOfAngle(COB))"]
 Retry attempt: 4
 Content written to results/level_4/variant_analogy_based_model_o1_problem_6924_run_0_to_verify.txt
 predicates to add:
@@ -3366,53 +3367,7 @@ Angle
 predicates to add:
 Line
 predicates to add:
-Angle
-predicates to add:
 Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
 predicates to add:
 Line
 predicates to add:
@@ -3438,8 +3393,6 @@ Angle
 predicates to add:
 Line
 predicates to add:
-Angle
-predicates to add:
 Line
 predicates to add:
 Line
@@ -3452,6 +3405,16 @@ Angle
 predicates to add:
 Line
 predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
 Line
 predicates to add:
 Angle
@@ -3463,6 +3426,30 @@ predicates to add:
 Angle
 predicates to add:
 Line
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Angle
 predicates to add:
 Line
 predicates to add:
@@ -3504,6 +3491,22 @@ Angle
 predicates to add:
 Line
 predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
 Line
 predicates to add:
 Angle
@@ -3511,8 +3514,6 @@ predicates to add:
 Line
 predicates to add:
 Angle
-predicates to add:
-Line
 predicates to add:
 Line
 predicates to add:
@@ -3874,21 +3875,18 @@ Equation
 predicates to add:
 IsCentreOfCircle
 Verifier result: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
-Theorem: arc_property_circumference_angle_external(1,OAB,E)
-You output the following premises: Cocircular(O,ABD)&Angle(AEB)
-But the correct premises: Cocircular(O,ABE)&Angle(BEA)
-You output the following conclusions: Equal(MeasureOfAngle(AEB),Mul(MeasureOfArc(OAB),1/2))
-But the correct conclusions: Equal(MeasureOfAngle(BEA),Mul(MeasureOfArc(OAB),1/2))
+Theorem: circle_property_circular_power_segment_and_segment_angle(1,EAB,ECD,O)
+You output the following premises: Cocircular(O,CADB)&Collinear(EAB)&Collinear(ECD)
+But the correct premises: Cocircular(O,ACDB)&Collinear(EAB)&Collinear(ECD)
 
 Model Answer:
 RETRY_ANSWER:
-120
+100
 RETRY_THEOREM_SEQUENCE:
-1; arc_property_circumference_angle_external(1,ODA,B); Cocircular(O,DAB)&Angle(ABD); ["Equal(MeasureOfAngle(ABD),Mul(MeasureOfArc(ODA),1/2))"]
-2; adjacent_complementary_angle(1,DEA,AEB); Collinear(DEB)&Angle(DEA)&Angle(AEB); ["Equal(Add(MeasureOfAngle(DEA),MeasureOfAngle(AEB)),180)"]
-3; arc_property_circumference_angle_external(1,OAB,E); Cocircular(O,ABD)&Angle(AEB); ["Equal(MeasureOfAngle(AEB),Mul(MeasureOfArc(OAB),1/2))"]
-4; round_arc(OAB,BAO); Arc(OAB)&Arc(BAO); ["Equal(Add(MeasureOfArc(OAB),MeasureOfArc(BAO)),360)"]
-5; arc_addition_measure(ODA,BAO); Arc(ODA)&Arc(BAO)&Arc(ODB); ["Equal(MeasureOfArc(ODB),Add(MeasureOfArc(ODA),MeasureOfArc(BAO)))"]
-6; arc_property_center_angle(1,OCB,O); Arc(OCB)&Angle(BOC)&IsCentreOfCircle(O,O); ["Equal(MeasureOfArc(OCB),MeasureOfAngle(BOC))"]
+1; flat_angle(1,DEC); Collinear(DEC); ["Equal(MeasureOfAngle(DEC),180)"]  
+2; angle_addition(1,DEA,AEC); Angle(DEA)&Angle(AEC)&Angle(DEC); ["Equal(MeasureOfAngle(DEC),Add(MeasureOfAngle(DEA),MeasureOfAngle(AEC)))"]  
+3; circle_property_circular_power_segment_and_segment_angle(1,EAB,ECD,O); Cocircular(O,CADB)&Collinear(EAB)&Collinear(ECD); ["Equal(Sub(MeasureOfArc(ODB),MeasureOfArc(OAC)),Mul(MeasureOfAngle(AEC),2))"]  
+4; arc_property_center_angle(1,OAC,O); Arc(OAC)&Angle(AOC)&IsCentreOfCircle(O,O); ["Equal(MeasureOfArc(OAC),MeasureOfAngle(AOC))"]  
+5; arc_property_center_angle(1,ODB,O); Arc(ODB)&Angle(BOD)&IsCentreOfCircle(O,O); ["Equal(MeasureOfArc(ODB),MeasureOfAngle(BOD))"]
 Retry attempt: 5
 Content written to results/level_4/variant_analogy_based_model_o1_problem_6924_run_0.txt

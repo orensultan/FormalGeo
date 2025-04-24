@@ -52,15 +52,15 @@ Shape(OAD,DB,BO,OE,EA)
 Shape(DB,BO,OE,EA,OAD)
 Shape(BO,OE,EA,OAD,DB)
 Shape(OE,EA,OAD,DB,BO)
-Shape(BO,OE,ED,ODB)
-Shape(OE,ED,ODB,BO)
-Shape(ED,ODB,BO,OE)
-Shape(ODB,BO,OE,ED)
 Shape(OE,ED,DB,OBC,CO)
 Shape(ED,DB,OBC,CO,OE)
 Shape(DB,OBC,CO,OE,ED)
 Shape(OBC,CO,OE,ED,DB)
 Shape(CO,OE,ED,DB,OBC)
+Shape(BO,OE,ED,ODB)
+Shape(OE,ED,ODB,BO)
+Shape(ED,ODB,BO,OE)
+Shape(ODB,BO,OE,ED)
 Shape(EC,OCA,OAD,DB,BO,OE)
 Shape(OCA,OAD,DB,BO,OE,EC)
 Shape(OAD,DB,BO,OE,EC,OCA)
@@ -82,11 +82,6 @@ Shape(CE,ED,DB,OBC)
 Shape(ED,DB,OBC,CE)
 Shape(DB,OBC,CE,ED)
 Shape(OBC,CE,ED,DB)
-Shape(EO,OC,OCA,OAD,DE)
-Shape(OC,OCA,OAD,DE,EO)
-Shape(OCA,OAD,DE,EO,OC)
-Shape(OAD,DE,EO,OC,OCA)
-Shape(DE,EO,OC,OCA,OAD)
 Shape(OC,CE,EA,OAD,DB,BO)
 Shape(CE,EA,OAD,DB,BO,OC)
 Shape(EA,OAD,DB,BO,OC,CE)
@@ -98,17 +93,22 @@ Shape(CE,ED,ODB,BO,OC)
 Shape(ED,ODB,BO,OC,CE)
 Shape(ODB,BO,OC,CE,ED)
 Shape(BO,OC,CE,ED,ODB)
-Shape(EA,OAD,ODB,BO,OE)
-Shape(OAD,ODB,BO,OE,EA)
-Shape(ODB,BO,OE,EA,OAD)
-Shape(BO,OE,EA,OAD,ODB)
-Shape(OE,EA,OAD,ODB,BO)
+Shape(EO,OC,OCA,OAD,DE)
+Shape(OC,OCA,OAD,DE,EO)
+Shape(OCA,OAD,DE,EO,OC)
+Shape(OAD,DE,EO,OC,OCA)
+Shape(DE,EO,OC,OCA,OAD)
 Shape(EA,OAD,DB,OBC,CO,OE)
 Shape(OAD,DB,OBC,CO,OE,EA)
 Shape(DB,OBC,CO,OE,EA,OAD)
 Shape(OBC,CO,OE,EA,OAD,DB)
 Shape(CO,OE,EA,OAD,DB,OBC)
 Shape(OE,EA,OAD,DB,OBC,CO)
+Shape(EA,OAD,ODB,BO,OE)
+Shape(OAD,ODB,BO,OE,EA)
+Shape(ODB,BO,OE,EA,OAD)
+Shape(BO,OE,EA,OAD,ODB)
+Shape(OE,EA,OAD,ODB,BO)
 Shape(ODB,OBC,CO,OE,ED)
 Shape(OBC,CO,OE,ED,ODB)
 Shape(CO,OE,ED,ODB,OBC)
@@ -309,8 +309,8 @@ Angle(OED)
 Angle(COE)
 Angle(BEC)
 Angle(AED)
-Angle(DEO)
 Angle(CEA)
+Angle(DEO)
 Angle(DEB)
 Angle(COA)
 Angle(CEB)
@@ -366,26 +366,19 @@ ANSWER:
 60
 
 THEOREM_SEQUENCE:
-1; flat_angle(1,DEC); Collinear(DEC); ["Equal(MeasureOfAngle(DEC),180)"]  
-2; angle_addition(DEA,AEC); Angle(DEA)&Angle(AEC)&Angle(DEC); ["Equal(MeasureOfAngle(DEC),Add(MeasureOfAngle(DEA),MeasureOfAngle(AEC)))"]  
-3; circle_property_circular_power_segment_and_segment_angle(EAB,ECD,O); Cocircular(O,CADB)&Collinear(EAB)&Collinear(ECD); ["Equal(Sub(MeasureOfArc(ODB),MeasureOfArc(OAC)),Mul(MeasureOfAngle(AEC),2))"]  
-4; arc_property_circumference_angle_external(1,ODA,B); Cocircular(O,DAB)&Angle(DBA); ["Equal(MeasureOfAngle(DBA),Mul(MeasureOfArc(ODA),1/2))"]  
-5; arc_property_center_angle(1,OCB,O); Arc(OCB)&Angle(BOC)&IsCentreOfCircle(O,O); ["Equal(MeasureOfArc(OCB),MeasureOfAngle(BOC))"]
+1; adjacent_complementary_angle(1,DEA,AEC); Collinear(DEC)&Angle(DEA)&Angle(AEC); ["Equal(Add(MeasureOfAngle(DEA),MeasureOfAngle(AEC)),180)"]
+2; arc_property_center_angle(1,OCB,O); Arc(OCB)&Angle(BOC)&IsCentreOfCircle(O,O); ["Equal(MeasureOfArc(OCB),MeasureOfAngle(BOC))"]
 ***MODEL_RESPONSE_END***
 RETRIES_MESSAGES:
 #run: 1; #retry: 1; message: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
-Theorem: arc_property_circumference_angle_external(1,ODA,B)
-You output the following premises: Cocircular(O,ABD)&Angle(DBA)
-But the correct premises: Cocircular(O,DAB)&Angle(ABD)
-You output the following conclusions: Equal(MeasureOfAngle(DBA),Mul(MeasureOfArc(ODA),1/2))
-But the correct conclusions: Equal(MeasureOfAngle(ABD),Mul(MeasureOfArc(ODA),1/2))
-
+Failure: Theorem <circle_property_circular_power_segment_and_segment_angle> para length error. Expected 7 but got ('E', 'A', 'B', 'E', 'C', 'D', 'O', '(', '1').
 Model Answer:
 RETRY_ANSWER:
 60
 RETRY_THEOREM_SEQUENCE:
-1; arc_property_circumference_angle_external(1,ODA,B); Cocircular(O,ABD)&Angle(DBA); ["Equal(MeasureOfAngle(DBA),Mul(MeasureOfArc(ODA),1/2))"]  
-2; arc_property_center_angle(1,OCB,O); Arc(OCB)&Angle(COB)&IsCentreOfCircle(O,O); ["Equal(MeasureOfArc(OCB),MeasureOfAngle(COB))"]
+1; adjacent_complementary_angle(1,DEA,AEC); Collinear(DEC)&Angle(DEA)&Angle(AEC); ["Equal(Add(MeasureOfAngle(DEA),MeasureOfAngle(AEC)),180)"]  
+2; circle_property_circular_power_segment_and_segment_angle(EAB,ECD,O)(1); Cocircular(O,ACDB)&Collinear(EAB)&Collinear(ECD); ["Equal(Sub(MeasureOfArc(ODB),MeasureOfArc(OAC)),Mul(MeasureOfAngle(AEC),2))"]  
+3; arc_property_center_angle(1,OCB,O); Arc(OCB)&Angle(COB)&IsCentreOfCircle(O,O); ["Equal(MeasureOfArc(OCB),MeasureOfAngle(COB))"]
 #run: 1; #retry: 2; message: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
 Theorem: arc_property_center_angle(1,OCB,O)
 You output the following premises: Arc(OCB)&Angle(COB)&IsCentreOfCircle(O,O)
@@ -397,13 +390,52 @@ Model Answer:
 RETRY_ANSWER:
 60
 RETRY_THEOREM_SEQUENCE:
-1; arc_property_circumference_angle_external(1,ODA,B); Cocircular(O,DAB)&Angle(ABD); ["Equal(MeasureOfAngle(ABD),Mul(MeasureOfArc(ODA),1/2))"]  
-2; arc_property_center_angle(1,OCB,O); Arc(OCB)&Angle(COB)&IsCentreOfCircle(O,O); ["Equal(MeasureOfArc(OCB),MeasureOfAngle(COB))"]
-#run: 1; #retry: 3; message: ERROR_TIER: TIER3_GOAL_NOT_REACHED
+1; adjacent_complementary_angle(1,DEA,AEC); Collinear(DEC)&Angle(DEA)&Angle(AEC); ["Equal(Add(MeasureOfAngle(DEA),MeasureOfAngle(AEC)),180)"]  
+2; circle_property_circular_power_segment_and_segment_angle(1,EAB,ECD,O); Cocircular(O,ACDB)&Collinear(EAB)&Collinear(ECD); ["Equal(Sub(MeasureOfArc(ODB),MeasureOfArc(OAC)),Mul(MeasureOfAngle(AEC),2))"]  
+3; arc_property_center_angle(1,OCB,O); Arc(OCB)&Angle(COB)&IsCentreOfCircle(O,O); ["Equal(MeasureOfArc(OCB),MeasureOfAngle(COB))"]
+#run: 1; #retry: 3; message: ERROR_TIER: TIER2_PREMISE_VIOLATION
+verification failed.
+
+- Error: You tried to use theorem: circle_property_circular_power_segment_and_segment_angle(1,EAB,ECD,O);Cocircular(O,ACDB)&Collinear(EAB)&Collinear(ECD);['Equal(Sub(MeasureOfArc(ODB),MeasureOfArc(OAC)),Mul(MeasureOfAngle(AEC),2))']
+Missing premise: Collinear(EAB) not established
+Details: Known collinear facts: [['A', 'E', 'O', 'B'], ['C', 'E', 'D'], ['B', 'O', 'E'], ['A', 'O', 'B'], ['A', 'E', 'B'], ['A', 'E', 'O'], ['A', 'E', 'O'], ['A', 'E', 'O'], ['A', 'E', 'B'], ['A', 'E', 'B'], ['A', 'O', 'B'], ['A', 'O', 'B'], ['B', 'O', 'E'], ['B', 'O', 'E'], ['C', 'E', 'D']]
+- Available premises:
+  Collinear Points: AEB, AEO, AEOB, AOB, BOE, CED
+  Cocircular Points: A on circle O, AB on circle O, ABC on circle O, ABCD on circle O, ABD on circle O, AC on circle O, ACD on circle O, AD on circle O, B on circle O, BC on circle O, BCD on circle O, BD on circle O, C on circle O, CD on circle O, D on circle O
+  Circles: O center: O
+  Polygons: BDE, BED, BOCD, CDBO, CEO, COE, DBOC, OCDB
+- Theorems related to the goal:
+  None found that constrain this goal
+- Solver constraints directly related to this goal:
+  None found
+
+Please fix the proof.
+Model Answer:
+RETRY_ANSWER:
+60
+RETRY_THEOREM_SEQUENCE:
+1; adjacent_complementary_angle(1,DEA,AEC); Collinear(DEC)&Angle(DEA)&Angle(AEC); ["Equal(Add(MeasureOfAngle(DEA),MeasureOfAngle(AEC)),180)"]  
+2; circle_property_circular_power_segment_and_segment_angle(1,EAB,ECD,O); Cocircular(O,ACDB)&Collinear(EAB)&Collinear(ECD); ["Equal(Sub(MeasureOfArc(ODB),MeasureOfArc(OAC)),Mul(MeasureOfAngle(AEC),2))"]  
+3; arc_property_center_angle(1,OCB,O); Arc(OCB)&Angle(BOC)&IsCentreOfCircle(O,O); ["Equal(MeasureOfArc(OCB),MeasureOfAngle(BOC))"]
+#run: 1; #retry: 4; message: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
+Theorem: circle_property_circular_power_segment_and_segment_angle(1,AEB,CED,O)
+You output the following premises: Cocircular(O,ACDB)&Collinear(AEB)&Collinear(CED)
+But the correct premises: Cocircular(O,EEDB)&Collinear(CEB)&Collinear(CED)
+You output the following conclusions: Equal(Sub(MeasureOfArc(ODB),MeasureOfArc(OAC)),Mul(MeasureOfAngle(AEC),2))
+But the correct conclusions: Equal(Sub(MeasureOfArc(ODB),MeasureOfArc(OEE)),Mul(MeasureOfAngle(ECE),2))
+
+Model Answer:
+RETRY_ANSWER:
+60
+RETRY_THEOREM_SEQUENCE:
+1; adjacent_complementary_angle(1,DEA,AEC); Collinear(DEC)&Angle(DEA)&Angle(AEC); ["Equal(Add(MeasureOfAngle(DEA),MeasureOfAngle(AEC)),180)"]  
+2; circle_property_circular_power_segment_and_segment_angle(1,AEB,CED,O); Cocircular(O,ACDB)&Collinear(AEB)&Collinear(CED); ["Equal(Sub(MeasureOfArc(ODB),MeasureOfArc(OAC)),Mul(MeasureOfAngle(AEC),2))"]  
+3; arc_property_center_angle(1,OCB,O); Arc(OCB)&Angle(BOC)&IsCentreOfCircle(O,O); ["Equal(MeasureOfArc(OCB),MeasureOfAngle(BOC))"]
+#run: 1; #retry: 5; message: ERROR_TIER: TIER3_GOAL_NOT_REACHED
 verification failed.
 
 - Goal: measure of angle COB
-- Model answer: 60.0
+- Model answer: 60
 - Error: Your proof doesn't uniquely determine the value. You need to use additional theorems to constrain the value.
 - Available premises:
   Collinear Points: AEB, AEO, AEOB, AOB, BOE, CED
@@ -422,30 +454,8 @@ Model Answer:
 RETRY_ANSWER:
 60
 RETRY_THEOREM_SEQUENCE:
-1; arc_property_circumference_angle_external(1,ODA,B); Cocircular(O,DAB)&Angle(ABD); ["Equal(MeasureOfAngle(ABD),Mul(MeasureOfArc(ODA),1/2))"]  
+1; adjacent_complementary_angle(1,DEA,AEC); Collinear(DEC)&Angle(DEA)&Angle(AEC); ["Equal(Add(MeasureOfAngle(DEA),MeasureOfAngle(AEC)),180)"]
 2; arc_property_center_angle(1,OCB,O); Arc(OCB)&Angle(BOC)&IsCentreOfCircle(O,O); ["Equal(MeasureOfArc(OCB),MeasureOfAngle(BOC))"]
-#run: 1; #retry: 4; message: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
-Failure: Theorem <flat_angle> branch error. Expected dict_keys(['1']) but got None. Please rewrite your response, you should change only the call to theorem <flat_angle> by adding the branch number from the dict_keys as the first argument
-Model Answer:
-RETRY_ANSWER:
-60
-RETRY_THEOREM_SEQUENCE:
-1; flat_angle(DEC); Collinear(DEC); ["Equal(MeasureOfAngle(DEC),180)"]  
-2; angle_addition(DEA,AEC); Angle(DEA)&Angle(AEC)&Angle(DEC); ["Equal(MeasureOfAngle(DEC),Add(MeasureOfAngle(DEA),MeasureOfAngle(AEC)))"]  
-3; circle_property_circular_power_segment_and_segment_angle(EAB,ECD,O); Cocircular(O,CADB)&Collinear(EAB)&Collinear(ECD); ["Equal(Sub(MeasureOfArc(ODB),MeasureOfArc(OAC)),Mul(MeasureOfAngle(AEC),2))"]  
-4; arc_property_circumference_angle_external(1,ODA,B); Cocircular(O,DAB)&Angle(DBA); ["Equal(MeasureOfAngle(DBA),Mul(MeasureOfArc(ODA),1/2))"]  
-5; arc_property_center_angle(1,OCB,O); Arc(OCB)&Angle(BOC)&IsCentreOfCircle(O,O); ["Equal(MeasureOfArc(OCB),MeasureOfAngle(BOC))"]
-#run: 1; #retry: 5; message: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
-Failure: Theorem <angle_addition> branch error. Expected dict_keys(['1']) but got None. Please rewrite your response, you should change only the call to theorem <angle_addition> by adding the branch number from the dict_keys as the first argument
-Model Answer:
-RETRY_ANSWER:
-60
-RETRY_THEOREM_SEQUENCE:
-1; flat_angle(1,DEC); Collinear(DEC); ["Equal(MeasureOfAngle(DEC),180)"]  
-2; angle_addition(DEA,AEC); Angle(DEA)&Angle(AEC)&Angle(DEC); ["Equal(MeasureOfAngle(DEC),Add(MeasureOfAngle(DEA),MeasureOfAngle(AEC)))"]  
-3; circle_property_circular_power_segment_and_segment_angle(EAB,ECD,O); Cocircular(O,CADB)&Collinear(EAB)&Collinear(ECD); ["Equal(Sub(MeasureOfArc(ODB),MeasureOfArc(OAC)),Mul(MeasureOfAngle(AEC),2))"]  
-4; arc_property_circumference_angle_external(1,ODA,B); Cocircular(O,DAB)&Angle(DBA); ["Equal(MeasureOfAngle(DBA),Mul(MeasureOfArc(ODA),1/2))"]  
-5; arc_property_center_angle(1,OCB,O); Arc(OCB)&Angle(BOC)&IsCentreOfCircle(O,O); ["Equal(MeasureOfArc(OCB),MeasureOfAngle(BOC))"]
 #RETRIES:
 5
 #RUNS:
