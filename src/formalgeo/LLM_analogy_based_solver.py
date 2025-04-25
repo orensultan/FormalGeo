@@ -30,6 +30,7 @@ from similar_proofs_retrieval import retrieve_random_proofs
 import ast
 import re
 openai.api_key = ""
+
 dl = DatasetLoader(dataset_name="formalgeo7k_v1", datasets_path="formalgeo7k_v1")
 solver = Interactor(dl.predicate_GDL, dl.theorem_GDL)
 with open('formalgeo7k_v1/formalgeo7k_v1/gdl/theorem_GDL.json', 'r') as f:
