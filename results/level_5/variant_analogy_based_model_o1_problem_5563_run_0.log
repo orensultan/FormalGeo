@@ -209,21 +209,247 @@ Equation
 predicates to add:
 Equation
 Verifier result: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
-Theorem: isosceles_triangle_judgment_angle_equal(1,ABD)
-You output the following premises: Polygon(ABD)&Equal(MeasureOfAngle(ABD),MeasureOfAngle(DAB))
-But the correct premises: Polygon(ABD)&Equal(MeasureOfAngle(ABD),MeasureOfAngle(BDA))
+Failure: Theorem <triangle_property_angle_sum> variation id is not supplied. Expected dict_keys(['1']) but got None.
+Your call: triangle_property_angle_sum(A,B,D)
+Please rewrite your response by adding the variation id as the first argument. For example: For variation 1: triangle_property_angle_sum(1,A,B,D)
 
 Model Answer:
 RETRY_ANSWER:
 6
 RETRY_THEOREM_SEQUENCE:
-1; flat_angle(1,BDC); Collinear(BDC); ["Equal(MeasureOfAngle(BDC),180)"]  
-2; angle_addition(1,BDA,ADC); Angle(BDA)&Angle(ADC)&Angle(BDC); ["Equal(MeasureOfAngle(BDC),Add(MeasureOfAngle(BDA),MeasureOfAngle(ADC)))"]  
-3; triangle_property_angle_sum(1,ABD); Polygon(ABD); ["Equal(Add(MeasureOfAngle(ABD),MeasureOfAngle(BDA),MeasureOfAngle(DAB)),180)"]  
-4; isosceles_triangle_judgment_angle_equal(1,ABD); Polygon(ABD)&Equal(MeasureOfAngle(ABD),MeasureOfAngle(DAB)); ["IsoscelesTriangle(ABD)"]  
+1; triangle_property_angle_sum(ABD); Polygon(ABD); ["Equal(Add(MeasureOfAngle(ABD),MeasureOfAngle(BDA),MeasureOfAngle(DAB)),180)"]  
+2; flat_angle(BDC); Collinear(BDC); ["Equal(MeasureOfAngle(BDC),180)"]  
+3; angle_addition(BDA,ADC); Angle(BDA)&Angle(ADC)&Angle(BDC); ["Equal(MeasureOfAngle(BDC),Add(MeasureOfAngle(BDA),MeasureOfAngle(ADC)))"]  
+4; right_triangle_judgment_angle(ADC); Polygon(ADC)&Equal(MeasureOfAngle(DCA),90); ["RightTriangle(ADC)"]  
+5; triangle_property_angle_sum(ADC); Polygon(ADC); ["Equal(Add(MeasureOfAngle(ADC),MeasureOfAngle(DCA),MeasureOfAngle(CAD)),180)"]  
+6; sine_theorem(ADC); Polygon(ADC); ["Equal(Mul(LengthOfLine(AD),Sin(MeasureOfAngle(ADC))),Mul(LengthOfLine(AC),Sin(MeasureOfAngle(DCA))))"]
+Retry attempt: 1
+Content written to results/level_5/variant_analogy_based_model_o1_problem_5563_run_0_to_verify.txt
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Polygon
+has Polygon
+has Polygon
+has Polygon
+has Polygon
+has Polygon
+has Polygon
+has Polygon
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Polygon
+has Polygon
+has Polygon
+has Polygon
+has Polygon
+has Polygon
+has Polygon
+has Polygon
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Polygon
+has Polygon
+has Polygon
+has Polygon
+has Polygon
+has Polygon
+has Polygon
+has Polygon
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Equation
+predicates to add:
+Equation
+predicates to add:
+Equation
+predicates to add:
+Equation
+Verifier result: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
+Theorem: right_triangle_judgment_angle(1,ADC)
+You output the following premises: Polygon(ADC)&Equal(MeasureOfAngle(DCA),90)
+But the correct premises: Polygon(ADC)&Equal(MeasureOfAngle(ADC),90)
+
+Model Answer:
+RETRY_ANSWER:
+6
+RETRY_THEOREM_SEQUENCE:
+1; triangle_property_angle_sum(1,ABD); Polygon(ABD); ["Equal(Add(MeasureOfAngle(ABD),MeasureOfAngle(BDA),MeasureOfAngle(DAB)),180)"]  
+2; flat_angle(1,BDC); Collinear(BDC); ["Equal(MeasureOfAngle(BDC),180)"]  
+3; angle_addition(1,BDA,ADC); Angle(BDA)&Angle(ADC)&Angle(BDC); ["Equal(MeasureOfAngle(BDC),Add(MeasureOfAngle(BDA),MeasureOfAngle(ADC)))"]  
+4; right_triangle_judgment_angle(1,ADC); Polygon(ADC)&Equal(MeasureOfAngle(DCA),90); ["RightTriangle(ADC)"]  
 5; triangle_property_angle_sum(1,ADC); Polygon(ADC); ["Equal(Add(MeasureOfAngle(ADC),MeasureOfAngle(DCA),MeasureOfAngle(CAD)),180)"]  
 6; sine_theorem(1,ADC); Polygon(ADC); ["Equal(Mul(LengthOfLine(AD),Sin(MeasureOfAngle(ADC))),Mul(LengthOfLine(AC),Sin(MeasureOfAngle(DCA))))"]
-Retry attempt: 1
+Retry attempt: 2
 Content written to results/level_5/variant_analogy_based_model_o1_problem_5563_run_0_to_verify.txt
 predicates to add:
 Line
@@ -437,9 +663,9 @@ Equation
 Verifier result: ERROR_TIER: TIER2_PREMISE_VIOLATION
 verification failed.
 
-- Error: You tried to use theorem: isosceles_triangle_judgment_angle_equal(1,ABD);Polygon(ABD)&Equal(MeasureOfAngle(ABD),MeasureOfAngle(BDA));['IsoscelesTriangle(ABD)']
-Missing premise: Angles ABD and BDA are not proven equal in the system
-Details: The current constraints don't force these angles to be equal
+- Error: You tried to use theorem: right_triangle_judgment_angle(1,ADC);Polygon(ADC)&Equal(MeasureOfAngle(ADC),90);['RightTriangle(ADC)']
+Missing premise: Angle measure 90° for triangle ADC is not established in the premise.
+Details: Premise provided: Polygon(ADC)&Equal(MeasureOfAngle(ADC),90)
 - Available premises:
   Collinear Points: BDC
   Polygons: ABC, ABD, ACB, ACD, ADB, ADC
@@ -453,13 +679,13 @@ Model Answer:
 RETRY_ANSWER:
 6
 RETRY_THEOREM_SEQUENCE:
-1; flat_angle(1,BDC); Collinear(BDC); ["Equal(MeasureOfAngle(BDC),180)"]  
-2; angle_addition(1,BDA,ADC); Angle(BDA)&Angle(ADC)&Angle(BDC); ["Equal(MeasureOfAngle(BDC),Add(MeasureOfAngle(BDA),MeasureOfAngle(ADC)))"]  
-3; triangle_property_angle_sum(1,ABD); Polygon(ABD); ["Equal(Add(MeasureOfAngle(ABD),MeasureOfAngle(BDA),MeasureOfAngle(DAB)),180)"]  
-4; isosceles_triangle_judgment_angle_equal(1,ABD); Polygon(ABD)&Equal(MeasureOfAngle(ABD),MeasureOfAngle(BDA)); ["IsoscelesTriangle(ABD)"]  
+1; triangle_property_angle_sum(1,ABD); Polygon(ABD); ["Equal(Add(MeasureOfAngle(ABD),MeasureOfAngle(BDA),MeasureOfAngle(DAB)),180)"]  
+2; flat_angle(1,BDC); Collinear(BDC); ["Equal(MeasureOfAngle(BDC),180)"]  
+3; angle_addition(1,BDA,ADC); Angle(BDA)&Angle(ADC)&Angle(BDC); ["Equal(MeasureOfAngle(BDC),Add(MeasureOfAngle(BDA),MeasureOfAngle(ADC)))"]  
+4; right_triangle_judgment_angle(1,ADC); Polygon(ADC)&Equal(MeasureOfAngle(ADC),90); ["RightTriangle(ADC)"]  
 5; triangle_property_angle_sum(1,ADC); Polygon(ADC); ["Equal(Add(MeasureOfAngle(ADC),MeasureOfAngle(DCA),MeasureOfAngle(CAD)),180)"]  
 6; sine_theorem(1,ADC); Polygon(ADC); ["Equal(Mul(LengthOfLine(AD),Sin(MeasureOfAngle(ADC))),Mul(LengthOfLine(AC),Sin(MeasureOfAngle(DCA))))"]
-Retry attempt: 2
+Retry attempt: 3
 Content written to results/level_5/variant_analogy_based_model_o1_problem_5563_run_0_to_verify.txt
 predicates to add:
 Line
@@ -674,7 +900,7 @@ Verifier result: ERROR_TIER: TIER3_GOAL_NOT_REACHED
 verification failed.
 
 - Goal: length of line AC
-- Model answer: 6.0
+- Model answer: 6
 - Error: Your proof doesn't uniquely determine the value. You need to use additional theorems to constrain the value.
 - Available premises:
   Collinear Points: BDC
@@ -690,236 +916,11 @@ Model Answer:
 RETRY_ANSWER:
 6
 RETRY_THEOREM_SEQUENCE:
-1; flat_angle(1,BDC); Collinear(BDC); ["Equal(MeasureOfAngle(BDC),180)"]  
-2; angle_addition(1,BDA,ADC); Angle(BDA)&Angle(ADC)&Angle(BDC); ["Equal(MeasureOfAngle(BDC),Add(MeasureOfAngle(BDA),MeasureOfAngle(ADC)))"]  
-3; triangle_property_angle_sum(1,ABD); Polygon(ABD); ["Equal(Add(MeasureOfAngle(ABD),MeasureOfAngle(BDA),MeasureOfAngle(DAB)),180)"]  
+1; triangle_property_angle_sum(1,ABD); Polygon(ABD); ["Equal(Add(MeasureOfAngle(ABD),MeasureOfAngle(BDA),MeasureOfAngle(DAB)),180)"]  
+2; flat_angle(1,BDC); Collinear(BDC); ["Equal(MeasureOfAngle(BDC),180)"]  
+3; angle_addition(1,BDA,ADC); Angle(BDA)&Angle(ADC)&Angle(BDC); ["Equal(MeasureOfAngle(BDC),Add(MeasureOfAngle(BDA),MeasureOfAngle(ADC)))"]  
 4; triangle_property_angle_sum(1,ADC); Polygon(ADC); ["Equal(Add(MeasureOfAngle(ADC),MeasureOfAngle(DCA),MeasureOfAngle(CAD)),180)"]  
 5; sine_theorem(1,ADC); Polygon(ADC); ["Equal(Mul(LengthOfLine(AD),Sin(MeasureOfAngle(ADC))),Mul(LengthOfLine(AC),Sin(MeasureOfAngle(DCA))))"]
-Retry attempt: 3
-Content written to results/level_5/variant_analogy_based_model_o1_problem_5563_run_0_to_verify.txt
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Polygon
-has Polygon
-has Polygon
-has Polygon
-has Polygon
-has Polygon
-has Polygon
-has Polygon
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Polygon
-has Polygon
-has Polygon
-has Polygon
-has Polygon
-has Polygon
-has Polygon
-has Polygon
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Polygon
-has Polygon
-has Polygon
-has Polygon
-has Polygon
-has Polygon
-has Polygon
-has Polygon
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Equation
-predicates to add:
-Equation
-predicates to add:
-Equation
-predicates to add:
-Equation
-Verifier result: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
-Theorem: sine_theorem(1,ABD)
-You output the following conclusions: Equal(Mul(LengthOfLine(BD),Sin(MeasureOfAngle(ABD))),Mul(LengthOfLine(AD),Sin(MeasureOfAngle(BDA))))
-But the correct conclusions: Equal(Mul(LengthOfLine(AB),Sin(MeasureOfAngle(ABD))),Mul(LengthOfLine(AD),Sin(MeasureOfAngle(BDA))))
-
-Model Answer:
-RETRY_ANSWER:
-6
-RETRY_THEOREM_SEQUENCE:
-1; adjacent_complementary_angle(1,BDA,ADC); Collinear(BDC)&Angle(BDA)&Angle(ADC); ["Equal(Add(MeasureOfAngle(BDA),MeasureOfAngle(ADC)),180)"]
-2; triangle_property_angle_sum(1,ADC); Polygon(ADC); ["Equal(Add(MeasureOfAngle(ADC),MeasureOfAngle(DCA),MeasureOfAngle(CAD)),180)"]
-3; triangle_property_angle_sum(1,ABD); Polygon(ABD); ["Equal(Add(MeasureOfAngle(ABD),MeasureOfAngle(BDA),MeasureOfAngle(DAB)),180)"]
-4; sine_theorem(1,ABD); Polygon(ABD); ["Equal(Mul(LengthOfLine(BD),Sin(MeasureOfAngle(ABD))),Mul(LengthOfLine(AD),Sin(MeasureOfAngle(BDA))))"]
-5; sine_theorem(1,ADC); Polygon(ADC); ["Equal(Mul(LengthOfLine(AC),Sin(MeasureOfAngle(ADC))),Mul(LengthOfLine(AD),Sin(MeasureOfAngle(DCA))))"]
 Retry attempt: 4
 Content written to results/level_5/variant_analogy_based_model_o1_problem_5563_run_0_to_verify.txt
 predicates to add:
@@ -1132,18 +1133,20 @@ Equation
 predicates to add:
 Equation
 Verifier result: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
-Theorem: sine_theorem(1,ADC)
-You output the following conclusions: Equal(Mul(LengthOfLine(AC),Sin(MeasureOfAngle(ADC))),Mul(LengthOfLine(AD),Sin(MeasureOfAngle(DCA))))
-But the correct conclusions: Equal(Mul(LengthOfLine(AD),Sin(MeasureOfAngle(ADC))),Mul(LengthOfLine(AC),Sin(MeasureOfAngle(DCA))))
+Theorem: isosceles_triangle_judgment_angle_equal(1,ABD)
+You output the following premises: Polygon(ABD)&Equal(MeasureOfAngle(ABD),MeasureOfAngle(DAB))
+But the correct premises: Polygon(ABD)&Equal(MeasureOfAngle(ABD),MeasureOfAngle(BDA))
 
 Model Answer:
 RETRY_ANSWER:
 6
 RETRY_THEOREM_SEQUENCE:
-1; adjacent_complementary_angle(1,BDA,ADC); Collinear(BDC)&Angle(BDA)&Angle(ADC); ["Equal(Add(MeasureOfAngle(BDA),MeasureOfAngle(ADC)),180)"]
-2; triangle_property_angle_sum(1,ADC); Polygon(ADC); ["Equal(Add(MeasureOfAngle(ADC),MeasureOfAngle(DCA),MeasureOfAngle(CAD)),180)"]
-3; triangle_property_angle_sum(1,ABD); Polygon(ABD); ["Equal(Add(MeasureOfAngle(ABD),MeasureOfAngle(BDA),MeasureOfAngle(DAB)),180)"]
-4; sine_theorem(1,ABD); Polygon(ABD); ["Equal(Mul(LengthOfLine(AB),Sin(MeasureOfAngle(ABD))),Mul(LengthOfLine(AD),Sin(MeasureOfAngle(BDA))))"]
-5; sine_theorem(1,ADC); Polygon(ADC); ["Equal(Mul(LengthOfLine(AC),Sin(MeasureOfAngle(ADC))),Mul(LengthOfLine(AD),Sin(MeasureOfAngle(DCA))))"]
+1; triangle_property_angle_sum(1,ABD); Polygon(ABD); ["Equal(Add(MeasureOfAngle(ABD),MeasureOfAngle(BDA),MeasureOfAngle(DAB)),180)"]  
+2; isosceles_triangle_judgment_angle_equal(1,ABD); Polygon(ABD)&Equal(MeasureOfAngle(ABD),MeasureOfAngle(DAB)); ["IsoscelesTriangle(ABD)"]  
+3; isosceles_triangle_property_line_equal(1,ABD); IsoscelesTriangle(ABD); ["Equal(LengthOfLine(AD),LengthOfLine(BD))"]  
+4; flat_angle(1,BDC); Collinear(BDC); ["Equal(MeasureOfAngle(BDC),180)"]  
+5; angle_addition(1,BDA,ADC); Angle(BDA)&Angle(ADC)&Angle(BDC); ["Equal(MeasureOfAngle(BDC),Add(MeasureOfAngle(BDA),MeasureOfAngle(ADC)))"]  
+6; triangle_property_angle_sum(1,ADC); Polygon(ADC); ["Equal(Add(MeasureOfAngle(ADC),MeasureOfAngle(DCA),MeasureOfAngle(CAD)),180)"]  
+7; sine_theorem(1,ADC); Polygon(ADC); ["Equal(Mul(LengthOfLine(AD),Sin(MeasureOfAngle(ADC))),Mul(LengthOfLine(AC),Sin(MeasureOfAngle(DCA))))"]
 Retry attempt: 5
 Content written to results/level_5/variant_analogy_based_model_o1_problem_5563_run_0.txt

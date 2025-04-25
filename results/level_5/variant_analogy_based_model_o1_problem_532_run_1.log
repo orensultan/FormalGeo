@@ -358,394 +358,20 @@ Equation
 predicates to add:
 Equation
 Verifier result: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
-Theorem: adjacent_complementary_angle(1,GCH,HCA)
-You output the following premises: Collinear(ACH)&Angle(GCH)&Angle(HCA)
-But the correct premises: Collinear(GCA)&Angle(GCH)&Angle(HCA)
+Theorem: adjacent_complementary_angle(1,CAF,FAB)
+You output the following premises: Collinear(FAB)&Angle(CAF)&Angle(FAB)
+But the correct premises: Collinear(CAB)&Angle(CAF)&Angle(FAB)
 
 Model Answer:
 RETRY_ANSWER:
 93
 RETRY_THEOREM_SEQUENCE:
-1; adjacent_complementary_angle(1,GCH,HCA); Collinear(ACH)&Angle(GCH)&Angle(HCA); ["Equal(Add(MeasureOfAngle(GCH),MeasureOfAngle(HCA)),180)"]
-2; adjacent_complementary_angle(1,BDG,GDC); Collinear(CDG)&Angle(BDG)&Angle(GDC); ["Equal(Add(MeasureOfAngle(BDG),MeasureOfAngle(GDC)),180)"]
-3; adjacent_complementary_angle(1,ABE,EBD); Collinear(DBE)&Angle(ABE)&Angle(EBD); ["Equal(Add(MeasureOfAngle(ABE),MeasureOfAngle(EBD)),180)"]
-4; adjacent_complementary_angle(1,CAF,FAB); Collinear(FAB)&Angle(CAF)&Angle(FAB); ["Equal(Add(MeasureOfAngle(CAF),MeasureOfAngle(FAB)),180)"]
+1; adjacent_complementary_angle(1,CAF,FAB); Collinear(FAB)&Angle(CAF)&Angle(FAB); ["Equal(Add(MeasureOfAngle(CAF),MeasureOfAngle(FAB)),180)"]  
+2; adjacent_complementary_angle(1,ABE,EBD); Collinear(DBE)&Angle(ABE)&Angle(EBD); ["Equal(Add(MeasureOfAngle(ABE),MeasureOfAngle(EBD)),180)"]  
+3; adjacent_complementary_angle(1,GCH,HCA); Collinear(ACH)&Angle(GCH)&Angle(HCA); ["Equal(Add(MeasureOfAngle(GCH),MeasureOfAngle(HCA)),180)"]  
+4; adjacent_complementary_angle(1,BDG,GDC); Collinear(CDG)&Angle(BDG)&Angle(GDC); ["Equal(Add(MeasureOfAngle(BDG),MeasureOfAngle(GDC)),180)"]  
 5; quadrilateral_property_angle_sum(1,ACDB); Polygon(ACDB); ["Equal(Add(MeasureOfAngle(ACD),MeasureOfAngle(CDB),MeasureOfAngle(DBA),MeasureOfAngle(BAC)),360)"]
 Retry attempt: 1
-Content written to results/level_5/variant_analogy_based_model_o1_problem_532_run_1_to_verify.txt
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Polygon
-has Polygon
-has Polygon
-has Polygon
-has Polygon
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Equation
-predicates to add:
-Equation
-predicates to add:
-Equation
-predicates to add:
-Equation
-predicates to add:
-Equation
-predicates to add:
-Equation
-predicates to add:
-Equation
-predicates to add:
-Equation
-Verifier result: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
-Theorem: adjacent_complementary_angle(1,BDG,GDC)
-You output the following premises: Collinear(CDG)&Angle(BDG)&Angle(GDC)
-But the correct premises: Collinear(BDC)&Angle(BDG)&Angle(GDC)
-
-Model Answer:
-RETRY_ANSWER:
-93
-RETRY_THEOREM_SEQUENCE:
-1; adjacent_complementary_angle(1,GCH,HCA); Collinear(GCA)&Angle(GCH)&Angle(HCA); ["Equal(Add(MeasureOfAngle(GCH),MeasureOfAngle(HCA)),180)"]
-2; adjacent_complementary_angle(1,BDG,GDC); Collinear(CDG)&Angle(BDG)&Angle(GDC); ["Equal(Add(MeasureOfAngle(BDG),MeasureOfAngle(GDC)),180)"]
-3; adjacent_complementary_angle(1,ABE,EBD); Collinear(DBE)&Angle(ABE)&Angle(EBD); ["Equal(Add(MeasureOfAngle(ABE),MeasureOfAngle(EBD)),180)"]
-4; adjacent_complementary_angle(1,CAF,FAB); Collinear(FAB)&Angle(CAF)&Angle(FAB); ["Equal(Add(MeasureOfAngle(CAF),MeasureOfAngle(FAB)),180)"]
-5; quadrilateral_property_angle_sum(1,ACDB); Polygon(ACDB); ["Equal(Add(MeasureOfAngle(ACD),MeasureOfAngle(CDB),MeasureOfAngle(DBA),MeasureOfAngle(BAC)),360)"]
-Retry attempt: 2
 Content written to results/level_5/variant_analogy_based_model_o1_problem_532_run_1_to_verify.txt
 predicates to add:
 Line
@@ -1114,10 +740,384 @@ Model Answer:
 RETRY_ANSWER:
 93
 RETRY_THEOREM_SEQUENCE:
-1; adjacent_complementary_angle(1,GCH,HCA); Collinear(GCA)&Angle(GCH)&Angle(HCA); ["Equal(Add(MeasureOfAngle(GCH),MeasureOfAngle(HCA)),180)"]
-2; adjacent_complementary_angle(1,BDG,GDC); Collinear(BDC)&Angle(BDG)&Angle(GDC); ["Equal(Add(MeasureOfAngle(BDG),MeasureOfAngle(GDC)),180)"]
-3; adjacent_complementary_angle(1,ABE,EBD); Collinear(DBE)&Angle(ABE)&Angle(EBD); ["Equal(Add(MeasureOfAngle(ABE),MeasureOfAngle(EBD)),180)"]
-4; adjacent_complementary_angle(1,CAF,FAB); Collinear(FAB)&Angle(CAF)&Angle(FAB); ["Equal(Add(MeasureOfAngle(CAF),MeasureOfAngle(FAB)),180)"]
+1; adjacent_complementary_angle(1,CAF,FAB); Collinear(CAB)&Angle(CAF)&Angle(FAB); ["Equal(Add(MeasureOfAngle(CAF),MeasureOfAngle(FAB)),180)"]  
+2; adjacent_complementary_angle(1,ABE,EBD); Collinear(DBE)&Angle(ABE)&Angle(EBD); ["Equal(Add(MeasureOfAngle(ABE),MeasureOfAngle(EBD)),180)"]  
+3; adjacent_complementary_angle(1,GCH,HCA); Collinear(ACH)&Angle(GCH)&Angle(HCA); ["Equal(Add(MeasureOfAngle(GCH),MeasureOfAngle(HCA)),180)"]  
+4; adjacent_complementary_angle(1,BDG,GDC); Collinear(CDG)&Angle(BDG)&Angle(GDC); ["Equal(Add(MeasureOfAngle(BDG),MeasureOfAngle(GDC)),180)"]  
+5; quadrilateral_property_angle_sum(1,ACDB); Polygon(ACDB); ["Equal(Add(MeasureOfAngle(ACD),MeasureOfAngle(CDB),MeasureOfAngle(DBA),MeasureOfAngle(BAC)),360)"]
+Retry attempt: 2
+Content written to results/level_5/variant_analogy_based_model_o1_problem_532_run_1_to_verify.txt
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Polygon
+has Polygon
+has Polygon
+has Polygon
+has Polygon
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Equation
+predicates to add:
+Equation
+predicates to add:
+Equation
+predicates to add:
+Equation
+predicates to add:
+Equation
+predicates to add:
+Equation
+predicates to add:
+Equation
+predicates to add:
+Equation
+Verifier result: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
+Theorem: adjacent_complementary_angle(1,GCH,HCA)
+You output the following premises: Collinear(ACH)&Angle(GCH)&Angle(HCA)
+But the correct premises: Collinear(GCA)&Angle(GCH)&Angle(HCA)
+
+Model Answer:
+RETRY_ANSWER:
+93
+RETRY_THEOREM_SEQUENCE:
+1; adjacent_complementary_angle(1,CAF,FAB); Collinear(CAB)&Angle(CAF)&Angle(FAB); ["Equal(Add(MeasureOfAngle(CAF),MeasureOfAngle(FAB)),180)"]  
+2; adjacent_complementary_angle(1,ABE,EBD); Collinear(ABD)&Angle(ABE)&Angle(EBD); ["Equal(Add(MeasureOfAngle(ABE),MeasureOfAngle(EBD)),180)"]  
+3; adjacent_complementary_angle(1,GCH,HCA); Collinear(ACH)&Angle(GCH)&Angle(HCA); ["Equal(Add(MeasureOfAngle(GCH),MeasureOfAngle(HCA)),180)"]  
+4; adjacent_complementary_angle(1,BDG,GDC); Collinear(CDG)&Angle(BDG)&Angle(GDC); ["Equal(Add(MeasureOfAngle(BDG),MeasureOfAngle(GDC)),180)"]  
 5; quadrilateral_property_angle_sum(1,ACDB); Polygon(ACDB); ["Equal(Add(MeasureOfAngle(ACD),MeasureOfAngle(CDB),MeasureOfAngle(DBA),MeasureOfAngle(BAC)),360)"]
 Retry attempt: 3
 Content written to results/level_5/variant_analogy_based_model_o1_problem_532_run_1_to_verify.txt
@@ -1480,18 +1480,18 @@ Equation
 predicates to add:
 Equation
 Verifier result: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
-Theorem: adjacent_complementary_angle(1,CAF,FAB)
-You output the following premises: Collinear(FAB)&Angle(CAF)&Angle(FAB)
-But the correct premises: Collinear(CAB)&Angle(CAF)&Angle(FAB)
+Theorem: adjacent_complementary_angle(1,BDG,GDC)
+You output the following premises: Collinear(CDG)&Angle(BDG)&Angle(GDC)
+But the correct premises: Collinear(BDC)&Angle(BDG)&Angle(GDC)
 
 Model Answer:
 RETRY_ANSWER:
 93
 RETRY_THEOREM_SEQUENCE:
-1; adjacent_complementary_angle(1,GCH,HCA); Collinear(GCA)&Angle(GCH)&Angle(HCA); ["Equal(Add(MeasureOfAngle(GCH),MeasureOfAngle(HCA)),180)"]
-2; adjacent_complementary_angle(1,BDG,GDC); Collinear(BDC)&Angle(BDG)&Angle(GDC); ["Equal(Add(MeasureOfAngle(BDG),MeasureOfAngle(GDC)),180)"]
-3; adjacent_complementary_angle(1,ABE,EBD); Collinear(ABD)&Angle(ABE)&Angle(EBD); ["Equal(Add(MeasureOfAngle(ABE),MeasureOfAngle(EBD)),180)"]
-4; adjacent_complementary_angle(1,CAF,FAB); Collinear(FAB)&Angle(CAF)&Angle(FAB); ["Equal(Add(MeasureOfAngle(CAF),MeasureOfAngle(FAB)),180)"]
+1; adjacent_complementary_angle(1,CAF,FAB); Collinear(CAB)&Angle(CAF)&Angle(FAB); ["Equal(Add(MeasureOfAngle(CAF),MeasureOfAngle(FAB)),180)"]  
+2; adjacent_complementary_angle(1,ABE,EBD); Collinear(ABD)&Angle(ABE)&Angle(EBD); ["Equal(Add(MeasureOfAngle(ABE),MeasureOfAngle(EBD)),180)"]  
+3; adjacent_complementary_angle(1,GCH,HCA); Collinear(GCA)&Angle(GCH)&Angle(HCA); ["Equal(Add(MeasureOfAngle(GCH),MeasureOfAngle(HCA)),180)"]  
+4; adjacent_complementary_angle(1,BDG,GDC); Collinear(CDG)&Angle(BDG)&Angle(GDC); ["Equal(Add(MeasureOfAngle(BDG),MeasureOfAngle(GDC)),180)"]  
 5; quadrilateral_property_angle_sum(1,ACDB); Polygon(ACDB); ["Equal(Add(MeasureOfAngle(ACD),MeasureOfAngle(CDB),MeasureOfAngle(DBA),MeasureOfAngle(BAC)),360)"]
 Retry attempt: 4
 Content written to results/level_5/variant_analogy_based_model_o1_problem_532_run_1_to_verify.txt
@@ -1856,8 +1856,8 @@ Equation
 Verifier result: ERROR_TIER: TIER2_PREMISE_VIOLATION
 verification failed.
 
-- Error: You tried to use theorem: adjacent_complementary_angle(1,GCH,HCA);Collinear(GCA)&Angle(GCH)&Angle(HCA);['Equal(Add(MeasureOfAngle(GCH),MeasureOfAngle(HCA)),180)']
-Missing premise: Points GCA are not proven collinear
+- Error: You tried to use theorem: adjacent_complementary_angle(1,CAF,FAB);Collinear(CAB)&Angle(CAF)&Angle(FAB);['Equal(Add(MeasureOfAngle(CAF),MeasureOfAngle(FAB)),180)']
+Missing premise: Points CAB are not proven collinear
 Details: Known collinear facts: [['B', 'A', 'F'], ['D', 'B', 'E'], ['C', 'D', 'G'], ['A', 'C', 'H'], ['B', 'A', 'F'], ['D', 'B', 'E'], ['C', 'D', 'G'], ['A', 'C', 'H']]
 - Available premises:
   Collinear Points: ACH, BAF, CDG, DBE
@@ -1872,10 +1872,10 @@ Model Answer:
 RETRY_ANSWER:
 93
 RETRY_THEOREM_SEQUENCE:
-1; adjacent_complementary_angle(1,GCH,HCA); Collinear(GCA)&Angle(GCH)&Angle(HCA); ["Equal(Add(MeasureOfAngle(GCH),MeasureOfAngle(HCA)),180)"]
-2; adjacent_complementary_angle(1,BDG,GDC); Collinear(BDC)&Angle(BDG)&Angle(GDC); ["Equal(Add(MeasureOfAngle(BDG),MeasureOfAngle(GDC)),180)"]
-3; adjacent_complementary_angle(1,ABE,EBD); Collinear(ABD)&Angle(ABE)&Angle(EBD); ["Equal(Add(MeasureOfAngle(ABE),MeasureOfAngle(EBD)),180)"]
-4; adjacent_complementary_angle(1,CAF,FAB); Collinear(CAB)&Angle(CAF)&Angle(FAB); ["Equal(Add(MeasureOfAngle(CAF),MeasureOfAngle(FAB)),180)"]
+1; adjacent_complementary_angle(1,CAF,FAB); Collinear(CAB)&Angle(CAF)&Angle(FAB); ["Equal(Add(MeasureOfAngle(CAF),MeasureOfAngle(FAB)),180)"]  
+2; adjacent_complementary_angle(1,ABE,EBD); Collinear(ABD)&Angle(ABE)&Angle(EBD); ["Equal(Add(MeasureOfAngle(ABE),MeasureOfAngle(EBD)),180)"]  
+3; adjacent_complementary_angle(1,GCH,HCA); Collinear(GCA)&Angle(GCH)&Angle(HCA); ["Equal(Add(MeasureOfAngle(GCH),MeasureOfAngle(HCA)),180)"]  
+4; adjacent_complementary_angle(1,BDG,GDC); Collinear(BDC)&Angle(BDG)&Angle(GDC); ["Equal(Add(MeasureOfAngle(BDG),MeasureOfAngle(GDC)),180)"]  
 5; quadrilateral_property_angle_sum(1,ACDB); Polygon(ACDB); ["Equal(Add(MeasureOfAngle(ACD),MeasureOfAngle(CDB),MeasureOfAngle(DBA),MeasureOfAngle(BAC)),360)"]
 Retry attempt: 5
 Content written to results/level_5/variant_analogy_based_model_o1_problem_532_run_1.txt

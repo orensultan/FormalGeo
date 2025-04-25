@@ -16714,7 +16714,7 @@ def verify_geometric_proof(filename: str, print_output=True) -> tuple:
 
 if __name__ == "__main__":
     result, feedback, error_tier = verify_geometric_proof(
-        "/Users/osultan/PycharmProjects/FormalGeo/results/level_1/variant_random_all_theorems_model_o1_problem_1726_run_2.txt",print_output=False)
+        "/Users/osultan/PycharmProjects/FormalGeo/results/level_5/variant_analogy_based_model_o1_problem_847_run_2.txt",print_output=False)
 
     if feedback:
         print(feedback)

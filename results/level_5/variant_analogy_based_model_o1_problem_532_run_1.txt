@@ -114,10 +114,10 @@ Outputs for Problem B:
 
 ***MODEL_RESPONSE_BEGIN***
 EQUATIONS:
-ma_abe - x - 10
-ma_bdg - 31
-ma_caf - x + 11
-ma_gch - 2*x + 42
+ma_abe-(x+10)
+ma_bdg-31
+ma_caf-(x-11)
+ma_gch-(2*x-42)
 
 GOAL_SYMBOL:
 x
@@ -126,56 +126,14 @@ ANSWER:
 93
 
 THEOREM_SEQUENCE:
-1; adjacent_complementary_angle(1,GCH,HCA); Collinear(GCA)&Angle(GCH)&Angle(HCA); ["Equal(Add(MeasureOfAngle(GCH),MeasureOfAngle(HCA)),180)"]
-2; adjacent_complementary_angle(1,BDG,GDC); Collinear(BDC)&Angle(BDG)&Angle(GDC); ["Equal(Add(MeasureOfAngle(BDG),MeasureOfAngle(GDC)),180)"]
-3; adjacent_complementary_angle(1,ABE,EBD); Collinear(ABD)&Angle(ABE)&Angle(EBD); ["Equal(Add(MeasureOfAngle(ABE),MeasureOfAngle(EBD)),180)"]
-4; adjacent_complementary_angle(1,CAF,FAB); Collinear(CAB)&Angle(CAF)&Angle(FAB); ["Equal(Add(MeasureOfAngle(CAF),MeasureOfAngle(FAB)),180)"]
+1; adjacent_complementary_angle(1,CAF,FAB); Collinear(CAB)&Angle(CAF)&Angle(FAB); ["Equal(Add(MeasureOfAngle(CAF),MeasureOfAngle(FAB)),180)"]  
+2; adjacent_complementary_angle(1,ABE,EBD); Collinear(ABD)&Angle(ABE)&Angle(EBD); ["Equal(Add(MeasureOfAngle(ABE),MeasureOfAngle(EBD)),180)"]  
+3; adjacent_complementary_angle(1,GCH,HCA); Collinear(GCA)&Angle(GCH)&Angle(HCA); ["Equal(Add(MeasureOfAngle(GCH),MeasureOfAngle(HCA)),180)"]  
+4; adjacent_complementary_angle(1,BDG,GDC); Collinear(BDC)&Angle(BDG)&Angle(GDC); ["Equal(Add(MeasureOfAngle(BDG),MeasureOfAngle(GDC)),180)"]  
 5; quadrilateral_property_angle_sum(1,ACDB); Polygon(ACDB); ["Equal(Add(MeasureOfAngle(ACD),MeasureOfAngle(CDB),MeasureOfAngle(DBA),MeasureOfAngle(BAC)),360)"]
 ***MODEL_RESPONSE_END***
 RETRIES_MESSAGES:
 #run: 1; #retry: 1; message: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
-Theorem: adjacent_complementary_angle(1,GCH,HCA)
-You output the following premises: Collinear(ACH)&Angle(GCH)&Angle(HCA)
-But the correct premises: Collinear(GCA)&Angle(GCH)&Angle(HCA)
-
-Model Answer:
-RETRY_ANSWER:
-93
-RETRY_THEOREM_SEQUENCE:
-1; adjacent_complementary_angle(1,GCH,HCA); Collinear(ACH)&Angle(GCH)&Angle(HCA); ["Equal(Add(MeasureOfAngle(GCH),MeasureOfAngle(HCA)),180)"]
-2; adjacent_complementary_angle(1,BDG,GDC); Collinear(CDG)&Angle(BDG)&Angle(GDC); ["Equal(Add(MeasureOfAngle(BDG),MeasureOfAngle(GDC)),180)"]
-3; adjacent_complementary_angle(1,ABE,EBD); Collinear(DBE)&Angle(ABE)&Angle(EBD); ["Equal(Add(MeasureOfAngle(ABE),MeasureOfAngle(EBD)),180)"]
-4; adjacent_complementary_angle(1,CAF,FAB); Collinear(FAB)&Angle(CAF)&Angle(FAB); ["Equal(Add(MeasureOfAngle(CAF),MeasureOfAngle(FAB)),180)"]
-5; quadrilateral_property_angle_sum(1,ACDB); Polygon(ACDB); ["Equal(Add(MeasureOfAngle(ACD),MeasureOfAngle(CDB),MeasureOfAngle(DBA),MeasureOfAngle(BAC)),360)"]
-#run: 1; #retry: 2; message: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
-Theorem: adjacent_complementary_angle(1,BDG,GDC)
-You output the following premises: Collinear(CDG)&Angle(BDG)&Angle(GDC)
-But the correct premises: Collinear(BDC)&Angle(BDG)&Angle(GDC)
-
-Model Answer:
-RETRY_ANSWER:
-93
-RETRY_THEOREM_SEQUENCE:
-1; adjacent_complementary_angle(1,GCH,HCA); Collinear(GCA)&Angle(GCH)&Angle(HCA); ["Equal(Add(MeasureOfAngle(GCH),MeasureOfAngle(HCA)),180)"]
-2; adjacent_complementary_angle(1,BDG,GDC); Collinear(CDG)&Angle(BDG)&Angle(GDC); ["Equal(Add(MeasureOfAngle(BDG),MeasureOfAngle(GDC)),180)"]
-3; adjacent_complementary_angle(1,ABE,EBD); Collinear(DBE)&Angle(ABE)&Angle(EBD); ["Equal(Add(MeasureOfAngle(ABE),MeasureOfAngle(EBD)),180)"]
-4; adjacent_complementary_angle(1,CAF,FAB); Collinear(FAB)&Angle(CAF)&Angle(FAB); ["Equal(Add(MeasureOfAngle(CAF),MeasureOfAngle(FAB)),180)"]
-5; quadrilateral_property_angle_sum(1,ACDB); Polygon(ACDB); ["Equal(Add(MeasureOfAngle(ACD),MeasureOfAngle(CDB),MeasureOfAngle(DBA),MeasureOfAngle(BAC)),360)"]
-#run: 1; #retry: 3; message: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
-Theorem: adjacent_complementary_angle(1,ABE,EBD)
-You output the following premises: Collinear(DBE)&Angle(ABE)&Angle(EBD)
-But the correct premises: Collinear(ABD)&Angle(ABE)&Angle(EBD)
-
-Model Answer:
-RETRY_ANSWER:
-93
-RETRY_THEOREM_SEQUENCE:
-1; adjacent_complementary_angle(1,GCH,HCA); Collinear(GCA)&Angle(GCH)&Angle(HCA); ["Equal(Add(MeasureOfAngle(GCH),MeasureOfAngle(HCA)),180)"]
-2; adjacent_complementary_angle(1,BDG,GDC); Collinear(BDC)&Angle(BDG)&Angle(GDC); ["Equal(Add(MeasureOfAngle(BDG),MeasureOfAngle(GDC)),180)"]
-3; adjacent_complementary_angle(1,ABE,EBD); Collinear(DBE)&Angle(ABE)&Angle(EBD); ["Equal(Add(MeasureOfAngle(ABE),MeasureOfAngle(EBD)),180)"]
-4; adjacent_complementary_angle(1,CAF,FAB); Collinear(FAB)&Angle(CAF)&Angle(FAB); ["Equal(Add(MeasureOfAngle(CAF),MeasureOfAngle(FAB)),180)"]
-5; quadrilateral_property_angle_sum(1,ACDB); Polygon(ACDB); ["Equal(Add(MeasureOfAngle(ACD),MeasureOfAngle(CDB),MeasureOfAngle(DBA),MeasureOfAngle(BAC)),360)"]
-#run: 1; #retry: 4; message: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
 Theorem: adjacent_complementary_angle(1,CAF,FAB)
 You output the following premises: Collinear(FAB)&Angle(CAF)&Angle(FAB)
 But the correct premises: Collinear(CAB)&Angle(CAF)&Angle(FAB)
@@ -184,16 +142,58 @@ Model Answer:
 RETRY_ANSWER:
 93
 RETRY_THEOREM_SEQUENCE:
-1; adjacent_complementary_angle(1,GCH,HCA); Collinear(GCA)&Angle(GCH)&Angle(HCA); ["Equal(Add(MeasureOfAngle(GCH),MeasureOfAngle(HCA)),180)"]
-2; adjacent_complementary_angle(1,BDG,GDC); Collinear(BDC)&Angle(BDG)&Angle(GDC); ["Equal(Add(MeasureOfAngle(BDG),MeasureOfAngle(GDC)),180)"]
-3; adjacent_complementary_angle(1,ABE,EBD); Collinear(ABD)&Angle(ABE)&Angle(EBD); ["Equal(Add(MeasureOfAngle(ABE),MeasureOfAngle(EBD)),180)"]
-4; adjacent_complementary_angle(1,CAF,FAB); Collinear(FAB)&Angle(CAF)&Angle(FAB); ["Equal(Add(MeasureOfAngle(CAF),MeasureOfAngle(FAB)),180)"]
+1; adjacent_complementary_angle(1,CAF,FAB); Collinear(FAB)&Angle(CAF)&Angle(FAB); ["Equal(Add(MeasureOfAngle(CAF),MeasureOfAngle(FAB)),180)"]  
+2; adjacent_complementary_angle(1,ABE,EBD); Collinear(DBE)&Angle(ABE)&Angle(EBD); ["Equal(Add(MeasureOfAngle(ABE),MeasureOfAngle(EBD)),180)"]  
+3; adjacent_complementary_angle(1,GCH,HCA); Collinear(ACH)&Angle(GCH)&Angle(HCA); ["Equal(Add(MeasureOfAngle(GCH),MeasureOfAngle(HCA)),180)"]  
+4; adjacent_complementary_angle(1,BDG,GDC); Collinear(CDG)&Angle(BDG)&Angle(GDC); ["Equal(Add(MeasureOfAngle(BDG),MeasureOfAngle(GDC)),180)"]  
+5; quadrilateral_property_angle_sum(1,ACDB); Polygon(ACDB); ["Equal(Add(MeasureOfAngle(ACD),MeasureOfAngle(CDB),MeasureOfAngle(DBA),MeasureOfAngle(BAC)),360)"]
+#run: 1; #retry: 2; message: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
+Theorem: adjacent_complementary_angle(1,ABE,EBD)
+You output the following premises: Collinear(DBE)&Angle(ABE)&Angle(EBD)
+But the correct premises: Collinear(ABD)&Angle(ABE)&Angle(EBD)
+
+Model Answer:
+RETRY_ANSWER:
+93
+RETRY_THEOREM_SEQUENCE:
+1; adjacent_complementary_angle(1,CAF,FAB); Collinear(CAB)&Angle(CAF)&Angle(FAB); ["Equal(Add(MeasureOfAngle(CAF),MeasureOfAngle(FAB)),180)"]  
+2; adjacent_complementary_angle(1,ABE,EBD); Collinear(DBE)&Angle(ABE)&Angle(EBD); ["Equal(Add(MeasureOfAngle(ABE),MeasureOfAngle(EBD)),180)"]  
+3; adjacent_complementary_angle(1,GCH,HCA); Collinear(ACH)&Angle(GCH)&Angle(HCA); ["Equal(Add(MeasureOfAngle(GCH),MeasureOfAngle(HCA)),180)"]  
+4; adjacent_complementary_angle(1,BDG,GDC); Collinear(CDG)&Angle(BDG)&Angle(GDC); ["Equal(Add(MeasureOfAngle(BDG),MeasureOfAngle(GDC)),180)"]  
+5; quadrilateral_property_angle_sum(1,ACDB); Polygon(ACDB); ["Equal(Add(MeasureOfAngle(ACD),MeasureOfAngle(CDB),MeasureOfAngle(DBA),MeasureOfAngle(BAC)),360)"]
+#run: 1; #retry: 3; message: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
+Theorem: adjacent_complementary_angle(1,GCH,HCA)
+You output the following premises: Collinear(ACH)&Angle(GCH)&Angle(HCA)
+But the correct premises: Collinear(GCA)&Angle(GCH)&Angle(HCA)
+
+Model Answer:
+RETRY_ANSWER:
+93
+RETRY_THEOREM_SEQUENCE:
+1; adjacent_complementary_angle(1,CAF,FAB); Collinear(CAB)&Angle(CAF)&Angle(FAB); ["Equal(Add(MeasureOfAngle(CAF),MeasureOfAngle(FAB)),180)"]  
+2; adjacent_complementary_angle(1,ABE,EBD); Collinear(ABD)&Angle(ABE)&Angle(EBD); ["Equal(Add(MeasureOfAngle(ABE),MeasureOfAngle(EBD)),180)"]  
+3; adjacent_complementary_angle(1,GCH,HCA); Collinear(ACH)&Angle(GCH)&Angle(HCA); ["Equal(Add(MeasureOfAngle(GCH),MeasureOfAngle(HCA)),180)"]  
+4; adjacent_complementary_angle(1,BDG,GDC); Collinear(CDG)&Angle(BDG)&Angle(GDC); ["Equal(Add(MeasureOfAngle(BDG),MeasureOfAngle(GDC)),180)"]  
+5; quadrilateral_property_angle_sum(1,ACDB); Polygon(ACDB); ["Equal(Add(MeasureOfAngle(ACD),MeasureOfAngle(CDB),MeasureOfAngle(DBA),MeasureOfAngle(BAC)),360)"]
+#run: 1; #retry: 4; message: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
+Theorem: adjacent_complementary_angle(1,BDG,GDC)
+You output the following premises: Collinear(CDG)&Angle(BDG)&Angle(GDC)
+But the correct premises: Collinear(BDC)&Angle(BDG)&Angle(GDC)
+
+Model Answer:
+RETRY_ANSWER:
+93
+RETRY_THEOREM_SEQUENCE:
+1; adjacent_complementary_angle(1,CAF,FAB); Collinear(CAB)&Angle(CAF)&Angle(FAB); ["Equal(Add(MeasureOfAngle(CAF),MeasureOfAngle(FAB)),180)"]  
+2; adjacent_complementary_angle(1,ABE,EBD); Collinear(ABD)&Angle(ABE)&Angle(EBD); ["Equal(Add(MeasureOfAngle(ABE),MeasureOfAngle(EBD)),180)"]  
+3; adjacent_complementary_angle(1,GCH,HCA); Collinear(GCA)&Angle(GCH)&Angle(HCA); ["Equal(Add(MeasureOfAngle(GCH),MeasureOfAngle(HCA)),180)"]  
+4; adjacent_complementary_angle(1,BDG,GDC); Collinear(CDG)&Angle(BDG)&Angle(GDC); ["Equal(Add(MeasureOfAngle(BDG),MeasureOfAngle(GDC)),180)"]  
 5; quadrilateral_property_angle_sum(1,ACDB); Polygon(ACDB); ["Equal(Add(MeasureOfAngle(ACD),MeasureOfAngle(CDB),MeasureOfAngle(DBA),MeasureOfAngle(BAC)),360)"]
 #run: 1; #retry: 5; message: ERROR_TIER: TIER2_PREMISE_VIOLATION
 verification failed.
 
-- Error: You tried to use theorem: adjacent_complementary_angle(1,GCH,HCA);Collinear(GCA)&Angle(GCH)&Angle(HCA);['Equal(Add(MeasureOfAngle(GCH),MeasureOfAngle(HCA)),180)']
-Missing premise: Points GCA are not proven collinear
+- Error: You tried to use theorem: adjacent_complementary_angle(1,CAF,FAB);Collinear(CAB)&Angle(CAF)&Angle(FAB);['Equal(Add(MeasureOfAngle(CAF),MeasureOfAngle(FAB)),180)']
+Missing premise: Points CAB are not proven collinear
 Details: Known collinear facts: [['B', 'A', 'F'], ['D', 'B', 'E'], ['C', 'D', 'G'], ['A', 'C', 'H'], ['B', 'A', 'F'], ['D', 'B', 'E'], ['C', 'D', 'G'], ['A', 'C', 'H']]
 - Available premises:
   Collinear Points: ACH, BAF, CDG, DBE
@@ -208,10 +208,10 @@ Model Answer:
 RETRY_ANSWER:
 93
 RETRY_THEOREM_SEQUENCE:
-1; adjacent_complementary_angle(1,GCH,HCA); Collinear(GCA)&Angle(GCH)&Angle(HCA); ["Equal(Add(MeasureOfAngle(GCH),MeasureOfAngle(HCA)),180)"]
-2; adjacent_complementary_angle(1,BDG,GDC); Collinear(BDC)&Angle(BDG)&Angle(GDC); ["Equal(Add(MeasureOfAngle(BDG),MeasureOfAngle(GDC)),180)"]
-3; adjacent_complementary_angle(1,ABE,EBD); Collinear(ABD)&Angle(ABE)&Angle(EBD); ["Equal(Add(MeasureOfAngle(ABE),MeasureOfAngle(EBD)),180)"]
-4; adjacent_complementary_angle(1,CAF,FAB); Collinear(CAB)&Angle(CAF)&Angle(FAB); ["Equal(Add(MeasureOfAngle(CAF),MeasureOfAngle(FAB)),180)"]
+1; adjacent_complementary_angle(1,CAF,FAB); Collinear(CAB)&Angle(CAF)&Angle(FAB); ["Equal(Add(MeasureOfAngle(CAF),MeasureOfAngle(FAB)),180)"]  
+2; adjacent_complementary_angle(1,ABE,EBD); Collinear(ABD)&Angle(ABE)&Angle(EBD); ["Equal(Add(MeasureOfAngle(ABE),MeasureOfAngle(EBD)),180)"]  
+3; adjacent_complementary_angle(1,GCH,HCA); Collinear(GCA)&Angle(GCH)&Angle(HCA); ["Equal(Add(MeasureOfAngle(GCH),MeasureOfAngle(HCA)),180)"]  
+4; adjacent_complementary_angle(1,BDG,GDC); Collinear(BDC)&Angle(BDG)&Angle(GDC); ["Equal(Add(MeasureOfAngle(BDG),MeasureOfAngle(GDC)),180)"]  
 5; quadrilateral_property_angle_sum(1,ACDB); Polygon(ACDB); ["Equal(Add(MeasureOfAngle(ACD),MeasureOfAngle(CDB),MeasureOfAngle(DBA),MeasureOfAngle(BAC)),360)"]
 #RETRIES:
 5

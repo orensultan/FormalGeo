@@ -107,42 +107,24 @@ Outputs for Problem B:
 
 ***MODEL_RESPONSE_BEGIN***
 EQUATIONS:
-LengthOfLine(OE)/LengthOfLine(EG)-4/9
-LengthOfLine(OF)-12
+ll_oe/ll_eg-4/9
+ll_of-12
 
 GOAL_SYMBOL:
-LengthOfLine(OH)
+ll_oh
 
 ANSWER:
 39
 
-THEOREM_SEQUENCE:
-1; parallel_property_corresponding_angle(1,EF,GH,O); ParallelBetweenLine(EF,GH)&Collinear(OEG); ["Equal(MeasureOfAngle(OEF),MeasureOfAngle(EGH))"]  
-2; parallel_property_corresponding_angle(2,GH,EF,O); ParallelBetweenLine(GH,EF)&Collinear(GEO); ["Equal(MeasureOfAngle(HGE),MeasureOfAngle(FEO))"]  
-3; similar_triangle_judgment_aa(1,OFE,GHF); Polygon(OFE)&Polygon(GHF)&Equal(MeasureOfAngle(OFE),MeasureOfAngle(GHF))&Equal(MeasureOfAngle(FEO),MeasureOfAngle(HFG)); ["SimilarBetweenTriangle(OFE,GHF)"]  
-4; similar_triangle_property_line_ratio(1,OFE,GHF); SimilarBetweenTriangle(OFE,GHF); ["Equal(LengthOfLine(FE),Mul(LengthOfLine(HF),RatioOfSimilarTriangle(OFE,GHF)))"]  
-5; line_addition(1,OF,FH); Collinear(OFH); ["Equal(LengthOfLine(OH),Add(LengthOfLine(OF),LengthOfLine(FH)))"]  
+THEOREM_SEQUENCE:  
+1; line_addition(1,OE,EG); Collinear(OEG); ["Equal(LengthOfLine(OG),Add(LengthOfLine(OE),LengthOfLine(EG)))"]
 ***MODEL_RESPONSE_END***
 RETRIES_MESSAGES:
 #run: 1; #retry: 1; message: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
-Theorem: parallel_property_corresponding_angle(1,EF,GH,O)
-You output the following conclusions: Equal(MeasureOfAngle(OFE),MeasureOfAngle(EHG))
-But the correct conclusions: Equal(MeasureOfAngle(OEF),MeasureOfAngle(EGH))
-
-Model Answer:
-RETRY_ANSWER:
-39
-RETRY_THEOREM_SEQUENCE:
-1; parallel_property_corresponding_angle(1,EF,GH,O); ParallelBetweenLine(EF,GH)&Collinear(OEG); ["Equal(MeasureOfAngle(OFE),MeasureOfAngle(EHG))"]  
-2; parallel_property_corresponding_angle(2,GH,EF,O); ParallelBetweenLine(GH,EF)&Collinear(OFH); ["Equal(MeasureOfAngle(OFH),MeasureOfAngle(HEF))"]  
-3; similar_triangle_judgment_aa(1,OFE,GHF); Polygon(OFE)&Polygon(GHF)&Equal(MeasureOfAngle(OFE),MeasureOfAngle(EHG))&Equal(MeasureOfAngle(OFH),MeasureOfAngle(HEF)); ["SimilarBetweenTriangle(OFE,GHF)"]  
-4; similar_triangle_property_line_ratio(1,OFE,GHF); SimilarBetweenTriangle(OFE,GHF); ["Equal(LengthOfLine(FE),Mul(LengthOfLine(HF),RatioOfSimilarTriangle(OFE,GHF)))"]  
-5; line_addition(1,OF,FH); Collinear(OFH); ["Equal(LengthOfLine(OH),Add(LengthOfLine(OF),LengthOfLine(FH)))"]
-#run: 1; #retry: 2; message: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
 Theorem: parallel_property_corresponding_angle(2,GH,EF,O)
 You output the following premises: ParallelBetweenLine(GH,EF)&Collinear(OFH)
 But the correct premises: ParallelBetweenLine(GH,EF)&Collinear(GEO)
-You output the following conclusions: Equal(MeasureOfAngle(OFH),MeasureOfAngle(HEF))
+You output the following conclusions: Equal(MeasureOfAngle(OHG),MeasureOfAngle(EFH))
 But the correct conclusions: Equal(MeasureOfAngle(HGE),MeasureOfAngle(FEO))
 
 Model Answer:
@@ -150,14 +132,14 @@ RETRY_ANSWER:
 39
 RETRY_THEOREM_SEQUENCE:
 1; parallel_property_corresponding_angle(1,EF,GH,O); ParallelBetweenLine(EF,GH)&Collinear(OEG); ["Equal(MeasureOfAngle(OEF),MeasureOfAngle(EGH))"]
-2; parallel_property_corresponding_angle(2,GH,EF,O); ParallelBetweenLine(GH,EF)&Collinear(OFH); ["Equal(MeasureOfAngle(OFH),MeasureOfAngle(HEF))"]
-3; similar_triangle_judgment_aa(1,OFE,GHF); Polygon(OFE)&Polygon(GHF)&Equal(MeasureOfAngle(OEF),MeasureOfAngle(EGH))&Equal(MeasureOfAngle(OFH),MeasureOfAngle(HEF)); ["SimilarBetweenTriangle(OFE,GHF)"]
-4; similar_triangle_property_line_ratio(1,OFE,GHF); SimilarBetweenTriangle(OFE,GHF); ["Equal(LengthOfLine(FE),Mul(LengthOfLine(HF),RatioOfSimilarTriangle(OFE,GHF)))"]
-5; line_addition(1,OF,FH); Collinear(OFH); ["Equal(LengthOfLine(OH),Add(LengthOfLine(OF),LengthOfLine(FH)))"]
-#run: 1; #retry: 3; message: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
-Theorem: similar_triangle_judgment_aa(1,OFE,GHF)
-You output the following premises: Polygon(OFE)&Polygon(GHF)&Equal(MeasureOfAngle(OEF),MeasureOfAngle(EGH))&Equal(MeasureOfAngle(OFH),MeasureOfAngle(HEF))
-But the correct premises: Polygon(OFE)&Polygon(GHF)&Equal(MeasureOfAngle(OFE),MeasureOfAngle(GHF))&Equal(MeasureOfAngle(FEO),MeasureOfAngle(HFG))
+2; parallel_property_corresponding_angle(2,GH,EF,O); ParallelBetweenLine(GH,EF)&Collinear(OFH); ["Equal(MeasureOfAngle(OHG),MeasureOfAngle(EFH))"]
+3; similar_triangle_judgment_aa(1,OEF,OGH); Polygon(OEF)&Polygon(OGH)&Equal(MeasureOfAngle(OEF),MeasureOfAngle(OGH))&Equal(MeasureOfAngle(EFH),MeasureOfAngle(OHG)); ["SimilarBetweenTriangle(OEF,OGH)"]
+4; similar_triangle_property_line_ratio(1,OEF,OGH); SimilarBetweenTriangle(OEF,OGH); ["Equal(LengthOfLine(EF),Mul(LengthOfLine(GH),RatioOfSimilarTriangle(OEF,OGH)))"]
+5; similar_triangle_property_line_ratio(1,OFE,OHG); SimilarBetweenTriangle(OFE,OHG); ["Equal(LengthOfLine(OF),Mul(LengthOfLine(OH),RatioOfSimilarTriangle(OFE,OHG)))"]
+#run: 1; #retry: 2; message: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
+Theorem: similar_triangle_judgment_aa(1,OEF,OGH)
+You output the following premises: Polygon(OEF)&Polygon(OGH)&Equal(MeasureOfAngle(OEF),MeasureOfAngle(OGH))&Equal(MeasureOfAngle(EFH),MeasureOfAngle(OHG))
+But the correct premises: Polygon(OEF)&Polygon(OGH)&Equal(MeasureOfAngle(OEF),MeasureOfAngle(OGH))&Equal(MeasureOfAngle(EFO),MeasureOfAngle(GHO))
 
 Model Answer:
 RETRY_ANSWER:
@@ -165,29 +147,29 @@ RETRY_ANSWER:
 RETRY_THEOREM_SEQUENCE:
 1; parallel_property_corresponding_angle(1,EF,GH,O); ParallelBetweenLine(EF,GH)&Collinear(OEG); ["Equal(MeasureOfAngle(OEF),MeasureOfAngle(EGH))"]
 2; parallel_property_corresponding_angle(2,GH,EF,O); ParallelBetweenLine(GH,EF)&Collinear(GEO); ["Equal(MeasureOfAngle(HGE),MeasureOfAngle(FEO))"]
-3; similar_triangle_judgment_aa(1,OFE,GHF); Polygon(OFE)&Polygon(GHF)&Equal(MeasureOfAngle(OEF),MeasureOfAngle(EGH))&Equal(MeasureOfAngle(OFH),MeasureOfAngle(HEF)); ["SimilarBetweenTriangle(OFE,GHF)"]
-4; similar_triangle_property_line_ratio(1,OFE,GHF); SimilarBetweenTriangle(OFE,GHF); ["Equal(LengthOfLine(FE),Mul(LengthOfLine(HF),RatioOfSimilarTriangle(OFE,GHF)))"]
-5; line_addition(1,OF,FH); Collinear(OFH); ["Equal(LengthOfLine(OH),Add(LengthOfLine(OF),LengthOfLine(FH)))"]
-#run: 1; #retry: 4; message: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
-Theorem: parallel_property_corresponding_angle(1,EF,GH,O)
-You output the following conclusions: Equal(MeasureOfAngle(OFE),MeasureOfAngle(GHF))
-But the correct conclusions: Equal(MeasureOfAngle(OEF),MeasureOfAngle(EGH))
+3; similar_triangle_judgment_aa(1,OEF,OGH); Polygon(OEF)&Polygon(OGH)&Equal(MeasureOfAngle(OEF),MeasureOfAngle(OGH))&Equal(MeasureOfAngle(EFH),MeasureOfAngle(OHG)); ["SimilarBetweenTriangle(OEF,OGH)"]
+4; similar_triangle_property_line_ratio(1,OEF,OGH); SimilarBetweenTriangle(OEF,OGH); ["Equal(LengthOfLine(EF),Mul(LengthOfLine(GH),RatioOfSimilarTriangle(OEF,OGH)))"]
+5; similar_triangle_property_line_ratio(1,OFE,OHG); SimilarBetweenTriangle(OFE,OHG); ["Equal(LengthOfLine(OF),Mul(LengthOfLine(OH),RatioOfSimilarTriangle(OFE,OHG)))"]
+#run: 1; #retry: 3; message: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
+Theorem: similar_triangle_property_line_ratio(1,OFE,OHG)
+You output the following conclusions: Equal(LengthOfLine(OF),Mul(LengthOfLine(OH),RatioOfSimilarTriangle(OFE,OHG)))
+But the correct conclusions: Equal(LengthOfLine(FE),Mul(LengthOfLine(HG),RatioOfSimilarTriangle(OFE,OHG)))
 
 Model Answer:
 RETRY_ANSWER:
 39
 RETRY_THEOREM_SEQUENCE:
-1; parallel_property_corresponding_angle(1,EF,GH,O); ParallelBetweenLine(EF,GH)&Collinear(OEG); ["Equal(MeasureOfAngle(OFE),MeasureOfAngle(GHF))"]
-2; parallel_property_corresponding_angle(2,GH,EF,O); ParallelBetweenLine(GH,EF)&Collinear(GEO); ["Equal(MeasureOfAngle(FEO),MeasureOfAngle(HFG))"]
-3; similar_triangle_judgment_aa(1,OFE,GHF); Polygon(OFE)&Polygon(GHF)&Equal(MeasureOfAngle(OFE),MeasureOfAngle(GHF))&Equal(MeasureOfAngle(FEO),MeasureOfAngle(HFG)); ["SimilarBetweenTriangle(OFE,GHF)"]
-4; similar_triangle_property_line_ratio(1,OFE,GHF); SimilarBetweenTriangle(OFE,GHF); ["Equal(LengthOfLine(FE),Mul(LengthOfLine(HF),RatioOfSimilarTriangle(OFE,GHF)))"]
-5; line_addition(1,OF,FH); Collinear(OFH); ["Equal(LengthOfLine(OH),Add(LengthOfLine(OF),LengthOfLine(FH)))"]
-#run: 1; #retry: 5; message: ERROR_TIER: TIER2_PREMISE_VIOLATION
+1; parallel_property_corresponding_angle(1,EF,GH,O); ParallelBetweenLine(EF,GH)&Collinear(OEG); ["Equal(MeasureOfAngle(OEF),MeasureOfAngle(EGH))"]
+2; parallel_property_corresponding_angle(2,GH,EF,O); ParallelBetweenLine(GH,EF)&Collinear(GEO); ["Equal(MeasureOfAngle(HGE),MeasureOfAngle(FEO))"]
+3; similar_triangle_judgment_aa(1,OEF,OGH); Polygon(OEF)&Polygon(OGH)&Equal(MeasureOfAngle(OEF),MeasureOfAngle(OGH))&Equal(MeasureOfAngle(EFO),MeasureOfAngle(GHO)); ["SimilarBetweenTriangle(OEF,OGH)"]
+4; similar_triangle_property_line_ratio(1,OEF,OGH); SimilarBetweenTriangle(OEF,OGH); ["Equal(LengthOfLine(EF),Mul(LengthOfLine(GH),RatioOfSimilarTriangle(OEF,OGH)))"]
+5; similar_triangle_property_line_ratio(1,OFE,OHG); SimilarBetweenTriangle(OFE,OHG); ["Equal(LengthOfLine(OF),Mul(LengthOfLine(OH),RatioOfSimilarTriangle(OFE,OHG)))"]
+#run: 1; #retry: 4; message: ERROR_TIER: TIER2_PREMISE_VIOLATION
 verification failed.
 
-- Error: You tried to use theorem: similar_triangle_judgment_aa(1,OFE,GHF);Polygon(OFE)&Polygon(GHF)&Equal(MeasureOfAngle(OFE),MeasureOfAngle(GHF))&Equal(MeasureOfAngle(FEO),MeasureOfAngle(HFG));['SimilarBetweenTriangle(OFE,GHF)']
-Missing premise: Polygon for triangle GHF is missing from the input data.
-Details: The construction data did not define this polygon.
+- Error: You tried to use theorem: similar_triangle_judgment_aa(1,OEF,OGH);Polygon(OEF)&Polygon(OGH)&Equal(MeasureOfAngle(OEF),MeasureOfAngle(OGH))&Equal(MeasureOfAngle(EFO),MeasureOfAngle(GHO));['SimilarBetweenTriangle(OEF,OGH)']
+Missing premise: Premise angle equality EFO = GHO does not hold.
+Details: The constraints do not force these two angles to be equal.
 - Available premises:
   Parallel Lines: EF ∥ GH
   Collinear Points: GEO, HFO
@@ -202,11 +184,18 @@ Model Answer:
 RETRY_ANSWER:
 39
 RETRY_THEOREM_SEQUENCE:
-1; parallel_property_corresponding_angle(1,EF,GH,O); ParallelBetweenLine(EF,GH)&Collinear(OEG); ["Equal(MeasureOfAngle(OEF),MeasureOfAngle(EGH))"]  
-2; parallel_property_corresponding_angle(2,GH,EF,O); ParallelBetweenLine(GH,EF)&Collinear(GEO); ["Equal(MeasureOfAngle(HGE),MeasureOfAngle(FEO))"]  
-3; similar_triangle_judgment_aa(1,OFE,GHF); Polygon(OFE)&Polygon(GHF)&Equal(MeasureOfAngle(OFE),MeasureOfAngle(GHF))&Equal(MeasureOfAngle(FEO),MeasureOfAngle(HFG)); ["SimilarBetweenTriangle(OFE,GHF)"]  
-4; similar_triangle_property_line_ratio(1,OFE,GHF); SimilarBetweenTriangle(OFE,GHF); ["Equal(LengthOfLine(FE),Mul(LengthOfLine(HF),RatioOfSimilarTriangle(OFE,GHF)))"]  
-5; line_addition(1,OF,FH); Collinear(OFH); ["Equal(LengthOfLine(OH),Add(LengthOfLine(OF),LengthOfLine(FH)))"]
+1; parallel_property_corresponding_angle(1,EF,GH,O); ParallelBetweenLine(EF,GH)&Collinear(OEG); ["Equal(MeasureOfAngle(OEF),MeasureOfAngle(EGH))"]
+2; parallel_property_corresponding_angle(2,GH,EF,O); ParallelBetweenLine(GH,EF)&Collinear(GEO); ["Equal(MeasureOfAngle(HGE),MeasureOfAngle(FEO))"]
+3; similar_triangle_judgment_aa(1,OEF,OGH); Polygon(OEF)&Polygon(OGH)&Equal(MeasureOfAngle(OEF),MeasureOfAngle(OGH))&Equal(MeasureOfAngle(EFO),MeasureOfAngle(GHO)); ["SimilarBetweenTriangle(OEF,OGH)"]
+4; similar_triangle_property_line_ratio(1,OEF,OGH); SimilarBetweenTriangle(OEF,OGH); ["Equal(LengthOfLine(EF),Mul(LengthOfLine(GH),RatioOfSimilarTriangle(OEF,OGH)))"]
+5; similar_triangle_property_line_ratio(1,OFE,OHG); SimilarBetweenTriangle(OFE,OHG); ["Equal(LengthOfLine(FE),Mul(LengthOfLine(HG),RatioOfSimilarTriangle(OFE,OHG)))"]
+#run: 1; #retry: 5; message: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
+Failure: The THEOREM_SEQUENCE you provided is empty. Please generate a proof again, using the similar problems I provided (A1, A2, A3, A4, A5), along with the GDL_DICTIONARY of theorems.
+Model Answer:
+RETRY_ANSWER:
+39
+RETRY_THEOREM_SEQUENCE:
+1; line_addition(1,OE,EG); Collinear(OEG); ["Equal(LengthOfLine(OG),Add(LengthOfLine(OE),LengthOfLine(EG)))"]
 #RETRIES:
 5
 #RUNS:
