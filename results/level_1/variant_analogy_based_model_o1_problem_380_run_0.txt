@@ -1,0 +1,195 @@
+Inputs for Problem B:
+DESCRIPTION:
+As shown in the diagram, AB=26, AD=10, CB=16, DC=8, AD is the altitude of triangle ACB. Find the area of △ACB.
+CONSTRUCTION_CDL:
+Shape(AD,DC,CA)
+Shape(AC,CB,BA)
+Collinear(DCB)
+TEXT_CDL:
+Equal(LengthOfLine(AB),26)
+Equal(LengthOfLine(AD),10)
+Equal(LengthOfLine(CB),16)
+Equal(LengthOfLine(DC),8)
+IsAltitudeOfTriangle(AD,ACB)
+GOAL_CDL:
+Value(AreaOfTriangle(ACB))
+CONSTRUCTION_CDL_EXTENDED:
+Shape(DC,CA,AD)
+Shape(CA,AD,DC)
+Shape(CB,BA,AC)
+Shape(BA,AC,CB)
+Shape(AD,DC,CB,BA)
+Shape(DC,CB,BA,AD)
+Shape(CB,BA,AD,DC)
+Shape(BA,AD,DC,CB)
+Collinear(BCD)
+Point(D)
+Point(B)
+Point(C)
+Point(A)
+Line(DB)
+Line(BD)
+Line(DC)
+Line(CD)
+Line(CB)
+Line(BC)
+Line(AD)
+Line(DA)
+Line(CA)
+Line(AC)
+Line(BA)
+Line(AB)
+Angle(DCB)
+Angle(BCD)
+Angle(ADC)
+Angle(DCA)
+Angle(CAD)
+Angle(ACB)
+Angle(CBA)
+Angle(BAC)
+Angle(DBA)
+Angle(BAD)
+Angle(ADB)
+Angle(CDA)
+Angle(ACD)
+Angle(DAC)
+Angle(BCA)
+Angle(ABC)
+Angle(CAB)
+Angle(ABD)
+Angle(DAB)
+Angle(BDA)
+Polygon(ADC)
+Polygon(ACD)
+Polygon(DAC)
+Polygon(DCA)
+Polygon(CAD)
+Polygon(CDA)
+Polygon(ACB)
+Polygon(ABC)
+Polygon(CAB)
+Polygon(CBA)
+Polygon(BAC)
+Polygon(BCA)
+Polygon(ADB)
+Polygon(ABD)
+Polygon(DAB)
+Polygon(DBA)
+Polygon(BAD)
+Polygon(BDA)
+PerpendicularBetweenLine(CD,AD)
+PerpendicularBetweenLine(AD,BD)
+SYMBOLS_AND_VALUES:
+LengthOfLine(AB);ll_ab;13
+LengthOfLine(BA);ll_ab;13
+LengthOfLine(AC);ll_ac;10
+LengthOfLine(CA);ll_ac;10
+LengthOfLine(BC);ll_bc;13
+LengthOfLine(CB);ll_bc;13
+MeasureOfAngle(BDC);ma_bdc;90
+AreaOfTriangle(BAC);at_bac;None
+AreaOfTriangle(ACB);at_bac;None
+AreaOfTriangle(CBA);at_bac;None
+
+Outputs:
+Outputs for Problem B:
+
+***MODEL_RESPONSE_BEGIN***
+EQUATIONS:
+ll_ab-26 ll_ad-10 ll_cb-16 ll_dc-8
+
+GOAL_SYMBOL:
+at_acb
+
+ANSWER:
+80
+
+THEOREM_SEQUENCE:
+1; altitude_of_triangle_judgment(1,AD,ACB); Polygon(ACB)&Line(AD)&Collinear(CBD)&Equal(MeasureOfAngle(BDA),90); ["IsAltitudeOfTriangle(AD,ACB)"]
+2; triangle_area_formula_common(1,ACB); Polygon(ACB); ["Equal(AreaOfTriangle(ACB),Mul(HeightOfTriangle(ACB),LengthOfLine(CB),1/2))"]
+***MODEL_RESPONSE_END***
+RETRIES_MESSAGES:
+#run: 0; #retry: 1; message: ERROR_TIER: TIER3_GOAL_NOT_REACHED
+verification failed.
+
+- Goal: triangle_area ACB
+- Model answer: 80
+- Error: Your proof doesn't uniquely determine the value. You need to use additional theorems to constrain the value.
+- Available premises:
+  Perpendicular Lines: AD ⊥ BD, AD ⊥ CD
+  Collinear Points: BCD
+  Polygons: ABC, ABD, ACB, ACD, ADB, ADC
+- Theorems related to the goal:
+  Step 1 - triangle_area_formula_common(1, ACB): Equal(AreaOfTriangle(ACB),Mul(HeightOfTriangle(ACB),LengthOfLine(CB),1/2))
+- Solver constraints directly related to this goal:
+  None found
+
+Please fix the proof.
+Model Answer:
+RETRY_ANSWER:
+80
+RETRY_THEOREM_SEQUENCE:
+1; triangle_area_formula_common(1,ACB); Polygon(ACB); ["Equal(AreaOfTriangle(ACB),Mul(HeightOfTriangle(ACB),LengthOfLine(CB),1/2))"]
+#run: 0; #retry: 2; message: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
+Failure: Theorem <altitude_of_triangle_judgment> para length error. Expected 5 but got ('A', 'C', 'B').
+Model Answer:
+RETRY_ANSWER:
+80
+RETRY_THEOREM_SEQUENCE:
+1; altitude_of_triangle_judgment(2,ACB); Polygon(ACB)&Line(AD)&Collinear(DBC)&Equal(MeasureOfAngle(ADB),90); ["IsAltitudeOfTriangle(AD,ACB)"]
+2; triangle_area_formula_common(1,ACB); Polygon(ACB); ["Equal(AreaOfTriangle(ACB),Mul(HeightOfTriangle(ACB),LengthOfLine(CB),1/2))"]
+#run: 0; #retry: 3; message: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
+Theorem: altitude_of_triangle_judgment(2,AD,ACB)
+You output the following premises: Polygon(ACB)&Line(AD)&Collinear(DBC)&Equal(MeasureOfAngle(ADB),90)
+But the correct premises: Polygon(ACB)&Line(AD)&Collinear(DCB)&Equal(MeasureOfAngle(ADC),90)
+
+Model Answer:
+RETRY_ANSWER:
+80
+RETRY_THEOREM_SEQUENCE:
+1; altitude_of_triangle_judgment(2,AD,ACB); Polygon(ACB)&Line(AD)&Collinear(DBC)&Equal(MeasureOfAngle(ADB),90); ["IsAltitudeOfTriangle(AD,ACB)"]
+2; triangle_area_formula_common(1,ACB); Polygon(ACB); ["Equal(AreaOfTriangle(ACB),Mul(HeightOfTriangle(ACB),LengthOfLine(CB),1/2))"]
+#run: 0; #retry: 4; message: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
+Theorem: altitude_of_triangle_judgment(3,AD,ACB)
+You output the following premises: Polygon(ACB)&Line(AD)&Collinear(BCD)&Equal(MeasureOfAngle(CDA),90)
+But the correct premises: Polygon(ACB)&Line(AD)&Collinear(CBD)&Equal(MeasureOfAngle(BDA),90)
+
+Model Answer:
+RETRY_ANSWER:
+80
+RETRY_THEOREM_SEQUENCE:
+1; altitude_of_triangle_judgment(3,AD,ACB); Polygon(ACB)&Line(AD)&Collinear(BCD)&Equal(MeasureOfAngle(CDA),90); ["IsAltitudeOfTriangle(AD,ACB)"]
+2; triangle_area_formula_common(1,ACB); Polygon(ACB); ["Equal(AreaOfTriangle(ACB),Mul(HeightOfTriangle(ACB),LengthOfLine(CB),1/2))"]
+#run: 0; #retry: 5; message: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
+Theorem: altitude_of_triangle_judgment(1,AD,ACB)
+You output the following premises: Polygon(ACB)&Line(AD)&Collinear(CBD)&Equal(MeasureOfAngle(BDA),90)
+But the correct premises: Polygon(ACB)&Line(AD)&Collinear(CDB)&Equal(MeasureOfAngle(CDA),90)
+
+Model Answer:
+RETRY_ANSWER:
+80
+RETRY_THEOREM_SEQUENCE:
+1; altitude_of_triangle_judgment(1,AD,ACB); Polygon(ACB)&Line(AD)&Collinear(CBD)&Equal(MeasureOfAngle(BDA),90); ["IsAltitudeOfTriangle(AD,ACB)"]
+2; triangle_area_formula_common(1,ACB); Polygon(ACB); ["Equal(AreaOfTriangle(ACB),Mul(HeightOfTriangle(ACB),LengthOfLine(CB),1/2))"]
+#RETRIES:
+5
+#RUNS:
+0
+
+
+GT_EQUATIONS:
+ll_ab-26
+ll_ad-10
+ll_cb-16
+ll_dc-8
+-ht_acb+ll_ad
+ma_cda-90
+ma_adb-90
+ht_acb-10
+GT_GOAL_SYMBOL:
+at_acb
+GT_ANSWER:
+80
+GT_THEOREM_SEQUENCE:
+1;triangle_area_formula_common(1,ACB);Polygon(ACB);["Equal(AreaOfTriangle(ACB),Mul(HeightOfTriangle(ACB),LengthOfLine(CB),1/2))"]
+

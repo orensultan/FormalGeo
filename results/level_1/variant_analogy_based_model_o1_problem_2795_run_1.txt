@@ -1,0 +1,336 @@
+Inputs for Problem B:
+DESCRIPTION:
+As shown in the diagram, ∠YXW=30°, WY⊥ZY, quadrilateral WYZX is a rectangle. Find the measure of ∠ZXA.
+CONSTRUCTION_CDL:
+Shape(WY,YA,AW)
+Shape(AY,YZ,ZA)
+Shape(AZ,ZX,XA)
+Shape(AX,XW,WA)
+Collinear(WAZ)
+Collinear(YAX)
+TEXT_CDL:
+Equal(MeasureOfAngle(YXW),30)
+PerpendicularBetweenLine(WY,ZY)
+Rectangle(WYZX)
+GOAL_CDL:
+Value(MeasureOfAngle(ZXA))
+CONSTRUCTION_CDL_EXTENDED:
+Shape(YA,AW,WY)
+Shape(AW,WY,YA)
+Shape(YZ,ZA,AY)
+Shape(ZA,AY,YZ)
+Shape(ZX,XA,AZ)
+Shape(XA,AZ,ZX)
+Shape(XW,WA,AX)
+Shape(WA,AX,XW)
+Shape(AW,WY,YZ,ZA)
+Shape(WY,YZ,ZA,AW)
+Shape(YZ,ZA,AW,WY)
+Shape(ZA,AW,WY,YZ)
+Shape(WY,YA,AX,XW)
+Shape(YA,AX,XW,WY)
+Shape(AX,XW,WY,YA)
+Shape(XW,WY,YA,AX)
+Shape(AY,YZ,ZX,XA)
+Shape(YZ,ZX,XA,AY)
+Shape(ZX,XA,AY,YZ)
+Shape(XA,AY,YZ,ZX)
+Shape(AZ,ZX,XW,WA)
+Shape(ZX,XW,WA,AZ)
+Shape(XW,WA,AZ,ZX)
+Shape(WA,AZ,ZX,XW)
+Shape(AW,WY,YZ,ZX,XA)
+Shape(WY,YZ,ZX,XA,AW)
+Shape(YZ,ZX,XA,AW,WY)
+Shape(ZX,XA,AW,WY,YZ)
+Shape(XA,AW,WY,YZ,ZX)
+Shape(WY,YA,AZ,ZX,XW)
+Shape(YA,AZ,ZX,XW,WY)
+Shape(AZ,ZX,XW,WY,YA)
+Shape(ZX,XW,WY,YA,AZ)
+Shape(XW,WY,YA,AZ,ZX)
+Shape(YZ,ZA,AX,XW,WY)
+Shape(ZA,AX,XW,WY,YZ)
+Shape(AX,XW,WY,YZ,ZA)
+Shape(XW,WY,YZ,ZA,AX)
+Shape(WY,YZ,ZA,AX,XW)
+Shape(AY,YZ,ZX,XW,WA)
+Shape(YZ,ZX,XW,WA,AY)
+Shape(ZX,XW,WA,AY,YZ)
+Shape(XW,WA,AY,YZ,ZX)
+Shape(WA,AY,YZ,ZX,XW)
+Shape(WY,YZ,ZX,XW)
+Shape(YZ,ZX,XW,WY)
+Shape(ZX,XW,WY,YZ)
+Shape(XW,WY,YZ,ZX)
+Collinear(ZAW)
+Collinear(XAY)
+Point(W)
+Point(Z)
+Point(A)
+Point(Y)
+Point(X)
+Line(WZ)
+Line(ZW)
+Line(WA)
+Line(AW)
+Line(AZ)
+Line(ZA)
+Line(YX)
+Line(XY)
+Line(YA)
+Line(AY)
+Line(AX)
+Line(XA)
+Line(WY)
+Line(YW)
+Line(YZ)
+Line(ZY)
+Line(ZX)
+Line(XZ)
+Line(XW)
+Line(WX)
+Angle(WAZ)
+Angle(ZAW)
+Angle(YAX)
+Angle(XAY)
+Angle(WYA)
+Angle(YAW)
+Angle(AWY)
+Angle(AYZ)
+Angle(YZA)
+Angle(ZAY)
+Angle(AZX)
+Angle(ZXA)
+Angle(XAZ)
+Angle(AXW)
+Angle(XWA)
+Angle(WAX)
+Angle(WYZ)
+Angle(YXW)
+Angle(XWY)
+Angle(YZX)
+Angle(ZXW)
+Angle(XAW)
+Angle(YAZ)
+Angle(ZAX)
+Angle(WAY)
+Angle(WYX)
+Angle(ZWY)
+Angle(XYZ)
+Angle(YZW)
+Angle(WZX)
+Angle(ZXY)
+Angle(XWZ)
+Angle(AYW)
+Angle(YWA)
+Angle(ZYA)
+Angle(AZY)
+Angle(XZA)
+Angle(AXZ)
+Angle(WXA)
+Angle(AWX)
+Angle(ZYW)
+Angle(WXY)
+Angle(YWX)
+Angle(XZY)
+Angle(WXZ)
+Angle(XYW)
+Angle(YWZ)
+Angle(ZYX)
+Angle(WZY)
+Angle(XZW)
+Angle(YXZ)
+Angle(ZWX)
+Polygon(WYA)
+Polygon(WAY)
+Polygon(YWA)
+Polygon(YAW)
+Polygon(AWY)
+Polygon(AYW)
+Polygon(AYZ)
+Polygon(AZY)
+Polygon(YAZ)
+Polygon(YZA)
+Polygon(ZAY)
+Polygon(ZYA)
+Polygon(AZX)
+Polygon(AXZ)
+Polygon(ZAX)
+Polygon(ZXA)
+Polygon(XAZ)
+Polygon(XZA)
+Polygon(AXW)
+Polygon(AWX)
+Polygon(XAW)
+Polygon(XWA)
+Polygon(WAX)
+Polygon(WXA)
+Polygon(WYZ)
+Polygon(WZY)
+Polygon(YWZ)
+Polygon(YZW)
+Polygon(ZWY)
+Polygon(ZYW)
+Polygon(WYX)
+Polygon(WXY)
+Polygon(YWX)
+Polygon(YXW)
+Polygon(XWY)
+Polygon(XYW)
+Polygon(YZX)
+Polygon(YXZ)
+Polygon(ZYX)
+Polygon(ZXY)
+Polygon(XYZ)
+Polygon(XZY)
+Polygon(ZXW)
+Polygon(ZWX)
+Polygon(XZW)
+Polygon(XWZ)
+Polygon(WZX)
+Polygon(WXZ)
+Polygon(AWYZX)
+Polygon(WYZXA)
+Polygon(YZXAW)
+Polygon(ZXAWY)
+Polygon(XAWYZ)
+Polygon(WYAZX)
+Polygon(YAZXW)
+Polygon(AZXWY)
+Polygon(ZXWYA)
+Polygon(XWYAZ)
+Polygon(YZAXW)
+Polygon(ZAXWY)
+Polygon(AXWYZ)
+Polygon(XWYZA)
+Polygon(WYZAX)
+Polygon(AYZXW)
+Polygon(YZXWA)
+Polygon(ZXWAY)
+Polygon(XWAYZ)
+Polygon(WAYZX)
+Polygon(WYZX)
+Polygon(YZXW)
+Polygon(ZXWY)
+Polygon(XWYZ)
+Parallelogram(WYZX)
+Parallelogram(YZXW)
+Parallelogram(ZXWY)
+Parallelogram(XWYZ)
+Rectangle(YZXW)
+Rectangle(ZXWY)
+Rectangle(XWYZ)
+ParallelBetweenLine(WX,YZ)
+ParallelBetweenLine(ZY,XW)
+ParallelBetweenLine(YW,ZX)
+ParallelBetweenLine(XZ,WY)
+PerpendicularBetweenLine(YZ,XZ)
+PerpendicularBetweenLine(ZX,WX)
+PerpendicularBetweenLine(XW,YW)
+SYMBOLS_AND_VALUES:
+MeasureOfAngle(HGE);ma_hgk;13
+MeasureOfAngle(HGK);ma_hgk;13
+MeasureOfAngle(EHG);ma_ehg;90
+MeasureOfAngle(HGF);ma_hgf;90
+MeasureOfAngle(GFE);ma_gfe;90
+MeasureOfAngle(FEH);ma_feh;90
+MeasureOfAngle(EGF);ma_kgf;None
+MeasureOfAngle(KGF);ma_kgf;None
+
+Outputs:
+Outputs for Problem B:
+
+***MODEL_RESPONSE_BEGIN***
+EQUATIONS:
+ma_yxw-30
+
+GOAL_SYMBOL:
+ma_zxa
+
+ANSWER:
+30
+
+THEOREM_SEQUENCE:
+(No valid purely synthetic proof is possible with the current GDL.)
+***MODEL_RESPONSE_END***
+RETRIES_MESSAGES:
+#run: 1; #retry: 1; message: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
+Theorem: parallel_property_alternate_interior_angle(2,ZX,WY)
+You output the following premises: ParallelBetweenLine(ZX,WY)&Line(XY)
+But the correct premises: ParallelBetweenLine(ZX,WY)&Line(XW)
+You output the following conclusions: Equal(MeasureOfAngle(ZXA),MeasureOfAngle(YXW))
+But the correct conclusions: Equal(MeasureOfAngle(WXZ),MeasureOfAngle(XWY))
+
+Model Answer:
+RETRY_ANSWER:
+30
+RETRY_THEOREM_SEQUENCE:
+1; parallel_property_alternate_interior_angle(2,ZX,WY); ParallelBetweenLine(ZX,WY)&Line(XY); ["Equal(MeasureOfAngle(ZXA),MeasureOfAngle(YXW))"]
+#run: 1; #retry: 2; message: ERROR_TIER: TIER3_GOAL_NOT_REACHED
+verification failed.
+
+- Goal: measure of angle ZXA
+- Model answer: 30
+- Error: Your proof doesn't uniquely determine the value. You need to use additional theorems to constrain the value.
+- Available premises:
+  Parallel Lines: WX ∥ YZ, WY ∥ XZ
+  Perpendicular Lines: WX ⊥ WY, WX ⊥ XZ, WY ⊥ YZ, XZ ⊥ YZ
+  Collinear Points: WAZ, XAY
+  Rectangles: WYZX, XWYZ, YZXW, ZXWY
+  Polygons: AWX, AWY, AWYZX, AXW, AXWYZ, AXZ, AYW, AYZ, AYZXW, AZX, AZXWY, AZY, WAYZX, WXY, WXZ, WYAZX, WYX, WYZ, WYZAX, WYZX, WYZXA, WZX, WZY, XAWYZ, XWAYZ, XWYAZ, XWYZ, XWYZA, XYZ, XZY, YAZXW, YZAXW, YZXAW, YZXW, YZXWA, ZAXWY, ZXAWY, ZXWAY, ZXWY, ZXWYA
+- Theorems related to the goal:
+  None found that constrain this goal
+- Solver constraints directly related to this goal:
+  ∠AXZ <= 180
+  ∠AXZ = ∠YXZ
+  ∠AXZ > 0
+
+Please fix the proof.
+Model Answer:
+RETRY_ANSWER:
+30
+RETRY_THEOREM_SEQUENCE:
+1; parallel_property_alternate_interior_angle(2,ZX,WY); ParallelBetweenLine(ZX,WY)&Line(XW); ["Equal(MeasureOfAngle(WXZ),MeasureOfAngle(XWY))"]
+#run: 1; #retry: 3; message: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
+Failure: Theorem <> not defined in current GDL. Please rewrite the proof sequence, you are allowed to use only theorems from the GDL.
+Model Answer:
+RETRY_ANSWER:
+30
+
+RETRY_
+RETRY_THEOREM_SEQUENCE:
+(No valid purely synthetic proof is possible with the current GDL.)
+#run: 1; #retry: 4; message: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
+Failure: The THEOREM_SEQUENCE you provided is empty. Please generate a proof again, using the similar problems I provided (A1, A2, A3, A4, A5), along with the GDL_DICTIONARY of theorems.
+Model Answer:
+RETRY_ANSWER:
+30
+RETRY_THEOREM_SEQUENCE:
+
+#run: 1; #retry: 5; message: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
+Failure: Theorem <> not defined in current GDL. Please rewrite the proof sequence, you are allowed to use only theorems from the GDL.
+Model Answer:
+RETRY_ANSWER:
+30
+RETRY_THEOREM_SEQUENCE:
+(No valid purely synthetic proof is possible with the current GDL.)
+#RETRIES:
+5
+#RUNS:
+1
+
+
+GT_EQUATIONS:
+ma_yxw-30
+ma_wyz-90
+ma_yzx-90
+ma_zxw-90
+ma_xwy-90
+GT_GOAL_SYMBOL:
+ma_zxa
+GT_ANSWER:
+60
+GT_THEOREM_SEQUENCE:
+1;angle_addition(1,ZXA,AXW);Angle(ZXA)&Angle(AXW)&Angle(ZXW);["Equal(MeasureOfAngle(ZXW),Add(MeasureOfAngle(ZXA),MeasureOfAngle(AXW)))"]
+
