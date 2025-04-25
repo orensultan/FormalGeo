@@ -21,13 +21,14 @@ from src.formalgeo.verifier import Verifier
 
 from geometric_verifier import verify_geometric_proof
 from src.formalgeo.config.config import MAX_RETRIES_IN_RUN, MAX_RUNS, SIMILAR_PROBLEMS, IN_CONTEXT_FEW_SHOT, \
-    SAMPLED_PROBLEMS_IN_LEVEL, LEVEL_BEGIN, LEVEL_END
+    SAMPLED_PROBLEMS_IN_LEVEL, MIN_LEVEL, MAX_LEVEL
 
 openai.api_key = "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"
 openai.api_key = "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"
 openai.api_key = "sk-ds-openapi-key-0sfNvLjYF3wMuFQcp7oST3BlbkFJWeqSW76sV6Gy48mjIJVK"
 openai.api_key = "sk-ds-openapi-key-0sfNvLjYF3wMuFQcp7oST3BlbkFJWeqSW76sV6Gy48mjIJVK"
 openai.api_key = "sk-svcacct-kVTUGOlCTL2vge6gtHi--la5vr8g-lqT3ieuWGdHQBrYChItgkm2k1WPS9mA-MXe7ebaPHCMk8YrCft1OT3BlbkFJLNl-eYBXpQiokB5m3Nw0oiO9ZOe_Paf1WH0Kh4If52-rQ92DiSodgoopxiDoQDKlAGYDPRpiWamueq8vQA"
+openai.api_key = "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"
 from utils import display_image
 from similar_proofs_retrieval import retrieve_similar_proofs
 from similar_proofs_retrieval import retrieve_random_proofs
@@ -484,17 +485,17 @@ def get_level_to_problems(problems):
 # }
 
 chosen_problems_by_level = {
-     5: [5440] # , 464, 5510],
-    # 1: [1975, 1490, 1726, 178, 2669, 2614, 51, 2323, 192, 2624],
-    # 2: [991, 69, 144, 358, 4473, 4483, 5645, 127, 2410, 4523],
-    # 3: [ 4187, 5244, 5062, 844, 1945, 2200, 4099, 2765, 4476, 4254 ]
-    # 4: [ 2114, 464, 5510, 3272, 5230, 3634, 6924, 4797, 5399, 6155]
-    # 5: [5440, 6485 , 696, 847, 5563, 532, 5431, 437, 5080, 6660]
-    # 6: [4923, 3298, 759, 4910, 5805, 5708, 6417, 5835, 5808, 5779],
-    # 7: [3580, 4898, 6802, 6247, 449, 1854, 5208, 6322, 3412, 3027],
-    # 8: [3983, 2761, 2875, 3434, 6806, 1258, 246, 4793, 2106, 6760],
-    # 9: [4892, 5092, 5522, 4796, 3418, 6850, 6790, 5116, 2851, 716]
-    # 10: [4134, 3419, 2196, 4489, 6146, 6018, 6376, 5353, 3114, 5197]
+    1: [944] #  2677, 380, 221, 944, 2940, 2187, 1562, 2795],
+     # 1: [1975, 1490, 1726, 178, 2669, 2614, 51, 2323, 192, 2624, 2795, 1168, 688, 2677, 380, 221, 944, 2940, 2187, 1562],
+     # 2: [144, 69, 991, 358, 4473, 4483, 5645, 127, 2410, 4523, 3075, 49, 4610, 6966, 1433, 3998, 5983, 497, 1586, 2397],
+     # 3: [4187, 5244, 5062, 844, 1945, 2200, 4099, 2765, 4476, 4254, 1032, 1976, 4257, 5942, 1282, 2591, 5858, 1306, 1244, 312],
+     # 4: [2114, 464, 5510, 3272, 5230, 3634, 6924, 4797, 5399, 6155, 4318, 4801, 4062, 6021, 1872, 4705, 2543, 4199, 6641, 5200],
+     # 5: [5440, 6485, 696, 847, 5563, 532, 5431, 437, 5080, 6660, 6615, 3210, 2556, 5777, 3705, 4096, 1855, 5101, 5642, 4170],
+     # 6: [4923, 3298, 759, 4910, 5805, 5708, 6417, 5835, 5808, 5779, 6398, 424, 4666, 6743, 5665, 6440, 3462, 5505, 5834, 4945],
+     # 7: [3580, 4898, 6802, 6247, 449, 1854, 5208, 6322, 3412, 3027, 6330, 6644, 6147, 6932, 929, 3859, 5426, 1571, 3891, 4306],
+     # 8: [6760, 3983, 2761, 2875, 3434, 1258, 246, 6806, 4793, 2106, 4736, 4816, 5379, 6598, 6401, 5531, 2917, 1858, 4549, 5022],
+     # 9: [4892, 5092, 5522, 4796, 3418, 6850, 6790, 5116, 2851, 716, 6491, 6026, 4250, 6889, 5497, 429, 4932, 6840, 4481, 3249],
+     # 10: [4134, 3419, 2196, 4489, 6146, 6018, 6376, 5353, 3114, 5197, 4672, 4465, 3840, 6549, 5181, 6024, 4888, 392, 6239, 2371],
 }
 
 import matplotlib.pyplot as plt
@@ -522,7 +523,7 @@ def print_similar_problems_theorems_coverage(variant, chosen_problems_by_level):
             problem_id_to_level[problem_id] = level
 
     true_count_by_level = collections.defaultdict(int)
-    file_name = f'cover_theorems_{variant}_{SIMILAR_PROBLEMS}.csv'
+    file_name = f'cover_theorems_{variant}_{SIMILAR_PROBLEMS}_levels_{LEVEL_BEGIN}_{LEVEL_END}.csv'
 
     df = pd.read_csv(file_name)
     df['IsCovered'] = df['IsCovered'].astype(str) == 'True'
@@ -550,21 +551,34 @@ def print_similar_problems_theorems_coverage(variant, chosen_problems_by_level):
     print(f"Average SimilarProblemsTheorems: {avg_similar_problems:.2f}")
 
 
-def get_chosen_problems_by_level(problems):
-    random.seed(42)
+def get_chosen_problems_by_level(problems, seed):
+    random.seed(seed)
     level_to_problems = get_level_to_problems(problems)
     chosen_problems_by_level = {}
+
     for level, problem_ids in level_to_problems.items():
-        if LEVEL_BEGIN <= level <= LEVEL_END:
-            sample_problem_ids = random.sample(problem_ids, SAMPLED_PROBLEMS_IN_LEVEL)
+        if 1 <= level <= 10:
+            sample_problem_ids = random.sample(problem_ids, 10)
             chosen_problems_by_level[level] = sample_problem_ids
+
+    # --- Now sample 10 more problems for each level without duplicates ---
+    for level, problem_ids in level_to_problems.items():
+        if 1 <= level <= 10:
+            already_sampled = set(chosen_problems_by_level[level])
+            available_problem_ids = list(set(problem_ids) - already_sampled)
+            if len(available_problem_ids) < 10:
+                raise ValueError(f"Not enough problems to sample 10 more in level {level}")
+            more_sampled = random.sample(available_problem_ids, 10)
+            # Add the new samples
+            chosen_problems_by_level[level].extend(more_sampled)
+
     return chosen_problems_by_level
 
 
 def write_theorems_coverage_stats(similar_problems_theorems, problem2, variant, num_examples):
     problem_to_solve_theorems = get_theorems_problem_to_solve(problem2)
     all_present = problem_to_solve_theorems.issubset(similar_problems_theorems)
-    file_name = f'cover_theorems_{variant}_{num_examples}_levels_{LEVEL_BEGIN}_{LEVEL_END}.csv'
+    file_name = f'cover_theorems_{variant}_{num_examples}_levels_{MIN_LEVEL}_{MAX_LEVEL}.csv'
     new_data = pd.DataFrame(
         [[problem2.id, all_present, len(problem_to_solve_theorems), len(similar_problems_theorems)]],
         columns=['ProblemID', 'IsCovered', 'ProblemToSolveTheorems', 'SimilarProblemsTheorems'])
@@ -655,20 +669,28 @@ def run(args, problem2_id, problems, run_id):
         sys.stderr = sys.__stderr__
 
 
-def run_theorems_coverage(args):
-    chosen_problems_by_level = get_chosen_problems_by_level(problems)
-    for _, problems_id in chosen_problems_by_level.items():
-        for problem2_id in problems_id:
-            if args.variant in ["analogy_based", "analogy_based_all_theorems"]:
-                similar_problem_ids = retrieve_similar_proofs(problem2_id, n=SIMILAR_PROBLEMS)
-            else:
-                similar_problem_ids = retrieve_random_proofs(problem2_id, n=SIMILAR_PROBLEMS)
-            similar_problems = [process_problem(problem_id, solver, problems) for problem_id in similar_problem_ids]
-            problem2 = process_problem(problem2_id, solver, problems)
-            similar_problems_theorems = get_theorems_from_similar_problems(similar_problems)
-            write_theorems_coverage_stats(similar_problems_theorems, problem2, args.variant, SIMILAR_PROBLEMS)
-
-    # print_similar_problems_theorems_coverage(args.variant, chosen_problems_by_level)
+def run_theorems_coverage(args, run=True, print_results=True):
+    random.seed(1234)
+    level_to_problems = get_level_to_problems(problems)
+    chosen_problems_by_level = {}
+    for level, problem_ids in level_to_problems.items():
+        if MIN_LEVEL <= level <= MAX_LEVEL:
+            sample_problem_ids = random.sample(problem_ids, SAMPLED_PROBLEMS_IN_LEVEL)
+            chosen_problems_by_level[level] = sample_problem_ids
+    if run:
+        for _, problems_id in chosen_problems_by_level.items():
+            for problem2_id in problems_id:
+                if args.variant in ["analogy_based", "analogy_based_all_theorems"]:
+                    similar_problem_ids = retrieve_similar_proofs(problem2_id, n=SIMILAR_PROBLEMS)
+                else:
+                    similar_problem_ids = retrieve_random_proofs(problem2_id, n=SIMILAR_PROBLEMS)
+                print("Probles retrieved: ", similar_problem_ids)
+                similar_problems = [process_problem(problem_id, solver, problems) for problem_id in similar_problem_ids]
+                problem2 = process_problem(problem2_id, solver, problems)
+                similar_problems_theorems = get_theorems_from_similar_problems(similar_problems)
+                write_theorems_coverage_stats(similar_problems_theorems, problem2, args.variant, SIMILAR_PROBLEMS)
+    if print_results:
+        print_similar_problems_theorems_coverage(args.variant, chosen_problems_by_level)
 
 
 if __name__ == "__main__":
@@ -679,8 +701,8 @@ if __name__ == "__main__":
                         default="src/formalgeo/prompt/geometry_similar_problems_prompt_291224.txt")
     args = parser.parse_args()
     problems = save_problems('formalgeo7k_v1/problems')
-    run_solver, run_coverage = False, True
-
+    run_solver, run_coverage = True, False
+    # chosen_problems_by_level = get_chosen_problems_by_level(problems, seed=42)
     if run_solver:
         try:
             for _, problems_id in chosen_problems_by_level.items():
@@ -695,4 +717,4 @@ if __name__ == "__main__":
             traceback.print_exc(file=sys.stderr)
             raise
     if run_coverage:
-        run_theorems_coverage(args)
+        run_theorems_coverage(args, run=False, print_results=True)
