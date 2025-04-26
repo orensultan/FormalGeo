@@ -105,11 +105,21 @@ ANSWER:
 80
 
 THEOREM_SEQUENCE:
-1; altitude_of_triangle_judgment(3,AD,ACB); Polygon(ACB)&Line(AD)&Collinear(CDB)&Equal(MeasureOfAngle(CDA),90); ["IsAltitudeOfTriangle(AD,ACB)"]
+1; altitude_of_triangle_judgment(3,AD,ACB); Polygon(ACB)&Line(AD)&Collinear(BCD)&Equal(MeasureOfAngle(CDA),90); ["IsAltitudeOfTriangle(AD,ACB)"]
 2; triangle_area_formula_common(1,ACB); Polygon(ACB); ["Equal(AreaOfTriangle(ACB),Mul(HeightOfTriangle(ACB),LengthOfLine(CB),1/2))"]
 ***MODEL_RESPONSE_END***
 RETRIES_MESSAGES:
-#run: 1; #retry: 1; message: ERROR_TIER: TIER3_GOAL_NOT_REACHED
+#run: 1; #retry: 1; message: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
+Failure: Theorem <triangle_area_formula_common> variation id is not supplied. Expected dict_keys(['1']) but got None.
+Your call: triangle_area_formula_common(A,C,B)
+Please rewrite your response by adding the variation id as the first argument. For example: For variation 1: triangle_area_formula_common(1,A,C,B)
+
+Model Answer:
+RETRY_ANSWER:
+80
+RETRY_THEOREM_SEQUENCE:
+1; triangle_area_formula_common(ACB); Polygon(ACB); ["Equal(AreaOfTriangle(ACB),Mul(HeightOfTriangle(ACB),LengthOfLine(CB),1/2))"]
+#run: 1; #retry: 2; message: ERROR_TIER: TIER3_GOAL_NOT_REACHED
 verification failed.
 
 - Goal: triangle_area ACB
@@ -130,15 +140,27 @@ RETRY_ANSWER:
 80
 RETRY_THEOREM_SEQUENCE:
 1; triangle_area_formula_common(1,ACB); Polygon(ACB); ["Equal(AreaOfTriangle(ACB),Mul(HeightOfTriangle(ACB),LengthOfLine(CB),1/2))"]
-#run: 1; #retry: 2; message: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
-Failure: Theorem <altitude_of_triangle_judgment> para length error. Expected 5 but got ('A', 'D', 'A', 'C', 'B', '(', '3').
+#run: 1; #retry: 3; message: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
+Failure: Theorem <line_addition> variation id is not supplied. Expected dict_keys(['1']) but got None.
+Your call: line_addition(A,B,B,C)
+Please rewrite your response by adding the variation id as the first argument. For example: For variation 1: line_addition(1,A,B,B,C)
+
 Model Answer:
 RETRY_ANSWER:
 80
 RETRY_THEOREM_SEQUENCE:
-1; altitude_of_triangle_judgment(AD,ACB)(3); Polygon(ACB)&Line(AD)&Collinear(BCD)&Equal(MeasureOfAngle(CDA),90); ["IsAltitudeOfTriangle(AD,ACB)"]
+1; line_addition(AB,BC); Collinear(DCB); ["Equal(LengthOfLine(DB),Add(LengthOfLine(DC),LengthOfLine(CB)))"]
 2; triangle_area_formula_common(1,ACB); Polygon(ACB); ["Equal(AreaOfTriangle(ACB),Mul(HeightOfTriangle(ACB),LengthOfLine(CB),1/2))"]
-#run: 1; #retry: 3; message: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
+3; (DefinitionOfAltitude); IsAltitudeOfTriangle(AD,ACB); ["Equal(HeightOfTriangle(ACB),LengthOfLine(AD))"]
+#run: 1; #retry: 4; message: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
+Failure: Theorem <given_altitude_statement> not defined in current GDL. Please rewrite the proof sequence, you are allowed to use only theorems from the GDL.
+Model Answer:
+RETRY_ANSWER:
+80
+RETRY_THEOREM_SEQUENCE:
+1; triangle_area_formula_common(1,ACB); Polygon(ACB); ["Equal(AreaOfTriangle(ACB),Mul(HeightOfTriangle(ACB),LengthOfLine(CB),1/2))"]
+2; given_altitude_statement(AD,ACB); IsAltitudeOfTriangle(AD,ACB); ["Equal(HeightOfTriangle(ACB),LengthOfLine(AD))"]
+#run: 1; #retry: 5; message: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
 Theorem: altitude_of_triangle_judgment(3,AD,ACB)
 You output the following premises: Polygon(ACB)&Line(AD)&Collinear(BCD)&Equal(MeasureOfAngle(CDA),90)
 But the correct premises: Polygon(ACB)&Line(AD)&Collinear(CBD)&Equal(MeasureOfAngle(BDA),90)
@@ -148,28 +170,6 @@ RETRY_ANSWER:
 80
 RETRY_THEOREM_SEQUENCE:
 1; altitude_of_triangle_judgment(3,AD,ACB); Polygon(ACB)&Line(AD)&Collinear(BCD)&Equal(MeasureOfAngle(CDA),90); ["IsAltitudeOfTriangle(AD,ACB)"]
-2; triangle_area_formula_common(1,ACB); Polygon(ACB); ["Equal(AreaOfTriangle(ACB),Mul(HeightOfTriangle(ACB),LengthOfLine(CB),1/2))"]
-#run: 1; #retry: 4; message: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
-Theorem: altitude_of_triangle_judgment(1,AD,ACB)
-You output the following premises: Polygon(ACB)&Line(AD)&Collinear(CBD)&Equal(MeasureOfAngle(BDA),90)
-But the correct premises: Polygon(ACB)&Line(AD)&Collinear(CDB)&Equal(MeasureOfAngle(CDA),90)
-
-Model Answer:
-RETRY_ANSWER:
-80
-RETRY_THEOREM_SEQUENCE:
-1; altitude_of_triangle_judgment(1,AD,ACB); Polygon(ACB)&Line(AD)&Collinear(CBD)&Equal(MeasureOfAngle(BDA),90); ["IsAltitudeOfTriangle(AD,ACB)"]
-2; triangle_area_formula_common(1,ACB); Polygon(ACB); ["Equal(AreaOfTriangle(ACB),Mul(HeightOfTriangle(ACB),LengthOfLine(CB),1/2))"]
-#run: 1; #retry: 5; message: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
-Theorem: altitude_of_triangle_judgment(3,AD,ACB)
-You output the following premises: Polygon(ACB)&Line(AD)&Collinear(CDB)&Equal(MeasureOfAngle(CDA),90)
-But the correct premises: Polygon(ACB)&Line(AD)&Collinear(CBD)&Equal(MeasureOfAngle(BDA),90)
-
-Model Answer:
-RETRY_ANSWER:
-80
-RETRY_THEOREM_SEQUENCE:
-1; altitude_of_triangle_judgment(3,AD,ACB); Polygon(ACB)&Line(AD)&Collinear(CDB)&Equal(MeasureOfAngle(CDA),90); ["IsAltitudeOfTriangle(AD,ACB)"]
 2; triangle_area_formula_common(1,ACB); Polygon(ACB); ["Equal(AreaOfTriangle(ACB),Mul(HeightOfTriangle(ACB),LengthOfLine(CB),1/2))"]
 #RETRIES:
 5
