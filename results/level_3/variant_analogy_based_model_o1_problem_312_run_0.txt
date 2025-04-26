@@ -1,0 +1,117 @@
+Inputs for Problem B:
+DESCRIPTION:
+As shown in the diagram, AB=x, BC=5, DE=x-4, FE=3, ∠ABC=∠FED, ∠CAB=∠EDF. Find the length of line DE.
+CONSTRUCTION_CDL:
+Shape(AB,BC,CA)
+Shape(DF,FE,ED)
+TEXT_CDL:
+Equal(LengthOfLine(AB),x)
+Equal(LengthOfLine(BC),5)
+Equal(LengthOfLine(DE),x-4)
+Equal(LengthOfLine(FE),3)
+Equal(MeasureOfAngle(ABC),MeasureOfAngle(FED))
+Equal(MeasureOfAngle(CAB),MeasureOfAngle(EDF))
+GOAL_CDL:
+Value(LengthOfLine(DE))
+CONSTRUCTION_CDL_EXTENDED:
+Shape(BC,CA,AB)
+Shape(CA,AB,BC)
+Shape(FE,ED,DF)
+Shape(ED,DF,FE)
+Point(A)
+Point(B)
+Point(C)
+Point(D)
+Point(F)
+Point(E)
+Line(AB)
+Line(BA)
+Line(BC)
+Line(CB)
+Line(CA)
+Line(AC)
+Line(DF)
+Line(FD)
+Line(FE)
+Line(EF)
+Line(ED)
+Line(DE)
+Angle(ABC)
+Angle(BCA)
+Angle(CAB)
+Angle(DFE)
+Angle(FED)
+Angle(EDF)
+Angle(CBA)
+Angle(ACB)
+Angle(BAC)
+Angle(EFD)
+Angle(DEF)
+Angle(FDE)
+Polygon(ABC)
+Polygon(ACB)
+Polygon(BAC)
+Polygon(BCA)
+Polygon(CAB)
+Polygon(CBA)
+Polygon(DFE)
+Polygon(DEF)
+Polygon(FDE)
+Polygon(FED)
+Polygon(EDF)
+Polygon(EFD)
+SYMBOLS_AND_VALUES:
+LengthOfLine(AB);ll_ab;3
+LengthOfLine(BA);ll_ab;3
+LengthOfLine(BD);ll_bd;2
+LengthOfLine(DB);ll_bd;2
+MeasureOfAngle(ABD);ma_abd;90
+MeasureOfAngle(CDB);ma_cdb;90
+MeasureOfAngle(DAB);ma_dab;None
+MeasureOfAngle(DBC);ma_dbc;None
+LengthOfLine(CD);ll_cd;None
+LengthOfLine(DC);ll_cd;None
+
+Outputs:
+Outputs for Problem B:
+
+***MODEL_RESPONSE_BEGIN***
+EQUATIONS:
+ll_ab - x
+ll_bc - 5
+ll_de - x + 4
+ll_fe - 3
+ma_abc - ma_fed
+ma_cab - ma_edf
+GOAL_SYMBOL:
+ll_de
+ANSWER:
+6
+THEOREM_SEQUENCE:
+1; mirror_similar_triangle_judgment_aa(1,CAB,FED); Polygon(CAB)&Polygon(FED)&Equal(MeasureOfAngle(CAB),MeasureOfAngle(EDF))&Equal(MeasureOfAngle(ABC),MeasureOfAngle(FED)); ["MirrorSimilarBetweenTriangle(CAB,FED)"]
+2; mirror_similar_triangle_property_line_ratio(1,CAB,FED); MirrorSimilarBetweenTriangle(CAB,FED); ["Equal(LengthOfLine(AB),Mul(LengthOfLine(ED),RatioOfMirrorSimilarTriangle(CAB,FED)))"]
+3; mirror_similar_triangle_property_line_ratio(1,ABC,DFE); MirrorSimilarBetweenTriangle(ABC,DFE); ["Equal(LengthOfLine(BC),Mul(LengthOfLine(FE),RatioOfMirrorSimilarTriangle(ABC,DFE)))"]
+***MODEL_RESPONSE_END***
+RETRIES_MESSAGES:
+#RETRIES:
+0
+#RUNS:
+0
+
+
+GT_EQUATIONS:
+ll_ab-x
+ll_bc-5
+ll_de-x+4
+ll_fe-3
+ma_abc-ma_fed
+ma_cab-ma_edf
+GT_GOAL_SYMBOL:
+ll_de
+GT_ANSWER:
+6
+GT_THEOREM_SEQUENCE:
+1;mirror_similar_triangle_judgment_aa(1,CAB,FED);Polygon(CAB)&Polygon(FED)&Equal(MeasureOfAngle(CAB),MeasureOfAngle(EDF))&Equal(MeasureOfAngle(ABC),MeasureOfAngle(FED));["MirrorSimilarBetweenTriangle(CAB,FED)"]
+2;mirror_similar_triangle_property_line_ratio(1,CAB,FED);MirrorSimilarBetweenTriangle(CAB,FED);["Equal(LengthOfLine(AB),Mul(LengthOfLine(ED),RatioOfMirrorSimilarTriangle(CAB,FED)))"]
+3;mirror_similar_triangle_property_line_ratio(1,ABC,DFE);MirrorSimilarBetweenTriangle(ABC,DFE);["Equal(LengthOfLine(BC),Mul(LengthOfLine(FE),RatioOfMirrorSimilarTriangle(ABC,DFE)))"]
+

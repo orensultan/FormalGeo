@@ -1,4 +1,13 @@
-Content written to results/level_1/variant_analogy_based_model_o1_problem_380_run_1_to_verify.txt
+[Attempt 1] Error: HTTP code 502 from API (<html>
+<head><title>502 Bad Gateway</title></head>
+<body>
+<center><h1>502 Bad Gateway</h1></center>
+<hr><center>cloudflare</center>
+</body>
+</html>
+)
+Retrying in 1 seconds...
+Content written to results/level_3/variant_analogy_based_model_o1_problem_1244_run_0_to_verify.txt
 predicates to add:
 Line
 predicates to add:
@@ -209,16 +218,6 @@ Equation
 predicates to add:
 Equation
 predicates to add:
-IsAltitudeOfTriangle
-predicates to add:
-Equation
-predicates to add:
-PerpendicularBetweenLine
-predicates to add:
-Equation
-predicates to add:
-PerpendicularBetweenLine
-predicates to add:
 Equation
 predicates to add:
 Equation
@@ -229,19 +228,23 @@ Equation
 predicates to add:
 Equation
 predicates to add:
-IsAltitudeOfTriangle
+Equation
 Verifier result: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
-Failure: Theorem <triangle_area_formula_common> variation id is not supplied. Expected dict_keys(['1']) but got None.
-Your call: triangle_area_formula_common(A,C,B)
-Please rewrite your response by adding the variation id as the first argument. For example: For variation 1: triangle_area_formula_common(1,A,C,B)
+Theorem: bisector_of_angle_judgment_angle_equal(1,AD,BDC)
+You output the following premises: Angle(ADB)&Angle(CDA)&Equal(MeasureOfAngle(ADB),MeasureOfAngle(CDA))
+But the correct premises: Angle(BDD)&Angle(DDC)&Equal(MeasureOfAngle(BDD),MeasureOfAngle(DDC))
+You output the following conclusions: IsBisectorOfAngle(AD,BDC)
+But the correct conclusions: IsBisectorOfAngle(DD,BDC)
 
 Model Answer:
 RETRY_ANSWER:
-80
+18
 RETRY_THEOREM_SEQUENCE:
-1; triangle_area_formula_common(ACB); Polygon(ACB); ["Equal(AreaOfTriangle(ACB),Mul(HeightOfTriangle(ACB),LengthOfLine(CB),1/2))"]
+1; bisector_of_angle_judgment_angle_equal(1,AD,BDC); Angle(ADB)&Angle(CDA)&Equal(MeasureOfAngle(ADB),MeasureOfAngle(CDA)); ["IsBisectorOfAngle(AD,BDC)"]
+2; bisector_of_angle_property_line_ratio(1,AD,BDC); IsBisectorOfAngle(AD,BDC)&Collinear(BAC); ["Equal(Mul(LengthOfLine(BD),LengthOfLine(AC)),Mul(LengthOfLine(CD),LengthOfLine(AB)))"]
+3; line_addition(AB,AC); Collinear(BAC); ["Equal(LengthOfLine(BC),Add(LengthOfLine(AB),LengthOfLine(AC)))"]
 Retry attempt: 1
-Content written to results/level_1/variant_analogy_based_model_o1_problem_380_run_1_to_verify.txt
+Content written to results/level_3/variant_analogy_based_model_o1_problem_1244_run_0_to_verify.txt
 predicates to add:
 Line
 predicates to add:
@@ -452,16 +455,6 @@ Equation
 predicates to add:
 Equation
 predicates to add:
-IsAltitudeOfTriangle
-predicates to add:
-Equation
-predicates to add:
-PerpendicularBetweenLine
-predicates to add:
-Equation
-predicates to add:
-PerpendicularBetweenLine
-predicates to add:
 Equation
 predicates to add:
 Equation
@@ -472,30 +465,25 @@ Equation
 predicates to add:
 Equation
 predicates to add:
-IsAltitudeOfTriangle
-Verifier result: ERROR_TIER: TIER3_GOAL_NOT_REACHED
-verification failed.
+Equation
+Verifier result: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
+Theorem: bisector_of_angle_judgment_angle_equal(1,AD,BDC)
+You output the following premises: Angle(ADB)&Angle(CDA)&Equal(MeasureOfAngle(ADB),MeasureOfAngle(CDA))
+But the correct premises: Angle(BDD)&Angle(DDC)&Equal(MeasureOfAngle(BDD),MeasureOfAngle(DDC))
+You output the following conclusions: IsBisectorOfAngle(AD,BDC)
+But the correct conclusions: IsBisectorOfAngle(DD,BDC)
 
-- Goal: triangle_area ACB
-- Model answer: 80
-- Error: Your proof doesn't uniquely determine the value. You need to use additional theorems to constrain the value.
-- Available premises:
-  Perpendicular Lines: AD ⊥ BD, AD ⊥ CD
-  Collinear Points: BCD
-  Polygons: ABC, ABD, ACB, ACD, ADB, ADC
-- Theorems related to the goal:
-  Step 1 - triangle_area_formula_common(1, ACB): Equal(AreaOfTriangle(ACB),Mul(HeightOfTriangle(ACB),LengthOfLine(CB),1/2))
-- Solver constraints directly related to this goal:
-  None found
-
-Please fix the proof.
 Model Answer:
 RETRY_ANSWER:
-80
+18
+
+RETRY_
 RETRY_THEOREM_SEQUENCE:
-1; triangle_area_formula_common(1,ACB); Polygon(ACB); ["Equal(AreaOfTriangle(ACB),Mul(HeightOfTriangle(ACB),LengthOfLine(CB),1/2))"]
+1; bisector_of_angle_judgment_angle_equal(1,AD,BDC); Angle(ADB)&Angle(CDA)&Equal(MeasureOfAngle(ADB),MeasureOfAngle(CDA)); ["IsBisectorOfAngle(AD,BDC)"]
+2; bisector_of_angle_property_line_ratio(1,AD,BDC); IsBisectorOfAngle(AD,BDC)&Collinear(BAC); ["Equal(Mul(LengthOfLine(BD),LengthOfLine(AC)),Mul(LengthOfLine(CD),LengthOfLine(AB)))"]
+3; line_addition(AB,AC); Collinear(BAC); ["Equal(LengthOfLine(BC),Add(LengthOfLine(AB),LengthOfLine(AC)))"]
 Retry attempt: 2
-Content written to results/level_1/variant_analogy_based_model_o1_problem_380_run_1_to_verify.txt
+Content written to results/level_3/variant_analogy_based_model_o1_problem_1244_run_0_to_verify.txt
 predicates to add:
 Line
 predicates to add:
@@ -706,16 +694,6 @@ Equation
 predicates to add:
 Equation
 predicates to add:
-IsAltitudeOfTriangle
-predicates to add:
-Equation
-predicates to add:
-PerpendicularBetweenLine
-predicates to add:
-Equation
-predicates to add:
-PerpendicularBetweenLine
-predicates to add:
 Equation
 predicates to add:
 Equation
@@ -726,21 +704,16 @@ Equation
 predicates to add:
 Equation
 predicates to add:
-IsAltitudeOfTriangle
+Equation
 Verifier result: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
-Failure: Theorem <line_addition> variation id is not supplied. Expected dict_keys(['1']) but got None.
-Your call: line_addition(A,B,B,C)
-Please rewrite your response by adding the variation id as the first argument. For example: For variation 1: line_addition(1,A,B,B,C)
-
+Failure: The THEOREM_SEQUENCE you provided is empty. Please generate a proof again, using the similar problems I provided (A1, A2, A3, A4, A5), along with the GDL_DICTIONARY of theorems.
 Model Answer:
 RETRY_ANSWER:
-80
+18
 RETRY_THEOREM_SEQUENCE:
-1; line_addition(AB,BC); Collinear(DCB); ["Equal(LengthOfLine(DB),Add(LengthOfLine(DC),LengthOfLine(CB)))"]
-2; triangle_area_formula_common(1,ACB); Polygon(ACB); ["Equal(AreaOfTriangle(ACB),Mul(HeightOfTriangle(ACB),LengthOfLine(CB),1/2))"]
-3; (DefinitionOfAltitude); IsAltitudeOfTriangle(AD,ACB); ["Equal(HeightOfTriangle(ACB),LengthOfLine(AD))"]
+
 Retry attempt: 3
-Content written to results/level_1/variant_analogy_based_model_o1_problem_380_run_1_to_verify.txt
+Content written to results/level_3/variant_analogy_based_model_o1_problem_1244_run_0_to_verify.txt
 predicates to add:
 Line
 predicates to add:
@@ -951,16 +924,6 @@ Equation
 predicates to add:
 Equation
 predicates to add:
-IsAltitudeOfTriangle
-predicates to add:
-Equation
-predicates to add:
-PerpendicularBetweenLine
-predicates to add:
-Equation
-predicates to add:
-PerpendicularBetweenLine
-predicates to add:
 Equation
 predicates to add:
 Equation
@@ -971,258 +934,261 @@ Equation
 predicates to add:
 Equation
 predicates to add:
-IsAltitudeOfTriangle
+Equation
 Verifier result: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
-Failure: Theorem <given_altitude_statement> not defined in current GDL. Please rewrite the proof sequence, you are allowed to use only theorems from the GDL.
-Model Answer:
-RETRY_ANSWER:
-80
-RETRY_THEOREM_SEQUENCE:
-1; triangle_area_formula_common(1,ACB); Polygon(ACB); ["Equal(AreaOfTriangle(ACB),Mul(HeightOfTriangle(ACB),LengthOfLine(CB),1/2))"]
-2; given_altitude_statement(AD,ACB); IsAltitudeOfTriangle(AD,ACB); ["Equal(HeightOfTriangle(ACB),LengthOfLine(AD))"]
-Retry attempt: 4
-Content written to results/level_1/variant_analogy_based_model_o1_problem_380_run_1_to_verify.txt
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Polygon
-has Polygon
-has Polygon
-has Polygon
-has Polygon
-has Polygon
-has Polygon
-has Polygon
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Polygon
-has Polygon
-has Polygon
-has Polygon
-has Polygon
-has Polygon
-has Polygon
-has Polygon
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Polygon
-has Polygon
-has Polygon
-has Polygon
-has Polygon
-has Polygon
-has Polygon
-has Polygon
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Equation
-predicates to add:
-Equation
-predicates to add:
-Equation
-predicates to add:
-Equation
-predicates to add:
-IsAltitudeOfTriangle
-predicates to add:
-Equation
-predicates to add:
-PerpendicularBetweenLine
-predicates to add:
-Equation
-predicates to add:
-PerpendicularBetweenLine
-predicates to add:
-Equation
-predicates to add:
-Equation
-predicates to add:
-Equation
-predicates to add:
-Equation
-predicates to add:
-Equation
-predicates to add:
-IsAltitudeOfTriangle
-Verifier result: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
-Theorem: altitude_of_triangle_judgment(3,AD,ACB)
-You output the following premises: Polygon(ACB)&Line(AD)&Collinear(BCD)&Equal(MeasureOfAngle(CDA),90)
-But the correct premises: Polygon(ACB)&Line(AD)&Collinear(CBD)&Equal(MeasureOfAngle(BDA),90)
+Theorem: bisector_of_angle_judgment_angle_equal(1,AD,BDC)
+You output the following premises: Angle(ADB)&Angle(CDA)&Equal(MeasureOfAngle(ADB),MeasureOfAngle(CDA))
+But the correct premises: Angle(BDD)&Angle(DDC)&Equal(MeasureOfAngle(BDD),MeasureOfAngle(DDC))
+You output the following conclusions: IsBisectorOfAngle(AD,BDC)
+But the correct conclusions: IsBisectorOfAngle(DD,BDC)
 
 Model Answer:
 RETRY_ANSWER:
-80
+18
+
+RETRY_
 RETRY_THEOREM_SEQUENCE:
-1; altitude_of_triangle_judgment(3,AD,ACB); Polygon(ACB)&Line(AD)&Collinear(BCD)&Equal(MeasureOfAngle(CDA),90); ["IsAltitudeOfTriangle(AD,ACB)"]
-2; triangle_area_formula_common(1,ACB); Polygon(ACB); ["Equal(AreaOfTriangle(ACB),Mul(HeightOfTriangle(ACB),LengthOfLine(CB),1/2))"]
+1; bisector_of_angle_judgment_angle_equal(1,AD,BDC); Angle(ADB)&Angle(CDA)&Equal(MeasureOfAngle(ADB),MeasureOfAngle(CDA)); ["IsBisectorOfAngle(AD,BDC)"]
+2; bisector_of_angle_property_line_ratio(1,AD,BDC); IsBisectorOfAngle(AD,BDC)&Collinear(BAC); ["Equal(Mul(LengthOfLine(BD),LengthOfLine(AC)),Mul(LengthOfLine(CD),LengthOfLine(AB)))"]
+3; line_addition(AB,AC); Collinear(BAC); ["Equal(LengthOfLine(BC),Add(LengthOfLine(AB),LengthOfLine(AC)))"]
+Retry attempt: 4
+Content written to results/level_3/variant_analogy_based_model_o1_problem_1244_run_0_to_verify.txt
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Polygon
+has Polygon
+has Polygon
+has Polygon
+has Polygon
+has Polygon
+has Polygon
+has Polygon
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Polygon
+has Polygon
+has Polygon
+has Polygon
+has Polygon
+has Polygon
+has Polygon
+has Polygon
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Polygon
+has Polygon
+has Polygon
+has Polygon
+has Polygon
+has Polygon
+has Polygon
+has Polygon
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Equation
+predicates to add:
+Equation
+predicates to add:
+Equation
+predicates to add:
+Equation
+predicates to add:
+Equation
+predicates to add:
+Equation
+predicates to add:
+Equation
+predicates to add:
+Equation
+predicates to add:
+Equation
+predicates to add:
+Equation
+Verifier result: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
+Theorem: bisector_of_angle_property_line_ratio(1,DD,BDC)
+You output the following premises: IsBisectorOfAngle(DD,BDC)&Collinear(BAC)
+But the correct premises: IsBisectorOfAngle(DD,BDC)&Collinear(CDB)
+You output the following conclusions: Equal(Mul(LengthOfLine(BD),LengthOfLine(AC)),Mul(LengthOfLine(CD),LengthOfLine(AB)))
+But the correct conclusions: Equal(Mul(LengthOfLine(CD),LengthOfLine(DB)),Mul(LengthOfLine(DB),LengthOfLine(DC)))
+
+Model Answer:
+RETRY_ANSWER:
+18
+
+RETRY_
+RETRY_THEOREM_SEQUENCE:
+1; bisector_of_angle_judgment_angle_equal(1,DD,BDC); Angle(BDD)&Angle(DDC)&Equal(MeasureOfAngle(BDD),MeasureOfAngle(DDC)); ["IsBisectorOfAngle(DD,BDC)"]
+2; bisector_of_angle_property_line_ratio(1,DD,BDC); IsBisectorOfAngle(DD,BDC)&Collinear(BAC); ["Equal(Mul(LengthOfLine(BD),LengthOfLine(AC)),Mul(LengthOfLine(CD),LengthOfLine(AB)))"]
+3; line_addition(BA,AC); Collinear(BAC); ["Equal(LengthOfLine(BC),Add(LengthOfLine(BA),LengthOfLine(AC)))"]
 Retry attempt: 5
-Content written to results/level_1/variant_analogy_based_model_o1_problem_380_run_1.txt
+Content written to results/level_3/variant_analogy_based_model_o1_problem_1244_run_0.txt

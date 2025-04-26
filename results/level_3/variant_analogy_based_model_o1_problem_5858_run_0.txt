@@ -1,0 +1,200 @@
+Inputs for Problem B:
+DESCRIPTION:
+As shown in the diagram, AB=100, BC=60, AC⊥BC. Find the value of sin(CB).
+CONSTRUCTION_CDL:
+Shape(BA,AC,CB)
+TEXT_CDL:
+Equal(LengthOfLine(AB),100)
+Equal(LengthOfLine(BC),60)
+PerpendicularBetweenLine(AC,BC)
+GOAL_CDL:
+Value(Sin(MeasureOfAngle(CBA)))
+CONSTRUCTION_CDL_EXTENDED:
+Shape(AC,CB,BA)
+Shape(CB,BA,AC)
+Point(B)
+Point(A)
+Point(C)
+Line(BA)
+Line(AB)
+Line(AC)
+Line(CA)
+Line(CB)
+Line(BC)
+Angle(BAC)
+Angle(ACB)
+Angle(CBA)
+Angle(CAB)
+Angle(BCA)
+Angle(ABC)
+Polygon(BAC)
+Polygon(BCA)
+Polygon(ABC)
+Polygon(ACB)
+Polygon(CBA)
+Polygon(CAB)
+SYMBOLS_AND_VALUES:
+LengthOfLine(XZ);ll_xz;14
+LengthOfLine(ZX);ll_xz;14
+LengthOfLine(ZY);ll_zy;10
+LengthOfLine(YZ);ll_zy;10
+MeasureOfAngle(XYZ);ma_xyz;90
+MeasureOfAngle(YZX);ma_yzx;None
+
+Outputs:
+Outputs for Problem B:
+
+***MODEL_RESPONSE_BEGIN***
+EQUATIONS:
+ll_ab-100
+ll_bc-60
+ma_acb-90
+ll_ac-80
+
+GOAL_SYMBOL:
+Sin(MeasureOfAngle(CBA))
+
+ANSWER:
+0.8
+
+THEOREM_SEQUENCE:
+1; right_triangle_judgment_angle(1,ACB); Polygon(ACB)&Equal(MeasureOfAngle(ACB),90); ["RightTriangle(ACB)"]
+2; right_triangle_property_pythagorean(1,ACB); RightTriangle(ACB); ["Equal(Add(Pow(LengthOfLine(AC),2),Pow(LengthOfLine(CB),2)),Pow(LengthOfLine(AB),2))"]
+3; sine_theorem(1,ACB); Polygon(ACB); ["Equal(Mul(LengthOfLine(AC),Sin(MeasureOfAngle(ACB))),Mul(LengthOfLine(AB),Sin(MeasureOfAngle(CBA))))"]
+***MODEL_RESPONSE_END***
+RETRIES_MESSAGES:
+#run: 0; #retry: 1; message: ERROR_TIER: TIER3_GOAL_NOT_REACHED
+verification failed.
+
+- Goal: sine of angle CBA
+- Model answer: 0.8
+- Error: Your proof doesn't provide enough information to determine this value. You need to add theorems that specifically constrain sine CBA.
+- Available premises:
+  Perpendicular Lines: AC ⊥ BC
+  Right Triangles: ACB
+  Polygons: ABC, ACB
+- Theorems related to the goal:
+  None found that constrain this goal
+- Solver constraints directly related to this goal:
+  sin_CBA <= 1
+  sin_CBA >= -1
+  ∠ABC <= 180
+  ∠ABC > 0
+
+Please fix the proof.
+Model Answer:
+RETRY_ANSWER:
+0.8
+RETRY_THEOREM_SEQUENCE:
+1; right_triangle_judgment_angle(1,ACB); Polygon(ACB)&Equal(MeasureOfAngle(ACB),90); ["RightTriangle(ACB)"]  
+2; right_triangle_property_pythagorean(1,ACB); RightTriangle(ACB); ["Equal(Add(Pow(LengthOfLine(AC),2),Pow(LengthOfLine(CB),2)),Pow(LengthOfLine(AB),2))"]  
+3; sine_theorem(1,ABC); Polygon(ABC); ["Equal(Mul(LengthOfLine(AB),Sin(MeasureOfAngle(ABC))),Mul(LengthOfLine(AC),Sin(MeasureOfAngle(BCA))))"]
+#run: 0; #retry: 2; message: ERROR_TIER: TIER3_GOAL_NOT_REACHED
+verification failed.
+
+- Goal: sine of angle CBA
+- Model answer: 0.8
+- Error: Your proof doesn't provide enough information to determine this value. You need to add theorems that specifically constrain sine CBA.
+- Available premises:
+  Perpendicular Lines: AC ⊥ BC
+  Right Triangles: ACB
+  Polygons: ABC, ACB
+- Theorems related to the goal:
+  None found that constrain this goal
+- Solver constraints directly related to this goal:
+  sin_CBA <= 1
+  sin_CBA >= -1
+  ∠ABC <= 180
+  ∠ABC > 0
+
+Please fix the proof.
+Model Answer:
+RETRY_ANSWER:
+0.8
+RETRY_THEOREM_SEQUENCE:
+1; right_triangle_judgment_angle(1,ACB); Polygon(ACB)&Equal(MeasureOfAngle(ACB),90); ["RightTriangle(ACB)"]  
+2; right_triangle_property_pythagorean(1,ACB); RightTriangle(ACB); ["Equal(Add(Pow(LengthOfLine(AC),2),Pow(LengthOfLine(CB),2)),Pow(LengthOfLine(AB),2))"]  
+3; sine_theorem(1,ABC); Polygon(ABC); ["Equal(Mul(LengthOfLine(AB),Sin(MeasureOfAngle(ABC))),Mul(LengthOfLine(AC),Sin(MeasureOfAngle(BCA))))"]
+#run: 0; #retry: 3; message: ERROR_TIER: TIER3_GOAL_NOT_REACHED
+verification failed.
+
+- Goal: sine of angle CBA
+- Model answer: 0.8
+- Error: Your proof doesn't provide enough information to determine this value. You need to add theorems that specifically constrain sine CBA.
+- Available premises:
+  Perpendicular Lines: AC ⊥ BC
+  Right Triangles: ACB
+  Polygons: ABC, ACB
+- Theorems related to the goal:
+  None found that constrain this goal
+- Solver constraints directly related to this goal:
+  sin_CBA <= 1
+  sin_CBA >= -1
+  ∠ABC <= 180
+  ∠ABC > 0
+
+Please fix the proof.
+Model Answer:
+RETRY_ANSWER:
+0.8
+RETRY_THEOREM_SEQUENCE:
+1; right_triangle_judgment_angle(1,ACB); Polygon(ACB)&Equal(MeasureOfAngle(ACB),90); ["RightTriangle(ACB)"]  
+2; right_triangle_property_pythagorean(1,ACB); RightTriangle(ACB); ["Equal(Add(Pow(LengthOfLine(AC),2),Pow(LengthOfLine(CB),2)),Pow(LengthOfLine(AB),2))"]  
+3; sine_theorem(1,ABC); Polygon(ABC); ["Equal(Mul(LengthOfLine(AB),Sin(MeasureOfAngle(ABC))),Mul(LengthOfLine(AC),Sin(MeasureOfAngle(BCA))))"]
+#run: 0; #retry: 4; message: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
+Theorem: right_triangle_property_pythagorean(1,ACB)
+You output the following conclusions: Equal(Add(Pow(LengthOfLine(AC),2),Pow(LengthOfLine(BC),2)),Pow(LengthOfLine(AB),2))
+But the correct conclusions: Equal(Add(Pow(LengthOfLine(AC),2),Pow(LengthOfLine(CB),2)),Pow(LengthOfLine(AB),2))
+
+Model Answer:
+RETRY_ANSWER:
+0.8
+RETRY_THEOREM_SEQUENCE:
+1; right_triangle_judgment_angle(1,ACB); Polygon(ACB)&Equal(MeasureOfAngle(ACB),90); ["RightTriangle(ACB)"]  
+2; right_triangle_property_pythagorean(1,ACB); RightTriangle(ACB); ["Equal(Add(Pow(LengthOfLine(AC),2),Pow(LengthOfLine(BC),2)),Pow(LengthOfLine(AB),2))"]  
+3; sine_theorem(1,ABC); Polygon(ABC); ["Equal(Mul(LengthOfLine(AB),Sin(MeasureOfAngle(ABC))),Mul(LengthOfLine(AC),Sin(MeasureOfAngle(BCA))))"]
+#run: 0; #retry: 5; message: ERROR_TIER: TIER3_GOAL_NOT_REACHED
+verification failed.
+
+- Goal: sine of angle CBA
+- Model answer: 0.8
+- Error: Your proof doesn't provide enough information to determine this value. You need to add theorems that specifically constrain sine CBA.
+- Available premises:
+  Perpendicular Lines: AC ⊥ BC
+  Right Triangles: ACB
+  Polygons: ABC, ACB
+- Theorems related to the goal:
+  Step 3 - sine_theorem(1, ACB): Equal(Mul(LengthOfLine(AC),Sin(MeasureOfAngle(ACB))),Mul(LengthOfLine(AB),Sin(MeasureOfAngle(CBA))))
+- Solver constraints directly related to this goal:
+  sin_CBA <= 1
+  sin_CBA >= -1
+  ∠ABC <= 180
+  ∠ABC > 0
+
+Please fix the proof.
+Model Answer:
+RETRY_ANSWER:
+0.8
+RETRY_THEOREM_SEQUENCE:
+1; right_triangle_judgment_angle(1,ACB); Polygon(ACB)&Equal(MeasureOfAngle(ACB),90); ["RightTriangle(ACB)"]
+2; right_triangle_property_pythagorean(1,ACB); RightTriangle(ACB); ["Equal(Add(Pow(LengthOfLine(AC),2),Pow(LengthOfLine(CB),2)),Pow(LengthOfLine(AB),2))"]
+3; sine_theorem(1,ACB); Polygon(ACB); ["Equal(Mul(LengthOfLine(AC),Sin(MeasureOfAngle(ACB))),Mul(LengthOfLine(AB),Sin(MeasureOfAngle(CBA))))"]
+#RETRIES:
+5
+#RUNS:
+0
+
+
+GT_EQUATIONS:
+ll_ab-100
+ll_bc-60
+ma_acb-90
+GT_GOAL_SYMBOL:
+sin(pi*ma_cba/180)
+GT_ANSWER:
+4/5
+GT_THEOREM_SEQUENCE:
+1;right_triangle_judgment_angle(1,ACB);Polygon(ACB)&Equal(MeasureOfAngle(ACB),90);["RightTriangle(ACB)"]
+2;right_triangle_property_pythagorean(1,ACB);RightTriangle(ACB);["Equal(Add(Pow(LengthOfLine(AC),2),Pow(LengthOfLine(CB),2)),Pow(LengthOfLine(AB),2))"]
+3;cosine_theorem(1,BAC);Polygon(BAC);["Equal(Add(Pow(LengthOfLine(AC),2),Mul(2,LengthOfLine(BA),LengthOfLine(BC),Cos(MeasureOfAngle(CBA)))),Add(Pow(LengthOfLine(BA),2),Pow(LengthOfLine(BC),2)))"]
+
