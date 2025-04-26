@@ -1,18 +1,4 @@
-Content written to results/level_1/variant_analogy_based_model_o1_problem_380_run_0_to_verify.txt
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
+Content written to results/level_2/variant_analogy_based_model_o1_problem_1586_run_1_to_verify.txt
 predicates to add:
 Line
 predicates to add:
@@ -86,7 +72,7 @@ Angle
 predicates to add:
 Line
 predicates to add:
-Angle
+Line
 predicates to add:
 Line
 predicates to add:
@@ -113,6 +99,119 @@ has Polygon
 has Polygon
 has Polygon
 predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Polygon
+has Polygon
+has Polygon
+has Polygon
+has Polygon
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Polygon
+has Polygon
+has Polygon
+has Polygon
+has Polygon
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Polygon
+has Polygon
+has Polygon
+has Polygon
+has Polygon
+has Polygon
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
 Angle
 predicates to add:
 Angle
@@ -127,25 +226,27 @@ Line
 predicates to add:
 Angle
 predicates to add:
-Angle
+Line
+predicates to add:
+Line
 predicates to add:
 Angle
 predicates to add:
-Angle
+Line
+predicates to add:
+Line
 predicates to add:
 Angle
 predicates to add:
-Angle
+Line
+predicates to add:
+Line
 predicates to add:
 Angle
 predicates to add:
-Angle
+Line
 predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Angle
+Line
 predicates to add:
 Angle
 predicates to add:
@@ -209,19 +310,15 @@ Equation
 predicates to add:
 Equation
 predicates to add:
-IsAltitudeOfTriangle
-predicates to add:
-Equation
-predicates to add:
-PerpendicularBetweenLine
-predicates to add:
-Equation
-predicates to add:
-PerpendicularBetweenLine
-predicates to add:
 Equation
 predicates to add:
 Equation
+predicates to add:
+IsoscelesTriangle
+predicates to add:
+Equation
+predicates to add:
+IsoscelesTriangle
 predicates to add:
 Equation
 predicates to add:
@@ -229,33 +326,27 @@ Equation
 predicates to add:
 Equation
 predicates to add:
-IsAltitudeOfTriangle
+Equation
+predicates to add:
+Equation
+predicates to add:
+Equation
+Traceback (most recent call last):
+  File "/Users/osultan/PycharmProjects/FormalGeo/src/formalgeo/geometric_verifier.py", line 10295, in parse_and_verify_proof
+    is_valid, error = self.validate_theorem_premises(theorem_name, args, premise)
+  File "/Users/osultan/PycharmProjects/FormalGeo/src/formalgeo/geometric_verifier.py", line 6238, in validate_theorem_premises
+    if not (variations & self.isosceles_triangles):
+AttributeError: 'GeometricTheorem' object has no attribute 'isosceles_triangles'
 Verifier result: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
-Failure: Theorem <triangle_area_formula_common> variation id is not supplied. Expected dict_keys(['1']) but got None.
-Your call: triangle_area_formula_common(A,C,B)
-Please rewrite your response by adding the variation id as the first argument. For example: For variation 1: triangle_area_formula_common(1,A,C,B)
-
+Error during proof verification: 'GeometricTheorem' object has no attribute 'isosceles_triangles'
 Model Answer:
 RETRY_ANSWER:
-80
+81
 RETRY_THEOREM_SEQUENCE:
-1; triangle_area_formula_common(ACB); Polygon(ACB); ["Equal(AreaOfTriangle(ACB),Mul(HeightOfTriangle(ACB),LengthOfLine(CB),1/2))"]
+1; isosceles_triangle_property_angle_equal(1,LNK); IsoscelesTriangle(LNK); ["Equal(MeasureOfAngle(LNK),MeasureOfAngle(NKL))"]
+2; triangle_property_angle_sum(1,LNK); Polygon(LNK); ["Equal(Add(MeasureOfAngle(LNK),MeasureOfAngle(NKL),MeasureOfAngle(KLN)),180)"]
 Retry attempt: 1
-Content written to results/level_1/variant_analogy_based_model_o1_problem_380_run_0_to_verify.txt
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
+Content written to results/level_2/variant_analogy_based_model_o1_problem_1586_run_1_to_verify.txt
 predicates to add:
 Line
 predicates to add:
@@ -329,7 +420,7 @@ Angle
 predicates to add:
 Line
 predicates to add:
-Angle
+Line
 predicates to add:
 Line
 predicates to add:
@@ -356,6 +447,119 @@ has Polygon
 has Polygon
 has Polygon
 predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Polygon
+has Polygon
+has Polygon
+has Polygon
+has Polygon
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Polygon
+has Polygon
+has Polygon
+has Polygon
+has Polygon
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Polygon
+has Polygon
+has Polygon
+has Polygon
+has Polygon
+has Polygon
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
 Angle
 predicates to add:
 Angle
@@ -370,25 +574,27 @@ Line
 predicates to add:
 Angle
 predicates to add:
-Angle
+Line
+predicates to add:
+Line
 predicates to add:
 Angle
 predicates to add:
-Angle
+Line
+predicates to add:
+Line
 predicates to add:
 Angle
 predicates to add:
-Angle
+Line
+predicates to add:
+Line
 predicates to add:
 Angle
 predicates to add:
-Angle
+Line
 predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Angle
+Line
 predicates to add:
 Angle
 predicates to add:
@@ -452,19 +658,15 @@ Equation
 predicates to add:
 Equation
 predicates to add:
-IsAltitudeOfTriangle
-predicates to add:
-Equation
-predicates to add:
-PerpendicularBetweenLine
-predicates to add:
-Equation
-predicates to add:
-PerpendicularBetweenLine
-predicates to add:
 Equation
 predicates to add:
 Equation
+predicates to add:
+IsoscelesTriangle
+predicates to add:
+Equation
+predicates to add:
+IsoscelesTriangle
 predicates to add:
 Equation
 predicates to add:
@@ -472,44 +674,27 @@ Equation
 predicates to add:
 Equation
 predicates to add:
-IsAltitudeOfTriangle
-Verifier result: ERROR_TIER: TIER3_GOAL_NOT_REACHED
-verification failed.
-
-- Goal: triangle_area ACB
-- Model answer: 80
-- Error: Your proof doesn't uniquely determine the value. You need to use additional theorems to constrain the value.
-- Available premises:
-  Perpendicular Lines: AD ⊥ BD, AD ⊥ CD
-  Collinear Points: BCD
-  Polygons: ABC, ABD, ACB, ACD, ADB, ADC
-- Theorems related to the goal:
-  Step 1 - triangle_area_formula_common(1, ACB): Equal(AreaOfTriangle(ACB),Mul(HeightOfTriangle(ACB),LengthOfLine(CB),1/2))
-- Solver constraints directly related to this goal:
-  None found
-
-Please fix the proof.
+Equation
+predicates to add:
+Equation
+predicates to add:
+Equation
+Traceback (most recent call last):
+  File "/Users/osultan/PycharmProjects/FormalGeo/src/formalgeo/geometric_verifier.py", line 10295, in parse_and_verify_proof
+    is_valid, error = self.validate_theorem_premises(theorem_name, args, premise)
+  File "/Users/osultan/PycharmProjects/FormalGeo/src/formalgeo/geometric_verifier.py", line 6238, in validate_theorem_premises
+    if not (variations & self.isosceles_triangles):
+AttributeError: 'GeometricTheorem' object has no attribute 'isosceles_triangles'
+Verifier result: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
+Error during proof verification: 'GeometricTheorem' object has no attribute 'isosceles_triangles'
 Model Answer:
 RETRY_ANSWER:
-80
+81
 RETRY_THEOREM_SEQUENCE:
-1; triangle_area_formula_common(1,ACB); Polygon(ACB); ["Equal(AreaOfTriangle(ACB),Mul(HeightOfTriangle(ACB),LengthOfLine(CB),1/2))"]
+1; isosceles_triangle_property_angle_equal(1,LNK); IsoscelesTriangle(LNK); ["Equal(MeasureOfAngle(LNK),MeasureOfAngle(NKL))"]
+2; triangle_property_angle_sum(1,LNK); Polygon(LNK); ["Equal(Add(MeasureOfAngle(LNK),MeasureOfAngle(NKL),MeasureOfAngle(KLN)),180)"]
 Retry attempt: 2
-Content written to results/level_1/variant_analogy_based_model_o1_problem_380_run_0_to_verify.txt
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
+Content written to results/level_2/variant_analogy_based_model_o1_problem_1586_run_1_to_verify.txt
 predicates to add:
 Line
 predicates to add:
@@ -583,7 +768,7 @@ Angle
 predicates to add:
 Line
 predicates to add:
-Angle
+Line
 predicates to add:
 Line
 predicates to add:
@@ -610,6 +795,119 @@ has Polygon
 has Polygon
 has Polygon
 predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Polygon
+has Polygon
+has Polygon
+has Polygon
+has Polygon
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Polygon
+has Polygon
+has Polygon
+has Polygon
+has Polygon
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Polygon
+has Polygon
+has Polygon
+has Polygon
+has Polygon
+has Polygon
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
 Angle
 predicates to add:
 Angle
@@ -624,25 +922,27 @@ Line
 predicates to add:
 Angle
 predicates to add:
-Angle
+Line
+predicates to add:
+Line
 predicates to add:
 Angle
 predicates to add:
-Angle
+Line
+predicates to add:
+Line
 predicates to add:
 Angle
 predicates to add:
-Angle
+Line
+predicates to add:
+Line
 predicates to add:
 Angle
 predicates to add:
-Angle
+Line
 predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Angle
+Line
 predicates to add:
 Angle
 predicates to add:
@@ -706,19 +1006,15 @@ Equation
 predicates to add:
 Equation
 predicates to add:
-IsAltitudeOfTriangle
-predicates to add:
-Equation
-predicates to add:
-PerpendicularBetweenLine
-predicates to add:
-Equation
-predicates to add:
-PerpendicularBetweenLine
-predicates to add:
 Equation
 predicates to add:
 Equation
+predicates to add:
+IsoscelesTriangle
+predicates to add:
+Equation
+predicates to add:
+IsoscelesTriangle
 predicates to add:
 Equation
 predicates to add:
@@ -726,34 +1022,25 @@ Equation
 predicates to add:
 Equation
 predicates to add:
-IsAltitudeOfTriangle
+Equation
+predicates to add:
+Equation
+predicates to add:
+Equation
 Verifier result: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
-Theorem: altitude_of_triangle_judgment(3,AD,ACB)
-You output the following premises: Polygon(ACB)&Line(AD)&Collinear(BCD)&Equal(MeasureOfAngle(CDA),90)
-But the correct premises: Polygon(ACB)&Line(AD)&Collinear(CBD)&Equal(MeasureOfAngle(BDA),90)
+Theorem: isosceles_triangle_judgment_line_equal(1,LNK)
+You output the following premises: Polygon(LNK)&Equal(LengthOfLine(LK),LengthOfLine(LN))
+But the correct premises: Polygon(LNK)&Equal(LengthOfLine(LN),LengthOfLine(LK))
 
 Model Answer:
 RETRY_ANSWER:
-80
+81
 RETRY_THEOREM_SEQUENCE:
-1; altitude_of_triangle_judgment(3,AD,ACB); Polygon(ACB)&Line(AD)&Collinear(BCD)&Equal(MeasureOfAngle(CDA),90); ["IsAltitudeOfTriangle(AD,ACB)"]  
-2; triangle_area_formula_common(1,ACB); Polygon(ACB); ["Equal(AreaOfTriangle(ACB),Mul(HeightOfTriangle(ACB),LengthOfLine(CB),1/2))"]
+1; isosceles_triangle_judgment_line_equal(1,LNK); Polygon(LNK)&Equal(LengthOfLine(LK),LengthOfLine(LN)); ["IsoscelesTriangle(LNK)"]
+2; isosceles_triangle_property_angle_equal(1,LNK); IsoscelesTriangle(LNK); ["Equal(MeasureOfAngle(LNK),MeasureOfAngle(NKL))"]
+3; triangle_property_angle_sum(1,LNK); Polygon(LNK); ["Equal(Add(MeasureOfAngle(LNK),MeasureOfAngle(NKL),MeasureOfAngle(KLN)),180)"]
 Retry attempt: 3
-Content written to results/level_1/variant_analogy_based_model_o1_problem_380_run_0_to_verify.txt
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
+Content written to results/level_2/variant_analogy_based_model_o1_problem_1586_run_1_to_verify.txt
 predicates to add:
 Line
 predicates to add:
@@ -787,217 +1074,6 @@ has Polygon
 has Polygon
 has Polygon
 has Polygon
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Polygon
-has Polygon
-has Polygon
-has Polygon
-has Polygon
-has Polygon
-has Polygon
-has Polygon
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Polygon
-has Polygon
-has Polygon
-has Polygon
-has Polygon
-has Polygon
-has Polygon
-has Polygon
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Equation
-predicates to add:
-Equation
-predicates to add:
-Equation
-predicates to add:
-Equation
-predicates to add:
-IsAltitudeOfTriangle
-predicates to add:
-Equation
-predicates to add:
-PerpendicularBetweenLine
-predicates to add:
-Equation
-predicates to add:
-PerpendicularBetweenLine
-predicates to add:
-Equation
-predicates to add:
-Equation
-predicates to add:
-Equation
-predicates to add:
-Equation
-predicates to add:
-Equation
-predicates to add:
-IsAltitudeOfTriangle
-Verifier result: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
-Theorem: altitude_of_triangle_judgment(1,AD,ACB)
-You output the following premises: Polygon(ACB)&Line(AD)&Collinear(CBD)&Equal(MeasureOfAngle(BDA),90)
-But the correct premises: Polygon(ACB)&Line(AD)&Collinear(CDB)&Equal(MeasureOfAngle(CDA),90)
-
-Model Answer:
-RETRY_ANSWER:
-80
-RETRY_THEOREM_SEQUENCE:
-1; altitude_of_triangle_judgment(1,AD,ACB); Polygon(ACB)&Line(AD)&Collinear(CBD)&Equal(MeasureOfAngle(BDA),90); ["IsAltitudeOfTriangle(AD,ACB)"]
-2; triangle_area_formula_common(1,ACB); Polygon(ACB); ["Equal(AreaOfTriangle(ACB),Mul(HeightOfTriangle(ACB),LengthOfLine(CB),1/2))"]
-Retry attempt: 4
-Content written to results/level_1/variant_analogy_based_model_o1_problem_380_run_0_to_verify.txt
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
 predicates to add:
 Line
 predicates to add:
@@ -1075,11 +1151,71 @@ Angle
 predicates to add:
 Line
 predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
 Angle
 predicates to add:
 Line
 predicates to add:
 Line
+predicates to add:
+Polygon
+has Polygon
+has Polygon
+has Polygon
+has Polygon
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Polygon
+has Polygon
+has Polygon
+has Polygon
+has Polygon
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Angle
 predicates to add:
 Line
 predicates to add:
@@ -1095,8 +1231,28 @@ has Polygon
 has Polygon
 has Polygon
 has Polygon
-has Polygon
-has Polygon
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
 predicates to add:
 Angle
 predicates to add:
@@ -1112,25 +1268,27 @@ Line
 predicates to add:
 Angle
 predicates to add:
-Angle
+Line
+predicates to add:
+Line
 predicates to add:
 Angle
 predicates to add:
-Angle
+Line
+predicates to add:
+Line
 predicates to add:
 Angle
 predicates to add:
-Angle
+Line
+predicates to add:
+Line
 predicates to add:
 Angle
 predicates to add:
-Angle
+Line
 predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Angle
+Line
 predicates to add:
 Angle
 predicates to add:
@@ -1194,19 +1352,15 @@ Equation
 predicates to add:
 Equation
 predicates to add:
-IsAltitudeOfTriangle
-predicates to add:
-Equation
-predicates to add:
-PerpendicularBetweenLine
-predicates to add:
-Equation
-predicates to add:
-PerpendicularBetweenLine
-predicates to add:
 Equation
 predicates to add:
 Equation
+predicates to add:
+IsoscelesTriangle
+predicates to add:
+Equation
+predicates to add:
+IsoscelesTriangle
 predicates to add:
 Equation
 predicates to add:
@@ -1214,17 +1368,10 @@ Equation
 predicates to add:
 Equation
 predicates to add:
-IsAltitudeOfTriangle
-Verifier result: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
-Theorem: altitude_of_triangle_judgment(3,AD,ACB)
-You output the following premises: Polygon(ACB)&Line(AD)&Collinear(CDB)&Equal(MeasureOfAngle(CDA),90)
-But the correct premises: Polygon(ACB)&Line(AD)&Collinear(CBD)&Equal(MeasureOfAngle(BDA),90)
-
-Model Answer:
-RETRY_ANSWER:
-80
-RETRY_THEOREM_SEQUENCE:
-1; altitude_of_triangle_judgment(3,AD,ACB); Polygon(ACB)&Line(AD)&Collinear(CDB)&Equal(MeasureOfAngle(CDA),90); ["IsAltitudeOfTriangle(AD,ACB)"]
-2; triangle_area_formula_common(1,ACB); Polygon(ACB); ["Equal(AreaOfTriangle(ACB),Mul(HeightOfTriangle(ACB),LengthOfLine(CB),1/2))"]
-Retry attempt: 5
-Content written to results/level_1/variant_analogy_based_model_o1_problem_380_run_0.txt
+Equation
+predicates to add:
+Equation
+predicates to add:
+Equation
+Theorem sequence verified correctly
+Content written to results/level_2/variant_analogy_based_model_o1_problem_1586_run_1.txt

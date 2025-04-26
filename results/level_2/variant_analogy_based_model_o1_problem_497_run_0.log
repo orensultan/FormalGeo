@@ -1,4 +1,12 @@
-Content written to results/level_1/variant_analogy_based_model_o1_problem_2677_run_0_to_verify.txt
+Content written to results/level_2/variant_analogy_based_model_o1_problem_497_run_0_to_verify.txt
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
 predicates to add:
 Line
 predicates to add:
@@ -29,9 +37,6 @@ has Polygon
 has Polygon
 has Polygon
 has Polygon
-has Polygon
-has Polygon
-has Polygon
 predicates to add:
 Angle
 predicates to add:
@@ -40,10 +45,6 @@ predicates to add:
 Angle
 predicates to add:
 Angle
-predicates to add:
-Line
-predicates to add:
-Line
 predicates to add:
 Angle
 predicates to add:
@@ -57,22 +58,32 @@ Line
 predicates to add:
 Line
 predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Equation
+predicates to add:
+Equation
+predicates to add:
 Equation
 predicates to add:
 Equation
 predicates to add:
 Equation
 predicates to add:
-PerpendicularBetweenLine
-predicates to add:
 Equation
 predicates to add:
 Equation
 predicates to add:
 Equation
-predicates to add:
-Equation
-predicates to add:
-PerpendicularBetweenLine
 Theorem sequence verified correctly
-Content written to results/level_1/variant_analogy_based_model_o1_problem_2677_run_0.txt
+Content written to results/level_2/variant_analogy_based_model_o1_problem_497_run_0.txt

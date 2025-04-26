@@ -485,12 +485,12 @@ Equation
 predicates to add:
 IsAltitudeOfTriangle
 Verifier result: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
-Failure: Theorem <altitude_of_triangle_judgment> para length error. Expected 5 but got ('A', 'C', 'B').
+Failure: Theorem <altitude_of_triangle_judgment> para length error. Expected 5 but got ('A', 'D', 'A', 'C', 'B', '(', '3').
 Model Answer:
 RETRY_ANSWER:
 80
 RETRY_THEOREM_SEQUENCE:
-1; altitude_of_triangle_judgment(3,ACB); Polygon(ACB)&Line(AD)&Collinear(BCD)&Equal(MeasureOfAngle(CDA),90); ["IsAltitudeOfTriangle(AD,ACB)"]
+1; altitude_of_triangle_judgment(AD,ACB)(3); Polygon(ACB)&Line(AD)&Collinear(BCD)&Equal(MeasureOfAngle(CDA),90); ["IsAltitudeOfTriangle(AD,ACB)"]
 2; triangle_area_formula_common(1,ACB); Polygon(ACB); ["Equal(AreaOfTriangle(ACB),Mul(HeightOfTriangle(ACB),LengthOfLine(CB),1/2))"]
 Retry attempt: 2
 Content written to results/level_1/variant_analogy_based_model_o1_problem_380_run_1_to_verify.txt
@@ -726,7 +726,7 @@ Equation
 predicates to add:
 IsAltitudeOfTriangle
 Verifier result: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
-Theorem: altitude_of_triangle_judgment(3,AD,A,C,B)
+Theorem: altitude_of_triangle_judgment(3,AD,ACB)
 You output the following premises: Polygon(ACB)&Line(AD)&Collinear(BCD)&Equal(MeasureOfAngle(CDA),90)
 But the correct premises: Polygon(ACB)&Line(AD)&Collinear(CBD)&Equal(MeasureOfAngle(BDA),90)
 
@@ -734,7 +734,7 @@ Model Answer:
 RETRY_ANSWER:
 80
 RETRY_THEOREM_SEQUENCE:
-1; altitude_of_triangle_judgment(3,AD,A,C,B); Polygon(ACB)&Line(AD)&Collinear(BCD)&Equal(MeasureOfAngle(CDA),90); ["IsAltitudeOfTriangle(AD,ACB)"]
+1; altitude_of_triangle_judgment(3,AD,ACB); Polygon(ACB)&Line(AD)&Collinear(BCD)&Equal(MeasureOfAngle(CDA),90); ["IsAltitudeOfTriangle(AD,ACB)"]
 2; triangle_area_formula_common(1,ACB); Polygon(ACB); ["Equal(AreaOfTriangle(ACB),Mul(HeightOfTriangle(ACB),LengthOfLine(CB),1/2))"]
 Retry attempt: 3
 Content written to results/level_1/variant_analogy_based_model_o1_problem_380_run_1_to_verify.txt
