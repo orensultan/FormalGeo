@@ -1,0 +1,236 @@
+Inputs for Problem B:
+DESCRIPTION:
+As shown in the diagram, AB=y, BD=x, CD=12, ∠BCD=55°, ∠DAB=47°, BD is perpendicular to AD. Find the value of y.
+CONSTRUCTION_CDL:
+Shape(BC,CD,DB)
+Shape(BD,DA,AB)
+Collinear(CDA)
+TEXT_CDL:
+Equal(LengthOfLine(AB),y)
+Equal(LengthOfLine(BD),x)
+Equal(LengthOfLine(CD),12)
+Equal(MeasureOfAngle(BCD),55)
+Equal(MeasureOfAngle(DAB),47)
+PerpendicularBetweenLine(BD,AD)
+GOAL_CDL:
+Value(y)
+CONSTRUCTION_CDL_EXTENDED:
+Shape(CD,DB,BC)
+Shape(DB,BC,CD)
+Shape(DA,AB,BD)
+Shape(AB,BD,DA)
+Shape(BC,CD,DA,AB)
+Shape(CD,DA,AB,BC)
+Shape(DA,AB,BC,CD)
+Shape(AB,BC,CD,DA)
+Collinear(ADC)
+Point(C)
+Point(A)
+Point(D)
+Point(B)
+Line(CA)
+Line(AC)
+Line(CD)
+Line(DC)
+Line(DA)
+Line(AD)
+Line(BC)
+Line(CB)
+Line(DB)
+Line(BD)
+Line(AB)
+Line(BA)
+Angle(CDA)
+Angle(ADC)
+Angle(BCD)
+Angle(CDB)
+Angle(DBC)
+Angle(BDA)
+Angle(DAB)
+Angle(ABD)
+Angle(CAB)
+Angle(ABC)
+Angle(BCA)
+Angle(DCB)
+Angle(BDC)
+Angle(CBD)
+Angle(ADB)
+Angle(BAD)
+Angle(DBA)
+Angle(BAC)
+Angle(CBA)
+Angle(ACB)
+Polygon(BCD)
+Polygon(BDC)
+Polygon(CBD)
+Polygon(CDB)
+Polygon(DBC)
+Polygon(DCB)
+Polygon(BDA)
+Polygon(BAD)
+Polygon(DBA)
+Polygon(DAB)
+Polygon(ABD)
+Polygon(ADB)
+Polygon(BCA)
+Polygon(BAC)
+Polygon(CBA)
+Polygon(CAB)
+Polygon(ABC)
+Polygon(ACB)
+SYMBOLS_AND_VALUES:
+LengthOfLine(AB);ll_ab;12
+LengthOfLine(BA);ll_ab;12
+LengthOfLine(AD);ll_ad;10
+LengthOfLine(DA);ll_ad;10
+LengthOfLine(BC);ll_bc;None
+LengthOfLine(CB);ll_bc;None
+Free(y);y;None
+LengthOfLine(BD);ll_bd;None
+LengthOfLine(DB);ll_bd;None
+Free(x);x;None
+LengthOfLine(CD);ll_cd;None
+LengthOfLine(DC);ll_cd;None
+Free(z);z;None
+MeasureOfAngle(ABC);ma_abc;90
+MeasureOfAngle(BDA);ma_bda;90
+
+Outputs:
+Outputs for Problem B:
+
+***MODEL_RESPONSE_BEGIN***
+EQUATIONS:
+ll_ab - y  
+ll_bd - x  
+ll_cd - 12  
+ma_bcd - 55  
+ma_dab - 47  
+ma_bda - 90  
+
+GOAL_SYMBOL:
+y
+
+ANSWER:
+23.4329518575
+
+THEOREM_SEQUENCE:
+1; adjacent_complementary_angle(1,BDA,BDC); Collinear(ADC)&Angle(BDA)&Angle(BDC); ["Equal(Add(MeasureOfAngle(BDA),MeasureOfAngle(BDC)),180)"]  
+2; right_triangle_judgment_angle(1,BCD); Polygon(BCD)&Equal(MeasureOfAngle(BDC),90); ["RightTriangle(BCD)"]  
+3; triangle_property_angle_sum(1,BCD); Polygon(BCD); ["Equal(Add(MeasureOfAngle(BCD),MeasureOfAngle(BDC),MeasureOfAngle(CBD)),180)"]  
+4; right_triangle_judgment_angle(1,BDA); Polygon(BDA)&Equal(MeasureOfAngle(BDA),90); ["RightTriangle(BDA)"]  
+5; sine_theorem(1,BDA); Polygon(BDA); ["Equal(Mul(LengthOfLine(BD),Sin(MeasureOfAngle(BDA))),Mul(LengthOfLine(BA),Sin(MeasureOfAngle(DAB))))"]
+***MODEL_RESPONSE_END***
+RETRIES_MESSAGES:
+#run: 2; #retry: 1; message: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
+Failure: Theorem <line_addition> variation id is not supplied. Expected dict_keys(['1']) but got None.
+Your call: line_addition(C,D,D,A)
+Please rewrite your response by adding the variation id as the first argument. For example: For variation 1: line_addition(1,C,D,D,A)
+
+Model Answer:
+RETRY_ANSWER:
+≈23.48
+RETRY_THEOREM_SEQUENCE:
+1; line_addition(CD,DA); Collinear(CDA); ["Equal(LengthOfLine(CA),Add(LengthOfLine(CD),LengthOfLine(DA)))"]  
+2; triangle_property_angle_sum(ABC); Polygon(ABC); ["Equal(Add(MeasureOfAngle(ABC),MeasureOfAngle(BCA),MeasureOfAngle(CAB)),180)"]  
+3; right_triangle_judgment_angle(BDA); Polygon(BDA)&Equal(MeasureOfAngle(BDA),90); ["RightTriangle(BDA)"]  
+4; sine_theorem(BDA); Polygon(BDA); ["Equal(Mul(LengthOfLine(BD),Sin(MeasureOfAngle(BDA))),Mul(LengthOfLine(BA),Sin(MeasureOfAngle(DAB))))"]  
+5; right_triangle_property_pythagorean(BDA); RightTriangle(BDA); ["Equal(Add(Pow(LengthOfLine(BD),2),Pow(LengthOfLine(DA),2)),Pow(LengthOfLine(BA),2))"]  
+6; sine_theorem(ABC); Polygon(ABC); ["Equal(Mul(LengthOfLine(AB),Sin(MeasureOfAngle(ABC))),Mul(LengthOfLine(AC),Sin(MeasureOfAngle(BCA))))"]
+#run: 2; #retry: 2; message: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
+Failure: Theorem <triangle_property_angle_sum> variation id is not supplied. Expected dict_keys(['1']) but got None.
+Your call: triangle_property_angle_sum(A,B,C)
+Please rewrite your response by adding the variation id as the first argument. For example: For variation 1: triangle_property_angle_sum(1,A,B,C)
+
+Model Answer:
+RETRY_ANSWER:
+≈23.48
+RETRY_THEOREM_SEQUENCE:
+1; line_addition(1,CD,DA); Collinear(CDA); ["Equal(LengthOfLine(CA),Add(LengthOfLine(CD),LengthOfLine(DA)))"]  
+2; triangle_property_angle_sum(ABC); Polygon(ABC); ["Equal(Add(MeasureOfAngle(ABC),MeasureOfAngle(BCA),MeasureOfAngle(CAB)),180)"]  
+3; right_triangle_judgment_angle(BDA); Polygon(BDA)&Equal(MeasureOfAngle(BDA),90); ["RightTriangle(BDA)"]  
+4; sine_theorem(BDA); Polygon(BDA); ["Equal(Mul(LengthOfLine(BD),Sin(MeasureOfAngle(BDA))),Mul(LengthOfLine(BA),Sin(MeasureOfAngle(DAB))))"]  
+5; right_triangle_property_pythagorean(BDA); RightTriangle(BDA); ["Equal(Add(Pow(LengthOfLine(BD),2),Pow(LengthOfLine(DA),2)),Pow(LengthOfLine(BA),2))"]  
+6; sine_theorem(ABC); Polygon(ABC); ["Equal(Mul(LengthOfLine(AB),Sin(MeasureOfAngle(ABC))),Mul(LengthOfLine(AC),Sin(MeasureOfAngle(BCA))))"]
+#run: 2; #retry: 3; message: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
+Error parsing answer '≈23.48': Could not parse: ≈23.48
+Model Answer:
+RETRY_ANSWER:
+≈23.48
+RETRY_THEOREM_SEQUENCE:
+1; line_addition(1,CD,DA); Collinear(CDA); ["Equal(LengthOfLine(CA),Add(LengthOfLine(CD),LengthOfLine(DA)))"]
+2; triangle_property_angle_sum(1,ABC); Polygon(ABC); ["Equal(Add(MeasureOfAngle(ABC),MeasureOfAngle(BCA),MeasureOfAngle(CAB)),180)"]
+3; right_triangle_judgment_angle(1,BDA); Polygon(BDA)&Equal(MeasureOfAngle(BDA),90); ["RightTriangle(BDA)"]
+4; sine_theorem(1,BDA); Polygon(BDA); ["Equal(Mul(LengthOfLine(BD),Sin(MeasureOfAngle(BDA))),Mul(LengthOfLine(BA),Sin(MeasureOfAngle(DAB))))"]
+5; right_triangle_property_pythagorean(1,BDA); RightTriangle(BDA); ["Equal(Add(Pow(LengthOfLine(BD),2),Pow(LengthOfLine(DA),2)),Pow(LengthOfLine(BA),2))"]
+6; sine_theorem(1,ABC); Polygon(ABC); ["Equal(Mul(LengthOfLine(AB),Sin(MeasureOfAngle(ABC))),Mul(LengthOfLine(AC),Sin(MeasureOfAngle(BCA))))"]
+#run: 2; #retry: 4; message: ERROR_TIER: TIER3_GOAL_NOT_REACHED
+verification failed.
+
+- Goal: value of y
+- Model answer: 23.48
+- Verifier expected answer: 23.4329518575
+- Error: From your proof, the verifier determines the general of y to be 23.4329518575, not 23.48 as you stated in your solution. Check your theorem applications and your answer.
+- Available premises:
+  Perpendicular Lines: AD ⊥ BD
+  Collinear Points: ADC
+  Right Triangles: ABD
+  Polygons: ABC, ABD, ACB, ADB, BCD, BDC
+- Theorems related to the goal:
+  Step 2 - triangle_property_angle_sum(1, ABC): Equal(Add(MeasureOfAngle(ABC),MeasureOfAngle(BCA),MeasureOfAngle(CAB)),180)
+  Step 3 - right_triangle_judgment_angle(1, BDA): RightTriangle(BDA)
+  Step 4 - sine_theorem(1, BDA): Equal(Mul(LengthOfLine(BD),Sin(MeasureOfAngle(BDA))),Mul(LengthOfLine(BA),Sin(MeasureOfAngle(DAB))))
+  Step 6 - sine_theorem(1, ABC): Equal(Mul(LengthOfLine(AB),Sin(MeasureOfAngle(ABC))),Mul(LengthOfLine(AC),Sin(MeasureOfAngle(BCA))))
+- Solver constraints directly related to this goal:
+  None found
+
+Variable y is incompatible with expected value
+Please fix the proof.
+Model Answer:
+RETRY_ANSWER:
+23.48
+RETRY_THEOREM_SEQUENCE:
+1; line_addition(1,CD,DA); Collinear(CDA); ["Equal(LengthOfLine(CA),Add(LengthOfLine(CD),LengthOfLine(DA)))"]  
+2; triangle_property_angle_sum(1,ABC); Polygon(ABC); ["Equal(Add(MeasureOfAngle(ABC),MeasureOfAngle(BCA),MeasureOfAngle(CAB)),180)"]  
+3; right_triangle_judgment_angle(1,BDA); Polygon(BDA)&Equal(MeasureOfAngle(BDA),90); ["RightTriangle(BDA)"]  
+4; sine_theorem(1,BDA); Polygon(BDA); ["Equal(Mul(LengthOfLine(BD),Sin(MeasureOfAngle(BDA))),Mul(LengthOfLine(BA),Sin(MeasureOfAngle(DAB))))"]  
+5; right_triangle_property_pythagorean(1,BDA); RightTriangle(BDA); ["Equal(Add(Pow(LengthOfLine(BD),2),Pow(LengthOfLine(DA),2)),Pow(LengthOfLine(BA),2))"]  
+6; sine_theorem(1,ABC); Polygon(ABC); ["Equal(Mul(LengthOfLine(AB),Sin(MeasureOfAngle(ABC))),Mul(LengthOfLine(AC),Sin(MeasureOfAngle(BCA))))"]
+#run: 2; #retry: 5; message: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
+Theorem: adjacent_complementary_angle(1,BDA,BDC)
+You output the following premises: Collinear(ADC)&Angle(BDA)&Angle(BDC)
+But the correct premises: Collinear(BDC)&Angle(BDB)&Angle(BDC)
+You output the following conclusions: Equal(Add(MeasureOfAngle(BDA),MeasureOfAngle(BDC)),180)
+But the correct conclusions: Equal(Add(MeasureOfAngle(BDB),MeasureOfAngle(BDC)),180)
+
+Model Answer:
+RETRY_ANSWER:
+23.4329518575
+RETRY_THEOREM_SEQUENCE:
+1; adjacent_complementary_angle(1,BDA,BDC); Collinear(ADC)&Angle(BDA)&Angle(BDC); ["Equal(Add(MeasureOfAngle(BDA),MeasureOfAngle(BDC)),180)"]  
+2; right_triangle_judgment_angle(1,BCD); Polygon(BCD)&Equal(MeasureOfAngle(BDC),90); ["RightTriangle(BCD)"]  
+3; triangle_property_angle_sum(1,BCD); Polygon(BCD); ["Equal(Add(MeasureOfAngle(BCD),MeasureOfAngle(BDC),MeasureOfAngle(CBD)),180)"]  
+4; right_triangle_judgment_angle(1,BDA); Polygon(BDA)&Equal(MeasureOfAngle(BDA),90); ["RightTriangle(BDA)"]  
+5; sine_theorem(1,BDA); Polygon(BDA); ["Equal(Mul(LengthOfLine(BD),Sin(MeasureOfAngle(BDA))),Mul(LengthOfLine(BA),Sin(MeasureOfAngle(DAB))))"]
+#RETRIES:
+5
+#RUNS:
+2
+
+
+GT_EQUATIONS:
+ll_ab-y
+ll_bd-x
+ll_cd-12
+ma_bcd-55
+ma_dab-47
+ma_bda-90
+GT_GOAL_SYMBOL:
+y
+GT_ANSWER:
+12/(sin(47*pi/180)*tan(7*pi/36))
+GT_THEOREM_SEQUENCE:
+1;adjacent_complementary_angle(1,CDB,BDA);Collinear(CDA)&Angle(CDB)&Angle(BDA);["Equal(Add(MeasureOfAngle(CDB),MeasureOfAngle(BDA)),180)"]
+2;triangle_property_angle_sum(1,BCD);Polygon(BCD);["Equal(Add(MeasureOfAngle(BCD),MeasureOfAngle(CDB),MeasureOfAngle(DBC)),180)"]
+3;sine_theorem(1,DBC);Polygon(DBC);["Equal(Mul(LengthOfLine(DB),Sin(MeasureOfAngle(DBC))),Mul(LengthOfLine(DC),Sin(MeasureOfAngle(BCD))))"]
+4;sine_theorem(1,BDA);Polygon(BDA);["Equal(Mul(LengthOfLine(BD),Sin(MeasureOfAngle(BDA))),Mul(LengthOfLine(BA),Sin(MeasureOfAngle(DAB))))"]
+
