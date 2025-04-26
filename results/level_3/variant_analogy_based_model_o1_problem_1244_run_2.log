@@ -229,8 +229,8 @@ Model Answer:
 RETRY_ANSWER:
 18
 RETRY_THEOREM_SEQUENCE:
-1; bisector_of_angle_judgment_angle_equal(AD,BDC); Angle(ADB)&Angle(CDA)&Equal(MeasureOfAngle(ADB),MeasureOfAngle(CDA)); ["IsBisectorOfAngle(AD,BDC)"]  
-2; bisector_of_angle_property_line_ratio(AD,BDC); IsBisectorOfAngle(AD,BDC)&Collinear(BAC); ["Equal(Mul(LengthOfLine(BA),LengthOfLine(DC)),Mul(LengthOfLine(AC),LengthOfLine(DB)))"]  
+1; bisector_of_angle_judgment_angle_equal(AD,BDC); Angle(ADB)&Angle(CDA)&Equal(MeasureOfAngle(ADB),MeasureOfAngle(CDA)); ["IsBisectorOfAngle(AD,BDC)"]
+2; bisector_of_angle_property_line_ratio(AD,BDC); IsBisectorOfAngle(AD,BDC)&Collinear(BAC); ["Equal(Mul(LengthOfLine(BA),LengthOfLine(DC)),Mul(LengthOfLine(AC),LengthOfLine(BD)))"]
 3; line_addition(BA,AC); Collinear(BAC); ["Equal(LengthOfLine(BC),Add(LengthOfLine(BA),LengthOfLine(AC)))"]
 Retry attempt: 1
 Content written to results/level_3/variant_analogy_based_model_o1_problem_1244_run_2_to_verify.txt
@@ -467,7 +467,7 @@ RETRY_ANSWER:
 18
 RETRY_THEOREM_SEQUENCE:
 1; bisector_of_angle_judgment_angle_equal(1,AD,BDC); Angle(ADB)&Angle(CDA)&Equal(MeasureOfAngle(ADB),MeasureOfAngle(CDA)); ["IsBisectorOfAngle(AD,BDC)"]
-2; bisector_of_angle_property_line_ratio(1,AD,BDC); IsBisectorOfAngle(AD,BDC)&Collinear(BAC); ["Equal(Mul(LengthOfLine(BA),LengthOfLine(DC)),Mul(LengthOfLine(AC),LengthOfLine(DB)))"]
+2; bisector_of_angle_property_line_ratio(1,AD,BDC); IsBisectorOfAngle(AD,BDC)&Collinear(BAC); ["Equal(Mul(LengthOfLine(BA),LengthOfLine(DC)),Mul(LengthOfLine(AC),LengthOfLine(BD)))"]
 3; line_addition(1,BA,AC); Collinear(BAC); ["Equal(LengthOfLine(BC),Add(LengthOfLine(BA),LengthOfLine(AC)))"]
 Retry attempt: 2
 Content written to results/level_3/variant_analogy_based_model_o1_problem_1244_run_2_to_verify.txt
@@ -693,18 +693,18 @@ Equation
 predicates to add:
 Equation
 Verifier result: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
-Theorem: bisector_of_angle_property_line_ratio(1,DD,BDC)
-You output the following premises: IsBisectorOfAngle(DD,BDC)&Collinear(BAC)
-But the correct premises: IsBisectorOfAngle(DD,BDC)&Collinear(CDB)
-You output the following conclusions: Equal(Mul(LengthOfLine(BA),LengthOfLine(DC)),Mul(LengthOfLine(AC),LengthOfLine(DB)))
-But the correct conclusions: Equal(Mul(LengthOfLine(CD),LengthOfLine(DB)),Mul(LengthOfLine(DB),LengthOfLine(DC)))
+Theorem: bisector_of_angle_judgment_angle_equal(1,AD,BDC)
+You output the following premises: Angle(ADB)&Angle(CDA)&Equal(MeasureOfAngle(ADB),MeasureOfAngle(CDA))
+But the correct premises: Angle(BDD)&Angle(DDC)&Equal(MeasureOfAngle(BDD),MeasureOfAngle(DDC))
+You output the following conclusions: IsBisectorOfAngle(AD,BDC)
+But the correct conclusions: IsBisectorOfAngle(DD,BDC)
 
 Model Answer:
 RETRY_ANSWER:
 18
 RETRY_THEOREM_SEQUENCE:
-1; bisector_of_angle_judgment_angle_equal(1,DD,BDC); Angle(BDD)&Angle(DDC)&Equal(MeasureOfAngle(BDD),MeasureOfAngle(DDC)); ["IsBisectorOfAngle(DD,BDC)"]
-2; bisector_of_angle_property_line_ratio(1,DD,BDC); IsBisectorOfAngle(DD,BDC)&Collinear(BAC); ["Equal(Mul(LengthOfLine(BA),LengthOfLine(DC)),Mul(LengthOfLine(AC),LengthOfLine(DB)))"]
+1; bisector_of_angle_judgment_angle_equal(1,AD,BDC); Angle(ADB)&Angle(CDA)&Equal(MeasureOfAngle(ADB),MeasureOfAngle(CDA)); ["IsBisectorOfAngle(AD,BDC)"]
+2; bisector_of_angle_property_line_ratio(1,AD,BDC); IsBisectorOfAngle(AD,BDC)&Collinear(BAC); ["Equal(Mul(LengthOfLine(BA),LengthOfLine(DC)),Mul(LengthOfLine(AC),LengthOfLine(BD)))"]
 3; line_addition(1,BA,AC); Collinear(BAC); ["Equal(LengthOfLine(BC),Add(LengthOfLine(BA),LengthOfLine(AC)))"]
 Retry attempt: 3
 Content written to results/level_3/variant_analogy_based_model_o1_problem_1244_run_2_to_verify.txt
@@ -931,7 +931,9 @@ predicates to add:
 Equation
 Verifier result: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
 Theorem: bisector_of_angle_property_line_ratio(1,DD,BDC)
-You output the following conclusions: Equal(Mul(LengthOfLine(CD),LengthOfLine(DB)),Mul(LengthOfLine(DB),LengthOfLine(CD)))
+You output the following premises: IsBisectorOfAngle(DD,BDC)&Collinear(BAC)
+But the correct premises: IsBisectorOfAngle(DD,BDC)&Collinear(CDB)
+You output the following conclusions: Equal(Mul(LengthOfLine(BA),LengthOfLine(DC)),Mul(LengthOfLine(AC),LengthOfLine(BD)))
 But the correct conclusions: Equal(Mul(LengthOfLine(CD),LengthOfLine(DB)),Mul(LengthOfLine(DB),LengthOfLine(DC)))
 
 Model Answer:
@@ -939,7 +941,7 @@ RETRY_ANSWER:
 18
 RETRY_THEOREM_SEQUENCE:
 1; bisector_of_angle_judgment_angle_equal(1,DD,BDC); Angle(BDD)&Angle(DDC)&Equal(MeasureOfAngle(BDD),MeasureOfAngle(DDC)); ["IsBisectorOfAngle(DD,BDC)"]
-2; bisector_of_angle_property_line_ratio(1,DD,BDC); IsBisectorOfAngle(DD,BDC)&Collinear(CDB); ["Equal(Mul(LengthOfLine(CD),LengthOfLine(DB)),Mul(LengthOfLine(DB),LengthOfLine(CD)))"]
+2; bisector_of_angle_property_line_ratio(1,DD,BDC); IsBisectorOfAngle(DD,BDC)&Collinear(BAC); ["Equal(Mul(LengthOfLine(BA),LengthOfLine(DC)),Mul(LengthOfLine(AC),LengthOfLine(BD)))"]
 3; line_addition(1,BA,AC); Collinear(BAC); ["Equal(LengthOfLine(BC),Add(LengthOfLine(BA),LengthOfLine(AC)))"]
 Retry attempt: 4
 Content written to results/level_3/variant_analogy_based_model_o1_problem_1244_run_2_to_verify.txt
