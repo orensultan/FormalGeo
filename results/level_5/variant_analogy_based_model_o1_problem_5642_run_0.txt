@@ -185,14 +185,16 @@ EQUATIONS:
 ll_ab-1
 
 GOAL_SYMBOL:
-Div(1,LengthOfLine(AM))+Div(1,LengthOfLine(AN))
+Add(Div(1,LengthOfLine(AM)),Div(1,LengthOfLine(AN)))
 
 ANSWER:
 1
 
 THEOREM_SEQUENCE:
-1; parallelogram_judgment_parallel_and_parallel(1,ABCD); Polygon(ABCD)&ParallelBetweenLine(AD,BC)&ParallelBetweenLine(BA,CD); ["Parallelogram(ABCD)"]  
-2; parallelogram_property_opposite_line_equal(1,ABCD); Parallelogram(ABCD); ["Equal(LengthOfLine(BA),LengthOfLine(CD))"]
+1; parallelogram_judgment_parallel_and_parallel(1,ABCD); Polygon(ABCD)&ParallelBetweenLine(AD,BC)&ParallelBetweenLine(AB,CD); ["Parallelogram(ABCD)"]  
+2; parallelogram_property_opposite_line_equal(1,ABCD); Parallelogram(ABCD); ["Equal(LengthOfLine(BA),LengthOfLine(CD))"]  
+3; line_addition(1,AB,BM); Collinear(ABM); ["Equal(LengthOfLine(AM),Add(LengthOfLine(AB),LengthOfLine(BM)))"]  
+4; line_addition(1,AD,DN); Collinear(ADN); ["Equal(LengthOfLine(AN),Add(LengthOfLine(AD),LengthOfLine(DN)))"]
 ***MODEL_RESPONSE_END***
 RETRIES_MESSAGES:
 #run: 0; #retry: 1; message: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
@@ -203,45 +205,58 @@ RETRY_ANSWER:
 RETRY_THEOREM_SEQUENCE:
 
 #run: 0; #retry: 2; message: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
-Failure: Theorem <parallelogram_judgment_parallel_and_parallel> variation id is not supplied. Expected dict_keys(['1']) but got None.
-Your call: parallelogram_judgment_parallel_and_parallel(A,B,C,D)
-Please rewrite your response by adding the variation id as the first argument. For example: For variation 1: parallelogram_judgment_parallel_and_parallel(1,A,B,C,D)
+Failure: Theorem <flat_angle> variation id is not supplied. Expected dict_keys(['1']) but got None.
+Your call: flat_angle(A,B,C)
+Please rewrite your response by adding the variation id as the first argument. For example: For variation 1: flat_angle(1,A,B,C)
 
 Model Answer:
 RETRY_ANSWER:
 1
 RETRY_THEOREM_SEQUENCE:
-1; parallelogram_judgment_parallel_and_parallel(ABCD); Polygon(ABCD)&ParallelBetweenLine(AD,BC)&ParallelBetweenLine(BA,CD); ["Parallelogram(ABCD)"]  
-2; parallelogram_property_opposite_line_equal(ABCD); Parallelogram(ABCD); ["Equal(LengthOfLine(BA),LengthOfLine(CD))"]  
-3; parallelogram_property_opposite_line_equal(ABCD); Parallelogram(ABCD); ["Equal(LengthOfLine(AD),LengthOfLine(BC))"]
-#run: 0; #retry: 3; message: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
-Theorem: parallelogram_property_opposite_line_equal(1,ABCD)
-You output the following conclusions: Equal(LengthOfLine(AD),LengthOfLine(BC))
-But the correct conclusions: Equal(LengthOfLine(BA),LengthOfLine(CD))
+1; flat_angle(ABC); Collinear(ABC); ["Equal(MeasureOfAngle(ABC),180)"]
+#run: 0; #retry: 3; message: ERROR_TIER: TIER2_PREMISE_VIOLATION
+verification failed.
 
+- Error: You tried to use theorem: flat_angle(1,ABC);Collinear(ABC);['Equal(MeasureOfAngle(ABC),180)']
+Missing premise: Points ABC are not proven collinear
+Details: Required collinearity for flat_angle theorem is not established
+- Available premises:
+  Parallel Lines: AB ∥ CD, AD ∥ BC
+  Collinear Points: ABM, ADN, MCN
+  Rhombi: BCDA, CDAB, DABC
+  Kites: ABCD, BCDA, CDAB, DABC
+  Polygons: ABCD, ABCN, AMCD, AMN, ANM, BCDA, BCM, BCNA, BMC, CDAB, CDAM, CDN, CNAB, CND, DABC, DAMC, MCDA, NABC
+- Theorems related to the goal:
+  None found that constrain this goal
+- Solver constraints directly related to this goal:
+  None found
+
+Please fix the proof.
 Model Answer:
 RETRY_ANSWER:
 1
 RETRY_THEOREM_SEQUENCE:
-1; parallelogram_judgment_parallel_and_parallel(1,ABCD); Polygon(ABCD)&ParallelBetweenLine(AD,BC)&ParallelBetweenLine(BA,CD); ["Parallelogram(ABCD)"]
-2; parallelogram_property_opposite_line_equal(1,ABCD); Parallelogram(ABCD); ["Equal(LengthOfLine(BA),LengthOfLine(CD))"]
-3; parallelogram_property_opposite_line_equal(1,ABCD); Parallelogram(ABCD); ["Equal(LengthOfLine(AD),LengthOfLine(BC))"]
+1; flat_angle(1,ABC); Collinear(ABC); ["Equal(MeasureOfAngle(ABC),180)"]
 #run: 0; #retry: 4; message: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
-Error evaluating general goal expression: name 'Add' is not defined
+Failure: The THEOREM_SEQUENCE you provided is empty. Please generate a proof again, using the similar problems I provided (A1, A2, A3, A4, A5), along with the GDL_DICTIONARY of theorems.
 Model Answer:
 RETRY_ANSWER:
 1
 RETRY_THEOREM_SEQUENCE:
-1; parallelogram_judgment_parallel_and_parallel(1,ABCD); Polygon(ABCD)&ParallelBetweenLine(AD,BC)&ParallelBetweenLine(BA,CD); ["Parallelogram(ABCD)"]
-2; parallelogram_property_opposite_line_equal(1,ABCD); Parallelogram(ABCD); ["Equal(LengthOfLine(BA),LengthOfLine(CD))"]
+
 #run: 0; #retry: 5; message: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
-Error evaluating general goal expression: name 'Add' is not defined
+Theorem: parallelogram_judgment_parallel_and_parallel(1,ABCD)
+You output the following premises: Polygon(ABCD)&ParallelBetweenLine(AD,BC)&ParallelBetweenLine(AB,CD)
+But the correct premises: Polygon(ABCD)&ParallelBetweenLine(AD,BC)&ParallelBetweenLine(BA,CD)
+
 Model Answer:
 RETRY_ANSWER:
 1
 RETRY_THEOREM_SEQUENCE:
-1; parallelogram_judgment_parallel_and_parallel(1,ABCD); Polygon(ABCD)&ParallelBetweenLine(AD,BC)&ParallelBetweenLine(BA,CD); ["Parallelogram(ABCD)"]  
-2; parallelogram_property_opposite_line_equal(1,ABCD); Parallelogram(ABCD); ["Equal(LengthOfLine(BA),LengthOfLine(CD))"]
+1; parallelogram_judgment_parallel_and_parallel(1,ABCD); Polygon(ABCD)&ParallelBetweenLine(AD,BC)&ParallelBetweenLine(AB,CD); ["Parallelogram(ABCD)"]  
+2; parallelogram_property_opposite_line_equal(1,ABCD); Parallelogram(ABCD); ["Equal(LengthOfLine(BA),LengthOfLine(CD))"]  
+3; line_addition(1,AB,BM); Collinear(ABM); ["Equal(LengthOfLine(AM),Add(LengthOfLine(AB),LengthOfLine(BM)))"]  
+4; line_addition(1,AD,DN); Collinear(ADN); ["Equal(LengthOfLine(AN),Add(LengthOfLine(AD),LengthOfLine(DN)))"]
 #RETRIES:
 5
 #RUNS:
