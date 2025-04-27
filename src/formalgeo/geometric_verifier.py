@@ -1,3 +1,4 @@
+
 from z3 import *
 import re
 from dataclasses import dataclass
@@ -10868,9 +10869,7 @@ class GeometricTheorem:
                                             model_answer=model_answer_symbolic,
                                             verifier_expected_answer=None,
                                             status="multiple_values",
-                                            additional_info=f"Your proof doesn't uniquely determine the value. Alternative values:\n" +
-                                                            f"  When {line1} = {alt_len1_val} and {line2} = {alt_len2_val}, the sum is {alt_sum}.\n" +
-                                                            f"  When {line1} = {len1_val} and {line2} = {len2_val}, the sum is {verifier_expected_answer}."
+                                            additional_info=f"Your proof doesn't uniquely determine the value. Alternative values:\n"
                                         )
                                         return False, detailed_feedback
 
@@ -17261,9 +17260,11 @@ def verify_geometric_proof(filename: str, print_output=True) -> tuple:
             return False, f"Error: {str(e)}", None
 
 
+
+
 if __name__ == "__main__":
     result, feedback, error_tier = verify_geometric_proof(
-        "/Users/osultan/PycharmProjects/FormalGeo/results/level_1/variant_analogy_based_model_o1_problem_221_run_0_to_verify.txt",print_output=False)
+        "/Users/osultan/PycharmProjects/FormalGeo/results/level_5/variant_analogy_based_model_o1_problem_5642_run_1.txt",print_output=False)
 
     if feedback:
         print(feedback)
