@@ -1,0 +1,231 @@
+Inputs for Problem B:
+DESCRIPTION:
+As shown in the diagram, AB=10, CD=3, M is the midpoint of segment AC, N is the midpoint of segment DB. Find the length of line MN.
+CONSTRUCTION_CDL:
+Collinear(AMCDNB)
+TEXT_CDL:
+Equal(LengthOfLine(AB),10)
+Equal(LengthOfLine(CD),3)
+IsMidpointOfLine(M,AC)
+IsMidpointOfLine(N,DB)
+GOAL_CDL:
+Value(LengthOfLine(MN))
+CONSTRUCTION_CDL_EXTENDED:
+Collinear(BNDCMA)
+Collinear(AMC)
+Collinear(CMA)
+Collinear(AMD)
+Collinear(DMA)
+Collinear(AMN)
+Collinear(NMA)
+Collinear(AMB)
+Collinear(BMA)
+Collinear(ACD)
+Collinear(DCA)
+Collinear(ACN)
+Collinear(NCA)
+Collinear(ACB)
+Collinear(BCA)
+Collinear(ADN)
+Collinear(NDA)
+Collinear(ADB)
+Collinear(BDA)
+Collinear(ANB)
+Collinear(BNA)
+Collinear(MCD)
+Collinear(DCM)
+Collinear(MCN)
+Collinear(NCM)
+Collinear(MCB)
+Collinear(BCM)
+Collinear(MDN)
+Collinear(NDM)
+Collinear(MDB)
+Collinear(BDM)
+Collinear(MNB)
+Collinear(BNM)
+Collinear(CDN)
+Collinear(NDC)
+Collinear(CDB)
+Collinear(BDC)
+Collinear(CNB)
+Collinear(BNC)
+Collinear(DNB)
+Collinear(BND)
+Point(A)
+Point(B)
+Point(M)
+Point(C)
+Point(D)
+Point(N)
+Line(AB)
+Line(BA)
+Line(AM)
+Line(MA)
+Line(MC)
+Line(CM)
+Line(MD)
+Line(DM)
+Line(MN)
+Line(NM)
+Line(MB)
+Line(BM)
+Line(AC)
+Line(CA)
+Line(CD)
+Line(DC)
+Line(CN)
+Line(NC)
+Line(CB)
+Line(BC)
+Line(AD)
+Line(DA)
+Line(DN)
+Line(ND)
+Line(DB)
+Line(BD)
+Line(AN)
+Line(NA)
+Line(NB)
+Line(BN)
+Angle(AMC)
+Angle(CMA)
+Angle(AMD)
+Angle(DMA)
+Angle(AMN)
+Angle(NMA)
+Angle(AMB)
+Angle(BMA)
+Angle(ACD)
+Angle(DCA)
+Angle(ACN)
+Angle(NCA)
+Angle(ACB)
+Angle(BCA)
+Angle(ADN)
+Angle(NDA)
+Angle(ADB)
+Angle(BDA)
+Angle(ANB)
+Angle(BNA)
+Angle(MCD)
+Angle(DCM)
+Angle(MCN)
+Angle(NCM)
+Angle(MCB)
+Angle(BCM)
+Angle(MDN)
+Angle(NDM)
+Angle(MDB)
+Angle(BDM)
+Angle(MNB)
+Angle(BNM)
+Angle(CDN)
+Angle(NDC)
+Angle(CDB)
+Angle(BDC)
+Angle(CNB)
+Angle(BNC)
+Angle(DNB)
+Angle(BND)
+IsMidpointOfLine(M,CA)
+IsMidpointOfLine(N,BD)
+SYMBOLS_AND_VALUES:
+LengthOfLine(CD);ll_cd;4
+LengthOfLine(DC);ll_cd;4
+LengthOfLine(EF);ll_ef;8
+LengthOfLine(FE);ll_ef;8
+LengthOfLine(AE);ll_ae;None
+LengthOfLine(EA);ll_ae;None
+LengthOfLine(EC);ll_ec;None
+LengthOfLine(CE);ll_ec;None
+LengthOfLine(BF);ll_bf;None
+LengthOfLine(FB);ll_bf;None
+LengthOfLine(FD);ll_fd;None
+LengthOfLine(DF);ll_fd;None
+LengthOfLine(AB);ll_ab;None
+LengthOfLine(BA);ll_ab;None
+
+Outputs:
+Outputs for Problem B:
+
+***MODEL_RESPONSE_BEGIN***
+EQUATIONS:
+ll_ab-10
+ll_cd-3
+ll_am-ll_mc
+ll_dn-ll_nb
+
+GOAL_SYMBOL:
+ll_mn
+
+ANSWER:
+13/2
+
+THEOREM_SEQUENCE:
+1; line_addition(1,AC,CD); Collinear(ACD); ["Equal(LengthOfLine(AD),Add(LengthOfLine(AC),LengthOfLine(CD)))"]
+2; line_addition(1,AD,DB); Collinear(ADB); ["Equal(LengthOfLine(AB),Add(LengthOfLine(AD),LengthOfLine(DB)))"]
+3; line_addition(1,AM,MC); Collinear(AMC); ["Equal(LengthOfLine(AC),Add(LengthOfLine(AM),LengthOfLine(MC)))"]
+4; line_addition(1,DN,NB); Collinear(DNB); ["Equal(LengthOfLine(DB),Add(LengthOfLine(DN),LengthOfLine(NB)))"]
+5; line_addition(1,AM,MD); Collinear(AMD); ["Equal(LengthOfLine(AD),Add(LengthOfLine(AM),LengthOfLine(MD)))"]
+6; line_addition(1,MD,DN); Collinear(MDN); ["Equal(LengthOfLine(MN),Add(LengthOfLine(MD),LengthOfLine(DN)))"]
+***MODEL_RESPONSE_END***
+RETRIES_MESSAGES:
+#run: 0; #retry: 1; message: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
+Failure: Theorem <line_addition> variation id is not supplied. Expected dict_keys(['1']) but got None.
+Your call: line_addition(A,C,C,D)
+Please rewrite your response by adding the variation id as the first argument. For example: For variation 1: line_addition(1,A,C,C,D)
+
+Model Answer:
+RETRY_ANSWER:
+13/2
+RETRY_THEOREM_SEQUENCE:
+1; line_addition(AC,CD); Collinear(ACD); ["Equal(LengthOfLine(AD),Add(LengthOfLine(AC),LengthOfLine(CD)))"]
+2; line_addition(AD,DB); Collinear(ADB); ["Equal(LengthOfLine(AB),Add(LengthOfLine(AD),LengthOfLine(DB)))"]
+3; line_addition(AM,MD); Collinear(AMD); ["Equal(LengthOfLine(AD),Add(LengthOfLine(AM),LengthOfLine(MD)))"]
+4; line_addition(MD,DN); Collinear(MDN); ["Equal(LengthOfLine(MN),Add(LengthOfLine(MD),LengthOfLine(DN)))"]
+#run: 0; #retry: 2; message: ERROR_TIER: TIER3_GOAL_NOT_REACHED
+verification failed.
+
+- Goal: length of line MN
+- Model answer: 13/2
+- Error: Your proof doesn't uniquely determine the value. You need to use additional theorems to constrain the value.
+- Available premises:
+  Collinear Points: ACB, ACD, ACN, ADB, ADN, AMB, AMC, AMCDNB, AMD, AMN, ANB, BCM, BDC, BDM, BNC, BND, BNM, CDN, DCM, MCN, MDN
+- Theorems related to the goal:
+  Step 4 - line_addition(1, MD, DN): Equal(LengthOfLine(MN),Add(LengthOfLine(MD),LengthOfLine(DN)))
+- Solver constraints directly related to this goal:
+  |MN| = |DM| + |DN|
+  |MN| > 0
+
+Please fix the proof.
+Model Answer:
+RETRY_ANSWER:
+13/2
+RETRY_THEOREM_SEQUENCE:
+1; line_addition(1,AC,CD); Collinear(ACD); ["Equal(LengthOfLine(AD),Add(LengthOfLine(AC),LengthOfLine(CD)))"]
+2; line_addition(1,AD,DB); Collinear(ADB); ["Equal(LengthOfLine(AB),Add(LengthOfLine(AD),LengthOfLine(DB)))"]
+3; line_addition(1,AM,MD); Collinear(AMD); ["Equal(LengthOfLine(AD),Add(LengthOfLine(AM),LengthOfLine(MD)))"]
+4; line_addition(1,MD,DN); Collinear(MDN); ["Equal(LengthOfLine(MN),Add(LengthOfLine(MD),LengthOfLine(DN)))"]
+#RETRIES:
+2
+#RUNS:
+0
+
+
+GT_EQUATIONS:
+ll_ab-10
+ll_cd-3
+ll_am-ll_mc
+ll_dn-ll_nb
+GT_GOAL_SYMBOL:
+ll_mn
+GT_ANSWER:
+13/2
+GT_THEOREM_SEQUENCE:
+1;line_addition(1,AM,MC);Collinear(AMC);["Equal(LengthOfLine(AC),Add(LengthOfLine(AM),LengthOfLine(MC)))"]
+2;line_addition(1,AM,MN);Collinear(AMN);["Equal(LengthOfLine(AN),Add(LengthOfLine(AM),LengthOfLine(MN)))"]
+3;line_addition(1,AC,CD);Collinear(ACD);["Equal(LengthOfLine(AD),Add(LengthOfLine(AC),LengthOfLine(CD)))"]
+4;line_addition(1,AD,DN);Collinear(ADN);["Equal(LengthOfLine(AN),Add(LengthOfLine(AD),LengthOfLine(DN)))"]
+5;line_addition(1,AN,NB);Collinear(ANB);["Equal(LengthOfLine(AB),Add(LengthOfLine(AN),LengthOfLine(NB)))"]
+

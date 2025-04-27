@@ -52,16 +52,16 @@ Shape(AEF,BEA,AFD,DA)
 Shape(BEA,AFD,DA,AEF)
 Shape(AFD,DA,AEF,BEA)
 Shape(DA,AEF,BEA,AFD)
-Shape(ADE,BEA,BAF,AFD)
-Shape(BEA,BAF,AFD,ADE)
-Shape(BAF,AFD,ADE,BEA)
-Shape(AFD,ADE,BEA,BAF)
 Shape(BEA,AD,BGE,CGY,YB,BD)
 Shape(AD,BGE,CGY,YB,BD,BEA)
 Shape(BGE,CGY,YB,BD,BEA,AD)
 Shape(CGY,YB,BD,BEA,AD,BGE)
 Shape(YB,BD,BEA,AD,BGE,CGY)
 Shape(BD,BEA,AD,BGE,CGY,YB)
+Shape(ADE,BEA,BAF,AFD)
+Shape(BEA,BAF,AFD,ADE)
+Shape(BAF,AFD,ADE,BEA)
+Shape(AFD,ADE,BEA,BAF)
 Shape(DA,BAF,BFH,CYH,YB,BD)
 Shape(BAF,BFH,CYH,YB,BD,DA)
 Shape(BFH,CYH,YB,BD,DA,BAF)
@@ -80,14 +80,14 @@ Shape(AFD,BFH,BHC,CY,YB,BD)
 Shape(BFH,BHC,CY,YB,BD,AFD)
 Shape(BHC,CY,YB,BD,AFD,BFH)
 Shape(CY,YB,BD,AFD,BFH,BHC)
-Shape(CGY,YC,CHG,BHC)
-Shape(YC,CHG,BHC,CGY)
-Shape(CHG,BHC,CGY,YC)
-Shape(BHC,CGY,YC,CHG)
 Shape(BCG,CGY,CYH,BHC)
 Shape(CGY,CYH,BHC,BCG)
 Shape(CYH,BHC,BCG,CGY)
 Shape(BHC,BCG,CGY,CYH)
+Shape(CGY,YC,CHG,BHC)
+Shape(YC,CHG,BHC,CGY)
+Shape(CHG,BHC,CGY,YC)
+Shape(BHC,CGY,YC,CHG)
 Shape(CY,CYH,BCG,CHG)
 Shape(CYH,BCG,CHG,CY)
 Shape(BCG,CHG,CY,CYH)
@@ -106,20 +106,20 @@ Shape(CYH,YB,BD,DA,AEF,BEA,BFH)
 Shape(YB,BD,DA,AEF,BEA,BFH,CYH)
 Shape(BD,DA,AEF,BEA,BFH,CYH,YB)
 Shape(DA,AEF,BEA,BFH,CYH,YB,BD)
-Shape(ADE,BEA,BAF,BFH,CYH,YB,BD)
-Shape(BEA,BAF,BFH,CYH,YB,BD,ADE)
-Shape(BAF,BFH,CYH,YB,BD,ADE,BEA)
-Shape(BFH,CYH,YB,BD,ADE,BEA,BAF)
-Shape(CYH,YB,BD,ADE,BEA,BAF,BFH)
-Shape(YB,BD,ADE,BEA,BAF,BFH,CYH)
-Shape(BD,ADE,BEA,BAF,BFH,CYH,YB)
 Shape(BEA,AD,BGE,YC,BCG,YB,BD)
 Shape(AD,BGE,YC,BCG,YB,BD,BEA)
 Shape(BGE,YC,BCG,YB,BD,BEA,AD)
-..(BHC,BCG,YB,BD,BEA,AD,BGE,CYH)
-..(BCG,YB,BD,BEA,AD,BGE,CYH,BHC)
-..(YB,BD,BEA,AD,BGE,CYH,BHC,BCG)
-..(BD,BEA,AD,BGE,CYH,BHC,BCG,YB)
+Shape(YC,BCG,YB,BD,BEA,AD,BGE)
+Shape(BCG,YB,BD,BEA,AD,BGE,YC)
+Shape(YB,BD,BEA,AD,BGE,YC,BCG)
+Shape(BD,BEA,AD,BGE,YC,BCG,YB)
+Shape(ADE,BEA,BAF,BFH,CYH,YB,BD)
+Shape(BEA,BAF,BFH,CYH,YB,BD,ADE)
+Shape(BAF,BFH,CYH,YB,BD,ADE,BEA)
+..(BHC,CY,YB,BD,ADE,BEA,BAF,BFH)
+..(CY,YB,BD,ADE,BEA,BAF,BFH,BHC)
+..(YB,BD,ADE,BEA,BAF,BFH,BHC,CY)
+..(BD,ADE,BEA,BAF,BFH,BHC,CY,YB)
 ..(DA,BAF,BFH,BHC,BCG,CGY,YB,BD)
 ..(BAF,BFH,BHC,BCG,CGY,YB,BD,DA)
 ..(BFH,BHC,BCG,CGY,YB,BD,DA,BAF)
@@ -144,15 +144,6 @@ Shape(BGE,YC,BCG,YB,BD,BEA,AD)
 ..(YB,BD,BEA,BAF,AFD,BGE,YC,BCG)
 ..(BD,BEA,BAF,AFD,BGE,YC,BCG,YB)
 ..(BEA,BAF,AFD,BGE,YC,BCG,YB,BD)
-..(BAF,AEF,AD,BGE,YC,CHG,BHC,YB,BD)
-..(AEF,AD,BGE,YC,CHG,BHC,YB,BD,BAF)
-..(AD,BGE,YC,CHG,BHC,YB,BD,BAF,AEF)
-..(BGE,YC,CHG,BHC,YB,BD,BAF,AEF,AD)
-..(YC,CHG,BHC,YB,BD,BAF,AEF,AD,BGE)
-..(CHG,BHC,YB,BD,BAF,AEF,AD,BGE,YC)
-..(BHC,YB,BD,BAF,AEF,AD,BGE,YC,CHG)
-..(YB,BD,BAF,AEF,AD,BGE,YC,CHG,BHC)
-..(BD,BAF,AEF,AD,BGE,YC,CHG,BHC,YB)
 ..(BAF,AEF,AD,BGE,CYH,BHC,BCG,YB,BD)
 ..(AEF,AD,BGE,CYH,BHC,BCG,YB,BD,BAF)
 ..(AD,BGE,CYH,BHC,BCG,YB,BD,BAF,AEF)
@@ -162,6 +153,15 @@ Shape(BGE,YC,BCG,YB,BD,BEA,AD)
 ..(BCG,YB,BD,BAF,AEF,AD,BGE,CYH,BHC)
 ..(YB,BD,BAF,AEF,AD,BGE,CYH,BHC,BCG)
 ..(BD,BAF,AEF,AD,BGE,CYH,BHC,BCG,YB)
+..(BAF,AEF,AD,BGE,YC,CHG,BHC,YB,BD)
+..(AEF,AD,BGE,YC,CHG,BHC,YB,BD,BAF)
+..(AD,BGE,YC,CHG,BHC,YB,BD,BAF,AEF)
+..(BGE,YC,CHG,BHC,YB,BD,BAF,AEF,AD)
+..(YC,CHG,BHC,YB,BD,BAF,AEF,AD,BGE)
+..(CHG,BHC,YB,BD,BAF,AEF,AD,BGE,YC)
+..(BHC,YB,BD,BAF,AEF,AD,BGE,YC,CHG)
+..(YB,BD,BAF,AEF,AD,BGE,YC,CHG,BHC)
+..(BD,BAF,AEF,AD,BGE,YC,CHG,BHC,YB)
 ..(AEF,BEA,BFH,BHC,BCG,CGY,YB,BD,DA)
 ..(BEA,BFH,BHC,BCG,CGY,YB,BD,DA,AEF)
 ..(BFH,BHC,BCG,CGY,YB,BD,DA,AEF,BEA)
@@ -198,15 +198,6 @@ Shape(BGE,YC,BCG,YB,BD,BEA,AD)
 ..(CY,YB,BD,ADE,BEA,BAF,BFH,BCG,CHG)
 ..(YB,BD,ADE,BEA,BAF,BFH,BCG,CHG,CY)
 ..(BD,ADE,BEA,BAF,BFH,BCG,CHG,CY,YB)
-..(BAF,AFD,BGE,YC,CHG,BHC,YB,BD,BEA)
-..(AFD,BGE,YC,CHG,BHC,YB,BD,BEA,BAF)
-..(BGE,YC,CHG,BHC,YB,BD,BEA,BAF,AFD)
-..(YC,CHG,BHC,YB,BD,BEA,BAF,AFD,BGE)
-..(CHG,BHC,YB,BD,BEA,BAF,AFD,BGE,YC)
-..(BHC,YB,BD,BEA,BAF,AFD,BGE,YC,CHG)
-..(YB,BD,BEA,BAF,AFD,BGE,YC,CHG,BHC)
-..(BD,BEA,BAF,AFD,BGE,YC,CHG,BHC,YB)
-..(BEA,BAF,AFD,BGE,YC,CHG,BHC,YB,BD)
 ..(BAF,AFD,BGE,CYH,BHC,BCG,YB,BD,BEA)
 ..(AFD,BGE,CYH,BHC,BCG,YB,BD,BEA,BAF)
 ..(BGE,CYH,BHC,BCG,YB,BD,BEA,BAF,AFD)
@@ -216,6 +207,15 @@ Shape(BGE,YC,BCG,YB,BD,BEA,AD)
 ..(YB,BD,BEA,BAF,AFD,BGE,CYH,BHC,BCG)
 ..(BD,BEA,BAF,AFD,BGE,CYH,BHC,BCG,YB)
 ..(BEA,BAF,AFD,BGE,CYH,BHC,BCG,YB,BD)
+..(BAF,AFD,BGE,YC,CHG,BHC,YB,BD,BEA)
+..(AFD,BGE,YC,CHG,BHC,YB,BD,BEA,BAF)
+..(BGE,YC,CHG,BHC,YB,BD,BEA,BAF,AFD)
+..(YC,CHG,BHC,YB,BD,BEA,BAF,AFD,BGE)
+..(CHG,BHC,YB,BD,BEA,BAF,AFD,BGE,YC)
+..(BHC,YB,BD,BEA,BAF,AFD,BGE,YC,CHG)
+..(YB,BD,BEA,BAF,AFD,BGE,YC,CHG,BHC)
+..(BD,BEA,BAF,AFD,BGE,YC,CHG,BHC,YB)
+..(BEA,BAF,AFD,BGE,YC,CHG,BHC,YB,BD)
 Collinear(CYBDA)
 Collinear(ADB)
 Collinear(BDA)
@@ -548,99 +548,18 @@ GOAL_SYMBOL:
 ll_by
 
 ANSWER:
-5
+3
 
 THEOREM_SEQUENCE:
-1; circle_property_length_of_radius_and_diameter(1,A); Circle(A); ["Equal(DiameterOfCircle(A),Mul(RadiusOfCircle(A),2))"]  
-2; circle_property_length_of_radius_and_diameter(1,B); Circle(B); ["Equal(DiameterOfCircle(B),Mul(RadiusOfCircle(B),2))"]  
-3; radius_of_circle_property_length_equal(1,BA,B); Cocircular(B,A)&Line(BA)&IsCentreOfCircle(B,B); ["Equal(LengthOfLine(BA),RadiusOfCircle(B))"]  
-4; radius_of_circle_property_length_equal(1,AY,A); Cocircular(A,Y)&Line(AY)&IsCentreOfCircle(A,A); ["Equal(LengthOfLine(AY),RadiusOfCircle(A))"]  
-5; line_addition(1,BA,AY); Collinear(ABY); ["Equal(LengthOfLine(BY),Add(LengthOfLine(BA),LengthOfLine(AY)))"]
+1; circle_property_length_of_radius_and_diameter(1,B); Circle(B); ["Equal(DiameterOfCircle(B),Mul(RadiusOfCircle(B),2))"]  
+2; circle_property_length_of_radius_and_diameter(1,C); Circle(C); ["Equal(DiameterOfCircle(C),Mul(RadiusOfCircle(C),2))"]  
+3; radius_of_circle_property_length_equal(1,BC,B); Cocircular(B,C)&Line(BC)&IsCentreOfCircle(B,B); ["Equal(LengthOfLine(BC),RadiusOfCircle(B))"]  
+4; radius_of_circle_property_length_equal(1,CY,C); Cocircular(C,Y)&Line(CY)&IsCentreOfCircle(C,C); ["Equal(LengthOfLine(CY),RadiusOfCircle(C))"]  
+5; line_addition(1,BY,YC); Collinear(BYC); ["Equal(LengthOfLine(BC),Add(LengthOfLine(BY),LengthOfLine(YC)))"]  
 ***MODEL_RESPONSE_END***
 RETRIES_MESSAGES:
-#run: 0; #retry: 1; message: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
-Failure: Theorem <line_addition> branch error. Expected dict_keys(['1']) but got None. Please rewrite your response, you should change only the call to theorem <line_addition> by adding the branch number from the dict_keys as the first argument
-Model Answer:
-RETRY_ANSWER:
-5
-RETRY_THEOREM_SEQUENCE:
-1; circle_property_length_of_radius_and_diameter(1,A); Circle(A); ["Equal(DiameterOfCircle(A),Mul(RadiusOfCircle(A),2))"]
-2; circle_property_length_of_radius_and_diameter(1,B); Circle(B); ["Equal(DiameterOfCircle(B),Mul(RadiusOfCircle(B),2))"]
-3; radius_of_circle_property_length_equal(1,BA,B); Cocircular(B,A)&Line(BA)&IsCentreOfCircle(B,B); ["Equal(LengthOfLine(BA),RadiusOfCircle(B))"]
-4; radius_of_circle_property_length_equal(1,AY,A); Cocircular(A,Y)&Line(AY)&IsCentreOfCircle(A,A); ["Equal(LengthOfLine(AY),RadiusOfCircle(A))"]
-5; line_addition(BA,AY); Collinear(AYB); ["Equal(LengthOfLine(AB),Add(LengthOfLine(AY),LengthOfLine(YB)))"]
-#run: 0; #retry: 2; message: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
-Theorem: line_addition(1,BA,AY)
-You output the following premises: Collinear(AYB)
-But the correct premises: Collinear(BAY)
-You output the following conclusions: Equal(LengthOfLine(AB),Add(LengthOfLine(AY),LengthOfLine(YB)))
-But the correct conclusions: Equal(LengthOfLine(BY),Add(LengthOfLine(BA),LengthOfLine(AY)))
-
-Model Answer:
-RETRY_ANSWER:
-5
-
-RETRY_
-RETRY_THEOREM_SEQUENCE:
-1; circle_property_length_of_radius_and_diameter(1,A); Circle(A); ["Equal(DiameterOfCircle(A),Mul(RadiusOfCircle(A),2))"]  
-2; circle_property_length_of_radius_and_diameter(1,B); Circle(B); ["Equal(DiameterOfCircle(B),Mul(RadiusOfCircle(B),2))"]  
-3; radius_of_circle_property_length_equal(1,BA,B); Cocircular(B,A)&Line(BA)&IsCentreOfCircle(B,B); ["Equal(LengthOfLine(BA),RadiusOfCircle(B))"]  
-4; radius_of_circle_property_length_equal(1,AY,A); Cocircular(A,Y)&Line(AY)&IsCentreOfCircle(A,A); ["Equal(LengthOfLine(AY),RadiusOfCircle(A))"]  
-5; line_addition(1,BA,AY); Collinear(AYB); ["Equal(LengthOfLine(AB),Add(LengthOfLine(AY),LengthOfLine(YB)))"]
-#run: 0; #retry: 3; message: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
-No answer provided in ANSWER section.
-Model Answer:
-RETRY_ANSWER:
-5
-
-RETRY_
-RETRY_THEOREM_SEQUENCE:
-1; circle_property_length_of_radius_and_diameter(1,A); Circle(A); ["Equal(DiameterOfCircle(A),Mul(RadiusOfCircle(A),2))"]  
-2; circle_property_length_of_radius_and_diameter(1,B); Circle(B); ["Equal(DiameterOfCircle(B),Mul(RadiusOfCircle(B),2))"]  
-3; radius_of_circle_property_length_equal(1,BA,B); Cocircular(B,A)&Line(BA)&IsCentreOfCircle(B,B); ["Equal(LengthOfLine(BA),RadiusOfCircle(B))"]  
-4; radius_of_circle_property_length_equal(1,AY,A); Cocircular(A,Y)&Line(AY)&IsCentreOfCircle(A,A); ["Equal(LengthOfLine(AY),RadiusOfCircle(A))"]  
-5; line_addition(1,BA,AY); Collinear(BAY); ["Equal(LengthOfLine(BY),Add(LengthOfLine(BA),LengthOfLine(AY)))"]
-#run: 0; #retry: 4; message: ERROR_TIER: TIER2_PREMISE_VIOLATION
-verification failed.
-
-- Error: You tried to use theorem: line_addition(1,BA,AY);Collinear(BAY);['Equal(LengthOfLine(BY),Add(LengthOfLine(BA),LengthOfLine(AY)))']
-Missing premise: Points BAY not proven collinear
-Details: Known collinear facts: [['A', 'D', 'B', 'Y', 'C'], ['B', 'Y', 'C'], ['C', 'Y', 'D'], ['A', 'Y', 'C'], ['C', 'B', 'D'], ['A', 'B', 'C'], ['A', 'D', 'C'], ['D', 'B', 'Y'], ['A', 'B', 'Y'], ['A', 'D', 'Y'], ['A', 'D', 'B'], ['A', 'D', 'B'], ['A', 'D', 'B'], ['A', 'D', 'Y'], ['A', 'D', 'Y'], ['A', 'D', 'C'], ['A', 'D', 'C'], ['A', 'B', 'Y'], ['A', 'B', 'Y'], ['A', 'B', 'C'], ['A', 'B', 'C'], ['A', 'Y', 'C'], ['A', 'Y', 'C'], ['D', 'B', 'Y'], ['D', 'B', 'Y'], ['C', 'B', 'D'], ['C', 'B', 'D'], ['C', 'Y', 'D'], ['C', 'Y', 'D'], ['B', 'Y', 'C'], ['B', 'Y', 'C']]
-- Available premises:
-  Collinear Points: ABC, ABY, ADB, ADBYC, ADC, ADY, AYC, BYC, CBD, CYD, DBY
-  Cocircular Points: A on circle B, AC on circle B, ACH on circle B, AE on circle B, AEH on circle B, AF on circle B, AG on circle B, AGH on circle B, AH on circle B, C on circle B, CE on circle B, CEH on circle B, CF on circle B, CFH on circle B, CG on circle B, CGH on circle B, CH on circle B, D on circle A, DE on circle A, DEF on circle A, DF on circle A, E on circle A, E on circle B, EF on circle A, EF on circle B, EG on circle B, EGH on circle B, EH on circle B, F on circle A, F on circle B, FG on circle B, FGH on circle B, FH on circle B, G on circle B, GH on circle B, H on circle B
-  Circles: A center: A, B center: B, C center: C
-- Theorems related to the goal:
-  None found that constrain this goal
-- Solver constraints directly related to this goal:
-  None found
-
-Please fix the proof.
-Model Answer:
-RETRY_ANSWER:
-5
-RETRY_THEOREM_SEQUENCE:
-1; circle_property_length_of_radius_and_diameter(1,A); Circle(A); ["Equal(DiameterOfCircle(A),Mul(RadiusOfCircle(A),2))"]
-2; circle_property_length_of_radius_and_diameter(1,B); Circle(B); ["Equal(DiameterOfCircle(B),Mul(RadiusOfCircle(B),2))"]
-3; radius_of_circle_property_length_equal(1,BA,B); Cocircular(B,A)&Line(BA)&IsCentreOfCircle(B,B); ["Equal(LengthOfLine(BA),RadiusOfCircle(B))"]
-4; radius_of_circle_property_length_equal(1,AY,A); Cocircular(A,Y)&Line(AY)&IsCentreOfCircle(A,A); ["Equal(LengthOfLine(AY),RadiusOfCircle(A))"]
-5; line_addition(1,BA,AY); Collinear(BAY); ["Equal(LengthOfLine(BY),Add(LengthOfLine(BA),LengthOfLine(AY)))"]
-#run: 0; #retry: 5; message: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
-Theorem: line_addition(1,BA,AY)
-You output the following premises: Collinear(ABY)
-But the correct premises: Collinear(BAY)
-
-Model Answer:
-RETRY_ANSWER:
-5
-RETRY_THEOREM_SEQUENCE:
-1; circle_property_length_of_radius_and_diameter(1,A); Circle(A); ["Equal(DiameterOfCircle(A),Mul(RadiusOfCircle(A),2))"]  
-2; circle_property_length_of_radius_and_diameter(1,B); Circle(B); ["Equal(DiameterOfCircle(B),Mul(RadiusOfCircle(B),2))"]  
-3; radius_of_circle_property_length_equal(1,BA,B); Cocircular(B,A)&Line(BA)&IsCentreOfCircle(B,B); ["Equal(LengthOfLine(BA),RadiusOfCircle(B))"]  
-4; radius_of_circle_property_length_equal(1,AY,A); Cocircular(A,Y)&Line(AY)&IsCentreOfCircle(A,A); ["Equal(LengthOfLine(AY),RadiusOfCircle(A))"]  
-5; line_addition(1,BA,AY); Collinear(ABY); ["Equal(LengthOfLine(BY),Add(LengthOfLine(BA),LengthOfLine(AY)))"]
 #RETRIES:
-5
+0
 #RUNS:
 0
 
