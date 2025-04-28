@@ -1,0 +1,235 @@
+Inputs for Problem B:
+DESCRIPTION:
+As shown in the diagram, BD=12, ∠ABD=15°, ∠BDA=150°, ∠DCA=90°. Find the length of line AC.
+CONSTRUCTION_CDL:
+Shape(AB,BD,DA)
+Collinear(BDC)
+Shape(AD,DC,CA)
+TEXT_CDL:
+Equal(LengthOfLine(BD),12)
+Equal(MeasureOfAngle(ABD),15)
+Equal(MeasureOfAngle(BDA),150)
+Equal(MeasureOfAngle(DCA),90)
+GOAL_CDL:
+Value(LengthOfLine(AC))
+CONSTRUCTION_CDL_EXTENDED:
+Shape(BD,DA,AB)
+Shape(DA,AB,BD)
+Shape(DC,CA,AD)
+Shape(CA,AD,DC)
+Shape(AB,BD,DC,CA)
+Shape(BD,DC,CA,AB)
+Shape(DC,CA,AB,BD)
+Shape(CA,AB,BD,DC)
+Collinear(CDB)
+Point(B)
+Point(C)
+Point(D)
+Point(A)
+Line(BC)
+Line(CB)
+Line(BD)
+Line(DB)
+Line(DC)
+Line(CD)
+Line(AB)
+Line(BA)
+Line(DA)
+Line(AD)
+Line(CA)
+Line(AC)
+Angle(BDC)
+Angle(CDB)
+Angle(ABD)
+Angle(BDA)
+Angle(DAB)
+Angle(ADC)
+Angle(DCA)
+Angle(CAD)
+Angle(BCA)
+Angle(CAB)
+Angle(ABC)
+Angle(DBA)
+Angle(ADB)
+Angle(BAD)
+Angle(CDA)
+Angle(ACD)
+Angle(DAC)
+Angle(ACB)
+Angle(BAC)
+Angle(CBA)
+Polygon(ABD)
+Polygon(ADB)
+Polygon(BAD)
+Polygon(BDA)
+Polygon(DAB)
+Polygon(DBA)
+Polygon(ADC)
+Polygon(ACD)
+Polygon(DAC)
+Polygon(DCA)
+Polygon(CAD)
+Polygon(CDA)
+Polygon(ABC)
+Polygon(ACB)
+Polygon(BAC)
+Polygon(BCA)
+Polygon(CAB)
+Polygon(CBA)
+SYMBOLS_AND_VALUES:
+MeasureOfAngle(ABC);ma_obc;50
+MeasureOfAngle(EBC);ma_obc;50
+MeasureOfAngle(OBC);ma_obc;50
+MeasureOfAngle(CDB);ma_edb;None
+MeasureOfAngle(EDB);ma_edb;None
+
+Outputs:
+Outputs for Problem B:
+
+***MODEL_RESPONSE_BEGIN***
+EQUATIONS:
+bd-12
+ma_abd-15
+ma_bda-150
+ma_dca-90
+
+GOAL_SYMBOL:
+ll_ac
+
+ANSWER:
+6
+
+THEOREM_SEQUENCE:
+1; triangle_property_angle_sum(1,ABD); Polygon(ABD); ["Equal(Add(MeasureOfAngle(ABD),MeasureOfAngle(BDA),MeasureOfAngle(DAB)),180)"]  
+2; sine_theorem(1,ABD); Polygon(ABD); ["Equal(Mul(LengthOfLine(AB),Sin(MeasureOfAngle(ABD))),Mul(LengthOfLine(AD),Sin(MeasureOfAngle(BDA))))"]  
+3; flat_angle(1,BDC); Collinear(BDC); ["Equal(MeasureOfAngle(BDC),180)"]  
+4; angle_addition(ABC,CBD); Angle(ADB)&Angle(BDC)&Angle(ADC); ["Equal(MeasureOfAngle(ADC),Add(MeasureOfAngle(ADB),MeasureOfAngle(BDC)))"]  
+5; triangle_property_angle_sum(2,ACD); Polygon(ACD); ["Equal(Add(MeasureOfAngle(ACD),MeasureOfAngle(CAD),MeasureOfAngle(ADC)),180)"]  
+
+Explanation of key reasoning beyond the GDL steps (informal):
+• From steps 1–2 and BD=12, we conclude AD=12.  
+• Step 3 (flat_angle) gives MeasureOfAngle(BDC)=180 since B, D, C are collinear.  
+• Step 4 (angle_addition) implies MeasureOfAngle(ADC)=MeasureOfAngle(ADB)+MeasureOfAngle(BDC)=150°+180°−180°=30° (since ADB=150° from step 1).  
+• Step 5 (triangle_property_angle_sum) in ΔACD, angles are 90°, 30°, and 60°. Hence side AC is opposite the 30° angle, giving AC=AD·sin(30°)=12×1/2=6.
+***MODEL_RESPONSE_END***
+RETRIES_MESSAGES:
+#run: 2; #retry: 1; message: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
+Theorem: right_triangle_judgment_angle(1,ADC)
+You output the following premises: Polygon(ADC)&Equal(MeasureOfAngle(DCA),90)
+But the correct premises: Polygon(ADC)&Equal(MeasureOfAngle(ADC),90)
+
+Model Answer:
+RETRY_ANSWER:
+6
+RETRY_THEOREM_SEQUENCE:
+1; triangle_property_angle_sum(1,ABD); Polygon(ABD); ["Equal(Add(MeasureOfAngle(ABD),MeasureOfAngle(BDA),MeasureOfAngle(DAB)),180)"]  
+2; sine_theorem(1,ABD); Polygon(ABD); ["Equal(Mul(LengthOfLine(AB),Sin(MeasureOfAngle(ABD))),Mul(LengthOfLine(AD),Sin(MeasureOfAngle(BDA))))"]  
+3; right_triangle_judgment_angle(1,ADC); Polygon(ADC)&Equal(MeasureOfAngle(DCA),90); ["RightTriangle(ADC)"]  
+4; right_triangle_property_pythagorean(1,ADC); RightTriangle(ADC); ["Equal(Add(Pow(LengthOfLine(AC),2),Pow(LengthOfLine(CD),2)),Pow(LengthOfLine(AD),2))"]
+#run: 2; #retry: 2; message: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
+Theorem: right_triangle_property_pythagorean(1,ADC)
+You output the following conclusions: Equal(Add(Pow(LengthOfLine(AC),2),Pow(LengthOfLine(CD),2)),Pow(LengthOfLine(AD),2))
+But the correct conclusions: Equal(Add(Pow(LengthOfLine(AD),2),Pow(LengthOfLine(DC),2)),Pow(LengthOfLine(AC),2))
+
+Model Answer:
+RETRY_ANSWER:
+6
+RETRY_THEOREM_SEQUENCE:
+1; triangle_property_angle_sum(1,ABD); Polygon(ABD); ["Equal(Add(MeasureOfAngle(ABD),MeasureOfAngle(BDA),MeasureOfAngle(DAB)),180)"]  
+2; sine_theorem(1,ABD); Polygon(ABD); ["Equal(Mul(LengthOfLine(AB),Sin(MeasureOfAngle(ABD))),Mul(LengthOfLine(AD),Sin(MeasureOfAngle(BDA))))"]  
+3; right_triangle_judgment_angle(1,ADC); Polygon(ADC)&Equal(MeasureOfAngle(ADC),90); ["RightTriangle(ADC)"]  
+4; right_triangle_property_pythagorean(1,ADC); RightTriangle(ADC); ["Equal(Add(Pow(LengthOfLine(AC),2),Pow(LengthOfLine(CD),2)),Pow(LengthOfLine(AD),2))"]
+#run: 2; #retry: 3; message: ERROR_TIER: TIER2_PREMISE_VIOLATION
+verification failed.
+
+- Error: You tried to use theorem: right_triangle_judgment_angle(1,ADC);Polygon(ADC)&Equal(MeasureOfAngle(ADC),90);['RightTriangle(ADC)']
+Missing premise: Angle measure 90° for triangle ADC is not established in the premise.
+Details: Premise provided: Polygon(ADC)&Equal(MeasureOfAngle(ADC),90)
+- Available premises:
+  Collinear Points: BDC
+  Polygons: ABC, ABD, ACB, ACD, ADB, ADC
+- Theorems related to the goal:
+  None found that constrain this goal
+- Solver constraints directly related to this goal:
+  None found
+
+Please fix the proof.
+Model Answer:
+RETRY_ANSWER:
+6
+RETRY_THEOREM_SEQUENCE:
+1; triangle_property_angle_sum(1,ABD); Polygon(ABD); ["Equal(Add(MeasureOfAngle(ABD),MeasureOfAngle(BDA),MeasureOfAngle(DAB)),180)"]  
+2; sine_theorem(1,ABD); Polygon(ABD); ["Equal(Mul(LengthOfLine(AB),Sin(MeasureOfAngle(ABD))),Mul(LengthOfLine(AD),Sin(MeasureOfAngle(BDA))))"]  
+3; right_triangle_judgment_angle(1,ADC); Polygon(ADC)&Equal(MeasureOfAngle(ADC),90); ["RightTriangle(ADC)"]  
+4; right_triangle_property_pythagorean(1,ADC); RightTriangle(ADC); ["Equal(Add(Pow(LengthOfLine(AD),2),Pow(LengthOfLine(DC),2)),Pow(LengthOfLine(AC),2))"]
+#run: 2; #retry: 4; message: ERROR_TIER: TIER3_GOAL_NOT_REACHED
+verification failed.
+
+- Goal: length of line AC
+- Model answer: 6
+- Error: Your proof doesn't uniquely determine the value. You need to use additional theorems to constrain the value.
+- Available premises:
+  Collinear Points: BDC
+  Right Triangles: ACD
+  Polygons: ABC, ABD, ACB, ACD, ADB, ADC
+- Theorems related to the goal:
+  Step 3 - right_triangle_judgment_angle(1, ACD): RightTriangle(ACD)
+  Step 4 - right_triangle_property_pythagorean(1, ACD): Equal(Add(Pow(LengthOfLine(AC),2),Pow(LengthOfLine(CD),2)),Pow(LengthOfLine(AD),2))
+- Solver constraints directly related to this goal:
+  |AC| + |CD| > |AD|
+  |AC| > 0
+  |AC|*|AC| + |CD|*|CD| ==
+|AD|*|AD|
+  |AD| > |AC|
+
+Please fix the proof.
+Model Answer:
+RETRY_ANSWER:
+6
+RETRY_THEOREM_SEQUENCE:
+1; triangle_property_angle_sum(1,ABD); Polygon(ABD); ["Equal(Add(MeasureOfAngle(ABD),MeasureOfAngle(BDA),MeasureOfAngle(DAB)),180)"]  
+2; sine_theorem(1,ABD); Polygon(ABD); ["Equal(Mul(LengthOfLine(AB),Sin(MeasureOfAngle(ABD))),Mul(LengthOfLine(AD),Sin(MeasureOfAngle(BDA))))"]  
+3; right_triangle_judgment_angle(1,ACD); Polygon(ACD)&Equal(MeasureOfAngle(ACD),90); ["RightTriangle(ACD)"]  
+4; right_triangle_property_pythagorean(1,ACD); RightTriangle(ACD); ["Equal(Add(Pow(LengthOfLine(AC),2),Pow(LengthOfLine(CD),2)),Pow(LengthOfLine(AD),2))"]
+#run: 2; #retry: 5; message: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
+Failure: Theorem <angle_addition> variation id is not supplied. Expected dict_keys(['1']) but got None.
+Your call: angle_addition(A,B,C,C,B,D)
+Please rewrite your response by adding the variation id as the first argument. For example: For variation 1: angle_addition(1,A,B,C,C,B,D)
+
+Model Answer:
+RETRY_ANSWER:
+6
+RETRY_THEOREM_SEQUENCE:
+1; triangle_property_angle_sum(1,ABD); Polygon(ABD); ["Equal(Add(MeasureOfAngle(ABD),MeasureOfAngle(BDA),MeasureOfAngle(DAB)),180)"]  
+2; sine_theorem(1,ABD); Polygon(ABD); ["Equal(Mul(LengthOfLine(AB),Sin(MeasureOfAngle(ABD))),Mul(LengthOfLine(AD),Sin(MeasureOfAngle(BDA))))"]  
+3; flat_angle(1,BDC); Collinear(BDC); ["Equal(MeasureOfAngle(BDC),180)"]  
+4; angle_addition(ABC,CBD); Angle(ADB)&Angle(BDC)&Angle(ADC); ["Equal(MeasureOfAngle(ADC),Add(MeasureOfAngle(ADB),MeasureOfAngle(BDC)))"]  
+5; triangle_property_angle_sum(2,ACD); Polygon(ACD); ["Equal(Add(MeasureOfAngle(ACD),MeasureOfAngle(CAD),MeasureOfAngle(ADC)),180)"]  
+
+Explanation of key reasoning beyond the GDL steps (informal):
+• From steps 1–2 and BD=12, we conclude AD=12.  
+• Step 3 (flat_angle) gives MeasureOfAngle(BDC)=180 since B, D, C are collinear.  
+• Step 4 (angle_addition) implies MeasureOfAngle(ADC)=MeasureOfAngle(ADB)+MeasureOfAngle(BDC)=150°+180°−180°=30° (since ADB=150° from step 1).  
+• Step 5 (triangle_property_angle_sum) in ΔACD, angles are 90°, 30°, and 60°. Hence side AC is opposite the 30° angle, giving AC=AD·sin(30°)=12×1/2=6.
+#RETRIES:
+5
+#RUNS:
+2
+
+
+GT_EQUATIONS:
+ll_bd-12
+ma_abd-15
+ma_bda-150
+ma_dca-90
+GT_GOAL_SYMBOL:
+ll_ac
+GT_ANSWER:
+6
+GT_THEOREM_SEQUENCE:
+1;flat_angle(1,BDC);Collinear(BDC);["Equal(MeasureOfAngle(BDC),180)"]
+2;angle_addition(1,BDA,ADC);Angle(BDA)&Angle(ADC)&Angle(BDC);["Equal(MeasureOfAngle(BDC),Add(MeasureOfAngle(BDA),MeasureOfAngle(ADC)))"]
+3;triangle_property_angle_sum(1,ABD);Polygon(ABD);["Equal(Add(MeasureOfAngle(ABD),MeasureOfAngle(BDA),MeasureOfAngle(DAB)),180)"]
+4;sine_theorem(1,DAB);Polygon(DAB);["Equal(Mul(LengthOfLine(DA),Sin(MeasureOfAngle(DAB))),Mul(LengthOfLine(DB),Sin(MeasureOfAngle(ABD))))"]
+5;sine_theorem(1,ADC);Polygon(ADC);["Equal(Mul(LengthOfLine(AD),Sin(MeasureOfAngle(ADC))),Mul(LengthOfLine(AC),Sin(MeasureOfAngle(DCA))))"]
+
