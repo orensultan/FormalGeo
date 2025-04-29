@@ -3,6 +3,8 @@ import re
 import matplotlib.pyplot as plt
 import numpy as np
 from collections import defaultdict
+import pandas as pd
+from statsmodels.sandbox.stats.runs import mcnemar
 
 # Dictionary of problem IDs per level
 LEVEL_PROBLEMS = {
@@ -114,6 +116,61 @@ def calculate_success_rate(level_dir, level):
             
     return success_rates
 
+def perform_mcnemar_test(problem_status, stage):
+    """
+    Perform McNemar test to compare success rates between analogy-based and random approaches.
+    Args:
+        problem_status: Dictionary containing problem status for each variant and stage
+        stage: The stage to test ('ft' or 'frv')
+    """
+    # Create a DataFrame with problem IDs and their success/failure status
+    data = []
+    for problem_id in sorted(set(problem_status["analogy_based"][stage].keys()) | set(problem_status["random"][stage].keys())):
+        data.append({
+            'problem_id': problem_id,
+            'analogy_success': problem_status["analogy_based"][stage].get(problem_id, 0),
+            'random_success': problem_status["random"][stage].get(problem_id, 0)
+        })
+    
+    df = pd.DataFrame(data)
+    
+    # Create contingency table for McNemar test
+    table = pd.crosstab(df['analogy_success'], df['random_success'])
+    
+    # Check if we have a valid 2x2 contingency table
+    if table.shape != (2, 2):
+        # If not, create a 2x2 table with zeros for missing categories
+        full_table = pd.DataFrame([[0, 0], [0, 0]], 
+                                index=[0, 1], 
+                                columns=[0, 1])
+        for i in table.index:
+            for j in table.columns:
+                full_table.loc[i, j] = table.loc[i, j]
+        table = full_table
+    
+    # Perform McNemar test
+    try:
+        test_result = mcnemar(table)
+        _, p_value = test_result
+    except Exception as e:
+        print(f"\nWarning: Could not perform McNemar test: {str(e)}")
+        p_value = 1.0  # Default to non-significant result
+    
+    print(f"\nMcNemar Test Results for {stage.upper()}:")
+    print("=" * 50)
+    print("\nContingency Table:")
+    print(table)
+    print(f"\np-value: {p_value:.8f}")
+    
+    # Interpret results
+    alpha = 0.05
+    if p_value < alpha:
+        print(f"\nThe difference in success rates between analogy-based and random approaches is statistically significant (p < {alpha})")
+    else:
+        print(f"\nThe difference in success rates between analogy-based and random approaches is not statistically significant (p >= {alpha})")
+    
+    return p_value
+
 def plot_success_rates(base_path):
     """
     Plot success rates for all levels (1-5) for both variants.
@@ -123,6 +180,17 @@ def plot_success_rates(base_path):
     
     # Calculate success rates for each level
     success_rates = {variant: [] for variant in variants}
+    
+    # Dictionary to store problem success/failure status
+    problem_status = {
+        "analogy_based": {
+            "success": {}  # Overall success status
+        },
+        "random": {
+            "success": {}  # Overall success status
+        }
+    }
+    
     for level in levels:
         print(f"\nProcessing Level {level}")
         print("=" * 50)
@@ -131,10 +199,107 @@ def plot_success_rates(base_path):
             print(f"Level {level} directory not found")
             continue
             
-        level_rates = calculate_success_rate(level_dir, level)
+        # Get the list of problem IDs for this level
+        level_problem_ids = set(LEVEL_PROBLEMS[level])
+        
+        # Track failures for each variant
+        failed_problems = {
+            "variant_analogy_based_model_o1": set(),
+            "variant_random_all_theorems_model_o1": set()
+        }
+        
+        # Process each file in the level directory
+        for filename in os.listdir(level_dir):
+            if not filename.endswith('.txt'):
+                continue
+                
+            # Determine which variant this file belongs to
+            variant = None
+            for v in variants:
+                if filename.startswith(v):
+                    variant = v
+                    break
+                    
+            if variant is None:
+                continue
+                
+            # Extract problem_id and run number
+            match = re.search(r'problem_(\d+)_run_(\d+)', filename)
+            if not match:
+                continue
+                
+            problem_id = int(match.group(1))
+            run_number = int(match.group(2))
+            
+            # Skip if this problem is not in our list for this level
+            if problem_id not in level_problem_ids:
+                continue
+            
+            # Read the file to check for RETRIES
+            file_path = os.path.join(level_dir, filename)
+            with open(file_path, 'r') as f:
+                content = f.read()
+                
+            # Check if this is run_2
+            if run_number == 2:
+                # Look for RETRIES in the content
+                retries_match = re.search(r'#RETRIES:\s*(\d+)', content)
+                if retries_match:
+                    retries = int(retries_match.group(1))
+                    # If RETRIES is 5, it's a failure
+                    if retries == 5:
+                        failed_problems[variant].add(problem_id)
+        
+        # Calculate success rates and update problem status
+        level_rates = {}
+        for variant in variants:
+            # Get the list of problems for this variant and level
+            variant_problems = set()
+            for filename in os.listdir(level_dir):
+                if filename.startswith(variant) and filename.endswith('.txt'):
+                    match = re.search(r'problem_(\d+)_run_(\d+)', filename)
+                    if match:
+                        problem_id = int(match.group(1))
+                        if problem_id in level_problem_ids:
+                            variant_problems.add(problem_id)
+            
+            if len(variant_problems) > 0:
+                # Count failures
+                failures = len(failed_problems[variant])
+                # Calculate successes as (total - failures)
+                successes = len(variant_problems) - failures
+                level_rates[variant] = (successes / len(variant_problems)) * 100
+                
+                # Update problem status dictionary
+                variant_key = "analogy_based" if "analogy" in variant else "random"
+                for problem_id in variant_problems:
+                    # Initialize success status
+                    problem_status[variant_key]["success"][problem_id] = 0
+                    # Set status based on whether it's a failure
+                    if problem_id not in failed_problems[variant]:
+                        problem_status[variant_key]["success"][problem_id] = 1
+            else:
+                level_rates[variant] = 0
+        
+        # Update success rates
         for variant in variants:
             success_rates[variant].append(level_rates.get(variant, 0))
     
+    # Print problem status dictionary
+    print("\nProblem Status Dictionary:")
+    print("=" * 50)
+    for variant, stages in problem_status.items():
+        print(f"\n{variant}:")
+        for stage, problems in stages.items():
+            print(f"  {stage.upper()}:")
+            for problem_id, status in sorted(problems.items()):
+                print(f"    Problem {problem_id}: {'Success' if status == 1 else 'Failure'}")
+    
+    # Perform McNemar test for success rates
+    print("\nPerforming McNemar Test for Success Rates:")
+    print("=" * 50)
+    success_p_value = perform_mcnemar_test(problem_status, "success")
+            
     # Create the plot
     plt.figure(figsize=(12, 7))
     
@@ -170,117 +335,6 @@ def plot_success_rates(base_path):
     plt.savefig(os.path.join(base_path, 'final_success_rates.png'), dpi=300, bbox_inches='tight')
     plt.close()
 
-def calculate_ablation_success_rates(level_dir, level):
-    """
-    Calculate success rates for different stages:
-    - First Try (FT): run_0 file with RETRIES = 0
-    - First Run with Verifier (FRV): run_0 file with 0 < RETRIES < 5
-    - Multiple Runs with Verifier (MRV): run_1 or run_2 file with RETRIES < 5
-    """
-    # Initialize counters for each variant
-    variant_stats = {
-        "variant_analogy_based_model_o1": {
-            "ft": set(),  # First Try successes
-            "frv": set(), # First Run with Verifier successes
-            "mrv": set(), # Multiple Runs with Verifier successes
-            "total": set(), # Total problems
-            "has_mrv": False  # Track if variant has any MRV successes
-        },
-        "variant_random_all_theorems_model_o1": {
-            "ft": set(),
-            "frv": set(),
-            "mrv": set(),
-            "total": set(),
-            "has_mrv": False
-        }
-    }
-    
-    # Get the list of problem IDs for this level
-    level_problem_ids = set(LEVEL_PROBLEMS[level])
-    
-    # Process each file in the level directory
-    for filename in os.listdir(level_dir):
-        if not filename.endswith('.txt'):
-            continue
-            
-        # Determine which variant this file belongs to
-        variant = None
-        for v in variant_stats.keys():
-            if filename.startswith(v):
-                variant = v
-                break
-                
-        if variant is None:
-            continue
-            
-        # Extract problem_id and run number
-        match = re.search(r'problem_(\d+)_run_(\d+)', filename)
-        if not match:
-            continue
-            
-        problem_id = int(match.group(1))
-        run_number = int(match.group(2))
-        
-        # Skip if this problem is not in our list for this level
-        if problem_id not in level_problem_ids:
-            continue
-        
-        # Add problem to total set
-        variant_stats[variant]["total"].add(problem_id)
-        
-        # Read the file to check for RETRIES
-        file_path = os.path.join(level_dir, filename)
-        with open(file_path, 'r') as f:
-            content = f.read()
-            
-        # Look for RETRIES in the content
-        retries_match = re.search(r'#RETRIES:\s*(\d+)', content)
-        if not retries_match:
-            continue
-            
-        retries = int(retries_match.group(1))
-        
-        # Check for First Try success (run_0 and RETRIES = 0)
-        if run_number == 0 and retries == 0:
-            variant_stats[variant]["ft"].add(problem_id)
-            
-        # Check for First Run with Verifier success (run_0 and 0 < RETRIES < 5)
-        if run_number == 0 and 0 < retries < 5:
-            variant_stats[variant]["frv"].add(problem_id)
-            
-        # Check for Multiple Runs with Verifier success (run_1 or run_2 and RETRIES < 5)
-        if (run_number == 1 or run_number == 2) and retries < 5:
-            variant_stats[variant]["mrv"].add(problem_id)
-            variant_stats[variant]["has_mrv"] = True
-    
-    # Calculate success rates
-    success_rates = {}
-    for variant in variant_stats.keys():
-        total_problems = len(variant_stats[variant]["total"])
-        if total_problems > 0:
-            # Calculate base rates
-            ft_rate = (len(variant_stats[variant]["ft"]) / total_problems) * 100
-            frv_rate = (len(variant_stats[variant]["frv"]) / total_problems) * 100
-            mrv_rate = (len(variant_stats[variant]["mrv"]) / total_problems) * 100 if variant_stats[variant]["has_mrv"] else 0
-            
-            # Make rates cumulative
-            success_rates[variant] = {
-                "ft": ft_rate,
-                "frv": ft_rate + frv_rate,  # FRV includes FT
-                "mrv": ft_rate + frv_rate + mrv_rate if variant_stats[variant]["has_mrv"] else 0  # MRV includes FRV and FT
-            }
-            
-            print(f"\n{variant}:")
-            print(f"  Total problems: {total_problems}")
-            print(f"  First Try success: {len(variant_stats[variant]['ft'])} ({success_rates[variant]['ft']:.1f}%)")
-            print(f"  First Run with Verifier success: {len(variant_stats[variant]['frv'])} ({success_rates[variant]['frv']:.1f}%)")
-            if variant_stats[variant]["has_mrv"]:
-                print(f"  Multiple Runs with Verifier success: {len(variant_stats[variant]['mrv'])} ({success_rates[variant]['mrv']:.1f}%)")
-        else:
-            success_rates[variant] = {"ft": 0, "frv": 0, "mrv": 0}
-            
-    return success_rates
-
 def plot_ablation_study(base_path):
     """
     Plot cumulative success rates for different stages of the ablation study.
@@ -292,6 +346,31 @@ def plot_ablation_study(base_path):
     success_rates = {variant: {"ft": [], "frv": [], "mrv": []} for variant in variants}
     has_mrv = {variant: [] for variant in variants}  # Track which levels have MRV successes
     
+    # Dictionary to store problem status for each stage (accumulated across all levels)
+    problem_status = {
+        "analogy_based": {
+            "ft": {},  # First Try status
+            "frv": {},  # First Run with Verifier status
+            "ft_union_frv": {}  # Union of FT and FRV status
+        },
+        "random": {
+            "ft": {},
+            "frv": {},
+            "ft_union_frv": {}  # Union of FT and FRV status
+        }
+    }
+    
+    # First, initialize all problems as failures
+    for level in levels:
+        level_problem_ids = set(LEVEL_PROBLEMS[level])
+        for variant in variants:
+            variant_key = "analogy_based" if "analogy" in variant else "random"
+            for problem_id in level_problem_ids:
+                if problem_id not in problem_status[variant_key]["ft"]:
+                    problem_status[variant_key]["ft"][problem_id] = 0
+                    problem_status[variant_key]["frv"][problem_id] = 0
+                    problem_status[variant_key]["ft_union_frv"][problem_id] = 0
+    
     for level in levels:
         print(f"\nProcessing Level {level}")
         print("=" * 50)
@@ -300,12 +379,28 @@ def plot_ablation_study(base_path):
             print(f"Level {level} directory not found")
             continue
             
-        level_rates = calculate_ablation_success_rates(level_dir, level)
+        level_rates = calculate_ablation_success_rates(level_dir, level, problem_status)
         for variant in variants:
             for stage in ["ft", "frv", "mrv"]:
                 success_rates[variant][stage].append(level_rates[variant][stage])
             # Track if this level has MRV successes
             has_mrv[variant].append(level_rates[variant]["mrv"] > 0)
+    
+    # Print problem status dictionary for debugging
+    print("\nProblem Status Dictionary (Accumulated across all levels):")
+    print("=" * 50)
+    for variant, stages in problem_status.items():
+        print(f"\n{variant}:")
+        for stage, problems in stages.items():
+            print(f"  {stage.upper()}:")
+            for problem_id, status in sorted(problems.items()):
+                print(f"    Problem {problem_id}: {'Success' if status == 1 else 'Failure'}")
+    
+    # Perform McNemar tests for FT and FT_UNION_FRV
+    print("\nPerforming McNemar Tests:")
+    print("=" * 50)
+    ft_p_value = perform_mcnemar_test(problem_status, "ft")
+    ft_union_frv_p_value = perform_mcnemar_test(problem_status, "ft_union_frv")
     
     # Create the plot
     plt.figure(figsize=(12, 7))
@@ -364,6 +459,127 @@ def plot_ablation_study(base_path):
     # Save the plot
     plt.savefig(os.path.join(base_path, 'success_rates_progression.png'), dpi=300, bbox_inches='tight')
     plt.close()
+
+def calculate_ablation_success_rates(level_dir, level, problem_status):
+    """
+    Calculate success rates for different stages:
+    - First Try (FT): run_0 file with RETRIES = 0
+    - First Run with Verifier (FRV): run_0 file with 0 < RETRIES < 5
+    - Multiple Runs with Verifier (MRV): run_1 or run_2 file with RETRIES < 5
+    """
+    # Initialize counters for each variant
+    variant_stats = {
+        "variant_analogy_based_model_o1": {
+            "ft": set(),  # First Try successes
+            "frv": set(), # First Run with Verifier successes
+            "mrv": set(), # Multiple Runs with Verifier successes
+            "total": set(), # Total problems
+            "has_mrv": False  # Track if variant has any MRV successes
+        },
+        "variant_random_all_theorems_model_o1": {
+            "ft": set(),
+            "frv": set(),
+            "mrv": set(),
+            "total": set(),
+            "has_mrv": False
+        }
+    }
+    
+    # Get the list of problem IDs for this level
+    level_problem_ids = set(LEVEL_PROBLEMS[level])
+    
+    # Process each file in the level directory
+    for filename in os.listdir(level_dir):
+        # Only process .txt files for o1_model variants
+        if not (filename.endswith('.txt') and 
+                (filename.startswith('variant_analogy_based_model_o1') or 
+                 filename.startswith('variant_random_all_theorems_model_o1'))):
+            continue
+            
+        # Determine which variant this file belongs to
+        variant = None
+        for v in variant_stats.keys():
+            if filename.startswith(v):
+                variant = v
+                break
+                
+        if variant is None:
+            continue
+            
+        # Extract problem_id and run number
+        match = re.search(r'problem_(\d+)_run_(\d+)', filename)
+        if not match:
+            continue
+            
+        problem_id = int(match.group(1))
+        run_number = int(match.group(2))
+        
+        # Skip if this problem is not in our list for this level
+        if problem_id not in level_problem_ids:
+            continue
+        
+        # Add problem to total set
+        variant_stats[variant]["total"].add(problem_id)
+        
+        # Read the file to check for RETRIES
+        file_path = os.path.join(level_dir, filename)
+        with open(file_path, 'r') as f:
+            content = f.read()
+            
+        # Look for RETRIES in the content
+        retries_match = re.search(r'#RETRIES:\s*(\d+)', content)
+        if not retries_match:
+            continue
+            
+        retries = int(retries_match.group(1))
+        
+        # Get variant key for problem_status dictionary
+        variant_key = "analogy_based" if "analogy" in variant else "random"
+        
+        # Check for First Try success (run_0 and RETRIES = 0)
+        if run_number == 0 and retries == 0:
+            variant_stats[variant]["ft"].add(problem_id)
+            problem_status[variant_key]["ft"][problem_id] = 1
+            problem_status[variant_key]["ft_union_frv"][problem_id] = 1
+            
+        # Check for First Run with Verifier success (run_0 and 0 < RETRIES < 5)
+        if run_number == 0 and 0 < retries < 5:
+            variant_stats[variant]["frv"].add(problem_id)
+            problem_status[variant_key]["frv"][problem_id] = 1
+            problem_status[variant_key]["ft_union_frv"][problem_id] = 1
+            
+        # Check for Multiple Runs with Verifier success (run_1 or run_2 and RETRIES < 5)
+        if (run_number == 1 or run_number == 2) and retries < 5:
+            variant_stats[variant]["mrv"].add(problem_id)
+            variant_stats[variant]["has_mrv"] = True
+    
+    # Calculate success rates
+    success_rates = {}
+    for variant in variant_stats.keys():
+        total_problems = len(variant_stats[variant]["total"])
+        if total_problems > 0:
+            # Calculate base rates
+            ft_rate = (len(variant_stats[variant]["ft"]) / total_problems) * 100
+            frv_rate = (len(variant_stats[variant]["frv"]) / total_problems) * 100
+            mrv_rate = (len(variant_stats[variant]["mrv"]) / total_problems) * 100 if variant_stats[variant]["has_mrv"] else 0
+            
+            # Make rates cumulative
+            success_rates[variant] = {
+                "ft": ft_rate,
+                "frv": ft_rate + frv_rate,  # FRV includes FT
+                "mrv": ft_rate + frv_rate + mrv_rate if variant_stats[variant]["has_mrv"] else 0  # MRV includes FRV and FT
+            }
+            
+            print(f"\n{variant}:")
+            print(f"  Total problems: {total_problems}")
+            print(f"  First Try success: {len(variant_stats[variant]['ft'])} ({success_rates[variant]['ft']:.1f}%)")
+            print(f"  First Run with Verifier success: {len(variant_stats[variant]['frv'])} ({success_rates[variant]['frv']:.1f}%)")
+            if variant_stats[variant]["has_mrv"]:
+                print(f"  Multiple Runs with Verifier success: {len(variant_stats[variant]['mrv'])} ({success_rates[variant]['mrv']:.1f}%)")
+        else:
+            success_rates[variant] = {"ft": 0, "frv": 0, "mrv": 0}
+            
+    return success_rates
 
 def calculate_analogy_stability(base_path):
     """
@@ -468,7 +684,7 @@ def calculate_analogy_stability(base_path):
     # Plot success rates
     plt.plot(levels, stability_results["listed"], 'o-', 
              label='Samples 1-10', linewidth=2, markersize=8, color='blue')
-    plt.plot(levels, stability_results["all"], 's--', 
+    plt.plot(levels, stability_results["all"], 'o-',
              label='Samples 1-20', linewidth=2, markersize=8, color='red')
     
     # Customize the plot
@@ -503,4 +719,4 @@ if __name__ == "__main__":
     base_path = "/Users/osultan/PycharmProjects/FormalGeo/results"
     plot_success_rates(base_path)
     plot_ablation_study(base_path)
-    calculate_analogy_stability(base_path) 
+    calculate_analogy_stability(base_path)
