@@ -17393,6 +17393,7 @@ def verify_geometric_proof(filename: str, print_output=True) -> tuple:
             print(f"Error: {str(e)}")
             return False, f"Error: {str(e)}", None
 
+
 if __name__ == "__main__":
     result, feedback, error_tier = verify_geometric_proof(
         "/Users/osultan/PycharmProjects/FormalGeo/results/level_5/variant_analogy_based_model_o1_problem_6660_run_0.txt",print_output=False)
