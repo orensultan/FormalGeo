@@ -5,6 +5,7 @@ import numpy as np
 from collections import defaultdict
 import pandas as pd
 from statsmodels.sandbox.stats.runs import mcnemar
+import math  # Add this import at the top of the file
 
 # Dictionary of problem IDs per level
 LEVEL_PROBLEMS = {
@@ -116,12 +117,52 @@ def calculate_success_rate(level_dir, level):
             
     return success_rates
 
-def perform_mcnemar_test(problem_status, stage):
+def plot_confusion_matrix(table, stage, base_path):
+    """
+    Plot confusion matrix for McNemar test contingency table.
+    Args:
+        table: Contingency table from McNemar test
+        stage: The stage being tested ('ft' or 'frv')
+        base_path: Base path to save the plot
+    """
+    plt.figure(figsize=(8, 6))
+    
+    # Create heatmap
+    plt.imshow(table, cmap='Blues')
+    
+    # Add text annotations
+    for i in range(table.shape[0]):
+        for j in range(table.shape[1]):
+            plt.text(j, i, str(table.iloc[i, j]),
+                    ha='center', va='center',
+                    color='white' if table.iloc[i, j] > table.max().max()/2 else 'black')
+    
+    # Add labels
+    plt.xlabel('Random Success', fontsize=12)
+    plt.ylabel('Analogy Success', fontsize=12)
+    plt.title(f'McNemar Test Contingency Table - {stage.upper()}', fontsize=14)
+    
+    # Add tick labels
+    plt.xticks([0, 1], ['Failure (0)', 'Success (1)'])
+    plt.yticks([0, 1], ['Failure (0)', 'Success (1)'])
+    
+    # Add colorbar
+    plt.colorbar(label='Count')
+    
+    # Adjust layout
+    plt.tight_layout()
+    
+    # Save the plot
+    plt.savefig(os.path.join(base_path, f'mcnemar_confusion_matrix_{stage}.png'), dpi=300, bbox_inches='tight')
+    plt.close()
+
+def perform_mcnemar_test(problem_status, stage, base_path):
     """
     Perform McNemar test to compare success rates between analogy-based and random approaches.
     Args:
         problem_status: Dictionary containing problem status for each variant and stage
         stage: The stage to test ('ft' or 'frv')
+        base_path: Base path to save the confusion matrix plot
     """
     # Create a DataFrame with problem IDs and their success/failure status
     data = []
@@ -160,7 +201,10 @@ def perform_mcnemar_test(problem_status, stage):
     print("=" * 50)
     print("\nContingency Table:")
     print(table)
-    print(f"\np-value: {p_value:.8f}")
+    print(f"\np-value: {p_value:.2e}")
+    
+    # Plot confusion matrix
+    plot_confusion_matrix(table, stage, base_path)
     
     # Interpret results
     alpha = 0.05
@@ -295,11 +339,18 @@ def plot_success_rates(base_path):
             for problem_id, status in sorted(problems.items()):
                 print(f"    Problem {problem_id}: {'Success' if status == 1 else 'Failure'}")
     
-    # Perform McNemar test for success rates
-    print("\nPerforming McNemar Test for Success Rates:")
+    # Calculate and print percentage of successful problems (ones) for each variant
+    print("\nPercentage of Successful Problems (Ones):")
     print("=" * 50)
-    success_p_value = perform_mcnemar_test(problem_status, "success")
-            
+    for variant_key in ["analogy_based", "random"]:
+        total_problems = len(problem_status[variant_key]["success"])
+        successful_problems = sum(1 for status in problem_status[variant_key]["success"].values() if status == 1)
+        success_percentage = (successful_problems / total_problems) * 100
+        print(f"\n{variant_key}:")
+        print(f"  Total problems: {total_problems}")
+        print(f"  Successful problems: {successful_problems}")
+        print(f"  Success percentage: {success_percentage:.1f}%")
+    
     # Create the plot
     plt.figure(figsize=(12, 7))
     
@@ -311,8 +362,8 @@ def plot_success_rates(base_path):
     
     # Customize the plot
     plt.xlabel('Level', fontsize=12)
-    plt.ylabel('Final Success Rate (%)', fontsize=12)
-    plt.title('Final Success Rates by Level and Variant', fontsize=14)
+    plt.ylabel('Success Rate (%)', fontsize=12)
+    plt.title('o1 Model Success Rates Per Level: Analogy-Based (ours) vs. Random (50 Samples)', fontsize=14)
     plt.grid(True, linestyle='--', alpha=0.7)
     plt.legend(fontsize=10)
     plt.xticks(levels)
@@ -351,12 +402,16 @@ def plot_ablation_study(base_path):
         "analogy_based": {
             "ft": {},  # First Try status
             "frv": {},  # First Run with Verifier status
-            "ft_union_frv": {}  # Union of FT and FRV status
+            "mrv": {},  # Multiple Runs with Verifier status
+            "ft_union_frv": {},  # Union of FT and FRV status
+            "ft_union_frv_union_mrv": {}  # Union of FT, FRV, and MRV status
         },
         "random": {
             "ft": {},
             "frv": {},
-            "ft_union_frv": {}  # Union of FT and FRV status
+            "mrv": {},  # Multiple Runs with Verifier status
+            "ft_union_frv": {},  # Union of FT and FRV status
+            "ft_union_frv_union_mrv": {}  # Union of FT, FRV, and MRV status
         }
     }
     
@@ -369,7 +424,9 @@ def plot_ablation_study(base_path):
                 if problem_id not in problem_status[variant_key]["ft"]:
                     problem_status[variant_key]["ft"][problem_id] = 0
                     problem_status[variant_key]["frv"][problem_id] = 0
+                    problem_status[variant_key]["mrv"][problem_id] = 0
                     problem_status[variant_key]["ft_union_frv"][problem_id] = 0
+                    problem_status[variant_key]["ft_union_frv_union_mrv"][problem_id] = 0
     
     for level in levels:
         print(f"\nProcessing Level {level}")
@@ -396,11 +453,71 @@ def plot_ablation_study(base_path):
             for problem_id, status in sorted(problems.items()):
                 print(f"    Problem {problem_id}: {'Success' if status == 1 else 'Failure'}")
     
-    # Perform McNemar tests for FT and FT_UNION_FRV
+    # Calculate and print overall success rates across all levels
+    print("\nOverall Success Rates (50 samples):")
+    print("=" * 50)
+    for variant in variants:
+        variant_key = "analogy_based" if "analogy" in variant else "random"
+        total_problems = len(problem_status[variant_key]["ft"])
+        successful_problems = sum(1 for status in problem_status[variant_key]["ft_union_frv_union_mrv"].values() if status == 1)
+        overall_rate = (successful_problems / total_problems) * 100
+        print(f"\n{variant}:")
+        print(f"  Total problems: {total_problems}")
+        print(f"  Successful problems: {successful_problems}")
+        print(f"  Overall success rate: {overall_rate:.1f}%")
+        
+        # Print successful problem IDs
+        successful_ids = [pid for pid, status in problem_status[variant_key]["ft_union_frv_union_mrv"].items() if status == 1]
+        print(f"  Successful problem IDs: {sorted(successful_ids)}")
+    
+    # Perform McNemar tests for the two specific comparisons
     print("\nPerforming McNemar Tests:")
     print("=" * 50)
-    ft_p_value = perform_mcnemar_test(problem_status, "ft")
-    ft_union_frv_p_value = perform_mcnemar_test(problem_status, "ft_union_frv")
+    
+    # First test: analogy-based first try vs random first try
+    print("\nTest 1: Analogy-based First Try vs Random First Try")
+    print("-" * 50)
+    ft_vs_random_test = {
+        "analogy_based": {"test": problem_status["analogy_based"]["ft"]},
+        "random": {"test": problem_status["random"]["ft"]}
+    }
+    ft_vs_random_p_value = perform_mcnemar_test(ft_vs_random_test, "test", base_path)
+    
+    # Second test: analogy-based multiple runs with retries vs random first try
+    print("\nTest 2: Analogy-based Multiple Runs with Retries vs Random First Try")
+    print("-" * 50)
+    mrv_vs_random_test = {
+        "analogy_based": {"test": problem_status["analogy_based"]["ft_union_frv_union_mrv"]},
+        "random": {"test": problem_status["random"]["ft"]}
+    }
+    mrv_vs_random_p_value = perform_mcnemar_test(mrv_vs_random_test, "test", base_path)
+    
+    # Third test: analogy-based first run with retries vs random first try
+    print("\nTest 3: Analogy-based First Run with Retries vs Random First Try")
+    print("-" * 50)
+    frv_vs_random_test = {
+        "analogy_based": {"test": problem_status["analogy_based"]["ft_union_frv"]},
+        "random": {"test": problem_status["random"]["ft"]}
+    }
+    frv_vs_random_p_value = perform_mcnemar_test(frv_vs_random_test, "test", base_path)
+    
+    # Fourth test: analogy-based first run with retries vs random first run with retries
+    print("\nTest 4: Analogy-based First Run with Retries vs Random First Run with Retries")
+    print("-" * 50)
+    frv_vs_frv_test = {
+        "analogy_based": {"test": problem_status["analogy_based"]["ft_union_frv"]},
+        "random": {"test": problem_status["random"]["ft_union_frv"]}
+    }
+    frv_vs_frv_p_value = perform_mcnemar_test(frv_vs_frv_test, "test", base_path)
+    
+    # Fifth test: analogy-based multiple runs with retries vs random multiple runs with retries
+    print("\nTest 5: Analogy-based Multiple Runs with Retries vs Random Multiple Runs with Retries")
+    print("-" * 50)
+    mrv_vs_mrv_test = {
+        "analogy_based": {"test": problem_status["analogy_based"]["ft_union_frv_union_mrv"]},
+        "random": {"test": problem_status["random"]["ft_union_frv_union_mrv"]}
+    }
+    mrv_vs_mrv_p_value = perform_mcnemar_test(mrv_vs_mrv_test, "test", base_path)
     
     # Create the plot
     plt.figure(figsize=(12, 7))
@@ -408,39 +525,41 @@ def plot_ablation_study(base_path):
     # Plot lines for each variant and stage
     for variant in variants:
         color = 'blue' if 'analogy' in variant else 'red'
+        variant_label = variant.replace("variant_", "").replace("_model_o1", "").replace("random_all_theorems", "random")
         
-        # Plot FT
+        # Plot FT first
         plt.plot(levels, success_rates[variant]["ft"], 'o-', 
-                label=f'{variant.replace("variant_", "").replace("_model_o1", "")} - First Try',
+                label=f'{variant_label} - First attempt',
                 linewidth=2, markersize=8, color=color)
         
-        # Plot FRV
+        # Plot FRV second
         plt.plot(levels, success_rates[variant]["frv"], 's--', 
-                label=f'{variant.replace("variant_", "").replace("_model_o1", "")} - First Run + Verifier',
+                label=f'{variant_label} - First run w. retries',
                 linewidth=2, markersize=8, color=color)
         
-        # Plot MRV only for levels where it exists
-        mrv_data = []
-        mrv_levels = []
-        for i, (rate, has_mrv_success) in enumerate(zip(success_rates[variant]["mrv"], has_mrv[variant])):
-            if has_mrv_success:  # Only plot if this level has MRV successes
-                mrv_data.append(rate)
-                mrv_levels.append(levels[i])
+        # Plot MRV last with solid triangles
+        plt.plot(levels, success_rates[variant]["mrv"], '^:', 
+                label=f'{variant_label} - Multiple runs w. retries',
+                linewidth=2, markersize=10, color=color)
         
-        if mrv_data:  # Only plot if there are any levels with MRV successes
-            plt.plot(mrv_levels, mrv_data, '^:', 
-                    label=f'{variant.replace("variant_", "").replace("_model_o1", "")} - Multiple Runs + Verifier',
-                    linewidth=2, markersize=8, color=color)
+        # Add markers for MRV points that have the same value as FRV
+        for i in range(len(levels)):
+            if success_rates[variant]["mrv"][i] == success_rates[variant]["frv"][i]:
+                plt.plot(levels[i], success_rates[variant]["mrv"][i], '^', 
+                        color=color, markersize=10)
     
     # Customize the plot
     plt.xlabel('Level', fontsize=12)
     plt.ylabel('Cumulative Success Rate (%)', fontsize=12)
-    plt.title('Cumulative Success Rates by Level and Variant', fontsize=14)
+    plt.title('Our analogy-based method outperforms the random baseline\nin all o1 model ablations (50 samples)', fontsize=16)
     plt.grid(True, linestyle='--', alpha=0.7)
-    plt.legend(fontsize=10, bbox_to_anchor=(1.05, 1), loc='upper left')
+    plt.legend(fontsize=9, loc='upper right', bbox_to_anchor=(0.98, 0.98), framealpha=1.0)
     plt.xticks(levels)
     plt.ylim(0, 110)
     plt.yticks(np.arange(0, 110, 10))
+    
+    # Adjust x-axis limits to make the graph wider
+    plt.xlim(0.5, 5.5)  # Extend x-axis limits slightly beyond the data points
     
     # Add value labels on the points
     for variant in variants:
@@ -449,7 +568,12 @@ def plot_ablation_study(base_path):
             for i in range(len(levels)):
                 rate = success_rates[variant][stage][i]
                 if rate > 0:  # Only add labels for non-zero rates
-                    plt.text(levels[i], rate + 2, 
+                    # Skip MRV label if it has the same value as FRV
+                    if stage == "mrv" and rate == success_rates[variant]["frv"][i]:
+                        continue
+                    # Adjust vertical position of labels to prevent overlap
+                    offset = 2
+                    plt.text(levels[i], rate + offset, 
                             f'{rate:.1f}%', 
                             ha='center', va='bottom', color=color)
     
@@ -541,17 +665,21 @@ def calculate_ablation_success_rates(level_dir, level, problem_status):
             variant_stats[variant]["ft"].add(problem_id)
             problem_status[variant_key]["ft"][problem_id] = 1
             problem_status[variant_key]["ft_union_frv"][problem_id] = 1
+            problem_status[variant_key]["ft_union_frv_union_mrv"][problem_id] = 1
             
         # Check for First Run with Verifier success (run_0 and 0 < RETRIES < 5)
         if run_number == 0 and 0 < retries < 5:
             variant_stats[variant]["frv"].add(problem_id)
             problem_status[variant_key]["frv"][problem_id] = 1
             problem_status[variant_key]["ft_union_frv"][problem_id] = 1
+            problem_status[variant_key]["ft_union_frv_union_mrv"][problem_id] = 1
             
         # Check for Multiple Runs with Verifier success (run_1 or run_2 and RETRIES < 5)
         if (run_number == 1 or run_number == 2) and retries < 5:
             variant_stats[variant]["mrv"].add(problem_id)
             variant_stats[variant]["has_mrv"] = True
+            problem_status[variant_key]["mrv"][problem_id] = 1
+            problem_status[variant_key]["ft_union_frv_union_mrv"][problem_id] = 1
     
     # Calculate success rates
     success_rates = {}
@@ -561,21 +689,26 @@ def calculate_ablation_success_rates(level_dir, level, problem_status):
             # Calculate base rates
             ft_rate = (len(variant_stats[variant]["ft"]) / total_problems) * 100
             frv_rate = (len(variant_stats[variant]["frv"]) / total_problems) * 100
-            mrv_rate = (len(variant_stats[variant]["mrv"]) / total_problems) * 100 if variant_stats[variant]["has_mrv"] else 0
+            mrv_rate = (len(variant_stats[variant]["mrv"]) / total_problems) * 100
             
             # Make rates cumulative
             success_rates[variant] = {
                 "ft": ft_rate,
                 "frv": ft_rate + frv_rate,  # FRV includes FT
-                "mrv": ft_rate + frv_rate + mrv_rate if variant_stats[variant]["has_mrv"] else 0  # MRV includes FRV and FT
+                "mrv": ft_rate + frv_rate + mrv_rate  # MRV includes FRV and FT, even if no additional successes
             }
             
             print(f"\n{variant}:")
             print(f"  Total problems: {total_problems}")
             print(f"  First Try success: {len(variant_stats[variant]['ft'])} ({success_rates[variant]['ft']:.1f}%)")
             print(f"  First Run with Verifier success: {len(variant_stats[variant]['frv'])} ({success_rates[variant]['frv']:.1f}%)")
-            if variant_stats[variant]["has_mrv"]:
-                print(f"  Multiple Runs with Verifier success: {len(variant_stats[variant]['mrv'])} ({success_rates[variant]['mrv']:.1f}%)")
+            print(f"  Multiple Runs with Verifier success: {len(variant_stats[variant]['mrv'])} ({success_rates[variant]['mrv']:.1f}%)")
+            
+            # Print MRV problems for debugging
+            if variant_stats[variant]["mrv"]:
+                print(f"  MRV problems: {sorted(variant_stats[variant]['mrv'])}")
+                print(f"  MRV rate: {mrv_rate:.1f}%")
+                print(f"  Total MRV rate: {success_rates[variant]['mrv']:.1f}%")
         else:
             success_rates[variant] = {"ft": 0, "frv": 0, "mrv": 0}
             
@@ -683,14 +816,14 @@ def calculate_analogy_stability(base_path):
     
     # Plot success rates
     plt.plot(levels, stability_results["listed"], 'o-', 
-             label='Samples 1-10', linewidth=2, markersize=8, color='blue')
+             label='original samples', linewidth=2, markersize=8, color='blue')
     plt.plot(levels, stability_results["all"], 'o-',
-             label='Samples 1-20', linewidth=2, markersize=8, color='red')
+             label='original + extended samples', linewidth=2, markersize=8, color='red')
     
     # Customize the plot
     plt.xlabel('Level', fontsize=12)
     plt.ylabel('Success Rate (%)', fontsize=12)
-    plt.title('Analogy-Based Stability: Listed vs All Problems', fontsize=14)
+    plt.title('Performance of our method on the o1 model remains stable\nwhen increasing from 50 to 100 sampled problems (10 to 20 per level)', fontsize=16)
     plt.grid(True, linestyle='--', alpha=0.7)
     plt.legend(fontsize=10)
     plt.xticks(levels)
@@ -715,8 +848,219 @@ def calculate_analogy_stability(base_path):
     
     return stability_results
 
+def analyze_answer_correctness(base_path):
+    """
+    Analyze which problems in the sample of 50 problems (10 per level) were solved correctly
+    by comparing model answers with ground truth answers. A problem is considered incorrect
+    only if all of its answers (including retries) are not equal to the ground truth answer.
+    For floating-point comparisons, answers are considered equal if they differ by at most 0.01.
+    For fractions, both the fraction form and decimal form are checked.
+    """
+    def evaluate_math_expression(expr):
+        """Evaluate a mathematical expression safely."""
+        try:
+            # Convert to string if it's a number
+            expr = str(expr)
+            
+            # First handle implicit multiplication
+            expr = re.sub(r'(\d+)\s*√', r'\1*sqrt', expr)  # Handle 3√2 -> 3*sqrt
+            expr = re.sub(r'(\d+)\s*sqrt', r'\1*sqrt', expr)  # Handle 3 sqrt -> 3*sqrt
+            expr = re.sub(r'(\d+)\(', r'\1*(', expr)  # Handle 2(3)
+            expr = re.sub(r'\)(\d+)', r')*\1', expr)  # Handle (2)3
+            expr = re.sub(r'\)\s*\(', r')*(', expr)  # Handle (2)(3)
+            
+            # Then normalize mathematical functions and constants
+            expr = re.sub(r'√(\d+)', r'sqrt(\1)', expr)  # Handle √6 -> sqrt(6)
+            expr = re.sub(r'sqrt\s*\((\d+)\)', r'sqrt(\1)', expr)  # Handle sqrt(6)
+            expr = re.sub(r'sqrt\s*(\d+)', r'sqrt(\1)', expr)  # Handle sqrt 6
+            
+            # Replace all variations of pi with math.pi
+            expr = re.sub(r'(\d+)π', r'\1*math.pi', expr)  # Handle 2π
+            expr = re.sub(r'(\d+)\s*pi', r'\1*math.pi', expr)  # Handle 2 pi
+            expr = re.sub(r'π', r'math.pi', expr)  # Handle π alone
+            expr = re.sub(r'pi', r'math.pi', expr)  # Handle pi alone
+            
+            # Add math. prefix to sqrt
+            expr = re.sub(r'sqrt\(', r'math.sqrt(', expr)
+            
+            # Evaluate the expression
+            return eval(expr)
+        except Exception as e:
+            print(f"Error evaluating expression '{expr}': {str(e)}")
+            return None
+    
+    def parse_fraction(value):
+        """Parse a value that could be a fraction or a number."""
+        try:
+            # Try to parse as a fraction (e.g., "41/63")
+            if '/' in str(value):
+                # Split on '/' and handle each part
+                parts = str(value).split('/')
+                if len(parts) != 2:
+                    return None
+                
+                # Parse numerator and denominator
+                num = parts[0].strip()
+                denom = parts[1].strip()
+                
+                # Handle expressions in numerator or denominator
+                try:
+                    num_value = evaluate_math_expression(num)
+                    denom_value = evaluate_math_expression(denom)
+                    if num_value is not None and denom_value is not None:
+                        return num_value / denom_value
+                except:
+                    pass
+                
+                # If expression evaluation fails, try direct integer division
+                try:
+                    return int(num) / int(denom)
+                except:
+                    return None
+            
+            # Try to evaluate as a math expression
+            expr_value = evaluate_math_expression(value)
+            if expr_value is not None:
+                return expr_value
+            
+            # Try to parse as a regular number
+            return float(value)
+        except (ValueError, ZeroDivisionError):
+            return None
+    
+    def is_answer_correct(answer, gt_answer):
+        """Check if an answer is correct, handling integers, floating-point numbers, and fractions."""
+        try:
+            # Parse both values
+            answer_value = parse_fraction(answer)
+            gt_value = parse_fraction(gt_answer)
+            
+            if answer_value is None or gt_value is None:
+                return False
+            
+            # Convert both values to float for comparison
+            answer_float = float(answer_value)
+            gt_float = float(gt_value)
+            
+            # If both are integers (after conversion to float), do exact comparison
+            if answer_float.is_integer() and gt_float.is_integer():
+                return int(answer_float) == int(gt_float)
+            
+            # For floating-point numbers, use epsilon comparison
+            return abs(answer_float - gt_float) <= 0.01
+        except (ValueError, TypeError):
+            return False
+    
+    levels = range(1, 6)
+    variants = ["variant_analogy_based_model_o1", "variant_random_all_theorems_model_o1"]
+    
+    # Dictionary to store aggregated statistics
+    level_stats = {
+        level: {
+            variant: {
+                "total_problems": 0,
+                "problems_with_answers": 0,  # Problems that have at least one answer
+                "all_incorrect_problems": set(),  # Problems where all provided answers are incorrect
+            } for variant in variants
+        } for level in levels
+    }
+    
+    print("\nAnalyzing Answer Correctness:")
+    print("=" * 50)
+    
+    for level in levels:
+        print(f"\nLevel {level}:")
+        print("-" * 30)
+        level_dir = os.path.join(base_path, f"level_{level}")
+        if not os.path.exists(level_dir):
+            print(f"Level {level} directory not found")
+            continue
+            
+        # Get the list of problem IDs for this level
+        level_problem_ids = set(LEVEL_PROBLEMS[level])
+        
+        # Process each problem
+        for problem_id in sorted(level_problem_ids):
+            # First, get the ground truth answer from run_0
+            gt_answer = None
+            for variant in variants:
+                run_0_file = os.path.join(level_dir, f"{variant}_problem_{problem_id}_run_0.txt")
+                if os.path.exists(run_0_file):
+                    with open(run_0_file, 'r') as f:
+                        content = f.read()
+                        gt_match = re.search(r'GT_ANSWER:\s*(.*?)(?:\n|$)', content)
+                        if gt_match:
+                            gt_expr = gt_match.group(1).strip()
+                            if gt_expr:  # If there's a value after GT_ANSWER:
+                                try:
+                                    # First try to parse as integer
+                                    gt_answer = int(gt_expr)
+                                except ValueError:
+                                    # If not an integer, try to evaluate as math expression
+                                    gt_answer = evaluate_math_expression(gt_expr)
+                                    if gt_answer is None:
+                                        # If not a math expression, try to parse as fraction
+                                        gt_answer = parse_fraction(gt_expr)
+                                    if gt_answer is not None:
+                                        print(f"Problem {problem_id} ground truth expression '{gt_expr}' evaluated to {gt_answer}")
+                            break
+            
+            if gt_answer is None:
+                if level == 5:  # Print missing problem for Level 5
+                    print(f"\nProblem {problem_id} is missing ground truth answer or has invalid expression")
+                continue
+            
+            # Check each variant's answers
+            for variant in variants:
+                all_answers = []  # Track all answers for this problem
+                
+                # Check all runs for this problem
+                for run_num in range(3):  # Check run_0, run_1, and run_2
+                    run_file = os.path.join(level_dir, f"{variant}_problem_{problem_id}_run_{run_num}.txt")
+                    if os.path.exists(run_file):
+                        with open(run_file, 'r') as f:
+                            content = f.read()
+                            
+                            # Check ANSWER
+                            answer_match = re.search(r'ANSWER:\s*(.*?)(?:\n|$)', content)
+                            if answer_match:
+                                answer = answer_match.group(1).strip()
+                                all_answers.append(answer)
+                            
+                            # Check RETRY_ANSWER
+                            retry_match = re.search(r'RETRY_ANSWER:\s*(.*?)(?:\n|$)', content)
+                            if retry_match:
+                                retry_answer = retry_match.group(1).strip()
+                                all_answers.append(retry_answer)
+                
+                # Update statistics
+                level_stats[level][variant]["total_problems"] += 1
+                if all_answers:  # If we found any answers
+                    level_stats[level][variant]["problems_with_answers"] += 1
+                    # Check if all answers are incorrect using the epsilon comparison
+                    if not any(is_answer_correct(answer, gt_answer) for answer in all_answers):
+                        level_stats[level][variant]["all_incorrect_problems"].add(problem_id)
+    
+    # Print aggregated statistics
+    print("\nAggregated Statistics:")
+    print("=" * 50)
+    for level in levels:
+        print(f"\nLevel {level}:")
+        print("-" * 30)
+        for variant in variants:
+            stats = level_stats[level][variant]
+            if stats["total_problems"] > 0:
+                all_incorrect_percentage = (len(stats["all_incorrect_problems"]) / stats["problems_with_answers"]) * 100 if stats["problems_with_answers"] > 0 else 0
+                print(f"\n{variant}:")
+                print(f"  Total problems: {stats['total_problems']}")
+                print(f"  Problems with answers: {stats['problems_with_answers']}")
+                print(f"  Problems with all incorrect answers: {len(stats['all_incorrect_problems'])} ({all_incorrect_percentage:.1f}%)")
+                if stats["all_incorrect_problems"]:
+                    print(f"  Problem IDs with all incorrect answers: {sorted(stats['all_incorrect_problems'])}")
+
 if __name__ == "__main__":
     base_path = "/Users/osultan/PycharmProjects/FormalGeo/results"
-    plot_success_rates(base_path)
-    plot_ablation_study(base_path)
-    calculate_analogy_stability(base_path)
+    # plot_success_rates(base_path)
+    # plot_ablation_study(base_path)
+    # calculate_analogy_stability(base_path)
+    analyze_answer_correctness(base_path)
