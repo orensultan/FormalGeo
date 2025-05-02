@@ -44,14 +44,14 @@ Shape(CYH,BHC,CY)
 Shape(BHC,CY,CYH)
 Shape(BCG,CHG,BHC)
 Shape(CHG,BHC,BCG)
-Shape(AEF,BEA,AFD,DA)
-Shape(BEA,AFD,DA,AEF)
-Shape(AFD,DA,AEF,BEA)
-Shape(DA,AEF,BEA,AFD)
 Shape(BAF,AEF,AD,ADE)
 Shape(AEF,AD,ADE,BAF)
 Shape(AD,ADE,BAF,AEF)
 Shape(ADE,BAF,AEF,AD)
+Shape(AEF,BEA,AFD,DA)
+Shape(BEA,AFD,DA,AEF)
+Shape(AFD,DA,AEF,BEA)
+Shape(DA,AEF,BEA,AFD)
 Shape(BEA,AD,BGE,CGY,YB,BD)
 Shape(AD,BGE,CGY,YB,BD,BEA)
 Shape(BGE,CGY,YB,BD,BEA,AD)
@@ -92,13 +92,6 @@ Shape(CY,CYH,BCG,CHG)
 Shape(CYH,BCG,CHG,CY)
 Shape(BCG,CHG,CY,CYH)
 Shape(CHG,CY,CYH,BCG)
-Shape(AEF,BEA,BFH,CYH,YB,BD,DA)
-Shape(BEA,BFH,CYH,YB,BD,DA,AEF)
-Shape(BFH,CYH,YB,BD,DA,AEF,BEA)
-Shape(CYH,YB,BD,DA,AEF,BEA,BFH)
-Shape(YB,BD,DA,AEF,BEA,BFH,CYH)
-Shape(BD,DA,AEF,BEA,BFH,CYH,YB)
-Shape(DA,AEF,BEA,BFH,CYH,YB,BD)
 Shape(BAF,AEF,AD,BGE,CGY,YB,BD)
 Shape(AEF,AD,BGE,CGY,YB,BD,BAF)
 Shape(AD,BGE,CGY,YB,BD,BAF,AEF)
@@ -106,6 +99,13 @@ Shape(BGE,CGY,YB,BD,BAF,AEF,AD)
 Shape(CGY,YB,BD,BAF,AEF,AD,BGE)
 Shape(YB,BD,BAF,AEF,AD,BGE,CGY)
 Shape(BD,BAF,AEF,AD,BGE,CGY,YB)
+Shape(AEF,BEA,BFH,CYH,YB,BD,DA)
+Shape(BEA,BFH,CYH,YB,BD,DA,AEF)
+Shape(BFH,CYH,YB,BD,DA,AEF,BEA)
+Shape(CYH,YB,BD,DA,AEF,BEA,BFH)
+Shape(YB,BD,DA,AEF,BEA,BFH,CYH)
+Shape(BD,DA,AEF,BEA,BFH,CYH,YB)
+Shape(DA,AEF,BEA,BFH,CYH,YB,BD)
 Shape(BEA,AD,BGE,YC,BCG,YB,BD)
 Shape(AD,BGE,YC,BCG,YB,BD,BEA)
 Shape(BGE,YC,BCG,YB,BD,BEA,AD)
@@ -120,6 +120,14 @@ Shape(BAF,BFH,CYH,YB,BD,ADE,BEA)
 ..(CY,YB,BD,ADE,BEA,BAF,BFH,BHC)
 ..(YB,BD,ADE,BEA,BAF,BFH,BHC,CY)
 ..(BD,ADE,BEA,BAF,BFH,BHC,CY,YB)
+..(BAF,AFD,BGE,YC,BCG,YB,BD,BEA)
+..(AFD,BGE,YC,BCG,YB,BD,BEA,BAF)
+..(BGE,YC,BCG,YB,BD,BEA,BAF,AFD)
+..(YC,BCG,YB,BD,BEA,BAF,AFD,BGE)
+..(BCG,YB,BD,BEA,BAF,AFD,BGE,YC)
+..(YB,BD,BEA,BAF,AFD,BGE,YC,BCG)
+..(BD,BEA,BAF,AFD,BGE,YC,BCG,YB)
+..(BEA,BAF,AFD,BGE,YC,BCG,YB,BD)
 ..(DA,BAF,BFH,BHC,BCG,CGY,YB,BD)
 ..(BAF,BFH,BHC,BCG,CGY,YB,BD,DA)
 ..(BFH,BHC,BCG,CGY,YB,BD,DA,BAF)
@@ -136,32 +144,6 @@ Shape(BAF,BFH,CYH,YB,BD,ADE,BEA)
 ..(CY,YB,BD,DA,BAF,BFH,BCG,CHG)
 ..(YB,BD,DA,BAF,BFH,BCG,CHG,CY)
 ..(BD,DA,BAF,BFH,BCG,CHG,CY,YB)
-..(BAF,AFD,BGE,YC,BCG,YB,BD,BEA)
-..(AFD,BGE,YC,BCG,YB,BD,BEA,BAF)
-..(BGE,YC,BCG,YB,BD,BEA,BAF,AFD)
-..(YC,BCG,YB,BD,BEA,BAF,AFD,BGE)
-..(BCG,YB,BD,BEA,BAF,AFD,BGE,YC)
-..(YB,BD,BEA,BAF,AFD,BGE,YC,BCG)
-..(BD,BEA,BAF,AFD,BGE,YC,BCG,YB)
-..(BEA,BAF,AFD,BGE,YC,BCG,YB,BD)
-..(AEF,BEA,BFH,BHC,BCG,CGY,YB,BD,DA)
-..(BEA,BFH,BHC,BCG,CGY,YB,BD,DA,AEF)
-..(BFH,BHC,BCG,CGY,YB,BD,DA,AEF,BEA)
-..(BHC,BCG,CGY,YB,BD,DA,AEF,BEA,BFH)
-..(BCG,CGY,YB,BD,DA,AEF,BEA,BFH,BHC)
-..(CGY,YB,BD,DA,AEF,BEA,BFH,BHC,BCG)
-..(YB,BD,DA,AEF,BEA,BFH,BHC,BCG,CGY)
-..(BD,DA,AEF,BEA,BFH,BHC,BCG,CGY,YB)
-..(DA,AEF,BEA,BFH,BHC,BCG,CGY,YB,BD)
-..(AEF,BEA,BFH,BCG,CHG,CY,YB,BD,DA)
-..(BEA,BFH,BCG,CHG,CY,YB,BD,DA,AEF)
-..(BFH,BCG,CHG,CY,YB,BD,DA,AEF,BEA)
-..(BCG,CHG,CY,YB,BD,DA,AEF,BEA,BFH)
-..(CHG,CY,YB,BD,DA,AEF,BEA,BFH,BCG)
-..(CY,YB,BD,DA,AEF,BEA,BFH,BCG,CHG)
-..(YB,BD,DA,AEF,BEA,BFH,BCG,CHG,CY)
-..(BD,DA,AEF,BEA,BFH,BCG,CHG,CY,YB)
-..(DA,AEF,BEA,BFH,BCG,CHG,CY,YB,BD)
 ..(BAF,AEF,AD,BGE,YC,CHG,BHC,YB,BD)
 ..(AEF,AD,BGE,YC,CHG,BHC,YB,BD,BAF)
 ..(AD,BGE,YC,CHG,BHC,YB,BD,BAF,AEF)
@@ -180,6 +162,24 @@ Shape(BAF,BFH,CYH,YB,BD,ADE,BEA)
 ..(BCG,YB,BD,BAF,AEF,AD,BGE,CYH,BHC)
 ..(YB,BD,BAF,AEF,AD,BGE,CYH,BHC,BCG)
 ..(BD,BAF,AEF,AD,BGE,CYH,BHC,BCG,YB)
+..(AEF,BEA,BFH,BHC,BCG,CGY,YB,BD,DA)
+..(BEA,BFH,BHC,BCG,CGY,YB,BD,DA,AEF)
+..(BFH,BHC,BCG,CGY,YB,BD,DA,AEF,BEA)
+..(BHC,BCG,CGY,YB,BD,DA,AEF,BEA,BFH)
+..(BCG,CGY,YB,BD,DA,AEF,BEA,BFH,BHC)
+..(CGY,YB,BD,DA,AEF,BEA,BFH,BHC,BCG)
+..(YB,BD,DA,AEF,BEA,BFH,BHC,BCG,CGY)
+..(BD,DA,AEF,BEA,BFH,BHC,BCG,CGY,YB)
+..(DA,AEF,BEA,BFH,BHC,BCG,CGY,YB,BD)
+..(AEF,BEA,BFH,BCG,CHG,CY,YB,BD,DA)
+..(BEA,BFH,BCG,CHG,CY,YB,BD,DA,AEF)
+..(BFH,BCG,CHG,CY,YB,BD,DA,AEF,BEA)
+..(BCG,CHG,CY,YB,BD,DA,AEF,BEA,BFH)
+..(CHG,CY,YB,BD,DA,AEF,BEA,BFH,BCG)
+..(CY,YB,BD,DA,AEF,BEA,BFH,BCG,CHG)
+..(YB,BD,DA,AEF,BEA,BFH,BCG,CHG,CY)
+..(BD,DA,AEF,BEA,BFH,BCG,CHG,CY,YB)
+..(DA,AEF,BEA,BFH,BCG,CHG,CY,YB,BD)
 ..(ADE,BEA,BAF,BFH,BHC,BCG,CGY,YB,BD)
 ..(BEA,BAF,BFH,BHC,BCG,CGY,YB,BD,ADE)
 ..(BAF,BFH,BHC,BCG,CGY,YB,BD,ADE,BEA)
@@ -536,12 +536,12 @@ Outputs for Problem B:
 
 ***MODEL_RESPONSE_BEGIN***
 EQUATIONS:
-doc_A-10
-doc_B-20
-doc_C-14
+DiameterOfCircle(A)-10
+DiameterOfCircle(B)-20
+DiameterOfCircle(C)-14
 
 GOAL_SYMBOL:
-ll_by
+LengthOfLine(BY)
 
 ANSWER:
 10
@@ -560,10 +560,32 @@ Model Answer:
 RETRY_ANSWER:
 10
 RETRY_THEOREM_SEQUENCE:
-1; circle_property_length_of_radius_and_diameter(B); Circle(B); ["Equal(DiameterOfCircle(B),Mul(RadiusOfCircle(B),2))"]
+1; circle_property_length_of_radius_and_diameter(B); Circle(B)&Equal(DiameterOfCircle(B),20); ["Equal(DiameterOfCircle(B),Mul(RadiusOfCircle(B),2))"]
+2; radius_of_circle_property_length_equal(BY,B); Cocircular(B,Y)&Line(BY)&IsCentreOfCircle(B,B); ["Equal(LengthOfLine(BY),RadiusOfCircle(B))"]
+#run: 0; #retry: 2; message: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
+Theorem: circle_property_length_of_radius_and_diameter(1,B)
+You output the following premises: Circle(B)&Equal(DiameterOfCircle(B),20)
+But the correct premises: Circle(B)
+
+Model Answer:
+RETRY_ANSWER:
+10
+RETRY_THEOREM_SEQUENCE:
+1; circle_property_length_of_radius_and_diameter(1,B); Circle(B)&Equal(DiameterOfCircle(B),20); ["Equal(DiameterOfCircle(B),Mul(RadiusOfCircle(B),2))"]
+2; radius_of_circle_property_length_equal(BY,B); Cocircular(B,Y)&Line(BY)&IsCentreOfCircle(B,B); ["Equal(LengthOfLine(BY),RadiusOfCircle(B))"]
+#run: 0; #retry: 3; message: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
+Failure: Theorem <radius_of_circle_property_length_equal> variation id is not supplied. Expected dict_keys(['1']) but got None.
+Your call: radius_of_circle_property_length_equal(B,Y,B)
+Please rewrite your response by adding the variation id as the first argument. For example: For variation 1: radius_of_circle_property_length_equal(1,B,Y,B)
+
+Model Answer:
+RETRY_ANSWER:
+10
+RETRY_THEOREM_SEQUENCE:
+1; circle_property_length_of_radius_and_diameter(1,B); Circle(B); ["Equal(DiameterOfCircle(B),Mul(RadiusOfCircle(B),2))"]
 2; radius_of_circle_property_length_equal(BY,B); Cocircular(B,Y)&Line(BY)&IsCentreOfCircle(B,B); ["Equal(LengthOfLine(BY),RadiusOfCircle(B))"]
 #RETRIES:
-1
+3
 #RUNS:
 0
 
