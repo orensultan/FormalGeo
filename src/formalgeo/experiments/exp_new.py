@@ -16,6 +16,24 @@ LEVEL_PROBLEMS = {
     5: [6485, 437, 6660, 696, 532, 847, 5080, 5431, 5563, 5440]
 }
 
+# Dictionary to store problem status for each stage (accumulated across all levels)
+GLOBAL_PROBLEM_STATUS = {
+    "analogy_based": {
+        "ft": {},  # First Try status
+        "frv": {},  # First Run with Verifier status
+        "mrv": {},  # Multiple Runs with Verifier status
+        "ft_union_frv": {},  # Union of FT and FRV status
+        "ft_union_frv_union_mrv": {}  # Union of FT, FRV, and MRV status
+    },
+    "random": {
+        "ft": {},
+        "frv": {},
+        "mrv": {},  # Multiple Runs with Verifier status
+        "ft_union_frv": {},  # Union of FT and FRV status
+        "ft_union_frv_union_mrv": {}  # Union of FT, FRV, and MRV status
+    }
+}
+
 def calculate_success_rate(level_dir, level):
     """
     Calculate success rate for a given level directory.
@@ -389,6 +407,7 @@ def plot_success_rates(base_path):
 def plot_ablation_study(base_path):
     """
     Plot cumulative success rates for different stages of the ablation study.
+    Returns the problem status dictionary containing success/failure status for each problem.
     """
     levels = range(1, 6)
     variants = ["variant_analogy_based_model_o1", "variant_random_all_theorems_model_o1"]
@@ -437,6 +456,7 @@ def plot_ablation_study(base_path):
             continue
             
         level_rates = calculate_ablation_success_rates(level_dir, level, problem_status)
+        
         for variant in variants:
             for stage in ["ft", "frv", "mrv"]:
                 success_rates[variant][stage].append(level_rates[variant][stage])
@@ -583,6 +603,8 @@ def plot_ablation_study(base_path):
     # Save the plot
     plt.savefig(os.path.join(base_path, 'success_rates_progression.png'), dpi=300, bbox_inches='tight')
     plt.close()
+    
+    return problem_status
 
 def calculate_ablation_success_rates(level_dir, level, problem_status):
     """
@@ -943,13 +965,15 @@ def is_answer_correct(answer, gt_answer):
     except (ValueError, TypeError):
         return False
 
-def analyze_answer_correctness(base_path):
+def analyze_answer_correctness(base_path, problem_status):
     """
     Analyze which problems in the sample of 50 problems (10 per level) were solved correctly
     by comparing model answers with ground truth answers. A problem is considered incorrect
     only if all of its answers (including retries) are not equal to the ground truth answer.
     For floating-point comparisons, answers are considered equal if they differ by at most 0.01.
     For fractions, both the fraction form and decimal form are checked.
+    
+    Also creates a confusion matrix comparing answer correctness with proof correctness.
     """
     levels = range(1, 6)
     variants = ["variant_analogy_based_model_o1", "variant_random_all_theorems_model_o1"]
@@ -961,6 +985,7 @@ def analyze_answer_correctness(base_path):
                 "total_problems": 0,
                 "problems_with_answers": 0,  # Problems that have at least one answer
                 "all_incorrect_problems": set(),  # Problems where all provided answers are incorrect
+                "some_correct_problems": set(),  # Problems that have at least one correct answer
             } for variant in variants
         } for level in levels
     }
@@ -1040,6 +1065,8 @@ def analyze_answer_correctness(base_path):
                     # Check if all answers are incorrect using the epsilon comparison
                     if not any(is_answer_correct(answer, gt_answer) for answer in all_answers):
                         level_stats[level][variant]["all_incorrect_problems"].add(problem_id)
+                    else:
+                        level_stats[level][variant]["some_correct_problems"].add(problem_id)
     
     # Print aggregated statistics
     print("\nAggregated Statistics:")
@@ -1057,6 +1084,77 @@ def analyze_answer_correctness(base_path):
                 print(f"  Problems with all incorrect answers: {len(stats['all_incorrect_problems'])} ({all_incorrect_percentage:.1f}%)")
                 if stats["all_incorrect_problems"]:
                     print(f"  Problem IDs with all incorrect answers: {sorted(stats['all_incorrect_problems'])}")
+                if stats["some_correct_problems"]:
+                    print(f"  Problem IDs with at least one correct answer: {sorted(stats['some_correct_problems'])}")
+    
+    # Create confusion matrix for each variant
+    print("\nConfusion Matrix (Answer Correctness vs Proof Correctness):")
+    print("=" * 70)
+    for variant in variants:
+        variant_key = "analogy_based" if "analogy" in variant else "random"
+        print(f"\n{variant}:")
+        print("-" * 30)
+        
+        # Initialize confusion matrix counters
+        correct_answer_correct_proof = 0  # At least one correct answer and proof is correct
+        correct_answer_incorrect_proof = 0  # At least one correct answer but proof is incorrect
+        incorrect_answer_correct_proof = 0  # All answers incorrect but proof is correct
+        incorrect_answer_incorrect_proof = 0  # All answers incorrect and proof is incorrect
+        
+        # Track problem IDs for each category
+        correct_answer_correct_proof_ids = set()
+        correct_answer_incorrect_proof_ids = set()
+        incorrect_answer_correct_proof_ids = set()
+        incorrect_answer_incorrect_proof_ids = set()
+        
+        # Process each level
+        for level in levels:
+            level_problem_ids = set(LEVEL_PROBLEMS[level])
+            for problem_id in level_problem_ids:
+                # Check if problem has at least one correct answer
+                has_correct_answer = problem_id in level_stats[level][variant]["some_correct_problems"]
+                # Check if proof is correct
+                has_correct_proof = problem_status[variant_key]["ft_union_frv_union_mrv"].get(problem_id, 0) == 1
+                
+                # Update confusion matrix counters and track problem IDs
+                if has_correct_answer and has_correct_proof:
+                    correct_answer_correct_proof += 1
+                    correct_answer_correct_proof_ids.add(problem_id)
+                elif has_correct_answer and not has_correct_proof:
+                    correct_answer_incorrect_proof += 1
+                    correct_answer_incorrect_proof_ids.add(problem_id)
+                elif not has_correct_answer and has_correct_proof:
+                    incorrect_answer_correct_proof += 1
+                    incorrect_answer_correct_proof_ids.add(problem_id)
+                else:
+                    incorrect_answer_incorrect_proof += 1
+                    incorrect_answer_incorrect_proof_ids.add(problem_id)
+        
+        # Print confusion matrix
+        print("\nConfusion Matrix:")
+        print("                 Proof Correct | Proof Incorrect")
+        print("Answer Correct   {:^14} | {:^15}".format(correct_answer_correct_proof, correct_answer_incorrect_proof))
+        print("Answer Incorrect {:^14} | {:^15}".format(incorrect_answer_correct_proof, incorrect_answer_incorrect_proof))
+        
+        # Calculate and print statistics
+        total = correct_answer_correct_proof + correct_answer_incorrect_proof + incorrect_answer_correct_proof + incorrect_answer_incorrect_proof
+        print(f"\nTotal problems: {total}")
+        print(f"Problems with at least one correct answer: {correct_answer_correct_proof + correct_answer_incorrect_proof}")
+        print(f"Problems with correct proof: {correct_answer_correct_proof + incorrect_answer_correct_proof}")
+        print(f"Problems with both correct answer and proof: {correct_answer_correct_proof}")
+        
+        # Print problem IDs for each category
+        print("\nProblem IDs by category:")
+        print(f"Correct answer, correct proof: {sorted(correct_answer_correct_proof_ids)}")
+        print(f"Correct answer, incorrect proof: {sorted(correct_answer_incorrect_proof_ids)}")
+        print(f"Incorrect answer, correct proof: {sorted(incorrect_answer_correct_proof_ids)}")
+        print(f"Incorrect answer, incorrect proof: {sorted(incorrect_answer_incorrect_proof_ids)}")
+        
+        # For analogy-based variant, specifically highlight problems with correct proof but incorrect answers
+        if variant == "variant_analogy_based_model_o1":
+            print("\nAnalogy-based problems with correct proof but incorrect answers:")
+            print(f"Problem IDs: {sorted(incorrect_answer_correct_proof_ids)}")
+            print(f"Count: {len(incorrect_answer_correct_proof_ids)}")
 
 def analyze_proof_correctness(base_path):
     """
@@ -1200,7 +1298,8 @@ def analyze_proof_correctness(base_path):
 
 if __name__ == "__main__":
     base_path = "/Users/osultan/PycharmProjects/FormalGeo/results"
-    # plot_success_rates(base_path)
-    # plot_ablation_study(base_path)
-    # calculate_analogy_stability(base_path)
-    analyze_answer_correctness(base_path)
+    plot_success_rates(base_path)
+    problem_status = plot_ablation_study(base_path)
+    calculate_analogy_stability(base_path)
+    analyze_answer_correctness(base_path, problem_status)
+    print(1)
