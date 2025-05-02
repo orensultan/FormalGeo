@@ -848,6 +848,101 @@ def calculate_analogy_stability(base_path):
     
     return stability_results
 
+def evaluate_math_expression(expr):
+    """Evaluate a mathematical expression safely."""
+    try:
+        # Convert to string if it's a number
+        expr = str(expr)
+        
+        # First handle implicit multiplication
+        expr = re.sub(r'(\d+)\s*√', r'\1*sqrt', expr)  # Handle 3√2 -> 3*sqrt
+        expr = re.sub(r'(\d+)\s*sqrt', r'\1*sqrt', expr)  # Handle 3 sqrt -> 3*sqrt
+        expr = re.sub(r'(\d+)\(', r'\1*(', expr)  # Handle 2(3)
+        expr = re.sub(r'\)(\d+)', r')*\1', expr)  # Handle (2)3
+        expr = re.sub(r'\)\s*\(', r')*(', expr)  # Handle (2)(3)
+        
+        # Then normalize mathematical functions and constants
+        expr = re.sub(r'√(\d+)', r'sqrt(\1)', expr)  # Handle √6 -> sqrt(6)
+        expr = re.sub(r'sqrt\s*\((\d+)\)', r'sqrt(\1)', expr)  # Handle sqrt(6)
+        expr = re.sub(r'sqrt\s*(\d+)', r'sqrt(\1)', expr)  # Handle sqrt 6
+        
+        # Replace all variations of pi with math.pi
+        expr = re.sub(r'(\d+)π', r'\1*math.pi', expr)  # Handle 2π
+        expr = re.sub(r'(\d+)\s*pi', r'\1*math.pi', expr)  # Handle 2 pi
+        expr = re.sub(r'π', r'math.pi', expr)  # Handle π alone
+        expr = re.sub(r'pi', r'math.pi', expr)  # Handle pi alone
+        
+        # Add math. prefix to sqrt
+        expr = re.sub(r'sqrt\(', r'math.sqrt(', expr)
+        
+        # Evaluate the expression
+        return eval(expr)
+    except Exception as e:
+        print(f"Error evaluating expression '{expr}': {str(e)}")
+        return None
+
+def parse_fraction(value):
+    """Parse a value that could be a fraction or a number."""
+    try:
+        # Try to parse as a fraction (e.g., "41/63")
+        if '/' in str(value):
+            # Split on '/' and handle each part
+            parts = str(value).split('/')
+            if len(parts) != 2:
+                return None
+            
+            # Parse numerator and denominator
+            num = parts[0].strip()
+            denom = parts[1].strip()
+            
+            # Handle expressions in numerator or denominator
+            try:
+                num_value = evaluate_math_expression(num)
+                denom_value = evaluate_math_expression(denom)
+                if num_value is not None and denom_value is not None:
+                    return num_value / denom_value
+            except:
+                pass
+            
+            # If expression evaluation fails, try direct integer division
+            try:
+                return int(num) / int(denom)
+            except:
+                return None
+        
+        # Try to evaluate as a math expression
+        expr_value = evaluate_math_expression(value)
+        if expr_value is not None:
+            return expr_value
+        
+        # Try to parse as a regular number
+        return float(value)
+    except (ValueError, ZeroDivisionError):
+        return None
+
+def is_answer_correct(answer, gt_answer):
+    """Check if an answer is correct, handling integers, floating-point numbers, and fractions."""
+    try:
+        # Parse both values
+        answer_value = parse_fraction(answer)
+        gt_value = parse_fraction(gt_answer)
+        
+        if answer_value is None or gt_value is None:
+            return False
+        
+        # Convert both values to float for comparison
+        answer_float = float(answer_value)
+        gt_float = float(gt_value)
+        
+        # If both are integers (after conversion to float), do exact comparison
+        if answer_float.is_integer() and gt_float.is_integer():
+            return int(answer_float) == int(gt_float)
+        
+        # For floating-point numbers, use epsilon comparison
+        return abs(answer_float - gt_float) <= 0.01
+    except (ValueError, TypeError):
+        return False
+
 def analyze_answer_correctness(base_path):
     """
     Analyze which problems in the sample of 50 problems (10 per level) were solved correctly
@@ -856,101 +951,6 @@ def analyze_answer_correctness(base_path):
     For floating-point comparisons, answers are considered equal if they differ by at most 0.01.
     For fractions, both the fraction form and decimal form are checked.
     """
-    def evaluate_math_expression(expr):
-        """Evaluate a mathematical expression safely."""
-        try:
-            # Convert to string if it's a number
-            expr = str(expr)
-            
-            # First handle implicit multiplication
-            expr = re.sub(r'(\d+)\s*√', r'\1*sqrt', expr)  # Handle 3√2 -> 3*sqrt
-            expr = re.sub(r'(\d+)\s*sqrt', r'\1*sqrt', expr)  # Handle 3 sqrt -> 3*sqrt
-            expr = re.sub(r'(\d+)\(', r'\1*(', expr)  # Handle 2(3)
-            expr = re.sub(r'\)(\d+)', r')*\1', expr)  # Handle (2)3
-            expr = re.sub(r'\)\s*\(', r')*(', expr)  # Handle (2)(3)
-            
-            # Then normalize mathematical functions and constants
-            expr = re.sub(r'√(\d+)', r'sqrt(\1)', expr)  # Handle √6 -> sqrt(6)
-            expr = re.sub(r'sqrt\s*\((\d+)\)', r'sqrt(\1)', expr)  # Handle sqrt(6)
-            expr = re.sub(r'sqrt\s*(\d+)', r'sqrt(\1)', expr)  # Handle sqrt 6
-            
-            # Replace all variations of pi with math.pi
-            expr = re.sub(r'(\d+)π', r'\1*math.pi', expr)  # Handle 2π
-            expr = re.sub(r'(\d+)\s*pi', r'\1*math.pi', expr)  # Handle 2 pi
-            expr = re.sub(r'π', r'math.pi', expr)  # Handle π alone
-            expr = re.sub(r'pi', r'math.pi', expr)  # Handle pi alone
-            
-            # Add math. prefix to sqrt
-            expr = re.sub(r'sqrt\(', r'math.sqrt(', expr)
-            
-            # Evaluate the expression
-            return eval(expr)
-        except Exception as e:
-            print(f"Error evaluating expression '{expr}': {str(e)}")
-            return None
-    
-    def parse_fraction(value):
-        """Parse a value that could be a fraction or a number."""
-        try:
-            # Try to parse as a fraction (e.g., "41/63")
-            if '/' in str(value):
-                # Split on '/' and handle each part
-                parts = str(value).split('/')
-                if len(parts) != 2:
-                    return None
-                
-                # Parse numerator and denominator
-                num = parts[0].strip()
-                denom = parts[1].strip()
-                
-                # Handle expressions in numerator or denominator
-                try:
-                    num_value = evaluate_math_expression(num)
-                    denom_value = evaluate_math_expression(denom)
-                    if num_value is not None and denom_value is not None:
-                        return num_value / denom_value
-                except:
-                    pass
-                
-                # If expression evaluation fails, try direct integer division
-                try:
-                    return int(num) / int(denom)
-                except:
-                    return None
-            
-            # Try to evaluate as a math expression
-            expr_value = evaluate_math_expression(value)
-            if expr_value is not None:
-                return expr_value
-            
-            # Try to parse as a regular number
-            return float(value)
-        except (ValueError, ZeroDivisionError):
-            return None
-    
-    def is_answer_correct(answer, gt_answer):
-        """Check if an answer is correct, handling integers, floating-point numbers, and fractions."""
-        try:
-            # Parse both values
-            answer_value = parse_fraction(answer)
-            gt_value = parse_fraction(gt_answer)
-            
-            if answer_value is None or gt_value is None:
-                return False
-            
-            # Convert both values to float for comparison
-            answer_float = float(answer_value)
-            gt_float = float(gt_value)
-            
-            # If both are integers (after conversion to float), do exact comparison
-            if answer_float.is_integer() and gt_float.is_integer():
-                return int(answer_float) == int(gt_float)
-            
-            # For floating-point numbers, use epsilon comparison
-            return abs(answer_float - gt_float) <= 0.01
-        except (ValueError, TypeError):
-            return False
-    
     levels = range(1, 6)
     variants = ["variant_analogy_based_model_o1", "variant_random_all_theorems_model_o1"]
     
@@ -1057,6 +1057,146 @@ def analyze_answer_correctness(base_path):
                 print(f"  Problems with all incorrect answers: {len(stats['all_incorrect_problems'])} ({all_incorrect_percentage:.1f}%)")
                 if stats["all_incorrect_problems"]:
                     print(f"  Problem IDs with all incorrect answers: {sorted(stats['all_incorrect_problems'])}")
+
+def analyze_proof_correctness(base_path):
+    """
+    Analyze proof correctness only for problems that have at least one correct answer.
+    A problem is considered to have a correct answer if GT_ANSWER matches either ANSWER or RETRY_ANSWER.
+    Also tracks and displays whether problems have any incorrect answers.
+    """
+    levels = range(1, 6)
+    variants = ["variant_analogy_based_model_o1", "variant_random_all_theorems_model_o1"]
+    
+    # Dictionary to store problem status for each stage (accumulated across all levels)
+    problem_status = {
+        "analogy_based": {
+            "ft": {},  # First Try status
+            "frv": {},  # First Run with Verifier status
+            "mrv": {},  # Multiple Runs with Verifier status
+            "ft_union_frv": {},  # Union of FT and FRV status
+            "ft_union_frv_union_mrv": {}  # Union of FT, FRV, and MRV status
+        },
+        "random": {
+            "ft": {},
+            "frv": {},
+            "mrv": {},  # Multiple Runs with Verifier status
+            "ft_union_frv": {},  # Union of FT and FRV status
+            "ft_union_frv_union_mrv": {}  # Union of FT, FRV, and MRV status
+        }
+    }
+    
+    # First, initialize all problems as failures
+    for level in levels:
+        level_problem_ids = set(LEVEL_PROBLEMS[level])
+        for variant in variants:
+            variant_key = "analogy_based" if "analogy" in variant else "random"
+            for problem_id in level_problem_ids:
+                if problem_id not in problem_status[variant_key]["ft"]:
+                    problem_status[variant_key]["ft"][problem_id] = 0
+                    problem_status[variant_key]["frv"][problem_id] = 0
+                    problem_status[variant_key]["mrv"][problem_id] = 0
+                    problem_status[variant_key]["ft_union_frv"][problem_id] = 0
+                    problem_status[variant_key]["ft_union_frv_union_mrv"][problem_id] = 0
+    
+    # Calculate success rates and update problem status
+    for level in levels:
+        print(f"\nProcessing Level {level}")
+        print("=" * 50)
+        level_dir = os.path.join(base_path, f"level_{level}")
+        if not os.path.exists(level_dir):
+            print(f"Level {level} directory not found")
+            continue
+            
+        level_rates = calculate_ablation_success_rates(level_dir, level, problem_status)
+    
+    # Print statistics
+    print("\nProof Correctness Statistics (for problems with at least one correct answer):")
+    print("=" * 70)
+    for level in levels:
+        print(f"\nLevel {level}:")
+        print("-" * 30)
+        level_problem_ids = set(LEVEL_PROBLEMS[level])
+        
+        for variant in variants:
+            variant_key = "analogy_based" if "analogy" in variant else "random"
+            
+            # Track problems with correct answers and their proof status
+            problems_with_correct_answers = set()
+            problems_with_correct_proofs = set()
+            problems_with_incorrect_answers = set()  # Track problems with any incorrect answers
+            
+            # Process each problem
+            for problem_id in sorted(level_problem_ids):
+                # Check if this problem has at least one correct answer
+                has_correct_answer = False
+                has_incorrect_answer = False
+                gt_answer = None
+                
+                # First get the ground truth answer
+                run_0_file = os.path.join(level_dir, f"{variant}_problem_{problem_id}_run_0.txt")
+                if os.path.exists(run_0_file):
+                    with open(run_0_file, 'r') as f:
+                        content = f.read()
+                        gt_match = re.search(r'GT_ANSWER:\s*(.*?)(?:\n|$)', content)
+                        if gt_match:
+                            gt_expr = gt_match.group(1).strip()
+                            if gt_expr:
+                                try:
+                                    gt_answer = int(gt_expr)
+                                except ValueError:
+                                    gt_answer = evaluate_math_expression(gt_expr)
+                                    if gt_answer is None:
+                                        gt_answer = parse_fraction(gt_expr)
+                
+                if gt_answer is not None:
+                    # Check all runs for this problem
+                    for run_num in range(3):  # Check run_0, run_1, and run_2
+                        run_file = os.path.join(level_dir, f"{variant}_problem_{problem_id}_run_{run_num}.txt")
+                        if os.path.exists(run_file):
+                            with open(run_file, 'r') as f:
+                                content = f.read()
+                                
+                                # Check ANSWER
+                                answer_match = re.search(r'ANSWER:\s*(.*?)(?:\n|$)', content)
+                                if answer_match:
+                                    answer = answer_match.group(1).strip()
+                                    if is_answer_correct(answer, gt_answer):
+                                        has_correct_answer = True
+                                    else:
+                                        has_incorrect_answer = True
+                                
+                                # Check RETRY_ANSWER
+                                retry_match = re.search(r'RETRY_ANSWER:\s*(.*?)(?:\n|$)', content)
+                                if retry_match:
+                                    retry_answer = retry_match.group(1).strip()
+                                    if is_answer_correct(retry_answer, gt_answer):
+                                        has_correct_answer = True
+                                    else:
+                                        has_incorrect_answer = True
+                
+                if has_correct_answer:
+                    problems_with_correct_answers.add(problem_id)
+                    if has_incorrect_answer:
+                        problems_with_incorrect_answers.add(problem_id)
+                    # Check if proof is correct (using ft_union_frv_union_mrv)
+                    if problem_status[variant_key]["ft_union_frv_union_mrv"].get(problem_id, 0) == 1:
+                        problems_with_correct_proofs.add(problem_id)
+            
+            # Print statistics for this variant
+            if problems_with_correct_answers:
+                proof_correct_percentage = (len(problems_with_correct_proofs) / len(problems_with_correct_answers)) * 100
+                print(f"\n{variant}:")
+                print(f"  Problems with correct answers: {len(problems_with_correct_answers)}")
+                print(f"  Problems with incorrect answers: {len(problems_with_incorrect_answers)}")
+                print(f"  Problems with correct proofs: {len(problems_with_correct_proofs)}")
+                print(f"  Proof correctness rate: {proof_correct_percentage:.1f}%")
+                
+                # Print details for problems with correct answers
+                print("\n  Problem Details:")
+                for problem_id in sorted(problems_with_correct_answers):
+                    has_correct_proof = problem_id in problems_with_correct_proofs
+                    has_incorrect = problem_id in problems_with_incorrect_answers
+                    print(f"    Problem {problem_id}: Answer ✓{' (with incorrect attempts)' if has_incorrect else ''}, Proof {'✓' if has_correct_proof else '✗'}")
 
 if __name__ == "__main__":
     base_path = "/Users/osultan/PycharmProjects/FormalGeo/results"

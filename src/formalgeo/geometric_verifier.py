@@ -3904,6 +3904,13 @@ class GeometricTheorem:
                     message="these is no such version for the theorem",
                     details="these is no such version for the theorem diameter_of_circle_judgment_pass_centre"
                 ))
+            else:
+
+                return return_error(GeometricError(
+                    tier=ErrorTier.TIER1_THEOREM_CALL_SYNTAX_VIOLATION,
+                    message="these is no such version for the theorem",
+                    details="these is no such version for the theorem diameter_of_circle_judgment_pass_centre"
+                ))
 
 
         elif theorem_name == "congruent_arc_judgment_chord_equal":
@@ -4847,7 +4854,12 @@ class GeometricTheorem:
                     ))
 
                 return True, None
-
+            else:
+                return return_error(GeometricError(
+                    tier=ErrorTier.TIER1_THEOREM_CALL_SYNTAX_VIOLATION,
+                    message="these is no such version for the theorem",
+                    details="these is no such version for the theorem median_of_triangle_judgment"
+                ))
 
 
         elif theorem_name == "incenter_of_triangle_judgment_intersection":
@@ -5181,7 +5193,7 @@ class GeometricTheorem:
                 # For simplicity, we'll skip this check for now
 
                 return True, None
-            elif version == "2":
+            else:
                 return return_error(GeometricError(
                     tier=ErrorTier.TIER1_THEOREM_CALL_SYNTAX_VIOLATION,
                     message="these is no such version for the theorem",
@@ -6377,7 +6389,14 @@ class GeometricTheorem:
 
 
         elif theorem_name == "isosceles_triangle_property_angle_equal":
+            version = args[0]
 
+            if version != "1":
+                return return_error(GeometricError(
+                    tier=ErrorTier.TIER1_THEOREM_CALL_SYNTAX_VIOLATION,
+                    message="these is no such version for the theorem",
+                    details="these is no such version for the theorem isosceles_triangle_property_angle_equal"
+                ))
             # Expected theorem call: isosceles_triangle_property_angle_equal(1, T)
 
             # where T is a triangle name (e.g., "JPN").
@@ -6415,15 +6434,6 @@ class GeometricTheorem:
                 ))
 
             return True, None
-
-
-
-
-
-
-
-
-
 
         elif theorem_name == "isosceles_triangle_judgment_line_equal":
 
@@ -6504,7 +6514,14 @@ class GeometricTheorem:
 
 
         elif theorem_name == "rectangle_property_diagonal_equal":
+            version = args[0]
 
+            if version != "1":  # Updated to include version "2"
+                return return_error(GeometricError(
+                    tier=ErrorTier.TIER1_THEOREM_CALL_SYNTAX_VIOLATION,
+                    message="these is no such version for the theorem",
+                    details="these is no such version for the theorem rectangle_property_diagonal_equal"
+                ))
             # Expected theorem call: rectangle_property_diagonal_equal(1, PNML)
 
             # And the premise should include a clause like "Rectangle(PNML)".
@@ -6845,32 +6862,138 @@ class GeometricTheorem:
 
 
 
+
         elif theorem_name == "radius_of_circle_property_length_equal":
-            # Check that the premise includes a centre fact.
-            # Suppose args[2] holds the circle token, e.g. "O".
+
+            # Check that the premise includes a centre fact and cocircularity.
+
             version = args[0]
 
-            if version !="1":
+            if version != "1":
                 return return_error(GeometricError(
+
                     tier=ErrorTier.TIER1_THEOREM_CALL_SYNTAX_VIOLATION,
+
                     message="these is no such version for the theorem",
+
                     details="these is no such version for the theorem radius_of_circle_property_length_equal"
-                ))
-            circle_token = args[2].strip()
-            if circle_token not in self.circle_centers:
-                return return_error(GeometricError(
-                    tier=ErrorTier.TIER2_PREMISE_VIOLATION,
-                    message=f"Centre for circle {circle_token} not recorded.",
-                    details=f"Accumulated centres: {self.circle_centers}"
+
                 ))
 
-            # Optionally, you can also check that a Line fact for the given line is present.
-            if "Line(" not in premise:
+            if len(args) < 3:
                 return return_error(GeometricError(
-                    tier=ErrorTier.TIER2_PREMISE_VIOLATION,
-                    message="Premise for radius_of_circle_property_length_equal must include a Line fact.",
-                    details=f"Premise provided: {premise}"
+
+                    tier=ErrorTier.TIER1_THEOREM_CALL_SYNTAX_VIOLATION,
+
+                    message="Insufficient arguments for radius_of_circle_property_length_equal",
+
+                    details="Expected: radius_of_circle_property_length_equal(1, line, circle)"
+
                 ))
+
+            line_token = args[1].strip()  # e.g., "BY"
+
+            circle_token = args[2].strip()  # e.g., "B"
+
+            # Check circle center
+
+            if circle_token not in self.circle_centers:
+                return return_error(GeometricError(
+
+                    tier=ErrorTier.TIER2_PREMISE_VIOLATION,
+
+                    message=f"Centre for circle {circle_token} not recorded.",
+
+                    details=f"Accumulated centres: {self.circle_centers}"
+
+                ))
+
+            # Check that IsCentreOfCircle fact is present
+
+            center_match = re.search(
+                r'IsCentreOfCircle\(' + re.escape(circle_token) + r',' + re.escape(circle_token) + r'\)', premise)
+
+            if not center_match:
+                return return_error(GeometricError(
+
+                    tier=ErrorTier.TIER2_PREMISE_VIOLATION,
+
+                    message=f"Missing IsCentreOfCircle({circle_token},{circle_token}) in premise",
+
+                    details="radius_of_circle_property_length_equal requires center to be defined"
+
+                ))
+
+            # Check Line fact
+
+            line_match = re.search(r'Line\(' + re.escape(line_token) + r'\)', premise)
+
+            if not line_match:
+                return return_error(GeometricError(
+
+                    tier=ErrorTier.TIER2_PREMISE_VIOLATION,
+
+                    message=f"Missing Line({line_token}) in premise",
+
+                    details="radius_of_circle_property_length_equal requires line to be defined"
+
+                ))
+
+            # Check Cocircular fact - ensure the endpoint of the line is on the circle
+
+            # For a line BY and circle B, we need Cocircular(B,Y)
+
+            endpoint = line_token[1] if line_token[0] == circle_token else line_token[0]
+
+            cocircular_match = re.search(
+                r'Cocircular\(' + re.escape(circle_token) + r',.*' + re.escape(endpoint) + r'.*\)', premise)
+
+            if not cocircular_match:
+                return return_error(GeometricError(
+
+                    tier=ErrorTier.TIER2_PREMISE_VIOLATION,
+
+                    message=f"Missing Cocircular({circle_token},...) containing point {endpoint} in premise",
+
+                    details="radius_of_circle_property_length_equal requires line endpoint to be on the circle"
+
+                ))
+
+            # Also check stored cocircular facts
+
+            cocircular_found = False
+
+            for fact in self.cocircular_facts:
+
+                if fact[0] == circle_token and endpoint in fact[1:]:
+                    cocircular_found = True
+
+                    break
+
+            if not cocircular_found:
+                return return_error(GeometricError(
+
+                    tier=ErrorTier.TIER2_PREMISE_VIOLATION,
+
+                    message=f"Point {endpoint} not proven to be on circle {circle_token}",
+
+                    details=f"Known cocircular facts: {self.cocircular_facts}"
+
+                ))
+
+            # Check that one endpoint of the line is the center of the circle
+
+            if circle_token not in line_token:
+                return return_error(GeometricError(
+
+                    tier=ErrorTier.TIER2_PREMISE_VIOLATION,
+
+                    message=f"Line {line_token} does not start or end at circle center {circle_token}",
+
+                    details="For a radius, the line must connect the center to a point on the circle"
+
+                ))
+
             return True, None
 
 
@@ -7282,10 +7405,6 @@ class GeometricTheorem:
                     ))
 
             return True, None
-
-
-
-
 
         elif theorem_name == "arc_length_formula":
             version = args[0]
@@ -7764,7 +7883,14 @@ class GeometricTheorem:
 
 
         elif theorem_name == "arc_property_center_angle":
+            version = args[0]
 
+            if version != "1":
+                return return_error(GeometricError(
+                    tier=ErrorTier.TIER1_THEOREM_CALL_SYNTAX_VIOLATION,
+                    message="these is no such version for the theorem",
+                    details="these is no such version for the theorem arc_property_center_angle"
+                ))
             # Expected premise: e.g. "Arc(OMN)&Angle(NOM)&IsCentreOfCircle(O,O)"
 
             # Extract the arc fact.
@@ -7859,7 +7985,14 @@ class GeometricTheorem:
 
 
         elif theorem_name == "arc_property_circumference_angle_external":
+            version = args[0]
 
+            if version != "1":
+                return return_error(GeometricError(
+                    tier=ErrorTier.TIER1_THEOREM_CALL_SYNTAX_VIOLATION,
+                    message="these is no such version for the theorem",
+                    details="these is no such version for the theorem arc_property_circumference_angle_external"
+                ))
             # Expected premise: e.g. "Cocircular(O,MNB)&Angle(NBM)"
 
             # Extract the cocircular fact.
@@ -8880,11 +9013,12 @@ class GeometricTheorem:
                         details="Required for angle addition"
                     ))
                 return True, None
-            return return_error(GeometricError(
-                tier=ErrorTier.TIER1_THEOREM_CALL_SYNTAX_VIOLATION,
-                message=f"no such version for the theorem angle_addition",
-                details="no such version for the theorem angle_addition"
-            ))
+            else:
+                return return_error(GeometricError(
+                    tier=ErrorTier.TIER1_THEOREM_CALL_SYNTAX_VIOLATION,
+                    message=f"no such version for the theorem angle_addition",
+                    details="no such version for the theorem angle_addition"
+                ))
 
 
         elif theorem_name == "quadrilateral_property_angle_sum":
@@ -10869,7 +11003,7 @@ class GeometricTheorem:
                                             model_answer=model_answer_symbolic,
                                             verifier_expected_answer=None,
                                             status="multiple_values",
-                                            additional_info=f"Your proof doesn't uniquely determine the value. Alternative values:\n"
+                                            additional_info=f"Your proof doesn't uniquely determine the value.\n"
                                         )
                                         return False, detailed_feedback
 
@@ -17258,9 +17392,6 @@ def verify_geometric_proof(filename: str, print_output=True) -> tuple:
         except Exception as e:
             print(f"Error: {str(e)}")
             return False, f"Error: {str(e)}", None
-
-
-
 
 if __name__ == "__main__":
     result, feedback, error_tier = verify_geometric_proof(

@@ -30,7 +30,7 @@ from similar_proofs_retrieval import retrieve_random_proofs
 import ast
 import re
 
-openai.api_key = ""
+openai.api_key = "sk-marketing-super-hero-Xh0A2qOYjCWBQQVWPFX5T3BlbkFJuv6IdNiPZCfKhL1PpoxA"
 
 dl = DatasetLoader(dataset_name="formalgeo7k_v1", datasets_path="formalgeo7k_v1")
 solver = Interactor(dl.predicate_GDL, dl.theorem_GDL)
@@ -680,7 +680,7 @@ def run_theorems_coverage(args, run=True, print_results=True):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    parser.add_argument("--variant", dest="variant", type=str, default="random_all_theorems")
+    parser.add_argument("--variant", dest="variant", type=str, default="analogy_based")
     parser.add_argument("--model_name", dest="model_name", type=str, default="o1")
     parser.add_argument("--prompt_path", dest="prompt_path", type=str,
                         default="src/formalgeo/prompt/geometry_similar_problems_prompt_291224.txt")
