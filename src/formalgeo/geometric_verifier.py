@@ -1,4 +1,3 @@
-
 from z3 import *
 import re
 from dataclasses import dataclass
@@ -9067,6 +9066,41 @@ class GeometricTheorem:
             ))
 
     def parse_and_verify_proof(self, content: str) -> bool:
+        def check_gt_answer(model_answer_numeric, model_answer_symbolic):
+            """Check if GT_ANSWER exists and matches the model answer"""
+            if not model_response_content:
+                return True, ""
+
+            end_idx = content.find("***MODEL_RESPONSE_END***")
+            if end_idx == -1:
+                return True, ""
+
+            post_model_content = content[end_idx + len("***MODEL_RESPONSE_END***"):]
+            gt_match = re.search(r'GT_ANSWER:\s*([^\s\n]+)', post_model_content)
+            if not gt_match:
+                return True, ""
+
+            try:
+                gt_answer_str = gt_match.group(1).strip()
+                gt_answer_numeric, gt_answer_symbolic = parse_special_answer(gt_answer_str)
+
+                if abs(gt_answer_numeric - model_answer_numeric) > epsilon:
+                    # Create a more specific feedback message with clear "MODEL vs GROUND TRUTH" format
+                    detailed_feedback = "verification failed.\n\n"
+                    detailed_feedback += f"- Goal: value determination\n"
+                    detailed_feedback += f"- Model answer: {model_answer_symbolic}\n"
+                    detailed_feedback += f"- Verifier expected answer: {gt_answer_str}\n"
+                    detailed_feedback += f"- Error: THE MODEL DETERMINED THE ANSWER TO BE {model_answer_symbolic} BUT IN THE GROUND TRUTH SOLUTION TO THE PROBLEM THE ANSWER IS {gt_answer_str}.\n"
+                    detailed_feedback += f"  Please review your theorem sequence and ensure it correctly establishes the expected answer.\n\n"
+                    detailed_feedback += "Please fix the proof."
+
+                    print(
+                        f"Model answer {model_answer_symbolic} ({model_answer_numeric}) differs from GT answer {gt_answer_str} ({gt_answer_numeric})")
+                    return False, detailed_feedback
+                return True, ""
+            except Exception as e:
+                print(f"Error comparing with GT_ANSWER: {e}")
+                return True, ""  # Continue with regular verification on error
         try:
 
             feedback = ""
@@ -9097,8 +9131,8 @@ class GeometricTheorem:
             print("\nAvailable sections:", list(sections.keys()))
 
             # Extract content between MODEL_RESPONSE_BEGIN and MODEL_RESPONSE_END if present
-            # Extract content between MODEL_RESPONSE_BEGIN and MODEL_RESPONSE_END if present
             model_response_content = None
+            gt_answer = None
             if len(content) > 0:
                 start_marker = "***MODEL_RESPONSE_BEGIN***"
                 end_marker = "***MODEL_RESPONSE_END***"
@@ -9193,6 +9227,8 @@ class GeometricTheorem:
             # Process CONSTRUCTION_CDL_EXTENDED first
 
             if CONSTRUCTION_CDL_EXTENDED in sections:
+                last_prefix = None
+                current_type = None
                 print("\nProcessing CONSTRUCTION_CDL_EXTENDED section...")
                 for line in sections[CONSTRUCTION_CDL_EXTENDED]:
                     print(f"Processing line: {line}")
@@ -9225,6 +9261,45 @@ class GeometricTheorem:
                             self.collinear_facts.append(list(normalized_points))
                             self.add_collinear_fact(list(normalized_points))
                             print(f"Added normalized collinear points (extended): {normalized_points}")
+                            # Handle lines starting with ".."
+                            last_prefix = 'Collinear('
+                    if line.startswith('..'):
+                        print(f"Found dotted line, current_type is: {current_type}")  # Debug
+                        if current_type is not None:
+                            # Extract content inside the parentheses after ".."
+                            match = re.search(r'\(\s*(.+?)\s*\)', line)
+                            if match:
+                                content = match.group(1)
+                                print(f"Extracted content from dotted line: {content}")  # Debug
+
+                                # Process based on current_type
+                                if current_type == "Cocircular":
+                                    # Process content as Cocircular data
+                                    raw_fields = content.split(',')
+                                    points = []
+                                    for token in raw_fields:
+                                        token = token.strip()
+                                        # If token length > 1, expand into individual letters
+                                        if len(token) > 1:
+                                            points.extend(list(token))
+                                        else:
+                                            points.append(token)
+
+                                    # Create canonical representation
+                                    if points:
+                                        fixed = points[0]
+                                        others = sorted(points[1:])
+                                        canonical = (fixed,) + tuple(others)
+                                    else:
+                                        canonical = tuple(points)
+
+                                    self.cocircular_facts.append(canonical)
+                                    print(f"Added cocircular fact from '..' line (canonical): {canonical}")
+                                # Add other type handlers here
+                            else:
+                                print(f"Warning: Could not extract content from '..' line: {line}")
+                        else:
+                            print(f"Warning: Found '..' line without context: {line}")
                     if line.startswith('ParallelBetweenLine('):
                         match = re.search(r'ParallelBetweenLine\((\w+),\s*(\w+)\)', line)
                         if match:
@@ -9236,6 +9311,7 @@ class GeometricTheorem:
                             self.parallel_pairs.add((line1[::-1], line2))
                             self.parallel_pairs.add((line1, line2[::-1]))
                             print(f"Added parallel pairs: {line1} || {line2} and variations")
+                            last_prefix = 'ParallelBetweenLine('
                     if line.startswith('Line('):
                         match = re.match(r'Line\((\w+)\)', line)
                         if match:
@@ -9244,6 +9320,7 @@ class GeometricTheorem:
                                 normalized_line = self.normalize_line_name(line_name)
                                 self.defined_lines.add(normalized_line)
                                 print(f"Added defined line: {normalized_line}")
+                                last_prefix = 'Line('
                             else:
                                 print(f"Warning: Skipping invalid Line format: {line}")
                     if line.startswith('Shape('):
@@ -9251,7 +9328,6 @@ class GeometricTheorem:
                         # Skip SYMBOLS_AND_VALUES, EQUATIONS
                     if line.startswith('SYMBOLS_AND_VALUES:') or line.startswith('EQUATIONS:'):
                         continue
-
                     if line.startswith('Parallelogram('):
                         match = re.match(r'Parallelogram\((\w+)\)', line)
                         if match:
@@ -9259,10 +9335,8 @@ class GeometricTheorem:
                             print(f"Found parallelogram in TEXT_CDL: {para_name}")
                             self.parallelograms.update(get_cyclic_variations(para_name))
                             print(f"Added parallelogram variations: {self.parallelograms}")
-
-
-
-
+                            last_prefix = 'Parallelogram('
+                            current_type = "Parallelogram"
                     elif line.startswith('PerpendicularBetweenLine('):
 
                         match = re.match(r'PerpendicularBetweenLine\((\w+),\s*(\w+)\)', line)
@@ -9301,13 +9375,12 @@ class GeometricTheorem:
                             self.solver.add(angle_var == 90)
 
                             print(f"Added 90° perpendicular angle constraint: {normalized_angle}")
-
-
+                            last_prefix = 'PerpendicularBetweenLine('
                     elif line.startswith("Arc("):
                         # Extract the arc name from e.g. "Arc(OBM)"
                         arc_name = line[4:-1].strip()
                         self.add_arc(arc_name)
-
+                        last_prefix = 'Arc('
                     if line.startswith('Polygon('):
                         # Extract the polygon name; for instance, "ABC" from "Polygon(ABC)"
                         poly_match = re.match(r'Polygon\((\w+)\)', line)
@@ -9317,11 +9390,7 @@ class GeometricTheorem:
                             normalized_poly = self.normalize_triangle(poly) if len(poly) == 3 else poly
                             self.polygons.add(normalized_poly)
                             print(f"Added polygon: {normalized_poly}")
-
-
-
-
-
+                            last_prefix = 'Polygon('
                     elif line.startswith("Circle("):
                         # e.g. "Circle(D)" means we have a circle named D
                         circle_name = line[7:-1]  # get whatever is inside Circle(...)
@@ -9336,15 +9405,13 @@ class GeometricTheorem:
                         if circle_name not in self.circle_areas:
                             self.circle_areas[circle_name] = Real(f"area_{circle_name}")
                             self.solver.add(self.circle_areas[circle_name] >= 0)
-
-
-
+                        last_prefix = 'Circle('
                     elif line.startswith("Rhombus("):
 
                         match = re.match(r"Rhombus\((\w+)\)", line)
 
                         if match:
-
+                            last_prefix = 'Rhombus('
                             shape_name = match.group(1)
 
                             self.rhombi.add(shape_name)
@@ -9377,59 +9444,32 @@ class GeometricTheorem:
                                     self.solver.add(side_vars[0] == side_vars[i])
 
                                 print(f"Added rhombus side equality constraints for {shape_name}: {' = '.join(sides)}")
-
-
-
-
-
-                    elif line.startswith("Cocircular("):
-
-                        # e.g. line = "Cocircular(B,UVTS)"
-
-                        inside = line[11:-1]  # This will be "B,UVTS"
-
+                    elif line.startswith('Cocircular('):
+                        # Process normal Cocircular line
+                        inside = line[11:-1]  # This will be "B,UVTS" from "Cocircular(B,UVTS)"
                         raw_fields = inside.split(',')
-
                         points = []
-
                         for token in raw_fields:
-
                             token = token.strip()
-
-                            # If token length > 1, expand into individual letters.
-
+                            # If token length > 1, expand into individual letters
                             if len(token) > 1:
-
                                 points.extend(list(token))
-
                             else:
-
                                 points.append(token)
 
-                        # Now create a canonical representation.
-
-                        # For example, assume the first letter is fixed and sort the rest.
-
+                        # Create canonical representation
                         if points:
-
                             fixed = points[0]
-
                             others = sorted(points[1:])
-
                             canonical = (fixed,) + tuple(others)
-
                         else:
-
                             canonical = tuple(points)
 
                         self.cocircular_facts.append(canonical)
-
                         print(f"Added cocircular fact (canonical): {canonical}")
-
-
-
-
-
+                        # Update current_type for potential ".." lines that follow
+                        current_type = "Cocircular"
+                        print(f"Set current_type to: {current_type}")  # Debug
                     elif line.startswith("Kite("):
                         match = re.match(r"Kite\((\w+)\)", line)
                         if match:
@@ -10832,6 +10872,10 @@ class GeometricTheorem:
                     return False, f"Error parsing answer '{answer_str}': {str(e)}"
                     # Arc measure goal: Value(MeasureOfArc(X))
                 epsilon = 1e-8  # Common epsilon value for all goals
+                # Check against GT_ANSWER - if this fails, return early
+                gt_check_result, gt_check_feedback = check_gt_answer(model_answer_numeric, model_answer_symbolic)
+                if not gt_check_result:
+                    return gt_check_result, gt_check_feedback
                 arc_measure_match = re.search(r'Value\(MeasureOfArc\((\w+)\)\)', goal_line)
                 if arc_measure_match:
                     arc_token = arc_measure_match.group(1)
@@ -11583,6 +11627,7 @@ class GeometricTheorem:
                 if error.details:
                     print("Details:", error.details)
                 return False, feedback
+
 
             return True, ""
         except Exception as e:
@@ -17392,7 +17437,6 @@ def verify_geometric_proof(filename: str, print_output=True) -> tuple:
         except Exception as e:
             print(f"Error: {str(e)}")
             return False, f"Error: {str(e)}", None
-
 
 if __name__ == "__main__":
     result, feedback, error_tier = verify_geometric_proof(

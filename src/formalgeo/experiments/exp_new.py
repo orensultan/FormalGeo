@@ -560,18 +560,18 @@ def plot_ablation_study(base_path):
         # Plot MRV last with solid triangles
         plt.plot(levels, success_rates[variant]["mrv"], '^:', 
                 label=f'{variant_label} - Multiple runs w. retries',
-                linewidth=2, markersize=10, color=color)
+                linewidth=2, markersize=8, color=color)
         
         # Add markers for MRV points that have the same value as FRV
         for i in range(len(levels)):
             if success_rates[variant]["mrv"][i] == success_rates[variant]["frv"][i]:
                 plt.plot(levels[i], success_rates[variant]["mrv"][i], '^', 
-                        color=color, markersize=10)
+                        color=color, markersize=8)
     
     # Customize the plot
-    plt.xlabel('Level', fontsize=12)
-    plt.ylabel('Cumulative Success Rate (%)', fontsize=12)
-    plt.title('Our analogy-based method outperforms the random baseline\nin all o1 model ablations (50 samples)', fontsize=16)
+    plt.xlabel('Level', fontsize=18)
+    plt.ylabel('Cumulative Success Rate (%)', fontsize=18)
+    plt.title('Our analogy-based method outperforms the random baseline\nin all o1 model ablations (50 samples)', fontsize=24)
     plt.grid(True, linestyle='--', alpha=0.7)
     plt.legend(fontsize=9, loc='upper right', bbox_to_anchor=(0.98, 0.98), framealpha=1.0)
     plt.xticks(levels)
@@ -1296,10 +1296,456 @@ def analyze_proof_correctness(base_path):
                     has_incorrect = problem_id in problems_with_incorrect_answers
                     print(f"    Problem {problem_id}: Answer ✓{' (with incorrect attempts)' if has_incorrect else ''}, Proof {'✓' if has_correct_proof else '✗'}")
 
+def analyze_errors(base_path):
+    """
+    Analyze errors from the 50 problems (10 per level) in the predefined list.
+    For each problem, gather all error messages that appear after "ERROR_TIER" in the result files.
+    Also aggregates errors by their TIER number.
+    
+    Args:
+        base_path (str): Base path to the results directory
+        
+    Returns:
+        dict: Dictionary containing error analysis results per level
+    """
+    levels = range(1, 6)
+    variants = ["variant_analogy_based_model_o1", "variant_random_all_theorems_model_o1"]
+    
+    # Dictionary to store error analysis results
+    error_analysis = {
+        variant: {
+            level: {
+                "problems": {},  # problem_id -> list of error messages
+                "error_frequency": {},  # error message -> count
+                "tier_frequency": {1: 0, 2: 0, 3: 0},  # Initialize all tiers with 0
+                "problems_with_errors": 0,  # count of problems that had any errors
+                "total_problems": 0  # total number of problems analyzed
+            } for level in levels
+        } for variant in variants
+    }
+    
+    for variant in variants:
+        for level in levels:
+            print(f"\nAnalyzing Errors for {variant} Level {level}")
+            print("=" * 50)
+            level_dir = os.path.join(base_path, f"level_{level}")
+            if not os.path.exists(level_dir):
+                print(f"Level {level} directory not found")
+                continue
+                
+            # Get the list of problem IDs for this level
+            level_problem_ids = set(LEVEL_PROBLEMS[level])
+            error_analysis[variant][level]["total_problems"] = len(level_problem_ids)
+            
+            # Process each problem in the level's list
+            for problem_id in sorted(level_problem_ids):
+                problem_errors = []
+                
+                # Check all runs for this problem
+                for run_number in range(3):  # Check runs 0, 1, and 2
+                    file_path = os.path.join(level_dir, f"{variant}_problem_{problem_id}_run_{run_number}.txt")
+                    if not os.path.exists(file_path):
+                        continue
+                        
+                    with open(file_path, 'r') as f:
+                        content = f.read()
+                        
+                    # Find all error messages after ERROR_TIER
+                    error_sections = content.split("ERROR_TIER: ")
+                    if len(error_sections) > 1:  # If there are any errors
+                        for section in error_sections[1:]:  # Skip the first split which is before any ERROR_TIER
+                            # Extract the error message (everything until the first newline)
+                            error_msg = section.split("\n")[0].strip()
+                            if error_msg:
+                                problem_errors.append(error_msg)
+                                # Update error frequency
+                                error_analysis[variant][level]["error_frequency"][error_msg] = error_analysis[variant][level]["error_frequency"].get(error_msg, 0) + 1
+                
+                # Store errors for this problem if any were found
+                if problem_errors:
+                    error_analysis[variant][level]["problems"][problem_id] = problem_errors
+                    error_analysis[variant][level]["problems_with_errors"] += 1
+            
+            # Calculate tier frequencies from error_frequency
+            for error_msg, count in error_analysis[variant][level]["error_frequency"].items():
+                if error_msg.startswith("TIER1_"):
+                    error_analysis[variant][level]["tier_frequency"][1] += count
+                elif error_msg.startswith("TIER2_"):
+                    error_analysis[variant][level]["tier_frequency"][2] += count
+                elif error_msg.startswith("TIER3_"):
+                    error_analysis[variant][level]["tier_frequency"][3] += count
+            
+            # Print summary for this level
+            print(f"\nLevel {level} Error Analysis:")
+            print(f"Total Problems: {error_analysis[variant][level]['total_problems']}")
+            print(f"Problems with Errors: {error_analysis[variant][level]['problems_with_errors']}")
+            print(f"Error Rate: {(error_analysis[variant][level]['problems_with_errors'] / error_analysis[variant][level]['total_problems'] * 100):.1f}%")
+            
+            if error_analysis[variant][level]["error_frequency"]:
+                print("\nMost Common Errors:")
+                # Sort errors by frequency
+                sorted_errors = sorted(error_analysis[variant][level]["error_frequency"].items(), 
+                                     key=lambda x: x[1], reverse=True)
+                for error_msg, count in sorted_errors[:5]:  # Show top 5 errors
+                    print(f"  - {error_msg} (occurred {count} times)")
+            
+            if error_analysis[variant][level]["tier_frequency"]:
+                print("\nError Distribution by Tier:")
+                # Sort tiers by number
+                sorted_tiers = sorted(error_analysis[variant][level]["tier_frequency"].items())
+                for tier_num, count in sorted_tiers:
+                    print(f"  - TIER_{tier_num}: {count} errors")
+    
+    # Print overall tier statistics across all levels
+    print("\nOverall Error Distribution by Tier (All Levels):")
+    print("=" * 50)
+    for variant in variants:
+        print(f"\n{variant}:")
+        overall_tier_freq = {1: 0, 2: 0, 3: 0}  # Initialize all tiers with 0
+        for level in levels:
+            for tier_num, count in error_analysis[variant][level]["tier_frequency"].items():
+                overall_tier_freq[tier_num] += count
+        
+        # Sort tiers by number and print
+        sorted_overall_tiers = sorted(overall_tier_freq.items())
+        for tier_num, count in sorted_overall_tiers:
+            print(f"TIER_{tier_num}: {count} errors")
+    
+    # Create the plot
+    plot_tier_error_distribution(error_analysis, base_path)
+    
+    return error_analysis
+
+def plot_tier_error_distribution(error_analysis, base_path):
+    """
+    Create a grouped bar chart showing error counts by tier for each level.
+    Shows three columns per level (one for each tier) with different colors for each tier.
+    Random variant bars are shown in negative y-axis with diagonal stripes.
+    
+    Args:
+        error_analysis (dict): Dictionary containing error analysis results
+        base_path (str): Base path to save the plot
+    """
+    levels = range(1, 6)
+    variants = ["variant_analogy_based_model_o1", "variant_random_all_theorems_model_o1"]
+    
+    # Calculate and print average retries and runs per level
+    print("\nAverage Retries and Runs per Level:")
+    print("=" * 50)
+    
+    for level in levels:
+        print(f"\nLevel {level}:")
+        level_dir = os.path.join(base_path, f"level_{level}")
+        if not os.path.exists(level_dir):
+            print(f"Level {level} directory not found")
+            continue
+            
+        for variant in variants:
+            total_retries = 0
+            total_runs = 0
+            problem_count = 0
+            
+            # Get the list of problem IDs for this level
+            level_problem_ids = set(LEVEL_PROBLEMS[level])
+            
+            for problem_id in level_problem_ids:
+                problem_has_runs = False
+                for run_num in range(3):  # Check runs 0, 1, and 2
+                    file_path = os.path.join(level_dir, f"{variant}_problem_{problem_id}_run_{run_num}.txt")
+                    if os.path.exists(file_path):
+                        problem_has_runs = True
+                        total_runs += 1
+                        with open(file_path, 'r') as f:
+                            content = f.read()
+                            retries_match = re.search(r'#RETRIES:\s*(\d+)', content)
+                            if retries_match:
+                                total_retries += int(retries_match.group(1))
+                
+                if problem_has_runs:
+                    problem_count += 1
+            
+            if problem_count > 0:
+                avg_retries = total_retries / problem_count
+                avg_runs = total_runs / problem_count
+                print(f"\n{variant}:")
+                print(f"  Total problems with runs: {problem_count}")
+                print(f"  Total retries: {total_retries}")
+                print(f"  Total runs: {total_runs}")
+                print(f"  Average retries per problem: {avg_retries:.2f}")
+                print(f"  Average runs per problem: {avg_runs:.2f}")
+    
+    # Create the plot with a white background
+    plt.figure(figsize=(12, 7), facecolor='white')
+    
+    # Set width of bars
+    bar_width = 0.25
+    
+    # Set positions of the bars on X axis
+    r = np.arange(len(levels))
+    
+    # Define colors for tiers (same color for both variants)
+    tier_colors = {
+        1: '#2ecc71',  # Green
+        2: '#e67e22',  # Orange
+        3: '#e74c3c'   # Red
+    }
+    
+    # Define tier labels
+    tier_labels = {
+        1: "Tier-1 error - Theorem call syntax error",
+        2: "Tier-2 error - Premise violation",
+        3: "Tier-3 error - Goal not reached"
+    }
+    
+    # Calculate max count first
+    max_count = 0
+    for variant in variants:
+        for level in levels:
+            for tier in range(1, 4):
+                count = error_analysis[variant][level]["tier_frequency"][tier]
+                max_count = max(max_count, count)
+    
+    # Plot bars for each tier
+    for tier in range(1, 4):
+        # Get data for both variants
+        analogy_data = [error_analysis[variants[0]][level]["tier_frequency"][tier] for level in levels]
+        random_data = [-error_analysis[variants[1]][level]["tier_frequency"][tier] for level in levels]  # Make random data negative
+        
+        # Calculate positions for this tier
+        tier_pos = r + (tier - 1) * bar_width
+        
+        # Plot analogy-based variant (solid bars)
+        plt.bar(tier_pos, analogy_data, width=bar_width,
+                color=tier_colors[tier], 
+                label=f"Analogy-based - {tier_labels[tier]}",
+                alpha=0.8, edgecolor='black', linewidth=0.2)
+        
+        # Plot random variant (striped bars)
+        plt.bar(tier_pos, random_data, width=bar_width,
+                color=tier_colors[tier], 
+                label=f"Random - {tier_labels[tier]}",
+                alpha=0.8, edgecolor='black', linewidth=0.2,
+                hatch='////')  # Add diagonal stripes
+        
+        # Add value labels above both bars
+        for i, (analogy_count, random_count) in enumerate(zip(analogy_data, random_data)):
+            if analogy_count > 0:
+                plt.text(tier_pos[i], analogy_count + 0.1, str(analogy_count),
+                        ha='center', va='bottom', fontsize=12)
+            if random_count < 0:  # Check for negative value
+                plt.text(tier_pos[i], random_count - 0.1, str(abs(random_count)),  # Use absolute value for display
+                        ha='center', va='top', fontsize=12)
+    
+    # Add labels and title with improved styling
+    plt.xlabel('Level', fontsize=18, labelpad=10)
+    plt.ylabel('Number of Errors', fontsize=18, labelpad=10)
+    plt.title('Our analogy-based method produces fewer errors at all levels.\nIn both variants, errors increase with level; tier-1 errors are the most common.', 
+              fontsize=24, pad=20)
+    
+    # Improve x-axis ticks
+    plt.xticks(r + bar_width, levels, fontsize=12)
+    
+    # Customize y-axis ticks to show absolute values
+    yticks = plt.yticks()[0]
+    plt.yticks(yticks, [abs(int(tick)) for tick in yticks], fontsize=12)
+    
+    # Add legend in top left corner with improved styling
+    legend = plt.legend(fontsize=12, loc='upper left', bbox_to_anchor=(0.02, 0.98), 
+                       framealpha=1.0, edgecolor='black', frameon=True)
+    legend.get_frame().set_linewidth(0.5)
+    
+    # Set y-axis limits with more padding
+    plt.ylim(-max_count * 1.5, max_count * 1.5)  # Increased padding to 50%
+    
+    # Add grid for better readability with improved styling
+    plt.grid(True, axis='y', linestyle='--', alpha=0.3, color='gray')
+    
+    # Remove top and right spines
+    plt.gca().spines['top'].set_visible(False)
+    plt.gca().spines['right'].set_visible(False)
+    
+    # Make left and bottom spines thicker
+    plt.gca().spines['left'].set_linewidth(1.5)
+    plt.gca().spines['bottom'].set_linewidth(1.5)
+    
+    # Adjust layout to prevent label cutoff
+    plt.tight_layout()
+    
+    # Save the plot with high DPI
+    plt.savefig(os.path.join(base_path, 'tier_error_distribution.png'), 
+                dpi=300, bbox_inches='tight', facecolor='white')
+    plt.close()
+    
+    # Plot retries and runs data
+    plot_retries_and_runs(base_path)
+
+def plot_retries_and_runs(base_path):
+    """
+    Plot average retries and runs per level for both variants.
+    Creates two subplots: one for retries and one for runs.
+    
+    Args:
+        base_path (str): Base path to the results directory
+    """
+    levels = range(1, 6)
+    variants = ["variant_analogy_based_model_o1", "variant_random_all_theorems_model_o1"]
+    
+    # Store detailed data for each level
+    level_data = {
+        level: {
+            variant: {
+                "total_retries": 0,
+                "total_runs": 0,
+                "problem_count": 0,
+                "avg_retries": 0,
+                "avg_runs": 0,
+                "problems_with_runs": set()
+            } for variant in variants
+        } for level in levels
+    }
+    
+    # Initialize data lists for plotting
+    retries_data = {variant: [] for variant in variants}
+    runs_data = {variant: [] for variant in variants}
+    
+    # Calculate averages for each level and variant
+    for level in levels:
+        level_dir = os.path.join(base_path, f"level_{level}")
+        if not os.path.exists(level_dir):
+            continue
+            
+        for variant in variants:
+            # Get the list of problem IDs for this level
+            level_problem_ids = set(LEVEL_PROBLEMS[level])
+            
+            for problem_id in level_problem_ids:
+                problem_has_runs = False
+                for run_num in range(3):  # Check runs 0, 1, and 2
+                    file_path = os.path.join(level_dir, f"{variant}_problem_{problem_id}_run_{run_num}.txt")
+                    if os.path.exists(file_path):
+                        problem_has_runs = True
+                        level_data[level][variant]["total_runs"] += 1
+                        with open(file_path, 'r') as f:
+                            content = f.read()
+                            retries_match = re.search(r'#RETRIES:\s*(\d+)', content)
+                            if retries_match:
+                                level_data[level][variant]["total_retries"] += int(retries_match.group(1))
+                
+                if problem_has_runs:
+                    level_data[level][variant]["problem_count"] += 1
+                    level_data[level][variant]["problems_with_runs"].add(problem_id)
+            
+            # Calculate averages
+            if level_data[level][variant]["problem_count"] > 0:
+                level_data[level][variant]["avg_retries"] = (
+                    level_data[level][variant]["total_retries"] / 
+                    level_data[level][variant]["problem_count"]
+                )
+                level_data[level][variant]["avg_runs"] = (
+                    level_data[level][variant]["total_runs"] / 
+                    level_data[level][variant]["problem_count"]
+                )
+            
+            # Store data for plotting
+            retries_data[variant].append(level_data[level][variant]["avg_retries"])
+            runs_data[variant].append(level_data[level][variant]["avg_runs"])
+    
+    # Print detailed statistics
+    print("\nDetailed Retries and Runs Statistics:")
+    print("=" * 50)
+    for level in levels:
+        print(f"\nLevel {level}:")
+        print("-" * 30)
+        for variant in variants:
+            data = level_data[level][variant]
+            print(f"\n{variant}:")
+            print(f"  Total problems with runs: {data['problem_count']}")
+            print(f"  Problems with runs: {sorted(data['problems_with_runs'])}")
+            print(f"  Total retries: {data['total_retries']}")
+            print(f"  Total runs: {data['total_runs']}")
+            print(f"  Average retries per problem: {data['avg_retries']:.2f}")
+            print(f"  Average runs per problem: {data['avg_runs']:.2f}")
+    
+    # Calculate and print overall averages
+    print("\nOverall Averages Across All Levels:")
+    print("=" * 50)
+    for variant in variants:
+        variant_name = variant.replace("variant_", "").replace("_model_o1", "")
+        avg_retries = sum(retries_data[variant]) / len(retries_data[variant])
+        avg_runs = sum(runs_data[variant]) / len(runs_data[variant])
+        
+        print(f"\n{variant_name}:")
+        print(f"  Average retries across all levels: {avg_retries:.2f}")
+        print(f"  Average runs across all levels: {avg_runs:.2f}")
+        print(f"  Retries per level: {[f'{x:.2f}' for x in retries_data[variant]]}")
+        print(f"  Runs per level: {[f'{x:.2f}' for x in runs_data[variant]]}")
+    
+    # Create figure with two subplots - make it taller and narrower
+    fig, (ax1, ax2) = plt.subplots(2, 1, figsize=(8, 12), facecolor='white')
+    
+    # Colors for variants
+    variant_colors = {
+        "variant_analogy_based_model_o1": '#3498db',  # Blue
+        "variant_random_all_theorems_model_o1": '#e74c3c'  # Red
+    }
+    
+    # Plot retries data
+    for variant in variants:
+        ax1.plot(levels, retries_data[variant], 'o-', 
+                label=variant.replace("_all_theorems", "").replace("variant_", "").replace("_model_o1", ""),
+                color=variant_colors[variant],
+                linewidth=2, markersize=8)
+        
+        # Add value labels below the points
+        for i, value in enumerate(retries_data[variant]):
+            ax1.text(levels[i], value - 0.2, f'{value:.1f}',
+                    ha='center', va='top', color=variant_colors[variant],
+                    fontsize=14, fontweight='bold')
+    
+    # Customize retries subplot
+    ax1.set_xlabel('Level', fontsize=18, labelpad=10)
+    ax1.set_ylabel('Average Retries per Problem', fontsize=18, labelpad=10)
+    ax1.set_title('Average number of retries per problem:\nLower for our analogy-based method, rising with level', fontsize=24, pad=20)
+    ax1.grid(True, linestyle='--', alpha=0.3)
+    ax1.legend(fontsize=12)
+    ax1.set_xticks(levels)
+    ax1.tick_params(axis='both', which='major', labelsize=12)
+    
+    # Plot runs data
+    for variant in variants:
+        ax2.plot(levels, runs_data[variant], 'o-',
+                label=variant.replace("_all_theorems", "").replace("variant_", "").replace("_model_o1", ""),
+                color=variant_colors[variant],
+                linewidth=2, markersize=8)
+        
+        # Add value labels below the points with same offset as retries
+        for i, value in enumerate(runs_data[variant]):
+            ax2.text(levels[i], value - 0.1, f'{value:.1f}',
+                    ha='center', va='top', color=variant_colors[variant],
+                    fontsize=14, fontweight='bold')
+    
+    # Customize runs subplot
+    ax2.set_xlabel('Level', fontsize=18, labelpad=10)
+    ax2.set_ylabel('Average Runs per Problem', fontsize=18, labelpad=10)
+    ax2.set_title('Average number of runs per problem:\nLower for our analogy-based method, rising with level', fontsize=24, pad=20)
+    ax2.grid(True, linestyle='--', alpha=0.3)
+    ax2.legend(fontsize=12)
+    ax2.set_xticks(levels)
+    ax2.tick_params(axis='both', which='major', labelsize=12)
+    
+    # Adjust layout
+    plt.tight_layout()
+    
+    # Save the plot
+    plt.savefig(os.path.join(base_path, 'retries_and_runs.png'), 
+                dpi=300, bbox_inches='tight', facecolor='white')
+    plt.close()
+
 if __name__ == "__main__":
     base_path = "/Users/osultan/PycharmProjects/FormalGeo/results"
     plot_success_rates(base_path)
     problem_status = plot_ablation_study(base_path)
     calculate_analogy_stability(base_path)
     analyze_answer_correctness(base_path, problem_status)
+    error_analysis = analyze_errors(base_path)
     print(1)

@@ -163,10 +163,10 @@ ANSWER:
 4
 
 THEOREM_SEQUENCE:
-1; mirror_congruent_triangle_property_line_equal(1,DAB,CAB); MirrorCongruentBetweenTriangle(DAB,CAB); ["Equal(LengthOfLine(AB),LengthOfLine(AB))"]
+1; mirror_congruent_triangle_property_line_equal(1,DAB,CAB); MirrorCongruentBetweenTriangle(DAB,CAB); ["Equal(LengthOfLine(AD),LengthOfLine(BC))"]
 ***MODEL_RESPONSE_END***
 RETRIES_MESSAGES:
-#run: 0; #retry: 1; message: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
+#run: 2; #retry: 1; message: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
 Theorem: mirror_congruent_triangle_property_line_equal(1,DAB,CAB)
 You output the following conclusions: Equal(LengthOfLine(DB),LengthOfLine(CB))
 But the correct conclusions: Equal(LengthOfLine(AB),LengthOfLine(AB))
@@ -176,7 +176,7 @@ RETRY_ANSWER:
 5
 RETRY_THEOREM_SEQUENCE:
 1; mirror_congruent_triangle_property_line_equal(1,DAB,CAB); MirrorCongruentBetweenTriangle(DAB,CAB); ["Equal(LengthOfLine(DB),LengthOfLine(CB))"]
-#run: 0; #retry: 2; message: ERROR_TIER: TIER3_GOAL_NOT_REACHED
+#run: 2; #retry: 2; message: ERROR_TIER: TIER3_GOAL_NOT_REACHED
 verification failed.
 
 - Goal: value determination
@@ -190,8 +190,39 @@ Model Answer:
 RETRY_ANSWER:
 5
 RETRY_THEOREM_SEQUENCE:
-1; mirror_congruent_triangle_property_line_equal(1,DAB,CAB); MirrorCongruentBetweenTriangle(DAB,CAB); ["Equal(LengthOfLine(AB),LengthOfLine(AB))"]
-#run: 0; #retry: 3; message: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
+1; mirror_congruent_triangle_property_line_equal(1,ABD,ABC); MirrorCongruentBetweenTriangle(ABD,ABC); ["Equal(LengthOfLine(BD),LengthOfLine(BC))"]
+#run: 2; #retry: 3; message: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
+Theorem: mirror_congruent_triangle_property_line_equal(1,BAD,ABC)
+You output the following premises: MirrorCongruentBetweenTriangle(DAB,CAB)
+But the correct premises: MirrorCongruentBetweenTriangle(BAD,ABC)
+
+Model Answer:
+RETRY_ANSWER:
+4
+RETRY_THEOREM_SEQUENCE:
+1; mirror_congruent_triangle_property_line_equal(1,BAD,ABC); MirrorCongruentBetweenTriangle(DAB,CAB); ["Equal(LengthOfLine(AD),LengthOfLine(BC))"]
+#run: 2; #retry: 4; message: ERROR_TIER: TIER2_PREMISE_VIOLATION
+verification failed.
+
+- Error: You tried to use theorem: mirror_congruent_triangle_property_line_equal(1,BAD,ABC);MirrorCongruentBetweenTriangle(BAD,ABC);['Equal(LengthOfLine(AD),LengthOfLine(BC))']
+Missing premise: Triangles BAD and ABC not proven mirror congruent
+Details: Required for mirror_congruent_triangle_property_line_equal
+- Available premises:
+  Collinear Points: AEC, BED
+  Mirror Congruent Triangles: ABD mirror congruent to ABC
+  Polygons: ABC, ABCED, ABD, ABE, ACB, ADB, ADE, AEB, AED, BCE, BCEDA, BEC, CEDAB, DABCE, EDABC
+- Theorems related to the goal:
+  None found that constrain this goal
+- Solver constraints directly related to this goal:
+  None found
+
+Please fix the proof.
+Model Answer:
+RETRY_ANSWER:
+4
+RETRY_THEOREM_SEQUENCE:
+1; mirror_congruent_triangle_property_line_equal(1,BAD,ABC); MirrorCongruentBetweenTriangle(BAD,ABC); ["Equal(LengthOfLine(AD),LengthOfLine(BC))"]
+#run: 2; #retry: 5; message: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
 Theorem: mirror_congruent_triangle_property_line_equal(1,DAB,CAB)
 You output the following conclusions: Equal(LengthOfLine(AD),LengthOfLine(BC))
 But the correct conclusions: Equal(LengthOfLine(AB),LengthOfLine(AB))
@@ -201,52 +232,10 @@ RETRY_ANSWER:
 4
 RETRY_THEOREM_SEQUENCE:
 1; mirror_congruent_triangle_property_line_equal(1,DAB,CAB); MirrorCongruentBetweenTriangle(DAB,CAB); ["Equal(LengthOfLine(AD),LengthOfLine(BC))"]
-#run: 0; #retry: 4; message: ERROR_TIER: TIER3_GOAL_NOT_REACHED
-verification failed.
-
-- Goal: length of line BC
-- Model answer: 4
-- Error: Your proof doesn't uniquely determine the value. You need to use additional theorems to constrain the value.
-- Available premises:
-  Collinear Points: AEC, BED
-  Mirror Congruent Triangles: ABD mirror congruent to ABC
-  Polygons: ABC, ABCED, ABD, ABE, ACB, ADB, ADE, AEB, AED, BCE, BCEDA, BEC, CEDAB, DABCE, EDABC
-- Theorems related to the goal:
-  None found that constrain this goal
-- Solver constraints directly related to this goal:
-  |BC| > 0
-
-Please fix the proof.
-Model Answer:
-RETRY_ANSWER:
-4
-RETRY_THEOREM_SEQUENCE:
-1; mirror_congruent_triangle_property_line_equal(1,DAB,CAB); MirrorCongruentBetweenTriangle(DAB,CAB); ["Equal(LengthOfLine(AB),LengthOfLine(AB))"]
-#run: 0; #retry: 5; message: ERROR_TIER: TIER3_GOAL_NOT_REACHED
-verification failed.
-
-- Goal: length of line BC
-- Model answer: 4
-- Error: Your proof doesn't uniquely determine the value. You need to use additional theorems to constrain the value.
-- Available premises:
-  Collinear Points: AEC, BED
-  Mirror Congruent Triangles: ABD mirror congruent to ABC
-  Polygons: ABC, ABCED, ABD, ABE, ACB, ADB, ADE, AEB, AED, BCE, BCEDA, BEC, CEDAB, DABCE, EDABC
-- Theorems related to the goal:
-  None found that constrain this goal
-- Solver constraints directly related to this goal:
-  |BC| > 0
-
-Please fix the proof.
-Model Answer:
-RETRY_ANSWER:
-4
-RETRY_THEOREM_SEQUENCE:
-1; mirror_congruent_triangle_property_line_equal(1,DAB,CAB); MirrorCongruentBetweenTriangle(DAB,CAB); ["Equal(LengthOfLine(AB),LengthOfLine(AB))"]
 #RETRIES:
 5
 #RUNS:
-0
+2
 
 
 GT_EQUATIONS:
