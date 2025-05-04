@@ -540,50 +540,79 @@ def plot_ablation_study(base_path):
     mrv_vs_mrv_p_value = perform_mcnemar_test(mrv_vs_mrv_test, "test", base_path)
     
     # Create the plot
-    plt.figure(figsize=(12, 7))
+    plt.figure(figsize=(22, 17), facecolor='white')
+    
+    # Set font sizes and style
+    plt.rcParams['font.size'] = 24
+    plt.rcParams['legend.fontsize'] = 24
+    plt.rcParams['axes.linewidth'] = 1.5
+    plt.rcParams['axes.edgecolor'] = 'black'
+    
+    # Define colors and styles
+    colors = {
+        'analogy': '#1f77b4',  # Blue
+        'random': '#d62728'    # Red
+    }
     
     # Plot lines for each variant and stage
     for variant in variants:
-        color = 'blue' if 'analogy' in variant else 'red'
+        color = colors['analogy'] if 'analogy' in variant else colors['random']
         variant_label = variant.replace("variant_", "").replace("_model_o1", "").replace("random_all_theorems", "random")
         
-        # Plot FT first
+        # Plot FT first (solid line with circles)
         plt.plot(levels, success_rates[variant]["ft"], 'o-', 
-                label=f'{variant_label} - First attempt',
-                linewidth=2, markersize=8, color=color)
+                label=f'{variant_label} - First run, no retries',
+                linewidth=3, markersize=14, color=color, alpha=0.9)
         
-        # Plot FRV second
+        # Plot FRV second (dashed line with squares)
         plt.plot(levels, success_rates[variant]["frv"], 's--', 
-                label=f'{variant_label} - First run w. retries',
-                linewidth=2, markersize=8, color=color)
+                label=f'{variant_label} - First run, with retries',
+                linewidth=3, markersize=14, color=color, alpha=0.9)
         
-        # Plot MRV last with solid triangles
+        # Plot MRV last (dotted line with triangles)
         plt.plot(levels, success_rates[variant]["mrv"], '^:', 
-                label=f'{variant_label} - Multiple runs w. retries',
-                linewidth=2, markersize=8, color=color)
+                label=f'{variant_label} - Multiple runs, with retries',
+                linewidth=3, markersize=14, color=color, alpha=0.9)
         
         # Add markers for MRV points that have the same value as FRV
         for i in range(len(levels)):
             if success_rates[variant]["mrv"][i] == success_rates[variant]["frv"][i]:
                 plt.plot(levels[i], success_rates[variant]["mrv"][i], '^', 
-                        color=color, markersize=8)
+                        color=color, markersize=14, alpha=0.9)
     
     # Customize the plot
-    plt.xlabel('Level', fontsize=18)
-    plt.ylabel('Cumulative Success Rate (%)', fontsize=18)
-    plt.title('Our analogy-based method outperforms the random baseline\nin all o1 model ablations (50 samples)', fontsize=24)
-    plt.grid(True, linestyle='--', alpha=0.7)
-    plt.legend(fontsize=9, loc='upper right', bbox_to_anchor=(0.98, 0.98), framealpha=1.0)
-    plt.xticks(levels)
+    plt.xlabel('Level', fontsize=24, labelpad=15)
+    plt.ylabel('Cumulative Success Rate (%)', fontsize=24, labelpad=15)
+    plt.title('Our analogy-based method outperforms the random baseline\nin all o1 model ablations (50 samples)', 
+             fontsize=28, pad=20)
+    
+    # Customize grid
+    plt.grid(True, linestyle='--', alpha=0.3, color='gray')
+    
+    # Customize legend
+    legend = plt.legend(fontsize=24, loc='upper right', bbox_to_anchor=(0.98, 0.98),
+                       framealpha=1.0, edgecolor='black', frameon=True)
+    legend.get_frame().set_linewidth(1.5)
+    
+    # Customize ticks
+    plt.xticks(levels, fontsize=20)
+    plt.yticks(np.arange(0, 110, 10), fontsize=20)
+    
+    # Set axis limits with more padding
+    plt.xlim(0.5, 5.5)  # Keep the same x-axis limits
     plt.ylim(0, 110)
-    plt.yticks(np.arange(0, 110, 10))
     
-    # Adjust x-axis limits to make the graph wider
-    plt.xlim(0.5, 5.5)  # Extend x-axis limits slightly beyond the data points
+    # Remove top and right spines
+    plt.gca().spines['top'].set_visible(False)
+    plt.gca().spines['right'].set_visible(False)
     
-    # Add value labels on the points
+    # Make left and bottom spines thicker
+    plt.gca().spines['left'].set_linewidth(1.5)
+    plt.gca().spines['bottom'].set_linewidth(1.5)
+    
+    # Add value labels on the points with more horizontal spacing
     for variant in variants:
-        color = 'blue' if 'analogy' in variant else 'red'
+        color = colors['analogy'] if 'analogy' in variant else colors['random']
         for stage in ["ft", "frv", "mrv"]:
             for i in range(len(levels)):
                 rate = success_rates[variant][stage][i]
@@ -591,17 +620,19 @@ def plot_ablation_study(base_path):
                     # Skip MRV label if it has the same value as FRV
                     if stage == "mrv" and rate == success_rates[variant]["frv"][i]:
                         continue
-                    # Adjust vertical position of labels to prevent overlap
-                    offset = 2
+                    # Adjust vertical position of labels to be below the points
+                    offset = -2
                     plt.text(levels[i], rate + offset, 
                             f'{rate:.1f}%', 
-                            ha='center', va='bottom', color=color)
+                            ha='center', va='top', color=color, 
+                            fontsize=18, fontweight='bold')
     
-    # Adjust layout
-    plt.tight_layout()
+    # Adjust layout with more padding
+    plt.tight_layout(pad=2.0)
     
-    # Save the plot
-    plt.savefig(os.path.join(base_path, 'success_rates_progression.png'), dpi=300, bbox_inches='tight')
+    # Save the plot with high DPI and white background
+    plt.savefig(os.path.join(base_path, 'success_rates_progression.png'), 
+                dpi=300, bbox_inches='tight', facecolor='white')
     plt.close()
     
     return problem_status
@@ -1353,13 +1384,13 @@ def analyze_errors(base_path):
                     # Find all error messages after ERROR_TIER
                     error_sections = content.split("ERROR_TIER: ")
                     if len(error_sections) > 1:  # If there are any errors
+                        has_errors = True
+                        print(f"  Run {run_number}:")
                         for section in error_sections[1:]:  # Skip the first split which is before any ERROR_TIER
-                            # Extract the error message (everything until the first newline)
-                            error_msg = section.split("\n")[0].strip()
+                            # Get the complete error message including all content after ERROR_TIER
+                            error_msg = section.strip()
                             if error_msg:
-                                problem_errors.append(error_msg)
-                                # Update error frequency
-                                error_analysis[variant][level]["error_frequency"][error_msg] = error_analysis[variant][level]["error_frequency"].get(error_msg, 0) + 1
+                                print(f"    - {error_msg}")
                 
                 # Store errors for this problem if any were found
                 if problem_errors:
@@ -1410,6 +1441,49 @@ def analyze_errors(base_path):
         sorted_overall_tiers = sorted(overall_tier_freq.items())
         for tier_num, count in sorted_overall_tiers:
             print(f"TIER_{tier_num}: {count} errors")
+    
+    # Print detailed error messages for all problems
+    print("\nDetailed Error Messages for All Problems:")
+    print("=" * 70)
+    for variant in variants:
+        print(f"\n{variant}:")
+        print("-" * 50)
+        for level in levels:
+            print(f"\nLevel {level}:")
+            print("-" * 30)
+            level_dir = os.path.join(base_path, f"level_{level}")
+            if not os.path.exists(level_dir):
+                continue
+                
+            # Get the list of problem IDs for this level
+            level_problem_ids = set(LEVEL_PROBLEMS[level])
+            
+            for problem_id in sorted(level_problem_ids):
+                has_errors = False
+                print(f"\nProblem {problem_id}:")
+                
+                # Check all runs for this problem
+                for run_number in range(3):  # Check runs 0, 1, and 2
+                    file_path = os.path.join(level_dir, f"{variant}_problem_{problem_id}_run_{run_number}.txt")
+                    if not os.path.exists(file_path):
+                        continue
+                        
+                    with open(file_path, 'r') as f:
+                        content = f.read()
+                        
+                    # Find all error messages after ERROR_TIER
+                    error_sections = content.split("ERROR_TIER: ")
+                    if len(error_sections) > 1:  # If there are any errors
+                        has_errors = True
+                        print(f"  Run {run_number}:")
+                        for section in error_sections[1:]:  # Skip the first split which is before any ERROR_TIER
+                            # Get the complete error message including all content after ERROR_TIER
+                            error_msg = section.strip()
+                            if error_msg:
+                                print(f"    - {error_msg}")
+                
+                if not has_errors:
+                    print("  No errors found")
     
     # Create the plot
     plot_tier_error_distribution(error_analysis, base_path)
@@ -1474,8 +1548,8 @@ def plot_tier_error_distribution(error_analysis, base_path):
                 print(f"  Average retries per problem: {avg_retries:.2f}")
                 print(f"  Average runs per problem: {avg_runs:.2f}")
     
-    # Create the plot with a white background
-    plt.figure(figsize=(12, 7), facecolor='white')
+    # Create the plot with a white background - increased height
+    plt.figure(figsize=(12, 12), facecolor='white')
     
     # Set width of bars
     bar_width = 0.25
@@ -1531,26 +1605,26 @@ def plot_tier_error_distribution(error_analysis, base_path):
         for i, (analogy_count, random_count) in enumerate(zip(analogy_data, random_data)):
             if analogy_count > 0:
                 plt.text(tier_pos[i], analogy_count + 0.1, str(analogy_count),
-                        ha='center', va='bottom', fontsize=12)
+                        ha='center', va='bottom', fontsize=20)
             if random_count < 0:  # Check for negative value
                 plt.text(tier_pos[i], random_count - 0.1, str(abs(random_count)),  # Use absolute value for display
-                        ha='center', va='top', fontsize=12)
+                        ha='center', va='top', fontsize=20)
     
     # Add labels and title with improved styling
-    plt.xlabel('Level', fontsize=18, labelpad=10)
-    plt.ylabel('Number of Errors', fontsize=18, labelpad=10)
-    plt.title('Our analogy-based method produces fewer errors at all levels.\nIn both variants, errors increase with level; tier-1 errors are the most common.', 
-              fontsize=24, pad=20)
+    plt.xlabel('Level', fontsize=24, labelpad=10)
+    plt.ylabel('Number of Errors', fontsize=24, labelpad=10)
+    plt.title('Our analogy-based method produces fewer errors at all levels.\nIn both variants, errors increase with level.\nTier-1 errors are the most common.',
+              fontsize=28, pad=20)
     
     # Improve x-axis ticks
-    plt.xticks(r + bar_width, levels, fontsize=12)
+    plt.xticks(r + bar_width, levels, fontsize=20)
     
     # Customize y-axis ticks to show absolute values
     yticks = plt.yticks()[0]
-    plt.yticks(yticks, [abs(int(tick)) for tick in yticks], fontsize=12)
+    plt.yticks(yticks, [abs(int(tick)) for tick in yticks], fontsize=20)
     
     # Add legend in top left corner with improved styling
-    legend = plt.legend(fontsize=12, loc='upper left', bbox_to_anchor=(0.02, 0.98), 
+    legend = plt.legend(fontsize=18, loc='upper left', bbox_to_anchor=(0.02, 0.98), 
                        framealpha=1.0, edgecolor='black', frameon=True)
     legend.get_frame().set_linewidth(0.5)
     
