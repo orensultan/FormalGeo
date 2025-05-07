@@ -10823,7 +10823,33 @@ class GeometricTheorem:
                         except Exception as e:
                             print(f"Error evaluating modified string '{modified_str}': {e}")
                             pass
+                    if 'π' in answer_str:
+                        # Pattern for (aπ)/b format
+                        pattern = r'\((\d+)π\)/(\d+)'
+                        match = re.match(pattern, answer_str)
+                        if match:
+                            a, b = match.groups()
+                            a, b = float(a), float(b)
+                            return (a * math.pi) / b, original_symbolic
 
+                        # Pattern for aπ/b format (without parentheses)
+                        pattern = r'(\d+)π/(\d+)'
+                        match = re.match(pattern, answer_str)
+                        if match:
+                            a, b = match.groups()
+                            a, b = float(a), float(b)
+                            return (a * math.pi) / b, original_symbolic
+
+                        # Handle other π expressions with general replacement
+                        try:
+                            # Replace π with math.pi for evaluation
+                            modified_str = answer_str.replace('π', '*math.pi')
+                            # Handle implicit multiplication and edge cases
+                            modified_str = re.sub(r'(\d+)\(', r'\1*(', modified_str)
+                            return float(eval(modified_str, {"math": math})), original_symbolic
+                        except Exception as e:
+                            print(f"Error evaluating π expression '{modified_str}': {e}")
+                            pass
                     # Standard eval with math functions
                     try:
                         safe_globals = {
@@ -10855,8 +10881,29 @@ class GeometricTheorem:
                                 return float(result), original_symbolic
                             except Exception as e:
                                 print(f"Error with numerical approximation: {e}")
-                                # As a last resort, return a default value or raise an exception
-                                raise ValueError(f"Could not parse: {answer_str}")
+
+                                # NEW CODE: Add SymPy as the last resort fallback method
+                                try:
+                                    # Import sympy only when needed
+                                    from sympy import symbols, sympify, pi, N
+
+                                    # Replace symbols with SymPy-compatible notation
+                                    sympy_compatible = answer_str
+                                    sympy_compatible = sympy_compatible.replace('π', 'pi')
+                                    sympy_compatible = sympy_compatible.replace('√', 'sqrt')
+
+                                    # Parse with SymPy's powerful expression parser
+                                    expr = sympify(sympy_compatible)
+
+                                    # Convert to floating point
+                                    numeric_value = float(N(expr))
+
+                                    print(f"Successfully parsed with SymPy: {numeric_value}")
+                                    return numeric_value, original_symbolic
+                                except Exception as e:
+                                    print(f"Error parsing with SymPy: {e}")
+                                    # If SymPy also fails, give up and raise the exception
+                                    raise ValueError(f"Could not parse: {answer_str}")
 
                 answer_str = sections[ANSWER][0].strip() if (ANSWER in sections and sections[ANSWER]) else None
                 if answer_str is None:
@@ -17437,6 +17484,7 @@ def verify_geometric_proof(filename: str, print_output=True) -> tuple:
         except Exception as e:
             print(f"Error: {str(e)}")
             return False, f"Error: {str(e)}", None
+
 
 if __name__ == "__main__":
     result, feedback, error_tier = verify_geometric_proof(

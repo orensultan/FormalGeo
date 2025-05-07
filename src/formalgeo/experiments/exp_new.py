@@ -592,23 +592,26 @@ def plot_ablation_study(base_path):
     plt.grid(True, linestyle='--', alpha=0.3, color='gray')
 
     # Customize legend
-    legend = plt.legend(fontsize=24, loc='upper right', bbox_to_anchor=(0.98, 0.98),
-                        framealpha=1.0, edgecolor='black', frameon=True)
-    legend.get_frame().set_linewidth(1.5)
+    handles, labels = plt.gca().get_legend_handles_labels()
+    legend = plt.legend(handles, labels,
+              fontsize=32,  # Increased font size
+              loc='center',
+              bbox_to_anchor=(0.5, 0.88),  # Changed from 0.90 to 0.88 to move legend down
+              frameon=True,
+              edgecolor='black',
+              fancybox=False,
+              borderpad=1.0,  # Increased padding
+              handlelength=3.0,  # Longer lines
+              handletextpad=1.0,  # More space between lines and text
+              labelspacing=0.5,  # More vertical space between entries
+              ncol=2)
+    
     # Make legend text bold
-    plt.setp(legend.get_texts(), fontweight='bold')
-
-    # Customize ticks
-    plt.xticks(levels, fontsize=24, fontweight='bold')  # Added bold
-    plt.yticks(np.arange(0, 110, 10), fontsize=24, fontweight='bold')  # Added bold
-
-    # Set axis limits with more padding
-    plt.xlim(0.5, 5.5)  # Keep the same x-axis limits
-    plt.ylim(0, 110)
-
-    # Remove top and right spines
-    plt.gca().spines['top'].set_visible(False)
-    plt.gca().spines['right'].set_visible(False)
+    for text in legend.get_texts():
+        text.set_fontweight('bold')
+    
+    # Adjust layout with more top space for title and legend
+    plt.tight_layout(rect=[0, 0, 1, 0.91])  # Changed from 0.93 to 0.91 to give more space at top
 
     # Make left and bottom spines thicker
     plt.gca().spines['left'].set_linewidth(1.5)
@@ -1377,6 +1380,7 @@ def analyze_errors(base_path):
             # Process each problem in the level's list
             for problem_id in sorted(level_problem_ids):
                 problem_errors = []
+                has_errors = False
 
                 # Check all runs for this problem
                 for run_number in range(3):  # Check runs 0, 1, and 2
@@ -1397,20 +1401,25 @@ def analyze_errors(base_path):
                             error_msg = section.strip()
                             if error_msg:
                                 print(f"    - {error_msg}")
+                                problem_errors.append(error_msg)
+                                
+                                # Update error frequency
+                                if error_msg not in error_analysis[variant][level]["error_frequency"]:
+                                    error_analysis[variant][level]["error_frequency"][error_msg] = 0
+                                error_analysis[variant][level]["error_frequency"][error_msg] += 1
+                                
+                                # Update tier frequency
+                                if error_msg.startswith("TIER1_"):
+                                    error_analysis[variant][level]["tier_frequency"][1] += 1
+                                elif error_msg.startswith("TIER2_"):
+                                    error_analysis[variant][level]["tier_frequency"][2] += 1
+                                elif error_msg.startswith("TIER3_"):
+                                    error_analysis[variant][level]["tier_frequency"][3] += 1
 
                 # Store errors for this problem if any were found
-                if problem_errors:
+                if has_errors:
                     error_analysis[variant][level]["problems"][problem_id] = problem_errors
                     error_analysis[variant][level]["problems_with_errors"] += 1
-
-            # Calculate tier frequencies from error_frequency
-            for error_msg, count in error_analysis[variant][level]["error_frequency"].items():
-                if error_msg.startswith("TIER1_"):
-                    error_analysis[variant][level]["tier_frequency"][1] += count
-                elif error_msg.startswith("TIER2_"):
-                    error_analysis[variant][level]["tier_frequency"][2] += count
-                elif error_msg.startswith("TIER3_"):
-                    error_analysis[variant][level]["tier_frequency"][3] += count
 
             # Print summary for this level
             print(f"\nLevel {level} Error Analysis:")
@@ -1497,171 +1506,122 @@ def analyze_errors(base_path):
 
     return error_analysis
 
-
 def plot_tier_error_distribution(error_analysis, base_path):
     """
-    Create a grouped bar chart showing error counts by tier for each level.
-    Shows three columns per level (one for each tier) with different colors for each tier.
-    Random variant bars are shown in negative y-axis with diagonal stripes.
-
+    Create three subplots showing error counts by level for each tier.
+    Each subplot represents one tier, comparing analogy-based and base model approaches.
+    
     Args:
         error_analysis (dict): Dictionary containing error analysis results
         base_path (str): Base path to save the plot
     """
     levels = range(1, 6)
     variants = ["variant_analogy_based_model_o1", "variant_random_all_theorems_model_o1"]
-
-    # Calculate and print average retries and runs per level
-    print("\nAverage Retries and Runs per Level:")
-    print("=" * 50)
-
-    for level in levels:
-        print(f"\nLevel {level}:")
-        level_dir = os.path.join(base_path, f"level_{level}")
-        if not os.path.exists(level_dir):
-            print(f"Level {level} directory not found")
-            continue
-
-        for variant in variants:
-            total_retries = 0
-            total_runs = 0
-            problem_count = 0
-
-            # Get the list of problem IDs for this level
-            level_problem_ids = set(LEVEL_PROBLEMS[level])
-
-            for problem_id in level_problem_ids:
-                problem_has_runs = False
-                for run_num in range(3):  # Check runs 0, 1, and 2
-                    file_path = os.path.join(level_dir, f"{variant}_problem_{problem_id}_run_{run_num}.txt")
-                    if os.path.exists(file_path):
-                        problem_has_runs = True
-                        total_runs += 1
-                        with open(file_path, 'r') as f:
-                            content = f.read()
-                            retries_match = re.search(r'#RETRIES:\s*(\d+)', content)
-                            if retries_match:
-                                total_retries += int(retries_match.group(1))
-
-                if problem_has_runs:
-                    problem_count += 1
-
-            if problem_count > 0:
-                avg_retries = total_retries / problem_count
-                avg_runs = total_runs / problem_count
-                print(f"\n{variant}:")
-                print(f"  Total problems with runs: {problem_count}")
-                print(f"  Total retries: {total_retries}")
-                print(f"  Total runs: {total_runs}")
-                print(f"  Average retries per problem: {avg_retries:.2f}")
-                print(f"  Average runs per problem: {avg_runs:.2f}")
-
-    # Create the plot with a white background - increased height
-    plt.figure(figsize=(12, 12), facecolor='white')
-
-    # Set width of bars
-    bar_width = 0.25
-
-    # Set positions of the bars on X axis
-    r = np.arange(len(levels))
-
-    # Define colors for tiers (same color for both variants)
-    tier_colors = {
-        1: '#2ecc71',  # Green
-        2: '#e67e22',  # Orange
-        3: '#e74c3c'  # Red
-    }
-
-    # Define tier labels
-    tier_labels = {
-        1: "Tier-1 error - Theorem call syntax error",
-        2: "Tier-2 error - Premise violation",
-        3: "Tier-3 error - Goal not reached"
-    }
-
-    # Calculate max count first
-    max_count = 0
-    for variant in variants:
-        for level in levels:
-            for tier in range(1, 4):
-                count = error_analysis[variant][level]["tier_frequency"][tier]
-                max_count = max(max_count, count)
-
-    # Plot bars for each tier
-    for tier in range(1, 4):
+    
+    # Create figure with white background and more height
+    fig, (ax1, ax2, ax3) = plt.subplots(3, 1, figsize=(15, 22), facecolor='white')
+    axes = [ax1, ax2, ax3]
+    
+    # Width of each bar
+    bar_width = 0.35
+    
+    # Define single color for each method
+    analogy_color = '#2171b5'  # Blue
+    base_model_color = '#cb181d'  # Red
+    
+    # Calculate positions for bars
+    indices = np.arange(len(levels))
+    
+    # Plot data for each tier in separate subplots
+    for tier, ax in enumerate(axes, 1):
+        # Add light gray background to separate levels
+        for i in indices:
+            ax.axvspan(i - 0.5, i + 0.5, color='#f8f9fa', alpha=0.5)
+        
         # Get data for both variants
         analogy_data = [error_analysis[variants[0]][level]["tier_frequency"][tier] for level in levels]
-        random_data = [-error_analysis[variants[1]][level]["tier_frequency"][tier] for level in
-                       levels]  # Make random data negative
-
-        # Calculate positions for this tier
-        tier_pos = r + (tier - 1) * bar_width
-
-        # Plot analogy-based variant (solid bars)
-        plt.bar(tier_pos, analogy_data, width=bar_width,
-                color=tier_colors[tier],
-                label=f"Analogy-based - {tier_labels[tier]}",
-                alpha=0.8, edgecolor='black', linewidth=0.2)
-
-        # Plot random variant (striped bars)
-        plt.bar(tier_pos, random_data, width=bar_width,
-                color=tier_colors[tier],
-                label=f"Random - {tier_labels[tier]}",
-                alpha=0.8, edgecolor='black', linewidth=0.2,
-                hatch='////')  # Add diagonal stripes
-
-        # Add value labels above both bars
-        for i, (analogy_count, random_count) in enumerate(zip(analogy_data, random_data)):
-            if analogy_count > 0:
-                plt.text(tier_pos[i], analogy_count + 0.1, str(analogy_count),
-                         ha='center', va='bottom', fontsize=20)
-            if random_count < 0:  # Check for negative value
-                plt.text(tier_pos[i], random_count - 0.1, str(abs(random_count)),  # Use absolute value for display
-                         ha='center', va='top', fontsize=20)
-
-    # Add labels and title with improved styling
-    plt.xlabel('Level', fontsize=24, labelpad=10)
-    plt.ylabel('Number of Errors', fontsize=24, labelpad=10)
-    plt.title(
-        'Our analogy-based method produces fewer errors at all levels.\nIn both variants, errors increase with level.\nTier-1 errors are the most common.',
-        fontsize=28, pad=20)
-
-    # Improve x-axis ticks
-    plt.xticks(r + bar_width, levels, fontsize=20)
-
-    # Customize y-axis ticks to show absolute values
-    yticks = plt.yticks()[0]
-    plt.yticks(yticks, [abs(int(tick)) for tick in yticks], fontsize=20)
-
-    # Add legend in top left corner with improved styling
-    legend = plt.legend(fontsize=18, loc='upper left', bbox_to_anchor=(0.02, 0.98),
-                        framealpha=1.0, edgecolor='black', frameon=True)
-    legend.get_frame().set_linewidth(0.5)
-
-    # Set y-axis limits with more padding
-    plt.ylim(-max_count * 1.5, max_count * 1.5)  # Increased padding to 50%
-
-    # Add grid for better readability with improved styling
-    plt.grid(True, axis='y', linestyle='--', alpha=0.3, color='gray')
-
-    # Remove top and right spines
-    plt.gca().spines['top'].set_visible(False)
-    plt.gca().spines['right'].set_visible(False)
-
-    # Make left and bottom spines thicker
-    plt.gca().spines['left'].set_linewidth(1.5)
-    plt.gca().spines['bottom'].set_linewidth(1.5)
-
-    # Adjust layout to prevent label cutoff
-    plt.tight_layout()
-
-    # Save the plot with high DPI
+        random_data = [error_analysis[variants[1]][level]["tier_frequency"][tier] for level in levels]
+        
+        # Plot bars
+        ax.bar(indices - bar_width/2, analogy_data, bar_width,
+               label='analogy-based', color=analogy_color,
+               edgecolor='black', linewidth=1)
+        ax.bar(indices + bar_width/2, random_data, bar_width,
+               label='base model', color=base_model_color,
+               edgecolor='black', linewidth=1)
+        
+        # Customize subplot
+        ax.set_xlabel('Level', fontsize=28, fontweight='bold', labelpad=15)  # Reduced from 32
+        ax.set_ylabel('Number of Errors', fontsize=28, fontweight='bold', labelpad=15)  # Reduced from 32
+        ax.set_title(f'Tier {tier} Error Distribution',
+                    fontsize=32, fontweight='bold', pad=20)  # Reduced from 36
+        
+        # Set x-axis ticks
+        ax.set_xticks(indices)
+        ax.set_xticklabels(levels, fontsize=24, fontweight='bold')  # Reduced from 28
+        
+        # Set dynamic y-axis limits and ticks based on data
+        max_value = max(max(analogy_data), max(random_data))
+        y_max = math.ceil(max_value / 10.0) * 10  # Round up to nearest 10
+        ax.set_ylim(0, y_max)
+        
+        # Calculate appropriate tick interval
+        if y_max <= 20:
+            tick_interval = 5
+        elif y_max <= 50:
+            tick_interval = 10
+        else:
+            tick_interval = 20
+            
+        ax.set_yticks(np.arange(0, y_max + 1, tick_interval))
+        ax.tick_params(axis='y', labelsize=24)  # Reduced from 28
+        
+        # Make y-axis labels bold
+        for label in ax.get_yticklabels():
+            label.set_fontweight('bold')
+        
+        # Add grid
+        ax.grid(True, axis='y', linestyle='--', alpha=0.3)
+        
+        # Remove top and right spines
+        ax.spines['top'].set_visible(False)
+        ax.spines['right'].set_visible(False)
+        
+        # Make left and bottom spines thicker
+        ax.spines['left'].set_linewidth(1.5)
+        ax.spines['bottom'].set_linewidth(1.5)
+    
+    # Add overall title with more space at the top
+    fig.suptitle('Our Analogy-based method produces\nfewer errors than Base model at all tiers',
+                 fontsize=36, fontweight='bold', y=0.98)  # Reduced from 40 to 36
+    
+    # Create a common legend for all subplots
+    handles, labels = axes[0].get_legend_handles_labels()
+    legend = fig.legend(handles, labels,
+              fontsize=28,
+              loc='center',
+              bbox_to_anchor=(0.5, 0.88),
+              frameon=True,
+              edgecolor='black',
+              fancybox=False,
+              borderpad=0.4,  # Reduced from 1.0 to make frame tighter
+              handlelength=2.0,  # Reduced from 3.0 to make lines shorter
+              handletextpad=0.4,  # Reduced from 1.0 to reduce space between lines and text
+              labelspacing=0.2,  # Reduced from 0.5 to reduce vertical space between entries
+              columnspacing=0.3,  # Added to reduce space between columns
+              ncol=2)
+    
+    # Make legend text bold
+    for text in legend.get_texts():
+        text.set_fontweight('bold')
+    
+    # Adjust layout with more top space for title and legend
+    plt.tight_layout(rect=[0, 0, 1, 0.91])
+    
+    # Save the plot
     plt.savefig(os.path.join(base_path, 'tier_error_distribution.png'),
                 dpi=300, bbox_inches='tight', facecolor='white')
     plt.close()
-
-    # Plot retries and runs data
-    plot_retries_and_runs(base_path)
 
 
 def plot_retries_and_runs(base_path):
@@ -1765,64 +1725,125 @@ def plot_retries_and_runs(base_path):
         print(f"  Retries per level: {[f'{x:.2f}' for x in retries_data[variant]]}")
         print(f"  Runs per level: {[f'{x:.2f}' for x in runs_data[variant]]}")
 
-    # Create figure with two subplots - make it taller and narrower
-    fig, (ax1, ax2) = plt.subplots(2, 1, figsize=(8, 12), facecolor='white')
+    # Create figure with two subplots - make it wider to accommodate legend
+    fig = plt.figure(figsize=(22, 17), facecolor='white')  # Increased size to match other plots
+    gs = plt.GridSpec(3, 1, height_ratios=[4, 1, 4], hspace=0.5)
+    ax1 = fig.add_subplot(gs[0])  # Top subplot
+    ax2 = fig.add_subplot(gs[2])  # Bottom subplot
+
+    # Set the same aspect ratio and dimensions for both plots
+    ax1.set_box_aspect(1/2.0)  # Changed from 1/1.6 to 1/2.0 to make plots wider
+    ax2.set_box_aspect(1/2.0)  # Use same ratio for both plots
 
     # Colors for variants
     variant_colors = {
-        "variant_analogy_based_model_o1": '#3498db',  # Blue
-        "variant_random_all_theorems_model_o1": '#e74c3c'  # Red
+        "variant_analogy_based_model_o1": '#2171b5',  # Blue
+        "variant_random_all_theorems_model_o1": '#cb181d'  # Red
     }
 
-    # Plot retries data
+    # Plot lines for both subplots
+    lines = []
     for variant in variants:
-        ax1.plot(levels, retries_data[variant], 'o-',
-                 label=variant.replace("_all_theorems", "").replace("variant_", "").replace("_model_o1", ""),
+        # Plot retries data
+        line1 = ax1.plot(levels, retries_data[variant], 'o-',
+                        color=variant_colors[variant],
+                        linewidth=3, markersize=14)[0]
+        
+        # Plot runs data
+        ax2.plot(levels, runs_data[variant], 'o-',
                  color=variant_colors[variant],
-                 linewidth=2, markersize=8)
+                 linewidth=3, markersize=14)
+        
+        lines.append(line1)
 
-        # Add value labels below the points
-        for i, value in enumerate(retries_data[variant]):
-            ax1.text(levels[i], value - 0.2, f'{value:.1f}',
-                     ha='center', va='top', color=variant_colors[variant],
-                     fontsize=14, fontweight='bold')
+    # Create legend in the middle
+    fig.legend(lines, 
+              ["Analogy-based", "Base model"],
+              loc='center',
+              bbox_to_anchor=(0.5, 0.5),
+              ncol=2,
+              fontsize=32,
+              prop={'weight': 'bold'},
+              frameon=True,
+              edgecolor='black',
+              framealpha=1.0,
+              borderpad=0.2,
+              columnspacing=0.5,
+              handletextpad=0.5,
+              handlelength=1.0,
+              borderaxespad=0.1)
 
     # Customize retries subplot
-    ax1.set_xlabel('Level', fontsize=18, labelpad=10)
-    ax1.set_ylabel('Average Retries per Problem', fontsize=18, labelpad=10)
-    ax1.set_title('Average number of retries per problem:\nLower for our analogy-based method, rising with level',
-                  fontsize=24, pad=20)
+    ax1.set_xlabel('Level', fontsize=32, labelpad=15, fontweight='bold')
+    ax1.set_ylabel('Average retries', fontsize=32, labelpad=15, fontweight='bold')
+    ax1.set_title('Average retries per problem; max = 15 (3 runs x 5 retries):\nLower for our analogy-based method, increasing with level',
+                  fontsize=36, pad=50, fontweight='bold')
     ax1.grid(True, linestyle='--', alpha=0.3)
-    ax1.legend(fontsize=12)
+    
+    # Add horizontal dashed line at y=15
+    ax1.axhline(y=15, color='gray', linestyle='--', alpha=0.8, linewidth=2.5)
+    
+    # Ensure 15 appears on y-axis and make numbers bold
+    yticks = list(ax1.get_yticks())
+    if 15 not in yticks:
+        yticks = sorted(yticks + [15])
+        ax1.set_yticks(yticks)
+    
+    # Make y-axis numbers bold and bigger
+    ax1.tick_params(axis='y', which='major', labelsize=28)
+    for label in ax1.yaxis.get_ticklabels():
+        label.set_fontweight('bold')
+    
     ax1.set_xticks(levels)
-    ax1.tick_params(axis='both', which='major', labelsize=12)
+    ax1.tick_params(axis='x', which='major', labelsize=28)
+    for label in ax1.xaxis.get_ticklabels():
+        label.set_fontweight('bold')
 
-    # Plot runs data
-    for variant in variants:
-        ax2.plot(levels, runs_data[variant], 'o-',
-                 label=variant.replace("_all_theorems", "").replace("variant_", "").replace("_model_o1", ""),
-                 color=variant_colors[variant],
-                 linewidth=2, markersize=8)
-
-        # Add value labels below the points with same offset as retries
-        for i, value in enumerate(runs_data[variant]):
-            ax2.text(levels[i], value - 0.1, f'{value:.1f}',
-                     ha='center', va='top', color=variant_colors[variant],
-                     fontsize=14, fontweight='bold')
+    # Remove top and right spines
+    ax1.spines['top'].set_visible(False)
+    ax1.spines['right'].set_visible(False)
+    
+    # Make left and bottom spines thicker
+    ax1.spines['left'].set_linewidth(1.5)
+    ax1.spines['bottom'].set_linewidth(1.5)
 
     # Customize runs subplot
-    ax2.set_xlabel('Level', fontsize=18, labelpad=10)
-    ax2.set_ylabel('Average Runs per Problem', fontsize=18, labelpad=10)
-    ax2.set_title('Average number of runs per problem:\nLower for our analogy-based method, rising with level',
-                  fontsize=24, pad=20)
+    ax2.set_xlabel('Level', fontsize=32, labelpad=15, fontweight='bold')
+    ax2.set_ylabel('Average runs', fontsize=32, labelpad=15, fontweight='bold')
+    ax2.set_title('Average runs per problem; max = 3 runs:\nLower for our analogy-based method, increasing with level',
+                  fontsize=36, pad=30, fontweight='bold')
     ax2.grid(True, linestyle='--', alpha=0.3)
-    ax2.legend(fontsize=12)
+    
+    # Add horizontal dashed line at y=3
+    ax2.axhline(y=3, color='gray', linestyle='--', alpha=0.8, linewidth=2.5)
+    
+    # Ensure 3 appears on y-axis
+    yticks = list(ax2.get_yticks())
+    if 3 not in yticks:
+        yticks = sorted(yticks + [3])
+        ax2.set_yticks(yticks)
+    
     ax2.set_xticks(levels)
-    ax2.tick_params(axis='both', which='major', labelsize=12)
+    ax2.tick_params(axis='x', which='major', labelsize=28)
+    for label in ax2.xaxis.get_ticklabels():
+        label.set_fontweight('bold')
+    
+    # Make y-axis numbers bold and bigger for second subplot
+    ax2.tick_params(axis='y', which='major', labelsize=28)
+    for label in ax2.yaxis.get_ticklabels():
+        label.set_fontweight('bold')
+
+    # Remove top and right spines
+    ax2.spines['top'].set_visible(False)
+    ax2.spines['right'].set_visible(False)
+    
+    # Make left and bottom spines thicker
+    ax2.spines['left'].set_linewidth(1.5)
+    ax2.spines['bottom'].set_linewidth(1.5)
 
     # Adjust layout
-    plt.tight_layout()
-
+    plt.tight_layout(rect=[0, 0, 1, 0.95])  # Give more space at top
+    
     # Save the plot
     plt.savefig(os.path.join(base_path, 'retries_and_runs.png'),
                 dpi=300, bbox_inches='tight', facecolor='white')

@@ -25,14 +25,14 @@ Shape(PTS,SP,PT)
 Shape(SP,PT,PTS)
 Shape(PSR,RP,PS)
 Shape(RP,PS,PSR)
-Shape(PR,PRQ,PQT,TP)
-Shape(PRQ,PQT,TP,PR)
-Shape(PQT,TP,PR,PRQ)
-Shape(TP,PR,PRQ,PQT)
 Shape(PRQ,QP,PS,PSR)
 Shape(QP,PS,PSR,PRQ)
 Shape(PS,PSR,PRQ,QP)
 Shape(PSR,PRQ,QP,PS)
+Shape(PR,PRQ,PQT,TP)
+Shape(PRQ,PQT,TP,PR)
+Shape(PQT,TP,PR,PRQ)
+Shape(TP,PR,PRQ,PQT)
 Shape(PQ,PQT,PTS,SP)
 Shape(PQT,PTS,SP,PQ)
 Shape(PTS,SP,PQ,PQT)
@@ -41,16 +41,16 @@ Shape(PT,PTS,PSR,RP)
 Shape(PTS,PSR,RP,PT)
 Shape(PSR,RP,PT,PTS)
 Shape(RP,PT,PTS,PSR)
-Shape(PR,PRQ,PQT,PTS,SP)
-Shape(PRQ,PQT,PTS,SP,PR)
-Shape(PQT,PTS,SP,PR,PRQ)
-Shape(PTS,SP,PR,PRQ,PQT)
-Shape(SP,PR,PRQ,PQT,PTS)
 Shape(PRQ,QP,PT,PTS,PSR)
 Shape(QP,PT,PTS,PSR,PRQ)
 Shape(PT,PTS,PSR,PRQ,QP)
 Shape(PTS,PSR,PRQ,QP,PT)
 Shape(PSR,PRQ,QP,PT,PTS)
+Shape(PR,PRQ,PQT,PTS,SP)
+Shape(PRQ,PQT,PTS,SP,PR)
+Shape(PQT,PTS,SP,PR,PRQ)
+Shape(PTS,SP,PR,PRQ,PQT)
+Shape(SP,PR,PRQ,PQT,PTS)
 Shape(PQ,PQT,PTS,PSR,RP)
 Shape(PQT,PTS,PSR,RP,PQ)
 Shape(PTS,PSR,RP,PQ,PQT)
@@ -148,8 +148,8 @@ Angle(SPT)
 Angle(RPS)
 Angle(QPS)
 Angle(SPQ)
-Angle(SPR)
 Angle(QPT)
+Angle(SPR)
 Angle(RPQ)
 Angle(TPS)
 Circle(P)
@@ -171,43 +171,82 @@ ma_rps-130
 ma_tpq-112
 
 GOAL_SYMBOL:
-LengthOfArc(PSR)
+lengthOfArc_PSR
 
 ANSWER:
-65*pi/12
+65π/12
 
 THEOREM_SEQUENCE:
-1; arc_property_center_angle(1,PSR,P); Arc(PSR)&Angle(RPS)&IsCentreOfCircle(P,P); ["Equal(MeasureOfArc(PSR),MeasureOfAngle(RPS))"]
-2; diameter_of_circle_property_length_equal(1,TR,P); IsDiameterOfCircle(TR,P); ["Equal(LengthOfLine(TR),DiameterOfCircle(P))"]
-3; circle_property_length_of_radius_and_diameter(1,P); Circle(P); ["Equal(DiameterOfCircle(P),Mul(RadiusOfCircle(P),2))"]
+1; diameter_of_circle_property_length_equal(1,TR,P); IsDiameterOfCircle(TR,P); ["Equal(LengthOfLine(TR),DiameterOfCircle(P))"]
+2; circle_property_length_of_radius_and_diameter(1,P); Circle(P); ["Equal(DiameterOfCircle(P),Mul(RadiusOfCircle(P),2))"]
+3; arc_property_center_angle(1,PSR,P); Arc(PSR)&Angle(RPS)&IsCentreOfCircle(P,P); ["Equal(MeasureOfArc(PSR),MeasureOfAngle(RPS))"]
 4; arc_length_formula(1,PSR); Arc(PSR); ["Equal(LengthOfArc(PSR),Mul(MeasureOfArc(PSR),1/180*pi,RadiusOfCircle(P)))"]
 ***MODEL_RESPONSE_END***
 RETRIES_MESSAGES:
 #run: 0; #retry: 1; message: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
-Failure: Theorem <circle_property_length_of_radius_and_diameter> variation id is not supplied. Expected dict_keys(['1']) but got None.
-Your call: circle_property_length_of_radius_and_diameter(P)
-Please rewrite your response by adding the variation id as the first argument. For example: For variation 1: circle_property_length_of_radius_and_diameter(1,P)
+Failure: Theorem <diameter_of_circle_property_length_equal> variation id is not supplied. Expected dict_keys(['1']) but got None.
+Your call: diameter_of_circle_property_length_equal(T,R,P)
+Please rewrite your response by adding the variation id as the first argument. For example: For variation 1: diameter_of_circle_property_length_equal(1,T,R,P)
 
 Model Answer:
 RETRY_ANSWER:
-(65π)/12
+65π/12
 RETRY_THEOREM_SEQUENCE:
-1; arc_property_center_angle(1,PSR,P); Arc(PSR)&Angle(RPS)&IsCentreOfCircle(P,P); ["Equal(MeasureOfArc(PSR),MeasureOfAngle(RPS))"]  
-2; diameter_of_circle_property_length_equal(1,TR,P); IsDiameterOfCircle(TR,P); ["Equal(LengthOfLine(TR),DiameterOfCircle(P))"]  
-3; circle_property_length_of_radius_and_diameter(P); Circle(P); ["Equal(DiameterOfCircle(P),Mul(RadiusOfCircle(P),2))"]  
-4; arc_length_formula(1,PSR); Arc(PSR); ["Equal(LengthOfArc(PSR),Mul(MeasureOfArc(PSR),1/180*pi,RadiusOfCircle(P)))"]
+1; diameter_of_circle_property_length_equal(TR,P); IsDiameterOfCircle(TR,P); ["Equal(LengthOfLine(TR),DiameterOfCircle(P))"]
+2; arc_property_center_angle(PSR,RPS); Arc(PSR)&Angle(RPS)&IsCentreOfCircle(P,P); ["Equal(MeasureOfArc(PSR),MeasureOfAngle(RPS))"]
+3; arc_length_formula(PSR); Arc(PSR); ["Equal(LengthOfArc(PSR),Mul(MeasureOfArc(PSR),1/180*pi,RadiusOfCircle(P)))"]
 #run: 0; #retry: 2; message: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
-Error parsing answer '(65π)/12': Could not parse: (65π)/12
+Failure: Theorem <arc_property_center_angle> para length error. Expected 4 but got ('P', 'S', 'R', 'R', 'P', 'S').
 Model Answer:
 RETRY_ANSWER:
-(65π)/12
+65π/12
 RETRY_THEOREM_SEQUENCE:
-1; arc_property_center_angle(1,PSR,P); Arc(PSR)&Angle(RPS)&IsCentreOfCircle(P,P); ["Equal(MeasureOfArc(PSR),MeasureOfAngle(RPS))"]
-2; diameter_of_circle_property_length_equal(1,TR,P); IsDiameterOfCircle(TR,P); ["Equal(LengthOfLine(TR),DiameterOfCircle(P))"]
-3; circle_property_length_of_radius_and_diameter(1,P); Circle(P); ["Equal(DiameterOfCircle(P),Mul(RadiusOfCircle(P),2))"]
-4; arc_length_formula(1,PSR); Arc(PSR); ["Equal(LengthOfArc(PSR),Mul(MeasureOfArc(PSR),1/180*pi,RadiusOfCircle(P)))"]
+1; diameter_of_circle_property_length_equal(1,TR,P); IsDiameterOfCircle(TR,P); ["Equal(LengthOfLine(TR),DiameterOfCircle(P))"]
+2; arc_property_center_angle(PSR,RPS); Arc(PSR)&Angle(RPS)&IsCentreOfCircle(P,P); ["Equal(MeasureOfArc(PSR),MeasureOfAngle(RPS))"]
+3; arc_length_formula(PSR); Arc(PSR); ["Equal(LengthOfArc(PSR),Mul(MeasureOfArc(PSR),1/180*pi,RadiusOfCircle(P)))"]
+#run: 0; #retry: 3; message: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
+Failure: Theorem <arc_length_formula> variation id is not supplied. Expected dict_keys(['1']) but got None.
+Your call: arc_length_formula(P,S,R)
+Please rewrite your response by adding the variation id as the first argument. For example: For variation 1: arc_length_formula(1,P,S,R)
+
+Model Answer:
+RETRY_ANSWER:
+65π/12
+RETRY_THEOREM_SEQUENCE:
+1; diameter_of_circle_property_length_equal(1,TR,P); IsDiameterOfCircle(TR,P); ["Equal(LengthOfLine(TR),DiameterOfCircle(P))"]
+2; arc_property_center_angle(1,PSR,P); Arc(PSR)&Angle(RPS)&IsCentreOfCircle(P,P); ["Equal(MeasureOfArc(PSR),MeasureOfAngle(RPS))"]
+3; arc_length_formula(PSR); Arc(PSR); ["Equal(LengthOfArc(PSR),Mul(MeasureOfArc(PSR),1/180*pi,RadiusOfCircle(P)))"]
+#run: 0; #retry: 4; message: ERROR_TIER: TIER3_GOAL_NOT_REACHED
+verification failed.
+
+- Goal: length of arc PSR
+- Model answer: 65π/12
+- Error: Your proof doesn't uniquely determine the value. You need to use additional theorems to constrain the value.
+- Available premises:
+  Collinear Points: RPT
+  Cocircular Points: Q on circle P, QR on circle P, QRS on circle P, QRST on circle P, QRT on circle P, QS on circle P, QST on circle P, QT on circle P, R on circle P, RS on circle P, RST on circle P, RT on circle P, S on circle P, ST on circle P, T on circle P
+  Circles: P center: P
+  Circle Diameters: TR diameter of P
+- Theorems related to the goal:
+  Step 2 - arc_property_center_angle(1, PSR, P): Equal(MeasureOfArc(PSR),MeasureOfAngle(RPS))
+  Step 3 - arc_length_formula(1, PSR): Equal(LengthOfArc(PSR),Mul(MeasureOfArc(PSR),1/180*pi,RadiusOfCircle(P)))
+- Solver constraints directly related to this goal:
+  arc(PRS) <= 360
+  arc(PRS) = ∠RPS
+  arc(PRS) >= 0
+  lengthArc_PRS ==
+arc(PRS)*3490658503988659/200000000000000000*radius_P
+
+Please fix the proof.
+Model Answer:
+RETRY_ANSWER:
+65π/12
+RETRY_THEOREM_SEQUENCE:
+1; diameter_of_circle_property_length_equal(1,TR,P); IsDiameterOfCircle(TR,P); ["Equal(LengthOfLine(TR),DiameterOfCircle(P))"]
+2; arc_property_center_angle(1,PSR,P); Arc(PSR)&Angle(RPS)&IsCentreOfCircle(P,P); ["Equal(MeasureOfArc(PSR),MeasureOfAngle(RPS))"]
+3; arc_length_formula(1,PSR); Arc(PSR); ["Equal(LengthOfArc(PSR),Mul(MeasureOfArc(PSR),1/180*pi,RadiusOfCircle(P)))"]
 #RETRIES:
-2
+4
 #RUNS:
 0
 
