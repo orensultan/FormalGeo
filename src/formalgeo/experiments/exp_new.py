@@ -462,86 +462,8 @@ def plot_ablation_study(base_path):
             # Track if this level has MRV successes
             has_mrv[variant].append(level_rates[variant]["mrv"] > 0)
 
-    # Print problem status dictionary for debugging
-    print("\nProblem Status Dictionary (Accumulated across all levels):")
-    print("=" * 50)
-    for variant, stages in problem_status.items():
-        print(f"\n{variant}:")
-        for stage, problems in stages.items():
-            print(f"  {stage.upper()}:")
-            for problem_id, status in sorted(problems.items()):
-                print(f"    Problem {problem_id}: {'Success' if status == 1 else 'Failure'}")
-
-    # Calculate and print overall success rates across all levels
-    print("\nOverall Success Rates (50 samples):")
-    print("=" * 50)
-    for variant in variants:
-        variant_key = "analogy_based" if "analogy" in variant else "random"
-        total_problems = len(problem_status[variant_key]["ft"])
-        successful_problems = sum(
-            1 for status in problem_status[variant_key]["ft_union_frv_union_mrv"].values() if status == 1)
-        overall_rate = (successful_problems / total_problems) * 100
-        print(f"\n{variant}:")
-        print(f"  Total problems: {total_problems}")
-        print(f"  Successful problems: {successful_problems}")
-        print(f"  Overall success rate: {overall_rate:.1f}%")
-
-        # Print successful problem IDs
-        successful_ids = [pid for pid, status in problem_status[variant_key]["ft_union_frv_union_mrv"].items() if
-                          status == 1]
-        print(f"  Successful problem IDs: {sorted(successful_ids)}")
-
-    # Perform McNemar tests for the two specific comparisons
-    print("\nPerforming McNemar Tests:")
-    print("=" * 50)
-
-    # First test: analogy-based first try vs random first try
-    print("\nTest 1: Analogy-based First Try vs Random First Try")
-    print("-" * 50)
-    ft_vs_random_test = {
-        "analogy_based": {"test": problem_status["analogy_based"]["ft"]},
-        "random": {"test": problem_status["random"]["ft"]}
-    }
-    ft_vs_random_p_value = perform_mcnemar_test(ft_vs_random_test, "test", base_path)
-
-    # Second test: analogy-based multiple runs with retries vs random first try
-    print("\nTest 2: Analogy-based Multiple Runs with Retries vs Random First Try")
-    print("-" * 50)
-    mrv_vs_random_test = {
-        "analogy_based": {"test": problem_status["analogy_based"]["ft_union_frv_union_mrv"]},
-        "random": {"test": problem_status["random"]["ft"]}
-    }
-    mrv_vs_random_p_value = perform_mcnemar_test(mrv_vs_random_test, "test", base_path)
-
-    # Third test: analogy-based first run with retries vs random first try
-    print("\nTest 3: Analogy-based First Run with Retries vs Random First Try")
-    print("-" * 50)
-    frv_vs_random_test = {
-        "analogy_based": {"test": problem_status["analogy_based"]["ft_union_frv"]},
-        "random": {"test": problem_status["random"]["ft"]}
-    }
-    frv_vs_random_p_value = perform_mcnemar_test(frv_vs_random_test, "test", base_path)
-
-    # Fourth test: analogy-based first run with retries vs random first run with retries
-    print("\nTest 4: Analogy-based First Run with Retries vs Random First Run with Retries")
-    print("-" * 50)
-    frv_vs_frv_test = {
-        "analogy_based": {"test": problem_status["analogy_based"]["ft_union_frv"]},
-        "random": {"test": problem_status["random"]["ft_union_frv"]}
-    }
-    frv_vs_frv_p_value = perform_mcnemar_test(frv_vs_frv_test, "test", base_path)
-
-    # Fifth test: analogy-based multiple runs with retries vs random multiple runs with retries
-    print("\nTest 5: Analogy-based Multiple Runs with Retries vs Random Multiple Runs with Retries")
-    print("-" * 50)
-    mrv_vs_mrv_test = {
-        "analogy_based": {"test": problem_status["analogy_based"]["ft_union_frv_union_mrv"]},
-        "random": {"test": problem_status["random"]["ft_union_frv_union_mrv"]}
-    }
-    mrv_vs_mrv_p_value = perform_mcnemar_test(mrv_vs_mrv_test, "test", base_path)
-
     # Create the plot
-    plt.figure(figsize=(26, 20))  # Increased width from 22 to 26
+    fig = plt.figure(figsize=(26, 20))  # Increased width from 22 to 26
 
     # Set font sizes and style
     plt.rcParams['font.size'] = 24
@@ -1627,6 +1549,13 @@ def plot_tier_error_distribution(error_analysis, base_path):
     # Adjust layout with space for legend at bottom
     plt.tight_layout(rect=[0, 0.1, 1, 0.95])  # Adjusted to make room for legend at bottom
 
+    # Make left and bottom spines thicker
+    plt.gca().spines['left'].set_linewidth(1.5)
+    plt.gca().spines['bottom'].set_linewidth(1.5)
+
+    # Adjust layout with more padding
+    plt.tight_layout(pad=2.0)
+
     # Save the plot
     plt.savefig(os.path.join(base_path, 'tier_error_distribution.png'),
                 dpi=300, bbox_inches='tight', facecolor='white')
@@ -1704,45 +1633,34 @@ def plot_retries_and_runs(base_path):
             retries_data[variant].append(level_data[level][variant]["avg_retries"])
             runs_data[variant].append(level_data[level][variant]["avg_runs"])
 
-    # Print detailed statistics
-    print("\nDetailed Retries and Runs Statistics:")
-    print("=" * 50)
-    for level in levels:
-        print(f"\nLevel {level}:")
-        print("-" * 30)
-        for variant in variants:
-            data = level_data[level][variant]
-            print(f"\n{variant}:")
-            print(f"  Total problems with runs: {data['problem_count']}")
-            print(f"  Problems with runs: {sorted(data['problems_with_runs'])}")
-            print(f"  Total retries: {data['total_retries']}")
-            print(f"  Total runs: {data['total_runs']}")
-            print(f"  Average retries per problem: {data['avg_retries']:.2f}")
-            print(f"  Average runs per problem: {data['avg_runs']:.2f}")
-
-    # Calculate and print overall averages
-    print("\nOverall Averages Across All Levels:")
-    print("=" * 50)
-    for variant in variants:
-        variant_name = variant.replace("variant_", "").replace("_model_o1", "")
-        avg_retries = sum(retries_data[variant]) / len(retries_data[variant])
-        avg_runs = sum(runs_data[variant]) / len(runs_data[variant])
-
-        print(f"\n{variant_name}:")
-        print(f"  Average retries across all levels: {avg_retries:.2f}")
-        print(f"  Average runs across all levels: {avg_runs:.2f}")
-        print(f"  Retries per level: {[f'{x:.2f}' for x in retries_data[variant]]}")
-        print(f"  Runs per level: {[f'{x:.2f}' for x in runs_data[variant]]}")
-
     # Create figure with two subplots - make it wider to accommodate legend
-    fig = plt.figure(figsize=(22, 17), facecolor='white')  # Increased size to match other plots
-    gs = plt.GridSpec(3, 1, height_ratios=[4, 1, 4], hspace=0.5)
+    fig = plt.figure(figsize=(26, 20), facecolor='white')  # Increased width to match other plots
+    gs = plt.GridSpec(3, 1, height_ratios=[4, 1, 4], hspace=0.3)  # Reduced hspace from 0.5 to 0.3
     ax1 = fig.add_subplot(gs[0])  # Top subplot
     ax2 = fig.add_subplot(gs[2])  # Bottom subplot
 
     # Set the same aspect ratio and dimensions for both plots
-    ax1.set_box_aspect(1 / 2.0)  # Changed from 1/1.6 to 1/2.0 to make plots wider
-    ax2.set_box_aspect(1 / 2.0)  # Use same ratio for both plots
+    ax1.set_box_aspect(1 / 2.0)
+    ax2.set_box_aspect(1 / 2.0)
+
+    # Add "Lower is better" text with arrow for both plots - inside the plots
+    # For the top subplot (retries)
+    ax1.text(2.0, 13, 'Lower is better', fontsize=32, fontweight='bold', 
+             ha='center', va='bottom')
+    ax1.annotate('', xy=(2.0, 11), xytext=(2.0, 12.5),
+                 arrowprops=dict(facecolor='black', width=2, headwidth=15, headlength=20))
+
+    # For the bottom subplot (runs)
+    ax2.text(2.0, 2.6, 'Lower is better', fontsize=32, fontweight='bold',
+             ha='center', va='bottom')
+    ax2.annotate('', xy=(2.0, 2.2), xytext=(2.0, 2.5),
+                 arrowprops=dict(facecolor='black', width=2, headwidth=15, headlength=20))
+
+    # Add light gray background to alternate between levels
+    for i in range(len(levels)):
+        if i % 2 == 0:
+            ax1.axvspan(i+0.5, i+1.5, color='#f8f9fa', alpha=0.5)
+            ax2.axvspan(i+0.5, i+1.5, color='#f8f9fa', alpha=0.5)
 
     # Colors for variants
     variant_colors = {
@@ -1786,18 +1704,15 @@ def plot_retries_and_runs(base_path):
     ax1.set_xlabel('Level', fontsize=32, labelpad=15, fontweight='bold')
     ax1.set_ylabel('Average retries', fontsize=32, labelpad=15, fontweight='bold')
     ax1.set_title(
-        'Average retries per problem; max = 15 (3 runs x 5 retries):\nLower for our analogy-based method, increasing with level',
+        'Average retries per problem (max = 15)',
         fontsize=36, pad=50, fontweight='bold')
     ax1.grid(True, linestyle='--', alpha=0.3)
 
     # Add horizontal dashed line at y=15
     ax1.axhline(y=15, color='gray', linestyle='--', alpha=0.8, linewidth=2.5)
 
-    # Ensure 15 appears on y-axis and make numbers bold
-    yticks = list(ax1.get_yticks())
-    if 15 not in yticks:
-        yticks = sorted(yticks + [15])
-        ax1.set_yticks(yticks)
+    # Set specific y-axis ticks
+    ax1.set_yticks([0, 2.5, 5.0, 7.5, 10.0, 12.5, 15.0])
 
     # Make y-axis numbers bold and bigger
     ax1.tick_params(axis='y', which='major', labelsize=28)
@@ -1820,7 +1735,7 @@ def plot_retries_and_runs(base_path):
     # Customize runs subplot
     ax2.set_xlabel('Level', fontsize=32, labelpad=15, fontweight='bold')
     ax2.set_ylabel('Average runs', fontsize=32, labelpad=15, fontweight='bold')
-    ax2.set_title('Average runs per problem; max = 3 runs:\nLower for our analogy-based method, increasing with level',
+    ax2.set_title('Average runs per problem (max = 3)',
                   fontsize=36, pad=30, fontweight='bold')
     ax2.grid(True, linestyle='--', alpha=0.3)
 
@@ -1867,4 +1782,5 @@ if __name__ == "__main__":
     calculate_analogy_stability(base_path)
     analyze_answer_correctness(base_path, problem_status)
     error_analysis = analyze_errors(base_path)
+    plot_retries_and_runs(base_path)
     print(1)
