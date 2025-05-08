@@ -403,6 +403,7 @@ def plot_success_rates(base_path):
     plt.close()
 
 
+
 def plot_ablation_study(base_path):
     """
     Plot cumulative success rates for different stages of the ablation study.
@@ -552,7 +553,6 @@ def plot_ablation_study(base_path):
     plt.close()
 
     return problem_status
-
 
 def calculate_ablation_success_rates(level_dir, level, problem_status):
     """
@@ -1446,7 +1446,7 @@ def plot_tier_error_distribution(error_analysis, base_path):
     variants = ["variant_analogy_based_model_o1", "variant_random_all_theorems_model_o1"]
 
     # Create figure with white background and more height
-    fig, (ax1, ax2, ax3) = plt.subplots(3, 1, figsize=(15, 22), facecolor='white')
+    fig, (ax1, ax2, ax3) = plt.subplots(3, 1, figsize=(15, 20), facecolor='white')  # Reduced height from 22 to 20
     axes = [ax1, ax2, ax3]
 
     # Width of each bar
@@ -1478,30 +1478,44 @@ def plot_tier_error_distribution(error_analysis, base_path):
                edgecolor='black', linewidth=1)
 
         # Customize subplot
-        ax.set_xlabel('Level', fontsize=28, fontweight='bold', labelpad=15)  # Reduced from 32
-        ax.set_ylabel('Number of Errors', fontsize=28, fontweight='bold', labelpad=15)  # Reduced from 32
+        if tier == 3:  # For the third subplot, adjust labelpad to bring "Level" closer to axis
+            ax.set_xlabel('Level', fontsize=28, fontweight='bold', labelpad=35)
+        else:
+            ax.set_xlabel('Level', fontsize=28, fontweight='bold', labelpad=15)
+        ax.set_ylabel('Number of Errors', fontsize=28, fontweight='bold', labelpad=15)
         ax.set_title(f'Tier {tier} Error Distribution',
-                     fontsize=32, fontweight='bold', pad=20)  # Reduced from 36
+                     fontsize=32, fontweight='bold', pad=20)
 
         # Set x-axis ticks
         ax.set_xticks(indices)
-        ax.set_xticklabels(levels, fontsize=24, fontweight='bold')  # Reduced from 28
+        ax.set_xticklabels(levels, fontsize=24, fontweight='bold')
 
-        # Set dynamic y-axis limits and ticks based on data
+        # Set dynamic y-axis limits and ticks based on actual data
         max_value = max(max(analogy_data), max(random_data))
-        y_max = math.ceil(max_value / 10.0) * 10  # Round up to nearest 10
-        ax.set_ylim(0, y_max)
-
-        # Calculate appropriate tick interval
-        if y_max <= 20:
+        
+        # Round up max_value to an appropriate scale
+        if max_value <= 5:
+            y_max = math.ceil(max_value)
+            tick_interval = 0.5
+        elif max_value <= 10:
+            y_max = math.ceil(max_value)
+            tick_interval = 1
+        elif max_value <= 20:
+            y_max = math.ceil(max_value / 2.0) * 2
+            tick_interval = 2
+        elif max_value <= 50:
+            y_max = math.ceil(max_value / 5.0) * 5
             tick_interval = 5
-        elif y_max <= 50:
-            tick_interval = 10
         else:
-            tick_interval = 20
+            y_max = math.ceil(max_value / 10.0) * 10
+            tick_interval = 10
 
-        ax.set_yticks(np.arange(0, y_max + 1, tick_interval))
-        ax.tick_params(axis='y', labelsize=24)  # Reduced from 28
+        ax.set_ylim(0, y_max)
+        
+        # Create tick marks based on the data range
+        ticks = np.arange(0, y_max + tick_interval, tick_interval)
+        ax.set_yticks(ticks)
+        ax.tick_params(axis='y', labelsize=24)
 
         # Make y-axis labels bold
         for label in ax.get_yticklabels():
@@ -1518,43 +1532,31 @@ def plot_tier_error_distribution(error_analysis, base_path):
         ax.spines['left'].set_linewidth(1.5)
         ax.spines['bottom'].set_linewidth(1.5)
 
-    # Add overall title with more space at the top
-    fig.suptitle('Our Analogy-based method produces\nfewer errors than Base model at all tiers',
-                 fontsize=36, fontweight='bold', y=0.98)  # Reduced from 40 to 36
+    # Adjust subplot spacing
+    plt.subplots_adjust(hspace=0.4)  # Reduced from default
 
     # Create a common legend for all subplots
-    handles, labels = axes[0].get_legend_handles_labels()
+    handles, labels = ax1.get_legend_handles_labels()
     legend = fig.legend(handles, labels,
-                        fontsize=28,
-                        loc='center',
-                        bbox_to_anchor=(0.5, 0.88),
-                        frameon=True,
-                        edgecolor='black',
-                        fancybox=False,
-                        borderpad=0.4,  # Reduced from 1.0 to make frame tighter
-                        handlelength=2.0,  # Reduced from 3.0 to make lines shorter
-                        handletextpad=0.4,  # Reduced from 1.0 to reduce space between lines and text
-                        labelspacing=0.2,  # Reduced from 0.5 to reduce vertical space between entries
-                        columnspacing=0.3,  # Added to reduce space between columns
-                        ncol=2)
+                      fontsize=28,
+                      loc='center',
+                      bbox_to_anchor=(0.5, 0.02),  # Position legend just above the x-axis label of the third subplot
+                      frameon=True,
+                      edgecolor='black',
+                      fancybox=False,
+                      borderpad=0.4,
+                      handlelength=2.0,
+                      handletextpad=0.4,
+                      labelspacing=0.2,
+                      columnspacing=0.3,
+                      ncol=2)
 
     # Make legend text bold
     for text in legend.get_texts():
         text.set_fontweight('bold')
 
-    # Make axis numbers bold
-    plt.xticks(levels, fontsize=28, fontweight='bold')  # Added fontweight='bold'
-    plt.yticks(np.arange(0, 110, 10), fontsize=28, fontweight='bold')  # Added fontweight='bold'
-
     # Adjust layout with space for legend at bottom
-    plt.tight_layout(rect=[0, 0.1, 1, 0.95])  # Adjusted to make room for legend at bottom
-
-    # Make left and bottom spines thicker
-    plt.gca().spines['left'].set_linewidth(1.5)
-    plt.gca().spines['bottom'].set_linewidth(1.5)
-
-    # Adjust layout with more padding
-    plt.tight_layout(pad=2.0)
+    plt.tight_layout(rect=[0, 0.02, 1, 0.98])  # Adjusted to accommodate legend position
 
     # Save the plot
     plt.savefig(os.path.join(base_path, 'tier_error_distribution.png'),
@@ -1777,10 +1779,10 @@ def plot_retries_and_runs(base_path):
 
 if __name__ == "__main__":
     base_path = "/Users/osultan/PycharmProjects/FormalGeo/results"
-    plot_success_rates(base_path)
+    # plot_success_rates(base_path)
     problem_status = plot_ablation_study(base_path)
-    calculate_analogy_stability(base_path)
-    analyze_answer_correctness(base_path, problem_status)
-    error_analysis = analyze_errors(base_path)
-    plot_retries_and_runs(base_path)
-    print(1)
+    # calculate_analogy_stability(base_path)
+    # analyze_answer_correctness(base_path, problem_status)
+    # error_analysis = analyze_errors(base_path)
+    # plot_retries_and_runs(base_path)
+    # print(1)
