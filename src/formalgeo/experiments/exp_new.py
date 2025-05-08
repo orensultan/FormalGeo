@@ -541,7 +541,7 @@ def plot_ablation_study(base_path):
     mrv_vs_mrv_p_value = perform_mcnemar_test(mrv_vs_mrv_test, "test", base_path)
 
     # Create the plot
-    plt.figure(figsize=(22, 17), facecolor='white')
+    plt.figure(figsize=(26, 20))  # Increased width from 22 to 26
 
     # Set font sizes and style
     plt.rcParams['font.size'] = 24
@@ -563,17 +563,17 @@ def plot_ablation_study(base_path):
 
         # Plot FT first (solid line with circles)
         plt.plot(levels, success_rates[variant]["ft"], 'o-',
-                 label=f'{"Analogy-based" if "analogy" in variant else "Base model"} - 1 runs, 0 retries',
+                 label=f'{"Analogy-based" if "analogy" in variant else "Base model"} - 1 run, no retries',
                  linewidth=3, markersize=14, color=color, alpha=0.9)
 
         # Plot FRV second (dashed line with squares)
         plt.plot(levels, success_rates[variant]["frv"], 's--',
-                 label=f'{"Analogy-based" if "analogy" in variant else "Base model"} - 1 runs, 5 retries',
+                 label=f'{"Analogy-based" if "analogy" in variant else "Base model"} - 1 run, with verifier 5 retries',
                  linewidth=3, markersize=14, color=color, alpha=0.9)
 
         # Plot MRV last (dotted line with triangles)
         plt.plot(levels, success_rates[variant]["mrv"], '^:',
-                 label=f'{"Analogy-based" if "analogy" in variant else "Base model"} - 3 runs, 5 retries',
+                 label=f'{"Analogy-based" if "analogy" in variant else "Base model"} - 3 runs, with verifier 5 retries',
                  linewidth=3, markersize=14, color=color, alpha=0.9)
 
         # Add markers for MRV points that have the same value as FRV
@@ -585,33 +585,37 @@ def plot_ablation_study(base_path):
     # Customize the plot
     plt.xlabel('Level', fontsize=28, fontweight='bold', labelpad=15)  # Added bold
     plt.ylabel('Correct Proofs (%)', fontsize=28, fontweight='bold', labelpad=15)  # Added bold
-    plt.title('Our analogy-based method outperforms the base model \nin all o1 model ablations (50 samples)',
-              fontsize=36, fontweight='bold', pad=20)  # Added bold
+    plt.title('% correct proofs per level of difficulty',
+              fontsize=36, fontweight='bold', pad=50)  # Increased pad to make room for legend
 
     # Customize grid
     plt.grid(True, linestyle='--', alpha=0.3, color='gray')
 
-    # Customize legend
+    # Customize legend - position it below the plot
     handles, labels = plt.gca().get_legend_handles_labels()
     legend = plt.legend(handles, labels,
-              fontsize=32,  # Increased font size
-              loc='center',
-              bbox_to_anchor=(0.5, 0.88),  # Changed from 0.90 to 0.88 to move legend down
-              frameon=True,
-              edgecolor='black',
-              fancybox=False,
-              borderpad=1.0,  # Increased padding
-              handlelength=3.0,  # Longer lines
-              handletextpad=1.0,  # More space between lines and text
-              labelspacing=0.5,  # More vertical space between entries
-              ncol=2)
-    
+                      fontsize=28,  # Increased from 24
+                      loc='upper center',
+                      bbox_to_anchor=(0.5, -0.15),  # Move legend below plot
+                      frameon=True,
+                      edgecolor='black',
+                      fancybox=False,
+                      borderpad=0.5,
+                      handlelength=2.0,
+                      handletextpad=0.5,
+                      labelspacing=0.3,
+                      ncol=2)
+
     # Make legend text bold
     for text in legend.get_texts():
         text.set_fontweight('bold')
-    
-    # Adjust layout with more top space for title and legend
-    plt.tight_layout(rect=[0, 0, 1, 0.91])  # Changed from 0.93 to 0.91 to give more space at top
+
+    # Make axis numbers bold
+    plt.xticks(levels, fontsize=28, fontweight='bold')  # Added fontweight='bold'
+    plt.yticks(np.arange(0, 110, 10), fontsize=28, fontweight='bold')  # Added fontweight='bold'
+
+    # Adjust layout with space for legend at bottom
+    plt.tight_layout(rect=[0, 0.1, 1, 0.95])  # Adjusted to make room for legend at bottom
 
     # Make left and bottom spines thicker
     plt.gca().spines['left'].set_linewidth(1.5)
@@ -1402,12 +1406,12 @@ def analyze_errors(base_path):
                             if error_msg:
                                 print(f"    - {error_msg}")
                                 problem_errors.append(error_msg)
-                                
+
                                 # Update error frequency
                                 if error_msg not in error_analysis[variant][level]["error_frequency"]:
                                     error_analysis[variant][level]["error_frequency"][error_msg] = 0
                                 error_analysis[variant][level]["error_frequency"][error_msg] += 1
-                                
+
                                 # Update tier frequency
                                 if error_msg.startswith("TIER1_"):
                                     error_analysis[variant][level]["tier_frequency"][1] += 1
@@ -1506,65 +1510,66 @@ def analyze_errors(base_path):
 
     return error_analysis
 
+
 def plot_tier_error_distribution(error_analysis, base_path):
     """
     Create three subplots showing error counts by level for each tier.
     Each subplot represents one tier, comparing analogy-based and base model approaches.
-    
+
     Args:
         error_analysis (dict): Dictionary containing error analysis results
         base_path (str): Base path to save the plot
     """
     levels = range(1, 6)
     variants = ["variant_analogy_based_model_o1", "variant_random_all_theorems_model_o1"]
-    
+
     # Create figure with white background and more height
     fig, (ax1, ax2, ax3) = plt.subplots(3, 1, figsize=(15, 22), facecolor='white')
     axes = [ax1, ax2, ax3]
-    
+
     # Width of each bar
     bar_width = 0.35
-    
+
     # Define single color for each method
     analogy_color = '#2171b5'  # Blue
     base_model_color = '#cb181d'  # Red
-    
+
     # Calculate positions for bars
     indices = np.arange(len(levels))
-    
+
     # Plot data for each tier in separate subplots
     for tier, ax in enumerate(axes, 1):
         # Add light gray background to separate levels
         for i in indices:
             ax.axvspan(i - 0.5, i + 0.5, color='#f8f9fa', alpha=0.5)
-        
+
         # Get data for both variants
         analogy_data = [error_analysis[variants[0]][level]["tier_frequency"][tier] for level in levels]
         random_data = [error_analysis[variants[1]][level]["tier_frequency"][tier] for level in levels]
-        
+
         # Plot bars
-        ax.bar(indices - bar_width/2, analogy_data, bar_width,
+        ax.bar(indices - bar_width / 2, analogy_data, bar_width,
                label='analogy-based', color=analogy_color,
                edgecolor='black', linewidth=1)
-        ax.bar(indices + bar_width/2, random_data, bar_width,
+        ax.bar(indices + bar_width / 2, random_data, bar_width,
                label='base model', color=base_model_color,
                edgecolor='black', linewidth=1)
-        
+
         # Customize subplot
         ax.set_xlabel('Level', fontsize=28, fontweight='bold', labelpad=15)  # Reduced from 32
         ax.set_ylabel('Number of Errors', fontsize=28, fontweight='bold', labelpad=15)  # Reduced from 32
         ax.set_title(f'Tier {tier} Error Distribution',
-                    fontsize=32, fontweight='bold', pad=20)  # Reduced from 36
-        
+                     fontsize=32, fontweight='bold', pad=20)  # Reduced from 36
+
         # Set x-axis ticks
         ax.set_xticks(indices)
         ax.set_xticklabels(levels, fontsize=24, fontweight='bold')  # Reduced from 28
-        
+
         # Set dynamic y-axis limits and ticks based on data
         max_value = max(max(analogy_data), max(random_data))
         y_max = math.ceil(max_value / 10.0) * 10  # Round up to nearest 10
         ax.set_ylim(0, y_max)
-        
+
         # Calculate appropriate tick interval
         if y_max <= 20:
             tick_interval = 5
@@ -1572,52 +1577,56 @@ def plot_tier_error_distribution(error_analysis, base_path):
             tick_interval = 10
         else:
             tick_interval = 20
-            
+
         ax.set_yticks(np.arange(0, y_max + 1, tick_interval))
         ax.tick_params(axis='y', labelsize=24)  # Reduced from 28
-        
+
         # Make y-axis labels bold
         for label in ax.get_yticklabels():
             label.set_fontweight('bold')
-        
+
         # Add grid
         ax.grid(True, axis='y', linestyle='--', alpha=0.3)
-        
+
         # Remove top and right spines
         ax.spines['top'].set_visible(False)
         ax.spines['right'].set_visible(False)
-        
+
         # Make left and bottom spines thicker
         ax.spines['left'].set_linewidth(1.5)
         ax.spines['bottom'].set_linewidth(1.5)
-    
+
     # Add overall title with more space at the top
     fig.suptitle('Our Analogy-based method produces\nfewer errors than Base model at all tiers',
                  fontsize=36, fontweight='bold', y=0.98)  # Reduced from 40 to 36
-    
+
     # Create a common legend for all subplots
     handles, labels = axes[0].get_legend_handles_labels()
     legend = fig.legend(handles, labels,
-              fontsize=28,
-              loc='center',
-              bbox_to_anchor=(0.5, 0.88),
-              frameon=True,
-              edgecolor='black',
-              fancybox=False,
-              borderpad=0.4,  # Reduced from 1.0 to make frame tighter
-              handlelength=2.0,  # Reduced from 3.0 to make lines shorter
-              handletextpad=0.4,  # Reduced from 1.0 to reduce space between lines and text
-              labelspacing=0.2,  # Reduced from 0.5 to reduce vertical space between entries
-              columnspacing=0.3,  # Added to reduce space between columns
-              ncol=2)
-    
+                        fontsize=28,
+                        loc='center',
+                        bbox_to_anchor=(0.5, 0.88),
+                        frameon=True,
+                        edgecolor='black',
+                        fancybox=False,
+                        borderpad=0.4,  # Reduced from 1.0 to make frame tighter
+                        handlelength=2.0,  # Reduced from 3.0 to make lines shorter
+                        handletextpad=0.4,  # Reduced from 1.0 to reduce space between lines and text
+                        labelspacing=0.2,  # Reduced from 0.5 to reduce vertical space between entries
+                        columnspacing=0.3,  # Added to reduce space between columns
+                        ncol=2)
+
     # Make legend text bold
     for text in legend.get_texts():
         text.set_fontweight('bold')
-    
-    # Adjust layout with more top space for title and legend
-    plt.tight_layout(rect=[0, 0, 1, 0.91])
-    
+
+    # Make axis numbers bold
+    plt.xticks(levels, fontsize=28, fontweight='bold')  # Added fontweight='bold'
+    plt.yticks(np.arange(0, 110, 10), fontsize=28, fontweight='bold')  # Added fontweight='bold'
+
+    # Adjust layout with space for legend at bottom
+    plt.tight_layout(rect=[0, 0.1, 1, 0.95])  # Adjusted to make room for legend at bottom
+
     # Save the plot
     plt.savefig(os.path.join(base_path, 'tier_error_distribution.png'),
                 dpi=300, bbox_inches='tight', facecolor='white')
@@ -1732,8 +1741,8 @@ def plot_retries_and_runs(base_path):
     ax2 = fig.add_subplot(gs[2])  # Bottom subplot
 
     # Set the same aspect ratio and dimensions for both plots
-    ax1.set_box_aspect(1/2.0)  # Changed from 1/1.6 to 1/2.0 to make plots wider
-    ax2.set_box_aspect(1/2.0)  # Use same ratio for both plots
+    ax1.set_box_aspect(1 / 2.0)  # Changed from 1/1.6 to 1/2.0 to make plots wider
+    ax2.set_box_aspect(1 / 2.0)  # Use same ratio for both plots
 
     # Colors for variants
     variant_colors = {
@@ -1746,54 +1755,55 @@ def plot_retries_and_runs(base_path):
     for variant in variants:
         # Plot retries data
         line1 = ax1.plot(levels, retries_data[variant], 'o-',
-                        color=variant_colors[variant],
-                        linewidth=3, markersize=14)[0]
-        
+                         color=variant_colors[variant],
+                         linewidth=3, markersize=14)[0]
+
         # Plot runs data
         ax2.plot(levels, runs_data[variant], 'o-',
                  color=variant_colors[variant],
                  linewidth=3, markersize=14)
-        
+
         lines.append(line1)
 
     # Create legend in the middle
-    fig.legend(lines, 
-              ["Analogy-based", "Base model"],
-              loc='center',
-              bbox_to_anchor=(0.5, 0.5),
-              ncol=2,
-              fontsize=32,
-              prop={'weight': 'bold'},
-              frameon=True,
-              edgecolor='black',
-              framealpha=1.0,
-              borderpad=0.2,
-              columnspacing=0.5,
-              handletextpad=0.5,
-              handlelength=1.0,
-              borderaxespad=0.1)
+    fig.legend(lines,
+               ["Analogy-based", "Base model"],
+               loc='center',
+               bbox_to_anchor=(0.5, 0.5),
+               ncol=2,
+               fontsize=32,
+               prop={'weight': 'bold'},
+               frameon=True,
+               edgecolor='black',
+               framealpha=1.0,
+               borderpad=0.2,
+               columnspacing=0.5,
+               handletextpad=0.5,
+               handlelength=1.0,
+               borderaxespad=0.1)
 
     # Customize retries subplot
     ax1.set_xlabel('Level', fontsize=32, labelpad=15, fontweight='bold')
     ax1.set_ylabel('Average retries', fontsize=32, labelpad=15, fontweight='bold')
-    ax1.set_title('Average retries per problem; max = 15 (3 runs x 5 retries):\nLower for our analogy-based method, increasing with level',
-                  fontsize=36, pad=50, fontweight='bold')
+    ax1.set_title(
+        'Average retries per problem; max = 15 (3 runs x 5 retries):\nLower for our analogy-based method, increasing with level',
+        fontsize=36, pad=50, fontweight='bold')
     ax1.grid(True, linestyle='--', alpha=0.3)
-    
+
     # Add horizontal dashed line at y=15
     ax1.axhline(y=15, color='gray', linestyle='--', alpha=0.8, linewidth=2.5)
-    
+
     # Ensure 15 appears on y-axis and make numbers bold
     yticks = list(ax1.get_yticks())
     if 15 not in yticks:
         yticks = sorted(yticks + [15])
         ax1.set_yticks(yticks)
-    
+
     # Make y-axis numbers bold and bigger
     ax1.tick_params(axis='y', which='major', labelsize=28)
     for label in ax1.yaxis.get_ticklabels():
         label.set_fontweight('bold')
-    
+
     ax1.set_xticks(levels)
     ax1.tick_params(axis='x', which='major', labelsize=28)
     for label in ax1.xaxis.get_ticklabels():
@@ -1802,7 +1812,7 @@ def plot_retries_and_runs(base_path):
     # Remove top and right spines
     ax1.spines['top'].set_visible(False)
     ax1.spines['right'].set_visible(False)
-    
+
     # Make left and bottom spines thicker
     ax1.spines['left'].set_linewidth(1.5)
     ax1.spines['bottom'].set_linewidth(1.5)
@@ -1813,21 +1823,21 @@ def plot_retries_and_runs(base_path):
     ax2.set_title('Average runs per problem; max = 3 runs:\nLower for our analogy-based method, increasing with level',
                   fontsize=36, pad=30, fontweight='bold')
     ax2.grid(True, linestyle='--', alpha=0.3)
-    
+
     # Add horizontal dashed line at y=3
     ax2.axhline(y=3, color='gray', linestyle='--', alpha=0.8, linewidth=2.5)
-    
+
     # Ensure 3 appears on y-axis
     yticks = list(ax2.get_yticks())
     if 3 not in yticks:
         yticks = sorted(yticks + [3])
         ax2.set_yticks(yticks)
-    
+
     ax2.set_xticks(levels)
     ax2.tick_params(axis='x', which='major', labelsize=28)
     for label in ax2.xaxis.get_ticklabels():
         label.set_fontweight('bold')
-    
+
     # Make y-axis numbers bold and bigger for second subplot
     ax2.tick_params(axis='y', which='major', labelsize=28)
     for label in ax2.yaxis.get_ticklabels():
@@ -1836,14 +1846,14 @@ def plot_retries_and_runs(base_path):
     # Remove top and right spines
     ax2.spines['top'].set_visible(False)
     ax2.spines['right'].set_visible(False)
-    
+
     # Make left and bottom spines thicker
     ax2.spines['left'].set_linewidth(1.5)
     ax2.spines['bottom'].set_linewidth(1.5)
 
     # Adjust layout
     plt.tight_layout(rect=[0, 0, 1, 0.95])  # Give more space at top
-    
+
     # Save the plot
     plt.savefig(os.path.join(base_path, 'retries_and_runs.png'),
                 dpi=300, bbox_inches='tight', facecolor='white')
