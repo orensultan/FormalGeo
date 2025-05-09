@@ -27,7 +27,7 @@ from utils import display_image
 from similar_proofs_retrieval import retrieve_similar_proofs
 from similar_proofs_retrieval import retrieve_random_proofs
 
-import ast
+
 import re
 
 openai.api_key = ""
