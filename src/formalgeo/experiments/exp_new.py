@@ -411,11 +411,11 @@ def plot_ablation_study(base_path):
     """
     levels = range(1, 6)
     variants = ["variant_analogy_based_model_o1", "variant_random_all_theorems_model_o1"]
-
+    
     # Calculate success rates for each level
     success_rates = {variant: {"ft": [], "frv": [], "mrv": []} for variant in variants}
     has_mrv = {variant: [] for variant in variants}  # Track which levels have MRV successes
-
+    
     # Dictionary to store problem status for each stage (accumulated across all levels)
     problem_status = {
         "analogy_based": {
@@ -433,7 +433,7 @@ def plot_ablation_study(base_path):
             "ft_union_frv_union_mrv": {}  # Union of FT, FRV, and MRV status
         }
     }
-
+    
     # First, initialize all problems as failures
     for level in levels:
         level_problem_ids = set(LEVEL_PROBLEMS[level])
@@ -446,7 +446,7 @@ def plot_ablation_study(base_path):
                     problem_status[variant_key]["mrv"][problem_id] = 0
                     problem_status[variant_key]["ft_union_frv"][problem_id] = 0
                     problem_status[variant_key]["ft_union_frv_union_mrv"][problem_id] = 0
-
+    
     for level in levels:
         print(f"\nProcessing Level {level}")
         print("=" * 50)
@@ -454,104 +454,179 @@ def plot_ablation_study(base_path):
         if not os.path.exists(level_dir):
             print(f"Level {level} directory not found")
             continue
-
+            
         level_rates = calculate_ablation_success_rates(level_dir, level, problem_status)
-
+        
         for variant in variants:
             for stage in ["ft", "frv", "mrv"]:
                 success_rates[variant][stage].append(level_rates[variant][stage])
             # Track if this level has MRV successes
             has_mrv[variant].append(level_rates[variant]["mrv"] > 0)
-
+    
+    # Print problem status dictionary for debugging
+    print("\nProblem Status Dictionary (Accumulated across all levels):")
+    print("=" * 50)
+    for variant, stages in problem_status.items():
+        print(f"\n{variant}:")
+        for stage, problems in stages.items():
+            print(f"  {stage.upper()}:")
+            for problem_id, status in sorted(problems.items()):
+                print(f"    Problem {problem_id}: {'Success' if status == 1 else 'Failure'}")
+    
+    # Calculate and print overall success rates across all levels
+    print("\nOverall Success Rates (50 samples):")
+    print("=" * 50)
+    for variant in variants:
+        variant_key = "analogy_based" if "analogy" in variant else "random"
+        total_problems = len(problem_status[variant_key]["ft"])
+        successful_problems = sum(1 for status in problem_status[variant_key]["ft_union_frv_union_mrv"].values() if status == 1)
+        overall_rate = (successful_problems / total_problems) * 100
+        print(f"\n{variant}:")
+        print(f"  Total problems: {total_problems}")
+        print(f"  Successful problems: {successful_problems}")
+        print(f"  Overall success rate: {overall_rate:.1f}%")
+        
+        # Print successful problem IDs
+        successful_ids = [pid for pid, status in problem_status[variant_key]["ft_union_frv_union_mrv"].items() if status == 1]
+        print(f"  Successful problem IDs: {sorted(successful_ids)}")
+    
+    # Perform McNemar tests for the two specific comparisons
+    print("\nPerforming McNemar Tests:")
+    print("=" * 50)
+    
+    # First test: analogy-based first try vs random first try
+    print("\nTest 1: Analogy-based First Try vs Random First Try")
+    print("-" * 50)
+    ft_vs_random_test = {
+        "analogy_based": {"test": problem_status["analogy_based"]["ft"]},
+        "random": {"test": problem_status["random"]["ft"]}
+    }
+    ft_vs_random_p_value = perform_mcnemar_test(ft_vs_random_test, "test", base_path)
+    
+    # Second test: analogy-based multiple runs with retries vs random first try
+    print("\nTest 2: Analogy-based Multiple Runs with Retries vs Random First Try")
+    print("-" * 50)
+    mrv_vs_random_test = {
+        "analogy_based": {"test": problem_status["analogy_based"]["ft_union_frv_union_mrv"]},
+        "random": {"test": problem_status["random"]["ft"]}
+    }
+    mrv_vs_random_p_value = perform_mcnemar_test(mrv_vs_random_test, "test", base_path)
+    
+    # Third test: analogy-based first run with retries vs random first try
+    print("\nTest 3: Analogy-based First Run with Retries vs Random First Try")
+    print("-" * 50)
+    frv_vs_random_test = {
+        "analogy_based": {"test": problem_status["analogy_based"]["ft_union_frv"]},
+        "random": {"test": problem_status["random"]["ft"]}
+    }
+    frv_vs_random_p_value = perform_mcnemar_test(frv_vs_random_test, "test", base_path)
+    
+    # Fourth test: analogy-based first run with retries vs random first run with retries
+    print("\nTest 4: Analogy-based First Run with Retries vs Random First Run with Retries")
+    print("-" * 50)
+    frv_vs_frv_test = {
+        "analogy_based": {"test": problem_status["analogy_based"]["ft_union_frv"]},
+        "random": {"test": problem_status["random"]["ft_union_frv"]}
+    }
+    frv_vs_frv_p_value = perform_mcnemar_test(frv_vs_frv_test, "test", base_path)
+    
+    # Fifth test: analogy-based multiple runs with retries vs random multiple runs with retries
+    print("\nTest 5: Analogy-based Multiple Runs with Retries vs Random Multiple Runs with Retries")
+    print("-" * 50)
+    mrv_vs_mrv_test = {
+        "analogy_based": {"test": problem_status["analogy_based"]["ft_union_frv_union_mrv"]},
+        "random": {"test": problem_status["random"]["ft_union_frv_union_mrv"]}
+    }
+    mrv_vs_mrv_p_value = perform_mcnemar_test(mrv_vs_mrv_test, "test", base_path)
+    
     # Create the plot
-    fig = plt.figure(figsize=(26, 20))  # Increased width from 22 to 26
-
+    plt.figure(figsize=(26, 20))  # Increased width from 22 to 26
+    
     # Set font sizes and style
     plt.rcParams['font.size'] = 24
     plt.rcParams['legend.fontsize'] = 24
     plt.rcParams['axes.linewidth'] = 1.5
     plt.rcParams['axes.edgecolor'] = 'black'
-
+    
     # Define colors and styles
     colors = {
         'analogy': '#1f77b4',  # Blue
         'random': '#d62728'  # Red
     }
-
+    
     # Plot lines for each variant and stage
     for variant in variants:
         color = colors['analogy'] if 'analogy' in variant else colors['random']
-        variant_label = variant.replace("variant_", "").replace("_model_o1", "").replace("random_all_theorems",
-                                                                                         "random")
-
+        variant_label = variant.replace("variant_", "").replace("_model_o1", "").replace("random_all_theorems", "random")
+        
         # Plot FT first (solid line with circles)
         plt.plot(levels, success_rates[variant]["ft"], 'o-',
-                 label=f'{"Analogy-based" if "analogy" in variant else "Base model"} - 1 run, no retries',
-                 linewidth=3, markersize=14, color=color, alpha=0.9)
-
+                label=f'{"Analogy-based" if "analogy" in variant else "Base model"} - 1 run, no retries',
+                linewidth=3, markersize=14, color=color, alpha=0.9)
+        
         # Plot FRV second (dashed line with squares)
         plt.plot(levels, success_rates[variant]["frv"], 's--',
-                 label=f'{"Analogy-based" if "analogy" in variant else "Base model"} - 1 run, with verifier 5 retries',
-                 linewidth=3, markersize=14, color=color, alpha=0.9)
-
+                label=f'{"Analogy-based" if "analogy" in variant else "Base model"} - 1 run, with verifier 5 retries',
+                linewidth=3, markersize=14, color=color, alpha=0.9)
+        
         # Plot MRV last (dotted line with triangles)
         plt.plot(levels, success_rates[variant]["mrv"], '^:',
-                 label=f'{"Analogy-based" if "analogy" in variant else "Base model"} - 3 runs, with verifier 5 retries',
-                 linewidth=3, markersize=14, color=color, alpha=0.9)
-
+                label=f'{"Analogy-based" if "analogy" in variant else "Base model"} - 3 runs, with verifier 5 retries',
+                linewidth=3, markersize=14, color=color, alpha=0.9)
+        
         # Add markers for MRV points that have the same value as FRV
         for i in range(len(levels)):
             if success_rates[variant]["mrv"][i] == success_rates[variant]["frv"][i]:
                 plt.plot(levels[i], success_rates[variant]["mrv"][i], '^',
-                         color=color, markersize=14, alpha=0.9)
-
+                        color=color, markersize=14, alpha=0.9)
+    
     # Customize the plot
     plt.xlabel('Level', fontsize=28, fontweight='bold', labelpad=15)  # Added bold
     plt.ylabel('Correct Proofs (%)', fontsize=28, fontweight='bold', labelpad=15)  # Added bold
     plt.title('% correct proofs per level of difficulty',
-              fontsize=36, fontweight='bold', pad=50)  # Increased pad to make room for legend
-
+             fontsize=36, fontweight='bold', pad=50)  # Increased pad to make room for legend
+    
     # Customize grid
     plt.grid(True, linestyle='--', alpha=0.3, color='gray')
-
+    
     # Customize legend - position it below the plot
     handles, labels = plt.gca().get_legend_handles_labels()
     legend = plt.legend(handles, labels,
-                      fontsize=28,  # Increased from 24
-                      loc='upper center',
-                      bbox_to_anchor=(0.5, -0.15),  # Move legend below plot
-                      frameon=True,
-                      edgecolor='black',
-                      fancybox=False,
-                      borderpad=0.5,
-                      handlelength=2.0,
-                      handletextpad=0.5,
-                      labelspacing=0.3,
-                      ncol=2)
-
+                     fontsize=28,  # Increased from 24
+                     loc='upper center',
+                     bbox_to_anchor=(0.5, -0.15),  # Move legend below plot
+                     frameon=True,
+                     edgecolor='black',
+                     fancybox=False,
+                     borderpad=0.5,
+                     handlelength=2.0,
+                     handletextpad=0.5,
+                     labelspacing=0.3,
+                     ncol=2)
+    
     # Make legend text bold
     for text in legend.get_texts():
         text.set_fontweight('bold')
-
+    
     # Make axis numbers bold
     plt.xticks(levels, fontsize=28, fontweight='bold')  # Added fontweight='bold'
     plt.yticks(np.arange(0, 110, 10), fontsize=28, fontweight='bold')  # Added fontweight='bold'
-
+    
     # Adjust layout with space for legend at bottom
     plt.tight_layout(rect=[0, 0.1, 1, 0.95])  # Adjusted to make room for legend at bottom
-
+    
     # Make left and bottom spines thicker
     plt.gca().spines['left'].set_linewidth(1.5)
     plt.gca().spines['bottom'].set_linewidth(1.5)
-
+    
     # Adjust layout with more padding
     plt.tight_layout(pad=2.0)
-
+    
     # Save the plot with high DPI and white background
     plt.savefig(os.path.join(base_path, 'success_rates_progression.png'),
-                dpi=300, bbox_inches='tight', facecolor='white')
+               dpi=300, bbox_inches='tight', facecolor='white')
     plt.close()
-
+    
     return problem_status
 
 def calculate_ablation_success_rates(level_dir, level, problem_status):
@@ -1477,6 +1552,17 @@ def plot_tier_error_distribution(error_analysis, base_path):
                label='base model', color=base_model_color,
                edgecolor='black', linewidth=1)
 
+        # Add "Lower is better" text with arrow inside each subplot
+        max_value = max(max(analogy_data), max(random_data))
+        text_y = max_value * 0.85  # Position text at 85% of max height
+        arrow_start_y = max_value * 0.8  # Start arrow at 80% of max height
+        arrow_end_y = max_value * 0.65  # End arrow at 65% of max height
+        
+        ax.text(0.5, text_y, 'Lower is better', fontsize=32, fontweight='bold',
+                ha='center', va='bottom')
+        ax.annotate('', xy=(0.5, arrow_end_y), xytext=(0.5, arrow_start_y),
+                    arrowprops=dict(facecolor='black', width=2, headwidth=15, headlength=20))
+
         # Customize subplot
         if tier == 3:  # For the third subplot, adjust labelpad to bring "Level" closer to axis
             ax.set_xlabel('Level', fontsize=28, fontweight='bold', labelpad=35)
@@ -1493,27 +1579,19 @@ def plot_tier_error_distribution(error_analysis, base_path):
         # Set dynamic y-axis limits and ticks based on actual data
         max_value = max(max(analogy_data), max(random_data))
         
-        # Round up max_value to an appropriate scale
-        if max_value <= 5:
-            y_max = math.ceil(max_value)
-            tick_interval = 0.5
-        elif max_value <= 10:
-            y_max = math.ceil(max_value)
-            tick_interval = 1
-        elif max_value <= 20:
-            y_max = math.ceil(max_value / 2.0) * 2
-            tick_interval = 2
-        elif max_value <= 50:
-            y_max = math.ceil(max_value / 5.0) * 5
-            tick_interval = 5
-        else:
-            y_max = math.ceil(max_value / 10.0) * 10
-            tick_interval = 10
+        # Add padding for the text and arrow
+        y_max = max_value * 1.2
 
-        ax.set_ylim(0, y_max)
+        # Round up y_max to the next multiple of 10
+        y_max = math.ceil(y_max / 10.0) * 10
+
+        # Ensure minimum y_max is 10
+        y_max = max(10, y_max)
+
+        # Create ticks at every multiple of 10
+        ticks = np.arange(0, y_max + 10, 10)
         
-        # Create tick marks based on the data range
-        ticks = np.arange(0, y_max + tick_interval, tick_interval)
+        ax.set_ylim(0, y_max)
         ax.set_yticks(ticks)
         ax.tick_params(axis='y', labelsize=24)
 
@@ -1563,6 +1641,7 @@ def plot_tier_error_distribution(error_analysis, base_path):
                 dpi=300, bbox_inches='tight', facecolor='white')
     plt.close()
 
+    return problem_status
 
 def plot_retries_and_runs(base_path):
     """
@@ -1781,8 +1860,8 @@ if __name__ == "__main__":
     base_path = "/Users/osultan/PycharmProjects/FormalGeo/results"
     # plot_success_rates(base_path)
     problem_status = plot_ablation_study(base_path)
-    # calculate_analogy_stability(base_path)
-    # analyze_answer_correctness(base_path, problem_status)
-    # error_analysis = analyze_errors(base_path)
-    # plot_retries_and_runs(base_path)
+    calculate_analogy_stability(base_path)
+    analyze_answer_correctness(base_path, problem_status)
+    error_analysis = analyze_errors(base_path)
+    plot_retries_and_runs(base_path)
     # print(1)
