@@ -514,12 +514,16 @@ PerpendicularBetweenLine
 predicates to add:
 Equation
 Verifier result: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
-Failure: The THEOREM_SEQUENCE you provided is empty. Please generate a proof again, using the similar problems I provided (A1, A2, A3, A4, A5), along with the GDL_DICTIONARY of theorems.
+Failure: Theorem <mirror_similar_triangle_property_line_ratio> variation id is not supplied. Expected dict_keys(['1']) but got None.
+Your call: mirror_similar_triangle_property_line_ratio(A,E,D,B,F,A)
+Please rewrite your response by adding the variation id as the first argument. For example: For variation 1: mirror_similar_triangle_property_line_ratio(1,A,E,D,B,F,A)
+
 Model Answer:
 RETRY_ANSWER:
 49
 RETRY_THEOREM_SEQUENCE:
-
+1; mirror_similar_triangle_property_line_ratio(AED,BFA); MirrorSimilarBetweenTriangle(AED,BFA); ["Equal(LengthOfLine(AE),Mul(LengthOfLine(BF),RatioOfMirrorSimilarTriangle(AED,BFA)))"]
+2; parallelogram_area_formula_common(ABCD); Square(ABCD); ["Equal(AreaOfQuadrilateral(ABCD),Mul(HeightOfQuadrilateral(ABCD),LengthOfLine(BC)))"]
 Retry attempt: 1
 Content written to results/level_3/variant_random_all_theorems_model_o1_problem_5062_run_0_to_verify.txt
 predicates to add:
@@ -1037,17 +1041,16 @@ PerpendicularBetweenLine
 predicates to add:
 Equation
 Verifier result: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
-Failure: Theorem <mirror_similar_triangle_property_line_ratio> branch error. Expected dict_keys(['1']) but got None. Please rewrite your response, you should change only the call to theorem <mirror_similar_triangle_property_line_ratio> by adding the branch number from the dict_keys as the first argument
+Theorem: mirror_similar_triangle_property_line_ratio(1,AED,BFA)
+You output the following conclusions: Equal(LengthOfLine(AE),Mul(LengthOfLine(BF),RatioOfMirrorSimilarTriangle(AED,BFA)))
+But the correct conclusions: Equal(LengthOfLine(ED),Mul(LengthOfLine(FA),RatioOfMirrorSimilarTriangle(AED,BFA)))
+
 Model Answer:
 RETRY_ANSWER:
 49
 RETRY_THEOREM_SEQUENCE:
-1; mirror_similar_triangle_property_line_ratio(AED,BFA); MirrorSimilarBetweenTriangle(AED,BFA); ["Equal(LengthOfLine(ED),Mul(LengthOfLine(FA),RatioOfMirrorSimilarTriangle(AED,BFA)))"]  
-2; parallelogram_judgment_parallel_and_parallel(ABCD); Polygon(ABCD)&ParallelBetweenLine(AB,CD)&ParallelBetweenLine(BC,DA); ["Parallelogram(ABCD)"]  
-3; rectangle_judgment_right_angle(ABCD); Parallelogram(ABCD)&Equal(MeasureOfAngle(ABC),90); ["Rectangle(ABCD)"]  
-4; rhombus_judgment_parallelogram_and_kite(ABCD); Parallelogram(ABCD)&Kite(ABCD); ["Rhombus(ABCD)"]  
-5; square_judgment_rhombus_and_rectangle(ABCD); Rhombus(ABCD)&Rectangle(ABCD); ["Square(ABCD)"]  
-6; parallelogram_area_formula_common(ABCD); Parallelogram(ABCD); ["Equal(AreaOfQuadrilateral(ABCD),Mul(HeightOfQuadrilateral(ABCD),LengthOfLine(BC)))"]
+1; mirror_similar_triangle_property_line_ratio(1,AED,BFA); MirrorSimilarBetweenTriangle(AED,BFA); ["Equal(LengthOfLine(AE),Mul(LengthOfLine(BF),RatioOfMirrorSimilarTriangle(AED,BFA)))"]
+2; parallelogram_area_formula_common(ABCD); Square(ABCD); ["Equal(AreaOfQuadrilateral(ABCD),Mul(HeightOfQuadrilateral(ABCD),LengthOfLine(BC)))"]
 Retry attempt: 2
 Content written to results/level_3/variant_random_all_theorems_model_o1_problem_5062_run_0_to_verify.txt
 predicates to add:
@@ -1564,22 +1567,17 @@ predicates to add:
 PerpendicularBetweenLine
 predicates to add:
 Equation
-Traceback (most recent call last):
-  File "/Users/osultan/PycharmProjects/FormalGeo/src/formalgeo/geometric_verifier.py", line 10295, in parse_and_verify_proof
-    is_valid, error = self.validate_theorem_premises(theorem_name, args, premise)
-TypeError: cannot unpack non-iterable NoneType object
 Verifier result: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
-Failure: Theorem <parallelogram_judgment_parallel_and_parallel> branch error. Expected dict_keys(['1']) but got None. Please rewrite your response, you should change only the call to theorem <parallelogram_judgment_parallel_and_parallel> by adding the branch number from the dict_keys as the first argument
+Failure: Theorem <parallelogram_area_formula_common> variation id is not supplied. Expected dict_keys(['1']) but got None.
+Your call: parallelogram_area_formula_common(A,B,C,D)
+Please rewrite your response by adding the variation id as the first argument. For example: For variation 1: parallelogram_area_formula_common(1,A,B,C,D)
+
 Model Answer:
 RETRY_ANSWER:
 49
 RETRY_THEOREM_SEQUENCE:
-1; mirror_similar_triangle_property_line_ratio(1,AED,BFA); MirrorSimilarBetweenTriangle(AED,BFA); ["Equal(LengthOfLine(ED),Mul(LengthOfLine(FA),RatioOfMirrorSimilarTriangle(AED,BFA)))"]  
-2; parallelogram_judgment_parallel_and_parallel(ABCD); Polygon(ABCD)&ParallelBetweenLine(AB,CD)&ParallelBetweenLine(BC,DA); ["Parallelogram(ABCD)"]  
-3; rectangle_judgment_right_angle(ABCD); Parallelogram(ABCD)&Equal(MeasureOfAngle(ABC),90); ["Rectangle(ABCD)"]  
-4; rhombus_judgment_parallelogram_and_kite(ABCD); Parallelogram(ABCD)&Kite(ABCD); ["Rhombus(ABCD)"]  
-5; square_judgment_rhombus_and_rectangle(ABCD); Rhombus(ABCD)&Rectangle(ABCD); ["Square(ABCD)"]  
-6; parallelogram_area_formula_common(ABCD); Parallelogram(ABCD); ["Equal(AreaOfQuadrilateral(ABCD),Mul(HeightOfQuadrilateral(ABCD),LengthOfLine(BC)))"]
+1; mirror_similar_triangle_property_line_ratio(1,AED,BFA); MirrorSimilarBetweenTriangle(AED,BFA); ["Equal(LengthOfLine(ED),Mul(LengthOfLine(FA),RatioOfMirrorSimilarTriangle(AED,BFA)))"]
+2; parallelogram_area_formula_common(ABCD); Square(ABCD); ["Equal(AreaOfQuadrilateral(ABCD),Mul(HeightOfQuadrilateral(ABCD),LengthOfLine(BC)))"]
 Retry attempt: 3
 Content written to results/level_3/variant_random_all_theorems_model_o1_problem_5062_run_0_to_verify.txt
 predicates to add:
@@ -2097,20 +2095,16 @@ PerpendicularBetweenLine
 predicates to add:
 Equation
 Verifier result: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
-Theorem: parallelogram_judgment_parallel_and_parallel(1,ABCD)
-You output the following premises: Polygon(ABCD)&ParallelBetweenLine(AB,CD)&ParallelBetweenLine(BC,DA)
-But the correct premises: Polygon(ABCD)&ParallelBetweenLine(AD,BC)&ParallelBetweenLine(BA,CD)
+Theorem: parallelogram_area_formula_common(1,ABCD)
+You output the following premises: Square(ABCD)
+But the correct premises: Parallelogram(ABCD)
 
 Model Answer:
 RETRY_ANSWER:
 49
 RETRY_THEOREM_SEQUENCE:
 1; mirror_similar_triangle_property_line_ratio(1,AED,BFA); MirrorSimilarBetweenTriangle(AED,BFA); ["Equal(LengthOfLine(ED),Mul(LengthOfLine(FA),RatioOfMirrorSimilarTriangle(AED,BFA)))"]
-2; parallelogram_judgment_parallel_and_parallel(1,ABCD); Polygon(ABCD)&ParallelBetweenLine(AB,CD)&ParallelBetweenLine(BC,DA); ["Parallelogram(ABCD)"]
-3; rectangle_judgment_right_angle(ABCD); Parallelogram(ABCD)&Equal(MeasureOfAngle(ABC),90); ["Rectangle(ABCD)"]
-4; rhombus_judgment_parallelogram_and_kite(ABCD); Parallelogram(ABCD)&Kite(ABCD); ["Rhombus(ABCD)"]
-5; square_judgment_rhombus_and_rectangle(ABCD); Rhombus(ABCD)&Rectangle(ABCD); ["Square(ABCD)"]
-6; parallelogram_area_formula_common(ABCD); Parallelogram(ABCD); ["Equal(AreaOfQuadrilateral(ABCD),Mul(HeightOfQuadrilateral(ABCD),LengthOfLine(BC)))"]
+2; parallelogram_area_formula_common(1,ABCD); Square(ABCD); ["Equal(AreaOfQuadrilateral(ABCD),Mul(HeightOfQuadrilateral(ABCD),LengthOfLine(BC)))"]
 Retry attempt: 4
 Content written to results/level_3/variant_random_all_theorems_model_o1_problem_5062_run_0_to_verify.txt
 predicates to add:
@@ -2627,17 +2621,32 @@ predicates to add:
 PerpendicularBetweenLine
 predicates to add:
 Equation
-Verifier result: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
-Failure: Theorem <rectangle_judgment_right_angle> branch error. Expected dict_keys(['1']) but got None. Please rewrite your response, you should change only the call to theorem <rectangle_judgment_right_angle> by adding the branch number from the dict_keys as the first argument
+Verifier result: ERROR_TIER: TIER2_PREMISE_VIOLATION
+verification failed.
+
+- Error: You tried to use theorem: parallelogram_area_formula_common(1,ABCD);Parallelogram(ABCD);['Equal(AreaOfQuadrilateral(ABCD),Mul(HeightOfQuadrilateral(ABCD),LengthOfLine(BC)))']
+Missing premise: No height established for quadrilateral ABCD
+Details: Height must be established through an altitude theorem first
+- Available premises:
+  Parallel Lines: AB ∥ CD, AD ∥ BC
+  Perpendicular Lines: AB ⊥ AD, AB ⊥ BC, AD ⊥ CD, BC ⊥ CD
+  Collinear Points: AFE, CED
+  Mirror Similar Triangles: ABF mirror similar to ADE
+  Squares: ABCD
+  Rhombi: ABCD, BCDA, CDAB, DABC
+  Kites: ABCD, BCDA, CDAB, DABC
+  Polygons: ABCD, ABCE, ABF, ABFED, ADE, AED, AFB, AFBCD, BCDA, BCDAF, BCEA, BCEF, BFEDA, CDAB, CDAFB, CEAB, CEFB, DABC, DABFE, DAFBC, EABC, EDABF, EFBC, FBCDA, FBCE, FEDAB
+- Theorems related to the goal:
+  None found that constrain this goal
+- Solver constraints directly related to this goal:
+  None found
+
+Please fix the proof.
 Model Answer:
 RETRY_ANSWER:
 49
 RETRY_THEOREM_SEQUENCE:
 1; mirror_similar_triangle_property_line_ratio(1,AED,BFA); MirrorSimilarBetweenTriangle(AED,BFA); ["Equal(LengthOfLine(ED),Mul(LengthOfLine(FA),RatioOfMirrorSimilarTriangle(AED,BFA)))"]
-2; parallelogram_judgment_parallel_and_parallel(1,ABCD); Polygon(ABCD)&ParallelBetweenLine(AD,BC)&ParallelBetweenLine(BA,CD); ["Parallelogram(ABCD)"]
-3; rectangle_judgment_right_angle(ABCD); Parallelogram(ABCD)&Equal(MeasureOfAngle(ABC),90); ["Rectangle(ABCD)"]
-4; rhombus_judgment_parallelogram_and_kite(ABCD); Parallelogram(ABCD)&Kite(ABCD); ["Rhombus(ABCD)"]
-5; square_judgment_rhombus_and_rectangle(ABCD); Rhombus(ABCD)&Rectangle(ABCD); ["Square(ABCD)"]
-6; parallelogram_area_formula_common(ABCD); Parallelogram(ABCD); ["Equal(AreaOfQuadrilateral(ABCD),Mul(HeightOfQuadrilateral(ABCD),LengthOfLine(BC)))"]
+2; parallelogram_area_formula_common(1,ABCD); Parallelogram(ABCD); ["Equal(AreaOfQuadrilateral(ABCD),Mul(HeightOfQuadrilateral(ABCD),LengthOfLine(BC)))"]
 Retry attempt: 5
 Content written to results/level_3/variant_random_all_theorems_model_o1_problem_5062_run_0.txt

@@ -901,36 +901,134 @@ def calculate_analogy_stability(base_path):
 
 def evaluate_math_expression(expr):
     """Evaluate a mathematical expression safely."""
+    import math
+    import re
+
+    # Store original symbolic form
+    original_symbolic = str(expr).strip()
+
+    # Remove whitespace
+    expr = str(expr).strip()
+
+    # Handle trig expressions with pi/180 conversion
+    if 'sin(' in expr.lower() or 'cos(' in expr.lower() or 'tan(' in expr.lower():
+        try:
+            # Replace pi with math.pi
+            modified_str = expr.replace('pi', 'math.pi')
+
+            # Create a safe environment with only math functions
+            safe_globals = {
+                'math': math,
+                'sin': math.sin,
+                'cos': math.cos,
+                'tan': math.tan,
+                'sqrt': math.sqrt
+            }
+
+            # Try direct evaluation with math functions
+            return float(eval(modified_str, {"__builtins__": {}}, safe_globals))
+        except Exception as e:
+            print(f"Error evaluating trig expression: {e}")
+            # Continue to other methods if this fails
+
+    # Handle √ symbol format: 6(√6-1)
+    if '√' in expr:
+        # Handle pattern like "6(√6-1)"
+        pattern = r'(\d+)\(√(\d+)(-|\+)(\d+)\)'
+        match = re.match(pattern, expr)
+        if match:
+            a, b, op, c = match.groups()
+            a, b, c = float(a), float(b), float(c)
+            if op == '-':
+                return a * (math.sqrt(b) - c)
+            else:  # op == '+'
+                return a * (math.sqrt(b) + c)
+
+        # Handle pattern like "2√13"
+        pattern = r'(\d*)(√\d+)'
+        match = re.match(pattern, expr)
+        if match:
+            coef, sqrt_part = match.groups()
+            coef = 1 if coef == '' else float(coef)
+            sqrt_str = sqrt_part.replace('√', 'math.sqrt(') + ')'
+            try:
+                sqrt_val = eval(sqrt_str, {"math": math})
+                return coef * sqrt_val
+            except Exception as e:
+                print(f"Error evaluating {sqrt_str}: {e}")
+                pass
+
+        # General replacement of √ symbol
+        try:
+            modified_str = re.sub(r'(\d*)√(\d+)', r'\1*math.sqrt(\2)', expr)
+            # Handle implicit multiplication
+            modified_str = re.sub(r'(\d+)\(', r'\1*(', modified_str)
+            return float(eval(modified_str, {"math": math}))
+        except Exception as e:
+            print(f"Error evaluating modified string '{modified_str}': {e}")
+            pass
+
+    if 'π' in expr:
+        # Pattern for (aπ)/b format
+        pattern = r'\((\d+)π\)/(\d+)'
+        match = re.match(pattern, expr)
+        if match:
+            a, b = match.groups()
+            a, b = float(a), float(b)
+            return (a * math.pi) / b
+
+        # Pattern for aπ/b format (without parentheses)
+        pattern = r'(\d+)π/(\d+)'
+        match = re.match(pattern, expr)
+        if match:
+            a, b = match.groups()
+            a, b = float(a), float(b)
+            return (a * math.pi) / b
+
+        # Handle other π expressions with general replacement
+        try:
+            # Replace π with math.pi for evaluation
+            modified_str = expr.replace('π', '*math.pi')
+            # Handle implicit multiplication and edge cases
+            modified_str = re.sub(r'(\d+)\(', r'\1*(', modified_str)
+            return float(eval(modified_str, {"math": math}))
+        except Exception as e:
+            print(f"Error evaluating π expression '{modified_str}': {e}")
+            pass
+
+    # Standard eval with math functions
     try:
-        # Convert to string if it's a number
-        expr = str(expr)
-
-        # First handle implicit multiplication
-        expr = re.sub(r'(\d+)\s*√', r'\1*sqrt', expr)  # Handle 3√2 -> 3*sqrt
-        expr = re.sub(r'(\d+)\s*sqrt', r'\1*sqrt', expr)  # Handle 3 sqrt -> 3*sqrt
-        expr = re.sub(r'(\d+)\(', r'\1*(', expr)  # Handle 2(3)
-        expr = re.sub(r'\)(\d+)', r')*\1', expr)  # Handle (2)3
-        expr = re.sub(r'\)\s*\(', r')*(', expr)  # Handle (2)(3)
-
-        # Then normalize mathematical functions and constants
-        expr = re.sub(r'√(\d+)', r'sqrt(\1)', expr)  # Handle √6 -> sqrt(6)
-        expr = re.sub(r'sqrt\s*\((\d+)\)', r'sqrt(\1)', expr)  # Handle sqrt(6)
-        expr = re.sub(r'sqrt\s*(\d+)', r'sqrt(\1)', expr)  # Handle sqrt 6
-
-        # Replace all variations of pi with math.pi
-        expr = re.sub(r'(\d+)π', r'\1*math.pi', expr)  # Handle 2π
-        expr = re.sub(r'(\d+)\s*pi', r'\1*math.pi', expr)  # Handle 2 pi
-        expr = re.sub(r'π', r'math.pi', expr)  # Handle π alone
-        expr = re.sub(r'pi', r'math.pi', expr)  # Handle pi alone
-
-        # Add math. prefix to sqrt
-        expr = re.sub(r'sqrt\(', r'math.sqrt(', expr)
-
-        # Evaluate the expression
-        return eval(expr)
+        safe_globals = {
+            "pi": math.pi,
+            "sqrt": math.sqrt,
+            "sin": math.sin,
+            "cos": math.cos,
+            "tan": math.tan,
+            "math": math
+        }
+        return float(eval(expr, {"__builtins__": {}}, safe_globals))
     except Exception as e:
-        print(f"Error evaluating expression '{expr}': {str(e)}")
-        return None
+        print(f"Error in standard eval: {e}")
+        # Fall back to Fraction
+        from fractions import Fraction
+        try:
+            return float(Fraction(expr))
+        except Exception as e:
+            print(f"Error with Fraction conversion: {e}")
+            # Try numerical approximation for complex expressions
+            try:
+                # Replace mathematical functions with their math module equivalents
+                expr = expr.replace('sin', 'math.sin')
+                expr = expr.replace('cos', 'math.cos')
+                expr = expr.replace('tan', 'math.tan')
+                expr = expr.replace('pi', 'math.pi')
+
+                # Evaluate with a safe environment
+                result = eval(expr, {"__builtins__": {}}, {"math": math})
+                return float(result)
+            except Exception as e:
+                print(f"Error with numerical approximation: {e}")
+                raise ValueError(f"Could not evaluate expression: {expr}")
 
 
 def parse_fraction(value):
@@ -1576,7 +1674,7 @@ def plot_tier_error_distribution(error_analysis, base_path):
         ax.set_xticks(indices)
         ax.set_xticklabels(levels, fontsize=24, fontweight='bold')
 
-        # Set dynamic y-axis limits and ticks based on actual data
+        # Set dynamic y-axis limits and ticks based on actual data and tier
         max_value = max(max(analogy_data), max(random_data))
         
         # Add padding for the text and arrow
@@ -1585,6 +1683,12 @@ def plot_tier_error_distribution(error_analysis, base_path):
         # Round up y_max to the next multiple of 10
         y_max = math.ceil(y_max / 10.0) * 10
 
+        # Set specific y_max limits based on tier
+        if tier == 1:
+            y_max = min(100, y_max)  # Cap at 100 for Tier 1
+        elif tier == 3:
+            y_max = min(30, y_max)   # Cap at 30 for Tier 3
+        
         # Ensure minimum y_max is 10
         y_max = max(10, y_max)
 
@@ -1792,8 +1896,8 @@ def plot_retries_and_runs(base_path):
     # Add horizontal dashed line at y=15
     ax1.axhline(y=15, color='gray', linestyle='--', alpha=0.8, linewidth=2.5)
 
-    # Set specific y-axis ticks
-    ax1.set_yticks([0, 2.5, 5.0, 7.5, 10.0, 12.5, 15.0])
+    # Set y-axis ticks to multiples of 1 for retries subplot
+    ax1.set_yticks(range(0, 16))  # 0 to 15 in steps of 1
 
     # Make y-axis numbers bold and bigger
     ax1.tick_params(axis='y', which='major', labelsize=28)
@@ -1823,11 +1927,8 @@ def plot_retries_and_runs(base_path):
     # Add horizontal dashed line at y=3
     ax2.axhline(y=3, color='gray', linestyle='--', alpha=0.8, linewidth=2.5)
 
-    # Ensure 3 appears on y-axis
-    yticks = list(ax2.get_yticks())
-    if 3 not in yticks:
-        yticks = sorted(yticks + [3])
-        ax2.set_yticks(yticks)
+    # Set y-axis ticks to multiples of 1 for runs subplot
+    ax2.set_yticks(range(0, 4))  # 0 to 3 in steps of 1
 
     ax2.set_xticks(levels)
     ax2.tick_params(axis='x', which='major', labelsize=28)

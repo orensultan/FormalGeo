@@ -53,16 +53,16 @@ Shape(CE,EA,AB,BD,DC)
 Shape(EA,AB,BD,DC,CE)
 Shape(AB,BD,DC,CE,EA)
 Shape(BD,DC,CE,EA,AB)
-Shape(EC,CA,AB,BD,DE)
-Shape(CA,AB,BD,DE,EC)
-Shape(AB,BD,DE,EC,CA)
-Shape(BD,DE,EC,CA,AB)
-Shape(DE,EC,CA,AB,BD)
 Shape(CA,AE,EB,BD,DC)
 Shape(AE,EB,BD,DC,CA)
 Shape(EB,BD,DC,CA,AE)
 Shape(BD,DC,CA,AE,EB)
 Shape(DC,CA,AE,EB,BD)
+Shape(EC,CA,AB,BD,DE)
+Shape(CA,AB,BD,DE,EC)
+Shape(AB,BD,DE,EC,CA)
+Shape(BD,DE,EC,CA,AB)
+Shape(DE,EC,CA,AB,BD)
 Shape(DC,CA,AB,BD)
 Shape(CA,AB,BD,DC)
 Shape(AB,BD,DC,CA)
@@ -117,8 +117,8 @@ Angle(CAB)
 Angle(ABD)
 Angle(BED)
 Angle(CEA)
-Angle(DEC)
 Angle(AEB)
+Angle(DEC)
 Angle(ADC)
 Angle(DCB)
 Angle(BCA)
@@ -204,16 +204,16 @@ Polygon(CEABD)
 Polygon(EABDC)
 Polygon(ABDCE)
 Polygon(BDCEA)
-Polygon(ECABD)
-Polygon(CABDE)
-Polygon(ABDEC)
-Polygon(BDECA)
-Polygon(DECAB)
 Polygon(CAEBD)
 Polygon(AEBDC)
 Polygon(EBDCA)
 Polygon(BDCAE)
 Polygon(DCAEB)
+Polygon(ECABD)
+Polygon(CABDE)
+Polygon(ABDEC)
+Polygon(BDECA)
+Polygon(DECAB)
 Polygon(DCAB)
 Polygon(CABD)
 Polygon(ABDC)
@@ -253,10 +253,10 @@ GOAL_SYMBOL:
 y
 
 ANSWER:
-8
+(No unique derivation with given GDL)
 
 THEOREM_SEQUENCE:
-1; parallelogram_property_opposite_line_equal(1,ABDC); Parallelogram(ABDC); ["Equal(LengthOfLine(BA),LengthOfLine(DC))"]
+(No applicable theorems from GDL to constrain y)
 ***MODEL_RESPONSE_END***
 RETRIES_MESSAGES:
 #run: 1; #retry: 1; message: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
@@ -266,47 +266,10 @@ But the correct conclusions: Equal(LengthOfLine(BA),LengthOfLine(DC))
 
 Model Answer:
 RETRY_ANSWER:
-53
+8
 RETRY_THEOREM_SEQUENCE:
 1; parallelogram_property_opposite_line_equal(1,ABDC); Parallelogram(ABDC); ["Equal(LengthOfLine(AC),LengthOfLine(BD))"]
 #run: 1; #retry: 2; message: ERROR_TIER: TIER3_GOAL_NOT_REACHED
-verification failed.
-
-- Goal: value determination
-- Model answer: 53
-- Verifier expected answer: 8
-- Error: THE MODEL DETERMINED THE ANSWER TO BE 53 BUT IN THE GROUND TRUTH SOLUTION TO THE PROBLEM THE ANSWER IS 8.
-  Please review your theorem sequence and ensure it correctly establishes the expected answer.
-
-Please fix the proof.
-Model Answer:
-RETRY_ANSWER:
-53
-RETRY_THEOREM_SEQUENCE:
-1; parallelogram_property_opposite_line_equal(1,ABDC); Parallelogram(ABDC); ["Equal(LengthOfLine(BA),LengthOfLine(DC))"]
-#run: 1; #retry: 3; message: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
-Failure: Theorem <angle_addition> variation id is not supplied. Expected dict_keys(['1']) but got None.
-Your call: angle_addition(A,B,C,C,B,D)
-Please rewrite your response by adding the variation id as the first argument. For example: For variation 1: angle_addition(1,A,B,C,C,B,D)
-
-Model Answer:
-RETRY_ANSWER:
-8
-RETRY_THEOREM_SEQUENCE:
-1; angle_addition(ABC,CBD); Angle(CAE)&Angle(EAB)&Angle(CAB); ["Equal(MeasureOfAngle(CAB),Add(MeasureOfAngle(CAE),MeasureOfAngle(EAB)))"]
-2; angle_addition(ABC,CBD); Angle(DCE)&Angle(EBD)&Angle(DCB); ["Equal(MeasureOfAngle(DCB),Add(MeasureOfAngle(DCE),MeasureOfAngle(EBD)))"]
-3; parallel_property_ipsilateral_internal_angle(AC,BD); ParallelBetweenLine(AC,BD)&Line(CB); ["Equal(Add(MeasureOfAngle(CAB),MeasureOfAngle(DCB)),180)"]
-#run: 1; #retry: 4; message: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
-Theorem: parallelogram_property_opposite_line_equal(1,ABDC)
-You output the following conclusions: Equal(LengthOfLine(BD),LengthOfLine(CA))
-But the correct conclusions: Equal(LengthOfLine(BA),LengthOfLine(DC))
-
-Model Answer:
-RETRY_ANSWER:
-8
-RETRY_THEOREM_SEQUENCE:
-1; parallelogram_property_opposite_line_equal(1,ABDC); Parallelogram(ABDC); ["Equal(LengthOfLine(BD),LengthOfLine(CA))"]
-#run: 1; #retry: 5; message: ERROR_TIER: TIER3_GOAL_NOT_REACHED
 verification failed.
 
 - Goal: value of y
@@ -328,6 +291,27 @@ RETRY_ANSWER:
 8
 RETRY_THEOREM_SEQUENCE:
 1; parallelogram_property_opposite_line_equal(1,ABDC); Parallelogram(ABDC); ["Equal(LengthOfLine(BA),LengthOfLine(DC))"]
+#run: 1; #retry: 3; message: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
+Failure: Theorem <> not defined in current GDL. Please rewrite the proof sequence, you are allowed to use only theorems from the GDL.
+Model Answer:
+RETRY_ANSWER:
+(No unique derivation with given GDL)
+RETRY_THEOREM_SEQUENCE:
+(No applicable theorems from GDL to constrain y)
+#run: 1; #retry: 4; message: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
+Failure: Theorem <> not defined in current GDL. Please rewrite the proof sequence, you are allowed to use only theorems from the GDL.
+Model Answer:
+RETRY_ANSWER:
+(No unique derivation with given GDL)
+RETRY_THEOREM_SEQUENCE:
+(No applicable theorems from GDL to constrain y)
+#run: 1; #retry: 5; message: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
+Failure: Theorem <> not defined in current GDL. Please rewrite the proof sequence, you are allowed to use only theorems from the GDL.
+Model Answer:
+RETRY_ANSWER:
+(No unique derivation with given GDL)
+RETRY_THEOREM_SEQUENCE:
+(No applicable theorems from GDL to constrain y)
 #RETRIES:
 5
 #RUNS:
