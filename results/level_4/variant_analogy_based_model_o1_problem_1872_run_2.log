@@ -696,16 +696,17 @@ Equation
 predicates to add:
 Equation
 Verifier result: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
-Failure: Theorem <mirror_congruent_triangle_judgment_sss> variation id is not supplied. Expected dict_keys(['1']) but got None.
-Your call: mirror_congruent_triangle_judgment_sss(A,E,B,C,E,D)
-Please rewrite your response by adding the variation id as the first argument. For example: For variation 1: mirror_congruent_triangle_judgment_sss(1,A,E,B,C,E,D)
+Failure: Theorem <angle_addition> variation id is not supplied. Expected dict_keys(['1']) but got None.
+Your call: angle_addition(A,B,C,C,B,D)
+Please rewrite your response by adding the variation id as the first argument. For example: For variation 1: angle_addition(1,A,B,C,C,B,D)
 
 Model Answer:
 RETRY_ANSWER:
-23/4
+8
 RETRY_THEOREM_SEQUENCE:
-1; mirror_congruent_triangle_judgment_sss(AEB,CED); Polygon(AEB)&Polygon(CED)&Equal(LengthOfLine(AE),LengthOfLine(CE))&Equal(LengthOfLine(EB),LengthOfLine(ED))&Equal(LengthOfLine(BA),LengthOfLine(DC)); ["MirrorCongruentBetweenTriangle(AEB,CED)"]
-2; mirror_congruent_triangle_property_angle_equal(AEB,CED); MirrorCongruentBetweenTriangle(AEB,CED); ["Equal(MeasureOfAngle(EAB),MeasureOfAngle(DCE))"]
+1; angle_addition(ABC,CBD); Angle(CAE)&Angle(EAB)&Angle(CAB); ["Equal(MeasureOfAngle(CAB),Add(MeasureOfAngle(CAE),MeasureOfAngle(EAB)))"]
+2; angle_addition(ABC,CBD); Angle(DCE)&Angle(EBD)&Angle(DCB); ["Equal(MeasureOfAngle(DCB),Add(MeasureOfAngle(DCE),MeasureOfAngle(EBD)))"]
+3; parallel_property_ipsilateral_internal_angle(AB,DC)(1); ParallelBetweenLine(AB,DC)&Line(AC); ["Equal(Add(MeasureOfAngle(CAB),MeasureOfAngle(DCB)),180)"]
 Retry attempt: 1
 Content written to results/level_4/variant_analogy_based_model_o1_problem_1872_run_2_to_verify.txt
 predicates to add:
@@ -1405,16 +1406,14 @@ Equation
 predicates to add:
 Equation
 Verifier result: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
-Theorem: mirror_congruent_triangle_judgment_sss(1,AEB,CED)
-You output the following premises: Polygon(AEB)&Polygon(CED)&Equal(LengthOfLine(AE),LengthOfLine(CE))&Equal(LengthOfLine(EB),LengthOfLine(ED))&Equal(LengthOfLine(BA),LengthOfLine(DC))
-But the correct premises: Polygon(AEB)&Polygon(CED)&Equal(LengthOfLine(AE),LengthOfLine(DC))&Equal(LengthOfLine(EB),LengthOfLine(ED))&Equal(LengthOfLine(BA),LengthOfLine(CE))
-
+Failure: Theorem <angle_addition> para length error. Expected 6 but got (' ', 'C', 'A', 'E', ' ', 'E', 'A', 'B').
 Model Answer:
 RETRY_ANSWER:
-23/4
+8
 RETRY_THEOREM_SEQUENCE:
-1; mirror_congruent_triangle_judgment_sss(1,AEB,CED); Polygon(AEB)&Polygon(CED)&Equal(LengthOfLine(AE),LengthOfLine(CE))&Equal(LengthOfLine(EB),LengthOfLine(ED))&Equal(LengthOfLine(BA),LengthOfLine(DC)); ["MirrorCongruentBetweenTriangle(AEB,CED)"]
-2; mirror_congruent_triangle_property_angle_equal(1,AEB,CED); MirrorCongruentBetweenTriangle(AEB,CED); ["Equal(MeasureOfAngle(EAB),MeasureOfAngle(DCE))"]
+1; angle_addition(1, CAE, EAB); Angle(CAE)&Angle(EAB)&Angle(CAB); ["Equal(MeasureOfAngle(CAB),Add(MeasureOfAngle(CAE),MeasureOfAngle(EAB)))"]
+2; angle_addition(1, DCE, EBD); Angle(DCE)&Angle(EBD)&Angle(DCB); ["Equal(MeasureOfAngle(DCB),Add(MeasureOfAngle(DCE),MeasureOfAngle(EBD)))"]
+3; parallel_property_ipsilateral_internal_angle(AB,DC)(1); ParallelBetweenLine(AB,DC)&Line(AC); ["Equal(Add(MeasureOfAngle(CAB),MeasureOfAngle(DCB)),180)"]
 Retry attempt: 2
 Content written to results/level_4/variant_analogy_based_model_o1_problem_1872_run_2_to_verify.txt
 predicates to add:
@@ -2114,16 +2113,14 @@ Equation
 predicates to add:
 Equation
 Verifier result: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
-Theorem: mirror_congruent_triangle_property_angle_equal(1,AEB,CED)
-You output the following conclusions: Equal(MeasureOfAngle(EAB),MeasureOfAngle(DCE))
-But the correct conclusions: Equal(MeasureOfAngle(BAE),MeasureOfAngle(DCE))
-
+Failure: Theorem <parallel_property_ipsilateral_internal_angle> para length error. Expected 4 but got ('A', 'B', 'D', 'C', '(', '1').
 Model Answer:
 RETRY_ANSWER:
-23/4
+8
 RETRY_THEOREM_SEQUENCE:
-1; mirror_congruent_triangle_judgment_sss(1,AEB,CED); Polygon(AEB)&Polygon(CED)&Equal(LengthOfLine(AE),LengthOfLine(DC))&Equal(LengthOfLine(EB),LengthOfLine(ED))&Equal(LengthOfLine(BA),LengthOfLine(CE)); ["MirrorCongruentBetweenTriangle(AEB,CED)"]
-2; mirror_congruent_triangle_property_angle_equal(1,AEB,CED); MirrorCongruentBetweenTriangle(AEB,CED); ["Equal(MeasureOfAngle(EAB),MeasureOfAngle(DCE))"]
+1; angle_addition(1,C,A,E,E,A,B); Angle(CAE)&Angle(EAB)&Angle(CAB); ["Equal(MeasureOfAngle(CAB),Add(MeasureOfAngle(CAE),MeasureOfAngle(EAB)))"]
+2; angle_addition(1,D,C,E,E,C,B); Angle(DCE)&Angle(ECB)&Angle(DCB); ["Equal(MeasureOfAngle(DCB),Add(MeasureOfAngle(DCE),MeasureOfAngle(ECB)))"]
+3; parallel_property_ipsilateral_internal_angle(AB,DC)(1); ParallelBetweenLine(AB,DC)&Line(AC); ["Equal(Add(MeasureOfAngle(CAB),MeasureOfAngle(DCB)),180)"]
 Retry attempt: 3
 Content written to results/level_4/variant_analogy_based_model_o1_problem_1872_run_2_to_verify.txt
 predicates to add:
@@ -2823,13 +2820,14 @@ Equation
 predicates to add:
 Equation
 Verifier result: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
-Error in TIER1_THEOREM_CALL_SYNTAX_VIOLATION: Theorem 'mirror_congruent_triangle_judgment_sss' is not recognized or its premise validation is not supported by the current verifier version.
+Failure: Theorem <parallel_property_ipsilateral_internal_angle> para length error. Expected 4 but got ('A', 'B', 'D', 'C', 'A', 'C').
 Model Answer:
 RETRY_ANSWER:
-23/4
+8
 RETRY_THEOREM_SEQUENCE:
-1; mirror_congruent_triangle_judgment_sss(1,AEB,CED); Polygon(AEB)&Polygon(CED)&Equal(LengthOfLine(AE),LengthOfLine(DC))&Equal(LengthOfLine(EB),LengthOfLine(ED))&Equal(LengthOfLine(BA),LengthOfLine(CE)); ["MirrorCongruentBetweenTriangle(AEB,CED)"]
-2; mirror_congruent_triangle_property_angle_equal(1,AEB,CED); MirrorCongruentBetweenTriangle(AEB,CED); ["Equal(MeasureOfAngle(BAE),MeasureOfAngle(DCE))"]
+1; angle_addition(1,C,A,E,E,A,B); Angle(CAE)&Angle(EAB)&Angle(CAB); ["Equal(MeasureOfAngle(CAB),Add(MeasureOfAngle(CAE),MeasureOfAngle(EAB)))"]
+2; angle_addition(1,D,C,E,E,C,B); Angle(DCE)&Angle(ECB)&Angle(DCB); ["Equal(MeasureOfAngle(DCB),Add(MeasureOfAngle(DCE),MeasureOfAngle(ECB)))"]
+3; parallel_property_ipsilateral_internal_angle(1,AB,DC,AC); ParallelBetweenLine(AB,DC)&Line(AC); ["Equal(Add(MeasureOfAngle(CAB),MeasureOfAngle(ACD)),180)"]
 Retry attempt: 4
 Content written to results/level_4/variant_analogy_based_model_o1_problem_1872_run_2_to_verify.txt
 predicates to add:
@@ -3529,14 +3527,18 @@ Equation
 predicates to add:
 Equation
 Verifier result: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
-Theorem: parallelogram_property_opposite_line_equal(1,ABDC)
-You output the following conclusions: Equal(LengthOfLine(AC),LengthOfLine(BD))
-But the correct conclusions: Equal(LengthOfLine(BA),LengthOfLine(DC))
+Theorem: angle_addition(1,DCE,EBD)
+You output the following premises: Angle(DCE)&Angle(EBD)&Angle(DCB)
+But the correct premises: Angle(DBE)&Angle(EBD)&Angle(DBD)
+You output the following conclusions: Equal(MeasureOfAngle(DCB),Add(MeasureOfAngle(DCE),MeasureOfAngle(EBD)))
+But the correct conclusions: Equal(MeasureOfAngle(DBD),Add(MeasureOfAngle(DBE),MeasureOfAngle(EBD)))
 
 Model Answer:
 RETRY_ANSWER:
-23/4
+8
 RETRY_THEOREM_SEQUENCE:
-1; parallelogram_property_opposite_line_equal(1,ABDC); Parallelogram(ABDC); ["Equal(LengthOfLine(AC),LengthOfLine(BD))"]
+1; angle_addition(1,CAE,EAB); Angle(CAE)&Angle(EAB)&Angle(CAB); ["Equal(MeasureOfAngle(CAB),Add(MeasureOfAngle(CAE),MeasureOfAngle(EAB)))"]
+2; angle_addition(1,DCE,EBD); Angle(DCE)&Angle(EBD)&Angle(DCB); ["Equal(MeasureOfAngle(DCB),Add(MeasureOfAngle(DCE),MeasureOfAngle(EBD)))"]
+3; parallel_property_ipsilateral_internal_angle(1,AB,DC,AC); ParallelBetweenLine(AB,DC)&Line(AC); ["Equal(Add(MeasureOfAngle(CAB),MeasureOfAngle(ACD)),180)"]
 Retry attempt: 5
 Content written to results/level_4/variant_analogy_based_model_o1_problem_1872_run_2.txt
