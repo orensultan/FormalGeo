@@ -1028,7 +1028,27 @@ def evaluate_math_expression(expr):
                 return float(result)
             except Exception as e:
                 print(f"Error with numerical approximation: {e}")
-                raise ValueError(f"Could not evaluate expression: {expr}")
+                try:
+                    # Import sympy only when needed
+                    from sympy import symbols, sympify, pi, N
+
+                    # Replace symbols with SymPy-compatible notation
+                    sympy_compatible = expr
+                    sympy_compatible = sympy_compatible.replace('π', 'pi')
+                    sympy_compatible = sympy_compatible.replace('√', 'sqrt')
+
+                    # Parse with SymPy's powerful expression parser
+                    expr = sympify(sympy_compatible)
+
+                    # Convert to floating point
+                    numeric_value = float(N(expr))
+
+                    print(f"Successfully parsed with SymPy: {numeric_value}")
+                    return numeric_value, original_symbolic
+                except Exception as e:
+                    print(f"Error parsing with SymPy: {e}")
+                    # If SymPy also fails, give up and raise the exception
+                    raise ValueError(f"Could not parse: {expr}")
 
 
 def parse_fraction(value):
@@ -1963,6 +1983,6 @@ if __name__ == "__main__":
     problem_status = plot_ablation_study(base_path)
     calculate_analogy_stability(base_path)
     analyze_answer_correctness(base_path, problem_status)
-    error_analysis = analyze_errors(base_path)
-    plot_retries_and_runs(base_path)
+    # error_analysis = analyze_errors(base_path)
+    # plot_retries_and_runs(base_path)
     # print(1)
