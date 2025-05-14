@@ -154,7 +154,7 @@ def plot_confusion_matrix(table, stage, base_path):
     for i in range(table.shape[0]):
         for j in range(table.shape[1]):
             plt.text(j, i, str(table.iloc[i, j]),
-                     ha='center', va='center',
+                    ha='center', va='center',
                      color='white' if table.iloc[i, j] > table.max().max() / 2 else 'black')
 
     # Add labels
@@ -204,8 +204,8 @@ def perform_mcnemar_test(problem_status, stage, base_path):
     if table.shape != (2, 2):
         # If not, create a 2x2 table with zeros for missing categories
         full_table = pd.DataFrame([[0, 0], [0, 0]],
-                                  index=[0, 1],
-                                  columns=[0, 1])
+                                index=[0, 1],
+                                columns=[0, 1])
         for i in table.index:
             for j in table.columns:
                 full_table.loc[i, j] = table.loc[i, j]
@@ -411,11 +411,11 @@ def plot_ablation_study(base_path):
     """
     levels = range(1, 6)
     variants = ["variant_analogy_based_model_o1", "variant_random_all_theorems_model_o1"]
-    
+
     # Calculate success rates for each level
     success_rates = {variant: {"ft": [], "frv": [], "mrv": []} for variant in variants}
     has_mrv = {variant: [] for variant in variants}  # Track which levels have MRV successes
-    
+
     # Dictionary to store problem status for each stage (accumulated across all levels)
     problem_status = {
         "analogy_based": {
@@ -433,7 +433,7 @@ def plot_ablation_study(base_path):
             "ft_union_frv_union_mrv": {}  # Union of FT, FRV, and MRV status
         }
     }
-    
+
     # First, initialize all problems as failures
     for level in levels:
         level_problem_ids = set(LEVEL_PROBLEMS[level])
@@ -446,7 +446,7 @@ def plot_ablation_study(base_path):
                     problem_status[variant_key]["mrv"][problem_id] = 0
                     problem_status[variant_key]["ft_union_frv"][problem_id] = 0
                     problem_status[variant_key]["ft_union_frv_union_mrv"][problem_id] = 0
-    
+
     for level in levels:
         print(f"\nProcessing Level {level}")
         print("=" * 50)
@@ -454,15 +454,15 @@ def plot_ablation_study(base_path):
         if not os.path.exists(level_dir):
             print(f"Level {level} directory not found")
             continue
-            
+
         level_rates = calculate_ablation_success_rates(level_dir, level, problem_status)
-        
+
         for variant in variants:
             for stage in ["ft", "frv", "mrv"]:
                 success_rates[variant][stage].append(level_rates[variant][stage])
             # Track if this level has MRV successes
             has_mrv[variant].append(level_rates[variant]["mrv"] > 0)
-    
+
     # Print problem status dictionary for debugging
     print("\nProblem Status Dictionary (Accumulated across all levels):")
     print("=" * 50)
@@ -472,7 +472,7 @@ def plot_ablation_study(base_path):
             print(f"  {stage.upper()}:")
             for problem_id, status in sorted(problems.items()):
                 print(f"    Problem {problem_id}: {'Success' if status == 1 else 'Failure'}")
-    
+
     # Calculate and print overall success rates across all levels
     print("\nOverall Success Rates (50 samples):")
     print("=" * 50)
@@ -485,15 +485,15 @@ def plot_ablation_study(base_path):
         print(f"  Total problems: {total_problems}")
         print(f"  Successful problems: {successful_problems}")
         print(f"  Overall success rate: {overall_rate:.1f}%")
-        
+
         # Print successful problem IDs
         successful_ids = [pid for pid, status in problem_status[variant_key]["ft_union_frv_union_mrv"].items() if status == 1]
         print(f"  Successful problem IDs: {sorted(successful_ids)}")
-    
+
     # Perform McNemar tests for the two specific comparisons
     print("\nPerforming McNemar Tests:")
     print("=" * 50)
-    
+
     # First test: analogy-based first try vs random first try
     print("\nTest 1: Analogy-based First Try vs Random First Try")
     print("-" * 50)
@@ -502,7 +502,7 @@ def plot_ablation_study(base_path):
         "random": {"test": problem_status["random"]["ft"]}
     }
     ft_vs_random_p_value = perform_mcnemar_test(ft_vs_random_test, "test", base_path)
-    
+
     # Second test: analogy-based multiple runs with retries vs random first try
     print("\nTest 2: Analogy-based Multiple Runs with Retries vs Random First Try")
     print("-" * 50)
@@ -511,7 +511,7 @@ def plot_ablation_study(base_path):
         "random": {"test": problem_status["random"]["ft"]}
     }
     mrv_vs_random_p_value = perform_mcnemar_test(mrv_vs_random_test, "test", base_path)
-    
+
     # Third test: analogy-based first run with retries vs random first try
     print("\nTest 3: Analogy-based First Run with Retries vs Random First Try")
     print("-" * 50)
@@ -520,7 +520,7 @@ def plot_ablation_study(base_path):
         "random": {"test": problem_status["random"]["ft"]}
     }
     frv_vs_random_p_value = perform_mcnemar_test(frv_vs_random_test, "test", base_path)
-    
+
     # Fourth test: analogy-based first run with retries vs random first run with retries
     print("\nTest 4: Analogy-based First Run with Retries vs Random First Run with Retries")
     print("-" * 50)
@@ -529,7 +529,7 @@ def plot_ablation_study(base_path):
         "random": {"test": problem_status["random"]["ft_union_frv"]}
     }
     frv_vs_frv_p_value = perform_mcnemar_test(frv_vs_frv_test, "test", base_path)
-    
+
     # Fifth test: analogy-based multiple runs with retries vs random multiple runs with retries
     print("\nTest 5: Analogy-based Multiple Runs with Retries vs Random Multiple Runs with Retries")
     print("-" * 50)
@@ -538,57 +538,70 @@ def plot_ablation_study(base_path):
         "random": {"test": problem_status["random"]["ft_union_frv_union_mrv"]}
     }
     mrv_vs_mrv_p_value = perform_mcnemar_test(mrv_vs_mrv_test, "test", base_path)
-    
+
     # Create the plot
-    plt.figure(figsize=(26, 20))  # Increased width from 22 to 26
-    
+    plt.figure(figsize=(24, 16))  # Increased width from 22 to 26
+
     # Set font sizes and style
     plt.rcParams['font.size'] = 24
     plt.rcParams['legend.fontsize'] = 24
     plt.rcParams['axes.linewidth'] = 1.5
     plt.rcParams['axes.edgecolor'] = 'black'
-    
+
     # Define colors and styles
     colors = {
         'analogy': '#1f77b4',  # Blue
         'random': '#d62728'  # Red
     }
-    
+
     # Plot lines for each variant and stage
     for variant in variants:
         color = colors['analogy'] if 'analogy' in variant else colors['random']
         variant_label = variant.replace("variant_", "").replace("_model_o1", "").replace("random_all_theorems", "random")
-        
+
         # Plot FT first (solid line with circles)
         plt.plot(levels, success_rates[variant]["ft"], 'o-',
                 label=f'{"Analogy-based" if "analogy" in variant else "Base model"} - 1 run, no retries',
-                linewidth=3, markersize=14, color=color, alpha=0.9)
-        
+                linewidth=3, markersize=14, color=color, alpha=0.9,
+                markerfacecolor=color if 'analogy' in variant else 'white')  # Filled for analogy, hollow for base
+
         # Plot FRV second (dashed line with squares)
         plt.plot(levels, success_rates[variant]["frv"], 's--',
                 label=f'{"Analogy-based" if "analogy" in variant else "Base model"} - 1 run, with verifier 5 retries',
-                linewidth=3, markersize=14, color=color, alpha=0.9)
-        
+                linewidth=3, markersize=14, color=color, alpha=0.9,
+                markerfacecolor=color if 'analogy' in variant else 'white')  # Filled for analogy, hollow for base
+
         # Plot MRV last (dotted line with triangles)
         plt.plot(levels, success_rates[variant]["mrv"], '^:',
                 label=f'{"Analogy-based" if "analogy" in variant else "Base model"} - 3 runs, with verifier 5 retries',
-                linewidth=3, markersize=14, color=color, alpha=0.9)
-        
+                linewidth=3, markersize=14, color=color, alpha=0.9,
+                markerfacecolor=color if 'analogy' in variant else 'white')  # Filled for analogy, hollow for base
+
         # Add markers for MRV points that have the same value as FRV
         for i in range(len(levels)):
             if success_rates[variant]["mrv"][i] == success_rates[variant]["frv"][i]:
                 plt.plot(levels[i], success_rates[variant]["mrv"][i], '^',
-                        color=color, markersize=14, alpha=0.9)
-    
+                        color=color, markersize=14, alpha=0.9,
+                        markerfacecolor=color if 'analogy' in variant else 'white')  # Filled for analogy, hollow for base
+
     # Customize the plot
     plt.xlabel('Level', fontsize=28, fontweight='bold', labelpad=15)  # Added bold
     plt.ylabel('Correct Proofs (%)', fontsize=28, fontweight='bold', labelpad=15)  # Added bold
     plt.title('% correct proofs per level of difficulty',
              fontsize=36, fontweight='bold', pad=50)  # Increased pad to make room for legend
-    
+
     # Customize grid
     plt.grid(True, linestyle='--', alpha=0.3, color='gray')
     
+    # Add black horizontal and vertical lines
+    # Horizontal lines at every 10%
+    for y in range(0, 110, 10):
+        plt.axhline(y=y, color='black', linewidth=0.8, alpha=0.3, zorder=1)
+    
+    # Vertical lines at each level
+    for x in levels:
+        plt.axvline(x=x, color='black', linewidth=0.8, alpha=0.3, zorder=1)
+
     # Customize legend - position it below the plot
     handles, labels = plt.gca().get_legend_handles_labels()
     legend = plt.legend(handles, labels,
@@ -614,19 +627,19 @@ def plot_ablation_study(base_path):
     
     # Adjust layout with space for legend at bottom
     plt.tight_layout(rect=[0, 0.1, 1, 0.95])  # Adjusted to make room for legend at bottom
-    
+
     # Make left and bottom spines thicker
     plt.gca().spines['left'].set_linewidth(1.5)
     plt.gca().spines['bottom'].set_linewidth(1.5)
-    
+
     # Adjust layout with more padding
     plt.tight_layout(pad=2.0)
-    
+
     # Save the plot with high DPI and white background
     plt.savefig(os.path.join(base_path, 'success_rates_progression.png'),
-               dpi=300, bbox_inches='tight', facecolor='white')
+                dpi=300, bbox_inches='tight', facecolor='white')
     plt.close()
-    
+
     return problem_status
 
 def calculate_ablation_success_rates(level_dir, level, problem_status):
@@ -958,8 +971,8 @@ def evaluate_math_expression(expr):
                 print(f"Error evaluating {sqrt_str}: {e}")
                 pass
 
-        # General replacement of √ symbol
         try:
+            # General replacement of √ symbol
             modified_str = re.sub(r'(\d*)√(\d+)', r'\1*math.sqrt(\2)', expr)
             # Handle implicit multiplication
             modified_str = re.sub(r'(\d+)\(', r'\1*(', modified_str)
@@ -1460,16 +1473,16 @@ def analyze_errors(base_path):
     Analyze errors from the 50 problems (10 per level) in the predefined list.
     For each problem, gather all error messages that appear after "ERROR_TIER" in the result files.
     Also aggregates errors by their TIER number.
-
+    
     Args:
         base_path (str): Base path to the results directory
-
+        
     Returns:
         dict: Dictionary containing error analysis results per level
     """
     levels = range(1, 6)
     variants = ["variant_analogy_based_model_o1", "variant_random_all_theorems_model_o1"]
-
+    
     # Dictionary to store error analysis results
     error_analysis = {
         variant: {
@@ -1482,7 +1495,7 @@ def analyze_errors(base_path):
             } for level in levels
         } for variant in variants
     }
-
+    
     for variant in variants:
         for level in levels:
             print(f"\nAnalyzing Errors for {variant} Level {level}")
@@ -1491,25 +1504,25 @@ def analyze_errors(base_path):
             if not os.path.exists(level_dir):
                 print(f"Level {level} directory not found")
                 continue
-
+                
             # Get the list of problem IDs for this level
             level_problem_ids = set(LEVEL_PROBLEMS[level])
             error_analysis[variant][level]["total_problems"] = len(level_problem_ids)
-
+            
             # Process each problem in the level's list
             for problem_id in sorted(level_problem_ids):
                 problem_errors = []
                 has_errors = False
-
+                
                 # Check all runs for this problem
                 for run_number in range(3):  # Check runs 0, 1, and 2
                     file_path = os.path.join(level_dir, f"{variant}_problem_{problem_id}_run_{run_number}.txt")
                     if not os.path.exists(file_path):
                         continue
-
+                        
                     with open(file_path, 'r') as f:
                         content = f.read()
-
+                        
                     # Find all error messages after ERROR_TIER
                     error_sections = content.split("ERROR_TIER: ")
                     if len(error_sections) > 1:  # If there are any errors
@@ -1539,90 +1552,32 @@ def analyze_errors(base_path):
                 if has_errors:
                     error_analysis[variant][level]["problems"][problem_id] = problem_errors
                     error_analysis[variant][level]["problems_with_errors"] += 1
-
+            
             # Print summary for this level
             print(f"\nLevel {level} Error Analysis:")
             print(f"Total Problems: {error_analysis[variant][level]['total_problems']}")
             print(f"Problems with Errors: {error_analysis[variant][level]['problems_with_errors']}")
             print(
                 f"Error Rate: {(error_analysis[variant][level]['problems_with_errors'] / error_analysis[variant][level]['total_problems'] * 100):.1f}%")
-
+            
             if error_analysis[variant][level]["error_frequency"]:
                 print("\nMost Common Errors:")
                 # Sort errors by frequency
-                sorted_errors = sorted(error_analysis[variant][level]["error_frequency"].items(),
-                                       key=lambda x: x[1], reverse=True)
+                sorted_errors = sorted(error_analysis[variant][level]["error_frequency"].items(), 
+                                     key=lambda x: x[1], reverse=True)
                 for error_msg, count in sorted_errors[:5]:  # Show top 5 errors
                     print(f"  - {error_msg} (occurred {count} times)")
-
+            
             if error_analysis[variant][level]["tier_frequency"]:
                 print("\nError Distribution by Tier:")
                 # Sort tiers by number
                 sorted_tiers = sorted(error_analysis[variant][level]["tier_frequency"].items())
                 for tier_num, count in sorted_tiers:
                     print(f"  - TIER_{tier_num}: {count} errors")
-
-    # Print overall tier statistics across all levels
-    print("\nOverall Error Distribution by Tier (All Levels):")
-    print("=" * 50)
-    for variant in variants:
-        print(f"\n{variant}:")
-        overall_tier_freq = {1: 0, 2: 0, 3: 0}  # Initialize all tiers with 0
-        for level in levels:
-            for tier_num, count in error_analysis[variant][level]["tier_frequency"].items():
-                overall_tier_freq[tier_num] += count
-
-        # Sort tiers by number and print
-        sorted_overall_tiers = sorted(overall_tier_freq.items())
-        for tier_num, count in sorted_overall_tiers:
-            print(f"TIER_{tier_num}: {count} errors")
-
-    # Print detailed error messages for all problems
-    print("\nDetailed Error Messages for All Problems:")
-    print("=" * 70)
-    for variant in variants:
-        print(f"\n{variant}:")
-        print("-" * 50)
-        for level in levels:
-            print(f"\nLevel {level}:")
-            print("-" * 30)
-            level_dir = os.path.join(base_path, f"level_{level}")
-            if not os.path.exists(level_dir):
-                continue
-
-            # Get the list of problem IDs for this level
-            level_problem_ids = set(LEVEL_PROBLEMS[level])
-
-            for problem_id in sorted(level_problem_ids):
-                has_errors = False
-                print(f"\nProblem {problem_id}:")
-
-                # Check all runs for this problem
-                for run_number in range(3):  # Check runs 0, 1, and 2
-                    file_path = os.path.join(level_dir, f"{variant}_problem_{problem_id}_run_{run_number}.txt")
-                    if not os.path.exists(file_path):
-                        continue
-
-                    with open(file_path, 'r') as f:
-                        content = f.read()
-
-                    # Find all error messages after ERROR_TIER
-                    error_sections = content.split("ERROR_TIER: ")
-                    if len(error_sections) > 1:  # If there are any errors
-                        has_errors = True
-                        print(f"  Run {run_number}:")
-                        for section in error_sections[1:]:  # Skip the first split which is before any ERROR_TIER
-                            # Get the complete error message including all content after ERROR_TIER
-                            error_msg = section.strip()
-                            if error_msg:
-                                print(f"    - {error_msg}")
-
-                if not has_errors:
-                    print("  No errors found")
-
+    
     # Create the plot
     plot_tier_error_distribution(error_analysis, base_path)
-
+    
     return error_analysis
 
 
@@ -1666,9 +1621,29 @@ def plot_tier_error_distribution(error_analysis, base_path):
         ax.bar(indices - bar_width / 2, analogy_data, bar_width,
                label='analogy-based', color=analogy_color,
                edgecolor='black', linewidth=1)
-        ax.bar(indices + bar_width / 2, random_data, bar_width,
+        
+        # Create bars with white vertical lines for base model
+        bars = ax.bar(indices + bar_width / 2, random_data, bar_width,
                label='base model', color=base_model_color,
                edgecolor='black', linewidth=1)
+        
+        # Add white vertical lines to base model bars
+        for bar in bars:
+            bar.set_hatch('|')  # Single vertical line
+            bar.set_edgecolor('white')  # White hatch color
+            bar.set_linewidth(2)  # Make the lines slightly thicker
+
+        # Add grid lines
+        ax.grid(True, linestyle='--', alpha=0.3, color='gray', zorder=0)
+        
+        # Add black horizontal lines at major y-ticks
+        yticks = ax.get_yticks()
+        for y in yticks:
+            ax.axhline(y=y, color='black', linewidth=0.8, alpha=0.3, zorder=1)
+        
+        # Add black vertical lines at each level
+        for x in indices:
+            ax.axvline(x=x, color='black', linewidth=0.8, alpha=0.3, zorder=1)
 
         # Add "Lower is better" text with arrow inside each subplot
         max_value = max(max(analogy_data), max(random_data))
@@ -1719,20 +1694,20 @@ def plot_tier_error_distribution(error_analysis, base_path):
         ax.set_yticks(ticks)
         ax.tick_params(axis='y', labelsize=24)
 
-        # Make y-axis labels bold
+        # Make y-axis labels bold and black
         for label in ax.get_yticklabels():
             label.set_fontweight('bold')
-
-        # Add grid
-        ax.grid(True, axis='y', linestyle='--', alpha=0.3)
+            label.set_color('black')
 
         # Remove top and right spines
         ax.spines['top'].set_visible(False)
         ax.spines['right'].set_visible(False)
 
-        # Make left and bottom spines thicker
+        # Make left and bottom spines thicker and black
         ax.spines['left'].set_linewidth(1.5)
+        ax.spines['left'].set_color('black')
         ax.spines['bottom'].set_linewidth(1.5)
+        ax.spines['bottom'].set_color('black')
 
     # Adjust subplot spacing
     plt.subplots_adjust(hspace=0.4)  # Reduced from default
@@ -1838,6 +1813,17 @@ def plot_retries_and_runs(base_path):
             retries_data[variant].append(level_data[level][variant]["avg_retries"])
             runs_data[variant].append(level_data[level][variant]["avg_runs"])
 
+    # Calculate averages across all levels
+    print("\nAverages across all levels:")
+    print("=" * 50)
+    for variant in variants:
+        variant_name = "Analogy-based" if "analogy" in variant else "Base model"
+        avg_retries = sum(retries_data[variant]) / len(retries_data[variant])
+        avg_runs = sum(runs_data[variant]) / len(runs_data[variant])
+        print(f"\n{variant_name}:")
+        print(f"  Average retries: {avg_retries:.2f}")
+        print(f"  Average runs: {avg_runs:.2f}")
+
     # Create figure with two subplots - make it wider to accommodate legend
     fig = plt.figure(figsize=(26, 20), facecolor='white')  # Increased width to match other plots
     gs = plt.GridSpec(3, 1, height_ratios=[4, 1, 4], hspace=0.3)  # Reduced hspace from 0.5 to 0.3
@@ -1850,7 +1836,7 @@ def plot_retries_and_runs(base_path):
 
     # Add "Lower is better" text with arrow for both plots - inside the plots
     # For the top subplot (retries)
-    ax1.text(2.0, 13, 'Lower is better', fontsize=32, fontweight='bold', 
+    ax1.text(2.0, 13, 'Lower is better', fontsize=32, fontweight='bold',
              ha='center', va='bottom')
     ax1.annotate('', xy=(2.0, 11), xytext=(2.0, 12.5),
                  arrowprops=dict(facecolor='black', width=2, headwidth=15, headlength=20))
@@ -1876,16 +1862,23 @@ def plot_retries_and_runs(base_path):
     # Plot lines for both subplots
     lines = []
     for variant in variants:
+        # Set marker face color - filled for analogy-based, hollow for base model
+        marker_face_color = variant_colors[variant] if 'analogy' in variant else 'white'
+        
         # Plot retries data
         line1 = ax1.plot(levels, retries_data[variant], 'o-',
-                         color=variant_colors[variant],
-                         linewidth=3, markersize=14)[0]
+                 color=variant_colors[variant],
+                 linewidth=3, markersize=14,
+                 markerfacecolor=marker_face_color,
+                 markeredgewidth=2)[0]
 
         # Plot runs data
         ax2.plot(levels, runs_data[variant], 'o-',
                  color=variant_colors[variant],
-                 linewidth=3, markersize=14)
-
+                 linewidth=3, markersize=14,
+                 markerfacecolor=marker_face_color,
+                 markeredgewidth=2)
+                 
         lines.append(line1)
 
     # Create legend in the middle
@@ -1976,13 +1969,75 @@ def plot_retries_and_runs(base_path):
                 dpi=300, bbox_inches='tight', facecolor='white')
     plt.close()
 
+def data_stats(base_path):
+    """
+    Analyze the GT_THEOREM_SEQUENCE lengths from run_0 files for problems in LEVEL_PROBLEMS.
+    Counts the number of steps in each sequence and provides statistics.
+    
+    Args:
+        base_path (str): Base path to the results directory
+        
+    Returns:
+        dict: Dictionary containing statistics about sequence lengths
+    """
+    import numpy as np
+    sequence_lengths = []
+    
+    print("\nAnalyzing GT_THEOREM_SEQUENCE lengths:")
+    print("=" * 50)
+    
+    for level in sorted(LEVEL_PROBLEMS.keys()):
+        print(f"\nLevel {level}:")
+        print("-" * 20)
+        for problem_id in sorted(LEVEL_PROBLEMS[level]):
+            file_path = os.path.join(base_path, f"level_{level}/variant_analogy_based_model_o1_problem_{problem_id}_run_0.txt")
+            try:
+                with open(file_path, 'r') as f:
+                    content = f.read()
+                    # Find GT_THEOREM_SEQUENCE section
+                    sequence_section = content.split('GT_THEOREM_SEQUENCE:')
+                    if len(sequence_section) > 1:
+                        # Get the lines after GT_THEOREM_SEQUENCE until next empty line
+                        sequence_lines = sequence_section[1].strip().split('\n')
+                        # Count non-empty lines until we hit an empty line
+                        steps = 0
+                        for line in sequence_lines:
+                            if not line.strip():  # Stop at empty line
+                                break
+                            if line.strip():  # Count non-empty lines
+                                steps += 1
+                        sequence_lengths.append(steps)
+                        print(f"Problem {problem_id}: {steps} steps")
+                    else:
+                        print(f"Problem {problem_id}: No GT_THEOREM_SEQUENCE found")
+            except FileNotFoundError:
+                print(f"Problem {problem_id}: File not found")
+    
+    # Calculate statistics
+    stats = {}
+    if sequence_lengths:
+        stats['average'] = np.mean(sequence_lengths)
+        stats['minimum'] = np.min(sequence_lengths)
+        stats['maximum'] = np.max(sequence_lengths)
+        stats['std_dev'] = np.std(sequence_lengths)
+        stats['total_problems'] = len(sequence_lengths)
+        
+        print("\nStatistics:")
+        print("-" * 20)
+        print(f"Average steps: {stats['average']:.2f}")
+        print(f"Minimum steps: {stats['minimum']}")
+        print(f"Maximum steps: {stats['maximum']}")
+        print(f"Standard deviation: {stats['std_dev']:.2f}")
+        print(f"Total problems analyzed: {stats['total_problems']}")
+    
+    return stats
 
 if __name__ == "__main__":
     base_path = "/Users/osultan/PycharmProjects/FormalGeo/results"
     # plot_success_rates(base_path)
     problem_status = plot_ablation_study(base_path)
-    calculate_analogy_stability(base_path)
-    analyze_answer_correctness(base_path, problem_status)
+    # calculate_analogy_stability(base_path)
+    # analyze_answer_correctness(base_path, problem_status)
     # error_analysis = analyze_errors(base_path)
-    # plot_retries_and_runs(base_path)
-    # print(1)
+    plot_retries_and_runs(base_path)
+    data_stats(base_path)

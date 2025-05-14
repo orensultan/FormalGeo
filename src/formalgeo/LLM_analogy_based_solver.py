@@ -410,21 +410,6 @@ def generate_and_verify(args, gdl_relevant_theorems, similar_problems, problem2,
         verify_symbols_syntax_result = verifier.verify_symbols_syntax()
         verify_geometric_proof_result, feedback, error_tier = verify_geometric_proof(file_path, print_output=False)
         error_tier = error_tier.name if error_tier else error_tier
-        # if problem2.id == 2916 and len(generated_theorem_sequence_list) == 1 and (generated_theorem_sequence_list[0] == "parallel_property_alternate_interior_angle(2,AB,CD)" or generated_theorem_sequence_list[0] == "parallel_property_corresponding_angle(2,AB,CD,E)"):
-        #     # theorem_verifier_result = "your THEOREM_SEQUENCE is incomplete. Your task was to find the measure of ∠ECD but this measure is still underconstrained, the value cannot be determined. Please fix the proof."
-        #     theorem_verifier_result = "verification failed. Your task was to find the measure of angle ECD but this measure is still underconstrained. Specifically, you found that the measure of angle BCD is equal to the measure of angle CBA, but the measure of CBA, but you did not find the measure of CBA. Please fix the proof. You should modify only the THEOREM_SEQUENCE."
-        # if problem2.id == 69 and attempts == 0:
-        #     theorem_verifier_result = "Verification failed. In step 1 we are given that the measure of angle DFG is 65, but you did not find the measure of angle FGD. Please fix the proof."
-        # if problem2.id == 358 and attempts == 0:
-        #     theorem_verifier_result = "Verification failed. In the conclusion of step 1 we are given the measure of angle BCA and the length of line AC, but you did not find the measure of angle ABC.  Please fix the proof."
-        # if problem2.id == 127 and attempts == 0:
-        #     theorem_verifier_result = "Verification failed. In the conclusion we are given the measure of angle HGJ is 42, but you did not find the measure of angle AGH. Please fix the proof."
-        # if problem2.id == 2200 and attempts == 0:
-        #     theorem_verifier_result = "Verification failed. In step 1 you call the theorem with Polygon(BAC) which does not exist in CONSTRUCTION_CDL_EXTENDED. Please retry with an existing Polygon and  fix the proof."
-        # if problem2.id == 4254 and attempts == 0:
-        #     theorem_verifier_result = "Verification failed. In conclusion of step 1 you find the measure of angle PDA which equals to 180 - 80 - 55 = 45. But you have been asked to find the mesaure of angle CBA. Please fix the proof."
-        # if problem2.id == 3634:
-        #     theorem_verifier_result = "Verification failed. You did not find the measure of angle BCE. In step 1 you found that the measure of angle FEC plus measure of angle ECD is equal to 180. We are given that the measure of angle FEC is 160. Hence we conclude the measure of angle ECD = 180 - 160 = 20. In step 2 you conclude that measure of angle BCD is the sum of measure of angle BCE and measure of angle ECD which is 20. In order to conclude the measure for angle BCE, you should first find the measure of angle BCD. Try to use what you are given in order to find the measure of angle BCD as part of the proof. Please retry and fix the proof."
         if verify_symbols_syntax_result == "Success" and not feedback:
             verifier_result = verify_symbols_syntax_result
             print("Theorem sequence verified correctly")
