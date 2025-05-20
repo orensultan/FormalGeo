@@ -182,7 +182,7 @@ def main():
                         help='Flag to run the dataset generation')
 
     args = parser.parse_args()
-
+    args.run_generate_dataset = True
     output_file = 'problems_similarity_results.csv'
     if args.run_generate_dataset:
         write_problems_proofs_similarity_dataset(output_file = output_file)

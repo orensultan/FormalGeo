@@ -540,18 +540,18 @@ def plot_ablation_study(base_path):
     mrv_vs_mrv_p_value = perform_mcnemar_test(mrv_vs_mrv_test, "test", base_path)
 
     # Create the plot
-    plt.figure(figsize=(24, 16))  # Increased width from 22 to 26
+    plt.figure(figsize=(8, 10))  # Increased width from 6 to 8
 
     # Set font sizes and style
-    plt.rcParams['font.size'] = 24
-    plt.rcParams['legend.fontsize'] = 24
-    plt.rcParams['axes.linewidth'] = 1.5
+    plt.rcParams['font.size'] = 12
+    plt.rcParams['legend.fontsize'] = 12
+    plt.rcParams['axes.linewidth'] = 0.5
     plt.rcParams['axes.edgecolor'] = 'black'
 
     # Define colors and styles
     colors = {
-        'analogy': '#1f77b4',  # Blue
-        'random': '#d62728'  # Red
+        'analogy': '#2171b5',  # Blue
+        'random': '#cb181d'  # Red
     }
 
     # Plot lines for each variant and stage
@@ -562,80 +562,68 @@ def plot_ablation_study(base_path):
         # Plot FT first (solid line with circles)
         plt.plot(levels, success_rates[variant]["ft"], 'o-',
                 label=f'{"Analogy-based" if "analogy" in variant else "Base model"} - 1 run, no retries',
-                linewidth=3, markersize=14, color=color, alpha=0.9,
-                markerfacecolor=color if 'analogy' in variant else 'white')  # Filled for analogy, hollow for base
+                linewidth=1, markersize=5, color=color, alpha=0.9,
+                markerfacecolor=color if 'analogy' in variant else 'white')
 
         # Plot FRV second (dashed line with squares)
         plt.plot(levels, success_rates[variant]["frv"], 's--',
-                label=f'{"Analogy-based" if "analogy" in variant else "Base model"} - 1 run, with verifier 5 retries',
-                linewidth=3, markersize=14, color=color, alpha=0.9,
-                markerfacecolor=color if 'analogy' in variant else 'white')  # Filled for analogy, hollow for base
+                label=f'{"Analogy-based" if "analogy" in variant else "Base model"} - 1 run, 5 retries (w\ verifier)',
+                linewidth=1, markersize=5, color=color, alpha=0.9,
+                markerfacecolor=color if 'analogy' in variant else 'white')
 
         # Plot MRV last (dotted line with triangles)
         plt.plot(levels, success_rates[variant]["mrv"], '^:',
-                label=f'{"Analogy-based" if "analogy" in variant else "Base model"} - 3 runs, with verifier 5 retries',
-                linewidth=3, markersize=14, color=color, alpha=0.9,
-                markerfacecolor=color if 'analogy' in variant else 'white')  # Filled for analogy, hollow for base
+                label=f'{"Analogy-based" if "analogy" in variant else "Base model"} - 3 runs, 5 retries (w\ verifier)',
+                linewidth=1, markersize=5, color=color, alpha=0.9,
+                markerfacecolor=color if 'analogy' in variant else 'white')
 
-        # Add markers for MRV points that have the same value as FRV
-        for i in range(len(levels)):
-            if success_rates[variant]["mrv"][i] == success_rates[variant]["frv"][i]:
-                plt.plot(levels[i], success_rates[variant]["mrv"][i], '^',
-                        color=color, markersize=14, alpha=0.9,
-                        markerfacecolor=color if 'analogy' in variant else 'white')  # Filled for analogy, hollow for base
+    # Set y-axis ticks and grid
+    plt.yticks(range(0, 101, 10))  # Ticks from 0 to 100 in steps of 10
+    
+    # Add horizontal grid lines
+    for y in range(0, 101, 10):
+        plt.axhline(y=y, color='black', linestyle='-', alpha=0.1, zorder=0)
+
+    # Set x-axis ticks from 1 to 5
+    plt.xticks(range(1, 6))  # This will show 1, 2, 3, 4, 5
+    plt.xlim(0.8, 5.2)  # Add some padding on both sides
+
+    # Make axis numbers bold
+    plt.gca().tick_params(axis='both', which='major', labelsize=16)
+    for label in plt.gca().get_xticklabels():
+        label.set_fontweight('bold')
+    for label in plt.gca().get_yticklabels():
+        label.set_fontweight('bold')
 
     # Customize the plot
-    plt.xlabel('Level', fontsize=28, fontweight='bold', labelpad=15)  # Added bold
-    plt.ylabel('Correct Proofs (%)', fontsize=28, fontweight='bold', labelpad=15)  # Added bold
+    plt.xlabel('Level', fontsize=18, fontweight='bold', labelpad=5)
+    plt.ylabel('Correct Proofs (%)', fontsize=18, fontweight='bold', labelpad=5)
     plt.title('% correct proofs per level of difficulty',
-             fontsize=36, fontweight='bold', pad=50)  # Increased pad to make room for legend
-
-    # Customize grid
-    plt.grid(True, linestyle='--', alpha=0.3, color='gray')
-    
-    # Add black horizontal and vertical lines
-    # Horizontal lines at every 10%
-    for y in range(0, 110, 10):
-        plt.axhline(y=y, color='black', linewidth=0.8, alpha=0.3, zorder=1)
-    
-    # Vertical lines at each level
-    for x in levels:
-        plt.axvline(x=x, color='black', linewidth=0.8, alpha=0.3, zorder=1)
+             fontsize=18, fontweight='bold', pad=10)
 
     # Customize legend - position it below the plot
     handles, labels = plt.gca().get_legend_handles_labels()
     legend = plt.legend(handles, labels,
-                     fontsize=28,  # Increased from 24
                      loc='upper center',
-                     bbox_to_anchor=(0.5, -0.15),  # Move legend below plot
+                     bbox_to_anchor=(0.5, -0.2),
                      frameon=True,
                      edgecolor='black',
                      fancybox=False,
-                     borderpad=0.5,
+                     borderpad=0.4,
                      handlelength=2.0,
-                     handletextpad=0.5,
+                     handletextpad=0.8,
                      labelspacing=0.3,
-                     ncol=2)
-    
-    # Make legend text bold
+                     ncol=1)
+
+    # Make legend text bold and set appropriate size
     for text in legend.get_texts():
+        text.set_fontsize(18)
         text.set_fontweight('bold')
-    
-    # Make axis numbers bold
-    plt.xticks(levels, fontsize=28, fontweight='bold')  # Added fontweight='bold'
-    plt.yticks(np.arange(0, 110, 10), fontsize=28, fontweight='bold')  # Added fontweight='bold'
-    
-    # Adjust layout with space for legend at bottom
-    plt.tight_layout(rect=[0, 0.1, 1, 0.95])  # Adjusted to make room for legend at bottom
 
-    # Make left and bottom spines thicker
-    plt.gca().spines['left'].set_linewidth(1.5)
-    plt.gca().spines['bottom'].set_linewidth(1.5)
+    # Adjust layout with more space at bottom for single-column legend
+    plt.tight_layout(rect=[0.05, 0.18, 0.95, 0.9])  # Original margins
 
-    # Adjust layout with more padding
-    plt.tight_layout(pad=2.0)
-
-    # Save the plot with high DPI and white background
+    # Save the plot
     plt.savefig(os.path.join(base_path, 'success_rates_progression.png'),
                 dpi=300, bbox_inches='tight', facecolor='white')
     plt.close()
@@ -877,30 +865,39 @@ def calculate_analogy_stability(base_path):
 
     # Plot success rates
     plt.plot(levels, stability_results["listed"], 'o-',
-             label='original samples', linewidth=2, markersize=8, color='blue')
-    plt.plot(levels, stability_results["all"], 'o-',
-             label='original + extended samples', linewidth=2, markersize=8, color='red')
+             label='original samples', linewidth=2, markersize=8, color='blue',
+             markerfacecolor='blue')  # Filled markers for first line
+    plt.plot(levels, stability_results["all"], 'o--',  # Changed to dashed line
+             label='original + extended samples', linewidth=2, markersize=8, color='blue',
+             markerfacecolor='blue')  # Also filled markers for second line
 
     # Customize the plot
-    plt.xlabel('Level', fontsize=12)
-    plt.ylabel('Success Rate (%)', fontsize=12)
+    plt.xlabel('Level', fontsize=18, fontweight='bold')
+    plt.ylabel('Correct Proofs (%)', fontsize=18, fontweight='bold')
     plt.title(
         'Performance of our method on the o1 model remains stable\nwhen increasing from 50 to 100 sampled problems (10 to 20 per level)',
-        fontsize=16)
+        fontsize=18, fontweight='bold')
     plt.grid(True, linestyle='--', alpha=0.7)
-    plt.legend(fontsize=10)
+    
+    # Customize legend
+    legend = plt.legend(fontsize=18, frameon=True, edgecolor='black', 
+                       fancybox=False, borderpad=0.4, handlelength=2.0,
+                       handletextpad=0.8, labelspacing=0.3)
+    
+    # Make legend text bold
+    for text in legend.get_texts():
+        text.set_fontweight('bold')
+
     plt.xticks(levels)
     plt.ylim(0, 110)
     plt.yticks(np.arange(0, 110, 10))
 
-    # Add value labels on the points
-    for i in range(len(levels)):
-        plt.text(levels[i], stability_results["listed"][i] + 2,
-                 f'{stability_results["listed"][i]:.1f}%',
-                 ha='center', va='bottom', color='blue')
-        plt.text(levels[i], stability_results["all"][i] - 2,
-                 f'{stability_results["all"][i]:.1f}%',
-                 ha='center', va='top', color='red')
+    # Make axis numbers bold
+    plt.gca().tick_params(axis='both', which='major', labelsize=16)
+    for label in plt.gca().get_xticklabels():
+        label.set_fontweight('bold')
+    for label in plt.gca().get_yticklabels():
+        label.set_fontweight('bold')
 
     # Adjust layout
     plt.tight_layout()
@@ -1609,10 +1606,6 @@ def plot_tier_error_distribution(error_analysis, base_path):
 
     # Plot data for each tier in separate subplots
     for tier, ax in enumerate(axes, 1):
-        # Add light gray background to separate levels
-        for i in indices:
-            ax.axvspan(i - 0.5, i + 0.5, color='#f8f9fa', alpha=0.5)
-
         # Get data for both variants
         analogy_data = [error_analysis[variants[0]][level]["tier_frequency"][tier] for level in levels]
         random_data = [error_analysis[variants[1]][level]["tier_frequency"][tier] for level in levels]
@@ -1622,25 +1615,27 @@ def plot_tier_error_distribution(error_analysis, base_path):
                label='analogy-based', color=analogy_color,
                edgecolor='black', linewidth=1)
         
-        # Create bars with white vertical lines for base model
-        bars = ax.bar(indices + bar_width / 2, random_data, bar_width,
-               label='base model', color=base_model_color,
-               edgecolor='black', linewidth=1)
-        
-        # Add white vertical lines to base model bars
-        for bar in bars:
-            bar.set_hatch('|')  # Single vertical line
-            bar.set_edgecolor('white')  # White hatch color
-            bar.set_linewidth(2)  # Make the lines slightly thicker
+        # Create hollow bars with red edges for base model
+        ax.bar(indices + bar_width / 2, random_data, bar_width,
+               label='base model', color='none',  # No fill color (hollow)
+               edgecolor=base_model_color,  # Red edges
+               linewidth=2)  # Make edges slightly thicker to be more visible
 
-        # Add grid lines
-        ax.grid(True, linestyle='--', alpha=0.3, color='gray', zorder=0)
-        
-        # Add black horizontal lines at major y-ticks
-        yticks = ax.get_yticks()
-        for y in yticks:
-            ax.axhline(y=y, color='black', linewidth=0.8, alpha=0.3, zorder=1)
-        
+        # Add grid lines based on tier
+        ax.grid(False)  # Turn off default grid
+        if tier == 1:
+            # For Tier 1, add horizontal lines at every 10 up to 110
+            for y in range(0, 111, 10):
+                ax.axhline(y=y, color='black', linestyle='-', alpha=0.1, zorder=0)
+        elif tier == 2:
+            # For Tier 2, add horizontal lines only at 0, 10, 20
+            for y in [0, 10, 20]:
+                ax.axhline(y=y, color='black', linestyle='-', alpha=0.1, zorder=0)
+        elif tier == 3:
+            # For Tier 3, add horizontal lines only at 0, 10, 20, 30
+            for y in [0, 10, 20, 30]:
+                ax.axhline(y=y, color='black', linestyle='-', alpha=0.1, zorder=0)
+
         # Add black vertical lines at each level
         for x in indices:
             ax.axvline(x=x, color='black', linewidth=0.8, alpha=0.3, zorder=1)
@@ -1650,49 +1645,51 @@ def plot_tier_error_distribution(error_analysis, base_path):
         text_y = max_value * 0.85  # Position text at 85% of max height
         arrow_start_y = max_value * 0.8  # Start arrow at 80% of max height
         arrow_end_y = max_value * 0.65  # End arrow at 65% of max height
-        
-        ax.text(0.5, text_y, 'Lower is better', fontsize=32, fontweight='bold',
+
+        ax.text(0.5, text_y, 'Lower is better', fontsize=36, fontweight='bold',  # Increased from 32 to 36
                 ha='center', va='bottom')
         ax.annotate('', xy=(0.5, arrow_end_y), xytext=(0.5, arrow_start_y),
                     arrowprops=dict(facecolor='black', width=2, headwidth=15, headlength=20))
 
         # Customize subplot
         if tier == 3:  # For the third subplot, adjust labelpad to bring "Level" closer to axis
-            ax.set_xlabel('Level', fontsize=28, fontweight='bold', labelpad=35)
+            ax.set_xlabel('Level', fontsize=36, fontweight='bold', labelpad=15)  # Reduced back to normal labelpad
         else:
-            ax.set_xlabel('Level', fontsize=28, fontweight='bold', labelpad=15)
-        ax.set_ylabel('Number of Errors', fontsize=28, fontweight='bold', labelpad=15)
+            ax.set_xlabel('Level', fontsize=36, fontweight='bold', labelpad=15)
+        ax.set_ylabel('#Errors', fontsize=36, fontweight='bold', labelpad=15)
         ax.set_title(f'Tier {tier} Error Distribution',
-                     fontsize=32, fontweight='bold', pad=20)
+                     fontsize=40, fontweight='bold', pad=20)
 
         # Set x-axis ticks
         ax.set_xticks(indices)
-        ax.set_xticklabels(levels, fontsize=24, fontweight='bold')
+        ax.set_xticklabels(levels, fontsize=32, fontweight='bold')  # Increased from 24 to 32
 
         # Set dynamic y-axis limits and ticks based on actual data and tier
         max_value = max(max(analogy_data), max(random_data))
-        
+
         # Add padding for the text and arrow
         y_max = max_value * 1.2
 
         # Round up y_max to the next multiple of 10
         y_max = math.ceil(y_max / 10.0) * 10
 
-        # Set specific y_max limits based on tier
+        # Set specific y_max limits and ticks based on tier
         if tier == 1:
-            y_max = min(100, y_max)  # Cap at 100 for Tier 1
+            y_max = 110  # Set fixed maximum at 110 for Tier 1
+            ticks = np.arange(0, 111, 10)  # Ticks every 10 units up to 110
+        elif tier == 2:
+            y_max = min(20, y_max)  # Cap at 20 for Tier 2
+            ticks = np.array([0, 10, 20])  # Only show 0, 10, 20
         elif tier == 3:
-            y_max = min(30, y_max)   # Cap at 30 for Tier 3
-        
+            y_max = min(30, y_max)  # Cap at 30 for Tier 3
+            ticks = np.arange(0, y_max + 10, 10)  # Ticks every 10 units
+
         # Ensure minimum y_max is 10
         y_max = max(10, y_max)
 
-        # Create ticks at every multiple of 10
-        ticks = np.arange(0, y_max + 10, 10)
-        
         ax.set_ylim(0, y_max)
         ax.set_yticks(ticks)
-        ax.tick_params(axis='y', labelsize=24)
+        ax.tick_params(axis='y', labelsize=32)
 
         # Make y-axis labels bold and black
         for label in ax.get_yticklabels():
@@ -1715,25 +1712,25 @@ def plot_tier_error_distribution(error_analysis, base_path):
     # Create a common legend for all subplots
     handles, labels = ax1.get_legend_handles_labels()
     legend = fig.legend(handles, labels,
-                      fontsize=28,
-                      loc='center',
-                      bbox_to_anchor=(0.5, 0.02),  # Position legend just above the x-axis label of the third subplot
-                      frameon=True,
-                      edgecolor='black',
-                      fancybox=False,
-                      borderpad=0.4,
-                      handlelength=2.0,
-                      handletextpad=0.4,
-                      labelspacing=0.2,
-                      columnspacing=0.3,
-                      ncol=2)
+                        fontsize=36,
+                        loc='center',
+                        bbox_to_anchor=(0.5, 0),  # Adjusted from -0.02 to 0
+                        frameon=True,
+                        edgecolor='black',
+                        fancybox=False,
+                        borderpad=0.4,
+                        handlelength=2.0,
+                        handletextpad=0.4,
+                        labelspacing=0.2,
+                        columnspacing=0.3,
+                        ncol=2)
 
     # Make legend text bold
     for text in legend.get_texts():
         text.set_fontweight('bold')
 
-    # Adjust layout with space for legend at bottom
-    plt.tight_layout(rect=[0, 0.02, 1, 0.98])  # Adjusted to accommodate legend position
+    # Adjust layout with more space at bottom for legend
+    plt.tight_layout(rect=[0, 0.02, 1, 0.98])  # Reduced from 0.05 to 0.02
 
     # Save the plot
     plt.savefig(os.path.join(base_path, 'tier_error_distribution.png'),
@@ -1847,12 +1844,6 @@ def plot_retries_and_runs(base_path):
     ax2.annotate('', xy=(2.0, 2.2), xytext=(2.0, 2.5),
                  arrowprops=dict(facecolor='black', width=2, headwidth=15, headlength=20))
 
-    # Add light gray background to alternate between levels
-    for i in range(len(levels)):
-        if i % 2 == 0:
-            ax1.axvspan(i+0.5, i+1.5, color='#f8f9fa', alpha=0.5)
-            ax2.axvspan(i+0.5, i+1.5, color='#f8f9fa', alpha=0.5)
-
     # Colors for variants
     variant_colors = {
         "variant_analogy_based_model_o1": '#2171b5',  # Blue
@@ -1866,37 +1857,41 @@ def plot_retries_and_runs(base_path):
         marker_face_color = variant_colors[variant] if 'analogy' in variant else 'white'
         
         # Plot retries data
-        line1 = ax1.plot(levels, retries_data[variant], 'o-',
+        line1 = ax1.plot(levels, retries_data[variant], '^-',  # Changed from 'o-' to '^-'
                  color=variant_colors[variant],
-                 linewidth=3, markersize=14,
+                 linewidth=3, markersize=18,
                  markerfacecolor=marker_face_color,
                  markeredgewidth=2)[0]
 
         # Plot runs data
-        ax2.plot(levels, runs_data[variant], 'o-',
+        ax2.plot(levels, runs_data[variant], '^-',  # Changed from 'o-' to '^-'
                  color=variant_colors[variant],
-                 linewidth=3, markersize=14,
+                 linewidth=3, markersize=18,
                  markerfacecolor=marker_face_color,
                  markeredgewidth=2)
                  
         lines.append(line1)
 
     # Create legend in the middle
-    fig.legend(lines,
-               ["Analogy-based", "Base model"],
+    legend = fig.legend(lines,
+               ["analogy-based", "base model"],
                loc='center',
                bbox_to_anchor=(0.5, 0.5),
                ncol=2,
-               fontsize=32,
-               prop={'weight': 'bold'},
                frameon=True,
                edgecolor='black',
-               framealpha=1.0,
-               borderpad=0.2,
-               columnspacing=0.5,
-               handletextpad=0.5,
-               handlelength=1.0,
-               borderaxespad=0.1)
+               fancybox=False,
+               borderpad=0.8,
+               columnspacing=1.0,
+               handletextpad=0.8,
+               handlelength=4.0,  # Increased from 2.0 to 4.0 to make lines longer
+               borderaxespad=0.5,
+               markerscale=2.0)
+
+    # Make legend text bold and increase font size
+    for text in legend.get_texts():
+        text.set_fontsize(36)
+        text.set_fontweight('bold')
 
     # Customize retries subplot
     ax1.set_xlabel('Level', fontsize=32, labelpad=15, fontweight='bold')
@@ -2032,12 +2027,126 @@ def data_stats(base_path):
     
     return stats
 
+def analyze_differential_success(base_path):
+    """
+    Analyze and print problems where analogy-based method succeeds but random baseline fails.
+    This provides qualitative insights into the types of problems where our method shows advantage.
+    """
+    levels = range(1, 6)
+    variants = ["variant_analogy_based_model_o1", "variant_random_all_theorems_model_o1"]
+    
+    print("\nAnalyzing problems where analogy-based succeeds but random baseline fails:")
+    print("=" * 70)
+    
+    # Track successful and failed problems for each variant
+    success_status = {
+        "analogy": {"success": set(), "fail": set()},
+        "random": {"success": set(), "fail": set()}
+    }
+    
+    # Process each level
+    for level in levels:
+        level_dir = os.path.join(base_path, f"level_{level}")
+        if not os.path.exists(level_dir):
+            continue
+            
+        # Get the list of problem IDs for this level
+        level_problem_ids = set(LEVEL_PROBLEMS[level])
+        
+        # Process each problem
+        for problem_id in sorted(level_problem_ids):
+            for variant in variants:
+                variant_key = "analogy" if "analogy" in variant else "random"
+                problem_failed = False
+                
+                # Check run_2 file for final status
+                run_2_file = os.path.join(level_dir, f"{variant}_problem_{problem_id}_run_2.txt")
+                if os.path.exists(run_2_file):
+                    with open(run_2_file, 'r') as f:
+                        content = f.read()
+                        retries_match = re.search(r'#RETRIES:\s*(\d+)', content)
+                        if retries_match and int(retries_match.group(1)) == 5:
+                            problem_failed = True
+                            success_status[variant_key]["fail"].add((level, problem_id))
+                        else:
+                            success_status[variant_key]["success"].add((level, problem_id))
+                else:
+                    # If no run_2 file, check run_0 and run_1
+                    for run_num in [0, 1]:
+                        run_file = os.path.join(level_dir, f"{variant}_problem_{problem_id}_run_{run_num}.txt")
+                        if os.path.exists(run_file):
+                            with open(run_file, 'r') as f:
+                                content = f.read()
+                                retries_match = re.search(r'#RETRIES:\s*(\d+)', content)
+                                if retries_match and int(retries_match.group(1)) < 5:
+                                    success_status[variant_key]["success"].add((level, problem_id))
+                                    break
+                    else:
+                        success_status[variant_key]["fail"].add((level, problem_id))
+    
+    # Find problems where analogy succeeds but random fails
+    differential_success = success_status["analogy"]["success"] & success_status["random"]["fail"]
+    
+    # Print results by level
+    if differential_success:
+        print("\nProblems where analogy-based succeeds but random baseline fails:")
+        current_level = None
+        for level, problem_id in sorted(differential_success):
+            if level != current_level:
+                print(f"\nLevel {level}:")
+                current_level = level
+            
+            # Get ground truth answer and theorem sequence
+            run_0_file = os.path.join(base_path, f"level_{level}/variant_analogy_based_model_o1_problem_{problem_id}_run_0.txt")
+            if os.path.exists(run_0_file):
+                with open(run_0_file, 'r') as f:
+                    content = f.read()
+                    # Get ground truth answer
+                    gt_match = re.search(r'GT_ANSWER:\s*(.*?)(?:\n|$)', content)
+                    gt_answer = gt_match.group(1).strip() if gt_match else "N/A"
+                    
+                    # Get theorem sequence length
+                    sequence_section = content.split('GT_THEOREM_SEQUENCE:')
+                    sequence_length = 0
+                    if len(sequence_section) > 1:
+                        sequence_lines = sequence_section[1].strip().split('\n')
+                        for line in sequence_lines:
+                            if not line.strip():
+                                break
+                            sequence_length += 1
+                    
+                    print(f"  Problem {problem_id}:")
+                    print(f"    Ground truth answer: {gt_answer}")
+                    print(f"    Proof length: {sequence_length} steps")
+                    
+                    # Get analogy-based method's performance
+                    retries_match = re.search(r'#RETRIES:\s*(\d+)', content)
+                    if retries_match:
+                        retries = int(retries_match.group(1))
+                        print(f"    Analogy-based retries: {retries}")
+                        
+                        # Get answer if available
+                        answer_match = re.search(r'ANSWER:\s*(.*?)(?:\n|$)', content)
+                        if answer_match:
+                            answer = answer_match.group(1).strip()
+                            print(f"    Analogy-based answer: {answer}")
+    else:
+        print("\nNo problems found where analogy-based succeeds but random baseline fails.")
+    
+    # Print summary statistics
+    total_problems = sum(len(LEVEL_PROBLEMS[level]) for level in levels)
+    print(f"\nSummary Statistics:")
+    print(f"Total problems analyzed: {total_problems}")
+    print(f"Problems where analogy-based succeeds but random fails: {len(differential_success)}")
+    print(f"Success rate difference: {(len(differential_success)/total_problems)*100:.1f}%")
+
 if __name__ == "__main__":
     base_path = "/Users/osultan/PycharmProjects/FormalGeo/results"
     # plot_success_rates(base_path)
     problem_status = plot_ablation_study(base_path)
-    # calculate_analogy_stability(base_path)
+    calculate_analogy_stability(base_path)
     # analyze_answer_correctness(base_path, problem_status)
-    # error_analysis = analyze_errors(base_path)
+    error_analysis = analyze_errors(base_path)
     plot_retries_and_runs(base_path)
-    data_stats(base_path)
+    # data_stats(base_path)
+    # analyze_differential_success(base_path)

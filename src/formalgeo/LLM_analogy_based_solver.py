@@ -493,7 +493,7 @@ def print_similar_problems_theorems_coverage(variant, chosen_problems_by_level):
             problem_id_to_level[problem_id] = level
 
     true_count_by_level = collections.defaultdict(int)
-    file_name = f'cover_theorems_{variant}_{SIMILAR_PROBLEMS}_levels_{LEVEL_BEGIN}_{LEVEL_END}.csv'
+    file_name = f'cover_theorems_{variant}_{SIMILAR_PROBLEMS}_levels_{MIN_LEVEL}_{MAX_LEVEL}.csv'
 
     df = pd.read_csv(file_name)
     df['IsCovered'] = df['IsCovered'].astype(str) == 'True'
@@ -665,7 +665,7 @@ def run_theorems_coverage(args, run=True, print_results=True):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    parser.add_argument("--variant", dest="variant", type=str, default="random_all_theorems")
+    parser.add_argument("--variant", dest="variant", type=str, default="analogy_based")
     parser.add_argument("--model_name", dest="model_name", type=str, default="o1")
     parser.add_argument("--prompt_path", dest="prompt_path", type=str,
                         default="src/formalgeo/prompt/geometry_similar_problems_prompt_291224.txt")
@@ -687,4 +687,4 @@ if __name__ == "__main__":
             traceback.print_exc(file=sys.stderr)
             raise
     if run_coverage:
-        run_theorems_coverage(args, run=False, print_results=True)
+        run_theorems_coverage(args, run=True, print_results=True)
