@@ -1,5 +1,4 @@
 import os
-from create_problems_proofs_similarity_dataset import save_problems
 import matplotlib.pyplot as plt
 from PIL import Image
 

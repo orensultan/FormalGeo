@@ -442,17 +442,6 @@ def get_level_to_problems(problems):
     return level_to_problems
 
 
-# chosen_problems_by_level = {
-#     # 1: [2833],
-#     # 2: [6523],
-#     # 3: [2999],
-#     # 4: [2425],
-#     # 5: [4908],
-#     # 6: [729],
-#     #  7: [683],
-#     # 8: [912],
-#     # 9: [5749]
-# }
 
 chosen_problems_by_level = {
     3: [5062] #  2795, 1168, 2677, 380, 944, 2940],

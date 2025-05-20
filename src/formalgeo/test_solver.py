@@ -7,11 +7,7 @@ from formalgeo.tools import show_solution
 import time
 import openai
 
-openai.api_key = "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"
-openai.api_key = "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"
-openai.api_key = "sk-ds-openapi-key-0sfNvLjYF3wMuFQcp7oST3BlbkFJWeqSW76sV6Gy48mjIJVK"
-openai.api_key = "sk-ds-openapi-key-0sfNvLjYF3wMuFQcp7oST3BlbkFJWeqSW76sV6Gy48mjIJVK"
-
+openai.api_key = ""
 
 
 # download_dataset(dataset_name="formalgeo7k_v1", datasets_path=".")
@@ -67,5 +63,5 @@ def print_gpt_response(prompt_path, model_name):
     print(resp)
 
 prompt_path = 'src/formalgeo/prompt/geometry_problem_prompt.txt'
-model_name = 'gpt-4o-mini'
+model_name = 'gpt-4o'
 # print_gpt_response(prompt_path, model_name)
