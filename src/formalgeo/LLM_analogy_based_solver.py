@@ -23,7 +23,6 @@ from src.formalgeo.config.config import MAX_RETRIES_IN_RUN, MAX_RUNS, SIMILAR_PR
 from similar_proofs_retrieval import retrieve_similar_proofs
 from similar_proofs_retrieval import retrieve_random_proofs
 
-
 key = ""
 openai.api_key = key
 dl = DatasetLoader(dataset_name="formalgeo7k_v1", datasets_path="formalgeo7k_v1")
