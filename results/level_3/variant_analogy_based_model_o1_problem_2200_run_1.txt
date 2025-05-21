@@ -95,16 +95,11 @@ Outputs for Problem B:
 
 ***MODEL_RESPONSE_BEGIN***
 EQUATIONS:
-ma_abd-75
-ma_acd-28
-ma_bdc-35
-
+ma_abd-75 ma_acd-28 ma_bdc-35
 GOAL_SYMBOL:
 ma_bac
-
 ANSWER:
 82
-
 THEOREM_SEQUENCE:
 1; triangle_property_angle_sum(1,BDE); Polygon(BDE); ["Equal(Add(MeasureOfAngle(BDE),MeasureOfAngle(DEB),MeasureOfAngle(EBD)),180)"]
 2; vertical_angle(1,DEB,CEA); Collinear(DEC)&Collinear(BEA)&Angle(DEB)&Angle(CEA); ["Equal(MeasureOfAngle(DEB),MeasureOfAngle(CEA))"]

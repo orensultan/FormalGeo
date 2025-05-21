@@ -1,4 +1,3 @@
-import re
 import json
 import os
 import argparse
@@ -9,32 +8,28 @@ from formalgeo.data import download_dataset, DatasetLoader
 from formalgeo.solver import Interactor
 from formalgeo.parse import parse_one_theorem
 import pandas as pd
-import collections
-
-from formalgeo.tools import show_solution
 from Problem import get_theorem, replace_symbols
 from create_problems_proofs_similarity_dataset import save_problems
 import time
 import openai
 
+import traceback
 from src.formalgeo.verifier import Verifier
 
 from geometric_verifier import verify_geometric_proof
 from src.formalgeo.config.config import MAX_RETRIES_IN_RUN, MAX_RUNS, SIMILAR_PROBLEMS, IN_CONTEXT_FEW_SHOT, \
     SAMPLED_PROBLEMS_IN_LEVEL, MIN_LEVEL, MAX_LEVEL
 
-from utils import display_image
 from similar_proofs_retrieval import retrieve_similar_proofs
 from similar_proofs_retrieval import retrieve_random_proofs
 
 
-import re
 
-openai.api_key = ""
+openai.api_key = "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"
 
 dl = DatasetLoader(dataset_name="formalgeo7k_v1", datasets_path="formalgeo7k_v1")
 solver = Interactor(dl.predicate_GDL, dl.theorem_GDL)
-with open('formalgeo7k_v1/formalgeo7k_v1/gdl/theorem_GDL.json', 'r') as f:
+with open('formalgeo7k_v1/gdl/theorem_GDL.json', 'r') as f:
     theorems = json.load(f)
 
 
@@ -91,53 +86,10 @@ def convert_relations(relations_string):
     return "\n".join(extended_res)
 
 
-def validate_premise(premise, relations_string):
-    # Parse the relations string
-    parsed_data = parse_relations(relations_string)
-
-    # Split the premise string by '&'
-    validations = premise.split("&")
-
-    # Dictionary to store validation results
-    validation_results = {}
-
-    # Function to validate a single item
-    def validate_item(item, parsed_data):
-        match = re.match(r"(\w+)\(([\w,]+)\)", item)
-        if match:
-            section = match.group(1)
-            entities = match.group(2).split(',')
-
-            # Check only in the relevant section
-            if section in parsed_data:
-                for relation in parsed_data[section]:
-                    if set(entities).issubset(set(relation['entities'])):
-                        return True
-            else:
-                return False  # Section not found
-        return False
-
-    # Validate each item in the premise
-    for item in validations:
-        item = item.strip()
-        validation_results[item] = validate_item(item, parsed_data)
-
-    # Return the validation results
-    return validation_results
-
-
-#         updated_json = {
-#             "theorem": theorem_call,
-#             "premise": updated_premise,
-#             "conclusion": updated_conclusion
-#         }
-#         updated_json_str = json.dumps(updated_json, indent=4)
-#         theorems_seqs_expl.append(updated_json_str)
 
 
 def theorem_verifier(solver, theorem_seqs):
     res = "Correct"
-
     for theorem in theorem_seqs:
         t_name, t_branch, t_para = parse_one_theorem(theorem)
         letters = get_letters(t_name, t_para)
@@ -147,20 +99,6 @@ def theorem_verifier(solver, theorem_seqs):
         update, reason = solver.apply_theorem(t_name, t_branch, t_para)
         if not update and reason != 'No updates were made.':
             return "A mistake in theorem sequence step: " + theorem + ". Premise: " + premise + ". " + reason
-
-            # expl = get_theorem_seqs_expl([theorem])[0]
-            # parsed_tuple = ast.literal_eval(expl)
-            # premise = parsed_tuple[1]['premise']
-            # if not update:
-            #     results = validate_premise(premise, res2['prompt_input_relations'])
-            #     for item, is_valid in results.items():
-            #         print(f"{item}: {'Valid' if is_valid else 'Invalid'}")
-            #
-            #     invalid_premises = " | ".join(
-            #         [f"please rewrite the theory step, you have an invalid premise: {key} which is not part of the given RELATIONS of the problem" for key, value in results.items() if not value])
-            #     if len(invalid_premises) > 0:
-            #         return "Theorem sequence step: " + theorem + ". premise: " + premise + ". " + invalid_premises
-
     return res
 
 
@@ -444,7 +382,7 @@ def get_level_to_problems(problems):
 
 
 chosen_problems_by_level = {
-    3: [5062] #  2795, 1168, 2677, 380, 944, 2940],
+    4: [2543] #  2795, 1168, 2677, 380, 944, 2940],
      # 1: [1975, 1490, 1726, 178, 2669, 2614, 51, 2323, 192, 2624, 2795, 1168, 688, 2677, 380, 221, 944, 2940, 2187, 1562],
      # 2: [144, 69, 991, 358, 4473, 4483, 5645, 127, 2410, 4523, 3075, 49, 4610, 6966, 1433, 3998, 5983, 497, 1586, 2397],
      # 3: [4187, 5244, 5062, 844, 1945, 2200, 4099, 2765, 4476, 4254, 1071, 3787, 4257, 5942, 1282, 2591, 5858, 1306, 1244, 312],
@@ -657,10 +595,10 @@ if __name__ == "__main__":
     parser.add_argument("--variant", dest="variant", type=str, default="analogy_based")
     parser.add_argument("--model_name", dest="model_name", type=str, default="o1")
     parser.add_argument("--prompt_path", dest="prompt_path", type=str,
-                        default="src/formalgeo/prompt/geometry_similar_problems_prompt_291224.txt")
+                        default="src/formalgeo/prompt/geometry_similar_problems_prompt.txt")
     args = parser.parse_args()
     problems = save_problems('formalgeo7k_v1/problems')
-    run_solver, run_coverage = True, False
+    run_solver = True
     # chosen_problems_by_level = get_chosen_problems_by_level(problems, seed=42)
     if run_solver:
         try:
@@ -671,9 +609,6 @@ if __name__ == "__main__":
                         if is_success:
                             break
         except Exception as e:
-            import traceback
-
             traceback.print_exc(file=sys.stderr)
             raise
-    if run_coverage:
-        run_theorems_coverage(args, run=True, print_results=True)
+    # run_theorems_coverage(args, run=False, print_results=False)

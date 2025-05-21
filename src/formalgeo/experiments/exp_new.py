@@ -1806,7 +1806,7 @@ def plot_retries_and_runs(base_path):
 
 
 if __name__ == "__main__":
-    base_path = "/Users/osultan/PycharmProjects/FormalGeo/results"
+    base_path = "../../../results/"
     problem_status = plot_ablation_study(base_path)
     calculate_analogy_stability(base_path)
     analyze_answer_correctness(base_path, problem_status)

@@ -94,58 +94,16 @@ Outputs:
 Outputs for Problem B:
 
 ***MODEL_RESPONSE_BEGIN***
-EQUATIONS:
-ll_bd-15 ll_ca-b ll_cb-28 ll_cd-27 ma_adb-ma_cda
-
-GOAL_SYMBOL:
-b
-
-ANSWER:
+RETRY_ANSWER:
 18
 
-THEOREM_SEQUENCE:
-(No applicable theorems from the GDL can directly formalize ∠ADB = ∠CDA as an angle bisector in ∠BDC under the given point labels, so no additional steps beyond listing the known collinearity can be provided here.)
+RETRY_THEOREM_SEQUENCE:
+1; bisector_of_angle_judgment_angle_equal(1,DD,BDC); Angle(BDD)&Angle(DDC)&Equal(MeasureOfAngle(BDD),MeasureOfAngle(DDC)); ["IsBisectorOfAngle(DD,BDC)"]  
+2; bisector_of_angle_property_line_ratio(1,DD,BDC); IsBisectorOfAngle(DD,BDC)&Collinear(CDB); ["Equal(Mul(LengthOfLine(CD),LengthOfLine(DB)),Mul(LengthOfLine(DB),LengthOfLine(DC)))"]  
+3; line_addition(1,BA,AC); Collinear(BAC); ["Equal(LengthOfLine(BC),Add(LengthOfLine(BA),LengthOfLine(AC)))"]
 ***MODEL_RESPONSE_END***
 RETRIES_MESSAGES:
 #run: 0; #retry: 1; message: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
-Failure: Theorem <line_addition> variation id is not supplied. Expected dict_keys(['1']) but got None.
-Your call: line_addition(A,B,A,C)
-Please rewrite your response by adding the variation id as the first argument. For example: For variation 1: line_addition(1,A,B,A,C)
-
-Model Answer:
-RETRY_ANSWER:
-18
-RETRY_THEOREM_SEQUENCE:
-1; line_addition(AB,AC); Collinear(BAC); ["Equal(LengthOfLine(BC),Add(LengthOfLine(AB),LengthOfLine(AC)))"]
-#run: 0; #retry: 2; message: ERROR_TIER: TIER3_GOAL_NOT_REACHED
-verification failed.
-
-- Goal: value of b
-- Model answer: 18
-- Error: Your proof doesn't uniquely determine the value. You need to use additional theorems to constrain the value.
-- Available premises:
-  Collinear Points: BAC
-  Polygons: ABD, ACD, ADB, ADC, BCD, BDC
-- Theorems related to the goal:
-  None found that constrain this goal
-- Solver constraints directly related to this goal:
-  None found
-
-Variable b is not uniquely determined
-Please fix the proof.
-Model Answer:
-RETRY_ANSWER:
-18
-RETRY_THEOREM_SEQUENCE:
-1; line_addition(1,BA,AC); Collinear(BAC); ["Equal(LengthOfLine(BC),Add(LengthOfLine(BA),LengthOfLine(AC)))"]
-#run: 0; #retry: 3; message: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
-The final answer should be a numeric answer, you gave an expression with algebraic variable. Please fix your proof.
-Model Answer:
-RETRY_ANSWER:
-NoUniqueSolution
-RETRY_THEOREM_SEQUENCE:
-1; line_addition(1,BA,AC); Collinear(BAC); ["Equal(LengthOfLine(BC),Add(LengthOfLine(BA),LengthOfLine(AC)))"]
-#run: 0; #retry: 4; message: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
 Theorem: bisector_of_angle_judgment_angle_equal(1,AD,BDC)
 You output the following premises: Angle(ADB)&Angle(CDA)&Equal(MeasureOfAngle(ADB),MeasureOfAngle(CDA))
 But the correct premises: Angle(BDD)&Angle(DDC)&Equal(MeasureOfAngle(BDD),MeasureOfAngle(DDC))
@@ -157,14 +115,78 @@ RETRY_ANSWER:
 18
 RETRY_THEOREM_SEQUENCE:
 1; bisector_of_angle_judgment_angle_equal(1,AD,BDC); Angle(ADB)&Angle(CDA)&Equal(MeasureOfAngle(ADB),MeasureOfAngle(CDA)); ["IsBisectorOfAngle(AD,BDC)"]
-2; line_addition(1,BA,AC); Collinear(BAC); ["Equal(LengthOfLine(BC),Add(LengthOfLine(BA),LengthOfLine(AC)))"]
-#run: 0; #retry: 5; message: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
-Failure: Theorem <> not defined in current GDL. Please rewrite the proof sequence, you are allowed to use only theorems from the GDL.
+2; bisector_of_angle_property_line_ratio(1,AD,BDC); IsBisectorOfAngle(AD,BDC)&Collinear(BAC); ["Equal(Mul(LengthOfLine(BA),LengthOfLine(CD)),Mul(LengthOfLine(AC),LengthOfLine(BD)))"]
+3; line_addition(1,BA,AC); Collinear(BAC); ["Equal(LengthOfLine(BC),Add(LengthOfLine(BA),LengthOfLine(AC)))"]
+#run: 0; #retry: 2; message: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
+Theorem: bisector_of_angle_judgment_angle_equal(1,AD,BDC)
+You output the following premises: Angle(BDA)&Angle(ADC)&Equal(MeasureOfAngle(BDA),MeasureOfAngle(ADC))
+But the correct premises: Angle(BDD)&Angle(DDC)&Equal(MeasureOfAngle(BDD),MeasureOfAngle(DDC))
+You output the following conclusions: IsBisectorOfAngle(AD,BDC)
+But the correct conclusions: IsBisectorOfAngle(DD,BDC)
+
 Model Answer:
 RETRY_ANSWER:
 18
 RETRY_THEOREM_SEQUENCE:
-(No applicable theorems from the GDL can directly formalize ∠ADB = ∠CDA as an angle bisector in ∠BDC under the given point labels, so no additional steps beyond listing the known collinearity can be provided here.)
+1; bisector_of_angle_judgment_angle_equal(1,AD,BDC); Angle(BDA)&Angle(ADC)&Equal(MeasureOfAngle(BDA),MeasureOfAngle(ADC)); ["IsBisectorOfAngle(AD,BDC)"]
+2; bisector_of_angle_property_line_ratio(1,AD,BDC); IsBisectorOfAngle(AD,BDC)&Collinear(BAC); ["Equal(Mul(LengthOfLine(BA),LengthOfLine(CD)),Mul(LengthOfLine(AC),LengthOfLine(BD)))"]
+3; line_addition(1,BA,AC); Collinear(BAC); ["Equal(LengthOfLine(BC),Add(LengthOfLine(BA),LengthOfLine(AC)))"]
+#run: 0; #retry: 3; message: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
+Theorem: bisector_of_angle_judgment_angle_equal(1,AD,BDC)
+You output the following premises: Angle(BDA)&Angle(ADC)&Equal(MeasureOfAngle(BDA),MeasureOfAngle(ADC))
+But the correct premises: Angle(BDD)&Angle(DDC)&Equal(MeasureOfAngle(BDD),MeasureOfAngle(DDC))
+You output the following conclusions: IsBisectorOfAngle(AD,BDC)
+But the correct conclusions: IsBisectorOfAngle(DD,BDC)
+
+Model Answer:
+RETRY_ANSWER:
+18
+
+RETRY_
+RETRY_THEOREM_SEQUENCE:
+1; bisector_of_angle_judgment_angle_equal(1,AD,BDC); Angle(BDA)&Angle(ADC)&Equal(MeasureOfAngle(BDA),MeasureOfAngle(ADC)); ["IsBisectorOfAngle(AD,BDC)"]  
+2; bisector_of_angle_property_line_ratio(1,AD,BDC); IsBisectorOfAngle(AD,BDC)&Collinear(BAC); ["Equal(Mul(LengthOfLine(BA),LengthOfLine(CD)),Mul(LengthOfLine(AC),LengthOfLine(BD)))"]  
+3; line_addition(1,BA,AC); Collinear(BAC); ["Equal(LengthOfLine(BC),Add(LengthOfLine(BA),LengthOfLine(AC)))"]
+#run: 0; #retry: 4; message: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
+Theorem: bisector_of_angle_property_line_ratio(1,DD,BDC)
+You output the following premises: IsBisectorOfAngle(DD,BDC)&Collinear(BAC)
+But the correct premises: IsBisectorOfAngle(DD,BDC)&Collinear(CDB)
+You output the following conclusions: Equal(Mul(LengthOfLine(BA),LengthOfLine(CD)),Mul(LengthOfLine(AC),LengthOfLine(BD)))
+But the correct conclusions: Equal(Mul(LengthOfLine(CD),LengthOfLine(DB)),Mul(LengthOfLine(DB),LengthOfLine(DC)))
+
+Model Answer:
+RETRY_ANSWER:
+18
+
+RETRY_
+RETRY_THEOREM_SEQUENCE:
+1; bisector_of_angle_judgment_angle_equal(1,DD,BDC); Angle(BDD)&Angle(DDC)&Equal(MeasureOfAngle(BDD),MeasureOfAngle(DDC)); ["IsBisectorOfAngle(DD,BDC)"]  
+2; bisector_of_angle_property_line_ratio(1,DD,BDC); IsBisectorOfAngle(DD,BDC)&Collinear(BAC); ["Equal(Mul(LengthOfLine(BA),LengthOfLine(CD)),Mul(LengthOfLine(AC),LengthOfLine(BD)))"]  
+3; line_addition(1,BA,AC); Collinear(BAC); ["Equal(LengthOfLine(BC),Add(LengthOfLine(BA),LengthOfLine(AC)))"]
+#run: 0; #retry: 5; message: ERROR_TIER: TIER2_PREMISE_VIOLATION
+verification failed.
+
+- Error: You tried to use theorem: bisector_of_angle_judgment_angle_equal(1,DD,BDC);Angle(BDD)&Angle(DDC)&Equal(MeasureOfAngle(BDD),MeasureOfAngle(DDC));['IsBisectorOfAngle(DD,BDC)']
+Missing premise: Angles BDD and DDC not proven equal
+Details: The solver's constraints do not force these angles to be equal
+- Available premises:
+  Collinear Points: BAC
+  Polygons: ABD, ACD, ADB, ADC, BCD, BDC
+- Theorems related to the goal:
+  None found that constrain this goal
+- Solver constraints directly related to this goal:
+  |AC| = b
+
+Please fix the proof.
+Model Answer:
+RETRY_ANSWER:
+18
+
+RETRY_
+RETRY_THEOREM_SEQUENCE:
+1; bisector_of_angle_judgment_angle_equal(1,DD,BDC); Angle(BDD)&Angle(DDC)&Equal(MeasureOfAngle(BDD),MeasureOfAngle(DDC)); ["IsBisectorOfAngle(DD,BDC)"]  
+2; bisector_of_angle_property_line_ratio(1,DD,BDC); IsBisectorOfAngle(DD,BDC)&Collinear(CDB); ["Equal(Mul(LengthOfLine(CD),LengthOfLine(DB)),Mul(LengthOfLine(DB),LengthOfLine(DC)))"]  
+3; line_addition(1,BA,AC); Collinear(BAC); ["Equal(LengthOfLine(BC),Add(LengthOfLine(BA),LengthOfLine(AC)))"]
 #RETRIES:
 5
 #RUNS:

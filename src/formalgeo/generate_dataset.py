@@ -268,19 +268,6 @@ def print_problem(json, verbose=False):
                    json['theorem_seqs'], abstract_theorem_seqs, json['theorem_seqs_dag'], abstract_theorem_seq_dag)
 
 
-    # print("abstract_theorem_seqs: {}".format(json['abstract_theorem_seqs']))
-    # print("theorem_seqs: {}".format(json['theorem_seqs']))
-
-
-def get_theory(theory):
-    with open('../../formalgeo7k_v1/formalgeo7k_v1/gdl/theorem_GDL.json', 'r') as file:
-        theories = json.load(file)
-        matching_keys = [key for key, value in theories.items() if theory.split("(")[0] in key]
-        key = matching_keys[0]
-        num = theory.split("(")[1][0]
-        premise_and_conclusion = theories[key][num]
-        return key, premise_and_conclusion
-
 
 
 
@@ -500,71 +487,6 @@ def data_pre_processing(X_train, y_train, X_test, y_test):
     return train_loader, test_loader, X_train_tensor, y_train_tensor, X_test_tensor, y_test_tensor
 
 
-def model_train(train_loader, optimizer, model, criterion, num_epochs):
-    model.train()
-    for epoch in range(num_epochs):
-        for X_batch, y_batch in train_loader:
-            optimizer.zero_grad()
-            outputs = model(X_batch)
-            loss = criterion(outputs, y_batch)
-            loss.backward()
-            optimizer.step()
-        print(f"Epoch {epoch + 1}/{num_epochs}, Loss: {loss.item()}")
-
-
-def model_eval(model, test_loader, criterion, X_test_tensor, y_test_tensor):
-    model.eval()
-    with torch.no_grad():
-        outputs = model(X_test_tensor)
-        test_loss = criterion(outputs, y_test_tensor)
-        y_pred = outputs.squeeze()
-    return outputs, y_pred
-
-
-def predict():
-    data = pd.read_csv('results.csv')
-    X, y = data.iloc[:, -4:-1], data.iloc[:,
-                                -1]  # Assuming the last 4 columns are features and the last column is the target
-
-    X_balanced, y_balanced = balance_data(X, y)
-
-    X_train, X_test, y_train, y_test = train_test_split(X_balanced, y_balanced, test_size=0.2, random_state=42)
-
-    train_loader, test_loader, X_train_tensor, y_train_tensor, X_test_tensor, y_test_tensor = data_pre_processing(
-        X_train, y_train, X_test, y_test)
-    input_size = X_train_tensor.shape[1]
-    model = SimpleNN(input_size)
-    criterion = nn.MSELoss()
-    optimizer = optim.Adam(model.parameters(), lr=0.001)
-
-    model_train(train_loader, optimizer, model, criterion, num_epochs=3)
-    outputs, y_pred = model_eval(model, test_loader, criterion, X_test_tensor, y_test_tensor)
-
-    print("Predictions: ", y_pred[:100].numpy())
-    print("True values: ", y_test_tensor[:100].numpy())
-
-    mse = mean_squared_error(y_test_tensor.numpy(), y_pred.numpy())
-    r2 = r2_score(y_test_tensor.numpy(), y_pred.numpy())
-    print(f'Mean Squared Error: {mse}')
-    print(f'R^2 Score: {r2}')
-
-    # Save the trained model
-    torch.save(model.state_dict(), 'trained_model.pth')
-    print("Model saved to 'trained_model.pth'.")
-
-
-def load_model_and_predict(sample_data):
-    input_size = sample_data.shape[1]
-    model = SimpleNN(input_size)  # Only pass input_size
-    model.load_state_dict(torch.load('trained_model.pth'))
-    model.eval()
-
-    with torch.no_grad():
-        sample_tensor = torch.tensor(sample_data, dtype=torch.float32)
-        prediction = model(sample_tensor)
-
-    return prediction
-
 
 
 
@@ -721,50 +643,8 @@ def model_eval(model, test_loader, criterion, X_test_tensor, y_test_tensor):
     return outputs, y_pred
 
 
-def predict():
-    data = pd.read_csv('results.csv')
-    X, y = data.iloc[:, -4:-1], data.iloc[:,
-                                -1]  # Assuming the last 4 columns are features and the last column is the target
 
-    X_balanced, y_balanced = balance_data(X, y)
 
-    X_train, X_test, y_train, y_test = train_test_split(X_balanced, y_balanced, test_size=0.2, random_state=42)
-
-    train_loader, test_loader, X_train_tensor, y_train_tensor, X_test_tensor, y_test_tensor = data_pre_processing(
-        X_train, y_train, X_test, y_test)
-    input_size = X_train_tensor.shape[1]
-    model = SimpleNN(input_size)
-    criterion = nn.MSELoss()
-    optimizer = optim.Adam(model.parameters(), lr=0.001)
-
-    model_train(train_loader, optimizer, model, criterion, num_epochs=3)
-    outputs, y_pred = model_eval(model, test_loader, criterion, X_test_tensor, y_test_tensor)
-
-    print("Predictions: ", y_pred[:100].numpy())
-    print("True values: ", y_test_tensor[:100].numpy())
-
-    mse = mean_squared_error(y_test_tensor.numpy(), y_pred.numpy())
-    r2 = r2_score(y_test_tensor.numpy(), y_pred.numpy())
-    print(f'Mean Squared Error: {mse}')
-    print(f'R^2 Score: {r2}')
-
-def load_model_and_predict(sample_data):
-    num_classes = len(labels)
-    input_size = len(sample_data)
-
-    # Initialize the model
-    model = SimpleNN(input_size, num_classes)
-
-    # Load the saved model state
-    model.load_state_dict(torch.load('trained_model.pth'))
-    model.eval()
-
-    with torch.no_grad():
-        sample_tensor = torch.tensor(sample_data, dtype=torch.float32)
-        sample_tensor = sample_tensor.unsqueeze(0)  # Add batch dimension
-        output = model(sample_tensor)
-        _, predicted_class = torch.max(output, 1)
-        return predicted_class.item()
 
 def map_symbols(expression1, expression2):
     # Remove the number in the first expression and extract angles
@@ -805,35 +685,6 @@ def map_symbols(expression1, expression2):
 
     return result
 
-def call_gpt(model, messages, temperature=0, wait_time=1, retry_wait_time=6, max_retries=10):
-    retries = 0
-    while retries <= max_retries:
-        try:
-            response = openai.ChatCompletion.create(
-                model=model,
-                messages=messages,
-                max_tokens=4096,
-                temperature=temperature,
-                top_p=1,
-                frequency_penalty=0,
-                presence_penalty=0,
-            )
-
-            if response and response.choices and response.choices[0]:
-                res = response.choices[0].message['content'].strip()
-                time.sleep(wait_time)
-                return res
-
-        except openai.error.OpenAIError as e:
-            print(f"OpenAIError: {e}. Retrying in {retry_wait_time} seconds...")
-            time.sleep(retry_wait_time)
-            retries += 1
-            if retries > max_retries:
-                print("Failed after maximum retries.")
-                raise Exception(f"Failed after {max_retries} attempts due to OpenAI errors.")
-        except Exception as e:
-            print(f"Unexpected error: {e}. Not retrying.")
-            raise Exception(f"Unexpected error: {e}")
 
 
 
@@ -881,16 +732,6 @@ display_image(problem2_id)
 def remove_trailing_empty_lines(text):
     return '\n'.join(line for line in text.splitlines() if line.strip())
 
-def theorem_verifier(solver, theorem_seqs):
-    res = "Correct"
-
-    for theorem in theorem_seqs:
-        t_name, t_branch, t_para = parse_one_theorem(theorem)
-        try:
-            solver.apply_theorem(t_name, t_branch, t_para)
-        except Exception as e:
-            res = str(e) + " Theorem sequence step: " + theorem
-    return res
 
 
 def parse_problem(pid):
@@ -916,8 +757,6 @@ def parse_problem(pid):
 
 
 
-# 6173, 4241
-
 
 # download_dataset(dataset_name="formalgeo7k_v1", datasets_path="../../formalgeo7k_v1")
 dl = DatasetLoader(dataset_name="formalgeo7k_v1", datasets_path="../../formalgeo7k_v1/formalgeo7k_v1")
@@ -929,89 +768,7 @@ problem1_description, problem1_construction_cdl, problem1_text_cdl, problem1_goa
 res = parse_problem(problem2_id)
 problem2_description, problem2_construction_cdl, problem2_text_cdl, problem2_goal_cdl, problem2_relations, problem2_theorem_seqs = res['prompt_input_description'], res['prompt_input_construction_cdl'], res['prompt_input_text_cdl'], res['prompt_input_goal_cdl'], res['prompt_input_relations'],  res['prompt_output_theorem_seqs']
 
-def gpt_response(messages, model_name):
-    resp = call_gpt(model=model_name, messages=messages)
-    print(resp)
-    return resp
-
-def generate_and_verify(prompt_path, model_name, max_retries=5):
-    with open(prompt_path, 'r') as file:
-        initial_prompt = file.read()
-
-    initial_message = {
-        "role": "user",
-        "content": initial_prompt + (
-            f"\nDESCRIPTION:\n{problem1_description}\nCONSTRUCTION_CDL:\n{problem1_construction_cdl}\n"
-            f"TEXT_CDL:\n{problem1_text_cdl}\nGOAL_CDL:\n{problem1_goal_cdl}\nRELATIONS:\n{problem1_relations}\n"
-            f"Outputs:\nTHEOREM_SEQUENCE:\n{problem1_theorem_seqs}\nInputs:\nDESCRIPTION:\n{problem2_construction_cdl}\n"
-            f"CONSTRUCTION_CDL:\n{problem2_construction_cdl}\nTEXT_CDL:\n{problem2_text_cdl}\nGOAL_CDL:\n{problem2_goal_cdl}\n"
-            f"RELATIONS:\n{problem2_relations}\nOutputs:\nTHEOREM_SEQUENCE:\n"
-        )
-    }
-
-    messages = [
-        {"role": "system", "content": "You are a helpful assistant."},
-        initial_message
-    ]
-
-    attempts = 0
-    verifier_result = None
-
-    while attempts <= max_retries:
-        resp = gpt_response(messages, model_name)
-        generated_theorem_sequence = resp.split("THEOREM_SEQUENCE:\n")[1]
-        generated_theorem_sequence_list = re.findall(r'\d+;([^\(\)]+\([^\)]+\))', generated_theorem_sequence)
-        verifier_result = theorem_verifier(solver, generated_theorem_sequence_list)
-
-        if verifier_result == "Correct":
-            print("Theorem sequence verified correctly")
-            break
-
-        messages.append({"role": "user", "content": f"Generated theorem sequence: {generated_theorem_sequence}"})
-        messages.append({"role": "user", "content": f"Verifier result: {verifier_result}"})
-        messages.append({"role": "user", "content": resp})
-
-        print(f"Verifier result: {verifier_result}")
-        print(f"Retry attempt: {attempts + 1}")
-        attempts += 1
-
-    return messages, resp, verifier_result
-
-def convert_json(data):
-    result = []
-    for theorem_base, cases in data.items():
-        for case_id, content in cases.items():
-            theorem = f"{theorem_base.split('(')[0]}({case_id},{theorem_base.split('(')[1]}"
-            premise = content["premise"]
-            conclusion = content["conclusion"]
-            result.append({
-                "theorem": theorem,
-                "premise": premise,
-                "conclusion": conclusion
-            })
-    return result
-
-
-# with open('../../formalgeo7k_v1/gdl/theorem_GDL.json', 'r') as file:
-#     theories = json.load(file)
-#     print(1)
-
-# prompt_path, model_name = 'prompt/geometry_problem_prompt.txt', 'gpt-4o'
-# final_messages, final_resp, final_verifier_result = generate_and_verify(prompt_path, model_name)
-# print("ground truth THEOREM_SEQUENCE second problem")
-# print(problem2_theorem_seqs)
-# print("ground truth THEOREM_SEQUENCE first problem")
-# print(problem1_theorem_seqs)
 
 
 
-problems_df=pd.read_csv('results.csv')
-problems_df = problems_df[(problems_df['problem1_id'] == problem1_id)]
-first_row = problems_df.iloc[0]
-sample_data = [
-    first_row['abstract_construction_cdl_jaccard_similarity'],
-    first_row['abstract_text_cdl_jaccard_similarity'],
-    first_row['abstract_goal_similarity']
-]
-predicted_class = load_model_and_predict(sample_data)
-print("Predicted class for the sample:", predicted_class)
+

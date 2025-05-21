@@ -2077,6 +2077,113 @@ class GeometricTheorem:
         # Get geometric facts
         geometric_data = self.gather_relevant_geometric_data()
 
+        # Check if we have goal information
+        goal_token = getattr(self, 'goal_token', None)
+        goal_type = getattr(self, 'goal_type', None)
+
+        # Find relevant theorems based on the goal
+        related_theorems = []
+        if goal_token:
+            for theorem_info in self.theorem_sequence:
+                is_related = False
+
+                # For simple token goals (length, angle, etc.)
+                if isinstance(goal_token, str) and len(goal_token) <= 5:  # Simple goal tokens
+                    # Check if the token is mentioned directly
+                    if goal_token in ' '.join(theorem_info["conclusions"]):
+                        is_related = True
+                    elif goal_token in theorem_info["premise"]:
+                        is_related = True
+                    elif any(goal_token in arg for arg in theorem_info["args"]):
+                        is_related = True
+
+                # For compound tokens (like "AB+CD" or "AB/CD")
+                elif isinstance(goal_token, str) and '+' in goal_token:
+                    parts = goal_token.split('+')
+                    if any(part in ' '.join(theorem_info["conclusions"]) for part in parts):
+                        is_related = True
+                elif isinstance(goal_token, str) and '/' in goal_token:
+                    parts = goal_token.split('/')
+                    if any(part in ' '.join(theorem_info["conclusions"]) for part in parts):
+                        is_related = True
+
+                # For general expressions, check for patterns
+                elif goal_type == "general":
+                    # Try looking for known patterns in the expression
+                    if 'LengthOfLine' in goal_token:
+                        pattern = r'LengthOfLine\((\w+)\)'
+                        matches = re.findall(pattern, goal_token)
+                        if any(match in ' '.join(theorem_info["conclusions"]) for match in matches):
+                            is_related = True
+                    elif 'MeasureOfAngle' in goal_token:
+                        pattern = r'MeasureOfAngle\((\w+)\)'
+                        matches = re.findall(pattern, goal_token)
+                        if any(match in ' '.join(theorem_info["conclusions"]) for match in matches):
+                            is_related = True
+
+                if is_related:
+                    related_theorems.append({
+                        "step": theorem_info["step_number"],
+                        "theorem": theorem_info["theorem_name"],
+                        "args": theorem_info["args"],
+                        "conclusion": ", ".join(theorem_info["conclusions"])
+                    })
+
+        # Find relevant constraints based on the goal
+        relevant_constraints = []
+        if goal_token and goal_type:
+            var_names = []
+
+            # Determine variable names based on goal type
+            if goal_type == "length":
+                var_names.append(f"length_{self.normalize_line_name(goal_token)}")
+            elif goal_type == "angle":
+                var_names.append(f"angle_{self.normalize_angle_name(goal_token)}")
+            elif goal_type == "arc_measure":
+                var_names.append(f"arc_{self.normalize_arc(goal_token)}")
+            elif goal_type == "arc_length":
+                var_names.append(f"lengthArc_{self.normalize_arc(goal_token)}")
+                var_names.append(f"arc_{self.normalize_arc(goal_token)}")
+            elif goal_type == "radius":
+                var_names.append(f"radius_{goal_token}")
+            elif goal_type == "cosine":
+                var_names.append(f"cos_{goal_token}")
+                var_names.append(f"angle_{self.normalize_angle_name(goal_token)}")
+            elif goal_type == "sine":
+                var_names.append(f"sin_{goal_token}")
+                var_names.append(f"angle_{self.normalize_angle_name(goal_token)}")
+            elif goal_type == "sum":
+                tokens = goal_token.split('+')
+                for token in tokens:
+                    var_names.append(f"length_{self.normalize_line_name(token)}")
+            elif goal_type == "ratio":
+                tokens = goal_token.split('/')
+                for token in tokens:
+                    var_names.append(f"length_{self.normalize_line_name(token)}")
+            elif goal_type == "perimeter":
+                var_names.append(f"perimeter_{goal_token}")
+            elif goal_type == "quad_area":
+                var_names.append(f"AreaOfQuadrilateral_{goal_token}")
+            elif goal_type == "triangle_area":
+                normalized = ''.join(sorted(goal_token))
+                var_names.append(f"areaTriangle_{normalized}")
+            elif goal_type == "general":
+                # For general goals, try to find any part that looks like a variable
+                variables = self.extract_variables(goal_token)
+                for var in variables:
+                    var_names.append(var)
+
+            # Filter constraints that mention these variables
+            for c in self.solver.assertions():
+                c_str = str(c)
+                if "pi ==" not in c_str:  # Skip pi constant definition
+                    for var_name in var_names:
+                        if var_name in c_str:
+                            formatted = self.format_constraint(c_str)
+                            if formatted not in relevant_constraints:
+                                relevant_constraints.append(formatted)
+                            break
+
         # Use the common feedback report function with customized error message
         return self.create_feedback_report(
             goal_type="premise_error",
@@ -2085,9 +2192,8 @@ class GeometricTheorem:
             status="premise_violation",
             error_message=error_message,
             geometric_data=geometric_data,
-            # No related theorems or constraints for premise errors
-            related_theorems=[],
-            relevant_constraints=[]
+            related_theorems=related_theorems,
+            relevant_constraints=relevant_constraints
         )
 
     def find_related_theorems_for_line(self, line_name, line_points):
@@ -2636,61 +2742,7 @@ class GeometricTheorem:
                     message="these is no such version for the theorem",
                     details="these is no such version for the theorem perpendicular_judgment_angle"
                 ))
-        elif theorem_name == "mirror_similar_triangle_property_ratio":
-            version = args[0]
-            if version == "1":
-                if len(args) < 3:
-                    return return_error(GeometricError(
-                        tier=ErrorTier.TIER1_THEOREM_CALL_SYNTAX_VIOLATION,
-                        message="Insufficient arguments for mirror_similar_triangle_property_ratio",
-                        details="Expected: mirror_similar_triangle_property_ratio(1, triangle1, triangle2)"
-                    ))
 
-                tri1, tri2 = args[1].strip(), args[2].strip()
-
-                # Check if the premise states that the triangles are mirror similar
-                mirror_similar_match = re.search(r'MirrorSimilarBetweenTriangle\((\w+),(\w+)\)', premise)
-                if not mirror_similar_match:
-                    return return_error(GeometricError(
-                        tier=ErrorTier.TIER2_PREMISE_VIOLATION,
-                        message="Missing mirror similar triangles relationship in premise",
-                        details="mirror_similar_triangle_property_ratio requires MirrorSimilarBetweenTriangle(...) in premise"
-                    ))
-
-                premise_tri1, premise_tri2 = mirror_similar_match.groups()
-
-                # Check if the triangles in the premise match those in the function call
-                if not ((tri1 == premise_tri1 and tri2 == premise_tri2) or
-                        (tri1 == premise_tri2 and tri2 == premise_tri1)):
-                    return return_error(GeometricError(
-                        tier=ErrorTier.TIER2_PREMISE_VIOLATION,
-                        message=f"Triangle mismatch: call uses {tri1},{tri2} but premise has {premise_tri1},{premise_tri2}",
-                        details="Triangles in the theorem call must match those in the premise"
-                    ))
-
-                # Check if the triangles are recorded as mirror similar in the system
-                canonical_pair = self.canonicalize_mirror_triangle_pair(tri1, tri2)
-                if not canonical_pair:
-                    return return_error(GeometricError(
-                        tier=ErrorTier.TIER2_PREMISE_VIOLATION,
-                        message=f"Failed to create canonical representation for {tri1} and {tri2}",
-                        details="Could not normalize triangle pair"
-                    ))
-
-                if canonical_pair not in self.mirror_similar_triangles:
-                    return return_error(GeometricError(
-                        tier=ErrorTier.TIER2_PREMISE_VIOLATION,
-                        message=f"Triangles {tri1} and {tri2} not proven mirror similar",
-                        details=f"Known mirror similar triangles: {self.mirror_similar_triangles}"
-                    ))
-
-                return True, None
-            else:
-                return return_error(GeometricError(
-                    tier=ErrorTier.TIER1_THEOREM_CALL_SYNTAX_VIOLATION,
-                    message=f"these is no such version for the theorem mirror_similar_triangle_property_ratio",
-                    details="Only version 1 is supported"
-                ))
         elif theorem_name == "circle_property_angle_of_osculation":
             version = args[0]
             if version in {"1", "2"}:
@@ -2767,108 +2819,7 @@ class GeometricTheorem:
                     details="these is no such version for the theorem circle_property_angle_of_osculation"
                 ))
 
-        elif theorem_name == "mirror_congruent_triangle_judgment_sss":
-            version = args[0]
-            if version == "1":
-                if len(args) < 3:
-                    return return_error(GeometricError(
-                        tier=ErrorTier.TIER1_THEOREM_CALL_SYNTAX_VIOLATION,
-                        message="Insufficient arguments for mirror_congruent_triangle_judgment_sss",
-                        details="Expected: mirror_congruent_triangle_judgment_sss(1, triangle1, triangle2)"
-                    ))
 
-                tri1, tri2 = args[1].strip(), args[2].strip()
-
-                # Check if both triangles exist as polygons
-                if self.normalize_triangle(tri1) not in self.polygons:
-                    return return_error(GeometricError(
-                        tier=ErrorTier.TIER2_PREMISE_VIOLATION,
-                        message=f"Triangle {tri1} not defined",
-                        details=f"Known polygons: {self.polygons}"
-                    ))
-
-                if self.normalize_triangle(tri2) not in self.polygons:
-                    return return_error(GeometricError(
-                        tier=ErrorTier.TIER2_PREMISE_VIOLATION,
-                        message=f"Triangle {tri2} not defined",
-                        details=f"Known polygons: {self.polygons}"
-                    ))
-
-                # Check for polygon definitions in premise
-                polygon_matches = re.findall(r'Polygon\((\w+)\)', premise)
-                if len(polygon_matches) < 2:
-                    return return_error(GeometricError(
-                        tier=ErrorTier.TIER2_PREMISE_VIOLATION,
-                        message="Missing polygon definitions in premise",
-                        details="mirror_congruent_triangle_judgment_sss requires both triangles to be defined"
-                    ))
-
-                if tri1 not in polygon_matches or tri2 not in polygon_matches:
-                    return return_error(GeometricError(
-                        tier=ErrorTier.TIER2_PREMISE_VIOLATION,
-                        message=f"Triangle mismatch: expected {tri1} and {tri2} in premise",
-                        details=f"Found triangles in premise: {polygon_matches}"
-                    ))
-
-                # Check for the three side equalities
-                # First side: AB = FD
-                side1_pattern = r'Equal\(LengthOfLine\(' + re.escape(
-                    tri1[0] + tri1[1]) + r'\),LengthOfLine\(' + re.escape(tri2[2] + tri2[0]) + r'\)\)'
-                side1_match = re.search(side1_pattern, premise)
-                # Also check reverse order
-                if not side1_match:
-                    side1_pattern_rev = r'Equal\(LengthOfLine\(' + re.escape(
-                        tri2[2] + tri2[0]) + r'\),LengthOfLine\(' + re.escape(tri1[0] + tri1[1]) + r'\)\)'
-                    side1_match = re.search(side1_pattern_rev, premise)
-
-                # Second side: BC = EF
-                side2_pattern = r'Equal\(LengthOfLine\(' + re.escape(
-                    tri1[1] + tri1[2]) + r'\),LengthOfLine\(' + re.escape(tri2[1] + tri2[2]) + r'\)\)'
-                side2_match = re.search(side2_pattern, premise)
-                # Also check reverse order
-                if not side2_match:
-                    side2_pattern_rev = r'Equal\(LengthOfLine\(' + re.escape(
-                        tri2[1] + tri2[2]) + r'\),LengthOfLine\(' + re.escape(tri1[1] + tri1[2]) + r'\)\)'
-                    side2_match = re.search(side2_pattern_rev, premise)
-
-                # Third side: CA = DE
-                side3_pattern = r'Equal\(LengthOfLine\(' + re.escape(
-                    tri1[2] + tri1[0]) + r'\),LengthOfLine\(' + re.escape(tri2[0] + tri2[1]) + r'\)\)'
-                side3_match = re.search(side3_pattern, premise)
-                # Also check reverse order
-                if not side3_match:
-                    side3_pattern_rev = r'Equal\(LengthOfLine\(' + re.escape(
-                        tri2[0] + tri2[1]) + r'\),LengthOfLine\(' + re.escape(tri1[2] + tri1[0]) + r'\)\)'
-                    side3_match = re.search(side3_pattern_rev, premise)
-
-                if not side1_match:
-                    return return_error(GeometricError(
-                        tier=ErrorTier.TIER2_PREMISE_VIOLATION,
-                        message=f"Missing first side equality in premise",
-                        details=f"Expected Equal(LengthOfLine({tri1[0] + tri1[1]}),LengthOfLine({tri2[2] + tri2[0]}))"
-                    ))
-
-                if not side2_match:
-                    return return_error(GeometricError(
-                        tier=ErrorTier.TIER2_PREMISE_VIOLATION,
-                        message=f"Missing second side equality in premise",
-                        details=f"Expected Equal(LengthOfLine({tri1[1] + tri1[2]}),LengthOfLine({tri2[1] + tri2[2]}))"
-                    ))
-
-                if not side3_match:
-                    return return_error(GeometricError(
-                        tier=ErrorTier.TIER2_PREMISE_VIOLATION,
-                        message=f"Missing third side equality in premise",
-                        details=f"Expected Equal(LengthOfLine({tri1[2] + tri1[0]}),LengthOfLine({tri2[0] + tri2[1]}))"
-                    ))
-
-                return True, None
-            else:
-                return return_error(GeometricError(
-                    tier=ErrorTier.TIER1_THEOREM_CALL_SYNTAX_VIOLATION,
-                    message=f"these is no such version for the theorem mirror_congruent_triangle_judgment_sss",
-                    details="Only version 1 is supported"
-                ))
         elif theorem_name == "diameter_of_circle_judgment_right_angle":
             version = args[0]
             if version == "1":
@@ -10808,7 +10759,103 @@ class GeometricTheorem:
             print("Collinear points:", self.collinear_facts)
             print("Parallel pairs:", self.parallel_pairs)
             print("Points:", list(self.points.keys()))
+            # In the parse_and_verify_proof method where you process GOAL_CDL:
+            if GOAL_CDL in sections:
+                goal_line = sections[GOAL_CDL][0]
+                # Store the raw goal line for later reference
+                self.goal_line = goal_line
 
+                # Extract goal token and type based on various goal line patterns
+                # 1. Length goal
+                length_match = re.search(r'Value\(LengthOfLine\((\w+)\)\)', goal_line)
+                if length_match:
+                    self.goal_token = length_match.group(1)
+                    self.goal_type = "length"
+                    print(f"Detected goal: length of line {self.goal_token}")
+
+                # 2. Angle goal
+                angle_match = re.search(r'Value\(MeasureOfAngle\((\w+)\)\)', goal_line)
+                if angle_match:
+                    self.goal_token = angle_match.group(1)
+                    self.goal_type = "angle"
+                    print(f"Detected goal: measure of angle {self.goal_token}")
+
+                # 3. Arc measure goal
+                arc_measure_match = re.search(r'Value\(MeasureOfArc\((\w+)\)\)', goal_line)
+                if arc_measure_match:
+                    self.goal_token = arc_measure_match.group(1)
+                    self.goal_type = "arc_measure"
+                    print(f"Detected goal: measure of arc {self.goal_token}")
+
+                # 4. Arc length goal
+                arc_length_match = re.search(r'Value\(LengthOfArc\((\w+)\)\)', goal_line)
+                if arc_length_match:
+                    self.goal_token = arc_length_match.group(1)
+                    self.goal_type = "arc_length"
+                    print(f"Detected goal: length of arc {self.goal_token}")
+
+                # 5. Radius goal
+                radius_match = re.search(r'Value\(RadiusOfCircle\((\w+)\)\)', goal_line)
+                if radius_match:
+                    self.goal_token = radius_match.group(1)
+                    self.goal_type = "radius"
+                    print(f"Detected goal: radius of circle {self.goal_token}")
+
+                # 6. Cosine goal
+                cosine_match = re.search(r'Value\(Cos\(MeasureOfAngle\((\w+)\)\)\)', goal_line)
+                if cosine_match:
+                    self.goal_token = cosine_match.group(1)
+                    self.goal_type = "cosine"
+                    print(f"Detected goal: cosine of angle {self.goal_token}")
+
+                # 7. Sine goal
+                sine_match = re.search(r'Value\(Sin\(MeasureOfAngle\((\w+)\)\)\)', goal_line)
+                if sine_match:
+                    self.goal_token = sine_match.group(1)
+                    self.goal_type = "sine"
+                    print(f"Detected goal: sine of angle {self.goal_token}")
+
+                # 8. Sum of lengths
+                sum_lengths_match = re.search(r'Value\(Add\(LengthOfLine\((\w+)\),LengthOfLine\((\w+)\)\)\)', goal_line)
+                if sum_lengths_match:
+                    self.goal_token = f"{sum_lengths_match.group(1)}+{sum_lengths_match.group(2)}"
+                    self.goal_type = "sum"
+                    print(f"Detected goal: sum of lines {self.goal_token}")
+
+                # 9. Ratio of lengths
+                length_div_match = re.search(r'Value\(Div\(LengthOfLine\((\w+)\),LengthOfLine\((\w+)\)\)\)', goal_line)
+                if length_div_match:
+                    self.goal_token = f"{length_div_match.group(1)}/{length_div_match.group(2)}"
+                    self.goal_type = "ratio"
+                    print(f"Detected goal: ratio of lines {self.goal_token}")
+
+                # 10. Triangle perimeter
+                perimeter_match = re.search(r'Value\(PerimeterOfTriangle\((\w+)\)\)', goal_line)
+                if perimeter_match:
+                    self.goal_token = perimeter_match.group(1)
+                    self.goal_type = "perimeter"
+                    print(f"Detected goal: perimeter of triangle {self.goal_token}")
+
+                # 11. Quadrilateral area
+                quad_area_match = re.search(r'Value\(AreaOfQuadrilateral\((\w+)\)\)', goal_line)
+                if quad_area_match:
+                    self.goal_token = quad_area_match.group(1)
+                    self.goal_type = "quad_area"
+                    print(f"Detected goal: area of quadrilateral {self.goal_token}")
+
+                # 12. Triangle area
+                triangle_area_match = re.search(r'Value\(AreaOfTriangle\((\w+)\)\)', goal_line)
+                if triangle_area_match:
+                    self.goal_token = triangle_area_match.group(1)
+                    self.goal_type = "triangle_area"
+                    print(f"Detected goal: area of triangle {self.goal_token}")
+
+                # 13. Generic variable goal
+                general_match = re.search(r'Value\((.+)\)', goal_line)
+                if general_match and not hasattr(self, 'goal_token'):
+                    self.goal_token = general_match.group(1)
+                    self.goal_type = "general"
+                    print(f"Detected general goal: {self.goal_token}")
             # Process theorem sequence
             # Inside parse_and_verify_proof method
             # Process theorem sequence before verifying goal
@@ -12408,9 +12455,7 @@ class GeometricTheorem:
             "circle_property_angle_of_osculation",
             "bisector_of_angle_judgment_angle_equal",
             "bisector_of_angle_property_line_ratio",
-            "diameter_of_circle_judgment_right_angle",
-            "mirror_similar_triangle_property_ratio",
-            "mirror_congruent_triangle_judgment_sss"
+            "diameter_of_circle_judgment_right_angle"
         ]
 
         if theorem_name not in valid_theorems:
@@ -12548,79 +12593,7 @@ class GeometricTheorem:
                     message=f"Unsupported version {version} for circle_property_angle_of_osculation",
                     details="Supported versions are 1 and 2"
                 )
-        elif theorem_name == "mirror_similar_triangle_property_ratio":
-            version = args[0]
-            if version == "1":
-                # First conclusion - symmetry of mirror similarity
-                symmetry_match = re.search(r'MirrorSimilarBetweenTriangle\((\w+),(\w+)\)', conclusions[0])
-                if not symmetry_match:
-                    return GeometricError(
-                        tier=ErrorTier.TIER1_THEOREM_CALL_SYNTAX_VIOLATION,
-                        message="First conclusion format error for mirror_similar_triangle_property_ratio",
-                        details=f"Expected MirrorSimilarBetweenTriangle(...) pattern but got {conclusions[0]}"
-                    )
 
-                tri2, tri1 = symmetry_match.groups()  # Note: reversed order from premise
-
-                # Add the symmetric relationship (already should be handled by canonicalization)
-                canonical_pair = self.canonicalize_mirror_triangle_pair(tri1, tri2)
-                if canonical_pair not in self.mirror_similar_triangles:
-                    self.mirror_similar_triangles.append(canonical_pair)
-                    print(f"Added mirror similar triangles: {tri1} and {tri2} (canonical: {canonical_pair})")
-
-                # Second conclusion - product of ratios equals 1
-                ratio_match = re.search(
-                    r'Equal\(Mul\(RatioOfMirrorSimilarTriangle\((\w+),(\w+)\),RatioOfMirrorSimilarTriangle\((\w+),(\w+)\)\),1\)',
-                    conclusions[1]
-                )
-
-                if not ratio_match:
-                    return GeometricError(
-                        tier=ErrorTier.TIER1_THEOREM_CALL_SYNTAX_VIOLATION,
-                        message="Second conclusion format error for mirror_similar_triangle_property_ratio",
-                        details=f"Expected ratio product pattern but got {conclusions[1]}"
-                    )
-
-                direct_tri1, direct_tri2, inverse_tri1, inverse_tri2 = ratio_match.groups()
-
-                # Verify that the triangles match the expected pattern (ABC,DEF and DEF,ABC)
-                if not (direct_tri1 == tri1 and direct_tri2 == tri2 and
-                        inverse_tri1 == tri2 and inverse_tri2 == tri1):
-                    return GeometricError(
-                        tier=ErrorTier.TIER1_THEOREM_CALL_SYNTAX_VIOLATION,
-                        message="Inconsistent triangle names in conclusion",
-                        details=f"Expected {tri1},{tri2} and {tri2},{tri1} but got {direct_tri1},{direct_tri2} and {inverse_tri1},{inverse_tri2}"
-                    )
-
-                # Create or get the ratio variables
-                direct_pair = self.canonicalize_mirror_triangle_pair(direct_tri1, direct_tri2)
-                inverse_pair = self.canonicalize_mirror_triangle_pair(inverse_tri1, inverse_tri2)
-
-                if direct_pair not in self.mirror_triangle_ratios:
-                    direct_ratio_name = f"ratio_mirror_{direct_pair[0]}_{direct_pair[1]}"
-                    self.mirror_triangle_ratios[direct_pair] = Real(direct_ratio_name)
-                    self.solver.add(self.mirror_triangle_ratios[direct_pair] > 0)  # Ratio should be positive
-
-                if inverse_pair not in self.mirror_triangle_ratios:
-                    inverse_ratio_name = f"ratio_mirror_{inverse_pair[0]}_{inverse_pair[1]}"
-                    self.mirror_triangle_ratios[inverse_pair] = Real(inverse_ratio_name)
-                    self.solver.add(self.mirror_triangle_ratios[inverse_pair] > 0)  # Ratio should be positive
-
-                direct_ratio = self.mirror_triangle_ratios[direct_pair]
-                inverse_ratio = self.mirror_triangle_ratios[inverse_pair]
-
-                # Add the constraint that the product of ratios equals 1
-                self.solver.add(direct_ratio * inverse_ratio == 1)
-
-                print(
-                    f"Added mirror similar triangle ratio constraint: RatioOfMirrorSimilarTriangle({tri1},{tri2}) * RatioOfMirrorSimilarTriangle({tri2},{tri1}) = 1")
-                return None
-            else:
-                return GeometricError(
-                    tier=ErrorTier.TIER1_THEOREM_CALL_SYNTAX_VIOLATION,
-                    message=f"Unsupported version {version} for mirror_similar_triangle_property_ratio",
-                    details="Only version 1 is supported"
-                )
         elif theorem_name == "bisector_of_angle_property_line_ratio":
             version = args[0]
             if version == "1":
@@ -12656,28 +12629,7 @@ class GeometricTheorem:
                     message=f"Unsupported version {version} for bisector_of_angle_property_line_ratio",
                     details="Only version 1 is supported"
                 )
-        elif theorem_name == "mirror_congruent_triangle_judgment_sss":
-            version = args[0]
-            if version == "1":
-                match = re.search(r'MirrorCongruentBetweenTriangle\((\w+),(\w+)\)', conclusions[0])
-                if match:
-                    tri1, tri2 = match.groups()
-                    canonical_pair = self.canonicalize_mirror_congruent_triangle_pair(tri1, tri2)
-                    if canonical_pair not in self.mirror_congruent_triangles:
-                        self.mirror_congruent_triangles.append(canonical_pair)
-                    print(f"Added mirror congruent triangles via SSS: {tri1} and {tri2} (canonical: {canonical_pair})")
-                else:
-                    return GeometricError(
-                        tier=ErrorTier.TIER1_THEOREM_CALL_SYNTAX_VIOLATION,
-                        message="Conclusion format error for mirror_congruent_triangle_judgment_sss",
-                        details=f"Expected MirrorCongruentBetweenTriangle(...) but got {conclusions[0]}"
-                    )
-            else:
-                return GeometricError(
-                    tier=ErrorTier.TIER1_THEOREM_CALL_SYNTAX_VIOLATION,
-                    message=f"Unsupported version {version} for mirror_congruent_triangle_judgment_sss",
-                    details="Only version 1 is supported"
-                )
+
 
         elif theorem_name == "diameter_of_circle_judgment_right_angle":
             version = args[0]
@@ -17735,11 +17687,13 @@ def verify_geometric_proof(filename: str, print_output=True) -> tuple:
             print(f"Error: {str(e)}")
             return False, f"Error: {str(e)}", None
 
+
+# Modified main section
 if __name__ == "__main__":
     result, feedback, error_tier = verify_geometric_proof(
-        "/Users/osultan/PycharmProjects/FormalGeo/results/level_5/variant_analogy_based_model_o1_problem_6660_run_0.txt",print_output=False)
+        "/Users/eitanstern/Desktop/orens_code/geometric_verifer/questions/the new format for questions after jan_17/new_45_questions/question_437/question437_gt",print_output=False)
 
-    if feedback:
+    if not result:
         print(feedback)
     else:
         print("Verification succeeded")

@@ -155,12 +155,15 @@ ma_cba-36
 ma_cde-57
 ma_dbe-42
 ma_ecd-28
+
 GOAL_SYMBOL:
 ma_dec
+
 ANSWER:
 95
+
 THEOREM_SEQUENCE:
-1; triangle_property_angle_sum(1,DEC); Polygon(DEC); ["Equal(Add(MeasureOfAngle(DEC),MeasureOfAngle(ECD),MeasureOfAngle(CDE)),180)"]
+1; triangle_property_angle_sum(1,CDE); Polygon(CDE); ["Equal(Add(MeasureOfAngle(CDE),MeasureOfAngle(DEC),MeasureOfAngle(ECD)),180)"]
 ***MODEL_RESPONSE_END***
 RETRIES_MESSAGES:
 #RETRIES:

@@ -739,50 +739,71 @@ Outputs for Problem B:
 
 ***MODEL_RESPONSE_BEGIN***
 EQUATIONS:
-ma_abd - (3*x - 60)  
-ma_dbc - y  
-ma_ecf - (2*x + 15)  
+(3*x - 60) + y = (2*x + 15)
 
 GOAL_SYMBOL:
-ma_ecf
+MeasureOfAngle(ECF)
 
 ANSWER:
 105
 
 THEOREM_SEQUENCE:
-1; flat_angle(1,BDC); Collinear(BDC); ["Equal(MeasureOfAngle(BDC),180)"]  
-2; parallel_property_alternate_interior_angle(2,BD,CE); ParallelBetweenLine(BD,CE)&Line(DC); ["Equal(MeasureOfAngle(CDB),MeasureOfAngle(DCE))"]
+1; angle_addition(1,ABD,DBC); Angle(ABD)&Angle(DBC)&Angle(ABC); ["Equal(MeasureOfAngle(ABC),Add(MeasureOfAngle(ABD),MeasureOfAngle(DBC)))"]
+2; parallel_property_alternate_interior_angle(2,BD,CE); ParallelBetweenLine(BD,CE)&Line(BC); ["Equal(MeasureOfAngle(DBC),MeasureOfAngle(ECF))"]
 ***MODEL_RESPONSE_END***
 RETRIES_MESSAGES:
 #run: 2; #retry: 1; message: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
-Failure: Theorem <parallel_property_corresponding_angle> para length error. Expected 5 but got ('B', 'D', 'C', 'E').
+Failure: Theorem <parallel_property_corresponding_angle> variation id is not supplied. Expected dict_keys(['1', '2']) but got None.
+Your call: parallel_property_corresponding_angle(B,D,C,E,A)
+Please rewrite your response by adding the variation id as the first argument. For example: For variation 1: parallel_property_corresponding_angle(1,B,D,C,E,A)
+For variation 2: parallel_property_corresponding_angle(2,B,D,C,E,A)
+
 Model Answer:
 RETRY_ANSWER:
-105
+165
 RETRY_THEOREM_SEQUENCE:
-1; parallel_property_corresponding_angle(BD,CE); ParallelBetweenLine(BD,CE)&(BC is the transversal); ["Equal(MeasureOfAngle(DBC),MeasureOfAngle(ECF))"]  
-2; (Linear Pair from Diagram: ABD+DBC); Angle(ABD)&Angle(DBC) on a straight line at B; ["Equal(Add(MeasureOfAngle(ABD),MeasureOfAngle(DBC)),180)"]
+1; parallel_property_corresponding_angle(BD,CE,A); ParallelBetweenLine(BD,CE)&Collinear(ABD); ["Equal(MeasureOfAngle(ABD),MeasureOfAngle(ECF))"]
 #run: 2; #retry: 2; message: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
-Failure: Theorem <linear_pair_custom> not defined in current GDL. Please rewrite the proof sequence, you are allowed to use only theorems from the GDL.
+Theorem: parallel_property_corresponding_angle(1,BD,CE,A)
+You output the following premises: ParallelBetweenLine(BD,CE)&Collinear(ABD)
+But the correct premises: ParallelBetweenLine(BD,CE)&Collinear(ABC)
+You output the following conclusions: Equal(MeasureOfAngle(ABD),MeasureOfAngle(ECF))
+But the correct conclusions: Equal(MeasureOfAngle(ABD),MeasureOfAngle(BCE))
+
 Model Answer:
 RETRY_ANSWER:
-105
+165
 RETRY_THEOREM_SEQUENCE:
-1; parallel_property_corresponding_angle(2,BD,CE,F); ParallelBetweenLine(BD,CE)&Collinear(BCF); ["Equal(MeasureOfAngle(DBC),MeasureOfAngle(ECF))"]  
-2; linear_pair_custom(ABD,DBC); Angle(ABD)&Angle(DBC); ["Equal(Add(MeasureOfAngle(ABD),MeasureOfAngle(DBC)),180)"]
-#run: 2; #retry: 3; message: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
-Failure: Theorem <flat_angle> variation id is not supplied. Expected dict_keys(['1']) but got None.
-Your call: flat_angle(A,B,C)
-Please rewrite your response by adding the variation id as the first argument. For example: For variation 1: flat_angle(1,A,B,C)
+1; parallel_property_corresponding_angle(1,BD,CE,A); ParallelBetweenLine(BD,CE)&Collinear(ABD); ["Equal(MeasureOfAngle(ABD),MeasureOfAngle(ECF))"]
+#run: 2; #retry: 3; message: ERROR_TIER: TIER3_GOAL_NOT_REACHED
+verification failed.
+
+- Goal: value determination
+- Model answer: 165
+- Verifier expected answer: 105
+- Error: THE MODEL DETERMINED THE ANSWER TO BE 165 BUT IN THE GROUND TRUTH SOLUTION TO THE PROBLEM THE ANSWER IS 105.
+  Please review your theorem sequence and ensure it correctly establishes the expected answer.
+
+Please fix the proof.
+Model Answer:
+RETRY_ANSWER:
+165
+RETRY_THEOREM_SEQUENCE:
+1; parallel_property_corresponding_angle(1,BD,CE,A); ParallelBetweenLine(BD,CE)&Collinear(ABC); ["Equal(MeasureOfAngle(ABD),MeasureOfAngle(BCE))"]
+#run: 2; #retry: 4; message: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
+Theorem: parallel_property_corresponding_angle(1,BD,CE,B)
+You output the following premises: ParallelBetweenLine(BD,CE)&Collinear(ABC)
+But the correct premises: ParallelBetweenLine(BD,CE)&Collinear(BBC)
+You output the following conclusions: Equal(MeasureOfAngle(ABC),MeasureOfAngle(ECF))
+But the correct conclusions: Equal(MeasureOfAngle(BBD),MeasureOfAngle(BCE))
 
 Model Answer:
 RETRY_ANSWER:
 105
 RETRY_THEOREM_SEQUENCE:
-1; flat_angle(ABC); Collinear(ABC); ["Equal(MeasureOfAngle(ABC),180)"]  
-2; angle_addition(ABD,DBC); Angle(ABD)&Angle(DBC)&Angle(ABC); ["Equal(MeasureOfAngle(ABC),Add(MeasureOfAngle(ABD),MeasureOfAngle(DBC)))"]  
-3; parallel_property_alternate_interior_angle(BD,CE)(2); ParallelBetweenLine(BD,CE)&Line(BC); ["Equal(MeasureOfAngle(DBC),MeasureOfAngle(ECF))"]
-#run: 2; #retry: 4; message: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
+1; angle_addition(1,ABD,DBC); Angle(ABD)&Angle(DBC)&Angle(ABC); ["Equal(MeasureOfAngle(ABC),Add(MeasureOfAngle(ABD),MeasureOfAngle(DBC)))"]
+2; parallel_property_corresponding_angle(1,BD,CE,B); ParallelBetweenLine(BD,CE)&Collinear(ABC); ["Equal(MeasureOfAngle(ABC),MeasureOfAngle(ECF))"]
+#run: 2; #retry: 5; message: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
 Theorem: parallel_property_alternate_interior_angle(2,BD,CE)
 You output the following premises: ParallelBetweenLine(BD,CE)&Line(BC)
 But the correct premises: ParallelBetweenLine(BD,CE)&Line(DC)
@@ -793,30 +814,8 @@ Model Answer:
 RETRY_ANSWER:
 105
 RETRY_THEOREM_SEQUENCE:
-1; flat_angle(1,ABD); Collinear(ABD); ["Equal(MeasureOfAngle(ABD),180)"]  
+1; angle_addition(1,ABD,DBC); Angle(ABD)&Angle(DBC)&Angle(ABC); ["Equal(MeasureOfAngle(ABC),Add(MeasureOfAngle(ABD),MeasureOfAngle(DBC)))"]
 2; parallel_property_alternate_interior_angle(2,BD,CE); ParallelBetweenLine(BD,CE)&Line(BC); ["Equal(MeasureOfAngle(DBC),MeasureOfAngle(ECF))"]
-#run: 2; #retry: 5; message: ERROR_TIER: TIER2_PREMISE_VIOLATION
-verification failed.
-
-- Error: You tried to use theorem: flat_angle(1,BDC);Collinear(BDC);['Equal(MeasureOfAngle(BDC),180)']
-Missing premise: Points BDC are not proven collinear
-Details: Required collinearity for flat_angle theorem is not established
-- Available premises:
-  Parallel Lines: BD ∥ CE
-  Collinear Points: ABC, ABF, ABL, ACF, ACL, AFL, BAI, BCF, BCL, BDP, BDS, BFL, BSP, CAI, CBI, CEM, CET, CFL, CTM, DBO, DSP, ECN, ETM, FAI, FBI, FCI, IABCFL, IAL, IBL, ICL, IFL, MCN, MEN, MTECN, MTN, NCT, NET, OBDSP, OBP, OBS, ODP, ODS, OSP
-  Polygons: BCMP, BCNLMP, BIO, BIONCLMP, BIONLCMP, BIONLMP, BIONMP, BLMP, BOI, BONC, BONL, BONLMC, CBON, CBONLM, CION, CIONLM, CLM, CLMPBION, CLMPON, CLN, CML, CMPB, CMPBIONL, CMPONL, CNL, CNLMPB, IONC, IONCLMPB, IONL, IONLCMPB, IONLMC, IONLMPB, IONMPB, LBON, LCMPBION, LCMPON, LION, LMCBON, LMCION, LMN, LMPB, LMPBCN, LMPBION, LMPBIONC, LMPON, LMPONC, LNM, MCBONL, MCIONL, MPBC, MPBCNL, MPBION, MPBIONCL, MPBIONL, MPBIONLC, MPBL, MPON, MPONCL, MPONL, MPONLC, NCBO, NCIO, NCLMPBIO, NCLMPO, NLBO, NLCMPBIO, NLCMPO, NLIO, NLMCBO, NLMCIO, NLMPBC, NLMPBIO, NLMPO, NMPBIO, NMPO, ONCB, ONCI, ONCLMP, ONCLMPBI, ONLB, ONLCMP, ONLCMPBI, ONLI, ONLMCB, ONLMCI, ONLMP, ONLMPBI, ONMP, ONMPBI, PBCM, PBCNLM, PBIONCLM, PBIONLCM, PBIONLM, PBIONM, PBLM, PONCLM, PONLCM, PONLM, PONM
-- Theorems related to the goal:
-  None found that constrain this goal
-- Solver constraints directly related to this goal:
-  None found
-
-Please fix the proof.
-Model Answer:
-RETRY_ANSWER:
-105
-RETRY_THEOREM_SEQUENCE:
-1; flat_angle(1,BDC); Collinear(BDC); ["Equal(MeasureOfAngle(BDC),180)"]  
-2; parallel_property_alternate_interior_angle(2,BD,CE); ParallelBetweenLine(BD,CE)&Line(DC); ["Equal(MeasureOfAngle(CDB),MeasureOfAngle(DCE))"]
 #RETRIES:
 5
 #RUNS:

@@ -278,906 +278,18 @@ PerpendicularBetweenLine
 predicates to add:
 Equation
 Verifier result: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
-Failure: Theorem <right_triangle_judgment_angle> variation id is not supplied. Expected dict_keys(['1']) but got None.
-Your call: right_triangle_judgment_angle(A,O,B)
-Please rewrite your response by adding the variation id as the first argument. For example: For variation 1: right_triangle_judgment_angle(1,A,O,B)
+Failure: Theorem <line_addition> variation id is not supplied. Expected dict_keys(['1']) but got None.
+Your call: line_addition(O,B,B,M)
+Please rewrite your response by adding the variation id as the first argument. For example: For variation 1: line_addition(1,O,B,B,M)
 
 Model Answer:
 RETRY_ANSWER:
 3/8
 RETRY_THEOREM_SEQUENCE:
-1; right_triangle_judgment_angle(AOB); Polygon(AOB)&Equal(MeasureOfAngle(AOB),90); ["RightTriangle(AOB)"]
-2; line_addition(OB,BM); Collinear(MOB); ["Equal(LengthOfLine(OM),Add(LengthOfLine(OB),LengthOfLine(BM)))"]
+1; line_addition(OB,BM); Collinear(OBM); ["Equal(LengthOfLine(OM),Add(LengthOfLine(OB),LengthOfLine(BM)))"]
+2; right_triangle_judgment_angle(AOB); Polygon(AOB)&Equal(MeasureOfAngle(AOB),90); ["RightTriangle(AOB)"]
 3; right_triangle_judgment_angle(NMB); Polygon(NMB)&Equal(MeasureOfAngle(NMB),90); ["RightTriangle(NMB)"]
-4; similar_triangle_judgment_aa(AOB,NMB); Polygon(AOB)&Polygon(NMB)&Equal(MeasureOfAngle(AOB),MeasureOfAngle(NMB))&Equal(MeasureOfAngle(ABO),MeasureOfAngle(NBM)); ["SimilarBetweenTriangle(AOB,NMB)"]
-5; similar_triangle_property_line_ratio(AOB,NMB); SimilarBetweenTriangle(AOB,NMB); ["Equal(LengthOfLine(OB),Mul(LengthOfLine(MB),RatioOfSimilarTriangle(AOB,NMB)))"]
-6; similar_triangle_property_line_ratio(AOB,NMB); SimilarBetweenTriangle(AOB,NMB); ["Equal(LengthOfLine(AO),Mul(LengthOfLine(NM),RatioOfSimilarTriangle(AOB,NMB)))"]
 Retry attempt: 1
-Content written to results/level_4/variant_analogy_based_model_o1_problem_4062_run_0_to_verify.txt
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Polygon
-has Polygon
-has Polygon
-has Polygon
-has Polygon
-has Polygon
-has Polygon
-has Polygon
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Polygon
-has Polygon
-has Polygon
-has Polygon
-has Polygon
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Polygon
-has Polygon
-has Polygon
-has Polygon
-has Polygon
-has Polygon
-has Polygon
-has Polygon
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Equation
-predicates to add:
-Equation
-predicates to add:
-Equation
-predicates to add:
-PerpendicularBetweenLine
-predicates to add:
-Equation
-predicates to add:
-PerpendicularBetweenLine
-predicates to add:
-Equation
-Verifier result: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
-Theorem: line_addition(1,OB,BM)
-You output the following premises: Collinear(MOB)
-But the correct premises: Collinear(OBM)
-
-Model Answer:
-RETRY_ANSWER:
-3/8
-RETRY_THEOREM_SEQUENCE:
-1; right_triangle_judgment_angle(1,AOB); Polygon(AOB)&Equal(MeasureOfAngle(AOB),90); ["RightTriangle(AOB)"]
-2; line_addition(1,OB,BM); Collinear(MOB); ["Equal(LengthOfLine(OM),Add(LengthOfLine(OB),LengthOfLine(BM)))"]
-3; right_triangle_judgment_angle(1,NMB); Polygon(NMB)&Equal(MeasureOfAngle(NMB),90); ["RightTriangle(NMB)"]
-4; similar_triangle_judgment_aa(1,AOB,NMB); Polygon(AOB)&Polygon(NMB)&Equal(MeasureOfAngle(AOB),MeasureOfAngle(NMB))&Equal(MeasureOfAngle(ABO),MeasureOfAngle(NBM)); ["SimilarBetweenTriangle(AOB,NMB)"]
-5; similar_triangle_property_line_ratio(1,AOB,NMB); SimilarBetweenTriangle(AOB,NMB); ["Equal(LengthOfLine(OB),Mul(LengthOfLine(MB),RatioOfSimilarTriangle(AOB,NMB)))"]
-6; similar_triangle_property_line_ratio(1,AOB,NMB); SimilarBetweenTriangle(AOB,NMB); ["Equal(LengthOfLine(AO),Mul(LengthOfLine(NM),RatioOfSimilarTriangle(AOB,NMB)))"]
-Retry attempt: 2
-Content written to results/level_4/variant_analogy_based_model_o1_problem_4062_run_0_to_verify.txt
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Polygon
-has Polygon
-has Polygon
-has Polygon
-has Polygon
-has Polygon
-has Polygon
-has Polygon
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Polygon
-has Polygon
-has Polygon
-has Polygon
-has Polygon
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Polygon
-has Polygon
-has Polygon
-has Polygon
-has Polygon
-has Polygon
-has Polygon
-has Polygon
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Equation
-predicates to add:
-Equation
-predicates to add:
-Equation
-predicates to add:
-PerpendicularBetweenLine
-predicates to add:
-Equation
-predicates to add:
-PerpendicularBetweenLine
-predicates to add:
-Equation
-Verifier result: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
-Theorem: similar_triangle_judgment_aa(1,AOB,NMB)
-You output the following premises: Polygon(AOB)&Polygon(NMB)&Equal(MeasureOfAngle(AOB),MeasureOfAngle(NMB))&Equal(MeasureOfAngle(ABO),MeasureOfAngle(NBM))
-But the correct premises: Polygon(AOB)&Polygon(NMB)&Equal(MeasureOfAngle(AOB),MeasureOfAngle(NMB))&Equal(MeasureOfAngle(OBA),MeasureOfAngle(MBN))
-
-Model Answer:
-RETRY_ANSWER:
-3/8
-RETRY_THEOREM_SEQUENCE:
-1; right_triangle_judgment_angle(1,AOB); Polygon(AOB)&Equal(MeasureOfAngle(AOB),90); ["RightTriangle(AOB)"]
-2; line_addition(1,OB,BM); Collinear(OBM); ["Equal(LengthOfLine(OM),Add(LengthOfLine(OB),LengthOfLine(BM)))"]
-3; right_triangle_judgment_angle(1,NMB); Polygon(NMB)&Equal(MeasureOfAngle(NMB),90); ["RightTriangle(NMB)"]
-4; similar_triangle_judgment_aa(1,AOB,NMB); Polygon(AOB)&Polygon(NMB)&Equal(MeasureOfAngle(AOB),MeasureOfAngle(NMB))&Equal(MeasureOfAngle(ABO),MeasureOfAngle(NBM)); ["SimilarBetweenTriangle(AOB,NMB)"]
-5; similar_triangle_property_line_ratio(1,AOB,NMB); SimilarBetweenTriangle(AOB,NMB); ["Equal(LengthOfLine(OB),Mul(LengthOfLine(MB),RatioOfSimilarTriangle(AOB,NMB)))"]
-6; similar_triangle_property_line_ratio(1,AOB,NMB); SimilarBetweenTriangle(AOB,NMB); ["Equal(LengthOfLine(AO),Mul(LengthOfLine(NM),RatioOfSimilarTriangle(AOB,NMB)))"]
-Retry attempt: 3
-Content written to results/level_4/variant_analogy_based_model_o1_problem_4062_run_0_to_verify.txt
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Polygon
-has Polygon
-has Polygon
-has Polygon
-has Polygon
-has Polygon
-has Polygon
-has Polygon
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Polygon
-has Polygon
-has Polygon
-has Polygon
-has Polygon
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Polygon
-has Polygon
-has Polygon
-has Polygon
-has Polygon
-has Polygon
-has Polygon
-has Polygon
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Equation
-predicates to add:
-Equation
-predicates to add:
-Equation
-predicates to add:
-PerpendicularBetweenLine
-predicates to add:
-Equation
-predicates to add:
-PerpendicularBetweenLine
-predicates to add:
-Equation
-Verifier result: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
-Theorem: similar_triangle_property_line_ratio(1,AOB,NMB)
-You output the following conclusions: Equal(LengthOfLine(AO),Mul(LengthOfLine(NM),RatioOfSimilarTriangle(AOB,NMB)))
-But the correct conclusions: Equal(LengthOfLine(OB),Mul(LengthOfLine(MB),RatioOfSimilarTriangle(AOB,NMB)))
-
-Model Answer:
-RETRY_ANSWER:
-3/8
-RETRY_THEOREM_SEQUENCE:
-1; right_triangle_judgment_angle(1,AOB); Polygon(AOB)&Equal(MeasureOfAngle(AOB),90); ["RightTriangle(AOB)"]
-2; line_addition(1,OB,BM); Collinear(OBM); ["Equal(LengthOfLine(OM),Add(LengthOfLine(OB),LengthOfLine(BM)))"]
-3; right_triangle_judgment_angle(1,NMB); Polygon(NMB)&Equal(MeasureOfAngle(NMB),90); ["RightTriangle(NMB)"]
-4; similar_triangle_judgment_aa(1,AOB,NMB); Polygon(AOB)&Polygon(NMB)&Equal(MeasureOfAngle(AOB),MeasureOfAngle(NMB))&Equal(MeasureOfAngle(OBA),MeasureOfAngle(MBN)); ["SimilarBetweenTriangle(AOB,NMB)"]
-5; similar_triangle_property_line_ratio(1,AOB,NMB); SimilarBetweenTriangle(AOB,NMB); ["Equal(LengthOfLine(OB),Mul(LengthOfLine(MB),RatioOfSimilarTriangle(AOB,NMB)))"]
-6; similar_triangle_property_line_ratio(1,AOB,NMB); SimilarBetweenTriangle(AOB,NMB); ["Equal(LengthOfLine(AO),Mul(LengthOfLine(NM),RatioOfSimilarTriangle(AOB,NMB)))"]
-Retry attempt: 4
 Content written to results/level_4/variant_analogy_based_model_o1_problem_4062_run_0_to_verify.txt
 predicates to add:
 Line
@@ -1466,7 +578,6 @@ Details: Known collinear facts: [['B', 'A', 'N'], ['B', 'O', 'M'], ['B', 'A', 'N
 - Available premises:
   Perpendicular Lines: AO ⊥ BO, BM ⊥ MN
   Collinear Points: BAN, BOM
-  Right Triangles: AOB
   Polygons: ABO, ANMO, AOB, BMN, BNM, MOAN, NMOA, OANM
 - Theorems related to the goal:
   None found that constrain this goal
@@ -1478,11 +589,895 @@ Model Answer:
 RETRY_ANSWER:
 3/8
 RETRY_THEOREM_SEQUENCE:
-1; right_triangle_judgment_angle(1,AOB); Polygon(AOB)&Equal(MeasureOfAngle(AOB),90); ["RightTriangle(AOB)"]
-2; line_addition(1,OB,BM); Collinear(OBM); ["Equal(LengthOfLine(OM),Add(LengthOfLine(OB),LengthOfLine(BM)))"]
+1; line_addition(1,OB,BM); Collinear(OBM); ["Equal(LengthOfLine(OM),Add(LengthOfLine(OB),LengthOfLine(BM)))"]
+2; right_triangle_judgment_angle(1,AOB); Polygon(AOB)&Equal(MeasureOfAngle(AOB),90); ["RightTriangle(AOB)"]
 3; right_triangle_judgment_angle(1,NMB); Polygon(NMB)&Equal(MeasureOfAngle(NMB),90); ["RightTriangle(NMB)"]
-4; similar_triangle_judgment_aa(1,AOB,NMB); Polygon(AOB)&Polygon(NMB)&Equal(MeasureOfAngle(AOB),MeasureOfAngle(NMB))&Equal(MeasureOfAngle(OBA),MeasureOfAngle(MBN)); ["SimilarBetweenTriangle(AOB,NMB)"]
-5; similar_triangle_property_line_ratio(1,AOB,NMB); SimilarBetweenTriangle(AOB,NMB); ["Equal(LengthOfLine(OB),Mul(LengthOfLine(MB),RatioOfSimilarTriangle(AOB,NMB)))"]
-6; similar_triangle_property_line_ratio(1,AOB,NMB); SimilarBetweenTriangle(AOB,NMB); ["Equal(LengthOfLine(OB),Mul(LengthOfLine(MB),RatioOfSimilarTriangle(AOB,NMB)))"]
+Retry attempt: 2
+Content written to results/level_4/variant_analogy_based_model_o1_problem_4062_run_0_to_verify.txt
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Polygon
+has Polygon
+has Polygon
+has Polygon
+has Polygon
+has Polygon
+has Polygon
+has Polygon
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Polygon
+has Polygon
+has Polygon
+has Polygon
+has Polygon
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Polygon
+has Polygon
+has Polygon
+has Polygon
+has Polygon
+has Polygon
+has Polygon
+has Polygon
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Equation
+predicates to add:
+Equation
+predicates to add:
+Equation
+predicates to add:
+PerpendicularBetweenLine
+predicates to add:
+Equation
+predicates to add:
+PerpendicularBetweenLine
+predicates to add:
+Equation
+Verifier result: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
+Theorem: line_addition(1,OB,BM)
+You output the following premises: Collinear(BOM)
+But the correct premises: Collinear(OBM)
+
+Model Answer:
+RETRY_ANSWER:
+3/8
+RETRY_THEOREM_SEQUENCE:
+1; line_addition(1,OB,BM); Collinear(BOM); ["Equal(LengthOfLine(OM),Add(LengthOfLine(OB),LengthOfLine(BM)))"]
+2; right_triangle_judgment_angle(1,AOB); Polygon(AOB)&Equal(MeasureOfAngle(AOB),90); ["RightTriangle(AOB)"]
+3; right_triangle_judgment_angle(1,BMN); Polygon(BMN)&Equal(MeasureOfAngle(BMN),90); ["RightTriangle(BMN)"]
+Retry attempt: 3
+Content written to results/level_4/variant_analogy_based_model_o1_problem_4062_run_0_to_verify.txt
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Polygon
+has Polygon
+has Polygon
+has Polygon
+has Polygon
+has Polygon
+has Polygon
+has Polygon
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Polygon
+has Polygon
+has Polygon
+has Polygon
+has Polygon
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Polygon
+has Polygon
+has Polygon
+has Polygon
+has Polygon
+has Polygon
+has Polygon
+has Polygon
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Equation
+predicates to add:
+Equation
+predicates to add:
+Equation
+predicates to add:
+PerpendicularBetweenLine
+predicates to add:
+Equation
+predicates to add:
+PerpendicularBetweenLine
+predicates to add:
+Equation
+Verifier result: ERROR_TIER: TIER2_PREMISE_VIOLATION
+verification failed.
+
+- Error: You tried to use theorem: line_addition(1,OB,BM);Collinear(OBM);['Equal(LengthOfLine(OM),Add(LengthOfLine(OB),LengthOfLine(BM)))']
+Missing premise: Points OBM not proven collinear
+Details: Known collinear facts: [['B', 'A', 'N'], ['B', 'O', 'M'], ['B', 'A', 'N'], ['B', 'O', 'M']]
+- Available premises:
+  Perpendicular Lines: AO ⊥ BO, BM ⊥ MN
+  Collinear Points: BAN, BOM
+  Polygons: ABO, ANMO, AOB, BMN, BNM, MOAN, NMOA, OANM
+- Theorems related to the goal:
+  None found that constrain this goal
+- Solver constraints directly related to this goal:
+  None found
+
+Please fix the proof.
+Model Answer:
+RETRY_ANSWER:
+3/8
+RETRY_THEOREM_SEQUENCE:
+1; line_addition(1,OB,BM); Collinear(OBM); ["Equal(LengthOfLine(OM),Add(LengthOfLine(OB),LengthOfLine(BM)))"]
+2; right_triangle_judgment_angle(1,AOB); Polygon(AOB)&Equal(MeasureOfAngle(AOB),90); ["RightTriangle(AOB)"]
+3; right_triangle_judgment_angle(1,BMN); Polygon(BMN)&Equal(MeasureOfAngle(BMN),90); ["RightTriangle(BMN)"]
+Retry attempt: 4
+Content written to results/level_4/variant_analogy_based_model_o1_problem_4062_run_0_to_verify.txt
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Polygon
+has Polygon
+has Polygon
+has Polygon
+has Polygon
+has Polygon
+has Polygon
+has Polygon
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Polygon
+has Polygon
+has Polygon
+has Polygon
+has Polygon
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Polygon
+has Polygon
+has Polygon
+has Polygon
+has Polygon
+has Polygon
+has Polygon
+has Polygon
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Equation
+predicates to add:
+Equation
+predicates to add:
+Equation
+predicates to add:
+PerpendicularBetweenLine
+predicates to add:
+Equation
+predicates to add:
+PerpendicularBetweenLine
+predicates to add:
+Equation
+Verifier result: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
+Theorem: line_addition(1,OB,BM)
+You output the following premises: Collinear(BOM)
+But the correct premises: Collinear(OBM)
+
+Model Answer:
+RETRY_ANSWER:
+3/8
+RETRY_THEOREM_SEQUENCE:
+1; line_addition(1,OB,BM); Collinear(BOM); ["Equal(LengthOfLine(OM),Add(LengthOfLine(OB),LengthOfLine(BM)))"]
+2; right_triangle_judgment_angle(1,AOB); Polygon(AOB)&Equal(MeasureOfAngle(AOB),90); ["RightTriangle(AOB)"]
+3; right_triangle_judgment_angle(1,BMN); Polygon(BMN)&Equal(MeasureOfAngle(BMN),90); ["RightTriangle(BMN)"]
 Retry attempt: 5
 Content written to results/level_4/variant_analogy_based_model_o1_problem_4062_run_0.txt

@@ -1,3 +1,126 @@
+[Attempt 1] Error: HTTP code 504 from API (<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js ie6 oldie" lang="en-US"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js ie7 oldie" lang="en-US"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js ie8 oldie" lang="en-US"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en-US"> <!--<![endif]-->
+<head>
+
+
+<title>api.openai.com | 504: Gateway time-out</title>
+<meta charset="UTF-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+<meta name="robots" content="noindex, nofollow" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<link rel="stylesheet" id="cf_styles-css" href="/cdn-cgi/styles/main.css" />
+
+
+</head>
+<body>
+<div id="cf-wrapper">
+    <div id="cf-error-details" class="p-0">
+        <header class="mx-auto pt-10 lg:pt-6 lg:px-8 w-240 lg:w-full mb-8">
+            <h1 class="inline-block sm:block sm:mb-2 font-light text-60 lg:text-4xl text-black-dark leading-tight mr-2">
+              <span class="inline-block">Gateway time-out</span>
+              <span class="code-label">Error code 504</span>
+            </h1>
+            <div>
+               Visit <a href="https://www.cloudflare.com/5xx-error-landing?utm_source=errorcode_504&utm_campaign=api.openai.com" target="_blank" rel="noopener noreferrer">cloudflare.com</a> for more information.
+            </div>
+            <div class="mt-3">2025-05-21 13:22:47 UTC</div>
+        </header>
+        <div class="my-8 bg-gradient-gray">
+            <div class="w-240 lg:w-full mx-auto">
+                <div class="clearfix md:px-8">
+                  
+<div id="cf-browser-status" class=" relative w-1/3 md:w-full py-15 md:p-0 md:py-8 md:text-left md:border-solid md:border-0 md:border-b md:border-gray-400 overflow-hidden float-left md:float-none text-center">
+  <div class="relative mb-10 md:m-0">
+    
+    <span class="cf-icon-browser block md:hidden h-20 bg-center bg-no-repeat"></span>
+    <span class="cf-icon-ok w-12 h-12 absolute left-1/2 md:left-auto md:right-0 md:top-0 -ml-6 -bottom-4"></span>
+    
+  </div>
+  <span class="md:block w-full truncate">You</span>
+  <h3 class="md:inline-block mt-3 md:mt-0 text-2xl text-gray-600 font-light leading-1.3">
+    
+    Browser
+    
+  </h3>
+  <span class="leading-1.3 text-2xl text-green-success">Working</span>
+</div>
+
+<div id="cf-cloudflare-status" class=" relative w-1/3 md:w-full py-15 md:p-0 md:py-8 md:text-left md:border-solid md:border-0 md:border-b md:border-gray-400 overflow-hidden float-left md:float-none text-center">
+  <div class="relative mb-10 md:m-0">
+    <a href="https://www.cloudflare.com/5xx-error-landing?utm_source=errorcode_504&utm_campaign=api.openai.com" target="_blank" rel="noopener noreferrer">
+    <span class="cf-icon-cloud block md:hidden h-20 bg-center bg-no-repeat"></span>
+    <span class="cf-icon-ok w-12 h-12 absolute left-1/2 md:left-auto md:right-0 md:top-0 -ml-6 -bottom-4"></span>
+    </a>
+  </div>
+  <span class="md:block w-full truncate">Frankfurt</span>
+  <h3 class="md:inline-block mt-3 md:mt-0 text-2xl text-gray-600 font-light leading-1.3">
+    <a href="https://www.cloudflare.com/5xx-error-landing?utm_source=errorcode_504&utm_campaign=api.openai.com" target="_blank" rel="noopener noreferrer">
+    Cloudflare
+    </a>
+  </h3>
+  <span class="leading-1.3 text-2xl text-green-success">Working</span>
+</div>
+
+<div id="cf-host-status" class="cf-error-source relative w-1/3 md:w-full py-15 md:p-0 md:py-8 md:text-left md:border-solid md:border-0 md:border-b md:border-gray-400 overflow-hidden float-left md:float-none text-center">
+  <div class="relative mb-10 md:m-0">
+    
+    <span class="cf-icon-server block md:hidden h-20 bg-center bg-no-repeat"></span>
+    <span class="cf-icon-error w-12 h-12 absolute left-1/2 md:left-auto md:right-0 md:top-0 -ml-6 -bottom-4"></span>
+    
+  </div>
+  <span class="md:block w-full truncate">api.openai.com</span>
+  <h3 class="md:inline-block mt-3 md:mt-0 text-2xl text-gray-600 font-light leading-1.3">
+    
+    Host
+    
+  </h3>
+  <span class="leading-1.3 text-2xl text-red-error">Error</span>
+</div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="w-240 lg:w-full mx-auto mb-8 lg:px-8">
+            <div class="clearfix">
+                <div class="w-1/2 md:w-full float-left pr-6 md:pb-10 md:pr-0 leading-relaxed">
+                    <h2 class="text-3xl font-normal leading-1.3 mb-4">What happened?</h2>
+                    <p>The web server reported a gateway time-out error.</p>
+                </div>
+                <div class="w-1/2 md:w-full float-left leading-relaxed">
+                    <h2 class="text-3xl font-normal leading-1.3 mb-4">What can I do?</h2>
+                    <p class="mb-6">Please try again in a few minutes.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="cf-error-footer cf-wrapper w-240 lg:w-full py-10 sm:py-4 sm:px-8 mx-auto text-center sm:text-left border-solid border-0 border-t border-gray-300">
+  <p class="text-13">
+    <span class="cf-footer-item sm:block sm:mb-1">Cloudflare Ray ID: <strong class="font-semibold">94345b206e89dc9c</strong></span>
+    <span class="cf-footer-separator sm:hidden">&bull;</span>
+    <span id="cf-footer-item-ip" class="cf-footer-item hidden sm:block sm:mb-1">
+      Your IP:
+      <button type="button" id="cf-footer-ip-reveal" class="cf-footer-ip-reveal-btn">Click to reveal</button>
+      <span class="hidden" id="cf-footer-ip">46.117.196.71</span>
+      <span class="cf-footer-separator sm:hidden">&bull;</span>
+    </span>
+    <span class="cf-footer-item sm:block sm:mb-1"><span>Performance &amp; security by</span> <a rel="noopener noreferrer" href="https://www.cloudflare.com/5xx-error-landing?utm_source=errorcode_504&utm_campaign=api.openai.com" id="brand_link" target="_blank">Cloudflare</a></span>
+    
+  </p>
+  <script>(function(){function d(){var b=a.getElementById("cf-footer-item-ip"),c=a.getElementById("cf-footer-ip-reveal");b&&"classList"in b&&(b.classList.remove("hidden"),c.addEventListener("click",function(){c.classList.add("hidden");a.getElementById("cf-footer-ip").classList.remove("hidden")}))}var a=document;document.addEventListener&&a.addEventListener("DOMContentLoaded",d)})();</script>
+</div><!-- /.error-footer -->
+
+
+    </div>
+</div>
+</body>
+</html>
+)
+Retrying in 1 seconds...
 Content written to results/level_4/variant_analogy_based_model_o1_problem_2543_run_0_to_verify.txt
 predicates to add:
 Line
@@ -227,20 +350,20 @@ Equation
 predicates to add:
 PerpendicularBetweenLine
 Verifier result: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
-Theorem: adjacent_complementary_angle(1,BDA,ADC)
-You output the following premises: Collinear(CDA)&Angle(BDA)&Angle(ADC)
-But the correct premises: Collinear(BDC)&Angle(BDA)&Angle(ADC)
+Failure: Theorem <right_triangle_judgment_angle> variation id is not supplied. Expected dict_keys(['1']) but got None.
+Your call: right_triangle_judgment_angle(B,C,D)
+Please rewrite your response by adding the variation id as the first argument. For example: For variation 1: right_triangle_judgment_angle(1,B,C,D)
 
 Model Answer:
 RETRY_ANSWER:
-(12 * tan(55)) / sin(47)
+12*sin(55)/(sin(35)*sin(47))
 RETRY_THEOREM_SEQUENCE:
-1; adjacent_complementary_angle(1,BDA,ADC); Collinear(CDA)&Angle(BDA)&Angle(ADC); ["Equal(Add(MeasureOfAngle(BDA),MeasureOfAngle(ADC)),180)"]
-2; triangle_property_angle_sum(1,BDA); Polygon(BDA); ["Equal(Add(MeasureOfAngle(BDA),MeasureOfAngle(DAB),MeasureOfAngle(ABD)),180)"]
-3; sine_theorem(1,BDA); Polygon(BDA); ["Equal(Mul(LengthOfLine(BD),Sin(MeasureOfAngle(BDA))),Mul(LengthOfLine(BA),Sin(MeasureOfAngle(DAB))))"]
-4; adjacent_complementary_angle(1,BDC,ADC); Collinear(CDA)&Angle(BDC)&Angle(ADC); ["Equal(Add(MeasureOfAngle(BDC),MeasureOfAngle(ADC)),180)"]
-5; triangle_property_angle_sum(1,BCD); Polygon(BCD); ["Equal(Add(MeasureOfAngle(BCD),MeasureOfAngle(CBD),MeasureOfAngle(BDC)),180)"]
-6; sine_theorem(1,BCD); Polygon(BCD); ["Equal(Mul(LengthOfLine(BC),Sin(MeasureOfAngle(BCD))),Mul(LengthOfLine(BD),Sin(MeasureOfAngle(BDC))))"]
+1; right_triangle_judgment_angle(BCD); Polygon(BCD)&Equal(MeasureOfAngle(BDC),90); ["RightTriangle(BCD)"]
+2; triangle_property_angle_sum(BCD); Polygon(BCD); ["Equal(Add(MeasureOfAngle(BCD),MeasureOfAngle(BDC),MeasureOfAngle(CDB)),180)"]
+3; right_triangle_judgment_angle(BDA); Polygon(BDA)&Equal(MeasureOfAngle(BDA),90); ["RightTriangle(BDA)"]
+4; triangle_property_angle_sum(BDA); Polygon(BDA); ["Equal(Add(MeasureOfAngle(BDA),MeasureOfAngle(DAB),MeasureOfAngle(DBA)),180)"]
+5; sine_theorem(BCD); Polygon(BCD); ["Equal(Mul(LengthOfLine(BC),Sin(MeasureOfAngle(BCD))),Mul(LengthOfLine(BD),Sin(MeasureOfAngle(CDB))))"]
+6; sine_theorem(BDA); Polygon(BDA); ["Equal(Mul(LengthOfLine(BD),Sin(MeasureOfAngle(BDA))),Mul(LengthOfLine(BA),Sin(MeasureOfAngle(DAB))))"]
 Retry attempt: 1
 Content written to results/level_4/variant_analogy_based_model_o1_problem_2543_run_0_to_verify.txt
 predicates to add:
@@ -471,22 +594,20 @@ Equation
 predicates to add:
 PerpendicularBetweenLine
 Verifier result: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
-Theorem: adjacent_complementary_angle(1,BDC,ADC)
-You output the following premises: Collinear(CDA)&Angle(BDC)&Angle(ADC)
-But the correct premises: Collinear(BDC)&Angle(BDA)&Angle(ADC)
-You output the following conclusions: Equal(Add(MeasureOfAngle(BDC),MeasureOfAngle(ADC)),180)
-But the correct conclusions: Equal(Add(MeasureOfAngle(BDA),MeasureOfAngle(ADC)),180)
+Theorem: right_triangle_judgment_angle(1,BCD)
+You output the following premises: Polygon(BCD)&Equal(MeasureOfAngle(BDC),90)
+But the correct premises: Polygon(BCD)&Equal(MeasureOfAngle(BCD),90)
 
 Model Answer:
 RETRY_ANSWER:
-(12 * tan(55)) / sin(47)
+12*sin(55)/(sin(35)*sin(47))
 RETRY_THEOREM_SEQUENCE:
-1; adjacent_complementary_angle(1,BDA,ADC); Collinear(BDC)&Angle(BDA)&Angle(ADC); ["Equal(Add(MeasureOfAngle(BDA),MeasureOfAngle(ADC)),180)"]
-2; triangle_property_angle_sum(1,BDA); Polygon(BDA); ["Equal(Add(MeasureOfAngle(BDA),MeasureOfAngle(DAB),MeasureOfAngle(ABD)),180)"]
-3; sine_theorem(1,BDA); Polygon(BDA); ["Equal(Mul(LengthOfLine(BD),Sin(MeasureOfAngle(BDA))),Mul(LengthOfLine(BA),Sin(MeasureOfAngle(DAB))))"]
-4; adjacent_complementary_angle(1,BDC,ADC); Collinear(CDA)&Angle(BDC)&Angle(ADC); ["Equal(Add(MeasureOfAngle(BDC),MeasureOfAngle(ADC)),180)"]
-5; triangle_property_angle_sum(1,BCD); Polygon(BCD); ["Equal(Add(MeasureOfAngle(BCD),MeasureOfAngle(CBD),MeasureOfAngle(BDC)),180)"]
-6; sine_theorem(1,BCD); Polygon(BCD); ["Equal(Mul(LengthOfLine(BC),Sin(MeasureOfAngle(BCD))),Mul(LengthOfLine(BD),Sin(MeasureOfAngle(BDC))))"]
+1; right_triangle_judgment_angle(1,BCD); Polygon(BCD)&Equal(MeasureOfAngle(BDC),90); ["RightTriangle(BCD)"]
+2; triangle_property_angle_sum(1,BCD); Polygon(BCD); ["Equal(Add(MeasureOfAngle(BCD),MeasureOfAngle(BDC),MeasureOfAngle(CDB)),180)"]
+3; right_triangle_judgment_angle(1,BDA); Polygon(BDA)&Equal(MeasureOfAngle(BDA),90); ["RightTriangle(BDA)"]
+4; triangle_property_angle_sum(1,BDA); Polygon(BDA); ["Equal(Add(MeasureOfAngle(BDA),MeasureOfAngle(DAB),MeasureOfAngle(DBA)),180)"]
+5; sine_theorem(1,BCD); Polygon(BCD); ["Equal(Mul(LengthOfLine(BC),Sin(MeasureOfAngle(BCD))),Mul(LengthOfLine(BD),Sin(MeasureOfAngle(CDB))))"]
+6; sine_theorem(1,BDA); Polygon(BDA); ["Equal(Mul(LengthOfLine(BD),Sin(MeasureOfAngle(BDA))),Mul(LengthOfLine(BA),Sin(MeasureOfAngle(DAB))))"]
 Retry attempt: 2
 Content written to results/level_4/variant_analogy_based_model_o1_problem_2543_run_0_to_verify.txt
 predicates to add:
@@ -718,18 +839,19 @@ predicates to add:
 PerpendicularBetweenLine
 Verifier result: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
 Theorem: triangle_property_angle_sum(1,BCD)
-You output the following conclusions: Equal(Add(MeasureOfAngle(BCD),MeasureOfAngle(CBD),MeasureOfAngle(BDC)),180)
+You output the following conclusions: Equal(Add(MeasureOfAngle(BCD),MeasureOfAngle(BDC),MeasureOfAngle(CDB)),180)
 But the correct conclusions: Equal(Add(MeasureOfAngle(BCD),MeasureOfAngle(CDB),MeasureOfAngle(DBC)),180)
 
 Model Answer:
 RETRY_ANSWER:
-(12 * tan(55)) / sin(47)
+12*sin(55)/(sin(35)*sin(47))
 RETRY_THEOREM_SEQUENCE:
-1; adjacent_complementary_angle(1,BDA,ADC); Collinear(BDC)&Angle(BDA)&Angle(ADC); ["Equal(Add(MeasureOfAngle(BDA),MeasureOfAngle(ADC)),180)"]
-2; triangle_property_angle_sum(1,BDA); Polygon(BDA); ["Equal(Add(MeasureOfAngle(BDA),MeasureOfAngle(DAB),MeasureOfAngle(ABD)),180)"]
-3; sine_theorem(1,BDA); Polygon(BDA); ["Equal(Mul(LengthOfLine(BD),Sin(MeasureOfAngle(BDA))),Mul(LengthOfLine(BA),Sin(MeasureOfAngle(DAB))))"]
-4; triangle_property_angle_sum(1,BCD); Polygon(BCD); ["Equal(Add(MeasureOfAngle(BCD),MeasureOfAngle(CBD),MeasureOfAngle(BDC)),180)"]
-5; sine_theorem(1,BCD); Polygon(BCD); ["Equal(Mul(LengthOfLine(BC),Sin(MeasureOfAngle(BCD))),Mul(LengthOfLine(BD),Sin(MeasureOfAngle(BDC))))"]
+1; right_triangle_judgment_angle(1,BCD); Polygon(BCD)&Equal(MeasureOfAngle(BCD),90); ["RightTriangle(BCD)"]
+2; triangle_property_angle_sum(1,BCD); Polygon(BCD); ["Equal(Add(MeasureOfAngle(BCD),MeasureOfAngle(BDC),MeasureOfAngle(CDB)),180)"]
+3; right_triangle_judgment_angle(1,BDA); Polygon(BDA)&Equal(MeasureOfAngle(BDA),90); ["RightTriangle(BDA)"]
+4; triangle_property_angle_sum(1,BDA); Polygon(BDA); ["Equal(Add(MeasureOfAngle(BDA),MeasureOfAngle(DAB),MeasureOfAngle(DBA)),180)"]
+5; sine_theorem(1,BCD); Polygon(BCD); ["Equal(Mul(LengthOfLine(BC),Sin(MeasureOfAngle(BCD))),Mul(LengthOfLine(BD),Sin(MeasureOfAngle(CDB))))"]
+6; sine_theorem(1,BDA); Polygon(BDA); ["Equal(Mul(LengthOfLine(BD),Sin(MeasureOfAngle(BDA))),Mul(LengthOfLine(BA),Sin(MeasureOfAngle(DAB))))"]
 Retry attempt: 3
 Content written to results/level_4/variant_analogy_based_model_o1_problem_2543_run_0_to_verify.txt
 predicates to add:
@@ -960,19 +1082,20 @@ Equation
 predicates to add:
 PerpendicularBetweenLine
 Verifier result: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
-Theorem: sine_theorem(1,BCD)
-You output the following conclusions: Equal(Mul(LengthOfLine(BC),Sin(MeasureOfAngle(BCD))),Mul(LengthOfLine(BD),Sin(MeasureOfAngle(DBC))))
-But the correct conclusions: Equal(Mul(LengthOfLine(BC),Sin(MeasureOfAngle(BCD))),Mul(LengthOfLine(BD),Sin(MeasureOfAngle(CDB))))
+Theorem: triangle_property_angle_sum(1,BDA)
+You output the following conclusions: Equal(Add(MeasureOfAngle(BDA),MeasureOfAngle(DAB),MeasureOfAngle(DBA)),180)
+But the correct conclusions: Equal(Add(MeasureOfAngle(BDA),MeasureOfAngle(DAB),MeasureOfAngle(ABD)),180)
 
 Model Answer:
 RETRY_ANSWER:
-(12 * tan(55)) / sin(47)
+12*sin(55)/(sin(35)*sin(47))
 RETRY_THEOREM_SEQUENCE:
-1; adjacent_complementary_angle(1,BDA,ADC); Collinear(BDC)&Angle(BDA)&Angle(ADC); ["Equal(Add(MeasureOfAngle(BDA),MeasureOfAngle(ADC)),180)"]
-2; triangle_property_angle_sum(1,BDA); Polygon(BDA); ["Equal(Add(MeasureOfAngle(BDA),MeasureOfAngle(DAB),MeasureOfAngle(ABD)),180)"]
-3; sine_theorem(1,BDA); Polygon(BDA); ["Equal(Mul(LengthOfLine(BD),Sin(MeasureOfAngle(BDA))),Mul(LengthOfLine(BA),Sin(MeasureOfAngle(DAB))))"]
-4; triangle_property_angle_sum(1,BCD); Polygon(BCD); ["Equal(Add(MeasureOfAngle(BCD),MeasureOfAngle(CDB),MeasureOfAngle(DBC)),180)"]
-5; sine_theorem(1,BCD); Polygon(BCD); ["Equal(Mul(LengthOfLine(BC),Sin(MeasureOfAngle(BCD))),Mul(LengthOfLine(BD),Sin(MeasureOfAngle(DBC))))"]
+1; right_triangle_judgment_angle(1,BCD); Polygon(BCD)&Equal(MeasureOfAngle(BCD),90); ["RightTriangle(BCD)"]
+2; triangle_property_angle_sum(1,BCD); Polygon(BCD); ["Equal(Add(MeasureOfAngle(BCD),MeasureOfAngle(CDB),MeasureOfAngle(DBC)),180)"]
+3; right_triangle_judgment_angle(1,BDA); Polygon(BDA)&Equal(MeasureOfAngle(BDA),90); ["RightTriangle(BDA)"]
+4; triangle_property_angle_sum(1,BDA); Polygon(BDA); ["Equal(Add(MeasureOfAngle(BDA),MeasureOfAngle(DAB),MeasureOfAngle(DBA)),180)"]
+5; sine_theorem(1,BCD); Polygon(BCD); ["Equal(Mul(LengthOfLine(BC),Sin(MeasureOfAngle(BCD))),Mul(LengthOfLine(BD),Sin(MeasureOfAngle(CDB))))"]
+6; sine_theorem(1,BDA); Polygon(BDA); ["Equal(Mul(LengthOfLine(BD),Sin(MeasureOfAngle(BDA))),Mul(LengthOfLine(BA),Sin(MeasureOfAngle(DAB))))"]
 Retry attempt: 4
 Content written to results/level_4/variant_analogy_based_model_o1_problem_2543_run_0_to_verify.txt
 predicates to add:
@@ -1205,27 +1328,28 @@ PerpendicularBetweenLine
 Verifier result: ERROR_TIER: TIER2_PREMISE_VIOLATION
 verification failed.
 
-- Error: You tried to use theorem: adjacent_complementary_angle(1,BDA,ADC);Collinear(BDC)&Angle(BDA)&Angle(ADC);['Equal(Add(MeasureOfAngle(BDA),MeasureOfAngle(ADC)),180)']
-Missing premise: Points BDC are not proven collinear
-Details: Known collinear facts: [['A', 'D', 'C'], ['A', 'D', 'C']]
+- Error: You tried to use theorem: right_triangle_judgment_angle(1,BCD);Polygon(BCD)&Equal(MeasureOfAngle(BCD),90);['RightTriangle(BCD)']
+Missing premise: Angle measure 90° for triangle BCD is not established in the premise.
+Details: Premise provided: Polygon(BCD)&Equal(MeasureOfAngle(BCD),90)
 - Available premises:
   Perpendicular Lines: AD ⊥ BD
   Collinear Points: ADC
   Polygons: ABC, ABD, ACB, ADB, BCD, BDC
 - Theorems related to the goal:
-  None found that constrain this goal
+  Step 1 - right_triangle_judgment_angle(1, BCD): RightTriangle(BCD)
 - Solver constraints directly related to this goal:
-  None found
+  |AB| = y
 
 Please fix the proof.
 Model Answer:
 RETRY_ANSWER:
-(12 * tan(55)) / sin(47)
+12*sin(55)/(sin(35)*sin(47))
 RETRY_THEOREM_SEQUENCE:
-1; adjacent_complementary_angle(1,BDA,ADC); Collinear(BDC)&Angle(BDA)&Angle(ADC); ["Equal(Add(MeasureOfAngle(BDA),MeasureOfAngle(ADC)),180)"]
-2; triangle_property_angle_sum(1,BDA); Polygon(BDA); ["Equal(Add(MeasureOfAngle(BDA),MeasureOfAngle(DAB),MeasureOfAngle(ABD)),180)"]
-3; sine_theorem(1,BDA); Polygon(BDA); ["Equal(Mul(LengthOfLine(BD),Sin(MeasureOfAngle(BDA))),Mul(LengthOfLine(BA),Sin(MeasureOfAngle(DAB))))"]
-4; triangle_property_angle_sum(1,BCD); Polygon(BCD); ["Equal(Add(MeasureOfAngle(BCD),MeasureOfAngle(CDB),MeasureOfAngle(DBC)),180)"]
+1; right_triangle_judgment_angle(1,BCD); Polygon(BCD)&Equal(MeasureOfAngle(BCD),90); ["RightTriangle(BCD)"]
+2; triangle_property_angle_sum(1,BCD); Polygon(BCD); ["Equal(Add(MeasureOfAngle(BCD),MeasureOfAngle(CDB),MeasureOfAngle(DBC)),180)"]
+3; right_triangle_judgment_angle(1,BDA); Polygon(BDA)&Equal(MeasureOfAngle(BDA),90); ["RightTriangle(BDA)"]
+4; triangle_property_angle_sum(1,BDA); Polygon(BDA); ["Equal(Add(MeasureOfAngle(BDA),MeasureOfAngle(DAB),MeasureOfAngle(ABD)),180)"]
 5; sine_theorem(1,BCD); Polygon(BCD); ["Equal(Mul(LengthOfLine(BC),Sin(MeasureOfAngle(BCD))),Mul(LengthOfLine(BD),Sin(MeasureOfAngle(CDB))))"]
+6; sine_theorem(1,BDA); Polygon(BDA); ["Equal(Mul(LengthOfLine(BD),Sin(MeasureOfAngle(BDA))),Mul(LengthOfLine(BA),Sin(MeasureOfAngle(DAB))))"]
 Retry attempt: 5
 Content written to results/level_4/variant_analogy_based_model_o1_problem_2543_run_0.txt
