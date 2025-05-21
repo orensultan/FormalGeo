@@ -24,9 +24,9 @@ from similar_proofs_retrieval import retrieve_similar_proofs
 from similar_proofs_retrieval import retrieve_random_proofs
 
 
+key = ""
 
-openai.api_key = "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"
-
+openai.api_key = key
 dl = DatasetLoader(dataset_name="formalgeo7k_v1", datasets_path="formalgeo7k_v1")
 solver = Interactor(dl.predicate_GDL, dl.theorem_GDL)
 with open('formalgeo7k_v1/gdl/theorem_GDL.json', 'r') as f:
