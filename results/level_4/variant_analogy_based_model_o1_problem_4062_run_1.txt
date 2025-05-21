@@ -114,94 +114,45 @@ Outputs for Problem B:
 
 ***MODEL_RESPONSE_BEGIN***
 EQUATIONS:
-ll_ao-3/2
-ll_ob-4
-ll_om-5
-ma_aob-90
-ma_bmn-90
+ll_ao-3/2 ll_ob-4 ll_om-5
 
 GOAL_SYMBOL:
 ll_nm
 
 ANSWER:
-3/8
+27/8
 
 THEOREM_SEQUENCE:
-1; line_addition(1,OB,BM); Collinear(OBM); ["Equal(LengthOfLine(OM),Add(LengthOfLine(OB),LengthOfLine(BM)))"]
-2; right_triangle_judgment_angle(1,AOB); Polygon(AOB)&Equal(MeasureOfAngle(AOB),90); ["RightTriangle(AOB)"]
-3; right_triangle_judgment_angle(1,BMN); Polygon(BMN)&Equal(MeasureOfAngle(BMN),90); ["RightTriangle(BMN)"]
-4; right_triangle_property_pythagorean(1,AOB); RightTriangle(AOB); ["Equal(Add(Pow(LengthOfLine(AO),2),Pow(LengthOfLine(OB),2)),Pow(LengthOfLine(AB),2))"]
-5; right_triangle_property_pythagorean(1,BMN); RightTriangle(BMN); ["Equal(Add(Pow(LengthOfLine(BM),2),Pow(LengthOfLine(MN),2)),Pow(LengthOfLine(BN),2))"]
+1; right_triangle_judgment_angle(1,AOB); Polygon(AOB)&Equal(MeasureOfAngle(AOB),90); ["RightTriangle(AOB)"]
+2; right_triangle_property_pythagorean(1,AOB); RightTriangle(AOB); ["Equal(Add(Pow(LengthOfLine(AO),2),Pow(LengthOfLine(OB),2)),Pow(LengthOfLine(AB),2))"]
+3; line_addition(1,BO,OM); Collinear(BOM); ["Equal(LengthOfLine(BM),Add(LengthOfLine(BO),LengthOfLine(OM)))"]
 ***MODEL_RESPONSE_END***
 RETRIES_MESSAGES:
 #run: 1; #retry: 1; message: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
-Failure: Theorem <line_addition> variation id is not supplied. Expected dict_keys(['1']) but got None.
-Your call: line_addition(O,B,B,M)
-Please rewrite your response by adding the variation id as the first argument. For example: For variation 1: line_addition(1,O,B,B,M)
+Failure: Theorem <right_triangle_judgment_angle> variation id is not supplied. Expected dict_keys(['1']) but got None.
+Your call: right_triangle_judgment_angle(A,O,B)
+Please rewrite your response by adding the variation id as the first argument. For example: For variation 1: right_triangle_judgment_angle(1,A,O,B)
 
 Model Answer:
 RETRY_ANSWER:
 3/8
 RETRY_THEOREM_SEQUENCE:
-1; line_addition(OB,BM); Collinear(MOB); ["Equal(LengthOfLine(OM),Add(LengthOfLine(OB),LengthOfLine(BM)))"]  
-2; right_triangle_judgment_angle(AOB); Polygon(AOB)&Equal(MeasureOfAngle(AOB),90); ["RightTriangle(AOB)"]  
-3; right_triangle_judgment_angle(NMB); Polygon(NMB)&Equal(MeasureOfAngle(NMB),90); ["RightTriangle(NMB)"]  
-4; right_triangle_property_pythagorean(AOB); RightTriangle(AOB); ["Equal(Add(Pow(LengthOfLine(AO),2),Pow(LengthOfLine(OB),2)),Pow(LengthOfLine(AB),2))"]  
-5; right_triangle_property_pythagorean(NMB); RightTriangle(NMB); ["Equal(Add(Pow(LengthOfLine(NM),2),Pow(LengthOfLine(MB),2)),Pow(LengthOfLine(NB),2))"]
-#run: 1; #retry: 2; message: ERROR_TIER: TIER2_PREMISE_VIOLATION
-verification failed.
-
-- Error: You tried to use theorem: line_addition(1,OB,BM);Collinear(OBM);['Equal(LengthOfLine(OM),Add(LengthOfLine(OB),LengthOfLine(BM)))']
-Missing premise: Points OBM not proven collinear
-Details: Known collinear facts: [['B', 'A', 'N'], ['B', 'O', 'M'], ['B', 'A', 'N'], ['B', 'O', 'M']]
-- Available premises:
-  Perpendicular Lines: AO ⊥ BO, BM ⊥ MN
-  Collinear Points: BAN, BOM
-  Polygons: ABO, ANMO, AOB, BMN, BNM, MOAN, NMOA, OANM
-- Theorems related to the goal:
-  None found that constrain this goal
-- Solver constraints directly related to this goal:
-  None found
-
-Please fix the proof.
-Model Answer:
-RETRY_ANSWER:
-3/8
-RETRY_THEOREM_SEQUENCE:
-1; line_addition(1,OB,BM); Collinear(OBM); ["Equal(LengthOfLine(OM),Add(LengthOfLine(OB),LengthOfLine(BM)))"]  
-2; right_triangle_judgment_angle(1,AOB); Polygon(AOB)&Equal(MeasureOfAngle(AOB),90); ["RightTriangle(AOB)"]  
-3; right_triangle_judgment_angle(1,NMB); Polygon(NMB)&Equal(MeasureOfAngle(NMB),90); ["RightTriangle(NMB)"]  
-4; right_triangle_property_pythagorean(1,AOB); RightTriangle(AOB); ["Equal(Add(Pow(LengthOfLine(AO),2),Pow(LengthOfLine(OB),2)),Pow(LengthOfLine(AB),2))"]  
-5; right_triangle_property_pythagorean(1,NMB); RightTriangle(NMB); ["Equal(Add(Pow(LengthOfLine(NM),2),Pow(LengthOfLine(MB),2)),Pow(LengthOfLine(NB),2))"]
-#run: 1; #retry: 3; message: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
+1; right_triangle_judgment_angle(AOB); Polygon(AOB)&Equal(MeasureOfAngle(AOB),90); ["RightTriangle(AOB)"]
+2; right_triangle_property_pythagorean(AOB); RightTriangle(AOB); ["Equal(Add(Pow(LengthOfLine(AO),2),Pow(LengthOfLine(OB),2)),Pow(LengthOfLine(AB),2))"]
+3; line_addition(OB,BM); Collinear(MOB); ["Equal(LengthOfLine(OM),Add(LengthOfLine(OB),LengthOfLine(BM)))"]
+#run: 1; #retry: 2; message: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
 Theorem: line_addition(1,OB,BM)
-You output the following premises: Collinear(BOM)
+You output the following premises: Collinear(MOB)
 But the correct premises: Collinear(OBM)
 
 Model Answer:
 RETRY_ANSWER:
 3/8
 RETRY_THEOREM_SEQUENCE:
-1; line_addition(1,OB,BM); Collinear(BOM); ["Equal(LengthOfLine(OM),Add(LengthOfLine(OB),LengthOfLine(BM)))"]  
-2; right_triangle_judgment_angle(1,AOB); Polygon(AOB)&Equal(MeasureOfAngle(AOB),90); ["RightTriangle(AOB)"]  
-3; right_triangle_judgment_angle(1,BMN); Polygon(BMN)&Equal(MeasureOfAngle(BMN),90); ["RightTriangle(BMN)"]  
-4; right_triangle_property_pythagorean(1,AOB); RightTriangle(AOB); ["Equal(Add(Pow(LengthOfLine(AO),2),Pow(LengthOfLine(OB),2)),Pow(LengthOfLine(AB),2))"]  
-5; right_triangle_property_pythagorean(1,BMN); RightTriangle(BMN); ["Equal(Add(Pow(LengthOfLine(NM),2),Pow(LengthOfLine(MB),2)),Pow(LengthOfLine(NB),2))"]
-#run: 1; #retry: 4; message: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
-Theorem: right_triangle_property_pythagorean(1,BMN)
-You output the following conclusions: Equal(Add(Pow(LengthOfLine(NM),2),Pow(LengthOfLine(MB),2)),Pow(LengthOfLine(NB),2))
-But the correct conclusions: Equal(Add(Pow(LengthOfLine(BM),2),Pow(LengthOfLine(MN),2)),Pow(LengthOfLine(BN),2))
-
-Model Answer:
-RETRY_ANSWER:
-3/8
-RETRY_THEOREM_SEQUENCE:
-1; line_addition(1,OB,BM); Collinear(OBM); ["Equal(LengthOfLine(OM),Add(LengthOfLine(OB),LengthOfLine(BM)))"]  
-2; right_triangle_judgment_angle(1,AOB); Polygon(AOB)&Equal(MeasureOfAngle(AOB),90); ["RightTriangle(AOB)"]  
-3; right_triangle_judgment_angle(1,BMN); Polygon(BMN)&Equal(MeasureOfAngle(BMN),90); ["RightTriangle(BMN)"]  
-4; right_triangle_property_pythagorean(1,AOB); RightTriangle(AOB); ["Equal(Add(Pow(LengthOfLine(AO),2),Pow(LengthOfLine(OB),2)),Pow(LengthOfLine(AB),2))"]  
-5; right_triangle_property_pythagorean(1,BMN); RightTriangle(BMN); ["Equal(Add(Pow(LengthOfLine(NM),2),Pow(LengthOfLine(MB),2)),Pow(LengthOfLine(NB),2))"]
-#run: 1; #retry: 5; message: ERROR_TIER: TIER2_PREMISE_VIOLATION
+1; right_triangle_judgment_angle(1,AOB); Polygon(AOB)&Equal(MeasureOfAngle(AOB),90); ["RightTriangle(AOB)"]
+2; right_triangle_property_pythagorean(1,AOB); RightTriangle(AOB); ["Equal(Add(Pow(LengthOfLine(AO),2),Pow(LengthOfLine(OB),2)),Pow(LengthOfLine(AB),2))"]
+3; line_addition(1,OB,BM); Collinear(MOB); ["Equal(LengthOfLine(OM),Add(LengthOfLine(OB),LengthOfLine(BM)))"]
+#run: 1; #retry: 3; message: ERROR_TIER: TIER2_PREMISE_VIOLATION
 verification failed.
 
 - Error: You tried to use theorem: line_addition(1,OB,BM);Collinear(OBM);['Equal(LengthOfLine(OM),Add(LengthOfLine(OB),LengthOfLine(BM)))']
@@ -210,6 +161,7 @@ Details: Known collinear facts: [['B', 'A', 'N'], ['B', 'O', 'M'], ['B', 'A', 'N
 - Available premises:
   Perpendicular Lines: AO ⊥ BO, BM ⊥ MN
   Collinear Points: BAN, BOM
+  Right Triangles: AOB
   Polygons: ABO, ANMO, AOB, BMN, BNM, MOAN, NMOA, OANM
 - Theorems related to the goal:
   None found that constrain this goal
@@ -221,11 +173,50 @@ Model Answer:
 RETRY_ANSWER:
 3/8
 RETRY_THEOREM_SEQUENCE:
-1; line_addition(1,OB,BM); Collinear(OBM); ["Equal(LengthOfLine(OM),Add(LengthOfLine(OB),LengthOfLine(BM)))"]
-2; right_triangle_judgment_angle(1,AOB); Polygon(AOB)&Equal(MeasureOfAngle(AOB),90); ["RightTriangle(AOB)"]
-3; right_triangle_judgment_angle(1,BMN); Polygon(BMN)&Equal(MeasureOfAngle(BMN),90); ["RightTriangle(BMN)"]
-4; right_triangle_property_pythagorean(1,AOB); RightTriangle(AOB); ["Equal(Add(Pow(LengthOfLine(AO),2),Pow(LengthOfLine(OB),2)),Pow(LengthOfLine(AB),2))"]
-5; right_triangle_property_pythagorean(1,BMN); RightTriangle(BMN); ["Equal(Add(Pow(LengthOfLine(BM),2),Pow(LengthOfLine(MN),2)),Pow(LengthOfLine(BN),2))"]
+1; right_triangle_judgment_angle(1,AOB); Polygon(AOB)&Equal(MeasureOfAngle(AOB),90); ["RightTriangle(AOB)"]
+2; right_triangle_property_pythagorean(1,AOB); RightTriangle(AOB); ["Equal(Add(Pow(LengthOfLine(AO),2),Pow(LengthOfLine(OB),2)),Pow(LengthOfLine(AB),2))"]
+3; line_addition(1,OB,BM); Collinear(OBM); ["Equal(LengthOfLine(OM),Add(LengthOfLine(OB),LengthOfLine(BM)))"]
+#run: 1; #retry: 4; message: ERROR_TIER: TIER3_GOAL_NOT_REACHED
+verification failed.
+
+- Goal: value determination
+- Model answer: 3/8
+- Verifier expected answer: 27/8
+- Error: THE MODEL DETERMINED THE ANSWER TO BE 3/8 BUT IN THE GROUND TRUTH SOLUTION TO THE PROBLEM THE ANSWER IS 27/8.
+  Please review your theorem sequence and ensure it correctly establishes the expected answer.
+
+Please fix the proof.
+Model Answer:
+RETRY_ANSWER:
+3/8
+RETRY_THEOREM_SEQUENCE:
+1; right_triangle_judgment_angle(1,AOB); Polygon(AOB)&Equal(MeasureOfAngle(AOB),90); ["RightTriangle(AOB)"]
+2; right_triangle_property_pythagorean(1,AOB); RightTriangle(AOB); ["Equal(Add(Pow(LengthOfLine(AO),2),Pow(LengthOfLine(OB),2)),Pow(LengthOfLine(AB),2))"]
+3; line_addition(1,BO,OM); Collinear(BOM); ["Equal(LengthOfLine(BM),Add(LengthOfLine(BO),LengthOfLine(OM)))"]
+#run: 1; #retry: 5; message: ERROR_TIER: TIER3_GOAL_NOT_REACHED
+verification failed.
+
+- Goal: length of line NM
+- Model answer: 27/8
+- Error: Your proof doesn't uniquely determine the value. You need to use additional theorems to constrain the value.
+- Available premises:
+  Perpendicular Lines: AO ⊥ BO, BM ⊥ MN
+  Collinear Points: BAN, BOM
+  Right Triangles: AOB
+  Polygons: ABO, ANMO, AOB, BMN, BNM, MOAN, NMOA, OANM
+- Theorems related to the goal:
+  None found that constrain this goal
+- Solver constraints directly related to this goal:
+  |MN| > 0
+
+Please fix the proof.
+Model Answer:
+RETRY_ANSWER:
+27/8
+RETRY_THEOREM_SEQUENCE:
+1; right_triangle_judgment_angle(1,AOB); Polygon(AOB)&Equal(MeasureOfAngle(AOB),90); ["RightTriangle(AOB)"]
+2; right_triangle_property_pythagorean(1,AOB); RightTriangle(AOB); ["Equal(Add(Pow(LengthOfLine(AO),2),Pow(LengthOfLine(OB),2)),Pow(LengthOfLine(AB),2))"]
+3; line_addition(1,BO,OM); Collinear(BOM); ["Equal(LengthOfLine(BM),Add(LengthOfLine(BO),LengthOfLine(OM)))"]
 #RETRIES:
 5
 #RUNS:
