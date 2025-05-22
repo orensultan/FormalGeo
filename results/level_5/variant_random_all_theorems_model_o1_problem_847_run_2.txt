@@ -89,106 +89,38 @@ Outputs for Problem B:
 
 ***MODEL_RESPONSE_BEGIN***
 EQUATIONS:
-ll_ab-ll_bc  
-ll_ac-12  
-ma_cab-60  
+ll_ac-12
+ma_cab-60
 
 GOAL_SYMBOL:
-ll_bd
+h
 
 ANSWER:
 6√3
 
 THEOREM_SEQUENCE:
-1; isosceles_triangle_judgment_line_equal(1,ABC); Polygon(ABC)&Equal(LengthOfLine(AB),LengthOfLine(BC)); ["IsoscelesTriangle(ABC)"]  
-2; isosceles_triangle_property_angle_equal(1,ABC); IsoscelesTriangle(ABC); ["Equal(MeasureOfAngle(ABC),MeasureOfAngle(BCA))"]  
-3; triangle_property_angle_sum(1,ABC); Polygon(ABC); ["Equal(Add(MeasureOfAngle(ABC),MeasureOfAngle(BCA),MeasureOfAngle(CAB)),180)"]  
-4; triangle_area_formula_sine(1,ABC); Polygon(ABC); ["Equal(AreaOfTriangle(ABC),Mul(LengthOfLine(AB),LengthOfLine(AC),Sin(MeasureOfAngle(CAB)),1/2))"]  
-5; triangle_area_formula_common(1,ABC); Polygon(ABC); ["Equal(AreaOfTriangle(ABC),Mul(HeightOfTriangle(ABC),LengthOfLine(BC),1/2))"]
+1; isosceles_triangle_judgment_line_equal(1,ABC); Polygon(ABC)&Equal(LengthOfLine(AB),LengthOfLine(AC)); ["IsoscelesTriangle(ABC)"]  
+2; triangle_property_angle_sum(1,ABC); Polygon(ABC); ["Equal(Add(MeasureOfAngle(ABC),MeasureOfAngle(BCA),MeasureOfAngle(CAB)),180)"]  
+3; line_addition(1,AB,BC); Collinear(ABC); ["Equal(LengthOfLine(AC),Add(LengthOfLine(AB),LengthOfLine(BC)))"]  
+4; right_triangle_judgment_angle(1,BDC); Polygon(BDC)&Equal(MeasureOfAngle(BDC),90); ["RightTriangle(BDC)"]  
+5; right_triangle_property_pythagorean(1,BDC); RightTriangle(BDC); ["Equal(Add(Pow(LengthOfLine(BD),2),Pow(LengthOfLine(DC),2)),Pow(LengthOfLine(BC),2))"]
 ***MODEL_RESPONSE_END***
 RETRIES_MESSAGES:
 #run: 2; #retry: 1; message: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
-Theorem: right_triangle_judgment_angle(1,BDC)
-You output the following premises: Polygon(BDC)&Equal(MeasureOfAngle(CDB),90)
-But the correct premises: Polygon(BDC)&Equal(MeasureOfAngle(BDC),90)
+Failure: Theorem <isosceles_triangle_judgment_line_equal> variation id is not supplied. Expected dict_keys(['1']) but got None.
+Your call: isosceles_triangle_judgment_line_equal(A,B,C)
+Please rewrite your response by adding the variation id as the first argument. For example: For variation 1: isosceles_triangle_judgment_line_equal(1,A,B,C)
 
 Model Answer:
 RETRY_ANSWER:
 6√3
 RETRY_THEOREM_SEQUENCE:
-1; cosine_theorem(1,ABC); Polygon(ABC); ["Equal(Add(Pow(LengthOfLine(BC),2),Mul(2,LengthOfLine(AB),LengthOfLine(AC),Cos(MeasureOfAngle(CAB)))),Add(Pow(LengthOfLine(AB),2),Pow(LengthOfLine(AC),2)))"]  
-2; right_triangle_judgment_angle(1,BDC); Polygon(BDC)&Equal(MeasureOfAngle(CDB),90); ["RightTriangle(BDC)"]  
-3; right_triangle_property_pythagorean(1,BDC); RightTriangle(BDC); ["Equal(Add(Pow(LengthOfLine(BD),2),Pow(LengthOfLine(DC),2)),Pow(LengthOfLine(BC),2))"]
-#run: 2; #retry: 2; message: ERROR_TIER: TIER3_GOAL_NOT_REACHED
-verification failed.
-
-- Goal: value of h
-- Model answer: 6√3
-- Error: Your proof doesn't uniquely determine the value. You need to use additional theorems to constrain the value.
-- Available premises:
-  Perpendicular Lines: BD ⊥ CD
-  Collinear Points: ADC
-  Right Triangles: BDC
-  Polygons: ABC, ABD, ACB, ADB, BCD, BDC
-- Theorems related to the goal:
-  Step 1 - cosine_theorem(1, ABC): Equal(Add(Pow(LengthOfLine(BC),2),Mul(2,LengthOfLine(AB),LengthOfLine(AC),Cos(MeasureOfAngle(CAB)))),Add(Pow(LengthOfLine(AB),2),Pow(LengthOfLine(AC),2)))
-  Step 2 - right_triangle_judgment_angle(1, BDC): RightTriangle(BDC)
-  Step 3 - right_triangle_property_pythagorean(1, BDC): Equal(Add(Pow(LengthOfLine(BD),2),Pow(LengthOfLine(DC),2)),Pow(LengthOfLine(BC),2))
-- Solver constraints directly related to this goal:
-  None found
-
-Variable h is not uniquely determined
-Please fix the proof.
-Model Answer:
-RETRY_ANSWER:
-6√3
-RETRY_THEOREM_SEQUENCE:
-1; cosine_theorem(1,ABC); Polygon(ABC); ["Equal(Add(Pow(LengthOfLine(BC),2),Mul(2,LengthOfLine(AB),LengthOfLine(AC),Cos(MeasureOfAngle(CAB)))),Add(Pow(LengthOfLine(AB),2),Pow(LengthOfLine(AC),2)))"]
-2; right_triangle_judgment_angle(1,BDC); Polygon(BDC)&Equal(MeasureOfAngle(BDC),90); ["RightTriangle(BDC)"]
-3; right_triangle_property_pythagorean(1,BDC); RightTriangle(BDC); ["Equal(Add(Pow(LengthOfLine(BD),2),Pow(LengthOfLine(DC),2)),Pow(LengthOfLine(BC),2))"]
-#run: 2; #retry: 3; message: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
-Failure: Theorem <line_addition> variation id is not supplied. Expected dict_keys(['1']) but got None.
-Your call: line_addition(A,C,A,D)
-Please rewrite your response by adding the variation id as the first argument. For example: For variation 1: line_addition(1,A,C,A,D)
-
-Model Answer:
-RETRY_ANSWER:
-6√3
-RETRY_THEOREM_SEQUENCE:
-1; cosine_theorem(1,ABC); Polygon(ABC); ["Equal(Add(Pow(LengthOfLine(BC),2),Mul(2,LengthOfLine(AB),LengthOfLine(AC),Cos(MeasureOfAngle(CAB)))),Add(Pow(LengthOfLine(AB),2),Pow(LengthOfLine(AC),2)))"]
-2; right_triangle_judgment_angle(1,BDC); Polygon(BDC)&Equal(MeasureOfAngle(BDC),90); ["RightTriangle(BDC)"]
-3; right_triangle_property_pythagorean(1,BDC); RightTriangle(BDC); ["Equal(Add(Pow(LengthOfLine(BD),2),Pow(LengthOfLine(DC),2)),Pow(LengthOfLine(BC),2))"]
-4; line_addition(AC,AD); Collinear(ADC); ["Equal(LengthOfLine(AC),Add(LengthOfLine(AD),LengthOfLine(DC)))"]
-#run: 2; #retry: 4; message: ERROR_TIER: TIER3_GOAL_NOT_REACHED
-verification failed.
-
-- Goal: value of h
-- Model answer: 6√3
-- Error: Your proof doesn't uniquely determine the value. You need to use additional theorems to constrain the value.
-- Available premises:
-  Perpendicular Lines: BD ⊥ CD
-  Collinear Points: ADC
-  Right Triangles: BDC
-  Polygons: ABC, ABD, ACB, ADB, BCD, BDC
-- Theorems related to the goal:
-  Step 1 - cosine_theorem(1, ABC): Equal(Add(Pow(LengthOfLine(BC),2),Mul(2,LengthOfLine(AB),LengthOfLine(AC),Cos(MeasureOfAngle(CAB)))),Add(Pow(LengthOfLine(AB),2),Pow(LengthOfLine(AC),2)))
-  Step 2 - right_triangle_judgment_angle(1, BDC): RightTriangle(BDC)
-  Step 3 - right_triangle_property_pythagorean(1, BDC): Equal(Add(Pow(LengthOfLine(BD),2),Pow(LengthOfLine(DC),2)),Pow(LengthOfLine(BC),2))
-  Step 4 - line_addition(1, AD, DC): Equal(LengthOfLine(AC),Add(LengthOfLine(AD),LengthOfLine(DC)))
-- Solver constraints directly related to this goal:
-  None found
-
-Variable h is not uniquely determined
-Please fix the proof.
-Model Answer:
-RETRY_ANSWER:
-6√3
-RETRY_THEOREM_SEQUENCE:
-1; cosine_theorem(1,ABC); Polygon(ABC); ["Equal(Add(Pow(LengthOfLine(BC),2),Mul(2,LengthOfLine(AB),LengthOfLine(AC),Cos(MeasureOfAngle(CAB)))),Add(Pow(LengthOfLine(AB),2),Pow(LengthOfLine(AC),2)))"]
-2; right_triangle_judgment_angle(1,BDC); Polygon(BDC)&Equal(MeasureOfAngle(BDC),90); ["RightTriangle(BDC)"]
-3; right_triangle_property_pythagorean(1,BDC); RightTriangle(BDC); ["Equal(Add(Pow(LengthOfLine(BD),2),Pow(LengthOfLine(DC),2)),Pow(LengthOfLine(BC),2))"]
-4; line_addition(1,AD,DC); Collinear(ADC); ["Equal(LengthOfLine(AC),Add(LengthOfLine(AD),LengthOfLine(DC)))"]
-#run: 2; #retry: 5; message: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
+1; isosceles_triangle_judgment_line_equal(ABC); Polygon(ABC)&Equal(LengthOfLine(AB),LengthOfLine(BC)); ["IsoscelesTriangle(ABC)"]  
+2; triangle_property_angle_sum(ABC); Polygon(ABC); ["Equal(Add(MeasureOfAngle(ABC),MeasureOfAngle(BCA),MeasureOfAngle(CAB)),180)"]  
+3; line_addition(AB,BC); Collinear(ABC); ["Equal(LengthOfLine(AC),Add(LengthOfLine(AB),LengthOfLine(BC)))"]  
+4; right_triangle_judgment_angle(BDC); Polygon(BDC)&Equal(MeasureOfAngle(CDB),90); ["RightTriangle(BDC)"]  
+5; right_triangle_property_pythagorean(BDC); RightTriangle(BDC); ["Equal(Add(Pow(LengthOfLine(BD),2),Pow(LengthOfLine(CD),2)),Pow(LengthOfLine(BC),2))"]
+#run: 2; #retry: 2; message: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
 Theorem: isosceles_triangle_judgment_line_equal(1,ABC)
 You output the following premises: Polygon(ABC)&Equal(LengthOfLine(AB),LengthOfLine(BC))
 But the correct premises: Polygon(ABC)&Equal(LengthOfLine(AB),LengthOfLine(AC))
@@ -198,10 +130,70 @@ RETRY_ANSWER:
 6√3
 RETRY_THEOREM_SEQUENCE:
 1; isosceles_triangle_judgment_line_equal(1,ABC); Polygon(ABC)&Equal(LengthOfLine(AB),LengthOfLine(BC)); ["IsoscelesTriangle(ABC)"]  
-2; isosceles_triangle_property_angle_equal(1,ABC); IsoscelesTriangle(ABC); ["Equal(MeasureOfAngle(ABC),MeasureOfAngle(BCA))"]  
-3; triangle_property_angle_sum(1,ABC); Polygon(ABC); ["Equal(Add(MeasureOfAngle(ABC),MeasureOfAngle(BCA),MeasureOfAngle(CAB)),180)"]  
-4; triangle_area_formula_sine(1,ABC); Polygon(ABC); ["Equal(AreaOfTriangle(ABC),Mul(LengthOfLine(AB),LengthOfLine(AC),Sin(MeasureOfAngle(CAB)),1/2))"]  
-5; triangle_area_formula_common(1,ABC); Polygon(ABC); ["Equal(AreaOfTriangle(ABC),Mul(HeightOfTriangle(ABC),LengthOfLine(BC),1/2))"]
+2; triangle_property_angle_sum(1,ABC); Polygon(ABC); ["Equal(Add(MeasureOfAngle(ABC),MeasureOfAngle(BCA),MeasureOfAngle(CAB)),180)"]  
+3; line_addition(1,AB,BC); Collinear(ABC); ["Equal(LengthOfLine(AC),Add(LengthOfLine(AB),LengthOfLine(BC)))"]  
+4; right_triangle_judgment_angle(1,BDC); Polygon(BDC)&Equal(MeasureOfAngle(CDB),90); ["RightTriangle(BDC)"]  
+5; right_triangle_property_pythagorean(1,BDC); RightTriangle(BDC); ["Equal(Add(Pow(LengthOfLine(BD),2),Pow(LengthOfLine(CD),2)),Pow(LengthOfLine(BC),2))"]
+#run: 2; #retry: 3; message: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
+Theorem: right_triangle_judgment_angle(1,BDC)
+You output the following premises: Polygon(BDC)&Equal(MeasureOfAngle(CDB),90)
+But the correct premises: Polygon(BDC)&Equal(MeasureOfAngle(BDC),90)
+
+Model Answer:
+RETRY_ANSWER:
+6√3
+RETRY_THEOREM_SEQUENCE:
+1; isosceles_triangle_judgment_line_equal(1,ABC); Polygon(ABC)&Equal(LengthOfLine(AB),LengthOfLine(AC)); ["IsoscelesTriangle(ABC)"]  
+2; triangle_property_angle_sum(1,ABC); Polygon(ABC); ["Equal(Add(MeasureOfAngle(ABC),MeasureOfAngle(BCA),MeasureOfAngle(CAB)),180)"]  
+3; line_addition(1,AB,BC); Collinear(ABC); ["Equal(LengthOfLine(AC),Add(LengthOfLine(AB),LengthOfLine(BC)))"]  
+4; right_triangle_judgment_angle(1,BDC); Polygon(BDC)&Equal(MeasureOfAngle(CDB),90); ["RightTriangle(BDC)"]  
+5; right_triangle_property_pythagorean(1,BDC); RightTriangle(BDC); ["Equal(Add(Pow(LengthOfLine(BD),2),Pow(LengthOfLine(CD),2)),Pow(LengthOfLine(BC),2))"]
+#run: 2; #retry: 4; message: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
+Theorem: right_triangle_property_pythagorean(1,BDC)
+You output the following conclusions: Equal(Add(Pow(LengthOfLine(BD),2),Pow(LengthOfLine(CD),2)),Pow(LengthOfLine(BC),2))
+But the correct conclusions: Equal(Add(Pow(LengthOfLine(BD),2),Pow(LengthOfLine(DC),2)),Pow(LengthOfLine(BC),2))
+
+Model Answer:
+RETRY_ANSWER:
+6√3
+RETRY_THEOREM_SEQUENCE:
+1; isosceles_triangle_judgment_line_equal(1,ABC); Polygon(ABC)&Equal(LengthOfLine(AB),LengthOfLine(AC)); ["IsoscelesTriangle(ABC)"]  
+2; triangle_property_angle_sum(1,ABC); Polygon(ABC); ["Equal(Add(MeasureOfAngle(ABC),MeasureOfAngle(BCA),MeasureOfAngle(CAB)),180)"]  
+3; line_addition(1,AB,BC); Collinear(ABC); ["Equal(LengthOfLine(AC),Add(LengthOfLine(AB),LengthOfLine(BC)))"]  
+4; right_triangle_judgment_angle(1,BDC); Polygon(BDC)&Equal(MeasureOfAngle(BDC),90); ["RightTriangle(BDC)"]  
+5; right_triangle_property_pythagorean(1,BDC); RightTriangle(BDC); ["Equal(Add(Pow(LengthOfLine(BD),2),Pow(LengthOfLine(CD),2)),Pow(LengthOfLine(BC),2))"]
+#run: 2; #retry: 5; message: ERROR_TIER: TIER2_PREMISE_VIOLATION
+verification failed.
+
+- Error: You tried to use theorem: line_addition(1,AB,BC);Collinear(ABC);['Equal(LengthOfLine(AC),Add(LengthOfLine(AB),LengthOfLine(BC)))']
+Missing premise: Points ABC not proven collinear
+Details: Known collinear facts: [['A', 'D', 'C'], ['A', 'D', 'C']]
+- Available premises:
+  Perpendicular Lines: BD ⊥ CD
+  Collinear Points: ADC
+  Polygons: ABC, ABD, ACB, ADB, BCD, BDC
+- Theorems related to the goal:
+  Step 1 - isosceles_triangle_judgment_line_equal(1, ABC): IsoscelesTriangle(ABC)
+  Step 3 - line_addition(1, AB, BC): Equal(LengthOfLine(AC),Add(LengthOfLine(AB),LengthOfLine(BC)))
+- Solver constraints directly related to this goal:
+  |AB| = |BC|
+  |AB| > 0
+  |AC| = 12
+  |AC| > 0
+  |BC| > 0
+  |BD| = h
+  |BD| > 0
+
+Please fix the proof.
+Model Answer:
+RETRY_ANSWER:
+6√3
+RETRY_THEOREM_SEQUENCE:
+1; isosceles_triangle_judgment_line_equal(1,ABC); Polygon(ABC)&Equal(LengthOfLine(AB),LengthOfLine(AC)); ["IsoscelesTriangle(ABC)"]  
+2; triangle_property_angle_sum(1,ABC); Polygon(ABC); ["Equal(Add(MeasureOfAngle(ABC),MeasureOfAngle(BCA),MeasureOfAngle(CAB)),180)"]  
+3; line_addition(1,AB,BC); Collinear(ABC); ["Equal(LengthOfLine(AC),Add(LengthOfLine(AB),LengthOfLine(BC)))"]  
+4; right_triangle_judgment_angle(1,BDC); Polygon(BDC)&Equal(MeasureOfAngle(BDC),90); ["RightTriangle(BDC)"]  
+5; right_triangle_property_pythagorean(1,BDC); RightTriangle(BDC); ["Equal(Add(Pow(LengthOfLine(BD),2),Pow(LengthOfLine(DC),2)),Pow(LengthOfLine(BC),2))"]
 #RETRIES:
 5
 #RUNS:
