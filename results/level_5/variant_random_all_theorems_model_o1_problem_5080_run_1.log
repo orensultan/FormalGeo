@@ -280,10 +280,8 @@ Model Answer:
 RETRY_ANSWER:
 39
 RETRY_THEOREM_SEQUENCE:
-1; line_addition(OE,EG); Collinear(OEG); ["Equal(LengthOfLine(OG),Add(LengthOfLine(OE),LengthOfLine(EG)))"]  
-2; line_addition(OF,FH); Collinear(OFH); ["Equal(LengthOfLine(OH),Add(LengthOfLine(OF),LengthOfLine(FH)))"]  
-3; similar_triangle_judgment_aa(1,OEF,OGH); Polygon(OEF)&Polygon(OGH)&Equal(MeasureOfAngle(OEF),MeasureOfAngle(OGH))&Equal(MeasureOfAngle(EOF),MeasureOfAngle(OHG)); ["SimilarBetweenTriangle(OEF,OGH)"]  
-4; similar_triangle_property_line_ratio(1,OEF,OGH); SimilarBetweenTriangle(OEF,OGH); ["Equal(Div(LengthOfLine(OE),LengthOfLine(EG)),Div(LengthOfLine(OF),LengthOfLine(FH)))"]
+1; line_addition(OE,EG); Collinear(OEG); ["Equal(LengthOfLine(OG),Add(LengthOfLine(OE),LengthOfLine(EG)))"]
+2; similar_triangle_judgment_aa(OEF,OGH); Polygon(OEF)&Polygon(OGH)&Angle(EOF)&Angle(OHG)&Angle(OFE)&Angle(OGH); ["SimilarBetweenTriangle(OEF,OGH)"]
 Retry attempt: 1
 Content written to results/level_5/variant_random_all_theorems_model_o1_problem_5080_run_1_to_verify.txt
 predicates to add:
@@ -560,305 +558,16 @@ predicates to add:
 ParallelBetweenLine
 Verifier result: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
 Theorem: similar_triangle_judgment_aa(1,OEF,OGH)
-You output the following premises: Polygon(OEF)&Polygon(OGH)&Equal(MeasureOfAngle(OEF),MeasureOfAngle(OGH))&Equal(MeasureOfAngle(EOF),MeasureOfAngle(OHG))
+You output the following premises: Polygon(OEF)&Polygon(OGH)&Angle(EOF)&Angle(OHG)&Angle(OFE)&Angle(OGH)
 But the correct premises: Polygon(OEF)&Polygon(OGH)&Equal(MeasureOfAngle(OEF),MeasureOfAngle(OGH))&Equal(MeasureOfAngle(EFO),MeasureOfAngle(GHO))
 
 Model Answer:
 RETRY_ANSWER:
 39
 RETRY_THEOREM_SEQUENCE:
-1; line_addition(1,OE,EG); Collinear(OEG); ["Equal(LengthOfLine(OG),Add(LengthOfLine(OE),LengthOfLine(EG)))"]  
-2; line_addition(1,OF,FH); Collinear(OFH); ["Equal(LengthOfLine(OH),Add(LengthOfLine(OF),LengthOfLine(FH)))"]  
-3; similar_triangle_judgment_aa(1,OEF,OGH); Polygon(OEF)&Polygon(OGH)&Equal(MeasureOfAngle(OEF),MeasureOfAngle(OGH))&Equal(MeasureOfAngle(EOF),MeasureOfAngle(OHG)); ["SimilarBetweenTriangle(OEF,OGH)"]  
-4; similar_triangle_property_line_ratio(1,OEF,OGH); SimilarBetweenTriangle(OEF,OGH); ["Equal(Div(LengthOfLine(OE),LengthOfLine(EG)),Div(LengthOfLine(OF),LengthOfLine(FH)))"]
+1; line_addition(1,OE,EG); Collinear(OEG); ["Equal(LengthOfLine(OG),Add(LengthOfLine(OE),LengthOfLine(EG)))"]
+2; similar_triangle_judgment_aa(1,OEF,OGH); Polygon(OEF)&Polygon(OGH)&Angle(EOF)&Angle(OHG)&Angle(OFE)&Angle(OGH); ["SimilarBetweenTriangle(OEF,OGH)"]
 Retry attempt: 2
-Content written to results/level_5/variant_random_all_theorems_model_o1_problem_5080_run_1_to_verify.txt
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Polygon
-has Polygon
-has Polygon
-has Polygon
-has Polygon
-has Polygon
-has Polygon
-has Polygon
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Polygon
-has Polygon
-has Polygon
-has Polygon
-has Polygon
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Polygon
-has Polygon
-has Polygon
-has Polygon
-has Polygon
-has Polygon
-has Polygon
-has Polygon
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Equation
-predicates to add:
-Equation
-predicates to add:
-ParallelBetweenLine
-predicates to add:
-ParallelBetweenLine
-Verifier result: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
-Theorem: similar_triangle_property_line_ratio(1,OEF,OGH)
-You output the following conclusions: Equal(Div(LengthOfLine(OE),LengthOfLine(EG)),Div(LengthOfLine(OF),LengthOfLine(FH)))
-But the correct conclusions: Equal(LengthOfLine(EF),Mul(LengthOfLine(GH),RatioOfSimilarTriangle(OEF,OGH)))
-
-Model Answer:
-RETRY_ANSWER:
-39
-RETRY_THEOREM_SEQUENCE:
-1; line_addition(1,OE,EG); Collinear(OEG); ["Equal(LengthOfLine(OG),Add(LengthOfLine(OE),LengthOfLine(EG)))"]  
-2; line_addition(1,OF,FH); Collinear(OFH); ["Equal(LengthOfLine(OH),Add(LengthOfLine(OF),LengthOfLine(FH)))"]  
-3; similar_triangle_judgment_aa(1,OEF,OGH); Polygon(OEF)&Polygon(OGH)&Equal(MeasureOfAngle(OEF),MeasureOfAngle(OGH))&Equal(MeasureOfAngle(EFO),MeasureOfAngle(GHO)); ["SimilarBetweenTriangle(OEF,OGH)"]  
-4; similar_triangle_property_line_ratio(1,OEF,OGH); SimilarBetweenTriangle(OEF,OGH); ["Equal(Div(LengthOfLine(OE),LengthOfLine(EG)),Div(LengthOfLine(OF),LengthOfLine(FH)))"]
-Retry attempt: 3
 Content written to results/level_5/variant_random_all_theorems_model_o1_problem_5080_run_1_to_verify.txt
 predicates to add:
 Line
@@ -1152,10 +861,290 @@ Model Answer:
 RETRY_ANSWER:
 39
 RETRY_THEOREM_SEQUENCE:
-1; line_addition(1,OE,EG); Collinear(OEG); ["Equal(LengthOfLine(OG),Add(LengthOfLine(OE),LengthOfLine(EG)))"]  
-2; line_addition(1,OF,FH); Collinear(OFH); ["Equal(LengthOfLine(OH),Add(LengthOfLine(OF),LengthOfLine(FH)))"]  
-3; similar_triangle_judgment_aa(1,OEF,OGH); Polygon(OEF)&Polygon(OGH)&Equal(MeasureOfAngle(OEF),MeasureOfAngle(OGH))&Equal(MeasureOfAngle(EFO),MeasureOfAngle(GHO)); ["SimilarBetweenTriangle(OEF,OGH)"]  
-4; similar_triangle_property_line_ratio(1,OEF,OGH); SimilarBetweenTriangle(OEF,OGH); ["Equal(LengthOfLine(EF),Mul(LengthOfLine(GH),RatioOfSimilarTriangle(OEF,OGH)))"]
+1; line_addition(1,OE,EG); Collinear(OEG); ["Equal(LengthOfLine(OG),Add(LengthOfLine(OE),LengthOfLine(EG)))"]
+2; similar_triangle_judgment_aa(1,OEF,OGH); Polygon(OEF)&Polygon(OGH)&Equal(MeasureOfAngle(OEF),MeasureOfAngle(OGH))&Equal(MeasureOfAngle(EFO),MeasureOfAngle(GHO)); ["SimilarBetweenTriangle(OEF,OGH)"]
+Retry attempt: 3
+Content written to results/level_5/variant_random_all_theorems_model_o1_problem_5080_run_1_to_verify.txt
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Polygon
+has Polygon
+has Polygon
+has Polygon
+has Polygon
+has Polygon
+has Polygon
+has Polygon
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Polygon
+has Polygon
+has Polygon
+has Polygon
+has Polygon
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Polygon
+has Polygon
+has Polygon
+has Polygon
+has Polygon
+has Polygon
+has Polygon
+has Polygon
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Equation
+predicates to add:
+Equation
+predicates to add:
+ParallelBetweenLine
+predicates to add:
+ParallelBetweenLine
+Verifier result: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
+Failure: Theorem <> not defined in current GDL. Please rewrite the proof sequence, you are allowed to use only theorems from the GDL.
+Model Answer:
+RETRY_ANSWER:
+39
+RETRY_THEOREM_SEQUENCE:
+1; line_addition(1,OF,FH); Collinear(OFH); ["Equal(LengthOfLine(OH),Add(LengthOfLine(OF),LengthOfLine(FH)))"]
+2; (custom_intercept_theorem); ParallelBetweenLine(EF,GH)&Collinear(OEG)&Collinear(OFH); ["Equal(Mul(LengthOfLine(OE),LengthOfLine(FH)),Mul(LengthOfLine(EG),LengthOfLine(OF)))"]
 Retry attempt: 4
 Content written to results/level_5/variant_random_all_theorems_model_o1_problem_5080_run_1_to_verify.txt
 predicates to add:
@@ -1441,7 +1430,7 @@ verification failed.
   Collinear Points: GEO, HFO
   Polygons: EFO, EGHF, EOF, FEGH, GHFE, GHO, GOH, HFEG
 - Theorems related to the goal:
-  Step 2 - line_addition(1, OF, FH): Equal(LengthOfLine(OH),Add(LengthOfLine(OF),LengthOfLine(FH)))
+  Step 1 - line_addition(1, OF, FH): Equal(LengthOfLine(OH),Add(LengthOfLine(OF),LengthOfLine(FH)))
 - Solver constraints directly related to this goal:
   |HO| = |FO| + |FH|
   |HO| > 0
@@ -1451,7 +1440,6 @@ Model Answer:
 RETRY_ANSWER:
 39
 RETRY_THEOREM_SEQUENCE:
-1; line_addition(1,OE,EG); Collinear(OEG); ["Equal(LengthOfLine(OG),Add(LengthOfLine(OE),LengthOfLine(EG)))"]
-2; line_addition(1,OF,FH); Collinear(OFH); ["Equal(LengthOfLine(OH),Add(LengthOfLine(OF),LengthOfLine(FH)))"]
+1; line_addition(1,OF,FH); Collinear(OFH); ["Equal(LengthOfLine(OH),Add(LengthOfLine(OF),LengthOfLine(FH)))"]
 Retry attempt: 5
 Content written to results/level_5/variant_random_all_theorems_model_o1_problem_5080_run_1.txt

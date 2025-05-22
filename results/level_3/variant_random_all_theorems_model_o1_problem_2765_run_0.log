@@ -872,19 +872,19 @@ ParallelBetweenLine
 predicates to add:
 ParallelBetweenLine
 Verifier result: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
-Theorem: parallel_property_corresponding_angle(1,IL,RN,E)
+Theorem: parallel_property_corresponding_angle(1,IL,RN,A)
 You output the following premises: ParallelBetweenLine(IL,RN)&Collinear(AEN)
-But the correct premises: ParallelBetweenLine(IL,RN)&Collinear(EIR)
-You output the following conclusions: Equal(MeasureOfAngle(AEN),MeasureOfAngle(INR))
-But the correct conclusions: Equal(MeasureOfAngle(EIL),MeasureOfAngle(IRN))
+But the correct premises: ParallelBetweenLine(IL,RN)&Collinear(AIR)
+You output the following conclusions: Equal(MeasureOfAngle(AIL),MeasureOfAngle(ERN))
+But the correct conclusions: Equal(MeasureOfAngle(AIL),MeasureOfAngle(IRN))
 
 Model Answer:
 RETRY_ANSWER:
-116
+64
 RETRY_THEOREM_SEQUENCE:
-1; parallel_property_corresponding_angle(1,IL,RN,E); ParallelBetweenLine(IL,RN)&Collinear(AEN); ["Equal(MeasureOfAngle(AEN),MeasureOfAngle(INR))"]
-2; parallel_property_corresponding_angle(1,WJ,AK,Z); ParallelBetweenLine(WJ,AK)&Collinear(AZE); ["Equal(MeasureOfAngle(AZE),MeasureOfAngle(WJK))"]
-3; angle_addition(ABC,CBD); Angle(AEN)&Angle(EZD)&Angle(AZD); ["Equal(MeasureOfAngle(AZD),Add(MeasureOfAngle(AEN),MeasureOfAngle(EZD)))"]
+1; parallel_property_corresponding_angle(1,IL,RN,A); ParallelBetweenLine(IL,RN)&Collinear(AEN); ["Equal(MeasureOfAngle(AIL),MeasureOfAngle(ERN))"]
+2; parallel_property_corresponding_angle(1,WJ,AK,Z); ParallelBetweenLine(WJ,AK)&Collinear(AZEK); ["Equal(MeasureOfAngle(WZE),MeasureOfAngle(EZA))"]
+3; vertical_angle(1,AEN,EZD); Collinear(AZEK)&Collinear(IDZQL)&Angle(AEN)&Angle(EZD); ["Equal(MeasureOfAngle(AEN),MeasureOfAngle(EZD))"]
 Retry attempt: 1
 Content written to results/level_3/variant_random_all_theorems_model_o1_problem_2765_run_0_to_verify.txt
 predicates to add:
@@ -1761,18 +1761,18 @@ predicates to add:
 ParallelBetweenLine
 Verifier result: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
 Theorem: parallel_property_corresponding_angle(1,WJ,AK,Z)
-You output the following premises: ParallelBetweenLine(WJ,AK)&Collinear(AZE)
+You output the following premises: ParallelBetweenLine(WJ,AK)&Collinear(AZEK)
 But the correct premises: ParallelBetweenLine(WJ,AK)&Collinear(ZWA)
-You output the following conclusions: Equal(MeasureOfAngle(AZE),MeasureOfAngle(WJK))
+You output the following conclusions: Equal(MeasureOfAngle(WZE),MeasureOfAngle(EZA))
 But the correct conclusions: Equal(MeasureOfAngle(ZWJ),MeasureOfAngle(WAK))
 
 Model Answer:
 RETRY_ANSWER:
-116
+64
 RETRY_THEOREM_SEQUENCE:
-1; parallel_property_corresponding_angle(1,IL,RN,E); ParallelBetweenLine(IL,RN)&Collinear(EIR); ["Equal(MeasureOfAngle(EIL),MeasureOfAngle(IRN))"]
-2; parallel_property_corresponding_angle(1,WJ,AK,Z); ParallelBetweenLine(WJ,AK)&Collinear(AZE); ["Equal(MeasureOfAngle(AZE),MeasureOfAngle(WJK))"]
-3; angle_addition(ABC,CBD); Angle(AEN)&Angle(EZD)&Angle(AZD); ["Equal(MeasureOfAngle(AZD),Add(MeasureOfAngle(AEN),MeasureOfAngle(EZD)))"]
+1; parallel_property_corresponding_angle(1,IL,RN,A); ParallelBetweenLine(IL,RN)&Collinear(AIR); ["Equal(MeasureOfAngle(AIL),MeasureOfAngle(IRN))"]
+2; parallel_property_corresponding_angle(1,WJ,AK,Z); ParallelBetweenLine(WJ,AK)&Collinear(AZEK); ["Equal(MeasureOfAngle(WZE),MeasureOfAngle(EZA))"]
+3; vertical_angle(1,AEN,EZD); Collinear(AZEK)&Collinear(IDZQL)&Angle(AEN)&Angle(EZD); ["Equal(MeasureOfAngle(AEN),MeasureOfAngle(EZD))"]
 Retry attempt: 2
 Content written to results/level_3/variant_random_all_theorems_model_o1_problem_2765_run_0_to_verify.txt
 predicates to add:
@@ -2648,14 +2648,19 @@ ParallelBetweenLine
 predicates to add:
 ParallelBetweenLine
 Verifier result: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
-Failure: Theorem <angle_addition> branch error. Expected dict_keys(['1']) but got None. Please rewrite your response, you should change only the call to theorem <angle_addition> by adding the branch number from the dict_keys as the first argument
+Theorem: vertical_angle(1,AEN,EZD)
+You output the following premises: Collinear(AZEK)&Collinear(IDZQL)&Angle(AEN)&Angle(EZD)
+But the correct premises: Collinear(AZE)&Collinear(NZD)&Angle(AZN)&Angle(EZD)
+You output the following conclusions: Equal(MeasureOfAngle(AEN),MeasureOfAngle(EZD))
+But the correct conclusions: Equal(MeasureOfAngle(AZN),MeasureOfAngle(EZD))
+
 Model Answer:
 RETRY_ANSWER:
-116
+64
 RETRY_THEOREM_SEQUENCE:
-1; parallel_property_corresponding_angle(1,IL,RN,E); ParallelBetweenLine(IL,RN)&Collinear(EIR); ["Equal(MeasureOfAngle(EIL),MeasureOfAngle(IRN))"]
+1; parallel_property_corresponding_angle(1,IL,RN,A); ParallelBetweenLine(IL,RN)&Collinear(AIR); ["Equal(MeasureOfAngle(AIL),MeasureOfAngle(IRN))"]
 2; parallel_property_corresponding_angle(1,WJ,AK,Z); ParallelBetweenLine(WJ,AK)&Collinear(ZWA); ["Equal(MeasureOfAngle(ZWJ),MeasureOfAngle(WAK))"]
-3; angle_addition(ABC,CBD); Angle(AEN)&Angle(EZD)&Angle(AZD); ["Equal(MeasureOfAngle(AZD),Add(MeasureOfAngle(AEN),MeasureOfAngle(EZD)))"]
+3; vertical_angle(1,AEN,EZD); Collinear(AZEK)&Collinear(IDZQL)&Angle(AEN)&Angle(EZD); ["Equal(MeasureOfAngle(AEN),MeasureOfAngle(EZD))"]
 Retry attempt: 3
 Content written to results/level_3/variant_random_all_theorems_model_o1_problem_2765_run_0_to_verify.txt
 predicates to add:
@@ -3530,20 +3535,31 @@ predicates to add:
 ParallelBetweenLine
 predicates to add:
 ParallelBetweenLine
-Verifier result: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
-Theorem: angle_addition(1,AEN,EZD)
-You output the following premises: Angle(AEN)&Angle(EZD)&Angle(AZD)
-But the correct premises: Angle(AZE)&Angle(EZD)&Angle(AZD)
-You output the following conclusions: Equal(MeasureOfAngle(AZD),Add(MeasureOfAngle(AEN),MeasureOfAngle(EZD)))
-But the correct conclusions: Equal(MeasureOfAngle(AZD),Add(MeasureOfAngle(AZE),MeasureOfAngle(EZD)))
+Verifier result: ERROR_TIER: TIER2_PREMISE_VIOLATION
+verification failed.
 
+- Error: You tried to use theorem: vertical_angle(1,AZN,EZD);Collinear(AZE)&Collinear(NZD)&Angle(AZN)&Angle(EZD);['Equal(MeasureOfAngle(AZN),MeasureOfAngle(EZD))']
+Missing premise: Collinear fact for NZD not established
+Details: Known collinear facts: ['IDZQL', 'NEHR', 'JHDW', 'AZEK', 'LQZ', 'DQL', 'IQL', 'DZL', 'IZL', 'IDL', 'DZQ', 'IZQ', 'IDQ', 'IDZ', 'IDZ', 'IDZ', 'IDQ', 'IDQ', 'IDL', 'IDL', 'IZQ', 'IZQ', 'IZL', 'IZL', 'IQL', 'IQL', 'DZQ', 'DZQ', 'DZL', 'DZL', 'DQL', 'DQL', 'LQZ', 'LQZ', 'HEN', 'NER', 'NHR', 'EHR', 'EHR', 'EHR', 'NHR', 'NHR', 'NER', 'NER', 'HEN', 'HEN', 'DHJ', 'JHW', 'JDW', 'HDW', 'HDW', 'HDW', 'JDW', 'JDW', 'JHW', 'JHW', 'DHJ', 'DHJ', 'KEZ', 'AEK', 'AZK', 'AZE', 'AZE', 'AZE', 'AZK', 'AZK', 'AEK', 'AEK', 'KEZ', 'KEZ']
+- Available premises:
+  Parallel Lines: AK ∥ JW, IL ∥ NR
+  Collinear Points: AEK, AZE, AZEK, AZK, DHJ, DQL, DZL, DZQ, EHR, HDW, HEN, IDL, IDQ, IDZ, IDZQL, IQL, IZL, IZQ, JDW, JHDW, JHW, KEZ, LQZ, NEHR, NER, NHR
+- Theorems related to the goal:
+  Step 3 - vertical_angle(1, AZN, EZD): Equal(MeasureOfAngle(AZN),MeasureOfAngle(EZD))
+- Solver constraints directly related to this goal:
+  ∠DZE <= 180
+  ∠DZE = ∠DZK
+  ∠DZE = ∠EZI
+  ∠DZE > 0
+
+Please fix the proof.
 Model Answer:
 RETRY_ANSWER:
-116
+64
 RETRY_THEOREM_SEQUENCE:
-1; parallel_property_corresponding_angle(1,IL,RN,E); ParallelBetweenLine(IL,RN)&Collinear(EIR); ["Equal(MeasureOfAngle(EIL),MeasureOfAngle(IRN))"]
+1; parallel_property_corresponding_angle(1,IL,RN,A); ParallelBetweenLine(IL,RN)&Collinear(AIR); ["Equal(MeasureOfAngle(AIL),MeasureOfAngle(IRN))"]
 2; parallel_property_corresponding_angle(1,WJ,AK,Z); ParallelBetweenLine(WJ,AK)&Collinear(ZWA); ["Equal(MeasureOfAngle(ZWJ),MeasureOfAngle(WAK))"]
-3; angle_addition(1,AEN,EZD); Angle(AEN)&Angle(EZD)&Angle(AZD); ["Equal(MeasureOfAngle(AZD),Add(MeasureOfAngle(AEN),MeasureOfAngle(EZD)))"]
+3; vertical_angle(1,AZN,EZD); Collinear(AZE)&Collinear(NZD)&Angle(AZN)&Angle(EZD); ["Equal(MeasureOfAngle(AZN),MeasureOfAngle(EZD))"]
 Retry attempt: 4
 Content written to results/level_3/variant_random_all_theorems_model_o1_problem_2765_run_0_to_verify.txt
 predicates to add:
@@ -4422,15 +4438,14 @@ Verifier result: ERROR_TIER: TIER3_GOAL_NOT_REACHED
 verification failed.
 
 - Goal: measure of angle EZD
-- Model answer: 116.0
+- Model answer: 64
 - Error: Your proof doesn't uniquely determine the value. You need to use additional theorems to constrain the value.
 - Available premises:
   Parallel Lines: AK ∥ JW, IL ∥ NR
   Collinear Points: AEK, AZE, AZEK, AZK, DHJ, DQL, DZL, DZQ, EHR, HDW, HEN, IDL, IDQ, IDZ, IDZQL, IQL, IZL, IZQ, JDW, JHDW, JHW, KEZ, LQZ, NEHR, NER, NHR
 - Theorems related to the goal:
-  Step 3 - angle_addition(1, AZE, EZD): Equal(MeasureOfAngle(AZD),Add(MeasureOfAngle(AZE),MeasureOfAngle(EZD)))
+  None found that constrain this goal
 - Solver constraints directly related to this goal:
-  ∠AZD = ∠AZE + ∠DZE
   ∠DZE <= 180
   ∠DZE = ∠DZK
   ∠DZE = ∠EZI
@@ -4439,10 +4454,9 @@ verification failed.
 Please fix the proof.
 Model Answer:
 RETRY_ANSWER:
-116
+64
 RETRY_THEOREM_SEQUENCE:
-1; parallel_property_corresponding_angle(1,IL,RN,E); ParallelBetweenLine(IL,RN)&Collinear(EIR); ["Equal(MeasureOfAngle(EIL),MeasureOfAngle(IRN))"]
+1; parallel_property_corresponding_angle(1,IL,RN,A); ParallelBetweenLine(IL,RN)&Collinear(AIR); ["Equal(MeasureOfAngle(AIL),MeasureOfAngle(IRN))"]  
 2; parallel_property_corresponding_angle(1,WJ,AK,Z); ParallelBetweenLine(WJ,AK)&Collinear(ZWA); ["Equal(MeasureOfAngle(ZWJ),MeasureOfAngle(WAK))"]
-3; angle_addition(1,AZE,EZD); Angle(AZE)&Angle(EZD)&Angle(AZD); ["Equal(MeasureOfAngle(AZD),Add(MeasureOfAngle(AZE),MeasureOfAngle(EZD)))"]
 Retry attempt: 5
 Content written to results/level_3/variant_random_all_theorems_model_o1_problem_2765_run_0.txt

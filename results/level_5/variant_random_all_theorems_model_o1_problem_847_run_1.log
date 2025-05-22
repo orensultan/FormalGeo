@@ -223,247 +223,6 @@ Equation
 predicates to add:
 PerpendicularBetweenLine
 Verifier result: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
-Failure: Theorem <isosceles_triangle_judgment_line_equal> variation id is not supplied. Expected dict_keys(['1']) but got None.
-Your call: isosceles_triangle_judgment_line_equal(A,B,C)
-Please rewrite your response by adding the variation id as the first argument. For example: For variation 1: isosceles_triangle_judgment_line_equal(1,A,B,C)
-
-Model Answer:
-RETRY_ANSWER:
-6√3
-RETRY_THEOREM_SEQUENCE:
-1; isosceles_triangle_judgment_line_equal(ABC); Polygon(ABC)&Equal(LengthOfLine(AB),LengthOfLine(BC)); ["IsoscelesTriangle(ABC)"]  
-2; triangle_property_angle_sum(ABC); Polygon(ABC); ["Equal(Add(MeasureOfAngle(ABC),MeasureOfAngle(BCA),MeasureOfAngle(CAB)),180)"]  
-3; isosceles_triangle_property_angle_equal(ABC); IsoscelesTriangle(ABC); ["Equal(MeasureOfAngle(ABC),MeasureOfAngle(BCA))"]  
-4; right_triangle_judgment_angle(BDC); Polygon(BDC)&Equal(MeasureOfAngle(CDB),90); ["RightTriangle(BDC)"]  
-5; right_triangle_property_pythagorean(BDC); RightTriangle(BDC); ["Equal(Add(Pow(LengthOfLine(BD),2),Pow(LengthOfLine(DC),2)),Pow(LengthOfLine(BC),2))"]  
-6; line_addition(AD,DC); Collinear(ADC); ["Equal(LengthOfLine(AC),Add(LengthOfLine(AD),LengthOfLine(DC)))"]  
-7; cosine_theorem(ABD); Polygon(ABD); ["Equal(Add(Pow(LengthOfLine(BD),2),Mul(2,LengthOfLine(AB),LengthOfLine(AD),Cos(MeasureOfAngle(BAD)))),Add(Pow(LengthOfLine(AB),2),Pow(LengthOfLine(AD),2)))"]
-Retry attempt: 1
-Content written to results/level_5/variant_random_all_theorems_model_o1_problem_847_run_1_to_verify.txt
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Polygon
-has Polygon
-has Polygon
-has Polygon
-has Polygon
-has Polygon
-has Polygon
-has Polygon
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Polygon
-has Polygon
-has Polygon
-has Polygon
-has Polygon
-has Polygon
-has Polygon
-has Polygon
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Polygon
-has Polygon
-has Polygon
-has Polygon
-has Polygon
-has Polygon
-has Polygon
-has Polygon
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Angle
-predicates to add:
-Line
-predicates to add:
-Line
-predicates to add:
-Equation
-predicates to add:
-Equation
-predicates to add:
-Equation
-predicates to add:
-Equation
-predicates to add:
-PerpendicularBetweenLine
-predicates to add:
-Equation
-predicates to add:
-Equation
-predicates to add:
-Equation
-predicates to add:
-Equation
-predicates to add:
-Equation
-predicates to add:
-PerpendicularBetweenLine
-Verifier result: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
 Theorem: isosceles_triangle_judgment_line_equal(1,ABC)
 You output the following premises: Polygon(ABC)&Equal(LengthOfLine(AB),LengthOfLine(BC))
 But the correct premises: Polygon(ABC)&Equal(LengthOfLine(AB),LengthOfLine(AC))
@@ -474,12 +233,9 @@ RETRY_ANSWER:
 RETRY_THEOREM_SEQUENCE:
 1; isosceles_triangle_judgment_line_equal(1,ABC); Polygon(ABC)&Equal(LengthOfLine(AB),LengthOfLine(BC)); ["IsoscelesTriangle(ABC)"]  
 2; triangle_property_angle_sum(1,ABC); Polygon(ABC); ["Equal(Add(MeasureOfAngle(ABC),MeasureOfAngle(BCA),MeasureOfAngle(CAB)),180)"]  
-3; isosceles_triangle_property_angle_equal(1,ABC); IsoscelesTriangle(ABC); ["Equal(MeasureOfAngle(ABC),MeasureOfAngle(BCA))"]  
-4; right_triangle_judgment_angle(1,BDC); Polygon(BDC)&Equal(MeasureOfAngle(CDB),90); ["RightTriangle(BDC)"]  
-5; right_triangle_property_pythagorean(1,BDC); RightTriangle(BDC); ["Equal(Add(Pow(LengthOfLine(BD),2),Pow(LengthOfLine(DC),2)),Pow(LengthOfLine(BC),2))"]  
-6; line_addition(1,AD,DC); Collinear(ADC); ["Equal(LengthOfLine(AC),Add(LengthOfLine(AD),LengthOfLine(DC)))"]  
-7; cosine_theorem(1,ABD); Polygon(ABD); ["Equal(Add(Pow(LengthOfLine(BD),2),Mul(2,LengthOfLine(AB),LengthOfLine(AD),Cos(MeasureOfAngle(BAD)))),Add(Pow(LengthOfLine(AB),2),Pow(LengthOfLine(AD),2)))"]
-Retry attempt: 2
+3; right_triangle_judgment_angle(1,BDC); Polygon(BDC)&Equal(MeasureOfAngle(CDB),90); ["RightTriangle(BDC)"]  
+4; right_triangle_property_pythagorean(1,BDC); RightTriangle(BDC); ["Equal(Add(Pow(LengthOfLine(BD),2),Pow(LengthOfLine(DC),2)),Pow(LengthOfLine(BC),2))"]
+Retry attempt: 1
 Content written to results/level_5/variant_random_all_theorems_model_o1_problem_847_run_1_to_verify.txt
 predicates to add:
 Line
@@ -715,11 +471,261 @@ RETRY_ANSWER:
 RETRY_THEOREM_SEQUENCE:
 1; isosceles_triangle_judgment_line_equal(1,ABC); Polygon(ABC)&Equal(LengthOfLine(AB),LengthOfLine(AC)); ["IsoscelesTriangle(ABC)"]  
 2; triangle_property_angle_sum(1,ABC); Polygon(ABC); ["Equal(Add(MeasureOfAngle(ABC),MeasureOfAngle(BCA),MeasureOfAngle(CAB)),180)"]  
-3; isosceles_triangle_property_angle_equal(1,ABC); IsoscelesTriangle(ABC); ["Equal(MeasureOfAngle(ABC),MeasureOfAngle(BCA))"]  
-4; right_triangle_judgment_angle(1,BDC); Polygon(BDC)&Equal(MeasureOfAngle(CDB),90); ["RightTriangle(BDC)"]  
-5; right_triangle_property_pythagorean(1,BDC); RightTriangle(BDC); ["Equal(Add(Pow(LengthOfLine(BD),2),Pow(LengthOfLine(DC),2)),Pow(LengthOfLine(BC),2))"]  
-6; line_addition(1,AD,DC); Collinear(ADC); ["Equal(LengthOfLine(AC),Add(LengthOfLine(AD),LengthOfLine(DC)))"]  
-7; cosine_theorem(1,ABD); Polygon(ABD); ["Equal(Add(Pow(LengthOfLine(BD),2),Mul(2,LengthOfLine(AB),LengthOfLine(AD),Cos(MeasureOfAngle(BAD)))),Add(Pow(LengthOfLine(AB),2),Pow(LengthOfLine(AD),2)))"]
+3; right_triangle_judgment_angle(1,BDC); Polygon(BDC)&Equal(MeasureOfAngle(CDB),90); ["RightTriangle(BDC)"]  
+4; right_triangle_property_pythagorean(1,BDC); RightTriangle(BDC); ["Equal(Add(Pow(LengthOfLine(BD),2),Pow(LengthOfLine(DC),2)),Pow(LengthOfLine(BC),2))"]
+Retry attempt: 2
+Content written to results/level_5/variant_random_all_theorems_model_o1_problem_847_run_1_to_verify.txt
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Polygon
+has Polygon
+has Polygon
+has Polygon
+has Polygon
+has Polygon
+has Polygon
+has Polygon
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Polygon
+has Polygon
+has Polygon
+has Polygon
+has Polygon
+has Polygon
+has Polygon
+has Polygon
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Polygon
+has Polygon
+has Polygon
+has Polygon
+has Polygon
+has Polygon
+has Polygon
+has Polygon
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Angle
+predicates to add:
+Line
+predicates to add:
+Line
+predicates to add:
+Equation
+predicates to add:
+Equation
+predicates to add:
+Equation
+predicates to add:
+Equation
+predicates to add:
+PerpendicularBetweenLine
+predicates to add:
+Equation
+predicates to add:
+Equation
+predicates to add:
+Equation
+predicates to add:
+Equation
+predicates to add:
+Equation
+predicates to add:
+PerpendicularBetweenLine
+Verifier result: ERROR_TIER: TIER3_GOAL_NOT_REACHED
+verification failed.
+
+- Goal: value of h
+- Model answer: 6√3
+- Error: Your proof doesn't uniquely determine the value. You need to use additional theorems to constrain the value.
+- Available premises:
+  Perpendicular Lines: BD ⊥ CD
+  Collinear Points: ADC
+  Right Triangles: BDC
+  Polygons: ABC, ABD, ACB, ADB, BCD, BDC
+- Theorems related to the goal:
+  Step 1 - isosceles_triangle_judgment_line_equal(1, ABC): IsoscelesTriangle(ABC)
+  Step 3 - right_triangle_judgment_angle(1, BDC): RightTriangle(BDC)
+  Step 4 - right_triangle_property_pythagorean(1, BDC): Equal(Add(Pow(LengthOfLine(BD),2),Pow(LengthOfLine(DC),2)),Pow(LengthOfLine(BC),2))
+- Solver constraints directly related to this goal:
+  None found
+
+Variable h is not uniquely determined
+Please fix the proof.
+Model Answer:
+RETRY_ANSWER:
+6√3
+RETRY_THEOREM_SEQUENCE:
+1; isosceles_triangle_judgment_line_equal(1,ABC); Polygon(ABC)&Equal(LengthOfLine(AB),LengthOfLine(AC)); ["IsoscelesTriangle(ABC)"]  
+2; triangle_property_angle_sum(1,ABC); Polygon(ABC); ["Equal(Add(MeasureOfAngle(ABC),MeasureOfAngle(BCA),MeasureOfAngle(CAB)),180)"]  
+3; right_triangle_judgment_angle(1,BDC); Polygon(BDC)&Equal(MeasureOfAngle(BDC),90); ["RightTriangle(BDC)"]  
+4; right_triangle_property_pythagorean(1,BDC); RightTriangle(BDC); ["Equal(Add(Pow(LengthOfLine(BD),2),Pow(LengthOfLine(DC),2)),Pow(LengthOfLine(BC),2))"]
 Retry attempt: 3
 Content written to results/level_5/variant_random_all_theorems_model_o1_problem_847_run_1_to_verify.txt
 predicates to add:
@@ -946,21 +952,20 @@ Equation
 predicates to add:
 PerpendicularBetweenLine
 Verifier result: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
-Theorem: cosine_theorem(1,ABD)
-You output the following conclusions: Equal(Add(Pow(LengthOfLine(BD),2),Mul(2,LengthOfLine(AB),LengthOfLine(AD),Cos(MeasureOfAngle(BAD)))),Add(Pow(LengthOfLine(AB),2),Pow(LengthOfLine(AD),2)))
-But the correct conclusions: Equal(Add(Pow(LengthOfLine(BD),2),Mul(2,LengthOfLine(AB),LengthOfLine(AD),Cos(MeasureOfAngle(DAB)))),Add(Pow(LengthOfLine(AB),2),Pow(LengthOfLine(AD),2)))
+Theorem: isosceles_triangle_judgment_line_equal(1,ABC)
+You output the following premises: Polygon(ABC)&Equal(LengthOfLine(AB),LengthOfLine(BC))
+But the correct premises: Polygon(ABC)&Equal(LengthOfLine(AB),LengthOfLine(AC))
 
 Model Answer:
 RETRY_ANSWER:
 6√3
 RETRY_THEOREM_SEQUENCE:
-1; isosceles_triangle_judgment_line_equal(1,ABC); Polygon(ABC)&Equal(LengthOfLine(AB),LengthOfLine(AC)); ["IsoscelesTriangle(ABC)"]  
-2; triangle_property_angle_sum(1,ABC); Polygon(ABC); ["Equal(Add(MeasureOfAngle(ABC),MeasureOfAngle(BCA),MeasureOfAngle(CAB)),180)"]  
-3; isosceles_triangle_property_angle_equal(1,ABC); IsoscelesTriangle(ABC); ["Equal(MeasureOfAngle(ABC),MeasureOfAngle(BCA))"]  
-4; right_triangle_judgment_angle(1,BDC); Polygon(BDC)&Equal(MeasureOfAngle(BDC),90); ["RightTriangle(BDC)"]  
-5; right_triangle_property_pythagorean(1,BDC); RightTriangle(BDC); ["Equal(Add(Pow(LengthOfLine(BD),2),Pow(LengthOfLine(DC),2)),Pow(LengthOfLine(BC),2))"]  
-6; line_addition(1,AD,DC); Collinear(ADC); ["Equal(LengthOfLine(AC),Add(LengthOfLine(AD),LengthOfLine(DC)))"]  
-7; cosine_theorem(1,ABD); Polygon(ABD); ["Equal(Add(Pow(LengthOfLine(BD),2),Mul(2,LengthOfLine(AB),LengthOfLine(AD),Cos(MeasureOfAngle(BAD)))),Add(Pow(LengthOfLine(AB),2),Pow(LengthOfLine(AD),2)))"]
+1; isosceles_triangle_judgment_line_equal(1,ABC); Polygon(ABC)&Equal(LengthOfLine(AB),LengthOfLine(BC)); ["IsoscelesTriangle(ABC)"]  
+2; isosceles_triangle_property_angle_equal(1,ABC); IsoscelesTriangle(ABC); ["Equal(MeasureOfAngle(ABC),MeasureOfAngle(BCA))"]  
+3; triangle_property_angle_sum(1,ABC); Polygon(ABC); ["Equal(Add(MeasureOfAngle(ABC),MeasureOfAngle(BCA),MeasureOfAngle(CAB)),180)"]  
+4; line_addition(AB,BC); Collinear(ADC); ["Equal(LengthOfLine(AC),Add(LengthOfLine(AD),LengthOfLine(DC)))"]  
+5; right_triangle_judgment_angle(1,BDC); Polygon(BDC)&Equal(MeasureOfAngle(BDC),90); ["RightTriangle(BDC)"]  
+6; right_triangle_property_pythagorean(1,BDC); RightTriangle(BDC); ["Equal(Add(Pow(LengthOfLine(BD),2),Pow(LengthOfLine(DC),2)),Pow(LengthOfLine(BC),2))"]
 Retry attempt: 4
 Content written to results/level_5/variant_random_all_theorems_model_o1_problem_847_run_1_to_verify.txt
 predicates to add:
@@ -1199,10 +1204,8 @@ verification failed.
   Polygons: ABC, ABD, ACB, ADB, BCD, BDC
 - Theorems related to the goal:
   Step 1 - isosceles_triangle_judgment_line_equal(1, ABC): IsoscelesTriangle(ABC)
-  Step 4 - right_triangle_judgment_angle(1, BDC): RightTriangle(BDC)
-  Step 5 - right_triangle_property_pythagorean(1, BDC): Equal(Add(Pow(LengthOfLine(BD),2),Pow(LengthOfLine(DC),2)),Pow(LengthOfLine(BC),2))
-  Step 6 - line_addition(1, AD, DC): Equal(LengthOfLine(AC),Add(LengthOfLine(AD),LengthOfLine(DC)))
-  Step 7 - cosine_theorem(1, ABD): Equal(Add(Pow(LengthOfLine(BD),2),Mul(2,LengthOfLine(AB),LengthOfLine(AD),Cos(MeasureOfAngle(DAB)))),Add(Pow(LengthOfLine(AB),2),Pow(LengthOfLine(AD),2)))
+  Step 3 - right_triangle_judgment_angle(1, BDC): RightTriangle(BDC)
+  Step 4 - right_triangle_property_pythagorean(1, BDC): Equal(Add(Pow(LengthOfLine(BD),2),Pow(LengthOfLine(DC),2)),Pow(LengthOfLine(BC),2))
 - Solver constraints directly related to this goal:
   None found
 
@@ -1214,10 +1217,7 @@ RETRY_ANSWER:
 RETRY_THEOREM_SEQUENCE:
 1; isosceles_triangle_judgment_line_equal(1,ABC); Polygon(ABC)&Equal(LengthOfLine(AB),LengthOfLine(AC)); ["IsoscelesTriangle(ABC)"]  
 2; triangle_property_angle_sum(1,ABC); Polygon(ABC); ["Equal(Add(MeasureOfAngle(ABC),MeasureOfAngle(BCA),MeasureOfAngle(CAB)),180)"]  
-3; isosceles_triangle_property_angle_equal(1,ABC); IsoscelesTriangle(ABC); ["Equal(MeasureOfAngle(ABC),MeasureOfAngle(BCA))"]  
-4; right_triangle_judgment_angle(1,BDC); Polygon(BDC)&Equal(MeasureOfAngle(BDC),90); ["RightTriangle(BDC)"]  
-5; right_triangle_property_pythagorean(1,BDC); RightTriangle(BDC); ["Equal(Add(Pow(LengthOfLine(BD),2),Pow(LengthOfLine(DC),2)),Pow(LengthOfLine(BC),2))"]  
-6; line_addition(1,AD,DC); Collinear(ADC); ["Equal(LengthOfLine(AC),Add(LengthOfLine(AD),LengthOfLine(DC)))"]  
-7; cosine_theorem(1,ABD); Polygon(ABD); ["Equal(Add(Pow(LengthOfLine(BD),2),Mul(2,LengthOfLine(AB),LengthOfLine(AD),Cos(MeasureOfAngle(DAB)))),Add(Pow(LengthOfLine(AB),2),Pow(LengthOfLine(AD),2)))"]
+3; right_triangle_judgment_angle(1,BDC); Polygon(BDC)&Equal(MeasureOfAngle(BDC),90); ["RightTriangle(BDC)"]  
+4; right_triangle_property_pythagorean(1,BDC); RightTriangle(BDC); ["Equal(Add(Pow(LengthOfLine(BD),2),Pow(LengthOfLine(DC),2)),Pow(LengthOfLine(BC),2))"]
 Retry attempt: 5
 Content written to results/level_5/variant_random_all_theorems_model_o1_problem_847_run_1.txt

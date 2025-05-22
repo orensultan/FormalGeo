@@ -109,16 +109,13 @@ Outputs for Problem B:
 
 ***MODEL_RESPONSE_BEGIN***
 EQUATIONS:
-ll_ps-(y+2)
-ll_pt-(y-3)
-ll_qs-16
-ll_rs-12
+((y+2)/(y-3)) - (16/12)
 
 GOAL_SYMBOL:
 y
 
 ANSWER:
-14/3
+18
 
 THEOREM_SEQUENCE:
 1; line_addition(1,PT,TS); Collinear(PTS); ["Equal(LengthOfLine(PS),Add(LengthOfLine(PT),LengthOfLine(TS)))"]
@@ -126,60 +123,51 @@ THEOREM_SEQUENCE:
 ***MODEL_RESPONSE_END***
 RETRIES_MESSAGES:
 #run: 0; #retry: 1; message: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
-Theorem: parallel_property_corresponding_angle(1,QP,TR,S)
-You output the following premises: ParallelBetweenLine(QP,TR)&Collinear(QRS)
-But the correct premises: ParallelBetweenLine(QP,TR)&Collinear(SQT)
-You output the following conclusions: Equal(MeasureOfAngle(QSP),MeasureOfAngle(RST))
-But the correct conclusions: Equal(MeasureOfAngle(SQP),MeasureOfAngle(QTR))
+Failure: Theorem <line_addition> variation id is not supplied. Expected dict_keys(['1']) but got None.
+Your call: line_addition(P,S,S,T)
+Please rewrite your response by adding the variation id as the first argument. For example: For variation 1: line_addition(1,P,S,S,T)
 
 Model Answer:
 RETRY_ANSWER:
-14/3
+18
 RETRY_THEOREM_SEQUENCE:
-1; line_addition(1,PT,TS); Collinear(PTS); ["Equal(LengthOfLine(PS),Add(LengthOfLine(PT),LengthOfLine(TS)))"]
-2; line_addition(1,QR,RS); Collinear(QRS); ["Equal(LengthOfLine(QS),Add(LengthOfLine(QR),LengthOfLine(RS)))"]
-3; parallel_property_corresponding_angle(1,QP,TR,S); ParallelBetweenLine(QP,TR)&Collinear(QRS); ["Equal(MeasureOfAngle(QSP),MeasureOfAngle(RST))"]
-4; parallel_property_corresponding_angle(2,QP,TR,S); ParallelBetweenLine(QP,TR)&Collinear(PTS); ["Equal(MeasureOfAngle(QPS),MeasureOfAngle(RTS))"]
-5; similar_triangle_judgment_aa(1,QPS,RST); Polygon(QPS)&Polygon(RST)&Equal(MeasureOfAngle(QSP),MeasureOfAngle(RST))&Equal(MeasureOfAngle(QPS),MeasureOfAngle(RTS)); ["SimilarBetweenTriangle(QPS,RST)"]
-6; similar_triangle_property_line_ratio(1,QPS,RST); SimilarBetweenTriangle(QPS,RST); ["Equal(LengthOfLine(PS),Mul(LengthOfLine(ST),RatioOfSimilarTriangle(QPS,RST)))"]
+1; line_addition(PS,ST); Collinear(PTS); ["Equal(LengthOfLine(PT),Add(LengthOfLine(PS),LengthOfLine(ST)))"]  
+2; line_addition(QS,SR); Collinear(QRS); ["Equal(LengthOfLine(QR),Add(LengthOfLine(QS),LengthOfLine(SR)))"]  
+
+Explanation of Key Ratio Step (not itself in the GDL but following from the parallel‑lines intercept idea):
+From RT ∥ QP (the two opposite sides of quadrilateral QPTR) and the fact that PT and QR intersect at S, one obtains the proportional segments:
+PS / PT = QS / RS.  
+Substitute PS = y+2, PT = y-3, QS = 16, and RS = 12:  
+ (y+2) / (y-3) = 16 / 12 = 4 / 3.  
+Solving gives y = 18.
 #run: 0; #retry: 2; message: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
-Theorem: parallel_property_corresponding_angle(2,QP,TR,S)
-You output the following premises: ParallelBetweenLine(QP,TR)&Collinear(PTS)
-But the correct premises: ParallelBetweenLine(QP,TR)&Collinear(QTS)
-You output the following conclusions: Equal(MeasureOfAngle(QPS),MeasureOfAngle(RTS))
-But the correct conclusions: Equal(MeasureOfAngle(PQT),MeasureOfAngle(RTS))
+Theorem: line_addition(1,PS,ST)
+You output the following premises: Collinear(PTS)
+But the correct premises: Collinear(PST)
 
 Model Answer:
 RETRY_ANSWER:
-14/3
+18
 RETRY_THEOREM_SEQUENCE:
-1; line_addition(1,PT,TS); Collinear(PTS); ["Equal(LengthOfLine(PS),Add(LengthOfLine(PT),LengthOfLine(TS)))"]
-2; line_addition(1,QR,RS); Collinear(QRS); ["Equal(LengthOfLine(QS),Add(LengthOfLine(QR),LengthOfLine(RS)))"]
-3; parallel_property_corresponding_angle(1,QP,TR,S); ParallelBetweenLine(QP,TR)&Collinear(SQT); ["Equal(MeasureOfAngle(SQP),MeasureOfAngle(QTR))"]
-4; parallel_property_corresponding_angle(2,QP,TR,S); ParallelBetweenLine(QP,TR)&Collinear(PTS); ["Equal(MeasureOfAngle(QPS),MeasureOfAngle(RTS))"]
-5; similar_triangle_judgment_aa(1,QPS,RST); Polygon(QPS)&Polygon(RST)&Equal(MeasureOfAngle(QSP),MeasureOfAngle(RST))&Equal(MeasureOfAngle(QPS),MeasureOfAngle(RTS)); ["SimilarBetweenTriangle(QPS,RST)"]
-6; similar_triangle_property_line_ratio(1,QPS,RST); SimilarBetweenTriangle(QPS,RST); ["Equal(LengthOfLine(PS),Mul(LengthOfLine(ST),RatioOfSimilarTriangle(QPS,RST)))"]
+1; line_addition(1,PS,ST); Collinear(PTS); ["Equal(LengthOfLine(PT),Add(LengthOfLine(PS),LengthOfLine(ST)))"]  
+2; line_addition(1,QS,SR); Collinear(QRS); ["Equal(LengthOfLine(QR),Add(LengthOfLine(QS),LengthOfLine(SR)))"]
 #run: 0; #retry: 3; message: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
-Theorem: similar_triangle_judgment_aa(1,QPS,RST)
-You output the following premises: Polygon(QPS)&Polygon(RST)&Equal(MeasureOfAngle(QSP),MeasureOfAngle(RST))&Equal(MeasureOfAngle(QPS),MeasureOfAngle(RTS))
-But the correct premises: Polygon(QPS)&Polygon(RST)&Equal(MeasureOfAngle(QPS),MeasureOfAngle(RST))&Equal(MeasureOfAngle(PSQ),MeasureOfAngle(STR))
+Theorem: line_addition(1,QS,SR)
+You output the following premises: Collinear(QRS)
+But the correct premises: Collinear(QSR)
 
 Model Answer:
 RETRY_ANSWER:
-14/3
+18
 RETRY_THEOREM_SEQUENCE:
-1; line_addition(1,PT,TS); Collinear(PTS); ["Equal(LengthOfLine(PS),Add(LengthOfLine(PT),LengthOfLine(TS)))"]
-2; line_addition(1,QR,RS); Collinear(QRS); ["Equal(LengthOfLine(QS),Add(LengthOfLine(QR),LengthOfLine(RS)))"]
-3; parallel_property_corresponding_angle(1,QP,TR,S); ParallelBetweenLine(QP,TR)&Collinear(SQT); ["Equal(MeasureOfAngle(SQP),MeasureOfAngle(QTR))"]
-4; parallel_property_corresponding_angle(2,QP,TR,S); ParallelBetweenLine(QP,TR)&Collinear(QTS); ["Equal(MeasureOfAngle(PQT),MeasureOfAngle(RTS))"]
-5; similar_triangle_judgment_aa(1,QPS,RST); Polygon(QPS)&Polygon(RST)&Equal(MeasureOfAngle(QSP),MeasureOfAngle(RST))&Equal(MeasureOfAngle(QPS),MeasureOfAngle(RTS)); ["SimilarBetweenTriangle(QPS,RST)"]
-6; similar_triangle_property_line_ratio(1,QPS,RST); SimilarBetweenTriangle(QPS,RST); ["Equal(LengthOfLine(PS),Mul(LengthOfLine(ST),RatioOfSimilarTriangle(QPS,RST)))"]
+1; line_addition(1,PS,ST); Collinear(PST); ["Equal(LengthOfLine(PT),Add(LengthOfLine(PS),LengthOfLine(ST)))"]
+2; line_addition(1,QS,SR); Collinear(QRS); ["Equal(LengthOfLine(QR),Add(LengthOfLine(QS),LengthOfLine(SR)))"]
 #run: 0; #retry: 4; message: ERROR_TIER: TIER2_PREMISE_VIOLATION
 verification failed.
 
-- Error: You tried to use theorem: similar_triangle_judgment_aa(1,QPS,RST);Polygon(QPS)&Polygon(RST)&Equal(MeasureOfAngle(QPS),MeasureOfAngle(RST))&Equal(MeasureOfAngle(PSQ),MeasureOfAngle(STR));['SimilarBetweenTriangle(QPS,RST)']
-Missing premise: Premise angle equality QPS = RST does not hold.
-Details: The constraints do not force these two angles to be equal.
+- Error: You tried to use theorem: line_addition(1,PS,ST);Collinear(PST);['Equal(LengthOfLine(PT),Add(LengthOfLine(PS),LengthOfLine(ST)))']
+Missing premise: Points PST not proven collinear
+Details: Known collinear facts: [['P', 'T', 'S'], ['Q', 'R', 'S'], ['P', 'T', 'S'], ['Q', 'R', 'S']]
 - Available premises:
   Parallel Lines: PQ ∥ RT
   Collinear Points: PTS, QRS
@@ -187,39 +175,29 @@ Details: The constraints do not force these two angles to be equal.
 - Theorems related to the goal:
   None found that constrain this goal
 - Solver constraints directly related to this goal:
-  None found
+  |PS| = y + 2
+  |PT| = y - 3
 
 Please fix the proof.
 Model Answer:
 RETRY_ANSWER:
-14/3
+18
 RETRY_THEOREM_SEQUENCE:
-1; line_addition(1,PT,TS); Collinear(PTS); ["Equal(LengthOfLine(PS),Add(LengthOfLine(PT),LengthOfLine(TS)))"]
-2; line_addition(1,QR,RS); Collinear(QRS); ["Equal(LengthOfLine(QS),Add(LengthOfLine(QR),LengthOfLine(RS)))"]
-3; parallel_property_corresponding_angle(1,QP,TR,S); ParallelBetweenLine(QP,TR)&Collinear(SQT); ["Equal(MeasureOfAngle(SQP),MeasureOfAngle(QTR))"]
-4; parallel_property_corresponding_angle(2,QP,TR,S); ParallelBetweenLine(QP,TR)&Collinear(QTS); ["Equal(MeasureOfAngle(PQT),MeasureOfAngle(RTS))"]
-5; similar_triangle_judgment_aa(1,QPS,RST); Polygon(QPS)&Polygon(RST)&Equal(MeasureOfAngle(QPS),MeasureOfAngle(RST))&Equal(MeasureOfAngle(PSQ),MeasureOfAngle(STR)); ["SimilarBetweenTriangle(QPS,RST)"]
-6; similar_triangle_property_line_ratio(1,QPS,RST); SimilarBetweenTriangle(QPS,RST); ["Equal(LengthOfLine(PS),Mul(LengthOfLine(ST),RatioOfSimilarTriangle(QPS,RST)))"]
+1; line_addition(1,PS,ST); Collinear(PST); ["Equal(LengthOfLine(PT),Add(LengthOfLine(PS),LengthOfLine(ST)))"]
+2; line_addition(1,QS,SR); Collinear(QSR); ["Equal(LengthOfLine(QR),Add(LengthOfLine(QS),LengthOfLine(SR)))"]
 #run: 0; #retry: 5; message: ERROR_TIER: TIER3_GOAL_NOT_REACHED
 verification failed.
 
-- Goal: value of y
-- Model answer: 14/3
-- Error: Your proof doesn't uniquely determine the value. You need to use additional theorems to constrain the value.
-- Available premises:
-  Parallel Lines: PQ ∥ RT
-  Collinear Points: PTS, QRS
-  Polygons: PQS, PSQ, PTRQ, QPTR, RQPT, RST, RTS, TRQP
-- Theorems related to the goal:
-  None found that constrain this goal
-- Solver constraints directly related to this goal:
-  None found
+- Goal: value determination
+- Model answer: 18
+- Verifier expected answer: 14/3
+- Error: THE MODEL DETERMINED THE ANSWER TO BE 18 BUT IN THE GROUND TRUTH SOLUTION TO THE PROBLEM THE ANSWER IS 14/3.
+  Please review your theorem sequence and ensure it correctly establishes the expected answer.
 
-Variable y is not uniquely determined
 Please fix the proof.
 Model Answer:
 RETRY_ANSWER:
-14/3
+18
 RETRY_THEOREM_SEQUENCE:
 1; line_addition(1,PT,TS); Collinear(PTS); ["Equal(LengthOfLine(PS),Add(LengthOfLine(PT),LengthOfLine(TS)))"]
 2; line_addition(1,QR,RS); Collinear(QRS); ["Equal(LengthOfLine(QS),Add(LengthOfLine(QR),LengthOfLine(RS)))"]

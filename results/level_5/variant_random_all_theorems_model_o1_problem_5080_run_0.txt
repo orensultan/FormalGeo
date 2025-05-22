@@ -113,7 +113,8 @@ ll_oh
 ANSWER:
 39
 
-THEOREM_SEQUENCE:
+THEOREM_SEQUENCE: 
+(No valid theorem sequence can be constructed from the given GDL to derive the final result under the provided constraints.)
 ***MODEL_RESPONSE_END***
 RETRIES_MESSAGES:
 #run: 0; #retry: 1; message: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
@@ -125,48 +126,44 @@ Model Answer:
 RETRY_ANSWER:
 39
 RETRY_THEOREM_SEQUENCE:
-1; line_addition(OE,EG); Collinear(OEG); ["Equal(LengthOfLine(OG),Add(LengthOfLine(OE),LengthOfLine(EG)))"]  
-2; line_addition(OF,FH); Collinear(OFH); ["Equal(LengthOfLine(OH),Add(LengthOfLine(OF),LengthOfLine(FH)))"]
-#run: 0; #retry: 2; message: ERROR_TIER: TIER3_GOAL_NOT_REACHED
-verification failed.
+1; line_addition(OE,EG); Collinear(OEG); ["Equal(LengthOfLine(OG),Add(LengthOfLine(OE),LengthOfLine(EG)))"]
+2; parallel_property_corresponding_angle(EF,GH,O); ParallelBetweenLine(EF,GH)&Collinear(OEG); ["Equal(MeasureOfAngle(OEF),MeasureOfAngle(EGH))"]
+3; parallel_property_corresponding_angle(EF,GH,F); ParallelBetweenLine(EF,GH)&Collinear(OFH); ["Equal(MeasureOfAngle(OFE),MeasureOfAngle(OHG))"]
+4; similar_triangle_judgment_aa(1,OEF,OGH); Polygon(OEF)&Polygon(OGH)&Equal(MeasureOfAngle(OEF),MeasureOfAngle(EGH))&Equal(MeasureOfAngle(OFE),MeasureOfAngle(OHG)); ["SimilarBetweenTriangle(OEF,OGH)"]
+#run: 0; #retry: 2; message: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
+Theorem: parallel_property_corresponding_angle(1,EF,GH,F)
+You output the following premises: ParallelBetweenLine(EF,GH)&Collinear(OFH)
+But the correct premises: ParallelBetweenLine(EF,GH)&Collinear(FEG)
+You output the following conclusions: Equal(MeasureOfAngle(OFE),MeasureOfAngle(OHG))
+But the correct conclusions: Equal(MeasureOfAngle(FEF),MeasureOfAngle(EGH))
 
-- Goal: length of line OH
-- Model answer: 39
-- Error: Your proof doesn't uniquely determine the value. You need to use additional theorems to constrain the value.
-- Available premises:
-  Parallel Lines: EF ∥ GH
-  Collinear Points: GEO, HFO
-  Polygons: EFO, EGHF, EOF, FEGH, GHFE, GHO, GOH, HFEG
-- Theorems related to the goal:
-  Step 2 - line_addition(1, OF, FH): Equal(LengthOfLine(OH),Add(LengthOfLine(OF),LengthOfLine(FH)))
-- Solver constraints directly related to this goal:
-  |HO| = |FO| + |FH|
-  |HO| > 0
-
-Please fix the proof.
 Model Answer:
 RETRY_ANSWER:
 39
 RETRY_THEOREM_SEQUENCE:
-1; line_addition(1,OE,EG); Collinear(OEG); ["Equal(LengthOfLine(OG),Add(LengthOfLine(OE),LengthOfLine(EG)))"]  
-2; line_addition(1,OF,FH); Collinear(OFH); ["Equal(LengthOfLine(OH),Add(LengthOfLine(OF),LengthOfLine(FH)))"]
+1; line_addition(1,OE,EG); Collinear(OEG); ["Equal(LengthOfLine(OG),Add(LengthOfLine(OE),LengthOfLine(EG)))"]
+2; parallel_property_corresponding_angle(1,EF,GH,O); ParallelBetweenLine(EF,GH)&Collinear(OEG); ["Equal(MeasureOfAngle(OEF),MeasureOfAngle(EGH))"]
+3; parallel_property_corresponding_angle(1,EF,GH,F); ParallelBetweenLine(EF,GH)&Collinear(OFH); ["Equal(MeasureOfAngle(OFE),MeasureOfAngle(OHG))"]
+4; similar_triangle_judgment_aa(1,OEF,OGH); Polygon(OEF)&Polygon(OGH)&Equal(MeasureOfAngle(OEF),MeasureOfAngle(EGH))&Equal(MeasureOfAngle(OFE),MeasureOfAngle(OHG)); ["SimilarBetweenTriangle(OEF,OGH)"]
 #run: 0; #retry: 3; message: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
-Theorem: similar_triangle_judgment_aa(1,OEG,OFH)
-You output the following premises: Polygon(OEG)&Polygon(OFH)&Angle(OGE)&Angle(OHF)&Angle(OEG)&Angle(OFH)&Equal(MeasureOfAngle(OGE),MeasureOfAngle(OHF))&Equal(MeasureOfAngle(OEG),MeasureOfAngle(OFH))
-But the correct premises: Polygon(OEG)&Polygon(OFH)&Equal(MeasureOfAngle(OEG),MeasureOfAngle(OFH))&Equal(MeasureOfAngle(EGO),MeasureOfAngle(FHO))
+Theorem: similar_triangle_judgment_aa(1,OEF,OGH)
+You output the following premises: Polygon(OEF)&Polygon(OGH)&Equal(MeasureOfAngle(OEF),MeasureOfAngle(EGH))&Equal(MeasureOfAngle(FEF),MeasureOfAngle(EGH))
+But the correct premises: Polygon(OEF)&Polygon(OGH)&Equal(MeasureOfAngle(OEF),MeasureOfAngle(OGH))&Equal(MeasureOfAngle(EFO),MeasureOfAngle(GHO))
 
 Model Answer:
 RETRY_ANSWER:
 39
 RETRY_THEOREM_SEQUENCE:
-1; similar_triangle_judgment_aa(1,OEG,OFH); Polygon(OEG)&Polygon(OFH)&Angle(OGE)&Angle(OHF)&Angle(OEG)&Angle(OFH)&Equal(MeasureOfAngle(OGE),MeasureOfAngle(OHF))&Equal(MeasureOfAngle(OEG),MeasureOfAngle(OFH)); ["SimilarBetweenTriangle(OEG,OFH)"]  
-2; line_addition(1,OF,FH); Collinear(OFH); ["Equal(LengthOfLine(OH),Add(LengthOfLine(OF),LengthOfLine(FH)))"]
+1; line_addition(1,OE,EG); Collinear(OEG); ["Equal(LengthOfLine(OG),Add(LengthOfLine(OE),LengthOfLine(EG)))"]
+2; parallel_property_corresponding_angle(1,EF,GH,O); ParallelBetweenLine(EF,GH)&Collinear(OEG); ["Equal(MeasureOfAngle(OEF),MeasureOfAngle(EGH))"]
+3; parallel_property_corresponding_angle(1,EF,GH,F); ParallelBetweenLine(EF,GH)&Collinear(FEG); ["Equal(MeasureOfAngle(FEF),MeasureOfAngle(EGH))"]
+4; similar_triangle_judgment_aa(1,OEF,OGH); Polygon(OEF)&Polygon(OGH)&Equal(MeasureOfAngle(OEF),MeasureOfAngle(EGH))&Equal(MeasureOfAngle(FEF),MeasureOfAngle(EGH)); ["SimilarBetweenTriangle(OEF,OGH)"]
 #run: 0; #retry: 4; message: ERROR_TIER: TIER2_PREMISE_VIOLATION
 verification failed.
 
-- Error: You tried to use theorem: similar_triangle_judgment_aa(1,OEG,OFH);Polygon(OEG)&Polygon(OFH)&Equal(MeasureOfAngle(OEG),MeasureOfAngle(OFH))&Equal(MeasureOfAngle(EGO),MeasureOfAngle(FHO));['SimilarBetweenTriangle(OEG,OFH)']
-Missing premise: Polygon for triangle OEG is missing from the input data.
-Details: The construction data did not define this polygon.
+- Error: You tried to use theorem: similar_triangle_judgment_aa(1,OEF,OGH);Polygon(OEF)&Polygon(OGH)&Equal(MeasureOfAngle(OEF),MeasureOfAngle(OGH))&Equal(MeasureOfAngle(EFO),MeasureOfAngle(GHO));['SimilarBetweenTriangle(OEF,OGH)']
+Missing premise: Premise angle equality EFO = GHO does not hold.
+Details: The constraints do not force these two angles to be equal.
 - Available premises:
   Parallel Lines: EF ∥ GH
   Collinear Points: GEO, HFO
@@ -181,15 +178,17 @@ Model Answer:
 RETRY_ANSWER:
 39
 RETRY_THEOREM_SEQUENCE:
-1; similar_triangle_judgment_aa(1,OEG,OFH); Polygon(OEG)&Polygon(OFH)&Equal(MeasureOfAngle(OEG),MeasureOfAngle(OFH))&Equal(MeasureOfAngle(EGO),MeasureOfAngle(FHO)); ["SimilarBetweenTriangle(OEG,OFH)"]
-2; line_addition(1,OF,FH); Collinear(OFH); ["Equal(LengthOfLine(OH),Add(LengthOfLine(OF),LengthOfLine(FH)))"]
+1; line_addition(1,OE,EG); Collinear(OEG); ["Equal(LengthOfLine(OG),Add(LengthOfLine(OE),LengthOfLine(EG)))"]
+2; parallel_property_corresponding_angle(1,EF,GH,O); ParallelBetweenLine(EF,GH)&Collinear(OEG); ["Equal(MeasureOfAngle(OEF),MeasureOfAngle(EGH))"]
+3; parallel_property_corresponding_angle(1,EF,GH,F); ParallelBetweenLine(EF,GH)&Collinear(FEG); ["Equal(MeasureOfAngle(FEF),MeasureOfAngle(EGH))"]
+4; similar_triangle_judgment_aa(1,OEF,OGH); Polygon(OEF)&Polygon(OGH)&Equal(MeasureOfAngle(OEF),MeasureOfAngle(OGH))&Equal(MeasureOfAngle(EFO),MeasureOfAngle(GHO)); ["SimilarBetweenTriangle(OEF,OGH)"]
 #run: 0; #retry: 5; message: ERROR_TIER: TIER1_THEOREM_CALL_SYNTAX_VIOLATION
 Failure: The THEOREM_SEQUENCE you provided is empty. Please generate a proof again, using the similar problems I provided (A1, A2, A3, A4, A5), along with the GDL_DICTIONARY of theorems.
 Model Answer:
 RETRY_ANSWER:
 39
 RETRY_THEOREM_SEQUENCE:
-
+(No valid theorem sequence can be constructed from the given GDL to derive the final result under the provided constraints.)
 #RETRIES:
 5
 #RUNS:
