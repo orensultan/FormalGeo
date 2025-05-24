@@ -812,7 +812,7 @@ def evaluate_math_expression(expr):
             # Handle implicit multiplication
             modified_str = re.sub(r'(\d+)\(', r'\1*(', modified_str)
             return float(eval(modified_str, {"math": math}))
-        except Exception as e:
+    except Exception as e:
             print(f"Error evaluating modified string '{modified_str}': {e}")
             pass
 
@@ -1376,11 +1376,11 @@ def analyze_errors(base_path):
                                 error_analysis[variant][level]["error_frequency"][error_msg] += 1
 
                                 # Update tier frequency
-                                if error_msg.startswith("TIER1_"):
+                if error_msg.startswith("TIER1_"):
                                     error_analysis[variant][level]["tier_frequency"][1] += 1
-                                elif error_msg.startswith("TIER2_"):
+                elif error_msg.startswith("TIER2_"):
                                     error_analysis[variant][level]["tier_frequency"][2] += 1
-                                elif error_msg.startswith("TIER3_"):
+                elif error_msg.startswith("TIER3_"):
                                     error_analysis[variant][level]["tier_frequency"][3] += 1
 
                 # Store errors for this problem if any were found
@@ -1651,7 +1651,7 @@ def plot_retries_and_runs(base_path):
     # Calculate averages across all levels
     print("\nAverages across all levels:")
     print("=" * 50)
-    for variant in variants:
+        for variant in variants:
         variant_name = "Analogy-based" if "analogy" in variant else "Base model"
         avg_retries = sum(retries_data[variant]) / len(retries_data[variant])
         avg_runs = sum(runs_data[variant]) / len(runs_data[variant])
@@ -1754,7 +1754,7 @@ def plot_retries_and_runs(base_path):
     ax1.tick_params(axis='x', which='major', labelsize=28)
     for label in ax1.xaxis.get_ticklabels():
         label.set_fontweight('bold')
-
+    
     # Remove top and right spines
     ax1.spines['top'].set_visible(False)
     ax1.spines['right'].set_visible(False)
@@ -1762,7 +1762,7 @@ def plot_retries_and_runs(base_path):
     # Make left and bottom spines thicker
     ax1.spines['left'].set_linewidth(1.5)
     ax1.spines['bottom'].set_linewidth(1.5)
-
+    
     # Customize runs subplot
     ax2.set_xlabel('Level', fontsize=32, labelpad=15, fontweight='bold')
     ax2.set_ylabel('Average runs', fontsize=32, labelpad=15, fontweight='bold')

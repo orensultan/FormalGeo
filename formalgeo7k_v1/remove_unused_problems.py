@@ -3,7 +3,7 @@ import json
 
 def remove_fields_from_json(directory_path):
     """Remove specified fields from all JSON files in the given directory."""
-    fields_to_remove = ["problem_text_cn", "problem_text_en", "annotation"]
+    fields_to_remove = ["annotation"]
     modified_count = 0
     
     for filename in os.listdir(directory_path):
