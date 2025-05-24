@@ -1,43 +1,40 @@
 {
-  "problem_id": 2033,
-  "annotation": "QikeHuang_2023-04-23",
-  "source": "Geometry3k-2119",
-  "problem_level": 2,
-  "problem_text_cn": "如图所示，BD=10，BE=7，CE=2*x，A是圆A的圆心，圆O的切线为BD。求x的值。",
-  "problem_text_en": "As shown in the diagram, BD=10, BE=7, CE=2*x, the center of circle A is A, the tangent to ⊙A is BD. Find the value of x.",
-  "problem_img": "2033.png",
-  "construction_cdl": [
-    "Shape(A)",
-    "Shape(AED,CE)",
-    "Shape(EC,ACD,ADE)",
-    "Shape(ADE,DB,BE)",
-    "Collinear(CEB)",
-    "Cocircular(A,CDE)"
-  ],
-  "text_cdl": [
-    "Equal(LengthOfLine(BD),10)",
-    "Equal(LengthOfLine(BE),7)",
-    "Equal(LengthOfLine(CE),2*x)",
-    "IsCentreOfCircle(A,A)",
-    "IsTangentOfCircle(BD,A)"
-  ],
-  "image_cdl": [
-    "Equal(LengthOfLine(BD),10)",
-    "Equal(LengthOfLine(BE),7)",
-    "Equal(LengthOfLine(CE),2*x)",
-    "IsCentreOfCircle(A,A)",
-    "IsTangentOfCircle(BD,A)"
-  ],
-  "goal_cdl": "Value(x)",
-  "problem_answer": "51/14",
-  "theorem_seqs": [
-    "line_addition(1,CE,EB)",
-    "circle_property_circular_power_tangent_and_segment_line(1,BD,BEC,A)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "line_addition(1,CE,EB)",
-      "circle_property_circular_power_tangent_and_segment_line(1,BD,BEC,A)"
-    ]
-  }
+    "problem_id": 2033,
+    "source": "Geometry3k-2119",
+    "problem_level": 2,
+    "problem_img": "2033.png",
+    "construction_cdl": [
+        "Shape(A)",
+        "Shape(AED,CE)",
+        "Shape(EC,ACD,ADE)",
+        "Shape(ADE,DB,BE)",
+        "Collinear(CEB)",
+        "Cocircular(A,CDE)"
+    ],
+    "text_cdl": [
+        "Equal(LengthOfLine(BD),10)",
+        "Equal(LengthOfLine(BE),7)",
+        "Equal(LengthOfLine(CE),2*x)",
+        "IsCentreOfCircle(A,A)",
+        "IsTangentOfCircle(BD,A)"
+    ],
+    "image_cdl": [
+        "Equal(LengthOfLine(BD),10)",
+        "Equal(LengthOfLine(BE),7)",
+        "Equal(LengthOfLine(CE),2*x)",
+        "IsCentreOfCircle(A,A)",
+        "IsTangentOfCircle(BD,A)"
+    ],
+    "goal_cdl": "Value(x)",
+    "problem_answer": "51/14",
+    "theorem_seqs": [
+        "line_addition(1,CE,EB)",
+        "circle_property_circular_power_tangent_and_segment_line(1,BD,BEC,A)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "line_addition(1,CE,EB)",
+            "circle_property_circular_power_tangent_and_segment_line(1,BD,BEC,A)"
+        ]
+    }
 }

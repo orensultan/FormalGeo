@@ -1,54 +1,51 @@
 {
-  "problem_id": 6576,
-  "annotation": "XiaokaiZhang_2023-06-04",
-  "source": "GeoQA-9537",
-  "problem_level": 7,
-  "problem_text_cn": "如图所示，AB=5，AC=5，BC=6，AB和AC是等腰△ABC的腰，EN∥CA，ME平行于AB，AM和NE是▱ANEM的一组对边。求四边形ANEM的周长。",
-  "problem_text_en": "As shown in the diagram, AB=5, AC=5, BC=6, △ABC is an isosceles △, EN is parallel to CA, ME is parallel to AB, ANEM is a ▱. Find the perimeter of quadrilateral ANEM.",
-  "problem_img": "6576.png",
-  "construction_cdl": [
-    "Shape(AN,NE,EM,MA)",
-    "Shape(NB,BE,EN)",
-    "Shape(ME,EC,CM)",
-    "Collinear(ANB)",
-    "Collinear(BEC)",
-    "Collinear(CMA)"
-  ],
-  "text_cdl": [
-    "Equal(LengthOfLine(AB),5)",
-    "Equal(LengthOfLine(AC),5)",
-    "Equal(LengthOfLine(BC),6)",
-    "IsoscelesTriangle(ABC)",
-    "ParallelBetweenLine(EN,CA)",
-    "ParallelBetweenLine(ME,AB)",
-    "Parallelogram(ANEM)"
-  ],
-  "image_cdl": [],
-  "goal_cdl": "Value(PerimeterOfQuadrilateral(ANEM))",
-  "problem_answer": "10",
-  "theorem_seqs": [
-    "isosceles_triangle_property_angle_equal(1,ABC)",
-    "parallel_property_corresponding_angle(1,EN,CA,B)",
-    "isosceles_triangle_judgment_angle_equal(1,NBE)",
-    "quadrilateral_perimeter_formula(1,ANEM)",
-    "parallelogram_property_opposite_line_equal(1,ANEM)",
-    "parallelogram_property_opposite_line_equal(1,NEMA)",
-    "line_addition(1,AN,NB)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "isosceles_triangle_property_angle_equal(1,ABC)",
-      "parallel_property_corresponding_angle(1,EN,CA,B)",
-      "quadrilateral_perimeter_formula(1,ANEM)",
-      "parallelogram_property_opposite_line_equal(1,ANEM)",
-      "parallelogram_property_opposite_line_equal(1,NEMA)",
-      "line_addition(1,AN,NB)"
+    "problem_id": 6576,
+    "source": "GeoQA-9537",
+    "problem_level": 7,
+    "problem_img": "6576.png",
+    "construction_cdl": [
+        "Shape(AN,NE,EM,MA)",
+        "Shape(NB,BE,EN)",
+        "Shape(ME,EC,CM)",
+        "Collinear(ANB)",
+        "Collinear(BEC)",
+        "Collinear(CMA)"
     ],
-    "isosceles_triangle_property_angle_equal(1,ABC)": [
-      "isosceles_triangle_judgment_angle_equal(1,NBE)"
+    "text_cdl": [
+        "Equal(LengthOfLine(AB),5)",
+        "Equal(LengthOfLine(AC),5)",
+        "Equal(LengthOfLine(BC),6)",
+        "IsoscelesTriangle(ABC)",
+        "ParallelBetweenLine(EN,CA)",
+        "ParallelBetweenLine(ME,AB)",
+        "Parallelogram(ANEM)"
     ],
-    "parallel_property_corresponding_angle(1,EN,CA,B)": [
-      "isosceles_triangle_judgment_angle_equal(1,NBE)"
-    ]
-  }
+    "image_cdl": [],
+    "goal_cdl": "Value(PerimeterOfQuadrilateral(ANEM))",
+    "problem_answer": "10",
+    "theorem_seqs": [
+        "isosceles_triangle_property_angle_equal(1,ABC)",
+        "parallel_property_corresponding_angle(1,EN,CA,B)",
+        "isosceles_triangle_judgment_angle_equal(1,NBE)",
+        "quadrilateral_perimeter_formula(1,ANEM)",
+        "parallelogram_property_opposite_line_equal(1,ANEM)",
+        "parallelogram_property_opposite_line_equal(1,NEMA)",
+        "line_addition(1,AN,NB)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "isosceles_triangle_property_angle_equal(1,ABC)",
+            "parallel_property_corresponding_angle(1,EN,CA,B)",
+            "quadrilateral_perimeter_formula(1,ANEM)",
+            "parallelogram_property_opposite_line_equal(1,ANEM)",
+            "parallelogram_property_opposite_line_equal(1,NEMA)",
+            "line_addition(1,AN,NB)"
+        ],
+        "isosceles_triangle_property_angle_equal(1,ABC)": [
+            "isosceles_triangle_judgment_angle_equal(1,NBE)"
+        ],
+        "parallel_property_corresponding_angle(1,EN,CA,B)": [
+            "isosceles_triangle_judgment_angle_equal(1,NBE)"
+        ]
+    }
 }

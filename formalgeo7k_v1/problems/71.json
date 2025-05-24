@@ -1,32 +1,29 @@
 {
-  "problem_id": 71,
-  "annotation": "XiaokaiZhang_2023-03-12",
-  "source": "Geometry3k-71",
-  "problem_level": 1,
-  "problem_text_cn": "如图所示，∠FHE=15*x°，三角形EFG为等边三角形，EH平分∠GEF。求x的值。",
-  "problem_text_en": "As shown in the diagram, ∠FHE=15*x°, △EFG is an equilateral △, EH is the angle bisector of ∠GEF. Find the value of x.",
-  "problem_img": "71.png",
-  "construction_cdl": [
-    "Shape(EF,FH,HE)",
-    "Shape(EH,HG,GE)",
-    "Collinear(FHG)"
-  ],
-  "text_cdl": [
-    "Equal(MeasureOfAngle(FHE),15*x)",
-    "EquilateralTriangle(EFG)",
-    "IsBisectorOfAngle(EH,GEF)"
-  ],
-  "image_cdl": [
-    "Equal(MeasureOfAngle(FHE),15*x)"
-  ],
-  "goal_cdl": "Value(x)",
-  "problem_answer": "6",
-  "theorem_seqs": [
-    "isosceles_triangle_property_line_coincidence(3,EFG,H)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "isosceles_triangle_property_line_coincidence(3,EFG,H)"
-    ]
-  }
+    "problem_id": 71,
+    "source": "Geometry3k-71",
+    "problem_level": 1,
+    "problem_img": "71.png",
+    "construction_cdl": [
+        "Shape(EF,FH,HE)",
+        "Shape(EH,HG,GE)",
+        "Collinear(FHG)"
+    ],
+    "text_cdl": [
+        "Equal(MeasureOfAngle(FHE),15*x)",
+        "EquilateralTriangle(EFG)",
+        "IsBisectorOfAngle(EH,GEF)"
+    ],
+    "image_cdl": [
+        "Equal(MeasureOfAngle(FHE),15*x)"
+    ],
+    "goal_cdl": "Value(x)",
+    "problem_answer": "6",
+    "theorem_seqs": [
+        "isosceles_triangle_property_line_coincidence(3,EFG,H)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "isosceles_triangle_property_line_coincidence(3,EFG,H)"
+        ]
+    }
 }

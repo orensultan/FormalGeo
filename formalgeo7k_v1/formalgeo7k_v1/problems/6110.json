@@ -1,49 +1,46 @@
 {
-  "problem_id": 6110,
-  "annotation": "YifanWang_2023-06-04",
-  "source": "GeoQA-8658",
-  "problem_level": 5,
-  "problem_text_cn": "如图所示，圆A的直径为10，CO=5，∠COD=90°，A是⊙A的圆心。求∠OBC的大小。",
-  "problem_text_en": "As shown in the diagram, the diameter of circle A is 10, CO=5, ∠COD=90°, the center of circle A is A. Find the measure of ∠OBC.",
-  "problem_img": "6110.png",
-  "construction_cdl": [
-    "Shape(OC,ACO)",
-    "Shape(CO,OE,EC)",
-    "Shape(CE,ED,DA,AC)",
-    "Shape(CA,AD,ADC)",
-    "Shape(EO,OB,BE)",
-    "Shape(BO,AOB)",
-    "Shape(DE,EB,ABD)",
-    "Collinear(CAD)",
-    "Collinear(CEB)",
-    "Collinear(OED)",
-    "Cocircular(A,COBD)"
-  ],
-  "text_cdl": [
-    "Equal(DiameterOfCircle(A),10)",
-    "Equal(LengthOfLine(CO),5)",
-    "Equal(MeasureOfAngle(COD),90)",
-    "IsCentreOfCircle(A,A)"
-  ],
-  "image_cdl": [],
-  "goal_cdl": "Value(MeasureOfAngle(OBC))",
-  "problem_answer": "30",
-  "theorem_seqs": [
-    "diameter_of_circle_judgment_right_angle(1,COD,A)",
-    "diameter_of_circle_property_length_equal(1,DC,A)",
-    "sine_theorem(1,COD)",
-    "arc_property_circumference_angle_external(1,ACO,B)",
-    "arc_property_circumference_angle_external(1,ACO,D)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "diameter_of_circle_judgment_right_angle(1,COD,A)",
-      "sine_theorem(1,COD)",
-      "arc_property_circumference_angle_external(1,ACO,B)",
-      "arc_property_circumference_angle_external(1,ACO,D)"
+    "problem_id": 6110,
+    "source": "GeoQA-8658",
+    "problem_level": 5,
+    "problem_img": "6110.png",
+    "construction_cdl": [
+        "Shape(OC,ACO)",
+        "Shape(CO,OE,EC)",
+        "Shape(CE,ED,DA,AC)",
+        "Shape(CA,AD,ADC)",
+        "Shape(EO,OB,BE)",
+        "Shape(BO,AOB)",
+        "Shape(DE,EB,ABD)",
+        "Collinear(CAD)",
+        "Collinear(CEB)",
+        "Collinear(OED)",
+        "Cocircular(A,COBD)"
     ],
-    "diameter_of_circle_judgment_right_angle(1,COD,A)": [
-      "diameter_of_circle_property_length_equal(1,DC,A)"
-    ]
-  }
+    "text_cdl": [
+        "Equal(DiameterOfCircle(A),10)",
+        "Equal(LengthOfLine(CO),5)",
+        "Equal(MeasureOfAngle(COD),90)",
+        "IsCentreOfCircle(A,A)"
+    ],
+    "image_cdl": [],
+    "goal_cdl": "Value(MeasureOfAngle(OBC))",
+    "problem_answer": "30",
+    "theorem_seqs": [
+        "diameter_of_circle_judgment_right_angle(1,COD,A)",
+        "diameter_of_circle_property_length_equal(1,DC,A)",
+        "sine_theorem(1,COD)",
+        "arc_property_circumference_angle_external(1,ACO,B)",
+        "arc_property_circumference_angle_external(1,ACO,D)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "diameter_of_circle_judgment_right_angle(1,COD,A)",
+            "sine_theorem(1,COD)",
+            "arc_property_circumference_angle_external(1,ACO,B)",
+            "arc_property_circumference_angle_external(1,ACO,D)"
+        ],
+        "diameter_of_circle_judgment_right_angle(1,COD,A)": [
+            "diameter_of_circle_property_length_equal(1,DC,A)"
+        ]
+    }
 }

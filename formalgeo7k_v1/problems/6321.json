@@ -1,55 +1,52 @@
 {
-  "problem_id": 6321,
-  "annotation": "ChengQin_2023-06-04",
-  "source": "GeoQA-9116",
-  "problem_level": 7,
-  "problem_text_cn": "如图所示，EF=2，∠FAE=60°，E平分线段AB，F平分线段AD，ABCD是菱形。求ABCD的周长。",
-  "problem_text_en": "As shown in the diagram, EF=2, ∠FAE=60°, E bisects segment AB, F bisects segment AD, quadrilateral ABCD is a rhombus. Find the perimeter of quadrilateral ABCD.",
-  "problem_img": "6321.png",
-  "construction_cdl": [
-    "Shape(AE,EF,FA)",
-    "Shape(EB,BD,DF,FE)",
-    "Shape(BC,CD,DB)",
-    "Collinear(AEB)",
-    "Collinear(AFD)"
-  ],
-  "text_cdl": [
-    "Equal(LengthOfLine(EF),2)",
-    "Equal(MeasureOfAngle(FAE),60)",
-    "IsMidpointOfLine(E,AB)",
-    "IsMidpointOfLine(F,AD)",
-    "Rhombus(ABCD)"
-  ],
-  "image_cdl": [],
-  "goal_cdl": "Value(PerimeterOfQuadrilateral(ABCD))",
-  "problem_answer": "16",
-  "theorem_seqs": [
-    "midsegment_of_triangle_judgment_midpoint(1,EF,ABD)",
-    "midsegment_of_triangle_property_length(1,EF,ABD)",
-    "isosceles_triangle_judgment_line_equal(1,ABD)",
-    "isosceles_triangle_property_angle_equal(1,ABD)",
-    "triangle_property_angle_sum(1,ABD)",
-    "isosceles_triangle_judgment_angle_equal(1,BDA)",
-    "quadrilateral_perimeter_formula(1,ABCD)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "midsegment_of_triangle_judgment_midpoint(1,EF,ABD)",
-      "isosceles_triangle_judgment_line_equal(1,ABD)",
-      "triangle_property_angle_sum(1,ABD)",
-      "quadrilateral_perimeter_formula(1,ABCD)"
+    "problem_id": 6321,
+    "source": "GeoQA-9116",
+    "problem_level": 7,
+    "problem_img": "6321.png",
+    "construction_cdl": [
+        "Shape(AE,EF,FA)",
+        "Shape(EB,BD,DF,FE)",
+        "Shape(BC,CD,DB)",
+        "Collinear(AEB)",
+        "Collinear(AFD)"
     ],
-    "midsegment_of_triangle_judgment_midpoint(1,EF,ABD)": [
-      "midsegment_of_triangle_property_length(1,EF,ABD)"
+    "text_cdl": [
+        "Equal(LengthOfLine(EF),2)",
+        "Equal(MeasureOfAngle(FAE),60)",
+        "IsMidpointOfLine(E,AB)",
+        "IsMidpointOfLine(F,AD)",
+        "Rhombus(ABCD)"
     ],
-    "isosceles_triangle_judgment_line_equal(1,ABD)": [
-      "isosceles_triangle_property_angle_equal(1,ABD)"
+    "image_cdl": [],
+    "goal_cdl": "Value(PerimeterOfQuadrilateral(ABCD))",
+    "problem_answer": "16",
+    "theorem_seqs": [
+        "midsegment_of_triangle_judgment_midpoint(1,EF,ABD)",
+        "midsegment_of_triangle_property_length(1,EF,ABD)",
+        "isosceles_triangle_judgment_line_equal(1,ABD)",
+        "isosceles_triangle_property_angle_equal(1,ABD)",
+        "triangle_property_angle_sum(1,ABD)",
+        "isosceles_triangle_judgment_angle_equal(1,BDA)",
+        "quadrilateral_perimeter_formula(1,ABCD)"
     ],
-    "isosceles_triangle_property_angle_equal(1,ABD)": [
-      "isosceles_triangle_judgment_angle_equal(1,BDA)"
-    ],
-    "triangle_property_angle_sum(1,ABD)": [
-      "isosceles_triangle_judgment_angle_equal(1,BDA)"
-    ]
-  }
+    "theorem_seqs_dag": {
+        "START": [
+            "midsegment_of_triangle_judgment_midpoint(1,EF,ABD)",
+            "isosceles_triangle_judgment_line_equal(1,ABD)",
+            "triangle_property_angle_sum(1,ABD)",
+            "quadrilateral_perimeter_formula(1,ABCD)"
+        ],
+        "midsegment_of_triangle_judgment_midpoint(1,EF,ABD)": [
+            "midsegment_of_triangle_property_length(1,EF,ABD)"
+        ],
+        "isosceles_triangle_judgment_line_equal(1,ABD)": [
+            "isosceles_triangle_property_angle_equal(1,ABD)"
+        ],
+        "isosceles_triangle_property_angle_equal(1,ABD)": [
+            "isosceles_triangle_judgment_angle_equal(1,BDA)"
+        ],
+        "triangle_property_angle_sum(1,ABD)": [
+            "isosceles_triangle_judgment_angle_equal(1,BDA)"
+        ]
+    }
 }

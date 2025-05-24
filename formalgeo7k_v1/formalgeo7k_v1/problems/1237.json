@@ -1,39 +1,36 @@
 {
-  "problem_id": 1237,
-  "annotation": "YifanWang_2023-04-23",
-  "source": "Geometry3k-1277",
-  "problem_level": 2,
-  "problem_text_cn": "如图所示，∠ZYW=53°，四边形XWZY是菱形。求∠WYX的大小。",
-  "problem_text_en": "As shown in the diagram, ∠ZYW=53°, XWZY is a rhombus. Find the measure of ∠WYX.",
-  "problem_img": "1237.png",
-  "construction_cdl": [
-    "Shape(XW,WV,VX)",
-    "Shape(VW,WZ,ZV)",
-    "Shape(VZ,ZY,YV)",
-    "Shape(XV,VY,YX)",
-    "Collinear(XVZ)",
-    "Collinear(WVY)"
-  ],
-  "text_cdl": [
-    "Equal(MeasureOfAngle(ZYW),53)",
-    "Rhombus(XWZY)"
-  ],
-  "image_cdl": [
-    "Equal(MeasureOfAngle(ZYW),53)",
-    "Rhombus(XWZY)"
-  ],
-  "goal_cdl": "Value(MeasureOfAngle(WYX))",
-  "problem_answer": "53",
-  "theorem_seqs": [
-    "mirror_congruent_triangle_judgment_sss(1,XWY,ZYW)",
-    "mirror_congruent_triangle_property_angle_equal(1,YXW,YWZ)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "mirror_congruent_triangle_judgment_sss(1,XWY,ZYW)"
+    "problem_id": 1237,
+    "source": "Geometry3k-1277",
+    "problem_level": 2,
+    "problem_img": "1237.png",
+    "construction_cdl": [
+        "Shape(XW,WV,VX)",
+        "Shape(VW,WZ,ZV)",
+        "Shape(VZ,ZY,YV)",
+        "Shape(XV,VY,YX)",
+        "Collinear(XVZ)",
+        "Collinear(WVY)"
     ],
-    "mirror_congruent_triangle_judgment_sss(1,XWY,ZYW)": [
-      "mirror_congruent_triangle_property_angle_equal(1,YXW,YWZ)"
-    ]
-  }
+    "text_cdl": [
+        "Equal(MeasureOfAngle(ZYW),53)",
+        "Rhombus(XWZY)"
+    ],
+    "image_cdl": [
+        "Equal(MeasureOfAngle(ZYW),53)",
+        "Rhombus(XWZY)"
+    ],
+    "goal_cdl": "Value(MeasureOfAngle(WYX))",
+    "problem_answer": "53",
+    "theorem_seqs": [
+        "mirror_congruent_triangle_judgment_sss(1,XWY,ZYW)",
+        "mirror_congruent_triangle_property_angle_equal(1,YXW,YWZ)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "mirror_congruent_triangle_judgment_sss(1,XWY,ZYW)"
+        ],
+        "mirror_congruent_triangle_judgment_sss(1,XWY,ZYW)": [
+            "mirror_congruent_triangle_property_angle_equal(1,YXW,YWZ)"
+        ]
+    }
 }

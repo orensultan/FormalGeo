@@ -1,50 +1,47 @@
 {
-  "problem_id": 3786,
-  "annotation": "ChenyangMao_2023-04-30",
-  "source": "GeoQA-1619",
-  "problem_level": 6,
-  "problem_text_cn": "如图所示，∠BDF=130°，BC平行于EF，AB垂直于CB。求∠GFH的大小。",
-  "problem_text_en": "As shown in the diagram, ∠BDF=130°, BC∥EF, AB is perpendicular to CB. Find the measure of ∠GFH.",
-  "problem_img": "3786.png",
-  "construction_cdl": [
-    "Shape(AB,BC)",
-    "Shape(CB,BD)",
-    "Shape(BD,DF)",
-    "Shape(FD,DE,EF)",
-    "Shape(DF,FG)",
-    "Shape(GF,FH)",
-    "Collinear(ABDE)",
-    "Collinear(DFH)",
-    "Collinear(EFG)"
-  ],
-  "text_cdl": [
-    "Equal(MeasureOfAngle(BDF),130)",
-    "ParallelBetweenLine(BC,EF)",
-    "PerpendicularBetweenLine(AB,CB)"
-  ],
-  "image_cdl": [
-    "Equal(MeasureOfAngle(BDF),130)",
-    "ParallelBetweenLine(BC,EF)",
-    "PerpendicularBetweenLine(AB,CB)"
-  ],
-  "goal_cdl": "Value(MeasureOfAngle(GFH))",
-  "problem_answer": "40",
-  "theorem_seqs": [
-    "adjacent_complementary_angle(1,ABC,CBD)",
-    "adjacent_complementary_angle(1,ADF,FDE)",
-    "adjacent_complementary_angle(1,DFG,GFH)",
-    "adjacent_complementary_angle(1,EFD,DFG)",
-    "parallel_property_ipsilateral_internal_angle(1,BC,EF)",
-    "triangle_property_angle_sum(1,FDE)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "adjacent_complementary_angle(1,ABC,CBD)",
-      "adjacent_complementary_angle(1,ADF,FDE)",
-      "adjacent_complementary_angle(1,DFG,GFH)",
-      "adjacent_complementary_angle(1,EFD,DFG)",
-      "parallel_property_ipsilateral_internal_angle(1,BC,EF)",
-      "triangle_property_angle_sum(1,FDE)"
-    ]
-  }
+    "problem_id": 3786,
+    "source": "GeoQA-1619",
+    "problem_level": 6,
+    "problem_img": "3786.png",
+    "construction_cdl": [
+        "Shape(AB,BC)",
+        "Shape(CB,BD)",
+        "Shape(BD,DF)",
+        "Shape(FD,DE,EF)",
+        "Shape(DF,FG)",
+        "Shape(GF,FH)",
+        "Collinear(ABDE)",
+        "Collinear(DFH)",
+        "Collinear(EFG)"
+    ],
+    "text_cdl": [
+        "Equal(MeasureOfAngle(BDF),130)",
+        "ParallelBetweenLine(BC,EF)",
+        "PerpendicularBetweenLine(AB,CB)"
+    ],
+    "image_cdl": [
+        "Equal(MeasureOfAngle(BDF),130)",
+        "ParallelBetweenLine(BC,EF)",
+        "PerpendicularBetweenLine(AB,CB)"
+    ],
+    "goal_cdl": "Value(MeasureOfAngle(GFH))",
+    "problem_answer": "40",
+    "theorem_seqs": [
+        "adjacent_complementary_angle(1,ABC,CBD)",
+        "adjacent_complementary_angle(1,ADF,FDE)",
+        "adjacent_complementary_angle(1,DFG,GFH)",
+        "adjacent_complementary_angle(1,EFD,DFG)",
+        "parallel_property_ipsilateral_internal_angle(1,BC,EF)",
+        "triangle_property_angle_sum(1,FDE)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "adjacent_complementary_angle(1,ABC,CBD)",
+            "adjacent_complementary_angle(1,ADF,FDE)",
+            "adjacent_complementary_angle(1,DFG,GFH)",
+            "adjacent_complementary_angle(1,EFD,DFG)",
+            "parallel_property_ipsilateral_internal_angle(1,BC,EF)",
+            "triangle_property_angle_sum(1,FDE)"
+        ]
+    }
 }

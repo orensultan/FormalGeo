@@ -1,39 +1,36 @@
 {
-  "problem_id": 5263,
-  "annotation": "XiaokaiZhang_2023-05-21",
-  "source": "GeoQA-5376",
-  "problem_level": 3,
-  "problem_text_cn": "如图所示，∠BCA=70°，BD是△BCA的高，CE平分∠BCA。求∠BOE的大小。",
-  "problem_text_en": "As shown in the diagram, ∠BCA=70°, BD is the altitude of triangle BCA, CE is the angle bisector of ∠BCA. Find the measure of ∠BOE.",
-  "problem_img": "5263.png",
-  "construction_cdl": [
-    "Shape(AE,EO,OD,DA)",
-    "Shape(EB,BO,OE)",
-    "Shape(OB,BC,CO)",
-    "Shape(DO,OC,CD)",
-    "Collinear(AEB)",
-    "Collinear(ADC)",
-    "Collinear(EOC)",
-    "Collinear(BOD)"
-  ],
-  "text_cdl": [
-    "Equal(MeasureOfAngle(BCA),70)",
-    "IsAltitudeOfTriangle(BD,BCA)",
-    "IsBisectorOfAngle(CE,BCA)"
-  ],
-  "image_cdl": [],
-  "goal_cdl": "Value(MeasureOfAngle(BOE))",
-  "problem_answer": "55",
-  "theorem_seqs": [
-    "angle_addition(1,BCE,ECA)",
-    "triangle_property_angle_sum(1,DOC)",
-    "vertical_angle(1,BOE,DOC)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "angle_addition(1,BCE,ECA)",
-      "triangle_property_angle_sum(1,DOC)",
-      "vertical_angle(1,BOE,DOC)"
-    ]
-  }
+    "problem_id": 5263,
+    "source": "GeoQA-5376",
+    "problem_level": 3,
+    "problem_img": "5263.png",
+    "construction_cdl": [
+        "Shape(AE,EO,OD,DA)",
+        "Shape(EB,BO,OE)",
+        "Shape(OB,BC,CO)",
+        "Shape(DO,OC,CD)",
+        "Collinear(AEB)",
+        "Collinear(ADC)",
+        "Collinear(EOC)",
+        "Collinear(BOD)"
+    ],
+    "text_cdl": [
+        "Equal(MeasureOfAngle(BCA),70)",
+        "IsAltitudeOfTriangle(BD,BCA)",
+        "IsBisectorOfAngle(CE,BCA)"
+    ],
+    "image_cdl": [],
+    "goal_cdl": "Value(MeasureOfAngle(BOE))",
+    "problem_answer": "55",
+    "theorem_seqs": [
+        "angle_addition(1,BCE,ECA)",
+        "triangle_property_angle_sum(1,DOC)",
+        "vertical_angle(1,BOE,DOC)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "angle_addition(1,BCE,ECA)",
+            "triangle_property_angle_sum(1,DOC)",
+            "vertical_angle(1,BOE,DOC)"
+        ]
+    }
 }

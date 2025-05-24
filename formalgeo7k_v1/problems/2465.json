@@ -1,34 +1,31 @@
 {
-  "problem_id": 2465,
-  "annotation": "RunanWang_2023-04-23",
-  "source": "Geometry3k-2585",
-  "problem_level": 1,
-  "problem_text_cn": "如图所示，PQ=17，QR=15，RP=8，QR垂直于PR。求sin(RP)的值。",
-  "problem_text_en": "As shown in the diagram, PQ=17, QR=15, RP=8, QR is perpendicular to PR. Find the value of sin(RP).",
-  "problem_img": "2465.png",
-  "construction_cdl": [
-    "Shape(QR,RP,PQ)"
-  ],
-  "text_cdl": [
-    "Equal(LengthOfLine(PQ),17)",
-    "Equal(LengthOfLine(QR),15)",
-    "Equal(LengthOfLine(RP),8)",
-    "PerpendicularBetweenLine(QR,PR)"
-  ],
-  "image_cdl": [
-    "Equal(LengthOfLine(PQ),17)",
-    "Equal(LengthOfLine(QR),15)",
-    "Equal(LengthOfLine(RP),8)",
-    "PerpendicularBetweenLine(QR,PR)"
-  ],
-  "goal_cdl": "Value(Sin(MeasureOfAngle(RPQ)))",
-  "problem_answer": "15/17",
-  "theorem_seqs": [
-    "sine_theorem(1,QRP)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "sine_theorem(1,QRP)"
-    ]
-  }
+    "problem_id": 2465,
+    "source": "Geometry3k-2585",
+    "problem_level": 1,
+    "problem_img": "2465.png",
+    "construction_cdl": [
+        "Shape(QR,RP,PQ)"
+    ],
+    "text_cdl": [
+        "Equal(LengthOfLine(PQ),17)",
+        "Equal(LengthOfLine(QR),15)",
+        "Equal(LengthOfLine(RP),8)",
+        "PerpendicularBetweenLine(QR,PR)"
+    ],
+    "image_cdl": [
+        "Equal(LengthOfLine(PQ),17)",
+        "Equal(LengthOfLine(QR),15)",
+        "Equal(LengthOfLine(RP),8)",
+        "PerpendicularBetweenLine(QR,PR)"
+    ],
+    "goal_cdl": "Value(Sin(MeasureOfAngle(RPQ)))",
+    "problem_answer": "15/17",
+    "theorem_seqs": [
+        "sine_theorem(1,QRP)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "sine_theorem(1,QRP)"
+        ]
+    }
 }

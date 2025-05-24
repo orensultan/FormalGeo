@@ -1,46 +1,43 @@
 {
-  "problem_id": 5100,
-  "annotation": "YimingHe_2023-05-21",
-  "source": "GeoQA-4923",
-  "problem_level": 7,
-  "problem_text_cn": "如图所示，∠DAM=110°，∠MBN=85°，三角形BNM与三角形FMN是镜像全等三角形，AD平行于MF，DC平行于FN。求∠NCD的大小。",
-  "problem_text_en": "As shown in the diagram, ∠DAM=110°, ∠MBN=85°, △BNM is mirror congruent to △FMN, AD∥MF, DC∥FN. Find the measure of ∠NCD.",
-  "problem_img": "5100.png",
-  "construction_cdl": [
-    "Shape(DA,AM,MF,FN,NC,CD)",
-    "Shape(NF,FM,MN)",
-    "Shape(NM,MB,BN)",
-    "Collinear(CNB)",
-    "Collinear(AMB)"
-  ],
-  "text_cdl": [
-    "Equal(MeasureOfAngle(DAM),110)",
-    "Equal(MeasureOfAngle(MBN),85)",
-    "MirrorCongruentBetweenTriangle(BNM,FMN)",
-    "ParallelBetweenLine(AD,MF)",
-    "ParallelBetweenLine(DC,FN)"
-  ],
-  "image_cdl": [],
-  "goal_cdl": "Value(MeasureOfAngle(NCD))",
-  "problem_answer": "80",
-  "theorem_seqs": [
-    "parallel_property_corresponding_angle(1,NF,CD,B)",
-    "parallel_property_corresponding_angle(2,AD,MF,B)",
-    "angle_addition(1,FMN,NMB)",
-    "angle_addition(1,BNM,MNF)",
-    "mirror_congruent_triangle_property_angle_equal(1,BNM,FMN)",
-    "triangle_property_angle_sum(1,NFM)",
-    "triangle_property_angle_sum(1,NMB)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "parallel_property_corresponding_angle(1,NF,CD,B)",
-      "parallel_property_corresponding_angle(2,AD,MF,B)",
-      "angle_addition(1,FMN,NMB)",
-      "angle_addition(1,BNM,MNF)",
-      "mirror_congruent_triangle_property_angle_equal(1,BNM,FMN)",
-      "triangle_property_angle_sum(1,NFM)",
-      "triangle_property_angle_sum(1,NMB)"
-    ]
-  }
+    "problem_id": 5100,
+    "source": "GeoQA-4923",
+    "problem_level": 7,
+    "problem_img": "5100.png",
+    "construction_cdl": [
+        "Shape(DA,AM,MF,FN,NC,CD)",
+        "Shape(NF,FM,MN)",
+        "Shape(NM,MB,BN)",
+        "Collinear(CNB)",
+        "Collinear(AMB)"
+    ],
+    "text_cdl": [
+        "Equal(MeasureOfAngle(DAM),110)",
+        "Equal(MeasureOfAngle(MBN),85)",
+        "MirrorCongruentBetweenTriangle(BNM,FMN)",
+        "ParallelBetweenLine(AD,MF)",
+        "ParallelBetweenLine(DC,FN)"
+    ],
+    "image_cdl": [],
+    "goal_cdl": "Value(MeasureOfAngle(NCD))",
+    "problem_answer": "80",
+    "theorem_seqs": [
+        "parallel_property_corresponding_angle(1,NF,CD,B)",
+        "parallel_property_corresponding_angle(2,AD,MF,B)",
+        "angle_addition(1,FMN,NMB)",
+        "angle_addition(1,BNM,MNF)",
+        "mirror_congruent_triangle_property_angle_equal(1,BNM,FMN)",
+        "triangle_property_angle_sum(1,NFM)",
+        "triangle_property_angle_sum(1,NMB)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "parallel_property_corresponding_angle(1,NF,CD,B)",
+            "parallel_property_corresponding_angle(2,AD,MF,B)",
+            "angle_addition(1,FMN,NMB)",
+            "angle_addition(1,BNM,MNF)",
+            "mirror_congruent_triangle_property_angle_equal(1,BNM,FMN)",
+            "triangle_property_angle_sum(1,NFM)",
+            "triangle_property_angle_sum(1,NMB)"
+        ]
+    }
 }

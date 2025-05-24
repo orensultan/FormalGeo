@@ -1,76 +1,73 @@
 {
-  "problem_id": 3626,
-  "annotation": "QikeHuang_2023-04-30",
-  "source": "GeoQA-1307",
-  "problem_level": 14,
-  "problem_text_cn": "如图所示，△ADG的面积为50，三角形AED的面积为25，DE=DG，AD是∠CAB的角平分线，AF⊥DF，DH垂直于AH。求△EFD的面积。",
-  "problem_text_en": "As shown in the diagram, the area of triangle ADG is 50, the area of triangle AED is 25, DE=DG, AD bisects ∠CAB, AF is perpendicular to DF, DH⊥AH. Find the area of triangle EFD.",
-  "problem_img": "3626.png",
-  "construction_cdl": [
-    "Shape(AE,ED,DA)",
-    "Shape(EF,FD,DE)",
-    "Shape(FB,BD,DF)",
-    "Shape(AD,DH,HA)",
-    "Shape(HD,DG,GH)",
-    "Shape(GD,DC,CG)",
-    "Collinear(AEFB)",
-    "Collinear(AHGC)",
-    "Collinear(BDC)"
-  ],
-  "text_cdl": [
-    "Equal(AreaOfTriangle(ADG),50)",
-    "Equal(AreaOfTriangle(AED),25)",
-    "Equal(LengthOfLine(DE),LengthOfLine(DG))",
-    "IsBisectorOfAngle(AD,CAB)",
-    "PerpendicularBetweenLine(AF,DF)",
-    "PerpendicularBetweenLine(DH,AH)"
-  ],
-  "image_cdl": [],
-  "goal_cdl": "Value(AreaOfTriangle(EFD))",
-  "problem_answer": "25/2",
-  "theorem_seqs": [
-    "bisector_of_angle_judgment_angle_equal(1,AD,HAF)",
-    "bisector_of_angle_property_distance_equal(1,AD,HAF)",
-    "adjacent_complementary_angle(1,GHD,DHA)",
-    "congruent_triangle_judgment_hl(2,EFD,GHD)",
-    "congruent_triangle_property_line_equal(1,DEF,DGH)",
-    "mirror_congruent_triangle_judgment_hl(1,AFD,ADH)",
-    "mirror_congruent_triangle_property_line_equal(1,DAF,DHA)",
-    "altitude_of_triangle_judgment(3,DF,DAE)",
-    "altitude_of_triangle_judgment(1,DH,DGA)",
-    "line_addition(1,AE,EF)",
-    "line_addition(1,AH,HG)",
-    "triangle_area_formula_common(1,DAE)",
-    "triangle_area_formula_sine(1,FDE)",
-    "triangle_area_formula_common(1,DGA)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "bisector_of_angle_judgment_angle_equal(1,AD,HAF)",
-      "adjacent_complementary_angle(1,GHD,DHA)",
-      "altitude_of_triangle_judgment(3,DF,DAE)",
-      "line_addition(1,AE,EF)",
-      "line_addition(1,AH,HG)",
-      "triangle_area_formula_common(1,DAE)",
-      "triangle_area_formula_sine(1,FDE)",
-      "triangle_area_formula_common(1,DGA)"
+    "problem_id": 3626,
+    "source": "GeoQA-1307",
+    "problem_level": 14,
+    "problem_img": "3626.png",
+    "construction_cdl": [
+        "Shape(AE,ED,DA)",
+        "Shape(EF,FD,DE)",
+        "Shape(FB,BD,DF)",
+        "Shape(AD,DH,HA)",
+        "Shape(HD,DG,GH)",
+        "Shape(GD,DC,CG)",
+        "Collinear(AEFB)",
+        "Collinear(AHGC)",
+        "Collinear(BDC)"
     ],
-    "bisector_of_angle_judgment_angle_equal(1,AD,HAF)": [
-      "bisector_of_angle_property_distance_equal(1,AD,HAF)"
+    "text_cdl": [
+        "Equal(AreaOfTriangle(ADG),50)",
+        "Equal(AreaOfTriangle(AED),25)",
+        "Equal(LengthOfLine(DE),LengthOfLine(DG))",
+        "IsBisectorOfAngle(AD,CAB)",
+        "PerpendicularBetweenLine(AF,DF)",
+        "PerpendicularBetweenLine(DH,AH)"
     ],
-    "bisector_of_angle_property_distance_equal(1,AD,HAF)": [
-      "congruent_triangle_judgment_hl(2,EFD,GHD)",
-      "mirror_congruent_triangle_judgment_hl(1,AFD,ADH)"
+    "image_cdl": [],
+    "goal_cdl": "Value(AreaOfTriangle(EFD))",
+    "problem_answer": "25/2",
+    "theorem_seqs": [
+        "bisector_of_angle_judgment_angle_equal(1,AD,HAF)",
+        "bisector_of_angle_property_distance_equal(1,AD,HAF)",
+        "adjacent_complementary_angle(1,GHD,DHA)",
+        "congruent_triangle_judgment_hl(2,EFD,GHD)",
+        "congruent_triangle_property_line_equal(1,DEF,DGH)",
+        "mirror_congruent_triangle_judgment_hl(1,AFD,ADH)",
+        "mirror_congruent_triangle_property_line_equal(1,DAF,DHA)",
+        "altitude_of_triangle_judgment(3,DF,DAE)",
+        "altitude_of_triangle_judgment(1,DH,DGA)",
+        "line_addition(1,AE,EF)",
+        "line_addition(1,AH,HG)",
+        "triangle_area_formula_common(1,DAE)",
+        "triangle_area_formula_sine(1,FDE)",
+        "triangle_area_formula_common(1,DGA)"
     ],
-    "adjacent_complementary_angle(1,GHD,DHA)": [
-      "congruent_triangle_judgment_hl(2,EFD,GHD)",
-      "altitude_of_triangle_judgment(1,DH,DGA)"
-    ],
-    "congruent_triangle_judgment_hl(2,EFD,GHD)": [
-      "congruent_triangle_property_line_equal(1,DEF,DGH)"
-    ],
-    "mirror_congruent_triangle_judgment_hl(1,AFD,ADH)": [
-      "mirror_congruent_triangle_property_line_equal(1,DAF,DHA)"
-    ]
-  }
+    "theorem_seqs_dag": {
+        "START": [
+            "bisector_of_angle_judgment_angle_equal(1,AD,HAF)",
+            "adjacent_complementary_angle(1,GHD,DHA)",
+            "altitude_of_triangle_judgment(3,DF,DAE)",
+            "line_addition(1,AE,EF)",
+            "line_addition(1,AH,HG)",
+            "triangle_area_formula_common(1,DAE)",
+            "triangle_area_formula_sine(1,FDE)",
+            "triangle_area_formula_common(1,DGA)"
+        ],
+        "bisector_of_angle_judgment_angle_equal(1,AD,HAF)": [
+            "bisector_of_angle_property_distance_equal(1,AD,HAF)"
+        ],
+        "bisector_of_angle_property_distance_equal(1,AD,HAF)": [
+            "congruent_triangle_judgment_hl(2,EFD,GHD)",
+            "mirror_congruent_triangle_judgment_hl(1,AFD,ADH)"
+        ],
+        "adjacent_complementary_angle(1,GHD,DHA)": [
+            "congruent_triangle_judgment_hl(2,EFD,GHD)",
+            "altitude_of_triangle_judgment(1,DH,DGA)"
+        ],
+        "congruent_triangle_judgment_hl(2,EFD,GHD)": [
+            "congruent_triangle_property_line_equal(1,DEF,DGH)"
+        ],
+        "mirror_congruent_triangle_judgment_hl(1,AFD,ADH)": [
+            "mirror_congruent_triangle_property_line_equal(1,DAF,DHA)"
+        ]
+    }
 }

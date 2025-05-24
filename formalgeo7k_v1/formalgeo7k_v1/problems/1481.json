@@ -1,39 +1,36 @@
 {
-  "problem_id": 1481,
-  "annotation": "QikeHuang_2023-04-16",
-  "source": "Geometry3k-1535",
-  "problem_level": 2,
-  "problem_text_cn": "如图所示，∠RWZ=45°，∠TRW=4*x°，∠WZT=2*x+30°。求∠ZTR的大小。",
-  "problem_text_en": "As shown in the diagram, ∠RWZ=45°, ∠TRW=4*x°, ∠WZT=2*x+30°. Find the measure of ∠ZTR.",
-  "problem_img": "1481.png",
-  "construction_cdl": [
-    "Shape(ORW,WR)",
-    "Shape(ZW,OWZ)",
-    "Shape(TZ,OZT)",
-    "Shape(RT,OTR)",
-    "Shape(RW,WZ,ZT,TR)",
-    "Cocircular(O,RWZT)"
-  ],
-  "text_cdl": [
-    "Equal(MeasureOfAngle(RWZ),45)",
-    "Equal(MeasureOfAngle(TRW),4*x)",
-    "Equal(MeasureOfAngle(WZT),2*x+30)"
-  ],
-  "image_cdl": [
-    "Equal(MeasureOfAngle(RWZ),45)",
-    "Equal(MeasureOfAngle(TRW),4*x)",
-    "Equal(MeasureOfAngle(WZT),2*x+30)"
-  ],
-  "goal_cdl": "Value(MeasureOfAngle(ZTR))",
-  "problem_answer": "135",
-  "theorem_seqs": [
-    "arc_property_circumference_angle_external(1,OZR,W)",
-    "arc_property_circumference_angle_internal(1,OZR,T)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "arc_property_circumference_angle_external(1,OZR,W)",
-      "arc_property_circumference_angle_internal(1,OZR,T)"
-    ]
-  }
+    "problem_id": 1481,
+    "source": "Geometry3k-1535",
+    "problem_level": 2,
+    "problem_img": "1481.png",
+    "construction_cdl": [
+        "Shape(ORW,WR)",
+        "Shape(ZW,OWZ)",
+        "Shape(TZ,OZT)",
+        "Shape(RT,OTR)",
+        "Shape(RW,WZ,ZT,TR)",
+        "Cocircular(O,RWZT)"
+    ],
+    "text_cdl": [
+        "Equal(MeasureOfAngle(RWZ),45)",
+        "Equal(MeasureOfAngle(TRW),4*x)",
+        "Equal(MeasureOfAngle(WZT),2*x+30)"
+    ],
+    "image_cdl": [
+        "Equal(MeasureOfAngle(RWZ),45)",
+        "Equal(MeasureOfAngle(TRW),4*x)",
+        "Equal(MeasureOfAngle(WZT),2*x+30)"
+    ],
+    "goal_cdl": "Value(MeasureOfAngle(ZTR))",
+    "problem_answer": "135",
+    "theorem_seqs": [
+        "arc_property_circumference_angle_external(1,OZR,W)",
+        "arc_property_circumference_angle_internal(1,OZR,T)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "arc_property_circumference_angle_external(1,OZR,W)",
+            "arc_property_circumference_angle_internal(1,OZR,T)"
+        ]
+    }
 }

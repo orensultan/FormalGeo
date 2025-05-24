@@ -1,33 +1,30 @@
 {
-  "problem_id": 2883,
-  "annotation": "YimingHe_2023-04-16",
-  "source": "GeoQA-51",
-  "problem_level": 1,
-  "problem_text_cn": "如图所示，∠OBA=20°，AB∥CD。求∠OCD的大小。",
-  "problem_text_en": "As shown in the diagram, ∠OBA=20°, AB is parallel to CD. Find the measure of ∠OCD.",
-  "problem_img": "2883.png",
-  "construction_cdl": [
-    "Shape(AO,OB,BA)",
-    "Shape(OC,CD,DO)",
-    "Collinear(AOD)",
-    "Collinear(BOC)"
-  ],
-  "text_cdl": [
-    "Equal(MeasureOfAngle(OBA),20)",
-    "ParallelBetweenLine(AB,CD)"
-  ],
-  "image_cdl": [
-    "Equal(MeasureOfAngle(OBA),20)",
-    "ParallelBetweenLine(AB,CD)"
-  ],
-  "goal_cdl": "Value(MeasureOfAngle(OCD))",
-  "problem_answer": "20",
-  "theorem_seqs": [
-    "parallel_property_alternate_interior_angle(2,AB,CD)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "parallel_property_alternate_interior_angle(2,AB,CD)"
-    ]
-  }
+    "problem_id": 2883,
+    "source": "GeoQA-51",
+    "problem_level": 1,
+    "problem_img": "2883.png",
+    "construction_cdl": [
+        "Shape(AO,OB,BA)",
+        "Shape(OC,CD,DO)",
+        "Collinear(AOD)",
+        "Collinear(BOC)"
+    ],
+    "text_cdl": [
+        "Equal(MeasureOfAngle(OBA),20)",
+        "ParallelBetweenLine(AB,CD)"
+    ],
+    "image_cdl": [
+        "Equal(MeasureOfAngle(OBA),20)",
+        "ParallelBetweenLine(AB,CD)"
+    ],
+    "goal_cdl": "Value(MeasureOfAngle(OCD))",
+    "problem_answer": "20",
+    "theorem_seqs": [
+        "parallel_property_alternate_interior_angle(2,AB,CD)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "parallel_property_alternate_interior_angle(2,AB,CD)"
+        ]
+    }
 }

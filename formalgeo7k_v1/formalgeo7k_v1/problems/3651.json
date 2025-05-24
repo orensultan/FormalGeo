@@ -1,42 +1,39 @@
 {
-  "problem_id": 3651,
-  "annotation": "XiaoxiaoJin_2023-04-30",
-  "source": "GeoQA-1350",
-  "problem_level": 4,
-  "problem_text_cn": "如图所示，∠BPA=126°，∠MQF=100°。求∠MAP的大小减去∠QFM的大小。",
-  "problem_text_en": "As shown in the diagram, ∠BPA=126°, ∠MQF=100°. Find the measure of ∠MAP minus the measure of ∠QFM.",
-  "problem_img": "3651.png",
-  "construction_cdl": [
-    "Shape(CP,PB)",
-    "Shape(BP,PA)",
-    "Shape(AM,MF)",
-    "Shape(AP,PM,MA)",
-    "Shape(FM,MQ,QF)",
-    "Shape(FQ,QE)",
-    "Shape(QM,MP)",
-    "Collinear(BPMF)",
-    "Collinear(CPA)",
-    "Collinear(AMQE)"
-  ],
-  "text_cdl": [
-    "Equal(MeasureOfAngle(BPA),126)",
-    "Equal(MeasureOfAngle(MQF),100)"
-  ],
-  "image_cdl": [],
-  "goal_cdl": "Value(Sub(MeasureOfAngle(MAP),MeasureOfAngle(QFM)))",
-  "problem_answer": "46",
-  "theorem_seqs": [
-    "adjacent_complementary_angle(1,BPA,APF)",
-    "vertical_angle(1,PMA,FMQ)",
-    "triangle_property_angle_sum(1,FMQ)",
-    "triangle_property_angle_sum(1,APM)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "adjacent_complementary_angle(1,BPA,APF)",
-      "vertical_angle(1,PMA,FMQ)",
-      "triangle_property_angle_sum(1,FMQ)",
-      "triangle_property_angle_sum(1,APM)"
-    ]
-  }
+    "problem_id": 3651,
+    "source": "GeoQA-1350",
+    "problem_level": 4,
+    "problem_img": "3651.png",
+    "construction_cdl": [
+        "Shape(CP,PB)",
+        "Shape(BP,PA)",
+        "Shape(AM,MF)",
+        "Shape(AP,PM,MA)",
+        "Shape(FM,MQ,QF)",
+        "Shape(FQ,QE)",
+        "Shape(QM,MP)",
+        "Collinear(BPMF)",
+        "Collinear(CPA)",
+        "Collinear(AMQE)"
+    ],
+    "text_cdl": [
+        "Equal(MeasureOfAngle(BPA),126)",
+        "Equal(MeasureOfAngle(MQF),100)"
+    ],
+    "image_cdl": [],
+    "goal_cdl": "Value(Sub(MeasureOfAngle(MAP),MeasureOfAngle(QFM)))",
+    "problem_answer": "46",
+    "theorem_seqs": [
+        "adjacent_complementary_angle(1,BPA,APF)",
+        "vertical_angle(1,PMA,FMQ)",
+        "triangle_property_angle_sum(1,FMQ)",
+        "triangle_property_angle_sum(1,APM)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "adjacent_complementary_angle(1,BPA,APF)",
+            "vertical_angle(1,PMA,FMQ)",
+            "triangle_property_angle_sum(1,FMQ)",
+            "triangle_property_angle_sum(1,APM)"
+        ]
+    }
 }

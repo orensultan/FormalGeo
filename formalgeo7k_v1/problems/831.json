@@ -1,60 +1,57 @@
 {
-  "problem_id": 831,
-  "annotation": "XiaokaiZhang_2023-03-19",
-  "source": "Geometry3k-860",
-  "problem_level": 6,
-  "problem_text_cn": "如图所示，PS=3，RY=5，WX=10，WY=8，XY=6，RP∥XW，BQ垂直于SQ，SY⊥BY，YS⊥PS。求直线SY的长度。",
-  "problem_text_en": "As shown in the diagram, PS=3, RY=5, WX=10, WY=8, XY=6, RP∥XW, BQ⊥SQ, SY is perpendicular to BY, YS⊥PS. Find the length of line SY.",
-  "problem_img": "831.png",
-  "construction_cdl": [
-    "Shape(YR,RB,BY)",
-    "Shape(YB,BQ,QS,SY)",
-    "Shape(PY,YS,SP)",
-    "Shape(BX,XQ,QB)",
-    "Shape(SQ,QW,WS)",
-    "Collinear(RYP)",
-    "Collinear(YSW)",
-    "Collinear(RBQ)",
-    "Collinear(XQW)",
-    "Collinear(YBX)",
-    "Collinear(PSQ)"
-  ],
-  "text_cdl": [
-    "Equal(LengthOfLine(PS),3)",
-    "Equal(LengthOfLine(RY),5)",
-    "Equal(LengthOfLine(WX),10)",
-    "Equal(LengthOfLine(WY),8)",
-    "Equal(LengthOfLine(XY),6)",
-    "ParallelBetweenLine(RP,XW)",
-    "PerpendicularBetweenLine(BQ,SQ)",
-    "PerpendicularBetweenLine(SY,BY)",
-    "PerpendicularBetweenLine(YS,PS)"
-  ],
-  "image_cdl": [
-    "PerpendicularBetweenLine(BQ,SQ)",
-    "PerpendicularBetweenLine(SY,BY)",
-    "PerpendicularBetweenLine(YS,PS)"
-  ],
-  "goal_cdl": "Value(LengthOfLine(SY))",
-  "problem_answer": "4",
-  "theorem_seqs": [
-    "cosine_theorem(1,XWY)",
-    "parallel_property_collinear_extend(3,RP,XW,Y)",
-    "parallel_property_ipsilateral_internal_angle(1,YP,XW)",
-    "angle_addition(1,PYS,SYB)",
-    "triangle_property_angle_sum(1,PYS)",
-    "sine_theorem(1,SPY)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "cosine_theorem(1,XWY)",
-      "parallel_property_collinear_extend(3,RP,XW,Y)",
-      "angle_addition(1,PYS,SYB)",
-      "triangle_property_angle_sum(1,PYS)",
-      "sine_theorem(1,SPY)"
+    "problem_id": 831,
+    "source": "Geometry3k-860",
+    "problem_level": 6,
+    "problem_img": "831.png",
+    "construction_cdl": [
+        "Shape(YR,RB,BY)",
+        "Shape(YB,BQ,QS,SY)",
+        "Shape(PY,YS,SP)",
+        "Shape(BX,XQ,QB)",
+        "Shape(SQ,QW,WS)",
+        "Collinear(RYP)",
+        "Collinear(YSW)",
+        "Collinear(RBQ)",
+        "Collinear(XQW)",
+        "Collinear(YBX)",
+        "Collinear(PSQ)"
     ],
-    "parallel_property_collinear_extend(3,RP,XW,Y)": [
-      "parallel_property_ipsilateral_internal_angle(1,YP,XW)"
-    ]
-  }
+    "text_cdl": [
+        "Equal(LengthOfLine(PS),3)",
+        "Equal(LengthOfLine(RY),5)",
+        "Equal(LengthOfLine(WX),10)",
+        "Equal(LengthOfLine(WY),8)",
+        "Equal(LengthOfLine(XY),6)",
+        "ParallelBetweenLine(RP,XW)",
+        "PerpendicularBetweenLine(BQ,SQ)",
+        "PerpendicularBetweenLine(SY,BY)",
+        "PerpendicularBetweenLine(YS,PS)"
+    ],
+    "image_cdl": [
+        "PerpendicularBetweenLine(BQ,SQ)",
+        "PerpendicularBetweenLine(SY,BY)",
+        "PerpendicularBetweenLine(YS,PS)"
+    ],
+    "goal_cdl": "Value(LengthOfLine(SY))",
+    "problem_answer": "4",
+    "theorem_seqs": [
+        "cosine_theorem(1,XWY)",
+        "parallel_property_collinear_extend(3,RP,XW,Y)",
+        "parallel_property_ipsilateral_internal_angle(1,YP,XW)",
+        "angle_addition(1,PYS,SYB)",
+        "triangle_property_angle_sum(1,PYS)",
+        "sine_theorem(1,SPY)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "cosine_theorem(1,XWY)",
+            "parallel_property_collinear_extend(3,RP,XW,Y)",
+            "angle_addition(1,PYS,SYB)",
+            "triangle_property_angle_sum(1,PYS)",
+            "sine_theorem(1,SPY)"
+        ],
+        "parallel_property_collinear_extend(3,RP,XW,Y)": [
+            "parallel_property_ipsilateral_internal_angle(1,YP,XW)"
+        ]
+    }
 }

@@ -1,32 +1,29 @@
 {
-  "problem_id": 5245,
-  "annotation": "XiaokaiZhang_2023-05-21",
-  "source": "GeoQA-5329",
-  "problem_level": 3,
-  "problem_text_cn": "如图所示，AB=5，BC=3，O是线段AC的中点。求直线OB的长度。",
-  "problem_text_en": "As shown in the diagram, AB=5, BC=3, O bisects segment AC. Find the length of line OB.",
-  "problem_img": "5245.png",
-  "construction_cdl": [
-    "Collinear(AOBC)"
-  ],
-  "text_cdl": [
-    "Equal(LengthOfLine(AB),5)",
-    "Equal(LengthOfLine(BC),3)",
-    "IsMidpointOfLine(O,AC)"
-  ],
-  "image_cdl": [],
-  "goal_cdl": "Value(LengthOfLine(OB))",
-  "problem_answer": "1",
-  "theorem_seqs": [
-    "line_addition(1,AO,OB)",
-    "line_addition(1,AB,BC)",
-    "line_addition(1,AO,OC)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "line_addition(1,AO,OB)",
-      "line_addition(1,AB,BC)",
-      "line_addition(1,AO,OC)"
-    ]
-  }
+    "problem_id": 5245,
+    "source": "GeoQA-5329",
+    "problem_level": 3,
+    "problem_img": "5245.png",
+    "construction_cdl": [
+        "Collinear(AOBC)"
+    ],
+    "text_cdl": [
+        "Equal(LengthOfLine(AB),5)",
+        "Equal(LengthOfLine(BC),3)",
+        "IsMidpointOfLine(O,AC)"
+    ],
+    "image_cdl": [],
+    "goal_cdl": "Value(LengthOfLine(OB))",
+    "problem_answer": "1",
+    "theorem_seqs": [
+        "line_addition(1,AO,OB)",
+        "line_addition(1,AB,BC)",
+        "line_addition(1,AO,OC)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "line_addition(1,AO,OB)",
+            "line_addition(1,AB,BC)",
+            "line_addition(1,AO,OC)"
+        ]
+    }
 }

@@ -1,34 +1,31 @@
 {
-  "problem_id": 2270,
-  "annotation": "YangLi_2023-04-09",
-  "source": "Geometry3k-2374",
-  "problem_level": 2,
-  "problem_text_cn": "如图所示，NM=11，∠MPN=∠NMP，∠PNM=120°。求直线PN的长度。",
-  "problem_text_en": "As shown in the diagram, NM=11, ∠MPN=∠NMP, ∠PNM=120°. Find the length of line PN.",
-  "problem_img": "2270.png",
-  "construction_cdl": [
-    "Shape(PN,NM,MP)"
-  ],
-  "text_cdl": [
-    "Equal(LengthOfLine(NM),11)",
-    "Equal(MeasureOfAngle(MPN),MeasureOfAngle(NMP))",
-    "Equal(MeasureOfAngle(PNM),120)"
-  ],
-  "image_cdl": [
-    "Equal(LengthOfLine(NM),11)",
-    "Equal(MeasureOfAngle(MPN),MeasureOfAngle(NMP))",
-    "Equal(MeasureOfAngle(PNM),120)"
-  ],
-  "goal_cdl": "Value(LengthOfLine(PN))",
-  "problem_answer": "11",
-  "theorem_seqs": [
-    "sine_theorem(1,MPN)",
-    "sine_theorem(1,PNM)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "sine_theorem(1,MPN)",
-      "sine_theorem(1,PNM)"
-    ]
-  }
+    "problem_id": 2270,
+    "source": "Geometry3k-2374",
+    "problem_level": 2,
+    "problem_img": "2270.png",
+    "construction_cdl": [
+        "Shape(PN,NM,MP)"
+    ],
+    "text_cdl": [
+        "Equal(LengthOfLine(NM),11)",
+        "Equal(MeasureOfAngle(MPN),MeasureOfAngle(NMP))",
+        "Equal(MeasureOfAngle(PNM),120)"
+    ],
+    "image_cdl": [
+        "Equal(LengthOfLine(NM),11)",
+        "Equal(MeasureOfAngle(MPN),MeasureOfAngle(NMP))",
+        "Equal(MeasureOfAngle(PNM),120)"
+    ],
+    "goal_cdl": "Value(LengthOfLine(PN))",
+    "problem_answer": "11",
+    "theorem_seqs": [
+        "sine_theorem(1,MPN)",
+        "sine_theorem(1,PNM)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "sine_theorem(1,MPN)",
+            "sine_theorem(1,PNM)"
+        ]
+    }
 }

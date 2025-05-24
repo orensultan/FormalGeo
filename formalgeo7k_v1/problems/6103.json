@@ -1,41 +1,38 @@
 {
-  "problem_id": 6103,
-  "annotation": "RunanWang_2023-06-04",
-  "source": "GeoQA-8647",
-  "problem_level": 3,
-  "problem_text_cn": "如图所示，∠CDB=40°，O是圆O的圆心。求∠AOC的大小。",
-  "problem_text_en": "As shown in the diagram, ∠CDB=40°, O is the center of circle O. Find the measure of ∠AOC.",
-  "problem_img": "6103.png",
-  "construction_cdl": [
-    "Shape(OBC,CE,EB)",
-    "Shape(EC,CO,OE)",
-    "Shape(OCA,AO,OC)",
-    "Shape(OAD,DE,EO,OA)",
-    "Shape(BE,ED,DB)",
-    "Shape(ODB,BD)",
-    "Collinear(CED)",
-    "Collinear(AOEB)",
-    "Cocircular(O,ADBC)"
-  ],
-  "text_cdl": [
-    "Equal(MeasureOfAngle(CDB),40)",
-    "IsCentreOfCircle(O,O)"
-  ],
-  "image_cdl": [
-    "Equal(MeasureOfAngle(CDB),40)"
-  ],
-  "goal_cdl": "Value(MeasureOfAngle(AOC))",
-  "problem_answer": "100",
-  "theorem_seqs": [
-    "arc_property_center_angle(1,OBC,O)",
-    "arc_property_circumference_angle_external(1,OBC,D)",
-    "adjacent_complementary_angle(1,AOC,COE)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "arc_property_center_angle(1,OBC,O)",
-      "arc_property_circumference_angle_external(1,OBC,D)",
-      "adjacent_complementary_angle(1,AOC,COE)"
-    ]
-  }
+    "problem_id": 6103,
+    "source": "GeoQA-8647",
+    "problem_level": 3,
+    "problem_img": "6103.png",
+    "construction_cdl": [
+        "Shape(OBC,CE,EB)",
+        "Shape(EC,CO,OE)",
+        "Shape(OCA,AO,OC)",
+        "Shape(OAD,DE,EO,OA)",
+        "Shape(BE,ED,DB)",
+        "Shape(ODB,BD)",
+        "Collinear(CED)",
+        "Collinear(AOEB)",
+        "Cocircular(O,ADBC)"
+    ],
+    "text_cdl": [
+        "Equal(MeasureOfAngle(CDB),40)",
+        "IsCentreOfCircle(O,O)"
+    ],
+    "image_cdl": [
+        "Equal(MeasureOfAngle(CDB),40)"
+    ],
+    "goal_cdl": "Value(MeasureOfAngle(AOC))",
+    "problem_answer": "100",
+    "theorem_seqs": [
+        "arc_property_center_angle(1,OBC,O)",
+        "arc_property_circumference_angle_external(1,OBC,D)",
+        "adjacent_complementary_angle(1,AOC,COE)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "arc_property_center_angle(1,OBC,O)",
+            "arc_property_circumference_angle_external(1,OBC,D)",
+            "adjacent_complementary_angle(1,AOC,COE)"
+        ]
+    }
 }

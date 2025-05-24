@@ -1,69 +1,66 @@
 {
-  "problem_id": 6370,
-  "annotation": "ChengQin_2023-06-04",
-  "source": "GeoQA-9224",
-  "problem_level": 11,
-  "problem_text_cn": "如图所示，∠BCD=110°，EF垂直平分AB，四边形ABCD是菱形。求∠DAE的大小。",
-  "problem_text_en": "As shown in the diagram, ∠BCD=110°, EF is the perpendicular bisector of BC, quadrilateral ABCD is a rhombus. Find the measure of ∠DAE.",
-  "problem_img": "6370.png",
-  "construction_cdl": [
-    "Shape(AB,BE,EA)",
-    "Shape(AE,EO,OA)",
-    "Shape(AO,OD,DA)",
-    "Shape(BF,FE,EB)",
-    "Shape(EF,FC,CE)",
-    "Shape(EC,CO,OE)",
-    "Shape(OC,CD,DO)",
-    "Collinear(BEOD)",
-    "Collinear(BFC)",
-    "Collinear(AOC)"
-  ],
-  "text_cdl": [
-    "Equal(MeasureOfAngle(BCD),110)",
-    "IsPerpendicularBisectorOfLine(EF,BC)",
-    "Rhombus(ABCD)"
-  ],
-  "image_cdl": [],
-  "goal_cdl": "Value(MeasureOfAngle(DAE))",
-  "problem_answer": "75",
-  "theorem_seqs": [
-    "kite_property_diagonal_perpendicular_bisection(1,BCDA,O)",
-    "perpendicular_bisector_judgment_per_and_mid(1,EO,CA)",
-    "perpendicular_bisector_property_distance_equal(1,EO,CA)",
-    "perpendicular_bisector_property_distance_equal(1,EF,BC)",
-    "isosceles_triangle_judgment_line_equal(1,EAB)",
-    "isosceles_triangle_property_angle_equal(1,EAB)",
-    "parallel_property_ipsilateral_internal_angle(1,BA,CD)",
-    "perpendicular_bisector_property_bisector(1,BO,CA)",
-    "angle_addition(1,ABE,EBF)",
-    "parallelogram_property_opposite_angle_equal(1,ABCD)",
-    "angle_addition(1,DAE,EAB)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "kite_property_diagonal_perpendicular_bisection(1,BCDA,O)",
-      "perpendicular_bisector_property_distance_equal(1,EF,BC)",
-      "parallel_property_ipsilateral_internal_angle(1,BA,CD)",
-      "angle_addition(1,ABE,EBF)",
-      "parallelogram_property_opposite_angle_equal(1,ABCD)",
-      "angle_addition(1,DAE,EAB)"
+    "problem_id": 6370,
+    "source": "GeoQA-9224",
+    "problem_level": 11,
+    "problem_img": "6370.png",
+    "construction_cdl": [
+        "Shape(AB,BE,EA)",
+        "Shape(AE,EO,OA)",
+        "Shape(AO,OD,DA)",
+        "Shape(BF,FE,EB)",
+        "Shape(EF,FC,CE)",
+        "Shape(EC,CO,OE)",
+        "Shape(OC,CD,DO)",
+        "Collinear(BEOD)",
+        "Collinear(BFC)",
+        "Collinear(AOC)"
     ],
-    "kite_property_diagonal_perpendicular_bisection(1,BCDA,O)": [
-      "perpendicular_bisector_property_bisector(1,BO,CA)",
-      "perpendicular_bisector_judgment_per_and_mid(1,EO,CA)",
-      "perpendicular_bisector_judgment_per_and_mid(1,EO,CA)"
+    "text_cdl": [
+        "Equal(MeasureOfAngle(BCD),110)",
+        "IsPerpendicularBisectorOfLine(EF,BC)",
+        "Rhombus(ABCD)"
     ],
-    "perpendicular_bisector_judgment_per_and_mid(1,EO,CA)": [
-      "perpendicular_bisector_property_distance_equal(1,EO,CA)"
+    "image_cdl": [],
+    "goal_cdl": "Value(MeasureOfAngle(DAE))",
+    "problem_answer": "75",
+    "theorem_seqs": [
+        "kite_property_diagonal_perpendicular_bisection(1,BCDA,O)",
+        "perpendicular_bisector_judgment_per_and_mid(1,EO,CA)",
+        "perpendicular_bisector_property_distance_equal(1,EO,CA)",
+        "perpendicular_bisector_property_distance_equal(1,EF,BC)",
+        "isosceles_triangle_judgment_line_equal(1,EAB)",
+        "isosceles_triangle_property_angle_equal(1,EAB)",
+        "parallel_property_ipsilateral_internal_angle(1,BA,CD)",
+        "perpendicular_bisector_property_bisector(1,BO,CA)",
+        "angle_addition(1,ABE,EBF)",
+        "parallelogram_property_opposite_angle_equal(1,ABCD)",
+        "angle_addition(1,DAE,EAB)"
     ],
-    "perpendicular_bisector_property_distance_equal(1,EO,CA)": [
-      "isosceles_triangle_judgment_line_equal(1,EAB)"
-    ],
-    "perpendicular_bisector_property_distance_equal(1,EF,BC)": [
-      "isosceles_triangle_judgment_line_equal(1,EAB)"
-    ],
-    "isosceles_triangle_judgment_line_equal(1,EAB)": [
-      "isosceles_triangle_property_angle_equal(1,EAB)"
-    ]
-  }
+    "theorem_seqs_dag": {
+        "START": [
+            "kite_property_diagonal_perpendicular_bisection(1,BCDA,O)",
+            "perpendicular_bisector_property_distance_equal(1,EF,BC)",
+            "parallel_property_ipsilateral_internal_angle(1,BA,CD)",
+            "angle_addition(1,ABE,EBF)",
+            "parallelogram_property_opposite_angle_equal(1,ABCD)",
+            "angle_addition(1,DAE,EAB)"
+        ],
+        "kite_property_diagonal_perpendicular_bisection(1,BCDA,O)": [
+            "perpendicular_bisector_property_bisector(1,BO,CA)",
+            "perpendicular_bisector_judgment_per_and_mid(1,EO,CA)",
+            "perpendicular_bisector_judgment_per_and_mid(1,EO,CA)"
+        ],
+        "perpendicular_bisector_judgment_per_and_mid(1,EO,CA)": [
+            "perpendicular_bisector_property_distance_equal(1,EO,CA)"
+        ],
+        "perpendicular_bisector_property_distance_equal(1,EO,CA)": [
+            "isosceles_triangle_judgment_line_equal(1,EAB)"
+        ],
+        "perpendicular_bisector_property_distance_equal(1,EF,BC)": [
+            "isosceles_triangle_judgment_line_equal(1,EAB)"
+        ],
+        "isosceles_triangle_judgment_line_equal(1,EAB)": [
+            "isosceles_triangle_property_angle_equal(1,EAB)"
+        ]
+    }
 }

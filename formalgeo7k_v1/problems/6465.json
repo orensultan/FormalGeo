@@ -1,71 +1,68 @@
 {
-  "problem_id": 6465,
-  "annotation": "JiaZou_2023-06-04",
-  "source": "GeoQA-9353",
-  "problem_level": 10,
-  "problem_text_cn": "如图所示，DE=Mul(LengthOfLine(AB),2)，∠ABD=50°，O平分线段ED，四边形ABCD是▱，BF垂直于AF，DA⊥FA。求∠BDA的大小。",
-  "problem_text_en": "As shown in the diagram, DE=Mul(LengthOfLine(AB),2), ∠ABD=50°, O bisects segment ED, AD and BC are opposite sides of the ▱ ABCD, BF is perpendicular to AF, DA is perpendicular to FA. Find the measure of ∠BDA.",
-  "problem_img": "6465.png",
-  "construction_cdl": [
-    "Shape(AB,BE,EA)",
-    "Shape(AE,EO,OA)",
-    "Shape(AO,OD,DA)",
-    "Shape(BF,FE,EB)",
-    "Shape(EF,FC,CO,OE)",
-    "Shape(OC,CD,DO)",
-    "Collinear(AEF)",
-    "Collinear(BEOD)",
-    "Collinear(BFC)"
-  ],
-  "text_cdl": [
-    "Equal(LengthOfLine(DE),Mul(LengthOfLine(AB),2))",
-    "Equal(MeasureOfAngle(ABD),50)",
-    "IsMidpointOfLine(O,ED)",
-    "Parallelogram(ABCD)",
-    "PerpendicularBetweenLine(BF,AF)",
-    "PerpendicularBetweenLine(DA,FA)"
-  ],
-  "image_cdl": [],
-  "goal_cdl": "Value(MeasureOfAngle(BDA))",
-  "problem_answer": "25",
-  "theorem_seqs": [
-    "median_of_triangle_judgment(1,AO,AED)",
-    "right_triangle_judgment_angle(1,DAE)",
-    "right_triangle_property_length_of_median(1,DAE,O)",
-    "isosceles_triangle_judgment_line_equal(1,ABO)",
-    "isosceles_triangle_property_angle_equal(1,ABO)",
-    "line_addition(1,EO,OD)",
-    "adjacent_complementary_angle(1,EOA,AOD)",
-    "isosceles_triangle_judgment_line_equal(1,ODA)",
-    "isosceles_triangle_property_angle_equal(1,ODA)",
-    "triangle_property_angle_sum(1,ODA)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "median_of_triangle_judgment(1,AO,AED)",
-      "right_triangle_judgment_angle(1,DAE)",
-      "line_addition(1,EO,OD)",
-      "adjacent_complementary_angle(1,EOA,AOD)",
-      "triangle_property_angle_sum(1,ODA)"
+    "problem_id": 6465,
+    "source": "GeoQA-9353",
+    "problem_level": 10,
+    "problem_img": "6465.png",
+    "construction_cdl": [
+        "Shape(AB,BE,EA)",
+        "Shape(AE,EO,OA)",
+        "Shape(AO,OD,DA)",
+        "Shape(BF,FE,EB)",
+        "Shape(EF,FC,CO,OE)",
+        "Shape(OC,CD,DO)",
+        "Collinear(AEF)",
+        "Collinear(BEOD)",
+        "Collinear(BFC)"
     ],
-    "median_of_triangle_judgment(1,AO,AED)": [
-      "right_triangle_property_length_of_median(1,DAE,O)"
+    "text_cdl": [
+        "Equal(LengthOfLine(DE),Mul(LengthOfLine(AB),2))",
+        "Equal(MeasureOfAngle(ABD),50)",
+        "IsMidpointOfLine(O,ED)",
+        "Parallelogram(ABCD)",
+        "PerpendicularBetweenLine(BF,AF)",
+        "PerpendicularBetweenLine(DA,FA)"
     ],
-    "right_triangle_judgment_angle(1,DAE)": [
-      "right_triangle_property_length_of_median(1,DAE,O)"
+    "image_cdl": [],
+    "goal_cdl": "Value(MeasureOfAngle(BDA))",
+    "problem_answer": "25",
+    "theorem_seqs": [
+        "median_of_triangle_judgment(1,AO,AED)",
+        "right_triangle_judgment_angle(1,DAE)",
+        "right_triangle_property_length_of_median(1,DAE,O)",
+        "isosceles_triangle_judgment_line_equal(1,ABO)",
+        "isosceles_triangle_property_angle_equal(1,ABO)",
+        "line_addition(1,EO,OD)",
+        "adjacent_complementary_angle(1,EOA,AOD)",
+        "isosceles_triangle_judgment_line_equal(1,ODA)",
+        "isosceles_triangle_property_angle_equal(1,ODA)",
+        "triangle_property_angle_sum(1,ODA)"
     ],
-    "right_triangle_property_length_of_median(1,DAE,O)": [
-      "isosceles_triangle_judgment_line_equal(1,ABO)",
-      "isosceles_triangle_judgment_line_equal(1,ODA)"
-    ],
-    "isosceles_triangle_judgment_line_equal(1,ABO)": [
-      "isosceles_triangle_property_angle_equal(1,ABO)"
-    ],
-    "line_addition(1,EO,OD)": [
-      "isosceles_triangle_judgment_line_equal(1,ODA)"
-    ],
-    "isosceles_triangle_judgment_line_equal(1,ODA)": [
-      "isosceles_triangle_property_angle_equal(1,ODA)"
-    ]
-  }
+    "theorem_seqs_dag": {
+        "START": [
+            "median_of_triangle_judgment(1,AO,AED)",
+            "right_triangle_judgment_angle(1,DAE)",
+            "line_addition(1,EO,OD)",
+            "adjacent_complementary_angle(1,EOA,AOD)",
+            "triangle_property_angle_sum(1,ODA)"
+        ],
+        "median_of_triangle_judgment(1,AO,AED)": [
+            "right_triangle_property_length_of_median(1,DAE,O)"
+        ],
+        "right_triangle_judgment_angle(1,DAE)": [
+            "right_triangle_property_length_of_median(1,DAE,O)"
+        ],
+        "right_triangle_property_length_of_median(1,DAE,O)": [
+            "isosceles_triangle_judgment_line_equal(1,ABO)",
+            "isosceles_triangle_judgment_line_equal(1,ODA)"
+        ],
+        "isosceles_triangle_judgment_line_equal(1,ABO)": [
+            "isosceles_triangle_property_angle_equal(1,ABO)"
+        ],
+        "line_addition(1,EO,OD)": [
+            "isosceles_triangle_judgment_line_equal(1,ODA)"
+        ],
+        "isosceles_triangle_judgment_line_equal(1,ODA)": [
+            "isosceles_triangle_property_angle_equal(1,ODA)"
+        ]
+    }
 }

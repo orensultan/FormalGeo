@@ -1,42 +1,39 @@
 {
-  "problem_id": 5464,
-  "annotation": "ChenyangMao_2023-05-21",
-  "source": "GeoQA-5877",
-  "problem_level": 4,
-  "problem_text_cn": "如图所示，CD=20，∠ACB=15°，∠ADB=30°，CB垂直于AB。求直线AB的长度。",
-  "problem_text_en": "As shown in the diagram, CD=20, ∠ACB=15°, ∠ADB=30°, CB⊥AB. Find the length of line AB.",
-  "problem_img": "5464.png",
-  "construction_cdl": [
-    "Shape(AC,CD,DA)",
-    "Shape(AD,DB,BA)",
-    "Collinear(CDB)"
-  ],
-  "text_cdl": [
-    "Equal(LengthOfLine(CD),20)",
-    "Equal(MeasureOfAngle(ACB),15)",
-    "Equal(MeasureOfAngle(ADB),30)",
-    "PerpendicularBetweenLine(CB,AB)"
-  ],
-  "image_cdl": [],
-  "goal_cdl": "Value(LengthOfLine(AB))",
-  "problem_answer": "10",
-  "theorem_seqs": [
-    "adjacent_complementary_angle(1,CDA,ADB)",
-    "triangle_property_angle_sum(1,ACD)",
-    "isosceles_triangle_judgment_angle_equal(1,DAC)",
-    "sine_theorem(1,ADB)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "adjacent_complementary_angle(1,CDA,ADB)",
-      "triangle_property_angle_sum(1,ACD)",
-      "sine_theorem(1,ADB)"
+    "problem_id": 5464,
+    "source": "GeoQA-5877",
+    "problem_level": 4,
+    "problem_img": "5464.png",
+    "construction_cdl": [
+        "Shape(AC,CD,DA)",
+        "Shape(AD,DB,BA)",
+        "Collinear(CDB)"
     ],
-    "adjacent_complementary_angle(1,CDA,ADB)": [
-      "isosceles_triangle_judgment_angle_equal(1,DAC)"
+    "text_cdl": [
+        "Equal(LengthOfLine(CD),20)",
+        "Equal(MeasureOfAngle(ACB),15)",
+        "Equal(MeasureOfAngle(ADB),30)",
+        "PerpendicularBetweenLine(CB,AB)"
     ],
-    "triangle_property_angle_sum(1,ACD)": [
-      "isosceles_triangle_judgment_angle_equal(1,DAC)"
-    ]
-  }
+    "image_cdl": [],
+    "goal_cdl": "Value(LengthOfLine(AB))",
+    "problem_answer": "10",
+    "theorem_seqs": [
+        "adjacent_complementary_angle(1,CDA,ADB)",
+        "triangle_property_angle_sum(1,ACD)",
+        "isosceles_triangle_judgment_angle_equal(1,DAC)",
+        "sine_theorem(1,ADB)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "adjacent_complementary_angle(1,CDA,ADB)",
+            "triangle_property_angle_sum(1,ACD)",
+            "sine_theorem(1,ADB)"
+        ],
+        "adjacent_complementary_angle(1,CDA,ADB)": [
+            "isosceles_triangle_judgment_angle_equal(1,DAC)"
+        ],
+        "triangle_property_angle_sum(1,ACD)": [
+            "isosceles_triangle_judgment_angle_equal(1,DAC)"
+        ]
+    }
 }

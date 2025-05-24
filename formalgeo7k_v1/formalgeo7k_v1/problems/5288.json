@@ -1,41 +1,38 @@
 {
-  "problem_id": 5288,
-  "annotation": "YanjunGuo_2023-05-21",
-  "source": "GeoQA-5465",
-  "problem_level": 5,
-  "problem_text_cn": "如图所示，AB=8，AM=MB，BC=4，BN=NC。求直线MN的长度。",
-  "problem_text_en": "As shown in the diagram, AB=8, AM=MB, BC=4, BN=NC. Find the length of line MN.",
-  "problem_img": "5288.png",
-  "construction_cdl": [
-    "Shape(AM)",
-    "Shape(MB)",
-    "Shape(BN)",
-    "Shape(NC)",
-    "Collinear(AMBNC)"
-  ],
-  "text_cdl": [
-    "Equal(LengthOfLine(AB),8)",
-    "Equal(LengthOfLine(AM),LengthOfLine(MB))",
-    "Equal(LengthOfLine(BC),4)",
-    "Equal(LengthOfLine(BN),LengthOfLine(NC))"
-  ],
-  "image_cdl": [],
-  "goal_cdl": "Value(LengthOfLine(MN))",
-  "problem_answer": "6",
-  "theorem_seqs": [
-    "line_addition(1,AM,MB)",
-    "line_addition(1,AM,MN)",
-    "line_addition(1,AB,BN)",
-    "line_addition(1,AB,BC)",
-    "line_addition(1,AN,NC)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "line_addition(1,AM,MB)",
-      "line_addition(1,AM,MN)",
-      "line_addition(1,AB,BN)",
-      "line_addition(1,AB,BC)",
-      "line_addition(1,AN,NC)"
-    ]
-  }
+    "problem_id": 5288,
+    "source": "GeoQA-5465",
+    "problem_level": 5,
+    "problem_img": "5288.png",
+    "construction_cdl": [
+        "Shape(AM)",
+        "Shape(MB)",
+        "Shape(BN)",
+        "Shape(NC)",
+        "Collinear(AMBNC)"
+    ],
+    "text_cdl": [
+        "Equal(LengthOfLine(AB),8)",
+        "Equal(LengthOfLine(AM),LengthOfLine(MB))",
+        "Equal(LengthOfLine(BC),4)",
+        "Equal(LengthOfLine(BN),LengthOfLine(NC))"
+    ],
+    "image_cdl": [],
+    "goal_cdl": "Value(LengthOfLine(MN))",
+    "problem_answer": "6",
+    "theorem_seqs": [
+        "line_addition(1,AM,MB)",
+        "line_addition(1,AM,MN)",
+        "line_addition(1,AB,BN)",
+        "line_addition(1,AB,BC)",
+        "line_addition(1,AN,NC)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "line_addition(1,AM,MB)",
+            "line_addition(1,AM,MN)",
+            "line_addition(1,AB,BN)",
+            "line_addition(1,AB,BC)",
+            "line_addition(1,AN,NC)"
+        ]
+    }
 }

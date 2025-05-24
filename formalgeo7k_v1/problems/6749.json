@@ -1,41 +1,38 @@
 {
-  "problem_id": 6749,
-  "annotation": "XiaoxiaoJin_2023-06-04",
-  "source": "GeoQA-9810",
-  "problem_level": 3,
-  "problem_text_cn": "如图所示，∠BOD=140°，⊙O的圆心为O，AB是⊙O的直径。求∠DCA的大小。",
-  "problem_text_en": "As shown in the diagram, ∠BOD=140°, O is the center of ⊙O, AB is the diameter of ⊙O. Find the measure of ∠DCA.",
-  "problem_img": "6749.png",
-  "construction_cdl": [
-    "Shape(CA,AE,EC)",
-    "Shape(AC,OCA)",
-    "Shape(CE,EO,OB,BC)",
-    "Shape(CB,OBC)",
-    "Shape(OE,ED,DO)",
-    "Shape(DE,EA,OAD)",
-    "Shape(BO,OD,ODB)",
-    "Collinear(AOB)",
-    "Collinear(CED)",
-    "Cocircular(O,ADBC)"
-  ],
-  "text_cdl": [
-    "Equal(MeasureOfAngle(BOD),140)",
-    "IsCentreOfCircle(O,O)",
-    "IsDiameterOfCircle(AB,O)"
-  ],
-  "image_cdl": [],
-  "goal_cdl": "Value(MeasureOfAngle(DCA))",
-  "problem_answer": "20",
-  "theorem_seqs": [
-    "adjacent_complementary_angle(1,BOD,DOA)",
-    "arc_property_center_angle(1,OAD,O)",
-    "arc_property_circumference_angle_external(1,OAD,C)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "adjacent_complementary_angle(1,BOD,DOA)",
-      "arc_property_center_angle(1,OAD,O)",
-      "arc_property_circumference_angle_external(1,OAD,C)"
-    ]
-  }
+    "problem_id": 6749,
+    "source": "GeoQA-9810",
+    "problem_level": 3,
+    "problem_img": "6749.png",
+    "construction_cdl": [
+        "Shape(CA,AE,EC)",
+        "Shape(AC,OCA)",
+        "Shape(CE,EO,OB,BC)",
+        "Shape(CB,OBC)",
+        "Shape(OE,ED,DO)",
+        "Shape(DE,EA,OAD)",
+        "Shape(BO,OD,ODB)",
+        "Collinear(AOB)",
+        "Collinear(CED)",
+        "Cocircular(O,ADBC)"
+    ],
+    "text_cdl": [
+        "Equal(MeasureOfAngle(BOD),140)",
+        "IsCentreOfCircle(O,O)",
+        "IsDiameterOfCircle(AB,O)"
+    ],
+    "image_cdl": [],
+    "goal_cdl": "Value(MeasureOfAngle(DCA))",
+    "problem_answer": "20",
+    "theorem_seqs": [
+        "adjacent_complementary_angle(1,BOD,DOA)",
+        "arc_property_center_angle(1,OAD,O)",
+        "arc_property_circumference_angle_external(1,OAD,C)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "adjacent_complementary_angle(1,BOD,DOA)",
+            "arc_property_center_angle(1,OAD,O)",
+            "arc_property_circumference_angle_external(1,OAD,C)"
+        ]
+    }
 }

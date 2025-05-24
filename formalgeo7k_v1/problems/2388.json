@@ -1,53 +1,50 @@
 {
-  "problem_id": 2388,
-  "annotation": "FangzhenZhu_2023-04-23",
-  "source": "Geometry3k-2503",
-  "problem_level": 7,
-  "problem_text_cn": "如图所示，EC=5，∠DBE=30°，D是⊙D的圆心，BC是圆D的直径，CB是⊙D的直径。求圆D的面积减去三角形ECB的面积。",
-  "problem_text_en": "As shown in the diagram, EC=5, ∠DBE=30°, D is the center of ⊙D, the diameter of ⊙D is BC, the diameter of circle D is CB. Find the area of the circle D minus the area of triangle ECB.",
-  "problem_img": "2388.png",
-  "construction_cdl": [
-    "Shape(DEC,CE)",
-    "Shape(DCB,BD,DC)",
-    "Shape(DBE,EB)",
-    "Shape(EC,CD,DB,BE)",
-    "Collinear(CDB)",
-    "Cocircular(D,ECB)"
-  ],
-  "text_cdl": [
-    "Equal(LengthOfLine(EC),5)",
-    "Equal(MeasureOfAngle(DBE),30)",
-    "IsCentreOfCircle(D,D)",
-    "IsDiameterOfCircle(BC,D)",
-    "IsDiameterOfCircle(CB,D)"
-  ],
-  "image_cdl": [
-    "Equal(LengthOfLine(EC),5)",
-    "Equal(MeasureOfAngle(DBE),30)",
-    "IsCentreOfCircle(D,D)",
-    "IsDiameterOfCircle(BC,D)",
-    "IsDiameterOfCircle(CB,D)"
-  ],
-  "goal_cdl": "Value(Sub(AreaOfCircle(D),AreaOfTriangle(ECB)))",
-  "problem_answer": "-25*sqrt(3)/2+25*pi",
-  "theorem_seqs": [
-    "diameter_of_circle_property_right_angle(1,BEC,D)",
-    "sine_theorem(1,CBE)",
-    "diameter_of_circle_property_length_equal(1,CB,D)",
-    "circle_property_length_of_radius_and_diameter(1,D)",
-    "circle_area_formula(1,D)",
-    "triangle_area_formula_sine(1,CBE)",
-    "triangle_property_angle_sum(1,ECB)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "diameter_of_circle_property_right_angle(1,BEC,D)",
-      "sine_theorem(1,CBE)",
-      "diameter_of_circle_property_length_equal(1,CB,D)",
-      "circle_property_length_of_radius_and_diameter(1,D)",
-      "circle_area_formula(1,D)",
-      "triangle_area_formula_sine(1,CBE)",
-      "triangle_property_angle_sum(1,ECB)"
-    ]
-  }
+    "problem_id": 2388,
+    "source": "Geometry3k-2503",
+    "problem_level": 7,
+    "problem_img": "2388.png",
+    "construction_cdl": [
+        "Shape(DEC,CE)",
+        "Shape(DCB,BD,DC)",
+        "Shape(DBE,EB)",
+        "Shape(EC,CD,DB,BE)",
+        "Collinear(CDB)",
+        "Cocircular(D,ECB)"
+    ],
+    "text_cdl": [
+        "Equal(LengthOfLine(EC),5)",
+        "Equal(MeasureOfAngle(DBE),30)",
+        "IsCentreOfCircle(D,D)",
+        "IsDiameterOfCircle(BC,D)",
+        "IsDiameterOfCircle(CB,D)"
+    ],
+    "image_cdl": [
+        "Equal(LengthOfLine(EC),5)",
+        "Equal(MeasureOfAngle(DBE),30)",
+        "IsCentreOfCircle(D,D)",
+        "IsDiameterOfCircle(BC,D)",
+        "IsDiameterOfCircle(CB,D)"
+    ],
+    "goal_cdl": "Value(Sub(AreaOfCircle(D),AreaOfTriangle(ECB)))",
+    "problem_answer": "-25*sqrt(3)/2+25*pi",
+    "theorem_seqs": [
+        "diameter_of_circle_property_right_angle(1,BEC,D)",
+        "sine_theorem(1,CBE)",
+        "diameter_of_circle_property_length_equal(1,CB,D)",
+        "circle_property_length_of_radius_and_diameter(1,D)",
+        "circle_area_formula(1,D)",
+        "triangle_area_formula_sine(1,CBE)",
+        "triangle_property_angle_sum(1,ECB)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "diameter_of_circle_property_right_angle(1,BEC,D)",
+            "sine_theorem(1,CBE)",
+            "diameter_of_circle_property_length_equal(1,CB,D)",
+            "circle_property_length_of_radius_and_diameter(1,D)",
+            "circle_area_formula(1,D)",
+            "triangle_area_formula_sine(1,CBE)",
+            "triangle_property_angle_sum(1,ECB)"
+        ]
+    }
 }

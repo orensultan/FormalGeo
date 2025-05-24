@@ -1,55 +1,52 @@
 {
-  "problem_id": 2852,
-  "annotation": "YimingHe_2023-04-16",
-  "source": "GeoQA-4",
-  "problem_level": 6,
-  "problem_text_cn": "如图所示，∠GDA=70°，CM⊥DM，MN垂直于EN。求∠FEN的大小。",
-  "problem_text_en": "As shown in the diagram, ∠GDA=70°, CM is perpendicular to DM, MN⊥EN. Find the measure of ∠FEN.",
-  "problem_img": "2852.png",
-  "construction_cdl": [
-    "Shape(CM,MD)",
-    "Shape(MD,DG)",
-    "Shape(GD,DA)",
-    "Shape(AD,DE)",
-    "Shape(DE,EB)",
-    "Shape(BE,EF)",
-    "Shape(MN,NE,ED,DM)",
-    "Shape(NF,FE,EN)",
-    "Collinear(CMNF)",
-    "Collinear(GDEF)",
-    "Collinear(MDA)",
-    "Collinear(NEB)"
-  ],
-  "text_cdl": [
-    "Equal(MeasureOfAngle(GDA),70)",
-    "PerpendicularBetweenLine(CM,DM)",
-    "PerpendicularBetweenLine(MN,EN)"
-  ],
-  "image_cdl": [],
-  "goal_cdl": "Value(MeasureOfAngle(FEN))",
-  "problem_answer": "70",
-  "theorem_seqs": [
-    "adjacent_complementary_angle(1,CMD,DMN)",
-    "adjacent_complementary_angle(1,GDA,ADE)",
-    "adjacent_complementary_angle(1,ADE,EDM)",
-    "perpendicular_judgment_angle(1,DM,NM)",
-    "parallel_judgment_per_per(1,MD,NE)",
-    "parallel_property_corresponding_angle(1,EN,DM,F)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "adjacent_complementary_angle(1,CMD,DMN)",
-      "adjacent_complementary_angle(1,GDA,ADE)",
-      "adjacent_complementary_angle(1,ADE,EDM)"
+    "problem_id": 2852,
+    "source": "GeoQA-4",
+    "problem_level": 6,
+    "problem_img": "2852.png",
+    "construction_cdl": [
+        "Shape(CM,MD)",
+        "Shape(MD,DG)",
+        "Shape(GD,DA)",
+        "Shape(AD,DE)",
+        "Shape(DE,EB)",
+        "Shape(BE,EF)",
+        "Shape(MN,NE,ED,DM)",
+        "Shape(NF,FE,EN)",
+        "Collinear(CMNF)",
+        "Collinear(GDEF)",
+        "Collinear(MDA)",
+        "Collinear(NEB)"
     ],
-    "adjacent_complementary_angle(1,CMD,DMN)": [
-      "perpendicular_judgment_angle(1,DM,NM)"
+    "text_cdl": [
+        "Equal(MeasureOfAngle(GDA),70)",
+        "PerpendicularBetweenLine(CM,DM)",
+        "PerpendicularBetweenLine(MN,EN)"
     ],
-    "perpendicular_judgment_angle(1,DM,NM)": [
-      "parallel_judgment_per_per(1,MD,NE)"
+    "image_cdl": [],
+    "goal_cdl": "Value(MeasureOfAngle(FEN))",
+    "problem_answer": "70",
+    "theorem_seqs": [
+        "adjacent_complementary_angle(1,CMD,DMN)",
+        "adjacent_complementary_angle(1,GDA,ADE)",
+        "adjacent_complementary_angle(1,ADE,EDM)",
+        "perpendicular_judgment_angle(1,DM,NM)",
+        "parallel_judgment_per_per(1,MD,NE)",
+        "parallel_property_corresponding_angle(1,EN,DM,F)"
     ],
-    "parallel_judgment_per_per(1,MD,NE)": [
-      "parallel_property_corresponding_angle(1,EN,DM,F)"
-    ]
-  }
+    "theorem_seqs_dag": {
+        "START": [
+            "adjacent_complementary_angle(1,CMD,DMN)",
+            "adjacent_complementary_angle(1,GDA,ADE)",
+            "adjacent_complementary_angle(1,ADE,EDM)"
+        ],
+        "adjacent_complementary_angle(1,CMD,DMN)": [
+            "perpendicular_judgment_angle(1,DM,NM)"
+        ],
+        "perpendicular_judgment_angle(1,DM,NM)": [
+            "parallel_judgment_per_per(1,MD,NE)"
+        ],
+        "parallel_judgment_per_per(1,MD,NE)": [
+            "parallel_property_corresponding_angle(1,EN,DM,F)"
+        ]
+    }
 }

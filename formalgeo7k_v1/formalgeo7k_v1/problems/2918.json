@@ -1,34 +1,31 @@
 {
-  "problem_id": 2918,
-  "annotation": "JiaZou_2023-04-16",
-  "source": "GeoQA-96",
-  "problem_level": 2,
-  "problem_text_cn": "如图所示，∠ABF=40°，∠ABC是等腰直角三角形BCA的直角，DE平行于FB。求∠DEC的大小。",
-  "problem_text_en": "As shown in the diagram, ∠ABF=40°, ∠CAB is the right angle of the isosceles right △ BCA, DE is parallel to FB. Find the measure of ∠DEC.",
-  "problem_img": "2918.png",
-  "construction_cdl": [
-    "Shape(CD,DE,EC)",
-    "Shape(DF,FB,BE,ED)",
-    "Shape(FA,AB,BF)",
-    "Collinear(CDFA)",
-    "Collinear(CEB)"
-  ],
-  "text_cdl": [
-    "Equal(MeasureOfAngle(ABF),40)",
-    "IsoscelesRightTriangle(BCA)",
-    "ParallelBetweenLine(DE,FB)"
-  ],
-  "image_cdl": [],
-  "goal_cdl": "Value(MeasureOfAngle(DEC))",
-  "problem_answer": "50",
-  "theorem_seqs": [
-    "angle_addition(1,ABF,FBE)",
-    "parallel_property_corresponding_angle(2,BF,ED,C)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "angle_addition(1,ABF,FBE)",
-      "parallel_property_corresponding_angle(2,BF,ED,C)"
-    ]
-  }
+    "problem_id": 2918,
+    "source": "GeoQA-96",
+    "problem_level": 2,
+    "problem_img": "2918.png",
+    "construction_cdl": [
+        "Shape(CD,DE,EC)",
+        "Shape(DF,FB,BE,ED)",
+        "Shape(FA,AB,BF)",
+        "Collinear(CDFA)",
+        "Collinear(CEB)"
+    ],
+    "text_cdl": [
+        "Equal(MeasureOfAngle(ABF),40)",
+        "IsoscelesRightTriangle(BCA)",
+        "ParallelBetweenLine(DE,FB)"
+    ],
+    "image_cdl": [],
+    "goal_cdl": "Value(MeasureOfAngle(DEC))",
+    "problem_answer": "50",
+    "theorem_seqs": [
+        "angle_addition(1,ABF,FBE)",
+        "parallel_property_corresponding_angle(2,BF,ED,C)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "angle_addition(1,ABF,FBE)",
+            "parallel_property_corresponding_angle(2,BF,ED,C)"
+        ]
+    }
 }

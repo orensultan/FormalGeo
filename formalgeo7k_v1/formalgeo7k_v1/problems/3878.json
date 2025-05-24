@@ -1,52 +1,49 @@
 {
-  "problem_id": 3878,
-  "annotation": "DengfengYue_2023-04-30",
-  "source": "GeoQA-1768",
-  "problem_level": 7,
-  "problem_text_cn": "如图所示，CD=AC，∠DCA=50°，圆O的圆心为O，圆O的直径为AB。求∠CAB的大小。",
-  "problem_text_en": "As shown in the diagram, CD=AC, ∠DCA=50°, the center of ⊙O is O, the diameter of circle O is AB. Find the measure of ∠CAB.",
-  "problem_img": "3878.png",
-  "construction_cdl": [
-    "Shape(AC,OCA)",
-    "Shape(AE,EC,CA)",
-    "Shape(CE,EB,BC)",
-    "Shape(CB,OBC)",
-    "Shape(DE,EA,AD)",
-    "Shape(DA,OAD)",
-    "Shape(BE,ED,ODB)",
-    "Collinear(AOEB)",
-    "Collinear(CED)",
-    "Cocircular(O,CADB)"
-  ],
-  "text_cdl": [
-    "Equal(LengthOfLine(CD),LengthOfLine(AC))",
-    "Equal(MeasureOfAngle(DCA),50)",
-    "IsCentreOfCircle(O,O)",
-    "IsDiameterOfCircle(AB,O)"
-  ],
-  "image_cdl": [],
-  "goal_cdl": "Value(MeasureOfAngle(CAB))",
-  "problem_answer": "25",
-  "theorem_seqs": [
-    "isosceles_triangle_judgment_line_equal(1,CAD)",
-    "isosceles_triangle_property_angle_equal(1,CAD)",
-    "triangle_property_angle_sum(1,CAD)",
-    "triangle_property_angle_sum(1,CAB)",
-    "arc_property_circumference_angle_external(1,OCA,D)",
-    "arc_property_circumference_angle_external(1,OCA,B)",
-    "diameter_of_circle_property_right_angle(1,BCA,O)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "isosceles_triangle_judgment_line_equal(1,CAD)",
-      "triangle_property_angle_sum(1,CAD)",
-      "triangle_property_angle_sum(1,CAB)",
-      "arc_property_circumference_angle_external(1,OCA,D)",
-      "arc_property_circumference_angle_external(1,OCA,B)",
-      "diameter_of_circle_property_right_angle(1,BCA,O)"
+    "problem_id": 3878,
+    "source": "GeoQA-1768",
+    "problem_level": 7,
+    "problem_img": "3878.png",
+    "construction_cdl": [
+        "Shape(AC,OCA)",
+        "Shape(AE,EC,CA)",
+        "Shape(CE,EB,BC)",
+        "Shape(CB,OBC)",
+        "Shape(DE,EA,AD)",
+        "Shape(DA,OAD)",
+        "Shape(BE,ED,ODB)",
+        "Collinear(AOEB)",
+        "Collinear(CED)",
+        "Cocircular(O,CADB)"
     ],
-    "isosceles_triangle_judgment_line_equal(1,CAD)": [
-      "isosceles_triangle_property_angle_equal(1,CAD)"
-    ]
-  }
+    "text_cdl": [
+        "Equal(LengthOfLine(CD),LengthOfLine(AC))",
+        "Equal(MeasureOfAngle(DCA),50)",
+        "IsCentreOfCircle(O,O)",
+        "IsDiameterOfCircle(AB,O)"
+    ],
+    "image_cdl": [],
+    "goal_cdl": "Value(MeasureOfAngle(CAB))",
+    "problem_answer": "25",
+    "theorem_seqs": [
+        "isosceles_triangle_judgment_line_equal(1,CAD)",
+        "isosceles_triangle_property_angle_equal(1,CAD)",
+        "triangle_property_angle_sum(1,CAD)",
+        "triangle_property_angle_sum(1,CAB)",
+        "arc_property_circumference_angle_external(1,OCA,D)",
+        "arc_property_circumference_angle_external(1,OCA,B)",
+        "diameter_of_circle_property_right_angle(1,BCA,O)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "isosceles_triangle_judgment_line_equal(1,CAD)",
+            "triangle_property_angle_sum(1,CAD)",
+            "triangle_property_angle_sum(1,CAB)",
+            "arc_property_circumference_angle_external(1,OCA,D)",
+            "arc_property_circumference_angle_external(1,OCA,B)",
+            "diameter_of_circle_property_right_angle(1,BCA,O)"
+        ],
+        "isosceles_triangle_judgment_line_equal(1,CAD)": [
+            "isosceles_triangle_property_angle_equal(1,CAD)"
+        ]
+    }
 }

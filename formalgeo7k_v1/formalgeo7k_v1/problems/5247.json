@@ -1,35 +1,32 @@
 {
-  "problem_id": 5247,
-  "annotation": "XiaokaiZhang_2023-05-21",
-  "source": "GeoQA-5334",
-  "problem_level": 3,
-  "problem_text_cn": "如图所示，∠AOC=56°，∠COD=90°，∠DOB=73°。求∠BOA的大小。",
-  "problem_text_en": "As shown in the diagram, ∠AOC=56°, ∠COD=90°, ∠DOB=73°. Find the measure of ∠BOA.",
-  "problem_img": "5247.png",
-  "construction_cdl": [
-    "Shape(AO,OC)",
-    "Shape(CO,OD)",
-    "Shape(DO,OB)",
-    "Shape(BO,OA)"
-  ],
-  "text_cdl": [
-    "Equal(MeasureOfAngle(AOC),56)",
-    "Equal(MeasureOfAngle(COD),90)",
-    "Equal(MeasureOfAngle(DOB),73)"
-  ],
-  "image_cdl": [],
-  "goal_cdl": "Value(MeasureOfAngle(BOA))",
-  "problem_answer": "141",
-  "theorem_seqs": [
-    "angle_addition(1,AOC,COD)",
-    "angle_addition(1,AOD,DOB)",
-    "round_angle(1,AOB,BOA)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "angle_addition(1,AOC,COD)",
-      "angle_addition(1,AOD,DOB)",
-      "round_angle(1,AOB,BOA)"
-    ]
-  }
+    "problem_id": 5247,
+    "source": "GeoQA-5334",
+    "problem_level": 3,
+    "problem_img": "5247.png",
+    "construction_cdl": [
+        "Shape(AO,OC)",
+        "Shape(CO,OD)",
+        "Shape(DO,OB)",
+        "Shape(BO,OA)"
+    ],
+    "text_cdl": [
+        "Equal(MeasureOfAngle(AOC),56)",
+        "Equal(MeasureOfAngle(COD),90)",
+        "Equal(MeasureOfAngle(DOB),73)"
+    ],
+    "image_cdl": [],
+    "goal_cdl": "Value(MeasureOfAngle(BOA))",
+    "problem_answer": "141",
+    "theorem_seqs": [
+        "angle_addition(1,AOC,COD)",
+        "angle_addition(1,AOD,DOB)",
+        "round_angle(1,AOB,BOA)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "angle_addition(1,AOC,COD)",
+            "angle_addition(1,AOD,DOB)",
+            "round_angle(1,AOB,BOA)"
+        ]
+    }
 }

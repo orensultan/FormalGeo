@@ -1,62 +1,59 @@
 {
-  "problem_id": 3101,
-  "annotation": "YimingHe_2023-04-23",
-  "source": "GeoQA-342",
-  "problem_level": 8,
-  "problem_text_cn": "如图所示，∠HGF=42°，EF平分∠GEB，CD∥AB。求∠DFE的大小。",
-  "problem_text_en": "As shown in the diagram, ∠HGF=42°, EF is the angle bisector of ∠GEB, CD∥AB. Find the measure of ∠DFE.",
-  "problem_img": "3101.png",
-  "construction_cdl": [
-    "Shape(CG,GH)",
-    "Shape(HG,GF)",
-    "Shape(GF,FI)",
-    "Shape(IF,FD)",
-    "Shape(DF,FE)",
-    "Shape(EF,FG,GE)",
-    "Shape(EG,GC)",
-    "Shape(AE,EG)",
-    "Shape(FE,EB)",
-    "Collinear(CGFD)",
-    "Collinear(AEB)",
-    "Collinear(HGE)",
-    "Collinear(IFE)"
-  ],
-  "text_cdl": [
-    "Equal(MeasureOfAngle(HGF),42)",
-    "IsBisectorOfAngle(EF,GEB)",
-    "ParallelBetweenLine(CD,AB)"
-  ],
-  "image_cdl": [],
-  "goal_cdl": "Value(MeasureOfAngle(DFE))",
-  "problem_answer": "159",
-  "theorem_seqs": [
-    "parallel_property_collinear_extend(3,CD,AB,G)",
-    "parallel_property_collinear_extend(3,CD,AB,F)",
-    "parallel_property_collinear_extend(3,BA,DG,E)",
-    "parallel_property_collinear_extend(3,BA,DF,E)",
-    "angle_addition(1,GEF,FEB)",
-    "parallel_property_corresponding_angle(1,GD,EB,H)",
-    "parallel_property_corresponding_angle(1,FD,EB,I)",
-    "adjacent_complementary_angle(1,IFD,DFE)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "parallel_property_collinear_extend(3,CD,AB,G)",
-      "parallel_property_collinear_extend(3,CD,AB,F)",
-      "angle_addition(1,GEF,FEB)",
-      "adjacent_complementary_angle(1,IFD,DFE)"
+    "problem_id": 3101,
+    "source": "GeoQA-342",
+    "problem_level": 8,
+    "problem_img": "3101.png",
+    "construction_cdl": [
+        "Shape(CG,GH)",
+        "Shape(HG,GF)",
+        "Shape(GF,FI)",
+        "Shape(IF,FD)",
+        "Shape(DF,FE)",
+        "Shape(EF,FG,GE)",
+        "Shape(EG,GC)",
+        "Shape(AE,EG)",
+        "Shape(FE,EB)",
+        "Collinear(CGFD)",
+        "Collinear(AEB)",
+        "Collinear(HGE)",
+        "Collinear(IFE)"
     ],
-    "parallel_property_collinear_extend(3,CD,AB,G)": [
-      "parallel_property_collinear_extend(3,BA,DG,E)"
+    "text_cdl": [
+        "Equal(MeasureOfAngle(HGF),42)",
+        "IsBisectorOfAngle(EF,GEB)",
+        "ParallelBetweenLine(CD,AB)"
     ],
-    "parallel_property_collinear_extend(3,CD,AB,F)": [
-      "parallel_property_collinear_extend(3,BA,DF,E)"
+    "image_cdl": [],
+    "goal_cdl": "Value(MeasureOfAngle(DFE))",
+    "problem_answer": "159",
+    "theorem_seqs": [
+        "parallel_property_collinear_extend(3,CD,AB,G)",
+        "parallel_property_collinear_extend(3,CD,AB,F)",
+        "parallel_property_collinear_extend(3,BA,DG,E)",
+        "parallel_property_collinear_extend(3,BA,DF,E)",
+        "angle_addition(1,GEF,FEB)",
+        "parallel_property_corresponding_angle(1,GD,EB,H)",
+        "parallel_property_corresponding_angle(1,FD,EB,I)",
+        "adjacent_complementary_angle(1,IFD,DFE)"
     ],
-    "parallel_property_collinear_extend(3,BA,DG,E)": [
-      "parallel_property_corresponding_angle(1,GD,EB,H)"
-    ],
-    "parallel_property_collinear_extend(3,BA,DF,E)": [
-      "parallel_property_corresponding_angle(1,FD,EB,I)"
-    ]
-  }
+    "theorem_seqs_dag": {
+        "START": [
+            "parallel_property_collinear_extend(3,CD,AB,G)",
+            "parallel_property_collinear_extend(3,CD,AB,F)",
+            "angle_addition(1,GEF,FEB)",
+            "adjacent_complementary_angle(1,IFD,DFE)"
+        ],
+        "parallel_property_collinear_extend(3,CD,AB,G)": [
+            "parallel_property_collinear_extend(3,BA,DG,E)"
+        ],
+        "parallel_property_collinear_extend(3,CD,AB,F)": [
+            "parallel_property_collinear_extend(3,BA,DF,E)"
+        ],
+        "parallel_property_collinear_extend(3,BA,DG,E)": [
+            "parallel_property_corresponding_angle(1,GD,EB,H)"
+        ],
+        "parallel_property_collinear_extend(3,BA,DF,E)": [
+            "parallel_property_corresponding_angle(1,FD,EB,I)"
+        ]
+    }
 }

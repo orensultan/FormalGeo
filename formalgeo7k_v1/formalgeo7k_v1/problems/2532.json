@@ -1,36 +1,33 @@
 {
-  "problem_id": 2532,
-  "annotation": "YifanWang_2023-04-23",
-  "source": "Geometry3k-2657",
-  "problem_level": 2,
-  "problem_text_cn": "如图所示，BC=10，HA=7，BH⊥AH。求三角形ABC的面积。",
-  "problem_text_en": "As shown in the diagram, BC=10, HA=7, BH⊥AH. Find the area of triangle ABC.",
-  "problem_img": "2532.png",
-  "construction_cdl": [
-    "Shape(AB,BH,HA)",
-    "Shape(AH,HC,CA)",
-    "Collinear(BHC)"
-  ],
-  "text_cdl": [
-    "Equal(LengthOfLine(BC),10)",
-    "Equal(LengthOfLine(HA),7)",
-    "PerpendicularBetweenLine(BH,AH)"
-  ],
-  "image_cdl": [
-    "Equal(LengthOfLine(BC),10)",
-    "Equal(LengthOfLine(HA),7)",
-    "PerpendicularBetweenLine(BH,AH)"
-  ],
-  "goal_cdl": "Value(AreaOfTriangle(ABC))",
-  "problem_answer": "35",
-  "theorem_seqs": [
-    "altitude_of_triangle_judgment(1,AH,ABC)",
-    "triangle_area_formula_common(1,ABC)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "altitude_of_triangle_judgment(1,AH,ABC)",
-      "triangle_area_formula_common(1,ABC)"
-    ]
-  }
+    "problem_id": 2532,
+    "source": "Geometry3k-2657",
+    "problem_level": 2,
+    "problem_img": "2532.png",
+    "construction_cdl": [
+        "Shape(AB,BH,HA)",
+        "Shape(AH,HC,CA)",
+        "Collinear(BHC)"
+    ],
+    "text_cdl": [
+        "Equal(LengthOfLine(BC),10)",
+        "Equal(LengthOfLine(HA),7)",
+        "PerpendicularBetweenLine(BH,AH)"
+    ],
+    "image_cdl": [
+        "Equal(LengthOfLine(BC),10)",
+        "Equal(LengthOfLine(HA),7)",
+        "PerpendicularBetweenLine(BH,AH)"
+    ],
+    "goal_cdl": "Value(AreaOfTriangle(ABC))",
+    "problem_answer": "35",
+    "theorem_seqs": [
+        "altitude_of_triangle_judgment(1,AH,ABC)",
+        "triangle_area_formula_common(1,ABC)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "altitude_of_triangle_judgment(1,AH,ABC)",
+            "triangle_area_formula_common(1,ABC)"
+        ]
+    }
 }

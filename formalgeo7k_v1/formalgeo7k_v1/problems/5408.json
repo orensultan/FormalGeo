@@ -1,64 +1,61 @@
 {
-  "problem_id": 5408,
-  "annotation": "XiaoxiaoJin_2023-05-21",
-  "source": "GeoQA-5703",
-  "problem_level": 9,
-  "problem_text_cn": "如图所示，AB=AC，∠ABC=70°，AF平分∠CAB，ED是AB的垂直平分线。求∠BCE的大小。",
-  "problem_text_en": "As shown in the diagram, AB=AC, ∠ABC=70°, AF is the angle bisector of ∠CAB, ED perpendicular bisects AB. Find the measure of ∠BCE.",
-  "problem_img": "5408.png",
-  "construction_cdl": [
-    "Shape(AD,DE,EA)",
-    "Shape(AE,EC,CA)",
-    "Shape(ED,DB,BE)",
-    "Shape(EB,BF,FE)",
-    "Shape(EF,FC,CE)",
-    "Collinear(ADB)",
-    "Collinear(AEF)",
-    "Collinear(BFC)"
-  ],
-  "text_cdl": [
-    "Equal(LengthOfLine(AB),LengthOfLine(AC))",
-    "Equal(MeasureOfAngle(ABC),70)",
-    "IsBisectorOfAngle(AF,CAB)",
-    "IsPerpendicularBisectorOfLine(ED,AB)"
-  ],
-  "image_cdl": [],
-  "goal_cdl": "Value(MeasureOfAngle(BCE))",
-  "problem_answer": "50",
-  "theorem_seqs": [
-    "angle_addition(1,ABE,EBC)",
-    "perpendicular_bisector_property_distance_equal(1,ED,AB)",
-    "isosceles_triangle_judgment_line_equal(1,EAB)",
-    "isosceles_triangle_judgment_line_equal(1,ABC)",
-    "isosceles_triangle_property_line_coincidence(3,ABC,F)",
-    "isosceles_triangle_property_angle_equal(1,EAB)",
-    "triangle_property_angle_sum(1,ABF)",
-    "mirror_congruent_triangle_judgment_sas(1,FEB,FCE)",
-    "mirror_congruent_triangle_property_angle_equal(1,BFE,CEF)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "angle_addition(1,ABE,EBC)",
-      "perpendicular_bisector_property_distance_equal(1,ED,AB)",
-      "isosceles_triangle_judgment_line_equal(1,ABC)",
-      "triangle_property_angle_sum(1,ABF)"
+    "problem_id": 5408,
+    "source": "GeoQA-5703",
+    "problem_level": 9,
+    "problem_img": "5408.png",
+    "construction_cdl": [
+        "Shape(AD,DE,EA)",
+        "Shape(AE,EC,CA)",
+        "Shape(ED,DB,BE)",
+        "Shape(EB,BF,FE)",
+        "Shape(EF,FC,CE)",
+        "Collinear(ADB)",
+        "Collinear(AEF)",
+        "Collinear(BFC)"
     ],
-    "perpendicular_bisector_property_distance_equal(1,ED,AB)": [
-      "isosceles_triangle_judgment_line_equal(1,EAB)"
+    "text_cdl": [
+        "Equal(LengthOfLine(AB),LengthOfLine(AC))",
+        "Equal(MeasureOfAngle(ABC),70)",
+        "IsBisectorOfAngle(AF,CAB)",
+        "IsPerpendicularBisectorOfLine(ED,AB)"
     ],
-    "isosceles_triangle_judgment_line_equal(1,EAB)": [
-      "isosceles_triangle_property_angle_equal(1,EAB)"
+    "image_cdl": [],
+    "goal_cdl": "Value(MeasureOfAngle(BCE))",
+    "problem_answer": "50",
+    "theorem_seqs": [
+        "angle_addition(1,ABE,EBC)",
+        "perpendicular_bisector_property_distance_equal(1,ED,AB)",
+        "isosceles_triangle_judgment_line_equal(1,EAB)",
+        "isosceles_triangle_judgment_line_equal(1,ABC)",
+        "isosceles_triangle_property_line_coincidence(3,ABC,F)",
+        "isosceles_triangle_property_angle_equal(1,EAB)",
+        "triangle_property_angle_sum(1,ABF)",
+        "mirror_congruent_triangle_judgment_sas(1,FEB,FCE)",
+        "mirror_congruent_triangle_property_angle_equal(1,BFE,CEF)"
     ],
-    "isosceles_triangle_judgment_line_equal(1,ABC)": [
-      "isosceles_triangle_property_line_coincidence(3,ABC,F)"
-    ],
-    "isosceles_triangle_property_line_coincidence(3,ABC,F)": [
-      "mirror_congruent_triangle_judgment_sas(1,FEB,FCE)",
-      "mirror_congruent_triangle_judgment_sas(1,FEB,FCE)",
-      "mirror_congruent_triangle_judgment_sas(1,FEB,FCE)"
-    ],
-    "mirror_congruent_triangle_judgment_sas(1,FEB,FCE)": [
-      "mirror_congruent_triangle_property_angle_equal(1,BFE,CEF)"
-    ]
-  }
+    "theorem_seqs_dag": {
+        "START": [
+            "angle_addition(1,ABE,EBC)",
+            "perpendicular_bisector_property_distance_equal(1,ED,AB)",
+            "isosceles_triangle_judgment_line_equal(1,ABC)",
+            "triangle_property_angle_sum(1,ABF)"
+        ],
+        "perpendicular_bisector_property_distance_equal(1,ED,AB)": [
+            "isosceles_triangle_judgment_line_equal(1,EAB)"
+        ],
+        "isosceles_triangle_judgment_line_equal(1,EAB)": [
+            "isosceles_triangle_property_angle_equal(1,EAB)"
+        ],
+        "isosceles_triangle_judgment_line_equal(1,ABC)": [
+            "isosceles_triangle_property_line_coincidence(3,ABC,F)"
+        ],
+        "isosceles_triangle_property_line_coincidence(3,ABC,F)": [
+            "mirror_congruent_triangle_judgment_sas(1,FEB,FCE)",
+            "mirror_congruent_triangle_judgment_sas(1,FEB,FCE)",
+            "mirror_congruent_triangle_judgment_sas(1,FEB,FCE)"
+        ],
+        "mirror_congruent_triangle_judgment_sas(1,FEB,FCE)": [
+            "mirror_congruent_triangle_property_angle_equal(1,BFE,CEF)"
+        ]
+    }
 }

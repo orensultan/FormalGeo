@@ -1,40 +1,37 @@
 {
-  "problem_id": 3044,
-  "annotation": "XiaokaiZhang_2023-04-16",
-  "source": "GeoQA-257",
-  "problem_level": 3,
-  "problem_text_cn": "如图所示，∠AEF=50°，BA平行于DC。求∠EFC的大小。",
-  "problem_text_en": "As shown in the diagram, ∠AEF=50°, BA∥DC. Find the measure of ∠EFC.",
-  "problem_img": "3044.png",
-  "construction_cdl": [
-    "Shape(AE,EF)",
-    "Shape(EF,FC)",
-    "Shape(DF,FE)",
-    "Shape(FE,EB)",
-    "Collinear(AEB)",
-    "Collinear(CFD)"
-  ],
-  "text_cdl": [
-    "Equal(MeasureOfAngle(AEF),50)",
-    "ParallelBetweenLine(BA,DC)"
-  ],
-  "image_cdl": [],
-  "goal_cdl": "Value(MeasureOfAngle(EFC))",
-  "problem_answer": "130",
-  "theorem_seqs": [
-    "parallel_property_collinear_extend(3,BA,DC,E)",
-    "parallel_property_collinear_extend(3,CD,AE,F)",
-    "parallel_property_ipsilateral_internal_angle(1,EA,FC)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "parallel_property_collinear_extend(3,BA,DC,E)"
+    "problem_id": 3044,
+    "source": "GeoQA-257",
+    "problem_level": 3,
+    "problem_img": "3044.png",
+    "construction_cdl": [
+        "Shape(AE,EF)",
+        "Shape(EF,FC)",
+        "Shape(DF,FE)",
+        "Shape(FE,EB)",
+        "Collinear(AEB)",
+        "Collinear(CFD)"
     ],
-    "parallel_property_collinear_extend(3,BA,DC,E)": [
-      "parallel_property_collinear_extend(3,CD,AE,F)"
+    "text_cdl": [
+        "Equal(MeasureOfAngle(AEF),50)",
+        "ParallelBetweenLine(BA,DC)"
     ],
-    "parallel_property_collinear_extend(3,CD,AE,F)": [
-      "parallel_property_ipsilateral_internal_angle(1,EA,FC)"
-    ]
-  }
+    "image_cdl": [],
+    "goal_cdl": "Value(MeasureOfAngle(EFC))",
+    "problem_answer": "130",
+    "theorem_seqs": [
+        "parallel_property_collinear_extend(3,BA,DC,E)",
+        "parallel_property_collinear_extend(3,CD,AE,F)",
+        "parallel_property_ipsilateral_internal_angle(1,EA,FC)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "parallel_property_collinear_extend(3,BA,DC,E)"
+        ],
+        "parallel_property_collinear_extend(3,BA,DC,E)": [
+            "parallel_property_collinear_extend(3,CD,AE,F)"
+        ],
+        "parallel_property_collinear_extend(3,CD,AE,F)": [
+            "parallel_property_ipsilateral_internal_angle(1,EA,FC)"
+        ]
+    }
 }

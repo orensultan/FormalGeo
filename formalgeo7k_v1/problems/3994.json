@@ -1,54 +1,51 @@
 {
-  "problem_id": 3994,
-  "annotation": "ZheZhu_2023-04-30",
-  "source": "GeoQA-1946",
-  "problem_level": 7,
-  "problem_text_cn": "如图所示，AB=8，OC=3，⊙O的圆心为O，OC垂直于BC。求⊙O的直径。",
-  "problem_text_en": "As shown in the diagram, AB=8, OC=3, O is the center of circle O, OC⊥BC. Find the diameter of ⊙O.",
-  "problem_img": "3994.png",
-  "construction_cdl": [
-    "Shape(OA,AC,CO)",
-    "Shape(OAB,BA)",
-    "Shape(OC,CB,OBA,AO)",
-    "Collinear(ACB)",
-    "Cocircular(O,AB)"
-  ],
-  "text_cdl": [
-    "Equal(LengthOfLine(AB),8)",
-    "Equal(LengthOfLine(OC),3)",
-    "IsCentreOfCircle(O,O)",
-    "PerpendicularBetweenLine(OC,BC)"
-  ],
-  "image_cdl": [
-    "Equal(LengthOfLine(AB),8)",
-    "Equal(LengthOfLine(OC),3)",
-    "IsCentreOfCircle(O,O)",
-    "PerpendicularBetweenLine(OC,BC)"
-  ],
-  "goal_cdl": "Value(DiameterOfCircle(O))",
-  "problem_answer": "10",
-  "theorem_seqs": [
-    "adjacent_complementary_angle(1,ACO,OCB)",
-    "circle_property_chord_perpendicular_bisect_chord(1,O,OC,AB)",
-    "line_addition(1,AC,CB)",
-    "right_triangle_judgment_angle(1,ACO)",
-    "right_triangle_property_pythagorean(1,ACO)",
-    "radius_of_circle_property_length_equal(1,OA,O)",
-    "circle_property_length_of_radius_and_diameter(1,O)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "adjacent_complementary_angle(1,ACO,OCB)",
-      "line_addition(1,AC,CB)",
-      "radius_of_circle_property_length_equal(1,OA,O)",
-      "circle_property_length_of_radius_and_diameter(1,O)"
+    "problem_id": 3994,
+    "source": "GeoQA-1946",
+    "problem_level": 7,
+    "problem_img": "3994.png",
+    "construction_cdl": [
+        "Shape(OA,AC,CO)",
+        "Shape(OAB,BA)",
+        "Shape(OC,CB,OBA,AO)",
+        "Collinear(ACB)",
+        "Cocircular(O,AB)"
     ],
-    "adjacent_complementary_angle(1,ACO,OCB)": [
-      "circle_property_chord_perpendicular_bisect_chord(1,O,OC,AB)",
-      "right_triangle_judgment_angle(1,ACO)"
+    "text_cdl": [
+        "Equal(LengthOfLine(AB),8)",
+        "Equal(LengthOfLine(OC),3)",
+        "IsCentreOfCircle(O,O)",
+        "PerpendicularBetweenLine(OC,BC)"
     ],
-    "right_triangle_judgment_angle(1,ACO)": [
-      "right_triangle_property_pythagorean(1,ACO)"
-    ]
-  }
+    "image_cdl": [
+        "Equal(LengthOfLine(AB),8)",
+        "Equal(LengthOfLine(OC),3)",
+        "IsCentreOfCircle(O,O)",
+        "PerpendicularBetweenLine(OC,BC)"
+    ],
+    "goal_cdl": "Value(DiameterOfCircle(O))",
+    "problem_answer": "10",
+    "theorem_seqs": [
+        "adjacent_complementary_angle(1,ACO,OCB)",
+        "circle_property_chord_perpendicular_bisect_chord(1,O,OC,AB)",
+        "line_addition(1,AC,CB)",
+        "right_triangle_judgment_angle(1,ACO)",
+        "right_triangle_property_pythagorean(1,ACO)",
+        "radius_of_circle_property_length_equal(1,OA,O)",
+        "circle_property_length_of_radius_and_diameter(1,O)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "adjacent_complementary_angle(1,ACO,OCB)",
+            "line_addition(1,AC,CB)",
+            "radius_of_circle_property_length_equal(1,OA,O)",
+            "circle_property_length_of_radius_and_diameter(1,O)"
+        ],
+        "adjacent_complementary_angle(1,ACO,OCB)": [
+            "circle_property_chord_perpendicular_bisect_chord(1,O,OC,AB)",
+            "right_triangle_judgment_angle(1,ACO)"
+        ],
+        "right_triangle_judgment_angle(1,ACO)": [
+            "right_triangle_property_pythagorean(1,ACO)"
+        ]
+    }
 }

@@ -1,67 +1,64 @@
 {
-  "problem_id": 4207,
-  "annotation": "YangLi_2023-05-07",
-  "source": "GeoQA-2928",
-  "problem_level": 11,
-  "problem_text_cn": "如图所示，∠ABO=25°，∠OCA=30°，O是圆O的圆心。求∠COB的大小。",
-  "problem_text_en": "As shown in the diagram, ∠ABO=25°, ∠OCA=30°, the center of ⊙O is O. Find the measure of ∠COB.",
-  "problem_img": "4207.png",
-  "construction_cdl": [
-    "Shape(AB,BO,OA)",
-    "Shape(AO,OC,CA)",
-    "Shape(AC,OCA)",
-    "Shape(BA,OAB)",
-    "Shape(CO,OB,OBC)",
-    "Cocircular(O,ABC)"
-  ],
-  "text_cdl": [
-    "Equal(MeasureOfAngle(ABO),25)",
-    "Equal(MeasureOfAngle(OCA),30)",
-    "IsCentreOfCircle(O,O)"
-  ],
-  "image_cdl": [
-    "IsCentreOfCircle(O,O)"
-  ],
-  "goal_cdl": "Value(MeasureOfAngle(COB))",
-  "problem_answer": "110",
-  "theorem_seqs": [
-    "radius_of_circle_property_length_equal(1,OB,O)",
-    "radius_of_circle_property_length_equal(1,OA,O)",
-    "radius_of_circle_property_length_equal(1,OC,O)",
-    "isosceles_triangle_judgment_line_equal(1,OCA)",
-    "isosceles_triangle_property_angle_equal(1,OCA)",
-    "isosceles_triangle_judgment_line_equal(1,OAB)",
-    "isosceles_triangle_property_angle_equal(1,OAB)",
-    "triangle_property_angle_sum(1,ABO)",
-    "triangle_property_angle_sum(1,AOC)",
-    "angle_addition(1,BOA,AOC)",
-    "round_angle(1,COB,BOC)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "radius_of_circle_property_length_equal(1,OB,O)",
-      "radius_of_circle_property_length_equal(1,OA,O)",
-      "radius_of_circle_property_length_equal(1,OC,O)",
-      "triangle_property_angle_sum(1,ABO)",
-      "triangle_property_angle_sum(1,AOC)",
-      "angle_addition(1,BOA,AOC)",
-      "round_angle(1,COB,BOC)"
+    "problem_id": 4207,
+    "source": "GeoQA-2928",
+    "problem_level": 11,
+    "problem_img": "4207.png",
+    "construction_cdl": [
+        "Shape(AB,BO,OA)",
+        "Shape(AO,OC,CA)",
+        "Shape(AC,OCA)",
+        "Shape(BA,OAB)",
+        "Shape(CO,OB,OBC)",
+        "Cocircular(O,ABC)"
     ],
-    "radius_of_circle_property_length_equal(1,OB,O)": [
-      "isosceles_triangle_judgment_line_equal(1,OAB)"
+    "text_cdl": [
+        "Equal(MeasureOfAngle(ABO),25)",
+        "Equal(MeasureOfAngle(OCA),30)",
+        "IsCentreOfCircle(O,O)"
     ],
-    "radius_of_circle_property_length_equal(1,OA,O)": [
-      "isosceles_triangle_judgment_line_equal(1,OCA)",
-      "isosceles_triangle_judgment_line_equal(1,OAB)"
+    "image_cdl": [
+        "IsCentreOfCircle(O,O)"
     ],
-    "radius_of_circle_property_length_equal(1,OC,O)": [
-      "isosceles_triangle_judgment_line_equal(1,OCA)"
+    "goal_cdl": "Value(MeasureOfAngle(COB))",
+    "problem_answer": "110",
+    "theorem_seqs": [
+        "radius_of_circle_property_length_equal(1,OB,O)",
+        "radius_of_circle_property_length_equal(1,OA,O)",
+        "radius_of_circle_property_length_equal(1,OC,O)",
+        "isosceles_triangle_judgment_line_equal(1,OCA)",
+        "isosceles_triangle_property_angle_equal(1,OCA)",
+        "isosceles_triangle_judgment_line_equal(1,OAB)",
+        "isosceles_triangle_property_angle_equal(1,OAB)",
+        "triangle_property_angle_sum(1,ABO)",
+        "triangle_property_angle_sum(1,AOC)",
+        "angle_addition(1,BOA,AOC)",
+        "round_angle(1,COB,BOC)"
     ],
-    "isosceles_triangle_judgment_line_equal(1,OCA)": [
-      "isosceles_triangle_property_angle_equal(1,OCA)"
-    ],
-    "isosceles_triangle_judgment_line_equal(1,OAB)": [
-      "isosceles_triangle_property_angle_equal(1,OAB)"
-    ]
-  }
+    "theorem_seqs_dag": {
+        "START": [
+            "radius_of_circle_property_length_equal(1,OB,O)",
+            "radius_of_circle_property_length_equal(1,OA,O)",
+            "radius_of_circle_property_length_equal(1,OC,O)",
+            "triangle_property_angle_sum(1,ABO)",
+            "triangle_property_angle_sum(1,AOC)",
+            "angle_addition(1,BOA,AOC)",
+            "round_angle(1,COB,BOC)"
+        ],
+        "radius_of_circle_property_length_equal(1,OB,O)": [
+            "isosceles_triangle_judgment_line_equal(1,OAB)"
+        ],
+        "radius_of_circle_property_length_equal(1,OA,O)": [
+            "isosceles_triangle_judgment_line_equal(1,OCA)",
+            "isosceles_triangle_judgment_line_equal(1,OAB)"
+        ],
+        "radius_of_circle_property_length_equal(1,OC,O)": [
+            "isosceles_triangle_judgment_line_equal(1,OCA)"
+        ],
+        "isosceles_triangle_judgment_line_equal(1,OCA)": [
+            "isosceles_triangle_property_angle_equal(1,OCA)"
+        ],
+        "isosceles_triangle_judgment_line_equal(1,OAB)": [
+            "isosceles_triangle_property_angle_equal(1,OAB)"
+        ]
+    }
 }

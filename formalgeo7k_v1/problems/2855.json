@@ -1,78 +1,75 @@
 {
-  "problem_id": 2855,
-  "annotation": "YimingHe_2023-04-16",
-  "source": "GeoQA-8",
-  "problem_level": 10,
-  "problem_text_cn": "如图所示，AC=10，E平分线段AB，F是线段BC的中点，G是线段DC的中点，H是线段AD的中点，四边形ABCD是等腰梯形。求EFGH的周长。",
-  "problem_text_en": "As shown in the diagram, AC=10, E bisects segment AB, F bisects segment BC, G is the midpoint of segment DC, H bisects segment AD, quadrilateral ABCD is a isosceles trapezoid. Find the perimeter of quadrilateral EFGH.",
-  "problem_img": "2855.png",
-  "construction_cdl": [
-    "Shape(AE,EI,IA)",
-    "Shape(AI,IH,HA)",
-    "Shape(HI,IO,OJ,JH)",
-    "Shape(HJ,JD,DH)",
-    "Shape(IE,EK,KO,OI)",
-    "Shape(EB,BK,KE)",
-    "Shape(KB,BF,FK)",
-    "Shape(OK,KF,FL,LO)",
-    "Shape(DJ,JG,GD)",
-    "Shape(JO,OL,LG,GJ)",
-    "Shape(GL,LC,CG)",
-    "Shape(LF,FC,CL)",
-    "Collinear(AHD)",
-    "Collinear(AEB)",
-    "Collinear(BFC)",
-    "Collinear(DGC)",
-    "Collinear(HIE)",
-    "Collinear(DJOKB)",
-    "Collinear(GLF)",
-    "Collinear(HJG)",
-    "Collinear(AIOLC)",
-    "Collinear(EKF)"
-  ],
-  "text_cdl": [
-    "Equal(LengthOfLine(AC),10)",
-    "IsMidpointOfLine(E,AB)",
-    "IsMidpointOfLine(F,BC)",
-    "IsMidpointOfLine(G,DC)",
-    "IsMidpointOfLine(H,AD)",
-    "IsoscelesTrapezoid(ABCD)"
-  ],
-  "image_cdl": [],
-  "goal_cdl": "Value(PerimeterOfQuadrilateral(EFGH))",
-  "problem_answer": "20",
-  "theorem_seqs": [
-    "quadrilateral_perimeter_formula(1,EFGH)",
-    "isosceles_trapezoid_property_diagonal_equal(1,ABCD)",
-    "midsegment_of_triangle_judgment_midpoint(1,EH,ABD)",
-    "midsegment_of_triangle_judgment_midpoint(1,HG,DAC)",
-    "midsegment_of_triangle_judgment_midpoint(1,FE,BCA)",
-    "midsegment_of_triangle_judgment_midpoint(1,GF,CDB)",
-    "midsegment_of_triangle_property_length(1,EH,ABD)",
-    "midsegment_of_triangle_property_length(1,HG,DAC)",
-    "midsegment_of_triangle_property_length(1,FE,BCA)",
-    "midsegment_of_triangle_property_length(1,GF,CDB)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "quadrilateral_perimeter_formula(1,EFGH)",
-      "isosceles_trapezoid_property_diagonal_equal(1,ABCD)",
-      "midsegment_of_triangle_judgment_midpoint(1,EH,ABD)",
-      "midsegment_of_triangle_judgment_midpoint(1,HG,DAC)",
-      "midsegment_of_triangle_judgment_midpoint(1,FE,BCA)",
-      "midsegment_of_triangle_judgment_midpoint(1,GF,CDB)"
+    "problem_id": 2855,
+    "source": "GeoQA-8",
+    "problem_level": 10,
+    "problem_img": "2855.png",
+    "construction_cdl": [
+        "Shape(AE,EI,IA)",
+        "Shape(AI,IH,HA)",
+        "Shape(HI,IO,OJ,JH)",
+        "Shape(HJ,JD,DH)",
+        "Shape(IE,EK,KO,OI)",
+        "Shape(EB,BK,KE)",
+        "Shape(KB,BF,FK)",
+        "Shape(OK,KF,FL,LO)",
+        "Shape(DJ,JG,GD)",
+        "Shape(JO,OL,LG,GJ)",
+        "Shape(GL,LC,CG)",
+        "Shape(LF,FC,CL)",
+        "Collinear(AHD)",
+        "Collinear(AEB)",
+        "Collinear(BFC)",
+        "Collinear(DGC)",
+        "Collinear(HIE)",
+        "Collinear(DJOKB)",
+        "Collinear(GLF)",
+        "Collinear(HJG)",
+        "Collinear(AIOLC)",
+        "Collinear(EKF)"
     ],
-    "midsegment_of_triangle_judgment_midpoint(1,EH,ABD)": [
-      "midsegment_of_triangle_property_length(1,EH,ABD)"
+    "text_cdl": [
+        "Equal(LengthOfLine(AC),10)",
+        "IsMidpointOfLine(E,AB)",
+        "IsMidpointOfLine(F,BC)",
+        "IsMidpointOfLine(G,DC)",
+        "IsMidpointOfLine(H,AD)",
+        "IsoscelesTrapezoid(ABCD)"
     ],
-    "midsegment_of_triangle_judgment_midpoint(1,HG,DAC)": [
-      "midsegment_of_triangle_property_length(1,HG,DAC)"
+    "image_cdl": [],
+    "goal_cdl": "Value(PerimeterOfQuadrilateral(EFGH))",
+    "problem_answer": "20",
+    "theorem_seqs": [
+        "quadrilateral_perimeter_formula(1,EFGH)",
+        "isosceles_trapezoid_property_diagonal_equal(1,ABCD)",
+        "midsegment_of_triangle_judgment_midpoint(1,EH,ABD)",
+        "midsegment_of_triangle_judgment_midpoint(1,HG,DAC)",
+        "midsegment_of_triangle_judgment_midpoint(1,FE,BCA)",
+        "midsegment_of_triangle_judgment_midpoint(1,GF,CDB)",
+        "midsegment_of_triangle_property_length(1,EH,ABD)",
+        "midsegment_of_triangle_property_length(1,HG,DAC)",
+        "midsegment_of_triangle_property_length(1,FE,BCA)",
+        "midsegment_of_triangle_property_length(1,GF,CDB)"
     ],
-    "midsegment_of_triangle_judgment_midpoint(1,FE,BCA)": [
-      "midsegment_of_triangle_property_length(1,FE,BCA)"
-    ],
-    "midsegment_of_triangle_judgment_midpoint(1,GF,CDB)": [
-      "midsegment_of_triangle_property_length(1,GF,CDB)"
-    ]
-  }
+    "theorem_seqs_dag": {
+        "START": [
+            "quadrilateral_perimeter_formula(1,EFGH)",
+            "isosceles_trapezoid_property_diagonal_equal(1,ABCD)",
+            "midsegment_of_triangle_judgment_midpoint(1,EH,ABD)",
+            "midsegment_of_triangle_judgment_midpoint(1,HG,DAC)",
+            "midsegment_of_triangle_judgment_midpoint(1,FE,BCA)",
+            "midsegment_of_triangle_judgment_midpoint(1,GF,CDB)"
+        ],
+        "midsegment_of_triangle_judgment_midpoint(1,EH,ABD)": [
+            "midsegment_of_triangle_property_length(1,EH,ABD)"
+        ],
+        "midsegment_of_triangle_judgment_midpoint(1,HG,DAC)": [
+            "midsegment_of_triangle_property_length(1,HG,DAC)"
+        ],
+        "midsegment_of_triangle_judgment_midpoint(1,FE,BCA)": [
+            "midsegment_of_triangle_property_length(1,FE,BCA)"
+        ],
+        "midsegment_of_triangle_judgment_midpoint(1,GF,CDB)": [
+            "midsegment_of_triangle_property_length(1,GF,CDB)"
+        ]
+    }
 }

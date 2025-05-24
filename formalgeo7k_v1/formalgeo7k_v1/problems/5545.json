@@ -1,28 +1,25 @@
 {
-  "problem_id": 5545,
-  "annotation": "ZheZhu_2023-05-21",
-  "source": "GeoQA-6764",
-  "problem_level": 1,
-  "problem_text_cn": "如图所示，AB=1000，BC=800，∠BCA是直角三角形BCA的直角。求直线CA的长度。",
-  "problem_text_en": "As shown in the diagram, AB=1000, BC=800, △BCA is a right △. Find the length of line CA.",
-  "problem_img": "5545.png",
-  "construction_cdl": [
-    "Shape(AB,BC,CA)"
-  ],
-  "text_cdl": [
-    "Equal(LengthOfLine(AB),1000)",
-    "Equal(LengthOfLine(BC),800)",
-    "RightTriangle(BCA)"
-  ],
-  "image_cdl": [],
-  "goal_cdl": "Value(LengthOfLine(CA))",
-  "problem_answer": "600",
-  "theorem_seqs": [
-    "right_triangle_property_pythagorean(1,BCA)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "right_triangle_property_pythagorean(1,BCA)"
-    ]
-  }
+    "problem_id": 5545,
+    "source": "GeoQA-6764",
+    "problem_level": 1,
+    "problem_img": "5545.png",
+    "construction_cdl": [
+        "Shape(AB,BC,CA)"
+    ],
+    "text_cdl": [
+        "Equal(LengthOfLine(AB),1000)",
+        "Equal(LengthOfLine(BC),800)",
+        "RightTriangle(BCA)"
+    ],
+    "image_cdl": [],
+    "goal_cdl": "Value(LengthOfLine(CA))",
+    "problem_answer": "600",
+    "theorem_seqs": [
+        "right_triangle_property_pythagorean(1,BCA)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "right_triangle_property_pythagorean(1,BCA)"
+        ]
+    }
 }

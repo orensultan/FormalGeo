@@ -1,32 +1,29 @@
 {
-  "problem_id": 712,
-  "annotation": "YimingHe_2023-03-12",
-  "source": "Geometry3k-732",
-  "problem_level": 1,
-  "problem_text_cn": "如图所示，AC=12，∠BCA=60°，AB垂直于CB。求直线AB的长度。",
-  "problem_text_en": "As shown in the diagram, AC=12, ∠BCA=60°, AB⊥CB. Find the length of line AB.",
-  "problem_img": "712.png",
-  "construction_cdl": [
-    "Shape(BC,CA,AB)"
-  ],
-  "text_cdl": [
-    "Equal(LengthOfLine(AC),12)",
-    "Equal(MeasureOfAngle(BCA),60)",
-    "PerpendicularBetweenLine(AB,CB)"
-  ],
-  "image_cdl": [
-    "Equal(LengthOfLine(AC),12)",
-    "Equal(MeasureOfAngle(BCA),60)",
-    "PerpendicularBetweenLine(AB,CB)"
-  ],
-  "goal_cdl": "Value(LengthOfLine(AB))",
-  "problem_answer": "6*sqrt(3)",
-  "theorem_seqs": [
-    "sine_theorem(1,ABC)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "sine_theorem(1,ABC)"
-    ]
-  }
+    "problem_id": 712,
+    "source": "Geometry3k-732",
+    "problem_level": 1,
+    "problem_img": "712.png",
+    "construction_cdl": [
+        "Shape(BC,CA,AB)"
+    ],
+    "text_cdl": [
+        "Equal(LengthOfLine(AC),12)",
+        "Equal(MeasureOfAngle(BCA),60)",
+        "PerpendicularBetweenLine(AB,CB)"
+    ],
+    "image_cdl": [
+        "Equal(LengthOfLine(AC),12)",
+        "Equal(MeasureOfAngle(BCA),60)",
+        "PerpendicularBetweenLine(AB,CB)"
+    ],
+    "goal_cdl": "Value(LengthOfLine(AB))",
+    "problem_answer": "6*sqrt(3)",
+    "theorem_seqs": [
+        "sine_theorem(1,ABC)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "sine_theorem(1,ABC)"
+        ]
+    }
 }

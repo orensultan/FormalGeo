@@ -1,40 +1,37 @@
 {
-  "problem_id": 2494,
-  "annotation": "YifanWang_2023-04-23",
-  "source": "Geometry3k-2617",
-  "problem_level": 2,
-  "problem_text_cn": "如图所示，DF=e，ED=f，FE=d，∠DFE=26°，∠FED=108°，f=20。求d的值。",
-  "problem_text_en": "As shown in the diagram, DF=e, ED=f, FE=d, ∠DFE=26°, ∠FED=108°, f=20. Find the value of d.",
-  "problem_img": "2494.png",
-  "construction_cdl": [
-    "Shape(ED,DF,FE)"
-  ],
-  "text_cdl": [
-    "Equal(LengthOfLine(DF),e)",
-    "Equal(LengthOfLine(ED),f)",
-    "Equal(LengthOfLine(FE),d)",
-    "Equal(MeasureOfAngle(DFE),26)",
-    "Equal(MeasureOfAngle(FED),108)",
-    "Equal(f,20)"
-  ],
-  "image_cdl": [
-    "Equal(LengthOfLine(DF),e)",
-    "Equal(LengthOfLine(ED),f)",
-    "Equal(LengthOfLine(FE),d)",
-    "Equal(MeasureOfAngle(DFE),26)",
-    "Equal(MeasureOfAngle(FED),108)",
-    "Equal(f,20)"
-  ],
-  "goal_cdl": "Value(d)",
-  "problem_answer": "20*sin(23*pi/90)/sin(13*pi/90)",
-  "theorem_seqs": [
-    "triangle_property_angle_sum(1,EDF)",
-    "sine_theorem(1,EDF)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "triangle_property_angle_sum(1,EDF)",
-      "sine_theorem(1,EDF)"
-    ]
-  }
+    "problem_id": 2494,
+    "source": "Geometry3k-2617",
+    "problem_level": 2,
+    "problem_img": "2494.png",
+    "construction_cdl": [
+        "Shape(ED,DF,FE)"
+    ],
+    "text_cdl": [
+        "Equal(LengthOfLine(DF),e)",
+        "Equal(LengthOfLine(ED),f)",
+        "Equal(LengthOfLine(FE),d)",
+        "Equal(MeasureOfAngle(DFE),26)",
+        "Equal(MeasureOfAngle(FED),108)",
+        "Equal(f,20)"
+    ],
+    "image_cdl": [
+        "Equal(LengthOfLine(DF),e)",
+        "Equal(LengthOfLine(ED),f)",
+        "Equal(LengthOfLine(FE),d)",
+        "Equal(MeasureOfAngle(DFE),26)",
+        "Equal(MeasureOfAngle(FED),108)",
+        "Equal(f,20)"
+    ],
+    "goal_cdl": "Value(d)",
+    "problem_answer": "20*sin(23*pi/90)/sin(13*pi/90)",
+    "theorem_seqs": [
+        "triangle_property_angle_sum(1,EDF)",
+        "sine_theorem(1,EDF)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "triangle_property_angle_sum(1,EDF)",
+            "sine_theorem(1,EDF)"
+        ]
+    }
 }

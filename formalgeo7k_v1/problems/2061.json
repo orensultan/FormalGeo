@@ -1,36 +1,33 @@
 {
-  "problem_id": 2061,
-  "annotation": "QikeHuang_2023-04-23",
-  "source": "Geometry3k-2148",
-  "problem_level": 5,
-  "problem_text_cn": "如图所示，∠ZYX=110°，WZYX是菱形。求∠YWZ的大小。",
-  "problem_text_en": "As shown in the diagram, ∠ZYX=110°, quadrilateral WZYX is a rhombus. Find the measure of ∠YWZ.",
-  "problem_img": "2061.png",
-  "construction_cdl": [
-    "Shape(WZ,ZY,YW)",
-    "Shape(XW,WY,YX)"
-  ],
-  "text_cdl": [
-    "Equal(MeasureOfAngle(ZYX),110)",
-    "Rhombus(WZYX)"
-  ],
-  "image_cdl": [],
-  "goal_cdl": "Value(MeasureOfAngle(YWZ))",
-  "problem_answer": "55",
-  "theorem_seqs": [
-    "kite_property_opposite_angle_equal(1,WZYX)",
-    "kite_property_opposite_angle_equal(1,ZYXW)",
-    "quadrilateral_property_angle_sum(1,WZYX)",
-    "sine_theorem(1,ZYW)",
-    "triangle_property_angle_sum(1,WZY)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "kite_property_opposite_angle_equal(1,WZYX)",
-      "kite_property_opposite_angle_equal(1,ZYXW)",
-      "quadrilateral_property_angle_sum(1,WZYX)",
-      "sine_theorem(1,ZYW)",
-      "triangle_property_angle_sum(1,WZY)"
-    ]
-  }
+    "problem_id": 2061,
+    "source": "Geometry3k-2148",
+    "problem_level": 5,
+    "problem_img": "2061.png",
+    "construction_cdl": [
+        "Shape(WZ,ZY,YW)",
+        "Shape(XW,WY,YX)"
+    ],
+    "text_cdl": [
+        "Equal(MeasureOfAngle(ZYX),110)",
+        "Rhombus(WZYX)"
+    ],
+    "image_cdl": [],
+    "goal_cdl": "Value(MeasureOfAngle(YWZ))",
+    "problem_answer": "55",
+    "theorem_seqs": [
+        "kite_property_opposite_angle_equal(1,WZYX)",
+        "kite_property_opposite_angle_equal(1,ZYXW)",
+        "quadrilateral_property_angle_sum(1,WZYX)",
+        "sine_theorem(1,ZYW)",
+        "triangle_property_angle_sum(1,WZY)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "kite_property_opposite_angle_equal(1,WZYX)",
+            "kite_property_opposite_angle_equal(1,ZYXW)",
+            "quadrilateral_property_angle_sum(1,WZYX)",
+            "sine_theorem(1,ZYW)",
+            "triangle_property_angle_sum(1,WZY)"
+        ]
+    }
 }

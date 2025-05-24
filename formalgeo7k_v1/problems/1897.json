@@ -1,36 +1,33 @@
 {
-  "problem_id": 1897,
-  "annotation": "YanjunGuo_2023-04-23",
-  "source": "Geometry3k-1972",
-  "problem_level": 2,
-  "problem_text_cn": "如图所示，XY=4，弧XYZ的角度为75，X是⊙X的圆心。求弧XYZ的长度。",
-  "problem_text_en": "As shown in the diagram, XY=4, the measure of ⌒XYZ is 75, the center of circle X is X. Find the length of arc XYZ.",
-  "problem_img": "1897.png",
-  "construction_cdl": [
-    "Shape(ZX,XY,XYZ)",
-    "Shape(XZ,XZY,YX)",
-    "Cocircular(X,ZY)"
-  ],
-  "text_cdl": [
-    "Equal(LengthOfLine(XY),4)",
-    "Equal(MeasureOfArc(XYZ),75)",
-    "IsCentreOfCircle(X,X)"
-  ],
-  "image_cdl": [
-    "Equal(LengthOfLine(XY),4)",
-    "Equal(MeasureOfArc(XYZ),75)",
-    "IsCentreOfCircle(X,X)"
-  ],
-  "goal_cdl": "Value(LengthOfArc(XYZ))",
-  "problem_answer": "5*pi/3",
-  "theorem_seqs": [
-    "radius_of_circle_property_length_equal(1,XY,X)",
-    "arc_length_formula(1,XYZ)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "radius_of_circle_property_length_equal(1,XY,X)",
-      "arc_length_formula(1,XYZ)"
-    ]
-  }
+    "problem_id": 1897,
+    "source": "Geometry3k-1972",
+    "problem_level": 2,
+    "problem_img": "1897.png",
+    "construction_cdl": [
+        "Shape(ZX,XY,XYZ)",
+        "Shape(XZ,XZY,YX)",
+        "Cocircular(X,ZY)"
+    ],
+    "text_cdl": [
+        "Equal(LengthOfLine(XY),4)",
+        "Equal(MeasureOfArc(XYZ),75)",
+        "IsCentreOfCircle(X,X)"
+    ],
+    "image_cdl": [
+        "Equal(LengthOfLine(XY),4)",
+        "Equal(MeasureOfArc(XYZ),75)",
+        "IsCentreOfCircle(X,X)"
+    ],
+    "goal_cdl": "Value(LengthOfArc(XYZ))",
+    "problem_answer": "5*pi/3",
+    "theorem_seqs": [
+        "radius_of_circle_property_length_equal(1,XY,X)",
+        "arc_length_formula(1,XYZ)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "radius_of_circle_property_length_equal(1,XY,X)",
+            "arc_length_formula(1,XYZ)"
+        ]
+    }
 }

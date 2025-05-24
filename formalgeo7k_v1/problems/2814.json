@@ -1,38 +1,35 @@
 {
-  "problem_id": 2814,
-  "annotation": "ZheZhu_2023-04-09",
-  "source": "Geometry3k-2963",
-  "problem_level": 3,
-  "problem_text_cn": "如图所示，∠BCA=123-x°，∠BCQ=42+x°，CP是△CAB的高，CQ是∠BCA的角平分线，R平分线段AB。求∠QCA的大小。",
-  "problem_text_en": "As shown in the diagram, ∠BCA=123-x°, ∠BCQ=42+x°, CP is the altitude of triangle CAB, CQ is the angle bisector of ∠BCA, R is the midpoint of segment AB. Find the measure of ∠QCA.",
-  "problem_img": "2814.png",
-  "construction_cdl": [
-    "Shape(CA,AP,PC)",
-    "Shape(CP,PQ,QC)",
-    "Shape(CQ,QR,RC)",
-    "Shape(CR,RB,BC)",
-    "Collinear(APQRB)"
-  ],
-  "text_cdl": [
-    "Equal(MeasureOfAngle(BCA),123-x)",
-    "Equal(MeasureOfAngle(BCQ),42+x)",
-    "IsAltitudeOfTriangle(CP,CAB)",
-    "IsBisectorOfAngle(CQ,BCA)",
-    "IsMidpointOfLine(R,AB)"
-  ],
-  "image_cdl": [],
-  "goal_cdl": "Value(MeasureOfAngle(QCA))",
-  "problem_answer": "55",
-  "theorem_seqs": [
-    "angle_addition(1,RCQ,QCA)",
-    "angle_addition(1,BCR,RCQ)",
-    "angle_addition(1,BCR,RCA)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "angle_addition(1,RCQ,QCA)",
-      "angle_addition(1,BCR,RCQ)",
-      "angle_addition(1,BCR,RCA)"
-    ]
-  }
+    "problem_id": 2814,
+    "source": "Geometry3k-2963",
+    "problem_level": 3,
+    "problem_img": "2814.png",
+    "construction_cdl": [
+        "Shape(CA,AP,PC)",
+        "Shape(CP,PQ,QC)",
+        "Shape(CQ,QR,RC)",
+        "Shape(CR,RB,BC)",
+        "Collinear(APQRB)"
+    ],
+    "text_cdl": [
+        "Equal(MeasureOfAngle(BCA),123-x)",
+        "Equal(MeasureOfAngle(BCQ),42+x)",
+        "IsAltitudeOfTriangle(CP,CAB)",
+        "IsBisectorOfAngle(CQ,BCA)",
+        "IsMidpointOfLine(R,AB)"
+    ],
+    "image_cdl": [],
+    "goal_cdl": "Value(MeasureOfAngle(QCA))",
+    "problem_answer": "55",
+    "theorem_seqs": [
+        "angle_addition(1,RCQ,QCA)",
+        "angle_addition(1,BCR,RCQ)",
+        "angle_addition(1,BCR,RCA)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "angle_addition(1,RCQ,QCA)",
+            "angle_addition(1,BCR,RCQ)",
+            "angle_addition(1,BCR,RCA)"
+        ]
+    }
 }

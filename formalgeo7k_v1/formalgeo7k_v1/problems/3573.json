@@ -1,75 +1,72 @@
 {
-  "problem_id": 3573,
-  "annotation": "YanjunGuo_2023-04-30",
-  "source": "GeoQA-1213",
-  "problem_level": 12,
-  "problem_text_cn": "如图所示，AB=2，AD=4，圆C的半径为2，圆F的半径为2，⊙C的圆心为C，F是圆F的圆心，E是线段AD的中点，F平分线段BC，ABCD是矩形。求四边形ABFE的面积减去扇形FEB的面积加上扇形CDF面积。",
-  "problem_text_en": "As shown in the diagram, AB=2, AD=4, the radius of ⊙C is 2, the radius of ⊙F is 2, C is the center of circle C, F is the center of ⊙F, E bisects segment AD, F is the midpoint of segment BC, ABCD is a rectangle. The area of quadrilateral ABFE minus the area of sector FEB and plus the area of sector CDF.",
-  "problem_img": "3573.png",
-  "construction_cdl": [
-    "Shape(AB,FEB,EA)",
-    "Shape(BF,FE,FEB)",
-    "Shape(DE,EF,CDF)",
-    "Shape(FC,CD,CDF)",
-    "Collinear(AED)",
-    "Collinear(BFC)",
-    "Cocircular(F,EB)",
-    "Cocircular(C,DF)"
-  ],
-  "text_cdl": [
-    "Equal(LengthOfLine(AB),2)",
-    "Equal(LengthOfLine(AD),4)",
-    "Equal(RadiusOfCircle(C),2)",
-    "Equal(RadiusOfCircle(F),2)",
-    "IsCentreOfCircle(C,C)",
-    "IsCentreOfCircle(F,F)",
-    "IsMidpointOfLine(E,AD)",
-    "IsMidpointOfLine(F,BC)",
-    "Rectangle(ABCD)"
-  ],
-  "image_cdl": [],
-  "goal_cdl": "Value(Add(Sub(AreaOfQuadrilateral(ABFE),AreaOfSector(FEB)),AreaOfSector(CDF)))",
-  "problem_answer": "4",
-  "theorem_seqs": [
-    "line_addition(1,AE,ED)",
-    "parallel_property_collinear_extend(3,AD,BC,E)",
-    "parallel_property_collinear_extend(3,CB,EA,F)",
-    "radius_of_circle_property_length_equal(1,FE,F)",
-    "radius_of_circle_property_length_equal(1,FB,F)",
-    "parallelogram_judgment_parallel_and_equal(1,EABF)",
-    "parallelogram_area_formula_sine(1,EABF)",
-    "parallelogram_area_formula_sine(1,BFEA)",
-    "sector_area_formula(1,FEB)",
-    "sector_area_formula(1,CDF)",
-    "arc_property_center_angle(1,FEB,F)",
-    "arc_property_center_angle(1,CDF,C)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "line_addition(1,AE,ED)",
-      "parallel_property_collinear_extend(3,AD,BC,E)",
-      "radius_of_circle_property_length_equal(1,FE,F)",
-      "radius_of_circle_property_length_equal(1,FB,F)",
-      "sector_area_formula(1,FEB)",
-      "sector_area_formula(1,CDF)",
-      "arc_property_center_angle(1,FEB,F)",
-      "arc_property_center_angle(1,CDF,C)"
+    "problem_id": 3573,
+    "source": "GeoQA-1213",
+    "problem_level": 12,
+    "problem_img": "3573.png",
+    "construction_cdl": [
+        "Shape(AB,FEB,EA)",
+        "Shape(BF,FE,FEB)",
+        "Shape(DE,EF,CDF)",
+        "Shape(FC,CD,CDF)",
+        "Collinear(AED)",
+        "Collinear(BFC)",
+        "Cocircular(F,EB)",
+        "Cocircular(C,DF)"
     ],
-    "line_addition(1,AE,ED)": [
-      "parallelogram_judgment_parallel_and_equal(1,EABF)"
+    "text_cdl": [
+        "Equal(LengthOfLine(AB),2)",
+        "Equal(LengthOfLine(AD),4)",
+        "Equal(RadiusOfCircle(C),2)",
+        "Equal(RadiusOfCircle(F),2)",
+        "IsCentreOfCircle(C,C)",
+        "IsCentreOfCircle(F,F)",
+        "IsMidpointOfLine(E,AD)",
+        "IsMidpointOfLine(F,BC)",
+        "Rectangle(ABCD)"
     ],
-    "parallel_property_collinear_extend(3,AD,BC,E)": [
-      "parallel_property_collinear_extend(3,CB,EA,F)"
+    "image_cdl": [],
+    "goal_cdl": "Value(Add(Sub(AreaOfQuadrilateral(ABFE),AreaOfSector(FEB)),AreaOfSector(CDF)))",
+    "problem_answer": "4",
+    "theorem_seqs": [
+        "line_addition(1,AE,ED)",
+        "parallel_property_collinear_extend(3,AD,BC,E)",
+        "parallel_property_collinear_extend(3,CB,EA,F)",
+        "radius_of_circle_property_length_equal(1,FE,F)",
+        "radius_of_circle_property_length_equal(1,FB,F)",
+        "parallelogram_judgment_parallel_and_equal(1,EABF)",
+        "parallelogram_area_formula_sine(1,EABF)",
+        "parallelogram_area_formula_sine(1,BFEA)",
+        "sector_area_formula(1,FEB)",
+        "sector_area_formula(1,CDF)",
+        "arc_property_center_angle(1,FEB,F)",
+        "arc_property_center_angle(1,CDF,C)"
     ],
-    "parallel_property_collinear_extend(3,CB,EA,F)": [
-      "parallelogram_judgment_parallel_and_equal(1,EABF)"
-    ],
-    "radius_of_circle_property_length_equal(1,FB,F)": [
-      "parallelogram_judgment_parallel_and_equal(1,EABF)"
-    ],
-    "parallelogram_judgment_parallel_and_equal(1,EABF)": [
-      "parallelogram_area_formula_sine(1,EABF)",
-      "parallelogram_area_formula_sine(1,BFEA)"
-    ]
-  }
+    "theorem_seqs_dag": {
+        "START": [
+            "line_addition(1,AE,ED)",
+            "parallel_property_collinear_extend(3,AD,BC,E)",
+            "radius_of_circle_property_length_equal(1,FE,F)",
+            "radius_of_circle_property_length_equal(1,FB,F)",
+            "sector_area_formula(1,FEB)",
+            "sector_area_formula(1,CDF)",
+            "arc_property_center_angle(1,FEB,F)",
+            "arc_property_center_angle(1,CDF,C)"
+        ],
+        "line_addition(1,AE,ED)": [
+            "parallelogram_judgment_parallel_and_equal(1,EABF)"
+        ],
+        "parallel_property_collinear_extend(3,AD,BC,E)": [
+            "parallel_property_collinear_extend(3,CB,EA,F)"
+        ],
+        "parallel_property_collinear_extend(3,CB,EA,F)": [
+            "parallelogram_judgment_parallel_and_equal(1,EABF)"
+        ],
+        "radius_of_circle_property_length_equal(1,FB,F)": [
+            "parallelogram_judgment_parallel_and_equal(1,EABF)"
+        ],
+        "parallelogram_judgment_parallel_and_equal(1,EABF)": [
+            "parallelogram_area_formula_sine(1,EABF)",
+            "parallelogram_area_formula_sine(1,BFEA)"
+        ]
+    }
 }

@@ -1,33 +1,30 @@
 {
-  "problem_id": 5137,
-  "annotation": "JiaZou_2023-05-21",
-  "source": "GeoQA-5022",
-  "problem_level": 3,
-  "problem_text_cn": "如图所示，∠EAD=75°。求∠EDB的大小与∠CED的大小之和。",
-  "problem_text_en": "As shown in the diagram, ∠EAD=75°. Find the sum of the measure of ∠EDB and the measure of ∠CED.",
-  "problem_img": "5137.png",
-  "construction_cdl": [
-    "Shape(AD,DE,EA)",
-    "Shape(DB,BC,CE,ED)",
-    "Collinear(ADB)",
-    "Collinear(AEC)"
-  ],
-  "text_cdl": [
-    "Equal(MeasureOfAngle(EAD),75)"
-  ],
-  "image_cdl": [],
-  "goal_cdl": "Value(Add(MeasureOfAngle(EDB),MeasureOfAngle(CED)))",
-  "problem_answer": "255",
-  "theorem_seqs": [
-    "adjacent_complementary_angle(1,ADE,EDB)",
-    "adjacent_complementary_angle(1,CED,DEA)",
-    "triangle_property_angle_sum(1,ADE)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "adjacent_complementary_angle(1,ADE,EDB)",
-      "adjacent_complementary_angle(1,CED,DEA)",
-      "triangle_property_angle_sum(1,ADE)"
-    ]
-  }
+    "problem_id": 5137,
+    "source": "GeoQA-5022",
+    "problem_level": 3,
+    "problem_img": "5137.png",
+    "construction_cdl": [
+        "Shape(AD,DE,EA)",
+        "Shape(DB,BC,CE,ED)",
+        "Collinear(ADB)",
+        "Collinear(AEC)"
+    ],
+    "text_cdl": [
+        "Equal(MeasureOfAngle(EAD),75)"
+    ],
+    "image_cdl": [],
+    "goal_cdl": "Value(Add(MeasureOfAngle(EDB),MeasureOfAngle(CED)))",
+    "problem_answer": "255",
+    "theorem_seqs": [
+        "adjacent_complementary_angle(1,ADE,EDB)",
+        "adjacent_complementary_angle(1,CED,DEA)",
+        "triangle_property_angle_sum(1,ADE)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "adjacent_complementary_angle(1,ADE,EDB)",
+            "adjacent_complementary_angle(1,CED,DEA)",
+            "triangle_property_angle_sum(1,ADE)"
+        ]
+    }
 }

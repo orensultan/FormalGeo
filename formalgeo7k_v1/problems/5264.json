@@ -1,32 +1,29 @@
 {
-  "problem_id": 5264,
-  "annotation": "XiaokaiZhang_2023-05-21",
-  "source": "GeoQA-5380",
-  "problem_level": 3,
-  "problem_text_cn": "如图所示，AB=7，BC=3，D是线段AC的中点。求直线DB的长度。",
-  "problem_text_en": "As shown in the diagram, AB=7, BC=3, D bisects segment AC. Find the length of line DB.",
-  "problem_img": "5264.png",
-  "construction_cdl": [
-    "Collinear(ADBC)"
-  ],
-  "text_cdl": [
-    "Equal(LengthOfLine(AB),7)",
-    "Equal(LengthOfLine(BC),3)",
-    "IsMidpointOfLine(D,AC)"
-  ],
-  "image_cdl": [],
-  "goal_cdl": "Value(LengthOfLine(DB))",
-  "problem_answer": "2",
-  "theorem_seqs": [
-    "line_addition(1,AD,DB)",
-    "line_addition(1,AD,DC)",
-    "line_addition(1,AB,BC)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "line_addition(1,AD,DB)",
-      "line_addition(1,AD,DC)",
-      "line_addition(1,AB,BC)"
-    ]
-  }
+    "problem_id": 5264,
+    "source": "GeoQA-5380",
+    "problem_level": 3,
+    "problem_img": "5264.png",
+    "construction_cdl": [
+        "Collinear(ADBC)"
+    ],
+    "text_cdl": [
+        "Equal(LengthOfLine(AB),7)",
+        "Equal(LengthOfLine(BC),3)",
+        "IsMidpointOfLine(D,AC)"
+    ],
+    "image_cdl": [],
+    "goal_cdl": "Value(LengthOfLine(DB))",
+    "problem_answer": "2",
+    "theorem_seqs": [
+        "line_addition(1,AD,DB)",
+        "line_addition(1,AD,DC)",
+        "line_addition(1,AB,BC)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "line_addition(1,AD,DB)",
+            "line_addition(1,AD,DC)",
+            "line_addition(1,AB,BC)"
+        ]
+    }
 }

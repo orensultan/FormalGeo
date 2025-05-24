@@ -1,40 +1,37 @@
 {
-  "problem_id": 3710,
-  "annotation": "YangLi_2023-04-30",
-  "source": "GeoQA-1476",
-  "problem_level": 4,
-  "problem_text_cn": "如图所示，∠CBA=60°，∠EDC=150°，FG∥DE。求∠BCF的大小。",
-  "problem_text_en": "As shown in the diagram, ∠CBA=60°, ∠EDC=150°, FG∥DE. Find the measure of ∠BCF.",
-  "problem_img": "3710.png",
-  "construction_cdl": [
-    "Shape(BC,CD,DF,FB)",
-    "Shape(CB,BA)",
-    "Shape(ED,DC)",
-    "Shape(GF,FD)",
-    "Shape(FD,DE)",
-    "Collinear(ABFG)",
-    "Collinear(CDF)"
-  ],
-  "text_cdl": [
-    "Equal(MeasureOfAngle(CBA),60)",
-    "Equal(MeasureOfAngle(EDC),150)",
-    "ParallelBetweenLine(FG,DE)"
-  ],
-  "image_cdl": [],
-  "goal_cdl": "Value(MeasureOfAngle(BCF))",
-  "problem_answer": "30",
-  "theorem_seqs": [
-    "parallel_property_corresponding_angle(2,FG,DE,C)",
-    "adjacent_complementary_angle(1,GFD,DFB)",
-    "adjacent_complementary_angle(1,FBC,CBA)",
-    "triangle_property_angle_sum(1,BCF)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "parallel_property_corresponding_angle(2,FG,DE,C)",
-      "adjacent_complementary_angle(1,GFD,DFB)",
-      "adjacent_complementary_angle(1,FBC,CBA)",
-      "triangle_property_angle_sum(1,BCF)"
-    ]
-  }
+    "problem_id": 3710,
+    "source": "GeoQA-1476",
+    "problem_level": 4,
+    "problem_img": "3710.png",
+    "construction_cdl": [
+        "Shape(BC,CD,DF,FB)",
+        "Shape(CB,BA)",
+        "Shape(ED,DC)",
+        "Shape(GF,FD)",
+        "Shape(FD,DE)",
+        "Collinear(ABFG)",
+        "Collinear(CDF)"
+    ],
+    "text_cdl": [
+        "Equal(MeasureOfAngle(CBA),60)",
+        "Equal(MeasureOfAngle(EDC),150)",
+        "ParallelBetweenLine(FG,DE)"
+    ],
+    "image_cdl": [],
+    "goal_cdl": "Value(MeasureOfAngle(BCF))",
+    "problem_answer": "30",
+    "theorem_seqs": [
+        "parallel_property_corresponding_angle(2,FG,DE,C)",
+        "adjacent_complementary_angle(1,GFD,DFB)",
+        "adjacent_complementary_angle(1,FBC,CBA)",
+        "triangle_property_angle_sum(1,BCF)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "parallel_property_corresponding_angle(2,FG,DE,C)",
+            "adjacent_complementary_angle(1,GFD,DFB)",
+            "adjacent_complementary_angle(1,FBC,CBA)",
+            "triangle_property_angle_sum(1,BCF)"
+        ]
+    }
 }

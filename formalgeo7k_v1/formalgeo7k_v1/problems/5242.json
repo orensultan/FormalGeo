@@ -1,33 +1,30 @@
 {
-  "problem_id": 5242,
-  "annotation": "XiaokaiZhang_2023-05-21",
-  "source": "GeoQA-5323",
-  "problem_level": 2,
-  "problem_text_cn": "如图所示，∠BOA=20°，∠COA=90°。求∠DOC的大小。",
-  "problem_text_en": "As shown in the diagram, ∠BOA=20°, ∠COA=90°. Find the measure of ∠DOC.",
-  "problem_img": "5242.png",
-  "construction_cdl": [
-    "Shape(DO,OC)",
-    "Shape(CO,OB)",
-    "Shape(BO,OA)",
-    "Shape(AO,OD)",
-    "Collinear(DOB)"
-  ],
-  "text_cdl": [
-    "Equal(MeasureOfAngle(BOA),20)",
-    "Equal(MeasureOfAngle(COA),90)"
-  ],
-  "image_cdl": [],
-  "goal_cdl": "Value(MeasureOfAngle(DOC))",
-  "problem_answer": "110",
-  "theorem_seqs": [
-    "angle_addition(1,COB,BOA)",
-    "adjacent_complementary_angle(1,DOC,COB)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "angle_addition(1,COB,BOA)",
-      "adjacent_complementary_angle(1,DOC,COB)"
-    ]
-  }
+    "problem_id": 5242,
+    "source": "GeoQA-5323",
+    "problem_level": 2,
+    "problem_img": "5242.png",
+    "construction_cdl": [
+        "Shape(DO,OC)",
+        "Shape(CO,OB)",
+        "Shape(BO,OA)",
+        "Shape(AO,OD)",
+        "Collinear(DOB)"
+    ],
+    "text_cdl": [
+        "Equal(MeasureOfAngle(BOA),20)",
+        "Equal(MeasureOfAngle(COA),90)"
+    ],
+    "image_cdl": [],
+    "goal_cdl": "Value(MeasureOfAngle(DOC))",
+    "problem_answer": "110",
+    "theorem_seqs": [
+        "angle_addition(1,COB,BOA)",
+        "adjacent_complementary_angle(1,DOC,COB)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "angle_addition(1,COB,BOA)",
+            "adjacent_complementary_angle(1,DOC,COB)"
+        ]
+    }
 }

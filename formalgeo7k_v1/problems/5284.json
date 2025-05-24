@@ -1,47 +1,44 @@
 {
-  "problem_id": 5284,
-  "annotation": "YanjunGuo_2023-05-21",
-  "source": "GeoQA-5458",
-  "problem_level": 6,
-  "problem_text_cn": "如图所示，∠CBP=∠PBA，∠CDP=∠PDA，∠DAB=40°，∠DPB=38°。求∠DCB的大小。",
-  "problem_text_en": "As shown in the diagram, ∠CBP=∠PBA, ∠CDP=∠PDA, ∠DAB=40°, ∠DPB=38°. Find the measure of ∠DCB.",
-  "problem_img": "5284.png",
-  "construction_cdl": [
-    "Shape(AE,ED,DA)",
-    "Shape(DE,EG,GD)",
-    "Shape(EP,PF,FG,GE)",
-    "Shape(GF,FB,BG)",
-    "Shape(FC,CB,BF)",
-    "Collinear(AEGB)",
-    "Collinear(PFB)",
-    "Collinear(DEP)",
-    "Collinear(DGFC)"
-  ],
-  "text_cdl": [
-    "Equal(MeasureOfAngle(CBP),MeasureOfAngle(PBA))",
-    "Equal(MeasureOfAngle(CDP),MeasureOfAngle(PDA))",
-    "Equal(MeasureOfAngle(DAB),40)",
-    "Equal(MeasureOfAngle(DPB),38)"
-  ],
-  "image_cdl": [],
-  "goal_cdl": "Value(MeasureOfAngle(DCB))",
-  "problem_answer": "36",
-  "theorem_seqs": [
-    "triangle_property_angle_sum(1,AED)",
-    "triangle_property_angle_sum(1,PBE)",
-    "triangle_property_angle_sum(1,FCB)",
-    "triangle_property_angle_sum(1,PFD)",
-    "vertical_angle(1,AED,BEP)",
-    "vertical_angle(1,PFD,BFC)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "triangle_property_angle_sum(1,AED)",
-      "triangle_property_angle_sum(1,PBE)",
-      "triangle_property_angle_sum(1,FCB)",
-      "triangle_property_angle_sum(1,PFD)",
-      "vertical_angle(1,AED,BEP)",
-      "vertical_angle(1,PFD,BFC)"
-    ]
-  }
+    "problem_id": 5284,
+    "source": "GeoQA-5458",
+    "problem_level": 6,
+    "problem_img": "5284.png",
+    "construction_cdl": [
+        "Shape(AE,ED,DA)",
+        "Shape(DE,EG,GD)",
+        "Shape(EP,PF,FG,GE)",
+        "Shape(GF,FB,BG)",
+        "Shape(FC,CB,BF)",
+        "Collinear(AEGB)",
+        "Collinear(PFB)",
+        "Collinear(DEP)",
+        "Collinear(DGFC)"
+    ],
+    "text_cdl": [
+        "Equal(MeasureOfAngle(CBP),MeasureOfAngle(PBA))",
+        "Equal(MeasureOfAngle(CDP),MeasureOfAngle(PDA))",
+        "Equal(MeasureOfAngle(DAB),40)",
+        "Equal(MeasureOfAngle(DPB),38)"
+    ],
+    "image_cdl": [],
+    "goal_cdl": "Value(MeasureOfAngle(DCB))",
+    "problem_answer": "36",
+    "theorem_seqs": [
+        "triangle_property_angle_sum(1,AED)",
+        "triangle_property_angle_sum(1,PBE)",
+        "triangle_property_angle_sum(1,FCB)",
+        "triangle_property_angle_sum(1,PFD)",
+        "vertical_angle(1,AED,BEP)",
+        "vertical_angle(1,PFD,BFC)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "triangle_property_angle_sum(1,AED)",
+            "triangle_property_angle_sum(1,PBE)",
+            "triangle_property_angle_sum(1,FCB)",
+            "triangle_property_angle_sum(1,PFD)",
+            "vertical_angle(1,AED,BEP)",
+            "vertical_angle(1,PFD,BFC)"
+        ]
+    }
 }

@@ -1,43 +1,40 @@
 {
-  "problem_id": 3795,
-  "annotation": "YifanWang_2023-05-07",
-  "source": "GeoQA-1639",
-  "problem_level": 2,
-  "problem_text_cn": "如图所示，AC=2，BA=4，CB=3，DA=AC，∠ACB=∠EDA，∠BAC=∠DAE。求直线ED的长度。",
-  "problem_text_en": "As shown in the diagram, AC=2, BA=4, CB=3, DA=AC, ∠ACB=∠EDA, ∠BAC=∠DAE. Find the length of line ED.",
-  "problem_img": "3795.png",
-  "construction_cdl": [
-    "Shape(BA,AC,CB)",
-    "Shape(ED,DA,AE)"
-  ],
-  "text_cdl": [
-    "Equal(LengthOfLine(AC),2)",
-    "Equal(LengthOfLine(BA),4)",
-    "Equal(LengthOfLine(CB),3)",
-    "Equal(LengthOfLine(DA),LengthOfLine(AC))",
-    "Equal(MeasureOfAngle(ACB),MeasureOfAngle(EDA))",
-    "Equal(MeasureOfAngle(BAC),MeasureOfAngle(DAE))"
-  ],
-  "image_cdl": [
-    "Equal(LengthOfLine(AC),2)",
-    "Equal(LengthOfLine(BA),4)",
-    "Equal(LengthOfLine(CB),3)",
-    "Equal(LengthOfLine(DA),LengthOfLine(AC))",
-    "Equal(MeasureOfAngle(ACB),MeasureOfAngle(EDA))",
-    "Equal(MeasureOfAngle(BAC),MeasureOfAngle(DAE))"
-  ],
-  "goal_cdl": "Value(LengthOfLine(ED))",
-  "problem_answer": "3",
-  "theorem_seqs": [
-    "mirror_congruent_triangle_judgment_aas(2,BAC,EDA)",
-    "mirror_congruent_triangle_property_line_equal(1,ACB,AED)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "mirror_congruent_triangle_judgment_aas(2,BAC,EDA)"
+    "problem_id": 3795,
+    "source": "GeoQA-1639",
+    "problem_level": 2,
+    "problem_img": "3795.png",
+    "construction_cdl": [
+        "Shape(BA,AC,CB)",
+        "Shape(ED,DA,AE)"
     ],
-    "mirror_congruent_triangle_judgment_aas(2,BAC,EDA)": [
-      "mirror_congruent_triangle_property_line_equal(1,ACB,AED)"
-    ]
-  }
+    "text_cdl": [
+        "Equal(LengthOfLine(AC),2)",
+        "Equal(LengthOfLine(BA),4)",
+        "Equal(LengthOfLine(CB),3)",
+        "Equal(LengthOfLine(DA),LengthOfLine(AC))",
+        "Equal(MeasureOfAngle(ACB),MeasureOfAngle(EDA))",
+        "Equal(MeasureOfAngle(BAC),MeasureOfAngle(DAE))"
+    ],
+    "image_cdl": [
+        "Equal(LengthOfLine(AC),2)",
+        "Equal(LengthOfLine(BA),4)",
+        "Equal(LengthOfLine(CB),3)",
+        "Equal(LengthOfLine(DA),LengthOfLine(AC))",
+        "Equal(MeasureOfAngle(ACB),MeasureOfAngle(EDA))",
+        "Equal(MeasureOfAngle(BAC),MeasureOfAngle(DAE))"
+    ],
+    "goal_cdl": "Value(LengthOfLine(ED))",
+    "problem_answer": "3",
+    "theorem_seqs": [
+        "mirror_congruent_triangle_judgment_aas(2,BAC,EDA)",
+        "mirror_congruent_triangle_property_line_equal(1,ACB,AED)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "mirror_congruent_triangle_judgment_aas(2,BAC,EDA)"
+        ],
+        "mirror_congruent_triangle_judgment_aas(2,BAC,EDA)": [
+            "mirror_congruent_triangle_property_line_equal(1,ACB,AED)"
+        ]
+    }
 }

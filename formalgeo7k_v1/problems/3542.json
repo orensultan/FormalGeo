@@ -1,35 +1,32 @@
 {
-  "problem_id": 3542,
-  "annotation": "YanjunGuo_2023-04-30",
-  "source": "GeoQA-1170",
-  "problem_level": 2,
-  "problem_text_cn": "如图所示，∠AOC=80°，⊙O的圆心为O，AB是圆O的直径。求∠ABC的大小。",
-  "problem_text_en": "As shown in the diagram, ∠AOC=80°, O is the center of ⊙O, AB is the diameter of ⊙O. Find the measure of ∠ABC.",
-  "problem_img": "3542.png",
-  "construction_cdl": [
-    "Shape(AO,OC,OCA)",
-    "Shape(CO,OB,BC)",
-    "Shape(CB,OBC)",
-    "Shape(BA,OAB)",
-    "Collinear(AOB)",
-    "Cocircular(O,ABC)"
-  ],
-  "text_cdl": [
-    "Equal(MeasureOfAngle(AOC),80)",
-    "IsCentreOfCircle(O,O)",
-    "IsDiameterOfCircle(AB,O)"
-  ],
-  "image_cdl": [],
-  "goal_cdl": "Value(MeasureOfAngle(ABC))",
-  "problem_answer": "40",
-  "theorem_seqs": [
-    "arc_property_center_angle(1,OCA,O)",
-    "arc_property_circumference_angle_external(1,OCA,B)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "arc_property_center_angle(1,OCA,O)",
-      "arc_property_circumference_angle_external(1,OCA,B)"
-    ]
-  }
+    "problem_id": 3542,
+    "source": "GeoQA-1170",
+    "problem_level": 2,
+    "problem_img": "3542.png",
+    "construction_cdl": [
+        "Shape(AO,OC,OCA)",
+        "Shape(CO,OB,BC)",
+        "Shape(CB,OBC)",
+        "Shape(BA,OAB)",
+        "Collinear(AOB)",
+        "Cocircular(O,ABC)"
+    ],
+    "text_cdl": [
+        "Equal(MeasureOfAngle(AOC),80)",
+        "IsCentreOfCircle(O,O)",
+        "IsDiameterOfCircle(AB,O)"
+    ],
+    "image_cdl": [],
+    "goal_cdl": "Value(MeasureOfAngle(ABC))",
+    "problem_answer": "40",
+    "theorem_seqs": [
+        "arc_property_center_angle(1,OCA,O)",
+        "arc_property_circumference_angle_external(1,OCA,B)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "arc_property_center_angle(1,OCA,O)",
+            "arc_property_circumference_angle_external(1,OCA,B)"
+        ]
+    }
 }

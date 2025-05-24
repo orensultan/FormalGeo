@@ -1,51 +1,48 @@
 {
-  "problem_id": 6644,
-  "annotation": "QikeHuang_2023-06-04",
-  "source": "GeoQA-9660",
-  "problem_level": 7,
-  "problem_text_cn": "如图所示，∠EAD=22°，O是⊙O的圆心，⊙O的直径为AB，AD⊥FD。求∠BAF的大小。",
-  "problem_text_en": "As shown in the diagram, ∠EAD=22°, O is the center of circle O, AB is the diameter of circle O, AD⊥FD. Find the measure of ∠BAF.",
-  "problem_img": "6644.png",
-  "construction_cdl": [
-    "Shape(OAM,MA)",
-    "Shape(AM,OME,EA)",
-    "Shape(OME,MD,DE)",
-    "Shape(AE,EF,FA)",
-    "Shape(OEF,FE)",
-    "Shape(AF,OFB,BO,OA)",
-    "Shape(AO,OB,OBA)",
-    "Collinear(AMD)",
-    "Collinear(AOB)",
-    "Collinear(DEF)",
-    "Cocircular(O,AMEFB)"
-  ],
-  "text_cdl": [
-    "Equal(MeasureOfAngle(EAD),22)",
-    "IsCentreOfCircle(O,O)",
-    "IsDiameterOfCircle(AB,O)",
-    "PerpendicularBetweenLine(AD,FD)"
-  ],
-  "image_cdl": [],
-  "goal_cdl": "Value(MeasureOfAngle(BAF))",
-  "problem_answer": "22",
-  "theorem_seqs": [
-    "triangle_property_angle_sum(1,ADE)",
-    "adjacent_complementary_angle(1,DEA,AEF)",
-    "flat_angle(1,AOB)",
-    "arc_property_center_angle(1,OBA,O)",
-    "arc_property_circumference_angle_external(1,OFA,E)",
-    "arc_property_circumference_angle_external(1,OFB,A)",
-    "arc_addition_measure(1,OFB,OBA)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "triangle_property_angle_sum(1,ADE)",
-      "adjacent_complementary_angle(1,DEA,AEF)",
-      "flat_angle(1,AOB)",
-      "arc_property_center_angle(1,OBA,O)",
-      "arc_property_circumference_angle_external(1,OFA,E)",
-      "arc_property_circumference_angle_external(1,OFB,A)",
-      "arc_addition_measure(1,OFB,OBA)"
-    ]
-  }
+    "problem_id": 6644,
+    "source": "GeoQA-9660",
+    "problem_level": 7,
+    "problem_img": "6644.png",
+    "construction_cdl": [
+        "Shape(OAM,MA)",
+        "Shape(AM,OME,EA)",
+        "Shape(OME,MD,DE)",
+        "Shape(AE,EF,FA)",
+        "Shape(OEF,FE)",
+        "Shape(AF,OFB,BO,OA)",
+        "Shape(AO,OB,OBA)",
+        "Collinear(AMD)",
+        "Collinear(AOB)",
+        "Collinear(DEF)",
+        "Cocircular(O,AMEFB)"
+    ],
+    "text_cdl": [
+        "Equal(MeasureOfAngle(EAD),22)",
+        "IsCentreOfCircle(O,O)",
+        "IsDiameterOfCircle(AB,O)",
+        "PerpendicularBetweenLine(AD,FD)"
+    ],
+    "image_cdl": [],
+    "goal_cdl": "Value(MeasureOfAngle(BAF))",
+    "problem_answer": "22",
+    "theorem_seqs": [
+        "triangle_property_angle_sum(1,ADE)",
+        "adjacent_complementary_angle(1,DEA,AEF)",
+        "flat_angle(1,AOB)",
+        "arc_property_center_angle(1,OBA,O)",
+        "arc_property_circumference_angle_external(1,OFA,E)",
+        "arc_property_circumference_angle_external(1,OFB,A)",
+        "arc_addition_measure(1,OFB,OBA)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "triangle_property_angle_sum(1,ADE)",
+            "adjacent_complementary_angle(1,DEA,AEF)",
+            "flat_angle(1,AOB)",
+            "arc_property_center_angle(1,OBA,O)",
+            "arc_property_circumference_angle_external(1,OFA,E)",
+            "arc_property_circumference_angle_external(1,OFB,A)",
+            "arc_addition_measure(1,OFB,OBA)"
+        ]
+    }
 }

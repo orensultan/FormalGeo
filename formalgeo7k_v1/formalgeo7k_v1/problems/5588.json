@@ -1,55 +1,52 @@
 {
-  "problem_id": 5588,
-  "annotation": "YimingHe_2023-05-28",
-  "source": "GeoQA-7100",
-  "problem_level": 9,
-  "problem_text_cn": "如图所示，AB=5，AC=3，∠BCA=90°，CD垂直于BD。求tan(BC)的值。",
-  "problem_text_en": "As shown in the diagram, AB=5, AC=3, ∠BCA=90°, CD⊥BD. Find the value of tan(BC).",
-  "problem_img": "5588.png",
-  "construction_cdl": [
-    "Shape(AD,DC,CA)",
-    "Shape(CD,DB,BC)",
-    "Collinear(ADB)"
-  ],
-  "text_cdl": [
-    "Equal(LengthOfLine(AB),5)",
-    "Equal(LengthOfLine(AC),3)",
-    "Equal(MeasureOfAngle(BCA),90)",
-    "PerpendicularBetweenLine(CD,BD)"
-  ],
-  "image_cdl": [],
-  "goal_cdl": "Value(Tan(MeasureOfAngle(BCD)))",
-  "problem_answer": "4/3",
-  "theorem_seqs": [
-    "line_addition(1,AD,DB)",
-    "adjacent_complementary_angle(1,ADC,CDB)",
-    "right_triangle_judgment_angle(1,ADC)",
-    "right_triangle_judgment_angle(1,CDB)",
-    "right_triangle_judgment_angle(1,BCA)",
-    "right_triangle_property_pythagorean(1,ADC)",
-    "right_triangle_property_pythagorean(1,CDB)",
-    "right_triangle_property_pythagorean(1,BCA)",
-    "sine_theorem(1,BCD)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "line_addition(1,AD,DB)",
-      "adjacent_complementary_angle(1,ADC,CDB)",
-      "right_triangle_judgment_angle(1,CDB)",
-      "right_triangle_judgment_angle(1,BCA)",
-      "sine_theorem(1,BCD)"
+    "problem_id": 5588,
+    "source": "GeoQA-7100",
+    "problem_level": 9,
+    "problem_img": "5588.png",
+    "construction_cdl": [
+        "Shape(AD,DC,CA)",
+        "Shape(CD,DB,BC)",
+        "Collinear(ADB)"
     ],
-    "adjacent_complementary_angle(1,ADC,CDB)": [
-      "right_triangle_judgment_angle(1,ADC)"
+    "text_cdl": [
+        "Equal(LengthOfLine(AB),5)",
+        "Equal(LengthOfLine(AC),3)",
+        "Equal(MeasureOfAngle(BCA),90)",
+        "PerpendicularBetweenLine(CD,BD)"
     ],
-    "right_triangle_judgment_angle(1,ADC)": [
-      "right_triangle_property_pythagorean(1,ADC)"
+    "image_cdl": [],
+    "goal_cdl": "Value(Tan(MeasureOfAngle(BCD)))",
+    "problem_answer": "4/3",
+    "theorem_seqs": [
+        "line_addition(1,AD,DB)",
+        "adjacent_complementary_angle(1,ADC,CDB)",
+        "right_triangle_judgment_angle(1,ADC)",
+        "right_triangle_judgment_angle(1,CDB)",
+        "right_triangle_judgment_angle(1,BCA)",
+        "right_triangle_property_pythagorean(1,ADC)",
+        "right_triangle_property_pythagorean(1,CDB)",
+        "right_triangle_property_pythagorean(1,BCA)",
+        "sine_theorem(1,BCD)"
     ],
-    "right_triangle_judgment_angle(1,CDB)": [
-      "right_triangle_property_pythagorean(1,CDB)"
-    ],
-    "right_triangle_judgment_angle(1,BCA)": [
-      "right_triangle_property_pythagorean(1,BCA)"
-    ]
-  }
+    "theorem_seqs_dag": {
+        "START": [
+            "line_addition(1,AD,DB)",
+            "adjacent_complementary_angle(1,ADC,CDB)",
+            "right_triangle_judgment_angle(1,CDB)",
+            "right_triangle_judgment_angle(1,BCA)",
+            "sine_theorem(1,BCD)"
+        ],
+        "adjacent_complementary_angle(1,ADC,CDB)": [
+            "right_triangle_judgment_angle(1,ADC)"
+        ],
+        "right_triangle_judgment_angle(1,ADC)": [
+            "right_triangle_property_pythagorean(1,ADC)"
+        ],
+        "right_triangle_judgment_angle(1,CDB)": [
+            "right_triangle_property_pythagorean(1,CDB)"
+        ],
+        "right_triangle_judgment_angle(1,BCA)": [
+            "right_triangle_property_pythagorean(1,BCA)"
+        ]
+    }
 }

@@ -1,50 +1,47 @@
 {
-  "problem_id": 744,
-  "annotation": "JiaZou_2023-04-09",
-  "source": "Geometry3k-769",
-  "problem_level": 5,
-  "problem_text_cn": "如图所示，圆O的直径与直线QS的长度相等，∠SVT=75°，∠TVP=72°，圆V的圆心为V，RV垂直于SV。求弧VRP的角度。",
-  "problem_text_en": "As shown in the diagram, the diameter of circle O is equal to the length of line QS, ∠SVT=75°, ∠TVP=72°, the center of ⊙V is V, RV is perpendicular to SV. Find the measure of ⌒VRP.",
-  "problem_img": "744.png",
-  "construction_cdl": [
-    "Shape(VQ,VQP,PV)",
-    "Shape(VP,VPT,TV)",
-    "Shape(VT,VTS,SV)",
-    "Shape(VS,VSR,RV)",
-    "Shape(VR,VRQ,QV)",
-    "Collinear(QVS)",
-    "Cocircular(V,RQPTS)"
-  ],
-  "text_cdl": [
-    "Equal(DiameterOfCircle(O),LengthOfLine(QS))",
-    "Equal(MeasureOfAngle(SVT),75)",
-    "Equal(MeasureOfAngle(TVP),72)",
-    "IsCentreOfCircle(V,V)",
-    "PerpendicularBetweenLine(RV,SV)"
-  ],
-  "image_cdl": [
-    "Equal(DiameterOfCircle(O),LengthOfLine(QS))",
-    "Equal(MeasureOfAngle(SVT),75)",
-    "Equal(MeasureOfAngle(TVP),72)",
-    "IsCentreOfCircle(V,V)",
-    "PerpendicularBetweenLine(RV,SV)"
-  ],
-  "goal_cdl": "Value(MeasureOfArc(VRP))",
-  "problem_answer": "123",
-  "theorem_seqs": [
-    "adjacent_complementary_angle(1,QVR,RVS)",
-    "adjacent_complementary_angle(1,SVP,PVQ)",
-    "angle_addition(1,SVT,TVP)",
-    "angle_addition(1,PVQ,QVR)",
-    "arc_property_center_angle(1,VRP,V)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "adjacent_complementary_angle(1,QVR,RVS)",
-      "adjacent_complementary_angle(1,SVP,PVQ)",
-      "angle_addition(1,SVT,TVP)",
-      "angle_addition(1,PVQ,QVR)",
-      "arc_property_center_angle(1,VRP,V)"
-    ]
-  }
+    "problem_id": 744,
+    "source": "Geometry3k-769",
+    "problem_level": 5,
+    "problem_img": "744.png",
+    "construction_cdl": [
+        "Shape(VQ,VQP,PV)",
+        "Shape(VP,VPT,TV)",
+        "Shape(VT,VTS,SV)",
+        "Shape(VS,VSR,RV)",
+        "Shape(VR,VRQ,QV)",
+        "Collinear(QVS)",
+        "Cocircular(V,RQPTS)"
+    ],
+    "text_cdl": [
+        "Equal(DiameterOfCircle(O),LengthOfLine(QS))",
+        "Equal(MeasureOfAngle(SVT),75)",
+        "Equal(MeasureOfAngle(TVP),72)",
+        "IsCentreOfCircle(V,V)",
+        "PerpendicularBetweenLine(RV,SV)"
+    ],
+    "image_cdl": [
+        "Equal(DiameterOfCircle(O),LengthOfLine(QS))",
+        "Equal(MeasureOfAngle(SVT),75)",
+        "Equal(MeasureOfAngle(TVP),72)",
+        "IsCentreOfCircle(V,V)",
+        "PerpendicularBetweenLine(RV,SV)"
+    ],
+    "goal_cdl": "Value(MeasureOfArc(VRP))",
+    "problem_answer": "123",
+    "theorem_seqs": [
+        "adjacent_complementary_angle(1,QVR,RVS)",
+        "adjacent_complementary_angle(1,SVP,PVQ)",
+        "angle_addition(1,SVT,TVP)",
+        "angle_addition(1,PVQ,QVR)",
+        "arc_property_center_angle(1,VRP,V)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "adjacent_complementary_angle(1,QVR,RVS)",
+            "adjacent_complementary_angle(1,SVP,PVQ)",
+            "angle_addition(1,SVT,TVP)",
+            "angle_addition(1,PVQ,QVR)",
+            "arc_property_center_angle(1,VRP,V)"
+        ]
+    }
 }

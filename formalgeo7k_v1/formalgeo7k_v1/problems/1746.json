@@ -1,44 +1,41 @@
 {
-  "problem_id": 1746,
-  "annotation": "YangLi_2023-04-16",
-  "source": "Geometry3k-1811",
-  "problem_level": 2,
-  "problem_text_cn": "如图所示，∠GFC=7*x-1°，FA平行于DE，ED垂直于HD。求x的值。",
-  "problem_text_en": "As shown in the diagram, ∠GFC=7*x-1°, FA is parallel to DE, ED is perpendicular to HD. Find the value of x.",
-  "problem_img": "1746.png",
-  "construction_cdl": [
-    "Shape(CF,FA)",
-    "Shape(AF,FD)",
-    "Shape(GF,FC)",
-    "Shape(DF,FG)",
-    "Shape(FD,DE)",
-    "Shape(ED,DH)",
-    "Shape(BD,DF)",
-    "Shape(HD,DB)",
-    "Collinear(CFDH)",
-    "Collinear(AFG)",
-    "Collinear(EDB)"
-  ],
-  "text_cdl": [
-    "Equal(MeasureOfAngle(GFC),7*x-1)",
-    "ParallelBetweenLine(FA,DE)",
-    "PerpendicularBetweenLine(ED,HD)"
-  ],
-  "image_cdl": [
-    "Equal(MeasureOfAngle(GFC),7*x-1)",
-    "ParallelBetweenLine(FA,DE)",
-    "PerpendicularBetweenLine(ED,HD)"
-  ],
-  "goal_cdl": "Value(x)",
-  "problem_answer": "13",
-  "theorem_seqs": [
-    "parallel_property_corresponding_angle(2,FA,DE,H)",
-    "vertical_angle(1,GFC,AFD)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "parallel_property_corresponding_angle(2,FA,DE,H)",
-      "vertical_angle(1,GFC,AFD)"
-    ]
-  }
+    "problem_id": 1746,
+    "source": "Geometry3k-1811",
+    "problem_level": 2,
+    "problem_img": "1746.png",
+    "construction_cdl": [
+        "Shape(CF,FA)",
+        "Shape(AF,FD)",
+        "Shape(GF,FC)",
+        "Shape(DF,FG)",
+        "Shape(FD,DE)",
+        "Shape(ED,DH)",
+        "Shape(BD,DF)",
+        "Shape(HD,DB)",
+        "Collinear(CFDH)",
+        "Collinear(AFG)",
+        "Collinear(EDB)"
+    ],
+    "text_cdl": [
+        "Equal(MeasureOfAngle(GFC),7*x-1)",
+        "ParallelBetweenLine(FA,DE)",
+        "PerpendicularBetweenLine(ED,HD)"
+    ],
+    "image_cdl": [
+        "Equal(MeasureOfAngle(GFC),7*x-1)",
+        "ParallelBetweenLine(FA,DE)",
+        "PerpendicularBetweenLine(ED,HD)"
+    ],
+    "goal_cdl": "Value(x)",
+    "problem_answer": "13",
+    "theorem_seqs": [
+        "parallel_property_corresponding_angle(2,FA,DE,H)",
+        "vertical_angle(1,GFC,AFD)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "parallel_property_corresponding_angle(2,FA,DE,H)",
+            "vertical_angle(1,GFC,AFD)"
+        ]
+    }
 }

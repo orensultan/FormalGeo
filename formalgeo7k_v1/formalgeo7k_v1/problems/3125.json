@@ -1,48 +1,45 @@
 {
-  "problem_id": 3125,
-  "annotation": "YimingHe_2023-04-23",
-  "source": "GeoQA-377",
-  "problem_level": 6,
-  "problem_text_cn": "如图所示，AO=PO，∠OCD=50°，AB∥CD。求∠PAO的大小。",
-  "problem_text_en": "As shown in the diagram, AO=PO, ∠OCD=50°, AB∥CD. Find the measure of ∠PAO.",
-  "problem_img": "3125.png",
-  "construction_cdl": [
-    "Shape(AO,OP,PA)",
-    "Shape(PO,OB)",
-    "Shape(CO,OA)",
-    "Shape(BO,OC)",
-    "Shape(OC,CD)",
-    "Collinear(AOB)",
-    "Collinear(POC)"
-  ],
-  "text_cdl": [
-    "Equal(LengthOfLine(AO),LengthOfLine(PO))",
-    "Equal(MeasureOfAngle(OCD),50)",
-    "ParallelBetweenLine(AB,CD)"
-  ],
-  "image_cdl": [],
-  "goal_cdl": "Value(MeasureOfAngle(PAO))",
-  "problem_answer": "25",
-  "theorem_seqs": [
-    "parallel_property_collinear_extend(3,AB,CD,O)",
-    "parallel_property_ipsilateral_internal_angle(1,OB,CD)",
-    "vertical_angle(1,AOP,BOC)",
-    "isosceles_triangle_judgment_line_equal(1,OPA)",
-    "isosceles_triangle_property_angle_equal(1,OPA)",
-    "triangle_property_angle_sum(1,AOP)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "parallel_property_collinear_extend(3,AB,CD,O)",
-      "vertical_angle(1,AOP,BOC)",
-      "isosceles_triangle_judgment_line_equal(1,OPA)",
-      "triangle_property_angle_sum(1,AOP)"
+    "problem_id": 3125,
+    "source": "GeoQA-377",
+    "problem_level": 6,
+    "problem_img": "3125.png",
+    "construction_cdl": [
+        "Shape(AO,OP,PA)",
+        "Shape(PO,OB)",
+        "Shape(CO,OA)",
+        "Shape(BO,OC)",
+        "Shape(OC,CD)",
+        "Collinear(AOB)",
+        "Collinear(POC)"
     ],
-    "parallel_property_collinear_extend(3,AB,CD,O)": [
-      "parallel_property_ipsilateral_internal_angle(1,OB,CD)"
+    "text_cdl": [
+        "Equal(LengthOfLine(AO),LengthOfLine(PO))",
+        "Equal(MeasureOfAngle(OCD),50)",
+        "ParallelBetweenLine(AB,CD)"
     ],
-    "isosceles_triangle_judgment_line_equal(1,OPA)": [
-      "isosceles_triangle_property_angle_equal(1,OPA)"
-    ]
-  }
+    "image_cdl": [],
+    "goal_cdl": "Value(MeasureOfAngle(PAO))",
+    "problem_answer": "25",
+    "theorem_seqs": [
+        "parallel_property_collinear_extend(3,AB,CD,O)",
+        "parallel_property_ipsilateral_internal_angle(1,OB,CD)",
+        "vertical_angle(1,AOP,BOC)",
+        "isosceles_triangle_judgment_line_equal(1,OPA)",
+        "isosceles_triangle_property_angle_equal(1,OPA)",
+        "triangle_property_angle_sum(1,AOP)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "parallel_property_collinear_extend(3,AB,CD,O)",
+            "vertical_angle(1,AOP,BOC)",
+            "isosceles_triangle_judgment_line_equal(1,OPA)",
+            "triangle_property_angle_sum(1,AOP)"
+        ],
+        "parallel_property_collinear_extend(3,AB,CD,O)": [
+            "parallel_property_ipsilateral_internal_angle(1,OB,CD)"
+        ],
+        "isosceles_triangle_judgment_line_equal(1,OPA)": [
+            "isosceles_triangle_property_angle_equal(1,OPA)"
+        ]
+    }
 }

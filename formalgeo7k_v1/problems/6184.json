@@ -1,44 +1,41 @@
 {
-  "problem_id": 6184,
-  "annotation": "DengfengYue_2023-05-28",
-  "source": "GeoQA-8757",
-  "problem_level": 4,
-  "problem_text_cn": "如图所示，∠ABC=50°，O是⊙O的圆心，AB是⊙O的直径。求∠CDB的大小。",
-  "problem_text_en": "As shown in the diagram, ∠ABC=50°, the center of ⊙O is O, AB is the diameter of circle O. Find the measure of ∠CDB.",
-  "problem_img": "6184.png",
-  "construction_cdl": [
-    "Shape(AE,ED,ODA)",
-    "Shape(DE,EC,CD)",
-    "Shape(DC,OCD)",
-    "Shape(CE,EB,BC)",
-    "Shape(CB,OBC)",
-    "Shape(AB,BE,EA)",
-    "Shape(BA,OAB)",
-    "Collinear(AEC)",
-    "Collinear(DEB)",
-    "Collinear(AOB)",
-    "Cocircular(O,ABCD)"
-  ],
-  "text_cdl": [
-    "Equal(MeasureOfAngle(ABC),50)",
-    "IsCentreOfCircle(O,O)",
-    "IsDiameterOfCircle(AB,O)"
-  ],
-  "image_cdl": [],
-  "goal_cdl": "Value(MeasureOfAngle(CDB))",
-  "problem_answer": "40",
-  "theorem_seqs": [
-    "diameter_of_circle_property_right_angle(1,BCA,O)",
-    "triangle_property_angle_sum(1,BCA)",
-    "arc_property_circumference_angle_external(1,OBC,A)",
-    "arc_property_circumference_angle_external(1,OBC,D)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "diameter_of_circle_property_right_angle(1,BCA,O)",
-      "triangle_property_angle_sum(1,BCA)",
-      "arc_property_circumference_angle_external(1,OBC,A)",
-      "arc_property_circumference_angle_external(1,OBC,D)"
-    ]
-  }
+    "problem_id": 6184,
+    "source": "GeoQA-8757",
+    "problem_level": 4,
+    "problem_img": "6184.png",
+    "construction_cdl": [
+        "Shape(AE,ED,ODA)",
+        "Shape(DE,EC,CD)",
+        "Shape(DC,OCD)",
+        "Shape(CE,EB,BC)",
+        "Shape(CB,OBC)",
+        "Shape(AB,BE,EA)",
+        "Shape(BA,OAB)",
+        "Collinear(AEC)",
+        "Collinear(DEB)",
+        "Collinear(AOB)",
+        "Cocircular(O,ABCD)"
+    ],
+    "text_cdl": [
+        "Equal(MeasureOfAngle(ABC),50)",
+        "IsCentreOfCircle(O,O)",
+        "IsDiameterOfCircle(AB,O)"
+    ],
+    "image_cdl": [],
+    "goal_cdl": "Value(MeasureOfAngle(CDB))",
+    "problem_answer": "40",
+    "theorem_seqs": [
+        "diameter_of_circle_property_right_angle(1,BCA,O)",
+        "triangle_property_angle_sum(1,BCA)",
+        "arc_property_circumference_angle_external(1,OBC,A)",
+        "arc_property_circumference_angle_external(1,OBC,D)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "diameter_of_circle_property_right_angle(1,BCA,O)",
+            "triangle_property_angle_sum(1,BCA)",
+            "arc_property_circumference_angle_external(1,OBC,A)",
+            "arc_property_circumference_angle_external(1,OBC,D)"
+        ]
+    }
 }

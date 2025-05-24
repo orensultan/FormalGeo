@@ -1,40 +1,37 @@
 {
-  "problem_id": 4180,
-  "annotation": "YangLi_2023-05-07",
-  "source": "GeoQA-2836",
-  "problem_level": 3,
-  "problem_text_cn": "如图所示，BC=5，CD=3，EF=2，E是线段AB的中点，F平分线段AD。求tan(BC)的值。",
-  "problem_text_en": "As shown in the diagram, BC=5, CD=3, EF=2, E bisects segment AB, F bisects segment AD. Find the value of tan(BC).",
-  "problem_img": "4180.png",
-  "construction_cdl": [
-    "Shape(AE,EF,FA)",
-    "Shape(FE,EB,BD,DF)",
-    "Shape(DB,BC,CD)",
-    "Collinear(AEB)",
-    "Collinear(AFD)"
-  ],
-  "text_cdl": [
-    "Equal(LengthOfLine(BC),5)",
-    "Equal(LengthOfLine(CD),3)",
-    "Equal(LengthOfLine(EF),2)",
-    "IsMidpointOfLine(E,AB)",
-    "IsMidpointOfLine(F,AD)"
-  ],
-  "image_cdl": [],
-  "goal_cdl": "Value(Tan(MeasureOfAngle(BCD)))",
-  "problem_answer": "4/3",
-  "theorem_seqs": [
-    "midsegment_of_triangle_judgment_midpoint(1,EF,ABD)",
-    "midsegment_of_triangle_property_length(1,EF,ABD)",
-    "cosine_theorem(1,CDB)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "midsegment_of_triangle_judgment_midpoint(1,EF,ABD)",
-      "cosine_theorem(1,CDB)"
+    "problem_id": 4180,
+    "source": "GeoQA-2836",
+    "problem_level": 3,
+    "problem_img": "4180.png",
+    "construction_cdl": [
+        "Shape(AE,EF,FA)",
+        "Shape(FE,EB,BD,DF)",
+        "Shape(DB,BC,CD)",
+        "Collinear(AEB)",
+        "Collinear(AFD)"
     ],
-    "midsegment_of_triangle_judgment_midpoint(1,EF,ABD)": [
-      "midsegment_of_triangle_property_length(1,EF,ABD)"
-    ]
-  }
+    "text_cdl": [
+        "Equal(LengthOfLine(BC),5)",
+        "Equal(LengthOfLine(CD),3)",
+        "Equal(LengthOfLine(EF),2)",
+        "IsMidpointOfLine(E,AB)",
+        "IsMidpointOfLine(F,AD)"
+    ],
+    "image_cdl": [],
+    "goal_cdl": "Value(Tan(MeasureOfAngle(BCD)))",
+    "problem_answer": "4/3",
+    "theorem_seqs": [
+        "midsegment_of_triangle_judgment_midpoint(1,EF,ABD)",
+        "midsegment_of_triangle_property_length(1,EF,ABD)",
+        "cosine_theorem(1,CDB)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "midsegment_of_triangle_judgment_midpoint(1,EF,ABD)",
+            "cosine_theorem(1,CDB)"
+        ],
+        "midsegment_of_triangle_judgment_midpoint(1,EF,ABD)": [
+            "midsegment_of_triangle_property_length(1,EF,ABD)"
+        ]
+    }
 }

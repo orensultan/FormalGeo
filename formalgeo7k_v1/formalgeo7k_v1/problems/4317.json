@@ -1,44 +1,41 @@
 {
-  "problem_id": 4317,
-  "annotation": "ZheZhu_2023-05-07",
-  "source": "GeoQA-3150",
-  "problem_level": 5,
-  "problem_text_cn": "如图所示，∠CDB=40°，⊙O的圆心为O，AB是⊙O的直径。求∠AOC的大小。",
-  "problem_text_en": "As shown in the diagram, ∠CDB=40°, the center of ⊙O is O, the diameter of ⊙O is AB. Find the measure of ∠AOC.",
-  "problem_img": "4317.png",
-  "construction_cdl": [
-    "Shape(ODB,BD)",
-    "Shape(ED,DB,BE)",
-    "Shape(EB,OBC,CE)",
-    "Shape(OE,EC,CO)",
-    "Shape(DE,EO,OA,OAD)",
-    "Shape(OC,OCA,AO)",
-    "Collinear(BEOA)",
-    "Collinear(DEC)",
-    "Cocircular(O,DBCA)"
-  ],
-  "text_cdl": [
-    "Equal(MeasureOfAngle(CDB),40)",
-    "IsCentreOfCircle(O,O)",
-    "IsDiameterOfCircle(AB,O)"
-  ],
-  "image_cdl": [],
-  "goal_cdl": "Value(MeasureOfAngle(AOC))",
-  "problem_answer": "100",
-  "theorem_seqs": [
-    "arc_property_center_angle(1,OBA,O)",
-    "arc_property_center_angle(1,OCA,O)",
-    "arc_property_circumference_angle_external(1,OBC,D)",
-    "arc_addition_measure(1,OBC,OCA)",
-    "flat_angle(1,AOB)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "arc_property_center_angle(1,OBA,O)",
-      "arc_property_center_angle(1,OCA,O)",
-      "arc_property_circumference_angle_external(1,OBC,D)",
-      "arc_addition_measure(1,OBC,OCA)",
-      "flat_angle(1,AOB)"
-    ]
-  }
+    "problem_id": 4317,
+    "source": "GeoQA-3150",
+    "problem_level": 5,
+    "problem_img": "4317.png",
+    "construction_cdl": [
+        "Shape(ODB,BD)",
+        "Shape(ED,DB,BE)",
+        "Shape(EB,OBC,CE)",
+        "Shape(OE,EC,CO)",
+        "Shape(DE,EO,OA,OAD)",
+        "Shape(OC,OCA,AO)",
+        "Collinear(BEOA)",
+        "Collinear(DEC)",
+        "Cocircular(O,DBCA)"
+    ],
+    "text_cdl": [
+        "Equal(MeasureOfAngle(CDB),40)",
+        "IsCentreOfCircle(O,O)",
+        "IsDiameterOfCircle(AB,O)"
+    ],
+    "image_cdl": [],
+    "goal_cdl": "Value(MeasureOfAngle(AOC))",
+    "problem_answer": "100",
+    "theorem_seqs": [
+        "arc_property_center_angle(1,OBA,O)",
+        "arc_property_center_angle(1,OCA,O)",
+        "arc_property_circumference_angle_external(1,OBC,D)",
+        "arc_addition_measure(1,OBC,OCA)",
+        "flat_angle(1,AOB)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "arc_property_center_angle(1,OBA,O)",
+            "arc_property_center_angle(1,OCA,O)",
+            "arc_property_circumference_angle_external(1,OBC,D)",
+            "arc_addition_measure(1,OBC,OCA)",
+            "flat_angle(1,AOB)"
+        ]
+    }
 }

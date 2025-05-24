@@ -1,41 +1,38 @@
 {
-  "problem_id": 4068,
-  "annotation": "XiaokaiZhang_2023-05-07",
-  "source": "GeoQA-2386",
-  "problem_level": 4,
-  "problem_text_cn": "如图所示，BE=6，DE=2，EC=15，BC垂直于AC，BE⊥DE。求直线AC的长度。",
-  "problem_text_en": "As shown in the diagram, BE=6, DE=2, EC=15, BC is perpendicular to AC, BE⊥DE. Find the length of line AC.",
-  "problem_img": "4068.png",
-  "construction_cdl": [
-    "Shape(DB,BE,ED)",
-    "Shape(AD,DE,EC,CA)",
-    "Collinear(BDA)",
-    "Collinear(BEC)"
-  ],
-  "text_cdl": [
-    "Equal(LengthOfLine(BE),6)",
-    "Equal(LengthOfLine(DE),2)",
-    "Equal(LengthOfLine(EC),15)",
-    "PerpendicularBetweenLine(BC,AC)",
-    "PerpendicularBetweenLine(BE,DE)"
-  ],
-  "image_cdl": [],
-  "goal_cdl": "Value(LengthOfLine(AC))",
-  "problem_answer": "7",
-  "theorem_seqs": [
-    "similar_triangle_judgment_aa(1,DBE,ABC)",
-    "similar_triangle_property_line_ratio(1,DBE,ABC)",
-    "similar_triangle_property_line_ratio(1,BED,BCA)",
-    "line_addition(1,BE,EC)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "similar_triangle_judgment_aa(1,DBE,ABC)",
-      "line_addition(1,BE,EC)"
+    "problem_id": 4068,
+    "source": "GeoQA-2386",
+    "problem_level": 4,
+    "problem_img": "4068.png",
+    "construction_cdl": [
+        "Shape(DB,BE,ED)",
+        "Shape(AD,DE,EC,CA)",
+        "Collinear(BDA)",
+        "Collinear(BEC)"
     ],
-    "similar_triangle_judgment_aa(1,DBE,ABC)": [
-      "similar_triangle_property_line_ratio(1,DBE,ABC)",
-      "similar_triangle_property_line_ratio(1,BED,BCA)"
-    ]
-  }
+    "text_cdl": [
+        "Equal(LengthOfLine(BE),6)",
+        "Equal(LengthOfLine(DE),2)",
+        "Equal(LengthOfLine(EC),15)",
+        "PerpendicularBetweenLine(BC,AC)",
+        "PerpendicularBetweenLine(BE,DE)"
+    ],
+    "image_cdl": [],
+    "goal_cdl": "Value(LengthOfLine(AC))",
+    "problem_answer": "7",
+    "theorem_seqs": [
+        "similar_triangle_judgment_aa(1,DBE,ABC)",
+        "similar_triangle_property_line_ratio(1,DBE,ABC)",
+        "similar_triangle_property_line_ratio(1,BED,BCA)",
+        "line_addition(1,BE,EC)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "similar_triangle_judgment_aa(1,DBE,ABC)",
+            "line_addition(1,BE,EC)"
+        ],
+        "similar_triangle_judgment_aa(1,DBE,ABC)": [
+            "similar_triangle_property_line_ratio(1,DBE,ABC)",
+            "similar_triangle_property_line_ratio(1,BED,BCA)"
+        ]
+    }
 }

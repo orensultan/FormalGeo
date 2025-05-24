@@ -1,41 +1,38 @@
 {
-  "problem_id": 1140,
-  "annotation": "YangLi_2023-04-09",
-  "source": "Geometry3k-1179",
-  "problem_level": 3,
-  "problem_text_cn": "如图所示，AB=21，BD=17，DE=8，AB和CD是▱ACDB的一组对边，BE⊥DE。求四边形ACDB的周长。",
-  "problem_text_en": "As shown in the diagram, AB=21, BD=17, DE=8, quadrilateral ACDB is a parallelogram, BE is perpendicular to DE. Find the perimeter of quadrilateral ACDB.",
-  "problem_img": "1140.png",
-  "construction_cdl": [
-    "Shape(AC,CE,EB,BA)",
-    "Shape(BE,ED,DB)",
-    "Collinear(CED)"
-  ],
-  "text_cdl": [
-    "Equal(LengthOfLine(AB),21)",
-    "Equal(LengthOfLine(BD),17)",
-    "Equal(LengthOfLine(DE),8)",
-    "Parallelogram(ACDB)",
-    "PerpendicularBetweenLine(BE,DE)"
-  ],
-  "image_cdl": [
-    "Equal(LengthOfLine(AB),21)",
-    "Equal(LengthOfLine(BD),17)",
-    "Equal(LengthOfLine(DE),8)",
-    "PerpendicularBetweenLine(BE,DE)"
-  ],
-  "goal_cdl": "Value(PerimeterOfQuadrilateral(ACDB))",
-  "problem_answer": "76",
-  "theorem_seqs": [
-    "parallelogram_property_opposite_line_equal(1,ACDB)",
-    "parallelogram_property_opposite_line_equal(1,CDBA)",
-    "quadrilateral_perimeter_formula(1,ACDB)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "parallelogram_property_opposite_line_equal(1,ACDB)",
-      "parallelogram_property_opposite_line_equal(1,CDBA)",
-      "quadrilateral_perimeter_formula(1,ACDB)"
-    ]
-  }
+    "problem_id": 1140,
+    "source": "Geometry3k-1179",
+    "problem_level": 3,
+    "problem_img": "1140.png",
+    "construction_cdl": [
+        "Shape(AC,CE,EB,BA)",
+        "Shape(BE,ED,DB)",
+        "Collinear(CED)"
+    ],
+    "text_cdl": [
+        "Equal(LengthOfLine(AB),21)",
+        "Equal(LengthOfLine(BD),17)",
+        "Equal(LengthOfLine(DE),8)",
+        "Parallelogram(ACDB)",
+        "PerpendicularBetweenLine(BE,DE)"
+    ],
+    "image_cdl": [
+        "Equal(LengthOfLine(AB),21)",
+        "Equal(LengthOfLine(BD),17)",
+        "Equal(LengthOfLine(DE),8)",
+        "PerpendicularBetweenLine(BE,DE)"
+    ],
+    "goal_cdl": "Value(PerimeterOfQuadrilateral(ACDB))",
+    "problem_answer": "76",
+    "theorem_seqs": [
+        "parallelogram_property_opposite_line_equal(1,ACDB)",
+        "parallelogram_property_opposite_line_equal(1,CDBA)",
+        "quadrilateral_perimeter_formula(1,ACDB)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "parallelogram_property_opposite_line_equal(1,ACDB)",
+            "parallelogram_property_opposite_line_equal(1,CDBA)",
+            "quadrilateral_perimeter_formula(1,ACDB)"
+        ]
+    }
 }

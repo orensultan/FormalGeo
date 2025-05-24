@@ -1,43 +1,40 @@
 {
-  "problem_id": 4534,
-  "annotation": "XiaokaiZhang_2023-05-14",
-  "source": "GeoQA-3598",
-  "problem_level": 4,
-  "problem_text_cn": "如图所示，∠BCA=70°，O是圆O的圆心。求∠ADB的大小。",
-  "problem_text_en": "As shown in the diagram, ∠BCA=70°, the center of ⊙O is O. Find the measure of ∠ADB.",
-  "problem_img": "4534.png",
-  "construction_cdl": [
-    "Shape(PAD,DA)",
-    "Shape(PDB,BD)",
-    "Shape(AD,DB,OAB)",
-    "Shape(OAB,BO,OA)",
-    "Shape(POA,AO)",
-    "Shape(PBO,OB)",
-    "Shape(CA,POA,PBO,BC)",
-    "Shape(OCA,AC)",
-    "Shape(OBC,CB)",
-    "Cocircular(P,DBOA)",
-    "Cocircular(O,ABC)"
-  ],
-  "text_cdl": [
-    "Equal(MeasureOfAngle(BCA),70)",
-    "IsCentreOfCircle(O,O)"
-  ],
-  "image_cdl": [],
-  "goal_cdl": "Value(MeasureOfAngle(ADB))",
-  "problem_answer": "40",
-  "theorem_seqs": [
-    "arc_property_circumference_angle_external(1,OAB,C)",
-    "arc_property_center_angle(1,OAB,O)",
-    "arc_property_circumference_angle_internal(1,PBA,O)",
-    "arc_property_circumference_angle_external(1,PBA,D)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "arc_property_circumference_angle_external(1,OAB,C)",
-      "arc_property_center_angle(1,OAB,O)",
-      "arc_property_circumference_angle_internal(1,PBA,O)",
-      "arc_property_circumference_angle_external(1,PBA,D)"
-    ]
-  }
+    "problem_id": 4534,
+    "source": "GeoQA-3598",
+    "problem_level": 4,
+    "problem_img": "4534.png",
+    "construction_cdl": [
+        "Shape(PAD,DA)",
+        "Shape(PDB,BD)",
+        "Shape(AD,DB,OAB)",
+        "Shape(OAB,BO,OA)",
+        "Shape(POA,AO)",
+        "Shape(PBO,OB)",
+        "Shape(CA,POA,PBO,BC)",
+        "Shape(OCA,AC)",
+        "Shape(OBC,CB)",
+        "Cocircular(P,DBOA)",
+        "Cocircular(O,ABC)"
+    ],
+    "text_cdl": [
+        "Equal(MeasureOfAngle(BCA),70)",
+        "IsCentreOfCircle(O,O)"
+    ],
+    "image_cdl": [],
+    "goal_cdl": "Value(MeasureOfAngle(ADB))",
+    "problem_answer": "40",
+    "theorem_seqs": [
+        "arc_property_circumference_angle_external(1,OAB,C)",
+        "arc_property_center_angle(1,OAB,O)",
+        "arc_property_circumference_angle_internal(1,PBA,O)",
+        "arc_property_circumference_angle_external(1,PBA,D)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "arc_property_circumference_angle_external(1,OAB,C)",
+            "arc_property_center_angle(1,OAB,O)",
+            "arc_property_circumference_angle_internal(1,PBA,O)",
+            "arc_property_circumference_angle_external(1,PBA,D)"
+        ]
+    }
 }

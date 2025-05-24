@@ -1,56 +1,53 @@
 {
-  "problem_id": 2882,
-  "annotation": "YimingHe_2023-04-16",
-  "source": "GeoQA-50",
-  "problem_level": 6,
-  "problem_text_cn": "如图所示，∠FCD=20°，O是圆O的圆心，G平分线段EF。求∠DOE的大小。",
-  "problem_text_en": "As shown in the diagram, ∠FCD=20°, the center of ⊙O is O, G bisects segment EF. Find the measure of ∠DOE.",
-  "problem_img": "2882.png",
-  "construction_cdl": [
-    "Shape(EO,OC,OCE)",
-    "Shape(EG,GO,OE)",
-    "Shape(DG,GE,OED)",
-    "Shape(CO,OF,FC)",
-    "Shape(OG,GF,FO)",
-    "Shape(FG,GD,ODF)",
-    "Shape(CF,OFC)",
-    "Collinear(COGD)",
-    "Collinear(EGF)",
-    "Cocircular(O,EDFC)"
-  ],
-  "text_cdl": [
-    "Equal(MeasureOfAngle(FCD),20)",
-    "IsCentreOfCircle(O,O)",
-    "IsMidpointOfLine(G,EF)"
-  ],
-  "image_cdl": [
-    "IsCentreOfCircle(O,O)"
-  ],
-  "goal_cdl": "Value(MeasureOfAngle(DOE))",
-  "problem_answer": "40",
-  "theorem_seqs": [
-    "radius_of_circle_property_length_equal(1,OE,O)",
-    "radius_of_circle_property_length_equal(1,OF,O)",
-    "mirror_congruent_triangle_judgment_sss(1,OEG,OGF)",
-    "mirror_congruent_triangle_property_angle_equal(1,OEG,OGF)",
-    "arc_property_circumference_angle_external(1,ODF,C)",
-    "arc_property_center_angle(1,ODF,O)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "radius_of_circle_property_length_equal(1,OE,O)",
-      "radius_of_circle_property_length_equal(1,OF,O)",
-      "arc_property_circumference_angle_external(1,ODF,C)",
-      "arc_property_center_angle(1,ODF,O)"
+    "problem_id": 2882,
+    "source": "GeoQA-50",
+    "problem_level": 6,
+    "problem_img": "2882.png",
+    "construction_cdl": [
+        "Shape(EO,OC,OCE)",
+        "Shape(EG,GO,OE)",
+        "Shape(DG,GE,OED)",
+        "Shape(CO,OF,FC)",
+        "Shape(OG,GF,FO)",
+        "Shape(FG,GD,ODF)",
+        "Shape(CF,OFC)",
+        "Collinear(COGD)",
+        "Collinear(EGF)",
+        "Cocircular(O,EDFC)"
     ],
-    "radius_of_circle_property_length_equal(1,OE,O)": [
-      "mirror_congruent_triangle_judgment_sss(1,OEG,OGF)"
+    "text_cdl": [
+        "Equal(MeasureOfAngle(FCD),20)",
+        "IsCentreOfCircle(O,O)",
+        "IsMidpointOfLine(G,EF)"
     ],
-    "radius_of_circle_property_length_equal(1,OF,O)": [
-      "mirror_congruent_triangle_judgment_sss(1,OEG,OGF)"
+    "image_cdl": [
+        "IsCentreOfCircle(O,O)"
     ],
-    "mirror_congruent_triangle_judgment_sss(1,OEG,OGF)": [
-      "mirror_congruent_triangle_property_angle_equal(1,OEG,OGF)"
-    ]
-  }
+    "goal_cdl": "Value(MeasureOfAngle(DOE))",
+    "problem_answer": "40",
+    "theorem_seqs": [
+        "radius_of_circle_property_length_equal(1,OE,O)",
+        "radius_of_circle_property_length_equal(1,OF,O)",
+        "mirror_congruent_triangle_judgment_sss(1,OEG,OGF)",
+        "mirror_congruent_triangle_property_angle_equal(1,OEG,OGF)",
+        "arc_property_circumference_angle_external(1,ODF,C)",
+        "arc_property_center_angle(1,ODF,O)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "radius_of_circle_property_length_equal(1,OE,O)",
+            "radius_of_circle_property_length_equal(1,OF,O)",
+            "arc_property_circumference_angle_external(1,ODF,C)",
+            "arc_property_center_angle(1,ODF,O)"
+        ],
+        "radius_of_circle_property_length_equal(1,OE,O)": [
+            "mirror_congruent_triangle_judgment_sss(1,OEG,OGF)"
+        ],
+        "radius_of_circle_property_length_equal(1,OF,O)": [
+            "mirror_congruent_triangle_judgment_sss(1,OEG,OGF)"
+        ],
+        "mirror_congruent_triangle_judgment_sss(1,OEG,OGF)": [
+            "mirror_congruent_triangle_property_angle_equal(1,OEG,OGF)"
+        ]
+    }
 }

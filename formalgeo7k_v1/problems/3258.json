@@ -1,44 +1,41 @@
 {
-  "problem_id": 3258,
-  "annotation": "XiaokaiZhang_2023-04-23",
-  "source": "GeoQA-562",
-  "problem_level": 4,
-  "problem_text_cn": "如图所示，∠GCF=25°，FC是∠EFA的角平分线，AB∥CD，CD平行于EF。求∠BAF的大小。",
-  "problem_text_en": "As shown in the diagram, ∠GCF=25°, FC bisects ∠EFA, AB∥CD, CD∥EF. Find the measure of ∠BAF.",
-  "problem_img": "3258.png",
-  "construction_cdl": [
-    "Shape(AC,CG,GA)",
-    "Shape(AG,GD,DB,BA)",
-    "Shape(GC,CF,FG)",
-    "Shape(GF,FD,DG)",
-    "Shape(CE,EF,FC)",
-    "Collinear(AGF)",
-    "Collinear(CGD)",
-    "Collinear(BDF)"
-  ],
-  "text_cdl": [
-    "Equal(MeasureOfAngle(GCF),25)",
-    "IsBisectorOfAngle(FC,EFA)",
-    "ParallelBetweenLine(AB,CD)",
-    "ParallelBetweenLine(CD,EF)"
-  ],
-  "image_cdl": [],
-  "goal_cdl": "Value(MeasureOfAngle(BAF))",
-  "problem_answer": "50",
-  "theorem_seqs": [
-    "parallel_property_alternate_interior_angle(1,CD,EF)",
-    "parallel_judgment_par_par(1,AB,CD,EF)",
-    "parallel_property_alternate_interior_angle(1,AB,EF)",
-    "angle_addition(1,EFC,CFA)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "parallel_property_alternate_interior_angle(1,CD,EF)",
-      "parallel_judgment_par_par(1,AB,CD,EF)",
-      "angle_addition(1,EFC,CFA)"
+    "problem_id": 3258,
+    "source": "GeoQA-562",
+    "problem_level": 4,
+    "problem_img": "3258.png",
+    "construction_cdl": [
+        "Shape(AC,CG,GA)",
+        "Shape(AG,GD,DB,BA)",
+        "Shape(GC,CF,FG)",
+        "Shape(GF,FD,DG)",
+        "Shape(CE,EF,FC)",
+        "Collinear(AGF)",
+        "Collinear(CGD)",
+        "Collinear(BDF)"
     ],
-    "parallel_judgment_par_par(1,AB,CD,EF)": [
-      "parallel_property_alternate_interior_angle(1,AB,EF)"
-    ]
-  }
+    "text_cdl": [
+        "Equal(MeasureOfAngle(GCF),25)",
+        "IsBisectorOfAngle(FC,EFA)",
+        "ParallelBetweenLine(AB,CD)",
+        "ParallelBetweenLine(CD,EF)"
+    ],
+    "image_cdl": [],
+    "goal_cdl": "Value(MeasureOfAngle(BAF))",
+    "problem_answer": "50",
+    "theorem_seqs": [
+        "parallel_property_alternate_interior_angle(1,CD,EF)",
+        "parallel_judgment_par_par(1,AB,CD,EF)",
+        "parallel_property_alternate_interior_angle(1,AB,EF)",
+        "angle_addition(1,EFC,CFA)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "parallel_property_alternate_interior_angle(1,CD,EF)",
+            "parallel_judgment_par_par(1,AB,CD,EF)",
+            "angle_addition(1,EFC,CFA)"
+        ],
+        "parallel_judgment_par_par(1,AB,CD,EF)": [
+            "parallel_property_alternate_interior_angle(1,AB,EF)"
+        ]
+    }
 }

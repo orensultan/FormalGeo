@@ -1,39 +1,36 @@
 {
-  "problem_id": 2634,
-  "annotation": "DengfengYue_2023-04-23",
-  "source": "Geometry3k-2767",
-  "problem_level": 2,
-  "problem_text_cn": "如图所示，∠ABD=x°，∠CBA=65°，∠DBC=132°，圆B的圆心为B。求x的值。",
-  "problem_text_en": "As shown in the diagram, ∠ABD=x°, ∠CBA=65°, ∠DBC=132°, the center of ⊙B is B. Find the value of x.",
-  "problem_img": "2634.png",
-  "construction_cdl": [
-    "Shape(CB,BA,BAC)",
-    "Shape(BC,BCD,DB)",
-    "Shape(AB,BD,BDA)",
-    "Cocircular(B,ACD)"
-  ],
-  "text_cdl": [
-    "Equal(MeasureOfAngle(ABD),x)",
-    "Equal(MeasureOfAngle(CBA),65)",
-    "Equal(MeasureOfAngle(DBC),132)",
-    "IsCentreOfCircle(B,B)"
-  ],
-  "image_cdl": [
-    "Equal(MeasureOfAngle(ABD),x)",
-    "Equal(MeasureOfAngle(CBA),65)",
-    "Equal(MeasureOfAngle(DBC),132)",
-    "IsCentreOfCircle(B,B)"
-  ],
-  "goal_cdl": "Value(x)",
-  "problem_answer": "163",
-  "theorem_seqs": [
-    "angle_addition(1,DBC,CBA)",
-    "round_angle(1,ABD,DBA)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "angle_addition(1,DBC,CBA)",
-      "round_angle(1,ABD,DBA)"
-    ]
-  }
+    "problem_id": 2634,
+    "source": "Geometry3k-2767",
+    "problem_level": 2,
+    "problem_img": "2634.png",
+    "construction_cdl": [
+        "Shape(CB,BA,BAC)",
+        "Shape(BC,BCD,DB)",
+        "Shape(AB,BD,BDA)",
+        "Cocircular(B,ACD)"
+    ],
+    "text_cdl": [
+        "Equal(MeasureOfAngle(ABD),x)",
+        "Equal(MeasureOfAngle(CBA),65)",
+        "Equal(MeasureOfAngle(DBC),132)",
+        "IsCentreOfCircle(B,B)"
+    ],
+    "image_cdl": [
+        "Equal(MeasureOfAngle(ABD),x)",
+        "Equal(MeasureOfAngle(CBA),65)",
+        "Equal(MeasureOfAngle(DBC),132)",
+        "IsCentreOfCircle(B,B)"
+    ],
+    "goal_cdl": "Value(x)",
+    "problem_answer": "163",
+    "theorem_seqs": [
+        "angle_addition(1,DBC,CBA)",
+        "round_angle(1,ABD,DBA)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "angle_addition(1,DBC,CBA)",
+            "round_angle(1,ABD,DBA)"
+        ]
+    }
 }

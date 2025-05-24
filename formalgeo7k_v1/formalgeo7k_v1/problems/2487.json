@@ -1,38 +1,35 @@
 {
-  "problem_id": 2487,
-  "annotation": "YifanWang_2023-04-23",
-  "source": "Geometry3k-2610",
-  "problem_level": 2,
-  "problem_text_cn": "如图所示，AB=12，BC=x，CA=y，∠CAB=60°，BC⊥AC。求y的值。",
-  "problem_text_en": "As shown in the diagram, AB=12, BC=x, CA=y, ∠CAB=60°, BC⊥AC. Find the value of y.",
-  "problem_img": "2487.png",
-  "construction_cdl": [
-    "Shape(CA,AB,BC)"
-  ],
-  "text_cdl": [
-    "Equal(LengthOfLine(AB),12)",
-    "Equal(LengthOfLine(BC),x)",
-    "Equal(LengthOfLine(CA),y)",
-    "Equal(MeasureOfAngle(CAB),60)",
-    "PerpendicularBetweenLine(BC,AC)"
-  ],
-  "image_cdl": [
-    "Equal(LengthOfLine(AB),12)",
-    "Equal(LengthOfLine(BC),x)",
-    "Equal(LengthOfLine(CA),y)",
-    "Equal(MeasureOfAngle(CAB),60)",
-    "PerpendicularBetweenLine(BC,AC)"
-  ],
-  "goal_cdl": "Value(y)",
-  "problem_answer": "6",
-  "theorem_seqs": [
-    "cosine_theorem(1,CAB)",
-    "cosine_theorem(1,ABC)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "cosine_theorem(1,CAB)",
-      "cosine_theorem(1,ABC)"
-    ]
-  }
+    "problem_id": 2487,
+    "source": "Geometry3k-2610",
+    "problem_level": 2,
+    "problem_img": "2487.png",
+    "construction_cdl": [
+        "Shape(CA,AB,BC)"
+    ],
+    "text_cdl": [
+        "Equal(LengthOfLine(AB),12)",
+        "Equal(LengthOfLine(BC),x)",
+        "Equal(LengthOfLine(CA),y)",
+        "Equal(MeasureOfAngle(CAB),60)",
+        "PerpendicularBetweenLine(BC,AC)"
+    ],
+    "image_cdl": [
+        "Equal(LengthOfLine(AB),12)",
+        "Equal(LengthOfLine(BC),x)",
+        "Equal(LengthOfLine(CA),y)",
+        "Equal(MeasureOfAngle(CAB),60)",
+        "PerpendicularBetweenLine(BC,AC)"
+    ],
+    "goal_cdl": "Value(y)",
+    "problem_answer": "6",
+    "theorem_seqs": [
+        "cosine_theorem(1,CAB)",
+        "cosine_theorem(1,ABC)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "cosine_theorem(1,CAB)",
+            "cosine_theorem(1,ABC)"
+        ]
+    }
 }

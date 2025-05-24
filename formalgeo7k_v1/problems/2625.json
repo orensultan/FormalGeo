@@ -1,33 +1,30 @@
 {
-  "problem_id": 2625,
-  "annotation": "DengfengYue_2023-04-23",
-  "source": "Geometry3k-2758",
-  "problem_level": 1,
-  "problem_text_cn": "如图所示，四边形GKJH的面积为75，GH=17，KJ=13，GH和KJ是梯形GKJH的平行边。求GKJH的高。",
-  "problem_text_en": "As shown in the diagram, the area of GKJH is 75, GH=17, KJ=13, GH and KJ are the parallel sides of trapezoid GKJH. Find the height of GKJH.",
-  "problem_img": "2625.png",
-  "construction_cdl": [
-    "Shape(GK,KJ,JH,HG)"
-  ],
-  "text_cdl": [
-    "Equal(AreaOfQuadrilateral(GKJH),75)",
-    "Equal(LengthOfLine(GH),17)",
-    "Equal(LengthOfLine(KJ),13)",
-    "Trapezoid(GKJH)"
-  ],
-  "image_cdl": [
-    "Equal(AreaOfQuadrilateral(GKJH),75)",
-    "Equal(LengthOfLine(GH),17)",
-    "Equal(LengthOfLine(KJ),13)"
-  ],
-  "goal_cdl": "Value(HeightOfQuadrilateral(GKJH))",
-  "problem_answer": "5",
-  "theorem_seqs": [
-    "trapezoid_area_formula(1,GKJH)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "trapezoid_area_formula(1,GKJH)"
-    ]
-  }
+    "problem_id": 2625,
+    "source": "Geometry3k-2758",
+    "problem_level": 1,
+    "problem_img": "2625.png",
+    "construction_cdl": [
+        "Shape(GK,KJ,JH,HG)"
+    ],
+    "text_cdl": [
+        "Equal(AreaOfQuadrilateral(GKJH),75)",
+        "Equal(LengthOfLine(GH),17)",
+        "Equal(LengthOfLine(KJ),13)",
+        "Trapezoid(GKJH)"
+    ],
+    "image_cdl": [
+        "Equal(AreaOfQuadrilateral(GKJH),75)",
+        "Equal(LengthOfLine(GH),17)",
+        "Equal(LengthOfLine(KJ),13)"
+    ],
+    "goal_cdl": "Value(HeightOfQuadrilateral(GKJH))",
+    "problem_answer": "5",
+    "theorem_seqs": [
+        "trapezoid_area_formula(1,GKJH)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "trapezoid_area_formula(1,GKJH)"
+        ]
+    }
 }

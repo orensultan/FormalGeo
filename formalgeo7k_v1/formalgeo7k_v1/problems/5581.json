@@ -1,37 +1,34 @@
 {
-  "problem_id": 5581,
-  "annotation": "YimingHe_2023-05-28",
-  "source": "GeoQA-7080",
-  "problem_level": 3,
-  "problem_text_cn": "如图所示，OA=3，PA=4，⊙O的圆心为O，圆O的切线为PA。求cos(AP)的值。",
-  "problem_text_en": "As shown in the diagram, OA=3, PA=4, the center of circle O is O, PA is the tangent to ⊙O. Find the value of cos(AP).",
-  "problem_img": "5581.png",
-  "construction_cdl": [
-    "Shape(PB,OAB,AP)",
-    "Shape(BO,OA,OAB)",
-    "Shape(AO,OB,OBA)",
-    "Collinear(OBP)",
-    "Cocircular(O,AB)"
-  ],
-  "text_cdl": [
-    "Equal(LengthOfLine(OA),3)",
-    "Equal(LengthOfLine(PA),4)",
-    "IsCentreOfCircle(O,O)",
-    "IsTangentOfCircle(PA,O)"
-  ],
-  "image_cdl": [],
-  "goal_cdl": "Value(Cos(MeasureOfAngle(APO)))",
-  "problem_answer": "4/5",
-  "theorem_seqs": [
-    "tangent_of_circle_property_perpendicular(1,PA,O,O)",
-    "cosine_theorem(1,APO)",
-    "cosine_theorem(1,POA)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "tangent_of_circle_property_perpendicular(1,PA,O,O)",
-      "cosine_theorem(1,APO)",
-      "cosine_theorem(1,POA)"
-    ]
-  }
+    "problem_id": 5581,
+    "source": "GeoQA-7080",
+    "problem_level": 3,
+    "problem_img": "5581.png",
+    "construction_cdl": [
+        "Shape(PB,OAB,AP)",
+        "Shape(BO,OA,OAB)",
+        "Shape(AO,OB,OBA)",
+        "Collinear(OBP)",
+        "Cocircular(O,AB)"
+    ],
+    "text_cdl": [
+        "Equal(LengthOfLine(OA),3)",
+        "Equal(LengthOfLine(PA),4)",
+        "IsCentreOfCircle(O,O)",
+        "IsTangentOfCircle(PA,O)"
+    ],
+    "image_cdl": [],
+    "goal_cdl": "Value(Cos(MeasureOfAngle(APO)))",
+    "problem_answer": "4/5",
+    "theorem_seqs": [
+        "tangent_of_circle_property_perpendicular(1,PA,O,O)",
+        "cosine_theorem(1,APO)",
+        "cosine_theorem(1,POA)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "tangent_of_circle_property_perpendicular(1,PA,O,O)",
+            "cosine_theorem(1,APO)",
+            "cosine_theorem(1,POA)"
+        ]
+    }
 }

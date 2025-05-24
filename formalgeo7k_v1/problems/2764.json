@@ -1,40 +1,37 @@
 {
-  "problem_id": 2764,
-  "annotation": "FangzhenZhu_2023-04-09",
-  "source": "Geometry3k-2911",
-  "problem_level": 1,
-  "problem_text_cn": "如图所示，AC=b，BA=c，BC=a，∠ABC=60°，∠CAB=30°，c=5，BC⊥AC。求b的值。",
-  "problem_text_en": "As shown in the diagram, AC=b, BA=c, BC=a, ∠ABC=60°, ∠CAB=30°, c=5, BC⊥AC. Find the value of b.",
-  "problem_img": "2764.png",
-  "construction_cdl": [
-    "Shape(BC,CA,AB)"
-  ],
-  "text_cdl": [
-    "Equal(LengthOfLine(AC),b)",
-    "Equal(LengthOfLine(BA),c)",
-    "Equal(LengthOfLine(BC),a)",
-    "Equal(MeasureOfAngle(ABC),60)",
-    "Equal(MeasureOfAngle(CAB),30)",
-    "Equal(c,5)",
-    "PerpendicularBetweenLine(BC,AC)"
-  ],
-  "image_cdl": [
-    "Equal(LengthOfLine(AC),b)",
-    "Equal(LengthOfLine(BA),c)",
-    "Equal(LengthOfLine(BC),a)",
-    "Equal(MeasureOfAngle(ABC),60)",
-    "Equal(MeasureOfAngle(CAB),30)",
-    "Equal(c,5)",
-    "PerpendicularBetweenLine(BC,AC)"
-  ],
-  "goal_cdl": "Value(b)",
-  "problem_answer": "5*sqrt(3)/2",
-  "theorem_seqs": [
-    "sine_theorem(1,ABC)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "sine_theorem(1,ABC)"
-    ]
-  }
+    "problem_id": 2764,
+    "source": "Geometry3k-2911",
+    "problem_level": 1,
+    "problem_img": "2764.png",
+    "construction_cdl": [
+        "Shape(BC,CA,AB)"
+    ],
+    "text_cdl": [
+        "Equal(LengthOfLine(AC),b)",
+        "Equal(LengthOfLine(BA),c)",
+        "Equal(LengthOfLine(BC),a)",
+        "Equal(MeasureOfAngle(ABC),60)",
+        "Equal(MeasureOfAngle(CAB),30)",
+        "Equal(c,5)",
+        "PerpendicularBetweenLine(BC,AC)"
+    ],
+    "image_cdl": [
+        "Equal(LengthOfLine(AC),b)",
+        "Equal(LengthOfLine(BA),c)",
+        "Equal(LengthOfLine(BC),a)",
+        "Equal(MeasureOfAngle(ABC),60)",
+        "Equal(MeasureOfAngle(CAB),30)",
+        "Equal(c,5)",
+        "PerpendicularBetweenLine(BC,AC)"
+    ],
+    "goal_cdl": "Value(b)",
+    "problem_answer": "5*sqrt(3)/2",
+    "theorem_seqs": [
+        "sine_theorem(1,ABC)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "sine_theorem(1,ABC)"
+        ]
+    }
 }

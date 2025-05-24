@@ -1,52 +1,49 @@
 {
-  "problem_id": 762,
-  "annotation": "JiaZou_2023-04-09",
-  "source": "Geometry3k-787",
-  "problem_level": 3,
-  "problem_text_cn": "如图所示，∠ADB=11*x-1°，∠BDF=7*y-4°，∠DFH=7*x+9°，∠GAD=2*y+5°，∠HFC=z°，BD∥GA，HF平行于BD。求z的值。",
-  "problem_text_en": "As shown in the diagram, ∠ADB=11*x-1°, ∠BDF=7*y-4°, ∠DFH=7*x+9°, ∠GAD=2*y+5°, ∠HFC=z°, BD is parallel to GA, HF is parallel to BD. Find the value of z.",
-  "problem_img": "762.png",
-  "construction_cdl": [
-    "Shape(HF,FC)",
-    "Shape(DF,FH)",
-    "Shape(BD,DF)",
-    "Shape(AD,DB)",
-    "Shape(GA,AD)",
-    "Shape(EA,AG)",
-    "Shape(FD,DA)",
-    "Collinear(DFC)",
-    "Collinear(DAE)"
-  ],
-  "text_cdl": [
-    "Equal(MeasureOfAngle(ADB),11*x-1)",
-    "Equal(MeasureOfAngle(BDF),7*y-4)",
-    "Equal(MeasureOfAngle(DFH),7*x+9)",
-    "Equal(MeasureOfAngle(GAD),2*y+5)",
-    "Equal(MeasureOfAngle(HFC),z)",
-    "ParallelBetweenLine(BD,GA)",
-    "ParallelBetweenLine(HF,BD)"
-  ],
-  "image_cdl": [
-    "Equal(MeasureOfAngle(ADB),11*x-1)",
-    "Equal(MeasureOfAngle(BDF),7*y-4)",
-    "Equal(MeasureOfAngle(DFH),7*x+9)",
-    "Equal(MeasureOfAngle(GAD),2*y+5)",
-    "Equal(MeasureOfAngle(HFC),z)",
-    "ParallelBetweenLine(BD,GA)",
-    "ParallelBetweenLine(HF,BD)"
-  ],
-  "goal_cdl": "Value(z)",
-  "problem_answer": "73",
-  "theorem_seqs": [
-    "parallel_property_ipsilateral_internal_angle(1,DB,FH)",
-    "parallel_property_ipsilateral_internal_angle(1,AG,DB)",
-    "parallel_property_corresponding_angle(2,DB,FH,C)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "parallel_property_ipsilateral_internal_angle(1,DB,FH)",
-      "parallel_property_ipsilateral_internal_angle(1,AG,DB)",
-      "parallel_property_corresponding_angle(2,DB,FH,C)"
-    ]
-  }
+    "problem_id": 762,
+    "source": "Geometry3k-787",
+    "problem_level": 3,
+    "problem_img": "762.png",
+    "construction_cdl": [
+        "Shape(HF,FC)",
+        "Shape(DF,FH)",
+        "Shape(BD,DF)",
+        "Shape(AD,DB)",
+        "Shape(GA,AD)",
+        "Shape(EA,AG)",
+        "Shape(FD,DA)",
+        "Collinear(DFC)",
+        "Collinear(DAE)"
+    ],
+    "text_cdl": [
+        "Equal(MeasureOfAngle(ADB),11*x-1)",
+        "Equal(MeasureOfAngle(BDF),7*y-4)",
+        "Equal(MeasureOfAngle(DFH),7*x+9)",
+        "Equal(MeasureOfAngle(GAD),2*y+5)",
+        "Equal(MeasureOfAngle(HFC),z)",
+        "ParallelBetweenLine(BD,GA)",
+        "ParallelBetweenLine(HF,BD)"
+    ],
+    "image_cdl": [
+        "Equal(MeasureOfAngle(ADB),11*x-1)",
+        "Equal(MeasureOfAngle(BDF),7*y-4)",
+        "Equal(MeasureOfAngle(DFH),7*x+9)",
+        "Equal(MeasureOfAngle(GAD),2*y+5)",
+        "Equal(MeasureOfAngle(HFC),z)",
+        "ParallelBetweenLine(BD,GA)",
+        "ParallelBetweenLine(HF,BD)"
+    ],
+    "goal_cdl": "Value(z)",
+    "problem_answer": "73",
+    "theorem_seqs": [
+        "parallel_property_ipsilateral_internal_angle(1,DB,FH)",
+        "parallel_property_ipsilateral_internal_angle(1,AG,DB)",
+        "parallel_property_corresponding_angle(2,DB,FH,C)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "parallel_property_ipsilateral_internal_angle(1,DB,FH)",
+            "parallel_property_ipsilateral_internal_angle(1,AG,DB)",
+            "parallel_property_corresponding_angle(2,DB,FH,C)"
+        ]
+    }
 }

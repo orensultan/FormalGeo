@@ -1,46 +1,43 @@
 {
-  "problem_id": 1100,
-  "annotation": "XiaoxiaoJin_2023-04-09",
-  "source": "Geometry3k-1137",
-  "problem_level": 1,
-  "problem_text_cn": "如图所示，BA=3*y-8，BC=2*x+7，DA=13，DC=10，∠ADF=59°，∠BFC=49°，∠FBA=20°，四边形ADCB是平行四边形。求y的值。",
-  "problem_text_en": "As shown in the diagram, BA=3*y-8, BC=2*x+7, DA=13, DC=10, ∠ADF=59°, ∠BFC=49°, ∠FBA=20°, quadrilateral ADCB is a parallelogram. Find the value of y.",
-  "problem_img": "1100.png",
-  "construction_cdl": [
-    "Shape(AD,DF,FA)",
-    "Shape(FD,DC,CF)",
-    "Shape(FC,CB,BF)",
-    "Shape(BA,AF,FB)",
-    "Collinear(AFC)",
-    "Collinear(DFB)"
-  ],
-  "text_cdl": [
-    "Equal(LengthOfLine(BA),3*y-8)",
-    "Equal(LengthOfLine(BC),2*x+7)",
-    "Equal(LengthOfLine(DA),13)",
-    "Equal(LengthOfLine(DC),10)",
-    "Equal(MeasureOfAngle(ADF),59)",
-    "Equal(MeasureOfAngle(BFC),49)",
-    "Equal(MeasureOfAngle(FBA),20)",
-    "Parallelogram(ADCB)"
-  ],
-  "image_cdl": [
-    "Equal(LengthOfLine(BA),3*y-8)",
-    "Equal(LengthOfLine(BC),2*x+7)",
-    "Equal(LengthOfLine(DA),13)",
-    "Equal(LengthOfLine(DC),10)",
-    "Equal(MeasureOfAngle(ADF),59)",
-    "Equal(MeasureOfAngle(BFC),49)",
-    "Equal(MeasureOfAngle(FBA),20)"
-  ],
-  "goal_cdl": "Value(y)",
-  "problem_answer": "6",
-  "theorem_seqs": [
-    "parallelogram_property_opposite_line_equal(1,BADC)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "parallelogram_property_opposite_line_equal(1,BADC)"
-    ]
-  }
+    "problem_id": 1100,
+    "source": "Geometry3k-1137",
+    "problem_level": 1,
+    "problem_img": "1100.png",
+    "construction_cdl": [
+        "Shape(AD,DF,FA)",
+        "Shape(FD,DC,CF)",
+        "Shape(FC,CB,BF)",
+        "Shape(BA,AF,FB)",
+        "Collinear(AFC)",
+        "Collinear(DFB)"
+    ],
+    "text_cdl": [
+        "Equal(LengthOfLine(BA),3*y-8)",
+        "Equal(LengthOfLine(BC),2*x+7)",
+        "Equal(LengthOfLine(DA),13)",
+        "Equal(LengthOfLine(DC),10)",
+        "Equal(MeasureOfAngle(ADF),59)",
+        "Equal(MeasureOfAngle(BFC),49)",
+        "Equal(MeasureOfAngle(FBA),20)",
+        "Parallelogram(ADCB)"
+    ],
+    "image_cdl": [
+        "Equal(LengthOfLine(BA),3*y-8)",
+        "Equal(LengthOfLine(BC),2*x+7)",
+        "Equal(LengthOfLine(DA),13)",
+        "Equal(LengthOfLine(DC),10)",
+        "Equal(MeasureOfAngle(ADF),59)",
+        "Equal(MeasureOfAngle(BFC),49)",
+        "Equal(MeasureOfAngle(FBA),20)"
+    ],
+    "goal_cdl": "Value(y)",
+    "problem_answer": "6",
+    "theorem_seqs": [
+        "parallelogram_property_opposite_line_equal(1,BADC)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "parallelogram_property_opposite_line_equal(1,BADC)"
+        ]
+    }
 }

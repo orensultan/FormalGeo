@@ -1,36 +1,33 @@
 {
-  "problem_id": 3254,
-  "annotation": "XiaokaiZhang_2023-04-23",
-  "source": "GeoQA-558",
-  "problem_level": 4,
-  "problem_text_cn": "如图所示，∠ACE=70°，AE是∠BAC的角平分线，AB∥CD。求∠AED的大小。",
-  "problem_text_en": "As shown in the diagram, ∠ACE=70°, AE is the angle bisector of ∠BAC, AB is parallel to CD. Find the measure of ∠AED.",
-  "problem_img": "3254.png",
-  "construction_cdl": [
-    "Shape(AC,CE,EA)",
-    "Shape(AE,ED,DB,BA)",
-    "Collinear(CED)"
-  ],
-  "text_cdl": [
-    "Equal(MeasureOfAngle(ACE),70)",
-    "IsBisectorOfAngle(AE,BAC)",
-    "ParallelBetweenLine(AB,CD)"
-  ],
-  "image_cdl": [],
-  "goal_cdl": "Value(MeasureOfAngle(AED))",
-  "problem_answer": "125",
-  "theorem_seqs": [
-    "parallel_property_ipsilateral_internal_angle(1,AB,CD)",
-    "angle_addition(1,BAE,EAC)",
-    "triangle_property_angle_sum(1,ACE)",
-    "adjacent_complementary_angle(1,CEA,AED)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "parallel_property_ipsilateral_internal_angle(1,AB,CD)",
-      "angle_addition(1,BAE,EAC)",
-      "triangle_property_angle_sum(1,ACE)",
-      "adjacent_complementary_angle(1,CEA,AED)"
-    ]
-  }
+    "problem_id": 3254,
+    "source": "GeoQA-558",
+    "problem_level": 4,
+    "problem_img": "3254.png",
+    "construction_cdl": [
+        "Shape(AC,CE,EA)",
+        "Shape(AE,ED,DB,BA)",
+        "Collinear(CED)"
+    ],
+    "text_cdl": [
+        "Equal(MeasureOfAngle(ACE),70)",
+        "IsBisectorOfAngle(AE,BAC)",
+        "ParallelBetweenLine(AB,CD)"
+    ],
+    "image_cdl": [],
+    "goal_cdl": "Value(MeasureOfAngle(AED))",
+    "problem_answer": "125",
+    "theorem_seqs": [
+        "parallel_property_ipsilateral_internal_angle(1,AB,CD)",
+        "angle_addition(1,BAE,EAC)",
+        "triangle_property_angle_sum(1,ACE)",
+        "adjacent_complementary_angle(1,CEA,AED)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "parallel_property_ipsilateral_internal_angle(1,AB,CD)",
+            "angle_addition(1,BAE,EAC)",
+            "triangle_property_angle_sum(1,ACE)",
+            "adjacent_complementary_angle(1,CEA,AED)"
+        ]
+    }
 }

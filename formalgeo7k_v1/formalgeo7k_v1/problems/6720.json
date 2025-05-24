@@ -1,43 +1,40 @@
 {
-  "problem_id": 6720,
-  "annotation": "XiaoxiaoJin_2023-06-04",
-  "source": "GeoQA-9764",
-  "problem_level": 4,
-  "problem_text_cn": "如图所示，∠CAB=42°，∠DBC=Mul(2,MeasureOfAngle(CDB))°，A是圆A的圆心。求∠DAC的大小。",
-  "problem_text_en": "As shown in the diagram, ∠CAB=42°, ∠DBC=Mul(2,MeasureOfAngle(CDB))°, the center of ⊙A is A. Find the measure of ∠DAC.",
-  "problem_img": "6720.png",
-  "construction_cdl": [
-    "Shape(AB,BE,EA)",
-    "Shape(AE,ED,DA)",
-    "Shape(BC,CE,EB)",
-    "Shape(CD,DE,EC)",
-    "Shape(CB,OBC)",
-    "Shape(DC,OCD)",
-    "Shape(BA,AD,ODB)",
-    "Collinear(AEC)",
-    "Collinear(BED)",
-    "Cocircular(A,BCD)"
-  ],
-  "text_cdl": [
-    "Equal(MeasureOfAngle(CAB),42)",
-    "Equal(MeasureOfAngle(DBC),Mul(2,MeasureOfAngle(CDB)))",
-    "IsCentreOfCircle(A,A)"
-  ],
-  "image_cdl": [],
-  "goal_cdl": "Value(MeasureOfAngle(DAC))",
-  "problem_answer": "84",
-  "theorem_seqs": [
-    "arc_property_center_angle(1,ABC,A)",
-    "arc_property_center_angle(1,ACD,A)",
-    "arc_property_circumference_angle_external(1,ABC,D)",
-    "arc_property_circumference_angle_external(1,ACD,B)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "arc_property_center_angle(1,ABC,A)",
-      "arc_property_center_angle(1,ACD,A)",
-      "arc_property_circumference_angle_external(1,ABC,D)",
-      "arc_property_circumference_angle_external(1,ACD,B)"
-    ]
-  }
+    "problem_id": 6720,
+    "source": "GeoQA-9764",
+    "problem_level": 4,
+    "problem_img": "6720.png",
+    "construction_cdl": [
+        "Shape(AB,BE,EA)",
+        "Shape(AE,ED,DA)",
+        "Shape(BC,CE,EB)",
+        "Shape(CD,DE,EC)",
+        "Shape(CB,OBC)",
+        "Shape(DC,OCD)",
+        "Shape(BA,AD,ODB)",
+        "Collinear(AEC)",
+        "Collinear(BED)",
+        "Cocircular(A,BCD)"
+    ],
+    "text_cdl": [
+        "Equal(MeasureOfAngle(CAB),42)",
+        "Equal(MeasureOfAngle(DBC),Mul(2,MeasureOfAngle(CDB)))",
+        "IsCentreOfCircle(A,A)"
+    ],
+    "image_cdl": [],
+    "goal_cdl": "Value(MeasureOfAngle(DAC))",
+    "problem_answer": "84",
+    "theorem_seqs": [
+        "arc_property_center_angle(1,ABC,A)",
+        "arc_property_center_angle(1,ACD,A)",
+        "arc_property_circumference_angle_external(1,ABC,D)",
+        "arc_property_circumference_angle_external(1,ACD,B)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "arc_property_center_angle(1,ABC,A)",
+            "arc_property_center_angle(1,ACD,A)",
+            "arc_property_circumference_angle_external(1,ABC,D)",
+            "arc_property_circumference_angle_external(1,ACD,B)"
+        ]
+    }
 }

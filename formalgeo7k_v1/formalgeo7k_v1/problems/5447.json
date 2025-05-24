@@ -1,41 +1,38 @@
 {
-  "problem_id": 5447,
-  "annotation": "YangLi_2023-05-21",
-  "source": "GeoQA-5801",
-  "problem_level": 3,
-  "problem_text_cn": "如图所示，BC=8，BF是∠ABC的角平分线，D平分线段BC，E平分线段AC，BA∥DF。求直线DF的长度。",
-  "problem_text_en": "As shown in the diagram, BC=8, BF bisects ∠ABC, D is the midpoint of segment BC, E bisects segment AC, BA∥DF. Find the length of line DF.",
-  "problem_img": "5447.png",
-  "construction_cdl": [
-    "Shape(AB,BF,FE,EA)",
-    "Shape(FB,BD,DF)",
-    "Shape(EF,FD,DC,CE)",
-    "Collinear(AEC)",
-    "Collinear(EFD)",
-    "Collinear(BDC)"
-  ],
-  "text_cdl": [
-    "Equal(LengthOfLine(BC),8)",
-    "IsBisectorOfAngle(BF,ABC)",
-    "IsMidpointOfLine(D,BC)",
-    "IsMidpointOfLine(E,AC)",
-    "ParallelBetweenLine(BA,DF)"
-  ],
-  "image_cdl": [],
-  "goal_cdl": "Value(LengthOfLine(DF))",
-  "problem_answer": "4",
-  "theorem_seqs": [
-    "line_addition(1,BD,DC)",
-    "parallel_property_alternate_interior_angle(1,BA,DF)",
-    "isosceles_triangle_judgment_angle_equal(1,DFB)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "line_addition(1,BD,DC)",
-      "parallel_property_alternate_interior_angle(1,BA,DF)"
+    "problem_id": 5447,
+    "source": "GeoQA-5801",
+    "problem_level": 3,
+    "problem_img": "5447.png",
+    "construction_cdl": [
+        "Shape(AB,BF,FE,EA)",
+        "Shape(FB,BD,DF)",
+        "Shape(EF,FD,DC,CE)",
+        "Collinear(AEC)",
+        "Collinear(EFD)",
+        "Collinear(BDC)"
     ],
-    "parallel_property_alternate_interior_angle(1,BA,DF)": [
-      "isosceles_triangle_judgment_angle_equal(1,DFB)"
-    ]
-  }
+    "text_cdl": [
+        "Equal(LengthOfLine(BC),8)",
+        "IsBisectorOfAngle(BF,ABC)",
+        "IsMidpointOfLine(D,BC)",
+        "IsMidpointOfLine(E,AC)",
+        "ParallelBetweenLine(BA,DF)"
+    ],
+    "image_cdl": [],
+    "goal_cdl": "Value(LengthOfLine(DF))",
+    "problem_answer": "4",
+    "theorem_seqs": [
+        "line_addition(1,BD,DC)",
+        "parallel_property_alternate_interior_angle(1,BA,DF)",
+        "isosceles_triangle_judgment_angle_equal(1,DFB)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "line_addition(1,BD,DC)",
+            "parallel_property_alternate_interior_angle(1,BA,DF)"
+        ],
+        "parallel_property_alternate_interior_angle(1,BA,DF)": [
+            "isosceles_triangle_judgment_angle_equal(1,DFB)"
+        ]
+    }
 }

@@ -1,30 +1,27 @@
 {
-  "problem_id": 370,
-  "annotation": "NaZhu_2023-03-12",
-  "source": "Geometry3k-377",
-  "problem_level": 0,
-  "problem_text_cn": "如图所示，WY=6*x+3，XW=9*x，XW=LengthOfLine(WY),LengthOfLine(XY)，XY=4*x+5。求直线XW的长度。",
-  "problem_text_en": "As shown in the diagram, WY=6*x+3, XW=9*x, XW=LengthOfLine(WY),LengthOfLine(XY), XY=4*x+5. Find the length of line XW.",
-  "problem_img": "370.png",
-  "construction_cdl": [
-    "Shape(XW,WY,YX)"
-  ],
-  "text_cdl": [
-    "Equal(LengthOfLine(WY),6*x+3)",
-    "Equal(LengthOfLine(XW),9*x)",
-    "Equal(LengthOfLine(XW),LengthOfLine(WY),LengthOfLine(XY))",
-    "Equal(LengthOfLine(XY),4*x+5)"
-  ],
-  "image_cdl": [
-    "Equal(LengthOfLine(WY),6*x+3)",
-    "Equal(LengthOfLine(XW),9*x)",
-    "Equal(LengthOfLine(XW),LengthOfLine(WY),LengthOfLine(XY))",
-    "Equal(LengthOfLine(XY),4*x+5)"
-  ],
-  "goal_cdl": "Value(LengthOfLine(XW))",
-  "problem_answer": "9",
-  "theorem_seqs": [],
-  "theorem_seqs_dag": {
-    "START": []
-  }
+    "problem_id": 370,
+    "source": "Geometry3k-377",
+    "problem_level": 0,
+    "problem_img": "370.png",
+    "construction_cdl": [
+        "Shape(XW,WY,YX)"
+    ],
+    "text_cdl": [
+        "Equal(LengthOfLine(WY),6*x+3)",
+        "Equal(LengthOfLine(XW),9*x)",
+        "Equal(LengthOfLine(XW),LengthOfLine(WY),LengthOfLine(XY))",
+        "Equal(LengthOfLine(XY),4*x+5)"
+    ],
+    "image_cdl": [
+        "Equal(LengthOfLine(WY),6*x+3)",
+        "Equal(LengthOfLine(XW),9*x)",
+        "Equal(LengthOfLine(XW),LengthOfLine(WY),LengthOfLine(XY))",
+        "Equal(LengthOfLine(XY),4*x+5)"
+    ],
+    "goal_cdl": "Value(LengthOfLine(XW))",
+    "problem_answer": "9",
+    "theorem_seqs": [],
+    "theorem_seqs_dag": {
+        "START": []
+    }
 }

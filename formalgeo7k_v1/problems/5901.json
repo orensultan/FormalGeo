@@ -1,50 +1,47 @@
 {
-  "problem_id": 5901,
-  "annotation": "YiwenHuang_2023-06-04",
-  "source": "GeoQA-8013",
-  "problem_level": 7,
-  "problem_text_cn": "如图所示，AB=3，BC=5，∠ADB=90°，∠BAC=90°，∠CDA=90°。求直线CD的长度。",
-  "problem_text_en": "As shown in the diagram, AB=3, BC=5, ∠ADB=90°, ∠BAC=90°, ∠CDA=90°. Find the length of line CD.",
-  "problem_img": "5901.png",
-  "construction_cdl": [
-    "Shape(AC,CD,DA)",
-    "Shape(AD,DB,BA)",
-    "Collinear(CDB)"
-  ],
-  "text_cdl": [
-    "Equal(LengthOfLine(AB),3)",
-    "Equal(LengthOfLine(BC),5)",
-    "Equal(MeasureOfAngle(ADB),90)",
-    "Equal(MeasureOfAngle(BAC),90)",
-    "Equal(MeasureOfAngle(CDA),90)"
-  ],
-  "image_cdl": [],
-  "goal_cdl": "Value(LengthOfLine(CD))",
-  "problem_answer": "16/5",
-  "theorem_seqs": [
-    "line_addition(1,CD,DB)",
-    "right_triangle_judgment_angle(1,CDA)",
-    "right_triangle_judgment_angle(1,ADB)",
-    "right_triangle_judgment_angle(1,BAC)",
-    "right_triangle_property_pythagorean(1,CDA)",
-    "right_triangle_property_pythagorean(1,ADB)",
-    "right_triangle_property_pythagorean(1,BAC)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "line_addition(1,CD,DB)",
-      "right_triangle_judgment_angle(1,CDA)",
-      "right_triangle_judgment_angle(1,ADB)",
-      "right_triangle_judgment_angle(1,BAC)"
+    "problem_id": 5901,
+    "source": "GeoQA-8013",
+    "problem_level": 7,
+    "problem_img": "5901.png",
+    "construction_cdl": [
+        "Shape(AC,CD,DA)",
+        "Shape(AD,DB,BA)",
+        "Collinear(CDB)"
     ],
-    "right_triangle_judgment_angle(1,CDA)": [
-      "right_triangle_property_pythagorean(1,CDA)"
+    "text_cdl": [
+        "Equal(LengthOfLine(AB),3)",
+        "Equal(LengthOfLine(BC),5)",
+        "Equal(MeasureOfAngle(ADB),90)",
+        "Equal(MeasureOfAngle(BAC),90)",
+        "Equal(MeasureOfAngle(CDA),90)"
     ],
-    "right_triangle_judgment_angle(1,ADB)": [
-      "right_triangle_property_pythagorean(1,ADB)"
+    "image_cdl": [],
+    "goal_cdl": "Value(LengthOfLine(CD))",
+    "problem_answer": "16/5",
+    "theorem_seqs": [
+        "line_addition(1,CD,DB)",
+        "right_triangle_judgment_angle(1,CDA)",
+        "right_triangle_judgment_angle(1,ADB)",
+        "right_triangle_judgment_angle(1,BAC)",
+        "right_triangle_property_pythagorean(1,CDA)",
+        "right_triangle_property_pythagorean(1,ADB)",
+        "right_triangle_property_pythagorean(1,BAC)"
     ],
-    "right_triangle_judgment_angle(1,BAC)": [
-      "right_triangle_property_pythagorean(1,BAC)"
-    ]
-  }
+    "theorem_seqs_dag": {
+        "START": [
+            "line_addition(1,CD,DB)",
+            "right_triangle_judgment_angle(1,CDA)",
+            "right_triangle_judgment_angle(1,ADB)",
+            "right_triangle_judgment_angle(1,BAC)"
+        ],
+        "right_triangle_judgment_angle(1,CDA)": [
+            "right_triangle_property_pythagorean(1,CDA)"
+        ],
+        "right_triangle_judgment_angle(1,ADB)": [
+            "right_triangle_property_pythagorean(1,ADB)"
+        ],
+        "right_triangle_judgment_angle(1,BAC)": [
+            "right_triangle_property_pythagorean(1,BAC)"
+        ]
+    }
 }

@@ -1,42 +1,39 @@
 {
-  "problem_id": 5431,
-  "annotation": "XiaoxiaoJin_2023-05-21",
-  "source": "GeoQA-5760",
-  "problem_level": 5,
-  "problem_text_cn": "如图所示，AB=10，AD=6，∠BCA=90°，BA和CD是▱ABCD的一组对边。求直线OB的长度。",
-  "problem_text_en": "As shown in the diagram, AB=10, AD=6, ∠BCA=90°, AD and BC are opposite sides of the ▱ ABCD. Find the length of line OB.",
-  "problem_img": "5431.png",
-  "construction_cdl": [
-    "Shape(AB,BO,OA)",
-    "Shape(AO,OD,DA)",
-    "Shape(OB,BC,CO)",
-    "Shape(DO,OC,CD)",
-    "Collinear(AOC)",
-    "Collinear(BOD)"
-  ],
-  "text_cdl": [
-    "Equal(LengthOfLine(AB),10)",
-    "Equal(LengthOfLine(AD),6)",
-    "Equal(MeasureOfAngle(BCA),90)",
-    "Parallelogram(ABCD)"
-  ],
-  "image_cdl": [],
-  "goal_cdl": "Value(LengthOfLine(OB))",
-  "problem_answer": "2*sqrt(13)",
-  "theorem_seqs": [
-    "line_addition(1,AO,OC)",
-    "parallelogram_property_diagonal_bisection(1,ABCD,O)",
-    "parallelogram_property_opposite_line_equal(1,BCDA)",
-    "cosine_theorem(1,CAB)",
-    "cosine_theorem(1,COB)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "line_addition(1,AO,OC)",
-      "parallelogram_property_diagonal_bisection(1,ABCD,O)",
-      "parallelogram_property_opposite_line_equal(1,BCDA)",
-      "cosine_theorem(1,CAB)",
-      "cosine_theorem(1,COB)"
-    ]
-  }
+    "problem_id": 5431,
+    "source": "GeoQA-5760",
+    "problem_level": 5,
+    "problem_img": "5431.png",
+    "construction_cdl": [
+        "Shape(AB,BO,OA)",
+        "Shape(AO,OD,DA)",
+        "Shape(OB,BC,CO)",
+        "Shape(DO,OC,CD)",
+        "Collinear(AOC)",
+        "Collinear(BOD)"
+    ],
+    "text_cdl": [
+        "Equal(LengthOfLine(AB),10)",
+        "Equal(LengthOfLine(AD),6)",
+        "Equal(MeasureOfAngle(BCA),90)",
+        "Parallelogram(ABCD)"
+    ],
+    "image_cdl": [],
+    "goal_cdl": "Value(LengthOfLine(OB))",
+    "problem_answer": "2*sqrt(13)",
+    "theorem_seqs": [
+        "line_addition(1,AO,OC)",
+        "parallelogram_property_diagonal_bisection(1,ABCD,O)",
+        "parallelogram_property_opposite_line_equal(1,BCDA)",
+        "cosine_theorem(1,CAB)",
+        "cosine_theorem(1,COB)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "line_addition(1,AO,OC)",
+            "parallelogram_property_diagonal_bisection(1,ABCD,O)",
+            "parallelogram_property_opposite_line_equal(1,BCDA)",
+            "cosine_theorem(1,CAB)",
+            "cosine_theorem(1,COB)"
+        ]
+    }
 }

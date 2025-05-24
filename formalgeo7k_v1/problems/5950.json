@@ -1,39 +1,36 @@
 {
-  "problem_id": 5950,
-  "annotation": "XiaoxiaoJin_2023-05-28",
-  "source": "GeoQA-8331",
-  "problem_level": 5,
-  "problem_text_cn": "如图所示，AB=450，∠ABC=90°，∠BCA=60°，∠BDA=30°。求直线DC的长度。",
-  "problem_text_en": "As shown in the diagram, AB=450, ∠ABC=90°, ∠BCA=60°, ∠BDA=30°. Find the length of line DC.",
-  "problem_img": "5950.png",
-  "construction_cdl": [
-    "Shape(AB,BC,CA)",
-    "Shape(AC,CD,DA)",
-    "Collinear(BCD)"
-  ],
-  "text_cdl": [
-    "Equal(LengthOfLine(AB),450)",
-    "Equal(MeasureOfAngle(ABC),90)",
-    "Equal(MeasureOfAngle(BCA),60)",
-    "Equal(MeasureOfAngle(BDA),30)"
-  ],
-  "image_cdl": [],
-  "goal_cdl": "Value(LengthOfLine(DC))",
-  "problem_answer": "300*sqrt(3)",
-  "theorem_seqs": [
-    "line_addition(1,BC,CD)",
-    "triangle_property_angle_sum(1,ABC)",
-    "triangle_property_angle_sum(1,ABD)",
-    "sine_theorem(1,BCA)",
-    "sine_theorem(1,BDA)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "line_addition(1,BC,CD)",
-      "triangle_property_angle_sum(1,ABC)",
-      "triangle_property_angle_sum(1,ABD)",
-      "sine_theorem(1,BCA)",
-      "sine_theorem(1,BDA)"
-    ]
-  }
+    "problem_id": 5950,
+    "source": "GeoQA-8331",
+    "problem_level": 5,
+    "problem_img": "5950.png",
+    "construction_cdl": [
+        "Shape(AB,BC,CA)",
+        "Shape(AC,CD,DA)",
+        "Collinear(BCD)"
+    ],
+    "text_cdl": [
+        "Equal(LengthOfLine(AB),450)",
+        "Equal(MeasureOfAngle(ABC),90)",
+        "Equal(MeasureOfAngle(BCA),60)",
+        "Equal(MeasureOfAngle(BDA),30)"
+    ],
+    "image_cdl": [],
+    "goal_cdl": "Value(LengthOfLine(DC))",
+    "problem_answer": "300*sqrt(3)",
+    "theorem_seqs": [
+        "line_addition(1,BC,CD)",
+        "triangle_property_angle_sum(1,ABC)",
+        "triangle_property_angle_sum(1,ABD)",
+        "sine_theorem(1,BCA)",
+        "sine_theorem(1,BDA)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "line_addition(1,BC,CD)",
+            "triangle_property_angle_sum(1,ABC)",
+            "triangle_property_angle_sum(1,ABD)",
+            "sine_theorem(1,BCA)",
+            "sine_theorem(1,BDA)"
+        ]
+    }
 }

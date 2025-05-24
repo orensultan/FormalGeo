@@ -1,69 +1,66 @@
 {
-  "problem_id": 4710,
-  "annotation": "XiaoxiaoJin_2023-05-14",
-  "source": "GeoQA-4026",
-  "problem_level": 11,
-  "problem_text_cn": "如图所示，OA=10，∠APB=120°，圆O的圆心为O，PA是圆O的切线，圆O的切线为PB。求直线AB的长度。",
-  "problem_text_en": "As shown in the diagram, OA=10, ∠APB=120°, the center of ⊙O is O, the tangent to circle O is PA, PB is the tangent to circle O. Find the length of line AB.",
-  "problem_img": "4710.png",
-  "construction_cdl": [
-    "Shape(AP,PC,OAC)",
-    "Shape(CP,PB,OCB)",
-    "Shape(OA,AD,DO)",
-    "Shape(OD,DB,BO)",
-    "Shape(CD,DA,OAC)",
-    "Shape(BD,DC,OCB)",
-    "Shape(AO,OB,OBA)",
-    "Collinear(PCDO)",
-    "Collinear(ADB)",
-    "Cocircular(O,ACB)"
-  ],
-  "text_cdl": [
-    "Equal(LengthOfLine(OA),10)",
-    "Equal(MeasureOfAngle(APB),120)",
-    "IsCentreOfCircle(O,O)",
-    "IsTangentOfCircle(PA,O)",
-    "IsTangentOfCircle(PB,O)"
-  ],
-  "image_cdl": [],
-  "goal_cdl": "Value(LengthOfLine(AB))",
-  "problem_answer": "10",
-  "theorem_seqs": [
-    "tangent_of_circle_property_length_equal(1,PA,PB,O)",
-    "radius_of_circle_property_length_equal(1,OA,O)",
-    "radius_of_circle_property_length_equal(1,OB,O)",
-    "mirror_congruent_triangle_judgment_sss(1,APO,BOP)",
-    "mirror_congruent_triangle_property_angle_equal(1,POA,PBO)",
-    "mirror_congruent_triangle_property_angle_equal(1,OAP,OPB)",
-    "angle_addition(1,APO,OPB)",
-    "tangent_of_circle_property_perpendicular(1,PA,O,O)",
-    "triangle_property_angle_sum(1,APO)",
-    "angle_addition(1,BOP,POA)",
-    "cosine_theorem(1,OAB)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "tangent_of_circle_property_length_equal(1,PA,PB,O)",
-      "radius_of_circle_property_length_equal(1,OA,O)",
-      "radius_of_circle_property_length_equal(1,OB,O)",
-      "angle_addition(1,APO,OPB)",
-      "tangent_of_circle_property_perpendicular(1,PA,O,O)",
-      "triangle_property_angle_sum(1,APO)",
-      "angle_addition(1,BOP,POA)",
-      "cosine_theorem(1,OAB)"
+    "problem_id": 4710,
+    "source": "GeoQA-4026",
+    "problem_level": 11,
+    "problem_img": "4710.png",
+    "construction_cdl": [
+        "Shape(AP,PC,OAC)",
+        "Shape(CP,PB,OCB)",
+        "Shape(OA,AD,DO)",
+        "Shape(OD,DB,BO)",
+        "Shape(CD,DA,OAC)",
+        "Shape(BD,DC,OCB)",
+        "Shape(AO,OB,OBA)",
+        "Collinear(PCDO)",
+        "Collinear(ADB)",
+        "Cocircular(O,ACB)"
     ],
-    "tangent_of_circle_property_length_equal(1,PA,PB,O)": [
-      "mirror_congruent_triangle_judgment_sss(1,APO,BOP)"
+    "text_cdl": [
+        "Equal(LengthOfLine(OA),10)",
+        "Equal(MeasureOfAngle(APB),120)",
+        "IsCentreOfCircle(O,O)",
+        "IsTangentOfCircle(PA,O)",
+        "IsTangentOfCircle(PB,O)"
     ],
-    "radius_of_circle_property_length_equal(1,OA,O)": [
-      "mirror_congruent_triangle_judgment_sss(1,APO,BOP)"
+    "image_cdl": [],
+    "goal_cdl": "Value(LengthOfLine(AB))",
+    "problem_answer": "10",
+    "theorem_seqs": [
+        "tangent_of_circle_property_length_equal(1,PA,PB,O)",
+        "radius_of_circle_property_length_equal(1,OA,O)",
+        "radius_of_circle_property_length_equal(1,OB,O)",
+        "mirror_congruent_triangle_judgment_sss(1,APO,BOP)",
+        "mirror_congruent_triangle_property_angle_equal(1,POA,PBO)",
+        "mirror_congruent_triangle_property_angle_equal(1,OAP,OPB)",
+        "angle_addition(1,APO,OPB)",
+        "tangent_of_circle_property_perpendicular(1,PA,O,O)",
+        "triangle_property_angle_sum(1,APO)",
+        "angle_addition(1,BOP,POA)",
+        "cosine_theorem(1,OAB)"
     ],
-    "radius_of_circle_property_length_equal(1,OB,O)": [
-      "mirror_congruent_triangle_judgment_sss(1,APO,BOP)"
-    ],
-    "mirror_congruent_triangle_judgment_sss(1,APO,BOP)": [
-      "mirror_congruent_triangle_property_angle_equal(1,POA,PBO)",
-      "mirror_congruent_triangle_property_angle_equal(1,OAP,OPB)"
-    ]
-  }
+    "theorem_seqs_dag": {
+        "START": [
+            "tangent_of_circle_property_length_equal(1,PA,PB,O)",
+            "radius_of_circle_property_length_equal(1,OA,O)",
+            "radius_of_circle_property_length_equal(1,OB,O)",
+            "angle_addition(1,APO,OPB)",
+            "tangent_of_circle_property_perpendicular(1,PA,O,O)",
+            "triangle_property_angle_sum(1,APO)",
+            "angle_addition(1,BOP,POA)",
+            "cosine_theorem(1,OAB)"
+        ],
+        "tangent_of_circle_property_length_equal(1,PA,PB,O)": [
+            "mirror_congruent_triangle_judgment_sss(1,APO,BOP)"
+        ],
+        "radius_of_circle_property_length_equal(1,OA,O)": [
+            "mirror_congruent_triangle_judgment_sss(1,APO,BOP)"
+        ],
+        "radius_of_circle_property_length_equal(1,OB,O)": [
+            "mirror_congruent_triangle_judgment_sss(1,APO,BOP)"
+        ],
+        "mirror_congruent_triangle_judgment_sss(1,APO,BOP)": [
+            "mirror_congruent_triangle_property_angle_equal(1,POA,PBO)",
+            "mirror_congruent_triangle_property_angle_equal(1,OAP,OPB)"
+        ]
+    }
 }

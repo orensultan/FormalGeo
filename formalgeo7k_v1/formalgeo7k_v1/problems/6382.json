@@ -1,81 +1,78 @@
 {
-  "problem_id": 6382,
-  "annotation": "YimingHe_2023-06-04",
-  "source": "GeoQA-9238",
-  "problem_level": 13,
-  "problem_text_cn": "如图所示，AB=5，AB=AF，BF=6，AO平分∠FAB，AD和BC是平行四边形ABCD的一组对边。求直线AE的长度。",
-  "problem_text_en": "As shown in the diagram, AB=5, AB=AF, BF=6, AO bisects ∠FAB, AD and BC are opposite sides of the ▱ ABCD. Find the length of line AE.",
-  "problem_img": "6382.png",
-  "construction_cdl": [
-    "Shape(AO,OF,FA)",
-    "Shape(AB,BO,OA)",
-    "Shape(OB,BE,EO)",
-    "Shape(OE,EF,FO)",
-    "Shape(FE,EC,CD,DF)",
-    "Collinear(AFD)",
-    "Collinear(BEC)",
-    "Collinear(AOE)",
-    "Collinear(BOF)"
-  ],
-  "text_cdl": [
-    "Equal(LengthOfLine(AB),5)",
-    "Equal(LengthOfLine(AB),LengthOfLine(AF))",
-    "Equal(LengthOfLine(BF),6)",
-    "IsBisectorOfAngle(AO,FAB)",
-    "Parallelogram(ABCD)"
-  ],
-  "image_cdl": [],
-  "goal_cdl": "Value(LengthOfLine(AE))",
-  "problem_answer": "8",
-  "theorem_seqs": [
-    "line_addition(1,AO,OE)",
-    "line_addition(1,BO,OF)",
-    "parallel_property_collinear_extend(3,AD,BC,F)",
-    "parallel_property_collinear_extend(3,CB,DA,E)",
-    "parallel_property_collinear_extend(3,CB,FA,E)",
-    "isosceles_triangle_judgment_line_equal(1,ABF)",
-    "parallel_property_alternate_interior_angle(1,EB,DA)",
-    "isosceles_triangle_judgment_angle_equal(1,BEA)",
-    "parallelogram_judgment_parallel_and_equal(1,FABE)",
-    "parallelogram_property_diagonal_bisection(1,ABEF,O)",
-    "isosceles_triangle_property_line_coincidence(3,ABF,O)",
-    "right_triangle_judgment_angle(1,BOA)",
-    "right_triangle_property_pythagorean(1,BOA)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "line_addition(1,AO,OE)",
-      "line_addition(1,BO,OF)",
-      "parallel_property_collinear_extend(3,AD,BC,F)",
-      "parallel_property_collinear_extend(3,CB,DA,E)",
-      "isosceles_triangle_judgment_line_equal(1,ABF)"
+    "problem_id": 6382,
+    "source": "GeoQA-9238",
+    "problem_level": 13,
+    "problem_img": "6382.png",
+    "construction_cdl": [
+        "Shape(AO,OF,FA)",
+        "Shape(AB,BO,OA)",
+        "Shape(OB,BE,EO)",
+        "Shape(OE,EF,FO)",
+        "Shape(FE,EC,CD,DF)",
+        "Collinear(AFD)",
+        "Collinear(BEC)",
+        "Collinear(AOE)",
+        "Collinear(BOF)"
     ],
-    "parallel_property_collinear_extend(3,AD,BC,F)": [
-      "parallel_property_collinear_extend(3,CB,FA,E)"
+    "text_cdl": [
+        "Equal(LengthOfLine(AB),5)",
+        "Equal(LengthOfLine(AB),LengthOfLine(AF))",
+        "Equal(LengthOfLine(BF),6)",
+        "IsBisectorOfAngle(AO,FAB)",
+        "Parallelogram(ABCD)"
     ],
-    "parallel_property_collinear_extend(3,CB,DA,E)": [
-      "parallel_property_alternate_interior_angle(1,EB,DA)"
+    "image_cdl": [],
+    "goal_cdl": "Value(LengthOfLine(AE))",
+    "problem_answer": "8",
+    "theorem_seqs": [
+        "line_addition(1,AO,OE)",
+        "line_addition(1,BO,OF)",
+        "parallel_property_collinear_extend(3,AD,BC,F)",
+        "parallel_property_collinear_extend(3,CB,DA,E)",
+        "parallel_property_collinear_extend(3,CB,FA,E)",
+        "isosceles_triangle_judgment_line_equal(1,ABF)",
+        "parallel_property_alternate_interior_angle(1,EB,DA)",
+        "isosceles_triangle_judgment_angle_equal(1,BEA)",
+        "parallelogram_judgment_parallel_and_equal(1,FABE)",
+        "parallelogram_property_diagonal_bisection(1,ABEF,O)",
+        "isosceles_triangle_property_line_coincidence(3,ABF,O)",
+        "right_triangle_judgment_angle(1,BOA)",
+        "right_triangle_property_pythagorean(1,BOA)"
     ],
-    "parallel_property_collinear_extend(3,CB,FA,E)": [
-      "parallelogram_judgment_parallel_and_equal(1,FABE)"
-    ],
-    "isosceles_triangle_judgment_line_equal(1,ABF)": [
-      "isosceles_triangle_property_line_coincidence(3,ABF,O)"
-    ],
-    "parallel_property_alternate_interior_angle(1,EB,DA)": [
-      "isosceles_triangle_judgment_angle_equal(1,BEA)"
-    ],
-    "isosceles_triangle_judgment_angle_equal(1,BEA)": [
-      "parallelogram_judgment_parallel_and_equal(1,FABE)"
-    ],
-    "parallelogram_judgment_parallel_and_equal(1,FABE)": [
-      "parallelogram_property_diagonal_bisection(1,ABEF,O)"
-    ],
-    "isosceles_triangle_property_line_coincidence(3,ABF,O)": [
-      "right_triangle_judgment_angle(1,BOA)"
-    ],
-    "right_triangle_judgment_angle(1,BOA)": [
-      "right_triangle_property_pythagorean(1,BOA)"
-    ]
-  }
+    "theorem_seqs_dag": {
+        "START": [
+            "line_addition(1,AO,OE)",
+            "line_addition(1,BO,OF)",
+            "parallel_property_collinear_extend(3,AD,BC,F)",
+            "parallel_property_collinear_extend(3,CB,DA,E)",
+            "isosceles_triangle_judgment_line_equal(1,ABF)"
+        ],
+        "parallel_property_collinear_extend(3,AD,BC,F)": [
+            "parallel_property_collinear_extend(3,CB,FA,E)"
+        ],
+        "parallel_property_collinear_extend(3,CB,DA,E)": [
+            "parallel_property_alternate_interior_angle(1,EB,DA)"
+        ],
+        "parallel_property_collinear_extend(3,CB,FA,E)": [
+            "parallelogram_judgment_parallel_and_equal(1,FABE)"
+        ],
+        "isosceles_triangle_judgment_line_equal(1,ABF)": [
+            "isosceles_triangle_property_line_coincidence(3,ABF,O)"
+        ],
+        "parallel_property_alternate_interior_angle(1,EB,DA)": [
+            "isosceles_triangle_judgment_angle_equal(1,BEA)"
+        ],
+        "isosceles_triangle_judgment_angle_equal(1,BEA)": [
+            "parallelogram_judgment_parallel_and_equal(1,FABE)"
+        ],
+        "parallelogram_judgment_parallel_and_equal(1,FABE)": [
+            "parallelogram_property_diagonal_bisection(1,ABEF,O)"
+        ],
+        "isosceles_triangle_property_line_coincidence(3,ABF,O)": [
+            "right_triangle_judgment_angle(1,BOA)"
+        ],
+        "right_triangle_judgment_angle(1,BOA)": [
+            "right_triangle_property_pythagorean(1,BOA)"
+        ]
+    }
 }

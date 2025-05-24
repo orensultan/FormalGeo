@@ -1,41 +1,38 @@
 {
-  "problem_id": 4055,
-  "annotation": "XiaokaiZhang_2023-05-07",
-  "source": "GeoQA-2361",
-  "problem_level": 4,
-  "problem_text_cn": "如图所示，AB=12，CD=40，DA=20，CA垂直于BA，CD⊥ED。求直线ED的长度。",
-  "problem_text_en": "As shown in the diagram, AB=12, CD=40, DA=20, CA is perpendicular to BA, CD is perpendicular to ED. Find the length of line ED.",
-  "problem_img": "4055.png",
-  "construction_cdl": [
-    "Shape(EC,CD,DE)",
-    "Shape(BE,ED,DA,AB)",
-    "Collinear(CEB)",
-    "Collinear(CDA)"
-  ],
-  "text_cdl": [
-    "Equal(LengthOfLine(AB),12)",
-    "Equal(LengthOfLine(CD),40)",
-    "Equal(LengthOfLine(DA),20)",
-    "PerpendicularBetweenLine(CA,BA)",
-    "PerpendicularBetweenLine(CD,ED)"
-  ],
-  "image_cdl": [],
-  "goal_cdl": "Value(LengthOfLine(ED))",
-  "problem_answer": "8",
-  "theorem_seqs": [
-    "similar_triangle_judgment_aa(1,ECD,BCA)",
-    "similar_triangle_property_line_ratio(1,ECD,BCA)",
-    "similar_triangle_property_line_ratio(1,CDE,CAB)",
-    "line_addition(1,CD,DA)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "similar_triangle_judgment_aa(1,ECD,BCA)",
-      "line_addition(1,CD,DA)"
+    "problem_id": 4055,
+    "source": "GeoQA-2361",
+    "problem_level": 4,
+    "problem_img": "4055.png",
+    "construction_cdl": [
+        "Shape(EC,CD,DE)",
+        "Shape(BE,ED,DA,AB)",
+        "Collinear(CEB)",
+        "Collinear(CDA)"
     ],
-    "similar_triangle_judgment_aa(1,ECD,BCA)": [
-      "similar_triangle_property_line_ratio(1,ECD,BCA)",
-      "similar_triangle_property_line_ratio(1,CDE,CAB)"
-    ]
-  }
+    "text_cdl": [
+        "Equal(LengthOfLine(AB),12)",
+        "Equal(LengthOfLine(CD),40)",
+        "Equal(LengthOfLine(DA),20)",
+        "PerpendicularBetweenLine(CA,BA)",
+        "PerpendicularBetweenLine(CD,ED)"
+    ],
+    "image_cdl": [],
+    "goal_cdl": "Value(LengthOfLine(ED))",
+    "problem_answer": "8",
+    "theorem_seqs": [
+        "similar_triangle_judgment_aa(1,ECD,BCA)",
+        "similar_triangle_property_line_ratio(1,ECD,BCA)",
+        "similar_triangle_property_line_ratio(1,CDE,CAB)",
+        "line_addition(1,CD,DA)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "similar_triangle_judgment_aa(1,ECD,BCA)",
+            "line_addition(1,CD,DA)"
+        ],
+        "similar_triangle_judgment_aa(1,ECD,BCA)": [
+            "similar_triangle_property_line_ratio(1,ECD,BCA)",
+            "similar_triangle_property_line_ratio(1,CDE,CAB)"
+        ]
+    }
 }

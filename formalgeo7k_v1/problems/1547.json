@@ -1,42 +1,39 @@
 {
-  "problem_id": 1547,
-  "annotation": "QikeHuang_2023-04-09",
-  "source": "Geometry3k-1606",
-  "problem_level": 2,
-  "problem_text_cn": "如图所示，LM=10，NM=10，PL=2*x-4，PN=x+5，NM垂直于PM。求直线NP的长度。",
-  "problem_text_en": "As shown in the diagram, LM=10, NM=10, PL=2*x-4, PN=x+5, NM is perpendicular to PM. Find the length of line NP.",
-  "problem_img": "1547.png",
-  "construction_cdl": [
-    "Shape(LP,PM,ML)",
-    "Shape(MP,PN,NM)",
-    "Collinear(LMN)"
-  ],
-  "text_cdl": [
-    "Equal(LengthOfLine(LM),10)",
-    "Equal(LengthOfLine(NM),10)",
-    "Equal(LengthOfLine(PL),2*x-4)",
-    "Equal(LengthOfLine(PN),x+5)",
-    "PerpendicularBetweenLine(NM,PM)"
-  ],
-  "image_cdl": [
-    "Equal(LengthOfLine(LM),10)",
-    "Equal(LengthOfLine(NM),10)",
-    "Equal(LengthOfLine(PL),2*x-4)",
-    "Equal(LengthOfLine(PN),x+5)",
-    "PerpendicularBetweenLine(NM,PM)"
-  ],
-  "goal_cdl": "Value(LengthOfLine(NP))",
-  "problem_answer": "14",
-  "theorem_seqs": [
-    "perpendicular_bisector_judgment_per_and_mid(1,PM,NL)",
-    "perpendicular_bisector_property_distance_equal(1,PM,NL)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "perpendicular_bisector_judgment_per_and_mid(1,PM,NL)"
+    "problem_id": 1547,
+    "source": "Geometry3k-1606",
+    "problem_level": 2,
+    "problem_img": "1547.png",
+    "construction_cdl": [
+        "Shape(LP,PM,ML)",
+        "Shape(MP,PN,NM)",
+        "Collinear(LMN)"
     ],
-    "perpendicular_bisector_judgment_per_and_mid(1,PM,NL)": [
-      "perpendicular_bisector_property_distance_equal(1,PM,NL)"
-    ]
-  }
+    "text_cdl": [
+        "Equal(LengthOfLine(LM),10)",
+        "Equal(LengthOfLine(NM),10)",
+        "Equal(LengthOfLine(PL),2*x-4)",
+        "Equal(LengthOfLine(PN),x+5)",
+        "PerpendicularBetweenLine(NM,PM)"
+    ],
+    "image_cdl": [
+        "Equal(LengthOfLine(LM),10)",
+        "Equal(LengthOfLine(NM),10)",
+        "Equal(LengthOfLine(PL),2*x-4)",
+        "Equal(LengthOfLine(PN),x+5)",
+        "PerpendicularBetweenLine(NM,PM)"
+    ],
+    "goal_cdl": "Value(LengthOfLine(NP))",
+    "problem_answer": "14",
+    "theorem_seqs": [
+        "perpendicular_bisector_judgment_per_and_mid(1,PM,NL)",
+        "perpendicular_bisector_property_distance_equal(1,PM,NL)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "perpendicular_bisector_judgment_per_and_mid(1,PM,NL)"
+        ],
+        "perpendicular_bisector_judgment_per_and_mid(1,PM,NL)": [
+            "perpendicular_bisector_property_distance_equal(1,PM,NL)"
+        ]
+    }
 }

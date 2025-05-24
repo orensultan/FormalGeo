@@ -1,35 +1,32 @@
 {
-  "problem_id": 5937,
-  "annotation": "XiaoxiaoJin_2023-05-28",
-  "source": "GeoQA-8255",
-  "problem_level": 3,
-  "problem_text_cn": "如图所示，AD=120，∠ACB=60°，∠ADB=90°，∠CBA=30°。求直线BC的长度。",
-  "problem_text_en": "As shown in the diagram, AD=120, ∠ACB=60°, ∠ADB=90°, ∠CBA=30°. Find the length of line BC.",
-  "problem_img": "5937.png",
-  "construction_cdl": [
-    "Shape(BA,AD,DB)",
-    "Shape(DA,AC,CD)",
-    "Collinear(BDC)"
-  ],
-  "text_cdl": [
-    "Equal(LengthOfLine(AD),120)",
-    "Equal(MeasureOfAngle(ACB),60)",
-    "Equal(MeasureOfAngle(ADB),90)",
-    "Equal(MeasureOfAngle(CBA),30)"
-  ],
-  "image_cdl": [],
-  "goal_cdl": "Value(LengthOfLine(BC))",
-  "problem_answer": "160*sqrt(3)",
-  "theorem_seqs": [
-    "triangle_property_angle_sum(1,BAC)",
-    "sine_theorem(1,ADB)",
-    "sine_theorem(1,BAC)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "triangle_property_angle_sum(1,BAC)",
-      "sine_theorem(1,ADB)",
-      "sine_theorem(1,BAC)"
-    ]
-  }
+    "problem_id": 5937,
+    "source": "GeoQA-8255",
+    "problem_level": 3,
+    "problem_img": "5937.png",
+    "construction_cdl": [
+        "Shape(BA,AD,DB)",
+        "Shape(DA,AC,CD)",
+        "Collinear(BDC)"
+    ],
+    "text_cdl": [
+        "Equal(LengthOfLine(AD),120)",
+        "Equal(MeasureOfAngle(ACB),60)",
+        "Equal(MeasureOfAngle(ADB),90)",
+        "Equal(MeasureOfAngle(CBA),30)"
+    ],
+    "image_cdl": [],
+    "goal_cdl": "Value(LengthOfLine(BC))",
+    "problem_answer": "160*sqrt(3)",
+    "theorem_seqs": [
+        "triangle_property_angle_sum(1,BAC)",
+        "sine_theorem(1,ADB)",
+        "sine_theorem(1,BAC)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "triangle_property_angle_sum(1,BAC)",
+            "sine_theorem(1,ADB)",
+            "sine_theorem(1,BAC)"
+        ]
+    }
 }

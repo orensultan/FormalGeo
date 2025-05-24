@@ -1,38 +1,35 @@
 {
-  "problem_id": 6413,
-  "annotation": "YimingHe_2023-06-04",
-  "source": "GeoQA-9280",
-  "problem_level": 4,
-  "problem_text_cn": "如图所示，∠DEB=150°，BE是∠ABC的角平分线，AD和BC是平行四边形ABCD的一组对边。求∠EAB的大小。",
-  "problem_text_en": "As shown in the diagram, ∠DEB=150°, BE is the angle bisector of ∠ABC, quadrilateral ABCD is a ▱. Find the measure of ∠EAB.",
-  "problem_img": "6413.png",
-  "construction_cdl": [
-    "Shape(AB,BE,EA)",
-    "Shape(EB,BC,CD,DE)",
-    "Collinear(AED)"
-  ],
-  "text_cdl": [
-    "Equal(MeasureOfAngle(DEB),150)",
-    "IsBisectorOfAngle(BE,ABC)",
-    "Parallelogram(ABCD)"
-  ],
-  "image_cdl": [],
-  "goal_cdl": "Value(MeasureOfAngle(EAB))",
-  "problem_answer": "120",
-  "theorem_seqs": [
-    "adjacent_complementary_angle(1,DEB,BEA)",
-    "parallel_property_collinear_extend(3,AD,BC,E)",
-    "parallel_property_alternate_interior_angle(2,AE,BC)",
-    "triangle_property_angle_sum(1,ABE)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "adjacent_complementary_angle(1,DEB,BEA)",
-      "parallel_property_collinear_extend(3,AD,BC,E)",
-      "triangle_property_angle_sum(1,ABE)"
+    "problem_id": 6413,
+    "source": "GeoQA-9280",
+    "problem_level": 4,
+    "problem_img": "6413.png",
+    "construction_cdl": [
+        "Shape(AB,BE,EA)",
+        "Shape(EB,BC,CD,DE)",
+        "Collinear(AED)"
     ],
-    "parallel_property_collinear_extend(3,AD,BC,E)": [
-      "parallel_property_alternate_interior_angle(2,AE,BC)"
-    ]
-  }
+    "text_cdl": [
+        "Equal(MeasureOfAngle(DEB),150)",
+        "IsBisectorOfAngle(BE,ABC)",
+        "Parallelogram(ABCD)"
+    ],
+    "image_cdl": [],
+    "goal_cdl": "Value(MeasureOfAngle(EAB))",
+    "problem_answer": "120",
+    "theorem_seqs": [
+        "adjacent_complementary_angle(1,DEB,BEA)",
+        "parallel_property_collinear_extend(3,AD,BC,E)",
+        "parallel_property_alternate_interior_angle(2,AE,BC)",
+        "triangle_property_angle_sum(1,ABE)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "adjacent_complementary_angle(1,DEB,BEA)",
+            "parallel_property_collinear_extend(3,AD,BC,E)",
+            "triangle_property_angle_sum(1,ABE)"
+        ],
+        "parallel_property_collinear_extend(3,AD,BC,E)": [
+            "parallel_property_alternate_interior_angle(2,AE,BC)"
+        ]
+    }
 }

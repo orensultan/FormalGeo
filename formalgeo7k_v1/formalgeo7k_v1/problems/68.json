@@ -1,52 +1,49 @@
 {
-  "problem_id": 68,
-  "annotation": "XiaokaiZhang_2023-03-12",
-  "source": "Geometry3k-68",
-  "problem_level": 6,
-  "problem_text_cn": "如图所示，AD=5，BC=32，CD=12，AC垂直于BC，BD垂直于CD，三角形ACB相似于三角形CDB。求△ACB的周长。",
-  "problem_text_en": "As shown in the diagram, AD=5, BC=32, CD=12, AC⊥BC, BD⊥CD, triangle ACB is similar to triangle CDB.. Find the perimeter of triangle ACB.",
-  "problem_img": "68.png",
-  "construction_cdl": [
-    "Shape(AC,CD,DA)",
-    "Shape(DC,CB,BD)",
-    "Collinear(ADB)"
-  ],
-  "text_cdl": [
-    "Equal(LengthOfLine(AD),5)",
-    "Equal(LengthOfLine(BC),32)",
-    "Equal(LengthOfLine(CD),12)",
-    "PerpendicularBetweenLine(AC,BC)",
-    "PerpendicularBetweenLine(BD,CD)",
-    "SimilarBetweenTriangle(ACB,CDB)"
-  ],
-  "image_cdl": [
-    "PerpendicularBetweenLine(AC,BC)",
-    "PerpendicularBetweenLine(BD,CD)"
-  ],
-  "goal_cdl": "Value(PerimeterOfTriangle(ACB))",
-  "problem_answer": "sqrt(1193)+45",
-  "theorem_seqs": [
-    "adjacent_complementary_angle(1,BDC,CDA)",
-    "right_triangle_judgment_angle(1,CDA)",
-    "right_triangle_judgment_angle(1,ACB)",
-    "right_triangle_property_pythagorean(1,CDA)",
-    "right_triangle_property_pythagorean(1,ACB)",
-    "triangle_perimeter_formula(1,ACB)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "adjacent_complementary_angle(1,BDC,CDA)",
-      "right_triangle_judgment_angle(1,ACB)",
-      "triangle_perimeter_formula(1,ACB)"
+    "problem_id": 68,
+    "source": "Geometry3k-68",
+    "problem_level": 6,
+    "problem_img": "68.png",
+    "construction_cdl": [
+        "Shape(AC,CD,DA)",
+        "Shape(DC,CB,BD)",
+        "Collinear(ADB)"
     ],
-    "adjacent_complementary_angle(1,BDC,CDA)": [
-      "right_triangle_judgment_angle(1,CDA)"
+    "text_cdl": [
+        "Equal(LengthOfLine(AD),5)",
+        "Equal(LengthOfLine(BC),32)",
+        "Equal(LengthOfLine(CD),12)",
+        "PerpendicularBetweenLine(AC,BC)",
+        "PerpendicularBetweenLine(BD,CD)",
+        "SimilarBetweenTriangle(ACB,CDB)"
     ],
-    "right_triangle_judgment_angle(1,CDA)": [
-      "right_triangle_property_pythagorean(1,CDA)"
+    "image_cdl": [
+        "PerpendicularBetweenLine(AC,BC)",
+        "PerpendicularBetweenLine(BD,CD)"
     ],
-    "right_triangle_judgment_angle(1,ACB)": [
-      "right_triangle_property_pythagorean(1,ACB)"
-    ]
-  }
+    "goal_cdl": "Value(PerimeterOfTriangle(ACB))",
+    "problem_answer": "sqrt(1193)+45",
+    "theorem_seqs": [
+        "adjacent_complementary_angle(1,BDC,CDA)",
+        "right_triangle_judgment_angle(1,CDA)",
+        "right_triangle_judgment_angle(1,ACB)",
+        "right_triangle_property_pythagorean(1,CDA)",
+        "right_triangle_property_pythagorean(1,ACB)",
+        "triangle_perimeter_formula(1,ACB)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "adjacent_complementary_angle(1,BDC,CDA)",
+            "right_triangle_judgment_angle(1,ACB)",
+            "triangle_perimeter_formula(1,ACB)"
+        ],
+        "adjacent_complementary_angle(1,BDC,CDA)": [
+            "right_triangle_judgment_angle(1,CDA)"
+        ],
+        "right_triangle_judgment_angle(1,CDA)": [
+            "right_triangle_property_pythagorean(1,CDA)"
+        ],
+        "right_triangle_judgment_angle(1,ACB)": [
+            "right_triangle_property_pythagorean(1,ACB)"
+        ]
+    }
 }

@@ -1,51 +1,48 @@
 {
-  "problem_id": 3090,
-  "annotation": "YimingHe_2023-04-23",
-  "source": "GeoQA-324",
-  "problem_level": 7,
-  "problem_text_cn": "如图所示，AB=8，⊙O的半径为5，O是⊙O的圆心，AH⊥OH。求直线HC的长度。",
-  "problem_text_en": "As shown in the diagram, AB=8, the radius of circle O is 5, the center of circle O is O, AH⊥OH. Find the length of line HC.",
-  "problem_img": "3090.png",
-  "construction_cdl": [
-    "Shape(AH,HO,OB,OBA)",
-    "Shape(OH,HB,BO)",
-    "Shape(CH,HA,OAC)",
-    "Shape(BH,HC,OCB)",
-    "Collinear(AHB)",
-    "Collinear(OHC)",
-    "Cocircular(O,ACB)"
-  ],
-  "text_cdl": [
-    "Equal(LengthOfLine(AB),8)",
-    "Equal(RadiusOfCircle(O),5)",
-    "IsCentreOfCircle(O,O)",
-    "PerpendicularBetweenLine(AH,OH)"
-  ],
-  "image_cdl": [],
-  "goal_cdl": "Value(LengthOfLine(HC))",
-  "problem_answer": "2",
-  "theorem_seqs": [
-    "line_addition(1,AH,HB)",
-    "line_addition(1,OH,HC)",
-    "circle_property_chord_perpendicular_bisect_chord(1,O,OH,AB)",
-    "radius_of_circle_property_length_equal(1,OC,O)",
-    "radius_of_circle_property_length_equal(1,OB,O)",
-    "right_triangle_judgment_angle(1,OHB)",
-    "right_triangle_property_pythagorean(1,OHB)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "line_addition(1,AH,HB)",
-      "line_addition(1,OH,HC)",
-      "circle_property_chord_perpendicular_bisect_chord(1,O,OH,AB)",
-      "radius_of_circle_property_length_equal(1,OC,O)",
-      "radius_of_circle_property_length_equal(1,OB,O)"
+    "problem_id": 3090,
+    "source": "GeoQA-324",
+    "problem_level": 7,
+    "problem_img": "3090.png",
+    "construction_cdl": [
+        "Shape(AH,HO,OB,OBA)",
+        "Shape(OH,HB,BO)",
+        "Shape(CH,HA,OAC)",
+        "Shape(BH,HC,OCB)",
+        "Collinear(AHB)",
+        "Collinear(OHC)",
+        "Cocircular(O,ACB)"
     ],
-    "circle_property_chord_perpendicular_bisect_chord(1,O,OH,AB)": [
-      "right_triangle_judgment_angle(1,OHB)"
+    "text_cdl": [
+        "Equal(LengthOfLine(AB),8)",
+        "Equal(RadiusOfCircle(O),5)",
+        "IsCentreOfCircle(O,O)",
+        "PerpendicularBetweenLine(AH,OH)"
     ],
-    "right_triangle_judgment_angle(1,OHB)": [
-      "right_triangle_property_pythagorean(1,OHB)"
-    ]
-  }
+    "image_cdl": [],
+    "goal_cdl": "Value(LengthOfLine(HC))",
+    "problem_answer": "2",
+    "theorem_seqs": [
+        "line_addition(1,AH,HB)",
+        "line_addition(1,OH,HC)",
+        "circle_property_chord_perpendicular_bisect_chord(1,O,OH,AB)",
+        "radius_of_circle_property_length_equal(1,OC,O)",
+        "radius_of_circle_property_length_equal(1,OB,O)",
+        "right_triangle_judgment_angle(1,OHB)",
+        "right_triangle_property_pythagorean(1,OHB)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "line_addition(1,AH,HB)",
+            "line_addition(1,OH,HC)",
+            "circle_property_chord_perpendicular_bisect_chord(1,O,OH,AB)",
+            "radius_of_circle_property_length_equal(1,OC,O)",
+            "radius_of_circle_property_length_equal(1,OB,O)"
+        ],
+        "circle_property_chord_perpendicular_bisect_chord(1,O,OH,AB)": [
+            "right_triangle_judgment_angle(1,OHB)"
+        ],
+        "right_triangle_judgment_angle(1,OHB)": [
+            "right_triangle_property_pythagorean(1,OHB)"
+        ]
+    }
 }

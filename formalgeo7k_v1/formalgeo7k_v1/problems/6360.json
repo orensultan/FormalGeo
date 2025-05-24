@@ -1,48 +1,45 @@
 {
-  "problem_id": 6360,
-  "annotation": "ChengQin_2023-06-04",
-  "source": "GeoQA-9200",
-  "problem_level": 4,
-  "problem_text_cn": "如图所示，OE=3，E是线段AD的中点，ABCD是菱形。求直线AD的长度。",
-  "problem_text_en": "As shown in the diagram, OE=3, E is the midpoint of segment AD, ABCD is a rhombus. Find the length of line AD.",
-  "problem_img": "6360.png",
-  "construction_cdl": [
-    "Shape(DE,EO,OD)",
-    "Shape(EA,AO,OE)",
-    "Shape(DO,OC,CD)",
-    "Shape(AB,BO,OA)",
-    "Shape(OB,BC,CO)",
-    "Collinear(AED)",
-    "Collinear(DOB)",
-    "Collinear(AOC)"
-  ],
-  "text_cdl": [
-    "Equal(LengthOfLine(OE),3)",
-    "IsMidpointOfLine(E,AD)",
-    "Rhombus(ABCD)"
-  ],
-  "image_cdl": [],
-  "goal_cdl": "Value(LengthOfLine(AD))",
-  "problem_answer": "6",
-  "theorem_seqs": [
-    "kite_property_diagonal_perpendicular_bisection(1,ABCD,O)",
-    "right_triangle_judgment_angle(1,AOD)",
-    "median_of_triangle_judgment(1,OE,ODA)",
-    "right_triangle_property_length_of_median(1,AOD,E)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "kite_property_diagonal_perpendicular_bisection(1,ABCD,O)",
-      "median_of_triangle_judgment(1,OE,ODA)"
+    "problem_id": 6360,
+    "source": "GeoQA-9200",
+    "problem_level": 4,
+    "problem_img": "6360.png",
+    "construction_cdl": [
+        "Shape(DE,EO,OD)",
+        "Shape(EA,AO,OE)",
+        "Shape(DO,OC,CD)",
+        "Shape(AB,BO,OA)",
+        "Shape(OB,BC,CO)",
+        "Collinear(AED)",
+        "Collinear(DOB)",
+        "Collinear(AOC)"
     ],
-    "kite_property_diagonal_perpendicular_bisection(1,ABCD,O)": [
-      "right_triangle_judgment_angle(1,AOD)"
+    "text_cdl": [
+        "Equal(LengthOfLine(OE),3)",
+        "IsMidpointOfLine(E,AD)",
+        "Rhombus(ABCD)"
     ],
-    "right_triangle_judgment_angle(1,AOD)": [
-      "right_triangle_property_length_of_median(1,AOD,E)"
+    "image_cdl": [],
+    "goal_cdl": "Value(LengthOfLine(AD))",
+    "problem_answer": "6",
+    "theorem_seqs": [
+        "kite_property_diagonal_perpendicular_bisection(1,ABCD,O)",
+        "right_triangle_judgment_angle(1,AOD)",
+        "median_of_triangle_judgment(1,OE,ODA)",
+        "right_triangle_property_length_of_median(1,AOD,E)"
     ],
-    "median_of_triangle_judgment(1,OE,ODA)": [
-      "right_triangle_property_length_of_median(1,AOD,E)"
-    ]
-  }
+    "theorem_seqs_dag": {
+        "START": [
+            "kite_property_diagonal_perpendicular_bisection(1,ABCD,O)",
+            "median_of_triangle_judgment(1,OE,ODA)"
+        ],
+        "kite_property_diagonal_perpendicular_bisection(1,ABCD,O)": [
+            "right_triangle_judgment_angle(1,AOD)"
+        ],
+        "right_triangle_judgment_angle(1,AOD)": [
+            "right_triangle_property_length_of_median(1,AOD,E)"
+        ],
+        "median_of_triangle_judgment(1,OE,ODA)": [
+            "right_triangle_property_length_of_median(1,AOD,E)"
+        ]
+    }
 }

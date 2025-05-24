@@ -1,42 +1,39 @@
 {
-  "problem_id": 6611,
-  "annotation": "YanjunGuo_2023-06-04",
-  "source": "GeoQA-9602",
-  "problem_level": 4,
-  "problem_text_cn": "如图所示，∠CAB=35°，弧OCD的角度为80，O是⊙O的圆心。求∠DOB的大小。",
-  "problem_text_en": "As shown in the diagram, ∠CAB=35°, the measure of ⌒OCD is 80, O is the center of circle O. Find the measure of ∠DOB.",
-  "problem_img": "6611.png",
-  "construction_cdl": [
-    "Shape(BA,OAB)",
-    "Shape(CE,EB,OBC)",
-    "Shape(DO,OC,OCD)",
-    "Shape(AE,EO,OD,ODA)",
-    "Shape(BE,EA,AB)",
-    "Shape(OE,EC,CO)",
-    "Collinear(AEC)",
-    "Collinear(BEO)",
-    "Cocircular(O,ABCD)"
-  ],
-  "text_cdl": [
-    "Equal(MeasureOfAngle(CAB),35)",
-    "Equal(MeasureOfArc(OCD),80)",
-    "IsCentreOfCircle(O,O)"
-  ],
-  "image_cdl": [],
-  "goal_cdl": "Value(MeasureOfAngle(DOB))",
-  "problem_answer": "150",
-  "theorem_seqs": [
-    "arc_property_center_angle(1,OBC,O)",
-    "arc_property_center_angle(1,OCD,O)",
-    "arc_property_circumference_angle_external(1,OBC,A)",
-    "angle_addition(1,DOC,COE)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "arc_property_center_angle(1,OBC,O)",
-      "arc_property_center_angle(1,OCD,O)",
-      "arc_property_circumference_angle_external(1,OBC,A)",
-      "angle_addition(1,DOC,COE)"
-    ]
-  }
+    "problem_id": 6611,
+    "source": "GeoQA-9602",
+    "problem_level": 4,
+    "problem_img": "6611.png",
+    "construction_cdl": [
+        "Shape(BA,OAB)",
+        "Shape(CE,EB,OBC)",
+        "Shape(DO,OC,OCD)",
+        "Shape(AE,EO,OD,ODA)",
+        "Shape(BE,EA,AB)",
+        "Shape(OE,EC,CO)",
+        "Collinear(AEC)",
+        "Collinear(BEO)",
+        "Cocircular(O,ABCD)"
+    ],
+    "text_cdl": [
+        "Equal(MeasureOfAngle(CAB),35)",
+        "Equal(MeasureOfArc(OCD),80)",
+        "IsCentreOfCircle(O,O)"
+    ],
+    "image_cdl": [],
+    "goal_cdl": "Value(MeasureOfAngle(DOB))",
+    "problem_answer": "150",
+    "theorem_seqs": [
+        "arc_property_center_angle(1,OBC,O)",
+        "arc_property_center_angle(1,OCD,O)",
+        "arc_property_circumference_angle_external(1,OBC,A)",
+        "angle_addition(1,DOC,COE)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "arc_property_center_angle(1,OBC,O)",
+            "arc_property_center_angle(1,OCD,O)",
+            "arc_property_circumference_angle_external(1,OBC,A)",
+            "angle_addition(1,DOC,COE)"
+        ]
+    }
 }

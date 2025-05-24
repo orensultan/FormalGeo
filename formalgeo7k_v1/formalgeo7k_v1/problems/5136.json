@@ -1,35 +1,32 @@
 {
-  "problem_id": 5136,
-  "annotation": "JiaZou_2023-05-21",
-  "source": "GeoQA-5018",
-  "problem_level": 2,
-  "problem_text_cn": "如图所示，∠AOC=50°，∠BOE=25°，∠DOC=90°，∠EOD=90°。求∠BOA的大小。",
-  "problem_text_en": "As shown in the diagram, ∠AOC=50°, ∠BOE=25°, ∠DOC=90°, ∠EOD=90°. Find the measure of ∠BOA.",
-  "problem_img": "5136.png",
-  "construction_cdl": [
-    "Shape(BO,OE)",
-    "Shape(EO,OD)",
-    "Shape(DO,OA)",
-    "Shape(AO,OC)",
-    "Collinear(EOC)"
-  ],
-  "text_cdl": [
-    "Equal(MeasureOfAngle(AOC),50)",
-    "Equal(MeasureOfAngle(BOE),25)",
-    "Equal(MeasureOfAngle(DOC),90)",
-    "Equal(MeasureOfAngle(EOD),90)"
-  ],
-  "image_cdl": [],
-  "goal_cdl": "Value(MeasureOfAngle(BOA))",
-  "problem_answer": "155",
-  "theorem_seqs": [
-    "adjacent_complementary_angle(1,EOA,AOC)",
-    "angle_addition(1,BOE,EOA)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "adjacent_complementary_angle(1,EOA,AOC)",
-      "angle_addition(1,BOE,EOA)"
-    ]
-  }
+    "problem_id": 5136,
+    "source": "GeoQA-5018",
+    "problem_level": 2,
+    "problem_img": "5136.png",
+    "construction_cdl": [
+        "Shape(BO,OE)",
+        "Shape(EO,OD)",
+        "Shape(DO,OA)",
+        "Shape(AO,OC)",
+        "Collinear(EOC)"
+    ],
+    "text_cdl": [
+        "Equal(MeasureOfAngle(AOC),50)",
+        "Equal(MeasureOfAngle(BOE),25)",
+        "Equal(MeasureOfAngle(DOC),90)",
+        "Equal(MeasureOfAngle(EOD),90)"
+    ],
+    "image_cdl": [],
+    "goal_cdl": "Value(MeasureOfAngle(BOA))",
+    "problem_answer": "155",
+    "theorem_seqs": [
+        "adjacent_complementary_angle(1,EOA,AOC)",
+        "angle_addition(1,BOE,EOA)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "adjacent_complementary_angle(1,EOA,AOC)",
+            "angle_addition(1,BOE,EOA)"
+        ]
+    }
 }

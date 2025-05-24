@@ -1,37 +1,34 @@
 {
-  "problem_id": 4436,
-  "annotation": "JiaZou_2023-05-14",
-  "source": "GeoQA-3394",
-  "problem_level": 2,
-  "problem_text_cn": "如图所示，∠BOA=50°，O是圆O的圆心。求∠BCA的大小。",
-  "problem_text_en": "As shown in the diagram, ∠BOA=50°, the center of ⊙O is O. Find the measure of ∠BCA.",
-  "problem_img": "4436.png",
-  "construction_cdl": [
-    "Shape(OA,AE,EO)",
-    "Shape(EA,AB,BE)",
-    "Shape(EB,BC,CE)",
-    "Shape(AO,OE,EC,OCA)",
-    "Shape(BA,OAB)",
-    "Shape(CB,OBC)",
-    "Collinear(AEC)",
-    "Collinear(OEB)",
-    "Cocircular(O,ABC)"
-  ],
-  "text_cdl": [
-    "Equal(MeasureOfAngle(BOA),50)",
-    "IsCentreOfCircle(O,O)"
-  ],
-  "image_cdl": [],
-  "goal_cdl": "Value(MeasureOfAngle(BCA))",
-  "problem_answer": "25",
-  "theorem_seqs": [
-    "arc_property_center_angle(1,OAB,O)",
-    "arc_property_circumference_angle_external(1,OAB,C)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "arc_property_center_angle(1,OAB,O)",
-      "arc_property_circumference_angle_external(1,OAB,C)"
-    ]
-  }
+    "problem_id": 4436,
+    "source": "GeoQA-3394",
+    "problem_level": 2,
+    "problem_img": "4436.png",
+    "construction_cdl": [
+        "Shape(OA,AE,EO)",
+        "Shape(EA,AB,BE)",
+        "Shape(EB,BC,CE)",
+        "Shape(AO,OE,EC,OCA)",
+        "Shape(BA,OAB)",
+        "Shape(CB,OBC)",
+        "Collinear(AEC)",
+        "Collinear(OEB)",
+        "Cocircular(O,ABC)"
+    ],
+    "text_cdl": [
+        "Equal(MeasureOfAngle(BOA),50)",
+        "IsCentreOfCircle(O,O)"
+    ],
+    "image_cdl": [],
+    "goal_cdl": "Value(MeasureOfAngle(BCA))",
+    "problem_answer": "25",
+    "theorem_seqs": [
+        "arc_property_center_angle(1,OAB,O)",
+        "arc_property_circumference_angle_external(1,OAB,C)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "arc_property_center_angle(1,OAB,O)",
+            "arc_property_circumference_angle_external(1,OAB,C)"
+        ]
+    }
 }

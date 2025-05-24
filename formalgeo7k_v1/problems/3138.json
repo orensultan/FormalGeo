@@ -1,56 +1,53 @@
 {
-  "problem_id": 3138,
-  "annotation": "JiaZou_2023-04-23",
-  "source": "GeoQA-395",
-  "problem_level": 10,
-  "problem_text_cn": "如图所示，△ABC全等于△EDC，∠ABC=50°，∠BCA=90°。求∠EOC的大小。",
-  "problem_text_en": "As shown in the diagram, △ABC is congruent to △EDC, ∠ABC=50°, ∠BCA=90°. Find the measure of ∠EOC.",
-  "problem_img": "3138.png",
-  "construction_cdl": [
-    "Shape(AD,DO,OA)",
-    "Shape(DB,BC,CD)",
-    "Shape(DC,CO,OD)",
-    "Shape(OC,CE,EO)",
-    "Collinear(ADB)",
-    "Collinear(DOE)",
-    "Collinear(AOC)"
-  ],
-  "text_cdl": [
-    "CongruentBetweenTriangle(ABC,EDC)",
-    "Equal(MeasureOfAngle(ABC),50)",
-    "Equal(MeasureOfAngle(BCA),90)"
-  ],
-  "image_cdl": [],
-  "goal_cdl": "Value(MeasureOfAngle(EOC))",
-  "problem_answer": "60",
-  "theorem_seqs": [
-    "triangle_property_angle_sum(1,ABC)",
-    "congruent_triangle_property_line_equal(1,ABC,EDC)",
-    "isosceles_triangle_judgment_line_equal(1,CDB)",
-    "congruent_triangle_property_angle_equal(1,BCA,DCE)",
-    "isosceles_triangle_property_angle_equal(1,CDB)",
-    "angle_addition(1,ODC,CDB)",
-    "adjacent_complementary_angle(1,ADO,ODB)",
-    "triangle_property_angle_sum(1,ADO)",
-    "adjacent_complementary_angle(1,COD,DOA)",
-    "adjacent_complementary_angle(1,EOC,COD)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "triangle_property_angle_sum(1,ABC)",
-      "congruent_triangle_property_line_equal(1,ABC,EDC)",
-      "congruent_triangle_property_angle_equal(1,BCA,DCE)",
-      "angle_addition(1,ODC,CDB)",
-      "adjacent_complementary_angle(1,ADO,ODB)",
-      "triangle_property_angle_sum(1,ADO)",
-      "adjacent_complementary_angle(1,COD,DOA)",
-      "adjacent_complementary_angle(1,EOC,COD)"
+    "problem_id": 3138,
+    "source": "GeoQA-395",
+    "problem_level": 10,
+    "problem_img": "3138.png",
+    "construction_cdl": [
+        "Shape(AD,DO,OA)",
+        "Shape(DB,BC,CD)",
+        "Shape(DC,CO,OD)",
+        "Shape(OC,CE,EO)",
+        "Collinear(ADB)",
+        "Collinear(DOE)",
+        "Collinear(AOC)"
     ],
-    "congruent_triangle_property_line_equal(1,ABC,EDC)": [
-      "isosceles_triangle_judgment_line_equal(1,CDB)"
+    "text_cdl": [
+        "CongruentBetweenTriangle(ABC,EDC)",
+        "Equal(MeasureOfAngle(ABC),50)",
+        "Equal(MeasureOfAngle(BCA),90)"
     ],
-    "isosceles_triangle_judgment_line_equal(1,CDB)": [
-      "isosceles_triangle_property_angle_equal(1,CDB)"
-    ]
-  }
+    "image_cdl": [],
+    "goal_cdl": "Value(MeasureOfAngle(EOC))",
+    "problem_answer": "60",
+    "theorem_seqs": [
+        "triangle_property_angle_sum(1,ABC)",
+        "congruent_triangle_property_line_equal(1,ABC,EDC)",
+        "isosceles_triangle_judgment_line_equal(1,CDB)",
+        "congruent_triangle_property_angle_equal(1,BCA,DCE)",
+        "isosceles_triangle_property_angle_equal(1,CDB)",
+        "angle_addition(1,ODC,CDB)",
+        "adjacent_complementary_angle(1,ADO,ODB)",
+        "triangle_property_angle_sum(1,ADO)",
+        "adjacent_complementary_angle(1,COD,DOA)",
+        "adjacent_complementary_angle(1,EOC,COD)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "triangle_property_angle_sum(1,ABC)",
+            "congruent_triangle_property_line_equal(1,ABC,EDC)",
+            "congruent_triangle_property_angle_equal(1,BCA,DCE)",
+            "angle_addition(1,ODC,CDB)",
+            "adjacent_complementary_angle(1,ADO,ODB)",
+            "triangle_property_angle_sum(1,ADO)",
+            "adjacent_complementary_angle(1,COD,DOA)",
+            "adjacent_complementary_angle(1,EOC,COD)"
+        ],
+        "congruent_triangle_property_line_equal(1,ABC,EDC)": [
+            "isosceles_triangle_judgment_line_equal(1,CDB)"
+        ],
+        "isosceles_triangle_judgment_line_equal(1,CDB)": [
+            "isosceles_triangle_property_angle_equal(1,CDB)"
+        ]
+    }
 }

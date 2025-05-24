@@ -1,50 +1,47 @@
 {
-  "problem_id": 3100,
-  "annotation": "YimingHe_2023-04-23",
-  "source": "GeoQA-340",
-  "problem_level": 4,
-  "problem_text_cn": "如图所示，∠CGA=100°，CD平行于EF。求∠GHF的大小。",
-  "problem_text_en": "As shown in the diagram, ∠CGA=100°, CD∥EF. Find the measure of ∠GHF.",
-  "problem_img": "3100.png",
-  "construction_cdl": [
-    "Shape(CG,GA)",
-    "Shape(AG,GD)",
-    "Shape(HG,GC)",
-    "Shape(DG,GH)",
-    "Shape(EH,HG)",
-    "Shape(GH,HF)",
-    "Shape(BH,HE)",
-    "Shape(FH,HB)",
-    "Collinear(CGD)",
-    "Collinear(EHF)",
-    "Collinear(AGHB)"
-  ],
-  "text_cdl": [
-    "Equal(MeasureOfAngle(CGA),100)",
-    "ParallelBetweenLine(CD,EF)"
-  ],
-  "image_cdl": [
-    "Equal(MeasureOfAngle(CGA),100)",
-    "ParallelBetweenLine(CD,EF)"
-  ],
-  "goal_cdl": "Value(MeasureOfAngle(GHF))",
-  "problem_answer": "80",
-  "theorem_seqs": [
-    "parallel_property_collinear_extend(3,CD,EF,G)",
-    "parallel_property_collinear_extend(3,FE,GC,H)",
-    "parallel_property_corresponding_angle(2,HE,GC,A)",
-    "adjacent_complementary_angle(1,EHG,GHF)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "parallel_property_collinear_extend(3,CD,EF,G)",
-      "adjacent_complementary_angle(1,EHG,GHF)"
+    "problem_id": 3100,
+    "source": "GeoQA-340",
+    "problem_level": 4,
+    "problem_img": "3100.png",
+    "construction_cdl": [
+        "Shape(CG,GA)",
+        "Shape(AG,GD)",
+        "Shape(HG,GC)",
+        "Shape(DG,GH)",
+        "Shape(EH,HG)",
+        "Shape(GH,HF)",
+        "Shape(BH,HE)",
+        "Shape(FH,HB)",
+        "Collinear(CGD)",
+        "Collinear(EHF)",
+        "Collinear(AGHB)"
     ],
-    "parallel_property_collinear_extend(3,CD,EF,G)": [
-      "parallel_property_collinear_extend(3,FE,GC,H)"
+    "text_cdl": [
+        "Equal(MeasureOfAngle(CGA),100)",
+        "ParallelBetweenLine(CD,EF)"
     ],
-    "parallel_property_collinear_extend(3,FE,GC,H)": [
-      "parallel_property_corresponding_angle(2,HE,GC,A)"
-    ]
-  }
+    "image_cdl": [
+        "Equal(MeasureOfAngle(CGA),100)",
+        "ParallelBetweenLine(CD,EF)"
+    ],
+    "goal_cdl": "Value(MeasureOfAngle(GHF))",
+    "problem_answer": "80",
+    "theorem_seqs": [
+        "parallel_property_collinear_extend(3,CD,EF,G)",
+        "parallel_property_collinear_extend(3,FE,GC,H)",
+        "parallel_property_corresponding_angle(2,HE,GC,A)",
+        "adjacent_complementary_angle(1,EHG,GHF)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "parallel_property_collinear_extend(3,CD,EF,G)",
+            "adjacent_complementary_angle(1,EHG,GHF)"
+        ],
+        "parallel_property_collinear_extend(3,CD,EF,G)": [
+            "parallel_property_collinear_extend(3,FE,GC,H)"
+        ],
+        "parallel_property_collinear_extend(3,FE,GC,H)": [
+            "parallel_property_corresponding_angle(2,HE,GC,A)"
+        ]
+    }
 }

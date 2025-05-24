@@ -1,39 +1,36 @@
 {
-  "problem_id": 3526,
-  "annotation": "YanjunGuo_2023-04-30",
-  "source": "GeoQA-1142",
-  "problem_level": 3,
-  "problem_text_cn": "如图所示，∠ABE=32°，∠CAB=70°，∠DCA=20°。求∠EFC的大小。",
-  "problem_text_en": "As shown in the diagram, ∠ABE=32°, ∠CAB=70°, ∠DCA=20°. Find the measure of ∠EFC.",
-  "problem_img": "3526.png",
-  "construction_cdl": [
-    "Shape(CE,EF,FC)",
-    "Shape(CF,FB,BC)",
-    "Shape(EA,AD,DF,FE)",
-    "Shape(FD,DB,BF)",
-    "Collinear(CFD)",
-    "Collinear(EFB)",
-    "Collinear(CEA)",
-    "Collinear(ADB)"
-  ],
-  "text_cdl": [
-    "Equal(MeasureOfAngle(ABE),32)",
-    "Equal(MeasureOfAngle(CAB),70)",
-    "Equal(MeasureOfAngle(DCA),20)"
-  ],
-  "image_cdl": [],
-  "goal_cdl": "Value(MeasureOfAngle(EFC))",
-  "problem_answer": "58",
-  "theorem_seqs": [
-    "triangle_property_angle_sum(1,CEF)",
-    "triangle_property_angle_sum(1,EAB)",
-    "adjacent_complementary_angle(1,CEF,FEA)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "triangle_property_angle_sum(1,CEF)",
-      "triangle_property_angle_sum(1,EAB)",
-      "adjacent_complementary_angle(1,CEF,FEA)"
-    ]
-  }
+    "problem_id": 3526,
+    "source": "GeoQA-1142",
+    "problem_level": 3,
+    "problem_img": "3526.png",
+    "construction_cdl": [
+        "Shape(CE,EF,FC)",
+        "Shape(CF,FB,BC)",
+        "Shape(EA,AD,DF,FE)",
+        "Shape(FD,DB,BF)",
+        "Collinear(CFD)",
+        "Collinear(EFB)",
+        "Collinear(CEA)",
+        "Collinear(ADB)"
+    ],
+    "text_cdl": [
+        "Equal(MeasureOfAngle(ABE),32)",
+        "Equal(MeasureOfAngle(CAB),70)",
+        "Equal(MeasureOfAngle(DCA),20)"
+    ],
+    "image_cdl": [],
+    "goal_cdl": "Value(MeasureOfAngle(EFC))",
+    "problem_answer": "58",
+    "theorem_seqs": [
+        "triangle_property_angle_sum(1,CEF)",
+        "triangle_property_angle_sum(1,EAB)",
+        "adjacent_complementary_angle(1,CEF,FEA)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "triangle_property_angle_sum(1,CEF)",
+            "triangle_property_angle_sum(1,EAB)",
+            "adjacent_complementary_angle(1,CEF,FEA)"
+        ]
+    }
 }

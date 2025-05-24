@@ -1,48 +1,45 @@
 {
-  "problem_id": 2771,
-  "annotation": "ZheZhu_2023-04-09",
-  "source": "Geometry3k-2918",
-  "problem_level": 5,
-  "problem_text_cn": "如图所示，HF=21，HG=x+3，JH=x-8，KH=7，GJ∥FK。求x的值。",
-  "problem_text_en": "As shown in the diagram, HF=21, HG=x+3, JH=x-8, KH=7, GJ is parallel to FK. Find the value of x.",
-  "problem_img": "2771.png",
-  "construction_cdl": [
-    "Shape(HG,GJ,JH)",
-    "Shape(GF,FK,KJ,JG)",
-    "Collinear(HGF)",
-    "Collinear(KJH)"
-  ],
-  "text_cdl": [
-    "Equal(LengthOfLine(HF),21)",
-    "Equal(LengthOfLine(HG),x+3)",
-    "Equal(LengthOfLine(JH),x-8)",
-    "Equal(LengthOfLine(KH),7)",
-    "ParallelBetweenLine(GJ,FK)"
-  ],
-  "image_cdl": [],
-  "goal_cdl": "Value(x)",
-  "problem_answer": "27/2",
-  "theorem_seqs": [
-    "parallel_property_corresponding_angle(1,GJ,FK,H)",
-    "parallel_property_corresponding_angle(2,KF,JG,H)",
-    "similar_triangle_judgment_aa(1,HGJ,HFK)",
-    "similar_triangle_property_line_ratio(1,JHG,KHF)",
-    "similar_triangle_property_line_ratio(1,GJH,FKH)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "parallel_property_corresponding_angle(1,GJ,FK,H)",
-      "parallel_property_corresponding_angle(2,KF,JG,H)"
+    "problem_id": 2771,
+    "source": "Geometry3k-2918",
+    "problem_level": 5,
+    "problem_img": "2771.png",
+    "construction_cdl": [
+        "Shape(HG,GJ,JH)",
+        "Shape(GF,FK,KJ,JG)",
+        "Collinear(HGF)",
+        "Collinear(KJH)"
     ],
-    "parallel_property_corresponding_angle(1,GJ,FK,H)": [
-      "similar_triangle_judgment_aa(1,HGJ,HFK)"
+    "text_cdl": [
+        "Equal(LengthOfLine(HF),21)",
+        "Equal(LengthOfLine(HG),x+3)",
+        "Equal(LengthOfLine(JH),x-8)",
+        "Equal(LengthOfLine(KH),7)",
+        "ParallelBetweenLine(GJ,FK)"
     ],
-    "parallel_property_corresponding_angle(2,KF,JG,H)": [
-      "similar_triangle_judgment_aa(1,HGJ,HFK)"
+    "image_cdl": [],
+    "goal_cdl": "Value(x)",
+    "problem_answer": "27/2",
+    "theorem_seqs": [
+        "parallel_property_corresponding_angle(1,GJ,FK,H)",
+        "parallel_property_corresponding_angle(2,KF,JG,H)",
+        "similar_triangle_judgment_aa(1,HGJ,HFK)",
+        "similar_triangle_property_line_ratio(1,JHG,KHF)",
+        "similar_triangle_property_line_ratio(1,GJH,FKH)"
     ],
-    "similar_triangle_judgment_aa(1,HGJ,HFK)": [
-      "similar_triangle_property_line_ratio(1,GJH,FKH)",
-      "similar_triangle_property_line_ratio(1,JHG,KHF)"
-    ]
-  }
+    "theorem_seqs_dag": {
+        "START": [
+            "parallel_property_corresponding_angle(1,GJ,FK,H)",
+            "parallel_property_corresponding_angle(2,KF,JG,H)"
+        ],
+        "parallel_property_corresponding_angle(1,GJ,FK,H)": [
+            "similar_triangle_judgment_aa(1,HGJ,HFK)"
+        ],
+        "parallel_property_corresponding_angle(2,KF,JG,H)": [
+            "similar_triangle_judgment_aa(1,HGJ,HFK)"
+        ],
+        "similar_triangle_judgment_aa(1,HGJ,HFK)": [
+            "similar_triangle_property_line_ratio(1,GJH,FKH)",
+            "similar_triangle_property_line_ratio(1,JHG,KHF)"
+        ]
+    }
 }

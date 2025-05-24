@@ -1,33 +1,30 @@
 {
-  "problem_id": 3502,
-  "annotation": "XiaokaiZhang_2023-04-30",
-  "source": "GeoQA-1107",
-  "problem_level": 2,
-  "problem_text_cn": "如图所示，∠DAB=110°，BA平行于CD。求∠ADE的大小。",
-  "problem_text_en": "As shown in the diagram, ∠DAB=110°, BA is parallel to CD. Find the measure of ∠ADE.",
-  "problem_img": "3502.png",
-  "construction_cdl": [
-    "Shape(BC,CD,DA,AB)",
-    "Shape(AD,DE)",
-    "Collinear(CDE)"
-  ],
-  "text_cdl": [
-    "Equal(MeasureOfAngle(DAB),110)",
-    "ParallelBetweenLine(BA,CD)"
-  ],
-  "image_cdl": [],
-  "goal_cdl": "Value(MeasureOfAngle(ADE))",
-  "problem_answer": "110",
-  "theorem_seqs": [
-    "parallel_property_collinear_extend(1,DC,AB,E)",
-    "parallel_property_alternate_interior_angle(2,ED,AB)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "parallel_property_collinear_extend(1,DC,AB,E)"
+    "problem_id": 3502,
+    "source": "GeoQA-1107",
+    "problem_level": 2,
+    "problem_img": "3502.png",
+    "construction_cdl": [
+        "Shape(BC,CD,DA,AB)",
+        "Shape(AD,DE)",
+        "Collinear(CDE)"
     ],
-    "parallel_property_collinear_extend(1,DC,AB,E)": [
-      "parallel_property_alternate_interior_angle(2,ED,AB)"
-    ]
-  }
+    "text_cdl": [
+        "Equal(MeasureOfAngle(DAB),110)",
+        "ParallelBetweenLine(BA,CD)"
+    ],
+    "image_cdl": [],
+    "goal_cdl": "Value(MeasureOfAngle(ADE))",
+    "problem_answer": "110",
+    "theorem_seqs": [
+        "parallel_property_collinear_extend(1,DC,AB,E)",
+        "parallel_property_alternate_interior_angle(2,ED,AB)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "parallel_property_collinear_extend(1,DC,AB,E)"
+        ],
+        "parallel_property_collinear_extend(1,DC,AB,E)": [
+            "parallel_property_alternate_interior_angle(2,ED,AB)"
+        ]
+    }
 }

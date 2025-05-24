@@ -1,40 +1,37 @@
 {
-  "problem_id": 3922,
-  "annotation": "FangzhenZhu_2023-05-07",
-  "source": "GeoQA-1835",
-  "problem_level": 3,
-  "problem_text_cn": "如图所示，∠DOA=132°，圆O的圆心为O。求∠BCD的大小。",
-  "problem_text_en": "As shown in the diagram, ∠DOA=132°, O is the center of circle O. Find the measure of ∠BCD.",
-  "problem_img": "3922.png",
-  "construction_cdl": [
-    "Shape(ODB,BO,OD)",
-    "Shape(ODB,BC,CD)",
-    "Shape(OBC,CB)",
-    "Shape(OCA,AO,OB,BC)",
-    "Shape(OAD,DO,OA)",
-    "Collinear(AOB)",
-    "Cocircular(O,ADBC)"
-  ],
-  "text_cdl": [
-    "Equal(MeasureOfAngle(DOA),132)",
-    "IsCentreOfCircle(O,O)"
-  ],
-  "image_cdl": [
-    "Equal(MeasureOfAngle(DOA),132)",
-    "IsCentreOfCircle(O,O)"
-  ],
-  "goal_cdl": "Value(MeasureOfAngle(BCD))",
-  "problem_answer": "24",
-  "theorem_seqs": [
-    "adjacent_complementary_angle(1,BOD,DOA)",
-    "arc_property_center_angle(1,ODB,O)",
-    "arc_property_circumference_angle_external(1,ODB,C)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "adjacent_complementary_angle(1,BOD,DOA)",
-      "arc_property_center_angle(1,ODB,O)",
-      "arc_property_circumference_angle_external(1,ODB,C)"
-    ]
-  }
+    "problem_id": 3922,
+    "source": "GeoQA-1835",
+    "problem_level": 3,
+    "problem_img": "3922.png",
+    "construction_cdl": [
+        "Shape(ODB,BO,OD)",
+        "Shape(ODB,BC,CD)",
+        "Shape(OBC,CB)",
+        "Shape(OCA,AO,OB,BC)",
+        "Shape(OAD,DO,OA)",
+        "Collinear(AOB)",
+        "Cocircular(O,ADBC)"
+    ],
+    "text_cdl": [
+        "Equal(MeasureOfAngle(DOA),132)",
+        "IsCentreOfCircle(O,O)"
+    ],
+    "image_cdl": [
+        "Equal(MeasureOfAngle(DOA),132)",
+        "IsCentreOfCircle(O,O)"
+    ],
+    "goal_cdl": "Value(MeasureOfAngle(BCD))",
+    "problem_answer": "24",
+    "theorem_seqs": [
+        "adjacent_complementary_angle(1,BOD,DOA)",
+        "arc_property_center_angle(1,ODB,O)",
+        "arc_property_circumference_angle_external(1,ODB,C)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "adjacent_complementary_angle(1,BOD,DOA)",
+            "arc_property_center_angle(1,ODB,O)",
+            "arc_property_circumference_angle_external(1,ODB,C)"
+        ]
+    }
 }

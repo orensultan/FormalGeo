@@ -1,38 +1,35 @@
 {
-  "problem_id": 2014,
-  "annotation": "QikeHuang_2023-04-23",
-  "source": "Geometry3k-2100",
-  "problem_level": 1,
-  "problem_text_cn": "如图所示，∠BFC=72°，∠CEB=3*y°，∠EBF=4*x°，∠FCE=112°，BE平行于FC。求x的值。",
-  "problem_text_en": "As shown in the diagram, ∠BFC=72°, ∠CEB=3*y°, ∠EBF=4*x°, ∠FCE=112°, BE is parallel to FC. Find the value of x.",
-  "problem_img": "2014.png",
-  "construction_cdl": [
-    "Shape(AF,FB)",
-    "Shape(BF,FC,CE,EB)",
-    "Collinear(AFC)"
-  ],
-  "text_cdl": [
-    "Equal(MeasureOfAngle(BFC),72)",
-    "Equal(MeasureOfAngle(CEB),3*y)",
-    "Equal(MeasureOfAngle(EBF),4*x)",
-    "Equal(MeasureOfAngle(FCE),112)",
-    "ParallelBetweenLine(BE,FC)"
-  ],
-  "image_cdl": [
-    "Equal(MeasureOfAngle(BFC),72)",
-    "Equal(MeasureOfAngle(CEB),3*y)",
-    "Equal(MeasureOfAngle(EBF),4*x)",
-    "Equal(MeasureOfAngle(FCE),112)",
-    "ParallelBetweenLine(BE,FC)"
-  ],
-  "goal_cdl": "Value(x)",
-  "problem_answer": "27",
-  "theorem_seqs": [
-    "parallel_property_ipsilateral_internal_angle(1,BE,FC)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "parallel_property_ipsilateral_internal_angle(1,BE,FC)"
-    ]
-  }
+    "problem_id": 2014,
+    "source": "Geometry3k-2100",
+    "problem_level": 1,
+    "problem_img": "2014.png",
+    "construction_cdl": [
+        "Shape(AF,FB)",
+        "Shape(BF,FC,CE,EB)",
+        "Collinear(AFC)"
+    ],
+    "text_cdl": [
+        "Equal(MeasureOfAngle(BFC),72)",
+        "Equal(MeasureOfAngle(CEB),3*y)",
+        "Equal(MeasureOfAngle(EBF),4*x)",
+        "Equal(MeasureOfAngle(FCE),112)",
+        "ParallelBetweenLine(BE,FC)"
+    ],
+    "image_cdl": [
+        "Equal(MeasureOfAngle(BFC),72)",
+        "Equal(MeasureOfAngle(CEB),3*y)",
+        "Equal(MeasureOfAngle(EBF),4*x)",
+        "Equal(MeasureOfAngle(FCE),112)",
+        "ParallelBetweenLine(BE,FC)"
+    ],
+    "goal_cdl": "Value(x)",
+    "problem_answer": "27",
+    "theorem_seqs": [
+        "parallel_property_ipsilateral_internal_angle(1,BE,FC)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "parallel_property_ipsilateral_internal_angle(1,BE,FC)"
+        ]
+    }
 }

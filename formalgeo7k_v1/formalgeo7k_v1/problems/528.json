@@ -1,41 +1,38 @@
 {
-  "problem_id": 528,
-  "annotation": "YimingHe_2023-04-02",
-  "source": "Geometry3k-541",
-  "problem_level": 3,
-  "problem_text_cn": "如图所示，TR=18，WT=12，∠TWV=60°，四边形TWVR是平行四边形，TA垂直于VA。求TWVR的周长。",
-  "problem_text_en": "As shown in the diagram, TR=18, WT=12, ∠TWV=60°, TWVR is a ▱, TA is perpendicular to VA. Find the perimeter of TWVR.",
-  "problem_img": "528.png",
-  "construction_cdl": [
-    "Shape(TA,AV,VR,RT)",
-    "Shape(TW,WA,AT)",
-    "Collinear(WAV)"
-  ],
-  "text_cdl": [
-    "Equal(LengthOfLine(TR),18)",
-    "Equal(LengthOfLine(WT),12)",
-    "Equal(MeasureOfAngle(TWV),60)",
-    "Parallelogram(TWVR)",
-    "PerpendicularBetweenLine(TA,VA)"
-  ],
-  "image_cdl": [
-    "Equal(LengthOfLine(TR),18)",
-    "Equal(LengthOfLine(WT),12)",
-    "Equal(MeasureOfAngle(TWV),60)",
-    "PerpendicularBetweenLine(TA,VA)"
-  ],
-  "goal_cdl": "Value(PerimeterOfQuadrilateral(TWVR))",
-  "problem_answer": "60",
-  "theorem_seqs": [
-    "parallelogram_property_opposite_line_equal(1,TWVR)",
-    "parallelogram_property_opposite_line_equal(1,WVRT)",
-    "quadrilateral_perimeter_formula(1,TWVR)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "parallelogram_property_opposite_line_equal(1,TWVR)",
-      "parallelogram_property_opposite_line_equal(1,WVRT)",
-      "quadrilateral_perimeter_formula(1,TWVR)"
-    ]
-  }
+    "problem_id": 528,
+    "source": "Geometry3k-541",
+    "problem_level": 3,
+    "problem_img": "528.png",
+    "construction_cdl": [
+        "Shape(TA,AV,VR,RT)",
+        "Shape(TW,WA,AT)",
+        "Collinear(WAV)"
+    ],
+    "text_cdl": [
+        "Equal(LengthOfLine(TR),18)",
+        "Equal(LengthOfLine(WT),12)",
+        "Equal(MeasureOfAngle(TWV),60)",
+        "Parallelogram(TWVR)",
+        "PerpendicularBetweenLine(TA,VA)"
+    ],
+    "image_cdl": [
+        "Equal(LengthOfLine(TR),18)",
+        "Equal(LengthOfLine(WT),12)",
+        "Equal(MeasureOfAngle(TWV),60)",
+        "PerpendicularBetweenLine(TA,VA)"
+    ],
+    "goal_cdl": "Value(PerimeterOfQuadrilateral(TWVR))",
+    "problem_answer": "60",
+    "theorem_seqs": [
+        "parallelogram_property_opposite_line_equal(1,TWVR)",
+        "parallelogram_property_opposite_line_equal(1,WVRT)",
+        "quadrilateral_perimeter_formula(1,TWVR)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "parallelogram_property_opposite_line_equal(1,TWVR)",
+            "parallelogram_property_opposite_line_equal(1,WVRT)",
+            "quadrilateral_perimeter_formula(1,TWVR)"
+        ]
+    }
 }

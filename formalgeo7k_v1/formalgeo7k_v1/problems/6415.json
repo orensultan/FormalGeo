@@ -1,66 +1,63 @@
 {
-  "problem_id": 6415,
-  "annotation": "YimingHe_2023-06-04",
-  "source": "GeoQA-9282",
-  "problem_level": 7,
-  "problem_text_cn": "如图所示，Div(LengthOfLine(BC)=LengthOfLine(AB))，∠AEF=54°，∠CEH=18°，F平分线段AD，H平分线段BC，AD平行于EG，EG平行于BC，AD和BC是平行四边形ABCD的一组对边，CE⊥BE。求∠EBC的大小。",
-  "problem_text_en": "As shown in the diagram, Div(LengthOfLine(BC)=LengthOfLine(AB)), ∠AEF=54°, ∠CEH=18°, F is the midpoint of segment AD, H bisects segment BC, AD is parallel to EG, EG is parallel to BC, BA and CD are opposite sides of the parallelogram ABCD, CE⊥BE. Find the measure of ∠EBC.",
-  "problem_img": "6415.png",
-  "construction_cdl": [
-    "Shape(AE,EF,FA)",
-    "Shape(FE,EG,GD,DF)",
-    "Shape(EB,BH,HE)",
-    "Shape(EH,HC,CE)",
-    "Shape(EC,CG,GE)",
-    "Collinear(AEB)",
-    "Collinear(DGC)",
-    "Collinear(BHC)",
-    "Collinear(AFD)"
-  ],
-  "text_cdl": [
-    "Equal(Div(LengthOfLine(BC),LengthOfLine(AB)),2)",
-    "Equal(MeasureOfAngle(AEF),54)",
-    "Equal(MeasureOfAngle(CEH),18)",
-    "IsMidpointOfLine(F,AD)",
-    "IsMidpointOfLine(H,BC)",
-    "ParallelBetweenLine(AD,EG)",
-    "ParallelBetweenLine(EG,BC)",
-    "Parallelogram(ABCD)",
-    "PerpendicularBetweenLine(CE,BE)"
-  ],
-  "image_cdl": [],
-  "goal_cdl": "Value(MeasureOfAngle(EBC))",
-  "problem_answer": "72",
-  "theorem_seqs": [
-    "line_addition(1,BH,HC)",
-    "median_of_triangle_judgment(1,EH,EBC)",
-    "right_triangle_judgment_angle(1,CEB)",
-    "right_triangle_property_length_of_median(1,CEB,H)",
-    "isosceles_triangle_judgment_line_equal(1,HCE)",
-    "isosceles_triangle_property_angle_equal(1,HCE)",
-    "triangle_property_angle_sum(1,EBC)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "line_addition(1,BH,HC)",
-      "median_of_triangle_judgment(1,EH,EBC)",
-      "right_triangle_judgment_angle(1,CEB)",
-      "triangle_property_angle_sum(1,EBC)"
+    "problem_id": 6415,
+    "source": "GeoQA-9282",
+    "problem_level": 7,
+    "problem_img": "6415.png",
+    "construction_cdl": [
+        "Shape(AE,EF,FA)",
+        "Shape(FE,EG,GD,DF)",
+        "Shape(EB,BH,HE)",
+        "Shape(EH,HC,CE)",
+        "Shape(EC,CG,GE)",
+        "Collinear(AEB)",
+        "Collinear(DGC)",
+        "Collinear(BHC)",
+        "Collinear(AFD)"
     ],
-    "line_addition(1,BH,HC)": [
-      "isosceles_triangle_judgment_line_equal(1,HCE)"
+    "text_cdl": [
+        "Equal(Div(LengthOfLine(BC),LengthOfLine(AB)),2)",
+        "Equal(MeasureOfAngle(AEF),54)",
+        "Equal(MeasureOfAngle(CEH),18)",
+        "IsMidpointOfLine(F,AD)",
+        "IsMidpointOfLine(H,BC)",
+        "ParallelBetweenLine(AD,EG)",
+        "ParallelBetweenLine(EG,BC)",
+        "Parallelogram(ABCD)",
+        "PerpendicularBetweenLine(CE,BE)"
     ],
-    "median_of_triangle_judgment(1,EH,EBC)": [
-      "right_triangle_property_length_of_median(1,CEB,H)"
+    "image_cdl": [],
+    "goal_cdl": "Value(MeasureOfAngle(EBC))",
+    "problem_answer": "72",
+    "theorem_seqs": [
+        "line_addition(1,BH,HC)",
+        "median_of_triangle_judgment(1,EH,EBC)",
+        "right_triangle_judgment_angle(1,CEB)",
+        "right_triangle_property_length_of_median(1,CEB,H)",
+        "isosceles_triangle_judgment_line_equal(1,HCE)",
+        "isosceles_triangle_property_angle_equal(1,HCE)",
+        "triangle_property_angle_sum(1,EBC)"
     ],
-    "right_triangle_judgment_angle(1,CEB)": [
-      "right_triangle_property_length_of_median(1,CEB,H)"
-    ],
-    "right_triangle_property_length_of_median(1,CEB,H)": [
-      "isosceles_triangle_judgment_line_equal(1,HCE)"
-    ],
-    "isosceles_triangle_judgment_line_equal(1,HCE)": [
-      "isosceles_triangle_property_angle_equal(1,HCE)"
-    ]
-  }
+    "theorem_seqs_dag": {
+        "START": [
+            "line_addition(1,BH,HC)",
+            "median_of_triangle_judgment(1,EH,EBC)",
+            "right_triangle_judgment_angle(1,CEB)",
+            "triangle_property_angle_sum(1,EBC)"
+        ],
+        "line_addition(1,BH,HC)": [
+            "isosceles_triangle_judgment_line_equal(1,HCE)"
+        ],
+        "median_of_triangle_judgment(1,EH,EBC)": [
+            "right_triangle_property_length_of_median(1,CEB,H)"
+        ],
+        "right_triangle_judgment_angle(1,CEB)": [
+            "right_triangle_property_length_of_median(1,CEB,H)"
+        ],
+        "right_triangle_property_length_of_median(1,CEB,H)": [
+            "isosceles_triangle_judgment_line_equal(1,HCE)"
+        ],
+        "isosceles_triangle_judgment_line_equal(1,HCE)": [
+            "isosceles_triangle_property_angle_equal(1,HCE)"
+        ]
+    }
 }

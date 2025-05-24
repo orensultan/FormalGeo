@@ -1,49 +1,46 @@
 {
-  "problem_id": 5519,
-  "annotation": "DengfengYue_2023-05-21",
-  "source": "GeoQA-5992",
-  "problem_level": 7,
-  "problem_text_cn": "如图所示，AB=AC，∠CAB=30°，∠FDA=145°，DE平行于GC。求∠GCB的大小。",
-  "problem_text_en": "As shown in the diagram, AB=AC, ∠CAB=30°, ∠FDA=145°, DE∥GC. Find the measure of ∠GCB.",
-  "problem_img": "5519.png",
-  "construction_cdl": [
-    "Shape(AF,FD,DA)",
-    "Shape(AD,DE,EA)",
-    "Shape(BG,GC,CB)",
-    "Shape(DB,BC,CE,ED)",
-    "Collinear(FDE)",
-    "Collinear(AEC)",
-    "Collinear(ADBG)"
-  ],
-  "text_cdl": [
-    "Equal(LengthOfLine(AB),LengthOfLine(AC))",
-    "Equal(MeasureOfAngle(CAB),30)",
-    "Equal(MeasureOfAngle(FDA),145)",
-    "ParallelBetweenLine(DE,GC)"
-  ],
-  "image_cdl": [],
-  "goal_cdl": "Value(MeasureOfAngle(GCB))",
-  "problem_answer": "40",
-  "theorem_seqs": [
-    "isosceles_triangle_judgment_line_equal(1,ABC)",
-    "isosceles_triangle_property_angle_equal(1,ABC)",
-    "triangle_property_angle_sum(1,ABC)",
-    "adjacent_complementary_angle(1,FDA,ADE)",
-    "triangle_property_angle_sum(1,ADE)",
-    "parallel_property_corresponding_angle(2,CG,ED,A)",
-    "angle_addition(1,GCB,BCE)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "isosceles_triangle_judgment_line_equal(1,ABC)",
-      "triangle_property_angle_sum(1,ABC)",
-      "adjacent_complementary_angle(1,FDA,ADE)",
-      "triangle_property_angle_sum(1,ADE)",
-      "parallel_property_corresponding_angle(2,CG,ED,A)",
-      "angle_addition(1,GCB,BCE)"
+    "problem_id": 5519,
+    "source": "GeoQA-5992",
+    "problem_level": 7,
+    "problem_img": "5519.png",
+    "construction_cdl": [
+        "Shape(AF,FD,DA)",
+        "Shape(AD,DE,EA)",
+        "Shape(BG,GC,CB)",
+        "Shape(DB,BC,CE,ED)",
+        "Collinear(FDE)",
+        "Collinear(AEC)",
+        "Collinear(ADBG)"
     ],
-    "isosceles_triangle_judgment_line_equal(1,ABC)": [
-      "isosceles_triangle_property_angle_equal(1,ABC)"
-    ]
-  }
+    "text_cdl": [
+        "Equal(LengthOfLine(AB),LengthOfLine(AC))",
+        "Equal(MeasureOfAngle(CAB),30)",
+        "Equal(MeasureOfAngle(FDA),145)",
+        "ParallelBetweenLine(DE,GC)"
+    ],
+    "image_cdl": [],
+    "goal_cdl": "Value(MeasureOfAngle(GCB))",
+    "problem_answer": "40",
+    "theorem_seqs": [
+        "isosceles_triangle_judgment_line_equal(1,ABC)",
+        "isosceles_triangle_property_angle_equal(1,ABC)",
+        "triangle_property_angle_sum(1,ABC)",
+        "adjacent_complementary_angle(1,FDA,ADE)",
+        "triangle_property_angle_sum(1,ADE)",
+        "parallel_property_corresponding_angle(2,CG,ED,A)",
+        "angle_addition(1,GCB,BCE)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "isosceles_triangle_judgment_line_equal(1,ABC)",
+            "triangle_property_angle_sum(1,ABC)",
+            "adjacent_complementary_angle(1,FDA,ADE)",
+            "triangle_property_angle_sum(1,ADE)",
+            "parallel_property_corresponding_angle(2,CG,ED,A)",
+            "angle_addition(1,GCB,BCE)"
+        ],
+        "isosceles_triangle_judgment_line_equal(1,ABC)": [
+            "isosceles_triangle_property_angle_equal(1,ABC)"
+        ]
+    }
 }

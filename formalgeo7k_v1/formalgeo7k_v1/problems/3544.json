@@ -1,34 +1,31 @@
 {
-  "problem_id": 3544,
-  "annotation": "YanjunGuo_2023-04-30",
-  "source": "GeoQA-1172",
-  "problem_level": 2,
-  "problem_text_cn": "如图所示，∠EMB=88°，∠MCD=60°，MH∥CD。求∠HMB的大小。",
-  "problem_text_en": "As shown in the diagram, ∠EMB=88°, ∠MCD=60°, MH is parallel to CD. Find the measure of ∠HMB.",
-  "problem_img": "3544.png",
-  "construction_cdl": [
-    "Shape(EM,MH)",
-    "Shape(HM,MB)",
-    "Shape(BM,MC)",
-    "Shape(MC,CD)",
-    "Collinear(EMC)"
-  ],
-  "text_cdl": [
-    "Equal(MeasureOfAngle(EMB),88)",
-    "Equal(MeasureOfAngle(MCD),60)",
-    "ParallelBetweenLine(MH,CD)"
-  ],
-  "image_cdl": [],
-  "goal_cdl": "Value(MeasureOfAngle(HMB))",
-  "problem_answer": "28",
-  "theorem_seqs": [
-    "parallel_property_corresponding_angle(1,MH,CD,E)",
-    "angle_addition(1,EMH,HMB)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "parallel_property_corresponding_angle(1,MH,CD,E)",
-      "angle_addition(1,EMH,HMB)"
-    ]
-  }
+    "problem_id": 3544,
+    "source": "GeoQA-1172",
+    "problem_level": 2,
+    "problem_img": "3544.png",
+    "construction_cdl": [
+        "Shape(EM,MH)",
+        "Shape(HM,MB)",
+        "Shape(BM,MC)",
+        "Shape(MC,CD)",
+        "Collinear(EMC)"
+    ],
+    "text_cdl": [
+        "Equal(MeasureOfAngle(EMB),88)",
+        "Equal(MeasureOfAngle(MCD),60)",
+        "ParallelBetweenLine(MH,CD)"
+    ],
+    "image_cdl": [],
+    "goal_cdl": "Value(MeasureOfAngle(HMB))",
+    "problem_answer": "28",
+    "theorem_seqs": [
+        "parallel_property_corresponding_angle(1,MH,CD,E)",
+        "angle_addition(1,EMH,HMB)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "parallel_property_corresponding_angle(1,MH,CD,E)",
+            "angle_addition(1,EMH,HMB)"
+        ]
+    }
 }

@@ -1,37 +1,34 @@
 {
-  "problem_id": 6391,
-  "annotation": "YimingHe_2023-06-04",
-  "source": "GeoQA-9248",
-  "problem_level": 3,
-  "problem_text_cn": "如图所示，ABCD的面积为48，AE=6，AE⊥CE，ABCD是菱形。求直线BC的长度。",
-  "problem_text_en": "As shown in the diagram, the area of quadrilateral ABCD is 48, AE=6, AE is perpendicular to CE, quadrilateral ABCD is a rhombus. Find the length of line BC.",
-  "problem_img": "6391.png",
-  "construction_cdl": [
-    "Shape(AB,BE,EA)",
-    "Shape(AE,EC,CD,DA)",
-    "Collinear(BEC)"
-  ],
-  "text_cdl": [
-    "Equal(AreaOfQuadrilateral(ABCD),48)",
-    "Equal(LengthOfLine(AE),6)",
-    "PerpendicularBetweenLine(AE,CE)",
-    "Rhombus(ABCD)"
-  ],
-  "image_cdl": [],
-  "goal_cdl": "Value(LengthOfLine(BC))",
-  "problem_answer": "8",
-  "theorem_seqs": [
-    "adjacent_complementary_angle(1,BEA,AEC)",
-    "altitude_of_quadrilateral_judgment_left_vertex(1,AE,ABCD)",
-    "parallelogram_area_formula_common(1,ABCD)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "adjacent_complementary_angle(1,BEA,AEC)",
-      "parallelogram_area_formula_common(1,ABCD)"
+    "problem_id": 6391,
+    "source": "GeoQA-9248",
+    "problem_level": 3,
+    "problem_img": "6391.png",
+    "construction_cdl": [
+        "Shape(AB,BE,EA)",
+        "Shape(AE,EC,CD,DA)",
+        "Collinear(BEC)"
     ],
-    "adjacent_complementary_angle(1,BEA,AEC)": [
-      "altitude_of_quadrilateral_judgment_left_vertex(1,AE,ABCD)"
-    ]
-  }
+    "text_cdl": [
+        "Equal(AreaOfQuadrilateral(ABCD),48)",
+        "Equal(LengthOfLine(AE),6)",
+        "PerpendicularBetweenLine(AE,CE)",
+        "Rhombus(ABCD)"
+    ],
+    "image_cdl": [],
+    "goal_cdl": "Value(LengthOfLine(BC))",
+    "problem_answer": "8",
+    "theorem_seqs": [
+        "adjacent_complementary_angle(1,BEA,AEC)",
+        "altitude_of_quadrilateral_judgment_left_vertex(1,AE,ABCD)",
+        "parallelogram_area_formula_common(1,ABCD)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "adjacent_complementary_angle(1,BEA,AEC)",
+            "parallelogram_area_formula_common(1,ABCD)"
+        ],
+        "adjacent_complementary_angle(1,BEA,AEC)": [
+            "altitude_of_quadrilateral_judgment_left_vertex(1,AE,ABCD)"
+        ]
+    }
 }

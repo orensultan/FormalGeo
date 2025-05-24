@@ -1,52 +1,49 @@
 {
-  "problem_id": 6883,
-  "annotation": "DengfengYue_2023-06-04",
-  "source": "GeoQA-angle-10112",
-  "problem_level": 6,
-  "problem_text_cn": "如图所示，∠COA=100°，O是⊙O的圆心，BD是⊙O的直径，AE⊥OE。求∠CDB的大小。",
-  "problem_text_en": "As shown in the diagram, ∠COA=100°, the center of ⊙O is O, the diameter of ⊙O is BD, AE is perpendicular to OE. Find the measure of ∠CDB.",
-  "problem_img": "6883.png",
-  "construction_cdl": [
-    "Shape(AO,OD,ODA)",
-    "Shape(DO,OC,CD)",
-    "Shape(DC,OCD)",
-    "Shape(OA,AE,EO)",
-    "Shape(OE,EC,CO)",
-    "Shape(BE,EA,OAB)",
-    "Shape(CE,EB,OBC)",
-    "Collinear(DOEB)",
-    "Collinear(AEC)",
-    "Cocircular(O,DABC)"
-  ],
-  "text_cdl": [
-    "Equal(MeasureOfAngle(COA),100)",
-    "IsCentreOfCircle(O,O)",
-    "IsDiameterOfCircle(BD,O)",
-    "PerpendicularBetweenLine(AE,OE)"
-  ],
-  "image_cdl": [],
-  "goal_cdl": "Value(MeasureOfAngle(CDB))",
-  "problem_answer": "25",
-  "theorem_seqs": [
-    "arc_property_center_angle(1,OAC,O)",
-    "circle_property_chord_perpendicular_bisect_arc(1,OAC,OEB)",
-    "congruent_arc_judgment_length_equal(1,OAB,OBC)",
-    "congruent_arc_property_measure_equal(1,OAB,OBC)",
-    "arc_addition_measure(1,OAB,OBC)",
-    "arc_property_circumference_angle_external(1,OBC,D)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "arc_property_center_angle(1,OAC,O)",
-      "circle_property_chord_perpendicular_bisect_arc(1,OAC,OEB)",
-      "arc_addition_measure(1,OAB,OBC)",
-      "arc_property_circumference_angle_external(1,OBC,D)"
+    "problem_id": 6883,
+    "source": "GeoQA-angle-10112",
+    "problem_level": 6,
+    "problem_img": "6883.png",
+    "construction_cdl": [
+        "Shape(AO,OD,ODA)",
+        "Shape(DO,OC,CD)",
+        "Shape(DC,OCD)",
+        "Shape(OA,AE,EO)",
+        "Shape(OE,EC,CO)",
+        "Shape(BE,EA,OAB)",
+        "Shape(CE,EB,OBC)",
+        "Collinear(DOEB)",
+        "Collinear(AEC)",
+        "Cocircular(O,DABC)"
     ],
-    "circle_property_chord_perpendicular_bisect_arc(1,OAC,OEB)": [
-      "congruent_arc_judgment_length_equal(1,OAB,OBC)"
+    "text_cdl": [
+        "Equal(MeasureOfAngle(COA),100)",
+        "IsCentreOfCircle(O,O)",
+        "IsDiameterOfCircle(BD,O)",
+        "PerpendicularBetweenLine(AE,OE)"
     ],
-    "congruent_arc_judgment_length_equal(1,OAB,OBC)": [
-      "congruent_arc_property_measure_equal(1,OAB,OBC)"
-    ]
-  }
+    "image_cdl": [],
+    "goal_cdl": "Value(MeasureOfAngle(CDB))",
+    "problem_answer": "25",
+    "theorem_seqs": [
+        "arc_property_center_angle(1,OAC,O)",
+        "circle_property_chord_perpendicular_bisect_arc(1,OAC,OEB)",
+        "congruent_arc_judgment_length_equal(1,OAB,OBC)",
+        "congruent_arc_property_measure_equal(1,OAB,OBC)",
+        "arc_addition_measure(1,OAB,OBC)",
+        "arc_property_circumference_angle_external(1,OBC,D)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "arc_property_center_angle(1,OAC,O)",
+            "circle_property_chord_perpendicular_bisect_arc(1,OAC,OEB)",
+            "arc_addition_measure(1,OAB,OBC)",
+            "arc_property_circumference_angle_external(1,OBC,D)"
+        ],
+        "circle_property_chord_perpendicular_bisect_arc(1,OAC,OEB)": [
+            "congruent_arc_judgment_length_equal(1,OAB,OBC)"
+        ],
+        "congruent_arc_judgment_length_equal(1,OAB,OBC)": [
+            "congruent_arc_property_measure_equal(1,OAB,OBC)"
+        ]
+    }
 }

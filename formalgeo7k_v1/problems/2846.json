@@ -1,50 +1,47 @@
 {
-  "problem_id": 2846,
-  "annotation": "RunanWang_2023-05-07",
-  "source": "Geometry3k-2999",
-  "problem_level": 2,
-  "problem_text_cn": "如图所示，⊙H的直径为14，DF=14，⊙H的圆心为H，AD垂直于FD，CA⊥DA，DF垂直于CF，FC⊥CC。求圆H的周长。",
-  "problem_text_en": "As shown in the diagram, the diameter of ⊙H is 14, DF=14, the center of circle H is H, AD⊥FD, CA is perpendicular to DA, DF⊥CF, FC is perpendicular to CC. Find the circumference of the circle H.",
-  "problem_img": "2846.png",
-  "construction_cdl": [
-    "Shape(AG,HEG,EA)",
-    "Shape(CE,HIE,IC)",
-    "Shape(HMI,MF,FI)",
-    "Shape(HGM,GD,DM)",
-    "Shape(H)",
-    "Collinear(AEC)",
-    "Collinear(CIF)",
-    "Collinear(DMF)",
-    "Collinear(AGD)",
-    "Cocircular(H,EGMI)"
-  ],
-  "text_cdl": [
-    "Equal(DiameterOfCircle(H),14)",
-    "Equal(LengthOfLine(DF),14)",
-    "IsCentreOfCircle(H,H)",
-    "PerpendicularBetweenLine(AD,FD)",
-    "PerpendicularBetweenLine(CA,DA)",
-    "PerpendicularBetweenLine(DF,CF)",
-    "PerpendicularBetweenLine(FC,CA)"
-  ],
-  "image_cdl": [
-    "Equal(DiameterOfCircle(H),14)",
-    "Equal(LengthOfLine(DF),14)",
-    "PerpendicularBetweenLine(AD,FD)",
-    "PerpendicularBetweenLine(CA,DA)",
-    "PerpendicularBetweenLine(DF,CF)",
-    "PerpendicularBetweenLine(FC,CA)"
-  ],
-  "goal_cdl": "Value(PerimeterOfCircle(H))",
-  "problem_answer": "14*pi",
-  "theorem_seqs": [
-    "circle_property_length_of_radius_and_diameter(1,H)",
-    "circle_perimeter_formula(1,H)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "circle_property_length_of_radius_and_diameter(1,H)",
-      "circle_perimeter_formula(1,H)"
-    ]
-  }
+    "problem_id": 2846,
+    "source": "Geometry3k-2999",
+    "problem_level": 2,
+    "problem_img": "2846.png",
+    "construction_cdl": [
+        "Shape(AG,HEG,EA)",
+        "Shape(CE,HIE,IC)",
+        "Shape(HMI,MF,FI)",
+        "Shape(HGM,GD,DM)",
+        "Shape(H)",
+        "Collinear(AEC)",
+        "Collinear(CIF)",
+        "Collinear(DMF)",
+        "Collinear(AGD)",
+        "Cocircular(H,EGMI)"
+    ],
+    "text_cdl": [
+        "Equal(DiameterOfCircle(H),14)",
+        "Equal(LengthOfLine(DF),14)",
+        "IsCentreOfCircle(H,H)",
+        "PerpendicularBetweenLine(AD,FD)",
+        "PerpendicularBetweenLine(CA,DA)",
+        "PerpendicularBetweenLine(DF,CF)",
+        "PerpendicularBetweenLine(FC,CA)"
+    ],
+    "image_cdl": [
+        "Equal(DiameterOfCircle(H),14)",
+        "Equal(LengthOfLine(DF),14)",
+        "PerpendicularBetweenLine(AD,FD)",
+        "PerpendicularBetweenLine(CA,DA)",
+        "PerpendicularBetweenLine(DF,CF)",
+        "PerpendicularBetweenLine(FC,CA)"
+    ],
+    "goal_cdl": "Value(PerimeterOfCircle(H))",
+    "problem_answer": "14*pi",
+    "theorem_seqs": [
+        "circle_property_length_of_radius_and_diameter(1,H)",
+        "circle_perimeter_formula(1,H)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "circle_property_length_of_radius_and_diameter(1,H)",
+            "circle_perimeter_formula(1,H)"
+        ]
+    }
 }

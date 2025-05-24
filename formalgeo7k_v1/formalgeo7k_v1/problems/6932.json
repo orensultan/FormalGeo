@@ -1,56 +1,53 @@
 {
-  "problem_id": 6932,
-  "annotation": "ChengQin_2023-06-04",
-  "source": "GeoQA-angle-10184",
-  "problem_level": 7,
-  "problem_text_cn": "如图所示，∠CDA=120°，O是⊙O的圆心，AB是圆O的直径。求∠CEB的大小。",
-  "problem_text_en": "As shown in the diagram, ∠CDA=120°, O is the center of circle O, the diameter of circle O is AB. Find the measure of ∠CEB.",
-  "problem_img": "6932.png",
-  "construction_cdl": [
-    "Shape(OCD,DC)",
-    "Shape(OBC,CD)",
-    "Shape(ODE,EF,FD)",
-    "Shape(OEA,AG,GE)",
-    "Shape(EG,GF,FE)",
-    "Shape(FG,GH,HC,CF)",
-    "Shape(DF,FC,CD)",
-    "Shape(GA,AH,HG)",
-    "Shape(CH,HB,BC)",
-    "Shape(HA,AO,OB,BH)",
-    "Shape(OAB,BO,OA)",
-    "Collinear(AGFD)",
-    "Collinear(EGHB)",
-    "Collinear(EFC)",
-    "Collinear(AHC)",
-    "Collinear(AOB)",
-    "Cocircular(O,ABCDE)"
-  ],
-  "text_cdl": [
-    "Equal(MeasureOfAngle(CDA),120)",
-    "IsCentreOfCircle(O,O)",
-    "IsDiameterOfCircle(AB,O)"
-  ],
-  "image_cdl": [],
-  "goal_cdl": "Value(MeasureOfAngle(CEB))",
-  "problem_answer": "30",
-  "theorem_seqs": [
-    "round_arc(1,OCA,OAC)",
-    "arc_property_circumference_angle_internal(1,OCA,D)",
-    "arc_property_circumference_angle_internal(1,OAC,B)",
-    "diameter_of_circle_property_right_angle(1,BCA,O)",
-    "triangle_property_angle_sum(1,BCA)",
-    "arc_property_circumference_angle_external(1,OBC,A)",
-    "arc_property_circumference_angle_external(1,OBC,E)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "round_arc(1,OCA,OAC)",
-      "arc_property_circumference_angle_internal(1,OCA,D)",
-      "arc_property_circumference_angle_internal(1,OAC,B)",
-      "diameter_of_circle_property_right_angle(1,BCA,O)",
-      "triangle_property_angle_sum(1,BCA)",
-      "arc_property_circumference_angle_external(1,OBC,A)",
-      "arc_property_circumference_angle_external(1,OBC,E)"
-    ]
-  }
+    "problem_id": 6932,
+    "source": "GeoQA-angle-10184",
+    "problem_level": 7,
+    "problem_img": "6932.png",
+    "construction_cdl": [
+        "Shape(OCD,DC)",
+        "Shape(OBC,CD)",
+        "Shape(ODE,EF,FD)",
+        "Shape(OEA,AG,GE)",
+        "Shape(EG,GF,FE)",
+        "Shape(FG,GH,HC,CF)",
+        "Shape(DF,FC,CD)",
+        "Shape(GA,AH,HG)",
+        "Shape(CH,HB,BC)",
+        "Shape(HA,AO,OB,BH)",
+        "Shape(OAB,BO,OA)",
+        "Collinear(AGFD)",
+        "Collinear(EGHB)",
+        "Collinear(EFC)",
+        "Collinear(AHC)",
+        "Collinear(AOB)",
+        "Cocircular(O,ABCDE)"
+    ],
+    "text_cdl": [
+        "Equal(MeasureOfAngle(CDA),120)",
+        "IsCentreOfCircle(O,O)",
+        "IsDiameterOfCircle(AB,O)"
+    ],
+    "image_cdl": [],
+    "goal_cdl": "Value(MeasureOfAngle(CEB))",
+    "problem_answer": "30",
+    "theorem_seqs": [
+        "round_arc(1,OCA,OAC)",
+        "arc_property_circumference_angle_internal(1,OCA,D)",
+        "arc_property_circumference_angle_internal(1,OAC,B)",
+        "diameter_of_circle_property_right_angle(1,BCA,O)",
+        "triangle_property_angle_sum(1,BCA)",
+        "arc_property_circumference_angle_external(1,OBC,A)",
+        "arc_property_circumference_angle_external(1,OBC,E)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "round_arc(1,OCA,OAC)",
+            "arc_property_circumference_angle_internal(1,OCA,D)",
+            "arc_property_circumference_angle_internal(1,OAC,B)",
+            "diameter_of_circle_property_right_angle(1,BCA,O)",
+            "triangle_property_angle_sum(1,BCA)",
+            "arc_property_circumference_angle_external(1,OBC,A)",
+            "arc_property_circumference_angle_external(1,OBC,E)"
+        ]
+    }
 }

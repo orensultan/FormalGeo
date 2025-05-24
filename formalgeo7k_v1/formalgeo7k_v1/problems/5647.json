@@ -1,32 +1,29 @@
 {
-  "problem_id": 5647,
-  "annotation": "JiaZou_2023-05-28",
-  "source": "GeoQA-7302",
-  "problem_level": 2,
-  "problem_text_cn": "如图所示，AB=4，∠ABD=60°，∠ACD=45°。求直线AC的长度。",
-  "problem_text_en": "As shown in the diagram, AB=4, ∠ABD=60°, ∠ACD=45°. Find the length of line AC.",
-  "problem_img": "5647.png",
-  "construction_cdl": [
-    "Shape(AC,CB,BA)",
-    "Shape(AB,BD,DA)",
-    "Collinear(CBD)"
-  ],
-  "text_cdl": [
-    "Equal(LengthOfLine(AB),4)",
-    "Equal(MeasureOfAngle(ABD),60)",
-    "Equal(MeasureOfAngle(ACD),45)"
-  ],
-  "image_cdl": [],
-  "goal_cdl": "Value(LengthOfLine(AC))",
-  "problem_answer": "2*sqrt(6)",
-  "theorem_seqs": [
-    "sine_theorem(1,ABD)",
-    "sine_theorem(1,ACD)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "sine_theorem(1,ABD)",
-      "sine_theorem(1,ACD)"
-    ]
-  }
+    "problem_id": 5647,
+    "source": "GeoQA-7302",
+    "problem_level": 2,
+    "problem_img": "5647.png",
+    "construction_cdl": [
+        "Shape(AC,CB,BA)",
+        "Shape(AB,BD,DA)",
+        "Collinear(CBD)"
+    ],
+    "text_cdl": [
+        "Equal(LengthOfLine(AB),4)",
+        "Equal(MeasureOfAngle(ABD),60)",
+        "Equal(MeasureOfAngle(ACD),45)"
+    ],
+    "image_cdl": [],
+    "goal_cdl": "Value(LengthOfLine(AC))",
+    "problem_answer": "2*sqrt(6)",
+    "theorem_seqs": [
+        "sine_theorem(1,ABD)",
+        "sine_theorem(1,ACD)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "sine_theorem(1,ABD)",
+            "sine_theorem(1,ACD)"
+        ]
+    }
 }

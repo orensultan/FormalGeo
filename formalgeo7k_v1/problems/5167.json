@@ -1,78 +1,75 @@
 {
-  "problem_id": 5167,
-  "annotation": "JiaZou_2023-05-21",
-  "source": "GeoQA-5120",
-  "problem_level": 12,
-  "problem_text_cn": "如图所示，⊙O的半径为2，O是圆O的圆心，OAPB是▱。求直线AB的长度。",
-  "problem_text_en": "As shown in the diagram, the radius of circle O is 2, O is the center of circle O, OAPB is a ▱. Find the length of line AB.",
-  "problem_img": "5167.png",
-  "construction_cdl": [
-    "Shape(OA,AC,CO)",
-    "Shape(OC,CB,BO)",
-    "Shape(AP,PC,CA)",
-    "Shape(CP,PB,BC)",
-    "Shape(AO,OB,OBA)",
-    "Shape(PA,OAP)",
-    "Shape(BP,OPB)",
-    "Collinear(ACB)",
-    "Collinear(OCP)",
-    "Cocircular(O,APB)"
-  ],
-  "text_cdl": [
-    "Equal(RadiusOfCircle(O),2)",
-    "IsCentreOfCircle(O,O)",
-    "Parallelogram(OAPB)"
-  ],
-  "image_cdl": [],
-  "goal_cdl": "Value(LengthOfLine(AB))",
-  "problem_answer": "2*sqrt(3)",
-  "theorem_seqs": [
-    "radius_of_circle_property_length_equal(1,OA,O)",
-    "radius_of_circle_property_length_equal(1,OB,O)",
-    "radius_of_circle_property_length_equal(1,OP,O)",
-    "parallelogram_property_opposite_line_equal(1,OAPB)",
-    "parallelogram_property_opposite_line_equal(1,APBO)",
-    "kite_judgment_equal_and_equal(1,OAPB)",
-    "parallelogram_property_diagonal_bisection(1,OAPB,C)",
-    "line_addition(1,OC,CP)",
-    "kite_property_diagonal_perpendicular_bisection(1,OAPB,C)",
-    "right_triangle_judgment_angle(1,ACO)",
-    "right_triangle_property_pythagorean(1,ACO)",
-    "line_addition(1,AC,CB)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "radius_of_circle_property_length_equal(1,OA,O)",
-      "radius_of_circle_property_length_equal(1,OB,O)",
-      "radius_of_circle_property_length_equal(1,OP,O)",
-      "parallelogram_property_opposite_line_equal(1,OAPB)",
-      "parallelogram_property_opposite_line_equal(1,APBO)",
-      "parallelogram_property_diagonal_bisection(1,OAPB,C)",
-      "line_addition(1,OC,CP)",
-      "line_addition(1,AC,CB)"
+    "problem_id": 5167,
+    "source": "GeoQA-5120",
+    "problem_level": 12,
+    "problem_img": "5167.png",
+    "construction_cdl": [
+        "Shape(OA,AC,CO)",
+        "Shape(OC,CB,BO)",
+        "Shape(AP,PC,CA)",
+        "Shape(CP,PB,BC)",
+        "Shape(AO,OB,OBA)",
+        "Shape(PA,OAP)",
+        "Shape(BP,OPB)",
+        "Collinear(ACB)",
+        "Collinear(OCP)",
+        "Cocircular(O,APB)"
     ],
-    "radius_of_circle_property_length_equal(1,OA,O)": [
-      "kite_judgment_equal_and_equal(1,OAPB)",
-      "kite_judgment_equal_and_equal(1,OAPB)"
+    "text_cdl": [
+        "Equal(RadiusOfCircle(O),2)",
+        "IsCentreOfCircle(O,O)",
+        "Parallelogram(OAPB)"
     ],
-    "radius_of_circle_property_length_equal(1,OB,O)": [
-      "kite_judgment_equal_and_equal(1,OAPB)",
-      "kite_judgment_equal_and_equal(1,OAPB)"
+    "image_cdl": [],
+    "goal_cdl": "Value(LengthOfLine(AB))",
+    "problem_answer": "2*sqrt(3)",
+    "theorem_seqs": [
+        "radius_of_circle_property_length_equal(1,OA,O)",
+        "radius_of_circle_property_length_equal(1,OB,O)",
+        "radius_of_circle_property_length_equal(1,OP,O)",
+        "parallelogram_property_opposite_line_equal(1,OAPB)",
+        "parallelogram_property_opposite_line_equal(1,APBO)",
+        "kite_judgment_equal_and_equal(1,OAPB)",
+        "parallelogram_property_diagonal_bisection(1,OAPB,C)",
+        "line_addition(1,OC,CP)",
+        "kite_property_diagonal_perpendicular_bisection(1,OAPB,C)",
+        "right_triangle_judgment_angle(1,ACO)",
+        "right_triangle_property_pythagorean(1,ACO)",
+        "line_addition(1,AC,CB)"
     ],
-    "parallelogram_property_opposite_line_equal(1,OAPB)": [
-      "kite_judgment_equal_and_equal(1,OAPB)"
-    ],
-    "parallelogram_property_opposite_line_equal(1,APBO)": [
-      "kite_judgment_equal_and_equal(1,OAPB)"
-    ],
-    "kite_judgment_equal_and_equal(1,OAPB)": [
-      "kite_property_diagonal_perpendicular_bisection(1,OAPB,C)"
-    ],
-    "kite_property_diagonal_perpendicular_bisection(1,OAPB,C)": [
-      "right_triangle_judgment_angle(1,ACO)"
-    ],
-    "right_triangle_judgment_angle(1,ACO)": [
-      "right_triangle_property_pythagorean(1,ACO)"
-    ]
-  }
+    "theorem_seqs_dag": {
+        "START": [
+            "radius_of_circle_property_length_equal(1,OA,O)",
+            "radius_of_circle_property_length_equal(1,OB,O)",
+            "radius_of_circle_property_length_equal(1,OP,O)",
+            "parallelogram_property_opposite_line_equal(1,OAPB)",
+            "parallelogram_property_opposite_line_equal(1,APBO)",
+            "parallelogram_property_diagonal_bisection(1,OAPB,C)",
+            "line_addition(1,OC,CP)",
+            "line_addition(1,AC,CB)"
+        ],
+        "radius_of_circle_property_length_equal(1,OA,O)": [
+            "kite_judgment_equal_and_equal(1,OAPB)",
+            "kite_judgment_equal_and_equal(1,OAPB)"
+        ],
+        "radius_of_circle_property_length_equal(1,OB,O)": [
+            "kite_judgment_equal_and_equal(1,OAPB)",
+            "kite_judgment_equal_and_equal(1,OAPB)"
+        ],
+        "parallelogram_property_opposite_line_equal(1,OAPB)": [
+            "kite_judgment_equal_and_equal(1,OAPB)"
+        ],
+        "parallelogram_property_opposite_line_equal(1,APBO)": [
+            "kite_judgment_equal_and_equal(1,OAPB)"
+        ],
+        "kite_judgment_equal_and_equal(1,OAPB)": [
+            "kite_property_diagonal_perpendicular_bisection(1,OAPB,C)"
+        ],
+        "kite_property_diagonal_perpendicular_bisection(1,OAPB,C)": [
+            "right_triangle_judgment_angle(1,ACO)"
+        ],
+        "right_triangle_judgment_angle(1,ACO)": [
+            "right_triangle_property_pythagorean(1,ACO)"
+        ]
+    }
 }

@@ -2,9 +2,6 @@ from similar_proofs_model import load_model_and_predict
 from similar_proofs_model import model_save_path
 import numpy as np
 import pandas as pd
-from create_problems_proofs_similarity_dataset import save_problems
-from utils import display_image
-
 
 problems_similarity_csv = 'problems_similarity_results.csv'
 

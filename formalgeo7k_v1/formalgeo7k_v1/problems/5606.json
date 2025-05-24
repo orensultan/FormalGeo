@@ -1,51 +1,48 @@
 {
-  "problem_id": 5606,
-  "annotation": "YimingHe_2023-05-28",
-  "source": "GeoQA-7163",
-  "problem_level": 7,
-  "problem_text_cn": "如图所示，BE=4，EC=6，BD是∠ABC的角平分线，DE∥AB。求直线AB的长度。",
-  "problem_text_en": "As shown in the diagram, BE=4, EC=6, BD bisects ∠ABC, DE is parallel to AB. Find the length of line AB.",
-  "problem_img": "5606.png",
-  "construction_cdl": [
-    "Shape(AB,BD,DA)",
-    "Shape(DB,BE,ED)",
-    "Shape(DE,EC,CD)",
-    "Collinear(ADC)",
-    "Collinear(BEC)"
-  ],
-  "text_cdl": [
-    "Equal(LengthOfLine(BE),4)",
-    "Equal(LengthOfLine(EC),6)",
-    "IsBisectorOfAngle(BD,ABC)",
-    "ParallelBetweenLine(DE,AB)"
-  ],
-  "image_cdl": [],
-  "goal_cdl": "Value(LengthOfLine(AB))",
-  "problem_answer": "20/3",
-  "theorem_seqs": [
-    "line_addition(1,BE,EC)",
-    "parallel_property_alternate_interior_angle(1,DE,AB)",
-    "isosceles_triangle_judgment_angle_equal(1,EDB)",
-    "parallel_property_corresponding_angle(2,BA,ED,C)",
-    "similar_triangle_judgment_aa(1,DEC,ABC)",
-    "similar_triangle_property_line_ratio(1,DEC,ABC)",
-    "similar_triangle_property_line_ratio(1,CDE,CAB)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "line_addition(1,BE,EC)",
-      "parallel_property_alternate_interior_angle(1,DE,AB)",
-      "parallel_property_corresponding_angle(2,BA,ED,C)"
+    "problem_id": 5606,
+    "source": "GeoQA-7163",
+    "problem_level": 7,
+    "problem_img": "5606.png",
+    "construction_cdl": [
+        "Shape(AB,BD,DA)",
+        "Shape(DB,BE,ED)",
+        "Shape(DE,EC,CD)",
+        "Collinear(ADC)",
+        "Collinear(BEC)"
     ],
-    "parallel_property_alternate_interior_angle(1,DE,AB)": [
-      "isosceles_triangle_judgment_angle_equal(1,EDB)"
+    "text_cdl": [
+        "Equal(LengthOfLine(BE),4)",
+        "Equal(LengthOfLine(EC),6)",
+        "IsBisectorOfAngle(BD,ABC)",
+        "ParallelBetweenLine(DE,AB)"
     ],
-    "parallel_property_corresponding_angle(2,BA,ED,C)": [
-      "similar_triangle_judgment_aa(1,DEC,ABC)"
+    "image_cdl": [],
+    "goal_cdl": "Value(LengthOfLine(AB))",
+    "problem_answer": "20/3",
+    "theorem_seqs": [
+        "line_addition(1,BE,EC)",
+        "parallel_property_alternate_interior_angle(1,DE,AB)",
+        "isosceles_triangle_judgment_angle_equal(1,EDB)",
+        "parallel_property_corresponding_angle(2,BA,ED,C)",
+        "similar_triangle_judgment_aa(1,DEC,ABC)",
+        "similar_triangle_property_line_ratio(1,DEC,ABC)",
+        "similar_triangle_property_line_ratio(1,CDE,CAB)"
     ],
-    "similar_triangle_judgment_aa(1,DEC,ABC)": [
-      "similar_triangle_property_line_ratio(1,DEC,ABC)",
-      "similar_triangle_property_line_ratio(1,CDE,CAB)"
-    ]
-  }
+    "theorem_seqs_dag": {
+        "START": [
+            "line_addition(1,BE,EC)",
+            "parallel_property_alternate_interior_angle(1,DE,AB)",
+            "parallel_property_corresponding_angle(2,BA,ED,C)"
+        ],
+        "parallel_property_alternate_interior_angle(1,DE,AB)": [
+            "isosceles_triangle_judgment_angle_equal(1,EDB)"
+        ],
+        "parallel_property_corresponding_angle(2,BA,ED,C)": [
+            "similar_triangle_judgment_aa(1,DEC,ABC)"
+        ],
+        "similar_triangle_judgment_aa(1,DEC,ABC)": [
+            "similar_triangle_property_line_ratio(1,DEC,ABC)",
+            "similar_triangle_property_line_ratio(1,CDE,CAB)"
+        ]
+    }
 }

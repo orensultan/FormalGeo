@@ -1,43 +1,40 @@
 {
-  "problem_id": 2538,
-  "annotation": "ChenyangMao_2023-04-23",
-  "source": "Geometry3k-2663",
-  "problem_level": 3,
-  "problem_text_cn": "如图所示，HGKJ的面积为188，HI=8，HJ=16，HI垂直于KI，HG和KJ是梯形HGKJ的腰。求直线GK的长度。",
-  "problem_text_en": "As shown in the diagram, the area of quadrilateral HGKJ is 188, HI=8, HJ=16, HI is perpendicular to KI, HJ and GK are the parallel sides of trapezoid HGKJ. Find the length of line GK.",
-  "problem_img": "2538.png",
-  "construction_cdl": [
-    "Shape(HG,GI,IH)",
-    "Shape(HI,IK,KJ,JH)",
-    "Collinear(GIK)"
-  ],
-  "text_cdl": [
-    "Equal(AreaOfQuadrilateral(HGKJ),188)",
-    "Equal(LengthOfLine(HI),8)",
-    "Equal(LengthOfLine(HJ),16)",
-    "PerpendicularBetweenLine(HI,KI)",
-    "Trapezoid(HGKJ)"
-  ],
-  "image_cdl": [
-    "Equal(AreaOfQuadrilateral(HGKJ),188)",
-    "Equal(LengthOfLine(HI),8)",
-    "Equal(LengthOfLine(HJ),16)",
-    "PerpendicularBetweenLine(HI,KI)"
-  ],
-  "goal_cdl": "Value(LengthOfLine(GK))",
-  "problem_answer": "31",
-  "theorem_seqs": [
-    "adjacent_complementary_angle(1,GIH,HIK)",
-    "altitude_of_quadrilateral_judgment_left_vertex(2,HI,HGKJ)",
-    "trapezoid_area_formula(1,HGKJ)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "adjacent_complementary_angle(1,GIH,HIK)",
-      "trapezoid_area_formula(1,HGKJ)"
+    "problem_id": 2538,
+    "source": "Geometry3k-2663",
+    "problem_level": 3,
+    "problem_img": "2538.png",
+    "construction_cdl": [
+        "Shape(HG,GI,IH)",
+        "Shape(HI,IK,KJ,JH)",
+        "Collinear(GIK)"
     ],
-    "adjacent_complementary_angle(1,GIH,HIK)": [
-      "altitude_of_quadrilateral_judgment_left_vertex(2,HI,HGKJ)"
-    ]
-  }
+    "text_cdl": [
+        "Equal(AreaOfQuadrilateral(HGKJ),188)",
+        "Equal(LengthOfLine(HI),8)",
+        "Equal(LengthOfLine(HJ),16)",
+        "PerpendicularBetweenLine(HI,KI)",
+        "Trapezoid(HGKJ)"
+    ],
+    "image_cdl": [
+        "Equal(AreaOfQuadrilateral(HGKJ),188)",
+        "Equal(LengthOfLine(HI),8)",
+        "Equal(LengthOfLine(HJ),16)",
+        "PerpendicularBetweenLine(HI,KI)"
+    ],
+    "goal_cdl": "Value(LengthOfLine(GK))",
+    "problem_answer": "31",
+    "theorem_seqs": [
+        "adjacent_complementary_angle(1,GIH,HIK)",
+        "altitude_of_quadrilateral_judgment_left_vertex(2,HI,HGKJ)",
+        "trapezoid_area_formula(1,HGKJ)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "adjacent_complementary_angle(1,GIH,HIK)",
+            "trapezoid_area_formula(1,HGKJ)"
+        ],
+        "adjacent_complementary_angle(1,GIH,HIK)": [
+            "altitude_of_quadrilateral_judgment_left_vertex(2,HI,HGKJ)"
+        ]
+    }
 }

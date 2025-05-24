@@ -1,56 +1,53 @@
 {
-  "problem_id": 1386,
-  "annotation": "YanjunGuo_2023-04-16",
-  "source": "Geometry3k-1435",
-  "problem_level": 6,
-  "problem_text_cn": "如图所示，PT=16，QS=x，QT=20，RS=12，RS∥PT。求直线ST的长度。",
-  "problem_text_en": "As shown in the diagram, PT=16, QS=x, QT=20, RS=12, RS is parallel to PT. Find the length of line ST.",
-  "problem_img": "1386.png",
-  "construction_cdl": [
-    "Shape(QR,RS,SQ)",
-    "Shape(RP,PT,TS,SR)",
-    "Collinear(QRP)",
-    "Collinear(QST)"
-  ],
-  "text_cdl": [
-    "Equal(LengthOfLine(PT),16)",
-    "Equal(LengthOfLine(QS),x)",
-    "Equal(LengthOfLine(QT),20)",
-    "Equal(LengthOfLine(RS),12)",
-    "ParallelBetweenLine(RS,PT)"
-  ],
-  "image_cdl": [
-    "Equal(LengthOfLine(PT),16)",
-    "Equal(LengthOfLine(QS),x)",
-    "Equal(LengthOfLine(QT),20)",
-    "Equal(LengthOfLine(RS),12)",
-    "ParallelBetweenLine(RS,PT)"
-  ],
-  "goal_cdl": "Value(LengthOfLine(ST))",
-  "problem_answer": "5",
-  "theorem_seqs": [
-    "parallel_property_corresponding_angle(1,RS,PT,Q)",
-    "parallel_property_corresponding_angle(2,TP,SR,Q)",
-    "similar_triangle_judgment_aa(1,QRS,QPT)",
-    "similar_triangle_property_line_ratio(1,QRS,QPT)",
-    "similar_triangle_property_line_ratio(1,RSQ,PTQ)",
-    "line_addition(1,QS,ST)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "parallel_property_corresponding_angle(1,RS,PT,Q)",
-      "parallel_property_corresponding_angle(2,TP,SR,Q)",
-      "line_addition(1,QS,ST)"
+    "problem_id": 1386,
+    "source": "Geometry3k-1435",
+    "problem_level": 6,
+    "problem_img": "1386.png",
+    "construction_cdl": [
+        "Shape(QR,RS,SQ)",
+        "Shape(RP,PT,TS,SR)",
+        "Collinear(QRP)",
+        "Collinear(QST)"
     ],
-    "parallel_property_corresponding_angle(1,RS,PT,Q)": [
-      "similar_triangle_judgment_aa(1,QRS,QPT)"
+    "text_cdl": [
+        "Equal(LengthOfLine(PT),16)",
+        "Equal(LengthOfLine(QS),x)",
+        "Equal(LengthOfLine(QT),20)",
+        "Equal(LengthOfLine(RS),12)",
+        "ParallelBetweenLine(RS,PT)"
     ],
-    "parallel_property_corresponding_angle(2,TP,SR,Q)": [
-      "similar_triangle_judgment_aa(1,QRS,QPT)"
+    "image_cdl": [
+        "Equal(LengthOfLine(PT),16)",
+        "Equal(LengthOfLine(QS),x)",
+        "Equal(LengthOfLine(QT),20)",
+        "Equal(LengthOfLine(RS),12)",
+        "ParallelBetweenLine(RS,PT)"
     ],
-    "similar_triangle_judgment_aa(1,QRS,QPT)": [
-      "similar_triangle_property_line_ratio(1,QRS,QPT)",
-      "similar_triangle_property_line_ratio(1,RSQ,PTQ)"
-    ]
-  }
+    "goal_cdl": "Value(LengthOfLine(ST))",
+    "problem_answer": "5",
+    "theorem_seqs": [
+        "parallel_property_corresponding_angle(1,RS,PT,Q)",
+        "parallel_property_corresponding_angle(2,TP,SR,Q)",
+        "similar_triangle_judgment_aa(1,QRS,QPT)",
+        "similar_triangle_property_line_ratio(1,QRS,QPT)",
+        "similar_triangle_property_line_ratio(1,RSQ,PTQ)",
+        "line_addition(1,QS,ST)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "parallel_property_corresponding_angle(1,RS,PT,Q)",
+            "parallel_property_corresponding_angle(2,TP,SR,Q)",
+            "line_addition(1,QS,ST)"
+        ],
+        "parallel_property_corresponding_angle(1,RS,PT,Q)": [
+            "similar_triangle_judgment_aa(1,QRS,QPT)"
+        ],
+        "parallel_property_corresponding_angle(2,TP,SR,Q)": [
+            "similar_triangle_judgment_aa(1,QRS,QPT)"
+        ],
+        "similar_triangle_judgment_aa(1,QRS,QPT)": [
+            "similar_triangle_property_line_ratio(1,QRS,QPT)",
+            "similar_triangle_property_line_ratio(1,RSQ,PTQ)"
+        ]
+    }
 }

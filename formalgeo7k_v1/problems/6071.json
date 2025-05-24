@@ -1,47 +1,44 @@
 {
-  "problem_id": 6071,
-  "annotation": "RunanWang_2023-06-04",
-  "source": "GeoQA-8585",
-  "problem_level": 5,
-  "problem_text_cn": "如图所示，∠DAB=65°，⊙O的圆心为O，DE垂直于OE。求∠BOC的大小。",
-  "problem_text_en": "As shown in the diagram, ∠DAB=65°, O is the center of ⊙O, DE is perpendicular to OE. Find the measure of ∠BOC.",
-  "problem_img": "6071.png",
-  "construction_cdl": [
-    "Shape(ODA,AD)",
-    "Shape(OAC,CE,EA)",
-    "Shape(DA,AE,ED)",
-    "Shape(OBD,DE,EO,OB)",
-    "Shape(OE,EC,CO)",
-    "Shape(OC,OCB,BO)",
-    "Collinear(AEOB)",
-    "Collinear(DEC)",
-    "Cocircular(O,DACB)"
-  ],
-  "text_cdl": [
-    "Equal(MeasureOfAngle(DAB),65)",
-    "IsCentreOfCircle(O,O)",
-    "PerpendicularBetweenLine(DE,OE)"
-  ],
-  "image_cdl": [
-    "Equal(MeasureOfAngle(DAB),65)",
-    "PerpendicularBetweenLine(DE,OE)"
-  ],
-  "goal_cdl": "Value(MeasureOfAngle(BOC))",
-  "problem_answer": "130",
-  "theorem_seqs": [
-    "triangle_property_angle_sum(1,DAE)",
-    "arc_property_center_angle(1,OAC,O)",
-    "arc_property_circumference_angle_external(1,OAC,D)",
-    "adjacent_complementary_angle(1,AED,DEO)",
-    "adjacent_complementary_angle(1,BOC,COA)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "triangle_property_angle_sum(1,DAE)",
-      "arc_property_center_angle(1,OAC,O)",
-      "arc_property_circumference_angle_external(1,OAC,D)",
-      "adjacent_complementary_angle(1,AED,DEO)",
-      "adjacent_complementary_angle(1,BOC,COA)"
-    ]
-  }
+    "problem_id": 6071,
+    "source": "GeoQA-8585",
+    "problem_level": 5,
+    "problem_img": "6071.png",
+    "construction_cdl": [
+        "Shape(ODA,AD)",
+        "Shape(OAC,CE,EA)",
+        "Shape(DA,AE,ED)",
+        "Shape(OBD,DE,EO,OB)",
+        "Shape(OE,EC,CO)",
+        "Shape(OC,OCB,BO)",
+        "Collinear(AEOB)",
+        "Collinear(DEC)",
+        "Cocircular(O,DACB)"
+    ],
+    "text_cdl": [
+        "Equal(MeasureOfAngle(DAB),65)",
+        "IsCentreOfCircle(O,O)",
+        "PerpendicularBetweenLine(DE,OE)"
+    ],
+    "image_cdl": [
+        "Equal(MeasureOfAngle(DAB),65)",
+        "PerpendicularBetweenLine(DE,OE)"
+    ],
+    "goal_cdl": "Value(MeasureOfAngle(BOC))",
+    "problem_answer": "130",
+    "theorem_seqs": [
+        "triangle_property_angle_sum(1,DAE)",
+        "arc_property_center_angle(1,OAC,O)",
+        "arc_property_circumference_angle_external(1,OAC,D)",
+        "adjacent_complementary_angle(1,AED,DEO)",
+        "adjacent_complementary_angle(1,BOC,COA)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "triangle_property_angle_sum(1,DAE)",
+            "arc_property_center_angle(1,OAC,O)",
+            "arc_property_circumference_angle_external(1,OAC,D)",
+            "adjacent_complementary_angle(1,AED,DEO)",
+            "adjacent_complementary_angle(1,BOC,COA)"
+        ]
+    }
 }

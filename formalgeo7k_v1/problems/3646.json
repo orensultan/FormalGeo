@@ -1,42 +1,39 @@
 {
-  "problem_id": 3646,
-  "annotation": "XiaoxiaoJin_2023-04-30",
-  "source": "GeoQA-1342",
-  "problem_level": 4,
-  "problem_text_cn": "如图所示，∠BEF=56°，∠BEF=∠FEG，ABCD是矩形。求∠EGF的大小。",
-  "problem_text_en": "As shown in the diagram, ∠BEF=56°, ∠BEF=∠FEG, ABCD is a rectangle. Find the measure of ∠EGF.",
-  "problem_img": "3646.png",
-  "construction_cdl": [
-    "Shape(AB,BE,EF,FA)",
-    "Shape(GE,EC,CD,DG)",
-    "Shape(FE,EG,GF)",
-    "Collinear(AFGD)",
-    "Collinear(BEC)"
-  ],
-  "text_cdl": [
-    "Equal(MeasureOfAngle(BEF),56)",
-    "Equal(MeasureOfAngle(BEF),MeasureOfAngle(FEG))",
-    "Rectangle(ABCD)"
-  ],
-  "image_cdl": [],
-  "goal_cdl": "Value(MeasureOfAngle(EGF))",
-  "problem_answer": "68",
-  "theorem_seqs": [
-    "angle_addition(1,BEF,FEG)",
-    "parallel_property_collinear_extend(3,AD,BC,G)",
-    "parallel_property_collinear_extend(3,CB,GA,E)",
-    "parallel_property_ipsilateral_internal_angle(1,EB,GA)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "angle_addition(1,BEF,FEG)",
-      "parallel_property_collinear_extend(3,AD,BC,G)"
+    "problem_id": 3646,
+    "source": "GeoQA-1342",
+    "problem_level": 4,
+    "problem_img": "3646.png",
+    "construction_cdl": [
+        "Shape(AB,BE,EF,FA)",
+        "Shape(GE,EC,CD,DG)",
+        "Shape(FE,EG,GF)",
+        "Collinear(AFGD)",
+        "Collinear(BEC)"
     ],
-    "parallel_property_collinear_extend(3,AD,BC,G)": [
-      "parallel_property_collinear_extend(3,CB,GA,E)"
+    "text_cdl": [
+        "Equal(MeasureOfAngle(BEF),56)",
+        "Equal(MeasureOfAngle(BEF),MeasureOfAngle(FEG))",
+        "Rectangle(ABCD)"
     ],
-    "parallel_property_collinear_extend(3,CB,GA,E)": [
-      "parallel_property_ipsilateral_internal_angle(1,EB,GA)"
-    ]
-  }
+    "image_cdl": [],
+    "goal_cdl": "Value(MeasureOfAngle(EGF))",
+    "problem_answer": "68",
+    "theorem_seqs": [
+        "angle_addition(1,BEF,FEG)",
+        "parallel_property_collinear_extend(3,AD,BC,G)",
+        "parallel_property_collinear_extend(3,CB,GA,E)",
+        "parallel_property_ipsilateral_internal_angle(1,EB,GA)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "angle_addition(1,BEF,FEG)",
+            "parallel_property_collinear_extend(3,AD,BC,G)"
+        ],
+        "parallel_property_collinear_extend(3,AD,BC,G)": [
+            "parallel_property_collinear_extend(3,CB,GA,E)"
+        ],
+        "parallel_property_collinear_extend(3,CB,GA,E)": [
+            "parallel_property_ipsilateral_internal_angle(1,EB,GA)"
+        ]
+    }
 }

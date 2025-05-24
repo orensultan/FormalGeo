@@ -1,53 +1,50 @@
 {
-  "problem_id": 3284,
-  "annotation": "XiaokaiZhang_2023-04-23",
-  "source": "GeoQA-598",
-  "problem_level": 5,
-  "problem_text_cn": "如图所示，∠ABC=45°，∠FDE=30°，∠CAB是直角△CAB的直角，DE和EF是直角△DEF的两个直角边。求∠DMB的大小。",
-  "problem_text_en": "As shown in the diagram, ∠ABC=45°, ∠FDE=30°, ∠CAB is the right angle of the right triangle CAB, ∠DEF is the right angle of the right triangle DEF. Find the measure of ∠DMB.",
-  "problem_img": "3284.png",
-  "construction_cdl": [
-    "Shape(NB,BM,MN)",
-    "Shape(AF,FN,NA)",
-    "Shape(AN,NM,ML,LE,EA)",
-    "Shape(MD,DL,LM)",
-    "Shape(EL,LC,CE)",
-    "Shape(BN,NF)",
-    "Shape(DM,MB)",
-    "Shape(CL,LD)",
-    "Collinear(FAEC)",
-    "Collinear(FNMD)",
-    "Collinear(ELD)",
-    "Collinear(ANB)",
-    "Collinear(BMLC)"
-  ],
-  "text_cdl": [
-    "Equal(MeasureOfAngle(ABC),45)",
-    "Equal(MeasureOfAngle(FDE),30)",
-    "RightTriangle(CAB)",
-    "RightTriangle(DEF)"
-  ],
-  "image_cdl": [],
-  "goal_cdl": "Value(MeasureOfAngle(DMB))",
-  "problem_answer": "75",
-  "theorem_seqs": [
-    "parallel_judgment_ipsilateral_internal_angle(1,ED,AB)",
-    "parallel_property_collinear_extend(3,BA,DE,N)",
-    "parallel_property_alternate_interior_angle(2,BN,DE)",
-    "triangle_property_angle_sum(1,NBM)",
-    "adjacent_complementary_angle(1,DMB,BMN)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "parallel_judgment_ipsilateral_internal_angle(1,ED,AB)",
-      "triangle_property_angle_sum(1,NBM)",
-      "adjacent_complementary_angle(1,DMB,BMN)"
+    "problem_id": 3284,
+    "source": "GeoQA-598",
+    "problem_level": 5,
+    "problem_img": "3284.png",
+    "construction_cdl": [
+        "Shape(NB,BM,MN)",
+        "Shape(AF,FN,NA)",
+        "Shape(AN,NM,ML,LE,EA)",
+        "Shape(MD,DL,LM)",
+        "Shape(EL,LC,CE)",
+        "Shape(BN,NF)",
+        "Shape(DM,MB)",
+        "Shape(CL,LD)",
+        "Collinear(FAEC)",
+        "Collinear(FNMD)",
+        "Collinear(ELD)",
+        "Collinear(ANB)",
+        "Collinear(BMLC)"
     ],
-    "parallel_judgment_ipsilateral_internal_angle(1,ED,AB)": [
-      "parallel_property_collinear_extend(3,BA,DE,N)"
+    "text_cdl": [
+        "Equal(MeasureOfAngle(ABC),45)",
+        "Equal(MeasureOfAngle(FDE),30)",
+        "RightTriangle(CAB)",
+        "RightTriangle(DEF)"
     ],
-    "parallel_property_collinear_extend(3,BA,DE,N)": [
-      "parallel_property_alternate_interior_angle(2,BN,DE)"
-    ]
-  }
+    "image_cdl": [],
+    "goal_cdl": "Value(MeasureOfAngle(DMB))",
+    "problem_answer": "75",
+    "theorem_seqs": [
+        "parallel_judgment_ipsilateral_internal_angle(1,ED,AB)",
+        "parallel_property_collinear_extend(3,BA,DE,N)",
+        "parallel_property_alternate_interior_angle(2,BN,DE)",
+        "triangle_property_angle_sum(1,NBM)",
+        "adjacent_complementary_angle(1,DMB,BMN)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "parallel_judgment_ipsilateral_internal_angle(1,ED,AB)",
+            "triangle_property_angle_sum(1,NBM)",
+            "adjacent_complementary_angle(1,DMB,BMN)"
+        ],
+        "parallel_judgment_ipsilateral_internal_angle(1,ED,AB)": [
+            "parallel_property_collinear_extend(3,BA,DE,N)"
+        ],
+        "parallel_property_collinear_extend(3,BA,DE,N)": [
+            "parallel_property_alternate_interior_angle(2,BN,DE)"
+        ]
+    }
 }

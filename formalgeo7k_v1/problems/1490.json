@@ -1,46 +1,43 @@
 {
-  "problem_id": 1490,
-  "annotation": "QikeHuang_2023-04-16",
-  "source": "Geometry3k-1545",
-  "problem_level": 1,
-  "problem_text_cn": "如图所示，AB=3*y-8，AD=13，CB=2*x+7，CD=10，∠ADF=59°，∠BFC=49°，∠FBA=20°，四边形ADCB是▱。求∠AFB的大小。",
-  "problem_text_en": "As shown in the diagram, AB=3*y-8, AD=13, CB=2*x+7, CD=10, ∠ADF=59°, ∠BFC=49°, ∠FBA=20°, DA and CB are opposite sides of the ▱ ADCB. Find the measure of ∠AFB.",
-  "problem_img": "1490.png",
-  "construction_cdl": [
-    "Shape(AD,DF,FA)",
-    "Shape(FD,DC,CF)",
-    "Shape(BF,FC,CB)",
-    "Shape(AF,FB,BA)",
-    "Collinear(AFC)",
-    "Collinear(BFD)"
-  ],
-  "text_cdl": [
-    "Equal(LengthOfLine(AB),3*y-8)",
-    "Equal(LengthOfLine(AD),13)",
-    "Equal(LengthOfLine(CB),2*x+7)",
-    "Equal(LengthOfLine(CD),10)",
-    "Equal(MeasureOfAngle(ADF),59)",
-    "Equal(MeasureOfAngle(BFC),49)",
-    "Equal(MeasureOfAngle(FBA),20)",
-    "Parallelogram(ADCB)"
-  ],
-  "image_cdl": [
-    "Equal(LengthOfLine(AB),3*y-8)",
-    "Equal(LengthOfLine(AD),13)",
-    "Equal(LengthOfLine(CB),2*x+7)",
-    "Equal(LengthOfLine(CD),10)",
-    "Equal(MeasureOfAngle(ADF),59)",
-    "Equal(MeasureOfAngle(BFC),49)",
-    "Equal(MeasureOfAngle(FBA),20)"
-  ],
-  "goal_cdl": "Value(MeasureOfAngle(AFB))",
-  "problem_answer": "131",
-  "theorem_seqs": [
-    "adjacent_complementary_angle(1,AFB,BFC)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "adjacent_complementary_angle(1,AFB,BFC)"
-    ]
-  }
+    "problem_id": 1490,
+    "source": "Geometry3k-1545",
+    "problem_level": 1,
+    "problem_img": "1490.png",
+    "construction_cdl": [
+        "Shape(AD,DF,FA)",
+        "Shape(FD,DC,CF)",
+        "Shape(BF,FC,CB)",
+        "Shape(AF,FB,BA)",
+        "Collinear(AFC)",
+        "Collinear(BFD)"
+    ],
+    "text_cdl": [
+        "Equal(LengthOfLine(AB),3*y-8)",
+        "Equal(LengthOfLine(AD),13)",
+        "Equal(LengthOfLine(CB),2*x+7)",
+        "Equal(LengthOfLine(CD),10)",
+        "Equal(MeasureOfAngle(ADF),59)",
+        "Equal(MeasureOfAngle(BFC),49)",
+        "Equal(MeasureOfAngle(FBA),20)",
+        "Parallelogram(ADCB)"
+    ],
+    "image_cdl": [
+        "Equal(LengthOfLine(AB),3*y-8)",
+        "Equal(LengthOfLine(AD),13)",
+        "Equal(LengthOfLine(CB),2*x+7)",
+        "Equal(LengthOfLine(CD),10)",
+        "Equal(MeasureOfAngle(ADF),59)",
+        "Equal(MeasureOfAngle(BFC),49)",
+        "Equal(MeasureOfAngle(FBA),20)"
+    ],
+    "goal_cdl": "Value(MeasureOfAngle(AFB))",
+    "problem_answer": "131",
+    "theorem_seqs": [
+        "adjacent_complementary_angle(1,AFB,BFC)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "adjacent_complementary_angle(1,AFB,BFC)"
+        ]
+    }
 }

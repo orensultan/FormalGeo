@@ -1,41 +1,38 @@
 {
-  "problem_id": 6021,
-  "annotation": "ChenyangMao_2023-05-28",
-  "source": "GeoQA-8503",
-  "problem_level": 4,
-  "problem_text_cn": "如图所示，∠ACD=42°，O是圆O的圆心，⊙O的直径为AB。求∠DAB的大小。",
-  "problem_text_en": "As shown in the diagram, ∠ACD=42°, O is the center of ⊙O, AB is the diameter of circle O. Find the measure of ∠DAB.",
-  "problem_img": "6021.png",
-  "construction_cdl": [
-    "Shape(OBD,DB)",
-    "Shape(ODA,AD)",
-    "Shape(OAC,CA)",
-    "Shape(OAC,OCB,BO,OA)",
-    "Shape(BD,DA,AO,OB)",
-    "Shape(DA,AC,CD)",
-    "Collinear(AOB)",
-    "Cocircular(O,ACBD)"
-  ],
-  "text_cdl": [
-    "Equal(MeasureOfAngle(ACD),42)",
-    "IsCentreOfCircle(O,O)",
-    "IsDiameterOfCircle(AB,O)"
-  ],
-  "image_cdl": [],
-  "goal_cdl": "Value(MeasureOfAngle(DAB))",
-  "problem_answer": "48",
-  "theorem_seqs": [
-    "triangle_property_angle_sum(1,BDA)",
-    "diameter_of_circle_property_right_angle(1,BDA,O)",
-    "arc_property_circumference_angle_external(1,ODA,C)",
-    "arc_property_circumference_angle_external(1,ODA,B)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "triangle_property_angle_sum(1,BDA)",
-      "diameter_of_circle_property_right_angle(1,BDA,O)",
-      "arc_property_circumference_angle_external(1,ODA,C)",
-      "arc_property_circumference_angle_external(1,ODA,B)"
-    ]
-  }
+    "problem_id": 6021,
+    "source": "GeoQA-8503",
+    "problem_level": 4,
+    "problem_img": "6021.png",
+    "construction_cdl": [
+        "Shape(OBD,DB)",
+        "Shape(ODA,AD)",
+        "Shape(OAC,CA)",
+        "Shape(OAC,OCB,BO,OA)",
+        "Shape(BD,DA,AO,OB)",
+        "Shape(DA,AC,CD)",
+        "Collinear(AOB)",
+        "Cocircular(O,ACBD)"
+    ],
+    "text_cdl": [
+        "Equal(MeasureOfAngle(ACD),42)",
+        "IsCentreOfCircle(O,O)",
+        "IsDiameterOfCircle(AB,O)"
+    ],
+    "image_cdl": [],
+    "goal_cdl": "Value(MeasureOfAngle(DAB))",
+    "problem_answer": "48",
+    "theorem_seqs": [
+        "triangle_property_angle_sum(1,BDA)",
+        "diameter_of_circle_property_right_angle(1,BDA,O)",
+        "arc_property_circumference_angle_external(1,ODA,C)",
+        "arc_property_circumference_angle_external(1,ODA,B)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "triangle_property_angle_sum(1,BDA)",
+            "diameter_of_circle_property_right_angle(1,BDA,O)",
+            "arc_property_circumference_angle_external(1,ODA,C)",
+            "arc_property_circumference_angle_external(1,ODA,B)"
+        ]
+    }
 }

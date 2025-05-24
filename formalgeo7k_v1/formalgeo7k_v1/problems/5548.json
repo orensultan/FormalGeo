@@ -1,35 +1,32 @@
 {
-  "problem_id": 5548,
-  "annotation": "ZheZhu_2023-05-21",
-  "source": "GeoQA-6769",
-  "problem_level": 3,
-  "problem_text_cn": "如图所示，AC=3，BD=6，CD=11，△ACE镜像相似于△BED。求直线CE的长度与直线AC的长度之比。",
-  "problem_text_en": "As shown in the diagram, AC=3, BD=6, CD=11, Triangle ACE is mirror similar to triangle BED.. Find the ratio of the length of line CE to the length of line AC.",
-  "problem_img": "5548.png",
-  "construction_cdl": [
-    "Shape(AC,CE,EA)",
-    "Shape(BE,ED,DB)",
-    "Collinear(CED)"
-  ],
-  "text_cdl": [
-    "Equal(LengthOfLine(AC),3)",
-    "Equal(LengthOfLine(BD),6)",
-    "Equal(LengthOfLine(CD),11)",
-    "MirrorSimilarBetweenTriangle(ACE,BED)"
-  ],
-  "image_cdl": [],
-  "goal_cdl": "Value(Div(LengthOfLine(CE),LengthOfLine(AC)))",
-  "problem_answer": "11/9",
-  "theorem_seqs": [
-    "line_addition(1,CE,ED)",
-    "mirror_similar_triangle_property_line_ratio(1,ACE,BED)",
-    "mirror_similar_triangle_property_line_ratio(1,EAC,EDB)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "line_addition(1,CE,ED)",
-      "mirror_similar_triangle_property_line_ratio(1,ACE,BED)",
-      "mirror_similar_triangle_property_line_ratio(1,EAC,EDB)"
-    ]
-  }
+    "problem_id": 5548,
+    "source": "GeoQA-6769",
+    "problem_level": 3,
+    "problem_img": "5548.png",
+    "construction_cdl": [
+        "Shape(AC,CE,EA)",
+        "Shape(BE,ED,DB)",
+        "Collinear(CED)"
+    ],
+    "text_cdl": [
+        "Equal(LengthOfLine(AC),3)",
+        "Equal(LengthOfLine(BD),6)",
+        "Equal(LengthOfLine(CD),11)",
+        "MirrorSimilarBetweenTriangle(ACE,BED)"
+    ],
+    "image_cdl": [],
+    "goal_cdl": "Value(Div(LengthOfLine(CE),LengthOfLine(AC)))",
+    "problem_answer": "11/9",
+    "theorem_seqs": [
+        "line_addition(1,CE,ED)",
+        "mirror_similar_triangle_property_line_ratio(1,ACE,BED)",
+        "mirror_similar_triangle_property_line_ratio(1,EAC,EDB)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "line_addition(1,CE,ED)",
+            "mirror_similar_triangle_property_line_ratio(1,ACE,BED)",
+            "mirror_similar_triangle_property_line_ratio(1,EAC,EDB)"
+        ]
+    }
 }

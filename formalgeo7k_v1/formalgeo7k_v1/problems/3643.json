@@ -1,44 +1,41 @@
 {
-  "problem_id": 3643,
-  "annotation": "XiaoxiaoJin_2023-04-30",
-  "source": "GeoQA-1336",
-  "problem_level": 4,
-  "problem_text_cn": "如图所示，∠ABC=60°，DF平行于AE，CB⊥DB。求∠GDF的大小。",
-  "problem_text_en": "As shown in the diagram, ∠ABC=60°, DF is parallel to AE, CB is perpendicular to DB. Find the measure of ∠GDF.",
-  "problem_img": "3643.png",
-  "construction_cdl": [
-    "Shape(AB,BC)",
-    "Shape(CB,BD,DC)",
-    "Shape(DB,BE)",
-    "Shape(GD,DF)",
-    "Shape(FD,DB)",
-    "Shape(CD,DG)",
-    "Collinear(ABE)",
-    "Collinear(BDG)",
-    "Collinear(CDF)"
-  ],
-  "text_cdl": [
-    "Equal(MeasureOfAngle(ABC),60)",
-    "ParallelBetweenLine(DF,AE)",
-    "PerpendicularBetweenLine(CB,DB)"
-  ],
-  "image_cdl": [],
-  "goal_cdl": "Value(MeasureOfAngle(GDF))",
-  "problem_answer": "30",
-  "theorem_seqs": [
-    "angle_addition(1,ABC,CBD)",
-    "adjacent_complementary_angle(1,ABD,DBE)",
-    "parallel_property_collinear_extend(3,EA,FD,B)",
-    "parallel_property_corresponding_angle(1,DF,BE,G)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "angle_addition(1,ABC,CBD)",
-      "adjacent_complementary_angle(1,ABD,DBE)",
-      "parallel_property_collinear_extend(3,EA,FD,B)"
+    "problem_id": 3643,
+    "source": "GeoQA-1336",
+    "problem_level": 4,
+    "problem_img": "3643.png",
+    "construction_cdl": [
+        "Shape(AB,BC)",
+        "Shape(CB,BD,DC)",
+        "Shape(DB,BE)",
+        "Shape(GD,DF)",
+        "Shape(FD,DB)",
+        "Shape(CD,DG)",
+        "Collinear(ABE)",
+        "Collinear(BDG)",
+        "Collinear(CDF)"
     ],
-    "parallel_property_collinear_extend(3,EA,FD,B)": [
-      "parallel_property_corresponding_angle(1,DF,BE,G)"
-    ]
-  }
+    "text_cdl": [
+        "Equal(MeasureOfAngle(ABC),60)",
+        "ParallelBetweenLine(DF,AE)",
+        "PerpendicularBetweenLine(CB,DB)"
+    ],
+    "image_cdl": [],
+    "goal_cdl": "Value(MeasureOfAngle(GDF))",
+    "problem_answer": "30",
+    "theorem_seqs": [
+        "angle_addition(1,ABC,CBD)",
+        "adjacent_complementary_angle(1,ABD,DBE)",
+        "parallel_property_collinear_extend(3,EA,FD,B)",
+        "parallel_property_corresponding_angle(1,DF,BE,G)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "angle_addition(1,ABC,CBD)",
+            "adjacent_complementary_angle(1,ABD,DBE)",
+            "parallel_property_collinear_extend(3,EA,FD,B)"
+        ],
+        "parallel_property_collinear_extend(3,EA,FD,B)": [
+            "parallel_property_corresponding_angle(1,DF,BE,G)"
+        ]
+    }
 }

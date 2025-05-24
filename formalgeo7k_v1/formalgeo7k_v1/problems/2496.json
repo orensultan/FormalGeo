@@ -1,39 +1,36 @@
 {
-  "problem_id": 2496,
-  "annotation": "ChenyangMao_2023-04-23",
-  "source": "Geometry3k-2619",
-  "problem_level": 3,
-  "problem_text_cn": "如图所示，FK=32，EH垂直于GH，四边形EHGF是矩形。求直线EG的长度。",
-  "problem_text_en": "As shown in the diagram, FK=32, EH⊥GH, EHGF is a rectangle. Find the length of line EG.",
-  "problem_img": "2496.png",
-  "construction_cdl": [
-    "Shape(EH,HK,KE)",
-    "Shape(KH,HG,GK)",
-    "Shape(KG,GF,FK)",
-    "Shape(EK,KF,FE)",
-    "Collinear(EKG)",
-    "Collinear(HKF)"
-  ],
-  "text_cdl": [
-    "Equal(LengthOfLine(FK),32)",
-    "PerpendicularBetweenLine(EH,GH)",
-    "Rectangle(EHGF)"
-  ],
-  "image_cdl": [
-    "PerpendicularBetweenLine(EH,GH)"
-  ],
-  "goal_cdl": "Value(LengthOfLine(EG))",
-  "problem_answer": "64",
-  "theorem_seqs": [
-    "line_addition(1,FK,KH)",
-    "parallelogram_property_diagonal_bisection(1,HGFE,K)",
-    "rectangle_property_diagonal_equal(1,EHGF)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "line_addition(1,FK,KH)",
-      "parallelogram_property_diagonal_bisection(1,HGFE,K)",
-      "rectangle_property_diagonal_equal(1,EHGF)"
-    ]
-  }
+    "problem_id": 2496,
+    "source": "Geometry3k-2619",
+    "problem_level": 3,
+    "problem_img": "2496.png",
+    "construction_cdl": [
+        "Shape(EH,HK,KE)",
+        "Shape(KH,HG,GK)",
+        "Shape(KG,GF,FK)",
+        "Shape(EK,KF,FE)",
+        "Collinear(EKG)",
+        "Collinear(HKF)"
+    ],
+    "text_cdl": [
+        "Equal(LengthOfLine(FK),32)",
+        "PerpendicularBetweenLine(EH,GH)",
+        "Rectangle(EHGF)"
+    ],
+    "image_cdl": [
+        "PerpendicularBetweenLine(EH,GH)"
+    ],
+    "goal_cdl": "Value(LengthOfLine(EG))",
+    "problem_answer": "64",
+    "theorem_seqs": [
+        "line_addition(1,FK,KH)",
+        "parallelogram_property_diagonal_bisection(1,HGFE,K)",
+        "rectangle_property_diagonal_equal(1,EHGF)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "line_addition(1,FK,KH)",
+            "parallelogram_property_diagonal_bisection(1,HGFE,K)",
+            "rectangle_property_diagonal_equal(1,EHGF)"
+        ]
+    }
 }

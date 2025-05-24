@@ -1,45 +1,42 @@
 {
-  "problem_id": 3088,
-  "annotation": "YimingHe_2023-04-23",
-  "source": "GeoQA-321",
-  "problem_level": 3,
-  "problem_text_cn": "如图所示，∠BDA=55°，BC平行于EF。求∠EGD的大小。",
-  "problem_text_en": "As shown in the diagram, ∠BDA=55°, BC is parallel to EF. Find the measure of ∠EGD.",
-  "problem_img": "3088.png",
-  "construction_cdl": [
-    "Shape(BD,DA)",
-    "Shape(AD,DC)",
-    "Shape(GD,DB)",
-    "Shape(CD,DG)",
-    "Shape(EG,GD)",
-    "Shape(DG,GF)",
-    "Shape(HG,GE)",
-    "Shape(FG,GH)",
-    "Collinear(ADGF)",
-    "Collinear(BDC)",
-    "Collinear(EGF)"
-  ],
-  "text_cdl": [
-    "Equal(MeasureOfAngle(BDA),55)",
-    "ParallelBetweenLine(BC,EF)"
-  ],
-  "image_cdl": [],
-  "goal_cdl": "Value(MeasureOfAngle(EGD))",
-  "problem_answer": "55",
-  "theorem_seqs": [
-    "parallel_property_collinear_extend(3,BC,EF,D)",
-    "parallel_property_collinear_extend(3,FE,DB,G)",
-    "parallel_property_corresponding_angle(2,GE,DB,A)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "parallel_property_collinear_extend(3,BC,EF,D)"
+    "problem_id": 3088,
+    "source": "GeoQA-321",
+    "problem_level": 3,
+    "problem_img": "3088.png",
+    "construction_cdl": [
+        "Shape(BD,DA)",
+        "Shape(AD,DC)",
+        "Shape(GD,DB)",
+        "Shape(CD,DG)",
+        "Shape(EG,GD)",
+        "Shape(DG,GF)",
+        "Shape(HG,GE)",
+        "Shape(FG,GH)",
+        "Collinear(ADGF)",
+        "Collinear(BDC)",
+        "Collinear(EGF)"
     ],
-    "parallel_property_collinear_extend(3,BC,EF,D)": [
-      "parallel_property_collinear_extend(3,FE,DB,G)"
+    "text_cdl": [
+        "Equal(MeasureOfAngle(BDA),55)",
+        "ParallelBetweenLine(BC,EF)"
     ],
-    "parallel_property_collinear_extend(3,FE,DB,G)": [
-      "parallel_property_corresponding_angle(2,GE,DB,A)"
-    ]
-  }
+    "image_cdl": [],
+    "goal_cdl": "Value(MeasureOfAngle(EGD))",
+    "problem_answer": "55",
+    "theorem_seqs": [
+        "parallel_property_collinear_extend(3,BC,EF,D)",
+        "parallel_property_collinear_extend(3,FE,DB,G)",
+        "parallel_property_corresponding_angle(2,GE,DB,A)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "parallel_property_collinear_extend(3,BC,EF,D)"
+        ],
+        "parallel_property_collinear_extend(3,BC,EF,D)": [
+            "parallel_property_collinear_extend(3,FE,DB,G)"
+        ],
+        "parallel_property_collinear_extend(3,FE,DB,G)": [
+            "parallel_property_corresponding_angle(2,GE,DB,A)"
+        ]
+    }
 }

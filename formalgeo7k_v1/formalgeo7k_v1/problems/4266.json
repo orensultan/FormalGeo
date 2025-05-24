@@ -1,39 +1,36 @@
 {
-  "problem_id": 4266,
-  "annotation": "DengfengYue_2023-05-07",
-  "source": "GeoQA-3055",
-  "problem_level": 2,
-  "problem_text_cn": "如图所示，∠ABD=28°，O是⊙O的圆心，AB是⊙O的直径。求∠DAB的大小。",
-  "problem_text_en": "As shown in the diagram, ∠ABD=28°, the center of ⊙O is O, the diameter of ⊙O is AB. Find the measure of ∠DAB.",
-  "problem_img": "4266.png",
-  "construction_cdl": [
-    "Shape(DB,OBD)",
-    "Shape(AD,ODA)",
-    "Shape(AE,ED,DA)",
-    "Shape(DE,EB,BD)",
-    "Shape(CE,EA,OAC)",
-    "Shape(EC,CB,BE)",
-    "Shape(BC,OCB)",
-    "Collinear(DEC)",
-    "Collinear(AEOB)",
-    "Cocircular(O,DACB)"
-  ],
-  "text_cdl": [
-    "Equal(MeasureOfAngle(ABD),28)",
-    "IsCentreOfCircle(O,O)",
-    "IsDiameterOfCircle(AB,O)"
-  ],
-  "image_cdl": [],
-  "goal_cdl": "Value(MeasureOfAngle(DAB))",
-  "problem_answer": "62",
-  "theorem_seqs": [
-    "diameter_of_circle_property_right_angle(1,BDA,O)",
-    "triangle_property_angle_sum(1,DAB)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "diameter_of_circle_property_right_angle(1,BDA,O)",
-      "triangle_property_angle_sum(1,DAB)"
-    ]
-  }
+    "problem_id": 4266,
+    "source": "GeoQA-3055",
+    "problem_level": 2,
+    "problem_img": "4266.png",
+    "construction_cdl": [
+        "Shape(DB,OBD)",
+        "Shape(AD,ODA)",
+        "Shape(AE,ED,DA)",
+        "Shape(DE,EB,BD)",
+        "Shape(CE,EA,OAC)",
+        "Shape(EC,CB,BE)",
+        "Shape(BC,OCB)",
+        "Collinear(DEC)",
+        "Collinear(AEOB)",
+        "Cocircular(O,DACB)"
+    ],
+    "text_cdl": [
+        "Equal(MeasureOfAngle(ABD),28)",
+        "IsCentreOfCircle(O,O)",
+        "IsDiameterOfCircle(AB,O)"
+    ],
+    "image_cdl": [],
+    "goal_cdl": "Value(MeasureOfAngle(DAB))",
+    "problem_answer": "62",
+    "theorem_seqs": [
+        "diameter_of_circle_property_right_angle(1,BDA,O)",
+        "triangle_property_angle_sum(1,DAB)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "diameter_of_circle_property_right_angle(1,BDA,O)",
+            "triangle_property_angle_sum(1,DAB)"
+        ]
+    }
 }

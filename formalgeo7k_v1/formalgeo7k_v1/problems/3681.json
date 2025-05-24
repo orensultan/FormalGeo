@@ -1,40 +1,37 @@
 {
-  "problem_id": 3681,
-  "annotation": "XiaoxiaoJin_2023-04-30",
-  "source": "GeoQA-1420",
-  "problem_level": 5,
-  "problem_text_cn": "如图所示，BD=3，三角形AEC的周长为20，ED垂直平分AB。求△ABC的周长。",
-  "problem_text_en": "As shown in the diagram, BD=3, the perimeter of triangle AEC is 20, ED is the perpendicular bisector of BC. Find the perimeter of △ABC.",
-  "problem_img": "3681.png",
-  "construction_cdl": [
-    "Shape(AE,EC,CA)",
-    "Shape(CE,ED,DC)",
-    "Shape(DE,EB,BD)",
-    "Collinear(AEB)",
-    "Collinear(CDB)"
-  ],
-  "text_cdl": [
-    "Equal(LengthOfLine(BD),3)",
-    "Equal(PerimeterOfTriangle(AEC),20)",
-    "IsPerpendicularBisectorOfLine(ED,BC)"
-  ],
-  "image_cdl": [],
-  "goal_cdl": "Value(PerimeterOfTriangle(ABC))",
-  "problem_answer": "26",
-  "theorem_seqs": [
-    "perpendicular_bisector_property_distance_equal(1,ED,BC)",
-    "line_addition(1,AE,EB)",
-    "line_addition(1,CD,DB)",
-    "triangle_perimeter_formula(1,AEC)",
-    "triangle_perimeter_formula(1,CAB)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "perpendicular_bisector_property_distance_equal(1,ED,BC)",
-      "line_addition(1,AE,EB)",
-      "line_addition(1,CD,DB)",
-      "triangle_perimeter_formula(1,AEC)",
-      "triangle_perimeter_formula(1,CAB)"
-    ]
-  }
+    "problem_id": 3681,
+    "source": "GeoQA-1420",
+    "problem_level": 5,
+    "problem_img": "3681.png",
+    "construction_cdl": [
+        "Shape(AE,EC,CA)",
+        "Shape(CE,ED,DC)",
+        "Shape(DE,EB,BD)",
+        "Collinear(AEB)",
+        "Collinear(CDB)"
+    ],
+    "text_cdl": [
+        "Equal(LengthOfLine(BD),3)",
+        "Equal(PerimeterOfTriangle(AEC),20)",
+        "IsPerpendicularBisectorOfLine(ED,BC)"
+    ],
+    "image_cdl": [],
+    "goal_cdl": "Value(PerimeterOfTriangle(ABC))",
+    "problem_answer": "26",
+    "theorem_seqs": [
+        "perpendicular_bisector_property_distance_equal(1,ED,BC)",
+        "line_addition(1,AE,EB)",
+        "line_addition(1,CD,DB)",
+        "triangle_perimeter_formula(1,AEC)",
+        "triangle_perimeter_formula(1,CAB)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "perpendicular_bisector_property_distance_equal(1,ED,BC)",
+            "line_addition(1,AE,EB)",
+            "line_addition(1,CD,DB)",
+            "triangle_perimeter_formula(1,AEC)",
+            "triangle_perimeter_formula(1,CAB)"
+        ]
+    }
 }

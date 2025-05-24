@@ -1,33 +1,30 @@
 {
-  "problem_id": 4516,
-  "annotation": "XiaokaiZhang_2023-05-14",
-  "source": "GeoQA-3542",
-  "problem_level": 2,
-  "problem_text_cn": "如图所示，∠ABC=35°，O是⊙O的圆心。求∠AOC的大小。",
-  "problem_text_en": "As shown in the diagram, ∠ABC=35°, O is the center of circle O. Find the measure of ∠AOC.",
-  "problem_img": "4516.png",
-  "construction_cdl": [
-    "Shape(OCA,AO,OC)",
-    "Shape(OAB,BA)",
-    "Shape(OA,AB,BC,CO)",
-    "Shape(OBC,CB)",
-    "Cocircular(O,ABC)"
-  ],
-  "text_cdl": [
-    "Equal(MeasureOfAngle(ABC),35)",
-    "IsCentreOfCircle(O,O)"
-  ],
-  "image_cdl": [],
-  "goal_cdl": "Value(MeasureOfAngle(AOC))",
-  "problem_answer": "70",
-  "theorem_seqs": [
-    "arc_property_circumference_angle_external(1,OCA,B)",
-    "arc_property_center_angle(1,OCA,O)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "arc_property_circumference_angle_external(1,OCA,B)",
-      "arc_property_center_angle(1,OCA,O)"
-    ]
-  }
+    "problem_id": 4516,
+    "source": "GeoQA-3542",
+    "problem_level": 2,
+    "problem_img": "4516.png",
+    "construction_cdl": [
+        "Shape(OCA,AO,OC)",
+        "Shape(OAB,BA)",
+        "Shape(OA,AB,BC,CO)",
+        "Shape(OBC,CB)",
+        "Cocircular(O,ABC)"
+    ],
+    "text_cdl": [
+        "Equal(MeasureOfAngle(ABC),35)",
+        "IsCentreOfCircle(O,O)"
+    ],
+    "image_cdl": [],
+    "goal_cdl": "Value(MeasureOfAngle(AOC))",
+    "problem_answer": "70",
+    "theorem_seqs": [
+        "arc_property_circumference_angle_external(1,OCA,B)",
+        "arc_property_center_angle(1,OCA,O)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "arc_property_circumference_angle_external(1,OCA,B)",
+            "arc_property_center_angle(1,OCA,O)"
+        ]
+    }
 }

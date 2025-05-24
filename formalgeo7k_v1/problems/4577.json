@@ -1,38 +1,35 @@
 {
-  "problem_id": 4577,
-  "annotation": "YanjunGuo_2023-05-14",
-  "source": "GeoQA-3715",
-  "problem_level": 3,
-  "problem_text_cn": "如图所示，∠AOD=30°，O是⊙O的圆心。求∠BCD的大小。",
-  "problem_text_en": "As shown in the diagram, ∠AOD=30°, O is the center of ⊙O. Find the measure of ∠BCD.",
-  "problem_img": "4577.png",
-  "construction_cdl": [
-    "Shape(AD,ODA)",
-    "Shape(BA,OAB)",
-    "Shape(CB,OBC)",
-    "Shape(DC,OCD)",
-    "Shape(AO,OD,DA)",
-    "Shape(DO,OB,BC,CD)",
-    "Collinear(AOB)",
-    "Cocircular(O,ABCD)"
-  ],
-  "text_cdl": [
-    "Equal(MeasureOfAngle(AOD),30)",
-    "IsCentreOfCircle(O,O)"
-  ],
-  "image_cdl": [],
-  "goal_cdl": "Value(MeasureOfAngle(BCD))",
-  "problem_answer": "105",
-  "theorem_seqs": [
-    "adjacent_complementary_angle(1,AOD,DOB)",
-    "arc_property_center_angle(1,OBD,O)",
-    "arc_property_circumference_angle_internal(1,OBD,C)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "adjacent_complementary_angle(1,AOD,DOB)",
-      "arc_property_center_angle(1,OBD,O)",
-      "arc_property_circumference_angle_internal(1,OBD,C)"
-    ]
-  }
+    "problem_id": 4577,
+    "source": "GeoQA-3715",
+    "problem_level": 3,
+    "problem_img": "4577.png",
+    "construction_cdl": [
+        "Shape(AD,ODA)",
+        "Shape(BA,OAB)",
+        "Shape(CB,OBC)",
+        "Shape(DC,OCD)",
+        "Shape(AO,OD,DA)",
+        "Shape(DO,OB,BC,CD)",
+        "Collinear(AOB)",
+        "Cocircular(O,ABCD)"
+    ],
+    "text_cdl": [
+        "Equal(MeasureOfAngle(AOD),30)",
+        "IsCentreOfCircle(O,O)"
+    ],
+    "image_cdl": [],
+    "goal_cdl": "Value(MeasureOfAngle(BCD))",
+    "problem_answer": "105",
+    "theorem_seqs": [
+        "adjacent_complementary_angle(1,AOD,DOB)",
+        "arc_property_center_angle(1,OBD,O)",
+        "arc_property_circumference_angle_internal(1,OBD,C)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "adjacent_complementary_angle(1,AOD,DOB)",
+            "arc_property_center_angle(1,OBD,O)",
+            "arc_property_circumference_angle_internal(1,OBD,C)"
+        ]
+    }
 }

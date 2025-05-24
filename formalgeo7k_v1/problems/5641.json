@@ -1,61 +1,58 @@
 {
-  "problem_id": 5641,
-  "annotation": "JiaZou_2023-05-28",
-  "source": "GeoQA-7282",
-  "problem_level": 9,
-  "problem_text_cn": "如图所示，AB=15，AC=12，AEDF是菱形。求直线AE的长度。",
-  "problem_text_en": "As shown in the diagram, AB=15, AC=12, AEDF is a rhombus. Find the length of line AE.",
-  "problem_img": "5641.png",
-  "construction_cdl": [
-    "Shape(BD,DE,EB)",
-    "Shape(ED,DF,FA,AE)",
-    "Shape(FD,DC,CF)",
-    "Collinear(BEA)",
-    "Collinear(BDC)",
-    "Collinear(AFC)"
-  ],
-  "text_cdl": [
-    "Equal(LengthOfLine(AB),15)",
-    "Equal(LengthOfLine(AC),12)",
-    "Rhombus(AEDF)"
-  ],
-  "image_cdl": [],
-  "goal_cdl": "Value(LengthOfLine(AE))",
-  "problem_answer": "20/3",
-  "theorem_seqs": [
-    "parallel_property_collinear_extend(2,AF,ED,C)",
-    "parallel_property_corresponding_angle(1,FD,AE,C)",
-    "parallel_property_corresponding_angle(1,DE,CA,B)",
-    "parallel_property_corresponding_angle(2,AF,ED,B)",
-    "line_addition(1,BE,EA)",
-    "line_addition(1,AF,FC)",
-    "similar_triangle_judgment_aa(1,BDE,DCF)",
-    "similar_triangle_property_line_ratio(1,BDE,DCF)",
-    "similar_triangle_property_line_ratio(1,DEB,CFD)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "parallel_property_collinear_extend(2,AF,ED,C)",
-      "parallel_property_corresponding_angle(1,FD,AE,C)",
-      "parallel_property_corresponding_angle(2,AF,ED,B)",
-      "line_addition(1,BE,EA)",
-      "line_addition(1,AF,FC)"
+    "problem_id": 5641,
+    "source": "GeoQA-7282",
+    "problem_level": 9,
+    "problem_img": "5641.png",
+    "construction_cdl": [
+        "Shape(BD,DE,EB)",
+        "Shape(ED,DF,FA,AE)",
+        "Shape(FD,DC,CF)",
+        "Collinear(BEA)",
+        "Collinear(BDC)",
+        "Collinear(AFC)"
     ],
-    "parallel_property_collinear_extend(2,AF,ED,C)": [
-      "parallel_property_corresponding_angle(1,DE,CA,B)"
+    "text_cdl": [
+        "Equal(LengthOfLine(AB),15)",
+        "Equal(LengthOfLine(AC),12)",
+        "Rhombus(AEDF)"
     ],
-    "parallel_property_corresponding_angle(1,FD,AE,C)": [
-      "similar_triangle_judgment_aa(1,BDE,DCF)"
+    "image_cdl": [],
+    "goal_cdl": "Value(LengthOfLine(AE))",
+    "problem_answer": "20/3",
+    "theorem_seqs": [
+        "parallel_property_collinear_extend(2,AF,ED,C)",
+        "parallel_property_corresponding_angle(1,FD,AE,C)",
+        "parallel_property_corresponding_angle(1,DE,CA,B)",
+        "parallel_property_corresponding_angle(2,AF,ED,B)",
+        "line_addition(1,BE,EA)",
+        "line_addition(1,AF,FC)",
+        "similar_triangle_judgment_aa(1,BDE,DCF)",
+        "similar_triangle_property_line_ratio(1,BDE,DCF)",
+        "similar_triangle_property_line_ratio(1,DEB,CFD)"
     ],
-    "parallel_property_corresponding_angle(1,DE,CA,B)": [
-      "similar_triangle_judgment_aa(1,BDE,DCF)"
-    ],
-    "parallel_property_corresponding_angle(2,AF,ED,B)": [
-      "similar_triangle_judgment_aa(1,BDE,DCF)"
-    ],
-    "similar_triangle_judgment_aa(1,BDE,DCF)": [
-      "similar_triangle_property_line_ratio(1,BDE,DCF)",
-      "similar_triangle_property_line_ratio(1,DEB,CFD)"
-    ]
-  }
+    "theorem_seqs_dag": {
+        "START": [
+            "parallel_property_collinear_extend(2,AF,ED,C)",
+            "parallel_property_corresponding_angle(1,FD,AE,C)",
+            "parallel_property_corresponding_angle(2,AF,ED,B)",
+            "line_addition(1,BE,EA)",
+            "line_addition(1,AF,FC)"
+        ],
+        "parallel_property_collinear_extend(2,AF,ED,C)": [
+            "parallel_property_corresponding_angle(1,DE,CA,B)"
+        ],
+        "parallel_property_corresponding_angle(1,FD,AE,C)": [
+            "similar_triangle_judgment_aa(1,BDE,DCF)"
+        ],
+        "parallel_property_corresponding_angle(1,DE,CA,B)": [
+            "similar_triangle_judgment_aa(1,BDE,DCF)"
+        ],
+        "parallel_property_corresponding_angle(2,AF,ED,B)": [
+            "similar_triangle_judgment_aa(1,BDE,DCF)"
+        ],
+        "similar_triangle_judgment_aa(1,BDE,DCF)": [
+            "similar_triangle_property_line_ratio(1,BDE,DCF)",
+            "similar_triangle_property_line_ratio(1,DEB,CFD)"
+        ]
+    }
 }

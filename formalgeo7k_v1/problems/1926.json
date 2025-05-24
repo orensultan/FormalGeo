@@ -1,39 +1,36 @@
 {
-  "problem_id": 1926,
-  "annotation": "JiaZou_2023-03-26",
-  "source": "Geometry3k-2003",
-  "problem_level": 3,
-  "problem_text_cn": "如图所示，∠DCA=32°，∠DGA=47°，∠FDG=70°。求∠CAF的大小。",
-  "problem_text_en": "As shown in the diagram, ∠DCA=32°, ∠DGA=47°, ∠FDG=70°. Find the measure of ∠CAF.",
-  "problem_img": "1926.png",
-  "construction_cdl": [
-    "Shape(DG,GF,FD)",
-    "Shape(FC,CA,AF)",
-    "Collinear(DFC)",
-    "Collinear(GFA)"
-  ],
-  "text_cdl": [
-    "Equal(MeasureOfAngle(DCA),32)",
-    "Equal(MeasureOfAngle(DGA),47)",
-    "Equal(MeasureOfAngle(FDG),70)"
-  ],
-  "image_cdl": [
-    "Equal(MeasureOfAngle(DCA),32)",
-    "Equal(MeasureOfAngle(DGA),47)",
-    "Equal(MeasureOfAngle(FDG),70)"
-  ],
-  "goal_cdl": "Value(MeasureOfAngle(CAF))",
-  "problem_answer": "85",
-  "theorem_seqs": [
-    "triangle_property_angle_sum(1,GFD)",
-    "vertical_angle(1,GFD,AFC)",
-    "triangle_property_angle_sum(1,AFC)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "triangle_property_angle_sum(1,GFD)",
-      "vertical_angle(1,GFD,AFC)",
-      "triangle_property_angle_sum(1,AFC)"
-    ]
-  }
+    "problem_id": 1926,
+    "source": "Geometry3k-2003",
+    "problem_level": 3,
+    "problem_img": "1926.png",
+    "construction_cdl": [
+        "Shape(DG,GF,FD)",
+        "Shape(FC,CA,AF)",
+        "Collinear(DFC)",
+        "Collinear(GFA)"
+    ],
+    "text_cdl": [
+        "Equal(MeasureOfAngle(DCA),32)",
+        "Equal(MeasureOfAngle(DGA),47)",
+        "Equal(MeasureOfAngle(FDG),70)"
+    ],
+    "image_cdl": [
+        "Equal(MeasureOfAngle(DCA),32)",
+        "Equal(MeasureOfAngle(DGA),47)",
+        "Equal(MeasureOfAngle(FDG),70)"
+    ],
+    "goal_cdl": "Value(MeasureOfAngle(CAF))",
+    "problem_answer": "85",
+    "theorem_seqs": [
+        "triangle_property_angle_sum(1,GFD)",
+        "vertical_angle(1,GFD,AFC)",
+        "triangle_property_angle_sum(1,AFC)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "triangle_property_angle_sum(1,GFD)",
+            "vertical_angle(1,GFD,AFC)",
+            "triangle_property_angle_sum(1,AFC)"
+        ]
+    }
 }

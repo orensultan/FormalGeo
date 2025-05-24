@@ -1,68 +1,65 @@
 {
-  "problem_id": 4637,
-  "annotation": "QikeHuang_2023-05-14",
-  "source": "GeoQA-3856",
-  "problem_level": 11,
-  "problem_text_cn": "如图所示，△ACB的周长为24，O是⊙O的圆心，⊙O的切线为AD，圆O的切线为AE，圆O的切线为BF，圆O的切线为CF。求直线AD的长度。",
-  "problem_text_en": "As shown in the diagram, the perimeter of triangle ACB is 24, O is the center of circle O, AD is the tangent to ⊙O, AE is the tangent to circle O, BF is the tangent to ⊙O, the tangent to ⊙O is CF. Find the length of line AD.",
-  "problem_img": "4637.png",
-  "construction_cdl": [
-    "Shape(AC,CF,FB,BA)",
-    "Shape(FC,CE,OFE)",
-    "Shape(BF,ODF,DB)",
-    "Shape(OFE,EO,OF)",
-    "Shape(ODF,FO,OD)",
-    "Shape(DO,OE,OED)",
-    "Collinear(ACE)",
-    "Collinear(ABD)",
-    "Collinear(CFB)",
-    "Cocircular(O,DFE)"
-  ],
-  "text_cdl": [
-    "Equal(PerimeterOfTriangle(ACB),24)",
-    "IsCentreOfCircle(O,O)",
-    "IsTangentOfCircle(AD,O)",
-    "IsTangentOfCircle(AE,O)",
-    "IsTangentOfCircle(BF,O)",
-    "IsTangentOfCircle(CF,O)"
-  ],
-  "image_cdl": [],
-  "goal_cdl": "Value(LengthOfLine(AD))",
-  "problem_answer": "12",
-  "theorem_seqs": [
-    "triangle_perimeter_formula(1,ACB)",
-    "tangent_of_circle_property_perpendicular(1,AE,O,O)",
-    "tangent_of_circle_property_perpendicular(1,AD,O,O)",
-    "tangent_of_circle_judgment_perpendicular(1,CE,O,O)",
-    "tangent_of_circle_judgment_perpendicular(1,BD,O,O)",
-    "tangent_of_circle_property_length_equal(1,AD,AE,O)",
-    "tangent_of_circle_property_length_equal(1,CF,CE,O)",
-    "tangent_of_circle_property_length_equal(1,BF,BD,O)",
-    "line_addition(1,AC,CE)",
-    "line_addition(1,AB,BD)",
-    "line_addition(1,CF,FB)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "triangle_perimeter_formula(1,ACB)",
-      "tangent_of_circle_property_perpendicular(1,AE,O,O)",
-      "tangent_of_circle_property_perpendicular(1,AD,O,O)",
-      "tangent_of_circle_property_length_equal(1,AD,AE,O)",
-      "line_addition(1,AC,CE)",
-      "line_addition(1,AB,BD)",
-      "line_addition(1,CF,FB)"
+    "problem_id": 4637,
+    "source": "GeoQA-3856",
+    "problem_level": 11,
+    "problem_img": "4637.png",
+    "construction_cdl": [
+        "Shape(AC,CF,FB,BA)",
+        "Shape(FC,CE,OFE)",
+        "Shape(BF,ODF,DB)",
+        "Shape(OFE,EO,OF)",
+        "Shape(ODF,FO,OD)",
+        "Shape(DO,OE,OED)",
+        "Collinear(ACE)",
+        "Collinear(ABD)",
+        "Collinear(CFB)",
+        "Cocircular(O,DFE)"
     ],
-    "tangent_of_circle_property_perpendicular(1,AE,O,O)": [
-      "tangent_of_circle_judgment_perpendicular(1,CE,O,O)"
+    "text_cdl": [
+        "Equal(PerimeterOfTriangle(ACB),24)",
+        "IsCentreOfCircle(O,O)",
+        "IsTangentOfCircle(AD,O)",
+        "IsTangentOfCircle(AE,O)",
+        "IsTangentOfCircle(BF,O)",
+        "IsTangentOfCircle(CF,O)"
     ],
-    "tangent_of_circle_property_perpendicular(1,AD,O,O)": [
-      "tangent_of_circle_judgment_perpendicular(1,BD,O,O)"
+    "image_cdl": [],
+    "goal_cdl": "Value(LengthOfLine(AD))",
+    "problem_answer": "12",
+    "theorem_seqs": [
+        "triangle_perimeter_formula(1,ACB)",
+        "tangent_of_circle_property_perpendicular(1,AE,O,O)",
+        "tangent_of_circle_property_perpendicular(1,AD,O,O)",
+        "tangent_of_circle_judgment_perpendicular(1,CE,O,O)",
+        "tangent_of_circle_judgment_perpendicular(1,BD,O,O)",
+        "tangent_of_circle_property_length_equal(1,AD,AE,O)",
+        "tangent_of_circle_property_length_equal(1,CF,CE,O)",
+        "tangent_of_circle_property_length_equal(1,BF,BD,O)",
+        "line_addition(1,AC,CE)",
+        "line_addition(1,AB,BD)",
+        "line_addition(1,CF,FB)"
     ],
-    "tangent_of_circle_judgment_perpendicular(1,CE,O,O)": [
-      "tangent_of_circle_property_length_equal(1,CF,CE,O)"
-    ],
-    "tangent_of_circle_judgment_perpendicular(1,BD,O,O)": [
-      "tangent_of_circle_property_length_equal(1,BF,BD,O)"
-    ]
-  }
+    "theorem_seqs_dag": {
+        "START": [
+            "triangle_perimeter_formula(1,ACB)",
+            "tangent_of_circle_property_perpendicular(1,AE,O,O)",
+            "tangent_of_circle_property_perpendicular(1,AD,O,O)",
+            "tangent_of_circle_property_length_equal(1,AD,AE,O)",
+            "line_addition(1,AC,CE)",
+            "line_addition(1,AB,BD)",
+            "line_addition(1,CF,FB)"
+        ],
+        "tangent_of_circle_property_perpendicular(1,AE,O,O)": [
+            "tangent_of_circle_judgment_perpendicular(1,CE,O,O)"
+        ],
+        "tangent_of_circle_property_perpendicular(1,AD,O,O)": [
+            "tangent_of_circle_judgment_perpendicular(1,BD,O,O)"
+        ],
+        "tangent_of_circle_judgment_perpendicular(1,CE,O,O)": [
+            "tangent_of_circle_property_length_equal(1,CF,CE,O)"
+        ],
+        "tangent_of_circle_judgment_perpendicular(1,BD,O,O)": [
+            "tangent_of_circle_property_length_equal(1,BF,BD,O)"
+        ]
+    }
 }

@@ -1,49 +1,46 @@
 {
-  "problem_id": 4424,
-  "annotation": "JiaZou_2023-05-14",
-  "source": "GeoQA-3377",
-  "problem_level": 5,
-  "problem_text_cn": "如图所示，AD=DB，CD=8，OA=5，OA=RadiusOfCircle(O)，∠ADO=90°，⊙O的圆心为O。求直线AB的长度。",
-  "problem_text_en": "As shown in the diagram, AD=DB, CD=8, OA=5, OA=RadiusOfCircle(O), ∠ADO=90°, the center of ⊙O is O. Find the length of line AB.",
-  "problem_img": "4424.png",
-  "construction_cdl": [
-    "Shape(AO,OC,OCA)",
-    "Shape(OA,AD,DO)",
-    "Shape(CO,OD,DB,OBC)",
-    "Collinear(ADB)",
-    "Collinear(COD)",
-    "Cocircular(O,ABC)"
-  ],
-  "text_cdl": [
-    "Equal(LengthOfLine(AD),LengthOfLine(DB))",
-    "Equal(LengthOfLine(CD),8)",
-    "Equal(LengthOfLine(OA),5)",
-    "Equal(LengthOfLine(OA),RadiusOfCircle(O))",
-    "Equal(MeasureOfAngle(ADO),90)",
-    "IsCentreOfCircle(O,O)"
-  ],
-  "image_cdl": [
-    "Equal(MeasureOfAngle(ADO),90)",
-    "IsCentreOfCircle(O,O)"
-  ],
-  "goal_cdl": "Value(LengthOfLine(AB))",
-  "problem_answer": "8",
-  "theorem_seqs": [
-    "radius_of_circle_property_length_equal(1,OC,O)",
-    "line_addition(1,CO,OD)",
-    "right_triangle_judgment_angle(1,ADO)",
-    "right_triangle_property_pythagorean(1,ADO)",
-    "line_addition(1,AD,DB)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "radius_of_circle_property_length_equal(1,OC,O)",
-      "line_addition(1,CO,OD)",
-      "right_triangle_judgment_angle(1,ADO)",
-      "line_addition(1,AD,DB)"
+    "problem_id": 4424,
+    "source": "GeoQA-3377",
+    "problem_level": 5,
+    "problem_img": "4424.png",
+    "construction_cdl": [
+        "Shape(AO,OC,OCA)",
+        "Shape(OA,AD,DO)",
+        "Shape(CO,OD,DB,OBC)",
+        "Collinear(ADB)",
+        "Collinear(COD)",
+        "Cocircular(O,ABC)"
     ],
-    "right_triangle_judgment_angle(1,ADO)": [
-      "right_triangle_property_pythagorean(1,ADO)"
-    ]
-  }
+    "text_cdl": [
+        "Equal(LengthOfLine(AD),LengthOfLine(DB))",
+        "Equal(LengthOfLine(CD),8)",
+        "Equal(LengthOfLine(OA),5)",
+        "Equal(LengthOfLine(OA),RadiusOfCircle(O))",
+        "Equal(MeasureOfAngle(ADO),90)",
+        "IsCentreOfCircle(O,O)"
+    ],
+    "image_cdl": [
+        "Equal(MeasureOfAngle(ADO),90)",
+        "IsCentreOfCircle(O,O)"
+    ],
+    "goal_cdl": "Value(LengthOfLine(AB))",
+    "problem_answer": "8",
+    "theorem_seqs": [
+        "radius_of_circle_property_length_equal(1,OC,O)",
+        "line_addition(1,CO,OD)",
+        "right_triangle_judgment_angle(1,ADO)",
+        "right_triangle_property_pythagorean(1,ADO)",
+        "line_addition(1,AD,DB)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "radius_of_circle_property_length_equal(1,OC,O)",
+            "line_addition(1,CO,OD)",
+            "right_triangle_judgment_angle(1,ADO)",
+            "line_addition(1,AD,DB)"
+        ],
+        "right_triangle_judgment_angle(1,ADO)": [
+            "right_triangle_property_pythagorean(1,ADO)"
+        ]
+    }
 }

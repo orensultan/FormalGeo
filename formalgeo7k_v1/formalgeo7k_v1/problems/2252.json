@@ -1,47 +1,44 @@
 {
-  "problem_id": 2252,
-  "annotation": "DengfengYue_2023-04-16",
-  "source": "Geometry3k-2353",
-  "problem_level": 4,
-  "problem_text_cn": "如图所示，⊙B的直径与直线AD的长度相等，圆B的直径与直线CG的长度相等，∠CBD=55°，∠GBF=35°，B是⊙B的圆心。求弧BCA的角度。",
-  "problem_text_en": "As shown in the diagram, the diameter of ⊙B is equal to the length of line AD, the diameter of circle B is equal to the length of line CG, ∠CBD=55°, ∠GBF=35°, the center of ⊙B is B. Find the measure of arc BCA.",
-  "problem_img": "2252.png",
-  "construction_cdl": [
-    "Shape(BC,BCA,AB)",
-    "Shape(BA,BAG,GB)",
-    "Shape(BG,BGF,FB)",
-    "Shape(BF,BFD,DB)",
-    "Shape(BD,BDC,CB)",
-    "Collinear(CBG)",
-    "Collinear(ABD)",
-    "Cocircular(B,CAGFD)"
-  ],
-  "text_cdl": [
-    "Equal(DiameterOfCircle(B),LengthOfLine(AD))",
-    "Equal(DiameterOfCircle(B),LengthOfLine(CG))",
-    "Equal(MeasureOfAngle(CBD),55)",
-    "Equal(MeasureOfAngle(GBF),35)",
-    "IsCentreOfCircle(B,B)"
-  ],
-  "image_cdl": [
-    "Equal(MeasureOfAngle(CBD),55)",
-    "Equal(MeasureOfAngle(GBF),35)",
-    "IsCentreOfCircle(B,B)"
-  ],
-  "goal_cdl": "Value(MeasureOfArc(BCA))",
-  "problem_answer": "125",
-  "theorem_seqs": [
-    "flat_angle(1,GBC)",
-    "vertical_angle(1,CBD,GBA)",
-    "angle_addition(1,GBA,ABC)",
-    "arc_property_center_angle(1,BCA,B)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "flat_angle(1,GBC)",
-      "vertical_angle(1,CBD,GBA)",
-      "angle_addition(1,GBA,ABC)",
-      "arc_property_center_angle(1,BCA,B)"
-    ]
-  }
+    "problem_id": 2252,
+    "source": "Geometry3k-2353",
+    "problem_level": 4,
+    "problem_img": "2252.png",
+    "construction_cdl": [
+        "Shape(BC,BCA,AB)",
+        "Shape(BA,BAG,GB)",
+        "Shape(BG,BGF,FB)",
+        "Shape(BF,BFD,DB)",
+        "Shape(BD,BDC,CB)",
+        "Collinear(CBG)",
+        "Collinear(ABD)",
+        "Cocircular(B,CAGFD)"
+    ],
+    "text_cdl": [
+        "Equal(DiameterOfCircle(B),LengthOfLine(AD))",
+        "Equal(DiameterOfCircle(B),LengthOfLine(CG))",
+        "Equal(MeasureOfAngle(CBD),55)",
+        "Equal(MeasureOfAngle(GBF),35)",
+        "IsCentreOfCircle(B,B)"
+    ],
+    "image_cdl": [
+        "Equal(MeasureOfAngle(CBD),55)",
+        "Equal(MeasureOfAngle(GBF),35)",
+        "IsCentreOfCircle(B,B)"
+    ],
+    "goal_cdl": "Value(MeasureOfArc(BCA))",
+    "problem_answer": "125",
+    "theorem_seqs": [
+        "flat_angle(1,GBC)",
+        "vertical_angle(1,CBD,GBA)",
+        "angle_addition(1,GBA,ABC)",
+        "arc_property_center_angle(1,BCA,B)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "flat_angle(1,GBC)",
+            "vertical_angle(1,CBD,GBA)",
+            "angle_addition(1,GBA,ABC)",
+            "arc_property_center_angle(1,BCA,B)"
+        ]
+    }
 }

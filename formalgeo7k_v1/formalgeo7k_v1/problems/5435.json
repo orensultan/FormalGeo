@@ -1,34 +1,31 @@
 {
-  "problem_id": 5435,
-  "annotation": "YangLi_2023-05-21",
-  "source": "GeoQA-5766",
-  "problem_level": 2,
-  "problem_text_cn": "如图所示，AB=2，AE=1，BC=4，ABCD是平行四边形，BE⊥AE。求四边形ABCD的面积。",
-  "problem_text_en": "As shown in the diagram, AB=2, AE=1, BC=4, ABCD is a ▱, BE⊥AE. Find the area of ABCD.",
-  "problem_img": "5435.png",
-  "construction_cdl": [
-    "Shape(AB,BE,EA)",
-    "Shape(DA,AE,EC,CD)",
-    "Collinear(BEC)"
-  ],
-  "text_cdl": [
-    "Equal(LengthOfLine(AB),2)",
-    "Equal(LengthOfLine(AE),1)",
-    "Equal(LengthOfLine(BC),4)",
-    "Parallelogram(ABCD)",
-    "PerpendicularBetweenLine(BE,AE)"
-  ],
-  "image_cdl": [],
-  "goal_cdl": "Value(AreaOfQuadrilateral(ABCD))",
-  "problem_answer": "4",
-  "theorem_seqs": [
-    "altitude_of_quadrilateral_judgment_left_vertex(1,AE,ABCD)",
-    "parallelogram_area_formula_common(1,ABCD)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "altitude_of_quadrilateral_judgment_left_vertex(1,AE,ABCD)",
-      "parallelogram_area_formula_common(1,ABCD)"
-    ]
-  }
+    "problem_id": 5435,
+    "source": "GeoQA-5766",
+    "problem_level": 2,
+    "problem_img": "5435.png",
+    "construction_cdl": [
+        "Shape(AB,BE,EA)",
+        "Shape(DA,AE,EC,CD)",
+        "Collinear(BEC)"
+    ],
+    "text_cdl": [
+        "Equal(LengthOfLine(AB),2)",
+        "Equal(LengthOfLine(AE),1)",
+        "Equal(LengthOfLine(BC),4)",
+        "Parallelogram(ABCD)",
+        "PerpendicularBetweenLine(BE,AE)"
+    ],
+    "image_cdl": [],
+    "goal_cdl": "Value(AreaOfQuadrilateral(ABCD))",
+    "problem_answer": "4",
+    "theorem_seqs": [
+        "altitude_of_quadrilateral_judgment_left_vertex(1,AE,ABCD)",
+        "parallelogram_area_formula_common(1,ABCD)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "altitude_of_quadrilateral_judgment_left_vertex(1,AE,ABCD)",
+            "parallelogram_area_formula_common(1,ABCD)"
+        ]
+    }
 }

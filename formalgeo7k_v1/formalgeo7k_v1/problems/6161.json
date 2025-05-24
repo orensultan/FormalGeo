@@ -1,47 +1,44 @@
 {
-  "problem_id": 6161,
-  "annotation": "YifanWang_2023-06-04",
-  "source": "GeoQA-8724",
-  "problem_level": 5,
-  "problem_text_cn": "如图所示，∠BAC=30°，∠DAB=45°，O是圆O的圆心，AB是圆O的直径。求∠BEC的大小。",
-  "problem_text_en": "As shown in the diagram, ∠BAC=30°, ∠DAB=45°, the center of ⊙O is O, the diameter of ⊙O is AB. Find the measure of ∠BEC.",
-  "problem_img": "6161.png",
-  "construction_cdl": [
-    "Shape(AD,ODA)",
-    "Shape(CA,OAC)",
-    "Shape(AC,CE,EO,OA)",
-    "Shape(AO,OE,ED,DA)",
-    "Shape(EC,CB,BE)",
-    "Shape(EB,BD,DE)",
-    "Shape(DB,OBD)",
-    "Shape(BC,OCB)",
-    "Collinear(AOEB)",
-    "Collinear(CED)",
-    "Cocircular(O,ACBD)"
-  ],
-  "text_cdl": [
-    "Equal(MeasureOfAngle(BAC),30)",
-    "Equal(MeasureOfAngle(DAB),45)",
-    "IsCentreOfCircle(O,O)",
-    "IsDiameterOfCircle(AB,O)"
-  ],
-  "image_cdl": [],
-  "goal_cdl": "Value(MeasureOfAngle(BEC))",
-  "problem_answer": "75",
-  "theorem_seqs": [
-    "diameter_of_circle_property_right_angle(1,ACB,O)",
-    "triangle_property_angle_sum(1,ECB)",
-    "triangle_property_angle_sum(1,ACB)",
-    "arc_property_circumference_angle_external(1,OBD,A)",
-    "arc_property_circumference_angle_external(1,OBD,C)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "diameter_of_circle_property_right_angle(1,ACB,O)",
-      "triangle_property_angle_sum(1,ECB)",
-      "triangle_property_angle_sum(1,ACB)",
-      "arc_property_circumference_angle_external(1,OBD,A)",
-      "arc_property_circumference_angle_external(1,OBD,C)"
-    ]
-  }
+    "problem_id": 6161,
+    "source": "GeoQA-8724",
+    "problem_level": 5,
+    "problem_img": "6161.png",
+    "construction_cdl": [
+        "Shape(AD,ODA)",
+        "Shape(CA,OAC)",
+        "Shape(AC,CE,EO,OA)",
+        "Shape(AO,OE,ED,DA)",
+        "Shape(EC,CB,BE)",
+        "Shape(EB,BD,DE)",
+        "Shape(DB,OBD)",
+        "Shape(BC,OCB)",
+        "Collinear(AOEB)",
+        "Collinear(CED)",
+        "Cocircular(O,ACBD)"
+    ],
+    "text_cdl": [
+        "Equal(MeasureOfAngle(BAC),30)",
+        "Equal(MeasureOfAngle(DAB),45)",
+        "IsCentreOfCircle(O,O)",
+        "IsDiameterOfCircle(AB,O)"
+    ],
+    "image_cdl": [],
+    "goal_cdl": "Value(MeasureOfAngle(BEC))",
+    "problem_answer": "75",
+    "theorem_seqs": [
+        "diameter_of_circle_property_right_angle(1,ACB,O)",
+        "triangle_property_angle_sum(1,ECB)",
+        "triangle_property_angle_sum(1,ACB)",
+        "arc_property_circumference_angle_external(1,OBD,A)",
+        "arc_property_circumference_angle_external(1,OBD,C)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "diameter_of_circle_property_right_angle(1,ACB,O)",
+            "triangle_property_angle_sum(1,ECB)",
+            "triangle_property_angle_sum(1,ACB)",
+            "arc_property_circumference_angle_external(1,OBD,A)",
+            "arc_property_circumference_angle_external(1,OBD,C)"
+        ]
+    }
 }

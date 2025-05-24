@@ -1,57 +1,54 @@
 {
-  "problem_id": 5634,
-  "annotation": "JiaZou_2023-05-28",
-  "source": "GeoQA-7256",
-  "problem_level": 8,
-  "problem_text_cn": "如图所示，Div(LengthOfLine(AE)=LengthOfLine(BE))，BF=2，BA和CD是▱ABCD的一组对边。求直线DF的长度。",
-  "problem_text_en": "As shown in the diagram, Div(LengthOfLine(AE)=LengthOfLine(BE)), BF=2, AD and BC are opposite sides of the parallelogram ABCD. Find the length of line DF.",
-  "problem_img": "5634.png",
-  "construction_cdl": [
-    "Shape(BF,FE,EB)",
-    "Shape(FB,BC,CF)",
-    "Shape(FC,CD,DF)",
-    "Shape(EF,FD,DA,AE)",
-    "Collinear(AEB)",
-    "Collinear(BFD)",
-    "Collinear(EFC)"
-  ],
-  "text_cdl": [
-    "Equal(Div(LengthOfLine(AE),LengthOfLine(BE)),2)",
-    "Equal(LengthOfLine(BF),2)",
-    "Parallelogram(ABCD)"
-  ],
-  "image_cdl": [],
-  "goal_cdl": "Value(LengthOfLine(DF))",
-  "problem_answer": "6",
-  "theorem_seqs": [
-    "line_addition(1,AE,EB)",
-    "parallelogram_property_opposite_line_equal(1,ABCD)",
-    "parallel_property_collinear_extend(3,BA,CD,E)",
-    "parallel_property_alternate_interior_angle(1,BA,CD)",
-    "parallel_property_alternate_interior_angle(2,BE,CD)",
-    "similar_triangle_judgment_aa(1,FCD,FEB)",
-    "similar_triangle_property_line_ratio(1,FCD,FEB)",
-    "similar_triangle_property_line_ratio(1,CDF,EBF)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "line_addition(1,AE,EB)",
-      "parallelogram_property_opposite_line_equal(1,ABCD)",
-      "parallel_property_collinear_extend(3,BA,CD,E)",
-      "parallel_property_alternate_interior_angle(1,BA,CD)"
+    "problem_id": 5634,
+    "source": "GeoQA-7256",
+    "problem_level": 8,
+    "problem_img": "5634.png",
+    "construction_cdl": [
+        "Shape(BF,FE,EB)",
+        "Shape(FB,BC,CF)",
+        "Shape(FC,CD,DF)",
+        "Shape(EF,FD,DA,AE)",
+        "Collinear(AEB)",
+        "Collinear(BFD)",
+        "Collinear(EFC)"
     ],
-    "parallel_property_collinear_extend(3,BA,CD,E)": [
-      "parallel_property_alternate_interior_angle(2,BE,CD)"
+    "text_cdl": [
+        "Equal(Div(LengthOfLine(AE),LengthOfLine(BE)),2)",
+        "Equal(LengthOfLine(BF),2)",
+        "Parallelogram(ABCD)"
     ],
-    "parallel_property_alternate_interior_angle(1,BA,CD)": [
-      "similar_triangle_judgment_aa(1,FCD,FEB)"
+    "image_cdl": [],
+    "goal_cdl": "Value(LengthOfLine(DF))",
+    "problem_answer": "6",
+    "theorem_seqs": [
+        "line_addition(1,AE,EB)",
+        "parallelogram_property_opposite_line_equal(1,ABCD)",
+        "parallel_property_collinear_extend(3,BA,CD,E)",
+        "parallel_property_alternate_interior_angle(1,BA,CD)",
+        "parallel_property_alternate_interior_angle(2,BE,CD)",
+        "similar_triangle_judgment_aa(1,FCD,FEB)",
+        "similar_triangle_property_line_ratio(1,FCD,FEB)",
+        "similar_triangle_property_line_ratio(1,CDF,EBF)"
     ],
-    "parallel_property_alternate_interior_angle(2,BE,CD)": [
-      "similar_triangle_judgment_aa(1,FCD,FEB)"
-    ],
-    "similar_triangle_judgment_aa(1,FCD,FEB)": [
-      "similar_triangle_property_line_ratio(1,FCD,FEB)",
-      "similar_triangle_property_line_ratio(1,CDF,EBF)"
-    ]
-  }
+    "theorem_seqs_dag": {
+        "START": [
+            "line_addition(1,AE,EB)",
+            "parallelogram_property_opposite_line_equal(1,ABCD)",
+            "parallel_property_collinear_extend(3,BA,CD,E)",
+            "parallel_property_alternate_interior_angle(1,BA,CD)"
+        ],
+        "parallel_property_collinear_extend(3,BA,CD,E)": [
+            "parallel_property_alternate_interior_angle(2,BE,CD)"
+        ],
+        "parallel_property_alternate_interior_angle(1,BA,CD)": [
+            "similar_triangle_judgment_aa(1,FCD,FEB)"
+        ],
+        "parallel_property_alternate_interior_angle(2,BE,CD)": [
+            "similar_triangle_judgment_aa(1,FCD,FEB)"
+        ],
+        "similar_triangle_judgment_aa(1,FCD,FEB)": [
+            "similar_triangle_property_line_ratio(1,FCD,FEB)",
+            "similar_triangle_property_line_ratio(1,CDF,EBF)"
+        ]
+    }
 }

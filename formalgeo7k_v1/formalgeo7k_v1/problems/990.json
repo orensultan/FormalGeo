@@ -1,39 +1,36 @@
 {
-  "problem_id": 990,
-  "annotation": "XiaokaiZhang_2023-04-09",
-  "source": "Geometry3k-1020",
-  "problem_level": 2,
-  "problem_text_cn": "如图所示，AD=4，AE=2，BE=x，圆O的切线为AD。求x的值。",
-  "problem_text_en": "As shown in the diagram, AD=4, AE=2, BE=x, AD is the tangent to ⊙C. Find the value of x.",
-  "problem_img": "990.png",
-  "construction_cdl": [
-    "Shape(CBD,CDE,EB)",
-    "Shape(CDE,DA,AE)",
-    "Shape(CEB,BE)",
-    "Collinear(BEA)",
-    "Cocircular(C,DEB)"
-  ],
-  "text_cdl": [
-    "Equal(LengthOfLine(AD),4)",
-    "Equal(LengthOfLine(AE),2)",
-    "Equal(LengthOfLine(BE),x)",
-    "IsTangentOfCircle(AD,C)"
-  ],
-  "image_cdl": [
-    "Equal(LengthOfLine(AD),4)",
-    "Equal(LengthOfLine(AE),2)",
-    "Equal(LengthOfLine(BE),x)"
-  ],
-  "goal_cdl": "Value(x)",
-  "problem_answer": "6",
-  "theorem_seqs": [
-    "circle_property_circular_power_tangent_and_segment_line(1,AD,AEB,C)",
-    "line_addition(1,BE,EA)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "circle_property_circular_power_tangent_and_segment_line(1,AD,AEB,C)",
-      "line_addition(1,BE,EA)"
-    ]
-  }
+    "problem_id": 990,
+    "source": "Geometry3k-1020",
+    "problem_level": 2,
+    "problem_img": "990.png",
+    "construction_cdl": [
+        "Shape(CBD,CDE,EB)",
+        "Shape(CDE,DA,AE)",
+        "Shape(CEB,BE)",
+        "Collinear(BEA)",
+        "Cocircular(C,DEB)"
+    ],
+    "text_cdl": [
+        "Equal(LengthOfLine(AD),4)",
+        "Equal(LengthOfLine(AE),2)",
+        "Equal(LengthOfLine(BE),x)",
+        "IsTangentOfCircle(AD,C)"
+    ],
+    "image_cdl": [
+        "Equal(LengthOfLine(AD),4)",
+        "Equal(LengthOfLine(AE),2)",
+        "Equal(LengthOfLine(BE),x)"
+    ],
+    "goal_cdl": "Value(x)",
+    "problem_answer": "6",
+    "theorem_seqs": [
+        "circle_property_circular_power_tangent_and_segment_line(1,AD,AEB,C)",
+        "line_addition(1,BE,EA)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "circle_property_circular_power_tangent_and_segment_line(1,AD,AEB,C)",
+            "line_addition(1,BE,EA)"
+        ]
+    }
 }

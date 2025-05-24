@@ -1,66 +1,63 @@
 {
-  "problem_id": 1924,
-  "annotation": "ZheZhu_2023-04-16",
-  "source": "Geometry3k-2001",
-  "problem_level": 8,
-  "problem_text_cn": "如图所示，弧AJH的角度为114，圆A的圆心为A，GB垂直于HB，JH垂直于GH。求∠FHG的大小。",
-  "problem_text_en": "As shown in the diagram, the measure of ⌒AJH is 114, A is the center of ⊙A, GB is perpendicular to HB, JH is perpendicular to GH. Find the measure of ∠FHG.",
-  "problem_img": "1924.png",
-  "construction_cdl": [
-    "Shape(AGF,FB,BG)",
-    "Shape(AFJ,JB,BF)",
-    "Shape(AJH,HJ)",
-    "Shape(BA,AH,HB)",
-    "Shape(BH,HG,GB)",
-    "Shape(AHG,GH)",
-    "Shape(HA,AJ,JH)",
-    "Collinear(GBAJ)",
-    "Collinear(FBH)",
-    "Cocircular(A,GFJH)"
-  ],
-  "text_cdl": [
-    "Equal(MeasureOfArc(A,JH),114)",
-    "IsCentreOfCircle(A,A)",
-    "PerpendicularBetweenLine(GB,HB)",
-    "PerpendicularBetweenLine(JH,GH)"
-  ],
-  "image_cdl": [
-    "Equal(MeasureOfArc(A,JH),114)",
-    "IsCentreOfCircle(A,A)",
-    "PerpendicularBetweenLine(GB,HB)",
-    "PerpendicularBetweenLine(JH,GH)"
-  ],
-  "goal_cdl": "Value(MeasureOfAngle(FHG))",
-  "problem_answer": "33",
-  "theorem_seqs": [
-    "arc_property_center_angle(1,AJH,A)",
-    "mirror_similar_triangle_judgment_aa(1,HGB,JHG)",
-    "mirror_similar_triangle_property_angle_equal(1,HGB,JHG)",
-    "radius_of_circle_property_length_equal(1,AJ,A)",
-    "radius_of_circle_property_length_equal(1,AH,A)",
-    "isosceles_triangle_judgment_line_equal(1,AJH)",
-    "isosceles_triangle_property_angle_equal(1,AJH)",
-    "triangle_property_angle_sum(1,AJH)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "arc_property_center_angle(1,AJH,A)",
-      "mirror_similar_triangle_judgment_aa(1,HGB,JHG)",
-      "radius_of_circle_property_length_equal(1,AJ,A)",
-      "radius_of_circle_property_length_equal(1,AH,A)",
-      "triangle_property_angle_sum(1,AJH)"
+    "problem_id": 1924,
+    "source": "Geometry3k-2001",
+    "problem_level": 8,
+    "problem_img": "1924.png",
+    "construction_cdl": [
+        "Shape(AGF,FB,BG)",
+        "Shape(AFJ,JB,BF)",
+        "Shape(AJH,HJ)",
+        "Shape(BA,AH,HB)",
+        "Shape(BH,HG,GB)",
+        "Shape(AHG,GH)",
+        "Shape(HA,AJ,JH)",
+        "Collinear(GBAJ)",
+        "Collinear(FBH)",
+        "Cocircular(A,GFJH)"
     ],
-    "mirror_similar_triangle_judgment_aa(1,HGB,JHG)": [
-      "mirror_similar_triangle_property_angle_equal(1,HGB,JHG)"
+    "text_cdl": [
+        "Equal(MeasureOfArc(A,JH),114)",
+        "IsCentreOfCircle(A,A)",
+        "PerpendicularBetweenLine(GB,HB)",
+        "PerpendicularBetweenLine(JH,GH)"
     ],
-    "radius_of_circle_property_length_equal(1,AJ,A)": [
-      "isosceles_triangle_judgment_line_equal(1,AJH)"
+    "image_cdl": [
+        "Equal(MeasureOfArc(A,JH),114)",
+        "IsCentreOfCircle(A,A)",
+        "PerpendicularBetweenLine(GB,HB)",
+        "PerpendicularBetweenLine(JH,GH)"
     ],
-    "radius_of_circle_property_length_equal(1,AH,A)": [
-      "isosceles_triangle_judgment_line_equal(1,AJH)"
+    "goal_cdl": "Value(MeasureOfAngle(FHG))",
+    "problem_answer": "33",
+    "theorem_seqs": [
+        "arc_property_center_angle(1,AJH,A)",
+        "mirror_similar_triangle_judgment_aa(1,HGB,JHG)",
+        "mirror_similar_triangle_property_angle_equal(1,HGB,JHG)",
+        "radius_of_circle_property_length_equal(1,AJ,A)",
+        "radius_of_circle_property_length_equal(1,AH,A)",
+        "isosceles_triangle_judgment_line_equal(1,AJH)",
+        "isosceles_triangle_property_angle_equal(1,AJH)",
+        "triangle_property_angle_sum(1,AJH)"
     ],
-    "isosceles_triangle_judgment_line_equal(1,AJH)": [
-      "isosceles_triangle_property_angle_equal(1,AJH)"
-    ]
-  }
+    "theorem_seqs_dag": {
+        "START": [
+            "arc_property_center_angle(1,AJH,A)",
+            "mirror_similar_triangle_judgment_aa(1,HGB,JHG)",
+            "radius_of_circle_property_length_equal(1,AJ,A)",
+            "radius_of_circle_property_length_equal(1,AH,A)",
+            "triangle_property_angle_sum(1,AJH)"
+        ],
+        "mirror_similar_triangle_judgment_aa(1,HGB,JHG)": [
+            "mirror_similar_triangle_property_angle_equal(1,HGB,JHG)"
+        ],
+        "radius_of_circle_property_length_equal(1,AJ,A)": [
+            "isosceles_triangle_judgment_line_equal(1,AJH)"
+        ],
+        "radius_of_circle_property_length_equal(1,AH,A)": [
+            "isosceles_triangle_judgment_line_equal(1,AJH)"
+        ],
+        "isosceles_triangle_judgment_line_equal(1,AJH)": [
+            "isosceles_triangle_property_angle_equal(1,AJH)"
+        ]
+    }
 }

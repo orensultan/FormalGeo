@@ -1,36 +1,33 @@
 {
-  "problem_id": 1612,
-  "annotation": "XiaoxiaoJin_2023-04-16",
-  "source": "Geometry3k-1672",
-  "problem_level": 3,
-  "problem_text_cn": "如图所示，BD=56，∠BDC=42°，四边形ADCB是矩形。求直线AB的长度。",
-  "problem_text_en": "As shown in the diagram, BD=56, ∠BDC=42°, ADCB is a rectangle. Find the length of line AB.",
-  "problem_img": "1612.png",
-  "construction_cdl": [
-    "Shape(AD,DB,BA)",
-    "Shape(DC,CB,BD)"
-  ],
-  "text_cdl": [
-    "Equal(LengthOfLine(BD),56)",
-    "Equal(MeasureOfAngle(BDC),42)",
-    "Rectangle(ADCB)"
-  ],
-  "image_cdl": [
-    "Equal(LengthOfLine(BD),56)",
-    "Equal(MeasureOfAngle(BDC),42)"
-  ],
-  "goal_cdl": "Value(LengthOfLine(AB))",
-  "problem_answer": "-7*sqrt(3)+7*sqrt(2*sqrt(5)+10)+7*sqrt(15)",
-  "theorem_seqs": [
-    "triangle_property_angle_sum(1,DCB)",
-    "sine_theorem(1,DCB)",
-    "parallelogram_property_opposite_line_equal(1,DCBA)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "triangle_property_angle_sum(1,DCB)",
-      "sine_theorem(1,DCB)",
-      "parallelogram_property_opposite_line_equal(1,DCBA)"
-    ]
-  }
+    "problem_id": 1612,
+    "source": "Geometry3k-1672",
+    "problem_level": 3,
+    "problem_img": "1612.png",
+    "construction_cdl": [
+        "Shape(AD,DB,BA)",
+        "Shape(DC,CB,BD)"
+    ],
+    "text_cdl": [
+        "Equal(LengthOfLine(BD),56)",
+        "Equal(MeasureOfAngle(BDC),42)",
+        "Rectangle(ADCB)"
+    ],
+    "image_cdl": [
+        "Equal(LengthOfLine(BD),56)",
+        "Equal(MeasureOfAngle(BDC),42)"
+    ],
+    "goal_cdl": "Value(LengthOfLine(AB))",
+    "problem_answer": "-7*sqrt(3)+7*sqrt(2*sqrt(5)+10)+7*sqrt(15)",
+    "theorem_seqs": [
+        "triangle_property_angle_sum(1,DCB)",
+        "sine_theorem(1,DCB)",
+        "parallelogram_property_opposite_line_equal(1,DCBA)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "triangle_property_angle_sum(1,DCB)",
+            "sine_theorem(1,DCB)",
+            "parallelogram_property_opposite_line_equal(1,DCBA)"
+        ]
+    }
 }

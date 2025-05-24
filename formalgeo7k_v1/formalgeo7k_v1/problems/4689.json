@@ -1,40 +1,37 @@
 {
-  "problem_id": 4689,
-  "annotation": "XiaoxiaoJin_2023-05-14",
-  "source": "GeoQA-3983",
-  "problem_level": 4,
-  "problem_text_cn": "如图所示，∠ABC=31°，⊙O的圆心为O，圆O的切线为DC。求∠CDO的大小。",
-  "problem_text_en": "As shown in the diagram, ∠ABC=31°, the center of ⊙O is O, DC is the tangent to ⊙O. Find the measure of ∠CDO.",
-  "problem_img": "4689.png",
-  "construction_cdl": [
-    "Shape(BA,OBA)",
-    "Shape(CB,OBC)",
-    "Shape(OA,AB,BC,CO)",
-    "Shape(AO,OC,OCA)",
-    "Shape(CD,DA,OCA)",
-    "Collinear(OAD)",
-    "Cocircular(O,ABC)"
-  ],
-  "text_cdl": [
-    "Equal(MeasureOfAngle(ABC),31)",
-    "IsCentreOfCircle(O,O)",
-    "IsTangentOfCircle(DC,O)"
-  ],
-  "image_cdl": [],
-  "goal_cdl": "Value(MeasureOfAngle(CDO))",
-  "problem_answer": "28",
-  "theorem_seqs": [
-    "tangent_of_circle_property_perpendicular(1,DC,O,O)",
-    "arc_property_center_angle(1,OCA,O)",
-    "arc_property_circumference_angle_external(1,OCA,B)",
-    "triangle_property_angle_sum(1,OCD)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "tangent_of_circle_property_perpendicular(1,DC,O,O)",
-      "arc_property_center_angle(1,OCA,O)",
-      "arc_property_circumference_angle_external(1,OCA,B)",
-      "triangle_property_angle_sum(1,OCD)"
-    ]
-  }
+    "problem_id": 4689,
+    "source": "GeoQA-3983",
+    "problem_level": 4,
+    "problem_img": "4689.png",
+    "construction_cdl": [
+        "Shape(BA,OBA)",
+        "Shape(CB,OBC)",
+        "Shape(OA,AB,BC,CO)",
+        "Shape(AO,OC,OCA)",
+        "Shape(CD,DA,OCA)",
+        "Collinear(OAD)",
+        "Cocircular(O,ABC)"
+    ],
+    "text_cdl": [
+        "Equal(MeasureOfAngle(ABC),31)",
+        "IsCentreOfCircle(O,O)",
+        "IsTangentOfCircle(DC,O)"
+    ],
+    "image_cdl": [],
+    "goal_cdl": "Value(MeasureOfAngle(CDO))",
+    "problem_answer": "28",
+    "theorem_seqs": [
+        "tangent_of_circle_property_perpendicular(1,DC,O,O)",
+        "arc_property_center_angle(1,OCA,O)",
+        "arc_property_circumference_angle_external(1,OCA,B)",
+        "triangle_property_angle_sum(1,OCD)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "tangent_of_circle_property_perpendicular(1,DC,O,O)",
+            "arc_property_center_angle(1,OCA,O)",
+            "arc_property_circumference_angle_external(1,OCA,B)",
+            "triangle_property_angle_sum(1,OCD)"
+        ]
+    }
 }

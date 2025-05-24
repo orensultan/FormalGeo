@@ -1,37 +1,34 @@
 {
-  "problem_id": 1621,
-  "annotation": "XiaoxiaoJin_2023-04-16",
-  "source": "Geometry3k-1681",
-  "problem_level": 2,
-  "problem_text_cn": "如图所示，AB=26，AD=12，DG=9/2，EF=8，GF=14，∠AGF=108°，四边形ADCB与四边形AGFE相似。求四边形ADCB和四边形AGFE的相似比。",
-  "problem_text_en": "As shown in the diagram, AB=26, AD=12, DG=9/2, EF=8, GF=14, ∠AGF=108°, quadrilateral ADCB is similar to quadrilateral AGFE. Find The ratio of similar quadrilaterals ADCB and AGFE.",
-  "problem_img": "1621.png",
-  "construction_cdl": [
-    "Shape(AG,GF,FE,EA)",
-    "Shape(GD,DC,CB,BE,EF,FG)",
-    "Collinear(AGD)",
-    "Collinear(AEB)"
-  ],
-  "text_cdl": [
-    "Equal(LengthOfLine(AB),26)",
-    "Equal(LengthOfLine(AD),12)",
-    "Equal(LengthOfLine(DG),9/2)",
-    "Equal(LengthOfLine(EF),8)",
-    "Equal(LengthOfLine(GF),14)",
-    "Equal(MeasureOfAngle(AGF),108)",
-    "SimilarBetweenQuadrilateral(ADCB,AGFE)"
-  ],
-  "image_cdl": [],
-  "goal_cdl": "Value(RatioOfSimilarQuadrilateral(ADCB,AGFE))",
-  "problem_answer": "8/5",
-  "theorem_seqs": [
-    "line_addition(1,AG,GD)",
-    "similar_quadrilateral_property_line_ratio(1,ADCB,AGFE)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "line_addition(1,AG,GD)",
-      "similar_quadrilateral_property_line_ratio(1,ADCB,AGFE)"
-    ]
-  }
+    "problem_id": 1621,
+    "source": "Geometry3k-1681",
+    "problem_level": 2,
+    "problem_img": "1621.png",
+    "construction_cdl": [
+        "Shape(AG,GF,FE,EA)",
+        "Shape(GD,DC,CB,BE,EF,FG)",
+        "Collinear(AGD)",
+        "Collinear(AEB)"
+    ],
+    "text_cdl": [
+        "Equal(LengthOfLine(AB),26)",
+        "Equal(LengthOfLine(AD),12)",
+        "Equal(LengthOfLine(DG),9/2)",
+        "Equal(LengthOfLine(EF),8)",
+        "Equal(LengthOfLine(GF),14)",
+        "Equal(MeasureOfAngle(AGF),108)",
+        "SimilarBetweenQuadrilateral(ADCB,AGFE)"
+    ],
+    "image_cdl": [],
+    "goal_cdl": "Value(RatioOfSimilarQuadrilateral(ADCB,AGFE))",
+    "problem_answer": "8/5",
+    "theorem_seqs": [
+        "line_addition(1,AG,GD)",
+        "similar_quadrilateral_property_line_ratio(1,ADCB,AGFE)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "line_addition(1,AG,GD)",
+            "similar_quadrilateral_property_line_ratio(1,ADCB,AGFE)"
+        ]
+    }
 }

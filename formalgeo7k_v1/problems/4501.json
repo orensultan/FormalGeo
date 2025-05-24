@@ -1,39 +1,36 @@
 {
-  "problem_id": 4501,
-  "annotation": "NaZhu_2023-05-14",
-  "source": "GeoQA-3520",
-  "problem_level": 2,
-  "problem_text_cn": "如图所示，∠ADC=140°，O是⊙O的圆心。求∠FOA的大小。",
-  "problem_text_en": "As shown in the diagram, ∠ADC=140°, O is the center of ⊙O. Find the measure of ∠FOA.",
-  "problem_img": "4501.png",
-  "construction_cdl": [
-    "Shape(OAD,DA)",
-    "Shape(ODC,CD)",
-    "Shape(OCB,BC)",
-    "Shape(OBE,EO,OF,FB)",
-    "Shape(CB,BF,FC)",
-    "Shape(CF,FA,AD,DC)",
-    "Shape(FO,OA,AF)",
-    "Collinear(EOA)",
-    "Collinear(BFA)",
-    "Collinear(CFO)",
-    "Cocircular(O,ADCBE)"
-  ],
-  "text_cdl": [
-    "Equal(MeasureOfAngle(ADC),140)",
-    "IsCentreOfCircle(O,O)"
-  ],
-  "image_cdl": [],
-  "goal_cdl": "Value(MeasureOfAngle(FOA))",
-  "problem_answer": "80",
-  "theorem_seqs": [
-    "arc_property_circumference_angle_internal(1,OAC,D)",
-    "arc_property_center_angle(1,OAC,O)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "arc_property_circumference_angle_internal(1,OAC,D)",
-      "arc_property_center_angle(1,OAC,O)"
-    ]
-  }
+    "problem_id": 4501,
+    "source": "GeoQA-3520",
+    "problem_level": 2,
+    "problem_img": "4501.png",
+    "construction_cdl": [
+        "Shape(OAD,DA)",
+        "Shape(ODC,CD)",
+        "Shape(OCB,BC)",
+        "Shape(OBE,EO,OF,FB)",
+        "Shape(CB,BF,FC)",
+        "Shape(CF,FA,AD,DC)",
+        "Shape(FO,OA,AF)",
+        "Collinear(EOA)",
+        "Collinear(BFA)",
+        "Collinear(CFO)",
+        "Cocircular(O,ADCBE)"
+    ],
+    "text_cdl": [
+        "Equal(MeasureOfAngle(ADC),140)",
+        "IsCentreOfCircle(O,O)"
+    ],
+    "image_cdl": [],
+    "goal_cdl": "Value(MeasureOfAngle(FOA))",
+    "problem_answer": "80",
+    "theorem_seqs": [
+        "arc_property_circumference_angle_internal(1,OAC,D)",
+        "arc_property_center_angle(1,OAC,O)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "arc_property_circumference_angle_internal(1,OAC,D)",
+            "arc_property_center_angle(1,OAC,O)"
+        ]
+    }
 }

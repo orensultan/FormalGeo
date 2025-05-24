@@ -1,30 +1,27 @@
 {
-  "problem_id": 793,
-  "annotation": "XiaokaiZhang_2023-03-19",
-  "source": "Geometry3k-819",
-  "problem_level": 0,
-  "problem_text_cn": "如图所示，RS=3*x-5，RS=RT，TR=2*x+7，TS=22。求直线RT的长度。",
-  "problem_text_en": "As shown in the diagram, RS=3*x-5, RS=RT, TR=2*x+7, TS=22. Find the length of line RT.",
-  "problem_img": "793.png",
-  "construction_cdl": [
-    "Shape(RS,ST,TR)"
-  ],
-  "text_cdl": [
-    "Equal(LengthOfLine(RS),3*x-5)",
-    "Equal(LengthOfLine(RS),LengthOfLine(RT))",
-    "Equal(LengthOfLine(TR),2*x+7)",
-    "Equal(LengthOfLine(TS),22)"
-  ],
-  "image_cdl": [
-    "Equal(LengthOfLine(RS),3*x-5)",
-    "Equal(LengthOfLine(RS),LengthOfLine(RT))",
-    "Equal(LengthOfLine(TR),2*x+7)",
-    "Equal(LengthOfLine(TS),22)"
-  ],
-  "goal_cdl": "Value(LengthOfLine(RT))",
-  "problem_answer": "31",
-  "theorem_seqs": [],
-  "theorem_seqs_dag": {
-    "START": []
-  }
+    "problem_id": 793,
+    "source": "Geometry3k-819",
+    "problem_level": 0,
+    "problem_img": "793.png",
+    "construction_cdl": [
+        "Shape(RS,ST,TR)"
+    ],
+    "text_cdl": [
+        "Equal(LengthOfLine(RS),3*x-5)",
+        "Equal(LengthOfLine(RS),LengthOfLine(RT))",
+        "Equal(LengthOfLine(TR),2*x+7)",
+        "Equal(LengthOfLine(TS),22)"
+    ],
+    "image_cdl": [
+        "Equal(LengthOfLine(RS),3*x-5)",
+        "Equal(LengthOfLine(RS),LengthOfLine(RT))",
+        "Equal(LengthOfLine(TR),2*x+7)",
+        "Equal(LengthOfLine(TS),22)"
+    ],
+    "goal_cdl": "Value(LengthOfLine(RT))",
+    "problem_answer": "31",
+    "theorem_seqs": [],
+    "theorem_seqs_dag": {
+        "START": []
+    }
 }

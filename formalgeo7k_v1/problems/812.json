@@ -1,40 +1,37 @@
 {
-  "problem_id": 812,
-  "annotation": "NaZhu_2023-04-09",
-  "source": "Geometry3k-838",
-  "problem_level": 1,
-  "problem_text_cn": "如图所示，AD=9，BD=x，DC=6，DE=3。求x的值。",
-  "problem_text_en": "As shown in the diagram, AD=9, BD=x, DC=6, DE=3. Find the value of x.",
-  "problem_img": "812.png",
-  "construction_cdl": [
-    "Shape(FBE,ED,DB)",
-    "Shape(FEA,AD,DE)",
-    "Shape(FAC,CD,DA)",
-    "Shape(FCB,BD,DC)",
-    "Collinear(BDA)",
-    "Collinear(EDC)",
-    "Cocircular(F,CBEA)"
-  ],
-  "text_cdl": [
-    "Equal(LengthOfLine(AD),9)",
-    "Equal(LengthOfLine(BD),x)",
-    "Equal(LengthOfLine(DC),6)",
-    "Equal(LengthOfLine(DE),3)"
-  ],
-  "image_cdl": [
-    "Equal(LengthOfLine(AD),9)",
-    "Equal(LengthOfLine(BD),x)",
-    "Equal(LengthOfLine(DC),6)",
-    "Equal(LengthOfLine(DE),3)"
-  ],
-  "goal_cdl": "Value(x)",
-  "problem_answer": "2",
-  "theorem_seqs": [
-    "circle_property_circular_power_chord_and_chord(1,CDE,BDA,F)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "circle_property_circular_power_chord_and_chord(1,CDE,BDA,F)"
-    ]
-  }
+    "problem_id": 812,
+    "source": "Geometry3k-838",
+    "problem_level": 1,
+    "problem_img": "812.png",
+    "construction_cdl": [
+        "Shape(FBE,ED,DB)",
+        "Shape(FEA,AD,DE)",
+        "Shape(FAC,CD,DA)",
+        "Shape(FCB,BD,DC)",
+        "Collinear(BDA)",
+        "Collinear(EDC)",
+        "Cocircular(F,CBEA)"
+    ],
+    "text_cdl": [
+        "Equal(LengthOfLine(AD),9)",
+        "Equal(LengthOfLine(BD),x)",
+        "Equal(LengthOfLine(DC),6)",
+        "Equal(LengthOfLine(DE),3)"
+    ],
+    "image_cdl": [
+        "Equal(LengthOfLine(AD),9)",
+        "Equal(LengthOfLine(BD),x)",
+        "Equal(LengthOfLine(DC),6)",
+        "Equal(LengthOfLine(DE),3)"
+    ],
+    "goal_cdl": "Value(x)",
+    "problem_answer": "2",
+    "theorem_seqs": [
+        "circle_property_circular_power_chord_and_chord(1,CDE,BDA,F)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "circle_property_circular_power_chord_and_chord(1,CDE,BDA,F)"
+        ]
+    }
 }

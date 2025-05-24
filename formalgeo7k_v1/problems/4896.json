@@ -1,46 +1,43 @@
 {
-  "problem_id": 4896,
-  "annotation": "YifanWang_2023-05-21",
-  "source": "GeoQA-4438",
-  "problem_level": 5,
-  "problem_text_cn": "如图所示，∠ECF=70°，I是圆I的圆心，⊙O的切线为CE，CF是⊙O的切线。求∠FDE的大小。",
-  "problem_text_en": "As shown in the diagram, ∠ECF=70°, I is the center of circle I, CE is the tangent to circle I, the tangent to ⊙I is CF. Find the measure of ∠FDE.",
-  "problem_img": "4896.png",
-  "construction_cdl": [
-    "Shape(FA,AD,IFD)",
-    "Shape(IF,FD,DE,EI)",
-    "Shape(FI,IE,IEF)",
-    "Shape(ED,IDE)",
-    "Shape(EC,CF,IEF)",
-    "Shape(DB,BE,IDE)",
-    "Collinear(CFA)",
-    "Collinear(BEC)",
-    "Collinear(ADB)",
-    "Cocircular(I,FDE)"
-  ],
-  "text_cdl": [
-    "Equal(MeasureOfAngle(ECF),70)",
-    "IsCentreOfCircle(I,I)",
-    "IsTangentOfCircle(CE,I)",
-    "IsTangentOfCircle(CF,I)"
-  ],
-  "image_cdl": [],
-  "goal_cdl": "Value(MeasureOfAngle(FDE))",
-  "problem_answer": "55",
-  "theorem_seqs": [
-    "tangent_of_circle_property_perpendicular(2,CF,I,I)",
-    "tangent_of_circle_property_perpendicular(1,CE,I,I)",
-    "quadrilateral_property_angle_sum(1,FIEC)",
-    "arc_property_center_angle(1,IEF,I)",
-    "arc_property_circumference_angle_external(1,IEF,D)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "tangent_of_circle_property_perpendicular(2,CF,I,I)",
-      "tangent_of_circle_property_perpendicular(1,CE,I,I)",
-      "quadrilateral_property_angle_sum(1,FIEC)",
-      "arc_property_center_angle(1,IEF,I)",
-      "arc_property_circumference_angle_external(1,IEF,D)"
-    ]
-  }
+    "problem_id": 4896,
+    "source": "GeoQA-4438",
+    "problem_level": 5,
+    "problem_img": "4896.png",
+    "construction_cdl": [
+        "Shape(FA,AD,IFD)",
+        "Shape(IF,FD,DE,EI)",
+        "Shape(FI,IE,IEF)",
+        "Shape(ED,IDE)",
+        "Shape(EC,CF,IEF)",
+        "Shape(DB,BE,IDE)",
+        "Collinear(CFA)",
+        "Collinear(BEC)",
+        "Collinear(ADB)",
+        "Cocircular(I,FDE)"
+    ],
+    "text_cdl": [
+        "Equal(MeasureOfAngle(ECF),70)",
+        "IsCentreOfCircle(I,I)",
+        "IsTangentOfCircle(CE,I)",
+        "IsTangentOfCircle(CF,I)"
+    ],
+    "image_cdl": [],
+    "goal_cdl": "Value(MeasureOfAngle(FDE))",
+    "problem_answer": "55",
+    "theorem_seqs": [
+        "tangent_of_circle_property_perpendicular(2,CF,I,I)",
+        "tangent_of_circle_property_perpendicular(1,CE,I,I)",
+        "quadrilateral_property_angle_sum(1,FIEC)",
+        "arc_property_center_angle(1,IEF,I)",
+        "arc_property_circumference_angle_external(1,IEF,D)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "tangent_of_circle_property_perpendicular(2,CF,I,I)",
+            "tangent_of_circle_property_perpendicular(1,CE,I,I)",
+            "quadrilateral_property_angle_sum(1,FIEC)",
+            "arc_property_center_angle(1,IEF,I)",
+            "arc_property_circumference_angle_external(1,IEF,D)"
+        ]
+    }
 }

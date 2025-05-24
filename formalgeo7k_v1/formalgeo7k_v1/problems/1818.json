@@ -1,48 +1,45 @@
 {
-  "problem_id": 1818,
-  "annotation": "ChenyangMao_2023-04-16",
-  "source": "Geometry3k-1886",
-  "problem_level": 1,
-  "problem_text_cn": "如图所示，∠AFN=∠ECA，∠ANE=30°，∠CEK=110°，∠ENJ=130°。求∠AEC的大小。",
-  "problem_text_en": "As shown in the diagram, ∠AFN=∠ECA, ∠ANE=30°, ∠CEK=110°, ∠ENJ=130°. Find the measure of ∠AEC.",
-  "problem_img": "1818.png",
-  "construction_cdl": [
-    "Shape(DA,AG)",
-    "Shape(FA,AD)",
-    "Shape(GA,AC)",
-    "Shape(AF,FN,NA)",
-    "Shape(MN,NF)",
-    "Shape(JN,NM)",
-    "Shape(EN,NJ)",
-    "Shape(KE,EN)",
-    "Shape(CE,EK)",
-    "Shape(CA,AE,EC)",
-    "Shape(EA,AN,NE)",
-    "Collinear(FNJ)",
-    "Collinear(CEN)",
-    "Collinear(DAEK)",
-    "Collinear(GANM)"
-  ],
-  "text_cdl": [
-    "Equal(MeasureOfAngle(AFN),MeasureOfAngle(ECA))",
-    "Equal(MeasureOfAngle(ANE),30)",
-    "Equal(MeasureOfAngle(CEK),110)",
-    "Equal(MeasureOfAngle(ENJ),130)"
-  ],
-  "image_cdl": [
-    "Equal(MeasureOfAngle(AFN),MeasureOfAngle(ECA))",
-    "Equal(MeasureOfAngle(ANE),30)",
-    "Equal(MeasureOfAngle(CEK),110)",
-    "Equal(MeasureOfAngle(ENJ),130)"
-  ],
-  "goal_cdl": "Value(MeasureOfAngle(AEC))",
-  "problem_answer": "70",
-  "theorem_seqs": [
-    "adjacent_complementary_angle(1,AEC,CEK)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "adjacent_complementary_angle(1,AEC,CEK)"
-    ]
-  }
+    "problem_id": 1818,
+    "source": "Geometry3k-1886",
+    "problem_level": 1,
+    "problem_img": "1818.png",
+    "construction_cdl": [
+        "Shape(DA,AG)",
+        "Shape(FA,AD)",
+        "Shape(GA,AC)",
+        "Shape(AF,FN,NA)",
+        "Shape(MN,NF)",
+        "Shape(JN,NM)",
+        "Shape(EN,NJ)",
+        "Shape(KE,EN)",
+        "Shape(CE,EK)",
+        "Shape(CA,AE,EC)",
+        "Shape(EA,AN,NE)",
+        "Collinear(FNJ)",
+        "Collinear(CEN)",
+        "Collinear(DAEK)",
+        "Collinear(GANM)"
+    ],
+    "text_cdl": [
+        "Equal(MeasureOfAngle(AFN),MeasureOfAngle(ECA))",
+        "Equal(MeasureOfAngle(ANE),30)",
+        "Equal(MeasureOfAngle(CEK),110)",
+        "Equal(MeasureOfAngle(ENJ),130)"
+    ],
+    "image_cdl": [
+        "Equal(MeasureOfAngle(AFN),MeasureOfAngle(ECA))",
+        "Equal(MeasureOfAngle(ANE),30)",
+        "Equal(MeasureOfAngle(CEK),110)",
+        "Equal(MeasureOfAngle(ENJ),130)"
+    ],
+    "goal_cdl": "Value(MeasureOfAngle(AEC))",
+    "problem_answer": "70",
+    "theorem_seqs": [
+        "adjacent_complementary_angle(1,AEC,CEK)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "adjacent_complementary_angle(1,AEC,CEK)"
+        ]
+    }
 }

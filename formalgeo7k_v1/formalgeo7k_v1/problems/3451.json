@@ -1,37 +1,34 @@
 {
-  "problem_id": 3451,
-  "annotation": "NaZhu_2023-04-30",
-  "source": "GeoQA-1019",
-  "problem_level": 3,
-  "problem_text_cn": "如图所示，∠ABO=40°，∠ODC=30°，BA∥DC。求∠AOC的大小。",
-  "problem_text_en": "As shown in the diagram, ∠ABO=40°, ∠ODC=30°, BA∥DC. Find the measure of ∠AOC.",
-  "problem_img": "3451.png",
-  "construction_cdl": [
-    "Shape(CO,OD,DC)",
-    "Shape(OA,AB,BO)",
-    "Shape(AO,OC)",
-    "Shape(DO,OB)",
-    "Collinear(COB)",
-    "Collinear(DOA)"
-  ],
-  "text_cdl": [
-    "Equal(MeasureOfAngle(ABO),40)",
-    "Equal(MeasureOfAngle(ODC),30)",
-    "ParallelBetweenLine(BA,DC)"
-  ],
-  "image_cdl": [],
-  "goal_cdl": "Value(MeasureOfAngle(AOC))",
-  "problem_answer": "70",
-  "theorem_seqs": [
-    "parallel_property_alternate_interior_angle(1,BA,DC)",
-    "triangle_property_angle_sum(1,COD)",
-    "adjacent_complementary_angle(1,AOC,COD)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "parallel_property_alternate_interior_angle(1,BA,DC)",
-      "triangle_property_angle_sum(1,COD)",
-      "adjacent_complementary_angle(1,AOC,COD)"
-    ]
-  }
+    "problem_id": 3451,
+    "source": "GeoQA-1019",
+    "problem_level": 3,
+    "problem_img": "3451.png",
+    "construction_cdl": [
+        "Shape(CO,OD,DC)",
+        "Shape(OA,AB,BO)",
+        "Shape(AO,OC)",
+        "Shape(DO,OB)",
+        "Collinear(COB)",
+        "Collinear(DOA)"
+    ],
+    "text_cdl": [
+        "Equal(MeasureOfAngle(ABO),40)",
+        "Equal(MeasureOfAngle(ODC),30)",
+        "ParallelBetweenLine(BA,DC)"
+    ],
+    "image_cdl": [],
+    "goal_cdl": "Value(MeasureOfAngle(AOC))",
+    "problem_answer": "70",
+    "theorem_seqs": [
+        "parallel_property_alternate_interior_angle(1,BA,DC)",
+        "triangle_property_angle_sum(1,COD)",
+        "adjacent_complementary_angle(1,AOC,COD)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "parallel_property_alternate_interior_angle(1,BA,DC)",
+            "triangle_property_angle_sum(1,COD)",
+            "adjacent_complementary_angle(1,AOC,COD)"
+        ]
+    }
 }

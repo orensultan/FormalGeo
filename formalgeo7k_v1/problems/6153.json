@@ -1,38 +1,35 @@
 {
-  "problem_id": 6153,
-  "annotation": "YifanWang_2023-06-04",
-  "source": "GeoQA-8714",
-  "problem_level": 2,
-  "problem_text_cn": "如图所示，∠ACE=70°，O是圆O的圆心。求∠AOE的大小。",
-  "problem_text_en": "As shown in the diagram, ∠ACE=70°, the center of circle O is O. Find the measure of ∠AOE.",
-  "problem_img": "6153.png",
-  "construction_cdl": [
-    "Shape(AO,OE,OEA)",
-    "Shape(EO,OD,OE)",
-    "Shape(ED,DB,OBE)",
-    "Shape(DO,OA,AC,CD)",
-    "Shape(BD,DC,CB)",
-    "Shape(CA,OAC)",
-    "Shape(BC,OCB)",
-    "Collinear(AODB)",
-    "Collinear(EDC)",
-    "Cocircular(O,ACBE)"
-  ],
-  "text_cdl": [
-    "Equal(MeasureOfAngle(ACE),70)",
-    "IsCentreOfCircle(O,O)"
-  ],
-  "image_cdl": [],
-  "goal_cdl": "Value(MeasureOfAngle(AOE))",
-  "problem_answer": "140",
-  "theorem_seqs": [
-    "arc_property_center_angle(1,OEA,O)",
-    "arc_property_circumference_angle_external(1,OEA,C)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "arc_property_center_angle(1,OEA,O)",
-      "arc_property_circumference_angle_external(1,OEA,C)"
-    ]
-  }
+    "problem_id": 6153,
+    "source": "GeoQA-8714",
+    "problem_level": 2,
+    "problem_img": "6153.png",
+    "construction_cdl": [
+        "Shape(AO,OE,OEA)",
+        "Shape(EO,OD,OE)",
+        "Shape(ED,DB,OBE)",
+        "Shape(DO,OA,AC,CD)",
+        "Shape(BD,DC,CB)",
+        "Shape(CA,OAC)",
+        "Shape(BC,OCB)",
+        "Collinear(AODB)",
+        "Collinear(EDC)",
+        "Cocircular(O,ACBE)"
+    ],
+    "text_cdl": [
+        "Equal(MeasureOfAngle(ACE),70)",
+        "IsCentreOfCircle(O,O)"
+    ],
+    "image_cdl": [],
+    "goal_cdl": "Value(MeasureOfAngle(AOE))",
+    "problem_answer": "140",
+    "theorem_seqs": [
+        "arc_property_center_angle(1,OEA,O)",
+        "arc_property_circumference_angle_external(1,OEA,C)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "arc_property_center_angle(1,OEA,O)",
+            "arc_property_circumference_angle_external(1,OEA,C)"
+        ]
+    }
 }

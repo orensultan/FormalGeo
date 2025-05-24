@@ -1,51 +1,48 @@
 {
-  "problem_id": 2972,
-  "annotation": "NaZhu_2023-04-16",
-  "source": "GeoQA-168",
-  "problem_level": 7,
-  "problem_text_cn": "如图所示，DE=10，D平分线段AC，E平分线段BC。求直线AB的长度。",
-  "problem_text_en": "As shown in the diagram, DE=10, D bisects segment AC, E bisects segment BC. Find the length of line AB.",
-  "problem_img": "2972.png",
-  "construction_cdl": [
-    "Shape(CD,DE,EC)",
-    "Shape(DA,AB,BE,ED)",
-    "Collinear(ADC)",
-    "Collinear(BEC)"
-  ],
-  "text_cdl": [
-    "Equal(LengthOfLine(DE),10)",
-    "IsMidpointOfLine(D,AC)",
-    "IsMidpointOfLine(E,BC)"
-  ],
-  "image_cdl": [],
-  "goal_cdl": "Value(LengthOfLine(AB))",
-  "problem_answer": "20",
-  "theorem_seqs": [
-    "midsegment_of_triangle_judgment_midpoint(1,DE,CAB)",
-    "midsegment_of_triangle_property_parallel(1,DE,CAB)",
-    "parallel_property_corresponding_angle(2,BA,ED,C)",
-    "similar_triangle_judgment_aa(1,DEC,ABC)",
-    "line_addition(1,CD,DA)",
-    "similar_triangle_property_line_ratio(1,ECD,BCA)",
-    "similar_triangle_property_line_ratio(1,CDE,CAB)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "midsegment_of_triangle_judgment_midpoint(1,DE,CAB)",
-      "line_addition(1,CD,DA)"
+    "problem_id": 2972,
+    "source": "GeoQA-168",
+    "problem_level": 7,
+    "problem_img": "2972.png",
+    "construction_cdl": [
+        "Shape(CD,DE,EC)",
+        "Shape(DA,AB,BE,ED)",
+        "Collinear(ADC)",
+        "Collinear(BEC)"
     ],
-    "midsegment_of_triangle_judgment_midpoint(1,DE,CAB)": [
-      "midsegment_of_triangle_property_parallel(1,DE,CAB)"
+    "text_cdl": [
+        "Equal(LengthOfLine(DE),10)",
+        "IsMidpointOfLine(D,AC)",
+        "IsMidpointOfLine(E,BC)"
     ],
-    "midsegment_of_triangle_property_parallel(1,DE,CAB)": [
-      "parallel_property_corresponding_angle(2,BA,ED,C)"
+    "image_cdl": [],
+    "goal_cdl": "Value(LengthOfLine(AB))",
+    "problem_answer": "20",
+    "theorem_seqs": [
+        "midsegment_of_triangle_judgment_midpoint(1,DE,CAB)",
+        "midsegment_of_triangle_property_parallel(1,DE,CAB)",
+        "parallel_property_corresponding_angle(2,BA,ED,C)",
+        "similar_triangle_judgment_aa(1,DEC,ABC)",
+        "line_addition(1,CD,DA)",
+        "similar_triangle_property_line_ratio(1,ECD,BCA)",
+        "similar_triangle_property_line_ratio(1,CDE,CAB)"
     ],
-    "parallel_property_corresponding_angle(2,BA,ED,C)": [
-      "similar_triangle_judgment_aa(1,DEC,ABC)"
-    ],
-    "similar_triangle_judgment_aa(1,DEC,ABC)": [
-      "similar_triangle_property_line_ratio(1,ECD,BCA)",
-      "similar_triangle_property_line_ratio(1,CDE,CAB)"
-    ]
-  }
+    "theorem_seqs_dag": {
+        "START": [
+            "midsegment_of_triangle_judgment_midpoint(1,DE,CAB)",
+            "line_addition(1,CD,DA)"
+        ],
+        "midsegment_of_triangle_judgment_midpoint(1,DE,CAB)": [
+            "midsegment_of_triangle_property_parallel(1,DE,CAB)"
+        ],
+        "midsegment_of_triangle_property_parallel(1,DE,CAB)": [
+            "parallel_property_corresponding_angle(2,BA,ED,C)"
+        ],
+        "parallel_property_corresponding_angle(2,BA,ED,C)": [
+            "similar_triangle_judgment_aa(1,DEC,ABC)"
+        ],
+        "similar_triangle_judgment_aa(1,DEC,ABC)": [
+            "similar_triangle_property_line_ratio(1,ECD,BCA)",
+            "similar_triangle_property_line_ratio(1,CDE,CAB)"
+        ]
+    }
 }

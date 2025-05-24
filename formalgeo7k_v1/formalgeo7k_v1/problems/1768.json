@@ -1,47 +1,44 @@
 {
-  "problem_id": 1768,
-  "annotation": "ChenyangMao_2023-04-16",
-  "source": "Geometry3k-1833",
-  "problem_level": 2,
-  "problem_text_cn": "如图所示，∠ANE=30°，∠CEK=110°，∠ENJ=130°，∠NCF=∠CFN。求∠EAN的大小。",
-  "problem_text_en": "As shown in the diagram, ∠ANE=30°, ∠CEK=110°, ∠ENJ=130°, ∠NCF=∠CFN. Find the measure of ∠EAN.",
-  "problem_img": "1768.png",
-  "construction_cdl": [
-    "Shape(AG)",
-    "Shape(AD)",
-    "Shape(EK)",
-    "Shape(NJ)",
-    "Shape(NH)",
-    "Shape(CA,AE,EC)",
-    "Shape(EA,AN,NE)",
-    "Shape(AF,FN,NA)",
-    "Shape(CE,EK)",
-    "Collinear(GANH)",
-    "Collinear(CEN)",
-    "Collinear(DAEK)"
-  ],
-  "text_cdl": [
-    "Equal(MeasureOfAngle(ANE),30)",
-    "Equal(MeasureOfAngle(CEK),110)",
-    "Equal(MeasureOfAngle(ENJ),130)",
-    "Equal(MeasureOfAngle(NCF),MeasureOfAngle(CFN))"
-  ],
-  "image_cdl": [
-    "Equal(MeasureOfAngle(ANE),30)",
-    "Equal(MeasureOfAngle(CEK),110)",
-    "Equal(MeasureOfAngle(ENJ),130)",
-    "Equal(MeasureOfAngle(NCF),MeasureOfAngle(CFN))"
-  ],
-  "goal_cdl": "Value(MeasureOfAngle(EAN))",
-  "problem_answer": "40",
-  "theorem_seqs": [
-    "vertical_angle(1,CEK,NEA)",
-    "triangle_property_angle_sum(1,EAN)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "vertical_angle(1,CEK,NEA)",
-      "triangle_property_angle_sum(1,EAN)"
-    ]
-  }
+    "problem_id": 1768,
+    "source": "Geometry3k-1833",
+    "problem_level": 2,
+    "problem_img": "1768.png",
+    "construction_cdl": [
+        "Shape(AG)",
+        "Shape(AD)",
+        "Shape(EK)",
+        "Shape(NJ)",
+        "Shape(NH)",
+        "Shape(CA,AE,EC)",
+        "Shape(EA,AN,NE)",
+        "Shape(AF,FN,NA)",
+        "Shape(CE,EK)",
+        "Collinear(GANH)",
+        "Collinear(CEN)",
+        "Collinear(DAEK)"
+    ],
+    "text_cdl": [
+        "Equal(MeasureOfAngle(ANE),30)",
+        "Equal(MeasureOfAngle(CEK),110)",
+        "Equal(MeasureOfAngle(ENJ),130)",
+        "Equal(MeasureOfAngle(NCF),MeasureOfAngle(CFN))"
+    ],
+    "image_cdl": [
+        "Equal(MeasureOfAngle(ANE),30)",
+        "Equal(MeasureOfAngle(CEK),110)",
+        "Equal(MeasureOfAngle(ENJ),130)",
+        "Equal(MeasureOfAngle(NCF),MeasureOfAngle(CFN))"
+    ],
+    "goal_cdl": "Value(MeasureOfAngle(EAN))",
+    "problem_answer": "40",
+    "theorem_seqs": [
+        "vertical_angle(1,CEK,NEA)",
+        "triangle_property_angle_sum(1,EAN)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "vertical_angle(1,CEK,NEA)",
+            "triangle_property_angle_sum(1,EAN)"
+        ]
+    }
 }

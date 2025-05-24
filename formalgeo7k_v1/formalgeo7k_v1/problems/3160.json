@@ -1,43 +1,40 @@
 {
-  "problem_id": 3160,
-  "annotation": "JiaZou_2023-04-23",
-  "source": "GeoQA-429",
-  "problem_level": 6,
-  "problem_text_cn": "如图所示，AB=6，三角形OCD的周长为16，AD和BC是平行四边形DABC的一组对边。求直线AC的长度与直线DB的长度之和。",
-  "problem_text_en": "As shown in the diagram, AB=6, the perimeter of △OCD is 16, AD and BC are opposite sides of the parallelogram DABC. Find the sum of the length of line AC and the length of line DB.",
-  "problem_img": "3160.png",
-  "construction_cdl": [
-    "Shape(DA,AO,OD)",
-    "Shape(OA,AB,BO)",
-    "Shape(OB,BC,CO)",
-    "Shape(DO,OC,CD)",
-    "Collinear(DOB)",
-    "Collinear(AOC)"
-  ],
-  "text_cdl": [
-    "Equal(LengthOfLine(AB),6)",
-    "Equal(PerimeterOfTriangle(OCD),16)",
-    "Parallelogram(DABC)"
-  ],
-  "image_cdl": [],
-  "goal_cdl": "Value(Add(LengthOfLine(AC),LengthOfLine(DB)))",
-  "problem_answer": "20",
-  "theorem_seqs": [
-    "parallelogram_property_opposite_line_equal(1,ABCD)",
-    "triangle_perimeter_formula(1,OCD)",
-    "line_addition(1,DO,OB)",
-    "line_addition(1,AO,OC)",
-    "parallelogram_property_diagonal_bisection(1,DABC,O)",
-    "parallelogram_property_diagonal_bisection(1,ABCD,O)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "parallelogram_property_opposite_line_equal(1,ABCD)",
-      "triangle_perimeter_formula(1,OCD)",
-      "line_addition(1,DO,OB)",
-      "line_addition(1,AO,OC)",
-      "parallelogram_property_diagonal_bisection(1,DABC,O)",
-      "parallelogram_property_diagonal_bisection(1,ABCD,O)"
-    ]
-  }
+    "problem_id": 3160,
+    "source": "GeoQA-429",
+    "problem_level": 6,
+    "problem_img": "3160.png",
+    "construction_cdl": [
+        "Shape(DA,AO,OD)",
+        "Shape(OA,AB,BO)",
+        "Shape(OB,BC,CO)",
+        "Shape(DO,OC,CD)",
+        "Collinear(DOB)",
+        "Collinear(AOC)"
+    ],
+    "text_cdl": [
+        "Equal(LengthOfLine(AB),6)",
+        "Equal(PerimeterOfTriangle(OCD),16)",
+        "Parallelogram(DABC)"
+    ],
+    "image_cdl": [],
+    "goal_cdl": "Value(Add(LengthOfLine(AC),LengthOfLine(DB)))",
+    "problem_answer": "20",
+    "theorem_seqs": [
+        "parallelogram_property_opposite_line_equal(1,ABCD)",
+        "triangle_perimeter_formula(1,OCD)",
+        "line_addition(1,DO,OB)",
+        "line_addition(1,AO,OC)",
+        "parallelogram_property_diagonal_bisection(1,DABC,O)",
+        "parallelogram_property_diagonal_bisection(1,ABCD,O)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "parallelogram_property_opposite_line_equal(1,ABCD)",
+            "triangle_perimeter_formula(1,OCD)",
+            "line_addition(1,DO,OB)",
+            "line_addition(1,AO,OC)",
+            "parallelogram_property_diagonal_bisection(1,DABC,O)",
+            "parallelogram_property_diagonal_bisection(1,ABCD,O)"
+        ]
+    }
 }

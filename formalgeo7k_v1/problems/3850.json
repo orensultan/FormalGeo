@@ -1,57 +1,54 @@
 {
-  "problem_id": 3850,
-  "annotation": "YifanWang_2023-05-07",
-  "source": "GeoQA-1727",
-  "problem_level": 7,
-  "problem_text_cn": "如图所示，AB=8，∠DBC=30°，O是圆O的圆心，AB是圆O的直径。求直线CD的长度。",
-  "problem_text_en": "As shown in the diagram, AB=8, ∠DBC=30°, O is the center of circle O, the diameter of circle O is AB. Find the length of line CD.",
-  "problem_img": "3850.png",
-  "construction_cdl": [
-    "Shape(AO,OD,ODA)",
-    "Shape(DO,OE,ED)",
-    "Shape(CD,DE,EC)",
-    "Shape(DC,OCD)",
-    "Shape(CE,EB,BC)",
-    "Shape(CB,OBC)",
-    "Shape(EO,OB,BE)",
-    "Shape(BO,OA,OAB)",
-    "Collinear(AOB)",
-    "Collinear(DEB)",
-    "Collinear(CEO)",
-    "Cocircular(O,ABCD)"
-  ],
-  "text_cdl": [
-    "Equal(LengthOfLine(AB),8)",
-    "Equal(MeasureOfAngle(DBC),30)",
-    "IsCentreOfCircle(O,O)",
-    "IsDiameterOfCircle(AB,O)"
-  ],
-  "image_cdl": [
-    "Equal(LengthOfLine(AB),8)",
-    "Equal(MeasureOfAngle(DBC),30)",
-    "IsCentreOfCircle(O,O)",
-    "IsDiameterOfCircle(AB,O)"
-  ],
-  "goal_cdl": "Value(LengthOfLine(CD))",
-  "problem_answer": "4",
-  "theorem_seqs": [
-    "arc_property_center_angle(1,OCD,O)",
-    "arc_property_circumference_angle_external(1,OCD,B)",
-    "diameter_of_circle_property_length_equal(1,AB,O)",
-    "circle_property_length_of_radius_and_diameter(1,O)",
-    "radius_of_circle_property_length_equal(1,OC,O)",
-    "radius_of_circle_property_length_equal(1,OD,O)",
-    "cosine_theorem(1,OCD)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "arc_property_center_angle(1,OCD,O)",
-      "arc_property_circumference_angle_external(1,OCD,B)",
-      "diameter_of_circle_property_length_equal(1,AB,O)",
-      "circle_property_length_of_radius_and_diameter(1,O)",
-      "radius_of_circle_property_length_equal(1,OC,O)",
-      "radius_of_circle_property_length_equal(1,OD,O)",
-      "cosine_theorem(1,OCD)"
-    ]
-  }
+    "problem_id": 3850,
+    "source": "GeoQA-1727",
+    "problem_level": 7,
+    "problem_img": "3850.png",
+    "construction_cdl": [
+        "Shape(AO,OD,ODA)",
+        "Shape(DO,OE,ED)",
+        "Shape(CD,DE,EC)",
+        "Shape(DC,OCD)",
+        "Shape(CE,EB,BC)",
+        "Shape(CB,OBC)",
+        "Shape(EO,OB,BE)",
+        "Shape(BO,OA,OAB)",
+        "Collinear(AOB)",
+        "Collinear(DEB)",
+        "Collinear(CEO)",
+        "Cocircular(O,ABCD)"
+    ],
+    "text_cdl": [
+        "Equal(LengthOfLine(AB),8)",
+        "Equal(MeasureOfAngle(DBC),30)",
+        "IsCentreOfCircle(O,O)",
+        "IsDiameterOfCircle(AB,O)"
+    ],
+    "image_cdl": [
+        "Equal(LengthOfLine(AB),8)",
+        "Equal(MeasureOfAngle(DBC),30)",
+        "IsCentreOfCircle(O,O)",
+        "IsDiameterOfCircle(AB,O)"
+    ],
+    "goal_cdl": "Value(LengthOfLine(CD))",
+    "problem_answer": "4",
+    "theorem_seqs": [
+        "arc_property_center_angle(1,OCD,O)",
+        "arc_property_circumference_angle_external(1,OCD,B)",
+        "diameter_of_circle_property_length_equal(1,AB,O)",
+        "circle_property_length_of_radius_and_diameter(1,O)",
+        "radius_of_circle_property_length_equal(1,OC,O)",
+        "radius_of_circle_property_length_equal(1,OD,O)",
+        "cosine_theorem(1,OCD)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "arc_property_center_angle(1,OCD,O)",
+            "arc_property_circumference_angle_external(1,OCD,B)",
+            "diameter_of_circle_property_length_equal(1,AB,O)",
+            "circle_property_length_of_radius_and_diameter(1,O)",
+            "radius_of_circle_property_length_equal(1,OC,O)",
+            "radius_of_circle_property_length_equal(1,OD,O)",
+            "cosine_theorem(1,OCD)"
+        ]
+    }
 }

@@ -1,46 +1,43 @@
 {
-  "problem_id": 6590,
-  "annotation": "YanjunGuo_2023-06-04",
-  "source": "GeoQA-9568",
-  "problem_level": 7,
-  "problem_text_cn": "如图所示，AB=AC，CD=CB，∠CAD=40°。求∠DCA的大小。",
-  "problem_text_en": "As shown in the diagram, AB=AC, CD=CB, ∠CAD=40°. Find the measure of ∠DCA.",
-  "problem_img": "6590.png",
-  "construction_cdl": [
-    "Shape(AD,DC,CA)",
-    "Shape(DB,BC,CD)",
-    "Collinear(ADB)"
-  ],
-  "text_cdl": [
-    "Equal(LengthOfLine(AB),LengthOfLine(AC))",
-    "Equal(LengthOfLine(CD),LengthOfLine(CB))",
-    "Equal(MeasureOfAngle(CAD),40)"
-  ],
-  "image_cdl": [],
-  "goal_cdl": "Value(MeasureOfAngle(DCA))",
-  "problem_answer": "30",
-  "theorem_seqs": [
-    "triangle_property_angle_sum(1,ABC)",
-    "isosceles_triangle_judgment_line_equal(1,CDB)",
-    "isosceles_triangle_judgment_line_equal(1,ABC)",
-    "isosceles_triangle_property_angle_equal(1,CDB)",
-    "isosceles_triangle_property_angle_equal(1,ABC)",
-    "triangle_property_angle_sum(1,DBC)",
-    "angle_addition(1,BCD,DCA)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "triangle_property_angle_sum(1,ABC)",
-      "isosceles_triangle_judgment_line_equal(1,CDB)",
-      "isosceles_triangle_judgment_line_equal(1,ABC)",
-      "triangle_property_angle_sum(1,DBC)",
-      "angle_addition(1,BCD,DCA)"
+    "problem_id": 6590,
+    "source": "GeoQA-9568",
+    "problem_level": 7,
+    "problem_img": "6590.png",
+    "construction_cdl": [
+        "Shape(AD,DC,CA)",
+        "Shape(DB,BC,CD)",
+        "Collinear(ADB)"
     ],
-    "isosceles_triangle_judgment_line_equal(1,CDB)": [
-      "isosceles_triangle_property_angle_equal(1,CDB)"
+    "text_cdl": [
+        "Equal(LengthOfLine(AB),LengthOfLine(AC))",
+        "Equal(LengthOfLine(CD),LengthOfLine(CB))",
+        "Equal(MeasureOfAngle(CAD),40)"
     ],
-    "isosceles_triangle_judgment_line_equal(1,ABC)": [
-      "isosceles_triangle_property_angle_equal(1,ABC)"
-    ]
-  }
+    "image_cdl": [],
+    "goal_cdl": "Value(MeasureOfAngle(DCA))",
+    "problem_answer": "30",
+    "theorem_seqs": [
+        "triangle_property_angle_sum(1,ABC)",
+        "isosceles_triangle_judgment_line_equal(1,CDB)",
+        "isosceles_triangle_judgment_line_equal(1,ABC)",
+        "isosceles_triangle_property_angle_equal(1,CDB)",
+        "isosceles_triangle_property_angle_equal(1,ABC)",
+        "triangle_property_angle_sum(1,DBC)",
+        "angle_addition(1,BCD,DCA)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "triangle_property_angle_sum(1,ABC)",
+            "isosceles_triangle_judgment_line_equal(1,CDB)",
+            "isosceles_triangle_judgment_line_equal(1,ABC)",
+            "triangle_property_angle_sum(1,DBC)",
+            "angle_addition(1,BCD,DCA)"
+        ],
+        "isosceles_triangle_judgment_line_equal(1,CDB)": [
+            "isosceles_triangle_property_angle_equal(1,CDB)"
+        ],
+        "isosceles_triangle_judgment_line_equal(1,ABC)": [
+            "isosceles_triangle_property_angle_equal(1,ABC)"
+        ]
+    }
 }

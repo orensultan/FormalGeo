@@ -1,49 +1,46 @@
 {
-  "problem_id": 5866,
-  "annotation": "QikeHuang_2023-05-28",
-  "source": "GeoQA-7905",
-  "problem_level": 6,
-  "problem_text_cn": "如图所示，三角形ADE的面积为8，EA=2，EC=5，ED∥BC。求△ABC的面积。",
-  "problem_text_en": "As shown in the diagram, the area of triangle ADE is 8, EA=2, EC=5, ED∥BC. Find the area of △ABC.",
-  "problem_img": "5866.png",
-  "construction_cdl": [
-    "Shape(EA,AD,DE)",
-    "Shape(AB,BC,CA)",
-    "Collinear(EAC)",
-    "Collinear(DAB)"
-  ],
-  "text_cdl": [
-    "Equal(AreaOfTriangle(ADE),8)",
-    "Equal(LengthOfLine(EA),2)",
-    "Equal(LengthOfLine(EC),5)",
-    "ParallelBetweenLine(ED,BC)"
-  ],
-  "image_cdl": [],
-  "goal_cdl": "Value(AreaOfTriangle(ABC))",
-  "problem_answer": "18",
-  "theorem_seqs": [
-    "parallel_property_alternate_interior_angle(1,ED,BC)",
-    "parallel_property_alternate_interior_angle(2,ED,BC)",
-    "similar_triangle_judgment_aa(1,ADE,ABC)",
-    "line_addition(1,EA,AC)",
-    "similar_triangle_property_line_ratio(1,DEA,BCA)",
-    "similar_triangle_property_area_square_ratio(1,ADE,ABC)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "parallel_property_alternate_interior_angle(1,ED,BC)",
-      "parallel_property_alternate_interior_angle(2,ED,BC)",
-      "line_addition(1,EA,AC)"
+    "problem_id": 5866,
+    "source": "GeoQA-7905",
+    "problem_level": 6,
+    "problem_img": "5866.png",
+    "construction_cdl": [
+        "Shape(EA,AD,DE)",
+        "Shape(AB,BC,CA)",
+        "Collinear(EAC)",
+        "Collinear(DAB)"
     ],
-    "parallel_property_alternate_interior_angle(1,ED,BC)": [
-      "similar_triangle_judgment_aa(1,ADE,ABC)"
+    "text_cdl": [
+        "Equal(AreaOfTriangle(ADE),8)",
+        "Equal(LengthOfLine(EA),2)",
+        "Equal(LengthOfLine(EC),5)",
+        "ParallelBetweenLine(ED,BC)"
     ],
-    "parallel_property_alternate_interior_angle(2,ED,BC)": [
-      "similar_triangle_judgment_aa(1,ADE,ABC)"
+    "image_cdl": [],
+    "goal_cdl": "Value(AreaOfTriangle(ABC))",
+    "problem_answer": "18",
+    "theorem_seqs": [
+        "parallel_property_alternate_interior_angle(1,ED,BC)",
+        "parallel_property_alternate_interior_angle(2,ED,BC)",
+        "similar_triangle_judgment_aa(1,ADE,ABC)",
+        "line_addition(1,EA,AC)",
+        "similar_triangle_property_line_ratio(1,DEA,BCA)",
+        "similar_triangle_property_area_square_ratio(1,ADE,ABC)"
     ],
-    "similar_triangle_judgment_aa(1,ADE,ABC)": [
-      "similar_triangle_property_area_square_ratio(1,ADE,ABC)",
-      "similar_triangle_property_line_ratio(1,DEA,BCA)"
-    ]
-  }
+    "theorem_seqs_dag": {
+        "START": [
+            "parallel_property_alternate_interior_angle(1,ED,BC)",
+            "parallel_property_alternate_interior_angle(2,ED,BC)",
+            "line_addition(1,EA,AC)"
+        ],
+        "parallel_property_alternate_interior_angle(1,ED,BC)": [
+            "similar_triangle_judgment_aa(1,ADE,ABC)"
+        ],
+        "parallel_property_alternate_interior_angle(2,ED,BC)": [
+            "similar_triangle_judgment_aa(1,ADE,ABC)"
+        ],
+        "similar_triangle_judgment_aa(1,ADE,ABC)": [
+            "similar_triangle_property_area_square_ratio(1,ADE,ABC)",
+            "similar_triangle_property_line_ratio(1,DEA,BCA)"
+        ]
+    }
 }

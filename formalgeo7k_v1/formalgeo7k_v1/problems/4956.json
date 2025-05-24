@@ -1,80 +1,77 @@
 {
-  "problem_id": 4956,
-  "annotation": "FangzhenZhu_2023-05-21",
-  "source": "GeoQA-4631",
-  "problem_level": 16,
-  "problem_text_cn": "如图所示，AC=4，AF=10，BE=12，CM=1，AB∥CD，AB平行于EF，CD平行于EF。求直线DE的长度。",
-  "problem_text_en": "As shown in the diagram, AC=4, AF=10, BE=12, CM=1, AB is parallel to CD, AB∥EF, CD∥EF. Find the length of line DE.",
-  "problem_img": "4956.png",
-  "construction_cdl": [
-    "Shape(AC,CD,DB,BA)",
-    "Shape(CM,MD,DC)",
-    "Shape(ME,EF,FM)",
-    "Collinear(ACMF)",
-    "Collinear(BDME)"
-  ],
-  "text_cdl": [
-    "Equal(LengthOfLine(AC),4)",
-    "Equal(LengthOfLine(AF),10)",
-    "Equal(LengthOfLine(BE),12)",
-    "Equal(LengthOfLine(CM),1)",
-    "ParallelBetweenLine(AB,CD)",
-    "ParallelBetweenLine(AB,EF)",
-    "ParallelBetweenLine(CD,EF)"
-  ],
-  "image_cdl": [],
-  "goal_cdl": "Value(LengthOfLine(DE))",
-  "problem_answer": "36/5",
-  "theorem_seqs": [
-    "parallel_property_alternate_interior_angle(1,AB,EF)",
-    "parallel_property_alternate_interior_angle(2,AB,EF)",
-    "parallel_property_alternate_interior_angle(1,CD,EF)",
-    "parallel_property_alternate_interior_angle(2,CD,EF)",
-    "line_addition(1,AC,CM)",
-    "line_addition(1,AC,CF)",
-    "line_addition(1,CM,MF)",
-    "line_addition(1,BD,DM)",
-    "line_addition(1,BD,DE)",
-    "line_addition(1,BM,ME)",
-    "similar_triangle_judgment_aa(1,MEF,MBA)",
-    "similar_triangle_property_line_ratio(1,EFM,BAM)",
-    "similar_triangle_property_line_ratio(1,FME,AMB)",
-    "similar_triangle_judgment_aa(1,MEF,MDC)",
-    "similar_triangle_property_line_ratio(1,EFM,DCM)",
-    "similar_triangle_property_line_ratio(1,FME,CMD)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "parallel_property_alternate_interior_angle(1,AB,EF)",
-      "parallel_property_alternate_interior_angle(2,AB,EF)",
-      "parallel_property_alternate_interior_angle(1,CD,EF)",
-      "parallel_property_alternate_interior_angle(2,CD,EF)",
-      "line_addition(1,AC,CM)",
-      "line_addition(1,AC,CF)",
-      "line_addition(1,CM,MF)",
-      "line_addition(1,BD,DM)",
-      "line_addition(1,BD,DE)",
-      "line_addition(1,BM,ME)"
+    "problem_id": 4956,
+    "source": "GeoQA-4631",
+    "problem_level": 16,
+    "problem_img": "4956.png",
+    "construction_cdl": [
+        "Shape(AC,CD,DB,BA)",
+        "Shape(CM,MD,DC)",
+        "Shape(ME,EF,FM)",
+        "Collinear(ACMF)",
+        "Collinear(BDME)"
     ],
-    "parallel_property_alternate_interior_angle(1,AB,EF)": [
-      "similar_triangle_judgment_aa(1,MEF,MBA)"
+    "text_cdl": [
+        "Equal(LengthOfLine(AC),4)",
+        "Equal(LengthOfLine(AF),10)",
+        "Equal(LengthOfLine(BE),12)",
+        "Equal(LengthOfLine(CM),1)",
+        "ParallelBetweenLine(AB,CD)",
+        "ParallelBetweenLine(AB,EF)",
+        "ParallelBetweenLine(CD,EF)"
     ],
-    "parallel_property_alternate_interior_angle(2,AB,EF)": [
-      "similar_triangle_judgment_aa(1,MEF,MBA)"
+    "image_cdl": [],
+    "goal_cdl": "Value(LengthOfLine(DE))",
+    "problem_answer": "36/5",
+    "theorem_seqs": [
+        "parallel_property_alternate_interior_angle(1,AB,EF)",
+        "parallel_property_alternate_interior_angle(2,AB,EF)",
+        "parallel_property_alternate_interior_angle(1,CD,EF)",
+        "parallel_property_alternate_interior_angle(2,CD,EF)",
+        "line_addition(1,AC,CM)",
+        "line_addition(1,AC,CF)",
+        "line_addition(1,CM,MF)",
+        "line_addition(1,BD,DM)",
+        "line_addition(1,BD,DE)",
+        "line_addition(1,BM,ME)",
+        "similar_triangle_judgment_aa(1,MEF,MBA)",
+        "similar_triangle_property_line_ratio(1,EFM,BAM)",
+        "similar_triangle_property_line_ratio(1,FME,AMB)",
+        "similar_triangle_judgment_aa(1,MEF,MDC)",
+        "similar_triangle_property_line_ratio(1,EFM,DCM)",
+        "similar_triangle_property_line_ratio(1,FME,CMD)"
     ],
-    "parallel_property_alternate_interior_angle(1,CD,EF)": [
-      "similar_triangle_judgment_aa(1,MEF,MDC)"
-    ],
-    "parallel_property_alternate_interior_angle(2,CD,EF)": [
-      "similar_triangle_judgment_aa(1,MEF,MDC)"
-    ],
-    "similar_triangle_judgment_aa(1,MEF,MBA)": [
-      "similar_triangle_property_line_ratio(1,EFM,BAM)",
-      "similar_triangle_property_line_ratio(1,FME,AMB)"
-    ],
-    "similar_triangle_judgment_aa(1,MEF,MDC)": [
-      "similar_triangle_property_line_ratio(1,EFM,DCM)",
-      "similar_triangle_property_line_ratio(1,FME,CMD)"
-    ]
-  }
+    "theorem_seqs_dag": {
+        "START": [
+            "parallel_property_alternate_interior_angle(1,AB,EF)",
+            "parallel_property_alternate_interior_angle(2,AB,EF)",
+            "parallel_property_alternate_interior_angle(1,CD,EF)",
+            "parallel_property_alternate_interior_angle(2,CD,EF)",
+            "line_addition(1,AC,CM)",
+            "line_addition(1,AC,CF)",
+            "line_addition(1,CM,MF)",
+            "line_addition(1,BD,DM)",
+            "line_addition(1,BD,DE)",
+            "line_addition(1,BM,ME)"
+        ],
+        "parallel_property_alternate_interior_angle(1,AB,EF)": [
+            "similar_triangle_judgment_aa(1,MEF,MBA)"
+        ],
+        "parallel_property_alternate_interior_angle(2,AB,EF)": [
+            "similar_triangle_judgment_aa(1,MEF,MBA)"
+        ],
+        "parallel_property_alternate_interior_angle(1,CD,EF)": [
+            "similar_triangle_judgment_aa(1,MEF,MDC)"
+        ],
+        "parallel_property_alternate_interior_angle(2,CD,EF)": [
+            "similar_triangle_judgment_aa(1,MEF,MDC)"
+        ],
+        "similar_triangle_judgment_aa(1,MEF,MBA)": [
+            "similar_triangle_property_line_ratio(1,EFM,BAM)",
+            "similar_triangle_property_line_ratio(1,FME,AMB)"
+        ],
+        "similar_triangle_judgment_aa(1,MEF,MDC)": [
+            "similar_triangle_property_line_ratio(1,EFM,DCM)",
+            "similar_triangle_property_line_ratio(1,FME,CMD)"
+        ]
+    }
 }

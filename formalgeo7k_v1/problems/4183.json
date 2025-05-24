@@ -1,55 +1,52 @@
 {
-  "problem_id": 4183,
-  "annotation": "YangLi_2023-05-07",
-  "source": "GeoQA-2840",
-  "problem_level": 6,
-  "problem_text_cn": "如图所示，AC=2，AD=3，⊙O的圆心为O，AD是⊙O的直径。求cos(EB)的值。",
-  "problem_text_en": "As shown in the diagram, AC=2, AD=3, O is the center of ⊙O, the diameter of ⊙O is AD. Find the value of cos(EB).",
-  "problem_img": "4183.png",
-  "construction_cdl": [
-    "Shape(CA,AE,EC)",
-    "Shape(CE,EB,BC)",
-    "Shape(EA,AO,OD,DE)",
-    "Shape(DO,OA,OAD)",
-    "Shape(BE,ED,ODB)",
-    "Shape(CB,OBC)",
-    "Shape(AC,OCA)",
-    "Collinear(CED)",
-    "Collinear(AOD)",
-    "Collinear(AEB)",
-    "Cocircular(O,DBCA)"
-  ],
-  "text_cdl": [
-    "Equal(LengthOfLine(AC),2)",
-    "Equal(LengthOfLine(AD),3)",
-    "IsCentreOfCircle(O,O)",
-    "IsDiameterOfCircle(AD,O)"
-  ],
-  "image_cdl": [
-    "IsCentreOfCircle(O,O)"
-  ],
-  "goal_cdl": "Value(Cos(MeasureOfAngle(EBC)))",
-  "problem_answer": "sqrt(5)/3",
-  "theorem_seqs": [
-    "diameter_of_circle_property_right_angle(1,DCA,O)",
-    "right_triangle_judgment_angle(1,DCA)",
-    "right_triangle_property_pythagorean(1,DCA)",
-    "cosine_theorem(1,DCA)",
-    "arc_property_circumference_angle_external(1,OCA,B)",
-    "arc_property_circumference_angle_external(1,OCA,D)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "diameter_of_circle_property_right_angle(1,DCA,O)",
-      "cosine_theorem(1,DCA)",
-      "arc_property_circumference_angle_external(1,OCA,B)",
-      "arc_property_circumference_angle_external(1,OCA,D)"
+    "problem_id": 4183,
+    "source": "GeoQA-2840",
+    "problem_level": 6,
+    "problem_img": "4183.png",
+    "construction_cdl": [
+        "Shape(CA,AE,EC)",
+        "Shape(CE,EB,BC)",
+        "Shape(EA,AO,OD,DE)",
+        "Shape(DO,OA,OAD)",
+        "Shape(BE,ED,ODB)",
+        "Shape(CB,OBC)",
+        "Shape(AC,OCA)",
+        "Collinear(CED)",
+        "Collinear(AOD)",
+        "Collinear(AEB)",
+        "Cocircular(O,DBCA)"
     ],
-    "diameter_of_circle_property_right_angle(1,DCA,O)": [
-      "right_triangle_judgment_angle(1,DCA)"
+    "text_cdl": [
+        "Equal(LengthOfLine(AC),2)",
+        "Equal(LengthOfLine(AD),3)",
+        "IsCentreOfCircle(O,O)",
+        "IsDiameterOfCircle(AD,O)"
     ],
-    "right_triangle_judgment_angle(1,DCA)": [
-      "right_triangle_property_pythagorean(1,DCA)"
-    ]
-  }
+    "image_cdl": [
+        "IsCentreOfCircle(O,O)"
+    ],
+    "goal_cdl": "Value(Cos(MeasureOfAngle(EBC)))",
+    "problem_answer": "sqrt(5)/3",
+    "theorem_seqs": [
+        "diameter_of_circle_property_right_angle(1,DCA,O)",
+        "right_triangle_judgment_angle(1,DCA)",
+        "right_triangle_property_pythagorean(1,DCA)",
+        "cosine_theorem(1,DCA)",
+        "arc_property_circumference_angle_external(1,OCA,B)",
+        "arc_property_circumference_angle_external(1,OCA,D)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "diameter_of_circle_property_right_angle(1,DCA,O)",
+            "cosine_theorem(1,DCA)",
+            "arc_property_circumference_angle_external(1,OCA,B)",
+            "arc_property_circumference_angle_external(1,OCA,D)"
+        ],
+        "diameter_of_circle_property_right_angle(1,DCA,O)": [
+            "right_triangle_judgment_angle(1,DCA)"
+        ],
+        "right_triangle_judgment_angle(1,DCA)": [
+            "right_triangle_property_pythagorean(1,DCA)"
+        ]
+    }
 }

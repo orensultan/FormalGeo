@@ -1,44 +1,41 @@
 {
-  "problem_id": 4546,
-  "annotation": "YanjunGuo_2023-05-14",
-  "source": "GeoQA-3645",
-  "problem_level": 4,
-  "problem_text_cn": "如图所示，∠BDA=100°，E是⊙E的圆心，O是圆O的圆心。求∠ACB的大小。",
-  "problem_text_en": "As shown in the diagram, ∠BDA=100°, E is the center of circle E, the center of ⊙O is O. Find the measure of ∠ACB.",
-  "problem_img": "4546.png",
-  "construction_cdl": [
-    "Shape(CA,OAC)",
-    "Shape(AC,CB,EAB)",
-    "Shape(BC,OCB)",
-    "Shape(AO,EAO)",
-    "Shape(AO,OB,OBA)",
-    "Shape(BO,EOB)",
-    "Shape(DB,EBD)",
-    "Shape(AD,EDA)",
-    "Shape(BD,DA,OBA)",
-    "Cocircular(O,CBA)",
-    "Cocircular(E,AOBD)"
-  ],
-  "text_cdl": [
-    "Equal(MeasureOfAngle(BDA),100)",
-    "IsCentreOfCircle(E,E)",
-    "IsCentreOfCircle(O,O)"
-  ],
-  "image_cdl": [],
-  "goal_cdl": "Value(MeasureOfAngle(ACB))",
-  "problem_answer": "40",
-  "theorem_seqs": [
-    "arc_property_circumference_angle_external(1,OBA,C)",
-    "arc_property_circumference_angle_external(1,EAB,D)",
-    "arc_property_circumference_angle_internal(1,EAB,O)",
-    "arc_property_center_angle(1,OBA,O)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "arc_property_circumference_angle_external(1,OBA,C)",
-      "arc_property_circumference_angle_external(1,EAB,D)",
-      "arc_property_circumference_angle_internal(1,EAB,O)",
-      "arc_property_center_angle(1,OBA,O)"
-    ]
-  }
+    "problem_id": 4546,
+    "source": "GeoQA-3645",
+    "problem_level": 4,
+    "problem_img": "4546.png",
+    "construction_cdl": [
+        "Shape(CA,OAC)",
+        "Shape(AC,CB,EAB)",
+        "Shape(BC,OCB)",
+        "Shape(AO,EAO)",
+        "Shape(AO,OB,OBA)",
+        "Shape(BO,EOB)",
+        "Shape(DB,EBD)",
+        "Shape(AD,EDA)",
+        "Shape(BD,DA,OBA)",
+        "Cocircular(O,CBA)",
+        "Cocircular(E,AOBD)"
+    ],
+    "text_cdl": [
+        "Equal(MeasureOfAngle(BDA),100)",
+        "IsCentreOfCircle(E,E)",
+        "IsCentreOfCircle(O,O)"
+    ],
+    "image_cdl": [],
+    "goal_cdl": "Value(MeasureOfAngle(ACB))",
+    "problem_answer": "40",
+    "theorem_seqs": [
+        "arc_property_circumference_angle_external(1,OBA,C)",
+        "arc_property_circumference_angle_external(1,EAB,D)",
+        "arc_property_circumference_angle_internal(1,EAB,O)",
+        "arc_property_center_angle(1,OBA,O)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "arc_property_circumference_angle_external(1,OBA,C)",
+            "arc_property_circumference_angle_external(1,EAB,D)",
+            "arc_property_circumference_angle_internal(1,EAB,O)",
+            "arc_property_center_angle(1,OBA,O)"
+        ]
+    }
 }

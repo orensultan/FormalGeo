@@ -1,48 +1,45 @@
 {
-  "problem_id": 6136,
-  "annotation": "YifanWang_2023-06-04",
-  "source": "GeoQA-8693",
-  "problem_level": 5,
-  "problem_text_cn": "如图所示，∠FCD=25°，O是⊙O的圆心，G平分线段EF。求∠GOE的大小。",
-  "problem_text_en": "As shown in the diagram, ∠FCD=25°, the center of ⊙O is O, G bisects segment EF. Find the measure of ∠GOE.",
-  "problem_img": "6136.png",
-  "construction_cdl": [
-    "Shape(EO,OC,OCE)",
-    "Shape(OE,EG,GO)",
-    "Shape(CO,OG,GF,FC)",
-    "Shape(CF,OFC)",
-    "Shape(DG,GE,OED)",
-    "Shape(FG,GD,ODF)",
-    "Collinear(EGF)",
-    "Collinear(COGD)",
-    "Cocircular(O,CEDF)"
-  ],
-  "text_cdl": [
-    "Equal(MeasureOfAngle(FCD),25)",
-    "IsCentreOfCircle(O,O)",
-    "IsMidpointOfLine(G,EF)"
-  ],
-  "image_cdl": [],
-  "goal_cdl": "Value(MeasureOfAngle(GOE))",
-  "problem_answer": "50",
-  "theorem_seqs": [
-    "circle_property_chord_perpendicular_bisect_arc(2,OEF,OGD)",
-    "congruent_arc_judgment_length_equal(1,OED,ODF)",
-    "congruent_arc_property_measure_equal(1,OED,ODF)",
-    "arc_property_center_angle(1,OED,O)",
-    "arc_property_circumference_angle_external(1,ODF,C)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "circle_property_chord_perpendicular_bisect_arc(2,OEF,OGD)",
-      "arc_property_center_angle(1,OED,O)",
-      "arc_property_circumference_angle_external(1,ODF,C)"
+    "problem_id": 6136,
+    "source": "GeoQA-8693",
+    "problem_level": 5,
+    "problem_img": "6136.png",
+    "construction_cdl": [
+        "Shape(EO,OC,OCE)",
+        "Shape(OE,EG,GO)",
+        "Shape(CO,OG,GF,FC)",
+        "Shape(CF,OFC)",
+        "Shape(DG,GE,OED)",
+        "Shape(FG,GD,ODF)",
+        "Collinear(EGF)",
+        "Collinear(COGD)",
+        "Cocircular(O,CEDF)"
     ],
-    "circle_property_chord_perpendicular_bisect_arc(2,OEF,OGD)": [
-      "congruent_arc_judgment_length_equal(1,OED,ODF)"
+    "text_cdl": [
+        "Equal(MeasureOfAngle(FCD),25)",
+        "IsCentreOfCircle(O,O)",
+        "IsMidpointOfLine(G,EF)"
     ],
-    "congruent_arc_judgment_length_equal(1,OED,ODF)": [
-      "congruent_arc_property_measure_equal(1,OED,ODF)"
-    ]
-  }
+    "image_cdl": [],
+    "goal_cdl": "Value(MeasureOfAngle(GOE))",
+    "problem_answer": "50",
+    "theorem_seqs": [
+        "circle_property_chord_perpendicular_bisect_arc(2,OEF,OGD)",
+        "congruent_arc_judgment_length_equal(1,OED,ODF)",
+        "congruent_arc_property_measure_equal(1,OED,ODF)",
+        "arc_property_center_angle(1,OED,O)",
+        "arc_property_circumference_angle_external(1,ODF,C)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "circle_property_chord_perpendicular_bisect_arc(2,OEF,OGD)",
+            "arc_property_center_angle(1,OED,O)",
+            "arc_property_circumference_angle_external(1,ODF,C)"
+        ],
+        "circle_property_chord_perpendicular_bisect_arc(2,OEF,OGD)": [
+            "congruent_arc_judgment_length_equal(1,OED,ODF)"
+        ],
+        "congruent_arc_judgment_length_equal(1,OED,ODF)": [
+            "congruent_arc_property_measure_equal(1,OED,ODF)"
+        ]
+    }
 }

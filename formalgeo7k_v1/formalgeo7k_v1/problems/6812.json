@@ -1,31 +1,28 @@
 {
-  "problem_id": 6812,
-  "annotation": "ChenyangMao_2023-06-04",
-  "source": "GeoQA-angle-10027",
-  "problem_level": 2,
-  "problem_text_cn": "如图所示，∠ABC=125°，∠DAC=21°，BA和CD是平行四边形ABCD的一组对边。求∠CAB的大小。",
-  "problem_text_en": "As shown in the diagram, ∠ABC=125°, ∠DAC=21°, ABCD is a ▱. Find the measure of ∠CAB.",
-  "problem_img": "6812.png",
-  "construction_cdl": [
-    "Shape(AB,BC,CA)",
-    "Shape(AC,CD,DA)"
-  ],
-  "text_cdl": [
-    "Equal(MeasureOfAngle(ABC),125)",
-    "Equal(MeasureOfAngle(DAC),21)",
-    "Parallelogram(ABCD)"
-  ],
-  "image_cdl": [],
-  "goal_cdl": "Value(MeasureOfAngle(CAB))",
-  "problem_answer": "34",
-  "theorem_seqs": [
-    "parallel_property_ipsilateral_internal_angle(1,AD,BC)",
-    "angle_addition(1,DAC,CAB)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "parallel_property_ipsilateral_internal_angle(1,AD,BC)",
-      "angle_addition(1,DAC,CAB)"
-    ]
-  }
+    "problem_id": 6812,
+    "source": "GeoQA-angle-10027",
+    "problem_level": 2,
+    "problem_img": "6812.png",
+    "construction_cdl": [
+        "Shape(AB,BC,CA)",
+        "Shape(AC,CD,DA)"
+    ],
+    "text_cdl": [
+        "Equal(MeasureOfAngle(ABC),125)",
+        "Equal(MeasureOfAngle(DAC),21)",
+        "Parallelogram(ABCD)"
+    ],
+    "image_cdl": [],
+    "goal_cdl": "Value(MeasureOfAngle(CAB))",
+    "problem_answer": "34",
+    "theorem_seqs": [
+        "parallel_property_ipsilateral_internal_angle(1,AD,BC)",
+        "angle_addition(1,DAC,CAB)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "parallel_property_ipsilateral_internal_angle(1,AD,BC)",
+            "angle_addition(1,DAC,CAB)"
+        ]
+    }
 }

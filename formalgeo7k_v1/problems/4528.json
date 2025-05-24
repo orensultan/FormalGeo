@@ -1,37 +1,34 @@
 {
-  "problem_id": 4528,
-  "annotation": "XiaokaiZhang_2023-05-14",
-  "source": "GeoQA-3575",
-  "problem_level": 3,
-  "problem_text_cn": "如图所示，∠CBA=120°。求∠CDE的大小。",
-  "problem_text_en": "As shown in the diagram, ∠CBA=120°. Find the measure of ∠CDE.",
-  "problem_img": "4528.png",
-  "construction_cdl": [
-    "Shape(OCB,BC)",
-    "Shape(OBA,AB)",
-    "Shape(OAD,DA)",
-    "Shape(ODC,CD)",
-    "Shape(BA,AD,DC,CB)",
-    "Shape(CD,DE)",
-    "Collinear(ADE)",
-    "Cocircular(O,CBAD)"
-  ],
-  "text_cdl": [
-    "Equal(MeasureOfAngle(CBA),120)"
-  ],
-  "image_cdl": [],
-  "goal_cdl": "Value(MeasureOfAngle(CDE))",
-  "problem_answer": "120",
-  "theorem_seqs": [
-    "arc_property_circumference_angle_external(1,OAC,B)",
-    "arc_property_circumference_angle_internal(1,OAC,D)",
-    "adjacent_complementary_angle(1,ADC,CDE)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "arc_property_circumference_angle_external(1,OAC,B)",
-      "arc_property_circumference_angle_internal(1,OAC,D)",
-      "adjacent_complementary_angle(1,ADC,CDE)"
-    ]
-  }
+    "problem_id": 4528,
+    "source": "GeoQA-3575",
+    "problem_level": 3,
+    "problem_img": "4528.png",
+    "construction_cdl": [
+        "Shape(OCB,BC)",
+        "Shape(OBA,AB)",
+        "Shape(OAD,DA)",
+        "Shape(ODC,CD)",
+        "Shape(BA,AD,DC,CB)",
+        "Shape(CD,DE)",
+        "Collinear(ADE)",
+        "Cocircular(O,CBAD)"
+    ],
+    "text_cdl": [
+        "Equal(MeasureOfAngle(CBA),120)"
+    ],
+    "image_cdl": [],
+    "goal_cdl": "Value(MeasureOfAngle(CDE))",
+    "problem_answer": "120",
+    "theorem_seqs": [
+        "arc_property_circumference_angle_external(1,OAC,B)",
+        "arc_property_circumference_angle_internal(1,OAC,D)",
+        "adjacent_complementary_angle(1,ADC,CDE)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "arc_property_circumference_angle_external(1,OAC,B)",
+            "arc_property_circumference_angle_internal(1,OAC,D)",
+            "adjacent_complementary_angle(1,ADC,CDE)"
+        ]
+    }
 }

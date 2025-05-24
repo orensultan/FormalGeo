@@ -1,31 +1,28 @@
 {
-  "problem_id": 5269,
-  "annotation": "XiaokaiZhang_2023-05-21",
-  "source": "GeoQA-5391",
-  "problem_level": 2,
-  "problem_text_cn": "如图所示，∠BAC=45°，∠EFD=35°，三角形BAC与三角形EFD是镜像相似三角形。求∠DEF的大小。",
-  "problem_text_en": "As shown in the diagram, ∠BAC=45°, ∠EFD=35°, △BAC is mirror similar to △EFD.. Find the measure of ∠DEF.",
-  "problem_img": "5269.png",
-  "construction_cdl": [
-    "Shape(BA,AC,CB)",
-    "Shape(DE,EF,FD)"
-  ],
-  "text_cdl": [
-    "Equal(MeasureOfAngle(BAC),45)",
-    "Equal(MeasureOfAngle(EFD),35)",
-    "MirrorSimilarBetweenTriangle(BAC,EFD)"
-  ],
-  "image_cdl": [],
-  "goal_cdl": "Value(MeasureOfAngle(DEF))",
-  "problem_answer": "100",
-  "theorem_seqs": [
-    "mirror_similar_triangle_property_angle_equal(1,ACB,DEF)",
-    "triangle_property_angle_sum(1,DEF)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "mirror_similar_triangle_property_angle_equal(1,ACB,DEF)",
-      "triangle_property_angle_sum(1,DEF)"
-    ]
-  }
+    "problem_id": 5269,
+    "source": "GeoQA-5391",
+    "problem_level": 2,
+    "problem_img": "5269.png",
+    "construction_cdl": [
+        "Shape(BA,AC,CB)",
+        "Shape(DE,EF,FD)"
+    ],
+    "text_cdl": [
+        "Equal(MeasureOfAngle(BAC),45)",
+        "Equal(MeasureOfAngle(EFD),35)",
+        "MirrorSimilarBetweenTriangle(BAC,EFD)"
+    ],
+    "image_cdl": [],
+    "goal_cdl": "Value(MeasureOfAngle(DEF))",
+    "problem_answer": "100",
+    "theorem_seqs": [
+        "mirror_similar_triangle_property_angle_equal(1,ACB,DEF)",
+        "triangle_property_angle_sum(1,DEF)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "mirror_similar_triangle_property_angle_equal(1,ACB,DEF)",
+            "triangle_property_angle_sum(1,DEF)"
+        ]
+    }
 }

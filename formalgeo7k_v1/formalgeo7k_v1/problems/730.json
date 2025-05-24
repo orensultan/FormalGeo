@@ -1,35 +1,32 @@
 {
-  "problem_id": 730,
-  "annotation": "JiaZou_2023-04-09",
-  "source": "Geometry3k-755",
-  "problem_level": 1,
-  "problem_text_cn": "如图所示，∠TZY=30*x°，∠TZY=∠ZYW，∠WTZ=20*x°，∠WTZ=∠YWT，TW和ZY是等腰梯形TZYW的平行边。求∠YWT的大小。",
-  "problem_text_en": "As shown in the diagram, ∠TZY=30*x°, ∠TZY=∠ZYW, ∠WTZ=20*x°, ∠WTZ=∠YWT, quadrilateral TZYW is a isosceles trapezoid. Find the measure of ∠YWT.",
-  "problem_img": "730.png",
-  "construction_cdl": [
-    "Shape(TZ,ZY,YW,WT)"
-  ],
-  "text_cdl": [
-    "Equal(MeasureOfAngle(TZY),30*x)",
-    "Equal(MeasureOfAngle(TZY),MeasureOfAngle(ZYW))",
-    "Equal(MeasureOfAngle(WTZ),20*x)",
-    "Equal(MeasureOfAngle(WTZ),MeasureOfAngle(YWT))",
-    "IsoscelesTrapezoid(TZYW)"
-  ],
-  "image_cdl": [
-    "Equal(MeasureOfAngle(TZY),30*x)",
-    "Equal(MeasureOfAngle(TZY),MeasureOfAngle(ZYW))",
-    "Equal(MeasureOfAngle(WTZ),20*x)",
-    "Equal(MeasureOfAngle(WTZ),MeasureOfAngle(YWT))"
-  ],
-  "goal_cdl": "Value(MeasureOfAngle(YWT))",
-  "problem_answer": "72",
-  "theorem_seqs": [
-    "quadrilateral_property_angle_sum(1,TZYW)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "quadrilateral_property_angle_sum(1,TZYW)"
-    ]
-  }
+    "problem_id": 730,
+    "source": "Geometry3k-755",
+    "problem_level": 1,
+    "problem_img": "730.png",
+    "construction_cdl": [
+        "Shape(TZ,ZY,YW,WT)"
+    ],
+    "text_cdl": [
+        "Equal(MeasureOfAngle(TZY),30*x)",
+        "Equal(MeasureOfAngle(TZY),MeasureOfAngle(ZYW))",
+        "Equal(MeasureOfAngle(WTZ),20*x)",
+        "Equal(MeasureOfAngle(WTZ),MeasureOfAngle(YWT))",
+        "IsoscelesTrapezoid(TZYW)"
+    ],
+    "image_cdl": [
+        "Equal(MeasureOfAngle(TZY),30*x)",
+        "Equal(MeasureOfAngle(TZY),MeasureOfAngle(ZYW))",
+        "Equal(MeasureOfAngle(WTZ),20*x)",
+        "Equal(MeasureOfAngle(WTZ),MeasureOfAngle(YWT))"
+    ],
+    "goal_cdl": "Value(MeasureOfAngle(YWT))",
+    "problem_answer": "72",
+    "theorem_seqs": [
+        "quadrilateral_property_angle_sum(1,TZYW)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "quadrilateral_property_angle_sum(1,TZYW)"
+        ]
+    }
 }

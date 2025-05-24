@@ -1,60 +1,57 @@
 {
-  "problem_id": 3588,
-  "annotation": "QikeHuang_2023-04-30",
-  "source": "GeoQA-1235",
-  "problem_level": 7,
-  "problem_text_cn": "如图所示，AB=20，AB=DE，AC=15，BF=15，BF=EC，CF=10，∠ABF=∠CED。求三角形ABC和三角形DFE的周长和。",
-  "problem_text_en": "As shown in the diagram, AB=20, AB=DE, AC=15, BF=15, BF=EC, CF=10, ∠ABF=∠CED. Find the sum of the perimeters of triangle ABC and triangle DFE.",
-  "problem_img": "3588.png",
-  "construction_cdl": [
-    "Shape(AB,BF,FM,MA)",
-    "Shape(MF,FC,CM)",
-    "Shape(DM,MC,CE,ED)",
-    "Collinear(BFCE)",
-    "Collinear(AMC)",
-    "Collinear(DMF)"
-  ],
-  "text_cdl": [
-    "Equal(LengthOfLine(AB),20)",
-    "Equal(LengthOfLine(AB),LengthOfLine(DE))",
-    "Equal(LengthOfLine(AC),15)",
-    "Equal(LengthOfLine(BF),15)",
-    "Equal(LengthOfLine(BF),LengthOfLine(EC))",
-    "Equal(LengthOfLine(CF),10)",
-    "Equal(MeasureOfAngle(ABF),MeasureOfAngle(CED))"
-  ],
-  "image_cdl": [],
-  "goal_cdl": "Value(Sub(Add(PerimeterOfTriangle(ABC),PerimeterOfTriangle(DFE)),LengthOfLine(FC)))",
-  "problem_answer": "110",
-  "theorem_seqs": [
-    "line_addition(1,FC,CE)",
-    "line_addition(1,BC,CE)",
-    "line_addition(1,BF,FE)",
-    "mirror_congruent_triangle_judgment_sas(1,BCA,EDF)",
-    "mirror_congruent_triangle_property_line_equal(1,BCA,EDF)",
-    "triangle_perimeter_formula(1,ABC)",
-    "triangle_perimeter_formula(1,DFE)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "line_addition(1,FC,CE)",
-      "line_addition(1,BC,CE)",
-      "line_addition(1,BF,FE)",
-      "triangle_perimeter_formula(1,ABC)",
-      "triangle_perimeter_formula(1,DFE)"
+    "problem_id": 3588,
+    "source": "GeoQA-1235",
+    "problem_level": 7,
+    "problem_img": "3588.png",
+    "construction_cdl": [
+        "Shape(AB,BF,FM,MA)",
+        "Shape(MF,FC,CM)",
+        "Shape(DM,MC,CE,ED)",
+        "Collinear(BFCE)",
+        "Collinear(AMC)",
+        "Collinear(DMF)"
     ],
-    "line_addition(1,FC,CE)": [
-      "mirror_congruent_triangle_judgment_sas(1,BCA,EDF)",
-      "mirror_congruent_triangle_judgment_sas(1,BCA,EDF)"
+    "text_cdl": [
+        "Equal(LengthOfLine(AB),20)",
+        "Equal(LengthOfLine(AB),LengthOfLine(DE))",
+        "Equal(LengthOfLine(AC),15)",
+        "Equal(LengthOfLine(BF),15)",
+        "Equal(LengthOfLine(BF),LengthOfLine(EC))",
+        "Equal(LengthOfLine(CF),10)",
+        "Equal(MeasureOfAngle(ABF),MeasureOfAngle(CED))"
     ],
-    "line_addition(1,BC,CE)": [
-      "mirror_congruent_triangle_judgment_sas(1,BCA,EDF)"
+    "image_cdl": [],
+    "goal_cdl": "Value(Sub(Add(PerimeterOfTriangle(ABC),PerimeterOfTriangle(DFE)),LengthOfLine(FC)))",
+    "problem_answer": "110",
+    "theorem_seqs": [
+        "line_addition(1,FC,CE)",
+        "line_addition(1,BC,CE)",
+        "line_addition(1,BF,FE)",
+        "mirror_congruent_triangle_judgment_sas(1,BCA,EDF)",
+        "mirror_congruent_triangle_property_line_equal(1,BCA,EDF)",
+        "triangle_perimeter_formula(1,ABC)",
+        "triangle_perimeter_formula(1,DFE)"
     ],
-    "line_addition(1,BF,FE)": [
-      "mirror_congruent_triangle_judgment_sas(1,BCA,EDF)"
-    ],
-    "mirror_congruent_triangle_judgment_sas(1,BCA,EDF)": [
-      "mirror_congruent_triangle_property_line_equal(1,BCA,EDF)"
-    ]
-  }
+    "theorem_seqs_dag": {
+        "START": [
+            "line_addition(1,FC,CE)",
+            "line_addition(1,BC,CE)",
+            "line_addition(1,BF,FE)",
+            "triangle_perimeter_formula(1,ABC)",
+            "triangle_perimeter_formula(1,DFE)"
+        ],
+        "line_addition(1,FC,CE)": [
+            "mirror_congruent_triangle_judgment_sas(1,BCA,EDF)",
+            "mirror_congruent_triangle_judgment_sas(1,BCA,EDF)"
+        ],
+        "line_addition(1,BC,CE)": [
+            "mirror_congruent_triangle_judgment_sas(1,BCA,EDF)"
+        ],
+        "line_addition(1,BF,FE)": [
+            "mirror_congruent_triangle_judgment_sas(1,BCA,EDF)"
+        ],
+        "mirror_congruent_triangle_judgment_sas(1,BCA,EDF)": [
+            "mirror_congruent_triangle_property_line_equal(1,BCA,EDF)"
+        ]
+    }
 }

@@ -1,37 +1,34 @@
 {
-  "problem_id": 3440,
-  "annotation": "NaZhu_2023-04-30",
-  "source": "GeoQA-1003",
-  "problem_level": 3,
-  "problem_text_cn": "如图所示，∠CBA=100°。求∠EDA的大小。",
-  "problem_text_en": "As shown in the diagram, ∠CBA=100°. Find the measure of ∠EDA.",
-  "problem_img": "3440.png",
-  "construction_cdl": [
-    "Shape(OAD,DA)",
-    "Shape(ODC,CD)",
-    "Shape(OCB,BC)",
-    "Shape(OBA,AB)",
-    "Shape(AD,DC,CB,BA)",
-    "Shape(ED,DA)",
-    "Collinear(EDC)",
-    "Cocircular(O,ADCB)"
-  ],
-  "text_cdl": [
-    "Equal(MeasureOfAngle(CBA),100)"
-  ],
-  "image_cdl": [],
-  "goal_cdl": "Value(MeasureOfAngle(EDA))",
-  "problem_answer": "100",
-  "theorem_seqs": [
-    "arc_property_circumference_angle_external(1,OAC,B)",
-    "arc_property_circumference_angle_internal(1,OAC,D)",
-    "adjacent_complementary_angle(1,EDA,ADC)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "arc_property_circumference_angle_external(1,OAC,B)",
-      "arc_property_circumference_angle_internal(1,OAC,D)",
-      "adjacent_complementary_angle(1,EDA,ADC)"
-    ]
-  }
+    "problem_id": 3440,
+    "source": "GeoQA-1003",
+    "problem_level": 3,
+    "problem_img": "3440.png",
+    "construction_cdl": [
+        "Shape(OAD,DA)",
+        "Shape(ODC,CD)",
+        "Shape(OCB,BC)",
+        "Shape(OBA,AB)",
+        "Shape(AD,DC,CB,BA)",
+        "Shape(ED,DA)",
+        "Collinear(EDC)",
+        "Cocircular(O,ADCB)"
+    ],
+    "text_cdl": [
+        "Equal(MeasureOfAngle(CBA),100)"
+    ],
+    "image_cdl": [],
+    "goal_cdl": "Value(MeasureOfAngle(EDA))",
+    "problem_answer": "100",
+    "theorem_seqs": [
+        "arc_property_circumference_angle_external(1,OAC,B)",
+        "arc_property_circumference_angle_internal(1,OAC,D)",
+        "adjacent_complementary_angle(1,EDA,ADC)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "arc_property_circumference_angle_external(1,OAC,B)",
+            "arc_property_circumference_angle_internal(1,OAC,D)",
+            "adjacent_complementary_angle(1,EDA,ADC)"
+        ]
+    }
 }

@@ -1,44 +1,41 @@
 {
-  "problem_id": 501,
-  "annotation": "JiaZou_2023-03-12",
-  "source": "Geometry3k-512",
-  "problem_level": 2,
-  "problem_text_cn": "如图所示，AC=x+7，CB=4，CE=12-x，DC=6，AB垂直于CB，ED⊥CD，三角形ABC与三角形EDC是相似三角形。求直线CE的长度。",
-  "problem_text_en": "As shown in the diagram, AC=x+7, CB=4, CE=12-x, DC=6, AB⊥CB, ED⊥CD, △ABC is similar to △EDC.. Find the length of line CE.",
-  "problem_img": "501.png",
-  "construction_cdl": [
-    "Shape(AB,BC,CA)",
-    "Shape(ED,DC,CE)",
-    "Collinear(DCB)",
-    "Collinear(ACE)"
-  ],
-  "text_cdl": [
-    "Equal(LengthOfLine(AC),x+7)",
-    "Equal(LengthOfLine(CB),4)",
-    "Equal(LengthOfLine(CE),12-x)",
-    "Equal(LengthOfLine(DC),6)",
-    "PerpendicularBetweenLine(AB,CB)",
-    "PerpendicularBetweenLine(ED,CD)",
-    "SimilarBetweenTriangle(ABC,EDC)"
-  ],
-  "image_cdl": [
-    "Equal(LengthOfLine(AC),x+7)",
-    "Equal(LengthOfLine(CB),4)",
-    "Equal(LengthOfLine(CE),12-x)",
-    "Equal(LengthOfLine(DC),6)",
-    "PerpendicularBetweenLine(AB,CB)",
-    "PerpendicularBetweenLine(ED,CD)"
-  ],
-  "goal_cdl": "Value(LengthOfLine(CE))",
-  "problem_answer": "57/5",
-  "theorem_seqs": [
-    "similar_triangle_property_line_ratio(1,BCA,DCE)",
-    "similar_triangle_property_line_ratio(1,ABC,EDC)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "similar_triangle_property_line_ratio(1,BCA,DCE)",
-      "similar_triangle_property_line_ratio(1,ABC,EDC)"
-    ]
-  }
+    "problem_id": 501,
+    "source": "Geometry3k-512",
+    "problem_level": 2,
+    "problem_img": "501.png",
+    "construction_cdl": [
+        "Shape(AB,BC,CA)",
+        "Shape(ED,DC,CE)",
+        "Collinear(DCB)",
+        "Collinear(ACE)"
+    ],
+    "text_cdl": [
+        "Equal(LengthOfLine(AC),x+7)",
+        "Equal(LengthOfLine(CB),4)",
+        "Equal(LengthOfLine(CE),12-x)",
+        "Equal(LengthOfLine(DC),6)",
+        "PerpendicularBetweenLine(AB,CB)",
+        "PerpendicularBetweenLine(ED,CD)",
+        "SimilarBetweenTriangle(ABC,EDC)"
+    ],
+    "image_cdl": [
+        "Equal(LengthOfLine(AC),x+7)",
+        "Equal(LengthOfLine(CB),4)",
+        "Equal(LengthOfLine(CE),12-x)",
+        "Equal(LengthOfLine(DC),6)",
+        "PerpendicularBetweenLine(AB,CB)",
+        "PerpendicularBetweenLine(ED,CD)"
+    ],
+    "goal_cdl": "Value(LengthOfLine(CE))",
+    "problem_answer": "57/5",
+    "theorem_seqs": [
+        "similar_triangle_property_line_ratio(1,BCA,DCE)",
+        "similar_triangle_property_line_ratio(1,ABC,EDC)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "similar_triangle_property_line_ratio(1,BCA,DCE)",
+            "similar_triangle_property_line_ratio(1,ABC,EDC)"
+        ]
+    }
 }

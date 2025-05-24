@@ -1,36 +1,33 @@
 {
-  "problem_id": 2454,
-  "annotation": "YangLi_2023-04-23",
-  "source": "Geometry3k-2574",
-  "problem_level": 2,
-  "problem_text_cn": "如图所示，∠GKH=122°，K是⊙K的圆心。求⌒KGJ的角度。",
-  "problem_text_en": "As shown in the diagram, ∠GKH=122°, K is the center of circle K. Find the measure of ⌒KGJ.",
-  "problem_img": "2454.png",
-  "construction_cdl": [
-    "Shape(HK,KJ,KJH)",
-    "Shape(GK,KH,KHG)",
-    "Shape(JK,KG,KGL,KLJ)",
-    "Collinear(GKJ)",
-    "Cocircular(K,LJHG)"
-  ],
-  "text_cdl": [
-    "Equal(MeasureOfAngle(GKH),122)",
-    "IsCentreOfCircle(K,K)"
-  ],
-  "image_cdl": [
-    "Equal(MeasureOfAngle(GKH),122)",
-    "IsCentreOfCircle(K,K)"
-  ],
-  "goal_cdl": "Value(MeasureOfArc(KGJ))",
-  "problem_answer": "180",
-  "theorem_seqs": [
-    "flat_angle(1,JKG)",
-    "arc_property_center_angle(1,KGJ,K)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "flat_angle(1,JKG)",
-      "arc_property_center_angle(1,KGJ,K)"
-    ]
-  }
+    "problem_id": 2454,
+    "source": "Geometry3k-2574",
+    "problem_level": 2,
+    "problem_img": "2454.png",
+    "construction_cdl": [
+        "Shape(HK,KJ,KJH)",
+        "Shape(GK,KH,KHG)",
+        "Shape(JK,KG,KGL,KLJ)",
+        "Collinear(GKJ)",
+        "Cocircular(K,LJHG)"
+    ],
+    "text_cdl": [
+        "Equal(MeasureOfAngle(GKH),122)",
+        "IsCentreOfCircle(K,K)"
+    ],
+    "image_cdl": [
+        "Equal(MeasureOfAngle(GKH),122)",
+        "IsCentreOfCircle(K,K)"
+    ],
+    "goal_cdl": "Value(MeasureOfArc(KGJ))",
+    "problem_answer": "180",
+    "theorem_seqs": [
+        "flat_angle(1,JKG)",
+        "arc_property_center_angle(1,KGJ,K)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "flat_angle(1,JKG)",
+            "arc_property_center_angle(1,KGJ,K)"
+        ]
+    }
 }

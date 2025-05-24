@@ -1,40 +1,37 @@
 {
-  "problem_id": 1161,
-  "annotation": "ChenyangMao_2023-04-09",
-  "source": "Geometry3k-1200",
-  "problem_level": 1,
-  "problem_text_cn": "如图所示，AF=2，BF=7，FC=x，FD=3。求x的值。",
-  "problem_text_en": "As shown in the diagram, AF=2, BF=7, FC=x, FD=3. Find the value of x.",
-  "problem_img": "1161.png",
-  "construction_cdl": [
-    "Shape(EDB,BF,FD)",
-    "Shape(EBC,CF,FB)",
-    "Shape(ECA,AF,FC)",
-    "Shape(EAD,DF,FA)",
-    "Collinear(BFA)",
-    "Collinear(DFC)",
-    "Cocircular(E,DBCA)"
-  ],
-  "text_cdl": [
-    "Equal(LengthOfLine(AF),2)",
-    "Equal(LengthOfLine(BF),7)",
-    "Equal(LengthOfLine(FC),x)",
-    "Equal(LengthOfLine(FD),3)"
-  ],
-  "image_cdl": [
-    "Equal(LengthOfLine(AF),2)",
-    "Equal(LengthOfLine(BF),7)",
-    "Equal(LengthOfLine(FC),x)",
-    "Equal(LengthOfLine(FD),3)"
-  ],
-  "goal_cdl": "Value(x)",
-  "problem_answer": "14/3",
-  "theorem_seqs": [
-    "circle_property_circular_power_chord_and_chord(1,BFA,DFC,E)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "circle_property_circular_power_chord_and_chord(1,BFA,DFC,E)"
-    ]
-  }
+    "problem_id": 1161,
+    "source": "Geometry3k-1200",
+    "problem_level": 1,
+    "problem_img": "1161.png",
+    "construction_cdl": [
+        "Shape(EDB,BF,FD)",
+        "Shape(EBC,CF,FB)",
+        "Shape(ECA,AF,FC)",
+        "Shape(EAD,DF,FA)",
+        "Collinear(BFA)",
+        "Collinear(DFC)",
+        "Cocircular(E,DBCA)"
+    ],
+    "text_cdl": [
+        "Equal(LengthOfLine(AF),2)",
+        "Equal(LengthOfLine(BF),7)",
+        "Equal(LengthOfLine(FC),x)",
+        "Equal(LengthOfLine(FD),3)"
+    ],
+    "image_cdl": [
+        "Equal(LengthOfLine(AF),2)",
+        "Equal(LengthOfLine(BF),7)",
+        "Equal(LengthOfLine(FC),x)",
+        "Equal(LengthOfLine(FD),3)"
+    ],
+    "goal_cdl": "Value(x)",
+    "problem_answer": "14/3",
+    "theorem_seqs": [
+        "circle_property_circular_power_chord_and_chord(1,BFA,DFC,E)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "circle_property_circular_power_chord_and_chord(1,BFA,DFC,E)"
+        ]
+    }
 }

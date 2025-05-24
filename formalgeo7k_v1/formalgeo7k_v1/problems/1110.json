@@ -1,32 +1,29 @@
 {
-  "problem_id": 1110,
-  "annotation": "NaZhu_2023-03-19",
-  "source": "Geometry3k-1147",
-  "problem_level": 1,
-  "problem_text_cn": "如图所示，PQ=37，RQ=58，RP⊥QP。求∠QRP的大小。",
-  "problem_text_en": "As shown in the diagram, PQ=37, RQ=58, RP is perpendicular to QP. Find the measure of ∠QRP.",
-  "problem_img": "1110.png",
-  "construction_cdl": [
-    "Shape(PQ,QR,RP)"
-  ],
-  "text_cdl": [
-    "Equal(LengthOfLine(PQ),37)",
-    "Equal(LengthOfLine(RQ),58)",
-    "PerpendicularBetweenLine(RP,QP)"
-  ],
-  "image_cdl": [
-    "Equal(LengthOfLine(PQ),37)",
-    "Equal(LengthOfLine(RQ),58)",
-    "PerpendicularBetweenLine(RP,QP)"
-  ],
-  "goal_cdl": "Value(MeasureOfAngle(QRP))",
-  "problem_answer": "180*asin(37/58)/pi",
-  "theorem_seqs": [
-    "sine_theorem(1,QRP)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "sine_theorem(1,QRP)"
-    ]
-  }
+    "problem_id": 1110,
+    "source": "Geometry3k-1147",
+    "problem_level": 1,
+    "problem_img": "1110.png",
+    "construction_cdl": [
+        "Shape(PQ,QR,RP)"
+    ],
+    "text_cdl": [
+        "Equal(LengthOfLine(PQ),37)",
+        "Equal(LengthOfLine(RQ),58)",
+        "PerpendicularBetweenLine(RP,QP)"
+    ],
+    "image_cdl": [
+        "Equal(LengthOfLine(PQ),37)",
+        "Equal(LengthOfLine(RQ),58)",
+        "PerpendicularBetweenLine(RP,QP)"
+    ],
+    "goal_cdl": "Value(MeasureOfAngle(QRP))",
+    "problem_answer": "180*asin(37/58)/pi",
+    "theorem_seqs": [
+        "sine_theorem(1,QRP)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "sine_theorem(1,QRP)"
+        ]
+    }
 }

@@ -1,118 +1,115 @@
 {
-  "problem_id": 3723,
-  "annotation": "YangLi_2023-04-30",
-  "source": "GeoQA-1499",
-  "problem_level": 22,
-  "problem_text_cn": "如图所示，∠DAB=110°，E是线段AB的中点，F是线段BC的中点，CP垂直于EP，EP垂直于DP，ABCD是菱形。求∠CPF的大小。",
-  "problem_text_en": "As shown in the diagram, ∠DAB=110°, E bisects segment AB, F is the midpoint of segment BC, CP is perpendicular to EP, EP is perpendicular to DP, quadrilateral ABCD is a rhombus. Find the measure of ∠CPF.",
-  "problem_img": "3723.png",
-  "construction_cdl": [
-    "Shape(AE,EP,PD,DA)",
-    "Shape(EF,FP,PE)",
-    "Shape(EB,BF,FE)",
-    "Shape(PF,FC,CP)",
-    "Shape(FB,BG,GF)",
-    "Collinear(BFC)",
-    "Collinear(PFG)",
-    "Collinear(DPC)",
-    "Collinear(AEBG)"
-  ],
-  "text_cdl": [
-    "Equal(MeasureOfAngle(DAB),110)",
-    "IsMidpointOfLine(E,AB)",
-    "IsMidpointOfLine(F,BC)",
-    "PerpendicularBetweenLine(CP,EP)",
-    "PerpendicularBetweenLine(EP,DP)",
-    "Rhombus(ABCD)"
-  ],
-  "image_cdl": [],
-  "goal_cdl": "Value(MeasureOfAngle(CPF))",
-  "problem_answer": "55",
-  "theorem_seqs": [
-    "line_addition(1,AE,EB)",
-    "line_addition(1,BF,FC)",
-    "isosceles_triangle_judgment_line_equal(1,BFE)",
-    "isosceles_triangle_property_angle_equal(1,BFE)",
-    "parallel_property_ipsilateral_internal_angle(1,AD,BC)",
-    "triangle_property_angle_sum(1,BFE)",
-    "parallel_property_collinear_extend(1,BA,CD,G)",
-    "parallel_property_collinear_extend(2,GB,CD,E)",
-    "parallel_property_collinear_extend(3,DC,EB,P)",
-    "parallel_property_alternate_interior_angle(2,DC,BG)",
-    "vertical_angle(1,PFC,GFB)",
-    "congruent_triangle_judgment_aas(2,GFB,PFC)",
-    "congruent_triangle_property_line_equal(1,BGF,CPF)",
-    "line_addition(1,PF,FG)",
-    "median_of_triangle_judgment(1,EF,EGP)",
-    "parallel_property_alternate_interior_angle(2,DP,EB)",
-    "right_triangle_judgment_angle(1,PEG)",
-    "right_triangle_property_length_of_median(1,PEG,F)",
-    "isosceles_triangle_judgment_line_equal(1,FEG)",
-    "isosceles_triangle_property_angle_equal(1,FEG)",
-    "triangle_property_angle_sum(1,PEG)",
-    "angle_addition(1,CPF,FPE)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "line_addition(1,AE,EB)",
-      "line_addition(1,BF,FC)",
-      "parallel_property_ipsilateral_internal_angle(1,AD,BC)",
-      "triangle_property_angle_sum(1,BFE)",
-      "parallel_property_collinear_extend(1,BA,CD,G)",
-      "vertical_angle(1,PFC,GFB)",
-      "line_addition(1,PF,FG)",
-      "triangle_property_angle_sum(1,PEG)",
-      "angle_addition(1,CPF,FPE)"
+    "problem_id": 3723,
+    "source": "GeoQA-1499",
+    "problem_level": 22,
+    "problem_img": "3723.png",
+    "construction_cdl": [
+        "Shape(AE,EP,PD,DA)",
+        "Shape(EF,FP,PE)",
+        "Shape(EB,BF,FE)",
+        "Shape(PF,FC,CP)",
+        "Shape(FB,BG,GF)",
+        "Collinear(BFC)",
+        "Collinear(PFG)",
+        "Collinear(DPC)",
+        "Collinear(AEBG)"
     ],
-    "line_addition(1,AE,EB)": [
-      "isosceles_triangle_judgment_line_equal(1,BFE)"
+    "text_cdl": [
+        "Equal(MeasureOfAngle(DAB),110)",
+        "IsMidpointOfLine(E,AB)",
+        "IsMidpointOfLine(F,BC)",
+        "PerpendicularBetweenLine(CP,EP)",
+        "PerpendicularBetweenLine(EP,DP)",
+        "Rhombus(ABCD)"
     ],
-    "line_addition(1,BF,FC)": [
-      "isosceles_triangle_judgment_line_equal(1,BFE)"
+    "image_cdl": [],
+    "goal_cdl": "Value(MeasureOfAngle(CPF))",
+    "problem_answer": "55",
+    "theorem_seqs": [
+        "line_addition(1,AE,EB)",
+        "line_addition(1,BF,FC)",
+        "isosceles_triangle_judgment_line_equal(1,BFE)",
+        "isosceles_triangle_property_angle_equal(1,BFE)",
+        "parallel_property_ipsilateral_internal_angle(1,AD,BC)",
+        "triangle_property_angle_sum(1,BFE)",
+        "parallel_property_collinear_extend(1,BA,CD,G)",
+        "parallel_property_collinear_extend(2,GB,CD,E)",
+        "parallel_property_collinear_extend(3,DC,EB,P)",
+        "parallel_property_alternate_interior_angle(2,DC,BG)",
+        "vertical_angle(1,PFC,GFB)",
+        "congruent_triangle_judgment_aas(2,GFB,PFC)",
+        "congruent_triangle_property_line_equal(1,BGF,CPF)",
+        "line_addition(1,PF,FG)",
+        "median_of_triangle_judgment(1,EF,EGP)",
+        "parallel_property_alternate_interior_angle(2,DP,EB)",
+        "right_triangle_judgment_angle(1,PEG)",
+        "right_triangle_property_length_of_median(1,PEG,F)",
+        "isosceles_triangle_judgment_line_equal(1,FEG)",
+        "isosceles_triangle_property_angle_equal(1,FEG)",
+        "triangle_property_angle_sum(1,PEG)",
+        "angle_addition(1,CPF,FPE)"
     ],
-    "isosceles_triangle_judgment_line_equal(1,BFE)": [
-      "isosceles_triangle_property_angle_equal(1,BFE)"
-    ],
-    "parallel_property_collinear_extend(1,BA,CD,G)": [
-      "parallel_property_collinear_extend(2,GB,CD,E)",
-      "parallel_property_alternate_interior_angle(2,DC,BG)"
-    ],
-    "parallel_property_collinear_extend(2,GB,CD,E)": [
-      "parallel_property_collinear_extend(3,DC,EB,P)"
-    ],
-    "parallel_property_collinear_extend(3,DC,EB,P)": [
-      "parallel_property_alternate_interior_angle(2,DP,EB)"
-    ],
-    "parallel_property_alternate_interior_angle(2,DC,BG)": [
-      "congruent_triangle_judgment_aas(2,GFB,PFC)"
-    ],
-    "vertical_angle(1,PFC,GFB)": [
-      "congruent_triangle_judgment_aas(2,GFB,PFC)"
-    ],
-    "congruent_triangle_judgment_aas(2,GFB,PFC)": [
-      "congruent_triangle_property_line_equal(1,BGF,CPF)"
-    ],
-    "congruent_triangle_property_line_equal(1,BGF,CPF)": [
-      "median_of_triangle_judgment(1,EF,EGP)",
-      "isosceles_triangle_judgment_line_equal(1,FEG)"
-    ],
-    "line_addition(1,PF,FG)": [
-      "isosceles_triangle_judgment_line_equal(1,FEG)"
-    ],
-    "median_of_triangle_judgment(1,EF,EGP)": [
-      "right_triangle_property_length_of_median(1,PEG,F)"
-    ],
-    "parallel_property_alternate_interior_angle(2,DP,EB)": [
-      "right_triangle_judgment_angle(1,PEG)"
-    ],
-    "right_triangle_judgment_angle(1,PEG)": [
-      "right_triangle_property_length_of_median(1,PEG,F)"
-    ],
-    "right_triangle_property_length_of_median(1,PEG,F)": [
-      "isosceles_triangle_judgment_line_equal(1,FEG)"
-    ],
-    "isosceles_triangle_judgment_line_equal(1,FEG)": [
-      "isosceles_triangle_property_angle_equal(1,FEG)"
-    ]
-  }
+    "theorem_seqs_dag": {
+        "START": [
+            "line_addition(1,AE,EB)",
+            "line_addition(1,BF,FC)",
+            "parallel_property_ipsilateral_internal_angle(1,AD,BC)",
+            "triangle_property_angle_sum(1,BFE)",
+            "parallel_property_collinear_extend(1,BA,CD,G)",
+            "vertical_angle(1,PFC,GFB)",
+            "line_addition(1,PF,FG)",
+            "triangle_property_angle_sum(1,PEG)",
+            "angle_addition(1,CPF,FPE)"
+        ],
+        "line_addition(1,AE,EB)": [
+            "isosceles_triangle_judgment_line_equal(1,BFE)"
+        ],
+        "line_addition(1,BF,FC)": [
+            "isosceles_triangle_judgment_line_equal(1,BFE)"
+        ],
+        "isosceles_triangle_judgment_line_equal(1,BFE)": [
+            "isosceles_triangle_property_angle_equal(1,BFE)"
+        ],
+        "parallel_property_collinear_extend(1,BA,CD,G)": [
+            "parallel_property_collinear_extend(2,GB,CD,E)",
+            "parallel_property_alternate_interior_angle(2,DC,BG)"
+        ],
+        "parallel_property_collinear_extend(2,GB,CD,E)": [
+            "parallel_property_collinear_extend(3,DC,EB,P)"
+        ],
+        "parallel_property_collinear_extend(3,DC,EB,P)": [
+            "parallel_property_alternate_interior_angle(2,DP,EB)"
+        ],
+        "parallel_property_alternate_interior_angle(2,DC,BG)": [
+            "congruent_triangle_judgment_aas(2,GFB,PFC)"
+        ],
+        "vertical_angle(1,PFC,GFB)": [
+            "congruent_triangle_judgment_aas(2,GFB,PFC)"
+        ],
+        "congruent_triangle_judgment_aas(2,GFB,PFC)": [
+            "congruent_triangle_property_line_equal(1,BGF,CPF)"
+        ],
+        "congruent_triangle_property_line_equal(1,BGF,CPF)": [
+            "median_of_triangle_judgment(1,EF,EGP)",
+            "isosceles_triangle_judgment_line_equal(1,FEG)"
+        ],
+        "line_addition(1,PF,FG)": [
+            "isosceles_triangle_judgment_line_equal(1,FEG)"
+        ],
+        "median_of_triangle_judgment(1,EF,EGP)": [
+            "right_triangle_property_length_of_median(1,PEG,F)"
+        ],
+        "parallel_property_alternate_interior_angle(2,DP,EB)": [
+            "right_triangle_judgment_angle(1,PEG)"
+        ],
+        "right_triangle_judgment_angle(1,PEG)": [
+            "right_triangle_property_length_of_median(1,PEG,F)"
+        ],
+        "right_triangle_property_length_of_median(1,PEG,F)": [
+            "isosceles_triangle_judgment_line_equal(1,FEG)"
+        ],
+        "isosceles_triangle_judgment_line_equal(1,FEG)": [
+            "isosceles_triangle_property_angle_equal(1,FEG)"
+        ]
+    }
 }

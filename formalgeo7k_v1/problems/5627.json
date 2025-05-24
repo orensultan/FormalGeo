@@ -1,46 +1,43 @@
 {
-  "problem_id": 5627,
-  "annotation": "JiaZou_2023-05-28",
-  "source": "GeoQA-7224",
-  "problem_level": 5,
-  "problem_text_cn": "如图所示，△ADE的面积为1，D平分线段AB，E平分线段AC。求△ABC的面积。",
-  "problem_text_en": "As shown in the diagram, the area of triangle ADE is 1, D is the midpoint of segment AB, E bisects segment AC. Find the area of triangle ABC.",
-  "problem_img": "5627.png",
-  "construction_cdl": [
-    "Shape(AD,DE,EA)",
-    "Shape(DB,BC,CE,ED)",
-    "Collinear(ADB)",
-    "Collinear(AEC)"
-  ],
-  "text_cdl": [
-    "Equal(AreaOfTriangle(ADE),1)",
-    "IsMidpointOfLine(D,AB)",
-    "IsMidpointOfLine(E,AC)"
-  ],
-  "image_cdl": [],
-  "goal_cdl": "Value(AreaOfTriangle(ABC))",
-  "problem_answer": "4",
-  "theorem_seqs": [
-    "line_addition(1,AD,DB)",
-    "line_addition(1,AE,EC)",
-    "similar_triangle_judgment_sas(1,ADE,ABC)",
-    "similar_triangle_property_line_ratio(1,DEA,BCA)",
-    "similar_triangle_property_area_square_ratio(1,ADE,ABC)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "line_addition(1,AD,DB)",
-      "line_addition(1,AE,EC)"
+    "problem_id": 5627,
+    "source": "GeoQA-7224",
+    "problem_level": 5,
+    "problem_img": "5627.png",
+    "construction_cdl": [
+        "Shape(AD,DE,EA)",
+        "Shape(DB,BC,CE,ED)",
+        "Collinear(ADB)",
+        "Collinear(AEC)"
     ],
-    "line_addition(1,AD,DB)": [
-      "similar_triangle_judgment_sas(1,ADE,ABC)"
+    "text_cdl": [
+        "Equal(AreaOfTriangle(ADE),1)",
+        "IsMidpointOfLine(D,AB)",
+        "IsMidpointOfLine(E,AC)"
     ],
-    "line_addition(1,AE,EC)": [
-      "similar_triangle_judgment_sas(1,ADE,ABC)"
+    "image_cdl": [],
+    "goal_cdl": "Value(AreaOfTriangle(ABC))",
+    "problem_answer": "4",
+    "theorem_seqs": [
+        "line_addition(1,AD,DB)",
+        "line_addition(1,AE,EC)",
+        "similar_triangle_judgment_sas(1,ADE,ABC)",
+        "similar_triangle_property_line_ratio(1,DEA,BCA)",
+        "similar_triangle_property_area_square_ratio(1,ADE,ABC)"
     ],
-    "similar_triangle_judgment_sas(1,ADE,ABC)": [
-      "similar_triangle_property_area_square_ratio(1,ADE,ABC)",
-      "similar_triangle_property_line_ratio(1,DEA,BCA)"
-    ]
-  }
+    "theorem_seqs_dag": {
+        "START": [
+            "line_addition(1,AD,DB)",
+            "line_addition(1,AE,EC)"
+        ],
+        "line_addition(1,AD,DB)": [
+            "similar_triangle_judgment_sas(1,ADE,ABC)"
+        ],
+        "line_addition(1,AE,EC)": [
+            "similar_triangle_judgment_sas(1,ADE,ABC)"
+        ],
+        "similar_triangle_judgment_sas(1,ADE,ABC)": [
+            "similar_triangle_property_area_square_ratio(1,ADE,ABC)",
+            "similar_triangle_property_line_ratio(1,DEA,BCA)"
+        ]
+    }
 }

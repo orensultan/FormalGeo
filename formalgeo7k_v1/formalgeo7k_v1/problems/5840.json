@@ -1,35 +1,32 @@
 {
-  "problem_id": 5840,
-  "annotation": "QikeHuang_2023-05-28",
-  "source": "GeoQA-7850",
-  "problem_level": 3,
-  "problem_text_cn": "如图所示，AC=6，BC=24，Tan(MeasureOfAngle(ADC))=1/6，BC⊥AC。求直线BD的长度。",
-  "problem_text_en": "As shown in the diagram, AC=6, BC=24, Tan(MeasureOfAngle(ADC))=1/6, BC⊥AC. Find the length of line BD.",
-  "problem_img": "5840.png",
-  "construction_cdl": [
-    "Shape(AD,DB,BA)",
-    "Shape(AB,BC,CA)",
-    "Collinear(DBC)"
-  ],
-  "text_cdl": [
-    "Equal(LengthOfLine(AC),6)",
-    "Equal(LengthOfLine(BC),24)",
-    "Equal(Tan(MeasureOfAngle(ADC)),1/6)",
-    "PerpendicularBetweenLine(BC,AC)"
-  ],
-  "image_cdl": [],
-  "goal_cdl": "Value(LengthOfLine(BD))",
-  "problem_answer": "12",
-  "theorem_seqs": [
-    "triangle_property_angle_sum(1,ADC)",
-    "sine_theorem(1,CAD)",
-    "line_addition(1,DB,BC)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "triangle_property_angle_sum(1,ADC)",
-      "sine_theorem(1,CAD)",
-      "line_addition(1,DB,BC)"
-    ]
-  }
+    "problem_id": 5840,
+    "source": "GeoQA-7850",
+    "problem_level": 3,
+    "problem_img": "5840.png",
+    "construction_cdl": [
+        "Shape(AD,DB,BA)",
+        "Shape(AB,BC,CA)",
+        "Collinear(DBC)"
+    ],
+    "text_cdl": [
+        "Equal(LengthOfLine(AC),6)",
+        "Equal(LengthOfLine(BC),24)",
+        "Equal(Tan(MeasureOfAngle(ADC)),1/6)",
+        "PerpendicularBetweenLine(BC,AC)"
+    ],
+    "image_cdl": [],
+    "goal_cdl": "Value(LengthOfLine(BD))",
+    "problem_answer": "12",
+    "theorem_seqs": [
+        "triangle_property_angle_sum(1,ADC)",
+        "sine_theorem(1,CAD)",
+        "line_addition(1,DB,BC)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "triangle_property_angle_sum(1,ADC)",
+            "sine_theorem(1,CAD)",
+            "line_addition(1,DB,BC)"
+        ]
+    }
 }

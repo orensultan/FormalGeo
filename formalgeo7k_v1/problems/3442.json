@@ -1,38 +1,35 @@
 {
-  "problem_id": 3442,
-  "annotation": "NaZhu_2023-04-30",
-  "source": "GeoQA-1005",
-  "problem_level": 2,
-  "problem_text_cn": "如图所示，∠AOC=130°，三角形AOB为直角三角形，∠DOC是直角三角形DOC的直角。求∠EOG的大小。",
-  "problem_text_en": "As shown in the diagram, ∠AOC=130°, AO and OB are the legs of the right triangle AOB, DO and OC are the legs of the right △ DOC. Find the measure of ∠EOG.",
-  "problem_img": "3442.png",
-  "construction_cdl": [
-    "Shape(AO,OE,EA)",
-    "Shape(DE,EF,FD)",
-    "Shape(FE,EO,OG,GF)",
-    "Shape(FG,GB,BF)",
-    "Shape(OC,CG,GO)",
-    "Collinear(AEFB)",
-    "Collinear(OGB)",
-    "Collinear(OED)",
-    "Collinear(DFGC)"
-  ],
-  "text_cdl": [
-    "Equal(MeasureOfAngle(AOC),130)",
-    "RightTriangle(AOB)",
-    "RightTriangle(DOC)"
-  ],
-  "image_cdl": [],
-  "goal_cdl": "Value(MeasureOfAngle(EOG))",
-  "problem_answer": "50",
-  "theorem_seqs": [
-    "angle_addition(1,AOE,EOG)",
-    "angle_addition(1,AOE,EOC)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "angle_addition(1,AOE,EOG)",
-      "angle_addition(1,AOE,EOC)"
-    ]
-  }
+    "problem_id": 3442,
+    "source": "GeoQA-1005",
+    "problem_level": 2,
+    "problem_img": "3442.png",
+    "construction_cdl": [
+        "Shape(AO,OE,EA)",
+        "Shape(DE,EF,FD)",
+        "Shape(FE,EO,OG,GF)",
+        "Shape(FG,GB,BF)",
+        "Shape(OC,CG,GO)",
+        "Collinear(AEFB)",
+        "Collinear(OGB)",
+        "Collinear(OED)",
+        "Collinear(DFGC)"
+    ],
+    "text_cdl": [
+        "Equal(MeasureOfAngle(AOC),130)",
+        "RightTriangle(AOB)",
+        "RightTriangle(DOC)"
+    ],
+    "image_cdl": [],
+    "goal_cdl": "Value(MeasureOfAngle(EOG))",
+    "problem_answer": "50",
+    "theorem_seqs": [
+        "angle_addition(1,AOE,EOG)",
+        "angle_addition(1,AOE,EOC)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "angle_addition(1,AOE,EOG)",
+            "angle_addition(1,AOE,EOC)"
+        ]
+    }
 }

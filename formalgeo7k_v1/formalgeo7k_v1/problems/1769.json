@@ -1,42 +1,39 @@
 {
-  "problem_id": 1769,
-  "annotation": "ChenyangMao_2023-04-16",
-  "source": "Geometry3k-1834",
-  "problem_level": 2,
-  "problem_text_cn": "如图所示，∠GKJ=x+21°，∠HGK=4*y-11°，∠JHG=2*x°，∠KJH=3*y+9°。求∠JHG的大小。",
-  "problem_text_en": "As shown in the diagram, ∠GKJ=x+21°, ∠HGK=4*y-11°, ∠JHG=2*x°, ∠KJH=3*y+9°. Find the measure of ∠JHG.",
-  "problem_img": "1769.png",
-  "construction_cdl": [
-    "Shape(GJ,JH,HG)",
-    "Shape(JG,GK,KJ)",
-    "Shape(OJH,HJ)",
-    "Shape(OHG,GH)",
-    "Shape(OGK,KG)",
-    "Shape(OKJ,JK)",
-    "Cocircular(O,JHGK)"
-  ],
-  "text_cdl": [
-    "Equal(MeasureOfAngle(GKJ),x+21)",
-    "Equal(MeasureOfAngle(HGK),4*y-11)",
-    "Equal(MeasureOfAngle(JHG),2*x)",
-    "Equal(MeasureOfAngle(KJH),3*y+9)"
-  ],
-  "image_cdl": [
-    "Equal(MeasureOfAngle(GKJ),x+21)",
-    "Equal(MeasureOfAngle(HGK),4*y-11)",
-    "Equal(MeasureOfAngle(JHG),2*x)",
-    "Equal(MeasureOfAngle(KJH),3*y+9)"
-  ],
-  "goal_cdl": "Value(MeasureOfAngle(JHG))",
-  "problem_answer": "106",
-  "theorem_seqs": [
-    "arc_property_circumference_angle_external(1,OJG,K)",
-    "arc_property_circumference_angle_internal(1,OJG,H)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "arc_property_circumference_angle_external(1,OJG,K)",
-      "arc_property_circumference_angle_internal(1,OJG,H)"
-    ]
-  }
+    "problem_id": 1769,
+    "source": "Geometry3k-1834",
+    "problem_level": 2,
+    "problem_img": "1769.png",
+    "construction_cdl": [
+        "Shape(GJ,JH,HG)",
+        "Shape(JG,GK,KJ)",
+        "Shape(OJH,HJ)",
+        "Shape(OHG,GH)",
+        "Shape(OGK,KG)",
+        "Shape(OKJ,JK)",
+        "Cocircular(O,JHGK)"
+    ],
+    "text_cdl": [
+        "Equal(MeasureOfAngle(GKJ),x+21)",
+        "Equal(MeasureOfAngle(HGK),4*y-11)",
+        "Equal(MeasureOfAngle(JHG),2*x)",
+        "Equal(MeasureOfAngle(KJH),3*y+9)"
+    ],
+    "image_cdl": [
+        "Equal(MeasureOfAngle(GKJ),x+21)",
+        "Equal(MeasureOfAngle(HGK),4*y-11)",
+        "Equal(MeasureOfAngle(JHG),2*x)",
+        "Equal(MeasureOfAngle(KJH),3*y+9)"
+    ],
+    "goal_cdl": "Value(MeasureOfAngle(JHG))",
+    "problem_answer": "106",
+    "theorem_seqs": [
+        "arc_property_circumference_angle_external(1,OJG,K)",
+        "arc_property_circumference_angle_internal(1,OJG,H)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "arc_property_circumference_angle_external(1,OJG,K)",
+            "arc_property_circumference_angle_internal(1,OJG,H)"
+        ]
+    }
 }

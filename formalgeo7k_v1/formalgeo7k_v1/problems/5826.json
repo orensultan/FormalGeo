@@ -1,76 +1,73 @@
 {
-  "problem_id": 5826,
-  "annotation": "YanjunGuo_2023-05-28",
-  "source": "GeoQA-7815",
-  "problem_level": 10,
-  "problem_text_cn": "如图所示，CD=2，GC=6，GT是三角形GDP的中线，ABCD是正方形，四边形GCEF是正方形。求直线GT的长度。",
-  "problem_text_en": "As shown in the diagram, CD=2, GC=6, GT is the median of △ GDP, ABCD is a square, GCEF is a square. Find the length of line GT.",
-  "problem_img": "5826.png",
-  "construction_cdl": [
-    "Shape(AB,BD,DA)",
-    "Shape(DB,BC,CD)",
-    "Shape(GD,DT,TG)",
-    "Shape(TD,DC,CE,ET)",
-    "Shape(GT,TP,PG)",
-    "Shape(PT,TE,EF,FP)",
-    "Collinear(GPF)",
-    "Collinear(GDC)",
-    "Collinear(BCE)",
-    "Collinear(BDTP)",
-    "Collinear(GTE)"
-  ],
-  "text_cdl": [
-    "Equal(LengthOfLine(CD),2)",
-    "Equal(LengthOfLine(GC),6)",
-    "IsMedianOfTriangle(GT,GDP)",
-    "Square(ABCD)",
-    "Square(GCEF)"
-  ],
-  "image_cdl": [],
-  "goal_cdl": "Value(LengthOfLine(GT))",
-  "problem_answer": "2*sqrt(2)",
-  "theorem_seqs": [
-    "right_triangle_judgment_angle(1,PGD)",
-    "line_addition(1,GD,DC)",
-    "isosceles_triangle_judgment_line_equal(1,CDB)",
-    "isosceles_triangle_property_angle_equal(1,CDB)",
-    "triangle_property_angle_sum(1,DBC)",
-    "triangle_property_angle_sum(1,GDP)",
-    "vertical_angle(1,GDT,CDB)",
-    "isosceles_triangle_judgment_angle_equal(1,GDP)",
-    "right_triangle_property_pythagorean(1,PGD)",
-    "right_triangle_property_length_of_median(1,PGD,T)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "right_triangle_judgment_angle(1,PGD)",
-      "line_addition(1,GD,DC)",
-      "isosceles_triangle_judgment_line_equal(1,CDB)",
-      "triangle_property_angle_sum(1,DBC)",
-      "triangle_property_angle_sum(1,GDP)",
-      "vertical_angle(1,GDT,CDB)"
+    "problem_id": 5826,
+    "source": "GeoQA-7815",
+    "problem_level": 10,
+    "problem_img": "5826.png",
+    "construction_cdl": [
+        "Shape(AB,BD,DA)",
+        "Shape(DB,BC,CD)",
+        "Shape(GD,DT,TG)",
+        "Shape(TD,DC,CE,ET)",
+        "Shape(GT,TP,PG)",
+        "Shape(PT,TE,EF,FP)",
+        "Collinear(GPF)",
+        "Collinear(GDC)",
+        "Collinear(BCE)",
+        "Collinear(BDTP)",
+        "Collinear(GTE)"
     ],
-    "right_triangle_judgment_angle(1,PGD)": [
-      "right_triangle_property_pythagorean(1,PGD)",
-      "right_triangle_property_length_of_median(1,PGD,T)"
+    "text_cdl": [
+        "Equal(LengthOfLine(CD),2)",
+        "Equal(LengthOfLine(GC),6)",
+        "IsMedianOfTriangle(GT,GDP)",
+        "Square(ABCD)",
+        "Square(GCEF)"
     ],
-    "isosceles_triangle_judgment_line_equal(1,CDB)": [
-      "isosceles_triangle_property_angle_equal(1,CDB)"
+    "image_cdl": [],
+    "goal_cdl": "Value(LengthOfLine(GT))",
+    "problem_answer": "2*sqrt(2)",
+    "theorem_seqs": [
+        "right_triangle_judgment_angle(1,PGD)",
+        "line_addition(1,GD,DC)",
+        "isosceles_triangle_judgment_line_equal(1,CDB)",
+        "isosceles_triangle_property_angle_equal(1,CDB)",
+        "triangle_property_angle_sum(1,DBC)",
+        "triangle_property_angle_sum(1,GDP)",
+        "vertical_angle(1,GDT,CDB)",
+        "isosceles_triangle_judgment_angle_equal(1,GDP)",
+        "right_triangle_property_pythagorean(1,PGD)",
+        "right_triangle_property_length_of_median(1,PGD,T)"
     ],
-    "isosceles_triangle_property_angle_equal(1,CDB)": [
-      "isosceles_triangle_judgment_angle_equal(1,GDP)",
-      "isosceles_triangle_judgment_angle_equal(1,GDP)"
-    ],
-    "triangle_property_angle_sum(1,DBC)": [
-      "isosceles_triangle_judgment_angle_equal(1,GDP)",
-      "isosceles_triangle_judgment_angle_equal(1,GDP)"
-    ],
-    "triangle_property_angle_sum(1,GDP)": [
-      "isosceles_triangle_judgment_angle_equal(1,GDP)"
-    ],
-    "vertical_angle(1,GDT,CDB)": [
-      "isosceles_triangle_judgment_angle_equal(1,GDP)",
-      "isosceles_triangle_judgment_angle_equal(1,GDP)"
-    ]
-  }
+    "theorem_seqs_dag": {
+        "START": [
+            "right_triangle_judgment_angle(1,PGD)",
+            "line_addition(1,GD,DC)",
+            "isosceles_triangle_judgment_line_equal(1,CDB)",
+            "triangle_property_angle_sum(1,DBC)",
+            "triangle_property_angle_sum(1,GDP)",
+            "vertical_angle(1,GDT,CDB)"
+        ],
+        "right_triangle_judgment_angle(1,PGD)": [
+            "right_triangle_property_pythagorean(1,PGD)",
+            "right_triangle_property_length_of_median(1,PGD,T)"
+        ],
+        "isosceles_triangle_judgment_line_equal(1,CDB)": [
+            "isosceles_triangle_property_angle_equal(1,CDB)"
+        ],
+        "isosceles_triangle_property_angle_equal(1,CDB)": [
+            "isosceles_triangle_judgment_angle_equal(1,GDP)",
+            "isosceles_triangle_judgment_angle_equal(1,GDP)"
+        ],
+        "triangle_property_angle_sum(1,DBC)": [
+            "isosceles_triangle_judgment_angle_equal(1,GDP)",
+            "isosceles_triangle_judgment_angle_equal(1,GDP)"
+        ],
+        "triangle_property_angle_sum(1,GDP)": [
+            "isosceles_triangle_judgment_angle_equal(1,GDP)"
+        ],
+        "vertical_angle(1,GDT,CDB)": [
+            "isosceles_triangle_judgment_angle_equal(1,GDP)",
+            "isosceles_triangle_judgment_angle_equal(1,GDP)"
+        ]
+    }
 }

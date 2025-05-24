@@ -1,36 +1,33 @@
 {
-  "problem_id": 5097,
-  "annotation": "YimingHe_2023-05-21",
-  "source": "GeoQA-4917",
-  "problem_level": 4,
-  "problem_text_cn": "如图所示，Div(LengthOfLine(CB)=LengthOfLine(AC))，AC=12，D平分线段AC，E是线段AB的中点。求直线DE的长度。",
-  "problem_text_en": "As shown in the diagram, Div(LengthOfLine(CB)=LengthOfLine(AC)), AC=12, D is the midpoint of segment AC, E is the midpoint of segment AB. Find the length of line DE.",
-  "problem_img": "5097.png",
-  "construction_cdl": [
-    "Shape(AD,DE,EC,CB)",
-    "Collinear(ADECB)"
-  ],
-  "text_cdl": [
-    "Equal(Div(LengthOfLine(CB),LengthOfLine(AC)),2/3)",
-    "Equal(LengthOfLine(AC),12)",
-    "IsMidpointOfLine(D,AC)",
-    "IsMidpointOfLine(E,AB)"
-  ],
-  "image_cdl": [],
-  "goal_cdl": "Value(LengthOfLine(DE))",
-  "problem_answer": "4",
-  "theorem_seqs": [
-    "line_addition(1,AD,DE)",
-    "line_addition(1,AD,DC)",
-    "line_addition(1,AE,EB)",
-    "line_addition(1,AC,CB)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "line_addition(1,AD,DE)",
-      "line_addition(1,AD,DC)",
-      "line_addition(1,AE,EB)",
-      "line_addition(1,AC,CB)"
-    ]
-  }
+    "problem_id": 5097,
+    "source": "GeoQA-4917",
+    "problem_level": 4,
+    "problem_img": "5097.png",
+    "construction_cdl": [
+        "Shape(AD,DE,EC,CB)",
+        "Collinear(ADECB)"
+    ],
+    "text_cdl": [
+        "Equal(Div(LengthOfLine(CB),LengthOfLine(AC)),2/3)",
+        "Equal(LengthOfLine(AC),12)",
+        "IsMidpointOfLine(D,AC)",
+        "IsMidpointOfLine(E,AB)"
+    ],
+    "image_cdl": [],
+    "goal_cdl": "Value(LengthOfLine(DE))",
+    "problem_answer": "4",
+    "theorem_seqs": [
+        "line_addition(1,AD,DE)",
+        "line_addition(1,AD,DC)",
+        "line_addition(1,AE,EB)",
+        "line_addition(1,AC,CB)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "line_addition(1,AD,DE)",
+            "line_addition(1,AD,DC)",
+            "line_addition(1,AE,EB)",
+            "line_addition(1,AC,CB)"
+        ]
+    }
 }

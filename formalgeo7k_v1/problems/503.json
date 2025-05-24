@@ -1,49 +1,46 @@
 {
-  "problem_id": 503,
-  "annotation": "JiaZou_2023-03-12",
-  "source": "Geometry3k-514",
-  "problem_level": 5,
-  "problem_text_cn": "如图所示，PQ=21，PT=8，TR=15，PQ平行于TR。求直线TS的长度。",
-  "problem_text_en": "As shown in the diagram, PQ=21, PT=8, TR=15, PQ∥TR. Find the length of line TS.",
-  "problem_img": "503.png",
-  "construction_cdl": [
-    "Shape(QP,PT,TR,RQ)",
-    "Shape(RT,TS,SR)",
-    "Collinear(QRS)",
-    "Collinear(PTS)"
-  ],
-  "text_cdl": [
-    "Equal(LengthOfLine(PQ),21)",
-    "Equal(LengthOfLine(PT),8)",
-    "Equal(LengthOfLine(TR),15)",
-    "ParallelBetweenLine(PQ,TR)"
-  ],
-  "image_cdl": [
-    "Equal(LengthOfLine(PQ),21)",
-    "Equal(LengthOfLine(PT),8)",
-    "Equal(LengthOfLine(TR),15)",
-    "ParallelBetweenLine(PQ,TR)"
-  ],
-  "goal_cdl": "Value(LengthOfLine(TS))",
-  "problem_answer": "20",
-  "theorem_seqs": [
-    "line_addition(1,PT,TS)",
-    "parallel_property_corresponding_angle(1,RT,QP,S)",
-    "similar_triangle_judgment_aa(1,TSR,PSQ)",
-    "similar_triangle_property_line_ratio(1,SRT,SQP)",
-    "similar_triangle_property_line_ratio(1,RTS,QPS)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "line_addition(1,PT,TS)",
-      "parallel_property_corresponding_angle(1,RT,QP,S)"
+    "problem_id": 503,
+    "source": "Geometry3k-514",
+    "problem_level": 5,
+    "problem_img": "503.png",
+    "construction_cdl": [
+        "Shape(QP,PT,TR,RQ)",
+        "Shape(RT,TS,SR)",
+        "Collinear(QRS)",
+        "Collinear(PTS)"
     ],
-    "parallel_property_corresponding_angle(1,RT,QP,S)": [
-      "similar_triangle_judgment_aa(1,TSR,PSQ)"
+    "text_cdl": [
+        "Equal(LengthOfLine(PQ),21)",
+        "Equal(LengthOfLine(PT),8)",
+        "Equal(LengthOfLine(TR),15)",
+        "ParallelBetweenLine(PQ,TR)"
     ],
-    "similar_triangle_judgment_aa(1,TSR,PSQ)": [
-      "similar_triangle_property_line_ratio(1,SRT,SQP)",
-      "similar_triangle_property_line_ratio(1,RTS,QPS)"
-    ]
-  }
+    "image_cdl": [
+        "Equal(LengthOfLine(PQ),21)",
+        "Equal(LengthOfLine(PT),8)",
+        "Equal(LengthOfLine(TR),15)",
+        "ParallelBetweenLine(PQ,TR)"
+    ],
+    "goal_cdl": "Value(LengthOfLine(TS))",
+    "problem_answer": "20",
+    "theorem_seqs": [
+        "line_addition(1,PT,TS)",
+        "parallel_property_corresponding_angle(1,RT,QP,S)",
+        "similar_triangle_judgment_aa(1,TSR,PSQ)",
+        "similar_triangle_property_line_ratio(1,SRT,SQP)",
+        "similar_triangle_property_line_ratio(1,RTS,QPS)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "line_addition(1,PT,TS)",
+            "parallel_property_corresponding_angle(1,RT,QP,S)"
+        ],
+        "parallel_property_corresponding_angle(1,RT,QP,S)": [
+            "similar_triangle_judgment_aa(1,TSR,PSQ)"
+        ],
+        "similar_triangle_judgment_aa(1,TSR,PSQ)": [
+            "similar_triangle_property_line_ratio(1,SRT,SQP)",
+            "similar_triangle_property_line_ratio(1,RTS,QPS)"
+        ]
+    }
 }

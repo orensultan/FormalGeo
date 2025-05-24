@@ -1,49 +1,46 @@
 {
-  "problem_id": 2458,
-  "annotation": "YangLi_2023-04-23",
-  "source": "Geometry3k-2578",
-  "problem_level": 2,
-  "problem_text_cn": "如图所示，AF=2*x，AG=y，BD=x，BF=24，CG=12.25，DC=9，圆O的切线为DC。求x的值。",
-  "problem_text_en": "As shown in the diagram, AF=2*x, AG=y, BD=x, BF=24, CG=12.25, DC=9, DC is the tangent to ⊙E. Find the value of x.",
-  "problem_img": "2458.png",
-  "construction_cdl": [
-    "Shape(GA,AF,EGF)",
-    "Shape(CD,DB,EBC)",
-    "Shape(BF,EFB)",
-    "Shape(GC,ECG)",
-    "Shape(FB,EBC,CG,EGF)",
-    "Collinear(DBFA)",
-    "Collinear(CGA)",
-    "Cocircular(E,CGFB)"
-  ],
-  "text_cdl": [
-    "Equal(LengthOfLine(AF),2*x)",
-    "Equal(LengthOfLine(AG),y)",
-    "Equal(LengthOfLine(BD),x)",
-    "Equal(LengthOfLine(BF),24)",
-    "Equal(LengthOfLine(CG),12.25)",
-    "Equal(LengthOfLine(DC),9)",
-    "IsTangentOfCircle(DC,E)"
-  ],
-  "image_cdl": [
-    "Equal(LengthOfLine(AF),2*x)",
-    "Equal(LengthOfLine(AG),y)",
-    "Equal(LengthOfLine(BD),x)",
-    "Equal(LengthOfLine(BF),24)",
-    "Equal(LengthOfLine(CG),12.25)",
-    "Equal(LengthOfLine(DC),9)",
-    "IsTangentOfCircle(DC,E)"
-  ],
-  "goal_cdl": "Value(x)",
-  "problem_answer": "3",
-  "theorem_seqs": [
-    "line_addition(1,DB,BF)",
-    "circle_property_circular_power_tangent_and_segment_line(1,DC,DBF,E)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "line_addition(1,DB,BF)",
-      "circle_property_circular_power_tangent_and_segment_line(1,DC,DBF,E)"
-    ]
-  }
+    "problem_id": 2458,
+    "source": "Geometry3k-2578",
+    "problem_level": 2,
+    "problem_img": "2458.png",
+    "construction_cdl": [
+        "Shape(GA,AF,EGF)",
+        "Shape(CD,DB,EBC)",
+        "Shape(BF,EFB)",
+        "Shape(GC,ECG)",
+        "Shape(FB,EBC,CG,EGF)",
+        "Collinear(DBFA)",
+        "Collinear(CGA)",
+        "Cocircular(E,CGFB)"
+    ],
+    "text_cdl": [
+        "Equal(LengthOfLine(AF),2*x)",
+        "Equal(LengthOfLine(AG),y)",
+        "Equal(LengthOfLine(BD),x)",
+        "Equal(LengthOfLine(BF),24)",
+        "Equal(LengthOfLine(CG),12.25)",
+        "Equal(LengthOfLine(DC),9)",
+        "IsTangentOfCircle(DC,E)"
+    ],
+    "image_cdl": [
+        "Equal(LengthOfLine(AF),2*x)",
+        "Equal(LengthOfLine(AG),y)",
+        "Equal(LengthOfLine(BD),x)",
+        "Equal(LengthOfLine(BF),24)",
+        "Equal(LengthOfLine(CG),12.25)",
+        "Equal(LengthOfLine(DC),9)",
+        "IsTangentOfCircle(DC,E)"
+    ],
+    "goal_cdl": "Value(x)",
+    "problem_answer": "3",
+    "theorem_seqs": [
+        "line_addition(1,DB,BF)",
+        "circle_property_circular_power_tangent_and_segment_line(1,DC,DBF,E)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "line_addition(1,DB,BF)",
+            "circle_property_circular_power_tangent_and_segment_line(1,DC,DBF,E)"
+        ]
+    }
 }

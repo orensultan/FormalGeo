@@ -1,47 +1,44 @@
 {
-  "problem_id": 1120,
-  "annotation": "NaZhu_2023-03-19",
-  "source": "Geometry3k-1157",
-  "problem_level": 6,
-  "problem_text_cn": "如图所示，AB=x+5，AC=3*x+1，BD=12，CF=15，BC平行于DF。求x的值。",
-  "problem_text_en": "As shown in the diagram, AB=x+5, AC=3*x+1, BD=12, CF=15, BC∥DF. Find the value of x.",
-  "problem_img": "1120.png",
-  "construction_cdl": [
-    "Shape(AB,BC,CA)",
-    "Shape(BD,DF,FC,CB)",
-    "Collinear(ABD)",
-    "Collinear(ACF)"
-  ],
-  "text_cdl": [
-    "Equal(LengthOfLine(AB),x+5)",
-    "Equal(LengthOfLine(AC),3*x+1)",
-    "Equal(LengthOfLine(BD),12)",
-    "Equal(LengthOfLine(CF),15)",
-    "ParallelBetweenLine(BC,DF)"
-  ],
-  "image_cdl": [],
-  "goal_cdl": "Value(x)",
-  "problem_answer": "3",
-  "theorem_seqs": [
-    "line_addition(1,AB,BD)",
-    "line_addition(1,AC,CF)",
-    "parallel_property_corresponding_angle(1,BC,DF,A)",
-    "similar_triangle_judgment_aa(1,CAB,FAD)",
-    "similar_triangle_property_line_ratio(1,CAB,FAD)",
-    "similar_triangle_property_line_ratio(1,BCA,DFA)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "line_addition(1,AB,BD)",
-      "line_addition(1,AC,CF)",
-      "parallel_property_corresponding_angle(1,BC,DF,A)"
+    "problem_id": 1120,
+    "source": "Geometry3k-1157",
+    "problem_level": 6,
+    "problem_img": "1120.png",
+    "construction_cdl": [
+        "Shape(AB,BC,CA)",
+        "Shape(BD,DF,FC,CB)",
+        "Collinear(ABD)",
+        "Collinear(ACF)"
     ],
-    "parallel_property_corresponding_angle(1,BC,DF,A)": [
-      "similar_triangle_judgment_aa(1,CAB,FAD)"
+    "text_cdl": [
+        "Equal(LengthOfLine(AB),x+5)",
+        "Equal(LengthOfLine(AC),3*x+1)",
+        "Equal(LengthOfLine(BD),12)",
+        "Equal(LengthOfLine(CF),15)",
+        "ParallelBetweenLine(BC,DF)"
     ],
-    "similar_triangle_judgment_aa(1,CAB,FAD)": [
-      "similar_triangle_property_line_ratio(1,CAB,FAD)",
-      "similar_triangle_property_line_ratio(1,BCA,DFA)"
-    ]
-  }
+    "image_cdl": [],
+    "goal_cdl": "Value(x)",
+    "problem_answer": "3",
+    "theorem_seqs": [
+        "line_addition(1,AB,BD)",
+        "line_addition(1,AC,CF)",
+        "parallel_property_corresponding_angle(1,BC,DF,A)",
+        "similar_triangle_judgment_aa(1,CAB,FAD)",
+        "similar_triangle_property_line_ratio(1,CAB,FAD)",
+        "similar_triangle_property_line_ratio(1,BCA,DFA)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "line_addition(1,AB,BD)",
+            "line_addition(1,AC,CF)",
+            "parallel_property_corresponding_angle(1,BC,DF,A)"
+        ],
+        "parallel_property_corresponding_angle(1,BC,DF,A)": [
+            "similar_triangle_judgment_aa(1,CAB,FAD)"
+        ],
+        "similar_triangle_judgment_aa(1,CAB,FAD)": [
+            "similar_triangle_property_line_ratio(1,CAB,FAD)",
+            "similar_triangle_property_line_ratio(1,BCA,DFA)"
+        ]
+    }
 }

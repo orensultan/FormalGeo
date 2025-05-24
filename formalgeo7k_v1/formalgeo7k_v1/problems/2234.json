@@ -1,47 +1,44 @@
 {
-  "problem_id": 2234,
-  "annotation": "XiaoxiaoJin_2023-04-09",
-  "source": "Geometry3k-2333",
-  "problem_level": 5,
-  "problem_text_cn": "如图所示，EF=3*x+4，PQ=20，P是线段DE的中点，Q平分线段DF。求x的值。",
-  "problem_text_en": "As shown in the diagram, EF=3*x+4, PQ=20, P bisects segment DE, Q is the midpoint of segment DF. Find the value of x.",
-  "problem_img": "2234.png",
-  "construction_cdl": [
-    "Shape(QD,DP,PQ)",
-    "Shape(FQ,QP,PE,EF)",
-    "Collinear(DQF)",
-    "Collinear(DPE)"
-  ],
-  "text_cdl": [
-    "Equal(LengthOfLine(EF),3*x+4)",
-    "Equal(LengthOfLine(PQ),20)",
-    "IsMidpointOfLine(P,DE)",
-    "IsMidpointOfLine(Q,DF)"
-  ],
-  "image_cdl": [],
-  "goal_cdl": "Value(x)",
-  "problem_answer": "12",
-  "theorem_seqs": [
-    "line_addition(1,DP,PE)",
-    "line_addition(1,DQ,QF)",
-    "similar_triangle_judgment_sas(1,DPQ,DEF)",
-    "similar_triangle_property_line_ratio(1,PQD,EFD)",
-    "similar_triangle_property_line_ratio(1,DPQ,DEF)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "line_addition(1,DP,PE)",
-      "line_addition(1,DQ,QF)"
+    "problem_id": 2234,
+    "source": "Geometry3k-2333",
+    "problem_level": 5,
+    "problem_img": "2234.png",
+    "construction_cdl": [
+        "Shape(QD,DP,PQ)",
+        "Shape(FQ,QP,PE,EF)",
+        "Collinear(DQF)",
+        "Collinear(DPE)"
     ],
-    "line_addition(1,DP,PE)": [
-      "similar_triangle_judgment_sas(1,DPQ,DEF)"
+    "text_cdl": [
+        "Equal(LengthOfLine(EF),3*x+4)",
+        "Equal(LengthOfLine(PQ),20)",
+        "IsMidpointOfLine(P,DE)",
+        "IsMidpointOfLine(Q,DF)"
     ],
-    "line_addition(1,DQ,QF)": [
-      "similar_triangle_judgment_sas(1,DPQ,DEF)"
+    "image_cdl": [],
+    "goal_cdl": "Value(x)",
+    "problem_answer": "12",
+    "theorem_seqs": [
+        "line_addition(1,DP,PE)",
+        "line_addition(1,DQ,QF)",
+        "similar_triangle_judgment_sas(1,DPQ,DEF)",
+        "similar_triangle_property_line_ratio(1,PQD,EFD)",
+        "similar_triangle_property_line_ratio(1,DPQ,DEF)"
     ],
-    "similar_triangle_judgment_sas(1,DPQ,DEF)": [
-      "similar_triangle_property_line_ratio(1,DPQ,DEF)",
-      "similar_triangle_property_line_ratio(1,PQD,EFD)"
-    ]
-  }
+    "theorem_seqs_dag": {
+        "START": [
+            "line_addition(1,DP,PE)",
+            "line_addition(1,DQ,QF)"
+        ],
+        "line_addition(1,DP,PE)": [
+            "similar_triangle_judgment_sas(1,DPQ,DEF)"
+        ],
+        "line_addition(1,DQ,QF)": [
+            "similar_triangle_judgment_sas(1,DPQ,DEF)"
+        ],
+        "similar_triangle_judgment_sas(1,DPQ,DEF)": [
+            "similar_triangle_property_line_ratio(1,DPQ,DEF)",
+            "similar_triangle_property_line_ratio(1,PQD,EFD)"
+        ]
+    }
 }

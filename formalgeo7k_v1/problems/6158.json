@@ -1,41 +1,38 @@
 {
-  "problem_id": 6158,
-  "annotation": "YifanWang_2023-06-04",
-  "source": "GeoQA-8721",
-  "problem_level": 3,
-  "problem_text_cn": "如图所示，∠BED=90°，∠COB=70°，圆O的圆心为O。求∠DBA的大小。",
-  "problem_text_en": "As shown in the diagram, ∠BED=90°, ∠COB=70°, O is the center of circle O. Find the measure of ∠DBA.",
-  "problem_img": "6158.png",
-  "construction_cdl": [
-    "Shape(AO,OC,OCA)",
-    "Shape(CO,OE,EC)",
-    "Shape(CE,EB,BC)",
-    "Shape(CB,OBC)",
-    "Shape(DE,EO,OA,OAD)",
-    "Shape(BE,ED,DB)",
-    "Shape(BD,ODB)",
-    "Collinear(AOEB)",
-    "Collinear(CED)",
-    "Cocircular(O,ADBC)"
-  ],
-  "text_cdl": [
-    "Equal(MeasureOfAngle(BED),90)",
-    "Equal(MeasureOfAngle(COB),70)",
-    "IsCentreOfCircle(O,O)"
-  ],
-  "image_cdl": [],
-  "goal_cdl": "Value(MeasureOfAngle(DBA))",
-  "problem_answer": "55",
-  "theorem_seqs": [
-    "arc_property_center_angle(1,OBC,O)",
-    "arc_property_circumference_angle_external(1,OBC,D)",
-    "triangle_property_angle_sum(1,BED)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "arc_property_center_angle(1,OBC,O)",
-      "arc_property_circumference_angle_external(1,OBC,D)",
-      "triangle_property_angle_sum(1,BED)"
-    ]
-  }
+    "problem_id": 6158,
+    "source": "GeoQA-8721",
+    "problem_level": 3,
+    "problem_img": "6158.png",
+    "construction_cdl": [
+        "Shape(AO,OC,OCA)",
+        "Shape(CO,OE,EC)",
+        "Shape(CE,EB,BC)",
+        "Shape(CB,OBC)",
+        "Shape(DE,EO,OA,OAD)",
+        "Shape(BE,ED,DB)",
+        "Shape(BD,ODB)",
+        "Collinear(AOEB)",
+        "Collinear(CED)",
+        "Cocircular(O,ADBC)"
+    ],
+    "text_cdl": [
+        "Equal(MeasureOfAngle(BED),90)",
+        "Equal(MeasureOfAngle(COB),70)",
+        "IsCentreOfCircle(O,O)"
+    ],
+    "image_cdl": [],
+    "goal_cdl": "Value(MeasureOfAngle(DBA))",
+    "problem_answer": "55",
+    "theorem_seqs": [
+        "arc_property_center_angle(1,OBC,O)",
+        "arc_property_circumference_angle_external(1,OBC,D)",
+        "triangle_property_angle_sum(1,BED)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "arc_property_center_angle(1,OBC,O)",
+            "arc_property_circumference_angle_external(1,OBC,D)",
+            "triangle_property_angle_sum(1,BED)"
+        ]
+    }
 }

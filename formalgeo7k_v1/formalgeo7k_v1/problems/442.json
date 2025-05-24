@@ -1,36 +1,33 @@
 {
-  "problem_id": 442,
-  "annotation": "JiaZou_2023-04-09",
-  "source": "Geometry3k-452",
-  "problem_level": 1,
-  "problem_text_cn": "如图所示，∠HMJ=79°，∠KML=77°。求∠JMK的大小。",
-  "problem_text_en": "As shown in the diagram, ∠HMJ=79°, ∠KML=77°. Find the measure of ∠JMK.",
-  "problem_img": "442.png",
-  "construction_cdl": [
-    "Shape(HM,MJ,MJH)",
-    "Shape(LM,MH,MHL)",
-    "Shape(KM,ML,MLK)",
-    "Shape(JM,MK,MKJ)",
-    "Collinear(HMK)",
-    "Collinear(LMJ)",
-    "Cocircular(M,HLKJ)"
-  ],
-  "text_cdl": [
-    "Equal(MeasureOfAngle(HMJ),79)",
-    "Equal(MeasureOfAngle(KML),77)"
-  ],
-  "image_cdl": [
-    "Equal(MeasureOfAngle(HMJ),79)",
-    "Equal(MeasureOfAngle(KML),77)"
-  ],
-  "goal_cdl": "Value(MeasureOfAngle(JMK))",
-  "problem_answer": "103",
-  "theorem_seqs": [
-    "adjacent_complementary_angle(1,JMK,KML)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "adjacent_complementary_angle(1,JMK,KML)"
-    ]
-  }
+    "problem_id": 442,
+    "source": "Geometry3k-452",
+    "problem_level": 1,
+    "problem_img": "442.png",
+    "construction_cdl": [
+        "Shape(HM,MJ,MJH)",
+        "Shape(LM,MH,MHL)",
+        "Shape(KM,ML,MLK)",
+        "Shape(JM,MK,MKJ)",
+        "Collinear(HMK)",
+        "Collinear(LMJ)",
+        "Cocircular(M,HLKJ)"
+    ],
+    "text_cdl": [
+        "Equal(MeasureOfAngle(HMJ),79)",
+        "Equal(MeasureOfAngle(KML),77)"
+    ],
+    "image_cdl": [
+        "Equal(MeasureOfAngle(HMJ),79)",
+        "Equal(MeasureOfAngle(KML),77)"
+    ],
+    "goal_cdl": "Value(MeasureOfAngle(JMK))",
+    "problem_answer": "103",
+    "theorem_seqs": [
+        "adjacent_complementary_angle(1,JMK,KML)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "adjacent_complementary_angle(1,JMK,KML)"
+        ]
+    }
 }

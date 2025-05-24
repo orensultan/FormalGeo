@@ -44,7 +44,7 @@ def run_model_predictions():
     eval(model, X_test_tensor, y_test_tensor, criterion)
 
 def data_preparation():
-    data = pd.read_csv('results.csv')
+    data = pd.read_csv('problems_similarity_results.csv')
     X = data.iloc[:, -4:-1]
     y = data.iloc[:, -1]
 

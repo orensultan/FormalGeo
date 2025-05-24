@@ -1,48 +1,45 @@
 {
-  "problem_id": 5402,
-  "annotation": "XiaoxiaoJin_2023-05-21",
-  "source": "GeoQA-5695",
-  "problem_level": 6,
-  "problem_text_cn": "如图所示，CF=FE，∠BAF=48°，AB平行于CD。求∠FCE的大小。",
-  "problem_text_en": "As shown in the diagram, CF=FE, ∠BAF=48°, AB is parallel to CD. Find the measure of ∠FCE.",
-  "problem_img": "5402.png",
-  "construction_cdl": [
-    "Shape(BA,AF)",
-    "Shape(AF,FD)",
-    "Shape(DF,FE)",
-    "Shape(EF,FC,CE)",
-    "Shape(CF,FA)",
-    "Collinear(AFE)",
-    "Collinear(CFD)"
-  ],
-  "text_cdl": [
-    "Equal(LengthOfLine(CF),LengthOfLine(FE))",
-    "Equal(MeasureOfAngle(BAF),48)",
-    "ParallelBetweenLine(AB,CD)"
-  ],
-  "image_cdl": [],
-  "goal_cdl": "Value(MeasureOfAngle(FCE))",
-  "problem_answer": "24",
-  "theorem_seqs": [
-    "parallel_property_collinear_extend(3,DC,BA,F)",
-    "triangle_property_angle_sum(1,EFC)",
-    "isosceles_triangle_judgment_line_equal(1,FCE)",
-    "isosceles_triangle_property_angle_equal(1,FCE)",
-    "adjacent_complementary_angle(1,DFE,EFC)",
-    "parallel_property_corresponding_angle(2,AB,FD,E)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "parallel_property_collinear_extend(3,DC,BA,F)",
-      "triangle_property_angle_sum(1,EFC)",
-      "isosceles_triangle_judgment_line_equal(1,FCE)",
-      "adjacent_complementary_angle(1,DFE,EFC)"
+    "problem_id": 5402,
+    "source": "GeoQA-5695",
+    "problem_level": 6,
+    "problem_img": "5402.png",
+    "construction_cdl": [
+        "Shape(BA,AF)",
+        "Shape(AF,FD)",
+        "Shape(DF,FE)",
+        "Shape(EF,FC,CE)",
+        "Shape(CF,FA)",
+        "Collinear(AFE)",
+        "Collinear(CFD)"
     ],
-    "parallel_property_collinear_extend(3,DC,BA,F)": [
-      "parallel_property_corresponding_angle(2,AB,FD,E)"
+    "text_cdl": [
+        "Equal(LengthOfLine(CF),LengthOfLine(FE))",
+        "Equal(MeasureOfAngle(BAF),48)",
+        "ParallelBetweenLine(AB,CD)"
     ],
-    "isosceles_triangle_judgment_line_equal(1,FCE)": [
-      "isosceles_triangle_property_angle_equal(1,FCE)"
-    ]
-  }
+    "image_cdl": [],
+    "goal_cdl": "Value(MeasureOfAngle(FCE))",
+    "problem_answer": "24",
+    "theorem_seqs": [
+        "parallel_property_collinear_extend(3,DC,BA,F)",
+        "triangle_property_angle_sum(1,EFC)",
+        "isosceles_triangle_judgment_line_equal(1,FCE)",
+        "isosceles_triangle_property_angle_equal(1,FCE)",
+        "adjacent_complementary_angle(1,DFE,EFC)",
+        "parallel_property_corresponding_angle(2,AB,FD,E)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "parallel_property_collinear_extend(3,DC,BA,F)",
+            "triangle_property_angle_sum(1,EFC)",
+            "isosceles_triangle_judgment_line_equal(1,FCE)",
+            "adjacent_complementary_angle(1,DFE,EFC)"
+        ],
+        "parallel_property_collinear_extend(3,DC,BA,F)": [
+            "parallel_property_corresponding_angle(2,AB,FD,E)"
+        ],
+        "isosceles_triangle_judgment_line_equal(1,FCE)": [
+            "isosceles_triangle_property_angle_equal(1,FCE)"
+        ]
+    }
 }

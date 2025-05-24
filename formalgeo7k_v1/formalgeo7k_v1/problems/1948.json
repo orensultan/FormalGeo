@@ -1,51 +1,48 @@
 {
-  "problem_id": 1948,
-  "annotation": "ZheZhu_2023-04-16",
-  "source": "Geometry3k-2027",
-  "problem_level": 4,
-  "problem_text_cn": "如图所示，AD=17，CA=22，AD垂直于BD，BC⊥AC，CA⊥DA，DB垂直于CB。求CADB的面积。",
-  "problem_text_en": "As shown in the diagram, AD=17, CA=22, AD⊥BD, BC is perpendicular to AC, CA is perpendicular to DA, DB⊥CB. Find the area of quadrilateral CADB.",
-  "problem_img": "1948.png",
-  "construction_cdl": [
-    "Shape(AD,DB,BC,CA)"
-  ],
-  "text_cdl": [
-    "Equal(LengthOfLine(AD),17)",
-    "Equal(LengthOfLine(CA),22)",
-    "PerpendicularBetweenLine(AD,BD)",
-    "PerpendicularBetweenLine(BC,AC)",
-    "PerpendicularBetweenLine(CA,DA)",
-    "PerpendicularBetweenLine(DB,CB)"
-  ],
-  "image_cdl": [
-    "Equal(LengthOfLine(AD),17)",
-    "Equal(LengthOfLine(CA),22)",
-    "PerpendicularBetweenLine(AD,BD)",
-    "PerpendicularBetweenLine(BC,AC)",
-    "PerpendicularBetweenLine(CA,DA)",
-    "PerpendicularBetweenLine(DB,CB)"
-  ],
-  "goal_cdl": "Value(AreaOfQuadrilateral(CADB))",
-  "problem_answer": "374",
-  "theorem_seqs": [
-    "parallel_judgment_ipsilateral_internal_angle(1,DA,BC)",
-    "parallel_judgment_ipsilateral_internal_angle(1,BD,CA)",
-    "parallelogram_judgment_parallel_and_parallel(1,CADB)",
-    "parallelogram_area_formula_sine(1,CADB)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "parallel_judgment_ipsilateral_internal_angle(1,DA,BC)",
-      "parallel_judgment_ipsilateral_internal_angle(1,BD,CA)"
+    "problem_id": 1948,
+    "source": "Geometry3k-2027",
+    "problem_level": 4,
+    "problem_img": "1948.png",
+    "construction_cdl": [
+        "Shape(AD,DB,BC,CA)"
     ],
-    "parallel_judgment_ipsilateral_internal_angle(1,DA,BC)": [
-      "parallelogram_judgment_parallel_and_parallel(1,CADB)"
+    "text_cdl": [
+        "Equal(LengthOfLine(AD),17)",
+        "Equal(LengthOfLine(CA),22)",
+        "PerpendicularBetweenLine(AD,BD)",
+        "PerpendicularBetweenLine(BC,AC)",
+        "PerpendicularBetweenLine(CA,DA)",
+        "PerpendicularBetweenLine(DB,CB)"
     ],
-    "parallel_judgment_ipsilateral_internal_angle(1,BD,CA)": [
-      "parallelogram_judgment_parallel_and_parallel(1,CADB)"
+    "image_cdl": [
+        "Equal(LengthOfLine(AD),17)",
+        "Equal(LengthOfLine(CA),22)",
+        "PerpendicularBetweenLine(AD,BD)",
+        "PerpendicularBetweenLine(BC,AC)",
+        "PerpendicularBetweenLine(CA,DA)",
+        "PerpendicularBetweenLine(DB,CB)"
     ],
-    "parallelogram_judgment_parallel_and_parallel(1,CADB)": [
-      "parallelogram_area_formula_sine(1,CADB)"
-    ]
-  }
+    "goal_cdl": "Value(AreaOfQuadrilateral(CADB))",
+    "problem_answer": "374",
+    "theorem_seqs": [
+        "parallel_judgment_ipsilateral_internal_angle(1,DA,BC)",
+        "parallel_judgment_ipsilateral_internal_angle(1,BD,CA)",
+        "parallelogram_judgment_parallel_and_parallel(1,CADB)",
+        "parallelogram_area_formula_sine(1,CADB)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "parallel_judgment_ipsilateral_internal_angle(1,DA,BC)",
+            "parallel_judgment_ipsilateral_internal_angle(1,BD,CA)"
+        ],
+        "parallel_judgment_ipsilateral_internal_angle(1,DA,BC)": [
+            "parallelogram_judgment_parallel_and_parallel(1,CADB)"
+        ],
+        "parallel_judgment_ipsilateral_internal_angle(1,BD,CA)": [
+            "parallelogram_judgment_parallel_and_parallel(1,CADB)"
+        ],
+        "parallelogram_judgment_parallel_and_parallel(1,CADB)": [
+            "parallelogram_area_formula_sine(1,CADB)"
+        ]
+    }
 }

@@ -1,59 +1,56 @@
 {
-  "problem_id": 5388,
-  "annotation": "XiaoxiaoJin_2023-05-21",
-  "source": "GeoQA-5675",
-  "problem_level": 9,
-  "problem_text_cn": "如图所示，∠CAB=110°，PM垂直平分AB，QN是CA的垂直平分线。求∠QAP的大小。",
-  "problem_text_en": "As shown in the diagram, ∠CAB=110°, PM perpendicular bisects AB, QN is the perpendicular bisector of CA. Find the measure of ∠QAP.",
-  "problem_img": "5388.png",
-  "construction_cdl": [
-    "Shape(AM,MP,PA)",
-    "Shape(MB,BP,PM)",
-    "Shape(AP,PQ,QA)",
-    "Shape(AQ,QN,NA)",
-    "Shape(NQ,QC,CN)",
-    "Collinear(AMB)",
-    "Collinear(ANC)",
-    "Collinear(BPQC)"
-  ],
-  "text_cdl": [
-    "Equal(MeasureOfAngle(CAB),110)",
-    "IsPerpendicularBisectorOfLine(PM,AB)",
-    "IsPerpendicularBisectorOfLine(QN,CA)"
-  ],
-  "image_cdl": [],
-  "goal_cdl": "Value(MeasureOfAngle(QAP))",
-  "problem_answer": "40",
-  "theorem_seqs": [
-    "triangle_property_angle_sum(1,ABC)",
-    "angle_addition(1,CAQ,QAP)",
-    "angle_addition(1,CAP,PAB)",
-    "perpendicular_bisector_property_distance_equal(1,PM,AB)",
-    "perpendicular_bisector_property_distance_equal(1,QN,CA)",
-    "isosceles_triangle_judgment_line_equal(1,PAB)",
-    "isosceles_triangle_judgment_line_equal(1,QCA)",
-    "isosceles_triangle_property_angle_equal(1,PAB)",
-    "isosceles_triangle_property_angle_equal(1,QCA)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "triangle_property_angle_sum(1,ABC)",
-      "angle_addition(1,CAQ,QAP)",
-      "angle_addition(1,CAP,PAB)",
-      "perpendicular_bisector_property_distance_equal(1,PM,AB)",
-      "perpendicular_bisector_property_distance_equal(1,QN,CA)"
+    "problem_id": 5388,
+    "source": "GeoQA-5675",
+    "problem_level": 9,
+    "problem_img": "5388.png",
+    "construction_cdl": [
+        "Shape(AM,MP,PA)",
+        "Shape(MB,BP,PM)",
+        "Shape(AP,PQ,QA)",
+        "Shape(AQ,QN,NA)",
+        "Shape(NQ,QC,CN)",
+        "Collinear(AMB)",
+        "Collinear(ANC)",
+        "Collinear(BPQC)"
     ],
-    "perpendicular_bisector_property_distance_equal(1,PM,AB)": [
-      "isosceles_triangle_judgment_line_equal(1,PAB)"
+    "text_cdl": [
+        "Equal(MeasureOfAngle(CAB),110)",
+        "IsPerpendicularBisectorOfLine(PM,AB)",
+        "IsPerpendicularBisectorOfLine(QN,CA)"
     ],
-    "perpendicular_bisector_property_distance_equal(1,QN,CA)": [
-      "isosceles_triangle_judgment_line_equal(1,QCA)"
+    "image_cdl": [],
+    "goal_cdl": "Value(MeasureOfAngle(QAP))",
+    "problem_answer": "40",
+    "theorem_seqs": [
+        "triangle_property_angle_sum(1,ABC)",
+        "angle_addition(1,CAQ,QAP)",
+        "angle_addition(1,CAP,PAB)",
+        "perpendicular_bisector_property_distance_equal(1,PM,AB)",
+        "perpendicular_bisector_property_distance_equal(1,QN,CA)",
+        "isosceles_triangle_judgment_line_equal(1,PAB)",
+        "isosceles_triangle_judgment_line_equal(1,QCA)",
+        "isosceles_triangle_property_angle_equal(1,PAB)",
+        "isosceles_triangle_property_angle_equal(1,QCA)"
     ],
-    "isosceles_triangle_judgment_line_equal(1,PAB)": [
-      "isosceles_triangle_property_angle_equal(1,PAB)"
-    ],
-    "isosceles_triangle_judgment_line_equal(1,QCA)": [
-      "isosceles_triangle_property_angle_equal(1,QCA)"
-    ]
-  }
+    "theorem_seqs_dag": {
+        "START": [
+            "triangle_property_angle_sum(1,ABC)",
+            "angle_addition(1,CAQ,QAP)",
+            "angle_addition(1,CAP,PAB)",
+            "perpendicular_bisector_property_distance_equal(1,PM,AB)",
+            "perpendicular_bisector_property_distance_equal(1,QN,CA)"
+        ],
+        "perpendicular_bisector_property_distance_equal(1,PM,AB)": [
+            "isosceles_triangle_judgment_line_equal(1,PAB)"
+        ],
+        "perpendicular_bisector_property_distance_equal(1,QN,CA)": [
+            "isosceles_triangle_judgment_line_equal(1,QCA)"
+        ],
+        "isosceles_triangle_judgment_line_equal(1,PAB)": [
+            "isosceles_triangle_property_angle_equal(1,PAB)"
+        ],
+        "isosceles_triangle_judgment_line_equal(1,QCA)": [
+            "isosceles_triangle_property_angle_equal(1,QCA)"
+        ]
+    }
 }

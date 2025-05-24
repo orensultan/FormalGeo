@@ -1,50 +1,47 @@
 {
-  "problem_id": 2372,
-  "annotation": "FangzhenZhu_2023-04-23",
-  "source": "Geometry3k-2487",
-  "problem_level": 3,
-  "problem_text_cn": "如图所示，GH=10，G是⊙G的圆心，圆J的圆心为J，K是圆K的圆心。求直线FH的长度。",
-  "problem_text_en": "As shown in the diagram, GH=10, the center of circle G is G, the center of ⊙J is J, K is the center of ⊙K. Find the length of line FH.",
-  "problem_img": "2372.png",
-  "construction_cdl": [
-    "Shape(GHB,BG,GH)",
-    "Shape(GBF,FG,GB)",
-    "Shape(GFL,JGL,GF)",
-    "Shape(JGL,KJL,JG)",
-    "Shape(KJL,LK,KJ)",
-    "Shape(KLJ,JK,KL)",
-    "Shape(JLG,GJ,KLJ)",
-    "Shape(GLH,HG,JLG)",
-    "Collinear(BGJKL)",
-    "Collinear(HGF)",
-    "Cocircular(G,BFLH)",
-    "Cocircular(J,GL)",
-    "Cocircular(K,JL)"
-  ],
-  "text_cdl": [
-    "Equal(LengthOfLine(GH),10)",
-    "IsCentreOfCircle(G,G)",
-    "IsCentreOfCircle(J,J)",
-    "IsCentreOfCircle(K,K)"
-  ],
-  "image_cdl": [
-    "Equal(LengthOfLine(GH),10)",
-    "IsCentreOfCircle(G,G)",
-    "IsCentreOfCircle(J,J)",
-    "IsCentreOfCircle(K,K)"
-  ],
-  "goal_cdl": "Value(LengthOfLine(FH))",
-  "problem_answer": "20",
-  "theorem_seqs": [
-    "line_addition(1,HG,GF)",
-    "radius_of_circle_property_length_equal(1,GH,G)",
-    "radius_of_circle_property_length_equal(1,GF,G)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "line_addition(1,HG,GF)",
-      "radius_of_circle_property_length_equal(1,GH,G)",
-      "radius_of_circle_property_length_equal(1,GF,G)"
-    ]
-  }
+    "problem_id": 2372,
+    "source": "Geometry3k-2487",
+    "problem_level": 3,
+    "problem_img": "2372.png",
+    "construction_cdl": [
+        "Shape(GHB,BG,GH)",
+        "Shape(GBF,FG,GB)",
+        "Shape(GFL,JGL,GF)",
+        "Shape(JGL,KJL,JG)",
+        "Shape(KJL,LK,KJ)",
+        "Shape(KLJ,JK,KL)",
+        "Shape(JLG,GJ,KLJ)",
+        "Shape(GLH,HG,JLG)",
+        "Collinear(BGJKL)",
+        "Collinear(HGF)",
+        "Cocircular(G,BFLH)",
+        "Cocircular(J,GL)",
+        "Cocircular(K,JL)"
+    ],
+    "text_cdl": [
+        "Equal(LengthOfLine(GH),10)",
+        "IsCentreOfCircle(G,G)",
+        "IsCentreOfCircle(J,J)",
+        "IsCentreOfCircle(K,K)"
+    ],
+    "image_cdl": [
+        "Equal(LengthOfLine(GH),10)",
+        "IsCentreOfCircle(G,G)",
+        "IsCentreOfCircle(J,J)",
+        "IsCentreOfCircle(K,K)"
+    ],
+    "goal_cdl": "Value(LengthOfLine(FH))",
+    "problem_answer": "20",
+    "theorem_seqs": [
+        "line_addition(1,HG,GF)",
+        "radius_of_circle_property_length_equal(1,GH,G)",
+        "radius_of_circle_property_length_equal(1,GF,G)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "line_addition(1,HG,GF)",
+            "radius_of_circle_property_length_equal(1,GH,G)",
+            "radius_of_circle_property_length_equal(1,GF,G)"
+        ]
+    }
 }

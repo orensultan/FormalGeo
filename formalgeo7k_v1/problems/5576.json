@@ -1,50 +1,47 @@
 {
-  "problem_id": 5576,
-  "annotation": "YimingHe_2023-05-28",
-  "source": "GeoQA-6890",
-  "problem_level": 8,
-  "problem_text_cn": "如图所示，AB=30，∠BDM=90°，∠BNA=90°，∠CAB=90°，∠CAM=45°，∠MBD=60°。求直线BM的长度。",
-  "problem_text_en": "As shown in the diagram, AB=30, ∠BDM=90°, ∠BNA=90°, ∠CAB=90°, ∠CAM=45°, ∠MBD=60°. Find the length of line BM.",
-  "problem_img": "5576.png",
-  "construction_cdl": [
-    "Shape(CA,AN,NM,MC)",
-    "Shape(AB,BN,NA)",
-    "Shape(NB,BM,MN)",
-    "Shape(MB,BD,DM)",
-    "Collinear(ABD)",
-    "Collinear(ANM)"
-  ],
-  "text_cdl": [
-    "Equal(LengthOfLine(AB),30)",
-    "Equal(MeasureOfAngle(BDM),90)",
-    "Equal(MeasureOfAngle(BNA),90)",
-    "Equal(MeasureOfAngle(CAB),90)",
-    "Equal(MeasureOfAngle(CAM),45)",
-    "Equal(MeasureOfAngle(MBD),60)"
-  ],
-  "image_cdl": [],
-  "goal_cdl": "Value(LengthOfLine(BM))",
-  "problem_answer": "30+30*sqrt(3)",
-  "theorem_seqs": [
-    "angle_addition(1,CAN,NAB)",
-    "triangle_property_angle_sum(1,NAB)",
-    "triangle_property_angle_sum(1,NBM)",
-    "angle_addition(1,NBM,MBD)",
-    "adjacent_complementary_angle(1,ABN,NBD)",
-    "adjacent_complementary_angle(1,MNB,BNA)",
-    "sine_theorem(1,BNA)",
-    "sine_theorem(1,BMN)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "angle_addition(1,CAN,NAB)",
-      "triangle_property_angle_sum(1,NAB)",
-      "triangle_property_angle_sum(1,NBM)",
-      "angle_addition(1,NBM,MBD)",
-      "adjacent_complementary_angle(1,ABN,NBD)",
-      "adjacent_complementary_angle(1,MNB,BNA)",
-      "sine_theorem(1,BNA)",
-      "sine_theorem(1,BMN)"
-    ]
-  }
+    "problem_id": 5576,
+    "source": "GeoQA-6890",
+    "problem_level": 8,
+    "problem_img": "5576.png",
+    "construction_cdl": [
+        "Shape(CA,AN,NM,MC)",
+        "Shape(AB,BN,NA)",
+        "Shape(NB,BM,MN)",
+        "Shape(MB,BD,DM)",
+        "Collinear(ABD)",
+        "Collinear(ANM)"
+    ],
+    "text_cdl": [
+        "Equal(LengthOfLine(AB),30)",
+        "Equal(MeasureOfAngle(BDM),90)",
+        "Equal(MeasureOfAngle(BNA),90)",
+        "Equal(MeasureOfAngle(CAB),90)",
+        "Equal(MeasureOfAngle(CAM),45)",
+        "Equal(MeasureOfAngle(MBD),60)"
+    ],
+    "image_cdl": [],
+    "goal_cdl": "Value(LengthOfLine(BM))",
+    "problem_answer": "30+30*sqrt(3)",
+    "theorem_seqs": [
+        "angle_addition(1,CAN,NAB)",
+        "triangle_property_angle_sum(1,NAB)",
+        "triangle_property_angle_sum(1,NBM)",
+        "angle_addition(1,NBM,MBD)",
+        "adjacent_complementary_angle(1,ABN,NBD)",
+        "adjacent_complementary_angle(1,MNB,BNA)",
+        "sine_theorem(1,BNA)",
+        "sine_theorem(1,BMN)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "angle_addition(1,CAN,NAB)",
+            "triangle_property_angle_sum(1,NAB)",
+            "triangle_property_angle_sum(1,NBM)",
+            "angle_addition(1,NBM,MBD)",
+            "adjacent_complementary_angle(1,ABN,NBD)",
+            "adjacent_complementary_angle(1,MNB,BNA)",
+            "sine_theorem(1,BNA)",
+            "sine_theorem(1,BMN)"
+        ]
+    }
 }

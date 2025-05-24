@@ -1,42 +1,39 @@
 {
-  "problem_id": 756,
-  "annotation": "YimingHe_2023-03-12",
-  "source": "Geometry3k-781",
-  "problem_level": 3,
-  "problem_text_cn": "如图所示，∠VWX=67°，∠XWZ=∠WZX，∠XZY=65°，∠ZYX=58°。求∠WXV的大小。",
-  "problem_text_en": "As shown in the diagram, ∠VWX=67°, ∠XWZ=∠WZX, ∠XZY=65°, ∠ZYX=58°. Find the measure of ∠WXV.",
-  "problem_img": "756.png",
-  "construction_cdl": [
-    "Shape(VW,WX,XV)",
-    "Shape(XW,WZ,ZX)",
-    "Shape(XZ,ZY,YX)",
-    "Collinear(VXZ)",
-    "Collinear(WXY)"
-  ],
-  "text_cdl": [
-    "Equal(MeasureOfAngle(VWX),67)",
-    "Equal(MeasureOfAngle(XWZ),MeasureOfAngle(WZX))",
-    "Equal(MeasureOfAngle(XZY),65)",
-    "Equal(MeasureOfAngle(ZYX),58)"
-  ],
-  "image_cdl": [
-    "Equal(MeasureOfAngle(VWX),67)",
-    "Equal(MeasureOfAngle(XWZ),MeasureOfAngle(WZX))",
-    "Equal(MeasureOfAngle(XZY),65)",
-    "Equal(MeasureOfAngle(ZYX),58)"
-  ],
-  "goal_cdl": "Value(MeasureOfAngle(WXV))",
-  "problem_answer": "57",
-  "theorem_seqs": [
-    "adjacent_complementary_angle(1,ZXW,WXV)",
-    "adjacent_complementary_angle(1,YXZ,ZXW)",
-    "triangle_property_angle_sum(1,XZY)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "adjacent_complementary_angle(1,ZXW,WXV)",
-      "adjacent_complementary_angle(1,YXZ,ZXW)",
-      "triangle_property_angle_sum(1,XZY)"
-    ]
-  }
+    "problem_id": 756,
+    "source": "Geometry3k-781",
+    "problem_level": 3,
+    "problem_img": "756.png",
+    "construction_cdl": [
+        "Shape(VW,WX,XV)",
+        "Shape(XW,WZ,ZX)",
+        "Shape(XZ,ZY,YX)",
+        "Collinear(VXZ)",
+        "Collinear(WXY)"
+    ],
+    "text_cdl": [
+        "Equal(MeasureOfAngle(VWX),67)",
+        "Equal(MeasureOfAngle(XWZ),MeasureOfAngle(WZX))",
+        "Equal(MeasureOfAngle(XZY),65)",
+        "Equal(MeasureOfAngle(ZYX),58)"
+    ],
+    "image_cdl": [
+        "Equal(MeasureOfAngle(VWX),67)",
+        "Equal(MeasureOfAngle(XWZ),MeasureOfAngle(WZX))",
+        "Equal(MeasureOfAngle(XZY),65)",
+        "Equal(MeasureOfAngle(ZYX),58)"
+    ],
+    "goal_cdl": "Value(MeasureOfAngle(WXV))",
+    "problem_answer": "57",
+    "theorem_seqs": [
+        "adjacent_complementary_angle(1,ZXW,WXV)",
+        "adjacent_complementary_angle(1,YXZ,ZXW)",
+        "triangle_property_angle_sum(1,XZY)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "adjacent_complementary_angle(1,ZXW,WXV)",
+            "adjacent_complementary_angle(1,YXZ,ZXW)",
+            "triangle_property_angle_sum(1,XZY)"
+        ]
+    }
 }

@@ -1,64 +1,61 @@
 {
-  "problem_id": 1997,
-  "annotation": "YimingHe_2023-03-26",
-  "source": "Geometry3k-2081",
-  "problem_level": 8,
-  "problem_text_cn": "如图所示，AB=z，AC=x，AD=y，BD=6，CD=4，AD垂直于BD，BA⊥CA。求x的值。",
-  "problem_text_en": "As shown in the diagram, AB=z, AC=x, AD=y, BD=6, CD=4, AD is perpendicular to BD, BA is perpendicular to CA. Find the value of x.",
-  "problem_img": "1997.png",
-  "construction_cdl": [
-    "Shape(AC,CD,DA)",
-    "Shape(AD,DB,BA)",
-    "Collinear(CDB)"
-  ],
-  "text_cdl": [
-    "Equal(LengthOfLine(AB),z)",
-    "Equal(LengthOfLine(AC),x)",
-    "Equal(LengthOfLine(AD),y)",
-    "Equal(LengthOfLine(BD),6)",
-    "Equal(LengthOfLine(CD),4)",
-    "PerpendicularBetweenLine(AD,BD)",
-    "PerpendicularBetweenLine(BA,CA)"
-  ],
-  "image_cdl": [
-    "Equal(LengthOfLine(AB),z)",
-    "Equal(LengthOfLine(AC),x)",
-    "Equal(LengthOfLine(AD),y)",
-    "Equal(LengthOfLine(BD),6)",
-    "Equal(LengthOfLine(CD),4)",
-    "PerpendicularBetweenLine(AD,BD)",
-    "PerpendicularBetweenLine(BA,CA)"
-  ],
-  "goal_cdl": "Value(x)",
-  "problem_answer": "2*sqrt(10)",
-  "theorem_seqs": [
-    "adjacent_complementary_angle(1,CDA,ADB)",
-    "right_triangle_judgment_angle(1,ADB)",
-    "right_triangle_judgment_angle(1,CDA)",
-    "right_triangle_judgment_angle(1,BAC)",
-    "right_triangle_property_pythagorean(1,ADB)",
-    "right_triangle_property_pythagorean(1,CDA)",
-    "right_triangle_property_pythagorean(1,BAC)",
-    "line_addition(1,CD,DB)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "adjacent_complementary_angle(1,CDA,ADB)",
-      "right_triangle_judgment_angle(1,ADB)",
-      "right_triangle_judgment_angle(1,BAC)",
-      "line_addition(1,CD,DB)"
+    "problem_id": 1997,
+    "source": "Geometry3k-2081",
+    "problem_level": 8,
+    "problem_img": "1997.png",
+    "construction_cdl": [
+        "Shape(AC,CD,DA)",
+        "Shape(AD,DB,BA)",
+        "Collinear(CDB)"
     ],
-    "adjacent_complementary_angle(1,CDA,ADB)": [
-      "right_triangle_judgment_angle(1,CDA)"
+    "text_cdl": [
+        "Equal(LengthOfLine(AB),z)",
+        "Equal(LengthOfLine(AC),x)",
+        "Equal(LengthOfLine(AD),y)",
+        "Equal(LengthOfLine(BD),6)",
+        "Equal(LengthOfLine(CD),4)",
+        "PerpendicularBetweenLine(AD,BD)",
+        "PerpendicularBetweenLine(BA,CA)"
     ],
-    "right_triangle_judgment_angle(1,ADB)": [
-      "right_triangle_property_pythagorean(1,ADB)"
+    "image_cdl": [
+        "Equal(LengthOfLine(AB),z)",
+        "Equal(LengthOfLine(AC),x)",
+        "Equal(LengthOfLine(AD),y)",
+        "Equal(LengthOfLine(BD),6)",
+        "Equal(LengthOfLine(CD),4)",
+        "PerpendicularBetweenLine(AD,BD)",
+        "PerpendicularBetweenLine(BA,CA)"
     ],
-    "right_triangle_judgment_angle(1,CDA)": [
-      "right_triangle_property_pythagorean(1,CDA)"
+    "goal_cdl": "Value(x)",
+    "problem_answer": "2*sqrt(10)",
+    "theorem_seqs": [
+        "adjacent_complementary_angle(1,CDA,ADB)",
+        "right_triangle_judgment_angle(1,ADB)",
+        "right_triangle_judgment_angle(1,CDA)",
+        "right_triangle_judgment_angle(1,BAC)",
+        "right_triangle_property_pythagorean(1,ADB)",
+        "right_triangle_property_pythagorean(1,CDA)",
+        "right_triangle_property_pythagorean(1,BAC)",
+        "line_addition(1,CD,DB)"
     ],
-    "right_triangle_judgment_angle(1,BAC)": [
-      "right_triangle_property_pythagorean(1,BAC)"
-    ]
-  }
+    "theorem_seqs_dag": {
+        "START": [
+            "adjacent_complementary_angle(1,CDA,ADB)",
+            "right_triangle_judgment_angle(1,ADB)",
+            "right_triangle_judgment_angle(1,BAC)",
+            "line_addition(1,CD,DB)"
+        ],
+        "adjacent_complementary_angle(1,CDA,ADB)": [
+            "right_triangle_judgment_angle(1,CDA)"
+        ],
+        "right_triangle_judgment_angle(1,ADB)": [
+            "right_triangle_property_pythagorean(1,ADB)"
+        ],
+        "right_triangle_judgment_angle(1,CDA)": [
+            "right_triangle_property_pythagorean(1,CDA)"
+        ],
+        "right_triangle_judgment_angle(1,BAC)": [
+            "right_triangle_property_pythagorean(1,BAC)"
+        ]
+    }
 }

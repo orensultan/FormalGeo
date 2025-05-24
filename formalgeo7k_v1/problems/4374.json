@@ -1,36 +1,33 @@
 {
-  "problem_id": 4374,
-  "annotation": "YimingHe_2023-05-14",
-  "source": "GeoQA-3292",
-  "problem_level": 3,
-  "problem_text_cn": "如图所示，∠BOA=130°，O是圆O的圆心。求∠ACB的大小。",
-  "problem_text_en": "As shown in the diagram, ∠BOA=130°, O is the center of circle O. Find the measure of ∠ACB.",
-  "problem_img": "4374.png",
-  "construction_cdl": [
-    "Shape(AO,OB,OBA)",
-    "Shape(AB,BO,OA)",
-    "Shape(AC,CB,BA)",
-    "Shape(BC,OCB)",
-    "Shape(CA,OAC)",
-    "Cocircular(O,ACB)"
-  ],
-  "text_cdl": [
-    "Equal(MeasureOfAngle(BOA),130)",
-    "IsCentreOfCircle(O,O)"
-  ],
-  "image_cdl": [],
-  "goal_cdl": "Value(MeasureOfAngle(ACB))",
-  "problem_answer": "115",
-  "theorem_seqs": [
-    "arc_property_center_angle(1,OBA,O)",
-    "round_angle(1,BOA,AOB)",
-    "arc_property_circumference_angle_external(1,OBA,C)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "arc_property_center_angle(1,OBA,O)",
-      "round_angle(1,BOA,AOB)",
-      "arc_property_circumference_angle_external(1,OBA,C)"
-    ]
-  }
+    "problem_id": 4374,
+    "source": "GeoQA-3292",
+    "problem_level": 3,
+    "problem_img": "4374.png",
+    "construction_cdl": [
+        "Shape(AO,OB,OBA)",
+        "Shape(AB,BO,OA)",
+        "Shape(AC,CB,BA)",
+        "Shape(BC,OCB)",
+        "Shape(CA,OAC)",
+        "Cocircular(O,ACB)"
+    ],
+    "text_cdl": [
+        "Equal(MeasureOfAngle(BOA),130)",
+        "IsCentreOfCircle(O,O)"
+    ],
+    "image_cdl": [],
+    "goal_cdl": "Value(MeasureOfAngle(ACB))",
+    "problem_answer": "115",
+    "theorem_seqs": [
+        "arc_property_center_angle(1,OBA,O)",
+        "round_angle(1,BOA,AOB)",
+        "arc_property_circumference_angle_external(1,OBA,C)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "arc_property_center_angle(1,OBA,O)",
+            "round_angle(1,BOA,AOB)",
+            "arc_property_circumference_angle_external(1,OBA,C)"
+        ]
+    }
 }

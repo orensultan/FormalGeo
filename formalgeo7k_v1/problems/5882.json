@@ -1,57 +1,54 @@
 {
-  "problem_id": 5882,
-  "annotation": "QikeHuang_2023-05-28",
-  "source": "GeoQA-7939",
-  "problem_level": 8,
-  "problem_text_cn": "如图所示，三角形DFE的面积为2，E平分线段DC，AD和BC是平行四边形ABCD的一组对边。求△ABF的面积。",
-  "problem_text_en": "As shown in the diagram, the area of △DFE is 2, E bisects segment DC, BA and CD are opposite sides of the ▱ ABCD. Find the area of triangle ABF.",
-  "problem_img": "5882.png",
-  "construction_cdl": [
-    "Shape(DF,FE,ED)",
-    "Shape(FA,AB,BF)",
-    "Shape(DA,AF,FD)",
-    "Shape(EF,FB,BC,CE)",
-    "Collinear(DEC)",
-    "Collinear(DFB)",
-    "Collinear(AFE)"
-  ],
-  "text_cdl": [
-    "Equal(AreaOfTriangle(DFE),2)",
-    "IsMidpointOfLine(E,DC)",
-    "Parallelogram(ABCD)"
-  ],
-  "image_cdl": [],
-  "goal_cdl": "Value(AreaOfTriangle(ABF))",
-  "problem_answer": "8",
-  "theorem_seqs": [
-    "parallelogram_property_opposite_line_equal(1,ABCD)",
-    "line_addition(1,DE,EC)",
-    "parallel_property_collinear_extend(3,DC,AB,E)",
-    "parallel_property_alternate_interior_angle(1,BA,CD)",
-    "parallel_property_alternate_interior_angle(2,DE,AB)",
-    "similar_triangle_judgment_aa(1,FED,FAB)",
-    "similar_triangle_property_line_ratio(1,FED,FAB)",
-    "similar_triangle_property_area_square_ratio(1,FED,FAB)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "parallelogram_property_opposite_line_equal(1,ABCD)",
-      "line_addition(1,DE,EC)",
-      "parallel_property_collinear_extend(3,DC,AB,E)",
-      "parallel_property_alternate_interior_angle(1,BA,CD)"
+    "problem_id": 5882,
+    "source": "GeoQA-7939",
+    "problem_level": 8,
+    "problem_img": "5882.png",
+    "construction_cdl": [
+        "Shape(DF,FE,ED)",
+        "Shape(FA,AB,BF)",
+        "Shape(DA,AF,FD)",
+        "Shape(EF,FB,BC,CE)",
+        "Collinear(DEC)",
+        "Collinear(DFB)",
+        "Collinear(AFE)"
     ],
-    "parallel_property_collinear_extend(3,DC,AB,E)": [
-      "parallel_property_alternate_interior_angle(2,DE,AB)"
+    "text_cdl": [
+        "Equal(AreaOfTriangle(DFE),2)",
+        "IsMidpointOfLine(E,DC)",
+        "Parallelogram(ABCD)"
     ],
-    "parallel_property_alternate_interior_angle(1,BA,CD)": [
-      "similar_triangle_judgment_aa(1,FED,FAB)"
+    "image_cdl": [],
+    "goal_cdl": "Value(AreaOfTriangle(ABF))",
+    "problem_answer": "8",
+    "theorem_seqs": [
+        "parallelogram_property_opposite_line_equal(1,ABCD)",
+        "line_addition(1,DE,EC)",
+        "parallel_property_collinear_extend(3,DC,AB,E)",
+        "parallel_property_alternate_interior_angle(1,BA,CD)",
+        "parallel_property_alternate_interior_angle(2,DE,AB)",
+        "similar_triangle_judgment_aa(1,FED,FAB)",
+        "similar_triangle_property_line_ratio(1,FED,FAB)",
+        "similar_triangle_property_area_square_ratio(1,FED,FAB)"
     ],
-    "parallel_property_alternate_interior_angle(2,DE,AB)": [
-      "similar_triangle_judgment_aa(1,FED,FAB)"
-    ],
-    "similar_triangle_judgment_aa(1,FED,FAB)": [
-      "similar_triangle_property_line_ratio(1,FED,FAB)",
-      "similar_triangle_property_area_square_ratio(1,FED,FAB)"
-    ]
-  }
+    "theorem_seqs_dag": {
+        "START": [
+            "parallelogram_property_opposite_line_equal(1,ABCD)",
+            "line_addition(1,DE,EC)",
+            "parallel_property_collinear_extend(3,DC,AB,E)",
+            "parallel_property_alternate_interior_angle(1,BA,CD)"
+        ],
+        "parallel_property_collinear_extend(3,DC,AB,E)": [
+            "parallel_property_alternate_interior_angle(2,DE,AB)"
+        ],
+        "parallel_property_alternate_interior_angle(1,BA,CD)": [
+            "similar_triangle_judgment_aa(1,FED,FAB)"
+        ],
+        "parallel_property_alternate_interior_angle(2,DE,AB)": [
+            "similar_triangle_judgment_aa(1,FED,FAB)"
+        ],
+        "similar_triangle_judgment_aa(1,FED,FAB)": [
+            "similar_triangle_property_line_ratio(1,FED,FAB)",
+            "similar_triangle_property_area_square_ratio(1,FED,FAB)"
+        ]
+    }
 }

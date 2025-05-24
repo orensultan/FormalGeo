@@ -1,51 +1,48 @@
 {
-  "problem_id": 3200,
-  "annotation": "NaZhu_2023-04-23",
-  "source": "GeoQA-490",
-  "problem_level": 6,
-  "problem_text_cn": "如图所示，∠GND=40°，ABCD是长方形，∠EFG是直角三角形EFG的直角。求∠BFM的大小。",
-  "problem_text_en": "As shown in the diagram, ∠GND=40°, ABCD is a rectangle, EF and FG are the legs of the right triangle EFG. Find the measure of ∠BFM.",
-  "problem_img": "3200.png",
-  "construction_cdl": [
-    "Shape(EM,MN,NG,GE)",
-    "Shape(AB,BF,FM,MA)",
-    "Shape(MF,FN,NM)",
-    "Shape(DN,NF,FC,CD)",
-    "Shape(GN,ND)",
-    "Shape(AM,ME)",
-    "Collinear(AMND)",
-    "Collinear(BFC)",
-    "Collinear(EMF)",
-    "Collinear(FNG)"
-  ],
-  "text_cdl": [
-    "Equal(MeasureOfAngle(GND),40)",
-    "Rectangle(ABCD)",
-    "RightTriangle(EFG)"
-  ],
-  "image_cdl": [],
-  "goal_cdl": "Value(MeasureOfAngle(BFM))",
-  "problem_answer": "50",
-  "theorem_seqs": [
-    "parallel_property_collinear_extend(3,AD,BC,N)",
-    "parallel_property_collinear_extend(3,CB,DN,F)",
-    "parallel_property_corresponding_angle(1,ND,FC,G)",
-    "flat_angle(1,BFC)",
-    "angle_addition(1,BFM,MFN)",
-    "angle_addition(1,BFN,NFC)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "parallel_property_collinear_extend(3,AD,BC,N)",
-      "flat_angle(1,BFC)",
-      "angle_addition(1,BFM,MFN)",
-      "angle_addition(1,BFN,NFC)"
+    "problem_id": 3200,
+    "source": "GeoQA-490",
+    "problem_level": 6,
+    "problem_img": "3200.png",
+    "construction_cdl": [
+        "Shape(EM,MN,NG,GE)",
+        "Shape(AB,BF,FM,MA)",
+        "Shape(MF,FN,NM)",
+        "Shape(DN,NF,FC,CD)",
+        "Shape(GN,ND)",
+        "Shape(AM,ME)",
+        "Collinear(AMND)",
+        "Collinear(BFC)",
+        "Collinear(EMF)",
+        "Collinear(FNG)"
     ],
-    "parallel_property_collinear_extend(3,AD,BC,N)": [
-      "parallel_property_collinear_extend(3,CB,DN,F)"
+    "text_cdl": [
+        "Equal(MeasureOfAngle(GND),40)",
+        "Rectangle(ABCD)",
+        "RightTriangle(EFG)"
     ],
-    "parallel_property_collinear_extend(3,CB,DN,F)": [
-      "parallel_property_corresponding_angle(1,ND,FC,G)"
-    ]
-  }
+    "image_cdl": [],
+    "goal_cdl": "Value(MeasureOfAngle(BFM))",
+    "problem_answer": "50",
+    "theorem_seqs": [
+        "parallel_property_collinear_extend(3,AD,BC,N)",
+        "parallel_property_collinear_extend(3,CB,DN,F)",
+        "parallel_property_corresponding_angle(1,ND,FC,G)",
+        "flat_angle(1,BFC)",
+        "angle_addition(1,BFM,MFN)",
+        "angle_addition(1,BFN,NFC)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "parallel_property_collinear_extend(3,AD,BC,N)",
+            "flat_angle(1,BFC)",
+            "angle_addition(1,BFM,MFN)",
+            "angle_addition(1,BFN,NFC)"
+        ],
+        "parallel_property_collinear_extend(3,AD,BC,N)": [
+            "parallel_property_collinear_extend(3,CB,DN,F)"
+        ],
+        "parallel_property_collinear_extend(3,CB,DN,F)": [
+            "parallel_property_corresponding_angle(1,ND,FC,G)"
+        ]
+    }
 }

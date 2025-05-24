@@ -1,64 +1,61 @@
 {
-  "problem_id": 4582,
-  "annotation": "YanjunGuo_2023-05-14",
-  "source": "GeoQA-3725",
-  "problem_level": 9,
-  "problem_text_cn": "如图所示，OA=6，∠BCA=30°，O是圆O的圆心，OD是三角形OAB的中线。求直线OD的长度。",
-  "problem_text_en": "As shown in the diagram, OA=6, ∠BCA=30°, the center of ⊙O is O, OD is the median of △ OAB. Find the length of line OD.",
-  "problem_img": "4582.png",
-  "construction_cdl": [
-    "Shape(AO,OE,EC,OCA)",
-    "Shape(BA,OAB)",
-    "Shape(CB,OBC)",
-    "Shape(OA,AF,FO)",
-    "Shape(OF,FE,EO)",
-    "Shape(FA,AD,DF)",
-    "Shape(EF,FD,DB,BE)",
-    "Shape(CE,EB,BC)",
-    "Collinear(OFD)",
-    "Collinear(AFEC)",
-    "Collinear(OEB)",
-    "Collinear(ADB)",
-    "Cocircular(O,ABC)"
-  ],
-  "text_cdl": [
-    "Equal(LengthOfLine(OA),6)",
-    "Equal(MeasureOfAngle(BCA),30)",
-    "IsCentreOfCircle(O,O)",
-    "IsMedianOfTriangle(OD,OAB)"
-  ],
-  "image_cdl": [],
-  "goal_cdl": "Value(LengthOfLine(OD))",
-  "problem_answer": "3*sqrt(3)",
-  "theorem_seqs": [
-    "arc_property_circumference_angle_external(1,OAB,C)",
-    "arc_property_center_angle(1,OAB,O)",
-    "radius_of_circle_property_length_equal(1,OA,O)",
-    "radius_of_circle_property_length_equal(1,OB,O)",
-    "isosceles_triangle_judgment_line_equal(1,OAB)",
-    "triangle_property_angle_sum(1,OAB)",
-    "isosceles_triangle_property_angle_equal(1,OAB)",
-    "isosceles_triangle_property_line_coincidence(2,OAB,D)",
-    "sine_theorem(1,OAD)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "arc_property_circumference_angle_external(1,OAB,C)",
-      "arc_property_center_angle(1,OAB,O)",
-      "radius_of_circle_property_length_equal(1,OA,O)",
-      "radius_of_circle_property_length_equal(1,OB,O)",
-      "triangle_property_angle_sum(1,OAB)",
-      "sine_theorem(1,OAD)"
+    "problem_id": 4582,
+    "source": "GeoQA-3725",
+    "problem_level": 9,
+    "problem_img": "4582.png",
+    "construction_cdl": [
+        "Shape(AO,OE,EC,OCA)",
+        "Shape(BA,OAB)",
+        "Shape(CB,OBC)",
+        "Shape(OA,AF,FO)",
+        "Shape(OF,FE,EO)",
+        "Shape(FA,AD,DF)",
+        "Shape(EF,FD,DB,BE)",
+        "Shape(CE,EB,BC)",
+        "Collinear(OFD)",
+        "Collinear(AFEC)",
+        "Collinear(OEB)",
+        "Collinear(ADB)",
+        "Cocircular(O,ABC)"
     ],
-    "radius_of_circle_property_length_equal(1,OA,O)": [
-      "isosceles_triangle_judgment_line_equal(1,OAB)"
+    "text_cdl": [
+        "Equal(LengthOfLine(OA),6)",
+        "Equal(MeasureOfAngle(BCA),30)",
+        "IsCentreOfCircle(O,O)",
+        "IsMedianOfTriangle(OD,OAB)"
     ],
-    "radius_of_circle_property_length_equal(1,OB,O)": [
-      "isosceles_triangle_judgment_line_equal(1,OAB)"
+    "image_cdl": [],
+    "goal_cdl": "Value(LengthOfLine(OD))",
+    "problem_answer": "3*sqrt(3)",
+    "theorem_seqs": [
+        "arc_property_circumference_angle_external(1,OAB,C)",
+        "arc_property_center_angle(1,OAB,O)",
+        "radius_of_circle_property_length_equal(1,OA,O)",
+        "radius_of_circle_property_length_equal(1,OB,O)",
+        "isosceles_triangle_judgment_line_equal(1,OAB)",
+        "triangle_property_angle_sum(1,OAB)",
+        "isosceles_triangle_property_angle_equal(1,OAB)",
+        "isosceles_triangle_property_line_coincidence(2,OAB,D)",
+        "sine_theorem(1,OAD)"
     ],
-    "isosceles_triangle_judgment_line_equal(1,OAB)": [
-      "isosceles_triangle_property_angle_equal(1,OAB)",
-      "isosceles_triangle_property_line_coincidence(2,OAB,D)"
-    ]
-  }
+    "theorem_seqs_dag": {
+        "START": [
+            "arc_property_circumference_angle_external(1,OAB,C)",
+            "arc_property_center_angle(1,OAB,O)",
+            "radius_of_circle_property_length_equal(1,OA,O)",
+            "radius_of_circle_property_length_equal(1,OB,O)",
+            "triangle_property_angle_sum(1,OAB)",
+            "sine_theorem(1,OAD)"
+        ],
+        "radius_of_circle_property_length_equal(1,OA,O)": [
+            "isosceles_triangle_judgment_line_equal(1,OAB)"
+        ],
+        "radius_of_circle_property_length_equal(1,OB,O)": [
+            "isosceles_triangle_judgment_line_equal(1,OAB)"
+        ],
+        "isosceles_triangle_judgment_line_equal(1,OAB)": [
+            "isosceles_triangle_property_angle_equal(1,OAB)",
+            "isosceles_triangle_property_line_coincidence(2,OAB,D)"
+        ]
+    }
 }

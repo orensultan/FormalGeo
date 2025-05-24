@@ -1,35 +1,32 @@
 {
-  "problem_id": 3683,
-  "annotation": "XiaoxiaoJin_2023-04-30",
-  "source": "GeoQA-1424",
-  "problem_level": 2,
-  "problem_text_cn": "如图所示，MN=40，M是线段AC的中点，N平分线段CB。求直线AB的长度。",
-  "problem_text_en": "As shown in the diagram, MN=40, M is the midpoint of segment AC, N is the midpoint of segment CB. Find the length of line AB.",
-  "problem_img": "3683.png",
-  "construction_cdl": [
-    "Shape(CN,NM,MC)",
-    "Shape(MN,NB,BA,AM)",
-    "Collinear(CMA)",
-    "Collinear(CNB)"
-  ],
-  "text_cdl": [
-    "Equal(LengthOfLine(MN),40)",
-    "IsMidpointOfLine(M,AC)",
-    "IsMidpointOfLine(N,CB)"
-  ],
-  "image_cdl": [],
-  "goal_cdl": "Value(LengthOfLine(AB))",
-  "problem_answer": "80",
-  "theorem_seqs": [
-    "midsegment_of_triangle_judgment_midpoint(1,NM,CBA)",
-    "midsegment_of_triangle_property_length(1,NM,CBA)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "midsegment_of_triangle_judgment_midpoint(1,NM,CBA)"
+    "problem_id": 3683,
+    "source": "GeoQA-1424",
+    "problem_level": 2,
+    "problem_img": "3683.png",
+    "construction_cdl": [
+        "Shape(CN,NM,MC)",
+        "Shape(MN,NB,BA,AM)",
+        "Collinear(CMA)",
+        "Collinear(CNB)"
     ],
-    "midsegment_of_triangle_judgment_midpoint(1,NM,CBA)": [
-      "midsegment_of_triangle_property_length(1,NM,CBA)"
-    ]
-  }
+    "text_cdl": [
+        "Equal(LengthOfLine(MN),40)",
+        "IsMidpointOfLine(M,AC)",
+        "IsMidpointOfLine(N,CB)"
+    ],
+    "image_cdl": [],
+    "goal_cdl": "Value(LengthOfLine(AB))",
+    "problem_answer": "80",
+    "theorem_seqs": [
+        "midsegment_of_triangle_judgment_midpoint(1,NM,CBA)",
+        "midsegment_of_triangle_property_length(1,NM,CBA)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "midsegment_of_triangle_judgment_midpoint(1,NM,CBA)"
+        ],
+        "midsegment_of_triangle_judgment_midpoint(1,NM,CBA)": [
+            "midsegment_of_triangle_property_length(1,NM,CBA)"
+        ]
+    }
 }

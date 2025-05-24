@@ -1,50 +1,47 @@
 {
-  "problem_id": 6586,
-  "annotation": "YanjunGuo_2023-06-04",
-  "source": "GeoQA-9560",
-  "problem_level": 7,
-  "problem_text_cn": "如图所示，AB=AC，∠DAE=50°，DE垂直平分AB。求∠DBC的大小。",
-  "problem_text_en": "As shown in the diagram, AB=AC, ∠DAE=50°, DE perpendicular bisects AB. Find the measure of ∠DBC.",
-  "problem_img": "6586.png",
-  "construction_cdl": [
-    "Shape(AE,ED,DA)",
-    "Shape(EB,BD,DE)",
-    "Shape(DB,BC,CD)",
-    "Collinear(AEB)",
-    "Collinear(ADC)"
-  ],
-  "text_cdl": [
-    "Equal(LengthOfLine(AB),LengthOfLine(AC))",
-    "Equal(MeasureOfAngle(DAE),50)",
-    "IsPerpendicularBisectorOfLine(DE,AB)"
-  ],
-  "image_cdl": [],
-  "goal_cdl": "Value(MeasureOfAngle(DBC))",
-  "problem_answer": "15",
-  "theorem_seqs": [
-    "perpendicular_bisector_property_distance_equal(1,DE,AB)",
-    "isosceles_triangle_judgment_line_equal(1,DAB)",
-    "isosceles_triangle_judgment_line_equal(1,ABC)",
-    "isosceles_triangle_property_angle_equal(1,DAB)",
-    "isosceles_triangle_property_angle_equal(1,ABC)",
-    "triangle_property_angle_sum(1,ABC)",
-    "angle_addition(1,EBD,DBC)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "perpendicular_bisector_property_distance_equal(1,DE,AB)",
-      "isosceles_triangle_judgment_line_equal(1,ABC)",
-      "triangle_property_angle_sum(1,ABC)",
-      "angle_addition(1,EBD,DBC)"
+    "problem_id": 6586,
+    "source": "GeoQA-9560",
+    "problem_level": 7,
+    "problem_img": "6586.png",
+    "construction_cdl": [
+        "Shape(AE,ED,DA)",
+        "Shape(EB,BD,DE)",
+        "Shape(DB,BC,CD)",
+        "Collinear(AEB)",
+        "Collinear(ADC)"
     ],
-    "perpendicular_bisector_property_distance_equal(1,DE,AB)": [
-      "isosceles_triangle_judgment_line_equal(1,DAB)"
+    "text_cdl": [
+        "Equal(LengthOfLine(AB),LengthOfLine(AC))",
+        "Equal(MeasureOfAngle(DAE),50)",
+        "IsPerpendicularBisectorOfLine(DE,AB)"
     ],
-    "isosceles_triangle_judgment_line_equal(1,DAB)": [
-      "isosceles_triangle_property_angle_equal(1,DAB)"
+    "image_cdl": [],
+    "goal_cdl": "Value(MeasureOfAngle(DBC))",
+    "problem_answer": "15",
+    "theorem_seqs": [
+        "perpendicular_bisector_property_distance_equal(1,DE,AB)",
+        "isosceles_triangle_judgment_line_equal(1,DAB)",
+        "isosceles_triangle_judgment_line_equal(1,ABC)",
+        "isosceles_triangle_property_angle_equal(1,DAB)",
+        "isosceles_triangle_property_angle_equal(1,ABC)",
+        "triangle_property_angle_sum(1,ABC)",
+        "angle_addition(1,EBD,DBC)"
     ],
-    "isosceles_triangle_judgment_line_equal(1,ABC)": [
-      "isosceles_triangle_property_angle_equal(1,ABC)"
-    ]
-  }
+    "theorem_seqs_dag": {
+        "START": [
+            "perpendicular_bisector_property_distance_equal(1,DE,AB)",
+            "isosceles_triangle_judgment_line_equal(1,ABC)",
+            "triangle_property_angle_sum(1,ABC)",
+            "angle_addition(1,EBD,DBC)"
+        ],
+        "perpendicular_bisector_property_distance_equal(1,DE,AB)": [
+            "isosceles_triangle_judgment_line_equal(1,DAB)"
+        ],
+        "isosceles_triangle_judgment_line_equal(1,DAB)": [
+            "isosceles_triangle_property_angle_equal(1,DAB)"
+        ],
+        "isosceles_triangle_judgment_line_equal(1,ABC)": [
+            "isosceles_triangle_property_angle_equal(1,ABC)"
+        ]
+    }
 }

@@ -1,33 +1,30 @@
 {
-  "problem_id": 3052,
-  "annotation": "XiaokaiZhang_2023-04-16",
-  "source": "GeoQA-271",
-  "problem_level": 1,
-  "problem_text_cn": "如图所示，AC=4，DB=5，四边形DABC是菱形。求DABC的面积。",
-  "problem_text_en": "As shown in the diagram, AC=4, DB=5, DABC is a rhombus. Find the area of DABC.",
-  "problem_img": "3052.png",
-  "construction_cdl": [
-    "Shape(DA,AE,ED)",
-    "Shape(DE,EC,CD)",
-    "Shape(AB,BE,EA)",
-    "Shape(EB,BC,CE)",
-    "Collinear(AEC)",
-    "Collinear(DEB)"
-  ],
-  "text_cdl": [
-    "Equal(LengthOfLine(AC),4)",
-    "Equal(LengthOfLine(DB),5)",
-    "Rhombus(DABC)"
-  ],
-  "image_cdl": [],
-  "goal_cdl": "Value(AreaOfQuadrilateral(DABC))",
-  "problem_answer": "10",
-  "theorem_seqs": [
-    "kite_area_formula_diagonal(1,DABC)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "kite_area_formula_diagonal(1,DABC)"
-    ]
-  }
+    "problem_id": 3052,
+    "source": "GeoQA-271",
+    "problem_level": 1,
+    "problem_img": "3052.png",
+    "construction_cdl": [
+        "Shape(DA,AE,ED)",
+        "Shape(DE,EC,CD)",
+        "Shape(AB,BE,EA)",
+        "Shape(EB,BC,CE)",
+        "Collinear(AEC)",
+        "Collinear(DEB)"
+    ],
+    "text_cdl": [
+        "Equal(LengthOfLine(AC),4)",
+        "Equal(LengthOfLine(DB),5)",
+        "Rhombus(DABC)"
+    ],
+    "image_cdl": [],
+    "goal_cdl": "Value(AreaOfQuadrilateral(DABC))",
+    "problem_answer": "10",
+    "theorem_seqs": [
+        "kite_area_formula_diagonal(1,DABC)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "kite_area_formula_diagonal(1,DABC)"
+        ]
+    }
 }

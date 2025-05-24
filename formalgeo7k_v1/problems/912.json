@@ -1,55 +1,52 @@
 {
-  "problem_id": 912,
-  "annotation": "XiaokaiZhang_2023-04-09",
-  "source": "Geometry3k-941",
-  "problem_level": 8,
-  "problem_text_cn": "如图所示，AC=12，∠DBC=45°，D是⊙D的圆心，AB是⊙D的直径，⊙D的直径为BA。求⊙D的面积减去三角形CAB的面积。",
-  "problem_text_en": "As shown in the diagram, AC=12, ∠DBC=45°, the center of ⊙D is D, AB is the diameter of circle D, the diameter of circle D is BA. Find the area of the circle D minus the area of triangle CAB.",
-  "problem_img": "912.png",
-  "construction_cdl": [
-    "Shape(DCA,AC)",
-    "Shape(DA,DAB,BD)",
-    "Shape(CA,AD,DB,BC)",
-    "Shape(DBC,CB)",
-    "Collinear(ADB)",
-    "Cocircular(D,ABC)"
-  ],
-  "text_cdl": [
-    "Equal(LengthOfLine(AC),12)",
-    "Equal(MeasureOfAngle(DBC),45)",
-    "IsCentreOfCircle(D,D)",
-    "IsDiameterOfCircle(AB,D)",
-    "IsDiameterOfCircle(BA,D)"
-  ],
-  "image_cdl": [
-    "Equal(LengthOfLine(AC),12)",
-    "Equal(MeasureOfAngle(DBC),45)",
-    "IsCentreOfCircle(D,D)",
-    "IsDiameterOfCircle(AB,D)",
-    "IsDiameterOfCircle(BA,D)"
-  ],
-  "goal_cdl": "Value(Sub(AreaOfCircle(D),AreaOfTriangle(CAB)))",
-  "problem_answer": "-72+72*pi",
-  "theorem_seqs": [
-    "diameter_of_circle_property_right_angle(1,BCA,D)",
-    "triangle_property_angle_sum(1,CAB)",
-    "sine_theorem(1,ABC)",
-    "sine_theorem(1,BCA)",
-    "diameter_of_circle_property_length_equal(1,AB,D)",
-    "circle_property_length_of_radius_and_diameter(1,D)",
-    "triangle_area_formula_sine(1,CAB)",
-    "circle_area_formula(1,D)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "diameter_of_circle_property_right_angle(1,BCA,D)",
-      "triangle_property_angle_sum(1,CAB)",
-      "sine_theorem(1,ABC)",
-      "sine_theorem(1,BCA)",
-      "diameter_of_circle_property_length_equal(1,AB,D)",
-      "circle_property_length_of_radius_and_diameter(1,D)",
-      "triangle_area_formula_sine(1,CAB)",
-      "circle_area_formula(1,D)"
-    ]
-  }
+    "problem_id": 912,
+    "source": "Geometry3k-941",
+    "problem_level": 8,
+    "problem_img": "912.png",
+    "construction_cdl": [
+        "Shape(DCA,AC)",
+        "Shape(DA,DAB,BD)",
+        "Shape(CA,AD,DB,BC)",
+        "Shape(DBC,CB)",
+        "Collinear(ADB)",
+        "Cocircular(D,ABC)"
+    ],
+    "text_cdl": [
+        "Equal(LengthOfLine(AC),12)",
+        "Equal(MeasureOfAngle(DBC),45)",
+        "IsCentreOfCircle(D,D)",
+        "IsDiameterOfCircle(AB,D)",
+        "IsDiameterOfCircle(BA,D)"
+    ],
+    "image_cdl": [
+        "Equal(LengthOfLine(AC),12)",
+        "Equal(MeasureOfAngle(DBC),45)",
+        "IsCentreOfCircle(D,D)",
+        "IsDiameterOfCircle(AB,D)",
+        "IsDiameterOfCircle(BA,D)"
+    ],
+    "goal_cdl": "Value(Sub(AreaOfCircle(D),AreaOfTriangle(CAB)))",
+    "problem_answer": "-72+72*pi",
+    "theorem_seqs": [
+        "diameter_of_circle_property_right_angle(1,BCA,D)",
+        "triangle_property_angle_sum(1,CAB)",
+        "sine_theorem(1,ABC)",
+        "sine_theorem(1,BCA)",
+        "diameter_of_circle_property_length_equal(1,AB,D)",
+        "circle_property_length_of_radius_and_diameter(1,D)",
+        "triangle_area_formula_sine(1,CAB)",
+        "circle_area_formula(1,D)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "diameter_of_circle_property_right_angle(1,BCA,D)",
+            "triangle_property_angle_sum(1,CAB)",
+            "sine_theorem(1,ABC)",
+            "sine_theorem(1,BCA)",
+            "diameter_of_circle_property_length_equal(1,AB,D)",
+            "circle_property_length_of_radius_and_diameter(1,D)",
+            "triangle_area_formula_sine(1,CAB)",
+            "circle_area_formula(1,D)"
+        ]
+    }
 }

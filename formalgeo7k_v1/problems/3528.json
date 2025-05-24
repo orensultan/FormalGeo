@@ -1,41 +1,38 @@
 {
-  "problem_id": 3528,
-  "annotation": "YanjunGuo_2023-04-30",
-  "source": "GeoQA-1146",
-  "problem_level": 5,
-  "problem_text_cn": "如图所示，∠DBA=60°，DA是∠CDB的角平分线，AB平行于CD，AD垂直于ND。求∠NDE的大小。",
-  "problem_text_en": "As shown in the diagram, ∠DBA=60°, DA bisects ∠CDB, AB∥CD, AD⊥ND. Find the measure of ∠NDE.",
-  "problem_img": "3528.png",
-  "construction_cdl": [
-    "Shape(AD,DB,BA)",
-    "Shape(BD,DN)",
-    "Shape(ND,DE)",
-    "Shape(CD,DA)",
-    "Collinear(CDE)"
-  ],
-  "text_cdl": [
-    "Equal(MeasureOfAngle(DBA),60)",
-    "IsBisectorOfAngle(DA,CDB)",
-    "ParallelBetweenLine(AB,CD)",
-    "PerpendicularBetweenLine(AD,ND)"
-  ],
-  "image_cdl": [],
-  "goal_cdl": "Value(MeasureOfAngle(NDE))",
-  "problem_answer": "30",
-  "theorem_seqs": [
-    "parallel_property_ipsilateral_internal_angle(1,DC,BA)",
-    "adjacent_complementary_angle(1,CDB,BDE)",
-    "angle_addition(1,CDA,ADB)",
-    "angle_addition(1,ADB,BDN)",
-    "angle_addition(1,BDN,NDE)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "parallel_property_ipsilateral_internal_angle(1,DC,BA)",
-      "adjacent_complementary_angle(1,CDB,BDE)",
-      "angle_addition(1,CDA,ADB)",
-      "angle_addition(1,ADB,BDN)",
-      "angle_addition(1,BDN,NDE)"
-    ]
-  }
+    "problem_id": 3528,
+    "source": "GeoQA-1146",
+    "problem_level": 5,
+    "problem_img": "3528.png",
+    "construction_cdl": [
+        "Shape(AD,DB,BA)",
+        "Shape(BD,DN)",
+        "Shape(ND,DE)",
+        "Shape(CD,DA)",
+        "Collinear(CDE)"
+    ],
+    "text_cdl": [
+        "Equal(MeasureOfAngle(DBA),60)",
+        "IsBisectorOfAngle(DA,CDB)",
+        "ParallelBetweenLine(AB,CD)",
+        "PerpendicularBetweenLine(AD,ND)"
+    ],
+    "image_cdl": [],
+    "goal_cdl": "Value(MeasureOfAngle(NDE))",
+    "problem_answer": "30",
+    "theorem_seqs": [
+        "parallel_property_ipsilateral_internal_angle(1,DC,BA)",
+        "adjacent_complementary_angle(1,CDB,BDE)",
+        "angle_addition(1,CDA,ADB)",
+        "angle_addition(1,ADB,BDN)",
+        "angle_addition(1,BDN,NDE)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "parallel_property_ipsilateral_internal_angle(1,DC,BA)",
+            "adjacent_complementary_angle(1,CDB,BDE)",
+            "angle_addition(1,CDA,ADB)",
+            "angle_addition(1,ADB,BDN)",
+            "angle_addition(1,BDN,NDE)"
+        ]
+    }
 }

@@ -1,46 +1,43 @@
 {
-  "problem_id": 3477,
-  "annotation": "XiaokaiZhang_2023-04-30",
-  "source": "GeoQA-1069",
-  "problem_level": 6,
-  "problem_text_cn": "如图所示，∠FEA=40°，∠GEF=∠DEG，四边形ABCD是长方形。求∠FGE的大小。",
-  "problem_text_en": "As shown in the diagram, ∠FEA=40°, ∠GEF=∠DEG, ABCD is a rectangle. Find the measure of ∠FGE.",
-  "problem_img": "3477.png",
-  "construction_cdl": [
-    "Shape(AB,BF,FE,EA)",
-    "Shape(EF,FG,GE)",
-    "Shape(EG,GC,CD,DE)",
-    "Collinear(AED)",
-    "Collinear(BFGC)"
-  ],
-  "text_cdl": [
-    "Equal(MeasureOfAngle(FEA),40)",
-    "Equal(MeasureOfAngle(GEF),MeasureOfAngle(DEG))",
-    "Rectangle(ABCD)"
-  ],
-  "image_cdl": [],
-  "goal_cdl": "Value(MeasureOfAngle(FGE))",
-  "problem_answer": "70",
-  "theorem_seqs": [
-    "adjacent_complementary_angle(1,DEF,FEA)",
-    "angle_addition(1,DEG,GEF)",
-    "angle_addition(1,GEF,FEA)",
-    "parallel_property_collinear_extend(3,AD,BC,E)",
-    "parallel_property_collinear_extend(3,CB,EA,G)",
-    "parallel_property_ipsilateral_internal_angle(1,GB,EA)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "adjacent_complementary_angle(1,DEF,FEA)",
-      "angle_addition(1,DEG,GEF)",
-      "angle_addition(1,GEF,FEA)",
-      "parallel_property_collinear_extend(3,AD,BC,E)"
+    "problem_id": 3477,
+    "source": "GeoQA-1069",
+    "problem_level": 6,
+    "problem_img": "3477.png",
+    "construction_cdl": [
+        "Shape(AB,BF,FE,EA)",
+        "Shape(EF,FG,GE)",
+        "Shape(EG,GC,CD,DE)",
+        "Collinear(AED)",
+        "Collinear(BFGC)"
     ],
-    "parallel_property_collinear_extend(3,AD,BC,E)": [
-      "parallel_property_collinear_extend(3,CB,EA,G)"
+    "text_cdl": [
+        "Equal(MeasureOfAngle(FEA),40)",
+        "Equal(MeasureOfAngle(GEF),MeasureOfAngle(DEG))",
+        "Rectangle(ABCD)"
     ],
-    "parallel_property_collinear_extend(3,CB,EA,G)": [
-      "parallel_property_ipsilateral_internal_angle(1,GB,EA)"
-    ]
-  }
+    "image_cdl": [],
+    "goal_cdl": "Value(MeasureOfAngle(FGE))",
+    "problem_answer": "70",
+    "theorem_seqs": [
+        "adjacent_complementary_angle(1,DEF,FEA)",
+        "angle_addition(1,DEG,GEF)",
+        "angle_addition(1,GEF,FEA)",
+        "parallel_property_collinear_extend(3,AD,BC,E)",
+        "parallel_property_collinear_extend(3,CB,EA,G)",
+        "parallel_property_ipsilateral_internal_angle(1,GB,EA)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "adjacent_complementary_angle(1,DEF,FEA)",
+            "angle_addition(1,DEG,GEF)",
+            "angle_addition(1,GEF,FEA)",
+            "parallel_property_collinear_extend(3,AD,BC,E)"
+        ],
+        "parallel_property_collinear_extend(3,AD,BC,E)": [
+            "parallel_property_collinear_extend(3,CB,EA,G)"
+        ],
+        "parallel_property_collinear_extend(3,CB,EA,G)": [
+            "parallel_property_ipsilateral_internal_angle(1,GB,EA)"
+        ]
+    }
 }

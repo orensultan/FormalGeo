@@ -1,43 +1,40 @@
 {
-  "problem_id": 6531,
-  "annotation": "NaZhu_2023-06-04",
-  "source": "GeoQA-9452",
-  "problem_level": 6,
-  "problem_text_cn": "如图所示，四边形ABCD的周长为28，Sub(PerimeterOfTriangle(ABO)=PerimeterOfTriangle(OBC))，四边形ABCD是平行四边形。求直线AB的长度。",
-  "problem_text_en": "As shown in the diagram, the perimeter of ABCD is 28, Sub(PerimeterOfTriangle(ABO)=PerimeterOfTriangle(OBC)), BA and CD are opposite sides of the parallelogram ABCD. Find the length of line AB.",
-  "problem_img": "6531.png",
-  "construction_cdl": [
-    "Shape(AO,OD,DA)",
-    "Shape(DO,OC,CD)",
-    "Shape(OA,AB,BO)",
-    "Shape(CO,OB,BC)",
-    "Collinear(AOC)",
-    "Collinear(BOD)"
-  ],
-  "text_cdl": [
-    "Equal(PerimeterOfQuadrilateral(ABCD),28)",
-    "Equal(Sub(PerimeterOfTriangle(ABO),PerimeterOfTriangle(OBC)),4)",
-    "Parallelogram(ABCD)"
-  ],
-  "image_cdl": [],
-  "goal_cdl": "Value(LengthOfLine(AB))",
-  "problem_answer": "9",
-  "theorem_seqs": [
-    "quadrilateral_perimeter_formula(1,DABC)",
-    "triangle_perimeter_formula(1,ABO)",
-    "triangle_perimeter_formula(1,OBC)",
-    "parallelogram_property_diagonal_bisection(1,ABCD,O)",
-    "parallelogram_property_opposite_line_equal(1,ABCD)",
-    "parallelogram_property_opposite_line_equal(1,BCDA)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "quadrilateral_perimeter_formula(1,DABC)",
-      "triangle_perimeter_formula(1,ABO)",
-      "triangle_perimeter_formula(1,OBC)",
-      "parallelogram_property_diagonal_bisection(1,ABCD,O)",
-      "parallelogram_property_opposite_line_equal(1,ABCD)",
-      "parallelogram_property_opposite_line_equal(1,BCDA)"
-    ]
-  }
+    "problem_id": 6531,
+    "source": "GeoQA-9452",
+    "problem_level": 6,
+    "problem_img": "6531.png",
+    "construction_cdl": [
+        "Shape(AO,OD,DA)",
+        "Shape(DO,OC,CD)",
+        "Shape(OA,AB,BO)",
+        "Shape(CO,OB,BC)",
+        "Collinear(AOC)",
+        "Collinear(BOD)"
+    ],
+    "text_cdl": [
+        "Equal(PerimeterOfQuadrilateral(ABCD),28)",
+        "Equal(Sub(PerimeterOfTriangle(ABO),PerimeterOfTriangle(OBC)),4)",
+        "Parallelogram(ABCD)"
+    ],
+    "image_cdl": [],
+    "goal_cdl": "Value(LengthOfLine(AB))",
+    "problem_answer": "9",
+    "theorem_seqs": [
+        "quadrilateral_perimeter_formula(1,DABC)",
+        "triangle_perimeter_formula(1,ABO)",
+        "triangle_perimeter_formula(1,OBC)",
+        "parallelogram_property_diagonal_bisection(1,ABCD,O)",
+        "parallelogram_property_opposite_line_equal(1,ABCD)",
+        "parallelogram_property_opposite_line_equal(1,BCDA)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "quadrilateral_perimeter_formula(1,DABC)",
+            "triangle_perimeter_formula(1,ABO)",
+            "triangle_perimeter_formula(1,OBC)",
+            "parallelogram_property_diagonal_bisection(1,ABCD,O)",
+            "parallelogram_property_opposite_line_equal(1,ABCD)",
+            "parallelogram_property_opposite_line_equal(1,BCDA)"
+        ]
+    }
 }

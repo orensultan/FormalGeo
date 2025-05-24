@@ -1,44 +1,41 @@
 {
-  "problem_id": 5642,
-  "annotation": "JiaZou_2023-05-28",
-  "source": "GeoQA-7290",
-  "problem_level": 5,
-  "problem_text_cn": "如图所示，AB=1，ABCD是菱形。求1/AM+1/AN的值。",
-  "problem_text_en": "As shown in the diagram, AB=1, ABCD is a rhombus. Find the value of 1/AM+1/AN.",
-  "problem_img": "5642.png",
-  "construction_cdl": [
-    "Shape(ND,DC,CN)",
-    "Shape(DA,AB,BC,CD)",
-    "Shape(CB,BM,MC)",
-    "Collinear(ADN)",
-    "Collinear(MCN)",
-    "Collinear(ABM)"
-  ],
-  "text_cdl": [
-    "Equal(LengthOfLine(AB),1)",
-    "Rhombus(ABCD)"
-  ],
-  "image_cdl": [],
-  "goal_cdl": "Value(Add(Div(1,LengthOfLine(AM)),Div(1,LengthOfLine(AN))))",
-  "problem_answer": "1",
-  "theorem_seqs": [
-    "parallel_property_corresponding_angle(2,AD,BC,M)",
-    "line_addition(1,AB,BM)",
-    "similar_triangle_judgment_aa(1,NAM,CBM)",
-    "similar_triangle_property_line_ratio(1,NAM,CBM)",
-    "similar_triangle_property_line_ratio(1,MNA,MCB)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "parallel_property_corresponding_angle(2,AD,BC,M)",
-      "line_addition(1,AB,BM)"
+    "problem_id": 5642,
+    "source": "GeoQA-7290",
+    "problem_level": 5,
+    "problem_img": "5642.png",
+    "construction_cdl": [
+        "Shape(ND,DC,CN)",
+        "Shape(DA,AB,BC,CD)",
+        "Shape(CB,BM,MC)",
+        "Collinear(ADN)",
+        "Collinear(MCN)",
+        "Collinear(ABM)"
     ],
-    "parallel_property_corresponding_angle(2,AD,BC,M)": [
-      "similar_triangle_judgment_aa(1,NAM,CBM)"
+    "text_cdl": [
+        "Equal(LengthOfLine(AB),1)",
+        "Rhombus(ABCD)"
     ],
-    "similar_triangle_judgment_aa(1,NAM,CBM)": [
-      "similar_triangle_property_line_ratio(1,NAM,CBM)",
-      "similar_triangle_property_line_ratio(1,MNA,MCB)"
-    ]
-  }
+    "image_cdl": [],
+    "goal_cdl": "Value(Add(Div(1,LengthOfLine(AM)),Div(1,LengthOfLine(AN))))",
+    "problem_answer": "1",
+    "theorem_seqs": [
+        "parallel_property_corresponding_angle(2,AD,BC,M)",
+        "line_addition(1,AB,BM)",
+        "similar_triangle_judgment_aa(1,NAM,CBM)",
+        "similar_triangle_property_line_ratio(1,NAM,CBM)",
+        "similar_triangle_property_line_ratio(1,MNA,MCB)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "parallel_property_corresponding_angle(2,AD,BC,M)",
+            "line_addition(1,AB,BM)"
+        ],
+        "parallel_property_corresponding_angle(2,AD,BC,M)": [
+            "similar_triangle_judgment_aa(1,NAM,CBM)"
+        ],
+        "similar_triangle_judgment_aa(1,NAM,CBM)": [
+            "similar_triangle_property_line_ratio(1,NAM,CBM)",
+            "similar_triangle_property_line_ratio(1,MNA,MCB)"
+        ]
+    }
 }

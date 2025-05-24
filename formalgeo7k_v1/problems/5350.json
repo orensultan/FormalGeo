@@ -1,62 +1,59 @@
 {
-  "problem_id": 5350,
-  "annotation": "QikeHuang_2023-05-21",
-  "source": "GeoQA-5596",
-  "problem_level": 9,
-  "problem_text_cn": "如图所示，AB=10，CD=12，圆O的圆心为O，AE是⊙O的切线，⊙O的切线为AF，BF是⊙O的切线，BG是⊙O的切线，圆O的切线为CG，⊙O的切线为CH，DE是⊙O的切线，DH是⊙O的切线。求四边形ABCD的周长。",
-  "problem_text_en": "As shown in the diagram, AB=10, CD=12, O is the center of ⊙O, the tangent to ⊙O is AE, AF is the tangent to circle O, BF is the tangent to ⊙O, the tangent to ⊙O is BG, CG is the tangent to ⊙O, the tangent to ⊙O is CH, the tangent to circle O is DE, the tangent to circle O is DH. Find the perimeter of ABCD.",
-  "problem_img": "5350.png",
-  "construction_cdl": [
-    "Shape(EA,AF,OEF)",
-    "Shape(HD,DE,OHE)",
-    "Shape(FB,BG,OFG)",
-    "Shape(GC,CH,OGH)",
-    "Shape(O)",
-    "Shape(OEF,OFG,OGH,OHE)",
-    "Collinear(AED)",
-    "Collinear(AFB)",
-    "Collinear(BGC)",
-    "Collinear(CHD)",
-    "Cocircular(O,EFGH)"
-  ],
-  "text_cdl": [
-    "Equal(LengthOfLine(AB),10)",
-    "Equal(LengthOfLine(CD),12)",
-    "IsCentreOfCircle(O,O)",
-    "IsTangentOfCircle(AE,O)",
-    "IsTangentOfCircle(AF,O)",
-    "IsTangentOfCircle(BF,O)",
-    "IsTangentOfCircle(BG,O)",
-    "IsTangentOfCircle(CG,O)",
-    "IsTangentOfCircle(CH,O)",
-    "IsTangentOfCircle(DE,O)",
-    "IsTangentOfCircle(DH,O)"
-  ],
-  "image_cdl": [],
-  "goal_cdl": "Value(PerimeterOfQuadrilateral(ABCD))",
-  "problem_answer": "44",
-  "theorem_seqs": [
-    "tangent_of_circle_property_length_equal(1,AE,AF,O)",
-    "tangent_of_circle_property_length_equal(1,DE,DH,O)",
-    "tangent_of_circle_property_length_equal(1,CH,CG,O)",
-    "tangent_of_circle_property_length_equal(1,BG,BF,O)",
-    "line_addition(1,AE,ED)",
-    "line_addition(1,AF,FB)",
-    "line_addition(1,BG,GC)",
-    "line_addition(1,CH,HD)",
-    "quadrilateral_perimeter_formula(1,ABCD)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "tangent_of_circle_property_length_equal(1,AE,AF,O)",
-      "tangent_of_circle_property_length_equal(1,DE,DH,O)",
-      "tangent_of_circle_property_length_equal(1,CH,CG,O)",
-      "tangent_of_circle_property_length_equal(1,BG,BF,O)",
-      "line_addition(1,AE,ED)",
-      "line_addition(1,AF,FB)",
-      "line_addition(1,BG,GC)",
-      "line_addition(1,CH,HD)",
-      "quadrilateral_perimeter_formula(1,ABCD)"
-    ]
-  }
+    "problem_id": 5350,
+    "source": "GeoQA-5596",
+    "problem_level": 9,
+    "problem_img": "5350.png",
+    "construction_cdl": [
+        "Shape(EA,AF,OEF)",
+        "Shape(HD,DE,OHE)",
+        "Shape(FB,BG,OFG)",
+        "Shape(GC,CH,OGH)",
+        "Shape(O)",
+        "Shape(OEF,OFG,OGH,OHE)",
+        "Collinear(AED)",
+        "Collinear(AFB)",
+        "Collinear(BGC)",
+        "Collinear(CHD)",
+        "Cocircular(O,EFGH)"
+    ],
+    "text_cdl": [
+        "Equal(LengthOfLine(AB),10)",
+        "Equal(LengthOfLine(CD),12)",
+        "IsCentreOfCircle(O,O)",
+        "IsTangentOfCircle(AE,O)",
+        "IsTangentOfCircle(AF,O)",
+        "IsTangentOfCircle(BF,O)",
+        "IsTangentOfCircle(BG,O)",
+        "IsTangentOfCircle(CG,O)",
+        "IsTangentOfCircle(CH,O)",
+        "IsTangentOfCircle(DE,O)",
+        "IsTangentOfCircle(DH,O)"
+    ],
+    "image_cdl": [],
+    "goal_cdl": "Value(PerimeterOfQuadrilateral(ABCD))",
+    "problem_answer": "44",
+    "theorem_seqs": [
+        "tangent_of_circle_property_length_equal(1,AE,AF,O)",
+        "tangent_of_circle_property_length_equal(1,DE,DH,O)",
+        "tangent_of_circle_property_length_equal(1,CH,CG,O)",
+        "tangent_of_circle_property_length_equal(1,BG,BF,O)",
+        "line_addition(1,AE,ED)",
+        "line_addition(1,AF,FB)",
+        "line_addition(1,BG,GC)",
+        "line_addition(1,CH,HD)",
+        "quadrilateral_perimeter_formula(1,ABCD)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "tangent_of_circle_property_length_equal(1,AE,AF,O)",
+            "tangent_of_circle_property_length_equal(1,DE,DH,O)",
+            "tangent_of_circle_property_length_equal(1,CH,CG,O)",
+            "tangent_of_circle_property_length_equal(1,BG,BF,O)",
+            "line_addition(1,AE,ED)",
+            "line_addition(1,AF,FB)",
+            "line_addition(1,BG,GC)",
+            "line_addition(1,CH,HD)",
+            "quadrilateral_perimeter_formula(1,ABCD)"
+        ]
+    }
 }

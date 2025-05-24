@@ -1,52 +1,49 @@
 {
-  "problem_id": 1219,
-  "annotation": "RunanWang_2023-04-23",
-  "source": "Geometry3k-1259",
-  "problem_level": 4,
-  "problem_text_cn": "如图所示，CH=7，EF=11，FH=10，HE=6，四边形ADEG是平行四边形，三角形CHB相似于三角形FHE。求三角形CHB的周长。",
-  "problem_text_en": "As shown in the diagram, CH=7, EF=11, FH=10, HE=6, quadrilateral ADEG is a parallelogram, △CHB is similar to △FHE.. Find the perimeter of △CHB.",
-  "problem_img": "1219.png",
-  "construction_cdl": [
-    "Shape(CD,DE,EH,HC)",
-    "Shape(HE,EF,FH)",
-    "Shape(CH,HB,BC)",
-    "Shape(HF,FB,BH)",
-    "Shape(FG,GA,AB,BF)",
-    "Collinear(CHF)",
-    "Collinear(BHE)",
-    "Collinear(ABCD)",
-    "Collinear(EFG)"
-  ],
-  "text_cdl": [
-    "Equal(LengthOfLine(CH),7)",
-    "Equal(LengthOfLine(EF),11)",
-    "Equal(LengthOfLine(FH),10)",
-    "Equal(LengthOfLine(HE),6)",
-    "Parallelogram(ADEG)",
-    "SimilarBetweenTriangle(CHB,FHE)"
-  ],
-  "image_cdl": [
-    "Equal(LengthOfLine(CH),7)",
-    "Equal(LengthOfLine(EF),11)",
-    "Equal(LengthOfLine(FH),10)",
-    "Equal(LengthOfLine(HE),6)",
-    "Parallelogram(ADEG)",
-    "SimilarBetweenTriangle(CHB,FHE)"
-  ],
-  "goal_cdl": "Value(PerimeterOfTriangle(CHB))",
-  "problem_answer": "189/10",
-  "theorem_seqs": [
-    "similar_triangle_property_line_ratio(1,CHB,FHE)",
-    "similar_triangle_property_line_ratio(1,HBC,HEF)",
-    "similar_triangle_property_line_ratio(1,BCH,EFH)",
-    "triangle_perimeter_formula(1,CHB)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "similar_triangle_property_line_ratio(1,CHB,FHE)",
-      "similar_triangle_property_line_ratio(1,HBC,HEF)",
-      "similar_triangle_property_line_ratio(1,BCH,EFH)",
-      "triangle_perimeter_formula(1,CHB)"
-    ]
-  }
+    "problem_id": 1219,
+    "source": "Geometry3k-1259",
+    "problem_level": 4,
+    "problem_img": "1219.png",
+    "construction_cdl": [
+        "Shape(CD,DE,EH,HC)",
+        "Shape(HE,EF,FH)",
+        "Shape(CH,HB,BC)",
+        "Shape(HF,FB,BH)",
+        "Shape(FG,GA,AB,BF)",
+        "Collinear(CHF)",
+        "Collinear(BHE)",
+        "Collinear(ABCD)",
+        "Collinear(EFG)"
+    ],
+    "text_cdl": [
+        "Equal(LengthOfLine(CH),7)",
+        "Equal(LengthOfLine(EF),11)",
+        "Equal(LengthOfLine(FH),10)",
+        "Equal(LengthOfLine(HE),6)",
+        "Parallelogram(ADEG)",
+        "SimilarBetweenTriangle(CHB,FHE)"
+    ],
+    "image_cdl": [
+        "Equal(LengthOfLine(CH),7)",
+        "Equal(LengthOfLine(EF),11)",
+        "Equal(LengthOfLine(FH),10)",
+        "Equal(LengthOfLine(HE),6)",
+        "Parallelogram(ADEG)",
+        "SimilarBetweenTriangle(CHB,FHE)"
+    ],
+    "goal_cdl": "Value(PerimeterOfTriangle(CHB))",
+    "problem_answer": "189/10",
+    "theorem_seqs": [
+        "similar_triangle_property_line_ratio(1,CHB,FHE)",
+        "similar_triangle_property_line_ratio(1,HBC,HEF)",
+        "similar_triangle_property_line_ratio(1,BCH,EFH)",
+        "triangle_perimeter_formula(1,CHB)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "similar_triangle_property_line_ratio(1,CHB,FHE)",
+            "similar_triangle_property_line_ratio(1,HBC,HEF)",
+            "similar_triangle_property_line_ratio(1,BCH,EFH)",
+            "triangle_perimeter_formula(1,CHB)"
+        ]
+    }
 }

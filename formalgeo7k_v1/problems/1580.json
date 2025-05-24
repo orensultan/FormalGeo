@@ -1,39 +1,36 @@
 {
-  "problem_id": 1580,
-  "annotation": "XiaoxiaoJin_2023-04-16",
-  "source": "Geometry3k-1639",
-  "problem_level": 2,
-  "problem_text_cn": "如图所示，∠AGB=30°，圆G的圆心为G，CG⊥DG。求弧GFD的角度。",
-  "problem_text_en": "As shown in the diagram, ∠AGB=30°, G is the center of ⊙G, CG is perpendicular to DG. Find the measure of arc GFD.",
-  "problem_img": "1580.png",
-  "construction_cdl": [
-    "Shape(AG,GB,GBA)",
-    "Shape(BG,GC,GCB)",
-    "Shape(CG,GD,GDC)",
-    "Shape(DG,GF,GFD)",
-    "Shape(FG,GA,GAF)",
-    "Collinear(AGD)",
-    "Collinear(BGF)",
-    "Cocircular(G,CBAFD)"
-  ],
-  "text_cdl": [
-    "Equal(MeasureOfAngle(AGB),30)",
-    "IsCentreOfCircle(G,G)",
-    "PerpendicularBetweenLine(CG,DG)"
-  ],
-  "image_cdl": [
-    "IsCentreOfCircle(G,G)"
-  ],
-  "goal_cdl": "Value(MeasureOfArc(GFD))",
-  "problem_answer": "30",
-  "theorem_seqs": [
-    "vertical_angle(1,AGB,DGF)",
-    "arc_property_center_angle(1,GFD,G)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "vertical_angle(1,AGB,DGF)",
-      "arc_property_center_angle(1,GFD,G)"
-    ]
-  }
+    "problem_id": 1580,
+    "source": "Geometry3k-1639",
+    "problem_level": 2,
+    "problem_img": "1580.png",
+    "construction_cdl": [
+        "Shape(AG,GB,GBA)",
+        "Shape(BG,GC,GCB)",
+        "Shape(CG,GD,GDC)",
+        "Shape(DG,GF,GFD)",
+        "Shape(FG,GA,GAF)",
+        "Collinear(AGD)",
+        "Collinear(BGF)",
+        "Cocircular(G,CBAFD)"
+    ],
+    "text_cdl": [
+        "Equal(MeasureOfAngle(AGB),30)",
+        "IsCentreOfCircle(G,G)",
+        "PerpendicularBetweenLine(CG,DG)"
+    ],
+    "image_cdl": [
+        "IsCentreOfCircle(G,G)"
+    ],
+    "goal_cdl": "Value(MeasureOfArc(GFD))",
+    "problem_answer": "30",
+    "theorem_seqs": [
+        "vertical_angle(1,AGB,DGF)",
+        "arc_property_center_angle(1,GFD,G)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "vertical_angle(1,AGB,DGF)",
+            "arc_property_center_angle(1,GFD,G)"
+        ]
+    }
 }

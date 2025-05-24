@@ -1,35 +1,32 @@
 {
-  "problem_id": 610,
-  "annotation": "JiaZou_2023-03-12",
-  "source": "Geometry3k-627",
-  "problem_level": 1,
-  "problem_text_cn": "如图所示，∠WZX=24°，∠XWZ=23°，∠YXZ=105°，∠ZYX=∠XZY。求∠ZXW的大小。",
-  "problem_text_en": "As shown in the diagram, ∠WZX=24°, ∠XWZ=23°, ∠YXZ=105°, ∠ZYX=∠XZY. Find the measure of ∠ZXW.",
-  "problem_img": "610.png",
-  "construction_cdl": [
-    "Shape(WZ,ZX,XW)",
-    "Shape(XZ,ZY,YX)"
-  ],
-  "text_cdl": [
-    "Equal(MeasureOfAngle(WZX),24)",
-    "Equal(MeasureOfAngle(XWZ),23)",
-    "Equal(MeasureOfAngle(YXZ),105)",
-    "Equal(MeasureOfAngle(ZYX),MeasureOfAngle(XZY))"
-  ],
-  "image_cdl": [
-    "Equal(MeasureOfAngle(WZX),24)",
-    "Equal(MeasureOfAngle(XWZ),23)",
-    "Equal(MeasureOfAngle(YXZ),105)",
-    "Equal(MeasureOfAngle(ZYX),MeasureOfAngle(XZY))"
-  ],
-  "goal_cdl": "Value(MeasureOfAngle(ZXW))",
-  "problem_answer": "133",
-  "theorem_seqs": [
-    "triangle_property_angle_sum(1,WZX)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "triangle_property_angle_sum(1,WZX)"
-    ]
-  }
+    "problem_id": 610,
+    "source": "Geometry3k-627",
+    "problem_level": 1,
+    "problem_img": "610.png",
+    "construction_cdl": [
+        "Shape(WZ,ZX,XW)",
+        "Shape(XZ,ZY,YX)"
+    ],
+    "text_cdl": [
+        "Equal(MeasureOfAngle(WZX),24)",
+        "Equal(MeasureOfAngle(XWZ),23)",
+        "Equal(MeasureOfAngle(YXZ),105)",
+        "Equal(MeasureOfAngle(ZYX),MeasureOfAngle(XZY))"
+    ],
+    "image_cdl": [
+        "Equal(MeasureOfAngle(WZX),24)",
+        "Equal(MeasureOfAngle(XWZ),23)",
+        "Equal(MeasureOfAngle(YXZ),105)",
+        "Equal(MeasureOfAngle(ZYX),MeasureOfAngle(XZY))"
+    ],
+    "goal_cdl": "Value(MeasureOfAngle(ZXW))",
+    "problem_answer": "133",
+    "theorem_seqs": [
+        "triangle_property_angle_sum(1,WZX)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "triangle_property_angle_sum(1,WZX)"
+        ]
+    }
 }

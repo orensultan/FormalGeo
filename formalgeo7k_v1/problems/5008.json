@@ -1,39 +1,36 @@
 {
-  "problem_id": 5008,
-  "annotation": "ZheZhu_2023-05-14",
-  "source": "GeoQA-4710",
-  "problem_level": 4,
-  "problem_text_cn": "如图所示，AC=4，BD=3，CE=6，DF=x，四边形ACDB与四边形AEFB相似。求直线DF的长度。",
-  "problem_text_en": "As shown in the diagram, AC=4, BD=3, CE=6, DF=x, quadrilateral ACDB is similar to quadrilateral AEFB. Find the length of line DF.",
-  "problem_img": "5008.png",
-  "construction_cdl": [
-    "Shape(BA,AC,CD,DB)",
-    "Shape(DC,CE,EF,FD)",
-    "Collinear(ACE)",
-    "Collinear(BDF)"
-  ],
-  "text_cdl": [
-    "Equal(LengthOfLine(AC),4)",
-    "Equal(LengthOfLine(BD),3)",
-    "Equal(LengthOfLine(CE),6)",
-    "Equal(LengthOfLine(DF),x)",
-    "SimilarBetweenQuadrilateral(ACDB,AEFB)"
-  ],
-  "image_cdl": [],
-  "goal_cdl": "Value(LengthOfLine(DF))",
-  "problem_answer": "9/2",
-  "theorem_seqs": [
-    "line_addition(1,AC,CE)",
-    "line_addition(1,BD,DF)",
-    "similar_quadrilateral_property_line_ratio(1,ACDB,AEFB)",
-    "similar_quadrilateral_property_line_ratio(1,DBAC,FBAE)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "line_addition(1,AC,CE)",
-      "line_addition(1,BD,DF)",
-      "similar_quadrilateral_property_line_ratio(1,ACDB,AEFB)",
-      "similar_quadrilateral_property_line_ratio(1,DBAC,FBAE)"
-    ]
-  }
+    "problem_id": 5008,
+    "source": "GeoQA-4710",
+    "problem_level": 4,
+    "problem_img": "5008.png",
+    "construction_cdl": [
+        "Shape(BA,AC,CD,DB)",
+        "Shape(DC,CE,EF,FD)",
+        "Collinear(ACE)",
+        "Collinear(BDF)"
+    ],
+    "text_cdl": [
+        "Equal(LengthOfLine(AC),4)",
+        "Equal(LengthOfLine(BD),3)",
+        "Equal(LengthOfLine(CE),6)",
+        "Equal(LengthOfLine(DF),x)",
+        "SimilarBetweenQuadrilateral(ACDB,AEFB)"
+    ],
+    "image_cdl": [],
+    "goal_cdl": "Value(LengthOfLine(DF))",
+    "problem_answer": "9/2",
+    "theorem_seqs": [
+        "line_addition(1,AC,CE)",
+        "line_addition(1,BD,DF)",
+        "similar_quadrilateral_property_line_ratio(1,ACDB,AEFB)",
+        "similar_quadrilateral_property_line_ratio(1,DBAC,FBAE)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "line_addition(1,AC,CE)",
+            "line_addition(1,BD,DF)",
+            "similar_quadrilateral_property_line_ratio(1,ACDB,AEFB)",
+            "similar_quadrilateral_property_line_ratio(1,DBAC,FBAE)"
+        ]
+    }
 }

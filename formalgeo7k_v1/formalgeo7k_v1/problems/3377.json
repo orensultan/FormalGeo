@@ -1,43 +1,40 @@
 {
-  "problem_id": 3377,
-  "annotation": "JiaZou_2023-04-30",
-  "source": "GeoQA-878",
-  "problem_level": 5,
-  "problem_text_cn": "如图所示，△BCA与△EDA是全等三角形，∠BCA=90°，∠CAB=70°。求∠EBD的大小。",
-  "problem_text_en": "As shown in the diagram, triangle BCA is congruent to triangle EDA, ∠BCA=90°, ∠CAB=70°. Find the measure of ∠EBD.",
-  "problem_img": "3377.png",
-  "construction_cdl": [
-    "Shape(BC,CA,AB)",
-    "Shape(BD,DE,EB)",
-    "Shape(ED,DA,AE)",
-    "Collinear(BDA)"
-  ],
-  "text_cdl": [
-    "CongruentBetweenTriangle(BCA,EDA)",
-    "Equal(MeasureOfAngle(BCA),90)",
-    "Equal(MeasureOfAngle(CAB),70)"
-  ],
-  "image_cdl": [],
-  "goal_cdl": "Value(MeasureOfAngle(EBD))",
-  "problem_answer": "55",
-  "theorem_seqs": [
-    "congruent_triangle_property_line_equal(1,CAB,DAE)",
-    "isosceles_triangle_judgment_line_equal(1,AEB)",
-    "isosceles_triangle_property_angle_equal(1,AEB)",
-    "congruent_triangle_property_angle_equal(1,ABC,AED)",
-    "triangle_property_angle_sum(1,AEB)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "congruent_triangle_property_line_equal(1,CAB,DAE)",
-      "congruent_triangle_property_angle_equal(1,ABC,AED)",
-      "triangle_property_angle_sum(1,AEB)"
+    "problem_id": 3377,
+    "source": "GeoQA-878",
+    "problem_level": 5,
+    "problem_img": "3377.png",
+    "construction_cdl": [
+        "Shape(BC,CA,AB)",
+        "Shape(BD,DE,EB)",
+        "Shape(ED,DA,AE)",
+        "Collinear(BDA)"
     ],
-    "congruent_triangle_property_line_equal(1,CAB,DAE)": [
-      "isosceles_triangle_judgment_line_equal(1,AEB)"
+    "text_cdl": [
+        "CongruentBetweenTriangle(BCA,EDA)",
+        "Equal(MeasureOfAngle(BCA),90)",
+        "Equal(MeasureOfAngle(CAB),70)"
     ],
-    "isosceles_triangle_judgment_line_equal(1,AEB)": [
-      "isosceles_triangle_property_angle_equal(1,AEB)"
-    ]
-  }
+    "image_cdl": [],
+    "goal_cdl": "Value(MeasureOfAngle(EBD))",
+    "problem_answer": "55",
+    "theorem_seqs": [
+        "congruent_triangle_property_line_equal(1,CAB,DAE)",
+        "isosceles_triangle_judgment_line_equal(1,AEB)",
+        "isosceles_triangle_property_angle_equal(1,AEB)",
+        "congruent_triangle_property_angle_equal(1,ABC,AED)",
+        "triangle_property_angle_sum(1,AEB)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "congruent_triangle_property_line_equal(1,CAB,DAE)",
+            "congruent_triangle_property_angle_equal(1,ABC,AED)",
+            "triangle_property_angle_sum(1,AEB)"
+        ],
+        "congruent_triangle_property_line_equal(1,CAB,DAE)": [
+            "isosceles_triangle_judgment_line_equal(1,AEB)"
+        ],
+        "isosceles_triangle_judgment_line_equal(1,AEB)": [
+            "isosceles_triangle_property_angle_equal(1,AEB)"
+        ]
+    }
 }

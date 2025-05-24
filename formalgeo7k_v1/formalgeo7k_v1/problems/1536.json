@@ -1,47 +1,44 @@
 {
-  "problem_id": 1536,
-  "annotation": "QikeHuang_2023-04-09",
-  "source": "Geometry3k-1595",
-  "problem_level": 3,
-  "problem_text_cn": "如图所示，JK=16，KL=12，ST=3，∠JKL=87°，∠LJK=46°，∠RST=87°，∠TRS=46°。求直线SR的长度。",
-  "problem_text_en": "As shown in the diagram, JK=16, KL=12, ST=3, ∠JKL=87°, ∠LJK=46°, ∠RST=87°, ∠TRS=46°. Find the length of line SR.",
-  "problem_img": "1536.png",
-  "construction_cdl": [
-    "Shape(JK,KL,LJ)",
-    "Shape(TR,RS,ST)"
-  ],
-  "text_cdl": [
-    "Equal(LengthOfLine(JK),16)",
-    "Equal(LengthOfLine(KL),12)",
-    "Equal(LengthOfLine(ST),3)",
-    "Equal(MeasureOfAngle(JKL),87)",
-    "Equal(MeasureOfAngle(LJK),46)",
-    "Equal(MeasureOfAngle(RST),87)",
-    "Equal(MeasureOfAngle(TRS),46)"
-  ],
-  "image_cdl": [
-    "Equal(LengthOfLine(JK),16)",
-    "Equal(LengthOfLine(KL),12)",
-    "Equal(LengthOfLine(ST),3)",
-    "Equal(MeasureOfAngle(JKL),87)",
-    "Equal(MeasureOfAngle(LJK),46)",
-    "Equal(MeasureOfAngle(RST),87)",
-    "Equal(MeasureOfAngle(TRS),46)"
-  ],
-  "goal_cdl": "Value(LengthOfLine(SR))",
-  "problem_answer": "4",
-  "theorem_seqs": [
-    "similar_triangle_judgment_aa(1,LJK,TRS)",
-    "similar_triangle_property_line_ratio(1,LJK,TRS)",
-    "similar_triangle_property_line_ratio(1,JKL,RST)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "similar_triangle_judgment_aa(1,LJK,TRS)"
+    "problem_id": 1536,
+    "source": "Geometry3k-1595",
+    "problem_level": 3,
+    "problem_img": "1536.png",
+    "construction_cdl": [
+        "Shape(JK,KL,LJ)",
+        "Shape(TR,RS,ST)"
     ],
-    "similar_triangle_judgment_aa(1,LJK,TRS)": [
-      "similar_triangle_property_line_ratio(1,LJK,TRS)",
-      "similar_triangle_property_line_ratio(1,JKL,RST)"
-    ]
-  }
+    "text_cdl": [
+        "Equal(LengthOfLine(JK),16)",
+        "Equal(LengthOfLine(KL),12)",
+        "Equal(LengthOfLine(ST),3)",
+        "Equal(MeasureOfAngle(JKL),87)",
+        "Equal(MeasureOfAngle(LJK),46)",
+        "Equal(MeasureOfAngle(RST),87)",
+        "Equal(MeasureOfAngle(TRS),46)"
+    ],
+    "image_cdl": [
+        "Equal(LengthOfLine(JK),16)",
+        "Equal(LengthOfLine(KL),12)",
+        "Equal(LengthOfLine(ST),3)",
+        "Equal(MeasureOfAngle(JKL),87)",
+        "Equal(MeasureOfAngle(LJK),46)",
+        "Equal(MeasureOfAngle(RST),87)",
+        "Equal(MeasureOfAngle(TRS),46)"
+    ],
+    "goal_cdl": "Value(LengthOfLine(SR))",
+    "problem_answer": "4",
+    "theorem_seqs": [
+        "similar_triangle_judgment_aa(1,LJK,TRS)",
+        "similar_triangle_property_line_ratio(1,LJK,TRS)",
+        "similar_triangle_property_line_ratio(1,JKL,RST)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "similar_triangle_judgment_aa(1,LJK,TRS)"
+        ],
+        "similar_triangle_judgment_aa(1,LJK,TRS)": [
+            "similar_triangle_property_line_ratio(1,LJK,TRS)",
+            "similar_triangle_property_line_ratio(1,JKL,RST)"
+        ]
+    }
 }

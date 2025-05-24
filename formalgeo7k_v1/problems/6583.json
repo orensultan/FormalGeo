@@ -1,75 +1,72 @@
 {
-  "problem_id": 6583,
-  "annotation": "XiaokaiZhang_2023-06-04",
-  "source": "GeoQA-9554",
-  "problem_level": 16,
-  "problem_text_cn": "如图所示，ABCD的面积为28，BC=4，DM=6，BM平分∠ABC，DC和AB是▱DABC的一组对边。求三角形ABE的面积。",
-  "problem_text_en": "As shown in the diagram, the area of quadrilateral ABCD is 28, BC=4, DM=6, BM is the angle bisector of ∠ABC, quadrilateral DABC is a ▱. Find the area of △ABE.",
-  "problem_img": "6583.png",
-  "construction_cdl": [
-    "Shape(DA,AE,EM,MD)",
-    "Shape(EA,AB,BE)",
-    "Shape(ME,EC,CM)",
-    "Shape(CE,EB,BC)",
-    "Collinear(AEC)",
-    "Collinear(MEB)",
-    "Collinear(DMC)"
-  ],
-  "text_cdl": [
-    "Equal(AreaOfQuadrilateral(ABCD),28)",
-    "Equal(LengthOfLine(BC),4)",
-    "Equal(LengthOfLine(DM),6)",
-    "IsBisectorOfAngle(BM,ABC)",
-    "Parallelogram(DABC)"
-  ],
-  "image_cdl": [],
-  "goal_cdl": "Value(AreaOfTriangle(ABE))",
-  "problem_answer": "10",
-  "theorem_seqs": [
-    "parallel_property_collinear_extend(3,DC,AB,M)",
-    "parallel_property_alternate_interior_angle(1,MC,AB)",
-    "parallel_property_alternate_interior_angle(2,MC,AB)",
-    "isosceles_triangle_judgment_angle_equal(1,CMB)",
-    "line_addition(1,DM,MC)",
-    "parallelogram_property_opposite_line_equal(1,DABC)",
-    "parallelogram_property_opposite_line_equal(1,ABCD)",
-    "parallelogram_area_formula_sine(1,DABC)",
-    "parallel_property_ipsilateral_internal_angle(1,AD,BC)",
-    "cosine_theorem(1,BCA)",
-    "similar_triangle_judgment_aa(1,EAB,ECM)",
-    "similar_triangle_property_line_ratio(1,EAB,ECM)",
-    "similar_triangle_property_line_ratio(1,BEA,MEC)",
-    "line_addition(1,AE,EC)",
-    "cosine_theorem(1,ABC)",
-    "triangle_area_formula_sine(1,ABE)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "parallel_property_collinear_extend(3,DC,AB,M)",
-      "line_addition(1,DM,MC)",
-      "parallelogram_property_opposite_line_equal(1,DABC)",
-      "parallelogram_property_opposite_line_equal(1,ABCD)",
-      "parallelogram_area_formula_sine(1,DABC)",
-      "parallel_property_ipsilateral_internal_angle(1,AD,BC)",
-      "cosine_theorem(1,BCA)",
-      "line_addition(1,AE,EC)",
-      "cosine_theorem(1,ABC)",
-      "triangle_area_formula_sine(1,ABE)"
+    "problem_id": 6583,
+    "source": "GeoQA-9554",
+    "problem_level": 16,
+    "problem_img": "6583.png",
+    "construction_cdl": [
+        "Shape(DA,AE,EM,MD)",
+        "Shape(EA,AB,BE)",
+        "Shape(ME,EC,CM)",
+        "Shape(CE,EB,BC)",
+        "Collinear(AEC)",
+        "Collinear(MEB)",
+        "Collinear(DMC)"
     ],
-    "parallel_property_collinear_extend(3,DC,AB,M)": [
-      "parallel_property_alternate_interior_angle(1,MC,AB)",
-      "parallel_property_alternate_interior_angle(2,MC,AB)"
+    "text_cdl": [
+        "Equal(AreaOfQuadrilateral(ABCD),28)",
+        "Equal(LengthOfLine(BC),4)",
+        "Equal(LengthOfLine(DM),6)",
+        "IsBisectorOfAngle(BM,ABC)",
+        "Parallelogram(DABC)"
     ],
-    "parallel_property_alternate_interior_angle(1,MC,AB)": [
-      "isosceles_triangle_judgment_angle_equal(1,CMB)",
-      "similar_triangle_judgment_aa(1,EAB,ECM)"
+    "image_cdl": [],
+    "goal_cdl": "Value(AreaOfTriangle(ABE))",
+    "problem_answer": "10",
+    "theorem_seqs": [
+        "parallel_property_collinear_extend(3,DC,AB,M)",
+        "parallel_property_alternate_interior_angle(1,MC,AB)",
+        "parallel_property_alternate_interior_angle(2,MC,AB)",
+        "isosceles_triangle_judgment_angle_equal(1,CMB)",
+        "line_addition(1,DM,MC)",
+        "parallelogram_property_opposite_line_equal(1,DABC)",
+        "parallelogram_property_opposite_line_equal(1,ABCD)",
+        "parallelogram_area_formula_sine(1,DABC)",
+        "parallel_property_ipsilateral_internal_angle(1,AD,BC)",
+        "cosine_theorem(1,BCA)",
+        "similar_triangle_judgment_aa(1,EAB,ECM)",
+        "similar_triangle_property_line_ratio(1,EAB,ECM)",
+        "similar_triangle_property_line_ratio(1,BEA,MEC)",
+        "line_addition(1,AE,EC)",
+        "cosine_theorem(1,ABC)",
+        "triangle_area_formula_sine(1,ABE)"
     ],
-    "parallel_property_alternate_interior_angle(2,MC,AB)": [
-      "similar_triangle_judgment_aa(1,EAB,ECM)"
-    ],
-    "similar_triangle_judgment_aa(1,EAB,ECM)": [
-      "similar_triangle_property_line_ratio(1,EAB,ECM)",
-      "similar_triangle_property_line_ratio(1,BEA,MEC)"
-    ]
-  }
+    "theorem_seqs_dag": {
+        "START": [
+            "parallel_property_collinear_extend(3,DC,AB,M)",
+            "line_addition(1,DM,MC)",
+            "parallelogram_property_opposite_line_equal(1,DABC)",
+            "parallelogram_property_opposite_line_equal(1,ABCD)",
+            "parallelogram_area_formula_sine(1,DABC)",
+            "parallel_property_ipsilateral_internal_angle(1,AD,BC)",
+            "cosine_theorem(1,BCA)",
+            "line_addition(1,AE,EC)",
+            "cosine_theorem(1,ABC)",
+            "triangle_area_formula_sine(1,ABE)"
+        ],
+        "parallel_property_collinear_extend(3,DC,AB,M)": [
+            "parallel_property_alternate_interior_angle(1,MC,AB)",
+            "parallel_property_alternate_interior_angle(2,MC,AB)"
+        ],
+        "parallel_property_alternate_interior_angle(1,MC,AB)": [
+            "isosceles_triangle_judgment_angle_equal(1,CMB)",
+            "similar_triangle_judgment_aa(1,EAB,ECM)"
+        ],
+        "parallel_property_alternate_interior_angle(2,MC,AB)": [
+            "similar_triangle_judgment_aa(1,EAB,ECM)"
+        ],
+        "similar_triangle_judgment_aa(1,EAB,ECM)": [
+            "similar_triangle_property_line_ratio(1,EAB,ECM)",
+            "similar_triangle_property_line_ratio(1,BEA,MEC)"
+        ]
+    }
 }

@@ -1,39 +1,36 @@
 {
-  "problem_id": 6797,
-  "annotation": "ChenyangMao_2023-06-04",
-  "source": "GeoQA-angle-10003",
-  "problem_level": 4,
-  "problem_text_cn": "如图所示，∠DAB=20°，BD是CA的垂直平分线。求∠DBC的大小。",
-  "problem_text_en": "As shown in the diagram, ∠DAB=20°, BD perpendicular bisects CA. Find the measure of ∠DBC.",
-  "problem_img": "6797.png",
-  "construction_cdl": [
-    "Shape(DA,AB,BD)",
-    "Shape(CD,DB,BC)",
-    "Collinear(ADC)"
-  ],
-  "text_cdl": [
-    "Equal(MeasureOfAngle(DAB),20)",
-    "IsPerpendicularBisectorOfLine(BD,CA)"
-  ],
-  "image_cdl": [],
-  "goal_cdl": "Value(MeasureOfAngle(DBC))",
-  "problem_answer": "70",
-  "theorem_seqs": [
-    "perpendicular_bisector_property_distance_equal(1,BD,CA)",
-    "isosceles_triangle_judgment_line_equal(1,BCA)",
-    "isosceles_triangle_property_angle_equal(1,BCA)",
-    "triangle_property_angle_sum(1,CDB)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "perpendicular_bisector_property_distance_equal(1,BD,CA)",
-      "triangle_property_angle_sum(1,CDB)"
+    "problem_id": 6797,
+    "source": "GeoQA-angle-10003",
+    "problem_level": 4,
+    "problem_img": "6797.png",
+    "construction_cdl": [
+        "Shape(DA,AB,BD)",
+        "Shape(CD,DB,BC)",
+        "Collinear(ADC)"
     ],
-    "perpendicular_bisector_property_distance_equal(1,BD,CA)": [
-      "isosceles_triangle_judgment_line_equal(1,BCA)"
+    "text_cdl": [
+        "Equal(MeasureOfAngle(DAB),20)",
+        "IsPerpendicularBisectorOfLine(BD,CA)"
     ],
-    "isosceles_triangle_judgment_line_equal(1,BCA)": [
-      "isosceles_triangle_property_angle_equal(1,BCA)"
-    ]
-  }
+    "image_cdl": [],
+    "goal_cdl": "Value(MeasureOfAngle(DBC))",
+    "problem_answer": "70",
+    "theorem_seqs": [
+        "perpendicular_bisector_property_distance_equal(1,BD,CA)",
+        "isosceles_triangle_judgment_line_equal(1,BCA)",
+        "isosceles_triangle_property_angle_equal(1,BCA)",
+        "triangle_property_angle_sum(1,CDB)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "perpendicular_bisector_property_distance_equal(1,BD,CA)",
+            "triangle_property_angle_sum(1,CDB)"
+        ],
+        "perpendicular_bisector_property_distance_equal(1,BD,CA)": [
+            "isosceles_triangle_judgment_line_equal(1,BCA)"
+        ],
+        "isosceles_triangle_judgment_line_equal(1,BCA)": [
+            "isosceles_triangle_property_angle_equal(1,BCA)"
+        ]
+    }
 }

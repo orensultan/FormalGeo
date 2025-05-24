@@ -1,42 +1,39 @@
 {
-  "problem_id": 6001,
-  "annotation": "YangLi_2023-05-28",
-  "source": "GeoQA-8472",
-  "problem_level": 4,
-  "problem_text_cn": "如图所示，∠AOC=140°，圆O的圆心为O，BA是圆O的直径。求∠EDB的大小。",
-  "problem_text_en": "As shown in the diagram, ∠AOC=140°, the center of circle O is O, the diameter of circle O is BA. Find the measure of ∠EDB.",
-  "problem_img": "6001.png",
-  "construction_cdl": [
-    "Shape(BD,ODB)",
-    "Shape(DB,BE,ED)",
-    "Shape(DE,EO,OA,OAD)",
-    "Shape(AO,OC,OCA)",
-    "Shape(CO,OE,EC)",
-    "Shape(CE,EB,OBC)",
-    "Collinear(DEC)",
-    "Collinear(BEOA)",
-    "Cocircular(O,BCAD)"
-  ],
-  "text_cdl": [
-    "Equal(MeasureOfAngle(AOC),140)",
-    "IsCentreOfCircle(O,O)",
-    "IsDiameterOfCircle(BA,O)"
-  ],
-  "image_cdl": [],
-  "goal_cdl": "Value(MeasureOfAngle(EDB))",
-  "problem_answer": "20",
-  "theorem_seqs": [
-    "flat_angle(1,AOE)",
-    "angle_addition(1,AOC,COE)",
-    "arc_property_center_angle(1,OBC,O)",
-    "arc_property_circumference_angle_external(1,OBC,D)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "flat_angle(1,AOE)",
-      "angle_addition(1,AOC,COE)",
-      "arc_property_center_angle(1,OBC,O)",
-      "arc_property_circumference_angle_external(1,OBC,D)"
-    ]
-  }
+    "problem_id": 6001,
+    "source": "GeoQA-8472",
+    "problem_level": 4,
+    "problem_img": "6001.png",
+    "construction_cdl": [
+        "Shape(BD,ODB)",
+        "Shape(DB,BE,ED)",
+        "Shape(DE,EO,OA,OAD)",
+        "Shape(AO,OC,OCA)",
+        "Shape(CO,OE,EC)",
+        "Shape(CE,EB,OBC)",
+        "Collinear(DEC)",
+        "Collinear(BEOA)",
+        "Cocircular(O,BCAD)"
+    ],
+    "text_cdl": [
+        "Equal(MeasureOfAngle(AOC),140)",
+        "IsCentreOfCircle(O,O)",
+        "IsDiameterOfCircle(BA,O)"
+    ],
+    "image_cdl": [],
+    "goal_cdl": "Value(MeasureOfAngle(EDB))",
+    "problem_answer": "20",
+    "theorem_seqs": [
+        "flat_angle(1,AOE)",
+        "angle_addition(1,AOC,COE)",
+        "arc_property_center_angle(1,OBC,O)",
+        "arc_property_circumference_angle_external(1,OBC,D)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "flat_angle(1,AOE)",
+            "angle_addition(1,AOC,COE)",
+            "arc_property_center_angle(1,OBC,O)",
+            "arc_property_circumference_angle_external(1,OBC,D)"
+        ]
+    }
 }

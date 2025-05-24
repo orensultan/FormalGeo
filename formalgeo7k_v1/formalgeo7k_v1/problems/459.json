@@ -1,37 +1,34 @@
 {
-  "problem_id": 459,
-  "annotation": "YimingHe_2023-04-02",
-  "source": "Geometry3k-469",
-  "problem_level": 1,
-  "problem_text_cn": "如图所示，∠LCR=3*x+5°，∠MCN=60°，∠RCM=x-1°。求∠LCR的大小。",
-  "problem_text_en": "As shown in the diagram, ∠LCR=3*x+5°, ∠MCN=60°, ∠RCM=x-1°. Find the measure of ∠LCR.",
-  "problem_img": "459.png",
-  "construction_cdl": [
-    "Shape(CR,CRL,LC)",
-    "Shape(CM,CMR,RC)",
-    "Shape(CN,CNM,MC)",
-    "Shape(CL,CLN,NC)",
-    "Collinear(LCM)",
-    "Cocircular(C,LNMR)"
-  ],
-  "text_cdl": [
-    "Equal(MeasureOfAngle(LCR),3*x+5)",
-    "Equal(MeasureOfAngle(MCN),60)",
-    "Equal(MeasureOfAngle(RCM),x-1)"
-  ],
-  "image_cdl": [
-    "Equal(MeasureOfAngle(LCR),3*x+5)",
-    "Equal(MeasureOfAngle(MCN),60)",
-    "Equal(MeasureOfAngle(RCM),x-1)"
-  ],
-  "goal_cdl": "Value(MeasureOfAngle(LCR))",
-  "problem_answer": "137",
-  "theorem_seqs": [
-    "adjacent_complementary_angle(1,LCR,RCM)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "adjacent_complementary_angle(1,LCR,RCM)"
-    ]
-  }
+    "problem_id": 459,
+    "source": "Geometry3k-469",
+    "problem_level": 1,
+    "problem_img": "459.png",
+    "construction_cdl": [
+        "Shape(CR,CRL,LC)",
+        "Shape(CM,CMR,RC)",
+        "Shape(CN,CNM,MC)",
+        "Shape(CL,CLN,NC)",
+        "Collinear(LCM)",
+        "Cocircular(C,LNMR)"
+    ],
+    "text_cdl": [
+        "Equal(MeasureOfAngle(LCR),3*x+5)",
+        "Equal(MeasureOfAngle(MCN),60)",
+        "Equal(MeasureOfAngle(RCM),x-1)"
+    ],
+    "image_cdl": [
+        "Equal(MeasureOfAngle(LCR),3*x+5)",
+        "Equal(MeasureOfAngle(MCN),60)",
+        "Equal(MeasureOfAngle(RCM),x-1)"
+    ],
+    "goal_cdl": "Value(MeasureOfAngle(LCR))",
+    "problem_answer": "137",
+    "theorem_seqs": [
+        "adjacent_complementary_angle(1,LCR,RCM)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "adjacent_complementary_angle(1,LCR,RCM)"
+        ]
+    }
 }

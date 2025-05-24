@@ -1,37 +1,34 @@
 {
-  "problem_id": 1664,
-  "annotation": "NaZhu_2023-03-26",
-  "source": "Geometry3k-1728",
-  "problem_level": 1,
-  "problem_text_cn": "如图所示，PQ=721，PS=756，QR=547，RS=593，∠QPS=58°。求直线QS的长度。",
-  "problem_text_en": "As shown in the diagram, PQ=721, PS=756, QR=547, RS=593, ∠QPS=58°. Find the length of line QS.",
-  "problem_img": "1664.png",
-  "construction_cdl": [
-    "Shape(PS,SQ,QP)",
-    "Shape(QS,SR,RQ)"
-  ],
-  "text_cdl": [
-    "Equal(LengthOfLine(PQ),721)",
-    "Equal(LengthOfLine(PS),756)",
-    "Equal(LengthOfLine(QR),547)",
-    "Equal(LengthOfLine(RS),593)",
-    "Equal(MeasureOfAngle(QPS),58)"
-  ],
-  "image_cdl": [
-    "Equal(LengthOfLine(PQ),721)",
-    "Equal(LengthOfLine(PS),756)",
-    "Equal(LengthOfLine(QR),547)",
-    "Equal(LengthOfLine(RS),593)",
-    "Equal(MeasureOfAngle(QPS),58)"
-  ],
-  "goal_cdl": "Value(LengthOfLine(QS))",
-  "problem_answer": "7*sqrt(22273-22248*cos(29*pi/90))",
-  "theorem_seqs": [
-    "cosine_theorem(1,PSQ)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "cosine_theorem(1,PSQ)"
-    ]
-  }
+    "problem_id": 1664,
+    "source": "Geometry3k-1728",
+    "problem_level": 1,
+    "problem_img": "1664.png",
+    "construction_cdl": [
+        "Shape(PS,SQ,QP)",
+        "Shape(QS,SR,RQ)"
+    ],
+    "text_cdl": [
+        "Equal(LengthOfLine(PQ),721)",
+        "Equal(LengthOfLine(PS),756)",
+        "Equal(LengthOfLine(QR),547)",
+        "Equal(LengthOfLine(RS),593)",
+        "Equal(MeasureOfAngle(QPS),58)"
+    ],
+    "image_cdl": [
+        "Equal(LengthOfLine(PQ),721)",
+        "Equal(LengthOfLine(PS),756)",
+        "Equal(LengthOfLine(QR),547)",
+        "Equal(LengthOfLine(RS),593)",
+        "Equal(MeasureOfAngle(QPS),58)"
+    ],
+    "goal_cdl": "Value(LengthOfLine(QS))",
+    "problem_answer": "7*sqrt(22273-22248*cos(29*pi/90))",
+    "theorem_seqs": [
+        "cosine_theorem(1,PSQ)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "cosine_theorem(1,PSQ)"
+        ]
+    }
 }

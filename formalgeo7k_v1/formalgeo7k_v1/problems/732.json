@@ -1,57 +1,54 @@
 {
-  "problem_id": 732,
-  "annotation": "JiaZou_2023-04-09",
-  "source": "Geometry3k-757",
-  "problem_level": 7,
-  "problem_text_cn": "如图所示，GK=14，MF=8，弧FKG的角度为122，圆F的圆心为F，HJ⊥KJ。求弧FHG的角度。",
-  "problem_text_en": "As shown in the diagram, GK=14, MF=8, the measure of ⌒FKG is 122, F is the center of circle F, HJ is perpendicular to KJ. Find the measure of ⌒FHG.",
-  "problem_img": "732.png",
-  "construction_cdl": [
-    "Shape(GF,FJ,JG)",
-    "Shape(JH,FHG,GJ)",
-    "Shape(FG,FGM,MF)",
-    "Shape(JF,FM,FMK,KJ)",
-    "Shape(HJ,JK,FKH)",
-    "Collinear(GJK)",
-    "Collinear(MFJH)",
-    "Cocircular(F,GMKH)"
-  ],
-  "text_cdl": [
-    "Equal(LengthOfLine(GK),14)",
-    "Equal(LengthOfLine(MF),8)",
-    "Equal(MeasureOfArc(FKG),122)",
-    "IsCentreOfCircle(F,F)",
-    "PerpendicularBetweenLine(HJ,KJ)"
-  ],
-  "image_cdl": [
-    "Equal(LengthOfLine(GK),14)",
-    "Equal(LengthOfLine(MF),8)",
-    "Equal(MeasureOfArc(FKG),122)",
-    "IsCentreOfCircle(F,F)",
-    "PerpendicularBetweenLine(HJ,KJ)"
-  ],
-  "goal_cdl": "Value(MeasureOfArc(FHG))",
-  "problem_answer": "180*asin(7/8)/pi",
-  "theorem_seqs": [
-    "adjacent_complementary_angle(1,HJK,KJM)",
-    "circle_property_chord_perpendicular_bisect_chord(1,F,FJ,KG)",
-    "line_addition(1,GJ,JK)",
-    "radius_of_circle_property_length_equal(1,FM,F)",
-    "radius_of_circle_property_length_equal(1,FG,F)",
-    "sine_theorem(1,GFJ)",
-    "arc_property_center_angle(1,FHG,F)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "adjacent_complementary_angle(1,HJK,KJM)",
-      "line_addition(1,GJ,JK)",
-      "radius_of_circle_property_length_equal(1,FM,F)",
-      "radius_of_circle_property_length_equal(1,FG,F)",
-      "sine_theorem(1,GFJ)",
-      "arc_property_center_angle(1,FHG,F)"
+    "problem_id": 732,
+    "source": "Geometry3k-757",
+    "problem_level": 7,
+    "problem_img": "732.png",
+    "construction_cdl": [
+        "Shape(GF,FJ,JG)",
+        "Shape(JH,FHG,GJ)",
+        "Shape(FG,FGM,MF)",
+        "Shape(JF,FM,FMK,KJ)",
+        "Shape(HJ,JK,FKH)",
+        "Collinear(GJK)",
+        "Collinear(MFJH)",
+        "Cocircular(F,GMKH)"
     ],
-    "adjacent_complementary_angle(1,HJK,KJM)": [
-      "circle_property_chord_perpendicular_bisect_chord(1,F,FJ,KG)"
-    ]
-  }
+    "text_cdl": [
+        "Equal(LengthOfLine(GK),14)",
+        "Equal(LengthOfLine(MF),8)",
+        "Equal(MeasureOfArc(FKG),122)",
+        "IsCentreOfCircle(F,F)",
+        "PerpendicularBetweenLine(HJ,KJ)"
+    ],
+    "image_cdl": [
+        "Equal(LengthOfLine(GK),14)",
+        "Equal(LengthOfLine(MF),8)",
+        "Equal(MeasureOfArc(FKG),122)",
+        "IsCentreOfCircle(F,F)",
+        "PerpendicularBetweenLine(HJ,KJ)"
+    ],
+    "goal_cdl": "Value(MeasureOfArc(FHG))",
+    "problem_answer": "180*asin(7/8)/pi",
+    "theorem_seqs": [
+        "adjacent_complementary_angle(1,HJK,KJM)",
+        "circle_property_chord_perpendicular_bisect_chord(1,F,FJ,KG)",
+        "line_addition(1,GJ,JK)",
+        "radius_of_circle_property_length_equal(1,FM,F)",
+        "radius_of_circle_property_length_equal(1,FG,F)",
+        "sine_theorem(1,GFJ)",
+        "arc_property_center_angle(1,FHG,F)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "adjacent_complementary_angle(1,HJK,KJM)",
+            "line_addition(1,GJ,JK)",
+            "radius_of_circle_property_length_equal(1,FM,F)",
+            "radius_of_circle_property_length_equal(1,FG,F)",
+            "sine_theorem(1,GFJ)",
+            "arc_property_center_angle(1,FHG,F)"
+        ],
+        "adjacent_complementary_angle(1,HJK,KJM)": [
+            "circle_property_chord_perpendicular_bisect_chord(1,F,FJ,KG)"
+        ]
+    }
 }

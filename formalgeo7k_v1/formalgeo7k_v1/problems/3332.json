@@ -1,31 +1,28 @@
 {
-  "problem_id": 3332,
-  "annotation": "YimingHe_2023-04-30",
-  "source": "GeoQA-735",
-  "problem_level": 2,
-  "problem_text_cn": "如图所示，∠ABD=∠CAD，∠CAB=78°。求∠ADC的大小。",
-  "problem_text_en": "As shown in the diagram, ∠ABD=∠CAD, ∠CAB=78°. Find the measure of ∠ADC.",
-  "problem_img": "3332.png",
-  "construction_cdl": [
-    "Shape(AB,BD,DA)",
-    "Shape(AD,DC,CA)",
-    "Collinear(BDC)"
-  ],
-  "text_cdl": [
-    "Equal(MeasureOfAngle(ABD),MeasureOfAngle(CAD))",
-    "Equal(MeasureOfAngle(CAB),78)"
-  ],
-  "image_cdl": [],
-  "goal_cdl": "Value(MeasureOfAngle(ADC))",
-  "problem_answer": "78",
-  "theorem_seqs": [
-    "triangle_property_angle_sum(1,ADC)",
-    "triangle_property_angle_sum(1,ABC)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "triangle_property_angle_sum(1,ADC)",
-      "triangle_property_angle_sum(1,ABC)"
-    ]
-  }
+    "problem_id": 3332,
+    "source": "GeoQA-735",
+    "problem_level": 2,
+    "problem_img": "3332.png",
+    "construction_cdl": [
+        "Shape(AB,BD,DA)",
+        "Shape(AD,DC,CA)",
+        "Collinear(BDC)"
+    ],
+    "text_cdl": [
+        "Equal(MeasureOfAngle(ABD),MeasureOfAngle(CAD))",
+        "Equal(MeasureOfAngle(CAB),78)"
+    ],
+    "image_cdl": [],
+    "goal_cdl": "Value(MeasureOfAngle(ADC))",
+    "problem_answer": "78",
+    "theorem_seqs": [
+        "triangle_property_angle_sum(1,ADC)",
+        "triangle_property_angle_sum(1,ABC)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "triangle_property_angle_sum(1,ADC)",
+            "triangle_property_angle_sum(1,ABC)"
+        ]
+    }
 }

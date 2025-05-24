@@ -1,36 +1,33 @@
 {
-  "problem_id": 5266,
-  "annotation": "XiaokaiZhang_2023-05-21",
-  "source": "GeoQA-5382",
-  "problem_level": 3,
-  "problem_text_cn": "如图所示，∠CAB=20°，AB∥DE，EC垂直于AC。求∠CEF的大小。",
-  "problem_text_en": "As shown in the diagram, ∠CAB=20°, AB is parallel to DE, EC⊥AC. Find the measure of ∠CEF.",
-  "problem_img": "5266.png",
-  "construction_cdl": [
-    "Shape(CA,AB,BC)",
-    "Shape(AD,DE,EB,BA)",
-    "Shape(BE,EF)",
-    "Collinear(CBE)",
-    "Collinear(DEF)"
-  ],
-  "text_cdl": [
-    "Equal(MeasureOfAngle(CAB),20)",
-    "ParallelBetweenLine(AB,DE)",
-    "PerpendicularBetweenLine(EC,AC)"
-  ],
-  "image_cdl": [],
-  "goal_cdl": "Value(MeasureOfAngle(CEF))",
-  "problem_answer": "110",
-  "theorem_seqs": [
-    "triangle_property_angle_sum(1,CAB)",
-    "parallel_property_corresponding_angle(2,ED,BA,C)",
-    "adjacent_complementary_angle(1,DEC,CEF)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "triangle_property_angle_sum(1,CAB)",
-      "parallel_property_corresponding_angle(2,ED,BA,C)",
-      "adjacent_complementary_angle(1,DEC,CEF)"
-    ]
-  }
+    "problem_id": 5266,
+    "source": "GeoQA-5382",
+    "problem_level": 3,
+    "problem_img": "5266.png",
+    "construction_cdl": [
+        "Shape(CA,AB,BC)",
+        "Shape(AD,DE,EB,BA)",
+        "Shape(BE,EF)",
+        "Collinear(CBE)",
+        "Collinear(DEF)"
+    ],
+    "text_cdl": [
+        "Equal(MeasureOfAngle(CAB),20)",
+        "ParallelBetweenLine(AB,DE)",
+        "PerpendicularBetweenLine(EC,AC)"
+    ],
+    "image_cdl": [],
+    "goal_cdl": "Value(MeasureOfAngle(CEF))",
+    "problem_answer": "110",
+    "theorem_seqs": [
+        "triangle_property_angle_sum(1,CAB)",
+        "parallel_property_corresponding_angle(2,ED,BA,C)",
+        "adjacent_complementary_angle(1,DEC,CEF)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "triangle_property_angle_sum(1,CAB)",
+            "parallel_property_corresponding_angle(2,ED,BA,C)",
+            "adjacent_complementary_angle(1,DEC,CEF)"
+        ]
+    }
 }

@@ -1,38 +1,35 @@
 {
-  "problem_id": 4123,
-  "annotation": "QikeHuang_2023-05-07",
-  "source": "GeoQA-2626",
-  "problem_level": 2,
-  "problem_text_cn": "如图所示，∠CDA=20°，O是圆O的圆心。求∠CBA的大小。",
-  "problem_text_en": "As shown in the diagram, ∠CDA=20°, the center of ⊙O is O. Find the measure of ∠CBA.",
-  "problem_img": "4123.png",
-  "construction_cdl": [
-    "Shape(CP,PA,OAC)",
-    "Shape(PC,CB,BP)",
-    "Shape(AP,PD,DA)",
-    "Shape(OCB,BC)",
-    "Shape(ODA,AD)",
-    "Shape(PB,OBD,DP)",
-    "Shape(O)",
-    "Collinear(CPD)",
-    "Collinear(APB)",
-    "Cocircular(O,ACBD)"
-  ],
-  "text_cdl": [
-    "Equal(MeasureOfAngle(CDA),20)",
-    "IsCentreOfCircle(O,O)"
-  ],
-  "image_cdl": [],
-  "goal_cdl": "Value(MeasureOfAngle(CBA))",
-  "problem_answer": "20",
-  "theorem_seqs": [
-    "arc_property_circumference_angle_external(1,OAC,D)",
-    "arc_property_circumference_angle_external(1,OAC,B)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "arc_property_circumference_angle_external(1,OAC,D)",
-      "arc_property_circumference_angle_external(1,OAC,B)"
-    ]
-  }
+    "problem_id": 4123,
+    "source": "GeoQA-2626",
+    "problem_level": 2,
+    "problem_img": "4123.png",
+    "construction_cdl": [
+        "Shape(CP,PA,OAC)",
+        "Shape(PC,CB,BP)",
+        "Shape(AP,PD,DA)",
+        "Shape(OCB,BC)",
+        "Shape(ODA,AD)",
+        "Shape(PB,OBD,DP)",
+        "Shape(O)",
+        "Collinear(CPD)",
+        "Collinear(APB)",
+        "Cocircular(O,ACBD)"
+    ],
+    "text_cdl": [
+        "Equal(MeasureOfAngle(CDA),20)",
+        "IsCentreOfCircle(O,O)"
+    ],
+    "image_cdl": [],
+    "goal_cdl": "Value(MeasureOfAngle(CBA))",
+    "problem_answer": "20",
+    "theorem_seqs": [
+        "arc_property_circumference_angle_external(1,OAC,D)",
+        "arc_property_circumference_angle_external(1,OAC,B)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "arc_property_circumference_angle_external(1,OAC,D)",
+            "arc_property_circumference_angle_external(1,OAC,B)"
+        ]
+    }
 }

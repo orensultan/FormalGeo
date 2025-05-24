@@ -1,40 +1,37 @@
 {
-  "problem_id": 3335,
-  "annotation": "YimingHe_2023-04-30",
-  "source": "GeoQA-749",
-  "problem_level": 3,
-  "problem_text_cn": "如图所示，AB=10，AC=6，AD平分∠BAC，DE⊥AE，三角形ACB为直角三角形。求直线BE的长度。",
-  "problem_text_en": "As shown in the diagram, AB=10, AC=6, AD is the angle bisector of ∠BAC, DE is perpendicular to AE, ∠ACB is the right angle of the right triangle ACB. Find the length of line BE.",
-  "problem_img": "3335.png",
-  "construction_cdl": [
-    "Shape(AC,CD,DA)",
-    "Shape(AD,DE,EA)",
-    "Shape(DB,BE,ED)",
-    "Collinear(AEB)",
-    "Collinear(CDB)"
-  ],
-  "text_cdl": [
-    "Equal(LengthOfLine(AB),10)",
-    "Equal(LengthOfLine(AC),6)",
-    "IsBisectorOfAngle(AD,BAC)",
-    "PerpendicularBetweenLine(DE,AE)",
-    "RightTriangle(ACB)"
-  ],
-  "image_cdl": [],
-  "goal_cdl": "Value(LengthOfLine(BE))",
-  "problem_answer": "4",
-  "theorem_seqs": [
-    "mirror_congruent_triangle_judgment_aas(1,DAC,DEA)",
-    "mirror_congruent_triangle_property_line_equal(1,DAC,DEA)",
-    "line_addition(1,AE,EB)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "mirror_congruent_triangle_judgment_aas(1,DAC,DEA)",
-      "line_addition(1,AE,EB)"
+    "problem_id": 3335,
+    "source": "GeoQA-749",
+    "problem_level": 3,
+    "problem_img": "3335.png",
+    "construction_cdl": [
+        "Shape(AC,CD,DA)",
+        "Shape(AD,DE,EA)",
+        "Shape(DB,BE,ED)",
+        "Collinear(AEB)",
+        "Collinear(CDB)"
     ],
-    "mirror_congruent_triangle_judgment_aas(1,DAC,DEA)": [
-      "mirror_congruent_triangle_property_line_equal(1,DAC,DEA)"
-    ]
-  }
+    "text_cdl": [
+        "Equal(LengthOfLine(AB),10)",
+        "Equal(LengthOfLine(AC),6)",
+        "IsBisectorOfAngle(AD,BAC)",
+        "PerpendicularBetweenLine(DE,AE)",
+        "RightTriangle(ACB)"
+    ],
+    "image_cdl": [],
+    "goal_cdl": "Value(LengthOfLine(BE))",
+    "problem_answer": "4",
+    "theorem_seqs": [
+        "mirror_congruent_triangle_judgment_aas(1,DAC,DEA)",
+        "mirror_congruent_triangle_property_line_equal(1,DAC,DEA)",
+        "line_addition(1,AE,EB)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "mirror_congruent_triangle_judgment_aas(1,DAC,DEA)",
+            "line_addition(1,AE,EB)"
+        ],
+        "mirror_congruent_triangle_judgment_aas(1,DAC,DEA)": [
+            "mirror_congruent_triangle_property_line_equal(1,DAC,DEA)"
+        ]
+    }
 }

@@ -1,41 +1,38 @@
 {
-  "problem_id": 5445,
-  "annotation": "YangLi_2023-05-21",
-  "source": "GeoQA-5795",
-  "problem_level": 3,
-  "problem_text_cn": "如图所示，∠FDG=30°，BD是∠ABC的角平分线，ED∥BC。求∠AEG的大小。",
-  "problem_text_en": "As shown in the diagram, ∠FDG=30°, BD bisects ∠ABC, ED∥BC. Find the measure of ∠AEG.",
-  "problem_img": "5445.png",
-  "construction_cdl": [
-    "Shape(AG,GD)",
-    "Shape(DF,FC)",
-    "Shape(AE,EG,GA)",
-    "Shape(DG,GF,FD)",
-    "Shape(FB,BC,CF)",
-    "Shape(GE,EB,BF,FG)",
-    "Collinear(AGFC)",
-    "Collinear(EGD)",
-    "Collinear(BFD)",
-    "Collinear(AEB)"
-  ],
-  "text_cdl": [
-    "Equal(MeasureOfAngle(FDG),30)",
-    "IsBisectorOfAngle(BD,ABC)",
-    "ParallelBetweenLine(ED,BC)"
-  ],
-  "image_cdl": [],
-  "goal_cdl": "Value(MeasureOfAngle(AEG))",
-  "problem_answer": "60",
-  "theorem_seqs": [
-    "parallel_property_alternate_interior_angle(2,ED,BC)",
-    "triangle_property_angle_sum(1,EBD)",
-    "adjacent_complementary_angle(1,AEG,GEB)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "parallel_property_alternate_interior_angle(2,ED,BC)",
-      "triangle_property_angle_sum(1,EBD)",
-      "adjacent_complementary_angle(1,AEG,GEB)"
-    ]
-  }
+    "problem_id": 5445,
+    "source": "GeoQA-5795",
+    "problem_level": 3,
+    "problem_img": "5445.png",
+    "construction_cdl": [
+        "Shape(AG,GD)",
+        "Shape(DF,FC)",
+        "Shape(AE,EG,GA)",
+        "Shape(DG,GF,FD)",
+        "Shape(FB,BC,CF)",
+        "Shape(GE,EB,BF,FG)",
+        "Collinear(AGFC)",
+        "Collinear(EGD)",
+        "Collinear(BFD)",
+        "Collinear(AEB)"
+    ],
+    "text_cdl": [
+        "Equal(MeasureOfAngle(FDG),30)",
+        "IsBisectorOfAngle(BD,ABC)",
+        "ParallelBetweenLine(ED,BC)"
+    ],
+    "image_cdl": [],
+    "goal_cdl": "Value(MeasureOfAngle(AEG))",
+    "problem_answer": "60",
+    "theorem_seqs": [
+        "parallel_property_alternate_interior_angle(2,ED,BC)",
+        "triangle_property_angle_sum(1,EBD)",
+        "adjacent_complementary_angle(1,AEG,GEB)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "parallel_property_alternate_interior_angle(2,ED,BC)",
+            "triangle_property_angle_sum(1,EBD)",
+            "adjacent_complementary_angle(1,AEG,GEB)"
+        ]
+    }
 }

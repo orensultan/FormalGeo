@@ -1,38 +1,35 @@
 {
-  "problem_id": 5104,
-  "annotation": "YimingHe_2023-05-21",
-  "source": "GeoQA-4938",
-  "problem_level": 5,
-  "problem_text_cn": "如图所示，AB=6，BC=4，M平分线段AB，N平分线段BC。求直线MN的长度。",
-  "problem_text_en": "As shown in the diagram, AB=6, BC=4, M bisects segment AB, N bisects segment BC. Find the length of line MN.",
-  "problem_img": "5104.png",
-  "construction_cdl": [
-    "Shape(AM,MB,BN,NC)",
-    "Collinear(AMBNC)"
-  ],
-  "text_cdl": [
-    "Equal(LengthOfLine(AB),6)",
-    "Equal(LengthOfLine(BC),4)",
-    "IsMidpointOfLine(M,AB)",
-    "IsMidpointOfLine(N,BC)"
-  ],
-  "image_cdl": [],
-  "goal_cdl": "Value(LengthOfLine(MN))",
-  "problem_answer": "5",
-  "theorem_seqs": [
-    "line_addition(1,AM,MB)",
-    "line_addition(1,AM,MN)",
-    "line_addition(1,AB,BN)",
-    "line_addition(1,AB,BC)",
-    "line_addition(1,AN,NC)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "line_addition(1,AM,MB)",
-      "line_addition(1,AM,MN)",
-      "line_addition(1,AB,BN)",
-      "line_addition(1,AB,BC)",
-      "line_addition(1,AN,NC)"
-    ]
-  }
+    "problem_id": 5104,
+    "source": "GeoQA-4938",
+    "problem_level": 5,
+    "problem_img": "5104.png",
+    "construction_cdl": [
+        "Shape(AM,MB,BN,NC)",
+        "Collinear(AMBNC)"
+    ],
+    "text_cdl": [
+        "Equal(LengthOfLine(AB),6)",
+        "Equal(LengthOfLine(BC),4)",
+        "IsMidpointOfLine(M,AB)",
+        "IsMidpointOfLine(N,BC)"
+    ],
+    "image_cdl": [],
+    "goal_cdl": "Value(LengthOfLine(MN))",
+    "problem_answer": "5",
+    "theorem_seqs": [
+        "line_addition(1,AM,MB)",
+        "line_addition(1,AM,MN)",
+        "line_addition(1,AB,BN)",
+        "line_addition(1,AB,BC)",
+        "line_addition(1,AN,NC)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "line_addition(1,AM,MB)",
+            "line_addition(1,AM,MN)",
+            "line_addition(1,AB,BN)",
+            "line_addition(1,AB,BC)",
+            "line_addition(1,AN,NC)"
+        ]
+    }
 }

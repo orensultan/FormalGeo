@@ -1,36 +1,33 @@
 {
-  "problem_id": 1894,
-  "annotation": "YanjunGuo_2023-04-23",
-  "source": "Geometry3k-1969",
-  "problem_level": 1,
-  "problem_text_cn": "如图所示，∠TZY=30*x°，∠TZY=∠ZYW，∠WTZ=20*x°，∠WTZ=∠YWT，TZYW是梯形。求∠WTZ的大小。",
-  "problem_text_en": "As shown in the diagram, ∠TZY=30*x°, ∠TZY=∠ZYW, ∠WTZ=20*x°, ∠WTZ=∠YWT, TZ and YW are the non-parallel sides (legs) of trapezoid TZYW. Find the measure of ∠WTZ.",
-  "problem_img": "1894.png",
-  "construction_cdl": [
-    "Shape(TZ,ZY,YW,WT)"
-  ],
-  "text_cdl": [
-    "Equal(MeasureOfAngle(TZY),30*x)",
-    "Equal(MeasureOfAngle(TZY),MeasureOfAngle(ZYW))",
-    "Equal(MeasureOfAngle(WTZ),20*x)",
-    "Equal(MeasureOfAngle(WTZ),MeasureOfAngle(YWT))",
-    "Trapezoid(TZYW)"
-  ],
-  "image_cdl": [
-    "Equal(MeasureOfAngle(TZY),30*x)",
-    "Equal(MeasureOfAngle(TZY),MeasureOfAngle(ZYW))",
-    "Equal(MeasureOfAngle(WTZ),20*x)",
-    "Equal(MeasureOfAngle(WTZ),MeasureOfAngle(YWT))",
-    "Trapezoid(TZYW)"
-  ],
-  "goal_cdl": "Value(MeasureOfAngle(WTZ))",
-  "problem_answer": "72",
-  "theorem_seqs": [
-    "quadrilateral_property_angle_sum(1,TZYW)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "quadrilateral_property_angle_sum(1,TZYW)"
-    ]
-  }
+    "problem_id": 1894,
+    "source": "Geometry3k-1969",
+    "problem_level": 1,
+    "problem_img": "1894.png",
+    "construction_cdl": [
+        "Shape(TZ,ZY,YW,WT)"
+    ],
+    "text_cdl": [
+        "Equal(MeasureOfAngle(TZY),30*x)",
+        "Equal(MeasureOfAngle(TZY),MeasureOfAngle(ZYW))",
+        "Equal(MeasureOfAngle(WTZ),20*x)",
+        "Equal(MeasureOfAngle(WTZ),MeasureOfAngle(YWT))",
+        "Trapezoid(TZYW)"
+    ],
+    "image_cdl": [
+        "Equal(MeasureOfAngle(TZY),30*x)",
+        "Equal(MeasureOfAngle(TZY),MeasureOfAngle(ZYW))",
+        "Equal(MeasureOfAngle(WTZ),20*x)",
+        "Equal(MeasureOfAngle(WTZ),MeasureOfAngle(YWT))",
+        "Trapezoid(TZYW)"
+    ],
+    "goal_cdl": "Value(MeasureOfAngle(WTZ))",
+    "problem_answer": "72",
+    "theorem_seqs": [
+        "quadrilateral_property_angle_sum(1,TZYW)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "quadrilateral_property_angle_sum(1,TZYW)"
+        ]
+    }
 }

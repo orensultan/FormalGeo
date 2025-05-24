@@ -1,44 +1,41 @@
 {
-  "problem_id": 1435,
-  "annotation": "YanjunGuo_2023-04-16",
-  "source": "Geometry3k-1488",
-  "problem_level": 2,
-  "problem_text_cn": "如图所示，∠CXG=x-8°，∠DEA=120°，XG∥EL。求x的值。",
-  "problem_text_en": "As shown in the diagram, ∠CXG=x-8°, ∠DEA=120°, XG∥EL. Find the value of x.",
-  "problem_img": "1435.png",
-  "construction_cdl": [
-    "Shape(FX,XC)",
-    "Shape(CX,XG)",
-    "Shape(EX,XF)",
-    "Shape(GX,XE)",
-    "Shape(AE,EX)",
-    "Shape(XE,EL)",
-    "Shape(AE,ED)",
-    "Shape(LE,ED)",
-    "Collinear(CXED)",
-    "Collinear(FXG)",
-    "Collinear(AEL)"
-  ],
-  "text_cdl": [
-    "Equal(MeasureOfAngle(CXG),x-8)",
-    "Equal(MeasureOfAngle(DEA),120)",
-    "ParallelBetweenLine(XG,EL)"
-  ],
-  "image_cdl": [
-    "Equal(MeasureOfAngle(CXG),x-8)",
-    "Equal(MeasureOfAngle(DEA),120)",
-    "ParallelBetweenLine(XG,EL)"
-  ],
-  "goal_cdl": "Value(x)",
-  "problem_answer": "128",
-  "theorem_seqs": [
-    "parallel_property_corresponding_angle(1,XG,EL,C)",
-    "vertical_angle(1,XEL,DEA)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "parallel_property_corresponding_angle(1,XG,EL,C)",
-      "vertical_angle(1,XEL,DEA)"
-    ]
-  }
+    "problem_id": 1435,
+    "source": "Geometry3k-1488",
+    "problem_level": 2,
+    "problem_img": "1435.png",
+    "construction_cdl": [
+        "Shape(FX,XC)",
+        "Shape(CX,XG)",
+        "Shape(EX,XF)",
+        "Shape(GX,XE)",
+        "Shape(AE,EX)",
+        "Shape(XE,EL)",
+        "Shape(AE,ED)",
+        "Shape(LE,ED)",
+        "Collinear(CXED)",
+        "Collinear(FXG)",
+        "Collinear(AEL)"
+    ],
+    "text_cdl": [
+        "Equal(MeasureOfAngle(CXG),x-8)",
+        "Equal(MeasureOfAngle(DEA),120)",
+        "ParallelBetweenLine(XG,EL)"
+    ],
+    "image_cdl": [
+        "Equal(MeasureOfAngle(CXG),x-8)",
+        "Equal(MeasureOfAngle(DEA),120)",
+        "ParallelBetweenLine(XG,EL)"
+    ],
+    "goal_cdl": "Value(x)",
+    "problem_answer": "128",
+    "theorem_seqs": [
+        "parallel_property_corresponding_angle(1,XG,EL,C)",
+        "vertical_angle(1,XEL,DEA)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "parallel_property_corresponding_angle(1,XG,EL,C)",
+            "vertical_angle(1,XEL,DEA)"
+        ]
+    }
 }

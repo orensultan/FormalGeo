@@ -1,35 +1,32 @@
 {
-  "problem_id": 3724,
-  "annotation": "YangLi_2023-04-30",
-  "source": "GeoQA-1502",
-  "problem_level": 2,
-  "problem_text_cn": "如图所示，∠CEF=110°，ED平行于AB。求∠EAB的大小。",
-  "problem_text_en": "As shown in the diagram, ∠CEF=110°, ED∥AB. Find the measure of ∠EAB.",
-  "problem_img": "3724.png",
-  "construction_cdl": [
-    "Shape(CE,EF)",
-    "Shape(FE,ED)",
-    "Shape(AE,EC)",
-    "Shape(DE,EA)",
-    "Shape(EA,AB)",
-    "Collinear(CED)",
-    "Collinear(FEA)"
-  ],
-  "text_cdl": [
-    "Equal(MeasureOfAngle(CEF),110)",
-    "ParallelBetweenLine(ED,AB)"
-  ],
-  "image_cdl": [],
-  "goal_cdl": "Value(MeasureOfAngle(EAB))",
-  "problem_answer": "70",
-  "theorem_seqs": [
-    "vertical_angle(1,CEF,DEA)",
-    "parallel_property_ipsilateral_internal_angle(1,ED,AB)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "vertical_angle(1,CEF,DEA)",
-      "parallel_property_ipsilateral_internal_angle(1,ED,AB)"
-    ]
-  }
+    "problem_id": 3724,
+    "source": "GeoQA-1502",
+    "problem_level": 2,
+    "problem_img": "3724.png",
+    "construction_cdl": [
+        "Shape(CE,EF)",
+        "Shape(FE,ED)",
+        "Shape(AE,EC)",
+        "Shape(DE,EA)",
+        "Shape(EA,AB)",
+        "Collinear(CED)",
+        "Collinear(FEA)"
+    ],
+    "text_cdl": [
+        "Equal(MeasureOfAngle(CEF),110)",
+        "ParallelBetweenLine(ED,AB)"
+    ],
+    "image_cdl": [],
+    "goal_cdl": "Value(MeasureOfAngle(EAB))",
+    "problem_answer": "70",
+    "theorem_seqs": [
+        "vertical_angle(1,CEF,DEA)",
+        "parallel_property_ipsilateral_internal_angle(1,ED,AB)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "vertical_angle(1,CEF,DEA)",
+            "parallel_property_ipsilateral_internal_angle(1,ED,AB)"
+        ]
+    }
 }

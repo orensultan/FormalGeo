@@ -1,32 +1,29 @@
 {
-  "problem_id": 5127,
-  "annotation": "YimingHe_2023-05-21",
-  "source": "GeoQA-4986",
-  "problem_level": 2,
-  "problem_text_cn": "如图所示，AB=5，BC=3，∠BCA=90°。求直线AC的长度。",
-  "problem_text_en": "As shown in the diagram, AB=5, BC=3, ∠BCA=90°. Find the length of line AC.",
-  "problem_img": "5127.png",
-  "construction_cdl": [
-    "Shape(AB,BC,CA)"
-  ],
-  "text_cdl": [
-    "Equal(LengthOfLine(AB),5)",
-    "Equal(LengthOfLine(BC),3)",
-    "Equal(MeasureOfAngle(BCA),90)"
-  ],
-  "image_cdl": [],
-  "goal_cdl": "Value(LengthOfLine(AC))",
-  "problem_answer": "4",
-  "theorem_seqs": [
-    "right_triangle_judgment_angle(1,BCA)",
-    "right_triangle_property_pythagorean(1,BCA)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "right_triangle_judgment_angle(1,BCA)"
+    "problem_id": 5127,
+    "source": "GeoQA-4986",
+    "problem_level": 2,
+    "problem_img": "5127.png",
+    "construction_cdl": [
+        "Shape(AB,BC,CA)"
     ],
-    "right_triangle_judgment_angle(1,BCA)": [
-      "right_triangle_property_pythagorean(1,BCA)"
-    ]
-  }
+    "text_cdl": [
+        "Equal(LengthOfLine(AB),5)",
+        "Equal(LengthOfLine(BC),3)",
+        "Equal(MeasureOfAngle(BCA),90)"
+    ],
+    "image_cdl": [],
+    "goal_cdl": "Value(LengthOfLine(AC))",
+    "problem_answer": "4",
+    "theorem_seqs": [
+        "right_triangle_judgment_angle(1,BCA)",
+        "right_triangle_property_pythagorean(1,BCA)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "right_triangle_judgment_angle(1,BCA)"
+        ],
+        "right_triangle_judgment_angle(1,BCA)": [
+            "right_triangle_property_pythagorean(1,BCA)"
+        ]
+    }
 }

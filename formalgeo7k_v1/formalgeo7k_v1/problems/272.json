@@ -1,42 +1,39 @@
 {
-  "problem_id": 272,
-  "annotation": "NaZhu_2023-04-02",
-  "source": "Geometry3k-275",
-  "problem_level": 3,
-  "problem_text_cn": "如图所示，∠UZY=2*x+24°，∠VZU=4*x°，∠XZW=∠YZX，Z是⊙Z的圆心。求⌒ZYU的角度。",
-  "problem_text_en": "As shown in the diagram, ∠UZY=2*x+24°, ∠VZU=4*x°, ∠XZW=∠YZX, Z is the center of circle Z. Find the measure of ⌒ZYU.",
-  "problem_img": "272.png",
-  "construction_cdl": [
-    "Shape(ZVW,WZ,ZV)",
-    "Shape(ZWX,XZ,ZW)",
-    "Shape(ZXY,YZ,ZX)",
-    "Shape(ZYU,UZ,ZY)",
-    "Shape(ZUV,VZ,ZU)",
-    "Collinear(VZY)",
-    "Collinear(WZU)",
-    "Cocircular(Z,VWXYU)"
-  ],
-  "text_cdl": [
-    "Equal(MeasureOfAngle(UZY),2*x+24)",
-    "Equal(MeasureOfAngle(VZU),4*x)",
-    "Equal(MeasureOfAngle(XZW),MeasureOfAngle(YZX))",
-    "IsCentreOfCircle(Z,Z)"
-  ],
-  "image_cdl": [
-    "IsCentreOfCircle(Z,Z)"
-  ],
-  "goal_cdl": "Value(MeasureOfArc(ZYU))",
-  "problem_answer": "76",
-  "theorem_seqs": [
-    "flat_angle(1,VZY)",
-    "angle_addition(1,VZU,UZY)",
-    "arc_property_center_angle(1,ZYU,Z)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "flat_angle(1,VZY)",
-      "angle_addition(1,VZU,UZY)",
-      "arc_property_center_angle(1,ZYU,Z)"
-    ]
-  }
+    "problem_id": 272,
+    "source": "Geometry3k-275",
+    "problem_level": 3,
+    "problem_img": "272.png",
+    "construction_cdl": [
+        "Shape(ZVW,WZ,ZV)",
+        "Shape(ZWX,XZ,ZW)",
+        "Shape(ZXY,YZ,ZX)",
+        "Shape(ZYU,UZ,ZY)",
+        "Shape(ZUV,VZ,ZU)",
+        "Collinear(VZY)",
+        "Collinear(WZU)",
+        "Cocircular(Z,VWXYU)"
+    ],
+    "text_cdl": [
+        "Equal(MeasureOfAngle(UZY),2*x+24)",
+        "Equal(MeasureOfAngle(VZU),4*x)",
+        "Equal(MeasureOfAngle(XZW),MeasureOfAngle(YZX))",
+        "IsCentreOfCircle(Z,Z)"
+    ],
+    "image_cdl": [
+        "IsCentreOfCircle(Z,Z)"
+    ],
+    "goal_cdl": "Value(MeasureOfArc(ZYU))",
+    "problem_answer": "76",
+    "theorem_seqs": [
+        "flat_angle(1,VZY)",
+        "angle_addition(1,VZU,UZY)",
+        "arc_property_center_angle(1,ZYU,Z)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "flat_angle(1,VZY)",
+            "angle_addition(1,VZU,UZY)",
+            "arc_property_center_angle(1,ZYU,Z)"
+        ]
+    }
 }

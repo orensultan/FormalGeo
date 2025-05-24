@@ -1,72 +1,69 @@
 {
-  "problem_id": 130,
-  "annotation": "XiaokaiZhang_2023-04-02",
-  "source": "Geometry3k-132",
-  "problem_level": 7,
-  "problem_text_cn": "如图所示，AB=5*x，CA=3*x+4，WX=22，XY=22，⊙A的圆心为A，AB垂直于XB，XC垂直于AC。求直线AB的长度。",
-  "problem_text_en": "As shown in the diagram, AB=5*x, CA=3*x+4, WX=22, XY=22, the center of circle A is A, AB⊥XB, XC is perpendicular to AC. Find the length of line AB.",
-  "problem_img": "130.png",
-  "construction_cdl": [
-    "Shape(AYW,WB,BA,AC,CY)",
-    "Shape(BW,AWX,XB)",
-    "Shape(AB,BX,XA)",
-    "Shape(AX,XC,CA)",
-    "Shape(CX,AXY,YC)",
-    "Collinear(WBX)",
-    "Collinear(XCY)",
-    "Cocircular(A,WXY)"
-  ],
-  "text_cdl": [
-    "Equal(LengthOfLine(AB),5*x)",
-    "Equal(LengthOfLine(CA),3*x+4)",
-    "Equal(LengthOfLine(WX),22)",
-    "Equal(LengthOfLine(XY),22)",
-    "IsCentreOfCircle(A,A)",
-    "PerpendicularBetweenLine(AB,XB)",
-    "PerpendicularBetweenLine(XC,AC)"
-  ],
-  "image_cdl": [
-    "Equal(LengthOfLine(AB),5*x)",
-    "Equal(LengthOfLine(CA),3*x+4)",
-    "IsCentreOfCircle(A,A)",
-    "PerpendicularBetweenLine(AB,XB)",
-    "PerpendicularBetweenLine(XC,AC)"
-  ],
-  "goal_cdl": "Value(LengthOfLine(AB))",
-  "problem_answer": "10",
-  "theorem_seqs": [
-    "adjacent_complementary_angle(1,WBA,ABX)",
-    "circle_property_chord_perpendicular_bisect_chord(1,A,AB,WX)",
-    "circle_property_chord_perpendicular_bisect_chord(1,A,AC,XY)",
-    "line_addition(1,WB,BX)",
-    "line_addition(1,XC,CY)",
-    "mirror_congruent_triangle_judgment_hl(1,ABX,AXC)",
-    "mirror_congruent_triangle_property_line_equal(1,XAB,XCA)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "adjacent_complementary_angle(1,WBA,ABX)",
-      "circle_property_chord_perpendicular_bisect_chord(1,A,AC,XY)",
-      "line_addition(1,WB,BX)",
-      "line_addition(1,XC,CY)"
+    "problem_id": 130,
+    "source": "Geometry3k-132",
+    "problem_level": 7,
+    "problem_img": "130.png",
+    "construction_cdl": [
+        "Shape(AYW,WB,BA,AC,CY)",
+        "Shape(BW,AWX,XB)",
+        "Shape(AB,BX,XA)",
+        "Shape(AX,XC,CA)",
+        "Shape(CX,AXY,YC)",
+        "Collinear(WBX)",
+        "Collinear(XCY)",
+        "Cocircular(A,WXY)"
     ],
-    "adjacent_complementary_angle(1,WBA,ABX)": [
-      "circle_property_chord_perpendicular_bisect_chord(1,A,AB,WX)"
+    "text_cdl": [
+        "Equal(LengthOfLine(AB),5*x)",
+        "Equal(LengthOfLine(CA),3*x+4)",
+        "Equal(LengthOfLine(WX),22)",
+        "Equal(LengthOfLine(XY),22)",
+        "IsCentreOfCircle(A,A)",
+        "PerpendicularBetweenLine(AB,XB)",
+        "PerpendicularBetweenLine(XC,AC)"
     ],
-    "circle_property_chord_perpendicular_bisect_chord(1,A,AB,WX)": [
-      "mirror_congruent_triangle_judgment_hl(1,ABX,AXC)"
+    "image_cdl": [
+        "Equal(LengthOfLine(AB),5*x)",
+        "Equal(LengthOfLine(CA),3*x+4)",
+        "IsCentreOfCircle(A,A)",
+        "PerpendicularBetweenLine(AB,XB)",
+        "PerpendicularBetweenLine(XC,AC)"
     ],
-    "circle_property_chord_perpendicular_bisect_chord(1,A,AC,XY)": [
-      "mirror_congruent_triangle_judgment_hl(1,ABX,AXC)"
+    "goal_cdl": "Value(LengthOfLine(AB))",
+    "problem_answer": "10",
+    "theorem_seqs": [
+        "adjacent_complementary_angle(1,WBA,ABX)",
+        "circle_property_chord_perpendicular_bisect_chord(1,A,AB,WX)",
+        "circle_property_chord_perpendicular_bisect_chord(1,A,AC,XY)",
+        "line_addition(1,WB,BX)",
+        "line_addition(1,XC,CY)",
+        "mirror_congruent_triangle_judgment_hl(1,ABX,AXC)",
+        "mirror_congruent_triangle_property_line_equal(1,XAB,XCA)"
     ],
-    "line_addition(1,WB,BX)": [
-      "mirror_congruent_triangle_judgment_hl(1,ABX,AXC)"
-    ],
-    "line_addition(1,XC,CY)": [
-      "mirror_congruent_triangle_judgment_hl(1,ABX,AXC)"
-    ],
-    "mirror_congruent_triangle_judgment_hl(1,ABX,AXC)": [
-      "mirror_congruent_triangle_property_line_equal(1,XAB,XCA)"
-    ]
-  }
+    "theorem_seqs_dag": {
+        "START": [
+            "adjacent_complementary_angle(1,WBA,ABX)",
+            "circle_property_chord_perpendicular_bisect_chord(1,A,AC,XY)",
+            "line_addition(1,WB,BX)",
+            "line_addition(1,XC,CY)"
+        ],
+        "adjacent_complementary_angle(1,WBA,ABX)": [
+            "circle_property_chord_perpendicular_bisect_chord(1,A,AB,WX)"
+        ],
+        "circle_property_chord_perpendicular_bisect_chord(1,A,AB,WX)": [
+            "mirror_congruent_triangle_judgment_hl(1,ABX,AXC)"
+        ],
+        "circle_property_chord_perpendicular_bisect_chord(1,A,AC,XY)": [
+            "mirror_congruent_triangle_judgment_hl(1,ABX,AXC)"
+        ],
+        "line_addition(1,WB,BX)": [
+            "mirror_congruent_triangle_judgment_hl(1,ABX,AXC)"
+        ],
+        "line_addition(1,XC,CY)": [
+            "mirror_congruent_triangle_judgment_hl(1,ABX,AXC)"
+        ],
+        "mirror_congruent_triangle_judgment_hl(1,ABX,AXC)": [
+            "mirror_congruent_triangle_property_line_equal(1,XAB,XCA)"
+        ]
+    }
 }

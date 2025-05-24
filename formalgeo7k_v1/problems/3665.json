@@ -1,32 +1,29 @@
 {
-  "problem_id": 3665,
-  "annotation": "XiaoxiaoJin_2023-04-30",
-  "source": "GeoQA-1388",
-  "problem_level": 2,
-  "problem_text_cn": "如图所示，△ODC与△OBA是全等三角形，∠AOB=15°，∠COA=45°。求∠DOA的大小。",
-  "problem_text_en": "As shown in the diagram, △ODC is congruent to △OBA, ∠AOB=15°, ∠COA=45°. Find the measure of ∠DOA.",
-  "problem_img": "3665.png",
-  "construction_cdl": [
-    "Shape(AO,OB,BA)",
-    "Shape(CO,OD,DC)",
-    "Shape(DO,OA)"
-  ],
-  "text_cdl": [
-    "CongruentBetweenTriangle(ODC,OBA)",
-    "Equal(MeasureOfAngle(AOB),15)",
-    "Equal(MeasureOfAngle(COA),45)"
-  ],
-  "image_cdl": [],
-  "goal_cdl": "Value(MeasureOfAngle(DOA))",
-  "problem_answer": "30",
-  "theorem_seqs": [
-    "angle_addition(1,COD,DOA)",
-    "congruent_triangle_property_angle_equal(1,ODC,OBA)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "angle_addition(1,COD,DOA)",
-      "congruent_triangle_property_angle_equal(1,ODC,OBA)"
-    ]
-  }
+    "problem_id": 3665,
+    "source": "GeoQA-1388",
+    "problem_level": 2,
+    "problem_img": "3665.png",
+    "construction_cdl": [
+        "Shape(AO,OB,BA)",
+        "Shape(CO,OD,DC)",
+        "Shape(DO,OA)"
+    ],
+    "text_cdl": [
+        "CongruentBetweenTriangle(ODC,OBA)",
+        "Equal(MeasureOfAngle(AOB),15)",
+        "Equal(MeasureOfAngle(COA),45)"
+    ],
+    "image_cdl": [],
+    "goal_cdl": "Value(MeasureOfAngle(DOA))",
+    "problem_answer": "30",
+    "theorem_seqs": [
+        "angle_addition(1,COD,DOA)",
+        "congruent_triangle_property_angle_equal(1,ODC,OBA)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "angle_addition(1,COD,DOA)",
+            "congruent_triangle_property_angle_equal(1,ODC,OBA)"
+        ]
+    }
 }

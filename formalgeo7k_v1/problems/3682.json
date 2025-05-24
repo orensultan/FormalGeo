@@ -1,33 +1,30 @@
 {
-  "problem_id": 3682,
-  "annotation": "XiaoxiaoJin_2023-04-30",
-  "source": "GeoQA-1422",
-  "problem_level": 2,
-  "problem_text_cn": "如图所示，∠BCA=50°，∠BDC=90°，∠DCB=25°。求∠ECD的大小。",
-  "problem_text_en": "As shown in the diagram, ∠BCA=50°, ∠BDC=90°, ∠DCB=25°. Find the measure of ∠ECD.",
-  "problem_img": "3682.png",
-  "construction_cdl": [
-    "Shape(BC,CA,AB)",
-    "Shape(BD,DC,CB)",
-    "Shape(EC,CD)",
-    "Collinear(ECA)"
-  ],
-  "text_cdl": [
-    "Equal(MeasureOfAngle(BCA),50)",
-    "Equal(MeasureOfAngle(BDC),90)",
-    "Equal(MeasureOfAngle(DCB),25)"
-  ],
-  "image_cdl": [],
-  "goal_cdl": "Value(MeasureOfAngle(ECD))",
-  "problem_answer": "105",
-  "theorem_seqs": [
-    "angle_addition(1,DCB,BCA)",
-    "adjacent_complementary_angle(1,ECD,DCA)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "angle_addition(1,DCB,BCA)",
-      "adjacent_complementary_angle(1,ECD,DCA)"
-    ]
-  }
+    "problem_id": 3682,
+    "source": "GeoQA-1422",
+    "problem_level": 2,
+    "problem_img": "3682.png",
+    "construction_cdl": [
+        "Shape(BC,CA,AB)",
+        "Shape(BD,DC,CB)",
+        "Shape(EC,CD)",
+        "Collinear(ECA)"
+    ],
+    "text_cdl": [
+        "Equal(MeasureOfAngle(BCA),50)",
+        "Equal(MeasureOfAngle(BDC),90)",
+        "Equal(MeasureOfAngle(DCB),25)"
+    ],
+    "image_cdl": [],
+    "goal_cdl": "Value(MeasureOfAngle(ECD))",
+    "problem_answer": "105",
+    "theorem_seqs": [
+        "angle_addition(1,DCB,BCA)",
+        "adjacent_complementary_angle(1,ECD,DCA)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "angle_addition(1,DCB,BCA)",
+            "adjacent_complementary_angle(1,ECD,DCA)"
+        ]
+    }
 }

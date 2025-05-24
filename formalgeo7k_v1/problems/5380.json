@@ -1,33 +1,30 @@
 {
-  "problem_id": 5380,
-  "annotation": "QikeHuang_2023-05-21",
-  "source": "GeoQA-5664",
-  "problem_level": 2,
-  "problem_text_cn": "如图所示，∠ADE=60°，∠EAD=40°，ABCM与AMDE镜像全等。求∠ABC的大小。",
-  "problem_text_en": "As shown in the diagram, ∠ADE=60°, ∠EAD=40°, quadrilateral ABCM is mirror congruent to quadrilateral AMDE. Find the measure of ∠ABC.",
-  "problem_img": "5380.png",
-  "construction_cdl": [
-    "Shape(AB,BC,CM,MA)",
-    "Shape(AM,MD,DA)",
-    "Shape(AD,DE,EA)",
-    "Collinear(CMD)"
-  ],
-  "text_cdl": [
-    "Equal(MeasureOfAngle(ADE),60)",
-    "Equal(MeasureOfAngle(EAD),40)",
-    "MirrorCongruentBetweenQuadrilateral(ABCM,AMDE)"
-  ],
-  "image_cdl": [],
-  "goal_cdl": "Value(MeasureOfAngle(ABC))",
-  "problem_answer": "80",
-  "theorem_seqs": [
-    "triangle_property_angle_sum(1,ADE)",
-    "mirror_congruent_quadrilateral_property_angle_equal(1,BCMA,EAMD)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "triangle_property_angle_sum(1,ADE)",
-      "mirror_congruent_quadrilateral_property_angle_equal(1,BCMA,EAMD)"
-    ]
-  }
+    "problem_id": 5380,
+    "source": "GeoQA-5664",
+    "problem_level": 2,
+    "problem_img": "5380.png",
+    "construction_cdl": [
+        "Shape(AB,BC,CM,MA)",
+        "Shape(AM,MD,DA)",
+        "Shape(AD,DE,EA)",
+        "Collinear(CMD)"
+    ],
+    "text_cdl": [
+        "Equal(MeasureOfAngle(ADE),60)",
+        "Equal(MeasureOfAngle(EAD),40)",
+        "MirrorCongruentBetweenQuadrilateral(ABCM,AMDE)"
+    ],
+    "image_cdl": [],
+    "goal_cdl": "Value(MeasureOfAngle(ABC))",
+    "problem_answer": "80",
+    "theorem_seqs": [
+        "triangle_property_angle_sum(1,ADE)",
+        "mirror_congruent_quadrilateral_property_angle_equal(1,BCMA,EAMD)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "triangle_property_angle_sum(1,ADE)",
+            "mirror_congruent_quadrilateral_property_angle_equal(1,BCMA,EAMD)"
+        ]
+    }
 }

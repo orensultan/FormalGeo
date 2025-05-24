@@ -1,34 +1,31 @@
 {
-  "problem_id": 2843,
-  "annotation": "RunanWang_2023-05-07",
-  "source": "Geometry3k-2996",
-  "problem_level": 1,
-  "problem_text_cn": "如图所示，RS=5，SP=3，∠PQR=128°，四边形QRSP是平行四边形。求直线PQ的长度。",
-  "problem_text_en": "As shown in the diagram, RS=5, SP=3, ∠PQR=128°, quadrilateral QRSP is a ▱. Find the length of line PQ.",
-  "problem_img": "2843.png",
-  "construction_cdl": [
-    "Shape(QR,RS,SP,PQ)"
-  ],
-  "text_cdl": [
-    "Equal(LengthOfLine(RS),5)",
-    "Equal(LengthOfLine(SP),3)",
-    "Equal(MeasureOfAngle(PQR),128)",
-    "Parallelogram(QRSP)"
-  ],
-  "image_cdl": [
-    "Equal(LengthOfLine(RS),5)",
-    "Equal(LengthOfLine(SP),3)",
-    "Equal(MeasureOfAngle(PQR),128)",
-    "Parallelogram(QRSP)"
-  ],
-  "goal_cdl": "Value(LengthOfLine(PQ))",
-  "problem_answer": "5",
-  "theorem_seqs": [
-    "parallelogram_property_opposite_line_equal(1,RSPQ)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "parallelogram_property_opposite_line_equal(1,RSPQ)"
-    ]
-  }
+    "problem_id": 2843,
+    "source": "Geometry3k-2996",
+    "problem_level": 1,
+    "problem_img": "2843.png",
+    "construction_cdl": [
+        "Shape(QR,RS,SP,PQ)"
+    ],
+    "text_cdl": [
+        "Equal(LengthOfLine(RS),5)",
+        "Equal(LengthOfLine(SP),3)",
+        "Equal(MeasureOfAngle(PQR),128)",
+        "Parallelogram(QRSP)"
+    ],
+    "image_cdl": [
+        "Equal(LengthOfLine(RS),5)",
+        "Equal(LengthOfLine(SP),3)",
+        "Equal(MeasureOfAngle(PQR),128)",
+        "Parallelogram(QRSP)"
+    ],
+    "goal_cdl": "Value(LengthOfLine(PQ))",
+    "problem_answer": "5",
+    "theorem_seqs": [
+        "parallelogram_property_opposite_line_equal(1,RSPQ)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "parallelogram_property_opposite_line_equal(1,RSPQ)"
+        ]
+    }
 }

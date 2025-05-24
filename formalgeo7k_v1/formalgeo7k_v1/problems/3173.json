@@ -1,35 +1,32 @@
 {
-  "problem_id": 3173,
-  "annotation": "JiaZou_2023-04-23",
-  "source": "GeoQA-449",
-  "problem_level": 3,
-  "problem_text_cn": "如图所示，∠COB=100°，O是圆O的圆心。求∠BAC的大小。",
-  "problem_text_en": "As shown in the diagram, ∠COB=100°, O is the center of circle O. Find the measure of ∠BAC.",
-  "problem_img": "3173.png",
-  "construction_cdl": [
-    "Shape(OB,BA,AC,CO)",
-    "Shape(AB,OBA)",
-    "Shape(CA,OAC)",
-    "Shape(BO,OC,OCB)",
-    "Cocircular(O,BAC)"
-  ],
-  "text_cdl": [
-    "Equal(MeasureOfAngle(COB),100)",
-    "IsCentreOfCircle(O,O)"
-  ],
-  "image_cdl": [],
-  "goal_cdl": "Value(MeasureOfAngle(BAC))",
-  "problem_answer": "130",
-  "theorem_seqs": [
-    "arc_property_center_angle(1,OBC,O)",
-    "round_arc(1,OBC,OCB)",
-    "arc_property_circumference_angle_external(1,OCB,A)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "arc_property_center_angle(1,OBC,O)",
-      "round_arc(1,OBC,OCB)",
-      "arc_property_circumference_angle_external(1,OCB,A)"
-    ]
-  }
+    "problem_id": 3173,
+    "source": "GeoQA-449",
+    "problem_level": 3,
+    "problem_img": "3173.png",
+    "construction_cdl": [
+        "Shape(OB,BA,AC,CO)",
+        "Shape(AB,OBA)",
+        "Shape(CA,OAC)",
+        "Shape(BO,OC,OCB)",
+        "Cocircular(O,BAC)"
+    ],
+    "text_cdl": [
+        "Equal(MeasureOfAngle(COB),100)",
+        "IsCentreOfCircle(O,O)"
+    ],
+    "image_cdl": [],
+    "goal_cdl": "Value(MeasureOfAngle(BAC))",
+    "problem_answer": "130",
+    "theorem_seqs": [
+        "arc_property_center_angle(1,OBC,O)",
+        "round_arc(1,OBC,OCB)",
+        "arc_property_circumference_angle_external(1,OCB,A)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "arc_property_center_angle(1,OBC,O)",
+            "round_arc(1,OBC,OCB)",
+            "arc_property_circumference_angle_external(1,OCB,A)"
+        ]
+    }
 }

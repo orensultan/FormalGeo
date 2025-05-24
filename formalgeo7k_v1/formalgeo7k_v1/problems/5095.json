@@ -1,34 +1,31 @@
 {
-  "problem_id": 5095,
-  "annotation": "YimingHe_2023-05-21",
-  "source": "GeoQA-4914",
-  "problem_level": 2,
-  "problem_text_cn": "如图所示，∠ABC=100°，∠CAB=50°，AC平行于BE，BC∥DE。求∠CBE的大小。",
-  "problem_text_en": "As shown in the diagram, ∠ABC=100°, ∠CAB=50°, AC is parallel to BE, BC∥DE. Find the measure of ∠CBE.",
-  "problem_img": "5095.png",
-  "construction_cdl": [
-    "Shape(AB,BC,CA)",
-    "Shape(CB,BE)",
-    "Shape(EB,BD,DE)",
-    "Collinear(ABD)"
-  ],
-  "text_cdl": [
-    "Equal(MeasureOfAngle(ABC),100)",
-    "Equal(MeasureOfAngle(CAB),50)",
-    "ParallelBetweenLine(AC,BE)",
-    "ParallelBetweenLine(BC,DE)"
-  ],
-  "image_cdl": [],
-  "goal_cdl": "Value(MeasureOfAngle(CBE))",
-  "problem_answer": "30",
-  "theorem_seqs": [
-    "parallel_property_ipsilateral_internal_angle(1,AC,BE)",
-    "angle_addition(1,ABC,CBE)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "parallel_property_ipsilateral_internal_angle(1,AC,BE)",
-      "angle_addition(1,ABC,CBE)"
-    ]
-  }
+    "problem_id": 5095,
+    "source": "GeoQA-4914",
+    "problem_level": 2,
+    "problem_img": "5095.png",
+    "construction_cdl": [
+        "Shape(AB,BC,CA)",
+        "Shape(CB,BE)",
+        "Shape(EB,BD,DE)",
+        "Collinear(ABD)"
+    ],
+    "text_cdl": [
+        "Equal(MeasureOfAngle(ABC),100)",
+        "Equal(MeasureOfAngle(CAB),50)",
+        "ParallelBetweenLine(AC,BE)",
+        "ParallelBetweenLine(BC,DE)"
+    ],
+    "image_cdl": [],
+    "goal_cdl": "Value(MeasureOfAngle(CBE))",
+    "problem_answer": "30",
+    "theorem_seqs": [
+        "parallel_property_ipsilateral_internal_angle(1,AC,BE)",
+        "angle_addition(1,ABC,CBE)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "parallel_property_ipsilateral_internal_angle(1,AC,BE)",
+            "angle_addition(1,ABC,CBE)"
+        ]
+    }
 }

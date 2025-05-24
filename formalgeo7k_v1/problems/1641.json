@@ -1,54 +1,51 @@
 {
-  "problem_id": 1641,
-  "annotation": "XiaoxiaoJin_2023-04-16",
-  "source": "Geometry3k-1703",
-  "problem_level": 5,
-  "problem_text_cn": "如图所示，∠ADB=64°，AC⊥DC，BA⊥CA，BF⊥DF，CD垂直于BD。求∠BAF的大小。",
-  "problem_text_en": "As shown in the diagram, ∠ADB=64°, AC⊥DC, BA is perpendicular to CA, BF⊥DF, CD is perpendicular to BD. Find the measure of ∠BAF.",
-  "problem_img": "1641.png",
-  "construction_cdl": [
-    "Shape(BA,AF,FB)",
-    "Shape(AC,CD,DF,FA)",
-    "Shape(BF,FD,DB)",
-    "Collinear(AFD)"
-  ],
-  "text_cdl": [
-    "Equal(MeasureOfAngle(ADB),64)",
-    "PerpendicularBetweenLine(AC,DC)",
-    "PerpendicularBetweenLine(BA,CA)",
-    "PerpendicularBetweenLine(BF,DF)",
-    "PerpendicularBetweenLine(CD,BD)"
-  ],
-  "image_cdl": [
-    "Equal(MeasureOfAngle(ADB),64)",
-    "PerpendicularBetweenLine(AC,DC)",
-    "PerpendicularBetweenLine(BA,CA)",
-    "PerpendicularBetweenLine(BF,DF)",
-    "PerpendicularBetweenLine(CD,BD)"
-  ],
-  "goal_cdl": "Value(MeasureOfAngle(BAF))",
-  "problem_answer": "26",
-  "theorem_seqs": [
-    "parallel_judgment_per_per(1,AB,CD)",
-    "parallel_judgment_per_per(1,CA,DB)",
-    "parallelogram_judgment_parallel_and_parallel(1,ACDB)",
-    "rectangle_judgment_right_angle(1,ACDB)",
-    "triangle_property_angle_sum(1,ADB)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "parallel_judgment_per_per(1,AB,CD)",
-      "parallel_judgment_per_per(1,CA,DB)",
-      "triangle_property_angle_sum(1,ADB)"
+    "problem_id": 1641,
+    "source": "Geometry3k-1703",
+    "problem_level": 5,
+    "problem_img": "1641.png",
+    "construction_cdl": [
+        "Shape(BA,AF,FB)",
+        "Shape(AC,CD,DF,FA)",
+        "Shape(BF,FD,DB)",
+        "Collinear(AFD)"
     ],
-    "parallel_judgment_per_per(1,AB,CD)": [
-      "parallelogram_judgment_parallel_and_parallel(1,ACDB)"
+    "text_cdl": [
+        "Equal(MeasureOfAngle(ADB),64)",
+        "PerpendicularBetweenLine(AC,DC)",
+        "PerpendicularBetweenLine(BA,CA)",
+        "PerpendicularBetweenLine(BF,DF)",
+        "PerpendicularBetweenLine(CD,BD)"
     ],
-    "parallel_judgment_per_per(1,CA,DB)": [
-      "parallelogram_judgment_parallel_and_parallel(1,ACDB)"
+    "image_cdl": [
+        "Equal(MeasureOfAngle(ADB),64)",
+        "PerpendicularBetweenLine(AC,DC)",
+        "PerpendicularBetweenLine(BA,CA)",
+        "PerpendicularBetweenLine(BF,DF)",
+        "PerpendicularBetweenLine(CD,BD)"
     ],
-    "parallelogram_judgment_parallel_and_parallel(1,ACDB)": [
-      "rectangle_judgment_right_angle(1,ACDB)"
-    ]
-  }
+    "goal_cdl": "Value(MeasureOfAngle(BAF))",
+    "problem_answer": "26",
+    "theorem_seqs": [
+        "parallel_judgment_per_per(1,AB,CD)",
+        "parallel_judgment_per_per(1,CA,DB)",
+        "parallelogram_judgment_parallel_and_parallel(1,ACDB)",
+        "rectangle_judgment_right_angle(1,ACDB)",
+        "triangle_property_angle_sum(1,ADB)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "parallel_judgment_per_per(1,AB,CD)",
+            "parallel_judgment_per_per(1,CA,DB)",
+            "triangle_property_angle_sum(1,ADB)"
+        ],
+        "parallel_judgment_per_per(1,AB,CD)": [
+            "parallelogram_judgment_parallel_and_parallel(1,ACDB)"
+        ],
+        "parallel_judgment_per_per(1,CA,DB)": [
+            "parallelogram_judgment_parallel_and_parallel(1,ACDB)"
+        ],
+        "parallelogram_judgment_parallel_and_parallel(1,ACDB)": [
+            "rectangle_judgment_right_angle(1,ACDB)"
+        ]
+    }
 }

@@ -1,49 +1,46 @@
 {
-  "problem_id": 1371,
-  "annotation": "ZheZhu_2023-04-09",
-  "source": "Geometry3k-1419",
-  "problem_level": 3,
-  "problem_text_cn": "如图所示，∠FJE=75°，DG∥MI，EC平行于MI，GD∥CE。求∠TBG的大小。",
-  "problem_text_en": "As shown in the diagram, ∠FJE=75°, DG∥MI, EC is parallel to MI, GD is parallel to CE. Find the measure of ∠TBG.",
-  "problem_img": "1371.png",
-  "construction_cdl": [
-    "Shape(FJ,JE)",
-    "Shape(BF,FM)",
-    "Shape(LB,BD)",
-    "Shape(TB,BG)",
-    "Collinear(LBFJT)",
-    "Collinear(DBG)",
-    "Collinear(MFI)",
-    "Collinear(EJC)"
-  ],
-  "text_cdl": [
-    "Equal(MeasureOfAngle(FJE),75)",
-    "ParallelBetweenLine(DG,MI)",
-    "ParallelBetweenLine(EC,MI)",
-    "ParallelBetweenLine(GD,CE)"
-  ],
-  "image_cdl": [
-    "Equal(MeasureOfAngle(FJE),75)",
-    "ParallelBetweenLine(DG,MI)",
-    "ParallelBetweenLine(EC,MI)",
-    "ParallelBetweenLine(GD,CE)"
-  ],
-  "goal_cdl": "Value(MeasureOfAngle(TBG))",
-  "problem_answer": "75",
-  "theorem_seqs": [
-    "parallel_property_collinear_extend(3,GD,CE,B)",
-    "parallel_property_collinear_extend(3,EC,BG,J)",
-    "parallel_property_alternate_interior_angle(2,GB,JE)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "parallel_property_collinear_extend(3,GD,CE,B)"
+    "problem_id": 1371,
+    "source": "Geometry3k-1419",
+    "problem_level": 3,
+    "problem_img": "1371.png",
+    "construction_cdl": [
+        "Shape(FJ,JE)",
+        "Shape(BF,FM)",
+        "Shape(LB,BD)",
+        "Shape(TB,BG)",
+        "Collinear(LBFJT)",
+        "Collinear(DBG)",
+        "Collinear(MFI)",
+        "Collinear(EJC)"
     ],
-    "parallel_property_collinear_extend(3,GD,CE,B)": [
-      "parallel_property_collinear_extend(3,EC,BG,J)"
+    "text_cdl": [
+        "Equal(MeasureOfAngle(FJE),75)",
+        "ParallelBetweenLine(DG,MI)",
+        "ParallelBetweenLine(EC,MI)",
+        "ParallelBetweenLine(GD,CE)"
     ],
-    "parallel_property_collinear_extend(3,EC,BG,J)": [
-      "parallel_property_alternate_interior_angle(2,GB,JE)"
-    ]
-  }
+    "image_cdl": [
+        "Equal(MeasureOfAngle(FJE),75)",
+        "ParallelBetweenLine(DG,MI)",
+        "ParallelBetweenLine(EC,MI)",
+        "ParallelBetweenLine(GD,CE)"
+    ],
+    "goal_cdl": "Value(MeasureOfAngle(TBG))",
+    "problem_answer": "75",
+    "theorem_seqs": [
+        "parallel_property_collinear_extend(3,GD,CE,B)",
+        "parallel_property_collinear_extend(3,EC,BG,J)",
+        "parallel_property_alternate_interior_angle(2,GB,JE)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "parallel_property_collinear_extend(3,GD,CE,B)"
+        ],
+        "parallel_property_collinear_extend(3,GD,CE,B)": [
+            "parallel_property_collinear_extend(3,EC,BG,J)"
+        ],
+        "parallel_property_collinear_extend(3,EC,BG,J)": [
+            "parallel_property_alternate_interior_angle(2,GB,JE)"
+        ]
+    }
 }

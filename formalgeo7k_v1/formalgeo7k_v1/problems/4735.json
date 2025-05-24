@@ -1,51 +1,48 @@
 {
-  "problem_id": 4735,
-  "annotation": "XiaoxiaoJin_2023-05-14",
-  "source": "GeoQA-4074",
-  "problem_level": 7,
-  "problem_text_cn": "如图所示，PA=2，⊙O的圆心为O，EA是⊙O的切线，EC是⊙O的切线，⊙O的切线为FB，⊙O的切线为FC，PA是⊙O的切线，PB是⊙O的切线。求△EPF的周长。",
-  "problem_text_en": "As shown in the diagram, PA=2, O is the center of ⊙O, the tangent to ⊙O is EA, EC is the tangent to circle O, the tangent to circle O is FB, FC is the tangent to circle O, PA is the tangent to ⊙O, PB is the tangent to circle O. Find the perimeter of △EPF.",
-  "problem_img": "4735.png",
-  "construction_cdl": [
-    "Shape(EP,PF,FC,CE)",
-    "Shape(AE,EC,OAC)",
-    "Shape(CF,FB,OCB)",
-    "Collinear(PEA)",
-    "Collinear(PFB)",
-    "Collinear(ECF)",
-    "Cocircular(O,ACB)"
-  ],
-  "text_cdl": [
-    "Equal(LengthOfLine(PA),2)",
-    "IsCentreOfCircle(O,O)",
-    "IsTangentOfCircle(EA,O)",
-    "IsTangentOfCircle(EC,O)",
-    "IsTangentOfCircle(FB,O)",
-    "IsTangentOfCircle(FC,O)",
-    "IsTangentOfCircle(PA,O)",
-    "IsTangentOfCircle(PB,O)"
-  ],
-  "image_cdl": [],
-  "goal_cdl": "Value(PerimeterOfTriangle(EPF))",
-  "problem_answer": "4",
-  "theorem_seqs": [
-    "tangent_of_circle_property_length_equal(1,PA,PB,O)",
-    "tangent_of_circle_property_length_equal(1,EC,EA,O)",
-    "tangent_of_circle_property_length_equal(1,FC,FB,O)",
-    "line_addition(1,PE,EA)",
-    "line_addition(1,PF,FB)",
-    "line_addition(1,EC,CF)",
-    "triangle_perimeter_formula(1,EPF)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "tangent_of_circle_property_length_equal(1,PA,PB,O)",
-      "tangent_of_circle_property_length_equal(1,EC,EA,O)",
-      "tangent_of_circle_property_length_equal(1,FC,FB,O)",
-      "line_addition(1,PE,EA)",
-      "line_addition(1,PF,FB)",
-      "line_addition(1,EC,CF)",
-      "triangle_perimeter_formula(1,EPF)"
-    ]
-  }
+    "problem_id": 4735,
+    "source": "GeoQA-4074",
+    "problem_level": 7,
+    "problem_img": "4735.png",
+    "construction_cdl": [
+        "Shape(EP,PF,FC,CE)",
+        "Shape(AE,EC,OAC)",
+        "Shape(CF,FB,OCB)",
+        "Collinear(PEA)",
+        "Collinear(PFB)",
+        "Collinear(ECF)",
+        "Cocircular(O,ACB)"
+    ],
+    "text_cdl": [
+        "Equal(LengthOfLine(PA),2)",
+        "IsCentreOfCircle(O,O)",
+        "IsTangentOfCircle(EA,O)",
+        "IsTangentOfCircle(EC,O)",
+        "IsTangentOfCircle(FB,O)",
+        "IsTangentOfCircle(FC,O)",
+        "IsTangentOfCircle(PA,O)",
+        "IsTangentOfCircle(PB,O)"
+    ],
+    "image_cdl": [],
+    "goal_cdl": "Value(PerimeterOfTriangle(EPF))",
+    "problem_answer": "4",
+    "theorem_seqs": [
+        "tangent_of_circle_property_length_equal(1,PA,PB,O)",
+        "tangent_of_circle_property_length_equal(1,EC,EA,O)",
+        "tangent_of_circle_property_length_equal(1,FC,FB,O)",
+        "line_addition(1,PE,EA)",
+        "line_addition(1,PF,FB)",
+        "line_addition(1,EC,CF)",
+        "triangle_perimeter_formula(1,EPF)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "tangent_of_circle_property_length_equal(1,PA,PB,O)",
+            "tangent_of_circle_property_length_equal(1,EC,EA,O)",
+            "tangent_of_circle_property_length_equal(1,FC,FB,O)",
+            "line_addition(1,PE,EA)",
+            "line_addition(1,PF,FB)",
+            "line_addition(1,EC,CF)",
+            "triangle_perimeter_formula(1,EPF)"
+        ]
+    }
 }

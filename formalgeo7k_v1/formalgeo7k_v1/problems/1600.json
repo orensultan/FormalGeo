@@ -1,40 +1,37 @@
 {
-  "problem_id": 1600,
-  "annotation": "XiaoxiaoJin_2023-04-16",
-  "source": "Geometry3k-1660",
-  "problem_level": 2,
-  "problem_text_cn": "如图所示，BD=12，圆E的圆心为E，DB是⊙E的直径。求⊙E的半径。",
-  "problem_text_en": "As shown in the diagram, BD=12, E is the center of ⊙E, DB is the diameter of circle E. Find the radius of circle E.",
-  "problem_img": "1600.png",
-  "construction_cdl": [
-    "Shape(AB,EBA)",
-    "Shape(AE,EB,BA)",
-    "Shape(DE,EA,EAD)",
-    "Shape(CE,ED,EDC)",
-    "Shape(BE,EC,ECB)",
-    "Collinear(AEC)",
-    "Collinear(DEB)",
-    "Cocircular(E,ADCB)"
-  ],
-  "text_cdl": [
-    "Equal(LengthOfLine(BD),12)",
-    "IsCentreOfCircle(E,E)",
-    "IsDiameterOfCircle(DB,E)"
-  ],
-  "image_cdl": [
-    "IsCentreOfCircle(E,E)",
-    "IsDiameterOfCircle(DB,E)"
-  ],
-  "goal_cdl": "Value(RadiusOfCircle(E))",
-  "problem_answer": "6",
-  "theorem_seqs": [
-    "diameter_of_circle_property_length_equal(1,DB,E)",
-    "circle_property_length_of_radius_and_diameter(1,E)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "diameter_of_circle_property_length_equal(1,DB,E)",
-      "circle_property_length_of_radius_and_diameter(1,E)"
-    ]
-  }
+    "problem_id": 1600,
+    "source": "Geometry3k-1660",
+    "problem_level": 2,
+    "problem_img": "1600.png",
+    "construction_cdl": [
+        "Shape(AB,EBA)",
+        "Shape(AE,EB,BA)",
+        "Shape(DE,EA,EAD)",
+        "Shape(CE,ED,EDC)",
+        "Shape(BE,EC,ECB)",
+        "Collinear(AEC)",
+        "Collinear(DEB)",
+        "Cocircular(E,ADCB)"
+    ],
+    "text_cdl": [
+        "Equal(LengthOfLine(BD),12)",
+        "IsCentreOfCircle(E,E)",
+        "IsDiameterOfCircle(DB,E)"
+    ],
+    "image_cdl": [
+        "IsCentreOfCircle(E,E)",
+        "IsDiameterOfCircle(DB,E)"
+    ],
+    "goal_cdl": "Value(RadiusOfCircle(E))",
+    "problem_answer": "6",
+    "theorem_seqs": [
+        "diameter_of_circle_property_length_equal(1,DB,E)",
+        "circle_property_length_of_radius_and_diameter(1,E)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "diameter_of_circle_property_length_equal(1,DB,E)",
+            "circle_property_length_of_radius_and_diameter(1,E)"
+        ]
+    }
 }

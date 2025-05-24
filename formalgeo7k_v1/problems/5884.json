@@ -1,49 +1,46 @@
 {
-  "problem_id": 5884,
-  "annotation": "QikeHuang_2023-05-28",
-  "source": "GeoQA-7944",
-  "problem_level": 6,
-  "problem_text_cn": "如图所示，AB=2，BC=6，CD=3，AB平行于CD。求直线BP的长度。",
-  "problem_text_en": "As shown in the diagram, AB=2, BC=6, CD=3, AB is parallel to CD. Find the length of line BP.",
-  "problem_img": "5884.png",
-  "construction_cdl": [
-    "Shape(AP,PB,BA)",
-    "Shape(PC,CD,DP)",
-    "Collinear(APD)",
-    "Collinear(BPC)"
-  ],
-  "text_cdl": [
-    "Equal(LengthOfLine(AB),2)",
-    "Equal(LengthOfLine(BC),6)",
-    "Equal(LengthOfLine(CD),3)",
-    "ParallelBetweenLine(AB,CD)"
-  ],
-  "image_cdl": [],
-  "goal_cdl": "Value(LengthOfLine(BP))",
-  "problem_answer": "12/5",
-  "theorem_seqs": [
-    "parallel_property_alternate_interior_angle(1,AB,CD)",
-    "parallel_property_alternate_interior_angle(2,AB,CD)",
-    "similar_triangle_judgment_aa(1,PBA,PCD)",
-    "similar_triangle_property_line_ratio(1,PBA,PCD)",
-    "similar_triangle_property_line_ratio(1,APB,DPC)",
-    "line_addition(1,BP,PC)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "parallel_property_alternate_interior_angle(1,AB,CD)",
-      "parallel_property_alternate_interior_angle(2,AB,CD)",
-      "line_addition(1,BP,PC)"
+    "problem_id": 5884,
+    "source": "GeoQA-7944",
+    "problem_level": 6,
+    "problem_img": "5884.png",
+    "construction_cdl": [
+        "Shape(AP,PB,BA)",
+        "Shape(PC,CD,DP)",
+        "Collinear(APD)",
+        "Collinear(BPC)"
     ],
-    "parallel_property_alternate_interior_angle(1,AB,CD)": [
-      "similar_triangle_judgment_aa(1,PBA,PCD)"
+    "text_cdl": [
+        "Equal(LengthOfLine(AB),2)",
+        "Equal(LengthOfLine(BC),6)",
+        "Equal(LengthOfLine(CD),3)",
+        "ParallelBetweenLine(AB,CD)"
     ],
-    "parallel_property_alternate_interior_angle(2,AB,CD)": [
-      "similar_triangle_judgment_aa(1,PBA,PCD)"
+    "image_cdl": [],
+    "goal_cdl": "Value(LengthOfLine(BP))",
+    "problem_answer": "12/5",
+    "theorem_seqs": [
+        "parallel_property_alternate_interior_angle(1,AB,CD)",
+        "parallel_property_alternate_interior_angle(2,AB,CD)",
+        "similar_triangle_judgment_aa(1,PBA,PCD)",
+        "similar_triangle_property_line_ratio(1,PBA,PCD)",
+        "similar_triangle_property_line_ratio(1,APB,DPC)",
+        "line_addition(1,BP,PC)"
     ],
-    "similar_triangle_judgment_aa(1,PBA,PCD)": [
-      "similar_triangle_property_line_ratio(1,PBA,PCD)",
-      "similar_triangle_property_line_ratio(1,APB,DPC)"
-    ]
-  }
+    "theorem_seqs_dag": {
+        "START": [
+            "parallel_property_alternate_interior_angle(1,AB,CD)",
+            "parallel_property_alternate_interior_angle(2,AB,CD)",
+            "line_addition(1,BP,PC)"
+        ],
+        "parallel_property_alternate_interior_angle(1,AB,CD)": [
+            "similar_triangle_judgment_aa(1,PBA,PCD)"
+        ],
+        "parallel_property_alternate_interior_angle(2,AB,CD)": [
+            "similar_triangle_judgment_aa(1,PBA,PCD)"
+        ],
+        "similar_triangle_judgment_aa(1,PBA,PCD)": [
+            "similar_triangle_property_line_ratio(1,PBA,PCD)",
+            "similar_triangle_property_line_ratio(1,APB,DPC)"
+        ]
+    }
 }

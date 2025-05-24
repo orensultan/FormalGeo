@@ -1,44 +1,41 @@
 {
-  "problem_id": 3966,
-  "annotation": "ZheZhu_2023-04-30",
-  "source": "GeoQA-1903",
-  "problem_level": 4,
-  "problem_text_cn": "如图所示，∠DOA=136°，圆O的圆心为O。求∠BCD的大小。",
-  "problem_text_en": "As shown in the diagram, ∠DOA=136°, O is the center of ⊙O. Find the measure of ∠BCD.",
-  "problem_img": "3966.png",
-  "construction_cdl": [
-    "Shape(OA,OAD,DO)",
-    "Shape(EO,OD,DE)",
-    "Shape(BE,ED,ODB)",
-    "Shape(EB,BC,CE)",
-    "Shape(CB,OBC)",
-    "Shape(OCA,AO,OE,EC)",
-    "Collinear(AOEB)",
-    "Collinear(CED)",
-    "Cocircular(O,CADB)"
-  ],
-  "text_cdl": [
-    "Equal(MeasureOfAngle(DOA),136)",
-    "IsCentreOfCircle(O,O)"
-  ],
-  "image_cdl": [
-    "Equal(MeasureOfAngle(DOA),136)",
-    "IsCentreOfCircle(O,O)"
-  ],
-  "goal_cdl": "Value(MeasureOfAngle(BCD))",
-  "problem_answer": "22",
-  "theorem_seqs": [
-    "flat_angle(1,EOA)",
-    "angle_addition(1,EOD,DOA)",
-    "arc_property_center_angle(1,ODB,O)",
-    "arc_property_circumference_angle_external(1,ODB,C)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "flat_angle(1,EOA)",
-      "angle_addition(1,EOD,DOA)",
-      "arc_property_center_angle(1,ODB,O)",
-      "arc_property_circumference_angle_external(1,ODB,C)"
-    ]
-  }
+    "problem_id": 3966,
+    "source": "GeoQA-1903",
+    "problem_level": 4,
+    "problem_img": "3966.png",
+    "construction_cdl": [
+        "Shape(OA,OAD,DO)",
+        "Shape(EO,OD,DE)",
+        "Shape(BE,ED,ODB)",
+        "Shape(EB,BC,CE)",
+        "Shape(CB,OBC)",
+        "Shape(OCA,AO,OE,EC)",
+        "Collinear(AOEB)",
+        "Collinear(CED)",
+        "Cocircular(O,CADB)"
+    ],
+    "text_cdl": [
+        "Equal(MeasureOfAngle(DOA),136)",
+        "IsCentreOfCircle(O,O)"
+    ],
+    "image_cdl": [
+        "Equal(MeasureOfAngle(DOA),136)",
+        "IsCentreOfCircle(O,O)"
+    ],
+    "goal_cdl": "Value(MeasureOfAngle(BCD))",
+    "problem_answer": "22",
+    "theorem_seqs": [
+        "flat_angle(1,EOA)",
+        "angle_addition(1,EOD,DOA)",
+        "arc_property_center_angle(1,ODB,O)",
+        "arc_property_circumference_angle_external(1,ODB,C)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "flat_angle(1,EOA)",
+            "angle_addition(1,EOD,DOA)",
+            "arc_property_center_angle(1,ODB,O)",
+            "arc_property_circumference_angle_external(1,ODB,C)"
+        ]
+    }
 }

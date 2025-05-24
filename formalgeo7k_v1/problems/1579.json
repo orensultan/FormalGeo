@@ -1,45 +1,42 @@
 {
-  "problem_id": 1579,
-  "annotation": "XiaoxiaoJin_2023-04-16",
-  "source": "Geometry3k-1638",
-  "problem_level": 2,
-  "problem_text_cn": "如图所示，AB=3*x，CD=9*x，ST=15，S是线段AC的中点，T平分线段BD，ACDB是梯形。求x的值。",
-  "problem_text_en": "As shown in the diagram, AB=3*x, CD=9*x, ST=15, S bisects segment AC, T is the midpoint of segment BD, quadrilateral ACDB is a trapezoid. Find the value of x.",
-  "problem_img": "1579.png",
-  "construction_cdl": [
-    "Shape(AS,ST,TB,BA)",
-    "Shape(SC,CD,DT,TS)",
-    "Collinear(ASC)",
-    "Collinear(BTD)"
-  ],
-  "text_cdl": [
-    "Equal(LengthOfLine(AB),3*x)",
-    "Equal(LengthOfLine(CD),9*x)",
-    "Equal(LengthOfLine(ST),15)",
-    "IsMidpointOfLine(S,AC)",
-    "IsMidpointOfLine(T,BD)",
-    "Trapezoid(ACDB)"
-  ],
-  "image_cdl": [
-    "Equal(LengthOfLine(AB),3*x)",
-    "Equal(LengthOfLine(CD),9*x)",
-    "Equal(LengthOfLine(ST),15)",
-    "IsMidpointOfLine(S,AC)",
-    "IsMidpointOfLine(T,BD)",
-    "Trapezoid(ACDB)"
-  ],
-  "goal_cdl": "Value(x)",
-  "problem_answer": "5/2",
-  "theorem_seqs": [
-    "midsegment_of_quadrilateral_judgment_midpoint(1,ST,ACDB)",
-    "midsegment_of_quadrilateral_property_length(1,ST,ACDB)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "midsegment_of_quadrilateral_judgment_midpoint(1,ST,ACDB)"
+    "problem_id": 1579,
+    "source": "Geometry3k-1638",
+    "problem_level": 2,
+    "problem_img": "1579.png",
+    "construction_cdl": [
+        "Shape(AS,ST,TB,BA)",
+        "Shape(SC,CD,DT,TS)",
+        "Collinear(ASC)",
+        "Collinear(BTD)"
     ],
-    "midsegment_of_quadrilateral_judgment_midpoint(1,ST,ACDB)": [
-      "midsegment_of_quadrilateral_property_length(1,ST,ACDB)"
-    ]
-  }
+    "text_cdl": [
+        "Equal(LengthOfLine(AB),3*x)",
+        "Equal(LengthOfLine(CD),9*x)",
+        "Equal(LengthOfLine(ST),15)",
+        "IsMidpointOfLine(S,AC)",
+        "IsMidpointOfLine(T,BD)",
+        "Trapezoid(ACDB)"
+    ],
+    "image_cdl": [
+        "Equal(LengthOfLine(AB),3*x)",
+        "Equal(LengthOfLine(CD),9*x)",
+        "Equal(LengthOfLine(ST),15)",
+        "IsMidpointOfLine(S,AC)",
+        "IsMidpointOfLine(T,BD)",
+        "Trapezoid(ACDB)"
+    ],
+    "goal_cdl": "Value(x)",
+    "problem_answer": "5/2",
+    "theorem_seqs": [
+        "midsegment_of_quadrilateral_judgment_midpoint(1,ST,ACDB)",
+        "midsegment_of_quadrilateral_property_length(1,ST,ACDB)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "midsegment_of_quadrilateral_judgment_midpoint(1,ST,ACDB)"
+        ],
+        "midsegment_of_quadrilateral_judgment_midpoint(1,ST,ACDB)": [
+            "midsegment_of_quadrilateral_property_length(1,ST,ACDB)"
+        ]
+    }
 }

@@ -1,10 +1,18 @@
-from formalgeo.data import DatasetLoader
+import json
+import ast
+import os
 from formalgeo.parse import parse_one_theorem
 from formalgeo.solver import Interactor
 from Problem import get_theorem, replace_symbols
-import json
-import ast
-dl = DatasetLoader(dataset_name="formalgeo7k_v1", datasets_path="formalgeo7k_v1")
+
+# Get the path to the project root (three directories up from this script since we're in verifier/)
+PROJECT_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..', '..'))
+
+# Load GDL files directly
+with open(os.path.join(PROJECT_ROOT, 'formalgeo7k_v1/gdl/predicate_GDL.json'), 'r') as f:
+    predicate_GDL = json.load(f)
+with open(os.path.join(PROJECT_ROOT, 'formalgeo7k_v1/gdl/theorem_GDL.json'), 'r') as f:
+    theorem_GDL = json.load(f)
 
 def convert_theorem_seqs_format_string(input_str):
     # Remove leading and trailing single quotes if present
@@ -58,10 +66,13 @@ def get_processed_model_resp(resp):
 class Verifier:
     def __init__(self, problem_id, resp):
         self.resp = resp
-        self.solver = Interactor(dl.predicate_GDL, dl.theorem_GDL)
-        self.solver.load_problem(dl.get_problem(problem_id))
+        self.solver = Interactor(predicate_GDL, theorem_GDL)
+        # Load problem directly
+        with open(os.path.join(PROJECT_ROOT, 'formalgeo7k_v1/problems', f"{problem_id}.json"), 'r') as f:
+            problem_data = json.load(f)
+        self.solver.load_problem(problem_data)
         self.theorem_seqs = get_processed_model_resp(resp)
-        self.gdl_dict = dl.theorem_GDL
+        self.gdl_dict = theorem_GDL
 
     def get_letters(self, t_name, t_para):
         letters = {}

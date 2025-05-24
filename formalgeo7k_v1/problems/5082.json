@@ -1,46 +1,43 @@
 {
-  "problem_id": 5082,
-  "annotation": "ChengQin_2023-05-21",
-  "source": "GeoQA-4882",
-  "problem_level": 6,
-  "problem_text_cn": "如图所示，AD=4，AE=3，CE=6，DE∥BC。求直线BD的长度。",
-  "problem_text_en": "As shown in the diagram, AD=4, AE=3, CE=6, DE is parallel to BC. Find the length of line BD.",
-  "problem_img": "5082.png",
-  "construction_cdl": [
-    "Shape(AD,DE,EA)",
-    "Shape(DB,BC,CE,ED)",
-    "Collinear(ADB)",
-    "Collinear(AEC)"
-  ],
-  "text_cdl": [
-    "Equal(LengthOfLine(AD),4)",
-    "Equal(LengthOfLine(AE),3)",
-    "Equal(LengthOfLine(CE),6)",
-    "ParallelBetweenLine(DE,BC)"
-  ],
-  "image_cdl": [],
-  "goal_cdl": "Value(LengthOfLine(BD))",
-  "problem_answer": "8",
-  "theorem_seqs": [
-    "parallel_property_corresponding_angle(1,DE,BC,A)",
-    "similar_triangle_judgment_aa(1,EAD,CAB)",
-    "line_addition(1,AE,EC)",
-    "similar_triangle_property_line_ratio(1,DEA,BCA)",
-    "similar_triangle_property_line_ratio(1,EAD,CAB)",
-    "line_addition(1,BD,DA)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "parallel_property_corresponding_angle(1,DE,BC,A)",
-      "line_addition(1,AE,EC)",
-      "line_addition(1,BD,DA)"
+    "problem_id": 5082,
+    "source": "GeoQA-4882",
+    "problem_level": 6,
+    "problem_img": "5082.png",
+    "construction_cdl": [
+        "Shape(AD,DE,EA)",
+        "Shape(DB,BC,CE,ED)",
+        "Collinear(ADB)",
+        "Collinear(AEC)"
     ],
-    "parallel_property_corresponding_angle(1,DE,BC,A)": [
-      "similar_triangle_judgment_aa(1,EAD,CAB)"
+    "text_cdl": [
+        "Equal(LengthOfLine(AD),4)",
+        "Equal(LengthOfLine(AE),3)",
+        "Equal(LengthOfLine(CE),6)",
+        "ParallelBetweenLine(DE,BC)"
     ],
-    "similar_triangle_judgment_aa(1,EAD,CAB)": [
-      "similar_triangle_property_line_ratio(1,EAD,CAB)",
-      "similar_triangle_property_line_ratio(1,DEA,BCA)"
-    ]
-  }
+    "image_cdl": [],
+    "goal_cdl": "Value(LengthOfLine(BD))",
+    "problem_answer": "8",
+    "theorem_seqs": [
+        "parallel_property_corresponding_angle(1,DE,BC,A)",
+        "similar_triangle_judgment_aa(1,EAD,CAB)",
+        "line_addition(1,AE,EC)",
+        "similar_triangle_property_line_ratio(1,DEA,BCA)",
+        "similar_triangle_property_line_ratio(1,EAD,CAB)",
+        "line_addition(1,BD,DA)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "parallel_property_corresponding_angle(1,DE,BC,A)",
+            "line_addition(1,AE,EC)",
+            "line_addition(1,BD,DA)"
+        ],
+        "parallel_property_corresponding_angle(1,DE,BC,A)": [
+            "similar_triangle_judgment_aa(1,EAD,CAB)"
+        ],
+        "similar_triangle_judgment_aa(1,EAD,CAB)": [
+            "similar_triangle_property_line_ratio(1,EAD,CAB)",
+            "similar_triangle_property_line_ratio(1,DEA,BCA)"
+        ]
+    }
 }

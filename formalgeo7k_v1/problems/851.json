@@ -1,51 +1,48 @@
 {
-  "problem_id": 851,
-  "annotation": "NaZhu_2023-04-09",
-  "source": "Geometry3k-880",
-  "problem_level": 6,
-  "problem_text_cn": "如图所示，CA=10，圆C的圆心为C，四边形ABFD是正方形。求⊙C的面积减去四边形ABFD的面积。",
-  "problem_text_en": "As shown in the diagram, CA=10, C is the center of circle C, quadrilateral ABFD is a square. Find the area of the circle C minus the area of quadrilateral ABFD.",
-  "problem_img": "851.png",
-  "construction_cdl": [
-    "Shape(CBF,FB)",
-    "Shape(CFD,DF)",
-    "Shape(CDA,AD)",
-    "Shape(CAB,BA)",
-    "Shape(CB,BF,FC)",
-    "Shape(CA,AB,BC)",
-    "Shape(CD,DA,AC)",
-    "Shape(CF,FD,DC)",
-    "Collinear(FCA)",
-    "Collinear(DCB)",
-    "Cocircular(C,BFDA)"
-  ],
-  "text_cdl": [
-    "Equal(LengthOfLine(CA),10)",
-    "IsCentreOfCircle(C,C)",
-    "Square(ABFD)"
-  ],
-  "image_cdl": [
-    "Equal(LengthOfLine(CA),10)",
-    "IsCentreOfCircle(C,C)"
-  ],
-  "goal_cdl": "Value(Sub(AreaOfCircle(C),AreaOfQuadrilateral(ABFD)))",
-  "problem_answer": "-200+100*pi",
-  "theorem_seqs": [
-    "radius_of_circle_property_length_equal(1,CA,C)",
-    "radius_of_circle_property_length_equal(1,CF,C)",
-    "line_addition(1,FC,CA)",
-    "rectangle_property_diagonal_equal(1,ABFD)",
-    "kite_area_formula_diagonal(1,ABFD)",
-    "circle_area_formula(1,C)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "radius_of_circle_property_length_equal(1,CA,C)",
-      "radius_of_circle_property_length_equal(1,CF,C)",
-      "line_addition(1,FC,CA)",
-      "rectangle_property_diagonal_equal(1,ABFD)",
-      "kite_area_formula_diagonal(1,ABFD)",
-      "circle_area_formula(1,C)"
-    ]
-  }
+    "problem_id": 851,
+    "source": "Geometry3k-880",
+    "problem_level": 6,
+    "problem_img": "851.png",
+    "construction_cdl": [
+        "Shape(CBF,FB)",
+        "Shape(CFD,DF)",
+        "Shape(CDA,AD)",
+        "Shape(CAB,BA)",
+        "Shape(CB,BF,FC)",
+        "Shape(CA,AB,BC)",
+        "Shape(CD,DA,AC)",
+        "Shape(CF,FD,DC)",
+        "Collinear(FCA)",
+        "Collinear(DCB)",
+        "Cocircular(C,BFDA)"
+    ],
+    "text_cdl": [
+        "Equal(LengthOfLine(CA),10)",
+        "IsCentreOfCircle(C,C)",
+        "Square(ABFD)"
+    ],
+    "image_cdl": [
+        "Equal(LengthOfLine(CA),10)",
+        "IsCentreOfCircle(C,C)"
+    ],
+    "goal_cdl": "Value(Sub(AreaOfCircle(C),AreaOfQuadrilateral(ABFD)))",
+    "problem_answer": "-200+100*pi",
+    "theorem_seqs": [
+        "radius_of_circle_property_length_equal(1,CA,C)",
+        "radius_of_circle_property_length_equal(1,CF,C)",
+        "line_addition(1,FC,CA)",
+        "rectangle_property_diagonal_equal(1,ABFD)",
+        "kite_area_formula_diagonal(1,ABFD)",
+        "circle_area_formula(1,C)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "radius_of_circle_property_length_equal(1,CA,C)",
+            "radius_of_circle_property_length_equal(1,CF,C)",
+            "line_addition(1,FC,CA)",
+            "rectangle_property_diagonal_equal(1,ABFD)",
+            "kite_area_formula_diagonal(1,ABFD)",
+            "circle_area_formula(1,C)"
+        ]
+    }
 }

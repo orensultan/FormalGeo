@@ -1,32 +1,29 @@
 {
-  "problem_id": 3166,
-  "annotation": "JiaZou_2023-04-23",
-  "source": "GeoQA-436",
-  "problem_level": 2,
-  "problem_text_cn": "如图所示，∠ABD=∠CDB，∠DAB=60°。求∠CDA的大小。",
-  "problem_text_en": "As shown in the diagram, ∠ABD=∠CDB, ∠DAB=60°. Find the measure of ∠CDA.",
-  "problem_img": "3166.png",
-  "construction_cdl": [
-    "Shape(AB,BD,DA)",
-    "Shape(BC,CD,DB)"
-  ],
-  "text_cdl": [
-    "Equal(MeasureOfAngle(ABD),MeasureOfAngle(CDB))",
-    "Equal(MeasureOfAngle(DAB),60)"
-  ],
-  "image_cdl": [],
-  "goal_cdl": "Value(MeasureOfAngle(CDA))",
-  "problem_answer": "120",
-  "theorem_seqs": [
-    "parallel_judgment_alternate_interior_angle(1,BA,CD)",
-    "parallel_property_ipsilateral_internal_angle(1,DC,AB)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "parallel_judgment_alternate_interior_angle(1,BA,CD)"
+    "problem_id": 3166,
+    "source": "GeoQA-436",
+    "problem_level": 2,
+    "problem_img": "3166.png",
+    "construction_cdl": [
+        "Shape(AB,BD,DA)",
+        "Shape(BC,CD,DB)"
     ],
-    "parallel_judgment_alternate_interior_angle(1,BA,CD)": [
-      "parallel_property_ipsilateral_internal_angle(1,DC,AB)"
-    ]
-  }
+    "text_cdl": [
+        "Equal(MeasureOfAngle(ABD),MeasureOfAngle(CDB))",
+        "Equal(MeasureOfAngle(DAB),60)"
+    ],
+    "image_cdl": [],
+    "goal_cdl": "Value(MeasureOfAngle(CDA))",
+    "problem_answer": "120",
+    "theorem_seqs": [
+        "parallel_judgment_alternate_interior_angle(1,BA,CD)",
+        "parallel_property_ipsilateral_internal_angle(1,DC,AB)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "parallel_judgment_alternate_interior_angle(1,BA,CD)"
+        ],
+        "parallel_judgment_alternate_interior_angle(1,BA,CD)": [
+            "parallel_property_ipsilateral_internal_angle(1,DC,AB)"
+        ]
+    }
 }

@@ -1,58 +1,55 @@
 {
-  "problem_id": 3983,
-  "annotation": "ZheZhu_2023-04-30",
-  "source": "GeoQA-1927",
-  "problem_level": 8,
-  "problem_text_cn": "如图所示，AB=8，OA=5，O是⊙O的圆心，OC垂直于BC。求直线CD的长度。",
-  "problem_text_en": "As shown in the diagram, AB=8, OA=5, O is the center of ⊙O, OC is perpendicular to BC. Find the length of line CD.",
-  "problem_img": "3983.png",
-  "construction_cdl": [
-    "Shape(OA,AC,CO)",
-    "Shape(CA,OAD,DC)",
-    "Shape(BC,CD,ODB)",
-    "Shape(OC,CB,OBA,AO)",
-    "Collinear(ACB)",
-    "Collinear(OCD)",
-    "Cocircular(O,ADB)"
-  ],
-  "text_cdl": [
-    "Equal(LengthOfLine(AB),8)",
-    "Equal(LengthOfLine(OA),5)",
-    "IsCentreOfCircle(O,O)",
-    "PerpendicularBetweenLine(OC,BC)"
-  ],
-  "image_cdl": [
-    "Equal(LengthOfLine(AB),8)",
-    "Equal(LengthOfLine(OA),5)",
-    "IsCentreOfCircle(O,O)",
-    "PerpendicularBetweenLine(OC,BC)"
-  ],
-  "goal_cdl": "Value(LengthOfLine(CD))",
-  "problem_answer": "2",
-  "theorem_seqs": [
-    "adjacent_complementary_angle(1,ACO,OCB)",
-    "circle_property_chord_perpendicular_bisect_chord(1,O,OC,AB)",
-    "radius_of_circle_property_length_equal(1,OA,O)",
-    "radius_of_circle_property_length_equal(1,OD,O)",
-    "line_addition(1,AC,CB)",
-    "line_addition(1,OC,CD)",
-    "right_triangle_judgment_angle(1,ACO)",
-    "right_triangle_property_pythagorean(1,ACO)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "adjacent_complementary_angle(1,ACO,OCB)",
-      "radius_of_circle_property_length_equal(1,OA,O)",
-      "radius_of_circle_property_length_equal(1,OD,O)",
-      "line_addition(1,AC,CB)",
-      "line_addition(1,OC,CD)"
+    "problem_id": 3983,
+    "source": "GeoQA-1927",
+    "problem_level": 8,
+    "problem_img": "3983.png",
+    "construction_cdl": [
+        "Shape(OA,AC,CO)",
+        "Shape(CA,OAD,DC)",
+        "Shape(BC,CD,ODB)",
+        "Shape(OC,CB,OBA,AO)",
+        "Collinear(ACB)",
+        "Collinear(OCD)",
+        "Cocircular(O,ADB)"
     ],
-    "adjacent_complementary_angle(1,ACO,OCB)": [
-      "circle_property_chord_perpendicular_bisect_chord(1,O,OC,AB)",
-      "right_triangle_judgment_angle(1,ACO)"
+    "text_cdl": [
+        "Equal(LengthOfLine(AB),8)",
+        "Equal(LengthOfLine(OA),5)",
+        "IsCentreOfCircle(O,O)",
+        "PerpendicularBetweenLine(OC,BC)"
     ],
-    "right_triangle_judgment_angle(1,ACO)": [
-      "right_triangle_property_pythagorean(1,ACO)"
-    ]
-  }
+    "image_cdl": [
+        "Equal(LengthOfLine(AB),8)",
+        "Equal(LengthOfLine(OA),5)",
+        "IsCentreOfCircle(O,O)",
+        "PerpendicularBetweenLine(OC,BC)"
+    ],
+    "goal_cdl": "Value(LengthOfLine(CD))",
+    "problem_answer": "2",
+    "theorem_seqs": [
+        "adjacent_complementary_angle(1,ACO,OCB)",
+        "circle_property_chord_perpendicular_bisect_chord(1,O,OC,AB)",
+        "radius_of_circle_property_length_equal(1,OA,O)",
+        "radius_of_circle_property_length_equal(1,OD,O)",
+        "line_addition(1,AC,CB)",
+        "line_addition(1,OC,CD)",
+        "right_triangle_judgment_angle(1,ACO)",
+        "right_triangle_property_pythagorean(1,ACO)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "adjacent_complementary_angle(1,ACO,OCB)",
+            "radius_of_circle_property_length_equal(1,OA,O)",
+            "radius_of_circle_property_length_equal(1,OD,O)",
+            "line_addition(1,AC,CB)",
+            "line_addition(1,OC,CD)"
+        ],
+        "adjacent_complementary_angle(1,ACO,OCB)": [
+            "circle_property_chord_perpendicular_bisect_chord(1,O,OC,AB)",
+            "right_triangle_judgment_angle(1,ACO)"
+        ],
+        "right_triangle_judgment_angle(1,ACO)": [
+            "right_triangle_property_pythagorean(1,ACO)"
+        ]
+    }
 }

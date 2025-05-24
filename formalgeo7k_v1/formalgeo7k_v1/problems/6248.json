@@ -1,47 +1,44 @@
 {
-  "problem_id": 6248,
-  "annotation": "FangzhenZhu_2023-06-04",
-  "source": "GeoQA-8856",
-  "problem_level": 6,
-  "problem_text_cn": "如图所示，AB=8，OC=5，⊙O的圆心为O，AD⊥OD。求直线OD的长度。",
-  "problem_text_en": "As shown in the diagram, AB=8, OC=5, O is the center of ⊙O, AD is perpendicular to OD. Find the length of line OD.",
-  "problem_img": "6248.png",
-  "construction_cdl": [
-    "Shape(OA,AD,DO)",
-    "Shape(OAC,CD,DA)",
-    "Shape(OCB,BD,DC)",
-    "Shape(OBA,AO,OD,DB)",
-    "Collinear(ADB)",
-    "Collinear(ODC)",
-    "Cocircular(O,ACB)"
-  ],
-  "text_cdl": [
-    "Equal(LengthOfLine(AB),8)",
-    "Equal(LengthOfLine(OC),5)",
-    "IsCentreOfCircle(O,O)",
-    "PerpendicularBetweenLine(AD,OD)"
-  ],
-  "image_cdl": [],
-  "goal_cdl": "Value(LengthOfLine(OD))",
-  "problem_answer": "3",
-  "theorem_seqs": [
-    "circle_property_chord_perpendicular_bisect_chord(1,O,OD,AB)",
-    "line_addition(1,AD,DB)",
-    "radius_of_circle_property_length_equal(1,OA,O)",
-    "radius_of_circle_property_length_equal(1,OC,O)",
-    "right_triangle_judgment_angle(1,ADO)",
-    "right_triangle_property_pythagorean(1,ADO)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "circle_property_chord_perpendicular_bisect_chord(1,O,OD,AB)",
-      "line_addition(1,AD,DB)",
-      "radius_of_circle_property_length_equal(1,OA,O)",
-      "radius_of_circle_property_length_equal(1,OC,O)",
-      "right_triangle_judgment_angle(1,ADO)"
+    "problem_id": 6248,
+    "source": "GeoQA-8856",
+    "problem_level": 6,
+    "problem_img": "6248.png",
+    "construction_cdl": [
+        "Shape(OA,AD,DO)",
+        "Shape(OAC,CD,DA)",
+        "Shape(OCB,BD,DC)",
+        "Shape(OBA,AO,OD,DB)",
+        "Collinear(ADB)",
+        "Collinear(ODC)",
+        "Cocircular(O,ACB)"
     ],
-    "right_triangle_judgment_angle(1,ADO)": [
-      "right_triangle_property_pythagorean(1,ADO)"
-    ]
-  }
+    "text_cdl": [
+        "Equal(LengthOfLine(AB),8)",
+        "Equal(LengthOfLine(OC),5)",
+        "IsCentreOfCircle(O,O)",
+        "PerpendicularBetweenLine(AD,OD)"
+    ],
+    "image_cdl": [],
+    "goal_cdl": "Value(LengthOfLine(OD))",
+    "problem_answer": "3",
+    "theorem_seqs": [
+        "circle_property_chord_perpendicular_bisect_chord(1,O,OD,AB)",
+        "line_addition(1,AD,DB)",
+        "radius_of_circle_property_length_equal(1,OA,O)",
+        "radius_of_circle_property_length_equal(1,OC,O)",
+        "right_triangle_judgment_angle(1,ADO)",
+        "right_triangle_property_pythagorean(1,ADO)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "circle_property_chord_perpendicular_bisect_chord(1,O,OD,AB)",
+            "line_addition(1,AD,DB)",
+            "radius_of_circle_property_length_equal(1,OA,O)",
+            "radius_of_circle_property_length_equal(1,OC,O)",
+            "right_triangle_judgment_angle(1,ADO)"
+        ],
+        "right_triangle_judgment_angle(1,ADO)": [
+            "right_triangle_property_pythagorean(1,ADO)"
+        ]
+    }
 }

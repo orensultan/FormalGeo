@@ -1,51 +1,48 @@
 {
-  "problem_id": 6157,
-  "annotation": "YifanWang_2023-06-04",
-  "source": "GeoQA-8720",
-  "problem_level": 5,
-  "problem_text_cn": "如图所示，∠AOB=50°，∠BFO=90°，O是⊙O的圆心。求∠CDA的大小。",
-  "problem_text_en": "As shown in the diagram, ∠AOB=50°, ∠BFO=90°, the center of ⊙O is O. Find the measure of ∠CDA.",
-  "problem_img": "6157.png",
-  "construction_cdl": [
-    "Shape(CE,EA,OAC)",
-    "Shape(AE,EF,FA)",
-    "Shape(AF,FB,BA)",
-    "Shape(AB,OBA)",
-    "Shape(CD,DE,EC)",
-    "Shape(BF,FO,OB)",
-    "Shape(DC,OCD)",
-    "Shape(BO,OF,FE,ED,ODB)",
-    "Collinear(CEFB)",
-    "Collinear(AED)",
-    "Collinear(AFO)",
-    "Cocircular(O,ACDB)"
-  ],
-  "text_cdl": [
-    "Equal(MeasureOfAngle(AOB),50)",
-    "Equal(MeasureOfAngle(BFO),90)",
-    "IsCentreOfCircle(O,O)"
-  ],
-  "image_cdl": [],
-  "goal_cdl": "Value(MeasureOfAngle(CDA))",
-  "problem_answer": "25",
-  "theorem_seqs": [
-    "arc_property_center_angle(1,OBA,O)",
-    "circle_property_chord_perpendicular_bisect_arc(1,OBC,OFA)",
-    "congruent_arc_judgment_length_equal(1,OBA,OAC)",
-    "congruent_arc_property_measure_equal(1,OBA,OAC)",
-    "arc_property_circumference_angle_external(1,OAC,D)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "arc_property_center_angle(1,OBA,O)",
-      "circle_property_chord_perpendicular_bisect_arc(1,OBC,OFA)",
-      "arc_property_circumference_angle_external(1,OAC,D)"
+    "problem_id": 6157,
+    "source": "GeoQA-8720",
+    "problem_level": 5,
+    "problem_img": "6157.png",
+    "construction_cdl": [
+        "Shape(CE,EA,OAC)",
+        "Shape(AE,EF,FA)",
+        "Shape(AF,FB,BA)",
+        "Shape(AB,OBA)",
+        "Shape(CD,DE,EC)",
+        "Shape(BF,FO,OB)",
+        "Shape(DC,OCD)",
+        "Shape(BO,OF,FE,ED,ODB)",
+        "Collinear(CEFB)",
+        "Collinear(AED)",
+        "Collinear(AFO)",
+        "Cocircular(O,ACDB)"
     ],
-    "circle_property_chord_perpendicular_bisect_arc(1,OBC,OFA)": [
-      "congruent_arc_judgment_length_equal(1,OBA,OAC)"
+    "text_cdl": [
+        "Equal(MeasureOfAngle(AOB),50)",
+        "Equal(MeasureOfAngle(BFO),90)",
+        "IsCentreOfCircle(O,O)"
     ],
-    "congruent_arc_judgment_length_equal(1,OBA,OAC)": [
-      "congruent_arc_property_measure_equal(1,OBA,OAC)"
-    ]
-  }
+    "image_cdl": [],
+    "goal_cdl": "Value(MeasureOfAngle(CDA))",
+    "problem_answer": "25",
+    "theorem_seqs": [
+        "arc_property_center_angle(1,OBA,O)",
+        "circle_property_chord_perpendicular_bisect_arc(1,OBC,OFA)",
+        "congruent_arc_judgment_length_equal(1,OBA,OAC)",
+        "congruent_arc_property_measure_equal(1,OBA,OAC)",
+        "arc_property_circumference_angle_external(1,OAC,D)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "arc_property_center_angle(1,OBA,O)",
+            "circle_property_chord_perpendicular_bisect_arc(1,OBC,OFA)",
+            "arc_property_circumference_angle_external(1,OAC,D)"
+        ],
+        "circle_property_chord_perpendicular_bisect_arc(1,OBC,OFA)": [
+            "congruent_arc_judgment_length_equal(1,OBA,OAC)"
+        ],
+        "congruent_arc_judgment_length_equal(1,OBA,OAC)": [
+            "congruent_arc_property_measure_equal(1,OBA,OAC)"
+        ]
+    }
 }

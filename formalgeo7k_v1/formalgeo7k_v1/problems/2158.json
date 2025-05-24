@@ -1,79 +1,76 @@
 {
-  "problem_id": 2158,
-  "annotation": "YiwenHuang_2023-04-23",
-  "source": "Geometry3k-2252",
-  "problem_level": 8,
-  "problem_text_cn": "如图所示，AC=17，AD=15，AD=EH，EH=15/2，AD是△ABC的高，EH是△EGF的高，△ABC与△EGF是镜像相似三角形，CD垂直于AD，EH⊥GH。求直线EG的长度。",
-  "problem_text_en": "As shown in the diagram, AC=17, AD=15, AD=EH, EH=15/2, AD is the altitude of triangle ABC, EH is the altitude of triangle EGF, △ABC is mirror similar to △EGF., CD⊥AD, EH⊥GH. Find the length of line EG.",
-  "problem_img": "2158.png",
-  "construction_cdl": [
-    "Shape(AB,BC,CA)",
-    "Shape(AC,CD,DA)",
-    "Shape(EH,HG,GE)",
-    "Shape(EG,GF,FE)",
-    "Collinear(BCD)",
-    "Collinear(HGF)"
-  ],
-  "text_cdl": [
-    "Equal(LengthOfLine(AC),17)",
-    "Equal(LengthOfLine(AD),15)",
-    "Equal(LengthOfLine(AD),LengthOfLine(EH))",
-    "Equal(LengthOfLine(EH),15/2)",
-    "IsAltitudeOfTriangle(AD,ABC)",
-    "IsAltitudeOfTriangle(EH,EGF)",
-    "MirrorSimilarBetweenTriangle(ABC,EGF)",
-    "PerpendicularBetweenLine(CD,AD)",
-    "PerpendicularBetweenLine(EH,GH)"
-  ],
-  "image_cdl": [
-    "Equal(LengthOfLine(AC),17)",
-    "Equal(LengthOfLine(AD),15)",
-    "Equal(LengthOfLine(AD),LengthOfLine(EH))",
-    "Equal(LengthOfLine(EH),15/2)",
-    "IsAltitudeOfTriangle(AD,ABC)",
-    "IsAltitudeOfTriangle(EH,EGF)",
-    "MirrorSimilarBetweenTriangle(ABC,EGF)",
-    "PerpendicularBetweenLine(CD,AD)",
-    "PerpendicularBetweenLine(EH,GH)"
-  ],
-  "goal_cdl": "Value(LengthOfLine(EG))",
-  "problem_answer": "17/2",
-  "theorem_seqs": [
-    "mirror_similar_triangle_property_angle_equal(1,CAB,GFE)",
-    "flat_angle(1,BCD)",
-    "flat_angle(1,HGF)",
-    "angle_addition(1,BCA,ACD)",
-    "angle_addition(1,HGE,EGF)",
-    "mirror_similar_triangle_judgment_aa(1,ACD,EHG)",
-    "mirror_similar_triangle_property_line_ratio(1,CDA,GEH)",
-    "mirror_similar_triangle_property_line_ratio(1,DAC,HGE)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "mirror_similar_triangle_property_angle_equal(1,CAB,GFE)",
-      "flat_angle(1,BCD)",
-      "flat_angle(1,HGF)",
-      "angle_addition(1,BCA,ACD)",
-      "angle_addition(1,HGE,EGF)"
+    "problem_id": 2158,
+    "source": "Geometry3k-2252",
+    "problem_level": 8,
+    "problem_img": "2158.png",
+    "construction_cdl": [
+        "Shape(AB,BC,CA)",
+        "Shape(AC,CD,DA)",
+        "Shape(EH,HG,GE)",
+        "Shape(EG,GF,FE)",
+        "Collinear(BCD)",
+        "Collinear(HGF)"
     ],
-    "mirror_similar_triangle_property_angle_equal(1,CAB,GFE)": [
-      "mirror_similar_triangle_judgment_aa(1,ACD,EHG)"
+    "text_cdl": [
+        "Equal(LengthOfLine(AC),17)",
+        "Equal(LengthOfLine(AD),15)",
+        "Equal(LengthOfLine(AD),LengthOfLine(EH))",
+        "Equal(LengthOfLine(EH),15/2)",
+        "IsAltitudeOfTriangle(AD,ABC)",
+        "IsAltitudeOfTriangle(EH,EGF)",
+        "MirrorSimilarBetweenTriangle(ABC,EGF)",
+        "PerpendicularBetweenLine(CD,AD)",
+        "PerpendicularBetweenLine(EH,GH)"
     ],
-    "flat_angle(1,BCD)": [
-      "mirror_similar_triangle_judgment_aa(1,ACD,EHG)"
+    "image_cdl": [
+        "Equal(LengthOfLine(AC),17)",
+        "Equal(LengthOfLine(AD),15)",
+        "Equal(LengthOfLine(AD),LengthOfLine(EH))",
+        "Equal(LengthOfLine(EH),15/2)",
+        "IsAltitudeOfTriangle(AD,ABC)",
+        "IsAltitudeOfTriangle(EH,EGF)",
+        "MirrorSimilarBetweenTriangle(ABC,EGF)",
+        "PerpendicularBetweenLine(CD,AD)",
+        "PerpendicularBetweenLine(EH,GH)"
     ],
-    "flat_angle(1,HGF)": [
-      "mirror_similar_triangle_judgment_aa(1,ACD,EHG)"
+    "goal_cdl": "Value(LengthOfLine(EG))",
+    "problem_answer": "17/2",
+    "theorem_seqs": [
+        "mirror_similar_triangle_property_angle_equal(1,CAB,GFE)",
+        "flat_angle(1,BCD)",
+        "flat_angle(1,HGF)",
+        "angle_addition(1,BCA,ACD)",
+        "angle_addition(1,HGE,EGF)",
+        "mirror_similar_triangle_judgment_aa(1,ACD,EHG)",
+        "mirror_similar_triangle_property_line_ratio(1,CDA,GEH)",
+        "mirror_similar_triangle_property_line_ratio(1,DAC,HGE)"
     ],
-    "angle_addition(1,BCA,ACD)": [
-      "mirror_similar_triangle_judgment_aa(1,ACD,EHG)"
-    ],
-    "angle_addition(1,HGE,EGF)": [
-      "mirror_similar_triangle_judgment_aa(1,ACD,EHG)"
-    ],
-    "mirror_similar_triangle_judgment_aa(1,ACD,EHG)": [
-      "mirror_similar_triangle_property_line_ratio(1,CDA,GEH)",
-      "mirror_similar_triangle_property_line_ratio(1,DAC,HGE)"
-    ]
-  }
+    "theorem_seqs_dag": {
+        "START": [
+            "mirror_similar_triangle_property_angle_equal(1,CAB,GFE)",
+            "flat_angle(1,BCD)",
+            "flat_angle(1,HGF)",
+            "angle_addition(1,BCA,ACD)",
+            "angle_addition(1,HGE,EGF)"
+        ],
+        "mirror_similar_triangle_property_angle_equal(1,CAB,GFE)": [
+            "mirror_similar_triangle_judgment_aa(1,ACD,EHG)"
+        ],
+        "flat_angle(1,BCD)": [
+            "mirror_similar_triangle_judgment_aa(1,ACD,EHG)"
+        ],
+        "flat_angle(1,HGF)": [
+            "mirror_similar_triangle_judgment_aa(1,ACD,EHG)"
+        ],
+        "angle_addition(1,BCA,ACD)": [
+            "mirror_similar_triangle_judgment_aa(1,ACD,EHG)"
+        ],
+        "angle_addition(1,HGE,EGF)": [
+            "mirror_similar_triangle_judgment_aa(1,ACD,EHG)"
+        ],
+        "mirror_similar_triangle_judgment_aa(1,ACD,EHG)": [
+            "mirror_similar_triangle_property_line_ratio(1,CDA,GEH)",
+            "mirror_similar_triangle_property_line_ratio(1,DAC,HGE)"
+        ]
+    }
 }

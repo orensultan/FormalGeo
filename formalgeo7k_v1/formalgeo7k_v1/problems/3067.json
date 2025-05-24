@@ -1,41 +1,38 @@
 {
-  "problem_id": 3067,
-  "annotation": "XiaokaiZhang_2023-04-16",
-  "source": "GeoQA-292",
-  "problem_level": 4,
-  "problem_text_cn": "如图所示，AB=DC，∠BCA=30°，∠CAB=90°，∠CDB=90°。求∠ACD的大小。",
-  "problem_text_en": "As shown in the diagram, AB=DC, ∠BCA=30°, ∠CAB=90°, ∠CDB=90°. Find the measure of ∠ACD.",
-  "problem_img": "3067.png",
-  "construction_cdl": [
-    "Shape(AB,BE,EA)",
-    "Shape(EB,BC,CE)",
-    "Shape(DE,EC,CD)",
-    "Collinear(AEC)",
-    "Collinear(BED)"
-  ],
-  "text_cdl": [
-    "Equal(LengthOfLine(AB),LengthOfLine(DC))",
-    "Equal(MeasureOfAngle(BCA),30)",
-    "Equal(MeasureOfAngle(CAB),90)",
-    "Equal(MeasureOfAngle(CDB),90)"
-  ],
-  "image_cdl": [],
-  "goal_cdl": "Value(MeasureOfAngle(ACD))",
-  "problem_answer": "30",
-  "theorem_seqs": [
-    "triangle_property_angle_sum(1,CAB)",
-    "mirror_congruent_triangle_judgment_hl(1,CAB,BCD)",
-    "mirror_congruent_triangle_property_angle_equal(1,BCA,CDB)",
-    "angle_addition(1,BCA,ACD)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "triangle_property_angle_sum(1,CAB)",
-      "mirror_congruent_triangle_judgment_hl(1,CAB,BCD)",
-      "angle_addition(1,BCA,ACD)"
+    "problem_id": 3067,
+    "source": "GeoQA-292",
+    "problem_level": 4,
+    "problem_img": "3067.png",
+    "construction_cdl": [
+        "Shape(AB,BE,EA)",
+        "Shape(EB,BC,CE)",
+        "Shape(DE,EC,CD)",
+        "Collinear(AEC)",
+        "Collinear(BED)"
     ],
-    "mirror_congruent_triangle_judgment_hl(1,CAB,BCD)": [
-      "mirror_congruent_triangle_property_angle_equal(1,BCA,CDB)"
-    ]
-  }
+    "text_cdl": [
+        "Equal(LengthOfLine(AB),LengthOfLine(DC))",
+        "Equal(MeasureOfAngle(BCA),30)",
+        "Equal(MeasureOfAngle(CAB),90)",
+        "Equal(MeasureOfAngle(CDB),90)"
+    ],
+    "image_cdl": [],
+    "goal_cdl": "Value(MeasureOfAngle(ACD))",
+    "problem_answer": "30",
+    "theorem_seqs": [
+        "triangle_property_angle_sum(1,CAB)",
+        "mirror_congruent_triangle_judgment_hl(1,CAB,BCD)",
+        "mirror_congruent_triangle_property_angle_equal(1,BCA,CDB)",
+        "angle_addition(1,BCA,ACD)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "triangle_property_angle_sum(1,CAB)",
+            "mirror_congruent_triangle_judgment_hl(1,CAB,BCD)",
+            "angle_addition(1,BCA,ACD)"
+        ],
+        "mirror_congruent_triangle_judgment_hl(1,CAB,BCD)": [
+            "mirror_congruent_triangle_property_angle_equal(1,BCA,CDB)"
+        ]
+    }
 }

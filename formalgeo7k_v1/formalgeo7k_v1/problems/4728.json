@@ -1,40 +1,37 @@
 {
-  "problem_id": 4728,
-  "annotation": "XiaoxiaoJin_2023-05-14",
-  "source": "GeoQA-4062",
-  "problem_level": 2,
-  "problem_text_cn": "如图所示，∠BAN=50°，O是⊙O的圆心，圆O的直径为AD，圆O的切线为NA。求∠BCA的大小。",
-  "problem_text_en": "As shown in the diagram, ∠BAN=50°, O is the center of circle O, the diameter of circle O is AD, the tangent to circle O is NA. Find the measure of ∠BCA.",
-  "problem_img": "4728.png",
-  "construction_cdl": [
-    "Shape(CA,AO,OE,EC)",
-    "Shape(AC,OCA)",
-    "Shape(EO,OA,AB,BE)",
-    "Shape(BA,OAB)",
-    "Shape(CE,ED,ODC)",
-    "Shape(DE,EB,OBD)",
-    "Shape(BA,AN)",
-    "Collinear(AOED)",
-    "Collinear(CEB)",
-    "Cocircular(O,ABDC)"
-  ],
-  "text_cdl": [
-    "Equal(MeasureOfAngle(BAN),50)",
-    "IsCentreOfCircle(O,O)",
-    "IsDiameterOfCircle(AD,O)",
-    "IsTangentOfCircle(NA,O)"
-  ],
-  "image_cdl": [],
-  "goal_cdl": "Value(MeasureOfAngle(BCA))",
-  "problem_answer": "50",
-  "theorem_seqs": [
-    "arc_property_circumference_angle_external(1,OAB,C)",
-    "circle_property_angle_of_osculation(1,OAB,N)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "arc_property_circumference_angle_external(1,OAB,C)",
-      "circle_property_angle_of_osculation(1,OAB,N)"
-    ]
-  }
+    "problem_id": 4728,
+    "source": "GeoQA-4062",
+    "problem_level": 2,
+    "problem_img": "4728.png",
+    "construction_cdl": [
+        "Shape(CA,AO,OE,EC)",
+        "Shape(AC,OCA)",
+        "Shape(EO,OA,AB,BE)",
+        "Shape(BA,OAB)",
+        "Shape(CE,ED,ODC)",
+        "Shape(DE,EB,OBD)",
+        "Shape(BA,AN)",
+        "Collinear(AOED)",
+        "Collinear(CEB)",
+        "Cocircular(O,ABDC)"
+    ],
+    "text_cdl": [
+        "Equal(MeasureOfAngle(BAN),50)",
+        "IsCentreOfCircle(O,O)",
+        "IsDiameterOfCircle(AD,O)",
+        "IsTangentOfCircle(NA,O)"
+    ],
+    "image_cdl": [],
+    "goal_cdl": "Value(MeasureOfAngle(BCA))",
+    "problem_answer": "50",
+    "theorem_seqs": [
+        "arc_property_circumference_angle_external(1,OAB,C)",
+        "circle_property_angle_of_osculation(1,OAB,N)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "arc_property_circumference_angle_external(1,OAB,C)",
+            "circle_property_angle_of_osculation(1,OAB,N)"
+        ]
+    }
 }

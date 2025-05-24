@@ -1,50 +1,47 @@
 {
-  "problem_id": 1614,
-  "annotation": "XiaoxiaoJin_2023-04-16",
-  "source": "Geometry3k-1674",
-  "problem_level": 5,
-  "problem_text_cn": "如图所示，AC=AD，AE=20，AF=8，BE=15，CA⊥FA，四边形BEAC是长方形。求四边形BEAC的面积、三角形CAF的面积与△FAD的面积之和。",
-  "problem_text_en": "As shown in the diagram, AC=AD, AE=20, AF=8, BE=15, CA is perpendicular to FA, quadrilateral BEAC is a rectangle. Find the sum of the area of quadrilateral BEAC, the area of △CAF and the area of triangle FAD.",
-  "problem_img": "1614.png",
-  "construction_cdl": [
-    "Shape(CB,BE,EA,AC)",
-    "Shape(FC,CA,AF)",
-    "Shape(AD,DF,FA)",
-    "Collinear(EAF)",
-    "Collinear(CAD)"
-  ],
-  "text_cdl": [
-    "Equal(LengthOfLine(AC),LengthOfLine(AD))",
-    "Equal(LengthOfLine(AE),20)",
-    "Equal(LengthOfLine(AF),8)",
-    "Equal(LengthOfLine(BE),15)",
-    "PerpendicularBetweenLine(CA,FA)",
-    "Rectangle(BEAC)"
-  ],
-  "image_cdl": [
-    "Equal(LengthOfLine(AC),LengthOfLine(AD))",
-    "Equal(LengthOfLine(AE),20)",
-    "Equal(LengthOfLine(AF),8)",
-    "Equal(LengthOfLine(BE),15)",
-    "PerpendicularBetweenLine(CA,FA)",
-    "Rectangle(BEAC)"
-  ],
-  "goal_cdl": "Value(Add(AreaOfQuadrilateral(BEAC),AreaOfTriangle(CAF),AreaOfTriangle(FAD)))",
-  "problem_answer": "420",
-  "theorem_seqs": [
-    "parallelogram_property_opposite_line_equal(1,BEAC)",
-    "parallelogram_area_formula_sine(1,BEAC)",
-    "adjacent_complementary_angle(1,CAF,FAD)",
-    "triangle_area_formula_sine(1,AFC)",
-    "triangle_area_formula_sine(1,ADF)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "parallelogram_property_opposite_line_equal(1,BEAC)",
-      "parallelogram_area_formula_sine(1,BEAC)",
-      "adjacent_complementary_angle(1,CAF,FAD)",
-      "triangle_area_formula_sine(1,AFC)",
-      "triangle_area_formula_sine(1,ADF)"
-    ]
-  }
+    "problem_id": 1614,
+    "source": "Geometry3k-1674",
+    "problem_level": 5,
+    "problem_img": "1614.png",
+    "construction_cdl": [
+        "Shape(CB,BE,EA,AC)",
+        "Shape(FC,CA,AF)",
+        "Shape(AD,DF,FA)",
+        "Collinear(EAF)",
+        "Collinear(CAD)"
+    ],
+    "text_cdl": [
+        "Equal(LengthOfLine(AC),LengthOfLine(AD))",
+        "Equal(LengthOfLine(AE),20)",
+        "Equal(LengthOfLine(AF),8)",
+        "Equal(LengthOfLine(BE),15)",
+        "PerpendicularBetweenLine(CA,FA)",
+        "Rectangle(BEAC)"
+    ],
+    "image_cdl": [
+        "Equal(LengthOfLine(AC),LengthOfLine(AD))",
+        "Equal(LengthOfLine(AE),20)",
+        "Equal(LengthOfLine(AF),8)",
+        "Equal(LengthOfLine(BE),15)",
+        "PerpendicularBetweenLine(CA,FA)",
+        "Rectangle(BEAC)"
+    ],
+    "goal_cdl": "Value(Add(AreaOfQuadrilateral(BEAC),AreaOfTriangle(CAF),AreaOfTriangle(FAD)))",
+    "problem_answer": "420",
+    "theorem_seqs": [
+        "parallelogram_property_opposite_line_equal(1,BEAC)",
+        "parallelogram_area_formula_sine(1,BEAC)",
+        "adjacent_complementary_angle(1,CAF,FAD)",
+        "triangle_area_formula_sine(1,AFC)",
+        "triangle_area_formula_sine(1,ADF)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "parallelogram_property_opposite_line_equal(1,BEAC)",
+            "parallelogram_area_formula_sine(1,BEAC)",
+            "adjacent_complementary_angle(1,CAF,FAD)",
+            "triangle_area_formula_sine(1,AFC)",
+            "triangle_area_formula_sine(1,ADF)"
+        ]
+    }
 }

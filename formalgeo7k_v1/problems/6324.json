@@ -1,54 +1,51 @@
 {
-  "problem_id": 6324,
-  "annotation": "ChengQin_2023-06-04",
-  "source": "GeoQA-9124",
-  "problem_level": 7,
-  "problem_text_cn": "如图所示，AB=6，BC=4，∠BOA=90°，E是线段BA的中点，ADCB是长方形。求直线OC的长度。",
-  "problem_text_en": "As shown in the diagram, AB=6, BC=4, ∠BOA=90°, E is the midpoint of segment BA, quadrilateral ADCB is a rectangle. Find the length of line OC.",
-  "problem_img": "6324.png",
-  "construction_cdl": [
-    "Shape(BO,OE,EB)",
-    "Shape(EO,OA,AE)",
-    "Shape(CB,BE,EC)",
-    "Shape(EA,AD,DC,CE)",
-    "Collinear(OEC)",
-    "Collinear(BEA)"
-  ],
-  "text_cdl": [
-    "Equal(LengthOfLine(AB),6)",
-    "Equal(LengthOfLine(BC),4)",
-    "Equal(MeasureOfAngle(BOA),90)",
-    "IsMidpointOfLine(E,BA)",
-    "Rectangle(ADCB)"
-  ],
-  "image_cdl": [],
-  "goal_cdl": "Value(LengthOfLine(OC))",
-  "problem_answer": "8",
-  "theorem_seqs": [
-    "line_addition(1,BE,EA)",
-    "right_triangle_judgment_angle(1,BOA)",
-    "median_of_triangle_judgment(1,OE,OAB)",
-    "right_triangle_property_length_of_median(1,BOA,E)",
-    "right_triangle_judgment_angle(1,CBE)",
-    "right_triangle_property_pythagorean(1,CBE)",
-    "line_addition(1,OE,EC)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "line_addition(1,BE,EA)",
-      "right_triangle_judgment_angle(1,BOA)",
-      "median_of_triangle_judgment(1,OE,OAB)",
-      "right_triangle_judgment_angle(1,CBE)",
-      "line_addition(1,OE,EC)"
+    "problem_id": 6324,
+    "source": "GeoQA-9124",
+    "problem_level": 7,
+    "problem_img": "6324.png",
+    "construction_cdl": [
+        "Shape(BO,OE,EB)",
+        "Shape(EO,OA,AE)",
+        "Shape(CB,BE,EC)",
+        "Shape(EA,AD,DC,CE)",
+        "Collinear(OEC)",
+        "Collinear(BEA)"
     ],
-    "right_triangle_judgment_angle(1,BOA)": [
-      "right_triangle_property_length_of_median(1,BOA,E)"
+    "text_cdl": [
+        "Equal(LengthOfLine(AB),6)",
+        "Equal(LengthOfLine(BC),4)",
+        "Equal(MeasureOfAngle(BOA),90)",
+        "IsMidpointOfLine(E,BA)",
+        "Rectangle(ADCB)"
     ],
-    "median_of_triangle_judgment(1,OE,OAB)": [
-      "right_triangle_property_length_of_median(1,BOA,E)"
+    "image_cdl": [],
+    "goal_cdl": "Value(LengthOfLine(OC))",
+    "problem_answer": "8",
+    "theorem_seqs": [
+        "line_addition(1,BE,EA)",
+        "right_triangle_judgment_angle(1,BOA)",
+        "median_of_triangle_judgment(1,OE,OAB)",
+        "right_triangle_property_length_of_median(1,BOA,E)",
+        "right_triangle_judgment_angle(1,CBE)",
+        "right_triangle_property_pythagorean(1,CBE)",
+        "line_addition(1,OE,EC)"
     ],
-    "right_triangle_judgment_angle(1,CBE)": [
-      "right_triangle_property_pythagorean(1,CBE)"
-    ]
-  }
+    "theorem_seqs_dag": {
+        "START": [
+            "line_addition(1,BE,EA)",
+            "right_triangle_judgment_angle(1,BOA)",
+            "median_of_triangle_judgment(1,OE,OAB)",
+            "right_triangle_judgment_angle(1,CBE)",
+            "line_addition(1,OE,EC)"
+        ],
+        "right_triangle_judgment_angle(1,BOA)": [
+            "right_triangle_property_length_of_median(1,BOA,E)"
+        ],
+        "median_of_triangle_judgment(1,OE,OAB)": [
+            "right_triangle_property_length_of_median(1,BOA,E)"
+        ],
+        "right_triangle_judgment_angle(1,CBE)": [
+            "right_triangle_property_pythagorean(1,CBE)"
+        ]
+    }
 }

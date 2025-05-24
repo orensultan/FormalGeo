@@ -1,27 +1,24 @@
 {
-  "problem_id": 6567,
-  "annotation": "XiaokaiZhang_2023-06-04",
-  "source": "GeoQA-9524",
-  "problem_level": 1,
-  "problem_text_cn": "如图所示，∠CAE=45°，四边形AEFC是▱。求∠EFC的大小。",
-  "problem_text_en": "As shown in the diagram, ∠CAE=45°, AC and EF are opposite sides of the parallelogram AEFC. Find the measure of ∠EFC.",
-  "problem_img": "6567.png",
-  "construction_cdl": [
-    "Shape(AE,EF,FC,CA)"
-  ],
-  "text_cdl": [
-    "Equal(MeasureOfAngle(CAE),45)",
-    "Parallelogram(AEFC)"
-  ],
-  "image_cdl": [],
-  "goal_cdl": "Value(MeasureOfAngle(EFC))",
-  "problem_answer": "45",
-  "theorem_seqs": [
-    "parallelogram_property_opposite_angle_equal(1,AEFC)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "parallelogram_property_opposite_angle_equal(1,AEFC)"
-    ]
-  }
+    "problem_id": 6567,
+    "source": "GeoQA-9524",
+    "problem_level": 1,
+    "problem_img": "6567.png",
+    "construction_cdl": [
+        "Shape(AE,EF,FC,CA)"
+    ],
+    "text_cdl": [
+        "Equal(MeasureOfAngle(CAE),45)",
+        "Parallelogram(AEFC)"
+    ],
+    "image_cdl": [],
+    "goal_cdl": "Value(MeasureOfAngle(EFC))",
+    "problem_answer": "45",
+    "theorem_seqs": [
+        "parallelogram_property_opposite_angle_equal(1,AEFC)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "parallelogram_property_opposite_angle_equal(1,AEFC)"
+        ]
+    }
 }

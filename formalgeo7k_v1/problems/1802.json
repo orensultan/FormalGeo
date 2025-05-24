@@ -1,35 +1,32 @@
 {
-  "problem_id": 1802,
-  "annotation": "ChenyangMao_2023-04-16",
-  "source": "Geometry3k-1868",
-  "problem_level": 1,
-  "problem_text_cn": "如图所示，∠BED=62°，∠FEC=5*x+2°。求x的值。",
-  "problem_text_en": "As shown in the diagram, ∠BED=62°, ∠FEC=5*x+2°. Find the value of x.",
-  "problem_img": "1802.png",
-  "construction_cdl": [
-    "Shape(BE,ED)",
-    "Shape(CE,EB)",
-    "Shape(FE,EC)",
-    "Shape(DE,EF)",
-    "Collinear(DEC)",
-    "Collinear(BEF)"
-  ],
-  "text_cdl": [
-    "Equal(MeasureOfAngle(BED),62)",
-    "Equal(MeasureOfAngle(FEC),5*x+2)"
-  ],
-  "image_cdl": [
-    "Equal(MeasureOfAngle(BED),62)",
-    "Equal(MeasureOfAngle(FEC),5*x+2)"
-  ],
-  "goal_cdl": "Value(x)",
-  "problem_answer": "12",
-  "theorem_seqs": [
-    "vertical_angle(1,BED,FEC)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "vertical_angle(1,BED,FEC)"
-    ]
-  }
+    "problem_id": 1802,
+    "source": "Geometry3k-1868",
+    "problem_level": 1,
+    "problem_img": "1802.png",
+    "construction_cdl": [
+        "Shape(BE,ED)",
+        "Shape(CE,EB)",
+        "Shape(FE,EC)",
+        "Shape(DE,EF)",
+        "Collinear(DEC)",
+        "Collinear(BEF)"
+    ],
+    "text_cdl": [
+        "Equal(MeasureOfAngle(BED),62)",
+        "Equal(MeasureOfAngle(FEC),5*x+2)"
+    ],
+    "image_cdl": [
+        "Equal(MeasureOfAngle(BED),62)",
+        "Equal(MeasureOfAngle(FEC),5*x+2)"
+    ],
+    "goal_cdl": "Value(x)",
+    "problem_answer": "12",
+    "theorem_seqs": [
+        "vertical_angle(1,BED,FEC)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "vertical_angle(1,BED,FEC)"
+        ]
+    }
 }

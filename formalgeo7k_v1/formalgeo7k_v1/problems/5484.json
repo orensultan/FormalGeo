@@ -1,66 +1,63 @@
 {
-  "problem_id": 5484,
-  "annotation": "ChenyangMao_2023-05-21",
-  "source": "GeoQA-5940",
-  "problem_level": 9,
-  "problem_text_cn": "如图所示，AB=7，DE=1，AE是∠CAB的角平分线，D是线段BC的中点，AE垂直于CE。求直线AC的长度。",
-  "problem_text_en": "As shown in the diagram, AB=7, DE=1, AE bisects ∠CAB, D is the midpoint of segment BC, AE is perpendicular to CE. Find the length of line AC.",
-  "problem_img": "5484.png",
-  "construction_cdl": [
-    "Shape(AF,FE,EA)",
-    "Shape(AE,EC,CA)",
-    "Shape(FB,BD,DE,EF)",
-    "Shape(ED,DC,CE)",
-    "Collinear(BFA)",
-    "Collinear(BDC)",
-    "Collinear(CEF)"
-  ],
-  "text_cdl": [
-    "Equal(LengthOfLine(AB),7)",
-    "Equal(LengthOfLine(DE),1)",
-    "IsBisectorOfAngle(AE,CAB)",
-    "IsMidpointOfLine(D,BC)",
-    "PerpendicularBetweenLine(AE,CE)"
-  ],
-  "image_cdl": [],
-  "goal_cdl": "Value(LengthOfLine(AC))",
-  "problem_answer": "5",
-  "theorem_seqs": [
-    "adjacent_complementary_angle(1,FEA,AEC)",
-    "triangle_property_angle_sum(1,AFE)",
-    "triangle_property_angle_sum(1,AEC)",
-    "mirror_congruent_triangle_judgment_aas(1,AEC,AFE)",
-    "mirror_congruent_triangle_property_line_equal(1,AEC,AFE)",
-    "mirror_congruent_triangle_property_line_equal(1,ECA,EAF)",
-    "line_addition(1,BF,FA)",
-    "midsegment_of_triangle_judgment_midpoint(1,ED,CFB)",
-    "midsegment_of_triangle_property_length(1,ED,CFB)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "adjacent_complementary_angle(1,FEA,AEC)",
-      "triangle_property_angle_sum(1,AFE)",
-      "triangle_property_angle_sum(1,AEC)",
-      "line_addition(1,BF,FA)"
+    "problem_id": 5484,
+    "source": "GeoQA-5940",
+    "problem_level": 9,
+    "problem_img": "5484.png",
+    "construction_cdl": [
+        "Shape(AF,FE,EA)",
+        "Shape(AE,EC,CA)",
+        "Shape(FB,BD,DE,EF)",
+        "Shape(ED,DC,CE)",
+        "Collinear(BFA)",
+        "Collinear(BDC)",
+        "Collinear(CEF)"
     ],
-    "adjacent_complementary_angle(1,FEA,AEC)": [
-      "mirror_congruent_triangle_judgment_aas(1,AEC,AFE)"
+    "text_cdl": [
+        "Equal(LengthOfLine(AB),7)",
+        "Equal(LengthOfLine(DE),1)",
+        "IsBisectorOfAngle(AE,CAB)",
+        "IsMidpointOfLine(D,BC)",
+        "PerpendicularBetweenLine(AE,CE)"
     ],
-    "triangle_property_angle_sum(1,AFE)": [
-      "mirror_congruent_triangle_judgment_aas(1,AEC,AFE)"
+    "image_cdl": [],
+    "goal_cdl": "Value(LengthOfLine(AC))",
+    "problem_answer": "5",
+    "theorem_seqs": [
+        "adjacent_complementary_angle(1,FEA,AEC)",
+        "triangle_property_angle_sum(1,AFE)",
+        "triangle_property_angle_sum(1,AEC)",
+        "mirror_congruent_triangle_judgment_aas(1,AEC,AFE)",
+        "mirror_congruent_triangle_property_line_equal(1,AEC,AFE)",
+        "mirror_congruent_triangle_property_line_equal(1,ECA,EAF)",
+        "line_addition(1,BF,FA)",
+        "midsegment_of_triangle_judgment_midpoint(1,ED,CFB)",
+        "midsegment_of_triangle_property_length(1,ED,CFB)"
     ],
-    "triangle_property_angle_sum(1,AEC)": [
-      "mirror_congruent_triangle_judgment_aas(1,AEC,AFE)"
-    ],
-    "mirror_congruent_triangle_judgment_aas(1,AEC,AFE)": [
-      "mirror_congruent_triangle_property_line_equal(1,AEC,AFE)",
-      "mirror_congruent_triangle_property_line_equal(1,ECA,EAF)"
-    ],
-    "mirror_congruent_triangle_property_line_equal(1,AEC,AFE)": [
-      "midsegment_of_triangle_judgment_midpoint(1,ED,CFB)"
-    ],
-    "midsegment_of_triangle_judgment_midpoint(1,ED,CFB)": [
-      "midsegment_of_triangle_property_length(1,ED,CFB)"
-    ]
-  }
+    "theorem_seqs_dag": {
+        "START": [
+            "adjacent_complementary_angle(1,FEA,AEC)",
+            "triangle_property_angle_sum(1,AFE)",
+            "triangle_property_angle_sum(1,AEC)",
+            "line_addition(1,BF,FA)"
+        ],
+        "adjacent_complementary_angle(1,FEA,AEC)": [
+            "mirror_congruent_triangle_judgment_aas(1,AEC,AFE)"
+        ],
+        "triangle_property_angle_sum(1,AFE)": [
+            "mirror_congruent_triangle_judgment_aas(1,AEC,AFE)"
+        ],
+        "triangle_property_angle_sum(1,AEC)": [
+            "mirror_congruent_triangle_judgment_aas(1,AEC,AFE)"
+        ],
+        "mirror_congruent_triangle_judgment_aas(1,AEC,AFE)": [
+            "mirror_congruent_triangle_property_line_equal(1,AEC,AFE)",
+            "mirror_congruent_triangle_property_line_equal(1,ECA,EAF)"
+        ],
+        "mirror_congruent_triangle_property_line_equal(1,AEC,AFE)": [
+            "midsegment_of_triangle_judgment_midpoint(1,ED,CFB)"
+        ],
+        "midsegment_of_triangle_judgment_midpoint(1,ED,CFB)": [
+            "midsegment_of_triangle_property_length(1,ED,CFB)"
+        ]
+    }
 }

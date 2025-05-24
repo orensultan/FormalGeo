@@ -1,41 +1,38 @@
 {
-  "problem_id": 5943,
-  "annotation": "XiaoxiaoJin_2023-05-28",
-  "source": "GeoQA-8291",
-  "problem_level": 5,
-  "problem_text_cn": "如图所示，CD=8，∠ABC=30°，∠CDA=90°，∠DAC=60°，∠ECD=90°。求直线AB的长度。",
-  "problem_text_en": "As shown in the diagram, CD=8, ∠ABC=30°, ∠CDA=90°, ∠DAC=60°, ∠ECD=90°. Find the length of line AB.",
-  "problem_img": "5943.png",
-  "construction_cdl": [
-    "Shape(EC,CB)",
-    "Shape(BC,CA,AB)",
-    "Shape(CD,DA,AC)",
-    "Collinear(DAB)"
-  ],
-  "text_cdl": [
-    "Equal(LengthOfLine(CD),8)",
-    "Equal(MeasureOfAngle(ABC),30)",
-    "Equal(MeasureOfAngle(CDA),90)",
-    "Equal(MeasureOfAngle(DAC),60)",
-    "Equal(MeasureOfAngle(ECD),90)"
-  ],
-  "image_cdl": [],
-  "goal_cdl": "Value(LengthOfLine(AB))",
-  "problem_answer": "16*sqrt(3)/3",
-  "theorem_seqs": [
-    "line_addition(1,DA,AB)",
-    "triangle_property_angle_sum(1,CDA)",
-    "triangle_property_angle_sum(1,BCD)",
-    "sine_theorem(1,DAC)",
-    "sine_theorem(1,DBC)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "line_addition(1,DA,AB)",
-      "triangle_property_angle_sum(1,CDA)",
-      "triangle_property_angle_sum(1,BCD)",
-      "sine_theorem(1,DAC)",
-      "sine_theorem(1,DBC)"
-    ]
-  }
+    "problem_id": 5943,
+    "source": "GeoQA-8291",
+    "problem_level": 5,
+    "problem_img": "5943.png",
+    "construction_cdl": [
+        "Shape(EC,CB)",
+        "Shape(BC,CA,AB)",
+        "Shape(CD,DA,AC)",
+        "Collinear(DAB)"
+    ],
+    "text_cdl": [
+        "Equal(LengthOfLine(CD),8)",
+        "Equal(MeasureOfAngle(ABC),30)",
+        "Equal(MeasureOfAngle(CDA),90)",
+        "Equal(MeasureOfAngle(DAC),60)",
+        "Equal(MeasureOfAngle(ECD),90)"
+    ],
+    "image_cdl": [],
+    "goal_cdl": "Value(LengthOfLine(AB))",
+    "problem_answer": "16*sqrt(3)/3",
+    "theorem_seqs": [
+        "line_addition(1,DA,AB)",
+        "triangle_property_angle_sum(1,CDA)",
+        "triangle_property_angle_sum(1,BCD)",
+        "sine_theorem(1,DAC)",
+        "sine_theorem(1,DBC)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "line_addition(1,DA,AB)",
+            "triangle_property_angle_sum(1,CDA)",
+            "triangle_property_angle_sum(1,BCD)",
+            "sine_theorem(1,DAC)",
+            "sine_theorem(1,DBC)"
+        ]
+    }
 }

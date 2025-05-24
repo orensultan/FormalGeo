@@ -1,48 +1,45 @@
 {
-  "problem_id": 115,
-  "annotation": "XiaokaiZhang_2023-04-02",
-  "source": "Geometry3k-117",
-  "problem_level": 2,
-  "problem_text_cn": "如图所示，∠FOE=118°，∠LDA=104°，OD∥FI。求∠OFI的大小。",
-  "problem_text_en": "As shown in the diagram, ∠FOE=118°, ∠LDA=104°, OD is parallel to FI. Find the measure of ∠OFI.",
-  "problem_img": "115.png",
-  "construction_cdl": [
-    "Shape(LD,DA)",
-    "Shape(AD,DI)",
-    "Shape(DI,IB)",
-    "Shape(BI,IC)",
-    "Shape(CI,IF)",
-    "Shape(IF,FJ)",
-    "Shape(JF,FK)",
-    "Shape(KF,FO)",
-    "Shape(FO,OE)",
-    "Shape(EO,OH)",
-    "Shape(HO,OD)",
-    "Shape(ID,DL)",
-    "Shape(DO,OF,FI,ID)",
-    "Collinear(LDIC)",
-    "Collinear(HOFJ)",
-    "Collinear(ADOE)",
-    "Collinear(BIFK)"
-  ],
-  "text_cdl": [
-    "Equal(MeasureOfAngle(FOE),118)",
-    "Equal(MeasureOfAngle(LDA),104)",
-    "ParallelBetweenLine(OD,FI)"
-  ],
-  "image_cdl": [
-    "ParallelBetweenLine(OD,FI)"
-  ],
-  "goal_cdl": "Value(MeasureOfAngle(OFI))",
-  "problem_answer": "118",
-  "theorem_seqs": [
-    "adjacent_complementary_angle(1,DOF,FOE)",
-    "parallel_property_ipsilateral_internal_angle(1,OD,FI)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "adjacent_complementary_angle(1,DOF,FOE)",
-      "parallel_property_ipsilateral_internal_angle(1,OD,FI)"
-    ]
-  }
+    "problem_id": 115,
+    "source": "Geometry3k-117",
+    "problem_level": 2,
+    "problem_img": "115.png",
+    "construction_cdl": [
+        "Shape(LD,DA)",
+        "Shape(AD,DI)",
+        "Shape(DI,IB)",
+        "Shape(BI,IC)",
+        "Shape(CI,IF)",
+        "Shape(IF,FJ)",
+        "Shape(JF,FK)",
+        "Shape(KF,FO)",
+        "Shape(FO,OE)",
+        "Shape(EO,OH)",
+        "Shape(HO,OD)",
+        "Shape(ID,DL)",
+        "Shape(DO,OF,FI,ID)",
+        "Collinear(LDIC)",
+        "Collinear(HOFJ)",
+        "Collinear(ADOE)",
+        "Collinear(BIFK)"
+    ],
+    "text_cdl": [
+        "Equal(MeasureOfAngle(FOE),118)",
+        "Equal(MeasureOfAngle(LDA),104)",
+        "ParallelBetweenLine(OD,FI)"
+    ],
+    "image_cdl": [
+        "ParallelBetweenLine(OD,FI)"
+    ],
+    "goal_cdl": "Value(MeasureOfAngle(OFI))",
+    "problem_answer": "118",
+    "theorem_seqs": [
+        "adjacent_complementary_angle(1,DOF,FOE)",
+        "parallel_property_ipsilateral_internal_angle(1,OD,FI)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "adjacent_complementary_angle(1,DOF,FOE)",
+            "parallel_property_ipsilateral_internal_angle(1,OD,FI)"
+        ]
+    }
 }

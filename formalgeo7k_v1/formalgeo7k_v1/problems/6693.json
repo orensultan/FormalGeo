@@ -1,40 +1,37 @@
 {
-  "problem_id": 6693,
-  "annotation": "QikeHuang_2023-06-04",
-  "source": "GeoQA-9723",
-  "problem_level": 2,
-  "problem_text_cn": "如图所示，∠ACB=90°，∠ACE=60°，∠BAC=30°，圆O的圆心为O。求∠AOE的大小。",
-  "problem_text_en": "As shown in the diagram, ∠ACB=90°, ∠ACE=60°, ∠BAC=30°, O is the center of circle O. Find the measure of ∠AOE.",
-  "problem_img": "6693.png",
-  "construction_cdl": [
-    "Shape(OBE,EM,MB)",
-    "Shape(EO,OM,ME)",
-    "Shape(OE,OEA,AO)",
-    "Shape(BM,MC,CB)",
-    "Shape(MO,OA,AC,CM)",
-    "Shape(OAC,CA)",
-    "Shape(OCB,BC)",
-    "Collinear(EMC)",
-    "Collinear(AOMB)",
-    "Cocircular(O,BEAC)"
-  ],
-  "text_cdl": [
-    "Equal(MeasureOfAngle(ACB),90)",
-    "Equal(MeasureOfAngle(ACE),60)",
-    "Equal(MeasureOfAngle(BAC),30)",
-    "IsCentreOfCircle(O,O)"
-  ],
-  "image_cdl": [],
-  "goal_cdl": "Value(MeasureOfAngle(AOE))",
-  "problem_answer": "120",
-  "theorem_seqs": [
-    "arc_property_center_angle(1,OEA,O)",
-    "arc_property_circumference_angle_external(1,OEA,C)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "arc_property_center_angle(1,OEA,O)",
-      "arc_property_circumference_angle_external(1,OEA,C)"
-    ]
-  }
+    "problem_id": 6693,
+    "source": "GeoQA-9723",
+    "problem_level": 2,
+    "problem_img": "6693.png",
+    "construction_cdl": [
+        "Shape(OBE,EM,MB)",
+        "Shape(EO,OM,ME)",
+        "Shape(OE,OEA,AO)",
+        "Shape(BM,MC,CB)",
+        "Shape(MO,OA,AC,CM)",
+        "Shape(OAC,CA)",
+        "Shape(OCB,BC)",
+        "Collinear(EMC)",
+        "Collinear(AOMB)",
+        "Cocircular(O,BEAC)"
+    ],
+    "text_cdl": [
+        "Equal(MeasureOfAngle(ACB),90)",
+        "Equal(MeasureOfAngle(ACE),60)",
+        "Equal(MeasureOfAngle(BAC),30)",
+        "IsCentreOfCircle(O,O)"
+    ],
+    "image_cdl": [],
+    "goal_cdl": "Value(MeasureOfAngle(AOE))",
+    "problem_answer": "120",
+    "theorem_seqs": [
+        "arc_property_center_angle(1,OEA,O)",
+        "arc_property_circumference_angle_external(1,OEA,C)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "arc_property_center_angle(1,OEA,O)",
+            "arc_property_circumference_angle_external(1,OEA,C)"
+        ]
+    }
 }

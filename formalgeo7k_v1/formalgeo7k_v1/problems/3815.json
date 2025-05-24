@@ -1,39 +1,36 @@
 {
-  "problem_id": 3815,
-  "annotation": "YifanWang_2023-05-07",
-  "source": "GeoQA-1673",
-  "problem_level": 3,
-  "problem_text_cn": "如图所示，∠AOB=90°，圆O的半径为2，O是⊙O的圆心。求三角形AOB的面积。",
-  "problem_text_en": "As shown in the diagram, ∠AOB=90°, the radius of circle O is 2, O is the center of ⊙O. Find the area of △AOB.",
-  "problem_img": "3815.png",
-  "construction_cdl": [
-    "Shape(AB,OBA)",
-    "Shape(AO,OB,BA)",
-    "Shape(BO,OA,OAB)",
-    "Cocircular(O,AB)"
-  ],
-  "text_cdl": [
-    "Equal(MeasureOfAngle(AOB),90)",
-    "Equal(RadiusOfCircle(O),2)",
-    "IsCentreOfCircle(O,O)"
-  ],
-  "image_cdl": [
-    "Equal(MeasureOfAngle(AOB),90)",
-    "Equal(RadiusOfCircle(O),2)",
-    "IsCentreOfCircle(O,O)"
-  ],
-  "goal_cdl": "Value(AreaOfTriangle(AOB))",
-  "problem_answer": "2",
-  "theorem_seqs": [
-    "radius_of_circle_property_length_equal(1,OA,O)",
-    "radius_of_circle_property_length_equal(1,OB,O)",
-    "triangle_area_formula_sine(1,OBA)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "radius_of_circle_property_length_equal(1,OA,O)",
-      "radius_of_circle_property_length_equal(1,OB,O)",
-      "triangle_area_formula_sine(1,OBA)"
-    ]
-  }
+    "problem_id": 3815,
+    "source": "GeoQA-1673",
+    "problem_level": 3,
+    "problem_img": "3815.png",
+    "construction_cdl": [
+        "Shape(AB,OBA)",
+        "Shape(AO,OB,BA)",
+        "Shape(BO,OA,OAB)",
+        "Cocircular(O,AB)"
+    ],
+    "text_cdl": [
+        "Equal(MeasureOfAngle(AOB),90)",
+        "Equal(RadiusOfCircle(O),2)",
+        "IsCentreOfCircle(O,O)"
+    ],
+    "image_cdl": [
+        "Equal(MeasureOfAngle(AOB),90)",
+        "Equal(RadiusOfCircle(O),2)",
+        "IsCentreOfCircle(O,O)"
+    ],
+    "goal_cdl": "Value(AreaOfTriangle(AOB))",
+    "problem_answer": "2",
+    "theorem_seqs": [
+        "radius_of_circle_property_length_equal(1,OA,O)",
+        "radius_of_circle_property_length_equal(1,OB,O)",
+        "triangle_area_formula_sine(1,OBA)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "radius_of_circle_property_length_equal(1,OA,O)",
+            "radius_of_circle_property_length_equal(1,OB,O)",
+            "triangle_area_formula_sine(1,OBA)"
+        ]
+    }
 }

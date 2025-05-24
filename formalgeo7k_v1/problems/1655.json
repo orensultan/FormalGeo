@@ -1,36 +1,33 @@
 {
-  "problem_id": 1655,
-  "annotation": "YangLi_2023-04-16",
-  "source": "Geometry3k-1717",
-  "problem_level": 2,
-  "problem_text_cn": "如图所示，∠ANB=∠CND，∠BNC=30°。求∠ANB的大小。",
-  "problem_text_en": "As shown in the diagram, ∠ANB=∠CND, ∠BNC=30°. Find the measure of ∠ANB.",
-  "problem_img": "1655.png",
-  "construction_cdl": [
-    "Shape(AN,NB,NBA)",
-    "Shape(ED,DN,NA,NAE)",
-    "Shape(DE,NED)",
-    "Shape(CN,ND,NDC)",
-    "Shape(BC,NCB)",
-    "Shape(BN,NC,CB)",
-    "Collinear(AND)",
-    "Cocircular(N,AEDCB)"
-  ],
-  "text_cdl": [
-    "Equal(MeasureOfAngle(ANB),MeasureOfAngle(CND))",
-    "Equal(MeasureOfAngle(BNC),30)"
-  ],
-  "image_cdl": [],
-  "goal_cdl": "Value(MeasureOfAngle(ANB))",
-  "problem_answer": "75",
-  "theorem_seqs": [
-    "angle_addition(1,ANB,BNC)",
-    "adjacent_complementary_angle(1,ANC,CND)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "angle_addition(1,ANB,BNC)",
-      "adjacent_complementary_angle(1,ANC,CND)"
-    ]
-  }
+    "problem_id": 1655,
+    "source": "Geometry3k-1717",
+    "problem_level": 2,
+    "problem_img": "1655.png",
+    "construction_cdl": [
+        "Shape(AN,NB,NBA)",
+        "Shape(ED,DN,NA,NAE)",
+        "Shape(DE,NED)",
+        "Shape(CN,ND,NDC)",
+        "Shape(BC,NCB)",
+        "Shape(BN,NC,CB)",
+        "Collinear(AND)",
+        "Cocircular(N,AEDCB)"
+    ],
+    "text_cdl": [
+        "Equal(MeasureOfAngle(ANB),MeasureOfAngle(CND))",
+        "Equal(MeasureOfAngle(BNC),30)"
+    ],
+    "image_cdl": [],
+    "goal_cdl": "Value(MeasureOfAngle(ANB))",
+    "problem_answer": "75",
+    "theorem_seqs": [
+        "angle_addition(1,ANB,BNC)",
+        "adjacent_complementary_angle(1,ANC,CND)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "angle_addition(1,ANB,BNC)",
+            "adjacent_complementary_angle(1,ANC,CND)"
+        ]
+    }
 }

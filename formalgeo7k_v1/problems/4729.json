@@ -1,50 +1,47 @@
 {
-  "problem_id": 4729,
-  "annotation": "XiaoxiaoJin_2023-05-14",
-  "source": "GeoQA-4065",
-  "problem_level": 6,
-  "problem_text_cn": "如图所示，∠AED=40°，圆O的圆心为O，AB是圆O的直径，圆O的切线为CB。求∠BCA的大小。",
-  "problem_text_en": "As shown in the diagram, ∠AED=40°, O is the center of ⊙O, the diameter of circle O is AB, the tangent to circle O is CB. Find the measure of ∠BCA.",
-  "problem_img": "4729.png",
-  "construction_cdl": [
-    "Shape(AE,EF,FO,OA)",
-    "Shape(AO,OF,FD,DA)",
-    "Shape(EA,OAE)",
-    "Shape(AD,ODA)",
-    "Shape(BF,FE,OEB)",
-    "Shape(DF,FB,BD)",
-    "Shape(DB,OBD)",
-    "Shape(BC,CD,OBD)",
-    "Collinear(AOFB)",
-    "Collinear(EFD)",
-    "Collinear(ADC)",
-    "Cocircular(O,AEBD)"
-  ],
-  "text_cdl": [
-    "Equal(MeasureOfAngle(AED),40)",
-    "IsCentreOfCircle(O,O)",
-    "IsDiameterOfCircle(AB,O)",
-    "IsTangentOfCircle(CB,O)"
-  ],
-  "image_cdl": [],
-  "goal_cdl": "Value(MeasureOfAngle(BCA))",
-  "problem_answer": "40",
-  "theorem_seqs": [
-    "tangent_of_circle_property_perpendicular(1,CB,O,O)",
-    "diameter_of_circle_property_right_angle(1,BDA,O)",
-    "arc_property_circumference_angle_external(1,ODA,E)",
-    "arc_property_circumference_angle_external(1,ODA,B)",
-    "triangle_property_angle_sum(1,DAB)",
-    "triangle_property_angle_sum(1,ABC)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "tangent_of_circle_property_perpendicular(1,CB,O,O)",
-      "diameter_of_circle_property_right_angle(1,BDA,O)",
-      "arc_property_circumference_angle_external(1,ODA,E)",
-      "arc_property_circumference_angle_external(1,ODA,B)",
-      "triangle_property_angle_sum(1,DAB)",
-      "triangle_property_angle_sum(1,ABC)"
-    ]
-  }
+    "problem_id": 4729,
+    "source": "GeoQA-4065",
+    "problem_level": 6,
+    "problem_img": "4729.png",
+    "construction_cdl": [
+        "Shape(AE,EF,FO,OA)",
+        "Shape(AO,OF,FD,DA)",
+        "Shape(EA,OAE)",
+        "Shape(AD,ODA)",
+        "Shape(BF,FE,OEB)",
+        "Shape(DF,FB,BD)",
+        "Shape(DB,OBD)",
+        "Shape(BC,CD,OBD)",
+        "Collinear(AOFB)",
+        "Collinear(EFD)",
+        "Collinear(ADC)",
+        "Cocircular(O,AEBD)"
+    ],
+    "text_cdl": [
+        "Equal(MeasureOfAngle(AED),40)",
+        "IsCentreOfCircle(O,O)",
+        "IsDiameterOfCircle(AB,O)",
+        "IsTangentOfCircle(CB,O)"
+    ],
+    "image_cdl": [],
+    "goal_cdl": "Value(MeasureOfAngle(BCA))",
+    "problem_answer": "40",
+    "theorem_seqs": [
+        "tangent_of_circle_property_perpendicular(1,CB,O,O)",
+        "diameter_of_circle_property_right_angle(1,BDA,O)",
+        "arc_property_circumference_angle_external(1,ODA,E)",
+        "arc_property_circumference_angle_external(1,ODA,B)",
+        "triangle_property_angle_sum(1,DAB)",
+        "triangle_property_angle_sum(1,ABC)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "tangent_of_circle_property_perpendicular(1,CB,O,O)",
+            "diameter_of_circle_property_right_angle(1,BDA,O)",
+            "arc_property_circumference_angle_external(1,ODA,E)",
+            "arc_property_circumference_angle_external(1,ODA,B)",
+            "triangle_property_angle_sum(1,DAB)",
+            "triangle_property_angle_sum(1,ABC)"
+        ]
+    }
 }

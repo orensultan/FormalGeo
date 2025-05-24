@@ -1,90 +1,87 @@
 {
-  "problem_id": 5528,
-  "annotation": "ZheZhu_2023-05-21",
-  "source": "GeoQA-6672",
-  "problem_level": 20,
-  "problem_text_cn": "如图所示，PA=3，∠APB=60°，∠PBO=90°，三角形APB为等边三角形，O是圆O的圆心，⊙O的直径为AC，PA是⊙O的切线，⊙O的切线为PB。求三角形ABC的面积与扇形OBC的面积之和。",
-  "problem_text_en": "As shown in the diagram, PA=3, ∠APB=60°, ∠PBO=90°, triangle APB is an equilateral triangle, the center of circle O is O, AC is the diameter of circle O, the tangent to ⊙O is PA, PB is the tangent to circle O. Find the sum of the area of △ABC and the area of the sector OBC.",
-  "problem_img": "5528.png",
-  "construction_cdl": [
-    "Shape(AP,PB,OAB)",
-    "Shape(OAB,BA)",
-    "Shape(OA,AB,BO)",
-    "Shape(OB,BC,CO)",
-    "Shape(OBC,CB)",
-    "Shape(OC,OCA,AO)",
-    "Collinear(AOC)",
-    "Cocircular(O,ABC)"
-  ],
-  "text_cdl": [
-    "Equal(LengthOfLine(PA),3)",
-    "Equal(MeasureOfAngle(APB),60)",
-    "Equal(MeasureOfAngle(PBO),90)",
-    "EquilateralTriangle(APB)",
-    "IsCentreOfCircle(O,O)",
-    "IsDiameterOfCircle(AC,O)",
-    "IsTangentOfCircle(PA,O)",
-    "IsTangentOfCircle(PB,O)"
-  ],
-  "image_cdl": [],
-  "goal_cdl": "Value(Add(AreaOfTriangle(ABC),AreaOfSector(OBC)))",
-  "problem_answer": "pi/2+3*sqrt(3)/2",
-  "theorem_seqs": [
-    "tangent_of_circle_property_perpendicular(1,PA,O,O)",
-    "quadrilateral_property_angle_sum(1,APBO)",
-    "flat_angle(1,COA)",
-    "angle_addition(1,COB,BOA)",
-    "radius_of_circle_property_length_equal(1,OA,O)",
-    "radius_of_circle_property_length_equal(1,OB,O)",
-    "radius_of_circle_property_length_equal(1,OC,O)",
-    "isosceles_triangle_judgment_line_equal(1,OAB)",
-    "isosceles_triangle_judgment_line_equal(1,OBC)",
-    "isosceles_triangle_property_angle_equal(1,OAB)",
-    "isosceles_triangle_property_angle_equal(1,OBC)",
-    "triangle_property_angle_sum(1,OAB)",
-    "triangle_property_angle_sum(1,OBC)",
-    "triangle_property_angle_sum(1,ABC)",
-    "sine_theorem(1,BOA)",
-    "sine_theorem(1,ABC)",
-    "sine_theorem(1,BCA)",
-    "triangle_area_formula_sine(1,CAB)",
-    "arc_property_center_angle(1,OBC,O)",
-    "sector_area_formula(1,OBC)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "tangent_of_circle_property_perpendicular(1,PA,O,O)",
-      "quadrilateral_property_angle_sum(1,APBO)",
-      "flat_angle(1,COA)",
-      "angle_addition(1,COB,BOA)",
-      "radius_of_circle_property_length_equal(1,OA,O)",
-      "radius_of_circle_property_length_equal(1,OB,O)",
-      "radius_of_circle_property_length_equal(1,OC,O)",
-      "triangle_property_angle_sum(1,OAB)",
-      "triangle_property_angle_sum(1,OBC)",
-      "triangle_property_angle_sum(1,ABC)",
-      "sine_theorem(1,BOA)",
-      "sine_theorem(1,ABC)",
-      "sine_theorem(1,BCA)",
-      "triangle_area_formula_sine(1,CAB)",
-      "arc_property_center_angle(1,OBC,O)",
-      "sector_area_formula(1,OBC)"
+    "problem_id": 5528,
+    "source": "GeoQA-6672",
+    "problem_level": 20,
+    "problem_img": "5528.png",
+    "construction_cdl": [
+        "Shape(AP,PB,OAB)",
+        "Shape(OAB,BA)",
+        "Shape(OA,AB,BO)",
+        "Shape(OB,BC,CO)",
+        "Shape(OBC,CB)",
+        "Shape(OC,OCA,AO)",
+        "Collinear(AOC)",
+        "Cocircular(O,ABC)"
     ],
-    "radius_of_circle_property_length_equal(1,OA,O)": [
-      "isosceles_triangle_judgment_line_equal(1,OAB)"
+    "text_cdl": [
+        "Equal(LengthOfLine(PA),3)",
+        "Equal(MeasureOfAngle(APB),60)",
+        "Equal(MeasureOfAngle(PBO),90)",
+        "EquilateralTriangle(APB)",
+        "IsCentreOfCircle(O,O)",
+        "IsDiameterOfCircle(AC,O)",
+        "IsTangentOfCircle(PA,O)",
+        "IsTangentOfCircle(PB,O)"
     ],
-    "radius_of_circle_property_length_equal(1,OB,O)": [
-      "isosceles_triangle_judgment_line_equal(1,OAB)",
-      "isosceles_triangle_judgment_line_equal(1,OBC)"
+    "image_cdl": [],
+    "goal_cdl": "Value(Add(AreaOfTriangle(ABC),AreaOfSector(OBC)))",
+    "problem_answer": "pi/2+3*sqrt(3)/2",
+    "theorem_seqs": [
+        "tangent_of_circle_property_perpendicular(1,PA,O,O)",
+        "quadrilateral_property_angle_sum(1,APBO)",
+        "flat_angle(1,COA)",
+        "angle_addition(1,COB,BOA)",
+        "radius_of_circle_property_length_equal(1,OA,O)",
+        "radius_of_circle_property_length_equal(1,OB,O)",
+        "radius_of_circle_property_length_equal(1,OC,O)",
+        "isosceles_triangle_judgment_line_equal(1,OAB)",
+        "isosceles_triangle_judgment_line_equal(1,OBC)",
+        "isosceles_triangle_property_angle_equal(1,OAB)",
+        "isosceles_triangle_property_angle_equal(1,OBC)",
+        "triangle_property_angle_sum(1,OAB)",
+        "triangle_property_angle_sum(1,OBC)",
+        "triangle_property_angle_sum(1,ABC)",
+        "sine_theorem(1,BOA)",
+        "sine_theorem(1,ABC)",
+        "sine_theorem(1,BCA)",
+        "triangle_area_formula_sine(1,CAB)",
+        "arc_property_center_angle(1,OBC,O)",
+        "sector_area_formula(1,OBC)"
     ],
-    "radius_of_circle_property_length_equal(1,OC,O)": [
-      "isosceles_triangle_judgment_line_equal(1,OBC)"
-    ],
-    "isosceles_triangle_judgment_line_equal(1,OAB)": [
-      "isosceles_triangle_property_angle_equal(1,OAB)"
-    ],
-    "isosceles_triangle_judgment_line_equal(1,OBC)": [
-      "isosceles_triangle_property_angle_equal(1,OBC)"
-    ]
-  }
+    "theorem_seqs_dag": {
+        "START": [
+            "tangent_of_circle_property_perpendicular(1,PA,O,O)",
+            "quadrilateral_property_angle_sum(1,APBO)",
+            "flat_angle(1,COA)",
+            "angle_addition(1,COB,BOA)",
+            "radius_of_circle_property_length_equal(1,OA,O)",
+            "radius_of_circle_property_length_equal(1,OB,O)",
+            "radius_of_circle_property_length_equal(1,OC,O)",
+            "triangle_property_angle_sum(1,OAB)",
+            "triangle_property_angle_sum(1,OBC)",
+            "triangle_property_angle_sum(1,ABC)",
+            "sine_theorem(1,BOA)",
+            "sine_theorem(1,ABC)",
+            "sine_theorem(1,BCA)",
+            "triangle_area_formula_sine(1,CAB)",
+            "arc_property_center_angle(1,OBC,O)",
+            "sector_area_formula(1,OBC)"
+        ],
+        "radius_of_circle_property_length_equal(1,OA,O)": [
+            "isosceles_triangle_judgment_line_equal(1,OAB)"
+        ],
+        "radius_of_circle_property_length_equal(1,OB,O)": [
+            "isosceles_triangle_judgment_line_equal(1,OAB)",
+            "isosceles_triangle_judgment_line_equal(1,OBC)"
+        ],
+        "radius_of_circle_property_length_equal(1,OC,O)": [
+            "isosceles_triangle_judgment_line_equal(1,OBC)"
+        ],
+        "isosceles_triangle_judgment_line_equal(1,OAB)": [
+            "isosceles_triangle_property_angle_equal(1,OAB)"
+        ],
+        "isosceles_triangle_judgment_line_equal(1,OBC)": [
+            "isosceles_triangle_property_angle_equal(1,OBC)"
+        ]
+    }
 }

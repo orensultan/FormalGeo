@@ -1,32 +1,29 @@
 {
-  "problem_id": 5240,
-  "annotation": "XiaokaiZhang_2023-05-21",
-  "source": "GeoQA-5317",
-  "problem_level": 2,
-  "problem_text_cn": "如图所示，∠ABE=45°，∠ADC=75°，∠BAD=110°。求∠DCB的大小。",
-  "problem_text_en": "As shown in the diagram, ∠ABE=45°, ∠ADC=75°, ∠BAD=110°. Find the measure of ∠DCB.",
-  "problem_img": "5240.png",
-  "construction_cdl": [
-    "Shape(AD,DC,CB,BA)",
-    "Shape(AB,BE)",
-    "Collinear(EBC)"
-  ],
-  "text_cdl": [
-    "Equal(MeasureOfAngle(ABE),45)",
-    "Equal(MeasureOfAngle(ADC),75)",
-    "Equal(MeasureOfAngle(BAD),110)"
-  ],
-  "image_cdl": [],
-  "goal_cdl": "Value(MeasureOfAngle(DCB))",
-  "problem_answer": "40",
-  "theorem_seqs": [
-    "adjacent_complementary_angle(1,CBA,ABE)",
-    "quadrilateral_property_angle_sum(1,ADCB)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "adjacent_complementary_angle(1,CBA,ABE)",
-      "quadrilateral_property_angle_sum(1,ADCB)"
-    ]
-  }
+    "problem_id": 5240,
+    "source": "GeoQA-5317",
+    "problem_level": 2,
+    "problem_img": "5240.png",
+    "construction_cdl": [
+        "Shape(AD,DC,CB,BA)",
+        "Shape(AB,BE)",
+        "Collinear(EBC)"
+    ],
+    "text_cdl": [
+        "Equal(MeasureOfAngle(ABE),45)",
+        "Equal(MeasureOfAngle(ADC),75)",
+        "Equal(MeasureOfAngle(BAD),110)"
+    ],
+    "image_cdl": [],
+    "goal_cdl": "Value(MeasureOfAngle(DCB))",
+    "problem_answer": "40",
+    "theorem_seqs": [
+        "adjacent_complementary_angle(1,CBA,ABE)",
+        "quadrilateral_property_angle_sum(1,ADCB)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "adjacent_complementary_angle(1,CBA,ABE)",
+            "quadrilateral_property_angle_sum(1,ADCB)"
+        ]
+    }
 }

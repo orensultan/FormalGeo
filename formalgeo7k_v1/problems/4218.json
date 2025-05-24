@@ -1,33 +1,30 @@
 {
-  "problem_id": 4218,
-  "annotation": "ChenyangMao_2023-05-07",
-  "source": "GeoQA-2970",
-  "problem_level": 2,
-  "problem_text_cn": "如图所示，∠DOB=50°，O是⊙O的圆心。求∠DAB的大小。",
-  "problem_text_en": "As shown in the diagram, ∠DOB=50°, the center of ⊙O is O. Find the measure of ∠DAB.",
-  "problem_img": "4218.png",
-  "construction_cdl": [
-    "Shape(OBD,DO,OB)",
-    "Shape(ODA,AD)",
-    "Shape(OAB,BO)",
-    "Shape(DA,AB,BO,OD)",
-    "Cocircular(O,ABD)"
-  ],
-  "text_cdl": [
-    "Equal(MeasureOfAngle(DOB),50)",
-    "IsCentreOfCircle(O,O)"
-  ],
-  "image_cdl": [],
-  "goal_cdl": "Value(MeasureOfAngle(DAB))",
-  "problem_answer": "25",
-  "theorem_seqs": [
-    "arc_property_center_angle(1,OBD,O)",
-    "arc_property_circumference_angle_external(1,OBD,A)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "arc_property_center_angle(1,OBD,O)",
-      "arc_property_circumference_angle_external(1,OBD,A)"
-    ]
-  }
+    "problem_id": 4218,
+    "source": "GeoQA-2970",
+    "problem_level": 2,
+    "problem_img": "4218.png",
+    "construction_cdl": [
+        "Shape(OBD,DO,OB)",
+        "Shape(ODA,AD)",
+        "Shape(OAB,BO)",
+        "Shape(DA,AB,BO,OD)",
+        "Cocircular(O,ABD)"
+    ],
+    "text_cdl": [
+        "Equal(MeasureOfAngle(DOB),50)",
+        "IsCentreOfCircle(O,O)"
+    ],
+    "image_cdl": [],
+    "goal_cdl": "Value(MeasureOfAngle(DAB))",
+    "problem_answer": "25",
+    "theorem_seqs": [
+        "arc_property_center_angle(1,OBD,O)",
+        "arc_property_circumference_angle_external(1,OBD,A)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "arc_property_center_angle(1,OBD,O)",
+            "arc_property_circumference_angle_external(1,OBD,A)"
+        ]
+    }
 }

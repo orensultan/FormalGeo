@@ -1,39 +1,36 @@
 {
-  "problem_id": 6098,
-  "annotation": "RunanWang_2023-06-04",
-  "source": "GeoQA-8633",
-  "problem_level": 2,
-  "problem_text_cn": "如图所示，∠ACD=30°，圆O的圆心为O。求∠ABD的大小。",
-  "problem_text_en": "As shown in the diagram, ∠ACD=30°, the center of circle O is O. Find the measure of ∠ABD.",
-  "problem_img": "6098.png",
-  "construction_cdl": [
-    "Shape(OAB,BA)",
-    "Shape(ODA,AE,ED)",
-    "Shape(AB,BE,EA)",
-    "Shape(DE,EC,CD)",
-    "Shape(OCD,DC)",
-    "Shape(OSC,CE,EB)",
-    "Collinear(AEC)",
-    "Collinear(BED)",
-    "Cocircular(O,ABCD)"
-  ],
-  "text_cdl": [
-    "Equal(MeasureOfAngle(ACD),30)",
-    "IsCentreOfCircle(O,O)"
-  ],
-  "image_cdl": [
-    "Equal(MeasureOfAngle(ACD),30)"
-  ],
-  "goal_cdl": "Value(MeasureOfAngle(ABD))",
-  "problem_answer": "30",
-  "theorem_seqs": [
-    "arc_property_circumference_angle_external(1,ODA,B)",
-    "arc_property_circumference_angle_external(1,ODA,C)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "arc_property_circumference_angle_external(1,ODA,B)",
-      "arc_property_circumference_angle_external(1,ODA,C)"
-    ]
-  }
+    "problem_id": 6098,
+    "source": "GeoQA-8633",
+    "problem_level": 2,
+    "problem_img": "6098.png",
+    "construction_cdl": [
+        "Shape(OAB,BA)",
+        "Shape(ODA,AE,ED)",
+        "Shape(AB,BE,EA)",
+        "Shape(DE,EC,CD)",
+        "Shape(OCD,DC)",
+        "Shape(OSC,CE,EB)",
+        "Collinear(AEC)",
+        "Collinear(BED)",
+        "Cocircular(O,ABCD)"
+    ],
+    "text_cdl": [
+        "Equal(MeasureOfAngle(ACD),30)",
+        "IsCentreOfCircle(O,O)"
+    ],
+    "image_cdl": [
+        "Equal(MeasureOfAngle(ACD),30)"
+    ],
+    "goal_cdl": "Value(MeasureOfAngle(ABD))",
+    "problem_answer": "30",
+    "theorem_seqs": [
+        "arc_property_circumference_angle_external(1,ODA,B)",
+        "arc_property_circumference_angle_external(1,ODA,C)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "arc_property_circumference_angle_external(1,ODA,B)",
+            "arc_property_circumference_angle_external(1,ODA,C)"
+        ]
+    }
 }

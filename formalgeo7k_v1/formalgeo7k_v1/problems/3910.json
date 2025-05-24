@@ -1,47 +1,44 @@
 {
-  "problem_id": 3910,
-  "annotation": "FangzhenZhu_2023-05-07",
-  "source": "GeoQA-1815",
-  "problem_level": 5,
-  "problem_text_cn": "如图所示，∠ADC=26°，O是圆O的圆心。求∠CAB的大小。",
-  "problem_text_en": "As shown in the diagram, ∠ADC=26°, O is the center of ⊙O. Find the measure of ∠CAB.",
-  "problem_img": "3910.png",
-  "construction_cdl": [
-    "Shape(OAD,DA)",
-    "Shape(ODB,BC,CD)",
-    "Shape(OBC,CB)",
-    "Shape(OCA,AC)",
-    "Shape(CA,AD,DC)",
-    "Shape(CA,AB,BC)",
-    "Collinear(AOB)",
-    "Cocircular(O,ADBC)"
-  ],
-  "text_cdl": [
-    "Equal(MeasureOfAngle(ADC),26)",
-    "IsCentreOfCircle(O,O)"
-  ],
-  "image_cdl": [
-    "Equal(MeasureOfAngle(ADC),26)",
-    "IsCentreOfCircle(O,O)"
-  ],
-  "goal_cdl": "Value(MeasureOfAngle(CAB))",
-  "problem_answer": "64",
-  "theorem_seqs": [
-    "diameter_of_circle_judgment_pass_centre(1,AOB,O)",
-    "diameter_of_circle_property_right_angle(1,BCA,O)",
-    "arc_property_circumference_angle_external(1,OCA,D)",
-    "arc_property_circumference_angle_external(1,OCA,B)",
-    "triangle_property_angle_sum(1,ABC)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "diameter_of_circle_judgment_pass_centre(1,AOB,O)",
-      "arc_property_circumference_angle_external(1,OCA,D)",
-      "arc_property_circumference_angle_external(1,OCA,B)",
-      "triangle_property_angle_sum(1,ABC)"
+    "problem_id": 3910,
+    "source": "GeoQA-1815",
+    "problem_level": 5,
+    "problem_img": "3910.png",
+    "construction_cdl": [
+        "Shape(OAD,DA)",
+        "Shape(ODB,BC,CD)",
+        "Shape(OBC,CB)",
+        "Shape(OCA,AC)",
+        "Shape(CA,AD,DC)",
+        "Shape(CA,AB,BC)",
+        "Collinear(AOB)",
+        "Cocircular(O,ADBC)"
     ],
-    "diameter_of_circle_judgment_pass_centre(1,AOB,O)": [
-      "diameter_of_circle_property_right_angle(1,BCA,O)"
-    ]
-  }
+    "text_cdl": [
+        "Equal(MeasureOfAngle(ADC),26)",
+        "IsCentreOfCircle(O,O)"
+    ],
+    "image_cdl": [
+        "Equal(MeasureOfAngle(ADC),26)",
+        "IsCentreOfCircle(O,O)"
+    ],
+    "goal_cdl": "Value(MeasureOfAngle(CAB))",
+    "problem_answer": "64",
+    "theorem_seqs": [
+        "diameter_of_circle_judgment_pass_centre(1,AOB,O)",
+        "diameter_of_circle_property_right_angle(1,BCA,O)",
+        "arc_property_circumference_angle_external(1,OCA,D)",
+        "arc_property_circumference_angle_external(1,OCA,B)",
+        "triangle_property_angle_sum(1,ABC)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "diameter_of_circle_judgment_pass_centre(1,AOB,O)",
+            "arc_property_circumference_angle_external(1,OCA,D)",
+            "arc_property_circumference_angle_external(1,OCA,B)",
+            "triangle_property_angle_sum(1,ABC)"
+        ],
+        "diameter_of_circle_judgment_pass_centre(1,AOB,O)": [
+            "diameter_of_circle_property_right_angle(1,BCA,O)"
+        ]
+    }
 }

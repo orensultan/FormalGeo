@@ -1,54 +1,51 @@
 {
-  "problem_id": 5319,
-  "annotation": "YanjunGuo_2023-05-21",
-  "source": "GeoQA-5529",
-  "problem_level": 7,
-  "problem_text_cn": "如图所示，AB=CD，BD=32，∠BDA=90°，∠DOB=110°，O平分线段AB，O平分线段CD。求直线AB的长度。",
-  "problem_text_en": "As shown in the diagram, AB=CD, BD=32, ∠BDA=90°, ∠DOB=110°, O bisects segment AB, O bisects segment CD. Find the length of line AB.",
-  "problem_img": "5319.png",
-  "construction_cdl": [
-    "Shape(AO,OD,DA)",
-    "Shape(OC,CB,BO)",
-    "Shape(DO,OB,BD)",
-    "Collinear(AOB)",
-    "Collinear(DOC)"
-  ],
-  "text_cdl": [
-    "Equal(LengthOfLine(AB),LengthOfLine(CD))",
-    "Equal(LengthOfLine(BD),32)",
-    "Equal(MeasureOfAngle(BDA),90)",
-    "Equal(MeasureOfAngle(DOB),110)",
-    "IsMidpointOfLine(O,AB)",
-    "IsMidpointOfLine(O,CD)"
-  ],
-  "image_cdl": [],
-  "goal_cdl": "Value(LengthOfLine(AB))",
-  "problem_answer": "32/sin(11*pi/36)",
-  "theorem_seqs": [
-    "adjacent_complementary_angle(1,AOD,DOB)",
-    "line_addition(1,AO,OB)",
-    "line_addition(1,DO,OC)",
-    "triangle_property_angle_sum(1,AOD)",
-    "isosceles_triangle_judgment_line_equal(1,ODA)",
-    "isosceles_triangle_property_angle_equal(1,ODA)",
-    "sine_theorem(1,BDA)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "adjacent_complementary_angle(1,AOD,DOB)",
-      "line_addition(1,AO,OB)",
-      "line_addition(1,DO,OC)",
-      "triangle_property_angle_sum(1,AOD)",
-      "sine_theorem(1,BDA)"
+    "problem_id": 5319,
+    "source": "GeoQA-5529",
+    "problem_level": 7,
+    "problem_img": "5319.png",
+    "construction_cdl": [
+        "Shape(AO,OD,DA)",
+        "Shape(OC,CB,BO)",
+        "Shape(DO,OB,BD)",
+        "Collinear(AOB)",
+        "Collinear(DOC)"
     ],
-    "line_addition(1,AO,OB)": [
-      "isosceles_triangle_judgment_line_equal(1,ODA)"
+    "text_cdl": [
+        "Equal(LengthOfLine(AB),LengthOfLine(CD))",
+        "Equal(LengthOfLine(BD),32)",
+        "Equal(MeasureOfAngle(BDA),90)",
+        "Equal(MeasureOfAngle(DOB),110)",
+        "IsMidpointOfLine(O,AB)",
+        "IsMidpointOfLine(O,CD)"
     ],
-    "line_addition(1,DO,OC)": [
-      "isosceles_triangle_judgment_line_equal(1,ODA)"
+    "image_cdl": [],
+    "goal_cdl": "Value(LengthOfLine(AB))",
+    "problem_answer": "32/sin(11*pi/36)",
+    "theorem_seqs": [
+        "adjacent_complementary_angle(1,AOD,DOB)",
+        "line_addition(1,AO,OB)",
+        "line_addition(1,DO,OC)",
+        "triangle_property_angle_sum(1,AOD)",
+        "isosceles_triangle_judgment_line_equal(1,ODA)",
+        "isosceles_triangle_property_angle_equal(1,ODA)",
+        "sine_theorem(1,BDA)"
     ],
-    "isosceles_triangle_judgment_line_equal(1,ODA)": [
-      "isosceles_triangle_property_angle_equal(1,ODA)"
-    ]
-  }
+    "theorem_seqs_dag": {
+        "START": [
+            "adjacent_complementary_angle(1,AOD,DOB)",
+            "line_addition(1,AO,OB)",
+            "line_addition(1,DO,OC)",
+            "triangle_property_angle_sum(1,AOD)",
+            "sine_theorem(1,BDA)"
+        ],
+        "line_addition(1,AO,OB)": [
+            "isosceles_triangle_judgment_line_equal(1,ODA)"
+        ],
+        "line_addition(1,DO,OC)": [
+            "isosceles_triangle_judgment_line_equal(1,ODA)"
+        ],
+        "isosceles_triangle_judgment_line_equal(1,ODA)": [
+            "isosceles_triangle_property_angle_equal(1,ODA)"
+        ]
+    }
 }

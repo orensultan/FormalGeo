@@ -1,47 +1,44 @@
 {
-  "problem_id": 3026,
-  "annotation": "XiaokaiZhang_2023-04-16",
-  "source": "GeoQA-235",
-  "problem_level": 4,
-  "problem_text_cn": "如图所示，∠AME=50°，AB平行于CD。求∠MND的大小。",
-  "problem_text_en": "As shown in the diagram, ∠AME=50°, AB is parallel to CD. Find the measure of ∠MND.",
-  "problem_img": "3026.png",
-  "construction_cdl": [
-    "Shape(AM,ME)",
-    "Shape(EM,MB)",
-    "Shape(BM,MN)",
-    "Shape(MN,ND)",
-    "Shape(DN,NF)",
-    "Shape(FN,NC)",
-    "Shape(CN,NM)",
-    "Shape(NM,MA)",
-    "Collinear(AMB)",
-    "Collinear(CND)",
-    "Collinear(EMNF)"
-  ],
-  "text_cdl": [
-    "Equal(MeasureOfAngle(AME),50)",
-    "ParallelBetweenLine(AB,CD)"
-  ],
-  "image_cdl": [],
-  "goal_cdl": "Value(MeasureOfAngle(MND))",
-  "problem_answer": "130",
-  "theorem_seqs": [
-    "vertical_angle(1,AME,BMN)",
-    "parallel_property_collinear_extend(3,AB,CD,M)",
-    "parallel_property_collinear_extend(3,DC,BM,N)",
-    "parallel_property_ipsilateral_internal_angle(1,MB,ND)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "vertical_angle(1,AME,BMN)",
-      "parallel_property_collinear_extend(3,AB,CD,M)"
+    "problem_id": 3026,
+    "source": "GeoQA-235",
+    "problem_level": 4,
+    "problem_img": "3026.png",
+    "construction_cdl": [
+        "Shape(AM,ME)",
+        "Shape(EM,MB)",
+        "Shape(BM,MN)",
+        "Shape(MN,ND)",
+        "Shape(DN,NF)",
+        "Shape(FN,NC)",
+        "Shape(CN,NM)",
+        "Shape(NM,MA)",
+        "Collinear(AMB)",
+        "Collinear(CND)",
+        "Collinear(EMNF)"
     ],
-    "parallel_property_collinear_extend(3,AB,CD,M)": [
-      "parallel_property_collinear_extend(3,DC,BM,N)"
+    "text_cdl": [
+        "Equal(MeasureOfAngle(AME),50)",
+        "ParallelBetweenLine(AB,CD)"
     ],
-    "parallel_property_collinear_extend(3,DC,BM,N)": [
-      "parallel_property_ipsilateral_internal_angle(1,MB,ND)"
-    ]
-  }
+    "image_cdl": [],
+    "goal_cdl": "Value(MeasureOfAngle(MND))",
+    "problem_answer": "130",
+    "theorem_seqs": [
+        "vertical_angle(1,AME,BMN)",
+        "parallel_property_collinear_extend(3,AB,CD,M)",
+        "parallel_property_collinear_extend(3,DC,BM,N)",
+        "parallel_property_ipsilateral_internal_angle(1,MB,ND)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "vertical_angle(1,AME,BMN)",
+            "parallel_property_collinear_extend(3,AB,CD,M)"
+        ],
+        "parallel_property_collinear_extend(3,AB,CD,M)": [
+            "parallel_property_collinear_extend(3,DC,BM,N)"
+        ],
+        "parallel_property_collinear_extend(3,DC,BM,N)": [
+            "parallel_property_ipsilateral_internal_angle(1,MB,ND)"
+        ]
+    }
 }

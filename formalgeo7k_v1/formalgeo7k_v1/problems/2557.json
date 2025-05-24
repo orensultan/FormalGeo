@@ -1,42 +1,39 @@
 {
-  "problem_id": 2557,
-  "annotation": "ChenyangMao_2023-04-23",
-  "source": "Geometry3k-2684",
-  "problem_level": 2,
-  "problem_text_cn": "如图所示，AE=x，AF=sqrt(174)，CE=3*x+5，B是圆B的圆心，圆O的切线为AF。求x的值。",
-  "problem_text_en": "As shown in the diagram, AE=x, AF=sqrt(174), CE=3*x+5, B is the center of ⊙B, AF is the tangent to circle B. Find the value of x.",
-  "problem_img": "2557.png",
-  "construction_cdl": [
-    "Shape(BEF,BFC,CE)",
-    "Shape(EA,AF,BEF)",
-    "Shape(BCE,EC)",
-    "Collinear(AEC)",
-    "Cocircular(B,EFC)"
-  ],
-  "text_cdl": [
-    "Equal(LengthOfLine(AE),x)",
-    "Equal(LengthOfLine(AF),sqrt(174))",
-    "Equal(LengthOfLine(CE),3*x+5)",
-    "IsCentreOfCircle(B,B)",
-    "IsTangentOfCircle(AF,B)"
-  ],
-  "image_cdl": [
-    "Equal(LengthOfLine(AE),x)",
-    "Equal(LengthOfLine(AF),sqrt(174))",
-    "Equal(LengthOfLine(CE),3*x+5)",
-    "IsCentreOfCircle(B,B)",
-    "IsTangentOfCircle(AF,B)"
-  ],
-  "goal_cdl": "Value(x)",
-  "problem_answer": "6",
-  "theorem_seqs": [
-    "line_addition(1,AE,EC)",
-    "circle_property_circular_power_tangent_and_segment_line(1,AF,AEC,B)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "line_addition(1,AE,EC)",
-      "circle_property_circular_power_tangent_and_segment_line(1,AF,AEC,B)"
-    ]
-  }
+    "problem_id": 2557,
+    "source": "Geometry3k-2684",
+    "problem_level": 2,
+    "problem_img": "2557.png",
+    "construction_cdl": [
+        "Shape(BEF,BFC,CE)",
+        "Shape(EA,AF,BEF)",
+        "Shape(BCE,EC)",
+        "Collinear(AEC)",
+        "Cocircular(B,EFC)"
+    ],
+    "text_cdl": [
+        "Equal(LengthOfLine(AE),x)",
+        "Equal(LengthOfLine(AF),sqrt(174))",
+        "Equal(LengthOfLine(CE),3*x+5)",
+        "IsCentreOfCircle(B,B)",
+        "IsTangentOfCircle(AF,B)"
+    ],
+    "image_cdl": [
+        "Equal(LengthOfLine(AE),x)",
+        "Equal(LengthOfLine(AF),sqrt(174))",
+        "Equal(LengthOfLine(CE),3*x+5)",
+        "IsCentreOfCircle(B,B)",
+        "IsTangentOfCircle(AF,B)"
+    ],
+    "goal_cdl": "Value(x)",
+    "problem_answer": "6",
+    "theorem_seqs": [
+        "line_addition(1,AE,EC)",
+        "circle_property_circular_power_tangent_and_segment_line(1,AF,AEC,B)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "line_addition(1,AE,EC)",
+            "circle_property_circular_power_tangent_and_segment_line(1,AF,AEC,B)"
+        ]
+    }
 }

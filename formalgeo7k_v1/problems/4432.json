@@ -1,33 +1,30 @@
 {
-  "problem_id": 4432,
-  "annotation": "JiaZou_2023-05-14",
-  "source": "GeoQA-3386",
-  "problem_level": 2,
-  "problem_text_cn": "如图所示，∠BOA=60°，圆O的圆心为O。求∠BPA的大小。",
-  "problem_text_en": "As shown in the diagram, ∠BOA=60°, O is the center of circle O. Find the measure of ∠BPA.",
-  "problem_img": "4432.png",
-  "construction_cdl": [
-    "Shape(BO,OA,OAB)",
-    "Shape(BP,OA,OAB)",
-    "Shape(AP,OPA)",
-    "Shape(PB,OBP)",
-    "Cocircular(O,ABP)"
-  ],
-  "text_cdl": [
-    "Equal(MeasureOfAngle(BOA),60)",
-    "IsCentreOfCircle(O,O)"
-  ],
-  "image_cdl": [],
-  "goal_cdl": "Value(MeasureOfAngle(BPA))",
-  "problem_answer": "30",
-  "theorem_seqs": [
-    "arc_property_center_angle(1,OAB,O)",
-    "arc_property_circumference_angle_external(1,OAB,P)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "arc_property_center_angle(1,OAB,O)",
-      "arc_property_circumference_angle_external(1,OAB,P)"
-    ]
-  }
+    "problem_id": 4432,
+    "source": "GeoQA-3386",
+    "problem_level": 2,
+    "problem_img": "4432.png",
+    "construction_cdl": [
+        "Shape(BO,OA,OAB)",
+        "Shape(BP,OA,OAB)",
+        "Shape(AP,OPA)",
+        "Shape(PB,OBP)",
+        "Cocircular(O,ABP)"
+    ],
+    "text_cdl": [
+        "Equal(MeasureOfAngle(BOA),60)",
+        "IsCentreOfCircle(O,O)"
+    ],
+    "image_cdl": [],
+    "goal_cdl": "Value(MeasureOfAngle(BPA))",
+    "problem_answer": "30",
+    "theorem_seqs": [
+        "arc_property_center_angle(1,OAB,O)",
+        "arc_property_circumference_angle_external(1,OAB,P)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "arc_property_center_angle(1,OAB,O)",
+            "arc_property_circumference_angle_external(1,OAB,P)"
+        ]
+    }
 }

@@ -1,36 +1,33 @@
 {
-  "problem_id": 1913,
-  "annotation": "JiaZou_2023-03-26",
-  "source": "Geometry3k-1988",
-  "problem_level": 0,
-  "problem_text_cn": "如图所示，JK=3*y-2，LK=5*y-8，∠PMJ=3*x-6°，JM是三角形JPL的高。求x的值。",
-  "problem_text_en": "As shown in the diagram, JK=3*y-2, LK=5*y-8, ∠PMJ=3*x-6°, JM is the altitude of △ JPL. Find the value of x.",
-  "problem_img": "1913.png",
-  "construction_cdl": [
-    "Shape(LK,KA,AM,ML)",
-    "Shape(KJ,JA,AK)",
-    "Shape(AJ,JP,PA)",
-    "Shape(MA,AP,PM)",
-    "Collinear(JKL)",
-    "Collinear(JAM)",
-    "Collinear(KAP)",
-    "Collinear(LMP)"
-  ],
-  "text_cdl": [
-    "Equal(LengthOfLine(JK),3*y-2)",
-    "Equal(LengthOfLine(LK),5*y-8)",
-    "Equal(MeasureOfAngle(PMJ),3*x-6)",
-    "IsAltitudeOfTriangle(JM,JPL)"
-  ],
-  "image_cdl": [
-    "Equal(LengthOfLine(JK),3*y-2)",
-    "Equal(LengthOfLine(LK),5*y-8)",
-    "Equal(MeasureOfAngle(PMJ),3*x-6)"
-  ],
-  "goal_cdl": "Value(x)",
-  "problem_answer": "32",
-  "theorem_seqs": [],
-  "theorem_seqs_dag": {
-    "START": []
-  }
+    "problem_id": 1913,
+    "source": "Geometry3k-1988",
+    "problem_level": 0,
+    "problem_img": "1913.png",
+    "construction_cdl": [
+        "Shape(LK,KA,AM,ML)",
+        "Shape(KJ,JA,AK)",
+        "Shape(AJ,JP,PA)",
+        "Shape(MA,AP,PM)",
+        "Collinear(JKL)",
+        "Collinear(JAM)",
+        "Collinear(KAP)",
+        "Collinear(LMP)"
+    ],
+    "text_cdl": [
+        "Equal(LengthOfLine(JK),3*y-2)",
+        "Equal(LengthOfLine(LK),5*y-8)",
+        "Equal(MeasureOfAngle(PMJ),3*x-6)",
+        "IsAltitudeOfTriangle(JM,JPL)"
+    ],
+    "image_cdl": [
+        "Equal(LengthOfLine(JK),3*y-2)",
+        "Equal(LengthOfLine(LK),5*y-8)",
+        "Equal(MeasureOfAngle(PMJ),3*x-6)"
+    ],
+    "goal_cdl": "Value(x)",
+    "problem_answer": "32",
+    "theorem_seqs": [],
+    "theorem_seqs_dag": {
+        "START": []
+    }
 }

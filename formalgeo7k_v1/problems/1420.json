@@ -1,46 +1,43 @@
 {
-  "problem_id": 1420,
-  "annotation": "YanjunGuo_2023-04-16",
-  "source": "Geometry3k-1471",
-  "problem_level": 2,
-  "problem_text_cn": "如图所示，BA=6，DA=9，FC=6.86，∠BAF=32°，∠CBF=40.1°，∠FAD=20°，DA和CB是平行四边形ADCB的一组对边。求∠DCB的大小。",
-  "problem_text_en": "As shown in the diagram, BA=6, DA=9, FC=6.86, ∠BAF=32°, ∠CBF=40.1°, ∠FAD=20°, ADCB is a ▱. Find the measure of ∠DCB.",
-  "problem_img": "1420.png",
-  "construction_cdl": [
-    "Shape(DC,CF,FD)",
-    "Shape(DF,FA,AD)",
-    "Shape(FB,BA,AF)",
-    "Shape(FC,CB,BF)",
-    "Collinear(DFB)",
-    "Collinear(AFC)"
-  ],
-  "text_cdl": [
-    "Equal(LengthOfLine(BA),6)",
-    "Equal(LengthOfLine(DA),9)",
-    "Equal(LengthOfLine(FC),6.86)",
-    "Equal(MeasureOfAngle(BAF),32)",
-    "Equal(MeasureOfAngle(CBF),40.1)",
-    "Equal(MeasureOfAngle(FAD),20)",
-    "Parallelogram(ADCB)"
-  ],
-  "image_cdl": [
-    "Equal(LengthOfLine(BA),6)",
-    "Equal(LengthOfLine(DA),9)",
-    "Equal(LengthOfLine(FC),6.86)",
-    "Equal(MeasureOfAngle(BAF),32)",
-    "Equal(MeasureOfAngle(CBF),40.1)",
-    "Equal(MeasureOfAngle(FAD),20)"
-  ],
-  "goal_cdl": "Value(MeasureOfAngle(DCB))",
-  "problem_answer": "52",
-  "theorem_seqs": [
-    "angle_addition(1,BAF,FAD)",
-    "parallelogram_property_opposite_angle_equal(1,ADCB)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "angle_addition(1,BAF,FAD)",
-      "parallelogram_property_opposite_angle_equal(1,ADCB)"
-    ]
-  }
+    "problem_id": 1420,
+    "source": "Geometry3k-1471",
+    "problem_level": 2,
+    "problem_img": "1420.png",
+    "construction_cdl": [
+        "Shape(DC,CF,FD)",
+        "Shape(DF,FA,AD)",
+        "Shape(FB,BA,AF)",
+        "Shape(FC,CB,BF)",
+        "Collinear(DFB)",
+        "Collinear(AFC)"
+    ],
+    "text_cdl": [
+        "Equal(LengthOfLine(BA),6)",
+        "Equal(LengthOfLine(DA),9)",
+        "Equal(LengthOfLine(FC),6.86)",
+        "Equal(MeasureOfAngle(BAF),32)",
+        "Equal(MeasureOfAngle(CBF),40.1)",
+        "Equal(MeasureOfAngle(FAD),20)",
+        "Parallelogram(ADCB)"
+    ],
+    "image_cdl": [
+        "Equal(LengthOfLine(BA),6)",
+        "Equal(LengthOfLine(DA),9)",
+        "Equal(LengthOfLine(FC),6.86)",
+        "Equal(MeasureOfAngle(BAF),32)",
+        "Equal(MeasureOfAngle(CBF),40.1)",
+        "Equal(MeasureOfAngle(FAD),20)"
+    ],
+    "goal_cdl": "Value(MeasureOfAngle(DCB))",
+    "problem_answer": "52",
+    "theorem_seqs": [
+        "angle_addition(1,BAF,FAD)",
+        "parallelogram_property_opposite_angle_equal(1,ADCB)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "angle_addition(1,BAF,FAD)",
+            "parallelogram_property_opposite_angle_equal(1,ADCB)"
+        ]
+    }
 }

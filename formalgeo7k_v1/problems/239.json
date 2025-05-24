@@ -1,36 +1,33 @@
 {
-  "problem_id": 239,
-  "annotation": "XiaokaiZhang_2023-03-12",
-  "source": "Geometry3k-242",
-  "problem_level": 3,
-  "problem_text_cn": "如图所示，TR=ST，∠STR=50°。求∠TRS的大小。",
-  "problem_text_en": "As shown in the diagram, TR=ST, ∠STR=50°. Find the measure of ∠TRS.",
-  "problem_img": "239.png",
-  "construction_cdl": [
-    "Shape(RS,ST,TR)"
-  ],
-  "text_cdl": [
-    "Equal(LengthOfLine(TR),LengthOfLine(ST))",
-    "Equal(MeasureOfAngle(STR),50)"
-  ],
-  "image_cdl": [
-    "Equal(LengthOfLine(TR),LengthOfLine(ST))",
-    "Equal(MeasureOfAngle(STR),50)"
-  ],
-  "goal_cdl": "Value(MeasureOfAngle(TRS))",
-  "problem_answer": "65",
-  "theorem_seqs": [
-    "triangle_property_angle_sum(1,RST)",
-    "isosceles_triangle_judgment_line_equal(1,TRS)",
-    "isosceles_triangle_property_angle_equal(1,TRS)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "triangle_property_angle_sum(1,RST)",
-      "isosceles_triangle_judgment_line_equal(1,TRS)"
+    "problem_id": 239,
+    "source": "Geometry3k-242",
+    "problem_level": 3,
+    "problem_img": "239.png",
+    "construction_cdl": [
+        "Shape(RS,ST,TR)"
     ],
-    "isosceles_triangle_judgment_line_equal(1,TRS)": [
-      "isosceles_triangle_property_angle_equal(1,TRS)"
-    ]
-  }
+    "text_cdl": [
+        "Equal(LengthOfLine(TR),LengthOfLine(ST))",
+        "Equal(MeasureOfAngle(STR),50)"
+    ],
+    "image_cdl": [
+        "Equal(LengthOfLine(TR),LengthOfLine(ST))",
+        "Equal(MeasureOfAngle(STR),50)"
+    ],
+    "goal_cdl": "Value(MeasureOfAngle(TRS))",
+    "problem_answer": "65",
+    "theorem_seqs": [
+        "triangle_property_angle_sum(1,RST)",
+        "isosceles_triangle_judgment_line_equal(1,TRS)",
+        "isosceles_triangle_property_angle_equal(1,TRS)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "triangle_property_angle_sum(1,RST)",
+            "isosceles_triangle_judgment_line_equal(1,TRS)"
+        ],
+        "isosceles_triangle_judgment_line_equal(1,TRS)": [
+            "isosceles_triangle_property_angle_equal(1,TRS)"
+        ]
+    }
 }

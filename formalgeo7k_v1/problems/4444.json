@@ -1,33 +1,30 @@
 {
-  "problem_id": 4444,
-  "annotation": "JiaZou_2023-05-14",
-  "source": "GeoQA-3407",
-  "problem_level": 2,
-  "problem_text_cn": "如图所示，∠AOB=100°，⊙O的圆心为O。求∠BCA的大小。",
-  "problem_text_en": "As shown in the diagram, ∠AOB=100°, the center of ⊙O is O. Find the measure of ∠BCA.",
-  "problem_img": "4444.png",
-  "construction_cdl": [
-    "Shape(OB,BC,CA,AO)",
-    "Shape(BO,OA,OAB)",
-    "Shape(CB,OBC)",
-    "Shape(AC,OCA)",
-    "Cocircular(O,BCA)"
-  ],
-  "text_cdl": [
-    "Equal(MeasureOfAngle(AOB),100)",
-    "IsCentreOfCircle(O,O)"
-  ],
-  "image_cdl": [],
-  "goal_cdl": "Value(MeasureOfAngle(BCA))",
-  "problem_answer": "130",
-  "theorem_seqs": [
-    "arc_property_center_angle(1,OBA,O)",
-    "arc_property_circumference_angle_internal(1,OBA,C)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "arc_property_center_angle(1,OBA,O)",
-      "arc_property_circumference_angle_internal(1,OBA,C)"
-    ]
-  }
+    "problem_id": 4444,
+    "source": "GeoQA-3407",
+    "problem_level": 2,
+    "problem_img": "4444.png",
+    "construction_cdl": [
+        "Shape(OB,BC,CA,AO)",
+        "Shape(BO,OA,OAB)",
+        "Shape(CB,OBC)",
+        "Shape(AC,OCA)",
+        "Cocircular(O,BCA)"
+    ],
+    "text_cdl": [
+        "Equal(MeasureOfAngle(AOB),100)",
+        "IsCentreOfCircle(O,O)"
+    ],
+    "image_cdl": [],
+    "goal_cdl": "Value(MeasureOfAngle(BCA))",
+    "problem_answer": "130",
+    "theorem_seqs": [
+        "arc_property_center_angle(1,OBA,O)",
+        "arc_property_circumference_angle_internal(1,OBA,C)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "arc_property_center_angle(1,OBA,O)",
+            "arc_property_circumference_angle_internal(1,OBA,C)"
+        ]
+    }
 }

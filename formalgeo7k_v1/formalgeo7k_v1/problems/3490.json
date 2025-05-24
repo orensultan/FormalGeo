@@ -1,49 +1,46 @@
 {
-  "problem_id": 3490,
-  "annotation": "XiaokaiZhang_2023-04-30",
-  "source": "GeoQA-1093",
-  "problem_level": 7,
-  "problem_text_cn": "如图所示，BC=10，BD平分∠ABC，△ABC为等腰直角△，DE垂直于CE。求△DEC的周长。",
-  "problem_text_en": "As shown in the diagram, BC=10, BD is the angle bisector of ∠ABC, ∠ABC and ∠BCA are the base angles of the isosceles right triangle ABC, DE⊥CE. Find the perimeter of △DEC.",
-  "problem_img": "3490.png",
-  "construction_cdl": [
-    "Shape(AB,BD,DA)",
-    "Shape(DB,BE,ED)",
-    "Shape(DE,EC,CD)",
-    "Collinear(ADC)",
-    "Collinear(BEC)"
-  ],
-  "text_cdl": [
-    "Equal(LengthOfLine(BC),10)",
-    "IsBisectorOfAngle(BD,ABC)",
-    "IsoscelesRightTriangle(ABC)",
-    "PerpendicularBetweenLine(DE,CE)"
-  ],
-  "image_cdl": [],
-  "goal_cdl": "Value(PerimeterOfTriangle(DEC))",
-  "problem_answer": "10",
-  "theorem_seqs": [
-    "adjacent_complementary_angle(1,BED,DEC)",
-    "mirror_congruent_triangle_judgment_aas(1,DBE,DAB)",
-    "mirror_congruent_triangle_property_line_equal(1,DBE,DAB)",
-    "mirror_congruent_triangle_property_line_equal(1,BED,BDA)",
-    "line_addition(1,AD,DC)",
-    "line_addition(1,BE,EC)",
-    "triangle_perimeter_formula(1,DEC)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "adjacent_complementary_angle(1,BED,DEC)",
-      "line_addition(1,AD,DC)",
-      "line_addition(1,BE,EC)",
-      "triangle_perimeter_formula(1,DEC)"
+    "problem_id": 3490,
+    "source": "GeoQA-1093",
+    "problem_level": 7,
+    "problem_img": "3490.png",
+    "construction_cdl": [
+        "Shape(AB,BD,DA)",
+        "Shape(DB,BE,ED)",
+        "Shape(DE,EC,CD)",
+        "Collinear(ADC)",
+        "Collinear(BEC)"
     ],
-    "adjacent_complementary_angle(1,BED,DEC)": [
-      "mirror_congruent_triangle_judgment_aas(1,DBE,DAB)"
+    "text_cdl": [
+        "Equal(LengthOfLine(BC),10)",
+        "IsBisectorOfAngle(BD,ABC)",
+        "IsoscelesRightTriangle(ABC)",
+        "PerpendicularBetweenLine(DE,CE)"
     ],
-    "mirror_congruent_triangle_judgment_aas(1,DBE,DAB)": [
-      "mirror_congruent_triangle_property_line_equal(1,DBE,DAB)",
-      "mirror_congruent_triangle_property_line_equal(1,BED,BDA)"
-    ]
-  }
+    "image_cdl": [],
+    "goal_cdl": "Value(PerimeterOfTriangle(DEC))",
+    "problem_answer": "10",
+    "theorem_seqs": [
+        "adjacent_complementary_angle(1,BED,DEC)",
+        "mirror_congruent_triangle_judgment_aas(1,DBE,DAB)",
+        "mirror_congruent_triangle_property_line_equal(1,DBE,DAB)",
+        "mirror_congruent_triangle_property_line_equal(1,BED,BDA)",
+        "line_addition(1,AD,DC)",
+        "line_addition(1,BE,EC)",
+        "triangle_perimeter_formula(1,DEC)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "adjacent_complementary_angle(1,BED,DEC)",
+            "line_addition(1,AD,DC)",
+            "line_addition(1,BE,EC)",
+            "triangle_perimeter_formula(1,DEC)"
+        ],
+        "adjacent_complementary_angle(1,BED,DEC)": [
+            "mirror_congruent_triangle_judgment_aas(1,DBE,DAB)"
+        ],
+        "mirror_congruent_triangle_judgment_aas(1,DBE,DAB)": [
+            "mirror_congruent_triangle_property_line_equal(1,DBE,DAB)",
+            "mirror_congruent_triangle_property_line_equal(1,BED,BDA)"
+        ]
+    }
 }

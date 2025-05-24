@@ -1,80 +1,77 @@
 {
-  "problem_id": 1187,
-  "annotation": "RunanWang_2023-04-23",
-  "source": "Geometry3k-1227",
-  "problem_level": 11,
-  "problem_text_cn": "如图所示，∠KLP=110°，JL和MK是▱LJMK的一组对边，PNML是矩形。求∠MKL的大小。",
-  "problem_text_en": "As shown in the diagram, ∠KLP=110°, quadrilateral LJMK is a ▱, quadrilateral PNML is a rectangle. Find the measure of ∠MKL.",
-  "problem_img": "1187.png",
-  "construction_cdl": [
-    "Shape(PN,NJ,JP)",
-    "Shape(JN,NM,MJ)",
-    "Shape(JM,ML,LJ)",
-    "Shape(PJ,JL,LP)",
-    "Shape(LM,MK,KL)",
-    "Collinear(PJM)",
-    "Collinear(NJL)"
-  ],
-  "text_cdl": [
-    "Equal(MeasureOfAngle(KLP),110)",
-    "Parallelogram(LJMK)",
-    "Rectangle(PNML)"
-  ],
-  "image_cdl": [
-    "Equal(MeasureOfAngle(KLP),110)",
-    "Parallelogram(LJMK)",
-    "Rectangle(PNML)"
-  ],
-  "goal_cdl": "Value(MeasureOfAngle(MKL))",
-  "problem_answer": "140",
-  "theorem_seqs": [
-    "line_addition(1,PJ,JM)",
-    "line_addition(1,NJ,JL)",
-    "rectangle_property_diagonal_equal(1,PNML)",
-    "parallelogram_property_diagonal_bisection(1,PNML,J)",
-    "parallelogram_property_diagonal_bisection(1,NMLP,J)",
-    "parallelogram_property_opposite_line_equal(1,LJMK)",
-    "parallelogram_property_opposite_line_equal(1,JMKL)",
-    "isosceles_triangle_judgment_line_equal(1,KLM)",
-    "isosceles_triangle_property_angle_equal(1,KLM)",
-    "angle_addition(1,KLM,MLP)",
-    "triangle_property_angle_sum(1,LMK)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "line_addition(1,PJ,JM)",
-      "line_addition(1,NJ,JL)",
-      "rectangle_property_diagonal_equal(1,PNML)",
-      "parallelogram_property_diagonal_bisection(1,PNML,J)",
-      "parallelogram_property_diagonal_bisection(1,NMLP,J)",
-      "parallelogram_property_opposite_line_equal(1,LJMK)",
-      "parallelogram_property_opposite_line_equal(1,JMKL)",
-      "angle_addition(1,KLM,MLP)",
-      "triangle_property_angle_sum(1,LMK)"
+    "problem_id": 1187,
+    "source": "Geometry3k-1227",
+    "problem_level": 11,
+    "problem_img": "1187.png",
+    "construction_cdl": [
+        "Shape(PN,NJ,JP)",
+        "Shape(JN,NM,MJ)",
+        "Shape(JM,ML,LJ)",
+        "Shape(PJ,JL,LP)",
+        "Shape(LM,MK,KL)",
+        "Collinear(PJM)",
+        "Collinear(NJL)"
     ],
-    "line_addition(1,PJ,JM)": [
-      "isosceles_triangle_judgment_line_equal(1,KLM)"
+    "text_cdl": [
+        "Equal(MeasureOfAngle(KLP),110)",
+        "Parallelogram(LJMK)",
+        "Rectangle(PNML)"
     ],
-    "line_addition(1,NJ,JL)": [
-      "isosceles_triangle_judgment_line_equal(1,KLM)"
+    "image_cdl": [
+        "Equal(MeasureOfAngle(KLP),110)",
+        "Parallelogram(LJMK)",
+        "Rectangle(PNML)"
     ],
-    "rectangle_property_diagonal_equal(1,PNML)": [
-      "isosceles_triangle_judgment_line_equal(1,KLM)"
+    "goal_cdl": "Value(MeasureOfAngle(MKL))",
+    "problem_answer": "140",
+    "theorem_seqs": [
+        "line_addition(1,PJ,JM)",
+        "line_addition(1,NJ,JL)",
+        "rectangle_property_diagonal_equal(1,PNML)",
+        "parallelogram_property_diagonal_bisection(1,PNML,J)",
+        "parallelogram_property_diagonal_bisection(1,NMLP,J)",
+        "parallelogram_property_opposite_line_equal(1,LJMK)",
+        "parallelogram_property_opposite_line_equal(1,JMKL)",
+        "isosceles_triangle_judgment_line_equal(1,KLM)",
+        "isosceles_triangle_property_angle_equal(1,KLM)",
+        "angle_addition(1,KLM,MLP)",
+        "triangle_property_angle_sum(1,LMK)"
     ],
-    "parallelogram_property_diagonal_bisection(1,PNML,J)": [
-      "isosceles_triangle_judgment_line_equal(1,KLM)"
-    ],
-    "parallelogram_property_diagonal_bisection(1,NMLP,J)": [
-      "isosceles_triangle_judgment_line_equal(1,KLM)"
-    ],
-    "parallelogram_property_opposite_line_equal(1,LJMK)": [
-      "isosceles_triangle_judgment_line_equal(1,KLM)"
-    ],
-    "parallelogram_property_opposite_line_equal(1,JMKL)": [
-      "isosceles_triangle_judgment_line_equal(1,KLM)"
-    ],
-    "isosceles_triangle_judgment_line_equal(1,KLM)": [
-      "isosceles_triangle_property_angle_equal(1,KLM)"
-    ]
-  }
+    "theorem_seqs_dag": {
+        "START": [
+            "line_addition(1,PJ,JM)",
+            "line_addition(1,NJ,JL)",
+            "rectangle_property_diagonal_equal(1,PNML)",
+            "parallelogram_property_diagonal_bisection(1,PNML,J)",
+            "parallelogram_property_diagonal_bisection(1,NMLP,J)",
+            "parallelogram_property_opposite_line_equal(1,LJMK)",
+            "parallelogram_property_opposite_line_equal(1,JMKL)",
+            "angle_addition(1,KLM,MLP)",
+            "triangle_property_angle_sum(1,LMK)"
+        ],
+        "line_addition(1,PJ,JM)": [
+            "isosceles_triangle_judgment_line_equal(1,KLM)"
+        ],
+        "line_addition(1,NJ,JL)": [
+            "isosceles_triangle_judgment_line_equal(1,KLM)"
+        ],
+        "rectangle_property_diagonal_equal(1,PNML)": [
+            "isosceles_triangle_judgment_line_equal(1,KLM)"
+        ],
+        "parallelogram_property_diagonal_bisection(1,PNML,J)": [
+            "isosceles_triangle_judgment_line_equal(1,KLM)"
+        ],
+        "parallelogram_property_diagonal_bisection(1,NMLP,J)": [
+            "isosceles_triangle_judgment_line_equal(1,KLM)"
+        ],
+        "parallelogram_property_opposite_line_equal(1,LJMK)": [
+            "isosceles_triangle_judgment_line_equal(1,KLM)"
+        ],
+        "parallelogram_property_opposite_line_equal(1,JMKL)": [
+            "isosceles_triangle_judgment_line_equal(1,KLM)"
+        ],
+        "isosceles_triangle_judgment_line_equal(1,KLM)": [
+            "isosceles_triangle_property_angle_equal(1,KLM)"
+        ]
+    }
 }

@@ -1,56 +1,53 @@
 {
-  "problem_id": 3481,
-  "annotation": "XiaokaiZhang_2023-04-30",
-  "source": "GeoQA-1076",
-  "problem_level": 9,
-  "problem_text_cn": "如图所示，BD=12，ABCD的周长为36，E是线段DC的中点，BA和CD是▱ABCD的一组对边。求△DOE的周长。",
-  "problem_text_en": "As shown in the diagram, BD=12, the perimeter of quadrilateral ABCD is 36, E bisects segment DC, AD and BC are opposite sides of the parallelogram ABCD. Find the perimeter of triangle DOE.",
-  "problem_img": "3481.png",
-  "construction_cdl": [
-    "Shape(AB,BO,OA)",
-    "Shape(DA,AO,OD)",
-    "Shape(OB,BC,CO)",
-    "Shape(DO,OE,ED)",
-    "Shape(EO,OC,CE)",
-    "Collinear(AOC)",
-    "Collinear(BOD)",
-    "Collinear(DEC)"
-  ],
-  "text_cdl": [
-    "Equal(LengthOfLine(BD),12)",
-    "Equal(PerimeterOfQuadrilateral(ABCD),36)",
-    "IsMidpointOfLine(E,DC)",
-    "Parallelogram(ABCD)"
-  ],
-  "image_cdl": [],
-  "goal_cdl": "Value(PerimeterOfTriangle(DOE))",
-  "problem_answer": "15",
-  "theorem_seqs": [
-    "parallelogram_property_diagonal_bisection(1,BCDA,O)",
-    "line_addition(1,BO,OD)",
-    "midsegment_of_triangle_judgment_midpoint(1,OE,DBC)",
-    "midsegment_of_triangle_property_length(1,OE,DBC)",
-    "line_addition(1,CE,ED)",
-    "parallelogram_property_opposite_line_equal(1,ABCD)",
-    "parallelogram_property_opposite_line_equal(1,BCDA)",
-    "quadrilateral_perimeter_formula(1,ABCD)",
-    "triangle_perimeter_formula(1,DOE)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "parallelogram_property_diagonal_bisection(1,BCDA,O)",
-      "line_addition(1,BO,OD)",
-      "line_addition(1,CE,ED)",
-      "parallelogram_property_opposite_line_equal(1,ABCD)",
-      "parallelogram_property_opposite_line_equal(1,BCDA)",
-      "quadrilateral_perimeter_formula(1,ABCD)",
-      "triangle_perimeter_formula(1,DOE)"
+    "problem_id": 3481,
+    "source": "GeoQA-1076",
+    "problem_level": 9,
+    "problem_img": "3481.png",
+    "construction_cdl": [
+        "Shape(AB,BO,OA)",
+        "Shape(DA,AO,OD)",
+        "Shape(OB,BC,CO)",
+        "Shape(DO,OE,ED)",
+        "Shape(EO,OC,CE)",
+        "Collinear(AOC)",
+        "Collinear(BOD)",
+        "Collinear(DEC)"
     ],
-    "parallelogram_property_diagonal_bisection(1,BCDA,O)": [
-      "midsegment_of_triangle_judgment_midpoint(1,OE,DBC)"
+    "text_cdl": [
+        "Equal(LengthOfLine(BD),12)",
+        "Equal(PerimeterOfQuadrilateral(ABCD),36)",
+        "IsMidpointOfLine(E,DC)",
+        "Parallelogram(ABCD)"
     ],
-    "midsegment_of_triangle_judgment_midpoint(1,OE,DBC)": [
-      "midsegment_of_triangle_property_length(1,OE,DBC)"
-    ]
-  }
+    "image_cdl": [],
+    "goal_cdl": "Value(PerimeterOfTriangle(DOE))",
+    "problem_answer": "15",
+    "theorem_seqs": [
+        "parallelogram_property_diagonal_bisection(1,BCDA,O)",
+        "line_addition(1,BO,OD)",
+        "midsegment_of_triangle_judgment_midpoint(1,OE,DBC)",
+        "midsegment_of_triangle_property_length(1,OE,DBC)",
+        "line_addition(1,CE,ED)",
+        "parallelogram_property_opposite_line_equal(1,ABCD)",
+        "parallelogram_property_opposite_line_equal(1,BCDA)",
+        "quadrilateral_perimeter_formula(1,ABCD)",
+        "triangle_perimeter_formula(1,DOE)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "parallelogram_property_diagonal_bisection(1,BCDA,O)",
+            "line_addition(1,BO,OD)",
+            "line_addition(1,CE,ED)",
+            "parallelogram_property_opposite_line_equal(1,ABCD)",
+            "parallelogram_property_opposite_line_equal(1,BCDA)",
+            "quadrilateral_perimeter_formula(1,ABCD)",
+            "triangle_perimeter_formula(1,DOE)"
+        ],
+        "parallelogram_property_diagonal_bisection(1,BCDA,O)": [
+            "midsegment_of_triangle_judgment_midpoint(1,OE,DBC)"
+        ],
+        "midsegment_of_triangle_judgment_midpoint(1,OE,DBC)": [
+            "midsegment_of_triangle_property_length(1,OE,DBC)"
+        ]
+    }
 }

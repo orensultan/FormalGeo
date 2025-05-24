@@ -1,40 +1,37 @@
 {
-  "problem_id": 682,
-  "annotation": "JiaZou_2023-04-09",
-  "source": "Geometry3k-699",
-  "problem_level": 1,
-  "problem_text_cn": "如图所示，OW=x-9，OY=x，XO=x+4，ZO=x-12。求x的值。",
-  "problem_text_en": "As shown in the diagram, OW=x-9, OY=x, XO=x+4, ZO=x-12. Find the value of x.",
-  "problem_img": "682.png",
-  "construction_cdl": [
-    "Shape(OZ,AZW,WO)",
-    "Shape(OW,AWX,XA,AO)",
-    "Shape(OA,AX,AXY,YO)",
-    "Shape(OY,OYZ,ZO)",
-    "Collinear(XAOZ)",
-    "Collinear(YOW)",
-    "Cocircular(A,WXYZ)"
-  ],
-  "text_cdl": [
-    "Equal(LengthOfLine(OW),x-9)",
-    "Equal(LengthOfLine(OY),x)",
-    "Equal(LengthOfLine(XO),x+4)",
-    "Equal(LengthOfLine(ZO),x-12)"
-  ],
-  "image_cdl": [
-    "Equal(LengthOfLine(OW),x-9)",
-    "Equal(LengthOfLine(OY),x)",
-    "Equal(LengthOfLine(XO),x+4)",
-    "Equal(LengthOfLine(ZO),x-12)"
-  ],
-  "goal_cdl": "Value(x)",
-  "problem_answer": "48",
-  "theorem_seqs": [
-    "circle_property_circular_power_chord_and_chord(1,XOZ,YOW,A)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "circle_property_circular_power_chord_and_chord(1,XOZ,YOW,A)"
-    ]
-  }
+    "problem_id": 682,
+    "source": "Geometry3k-699",
+    "problem_level": 1,
+    "problem_img": "682.png",
+    "construction_cdl": [
+        "Shape(OZ,AZW,WO)",
+        "Shape(OW,AWX,XA,AO)",
+        "Shape(OA,AX,AXY,YO)",
+        "Shape(OY,OYZ,ZO)",
+        "Collinear(XAOZ)",
+        "Collinear(YOW)",
+        "Cocircular(A,WXYZ)"
+    ],
+    "text_cdl": [
+        "Equal(LengthOfLine(OW),x-9)",
+        "Equal(LengthOfLine(OY),x)",
+        "Equal(LengthOfLine(XO),x+4)",
+        "Equal(LengthOfLine(ZO),x-12)"
+    ],
+    "image_cdl": [
+        "Equal(LengthOfLine(OW),x-9)",
+        "Equal(LengthOfLine(OY),x)",
+        "Equal(LengthOfLine(XO),x+4)",
+        "Equal(LengthOfLine(ZO),x-12)"
+    ],
+    "goal_cdl": "Value(x)",
+    "problem_answer": "48",
+    "theorem_seqs": [
+        "circle_property_circular_power_chord_and_chord(1,XOZ,YOW,A)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "circle_property_circular_power_chord_and_chord(1,XOZ,YOW,A)"
+        ]
+    }
 }

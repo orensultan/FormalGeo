@@ -1,39 +1,36 @@
 {
-  "problem_id": 4297,
-  "annotation": "DengfengYue_2023-05-07",
-  "source": "GeoQA-3106",
-  "problem_level": 3,
-  "problem_text_cn": "如图所示，∠AOC=100°，O是圆O的圆心。求∠EDB的大小。",
-  "problem_text_en": "As shown in the diagram, ∠AOC=100°, O is the center of circle O. Find the measure of ∠EDB.",
-  "problem_img": "4297.png",
-  "construction_cdl": [
-    "Shape(BD,ODB)",
-    "Shape(DB,BE,ED)",
-    "Shape(DE,EA,OAD)",
-    "Shape(AO,OC,OCA)",
-    "Shape(OE,EC,CO)",
-    "Shape(CE,EB,OBC)",
-    "Collinear(BEOA)",
-    "Collinear(DEC)",
-    "Cocircular(O,DBCA)"
-  ],
-  "text_cdl": [
-    "Equal(MeasureOfAngle(AOC),100)",
-    "IsCentreOfCircle(O,O)"
-  ],
-  "image_cdl": [],
-  "goal_cdl": "Value(MeasureOfAngle(EDB))",
-  "problem_answer": "40",
-  "theorem_seqs": [
-    "adjacent_complementary_angle(1,AOC,COB)",
-    "arc_property_center_angle(1,OBC,O)",
-    "arc_property_circumference_angle_external(1,OBC,D)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "adjacent_complementary_angle(1,AOC,COB)",
-      "arc_property_center_angle(1,OBC,O)",
-      "arc_property_circumference_angle_external(1,OBC,D)"
-    ]
-  }
+    "problem_id": 4297,
+    "source": "GeoQA-3106",
+    "problem_level": 3,
+    "problem_img": "4297.png",
+    "construction_cdl": [
+        "Shape(BD,ODB)",
+        "Shape(DB,BE,ED)",
+        "Shape(DE,EA,OAD)",
+        "Shape(AO,OC,OCA)",
+        "Shape(OE,EC,CO)",
+        "Shape(CE,EB,OBC)",
+        "Collinear(BEOA)",
+        "Collinear(DEC)",
+        "Cocircular(O,DBCA)"
+    ],
+    "text_cdl": [
+        "Equal(MeasureOfAngle(AOC),100)",
+        "IsCentreOfCircle(O,O)"
+    ],
+    "image_cdl": [],
+    "goal_cdl": "Value(MeasureOfAngle(EDB))",
+    "problem_answer": "40",
+    "theorem_seqs": [
+        "adjacent_complementary_angle(1,AOC,COB)",
+        "arc_property_center_angle(1,OBC,O)",
+        "arc_property_circumference_angle_external(1,OBC,D)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "adjacent_complementary_angle(1,AOC,COB)",
+            "arc_property_center_angle(1,OBC,O)",
+            "arc_property_circumference_angle_external(1,OBC,D)"
+        ]
+    }
 }

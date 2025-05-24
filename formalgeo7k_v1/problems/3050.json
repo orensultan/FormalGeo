@@ -1,65 +1,62 @@
 {
-  "problem_id": 3050,
-  "annotation": "XiaokaiZhang_2023-04-16",
-  "source": "GeoQA-267",
-  "problem_level": 9,
-  "problem_text_cn": "如图所示，三角形ABC与三角形EDC是全等三角形，AB=1，AC=2，AD=3，AC⊥EC，BC垂直于DC。求∠CED的大小。",
-  "problem_text_en": "As shown in the diagram, △ABC is congruent to △EDC, AB=1, AC=2, AD=3, AC⊥EC, BC⊥DC. Find the measure of ∠CED.",
-  "problem_img": "3050.png",
-  "construction_cdl": [
-    "Shape(AB,BC,CA)",
-    "Shape(DA,AF,FD)",
-    "Shape(FA,AC,CF)",
-    "Shape(DF,FE,ED)",
-    "Shape(FC,CE,EF)",
-    "Collinear(AFE)",
-    "Collinear(DFC)"
-  ],
-  "text_cdl": [
-    "CongruentBetweenTriangle(ABC,EDC)",
-    "Equal(LengthOfLine(AB),1)",
-    "Equal(LengthOfLine(AC),2)",
-    "Equal(LengthOfLine(AD),3)",
-    "PerpendicularBetweenLine(AC,EC)",
-    "PerpendicularBetweenLine(BC,DC)"
-  ],
-  "image_cdl": [],
-  "goal_cdl": "Value(MeasureOfAngle(CED))",
-  "problem_answer": "135",
-  "theorem_seqs": [
-    "congruent_triangle_property_line_equal(1,BCA,DCE)",
-    "congruent_triangle_property_line_equal(1,CAB,CED)",
-    "right_triangle_judgment_angle(1,ACE)",
-    "right_triangle_property_pythagorean(1,ACE)",
-    "right_triangle_judgment_pythagorean_inverse(1,AED)",
-    "isosceles_triangle_judgment_line_equal(1,CEA)",
-    "isosceles_triangle_property_angle_equal(1,CEA)",
-    "triangle_property_angle_sum(1,CEA)",
-    "angle_addition(1,CEA,AED)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "congruent_triangle_property_line_equal(1,BCA,DCE)",
-      "congruent_triangle_property_line_equal(1,CAB,CED)",
-      "right_triangle_judgment_angle(1,ACE)",
-      "triangle_property_angle_sum(1,CEA)",
-      "angle_addition(1,CEA,AED)"
+    "problem_id": 3050,
+    "source": "GeoQA-267",
+    "problem_level": 9,
+    "problem_img": "3050.png",
+    "construction_cdl": [
+        "Shape(AB,BC,CA)",
+        "Shape(DA,AF,FD)",
+        "Shape(FA,AC,CF)",
+        "Shape(DF,FE,ED)",
+        "Shape(FC,CE,EF)",
+        "Collinear(AFE)",
+        "Collinear(DFC)"
     ],
-    "congruent_triangle_property_line_equal(1,BCA,DCE)": [
-      "isosceles_triangle_judgment_line_equal(1,CEA)",
-      "right_triangle_judgment_pythagorean_inverse(1,AED)"
+    "text_cdl": [
+        "CongruentBetweenTriangle(ABC,EDC)",
+        "Equal(LengthOfLine(AB),1)",
+        "Equal(LengthOfLine(AC),2)",
+        "Equal(LengthOfLine(AD),3)",
+        "PerpendicularBetweenLine(AC,EC)",
+        "PerpendicularBetweenLine(BC,DC)"
     ],
-    "congruent_triangle_property_line_equal(1,CAB,CED)": [
-      "right_triangle_judgment_pythagorean_inverse(1,AED)"
+    "image_cdl": [],
+    "goal_cdl": "Value(MeasureOfAngle(CED))",
+    "problem_answer": "135",
+    "theorem_seqs": [
+        "congruent_triangle_property_line_equal(1,BCA,DCE)",
+        "congruent_triangle_property_line_equal(1,CAB,CED)",
+        "right_triangle_judgment_angle(1,ACE)",
+        "right_triangle_property_pythagorean(1,ACE)",
+        "right_triangle_judgment_pythagorean_inverse(1,AED)",
+        "isosceles_triangle_judgment_line_equal(1,CEA)",
+        "isosceles_triangle_property_angle_equal(1,CEA)",
+        "triangle_property_angle_sum(1,CEA)",
+        "angle_addition(1,CEA,AED)"
     ],
-    "right_triangle_judgment_angle(1,ACE)": [
-      "right_triangle_property_pythagorean(1,ACE)"
-    ],
-    "right_triangle_property_pythagorean(1,ACE)": [
-      "right_triangle_judgment_pythagorean_inverse(1,AED)"
-    ],
-    "isosceles_triangle_judgment_line_equal(1,CEA)": [
-      "isosceles_triangle_property_angle_equal(1,CEA)"
-    ]
-  }
+    "theorem_seqs_dag": {
+        "START": [
+            "congruent_triangle_property_line_equal(1,BCA,DCE)",
+            "congruent_triangle_property_line_equal(1,CAB,CED)",
+            "right_triangle_judgment_angle(1,ACE)",
+            "triangle_property_angle_sum(1,CEA)",
+            "angle_addition(1,CEA,AED)"
+        ],
+        "congruent_triangle_property_line_equal(1,BCA,DCE)": [
+            "isosceles_triangle_judgment_line_equal(1,CEA)",
+            "right_triangle_judgment_pythagorean_inverse(1,AED)"
+        ],
+        "congruent_triangle_property_line_equal(1,CAB,CED)": [
+            "right_triangle_judgment_pythagorean_inverse(1,AED)"
+        ],
+        "right_triangle_judgment_angle(1,ACE)": [
+            "right_triangle_property_pythagorean(1,ACE)"
+        ],
+        "right_triangle_property_pythagorean(1,ACE)": [
+            "right_triangle_judgment_pythagorean_inverse(1,AED)"
+        ],
+        "isosceles_triangle_judgment_line_equal(1,CEA)": [
+            "isosceles_triangle_property_angle_equal(1,CEA)"
+        ]
+    }
 }

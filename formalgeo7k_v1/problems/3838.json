@@ -1,39 +1,36 @@
 {
-  "problem_id": 3838,
-  "annotation": "YifanWang_2023-05-07",
-  "source": "GeoQA-1711",
-  "problem_level": 2,
-  "problem_text_cn": "如图所示，∠AOC=72°，⊙O的圆心为O。求∠ABC的大小。",
-  "problem_text_en": "As shown in the diagram, ∠AOC=72°, O is the center of circle O. Find the measure of ∠ABC.",
-  "problem_img": "3838.png",
-  "construction_cdl": [
-    "Shape(AB,BD,DA)",
-    "Shape(AD,DC,OCA)",
-    "Shape(DO,OC,CD)",
-    "Shape(BA,OAB)",
-    "Shape(CO,OD,DB,OBC)",
-    "Collinear(BDC)",
-    "Collinear(ADO)",
-    "Cocircular(O,ABC)"
-  ],
-  "text_cdl": [
-    "Equal(MeasureOfAngle(AOC),72)",
-    "IsCentreOfCircle(O,O)"
-  ],
-  "image_cdl": [
-    "Equal(MeasureOfAngle(AOC),72)",
-    "IsCentreOfCircle(O,O)"
-  ],
-  "goal_cdl": "Value(MeasureOfAngle(ABC))",
-  "problem_answer": "36",
-  "theorem_seqs": [
-    "arc_property_center_angle(1,OCA,O)",
-    "arc_property_circumference_angle_external(1,OCA,B)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "arc_property_center_angle(1,OCA,O)",
-      "arc_property_circumference_angle_external(1,OCA,B)"
-    ]
-  }
+    "problem_id": 3838,
+    "source": "GeoQA-1711",
+    "problem_level": 2,
+    "problem_img": "3838.png",
+    "construction_cdl": [
+        "Shape(AB,BD,DA)",
+        "Shape(AD,DC,OCA)",
+        "Shape(DO,OC,CD)",
+        "Shape(BA,OAB)",
+        "Shape(CO,OD,DB,OBC)",
+        "Collinear(BDC)",
+        "Collinear(ADO)",
+        "Cocircular(O,ABC)"
+    ],
+    "text_cdl": [
+        "Equal(MeasureOfAngle(AOC),72)",
+        "IsCentreOfCircle(O,O)"
+    ],
+    "image_cdl": [
+        "Equal(MeasureOfAngle(AOC),72)",
+        "IsCentreOfCircle(O,O)"
+    ],
+    "goal_cdl": "Value(MeasureOfAngle(ABC))",
+    "problem_answer": "36",
+    "theorem_seqs": [
+        "arc_property_center_angle(1,OCA,O)",
+        "arc_property_circumference_angle_external(1,OCA,B)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "arc_property_center_angle(1,OCA,O)",
+            "arc_property_circumference_angle_external(1,OCA,B)"
+        ]
+    }
 }

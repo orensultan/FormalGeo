@@ -1,36 +1,33 @@
 {
-  "problem_id": 2651,
-  "annotation": "DengfengYue_2023-04-23",
-  "source": "Geometry3k-2787",
-  "problem_level": 1,
-  "problem_text_cn": "如图所示，∠ARS=71°，弧BAS的角度为106，B是圆B的圆心。求⌒BSQ的角度。",
-  "problem_text_en": "As shown in the diagram, ∠ARS=71°, the measure of arc BAS is 106, the center of ⊙B is B. Find the measure of ⌒BSQ.",
-  "problem_img": "2651.png",
-  "construction_cdl": [
-    "Shape(AR,RS,BAS)",
-    "Shape(QA,BAQ)",
-    "Shape(AQ,BQA)",
-    "Collinear(CQAR)",
-    "Cocircular(B,SQA)"
-  ],
-  "text_cdl": [
-    "Equal(MeasureOfAngle(ARS),71)",
-    "Equal(MeasureOfArc(BAS),106)",
-    "IsCentreOfCircle(B,B)"
-  ],
-  "image_cdl": [
-    "Equal(MeasureOfAngle(ARS),71)",
-    "Equal(MeasureOfArc(BAS),106)",
-    "IsCentreOfCircle(B,B)"
-  ],
-  "goal_cdl": "Value(MeasureOfArc(BSQ))",
-  "problem_answer": "248",
-  "theorem_seqs": [
-    "circle_property_circular_power_tangent_and_segment_angle(2,RS,RAQ,B)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "circle_property_circular_power_tangent_and_segment_angle(2,RS,RAQ,B)"
-    ]
-  }
+    "problem_id": 2651,
+    "source": "Geometry3k-2787",
+    "problem_level": 1,
+    "problem_img": "2651.png",
+    "construction_cdl": [
+        "Shape(AR,RS,BAS)",
+        "Shape(QA,BAQ)",
+        "Shape(AQ,BQA)",
+        "Collinear(CQAR)",
+        "Cocircular(B,SQA)"
+    ],
+    "text_cdl": [
+        "Equal(MeasureOfAngle(ARS),71)",
+        "Equal(MeasureOfArc(BAS),106)",
+        "IsCentreOfCircle(B,B)"
+    ],
+    "image_cdl": [
+        "Equal(MeasureOfAngle(ARS),71)",
+        "Equal(MeasureOfArc(BAS),106)",
+        "IsCentreOfCircle(B,B)"
+    ],
+    "goal_cdl": "Value(MeasureOfArc(BSQ))",
+    "problem_answer": "248",
+    "theorem_seqs": [
+        "circle_property_circular_power_tangent_and_segment_angle(2,RS,RAQ,B)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "circle_property_circular_power_tangent_and_segment_angle(2,RS,RAQ,B)"
+        ]
+    }
 }

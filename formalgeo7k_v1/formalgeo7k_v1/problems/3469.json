@@ -1,51 +1,48 @@
 {
-  "problem_id": 3469,
-  "annotation": "XiaokaiZhang_2023-04-30",
-  "source": "GeoQA-1055",
-  "problem_level": 8,
-  "problem_text_cn": "如图所示，Add(MeasureOfAngle(BCA)=MeasureOfAngle(CAB))，AB=AC，AD=AE，EA⊥DA。求∠EDC的大小。",
-  "problem_text_en": "As shown in the diagram, Add(MeasureOfAngle(BCA)=MeasureOfAngle(CAB)), AB=AC, AD=AE, EA is perpendicular to DA. Find the measure of ∠EDC.",
-  "problem_img": "3469.png",
-  "construction_cdl": [
-    "Shape(AB,BD,DA)",
-    "Shape(AD,DE,EA)",
-    "Shape(ED,DC,CE)",
-    "Collinear(BDC)",
-    "Collinear(AEC)"
-  ],
-  "text_cdl": [
-    "Equal(Add(MeasureOfAngle(BCA),MeasureOfAngle(CAB)),145)",
-    "Equal(LengthOfLine(AB),LengthOfLine(AC))",
-    "Equal(LengthOfLine(AD),LengthOfLine(AE))",
-    "PerpendicularBetweenLine(EA,DA)"
-  ],
-  "image_cdl": [],
-  "goal_cdl": "Value(MeasureOfAngle(EDC))",
-  "problem_answer": "10",
-  "theorem_seqs": [
-    "triangle_property_angle_sum(1,ABC)",
-    "isosceles_triangle_judgment_line_equal(1,ABC)",
-    "isosceles_triangle_property_angle_equal(1,ABC)",
-    "isosceles_triangle_judgment_line_equal(1,ADE)",
-    "isosceles_triangle_property_angle_equal(1,ADE)",
-    "triangle_property_angle_sum(1,ADE)",
-    "adjacent_complementary_angle(1,CED,DEA)",
-    "triangle_property_angle_sum(1,EDC)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "triangle_property_angle_sum(1,ABC)",
-      "isosceles_triangle_judgment_line_equal(1,ABC)",
-      "isosceles_triangle_judgment_line_equal(1,ADE)",
-      "triangle_property_angle_sum(1,ADE)",
-      "adjacent_complementary_angle(1,CED,DEA)",
-      "triangle_property_angle_sum(1,EDC)"
+    "problem_id": 3469,
+    "source": "GeoQA-1055",
+    "problem_level": 8,
+    "problem_img": "3469.png",
+    "construction_cdl": [
+        "Shape(AB,BD,DA)",
+        "Shape(AD,DE,EA)",
+        "Shape(ED,DC,CE)",
+        "Collinear(BDC)",
+        "Collinear(AEC)"
     ],
-    "isosceles_triangle_judgment_line_equal(1,ABC)": [
-      "isosceles_triangle_property_angle_equal(1,ABC)"
+    "text_cdl": [
+        "Equal(Add(MeasureOfAngle(BCA),MeasureOfAngle(CAB)),145)",
+        "Equal(LengthOfLine(AB),LengthOfLine(AC))",
+        "Equal(LengthOfLine(AD),LengthOfLine(AE))",
+        "PerpendicularBetweenLine(EA,DA)"
     ],
-    "isosceles_triangle_judgment_line_equal(1,ADE)": [
-      "isosceles_triangle_property_angle_equal(1,ADE)"
-    ]
-  }
+    "image_cdl": [],
+    "goal_cdl": "Value(MeasureOfAngle(EDC))",
+    "problem_answer": "10",
+    "theorem_seqs": [
+        "triangle_property_angle_sum(1,ABC)",
+        "isosceles_triangle_judgment_line_equal(1,ABC)",
+        "isosceles_triangle_property_angle_equal(1,ABC)",
+        "isosceles_triangle_judgment_line_equal(1,ADE)",
+        "isosceles_triangle_property_angle_equal(1,ADE)",
+        "triangle_property_angle_sum(1,ADE)",
+        "adjacent_complementary_angle(1,CED,DEA)",
+        "triangle_property_angle_sum(1,EDC)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "triangle_property_angle_sum(1,ABC)",
+            "isosceles_triangle_judgment_line_equal(1,ABC)",
+            "isosceles_triangle_judgment_line_equal(1,ADE)",
+            "triangle_property_angle_sum(1,ADE)",
+            "adjacent_complementary_angle(1,CED,DEA)",
+            "triangle_property_angle_sum(1,EDC)"
+        ],
+        "isosceles_triangle_judgment_line_equal(1,ABC)": [
+            "isosceles_triangle_property_angle_equal(1,ABC)"
+        ],
+        "isosceles_triangle_judgment_line_equal(1,ADE)": [
+            "isosceles_triangle_property_angle_equal(1,ADE)"
+        ]
+    }
 }

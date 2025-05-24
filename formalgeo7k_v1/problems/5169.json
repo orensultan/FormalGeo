@@ -1,37 +1,34 @@
 {
-  "problem_id": 5169,
-  "annotation": "JiaZou_2023-05-21",
-  "source": "GeoQA-5125",
-  "problem_level": 2,
-  "problem_text_cn": "如图所示，CD=8，O是⊙O的圆心，圆O的直径为AB，DE⊥OE。求直线DE的长度。",
-  "problem_text_en": "As shown in the diagram, CD=8, O is the center of circle O, AB is the diameter of ⊙O, DE⊥OE. Find the length of line DE.",
-  "problem_img": "5169.png",
-  "construction_cdl": [
-    "Shape(CE,EA,OAC)",
-    "Shape(AE,ED,ODA)",
-    "Shape(BO,OE,EC,OCB)",
-    "Shape(DE,EO,OB,OBD)",
-    "Collinear(CED)",
-    "Collinear(AEOB)",
-    "Cocircular(O,ACBD)"
-  ],
-  "text_cdl": [
-    "Equal(LengthOfLine(CD),8)",
-    "IsCentreOfCircle(O,O)",
-    "IsDiameterOfCircle(AB,O)",
-    "PerpendicularBetweenLine(DE,OE)"
-  ],
-  "image_cdl": [],
-  "goal_cdl": "Value(LengthOfLine(DE))",
-  "problem_answer": "4",
-  "theorem_seqs": [
-    "circle_property_chord_perpendicular_bisect_chord(1,O,OE,DC)",
-    "line_addition(1,CE,ED)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "circle_property_chord_perpendicular_bisect_chord(1,O,OE,DC)",
-      "line_addition(1,CE,ED)"
-    ]
-  }
+    "problem_id": 5169,
+    "source": "GeoQA-5125",
+    "problem_level": 2,
+    "problem_img": "5169.png",
+    "construction_cdl": [
+        "Shape(CE,EA,OAC)",
+        "Shape(AE,ED,ODA)",
+        "Shape(BO,OE,EC,OCB)",
+        "Shape(DE,EO,OB,OBD)",
+        "Collinear(CED)",
+        "Collinear(AEOB)",
+        "Cocircular(O,ACBD)"
+    ],
+    "text_cdl": [
+        "Equal(LengthOfLine(CD),8)",
+        "IsCentreOfCircle(O,O)",
+        "IsDiameterOfCircle(AB,O)",
+        "PerpendicularBetweenLine(DE,OE)"
+    ],
+    "image_cdl": [],
+    "goal_cdl": "Value(LengthOfLine(DE))",
+    "problem_answer": "4",
+    "theorem_seqs": [
+        "circle_property_chord_perpendicular_bisect_chord(1,O,OE,DC)",
+        "line_addition(1,CE,ED)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "circle_property_chord_perpendicular_bisect_chord(1,O,OE,DC)",
+            "line_addition(1,CE,ED)"
+        ]
+    }
 }

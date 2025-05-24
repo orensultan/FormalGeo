@@ -1,41 +1,38 @@
 {
-  "problem_id": 203,
-  "annotation": "XiaokaiZhang_2023-03-12",
-  "source": "Geometry3k-205",
-  "problem_level": 3,
-  "problem_text_cn": "如图所示，∠BDE=35°，∠CAE=28°，∠EBD=75°。求∠BEA的大小。",
-  "problem_text_en": "As shown in the diagram, ∠BDE=35°, ∠CAE=28°, ∠EBD=75°. Find the measure of ∠BEA.",
-  "problem_img": "203.png",
-  "construction_cdl": [
-    "Shape(BD,DE,EB)",
-    "Shape(EC,CA,AE)",
-    "Shape(BE,EA)",
-    "Shape(CE,ED)",
-    "Collinear(DEA)",
-    "Collinear(BEC)"
-  ],
-  "text_cdl": [
-    "Equal(MeasureOfAngle(BDE),35)",
-    "Equal(MeasureOfAngle(CAE),28)",
-    "Equal(MeasureOfAngle(EBD),75)"
-  ],
-  "image_cdl": [
-    "Equal(MeasureOfAngle(BDE),35)",
-    "Equal(MeasureOfAngle(CAE),28)",
-    "Equal(MeasureOfAngle(EBD),75)"
-  ],
-  "goal_cdl": "Value(MeasureOfAngle(BEA))",
-  "problem_answer": "110",
-  "theorem_seqs": [
-    "angle_addition(1,DEB,BEA)",
-    "triangle_property_angle_sum(1,BDE)",
-    "flat_angle(1,DEA)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "angle_addition(1,DEB,BEA)",
-      "triangle_property_angle_sum(1,BDE)",
-      "flat_angle(1,DEA)"
-    ]
-  }
+    "problem_id": 203,
+    "source": "Geometry3k-205",
+    "problem_level": 3,
+    "problem_img": "203.png",
+    "construction_cdl": [
+        "Shape(BD,DE,EB)",
+        "Shape(EC,CA,AE)",
+        "Shape(BE,EA)",
+        "Shape(CE,ED)",
+        "Collinear(DEA)",
+        "Collinear(BEC)"
+    ],
+    "text_cdl": [
+        "Equal(MeasureOfAngle(BDE),35)",
+        "Equal(MeasureOfAngle(CAE),28)",
+        "Equal(MeasureOfAngle(EBD),75)"
+    ],
+    "image_cdl": [
+        "Equal(MeasureOfAngle(BDE),35)",
+        "Equal(MeasureOfAngle(CAE),28)",
+        "Equal(MeasureOfAngle(EBD),75)"
+    ],
+    "goal_cdl": "Value(MeasureOfAngle(BEA))",
+    "problem_answer": "110",
+    "theorem_seqs": [
+        "angle_addition(1,DEB,BEA)",
+        "triangle_property_angle_sum(1,BDE)",
+        "flat_angle(1,DEA)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "angle_addition(1,DEB,BEA)",
+            "triangle_property_angle_sum(1,BDE)",
+            "flat_angle(1,DEA)"
+        ]
+    }
 }

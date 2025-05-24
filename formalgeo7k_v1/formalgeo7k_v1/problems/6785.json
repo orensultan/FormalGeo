@@ -1,48 +1,45 @@
 {
-  "problem_id": 6785,
-  "annotation": "YangLi_2023-06-04",
-  "source": "GeoQA-9905",
-  "problem_level": 6,
-  "problem_text_cn": "如图所示，AB=8，AH=HB，OA=5，O是圆O的圆心，AH⊥OH。求直线HC的长度。",
-  "problem_text_en": "As shown in the diagram, AB=8, AH=HB, OA=5, O is the center of ⊙O, AH is perpendicular to OH. Find the length of line HC.",
-  "problem_img": "6785.png",
-  "construction_cdl": [
-    "Shape(OA,AH,HO)",
-    "Shape(CH,HA,OAH)",
-    "Shape(BH,HC,OCB)",
-    "Shape(AO,OH,HB,OBA)",
-    "Collinear(OHC)",
-    "Collinear(AHB)",
-    "Cocircular(O,ACB)"
-  ],
-  "text_cdl": [
-    "Equal(LengthOfLine(AB),8)",
-    "Equal(LengthOfLine(AH),LengthOfLine(HB))",
-    "Equal(LengthOfLine(OA),5)",
-    "IsCentreOfCircle(O,O)",
-    "PerpendicularBetweenLine(AH,OH)"
-  ],
-  "image_cdl": [],
-  "goal_cdl": "Value(LengthOfLine(HC))",
-  "problem_answer": "2",
-  "theorem_seqs": [
-    "line_addition(1,AH,HB)",
-    "radius_of_circle_property_length_equal(1,OA,O)",
-    "radius_of_circle_property_length_equal(1,OC,O)",
-    "right_triangle_judgment_angle(1,AHO)",
-    "right_triangle_property_pythagorean(1,AHO)",
-    "line_addition(1,OH,HC)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "line_addition(1,AH,HB)",
-      "radius_of_circle_property_length_equal(1,OA,O)",
-      "radius_of_circle_property_length_equal(1,OC,O)",
-      "right_triangle_judgment_angle(1,AHO)",
-      "line_addition(1,OH,HC)"
+    "problem_id": 6785,
+    "source": "GeoQA-9905",
+    "problem_level": 6,
+    "problem_img": "6785.png",
+    "construction_cdl": [
+        "Shape(OA,AH,HO)",
+        "Shape(CH,HA,OAH)",
+        "Shape(BH,HC,OCB)",
+        "Shape(AO,OH,HB,OBA)",
+        "Collinear(OHC)",
+        "Collinear(AHB)",
+        "Cocircular(O,ACB)"
     ],
-    "right_triangle_judgment_angle(1,AHO)": [
-      "right_triangle_property_pythagorean(1,AHO)"
-    ]
-  }
+    "text_cdl": [
+        "Equal(LengthOfLine(AB),8)",
+        "Equal(LengthOfLine(AH),LengthOfLine(HB))",
+        "Equal(LengthOfLine(OA),5)",
+        "IsCentreOfCircle(O,O)",
+        "PerpendicularBetweenLine(AH,OH)"
+    ],
+    "image_cdl": [],
+    "goal_cdl": "Value(LengthOfLine(HC))",
+    "problem_answer": "2",
+    "theorem_seqs": [
+        "line_addition(1,AH,HB)",
+        "radius_of_circle_property_length_equal(1,OA,O)",
+        "radius_of_circle_property_length_equal(1,OC,O)",
+        "right_triangle_judgment_angle(1,AHO)",
+        "right_triangle_property_pythagorean(1,AHO)",
+        "line_addition(1,OH,HC)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "line_addition(1,AH,HB)",
+            "radius_of_circle_property_length_equal(1,OA,O)",
+            "radius_of_circle_property_length_equal(1,OC,O)",
+            "right_triangle_judgment_angle(1,AHO)",
+            "line_addition(1,OH,HC)"
+        ],
+        "right_triangle_judgment_angle(1,AHO)": [
+            "right_triangle_property_pythagorean(1,AHO)"
+        ]
+    }
 }

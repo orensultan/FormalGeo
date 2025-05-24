@@ -1,55 +1,52 @@
 {
-  "problem_id": 5200,
-  "annotation": "NaZhu_2023-05-21",
-  "source": "GeoQA-5200",
-  "problem_level": 4,
-  "problem_text_cn": "如图所示，AB=8，圆O的圆心为O，AE垂直于ME，PF⊥NF。求直线EF的长度。",
-  "problem_text_en": "As shown in the diagram, AB=8, the center of circle O is O, AE⊥ME, PF⊥NF. Find the length of line EF.",
-  "problem_img": "5200.png",
-  "construction_cdl": [
-    "Shape(OAP,PE,EA)",
-    "Shape(OPB,BF,FP)",
-    "Shape(MA,AE,EM)",
-    "Shape(NM,ME,EF,FN)",
-    "Shape(BN,NF,FB)",
-    "Shape(FE,EP,PF)",
-    "Shape(OM,MN,NO)",
-    "Shape(OBA,AM,MO,ON,NB)",
-    "Collinear(AMNB)",
-    "Collinear(AEP)",
-    "Collinear(PFB)",
-    "Collinear(OME)",
-    "Collinear(ONF)",
-    "Cocircular(O,APB)"
-  ],
-  "text_cdl": [
-    "Equal(LengthOfLine(AB),8)",
-    "IsCentreOfCircle(O,O)",
-    "PerpendicularBetweenLine(AE,ME)",
-    "PerpendicularBetweenLine(PF,NF)"
-  ],
-  "image_cdl": [],
-  "goal_cdl": "Value(LengthOfLine(EF))",
-  "problem_answer": "4",
-  "theorem_seqs": [
-    "circle_property_chord_perpendicular_bisect_chord(1,O,OE,AP)",
-    "circle_property_chord_perpendicular_bisect_chord(1,O,OF,PB)",
-    "midsegment_of_triangle_judgment_midpoint(1,FE,PBA)",
-    "midsegment_of_triangle_property_length(1,FE,PBA)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "circle_property_chord_perpendicular_bisect_chord(1,O,OE,AP)",
-      "circle_property_chord_perpendicular_bisect_chord(1,O,OF,PB)"
+    "problem_id": 5200,
+    "source": "GeoQA-5200",
+    "problem_level": 4,
+    "problem_img": "5200.png",
+    "construction_cdl": [
+        "Shape(OAP,PE,EA)",
+        "Shape(OPB,BF,FP)",
+        "Shape(MA,AE,EM)",
+        "Shape(NM,ME,EF,FN)",
+        "Shape(BN,NF,FB)",
+        "Shape(FE,EP,PF)",
+        "Shape(OM,MN,NO)",
+        "Shape(OBA,AM,MO,ON,NB)",
+        "Collinear(AMNB)",
+        "Collinear(AEP)",
+        "Collinear(PFB)",
+        "Collinear(OME)",
+        "Collinear(ONF)",
+        "Cocircular(O,APB)"
     ],
-    "circle_property_chord_perpendicular_bisect_chord(1,O,OE,AP)": [
-      "midsegment_of_triangle_judgment_midpoint(1,FE,PBA)"
+    "text_cdl": [
+        "Equal(LengthOfLine(AB),8)",
+        "IsCentreOfCircle(O,O)",
+        "PerpendicularBetweenLine(AE,ME)",
+        "PerpendicularBetweenLine(PF,NF)"
     ],
-    "circle_property_chord_perpendicular_bisect_chord(1,O,OF,PB)": [
-      "midsegment_of_triangle_judgment_midpoint(1,FE,PBA)"
+    "image_cdl": [],
+    "goal_cdl": "Value(LengthOfLine(EF))",
+    "problem_answer": "4",
+    "theorem_seqs": [
+        "circle_property_chord_perpendicular_bisect_chord(1,O,OE,AP)",
+        "circle_property_chord_perpendicular_bisect_chord(1,O,OF,PB)",
+        "midsegment_of_triangle_judgment_midpoint(1,FE,PBA)",
+        "midsegment_of_triangle_property_length(1,FE,PBA)"
     ],
-    "midsegment_of_triangle_judgment_midpoint(1,FE,PBA)": [
-      "midsegment_of_triangle_property_length(1,FE,PBA)"
-    ]
-  }
+    "theorem_seqs_dag": {
+        "START": [
+            "circle_property_chord_perpendicular_bisect_chord(1,O,OE,AP)",
+            "circle_property_chord_perpendicular_bisect_chord(1,O,OF,PB)"
+        ],
+        "circle_property_chord_perpendicular_bisect_chord(1,O,OE,AP)": [
+            "midsegment_of_triangle_judgment_midpoint(1,FE,PBA)"
+        ],
+        "circle_property_chord_perpendicular_bisect_chord(1,O,OF,PB)": [
+            "midsegment_of_triangle_judgment_midpoint(1,FE,PBA)"
+        ],
+        "midsegment_of_triangle_judgment_midpoint(1,FE,PBA)": [
+            "midsegment_of_triangle_property_length(1,FE,PBA)"
+        ]
+    }
 }

@@ -1,61 +1,58 @@
 {
-  "problem_id": 4245,
-  "annotation": "ChenyangMao_2023-05-07",
-  "source": "GeoQA-3020",
-  "problem_level": 9,
-  "problem_text_cn": "如图所示，AC=8，O是⊙O的圆心，圆O的直径为AB，BD⊥OD。求直线OD的长度。",
-  "problem_text_en": "As shown in the diagram, AC=8, O is the center of ⊙O, AB is the diameter of circle O, BD⊥OD. Find the length of line OD.",
-  "problem_img": "4245.png",
-  "construction_cdl": [
-    "Shape(OCA,AC)",
-    "Shape(OBC,CD,DB)",
-    "Shape(OAB,BO,OA)",
-    "Shape(CA,AO,OD,DC)",
-    "Shape(BD,DO,OB)",
-    "Collinear(AOB)",
-    "Collinear(CDB)",
-    "Cocircular(O,ABC)"
-  ],
-  "text_cdl": [
-    "Equal(LengthOfLine(AC),8)",
-    "IsCentreOfCircle(O,O)",
-    "IsDiameterOfCircle(AB,O)",
-    "PerpendicularBetweenLine(BD,OD)"
-  ],
-  "image_cdl": [],
-  "goal_cdl": "Value(LengthOfLine(OD))",
-  "problem_answer": "4",
-  "theorem_seqs": [
-    "line_addition(1,AO,OB)",
-    "radius_of_circle_property_length_equal(1,OA,O)",
-    "radius_of_circle_property_length_equal(1,OB,O)",
-    "diameter_of_circle_property_right_angle(1,BCA,O)",
-    "parallel_judgment_corresponding_angle(1,DO,CA,B)",
-    "parallel_property_corresponding_angle(2,AC,OD,B)",
-    "similar_triangle_judgment_aa(1,BDO,BCA)",
-    "similar_triangle_property_line_ratio(1,BDO,BCA)",
-    "similar_triangle_property_line_ratio(1,DOB,CAB)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "line_addition(1,AO,OB)",
-      "radius_of_circle_property_length_equal(1,OA,O)",
-      "radius_of_circle_property_length_equal(1,OB,O)",
-      "diameter_of_circle_property_right_angle(1,BCA,O)"
+    "problem_id": 4245,
+    "source": "GeoQA-3020",
+    "problem_level": 9,
+    "problem_img": "4245.png",
+    "construction_cdl": [
+        "Shape(OCA,AC)",
+        "Shape(OBC,CD,DB)",
+        "Shape(OAB,BO,OA)",
+        "Shape(CA,AO,OD,DC)",
+        "Shape(BD,DO,OB)",
+        "Collinear(AOB)",
+        "Collinear(CDB)",
+        "Cocircular(O,ABC)"
     ],
-    "diameter_of_circle_property_right_angle(1,BCA,O)": [
-      "parallel_judgment_corresponding_angle(1,DO,CA,B)",
-      "similar_triangle_judgment_aa(1,BDO,BCA)"
+    "text_cdl": [
+        "Equal(LengthOfLine(AC),8)",
+        "IsCentreOfCircle(O,O)",
+        "IsDiameterOfCircle(AB,O)",
+        "PerpendicularBetweenLine(BD,OD)"
     ],
-    "parallel_judgment_corresponding_angle(1,DO,CA,B)": [
-      "parallel_property_corresponding_angle(2,AC,OD,B)"
+    "image_cdl": [],
+    "goal_cdl": "Value(LengthOfLine(OD))",
+    "problem_answer": "4",
+    "theorem_seqs": [
+        "line_addition(1,AO,OB)",
+        "radius_of_circle_property_length_equal(1,OA,O)",
+        "radius_of_circle_property_length_equal(1,OB,O)",
+        "diameter_of_circle_property_right_angle(1,BCA,O)",
+        "parallel_judgment_corresponding_angle(1,DO,CA,B)",
+        "parallel_property_corresponding_angle(2,AC,OD,B)",
+        "similar_triangle_judgment_aa(1,BDO,BCA)",
+        "similar_triangle_property_line_ratio(1,BDO,BCA)",
+        "similar_triangle_property_line_ratio(1,DOB,CAB)"
     ],
-    "parallel_property_corresponding_angle(2,AC,OD,B)": [
-      "similar_triangle_judgment_aa(1,BDO,BCA)"
-    ],
-    "similar_triangle_judgment_aa(1,BDO,BCA)": [
-      "similar_triangle_property_line_ratio(1,BDO,BCA)",
-      "similar_triangle_property_line_ratio(1,DOB,CAB)"
-    ]
-  }
+    "theorem_seqs_dag": {
+        "START": [
+            "line_addition(1,AO,OB)",
+            "radius_of_circle_property_length_equal(1,OA,O)",
+            "radius_of_circle_property_length_equal(1,OB,O)",
+            "diameter_of_circle_property_right_angle(1,BCA,O)"
+        ],
+        "diameter_of_circle_property_right_angle(1,BCA,O)": [
+            "parallel_judgment_corresponding_angle(1,DO,CA,B)",
+            "similar_triangle_judgment_aa(1,BDO,BCA)"
+        ],
+        "parallel_judgment_corresponding_angle(1,DO,CA,B)": [
+            "parallel_property_corresponding_angle(2,AC,OD,B)"
+        ],
+        "parallel_property_corresponding_angle(2,AC,OD,B)": [
+            "similar_triangle_judgment_aa(1,BDO,BCA)"
+        ],
+        "similar_triangle_judgment_aa(1,BDO,BCA)": [
+            "similar_triangle_property_line_ratio(1,BDO,BCA)",
+            "similar_triangle_property_line_ratio(1,DOB,CAB)"
+        ]
+    }
 }

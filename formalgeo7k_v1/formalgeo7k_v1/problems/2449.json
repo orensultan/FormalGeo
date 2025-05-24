@@ -1,43 +1,40 @@
 {
-  "problem_id": 2449,
-  "annotation": "YangLi_2023-04-23",
-  "source": "Geometry3k-2569",
-  "problem_level": 3,
-  "problem_text_cn": "如图所示，弧DAE的角度为110，⌒DBC的角度为150，圆D的圆心为D。求∠AJC的大小。",
-  "problem_text_en": "As shown in the diagram, the measure of ⌒DAE is 110, the measure of ⌒DBC is 150, D is the center of circle D. Find the measure of ∠AJC.",
-  "problem_img": "2449.png",
-  "construction_cdl": [
-    "Shape(AJ,JC,CA)",
-    "Shape(BJ,JE,JEB)",
-    "Shape(CJ,JB,DBC)",
-    "Shape(AC,DCA)",
-    "Shape(EJ,JA,DAE)",
-    "Collinear(AJB)",
-    "Collinear(EJC)",
-    "Cocircular(D,EBCA)"
-  ],
-  "text_cdl": [
-    "Equal(MeasureOfArc(DAE),110)",
-    "Equal(MeasureOfArc(DBC),150)",
-    "IsCentreOfCircle(D,D)"
-  ],
-  "image_cdl": [
-    "Equal(MeasureOfArc(DAE),110)",
-    "Equal(MeasureOfArc(DBC),150)",
-    "IsCentreOfCircle(D,D)"
-  ],
-  "goal_cdl": "Value(MeasureOfAngle(AJC))",
-  "problem_answer": "50",
-  "theorem_seqs": [
-    "arc_property_circumference_angle_external(1,DAE,C)",
-    "arc_property_circumference_angle_external(1,DBC,A)",
-    "triangle_property_angle_sum(1,AJC)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "arc_property_circumference_angle_external(1,DAE,C)",
-      "arc_property_circumference_angle_external(1,DBC,A)",
-      "triangle_property_angle_sum(1,AJC)"
-    ]
-  }
+    "problem_id": 2449,
+    "source": "Geometry3k-2569",
+    "problem_level": 3,
+    "problem_img": "2449.png",
+    "construction_cdl": [
+        "Shape(AJ,JC,CA)",
+        "Shape(BJ,JE,JEB)",
+        "Shape(CJ,JB,DBC)",
+        "Shape(AC,DCA)",
+        "Shape(EJ,JA,DAE)",
+        "Collinear(AJB)",
+        "Collinear(EJC)",
+        "Cocircular(D,EBCA)"
+    ],
+    "text_cdl": [
+        "Equal(MeasureOfArc(DAE),110)",
+        "Equal(MeasureOfArc(DBC),150)",
+        "IsCentreOfCircle(D,D)"
+    ],
+    "image_cdl": [
+        "Equal(MeasureOfArc(DAE),110)",
+        "Equal(MeasureOfArc(DBC),150)",
+        "IsCentreOfCircle(D,D)"
+    ],
+    "goal_cdl": "Value(MeasureOfAngle(AJC))",
+    "problem_answer": "50",
+    "theorem_seqs": [
+        "arc_property_circumference_angle_external(1,DAE,C)",
+        "arc_property_circumference_angle_external(1,DBC,A)",
+        "triangle_property_angle_sum(1,AJC)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "arc_property_circumference_angle_external(1,DAE,C)",
+            "arc_property_circumference_angle_external(1,DBC,A)",
+            "triangle_property_angle_sum(1,AJC)"
+        ]
+    }
 }

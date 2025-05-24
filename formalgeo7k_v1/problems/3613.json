@@ -1,39 +1,36 @@
 {
-  "problem_id": 3613,
-  "annotation": "QikeHuang_2023-04-30",
-  "source": "GeoQA-1284",
-  "problem_level": 4,
-  "problem_text_cn": "如图所示，AB=20，EB=3，C平分线段AB，E平分线段DB。求直线CD的长度。",
-  "problem_text_en": "As shown in the diagram, AB=20, EB=3, C is the midpoint of segment AB, E bisects segment DB. Find the length of line CD.",
-  "problem_img": "3613.png",
-  "construction_cdl": [
-    "Shape(AC)",
-    "Shape(CD)",
-    "Shape(DE)",
-    "Shape(EB)",
-    "Collinear(ACDEB)"
-  ],
-  "text_cdl": [
-    "Equal(LengthOfLine(AB),20)",
-    "Equal(LengthOfLine(EB),3)",
-    "IsMidpointOfLine(C,AB)",
-    "IsMidpointOfLine(E,DB)"
-  ],
-  "image_cdl": [],
-  "goal_cdl": "Value(LengthOfLine(CD))",
-  "problem_answer": "4",
-  "theorem_seqs": [
-    "line_addition(1,AC,CD)",
-    "line_addition(1,AC,CB)",
-    "line_addition(1,AD,DE)",
-    "line_addition(1,AE,EB)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "line_addition(1,AC,CD)",
-      "line_addition(1,AC,CB)",
-      "line_addition(1,AD,DE)",
-      "line_addition(1,AE,EB)"
-    ]
-  }
+    "problem_id": 3613,
+    "source": "GeoQA-1284",
+    "problem_level": 4,
+    "problem_img": "3613.png",
+    "construction_cdl": [
+        "Shape(AC)",
+        "Shape(CD)",
+        "Shape(DE)",
+        "Shape(EB)",
+        "Collinear(ACDEB)"
+    ],
+    "text_cdl": [
+        "Equal(LengthOfLine(AB),20)",
+        "Equal(LengthOfLine(EB),3)",
+        "IsMidpointOfLine(C,AB)",
+        "IsMidpointOfLine(E,DB)"
+    ],
+    "image_cdl": [],
+    "goal_cdl": "Value(LengthOfLine(CD))",
+    "problem_answer": "4",
+    "theorem_seqs": [
+        "line_addition(1,AC,CD)",
+        "line_addition(1,AC,CB)",
+        "line_addition(1,AD,DE)",
+        "line_addition(1,AE,EB)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "line_addition(1,AC,CD)",
+            "line_addition(1,AC,CB)",
+            "line_addition(1,AD,DE)",
+            "line_addition(1,AE,EB)"
+        ]
+    }
 }

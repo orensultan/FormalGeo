@@ -23,13 +23,30 @@ from src.formalgeo.config.config import MAX_RETRIES_IN_RUN, MAX_RUNS, SIMILAR_PR
 from similar_proofs_retrieval import retrieve_similar_proofs
 from similar_proofs_retrieval import retrieve_random_proofs
 
+# Get the path to the project root
+PROJECT_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..'))
+
 key = ""
 openai.api_key = key
-dl = DatasetLoader(dataset_name="formalgeo7k_v1", datasets_path="formalgeo7k_v1")
+
+dl = DatasetLoader(dataset_name="formalgeo7k_v1", datasets_path=os.path.join(PROJECT_ROOT, "formalgeo7k_v1"))
 solver = Interactor(dl.predicate_GDL, dl.theorem_GDL)
-with open('formalgeo7k_v1/gdl/theorem_GDL.json', 'r') as f:
+with open(os.path.join(PROJECT_ROOT, 'formalgeo7k_v1/gdl/theorem_GDL.json'), 'r') as f:
     theorems = json.load(f)
 
+chosen_problems_by_level = {
+    1: [51] #  2795, 1168, 2677, 380, 944, 2940],
+     # 1: [1975, 1490, 1726, 178, 2669, 2614, 51, 2323, 192, 2624, 2795, 1168, 688, 2677, 380, 221, 944, 2940, 2187, 1562],
+     # 2: [144, 69, 991, 358, 4473, 4483, 5645, 127, 2410, 4523, 3075, 49, 4610, 6966, 1433, 3998, 5983, 497, 1586, 2397],
+     # 3: [4187, 5244, 5062, 844, 1945, 2200, 4099, 2765, 4476, 4254, 1071, 3787, 4257, 5942, 1282, 2591, 5858, 1306, 1244, 312],
+     # 4: [2114, 464, 5510, 3272, 5230, 3634, 6924, 4797, 5399, 6155, 4318, 4801, 4062, 6021, 1872, 4705, 2543, 4199, 6641, 5200],
+     # 5: [5440, 6485, 696, 847, 5563, 532, 5431, 437, 5080, 6660, 6615, 3210, 2556, 5777, 3705, 4096, 1855, 5101, 5642, 4170],
+     # 6: [4923, 3298, 759, 4910, 5805, 5708, 6417, 5835, 5808, 5779, 6398, 424, 4666, 6743, 5665, 6440, 3462, 5505, 5834, 4945],
+     # 7: [3580, 4898, 6802, 6247, 449, 1854, 5208, 6322, 3412, 3027, 6330, 6644, 6147, 6932, 929, 3859, 5426, 1571, 3891, 4306],
+     # 8: [6760, 3983, 2761, 2875, 3434, 1258, 246, 6806, 4793, 2106, 4736, 4816, 5379, 6598, 6401, 5531, 2917, 1858, 4549, 5022],
+     # 9: [4892, 5092, 5522, 4796, 3418, 6850, 6790, 5116, 2851, 716, 6491, 6026, 4250, 6889, 5497, 429, 4932, 6840, 4481, 3249],
+     # 10: [4134, 3419, 2196, 4489, 6146, 6018, 6376, 5353, 3114, 5197, 4672, 4465, 3840, 6549, 5181, 6024, 4888, 392, 6239, 2371],
+}
 
 def get_theorem_seqs_expl(theorem_seqs):
     theorems_seqs_expl = []
@@ -379,19 +396,7 @@ def get_level_to_problems(problems):
 
 
 
-chosen_problems_by_level = {
-    5: [5080] #  2795, 1168, 2677, 380, 944, 2940],
-     # 1: [1975, 1490, 1726, 178, 2669, 2614, 51, 2323, 192, 2624, 2795, 1168, 688, 2677, 380, 221, 944, 2940, 2187, 1562],
-     # 2: [144, 69, 991, 358, 4473, 4483, 5645, 127, 2410, 4523, 3075, 49, 4610, 6966, 1433, 3998, 5983, 497, 1586, 2397],
-     # 3: [4187, 5244, 5062, 844, 1945, 2200, 4099, 2765, 4476, 4254, 1071, 3787, 4257, 5942, 1282, 2591, 5858, 1306, 1244, 312],
-     # 4: [2114, 464, 5510, 3272, 5230, 3634, 6924, 4797, 5399, 6155, 4318, 4801, 4062, 6021, 1872, 4705, 2543, 4199, 6641, 5200],
-     # 5: [5440, 6485, 696, 847, 5563, 532, 5431, 437, 5080, 6660, 6615, 3210, 2556, 5777, 3705, 4096, 1855, 5101, 5642, 4170],
-     # 6: [4923, 3298, 759, 4910, 5805, 5708, 6417, 5835, 5808, 5779, 6398, 424, 4666, 6743, 5665, 6440, 3462, 5505, 5834, 4945],
-     # 7: [3580, 4898, 6802, 6247, 449, 1854, 5208, 6322, 3412, 3027, 6330, 6644, 6147, 6932, 929, 3859, 5426, 1571, 3891, 4306],
-     # 8: [6760, 3983, 2761, 2875, 3434, 1258, 246, 6806, 4793, 2106, 4736, 4816, 5379, 6598, 6401, 5531, 2917, 1858, 4549, 5022],
-     # 9: [4892, 5092, 5522, 4796, 3418, 6850, 6790, 5116, 2851, 716, 6491, 6026, 4250, 6889, 5497, 429, 4932, 6840, 4481, 3249],
-     # 10: [4134, 3419, 2196, 4489, 6146, 6018, 6376, 5353, 3114, 5197, 4672, 4465, 3840, 6549, 5181, 6024, 4888, 392, 6239, 2371],
-}
+
 
 import matplotlib.pyplot as plt
 import collections
@@ -590,12 +595,12 @@ def run_theorems_coverage(args, run=True, print_results=True):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    parser.add_argument("--variant", dest="variant", type=str, default="random_all_theorems")
+    parser.add_argument("--variant", dest="variant", type=str, default="analogy_based")
     parser.add_argument("--model_name", dest="model_name", type=str, default="o1")
     parser.add_argument("--prompt_path", dest="prompt_path", type=str,
                         default="src/formalgeo/prompt/geometry_similar_problems_prompt.txt")
     args = parser.parse_args()
-    problems = save_problems('formalgeo7k_v1/problems')
+    problems = save_problems(os.path.join(PROJECT_ROOT, 'formalgeo7k_v1/problems'))
     run_solver = True
     # chosen_problems_by_level = get_chosen_problems_by_level(problems, seed=42)
     if run_solver:

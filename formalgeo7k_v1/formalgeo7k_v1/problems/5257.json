@@ -1,32 +1,29 @@
 {
-  "problem_id": 5257,
-  "annotation": "XiaokaiZhang_2023-05-21",
-  "source": "GeoQA-5361",
-  "problem_level": 3,
-  "problem_text_cn": "如图所示，CB=Mul(3,LengthOfLine(AC))，CD=2，D是线段AB的中点。求直线AB的长度。",
-  "problem_text_en": "As shown in the diagram, CB=Mul(3,LengthOfLine(AC)), CD=2, D bisects segment AB. Find the length of line AB.",
-  "problem_img": "5257.png",
-  "construction_cdl": [
-    "Collinear(ACDB)"
-  ],
-  "text_cdl": [
-    "Equal(LengthOfLine(CB),Mul(3,LengthOfLine(AC)))",
-    "Equal(LengthOfLine(CD),2)",
-    "IsMidpointOfLine(D,AB)"
-  ],
-  "image_cdl": [],
-  "goal_cdl": "Value(LengthOfLine(AB))",
-  "problem_answer": "8",
-  "theorem_seqs": [
-    "line_addition(1,AC,CD)",
-    "line_addition(1,AC,CB)",
-    "line_addition(1,AD,DB)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "line_addition(1,AC,CD)",
-      "line_addition(1,AC,CB)",
-      "line_addition(1,AD,DB)"
-    ]
-  }
+    "problem_id": 5257,
+    "source": "GeoQA-5361",
+    "problem_level": 3,
+    "problem_img": "5257.png",
+    "construction_cdl": [
+        "Collinear(ACDB)"
+    ],
+    "text_cdl": [
+        "Equal(LengthOfLine(CB),Mul(3,LengthOfLine(AC)))",
+        "Equal(LengthOfLine(CD),2)",
+        "IsMidpointOfLine(D,AB)"
+    ],
+    "image_cdl": [],
+    "goal_cdl": "Value(LengthOfLine(AB))",
+    "problem_answer": "8",
+    "theorem_seqs": [
+        "line_addition(1,AC,CD)",
+        "line_addition(1,AC,CB)",
+        "line_addition(1,AD,DB)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "line_addition(1,AC,CD)",
+            "line_addition(1,AC,CB)",
+            "line_addition(1,AD,DB)"
+        ]
+    }
 }

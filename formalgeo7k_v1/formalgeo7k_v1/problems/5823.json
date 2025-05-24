@@ -1,38 +1,35 @@
 {
-  "problem_id": 5823,
-  "annotation": "YanjunGuo_2023-05-28",
-  "source": "GeoQA-7806",
-  "problem_level": 3,
-  "problem_text_cn": "如图所示，AD=3，CB=CF，DF=4，∠ADF=90°。求直线AC的长度与直线BC的长度之和。",
-  "problem_text_en": "As shown in the diagram, AD=3, CB=CF, DF=4, ∠ADF=90°. Find the sum of the length of line AC and the length of line BC.",
-  "problem_img": "5823.png",
-  "construction_cdl": [
-    "Shape(AD,DB,BC,CA)",
-    "Shape(CB,BF,FC)",
-    "Collinear(ACF)",
-    "Collinear(DBF)"
-  ],
-  "text_cdl": [
-    "Equal(LengthOfLine(AD),3)",
-    "Equal(LengthOfLine(CB),LengthOfLine(CF))",
-    "Equal(LengthOfLine(DF),4)",
-    "Equal(MeasureOfAngle(ADF),90)"
-  ],
-  "image_cdl": [],
-  "goal_cdl": "Value(Add(LengthOfLine(AC),LengthOfLine(BC)))",
-  "problem_answer": "5",
-  "theorem_seqs": [
-    "line_addition(1,AC,CF)",
-    "right_triangle_judgment_angle(1,ADF)",
-    "right_triangle_property_pythagorean(1,ADF)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "line_addition(1,AC,CF)",
-      "right_triangle_judgment_angle(1,ADF)"
+    "problem_id": 5823,
+    "source": "GeoQA-7806",
+    "problem_level": 3,
+    "problem_img": "5823.png",
+    "construction_cdl": [
+        "Shape(AD,DB,BC,CA)",
+        "Shape(CB,BF,FC)",
+        "Collinear(ACF)",
+        "Collinear(DBF)"
     ],
-    "right_triangle_judgment_angle(1,ADF)": [
-      "right_triangle_property_pythagorean(1,ADF)"
-    ]
-  }
+    "text_cdl": [
+        "Equal(LengthOfLine(AD),3)",
+        "Equal(LengthOfLine(CB),LengthOfLine(CF))",
+        "Equal(LengthOfLine(DF),4)",
+        "Equal(MeasureOfAngle(ADF),90)"
+    ],
+    "image_cdl": [],
+    "goal_cdl": "Value(Add(LengthOfLine(AC),LengthOfLine(BC)))",
+    "problem_answer": "5",
+    "theorem_seqs": [
+        "line_addition(1,AC,CF)",
+        "right_triangle_judgment_angle(1,ADF)",
+        "right_triangle_property_pythagorean(1,ADF)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "line_addition(1,AC,CF)",
+            "right_triangle_judgment_angle(1,ADF)"
+        ],
+        "right_triangle_judgment_angle(1,ADF)": [
+            "right_triangle_property_pythagorean(1,ADF)"
+        ]
+    }
 }

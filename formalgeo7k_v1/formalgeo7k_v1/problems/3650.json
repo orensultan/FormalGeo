@@ -1,42 +1,39 @@
 {
-  "problem_id": 3650,
-  "annotation": "XiaoxiaoJin_2023-04-30",
-  "source": "GeoQA-1349",
-  "problem_level": 4,
-  "problem_text_cn": "如图所示，∠ABC=120°，∠GCE=∠ECB，四边形AFGD是长方形。求∠ECB的大小。",
-  "problem_text_en": "As shown in the diagram, ∠ABC=120°, ∠GCE=∠ECB, quadrilateral AFGD is a rectangle. Find the measure of ∠ECB.",
-  "problem_img": "3650.png",
-  "construction_cdl": [
-    "Shape(AB,BC,CD,DA)",
-    "Shape(CB,BE,EC)",
-    "Shape(CE,EF,FG,GC)",
-    "Collinear(ABEF)",
-    "Collinear(DCG)"
-  ],
-  "text_cdl": [
-    "Equal(MeasureOfAngle(ABC),120)",
-    "Equal(MeasureOfAngle(GCE),MeasureOfAngle(ECB))",
-    "Rectangle(AFGD)"
-  ],
-  "image_cdl": [],
-  "goal_cdl": "Value(MeasureOfAngle(ECB))",
-  "problem_answer": "60",
-  "theorem_seqs": [
-    "parallel_property_collinear_extend(3,FA,GD,B)",
-    "parallel_property_collinear_extend(3,DG,AB,C)",
-    "parallel_property_alternate_interior_angle(1,CG,AB)",
-    "angle_addition(1,GCE,ECB)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "parallel_property_collinear_extend(3,FA,GD,B)",
-      "angle_addition(1,GCE,ECB)"
+    "problem_id": 3650,
+    "source": "GeoQA-1349",
+    "problem_level": 4,
+    "problem_img": "3650.png",
+    "construction_cdl": [
+        "Shape(AB,BC,CD,DA)",
+        "Shape(CB,BE,EC)",
+        "Shape(CE,EF,FG,GC)",
+        "Collinear(ABEF)",
+        "Collinear(DCG)"
     ],
-    "parallel_property_collinear_extend(3,FA,GD,B)": [
-      "parallel_property_collinear_extend(3,DG,AB,C)"
+    "text_cdl": [
+        "Equal(MeasureOfAngle(ABC),120)",
+        "Equal(MeasureOfAngle(GCE),MeasureOfAngle(ECB))",
+        "Rectangle(AFGD)"
     ],
-    "parallel_property_collinear_extend(3,DG,AB,C)": [
-      "parallel_property_alternate_interior_angle(1,CG,AB)"
-    ]
-  }
+    "image_cdl": [],
+    "goal_cdl": "Value(MeasureOfAngle(ECB))",
+    "problem_answer": "60",
+    "theorem_seqs": [
+        "parallel_property_collinear_extend(3,FA,GD,B)",
+        "parallel_property_collinear_extend(3,DG,AB,C)",
+        "parallel_property_alternate_interior_angle(1,CG,AB)",
+        "angle_addition(1,GCE,ECB)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "parallel_property_collinear_extend(3,FA,GD,B)",
+            "angle_addition(1,GCE,ECB)"
+        ],
+        "parallel_property_collinear_extend(3,FA,GD,B)": [
+            "parallel_property_collinear_extend(3,DG,AB,C)"
+        ],
+        "parallel_property_collinear_extend(3,DG,AB,C)": [
+            "parallel_property_alternate_interior_angle(1,CG,AB)"
+        ]
+    }
 }

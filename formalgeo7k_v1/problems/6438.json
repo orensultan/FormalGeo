@@ -1,32 +1,29 @@
 {
-  "problem_id": 6438,
-  "annotation": "JiaZou_2023-06-04",
-  "source": "GeoQA-9313",
-  "problem_level": 2,
-  "problem_text_cn": "如图所示，∠DAE=115°，四边形ABCD是▱，CE⊥BE。求∠BCE的大小。",
-  "problem_text_en": "As shown in the diagram, ∠DAE=115°, ABCD is a parallelogram, CE is perpendicular to BE. Find the measure of ∠BCE.",
-  "problem_img": "6438.png",
-  "construction_cdl": [
-    "Shape(AE,EC,CD,DA)",
-    "Shape(EB,BC,CE)",
-    "Collinear(AEB)"
-  ],
-  "text_cdl": [
-    "Equal(MeasureOfAngle(DAE),115)",
-    "Parallelogram(ABCD)",
-    "PerpendicularBetweenLine(CE,BE)"
-  ],
-  "image_cdl": [],
-  "goal_cdl": "Value(MeasureOfAngle(BCE))",
-  "problem_answer": "25",
-  "theorem_seqs": [
-    "parallel_property_ipsilateral_internal_angle(1,AD,BC)",
-    "triangle_property_angle_sum(1,EBC)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "parallel_property_ipsilateral_internal_angle(1,AD,BC)",
-      "triangle_property_angle_sum(1,EBC)"
-    ]
-  }
+    "problem_id": 6438,
+    "source": "GeoQA-9313",
+    "problem_level": 2,
+    "problem_img": "6438.png",
+    "construction_cdl": [
+        "Shape(AE,EC,CD,DA)",
+        "Shape(EB,BC,CE)",
+        "Collinear(AEB)"
+    ],
+    "text_cdl": [
+        "Equal(MeasureOfAngle(DAE),115)",
+        "Parallelogram(ABCD)",
+        "PerpendicularBetweenLine(CE,BE)"
+    ],
+    "image_cdl": [],
+    "goal_cdl": "Value(MeasureOfAngle(BCE))",
+    "problem_answer": "25",
+    "theorem_seqs": [
+        "parallel_property_ipsilateral_internal_angle(1,AD,BC)",
+        "triangle_property_angle_sum(1,EBC)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "parallel_property_ipsilateral_internal_angle(1,AD,BC)",
+            "triangle_property_angle_sum(1,EBC)"
+        ]
+    }
 }

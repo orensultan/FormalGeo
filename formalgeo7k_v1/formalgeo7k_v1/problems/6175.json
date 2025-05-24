@@ -1,37 +1,34 @@
 {
-  "problem_id": 6175,
-  "annotation": "DengfengYue_2023-05-28",
-  "source": "GeoQA-8743",
-  "problem_level": 3,
-  "problem_text_cn": "如图所示，∠COA=70°，圆O的圆心为O，AB∥CD。求∠BAD的大小。",
-  "problem_text_en": "As shown in the diagram, ∠COA=70°, O is the center of ⊙O, AB∥CD. Find the measure of ∠BAD.",
-  "problem_img": "6175.png",
-  "construction_cdl": [
-    "Shape(AB,OBA)",
-    "Shape(BA,AD,ODB)",
-    "Shape(CO,OA,OAC)",
-    "Shape(DA,AO,OC,CD)",
-    "Shape(DC,OCD)",
-    "Cocircular(O,ACDB)"
-  ],
-  "text_cdl": [
-    "Equal(MeasureOfAngle(COA),70)",
-    "IsCentreOfCircle(O,O)",
-    "ParallelBetweenLine(AB,CD)"
-  ],
-  "image_cdl": [],
-  "goal_cdl": "Value(MeasureOfAngle(BAD))",
-  "problem_answer": "35",
-  "theorem_seqs": [
-    "arc_property_center_angle(1,OAC,O)",
-    "arc_property_circumference_angle_external(1,OAC,D)",
-    "parallel_property_alternate_interior_angle(1,AB,CD)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "arc_property_center_angle(1,OAC,O)",
-      "arc_property_circumference_angle_external(1,OAC,D)",
-      "parallel_property_alternate_interior_angle(1,AB,CD)"
-    ]
-  }
+    "problem_id": 6175,
+    "source": "GeoQA-8743",
+    "problem_level": 3,
+    "problem_img": "6175.png",
+    "construction_cdl": [
+        "Shape(AB,OBA)",
+        "Shape(BA,AD,ODB)",
+        "Shape(CO,OA,OAC)",
+        "Shape(DA,AO,OC,CD)",
+        "Shape(DC,OCD)",
+        "Cocircular(O,ACDB)"
+    ],
+    "text_cdl": [
+        "Equal(MeasureOfAngle(COA),70)",
+        "IsCentreOfCircle(O,O)",
+        "ParallelBetweenLine(AB,CD)"
+    ],
+    "image_cdl": [],
+    "goal_cdl": "Value(MeasureOfAngle(BAD))",
+    "problem_answer": "35",
+    "theorem_seqs": [
+        "arc_property_center_angle(1,OAC,O)",
+        "arc_property_circumference_angle_external(1,OAC,D)",
+        "parallel_property_alternate_interior_angle(1,AB,CD)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "arc_property_center_angle(1,OAC,O)",
+            "arc_property_circumference_angle_external(1,OAC,D)",
+            "parallel_property_alternate_interior_angle(1,AB,CD)"
+        ]
+    }
 }

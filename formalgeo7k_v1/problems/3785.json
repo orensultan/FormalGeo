@@ -1,50 +1,47 @@
 {
-  "problem_id": 3785,
-  "annotation": "ChenyangMao_2023-04-30",
-  "source": "GeoQA-1618",
-  "problem_level": 5,
-  "problem_text_cn": "如图所示，∠DAE=35°，∠ECB=90°，ED是BA的垂直平分线，三角形ACB为直角三角形。求∠CBE的大小。",
-  "problem_text_en": "As shown in the diagram, ∠DAE=35°, ∠ECB=90°, ED perpendicular bisects BA, ∠ACB is the right angle of the right triangle ACB. Find the measure of ∠CBE.",
-  "problem_img": "3785.png",
-  "construction_cdl": [
-    "Shape(AE,ED,DA)",
-    "Shape(DE,EB,BD)",
-    "Shape(EC,CB,BE)",
-    "Collinear(AEC)",
-    "Collinear(ADB)"
-  ],
-  "text_cdl": [
-    "Equal(MeasureOfAngle(DAE),35)",
-    "Equal(MeasureOfAngle(ECB),90)",
-    "IsPerpendicularBisectorOfLine(ED,BA)",
-    "RightTriangle(ACB)"
-  ],
-  "image_cdl": [
-    "Equal(MeasureOfAngle(DAE),35)",
-    "Equal(MeasureOfAngle(ECB),90)",
-    "IsPerpendicularBisectorOfLine(ED,BA)",
-    "RightTriangle(ACB)"
-  ],
-  "goal_cdl": "Value(MeasureOfAngle(CBE))",
-  "problem_answer": "20",
-  "theorem_seqs": [
-    "triangle_property_angle_sum(1,ACB)",
-    "perpendicular_bisector_property_distance_equal(1,ED,BA)",
-    "isosceles_triangle_judgment_line_equal(1,EBA)",
-    "isosceles_triangle_property_angle_equal(1,EBA)",
-    "angle_addition(1,CBE,EBD)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "triangle_property_angle_sum(1,ACB)",
-      "perpendicular_bisector_property_distance_equal(1,ED,BA)",
-      "angle_addition(1,CBE,EBD)"
+    "problem_id": 3785,
+    "source": "GeoQA-1618",
+    "problem_level": 5,
+    "problem_img": "3785.png",
+    "construction_cdl": [
+        "Shape(AE,ED,DA)",
+        "Shape(DE,EB,BD)",
+        "Shape(EC,CB,BE)",
+        "Collinear(AEC)",
+        "Collinear(ADB)"
     ],
-    "perpendicular_bisector_property_distance_equal(1,ED,BA)": [
-      "isosceles_triangle_judgment_line_equal(1,EBA)"
+    "text_cdl": [
+        "Equal(MeasureOfAngle(DAE),35)",
+        "Equal(MeasureOfAngle(ECB),90)",
+        "IsPerpendicularBisectorOfLine(ED,BA)",
+        "RightTriangle(ACB)"
     ],
-    "isosceles_triangle_judgment_line_equal(1,EBA)": [
-      "isosceles_triangle_property_angle_equal(1,EBA)"
-    ]
-  }
+    "image_cdl": [
+        "Equal(MeasureOfAngle(DAE),35)",
+        "Equal(MeasureOfAngle(ECB),90)",
+        "IsPerpendicularBisectorOfLine(ED,BA)",
+        "RightTriangle(ACB)"
+    ],
+    "goal_cdl": "Value(MeasureOfAngle(CBE))",
+    "problem_answer": "20",
+    "theorem_seqs": [
+        "triangle_property_angle_sum(1,ACB)",
+        "perpendicular_bisector_property_distance_equal(1,ED,BA)",
+        "isosceles_triangle_judgment_line_equal(1,EBA)",
+        "isosceles_triangle_property_angle_equal(1,EBA)",
+        "angle_addition(1,CBE,EBD)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "triangle_property_angle_sum(1,ACB)",
+            "perpendicular_bisector_property_distance_equal(1,ED,BA)",
+            "angle_addition(1,CBE,EBD)"
+        ],
+        "perpendicular_bisector_property_distance_equal(1,ED,BA)": [
+            "isosceles_triangle_judgment_line_equal(1,EBA)"
+        ],
+        "isosceles_triangle_judgment_line_equal(1,EBA)": [
+            "isosceles_triangle_property_angle_equal(1,EBA)"
+        ]
+    }
 }

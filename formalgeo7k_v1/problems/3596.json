@@ -1,46 +1,43 @@
 {
-  "problem_id": 3596,
-  "annotation": "QikeHuang_2023-04-30",
-  "source": "GeoQA-1247",
-  "problem_level": 4,
-  "problem_text_cn": "如图所示，∠BCP=30°，BC垂直于AC，四边形EFDG是矩形。求∠MNA的大小。",
-  "problem_text_en": "As shown in the diagram, ∠BCP=30°, BC⊥AC, quadrilateral EFDG is a rectangle. Find the measure of ∠MNA.",
-  "problem_img": "3596.png",
-  "construction_cdl": [
-    "Shape(AM,MN,NA)",
-    "Shape(MP,PC,CN,NM)",
-    "Shape(NC,CD,DG,GN)",
-    "Shape(EF,FP,PM,ME)",
-    "Shape(PB,BC,CP)",
-    "Collinear(AMPB)",
-    "Collinear(ANC)",
-    "Collinear(EMNG)",
-    "Collinear(FPCD)"
-  ],
-  "text_cdl": [
-    "Equal(MeasureOfAngle(BCP),30)",
-    "PerpendicularBetweenLine(BC,AC)",
-    "Rectangle(EFDG)"
-  ],
-  "image_cdl": [],
-  "goal_cdl": "Value(MeasureOfAngle(MNA))",
-  "problem_answer": "60",
-  "theorem_seqs": [
-    "angle_addition(1,BCP,PCN)",
-    "parallel_property_collinear_extend(3,EG,FD,N)",
-    "parallel_property_collinear_extend(3,DF,NE,C)",
-    "parallel_property_corresponding_angle(2,CF,NE,A)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "angle_addition(1,BCP,PCN)",
-      "parallel_property_collinear_extend(3,EG,FD,N)"
+    "problem_id": 3596,
+    "source": "GeoQA-1247",
+    "problem_level": 4,
+    "problem_img": "3596.png",
+    "construction_cdl": [
+        "Shape(AM,MN,NA)",
+        "Shape(MP,PC,CN,NM)",
+        "Shape(NC,CD,DG,GN)",
+        "Shape(EF,FP,PM,ME)",
+        "Shape(PB,BC,CP)",
+        "Collinear(AMPB)",
+        "Collinear(ANC)",
+        "Collinear(EMNG)",
+        "Collinear(FPCD)"
     ],
-    "parallel_property_collinear_extend(3,EG,FD,N)": [
-      "parallel_property_collinear_extend(3,DF,NE,C)"
+    "text_cdl": [
+        "Equal(MeasureOfAngle(BCP),30)",
+        "PerpendicularBetweenLine(BC,AC)",
+        "Rectangle(EFDG)"
     ],
-    "parallel_property_collinear_extend(3,DF,NE,C)": [
-      "parallel_property_corresponding_angle(2,CF,NE,A)"
-    ]
-  }
+    "image_cdl": [],
+    "goal_cdl": "Value(MeasureOfAngle(MNA))",
+    "problem_answer": "60",
+    "theorem_seqs": [
+        "angle_addition(1,BCP,PCN)",
+        "parallel_property_collinear_extend(3,EG,FD,N)",
+        "parallel_property_collinear_extend(3,DF,NE,C)",
+        "parallel_property_corresponding_angle(2,CF,NE,A)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "angle_addition(1,BCP,PCN)",
+            "parallel_property_collinear_extend(3,EG,FD,N)"
+        ],
+        "parallel_property_collinear_extend(3,EG,FD,N)": [
+            "parallel_property_collinear_extend(3,DF,NE,C)"
+        ],
+        "parallel_property_collinear_extend(3,DF,NE,C)": [
+            "parallel_property_corresponding_angle(2,CF,NE,A)"
+        ]
+    }
 }

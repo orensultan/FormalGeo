@@ -1,35 +1,32 @@
 {
-  "problem_id": 3716,
-  "annotation": "YangLi_2023-04-30",
-  "source": "GeoQA-1485",
-  "problem_level": 2,
-  "problem_text_cn": "如图所示，∠EOC=30°，AO⊥EO。求∠BOD的大小。",
-  "problem_text_en": "As shown in the diagram, ∠EOC=30°, AO is perpendicular to EO. Find the measure of ∠BOD.",
-  "problem_img": "3716.png",
-  "construction_cdl": [
-    "Shape(AO,OE)",
-    "Shape(EO,OC)",
-    "Shape(CO,OB)",
-    "Shape(BO,OD)",
-    "Shape(DO,OA)",
-    "Collinear(AOB)",
-    "Collinear(COD)"
-  ],
-  "text_cdl": [
-    "Equal(MeasureOfAngle(EOC),30)",
-    "PerpendicularBetweenLine(AO,EO)"
-  ],
-  "image_cdl": [],
-  "goal_cdl": "Value(MeasureOfAngle(BOD))",
-  "problem_answer": "120",
-  "theorem_seqs": [
-    "angle_addition(1,AOE,EOC)",
-    "vertical_angle(1,AOC,BOD)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "angle_addition(1,AOE,EOC)",
-      "vertical_angle(1,AOC,BOD)"
-    ]
-  }
+    "problem_id": 3716,
+    "source": "GeoQA-1485",
+    "problem_level": 2,
+    "problem_img": "3716.png",
+    "construction_cdl": [
+        "Shape(AO,OE)",
+        "Shape(EO,OC)",
+        "Shape(CO,OB)",
+        "Shape(BO,OD)",
+        "Shape(DO,OA)",
+        "Collinear(AOB)",
+        "Collinear(COD)"
+    ],
+    "text_cdl": [
+        "Equal(MeasureOfAngle(EOC),30)",
+        "PerpendicularBetweenLine(AO,EO)"
+    ],
+    "image_cdl": [],
+    "goal_cdl": "Value(MeasureOfAngle(BOD))",
+    "problem_answer": "120",
+    "theorem_seqs": [
+        "angle_addition(1,AOE,EOC)",
+        "vertical_angle(1,AOC,BOD)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "angle_addition(1,AOE,EOC)",
+            "vertical_angle(1,AOC,BOD)"
+        ]
+    }
 }

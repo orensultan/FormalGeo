@@ -1,41 +1,38 @@
 {
-  "problem_id": 39,
-  "annotation": "XiaokaiZhang_2023-04-02",
-  "source": "Geometry3k-39",
-  "problem_level": 3,
-  "problem_text_cn": "如图所示，EJ=6，LK=7，ML=4，JMLK是平行四边形，JE⊥LE。求JMLK的周长。",
-  "problem_text_en": "As shown in the diagram, EJ=6, LK=7, ML=4, quadrilateral JMLK is a parallelogram, JE is perpendicular to LE. Find the perimeter of quadrilateral JMLK.",
-  "problem_img": "39.png",
-  "construction_cdl": [
-    "Shape(JM,ME,EJ)",
-    "Shape(JE,EL,LK,KJ)",
-    "Collinear(MEL)"
-  ],
-  "text_cdl": [
-    "Equal(LengthOfLine(EJ),6)",
-    "Equal(LengthOfLine(LK),7)",
-    "Equal(LengthOfLine(ML),4)",
-    "Parallelogram(JMLK)",
-    "PerpendicularBetweenLine(JE,LE)"
-  ],
-  "image_cdl": [
-    "Equal(LengthOfLine(EJ),6)",
-    "Equal(LengthOfLine(LK),7)",
-    "Equal(LengthOfLine(ML),4)",
-    "PerpendicularBetweenLine(JE,LE)"
-  ],
-  "goal_cdl": "Value(PerimeterOfQuadrilateral(JMLK))",
-  "problem_answer": "22",
-  "theorem_seqs": [
-    "parallelogram_property_opposite_line_equal(1,JMLK)",
-    "parallelogram_property_opposite_line_equal(1,MLKJ)",
-    "quadrilateral_perimeter_formula(1,JMLK)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "parallelogram_property_opposite_line_equal(1,JMLK)",
-      "parallelogram_property_opposite_line_equal(1,MLKJ)",
-      "quadrilateral_perimeter_formula(1,JMLK)"
-    ]
-  }
+    "problem_id": 39,
+    "source": "Geometry3k-39",
+    "problem_level": 3,
+    "problem_img": "39.png",
+    "construction_cdl": [
+        "Shape(JM,ME,EJ)",
+        "Shape(JE,EL,LK,KJ)",
+        "Collinear(MEL)"
+    ],
+    "text_cdl": [
+        "Equal(LengthOfLine(EJ),6)",
+        "Equal(LengthOfLine(LK),7)",
+        "Equal(LengthOfLine(ML),4)",
+        "Parallelogram(JMLK)",
+        "PerpendicularBetweenLine(JE,LE)"
+    ],
+    "image_cdl": [
+        "Equal(LengthOfLine(EJ),6)",
+        "Equal(LengthOfLine(LK),7)",
+        "Equal(LengthOfLine(ML),4)",
+        "PerpendicularBetweenLine(JE,LE)"
+    ],
+    "goal_cdl": "Value(PerimeterOfQuadrilateral(JMLK))",
+    "problem_answer": "22",
+    "theorem_seqs": [
+        "parallelogram_property_opposite_line_equal(1,JMLK)",
+        "parallelogram_property_opposite_line_equal(1,MLKJ)",
+        "quadrilateral_perimeter_formula(1,JMLK)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "parallelogram_property_opposite_line_equal(1,JMLK)",
+            "parallelogram_property_opposite_line_equal(1,MLKJ)",
+            "quadrilateral_perimeter_formula(1,JMLK)"
+        ]
+    }
 }

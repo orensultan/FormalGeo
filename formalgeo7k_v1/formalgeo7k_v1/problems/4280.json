@@ -1,54 +1,51 @@
 {
-  "problem_id": 4280,
-  "annotation": "DengfengYue_2023-05-07",
-  "source": "GeoQA-3077",
-  "problem_level": 7,
-  "problem_text_cn": "如图所示，∠OBA=50°，圆O的圆心为O。求∠ACB的大小。",
-  "problem_text_en": "As shown in the diagram, ∠OBA=50°, the center of circle O is O. Find the measure of ∠ACB.",
-  "problem_img": "4280.png",
-  "construction_cdl": [
-    "Shape(CO,OA,OAC)",
-    "Shape(CD,DO,OC)",
-    "Shape(OD,DA,AO)",
-    "Shape(AO,OB,BA)",
-    "Shape(DC,CB,BD)",
-    "Shape(BC,OCB)",
-    "Shape(AB,OBA)",
-    "Collinear(CDA)",
-    "Cocircular(O,ACB)"
-  ],
-  "text_cdl": [
-    "Equal(MeasureOfAngle(OBA),50)",
-    "IsCentreOfCircle(O,O)"
-  ],
-  "image_cdl": [],
-  "goal_cdl": "Value(MeasureOfAngle(ACB))",
-  "problem_answer": "40",
-  "theorem_seqs": [
-    "radius_of_circle_property_length_equal(1,OA,O)",
-    "radius_of_circle_property_length_equal(1,OB,O)",
-    "isosceles_triangle_judgment_line_equal(1,OBA)",
-    "isosceles_triangle_property_angle_equal(1,OBA)",
-    "triangle_property_angle_sum(1,AOB)",
-    "arc_property_center_angle(1,OBA,O)",
-    "arc_property_circumference_angle_external(1,OBA,C)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "radius_of_circle_property_length_equal(1,OA,O)",
-      "radius_of_circle_property_length_equal(1,OB,O)",
-      "triangle_property_angle_sum(1,AOB)",
-      "arc_property_center_angle(1,OBA,O)",
-      "arc_property_circumference_angle_external(1,OBA,C)"
+    "problem_id": 4280,
+    "source": "GeoQA-3077",
+    "problem_level": 7,
+    "problem_img": "4280.png",
+    "construction_cdl": [
+        "Shape(CO,OA,OAC)",
+        "Shape(CD,DO,OC)",
+        "Shape(OD,DA,AO)",
+        "Shape(AO,OB,BA)",
+        "Shape(DC,CB,BD)",
+        "Shape(BC,OCB)",
+        "Shape(AB,OBA)",
+        "Collinear(CDA)",
+        "Cocircular(O,ACB)"
     ],
-    "radius_of_circle_property_length_equal(1,OA,O)": [
-      "isosceles_triangle_judgment_line_equal(1,OBA)"
+    "text_cdl": [
+        "Equal(MeasureOfAngle(OBA),50)",
+        "IsCentreOfCircle(O,O)"
     ],
-    "radius_of_circle_property_length_equal(1,OB,O)": [
-      "isosceles_triangle_judgment_line_equal(1,OBA)"
+    "image_cdl": [],
+    "goal_cdl": "Value(MeasureOfAngle(ACB))",
+    "problem_answer": "40",
+    "theorem_seqs": [
+        "radius_of_circle_property_length_equal(1,OA,O)",
+        "radius_of_circle_property_length_equal(1,OB,O)",
+        "isosceles_triangle_judgment_line_equal(1,OBA)",
+        "isosceles_triangle_property_angle_equal(1,OBA)",
+        "triangle_property_angle_sum(1,AOB)",
+        "arc_property_center_angle(1,OBA,O)",
+        "arc_property_circumference_angle_external(1,OBA,C)"
     ],
-    "isosceles_triangle_judgment_line_equal(1,OBA)": [
-      "isosceles_triangle_property_angle_equal(1,OBA)"
-    ]
-  }
+    "theorem_seqs_dag": {
+        "START": [
+            "radius_of_circle_property_length_equal(1,OA,O)",
+            "radius_of_circle_property_length_equal(1,OB,O)",
+            "triangle_property_angle_sum(1,AOB)",
+            "arc_property_center_angle(1,OBA,O)",
+            "arc_property_circumference_angle_external(1,OBA,C)"
+        ],
+        "radius_of_circle_property_length_equal(1,OA,O)": [
+            "isosceles_triangle_judgment_line_equal(1,OBA)"
+        ],
+        "radius_of_circle_property_length_equal(1,OB,O)": [
+            "isosceles_triangle_judgment_line_equal(1,OBA)"
+        ],
+        "isosceles_triangle_judgment_line_equal(1,OBA)": [
+            "isosceles_triangle_property_angle_equal(1,OBA)"
+        ]
+    }
 }

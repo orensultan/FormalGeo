@@ -1,41 +1,38 @@
 {
-  "problem_id": 6027,
-  "annotation": "ChenyangMao_2023-05-28",
-  "source": "GeoQA-8510",
-  "problem_level": 4,
-  "problem_text_cn": "如图所示，弧OCA的角度为60，弧ODB的角度为100，O是圆O的圆心。求∠AEC的大小。",
-  "problem_text_en": "As shown in the diagram, the measure of arc OCA is 60, the measure of arc ODB is 100, the center of ⊙O is O. Find the measure of ∠AEC.",
-  "problem_img": "6027.png",
-  "construction_cdl": [
-    "Shape(OBC,CE,EB)",
-    "Shape(OCA,AE,EC)",
-    "Shape(AD,DE,EA)",
-    "Shape(ODB,BE,ED)",
-    "Shape(OAD,DA)",
-    "Collinear(DEC)",
-    "Collinear(AEB)",
-    "Cocircular(O,DBCA)"
-  ],
-  "text_cdl": [
-    "Equal(MeasureOfArc(OCA),60)",
-    "Equal(MeasureOfArc(ODB),100)",
-    "IsCentreOfCircle(O,O)"
-  ],
-  "image_cdl": [],
-  "goal_cdl": "Value(MeasureOfAngle(AEC))",
-  "problem_answer": "80",
-  "theorem_seqs": [
-    "arc_property_circumference_angle_external(1,ODB,A)",
-    "arc_property_circumference_angle_external(1,OCA,D)",
-    "triangle_property_angle_sum(1,ADE)",
-    "adjacent_complementary_angle(1,DEA,AEC)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "arc_property_circumference_angle_external(1,ODB,A)",
-      "arc_property_circumference_angle_external(1,OCA,D)",
-      "triangle_property_angle_sum(1,ADE)",
-      "adjacent_complementary_angle(1,DEA,AEC)"
-    ]
-  }
+    "problem_id": 6027,
+    "source": "GeoQA-8510",
+    "problem_level": 4,
+    "problem_img": "6027.png",
+    "construction_cdl": [
+        "Shape(OBC,CE,EB)",
+        "Shape(OCA,AE,EC)",
+        "Shape(AD,DE,EA)",
+        "Shape(ODB,BE,ED)",
+        "Shape(OAD,DA)",
+        "Collinear(DEC)",
+        "Collinear(AEB)",
+        "Cocircular(O,DBCA)"
+    ],
+    "text_cdl": [
+        "Equal(MeasureOfArc(OCA),60)",
+        "Equal(MeasureOfArc(ODB),100)",
+        "IsCentreOfCircle(O,O)"
+    ],
+    "image_cdl": [],
+    "goal_cdl": "Value(MeasureOfAngle(AEC))",
+    "problem_answer": "80",
+    "theorem_seqs": [
+        "arc_property_circumference_angle_external(1,ODB,A)",
+        "arc_property_circumference_angle_external(1,OCA,D)",
+        "triangle_property_angle_sum(1,ADE)",
+        "adjacent_complementary_angle(1,DEA,AEC)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "arc_property_circumference_angle_external(1,ODB,A)",
+            "arc_property_circumference_angle_external(1,OCA,D)",
+            "triangle_property_angle_sum(1,ADE)",
+            "adjacent_complementary_angle(1,DEA,AEC)"
+        ]
+    }
 }

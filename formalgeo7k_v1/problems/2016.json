@@ -1,50 +1,47 @@
 {
-  "problem_id": 2016,
-  "annotation": "YimingHe_2023-03-26",
-  "source": "Geometry3k-2102",
-  "problem_level": 3,
-  "problem_text_cn": "如图所示，AB=z，AC=x，AY=17，BC=y，CY=6，AB垂直于AB，AY垂直于BY。求x的值。",
-  "problem_text_en": "As shown in the diagram, AB=z, AC=x, AY=17, BC=y, CY=6, AB⊥AB, AY is perpendicular to BY. Find the value of x.",
-  "problem_img": "2016.png",
-  "construction_cdl": [
-    "Shape(AC,CY,YA)",
-    "Shape(AY,YB,BA)",
-    "Collinear(CYB)"
-  ],
-  "text_cdl": [
-    "Equal(LengthOfLine(AB),z)",
-    "Equal(LengthOfLine(AC),x)",
-    "Equal(LengthOfLine(AY),17)",
-    "Equal(LengthOfLine(BC),y)",
-    "Equal(LengthOfLine(CY),6)",
-    "PerpendicularBetweenLine(AB,AC)",
-    "PerpendicularBetweenLine(AY,BY)"
-  ],
-  "image_cdl": [
-    "Equal(LengthOfLine(AB),z)",
-    "Equal(LengthOfLine(AC),x)",
-    "Equal(LengthOfLine(AY),17)",
-    "Equal(LengthOfLine(BC),y)",
-    "Equal(LengthOfLine(CY),6)",
-    "PerpendicularBetweenLine(AB,AC)",
-    "PerpendicularBetweenLine(AY,BY)"
-  ],
-  "goal_cdl": "Value(x)",
-  "problem_answer": "5*sqrt(13)",
-  "theorem_seqs": [
-    "adjacent_complementary_angle(1,CYA,AYB)",
-    "right_triangle_judgment_angle(1,CYA)",
-    "right_triangle_property_pythagorean(1,CYA)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "adjacent_complementary_angle(1,CYA,AYB)"
+    "problem_id": 2016,
+    "source": "Geometry3k-2102",
+    "problem_level": 3,
+    "problem_img": "2016.png",
+    "construction_cdl": [
+        "Shape(AC,CY,YA)",
+        "Shape(AY,YB,BA)",
+        "Collinear(CYB)"
     ],
-    "adjacent_complementary_angle(1,CYA,AYB)": [
-      "right_triangle_judgment_angle(1,CYA)"
+    "text_cdl": [
+        "Equal(LengthOfLine(AB),z)",
+        "Equal(LengthOfLine(AC),x)",
+        "Equal(LengthOfLine(AY),17)",
+        "Equal(LengthOfLine(BC),y)",
+        "Equal(LengthOfLine(CY),6)",
+        "PerpendicularBetweenLine(AB,AC)",
+        "PerpendicularBetweenLine(AY,BY)"
     ],
-    "right_triangle_judgment_angle(1,CYA)": [
-      "right_triangle_property_pythagorean(1,CYA)"
-    ]
-  }
+    "image_cdl": [
+        "Equal(LengthOfLine(AB),z)",
+        "Equal(LengthOfLine(AC),x)",
+        "Equal(LengthOfLine(AY),17)",
+        "Equal(LengthOfLine(BC),y)",
+        "Equal(LengthOfLine(CY),6)",
+        "PerpendicularBetweenLine(AB,AC)",
+        "PerpendicularBetweenLine(AY,BY)"
+    ],
+    "goal_cdl": "Value(x)",
+    "problem_answer": "5*sqrt(13)",
+    "theorem_seqs": [
+        "adjacent_complementary_angle(1,CYA,AYB)",
+        "right_triangle_judgment_angle(1,CYA)",
+        "right_triangle_property_pythagorean(1,CYA)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "adjacent_complementary_angle(1,CYA,AYB)"
+        ],
+        "adjacent_complementary_angle(1,CYA,AYB)": [
+            "right_triangle_judgment_angle(1,CYA)"
+        ],
+        "right_triangle_judgment_angle(1,CYA)": [
+            "right_triangle_property_pythagorean(1,CYA)"
+        ]
+    }
 }

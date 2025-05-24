@@ -1,45 +1,42 @@
 {
-  "problem_id": 1674,
-  "annotation": "NaZhu_2023-03-26",
-  "source": "Geometry3k-1738",
-  "problem_level": 2,
-  "problem_text_cn": "如图所示，AC=b，CB=a，EA=y，∠CAE=30°，∠EBC=60°，a=10*sqrt(3)，AE垂直于CE，BC⊥AC。求直线CE的长度。",
-  "problem_text_en": "As shown in the diagram, AC=b, CB=a, EA=y, ∠CAE=30°, ∠EBC=60°, a=10*sqrt(3), AE⊥CE, BC⊥AC. Find the length of line CE.",
-  "problem_img": "1674.png",
-  "construction_cdl": [
-    "Shape(BC,CE,EB)",
-    "Shape(EC,CA,AE)",
-    "Collinear(BEA)"
-  ],
-  "text_cdl": [
-    "Equal(LengthOfLine(AC),b)",
-    "Equal(LengthOfLine(CB),a)",
-    "Equal(LengthOfLine(EA),y)",
-    "Equal(MeasureOfAngle(CAE),30)",
-    "Equal(MeasureOfAngle(EBC),60)",
-    "Equal(a,10*sqrt(3))",
-    "PerpendicularBetweenLine(AE,CE)",
-    "PerpendicularBetweenLine(BC,AC)"
-  ],
-  "image_cdl": [
-    "Equal(LengthOfLine(AC),b)",
-    "Equal(LengthOfLine(CB),a)",
-    "Equal(LengthOfLine(EA),y)",
-    "Equal(MeasureOfAngle(CAE),30)",
-    "Equal(MeasureOfAngle(EBC),60)",
-    "PerpendicularBetweenLine(AE,CE)",
-    "PerpendicularBetweenLine(BC,AC)"
-  ],
-  "goal_cdl": "Value(LengthOfLine(CE))",
-  "problem_answer": "15",
-  "theorem_seqs": [
-    "adjacent_complementary_angle(1,AEC,CEB)",
-    "sine_theorem(1,CEB)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "adjacent_complementary_angle(1,AEC,CEB)",
-      "sine_theorem(1,CEB)"
-    ]
-  }
+    "problem_id": 1674,
+    "source": "Geometry3k-1738",
+    "problem_level": 2,
+    "problem_img": "1674.png",
+    "construction_cdl": [
+        "Shape(BC,CE,EB)",
+        "Shape(EC,CA,AE)",
+        "Collinear(BEA)"
+    ],
+    "text_cdl": [
+        "Equal(LengthOfLine(AC),b)",
+        "Equal(LengthOfLine(CB),a)",
+        "Equal(LengthOfLine(EA),y)",
+        "Equal(MeasureOfAngle(CAE),30)",
+        "Equal(MeasureOfAngle(EBC),60)",
+        "Equal(a,10*sqrt(3))",
+        "PerpendicularBetweenLine(AE,CE)",
+        "PerpendicularBetweenLine(BC,AC)"
+    ],
+    "image_cdl": [
+        "Equal(LengthOfLine(AC),b)",
+        "Equal(LengthOfLine(CB),a)",
+        "Equal(LengthOfLine(EA),y)",
+        "Equal(MeasureOfAngle(CAE),30)",
+        "Equal(MeasureOfAngle(EBC),60)",
+        "PerpendicularBetweenLine(AE,CE)",
+        "PerpendicularBetweenLine(BC,AC)"
+    ],
+    "goal_cdl": "Value(LengthOfLine(CE))",
+    "problem_answer": "15",
+    "theorem_seqs": [
+        "adjacent_complementary_angle(1,AEC,CEB)",
+        "sine_theorem(1,CEB)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "adjacent_complementary_angle(1,AEC,CEB)",
+            "sine_theorem(1,CEB)"
+        ]
+    }
 }

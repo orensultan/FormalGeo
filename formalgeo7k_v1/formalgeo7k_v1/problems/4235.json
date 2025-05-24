@@ -1,60 +1,57 @@
 {
-  "problem_id": 4235,
-  "annotation": "ChenyangMao_2023-05-07",
-  "source": "GeoQA-3003",
-  "problem_level": 11,
-  "problem_text_cn": "如图所示，∠CAB=60°，圆O的半径为2，O是⊙O的圆心，BD垂直于OD。求直线BC的长度。",
-  "problem_text_en": "As shown in the diagram, ∠CAB=60°, the radius of circle O is 2, the center of circle O is O, BD is perpendicular to OD. Find the length of line BC.",
-  "problem_img": "4235.png",
-  "construction_cdl": [
-    "Shape(OAB,BA)",
-    "Shape(OBC,CD,DB)",
-    "Shape(OB,BD,DO)",
-    "Shape(OD,DC,CO)",
-    "Shape(AB,BD,DC,CA)",
-    "Shape(OCA,AC)",
-    "Collinear(BDC)",
-    "Cocircular(O,ABC)"
-  ],
-  "text_cdl": [
-    "Equal(MeasureOfAngle(CAB),60)",
-    "Equal(RadiusOfCircle(O),2)",
-    "IsCentreOfCircle(O,O)",
-    "PerpendicularBetweenLine(BD,OD)"
-  ],
-  "image_cdl": [],
-  "goal_cdl": "Value(LengthOfLine(BC))",
-  "problem_answer": "2*sqrt(3)",
-  "theorem_seqs": [
-    "radius_of_circle_property_length_equal(1,OC,O)",
-    "arc_property_circumference_angle_external(1,OBC,A)",
-    "circle_property_chord_perpendicular_bisect_chord(1,O,OD,BC)",
-    "angle_addition(1,COD,DOB)",
-    "perpendicular_bisector_property_bisector(1,OD,BC)",
-    "right_triangle_judgment_angle(1,BDO)",
-    "arc_property_center_angle(1,OBC,O)",
-    "sine_theorem(1,BDO)",
-    "sine_theorem(1,ODC)",
-    "sine_theorem(1,BCO)",
-    "right_triangle_property_pythagorean(1,BDO)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "radius_of_circle_property_length_equal(1,OC,O)",
-      "arc_property_circumference_angle_external(1,OBC,A)",
-      "circle_property_chord_perpendicular_bisect_chord(1,O,OD,BC)",
-      "angle_addition(1,COD,DOB)",
-      "right_triangle_judgment_angle(1,BDO)",
-      "arc_property_center_angle(1,OBC,O)",
-      "sine_theorem(1,BDO)",
-      "sine_theorem(1,ODC)",
-      "sine_theorem(1,BCO)"
+    "problem_id": 4235,
+    "source": "GeoQA-3003",
+    "problem_level": 11,
+    "problem_img": "4235.png",
+    "construction_cdl": [
+        "Shape(OAB,BA)",
+        "Shape(OBC,CD,DB)",
+        "Shape(OB,BD,DO)",
+        "Shape(OD,DC,CO)",
+        "Shape(AB,BD,DC,CA)",
+        "Shape(OCA,AC)",
+        "Collinear(BDC)",
+        "Cocircular(O,ABC)"
     ],
-    "circle_property_chord_perpendicular_bisect_chord(1,O,OD,BC)": [
-      "perpendicular_bisector_property_bisector(1,OD,BC)"
+    "text_cdl": [
+        "Equal(MeasureOfAngle(CAB),60)",
+        "Equal(RadiusOfCircle(O),2)",
+        "IsCentreOfCircle(O,O)",
+        "PerpendicularBetweenLine(BD,OD)"
     ],
-    "right_triangle_judgment_angle(1,BDO)": [
-      "right_triangle_property_pythagorean(1,BDO)"
-    ]
-  }
+    "image_cdl": [],
+    "goal_cdl": "Value(LengthOfLine(BC))",
+    "problem_answer": "2*sqrt(3)",
+    "theorem_seqs": [
+        "radius_of_circle_property_length_equal(1,OC,O)",
+        "arc_property_circumference_angle_external(1,OBC,A)",
+        "circle_property_chord_perpendicular_bisect_chord(1,O,OD,BC)",
+        "angle_addition(1,COD,DOB)",
+        "perpendicular_bisector_property_bisector(1,OD,BC)",
+        "right_triangle_judgment_angle(1,BDO)",
+        "arc_property_center_angle(1,OBC,O)",
+        "sine_theorem(1,BDO)",
+        "sine_theorem(1,ODC)",
+        "sine_theorem(1,BCO)",
+        "right_triangle_property_pythagorean(1,BDO)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "radius_of_circle_property_length_equal(1,OC,O)",
+            "arc_property_circumference_angle_external(1,OBC,A)",
+            "circle_property_chord_perpendicular_bisect_chord(1,O,OD,BC)",
+            "angle_addition(1,COD,DOB)",
+            "right_triangle_judgment_angle(1,BDO)",
+            "arc_property_center_angle(1,OBC,O)",
+            "sine_theorem(1,BDO)",
+            "sine_theorem(1,ODC)",
+            "sine_theorem(1,BCO)"
+        ],
+        "circle_property_chord_perpendicular_bisect_chord(1,O,OD,BC)": [
+            "perpendicular_bisector_property_bisector(1,OD,BC)"
+        ],
+        "right_triangle_judgment_angle(1,BDO)": [
+            "right_triangle_property_pythagorean(1,BDO)"
+        ]
+    }
 }

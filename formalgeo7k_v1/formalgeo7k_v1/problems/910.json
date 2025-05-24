@@ -1,35 +1,32 @@
 {
-  "problem_id": 910,
-  "annotation": "XiaokaiZhang_2023-04-09",
-  "source": "Geometry3k-939",
-  "problem_level": 1,
-  "problem_text_cn": "如图所示，∠CAY=2*x°，∠YAF=x°。求x的值。",
-  "problem_text_en": "As shown in the diagram, ∠CAY=2*x°, ∠YAF=x°. Find the value of x.",
-  "problem_img": "910.png",
-  "construction_cdl": [
-    "Shape(YA,AF)",
-    "Shape(FA,AD)",
-    "Shape(DA,AC)",
-    "Shape(CA,AY)",
-    "Collinear(YAD)",
-    "Collinear(CAF)"
-  ],
-  "text_cdl": [
-    "Equal(MeasureOfAngle(CAY),2*x)",
-    "Equal(MeasureOfAngle(YAF),x)"
-  ],
-  "image_cdl": [
-    "Equal(MeasureOfAngle(CAY),2*x)",
-    "Equal(MeasureOfAngle(YAF),x)"
-  ],
-  "goal_cdl": "Value(x)",
-  "problem_answer": "60",
-  "theorem_seqs": [
-    "adjacent_complementary_angle(1,CAY,YAF)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "adjacent_complementary_angle(1,CAY,YAF)"
-    ]
-  }
+    "problem_id": 910,
+    "source": "Geometry3k-939",
+    "problem_level": 1,
+    "problem_img": "910.png",
+    "construction_cdl": [
+        "Shape(YA,AF)",
+        "Shape(FA,AD)",
+        "Shape(DA,AC)",
+        "Shape(CA,AY)",
+        "Collinear(YAD)",
+        "Collinear(CAF)"
+    ],
+    "text_cdl": [
+        "Equal(MeasureOfAngle(CAY),2*x)",
+        "Equal(MeasureOfAngle(YAF),x)"
+    ],
+    "image_cdl": [
+        "Equal(MeasureOfAngle(CAY),2*x)",
+        "Equal(MeasureOfAngle(YAF),x)"
+    ],
+    "goal_cdl": "Value(x)",
+    "problem_answer": "60",
+    "theorem_seqs": [
+        "adjacent_complementary_angle(1,CAY,YAF)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "adjacent_complementary_angle(1,CAY,YAF)"
+        ]
+    }
 }

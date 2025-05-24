@@ -1,35 +1,32 @@
 {
-  "problem_id": 4097,
-  "annotation": "YanjunGuo_2023-05-07",
-  "source": "GeoQA-2488",
-  "problem_level": 2,
-  "problem_text_cn": "如图所示，CD=8，DE=4，EF=2，三角形DFE镜像相似于三角形DCB，FE和ED是直角三角形FED的两个直角边。求直线BC的长度。",
-  "problem_text_en": "As shown in the diagram, CD=8, DE=4, EF=2, △DFE is mirror similar to △DCB., ∠FED is the right angle of the right △ FED. Find the length of line BC.",
-  "problem_img": "4097.png",
-  "construction_cdl": [
-    "Shape(DF,FE,ED)",
-    "Shape(EF,FC,CB,BE)",
-    "Collinear(DEB)",
-    "Collinear(DFC)"
-  ],
-  "text_cdl": [
-    "Equal(LengthOfLine(CD),8)",
-    "Equal(LengthOfLine(DE),4)",
-    "Equal(LengthOfLine(EF),2)",
-    "MirrorSimilarBetweenTriangle(DFE,DCB)",
-    "RightTriangle(FED)"
-  ],
-  "image_cdl": [],
-  "goal_cdl": "Value(LengthOfLine(BC))",
-  "problem_answer": "4",
-  "theorem_seqs": [
-    "mirror_similar_triangle_property_line_ratio(1,DFE,DCB)",
-    "mirror_similar_triangle_property_line_ratio(1,FED,BDC)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "mirror_similar_triangle_property_line_ratio(1,DFE,DCB)",
-      "mirror_similar_triangle_property_line_ratio(1,FED,BDC)"
-    ]
-  }
+    "problem_id": 4097,
+    "source": "GeoQA-2488",
+    "problem_level": 2,
+    "problem_img": "4097.png",
+    "construction_cdl": [
+        "Shape(DF,FE,ED)",
+        "Shape(EF,FC,CB,BE)",
+        "Collinear(DEB)",
+        "Collinear(DFC)"
+    ],
+    "text_cdl": [
+        "Equal(LengthOfLine(CD),8)",
+        "Equal(LengthOfLine(DE),4)",
+        "Equal(LengthOfLine(EF),2)",
+        "MirrorSimilarBetweenTriangle(DFE,DCB)",
+        "RightTriangle(FED)"
+    ],
+    "image_cdl": [],
+    "goal_cdl": "Value(LengthOfLine(BC))",
+    "problem_answer": "4",
+    "theorem_seqs": [
+        "mirror_similar_triangle_property_line_ratio(1,DFE,DCB)",
+        "mirror_similar_triangle_property_line_ratio(1,FED,BDC)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "mirror_similar_triangle_property_line_ratio(1,DFE,DCB)",
+            "mirror_similar_triangle_property_line_ratio(1,FED,BDC)"
+        ]
+    }
 }

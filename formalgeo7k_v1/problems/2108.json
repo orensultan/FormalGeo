@@ -1,36 +1,33 @@
 {
-  "problem_id": 2108,
-  "annotation": "QikeHuang_2023-04-23",
-  "source": "Geometry3k-2198",
-  "problem_level": 2,
-  "problem_text_cn": "如图所示，∠ABD=140°，∠ACD=x°，∠BAC=80°。求x的值。",
-  "problem_text_en": "As shown in the diagram, ∠ABD=140°, ∠ACD=x°, ∠BAC=80°. Find the value of x.",
-  "problem_img": "2108.png",
-  "construction_cdl": [
-    "Shape(AC,CB,BA)",
-    "Shape(AB,BD)",
-    "Collinear(CBD)"
-  ],
-  "text_cdl": [
-    "Equal(MeasureOfAngle(ABD),140)",
-    "Equal(MeasureOfAngle(ACD),x)",
-    "Equal(MeasureOfAngle(BAC),80)"
-  ],
-  "image_cdl": [
-    "Equal(MeasureOfAngle(ABD),140)",
-    "Equal(MeasureOfAngle(ACD),x)",
-    "Equal(MeasureOfAngle(BAC),80)"
-  ],
-  "goal_cdl": "Value(x)",
-  "problem_answer": "60",
-  "theorem_seqs": [
-    "adjacent_complementary_angle(1,CBA,ABD)",
-    "triangle_property_angle_sum(1,ACB)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "adjacent_complementary_angle(1,CBA,ABD)",
-      "triangle_property_angle_sum(1,ACB)"
-    ]
-  }
+    "problem_id": 2108,
+    "source": "Geometry3k-2198",
+    "problem_level": 2,
+    "problem_img": "2108.png",
+    "construction_cdl": [
+        "Shape(AC,CB,BA)",
+        "Shape(AB,BD)",
+        "Collinear(CBD)"
+    ],
+    "text_cdl": [
+        "Equal(MeasureOfAngle(ABD),140)",
+        "Equal(MeasureOfAngle(ACD),x)",
+        "Equal(MeasureOfAngle(BAC),80)"
+    ],
+    "image_cdl": [
+        "Equal(MeasureOfAngle(ABD),140)",
+        "Equal(MeasureOfAngle(ACD),x)",
+        "Equal(MeasureOfAngle(BAC),80)"
+    ],
+    "goal_cdl": "Value(x)",
+    "problem_answer": "60",
+    "theorem_seqs": [
+        "adjacent_complementary_angle(1,CBA,ABD)",
+        "triangle_property_angle_sum(1,ACB)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "adjacent_complementary_angle(1,CBA,ABD)",
+            "triangle_property_angle_sum(1,ACB)"
+        ]
+    }
 }

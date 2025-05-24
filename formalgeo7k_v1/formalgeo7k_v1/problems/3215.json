@@ -1,40 +1,37 @@
 {
-  "problem_id": 3215,
-  "annotation": "NaZhu_2023-04-23",
-  "source": "GeoQA-510",
-  "problem_level": 4,
-  "problem_text_cn": "如图所示，∠BPC=20°，O是⊙O的圆心，PC是⊙O的切线。求∠CAO的大小。",
-  "problem_text_en": "As shown in the diagram, ∠BPC=20°, O is the center of ⊙O, PC is the tangent to circle O. Find the measure of ∠CAO.",
-  "problem_img": "3215.png",
-  "construction_cdl": [
-    "Shape(OCA,AC)",
-    "Shape(OAB,BO,OA)",
-    "Shape(OBC,CO,OB)",
-    "Shape(OBC,BP,PC)",
-    "Shape(CA,AO,OC)",
-    "Collinear(AOBP)",
-    "Cocircular(O,ABC)"
-  ],
-  "text_cdl": [
-    "Equal(MeasureOfAngle(BPC),20)",
-    "IsCentreOfCircle(O,O)",
-    "IsTangentOfCircle(PC,O)"
-  ],
-  "image_cdl": [],
-  "goal_cdl": "Value(MeasureOfAngle(CAO))",
-  "problem_answer": "35",
-  "theorem_seqs": [
-    "tangent_of_circle_property_perpendicular(2,PC,O,O)",
-    "triangle_property_angle_sum(1,COP)",
-    "arc_property_center_angle(1,OBC,O)",
-    "arc_property_circumference_angle_external(1,OBC,A)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "tangent_of_circle_property_perpendicular(2,PC,O,O)",
-      "triangle_property_angle_sum(1,COP)",
-      "arc_property_center_angle(1,OBC,O)",
-      "arc_property_circumference_angle_external(1,OBC,A)"
-    ]
-  }
+    "problem_id": 3215,
+    "source": "GeoQA-510",
+    "problem_level": 4,
+    "problem_img": "3215.png",
+    "construction_cdl": [
+        "Shape(OCA,AC)",
+        "Shape(OAB,BO,OA)",
+        "Shape(OBC,CO,OB)",
+        "Shape(OBC,BP,PC)",
+        "Shape(CA,AO,OC)",
+        "Collinear(AOBP)",
+        "Cocircular(O,ABC)"
+    ],
+    "text_cdl": [
+        "Equal(MeasureOfAngle(BPC),20)",
+        "IsCentreOfCircle(O,O)",
+        "IsTangentOfCircle(PC,O)"
+    ],
+    "image_cdl": [],
+    "goal_cdl": "Value(MeasureOfAngle(CAO))",
+    "problem_answer": "35",
+    "theorem_seqs": [
+        "tangent_of_circle_property_perpendicular(2,PC,O,O)",
+        "triangle_property_angle_sum(1,COP)",
+        "arc_property_center_angle(1,OBC,O)",
+        "arc_property_circumference_angle_external(1,OBC,A)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "tangent_of_circle_property_perpendicular(2,PC,O,O)",
+            "triangle_property_angle_sum(1,COP)",
+            "arc_property_center_angle(1,OBC,O)",
+            "arc_property_circumference_angle_external(1,OBC,A)"
+        ]
+    }
 }

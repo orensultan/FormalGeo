@@ -1,66 +1,63 @@
 {
-  "problem_id": 2792,
-  "annotation": "RunanWang_2023-05-07",
-  "source": "Geometry3k-2940",
-  "problem_level": 6,
-  "problem_text_cn": "如图所示，AB=30，CD=30，⌒XCZ的角度为40，X是⊙X的圆心，AM⊥YM，DN⊥ZN。求弧XCD的角度。",
-  "problem_text_en": "As shown in the diagram, AB=30, CD=30, the measure of arc XCZ is 40, the center of ⊙X is X, AM⊥YM, DN is perpendicular to ZN. Find the measure of arc XCD.",
-  "problem_img": "2792.png",
-  "construction_cdl": [
-    "Shape(XBY,YM,MB)",
-    "Shape(XYA,AM,MY)",
-    "Shape(XAC,CN,NX,XM,MA)",
-    "Shape(XCZ,ZN,NC)",
-    "Shape(XZD,DN,NZ)",
-    "Shape(XDB,BM,MX,XN,ND)",
-    "Collinear(AMB)",
-    "Collinear(YMX)",
-    "Collinear(CND)",
-    "Collinear(XNZ)",
-    "Cocircular(X,ACZDBY)"
-  ],
-  "text_cdl": [
-    "Equal(LengthOfLine(AB),30)",
-    "Equal(LengthOfLine(CD),30)",
-    "Equal(MeasureOfArc(XCZ),40)",
-    "IsCentreOfCircle(X,X)",
-    "PerpendicularBetweenLine(AM,YM)",
-    "PerpendicularBetweenLine(DN,ZN)"
-  ],
-  "image_cdl": [
-    "Equal(LengthOfLine(AB),30)",
-    "Equal(LengthOfLine(CD),30)",
-    "Equal(MeasureOfArc(XCZ),40)",
-    "PerpendicularBetweenLine(AM,YM)",
-    "PerpendicularBetweenLine(DN,ZN)"
-  ],
-  "goal_cdl": "Value(MeasureOfArc(XCD))",
-  "problem_answer": "80",
-  "theorem_seqs": [
-    "adjacent_complementary_angle(1,DNZ,ZNC)",
-    "adjacent_complementary_angle(1,ZNC,CNX)",
-    "circle_property_chord_perpendicular_bisect_arc(1,XCD,XNZ)",
-    "congruent_arc_judgment_length_equal(1,XCZ,XZD)",
-    "congruent_arc_property_measure_equal(1,XCZ,XZD)",
-    "arc_addition_measure(1,XCZ,XZD)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "adjacent_complementary_angle(1,DNZ,ZNC)",
-      "adjacent_complementary_angle(1,ZNC,CNX)",
-      "arc_addition_measure(1,XCZ,XZD)"
+    "problem_id": 2792,
+    "source": "Geometry3k-2940",
+    "problem_level": 6,
+    "problem_img": "2792.png",
+    "construction_cdl": [
+        "Shape(XBY,YM,MB)",
+        "Shape(XYA,AM,MY)",
+        "Shape(XAC,CN,NX,XM,MA)",
+        "Shape(XCZ,ZN,NC)",
+        "Shape(XZD,DN,NZ)",
+        "Shape(XDB,BM,MX,XN,ND)",
+        "Collinear(AMB)",
+        "Collinear(YMX)",
+        "Collinear(CND)",
+        "Collinear(XNZ)",
+        "Cocircular(X,ACZDBY)"
     ],
-    "adjacent_complementary_angle(1,DNZ,ZNC)": [
-      "circle_property_chord_perpendicular_bisect_arc(1,XCD,XNZ)"
+    "text_cdl": [
+        "Equal(LengthOfLine(AB),30)",
+        "Equal(LengthOfLine(CD),30)",
+        "Equal(MeasureOfArc(XCZ),40)",
+        "IsCentreOfCircle(X,X)",
+        "PerpendicularBetweenLine(AM,YM)",
+        "PerpendicularBetweenLine(DN,ZN)"
     ],
-    "adjacent_complementary_angle(1,ZNC,CNX)": [
-      "circle_property_chord_perpendicular_bisect_arc(1,XCD,XNZ)"
+    "image_cdl": [
+        "Equal(LengthOfLine(AB),30)",
+        "Equal(LengthOfLine(CD),30)",
+        "Equal(MeasureOfArc(XCZ),40)",
+        "PerpendicularBetweenLine(AM,YM)",
+        "PerpendicularBetweenLine(DN,ZN)"
     ],
-    "circle_property_chord_perpendicular_bisect_arc(1,XCD,XNZ)": [
-      "congruent_arc_judgment_length_equal(1,XCZ,XZD)"
+    "goal_cdl": "Value(MeasureOfArc(XCD))",
+    "problem_answer": "80",
+    "theorem_seqs": [
+        "adjacent_complementary_angle(1,DNZ,ZNC)",
+        "adjacent_complementary_angle(1,ZNC,CNX)",
+        "circle_property_chord_perpendicular_bisect_arc(1,XCD,XNZ)",
+        "congruent_arc_judgment_length_equal(1,XCZ,XZD)",
+        "congruent_arc_property_measure_equal(1,XCZ,XZD)",
+        "arc_addition_measure(1,XCZ,XZD)"
     ],
-    "congruent_arc_judgment_length_equal(1,XCZ,XZD)": [
-      "congruent_arc_property_measure_equal(1,XCZ,XZD)"
-    ]
-  }
+    "theorem_seqs_dag": {
+        "START": [
+            "adjacent_complementary_angle(1,DNZ,ZNC)",
+            "adjacent_complementary_angle(1,ZNC,CNX)",
+            "arc_addition_measure(1,XCZ,XZD)"
+        ],
+        "adjacent_complementary_angle(1,DNZ,ZNC)": [
+            "circle_property_chord_perpendicular_bisect_arc(1,XCD,XNZ)"
+        ],
+        "adjacent_complementary_angle(1,ZNC,CNX)": [
+            "circle_property_chord_perpendicular_bisect_arc(1,XCD,XNZ)"
+        ],
+        "circle_property_chord_perpendicular_bisect_arc(1,XCD,XNZ)": [
+            "congruent_arc_judgment_length_equal(1,XCZ,XZD)"
+        ],
+        "congruent_arc_judgment_length_equal(1,XCZ,XZD)": [
+            "congruent_arc_property_measure_equal(1,XCZ,XZD)"
+        ]
+    }
 }

@@ -1,36 +1,33 @@
 {
-  "problem_id": 4083,
-  "annotation": "YanjunGuo_2023-05-07",
-  "source": "GeoQA-2438",
-  "problem_level": 3,
-  "problem_text_cn": "如图所示，AB=8，BC=16/5，BD=22，三角形ABC相似于三角形ADE。求直线DE的长度。",
-  "problem_text_en": "As shown in the diagram, AB=8, BC=16/5, BD=22, triangle ABC is similar to triangle ADE.. Find the length of line DE.",
-  "problem_img": "4083.png",
-  "construction_cdl": [
-    "Shape(AB,BC,CA)",
-    "Shape(CB,BD,DE,EC)",
-    "Collinear(ACE)",
-    "Collinear(ABD)"
-  ],
-  "text_cdl": [
-    "Equal(LengthOfLine(AB),8)",
-    "Equal(LengthOfLine(BC),16/5)",
-    "Equal(LengthOfLine(BD),22)",
-    "SimilarBetweenTriangle(ABC,ADE)"
-  ],
-  "image_cdl": [],
-  "goal_cdl": "Value(LengthOfLine(DE))",
-  "problem_answer": "12",
-  "theorem_seqs": [
-    "line_addition(1,AB,BD)",
-    "similar_triangle_property_line_ratio(1,ABC,ADE)",
-    "similar_triangle_property_line_ratio(1,CAB,EAD)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "line_addition(1,AB,BD)",
-      "similar_triangle_property_line_ratio(1,ABC,ADE)",
-      "similar_triangle_property_line_ratio(1,CAB,EAD)"
-    ]
-  }
+    "problem_id": 4083,
+    "source": "GeoQA-2438",
+    "problem_level": 3,
+    "problem_img": "4083.png",
+    "construction_cdl": [
+        "Shape(AB,BC,CA)",
+        "Shape(CB,BD,DE,EC)",
+        "Collinear(ACE)",
+        "Collinear(ABD)"
+    ],
+    "text_cdl": [
+        "Equal(LengthOfLine(AB),8)",
+        "Equal(LengthOfLine(BC),16/5)",
+        "Equal(LengthOfLine(BD),22)",
+        "SimilarBetweenTriangle(ABC,ADE)"
+    ],
+    "image_cdl": [],
+    "goal_cdl": "Value(LengthOfLine(DE))",
+    "problem_answer": "12",
+    "theorem_seqs": [
+        "line_addition(1,AB,BD)",
+        "similar_triangle_property_line_ratio(1,ABC,ADE)",
+        "similar_triangle_property_line_ratio(1,CAB,EAD)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "line_addition(1,AB,BD)",
+            "similar_triangle_property_line_ratio(1,ABC,ADE)",
+            "similar_triangle_property_line_ratio(1,CAB,EAD)"
+        ]
+    }
 }

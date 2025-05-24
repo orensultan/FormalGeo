@@ -1,31 +1,28 @@
 {
-  "problem_id": 4128,
-  "annotation": "XiaoxiaoJin_2023-05-07",
-  "source": "GeoQA-2663",
-  "problem_level": 2,
-  "problem_text_cn": "如图所示，AC=4，BC=3，∠ACB=90°，∠CBA=x°。求sin(x)。",
-  "problem_text_en": "As shown in the diagram, AC=4, BC=3, ∠ACB=90°, ∠CBA=x°. Find sin(x).",
-  "problem_img": "4128.png",
-  "construction_cdl": [
-    "Shape(BA,AC,CB)"
-  ],
-  "text_cdl": [
-    "Equal(LengthOfLine(AC),4)",
-    "Equal(LengthOfLine(BC),3)",
-    "Equal(MeasureOfAngle(ACB),90)",
-    "Equal(MeasureOfAngle(CBA),x)"
-  ],
-  "image_cdl": [],
-  "goal_cdl": "Value(Sin(x))",
-  "problem_answer": "4/5",
-  "theorem_seqs": [
-    "cosine_theorem(1,BAC)",
-    "cosine_theorem(1,CBA)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "cosine_theorem(1,BAC)",
-      "cosine_theorem(1,CBA)"
-    ]
-  }
+    "problem_id": 4128,
+    "source": "GeoQA-2663",
+    "problem_level": 2,
+    "problem_img": "4128.png",
+    "construction_cdl": [
+        "Shape(BA,AC,CB)"
+    ],
+    "text_cdl": [
+        "Equal(LengthOfLine(AC),4)",
+        "Equal(LengthOfLine(BC),3)",
+        "Equal(MeasureOfAngle(ACB),90)",
+        "Equal(MeasureOfAngle(CBA),x)"
+    ],
+    "image_cdl": [],
+    "goal_cdl": "Value(Sin(x))",
+    "problem_answer": "4/5",
+    "theorem_seqs": [
+        "cosine_theorem(1,BAC)",
+        "cosine_theorem(1,CBA)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "cosine_theorem(1,BAC)",
+            "cosine_theorem(1,CBA)"
+        ]
+    }
 }

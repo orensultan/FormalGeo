@@ -1,27 +1,24 @@
 {
-  "problem_id": 4206,
-  "annotation": "YangLi_2023-05-07",
-  "source": "GeoQA-2914",
-  "problem_level": 1,
-  "problem_text_cn": "如图所示，∠BCA=90°，∠CAB=30°。求sin(CAB)+cos(ABC)的值。",
-  "problem_text_en": "As shown in the diagram, ∠BCA=90°, ∠CAB=30°. Find sin(CAB)+cos(ABC).",
-  "problem_img": "4206.png",
-  "construction_cdl": [
-    "Shape(AB,BC,CA)"
-  ],
-  "text_cdl": [
-    "Equal(MeasureOfAngle(BCA),90)",
-    "Equal(MeasureOfAngle(CAB),30)"
-  ],
-  "image_cdl": [],
-  "goal_cdl": "Value(Add(Sin(MeasureOfAngle(CAB)),Cos(MeasureOfAngle(ABC))))",
-  "problem_answer": "1",
-  "theorem_seqs": [
-    "triangle_property_angle_sum(1,CAB)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "triangle_property_angle_sum(1,CAB)"
-    ]
-  }
+    "problem_id": 4206,
+    "source": "GeoQA-2914",
+    "problem_level": 1,
+    "problem_img": "4206.png",
+    "construction_cdl": [
+        "Shape(AB,BC,CA)"
+    ],
+    "text_cdl": [
+        "Equal(MeasureOfAngle(BCA),90)",
+        "Equal(MeasureOfAngle(CAB),30)"
+    ],
+    "image_cdl": [],
+    "goal_cdl": "Value(Add(Sin(MeasureOfAngle(CAB)),Cos(MeasureOfAngle(ABC))))",
+    "problem_answer": "1",
+    "theorem_seqs": [
+        "triangle_property_angle_sum(1,CAB)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "triangle_property_angle_sum(1,CAB)"
+        ]
+    }
 }

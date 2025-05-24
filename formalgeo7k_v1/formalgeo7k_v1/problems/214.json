@@ -1,35 +1,32 @@
 {
-  "problem_id": 214,
-  "annotation": "XiaokaiZhang_2023-03-12",
-  "source": "Geometry3k-216",
-  "problem_level": 3,
-  "problem_text_cn": "如图所示，FJ=FH，GF=GH，∠HFJ=34°。求∠FJH的大小。",
-  "problem_text_en": "As shown in the diagram, FJ=FH, GF=GH, ∠HFJ=34°. Find the measure of ∠FJH.",
-  "problem_img": "214.png",
-  "construction_cdl": [
-    "Shape(FJ,JH,HF)",
-    "Shape(FH,HG,GF)"
-  ],
-  "text_cdl": [
-    "Equal(LengthOfLine(FJ),LengthOfLine(FH))",
-    "Equal(LengthOfLine(GF),LengthOfLine(GH))",
-    "Equal(MeasureOfAngle(HFJ),34)"
-  ],
-  "image_cdl": [],
-  "goal_cdl": "Value(MeasureOfAngle(FJH))",
-  "problem_answer": "73",
-  "theorem_seqs": [
-    "isosceles_triangle_judgment_line_equal(1,FJH)",
-    "isosceles_triangle_property_angle_equal(1,FJH)",
-    "triangle_property_angle_sum(1,FJH)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "isosceles_triangle_judgment_line_equal(1,FJH)",
-      "triangle_property_angle_sum(1,FJH)"
+    "problem_id": 214,
+    "source": "Geometry3k-216",
+    "problem_level": 3,
+    "problem_img": "214.png",
+    "construction_cdl": [
+        "Shape(FJ,JH,HF)",
+        "Shape(FH,HG,GF)"
     ],
-    "isosceles_triangle_judgment_line_equal(1,FJH)": [
-      "isosceles_triangle_property_angle_equal(1,FJH)"
-    ]
-  }
+    "text_cdl": [
+        "Equal(LengthOfLine(FJ),LengthOfLine(FH))",
+        "Equal(LengthOfLine(GF),LengthOfLine(GH))",
+        "Equal(MeasureOfAngle(HFJ),34)"
+    ],
+    "image_cdl": [],
+    "goal_cdl": "Value(MeasureOfAngle(FJH))",
+    "problem_answer": "73",
+    "theorem_seqs": [
+        "isosceles_triangle_judgment_line_equal(1,FJH)",
+        "isosceles_triangle_property_angle_equal(1,FJH)",
+        "triangle_property_angle_sum(1,FJH)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "isosceles_triangle_judgment_line_equal(1,FJH)",
+            "triangle_property_angle_sum(1,FJH)"
+        ],
+        "isosceles_triangle_judgment_line_equal(1,FJH)": [
+            "isosceles_triangle_property_angle_equal(1,FJH)"
+        ]
+    }
 }

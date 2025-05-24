@@ -1,48 +1,45 @@
 {
-  "problem_id": 4864,
-  "annotation": "YifanWang_2023-05-21",
-  "source": "GeoQA-4372",
-  "problem_level": 6,
-  "problem_text_cn": "如图所示，DC=2，⊙O的半径为5，O是⊙O的圆心，OD垂直平分AB。求直线AB的长度。",
-  "problem_text_en": "As shown in the diagram, DC=2, the radius of ⊙O is 5, the center of ⊙O is O, OD is the perpendicular bisector of AB. Find the length of line AB.",
-  "problem_img": "4864.png",
-  "construction_cdl": [
-    "Shape(AO,OB,OBA)",
-    "Shape(OA,AD,DO)",
-    "Shape(OD,DB,BO)",
-    "Shape(CD,DA,OAC)",
-    "Shape(BD,DC,OCB)",
-    "Collinear(ADB)",
-    "Collinear(ODC)",
-    "Cocircular(O,ACB)"
-  ],
-  "text_cdl": [
-    "Equal(LengthOfLine(DC),2)",
-    "Equal(RadiusOfCircle(O),5)",
-    "IsCentreOfCircle(O,O)",
-    "IsPerpendicularBisectorOfLine(OD,AB)"
-  ],
-  "image_cdl": [],
-  "goal_cdl": "Value(LengthOfLine(AB))",
-  "problem_answer": "8",
-  "theorem_seqs": [
-    "radius_of_circle_property_length_equal(1,OA,O)",
-    "radius_of_circle_property_length_equal(1,OC,O)",
-    "right_triangle_judgment_angle(1,ADO)",
-    "line_addition(1,AD,DB)",
-    "line_addition(1,OD,DC)",
-    "right_triangle_property_pythagorean(1,ADO)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "radius_of_circle_property_length_equal(1,OA,O)",
-      "radius_of_circle_property_length_equal(1,OC,O)",
-      "right_triangle_judgment_angle(1,ADO)",
-      "line_addition(1,AD,DB)",
-      "line_addition(1,OD,DC)"
+    "problem_id": 4864,
+    "source": "GeoQA-4372",
+    "problem_level": 6,
+    "problem_img": "4864.png",
+    "construction_cdl": [
+        "Shape(AO,OB,OBA)",
+        "Shape(OA,AD,DO)",
+        "Shape(OD,DB,BO)",
+        "Shape(CD,DA,OAC)",
+        "Shape(BD,DC,OCB)",
+        "Collinear(ADB)",
+        "Collinear(ODC)",
+        "Cocircular(O,ACB)"
     ],
-    "right_triangle_judgment_angle(1,ADO)": [
-      "right_triangle_property_pythagorean(1,ADO)"
-    ]
-  }
+    "text_cdl": [
+        "Equal(LengthOfLine(DC),2)",
+        "Equal(RadiusOfCircle(O),5)",
+        "IsCentreOfCircle(O,O)",
+        "IsPerpendicularBisectorOfLine(OD,AB)"
+    ],
+    "image_cdl": [],
+    "goal_cdl": "Value(LengthOfLine(AB))",
+    "problem_answer": "8",
+    "theorem_seqs": [
+        "radius_of_circle_property_length_equal(1,OA,O)",
+        "radius_of_circle_property_length_equal(1,OC,O)",
+        "right_triangle_judgment_angle(1,ADO)",
+        "line_addition(1,AD,DB)",
+        "line_addition(1,OD,DC)",
+        "right_triangle_property_pythagorean(1,ADO)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "radius_of_circle_property_length_equal(1,OA,O)",
+            "radius_of_circle_property_length_equal(1,OC,O)",
+            "right_triangle_judgment_angle(1,ADO)",
+            "line_addition(1,AD,DB)",
+            "line_addition(1,OD,DC)"
+        ],
+        "right_triangle_judgment_angle(1,ADO)": [
+            "right_triangle_property_pythagorean(1,ADO)"
+        ]
+    }
 }

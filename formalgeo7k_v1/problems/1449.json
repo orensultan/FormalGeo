@@ -1,40 +1,37 @@
 {
-  "problem_id": 1449,
-  "annotation": "YanjunGuo_2023-04-16",
-  "source": "Geometry3k-1502",
-  "problem_level": 2,
-  "problem_text_cn": "如图所示，AD=6，AE=x，BE=5，圆O的切线为AD。求x的值。",
-  "problem_text_en": "As shown in the diagram, AD=6, AE=x, BE=5, AD is the tangent to circle C. Find the value of x.",
-  "problem_img": "1449.png",
-  "construction_cdl": [
-    "Shape(BE,CEB)",
-    "Shape(EA,AD,CED)",
-    "Shape(EB,CBE)",
-    "Collinear(BEA)",
-    "Cocircular(C,BED)"
-  ],
-  "text_cdl": [
-    "Equal(LengthOfLine(AD),6)",
-    "Equal(LengthOfLine(AE),x)",
-    "Equal(LengthOfLine(BE),5)",
-    "IsTangentOfCircle(AD,C)"
-  ],
-  "image_cdl": [
-    "Equal(LengthOfLine(AD),6)",
-    "Equal(LengthOfLine(AE),x)",
-    "Equal(LengthOfLine(BE),5)",
-    "IsTangentOfCircle(AD,C)"
-  ],
-  "goal_cdl": "Value(x)",
-  "problem_answer": "4",
-  "theorem_seqs": [
-    "line_addition(1,BE,EA)",
-    "circle_property_circular_power_tangent_and_segment_line(1,AD,AEB,C)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "line_addition(1,BE,EA)",
-      "circle_property_circular_power_tangent_and_segment_line(1,AD,AEB,C)"
-    ]
-  }
+    "problem_id": 1449,
+    "source": "Geometry3k-1502",
+    "problem_level": 2,
+    "problem_img": "1449.png",
+    "construction_cdl": [
+        "Shape(BE,CEB)",
+        "Shape(EA,AD,CED)",
+        "Shape(EB,CBE)",
+        "Collinear(BEA)",
+        "Cocircular(C,BED)"
+    ],
+    "text_cdl": [
+        "Equal(LengthOfLine(AD),6)",
+        "Equal(LengthOfLine(AE),x)",
+        "Equal(LengthOfLine(BE),5)",
+        "IsTangentOfCircle(AD,C)"
+    ],
+    "image_cdl": [
+        "Equal(LengthOfLine(AD),6)",
+        "Equal(LengthOfLine(AE),x)",
+        "Equal(LengthOfLine(BE),5)",
+        "IsTangentOfCircle(AD,C)"
+    ],
+    "goal_cdl": "Value(x)",
+    "problem_answer": "4",
+    "theorem_seqs": [
+        "line_addition(1,BE,EA)",
+        "circle_property_circular_power_tangent_and_segment_line(1,AD,AEB,C)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "line_addition(1,BE,EA)",
+            "circle_property_circular_power_tangent_and_segment_line(1,AD,AEB,C)"
+        ]
+    }
 }

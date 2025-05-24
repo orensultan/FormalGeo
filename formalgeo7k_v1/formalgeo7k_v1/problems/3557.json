@@ -1,48 +1,45 @@
 {
-  "problem_id": 3557,
-  "annotation": "YanjunGuo_2023-04-30",
-  "source": "GeoQA-1187",
-  "problem_level": 5,
-  "problem_text_cn": "如图所示，∠DEF=52°，⊙I的圆心为I，圆O的切线为AD，圆O的切线为AF，圆O的切线为CE。求∠CAB的大小。",
-  "problem_text_en": "As shown in the diagram, ∠DEF=52°, I is the center of circle I, AD is the tangent to circle I, AF is the tangent to ⊙I, CE is the tangent to circle I. Find the measure of ∠CAB.",
-  "problem_img": "3557.png",
-  "construction_cdl": [
-    "Shape(DB,BE,IDE)",
-    "Shape(ED,IDE)",
-    "Shape(DE,EF,FI,ID)",
-    "Shape(DI,IF,IFD)",
-    "Shape(FE,IEF)",
-    "Shape(EC,CF,IEF)",
-    "Shape(FA,AD,IFD)",
-    "Collinear(ADB)",
-    "Collinear(BEC)",
-    "Collinear(AFC)",
-    "Cocircular(I,DEF)"
-  ],
-  "text_cdl": [
-    "Equal(MeasureOfAngle(DEF),52)",
-    "IsCentreOfCircle(I,I)",
-    "IsTangentOfCircle(AD,I)",
-    "IsTangentOfCircle(AF,I)",
-    "IsTangentOfCircle(CE,I)"
-  ],
-  "image_cdl": [],
-  "goal_cdl": "Value(MeasureOfAngle(CAB))",
-  "problem_answer": "76",
-  "theorem_seqs": [
-    "arc_property_circumference_angle_external(1,IFD,E)",
-    "arc_property_center_angle(1,IFD,I)",
-    "tangent_of_circle_property_perpendicular(2,AD,I,I)",
-    "tangent_of_circle_property_perpendicular(1,AF,I,I)",
-    "quadrilateral_property_angle_sum(1,ADIF)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "arc_property_circumference_angle_external(1,IFD,E)",
-      "arc_property_center_angle(1,IFD,I)",
-      "tangent_of_circle_property_perpendicular(2,AD,I,I)",
-      "tangent_of_circle_property_perpendicular(1,AF,I,I)",
-      "quadrilateral_property_angle_sum(1,ADIF)"
-    ]
-  }
+    "problem_id": 3557,
+    "source": "GeoQA-1187",
+    "problem_level": 5,
+    "problem_img": "3557.png",
+    "construction_cdl": [
+        "Shape(DB,BE,IDE)",
+        "Shape(ED,IDE)",
+        "Shape(DE,EF,FI,ID)",
+        "Shape(DI,IF,IFD)",
+        "Shape(FE,IEF)",
+        "Shape(EC,CF,IEF)",
+        "Shape(FA,AD,IFD)",
+        "Collinear(ADB)",
+        "Collinear(BEC)",
+        "Collinear(AFC)",
+        "Cocircular(I,DEF)"
+    ],
+    "text_cdl": [
+        "Equal(MeasureOfAngle(DEF),52)",
+        "IsCentreOfCircle(I,I)",
+        "IsTangentOfCircle(AD,I)",
+        "IsTangentOfCircle(AF,I)",
+        "IsTangentOfCircle(CE,I)"
+    ],
+    "image_cdl": [],
+    "goal_cdl": "Value(MeasureOfAngle(CAB))",
+    "problem_answer": "76",
+    "theorem_seqs": [
+        "arc_property_circumference_angle_external(1,IFD,E)",
+        "arc_property_center_angle(1,IFD,I)",
+        "tangent_of_circle_property_perpendicular(2,AD,I,I)",
+        "tangent_of_circle_property_perpendicular(1,AF,I,I)",
+        "quadrilateral_property_angle_sum(1,ADIF)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "arc_property_circumference_angle_external(1,IFD,E)",
+            "arc_property_center_angle(1,IFD,I)",
+            "tangent_of_circle_property_perpendicular(2,AD,I,I)",
+            "tangent_of_circle_property_perpendicular(1,AF,I,I)",
+            "quadrilateral_property_angle_sum(1,ADIF)"
+        ]
+    }
 }

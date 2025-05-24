@@ -1,58 +1,55 @@
 {
-  "problem_id": 2536,
-  "annotation": "YiwenHuang_2023-05-07",
-  "source": "Geometry3k-2661",
-  "problem_level": 8,
-  "problem_text_cn": "如图所示，AD=24，BD=14，AC⊥BC，CD垂直于AD。求直线CD的长度。",
-  "problem_text_en": "As shown in the diagram, AD=24, BD=14, AC⊥BC, CD⊥AD. Find the length of line CD.",
-  "problem_img": "2536.png",
-  "construction_cdl": [
-    "Shape(BD,DC,CB)",
-    "Shape(DA,AC,CD)",
-    "Collinear(ADB)"
-  ],
-  "text_cdl": [
-    "Equal(LengthOfLine(AD),24)",
-    "Equal(LengthOfLine(BD),14)",
-    "PerpendicularBetweenLine(AC,BC)",
-    "PerpendicularBetweenLine(CD,AD)"
-  ],
-  "image_cdl": [
-    "Equal(LengthOfLine(AD),24)",
-    "Equal(LengthOfLine(BD),14)",
-    "PerpendicularBetweenLine(AC,BC)",
-    "PerpendicularBetweenLine(CD,AD)"
-  ],
-  "goal_cdl": "Value(LengthOfLine(CD))",
-  "problem_answer": "4*sqrt(21)",
-  "theorem_seqs": [
-    "adjacent_complementary_angle(1,BDC,CDA)",
-    "line_addition(1,AD,DB)",
-    "right_triangle_judgment_angle(1,BDC)",
-    "right_triangle_judgment_angle(1,CDA)",
-    "right_triangle_judgment_angle(1,ACB)",
-    "right_triangle_property_pythagorean(1,BDC)",
-    "right_triangle_property_pythagorean(1,CDA)",
-    "right_triangle_property_pythagorean(1,ACB)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "adjacent_complementary_angle(1,BDC,CDA)",
-      "line_addition(1,AD,DB)",
-      "right_triangle_judgment_angle(1,CDA)",
-      "right_triangle_judgment_angle(1,ACB)"
+    "problem_id": 2536,
+    "source": "Geometry3k-2661",
+    "problem_level": 8,
+    "problem_img": "2536.png",
+    "construction_cdl": [
+        "Shape(BD,DC,CB)",
+        "Shape(DA,AC,CD)",
+        "Collinear(ADB)"
     ],
-    "adjacent_complementary_angle(1,BDC,CDA)": [
-      "right_triangle_judgment_angle(1,BDC)"
+    "text_cdl": [
+        "Equal(LengthOfLine(AD),24)",
+        "Equal(LengthOfLine(BD),14)",
+        "PerpendicularBetweenLine(AC,BC)",
+        "PerpendicularBetweenLine(CD,AD)"
     ],
-    "right_triangle_judgment_angle(1,BDC)": [
-      "right_triangle_property_pythagorean(1,BDC)"
+    "image_cdl": [
+        "Equal(LengthOfLine(AD),24)",
+        "Equal(LengthOfLine(BD),14)",
+        "PerpendicularBetweenLine(AC,BC)",
+        "PerpendicularBetweenLine(CD,AD)"
     ],
-    "right_triangle_judgment_angle(1,CDA)": [
-      "right_triangle_property_pythagorean(1,CDA)"
+    "goal_cdl": "Value(LengthOfLine(CD))",
+    "problem_answer": "4*sqrt(21)",
+    "theorem_seqs": [
+        "adjacent_complementary_angle(1,BDC,CDA)",
+        "line_addition(1,AD,DB)",
+        "right_triangle_judgment_angle(1,BDC)",
+        "right_triangle_judgment_angle(1,CDA)",
+        "right_triangle_judgment_angle(1,ACB)",
+        "right_triangle_property_pythagorean(1,BDC)",
+        "right_triangle_property_pythagorean(1,CDA)",
+        "right_triangle_property_pythagorean(1,ACB)"
     ],
-    "right_triangle_judgment_angle(1,ACB)": [
-      "right_triangle_property_pythagorean(1,ACB)"
-    ]
-  }
+    "theorem_seqs_dag": {
+        "START": [
+            "adjacent_complementary_angle(1,BDC,CDA)",
+            "line_addition(1,AD,DB)",
+            "right_triangle_judgment_angle(1,CDA)",
+            "right_triangle_judgment_angle(1,ACB)"
+        ],
+        "adjacent_complementary_angle(1,BDC,CDA)": [
+            "right_triangle_judgment_angle(1,BDC)"
+        ],
+        "right_triangle_judgment_angle(1,BDC)": [
+            "right_triangle_property_pythagorean(1,BDC)"
+        ],
+        "right_triangle_judgment_angle(1,CDA)": [
+            "right_triangle_property_pythagorean(1,CDA)"
+        ],
+        "right_triangle_judgment_angle(1,ACB)": [
+            "right_triangle_property_pythagorean(1,ACB)"
+        ]
+    }
 }

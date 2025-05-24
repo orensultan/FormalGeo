@@ -1,41 +1,38 @@
 {
-  "problem_id": 2345,
-  "annotation": "FangzhenZhu_2023-04-23",
-  "source": "Geometry3k-2459",
-  "problem_level": 2,
-  "problem_text_cn": "如图所示，∠JMK=55°，∠JMK=∠PMR，∠MRP=70°，JMLK是矩形，四边形MRPL是菱形。求∠PLK的大小。",
-  "problem_text_en": "As shown in the diagram, ∠JMK=55°, ∠JMK=∠PMR, ∠MRP=70°, quadrilateral JMLK is a rectangle, MRPL is a rhombus. Find the measure of ∠PLK.",
-  "problem_img": "2345.png",
-  "construction_cdl": [
-    "Shape(JM,MK,KJ)",
-    "Shape(KM,ML,LK)",
-    "Shape(MR,RP,PM)",
-    "Shape(MP,PL,LM)"
-  ],
-  "text_cdl": [
-    "Equal(MeasureOfAngle(JMK),55)",
-    "Equal(MeasureOfAngle(JMK),MeasureOfAngle(PMR))",
-    "Equal(MeasureOfAngle(MRP),70)",
-    "Rectangle(JMLK)",
-    "Rhombus(MRPL)"
-  ],
-  "image_cdl": [
-    "Equal(MeasureOfAngle(JMK),55)",
-    "Equal(MeasureOfAngle(JMK),MeasureOfAngle(PMR))",
-    "Equal(MeasureOfAngle(MRP),70)",
-    "Rectangle(JMLK)",
-    "Rhombus(MRPL)"
-  ],
-  "goal_cdl": "Value(MeasureOfAngle(PLK))",
-  "problem_answer": "160",
-  "theorem_seqs": [
-    "parallelogram_property_opposite_angle_equal(1,RPLM)",
-    "angle_addition(1,PLM,MLK)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "parallelogram_property_opposite_angle_equal(1,RPLM)",
-      "angle_addition(1,PLM,MLK)"
-    ]
-  }
+    "problem_id": 2345,
+    "source": "Geometry3k-2459",
+    "problem_level": 2,
+    "problem_img": "2345.png",
+    "construction_cdl": [
+        "Shape(JM,MK,KJ)",
+        "Shape(KM,ML,LK)",
+        "Shape(MR,RP,PM)",
+        "Shape(MP,PL,LM)"
+    ],
+    "text_cdl": [
+        "Equal(MeasureOfAngle(JMK),55)",
+        "Equal(MeasureOfAngle(JMK),MeasureOfAngle(PMR))",
+        "Equal(MeasureOfAngle(MRP),70)",
+        "Rectangle(JMLK)",
+        "Rhombus(MRPL)"
+    ],
+    "image_cdl": [
+        "Equal(MeasureOfAngle(JMK),55)",
+        "Equal(MeasureOfAngle(JMK),MeasureOfAngle(PMR))",
+        "Equal(MeasureOfAngle(MRP),70)",
+        "Rectangle(JMLK)",
+        "Rhombus(MRPL)"
+    ],
+    "goal_cdl": "Value(MeasureOfAngle(PLK))",
+    "problem_answer": "160",
+    "theorem_seqs": [
+        "parallelogram_property_opposite_angle_equal(1,RPLM)",
+        "angle_addition(1,PLM,MLK)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "parallelogram_property_opposite_angle_equal(1,RPLM)",
+            "angle_addition(1,PLM,MLK)"
+        ]
+    }
 }

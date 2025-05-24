@@ -1,43 +1,40 @@
 {
-  "problem_id": 3963,
-  "annotation": "ZheZhu_2023-04-30",
-  "source": "GeoQA-1897",
-  "problem_level": 4,
-  "problem_text_cn": "如图所示，∠COB=40°，⊙O的圆心为O。求∠CDA的大小。",
-  "problem_text_en": "As shown in the diagram, ∠COB=40°, O is the center of ⊙O. Find the measure of ∠CDA.",
-  "problem_img": "3963.png",
-  "construction_cdl": [
-    "Shape(ODA,AD)",
-    "Shape(DA,AO,OC,CD)",
-    "Shape(CO,OB,BC)",
-    "Shape(OBC,CB)",
-    "Shape(OCD,DC)",
-    "Shape(OA,OAB,BO)",
-    "Collinear(AOB)",
-    "Cocircular(O,DABC)"
-  ],
-  "text_cdl": [
-    "Equal(MeasureOfAngle(COB),40)",
-    "IsCentreOfCircle(O,O)"
-  ],
-  "image_cdl": [
-    "Equal(MeasureOfAngle(COB),40)",
-    "IsCentreOfCircle(O,O)"
-  ],
-  "goal_cdl": "Value(MeasureOfAngle(CDA))",
-  "problem_answer": "110",
-  "theorem_seqs": [
-    "flat_angle(1,BOA)",
-    "angle_addition(1,COB,BOA)",
-    "arc_property_center_angle(1,OAC,O)",
-    "arc_property_circumference_angle_external(1,OAC,D)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "flat_angle(1,BOA)",
-      "angle_addition(1,COB,BOA)",
-      "arc_property_center_angle(1,OAC,O)",
-      "arc_property_circumference_angle_external(1,OAC,D)"
-    ]
-  }
+    "problem_id": 3963,
+    "source": "GeoQA-1897",
+    "problem_level": 4,
+    "problem_img": "3963.png",
+    "construction_cdl": [
+        "Shape(ODA,AD)",
+        "Shape(DA,AO,OC,CD)",
+        "Shape(CO,OB,BC)",
+        "Shape(OBC,CB)",
+        "Shape(OCD,DC)",
+        "Shape(OA,OAB,BO)",
+        "Collinear(AOB)",
+        "Cocircular(O,DABC)"
+    ],
+    "text_cdl": [
+        "Equal(MeasureOfAngle(COB),40)",
+        "IsCentreOfCircle(O,O)"
+    ],
+    "image_cdl": [
+        "Equal(MeasureOfAngle(COB),40)",
+        "IsCentreOfCircle(O,O)"
+    ],
+    "goal_cdl": "Value(MeasureOfAngle(CDA))",
+    "problem_answer": "110",
+    "theorem_seqs": [
+        "flat_angle(1,BOA)",
+        "angle_addition(1,COB,BOA)",
+        "arc_property_center_angle(1,OAC,O)",
+        "arc_property_circumference_angle_external(1,OAC,D)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "flat_angle(1,BOA)",
+            "angle_addition(1,COB,BOA)",
+            "arc_property_center_angle(1,OAC,O)",
+            "arc_property_circumference_angle_external(1,OAC,D)"
+        ]
+    }
 }

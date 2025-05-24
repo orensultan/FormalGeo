@@ -1,35 +1,32 @@
 {
-  "problem_id": 3389,
-  "annotation": "JiaZou_2023-04-30",
-  "source": "GeoQA-901",
-  "problem_level": 3,
-  "problem_text_cn": "如图所示，∠EDC=140°，BE平分∠ABC，DC平行于AB。求∠BCD的大小。",
-  "problem_text_en": "As shown in the diagram, ∠EDC=140°, BE bisects ∠ABC, DC∥AB. Find the measure of ∠BCD.",
-  "problem_img": "3389.png",
-  "construction_cdl": [
-    "Shape(ED,DC)",
-    "Shape(CD,DB,BC)",
-    "Shape(AB,BD)",
-    "Collinear(EDB)"
-  ],
-  "text_cdl": [
-    "Equal(MeasureOfAngle(EDC),140)",
-    "IsBisectorOfAngle(BE,ABC)",
-    "ParallelBetweenLine(DC,AB)"
-  ],
-  "image_cdl": [],
-  "goal_cdl": "Value(MeasureOfAngle(BCD))",
-  "problem_answer": "100",
-  "theorem_seqs": [
-    "adjacent_complementary_angle(1,EDC,CDB)",
-    "parallel_property_alternate_interior_angle(1,DC,AB)",
-    "triangle_property_angle_sum(1,BCD)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "adjacent_complementary_angle(1,EDC,CDB)",
-      "parallel_property_alternate_interior_angle(1,DC,AB)",
-      "triangle_property_angle_sum(1,BCD)"
-    ]
-  }
+    "problem_id": 3389,
+    "source": "GeoQA-901",
+    "problem_level": 3,
+    "problem_img": "3389.png",
+    "construction_cdl": [
+        "Shape(ED,DC)",
+        "Shape(CD,DB,BC)",
+        "Shape(AB,BD)",
+        "Collinear(EDB)"
+    ],
+    "text_cdl": [
+        "Equal(MeasureOfAngle(EDC),140)",
+        "IsBisectorOfAngle(BE,ABC)",
+        "ParallelBetweenLine(DC,AB)"
+    ],
+    "image_cdl": [],
+    "goal_cdl": "Value(MeasureOfAngle(BCD))",
+    "problem_answer": "100",
+    "theorem_seqs": [
+        "adjacent_complementary_angle(1,EDC,CDB)",
+        "parallel_property_alternate_interior_angle(1,DC,AB)",
+        "triangle_property_angle_sum(1,BCD)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "adjacent_complementary_angle(1,EDC,CDB)",
+            "parallel_property_alternate_interior_angle(1,DC,AB)",
+            "triangle_property_angle_sum(1,BCD)"
+        ]
+    }
 }

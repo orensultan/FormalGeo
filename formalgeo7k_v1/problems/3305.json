@@ -1,38 +1,35 @@
 {
-  "problem_id": 3305,
-  "annotation": "YimingHe_2023-04-30",
-  "source": "GeoQA-654",
-  "problem_level": 4,
-  "problem_text_cn": "如图所示，CD=CF，∠ABC=72°，AD和BC是▱ABCD的一组对边。求∠CFA的大小。",
-  "problem_text_en": "As shown in the diagram, CD=CF, ∠ABC=72°, BA and CD are opposite sides of the ▱ ABCD. Find the measure of ∠CFA.",
-  "problem_img": "3305.png",
-  "construction_cdl": [
-    "Shape(AB,BC,CF,FA)",
-    "Shape(FC,CD,DF)",
-    "Collinear(AFD)"
-  ],
-  "text_cdl": [
-    "Equal(LengthOfLine(CD),LengthOfLine(CF))",
-    "Equal(MeasureOfAngle(ABC),72)",
-    "Parallelogram(ABCD)"
-  ],
-  "image_cdl": [],
-  "goal_cdl": "Value(MeasureOfAngle(CFA))",
-  "problem_answer": "108",
-  "theorem_seqs": [
-    "parallelogram_property_opposite_angle_equal(1,BCDA)",
-    "isosceles_triangle_judgment_line_equal(1,CDF)",
-    "isosceles_triangle_property_angle_equal(1,CDF)",
-    "adjacent_complementary_angle(1,DFC,CFA)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "parallelogram_property_opposite_angle_equal(1,BCDA)",
-      "isosceles_triangle_judgment_line_equal(1,CDF)",
-      "adjacent_complementary_angle(1,DFC,CFA)"
+    "problem_id": 3305,
+    "source": "GeoQA-654",
+    "problem_level": 4,
+    "problem_img": "3305.png",
+    "construction_cdl": [
+        "Shape(AB,BC,CF,FA)",
+        "Shape(FC,CD,DF)",
+        "Collinear(AFD)"
     ],
-    "isosceles_triangle_judgment_line_equal(1,CDF)": [
-      "isosceles_triangle_property_angle_equal(1,CDF)"
-    ]
-  }
+    "text_cdl": [
+        "Equal(LengthOfLine(CD),LengthOfLine(CF))",
+        "Equal(MeasureOfAngle(ABC),72)",
+        "Parallelogram(ABCD)"
+    ],
+    "image_cdl": [],
+    "goal_cdl": "Value(MeasureOfAngle(CFA))",
+    "problem_answer": "108",
+    "theorem_seqs": [
+        "parallelogram_property_opposite_angle_equal(1,BCDA)",
+        "isosceles_triangle_judgment_line_equal(1,CDF)",
+        "isosceles_triangle_property_angle_equal(1,CDF)",
+        "adjacent_complementary_angle(1,DFC,CFA)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "parallelogram_property_opposite_angle_equal(1,BCDA)",
+            "isosceles_triangle_judgment_line_equal(1,CDF)",
+            "adjacent_complementary_angle(1,DFC,CFA)"
+        ],
+        "isosceles_triangle_judgment_line_equal(1,CDF)": [
+            "isosceles_triangle_property_angle_equal(1,CDF)"
+        ]
+    }
 }

@@ -1,56 +1,53 @@
 {
-  "problem_id": 6889,
-  "annotation": "ZheZhu_2023-06-04",
-  "source": "GeoQA-angle-10120",
-  "problem_level": 9,
-  "problem_text_cn": "如图所示，∠ABC=20°，O是圆O的圆心，AB是⊙O的直径，C平分⌒OBD。求∠DOA的大小。",
-  "problem_text_en": "As shown in the diagram, ∠ABC=20°, O is the center of circle O, the diameter of ⊙O is AB, C bisects arc OBD. Find the measure of ∠DOA.",
-  "problem_img": "6889.png",
-  "construction_cdl": [
-    "Shape(OCA,AF,FC)",
-    "Shape(OC,CF,FO)",
-    "Shape(CO,OB,BC)",
-    "Shape(OBC,CB)",
-    "Shape(FA,OAD,DF)",
-    "Shape(OF,FD,DO)",
-    "Shape(BO,OD,ODB)",
-    "Collinear(AFOB)",
-    "Collinear(CFD)",
-    "Cocircular(O,CADB)"
-  ],
-  "text_cdl": [
-    "Equal(MeasureOfAngle(ABC),20)",
-    "IsCentreOfCircle(O,O)",
-    "IsDiameterOfCircle(AB,O)",
-    "IsMidpointOfArc(C,OBD)"
-  ],
-  "image_cdl": [],
-  "goal_cdl": "Value(MeasureOfAngle(DOA))",
-  "problem_answer": "100",
-  "theorem_seqs": [
-    "arc_property_center_angle(1,OCA,O)",
-    "arc_property_center_angle(1,OCD,O)",
-    "arc_property_center_angle(1,OBA,O)",
-    "arc_property_circumference_angle_external(1,OCA,B)",
-    "arc_addition_measure(1,OBC,OCA)",
-    "flat_angle(1,AOB)",
-    "angle_addition(1,DOF,FOC)",
-    "congruent_arc_judgment_length_equal(1,OCD,OBC)",
-    "congruent_arc_property_measure_equal(1,OCD,OBC)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "arc_property_center_angle(1,OCA,O)",
-      "arc_property_center_angle(1,OCD,O)",
-      "arc_property_center_angle(1,OBA,O)",
-      "arc_property_circumference_angle_external(1,OCA,B)",
-      "arc_addition_measure(1,OBC,OCA)",
-      "flat_angle(1,AOB)",
-      "angle_addition(1,DOF,FOC)",
-      "congruent_arc_judgment_length_equal(1,OCD,OBC)"
+    "problem_id": 6889,
+    "source": "GeoQA-angle-10120",
+    "problem_level": 9,
+    "problem_img": "6889.png",
+    "construction_cdl": [
+        "Shape(OCA,AF,FC)",
+        "Shape(OC,CF,FO)",
+        "Shape(CO,OB,BC)",
+        "Shape(OBC,CB)",
+        "Shape(FA,OAD,DF)",
+        "Shape(OF,FD,DO)",
+        "Shape(BO,OD,ODB)",
+        "Collinear(AFOB)",
+        "Collinear(CFD)",
+        "Cocircular(O,CADB)"
     ],
-    "congruent_arc_judgment_length_equal(1,OCD,OBC)": [
-      "congruent_arc_property_measure_equal(1,OCD,OBC)"
-    ]
-  }
+    "text_cdl": [
+        "Equal(MeasureOfAngle(ABC),20)",
+        "IsCentreOfCircle(O,O)",
+        "IsDiameterOfCircle(AB,O)",
+        "IsMidpointOfArc(C,OBD)"
+    ],
+    "image_cdl": [],
+    "goal_cdl": "Value(MeasureOfAngle(DOA))",
+    "problem_answer": "100",
+    "theorem_seqs": [
+        "arc_property_center_angle(1,OCA,O)",
+        "arc_property_center_angle(1,OCD,O)",
+        "arc_property_center_angle(1,OBA,O)",
+        "arc_property_circumference_angle_external(1,OCA,B)",
+        "arc_addition_measure(1,OBC,OCA)",
+        "flat_angle(1,AOB)",
+        "angle_addition(1,DOF,FOC)",
+        "congruent_arc_judgment_length_equal(1,OCD,OBC)",
+        "congruent_arc_property_measure_equal(1,OCD,OBC)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "arc_property_center_angle(1,OCA,O)",
+            "arc_property_center_angle(1,OCD,O)",
+            "arc_property_center_angle(1,OBA,O)",
+            "arc_property_circumference_angle_external(1,OCA,B)",
+            "arc_addition_measure(1,OBC,OCA)",
+            "flat_angle(1,AOB)",
+            "angle_addition(1,DOF,FOC)",
+            "congruent_arc_judgment_length_equal(1,OCD,OBC)"
+        ],
+        "congruent_arc_judgment_length_equal(1,OCD,OBC)": [
+            "congruent_arc_property_measure_equal(1,OCD,OBC)"
+        ]
+    }
 }

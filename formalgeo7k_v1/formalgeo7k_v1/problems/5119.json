@@ -1,53 +1,50 @@
 {
-  "problem_id": 5119,
-  "annotation": "YimingHe_2023-05-21",
-  "source": "GeoQA-4973",
-  "problem_level": 7,
-  "problem_text_cn": "如图所示，AB=10，AC=16，AI平分∠CAD，M是线段BC的中点，AC∥IM。求直线MI的长度。",
-  "problem_text_en": "As shown in the diagram, AB=10, AC=16, AI is the angle bisector of ∠CAD, M bisects segment BC, AC is parallel to IM. Find the length of line MI.",
-  "problem_img": "5119.png",
-  "construction_cdl": [
-    "Shape(AD,DI,IA)",
-    "Shape(AI,IM,MC,CA)",
-    "Shape(BM,MI,ID,DB)",
-    "Collinear(DIM)",
-    "Collinear(BMC)",
-    "Collinear(ADB)"
-  ],
-  "text_cdl": [
-    "Equal(LengthOfLine(AB),10)",
-    "Equal(LengthOfLine(AC),16)",
-    "IsBisectorOfAngle(AI,CAD)",
-    "IsMidpointOfLine(M,BC)",
-    "ParallelBetweenLine(AC,IM)"
-  ],
-  "image_cdl": [],
-  "goal_cdl": "Value(LengthOfLine(MI))",
-  "problem_answer": "3",
-  "theorem_seqs": [
-    "parallel_property_collinear_extend(2,MI,CA,D)",
-    "parallel_property_alternate_interior_angle(1,ID,CA)",
-    "isosceles_triangle_judgment_angle_equal(1,DIA)",
-    "midsegment_of_triangle_judgment_parallel(1,MD,BCA)",
-    "midsegment_of_triangle_property_length(1,MD,BCA)",
-    "line_addition(1,AD,DB)",
-    "line_addition(1,DI,IM)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "parallel_property_collinear_extend(2,MI,CA,D)",
-      "line_addition(1,AD,DB)",
-      "line_addition(1,DI,IM)"
+    "problem_id": 5119,
+    "source": "GeoQA-4973",
+    "problem_level": 7,
+    "problem_img": "5119.png",
+    "construction_cdl": [
+        "Shape(AD,DI,IA)",
+        "Shape(AI,IM,MC,CA)",
+        "Shape(BM,MI,ID,DB)",
+        "Collinear(DIM)",
+        "Collinear(BMC)",
+        "Collinear(ADB)"
     ],
-    "parallel_property_collinear_extend(2,MI,CA,D)": [
-      "midsegment_of_triangle_judgment_parallel(1,MD,BCA)",
-      "parallel_property_alternate_interior_angle(1,ID,CA)"
+    "text_cdl": [
+        "Equal(LengthOfLine(AB),10)",
+        "Equal(LengthOfLine(AC),16)",
+        "IsBisectorOfAngle(AI,CAD)",
+        "IsMidpointOfLine(M,BC)",
+        "ParallelBetweenLine(AC,IM)"
     ],
-    "parallel_property_alternate_interior_angle(1,ID,CA)": [
-      "isosceles_triangle_judgment_angle_equal(1,DIA)"
+    "image_cdl": [],
+    "goal_cdl": "Value(LengthOfLine(MI))",
+    "problem_answer": "3",
+    "theorem_seqs": [
+        "parallel_property_collinear_extend(2,MI,CA,D)",
+        "parallel_property_alternate_interior_angle(1,ID,CA)",
+        "isosceles_triangle_judgment_angle_equal(1,DIA)",
+        "midsegment_of_triangle_judgment_parallel(1,MD,BCA)",
+        "midsegment_of_triangle_property_length(1,MD,BCA)",
+        "line_addition(1,AD,DB)",
+        "line_addition(1,DI,IM)"
     ],
-    "midsegment_of_triangle_judgment_parallel(1,MD,BCA)": [
-      "midsegment_of_triangle_property_length(1,MD,BCA)"
-    ]
-  }
+    "theorem_seqs_dag": {
+        "START": [
+            "parallel_property_collinear_extend(2,MI,CA,D)",
+            "line_addition(1,AD,DB)",
+            "line_addition(1,DI,IM)"
+        ],
+        "parallel_property_collinear_extend(2,MI,CA,D)": [
+            "midsegment_of_triangle_judgment_parallel(1,MD,BCA)",
+            "parallel_property_alternate_interior_angle(1,ID,CA)"
+        ],
+        "parallel_property_alternate_interior_angle(1,ID,CA)": [
+            "isosceles_triangle_judgment_angle_equal(1,DIA)"
+        ],
+        "midsegment_of_triangle_judgment_parallel(1,MD,BCA)": [
+            "midsegment_of_triangle_property_length(1,MD,BCA)"
+        ]
+    }
 }

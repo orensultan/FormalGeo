@@ -1,36 +1,33 @@
 {
-  "problem_id": 3303,
-  "annotation": "YimingHe_2023-04-30",
-  "source": "GeoQA-645",
-  "problem_level": 2,
-  "problem_text_cn": "如图所示，∠BAE=30°，∠DCF=∠BAE，∠GBC=50°，CF平行于GB，GB平行于AE。求∠DCB的大小。",
-  "problem_text_en": "As shown in the diagram, ∠BAE=30°, ∠DCF=∠BAE, ∠GBC=50°, CF is parallel to GB, GB∥AE. Find the measure of ∠DCB.",
-  "problem_img": "3303.png",
-  "construction_cdl": [
-    "Shape(DC,CF)",
-    "Shape(FC,CB)",
-    "Shape(GB,BC)",
-    "Shape(AB,BG)",
-    "Shape(BA,AE)"
-  ],
-  "text_cdl": [
-    "Equal(MeasureOfAngle(BAE),30)",
-    "Equal(MeasureOfAngle(DCF),MeasureOfAngle(BAE))",
-    "Equal(MeasureOfAngle(GBC),50)",
-    "ParallelBetweenLine(CF,GB)",
-    "ParallelBetweenLine(GB,AE)"
-  ],
-  "image_cdl": [],
-  "goal_cdl": "Value(MeasureOfAngle(DCB))",
-  "problem_answer": "80",
-  "theorem_seqs": [
-    "parallel_property_alternate_interior_angle(1,CF,GB)",
-    "angle_addition(1,DCF,FCB)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "parallel_property_alternate_interior_angle(1,CF,GB)",
-      "angle_addition(1,DCF,FCB)"
-    ]
-  }
+    "problem_id": 3303,
+    "source": "GeoQA-645",
+    "problem_level": 2,
+    "problem_img": "3303.png",
+    "construction_cdl": [
+        "Shape(DC,CF)",
+        "Shape(FC,CB)",
+        "Shape(GB,BC)",
+        "Shape(AB,BG)",
+        "Shape(BA,AE)"
+    ],
+    "text_cdl": [
+        "Equal(MeasureOfAngle(BAE),30)",
+        "Equal(MeasureOfAngle(DCF),MeasureOfAngle(BAE))",
+        "Equal(MeasureOfAngle(GBC),50)",
+        "ParallelBetweenLine(CF,GB)",
+        "ParallelBetweenLine(GB,AE)"
+    ],
+    "image_cdl": [],
+    "goal_cdl": "Value(MeasureOfAngle(DCB))",
+    "problem_answer": "80",
+    "theorem_seqs": [
+        "parallel_property_alternate_interior_angle(1,CF,GB)",
+        "angle_addition(1,DCF,FCB)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "parallel_property_alternate_interior_angle(1,CF,GB)",
+            "angle_addition(1,DCF,FCB)"
+        ]
+    }
 }

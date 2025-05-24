@@ -1,36 +1,33 @@
 {
-  "problem_id": 1422,
-  "annotation": "YanjunGuo_2023-04-16",
-  "source": "Geometry3k-1473",
-  "problem_level": 1,
-  "problem_text_cn": "如图所示，∠AFB=8*x-6°，∠AFC=90°，∠BFC=14*x+8°。求x的值。",
-  "problem_text_en": "As shown in the diagram, ∠AFB=8*x-6°, ∠AFC=90°, ∠BFC=14*x+8°. Find the value of x.",
-  "problem_img": "1422.png",
-  "construction_cdl": [
-    "Shape(BF,FC)",
-    "Shape(CF,FD)",
-    "Shape(DF,FE)",
-    "Shape(AF,FB)",
-    "Collinear(BFE)"
-  ],
-  "text_cdl": [
-    "Equal(MeasureOfAngle(AFB),8*x-6)",
-    "Equal(MeasureOfAngle(AFC),90)",
-    "Equal(MeasureOfAngle(BFC),14*x+8)"
-  ],
-  "image_cdl": [
-    "Equal(MeasureOfAngle(AFB),8*x-6)",
-    "Equal(MeasureOfAngle(AFC),90)",
-    "Equal(MeasureOfAngle(BFC),14*x+8)"
-  ],
-  "goal_cdl": "Value(x)",
-  "problem_answer": "4",
-  "theorem_seqs": [
-    "angle_addition(1,AFB,BFC)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "angle_addition(1,AFB,BFC)"
-    ]
-  }
+    "problem_id": 1422,
+    "source": "Geometry3k-1473",
+    "problem_level": 1,
+    "problem_img": "1422.png",
+    "construction_cdl": [
+        "Shape(BF,FC)",
+        "Shape(CF,FD)",
+        "Shape(DF,FE)",
+        "Shape(AF,FB)",
+        "Collinear(BFE)"
+    ],
+    "text_cdl": [
+        "Equal(MeasureOfAngle(AFB),8*x-6)",
+        "Equal(MeasureOfAngle(AFC),90)",
+        "Equal(MeasureOfAngle(BFC),14*x+8)"
+    ],
+    "image_cdl": [
+        "Equal(MeasureOfAngle(AFB),8*x-6)",
+        "Equal(MeasureOfAngle(AFC),90)",
+        "Equal(MeasureOfAngle(BFC),14*x+8)"
+    ],
+    "goal_cdl": "Value(x)",
+    "problem_answer": "4",
+    "theorem_seqs": [
+        "angle_addition(1,AFB,BFC)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "angle_addition(1,AFB,BFC)"
+        ]
+    }
 }

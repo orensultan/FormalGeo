@@ -1,52 +1,49 @@
 {
-  "problem_id": 1835,
-  "annotation": "YanjunGuo_2023-04-23",
-  "source": "Geometry3k-1903",
-  "problem_level": 4,
-  "problem_text_cn": "如图所示，BH=Mul(LengthOfLine(EB),2)，EB=HA，HE=9，CBAD是正方形，EHGF是正方形。求四边形ADCB的面积。",
-  "problem_text_en": "As shown in the diagram, BH=Mul(LengthOfLine(EB),2), EB=HA, HE=9, quadrilateral CBAD is a square, EHGF is a square. Find the area of ADCB.",
-  "problem_img": "1835.png",
-  "construction_cdl": [
-    "Shape(EB,BC,CE)",
-    "Shape(BH,HA,AB)",
-    "Shape(AG,GD,DA)",
-    "Shape(CD,DF,FC)",
-    "Shape(AD,DC,CB,BA)",
-    "Collinear(EBH)",
-    "Collinear(ECF)",
-    "Collinear(FDG)",
-    "Collinear(HAG)"
-  ],
-  "text_cdl": [
-    "Equal(LengthOfLine(BH),Mul(LengthOfLine(EB),2))",
-    "Equal(LengthOfLine(EB),LengthOfLine(HA))",
-    "Equal(LengthOfLine(HE),9)",
-    "Square(CBAD)",
-    "Square(EHGF)"
-  ],
-  "image_cdl": [
-    "Equal(LengthOfLine(BH),Mul(LengthOfLine(EB),2))",
-    "Equal(LengthOfLine(EB),LengthOfLine(HA))",
-    "Equal(LengthOfLine(HE),9)",
-    "Square(CBAD)",
-    "Square(EHGF)"
-  ],
-  "goal_cdl": "Value(AreaOfQuadrilateral(ADCB))",
-  "problem_answer": "45",
-  "theorem_seqs": [
-    "line_addition(1,EB,BH)",
-    "right_triangle_judgment_angle(1,BHA)",
-    "right_triangle_property_pythagorean(1,BHA)",
-    "parallelogram_area_formula_sine(1,ADCB)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "line_addition(1,EB,BH)",
-      "right_triangle_judgment_angle(1,BHA)",
-      "parallelogram_area_formula_sine(1,ADCB)"
+    "problem_id": 1835,
+    "source": "Geometry3k-1903",
+    "problem_level": 4,
+    "problem_img": "1835.png",
+    "construction_cdl": [
+        "Shape(EB,BC,CE)",
+        "Shape(BH,HA,AB)",
+        "Shape(AG,GD,DA)",
+        "Shape(CD,DF,FC)",
+        "Shape(AD,DC,CB,BA)",
+        "Collinear(EBH)",
+        "Collinear(ECF)",
+        "Collinear(FDG)",
+        "Collinear(HAG)"
     ],
-    "right_triangle_judgment_angle(1,BHA)": [
-      "right_triangle_property_pythagorean(1,BHA)"
-    ]
-  }
+    "text_cdl": [
+        "Equal(LengthOfLine(BH),Mul(LengthOfLine(EB),2))",
+        "Equal(LengthOfLine(EB),LengthOfLine(HA))",
+        "Equal(LengthOfLine(HE),9)",
+        "Square(CBAD)",
+        "Square(EHGF)"
+    ],
+    "image_cdl": [
+        "Equal(LengthOfLine(BH),Mul(LengthOfLine(EB),2))",
+        "Equal(LengthOfLine(EB),LengthOfLine(HA))",
+        "Equal(LengthOfLine(HE),9)",
+        "Square(CBAD)",
+        "Square(EHGF)"
+    ],
+    "goal_cdl": "Value(AreaOfQuadrilateral(ADCB))",
+    "problem_answer": "45",
+    "theorem_seqs": [
+        "line_addition(1,EB,BH)",
+        "right_triangle_judgment_angle(1,BHA)",
+        "right_triangle_property_pythagorean(1,BHA)",
+        "parallelogram_area_formula_sine(1,ADCB)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "line_addition(1,EB,BH)",
+            "right_triangle_judgment_angle(1,BHA)",
+            "parallelogram_area_formula_sine(1,ADCB)"
+        ],
+        "right_triangle_judgment_angle(1,BHA)": [
+            "right_triangle_property_pythagorean(1,BHA)"
+        ]
+    }
 }

@@ -1,31 +1,28 @@
 {
-  "problem_id": 5853,
-  "annotation": "QikeHuang_2023-05-28",
-  "source": "GeoQA-7877",
-  "problem_level": 1,
-  "problem_text_cn": "如图所示，AB=4，∠ACB=30°，∠BAC=45°，AD垂直于BD。求直线BC的长度。",
-  "problem_text_en": "As shown in the diagram, AB=4, ∠ACB=30°, ∠BAC=45°, AD is perpendicular to BD. Find the length of line BC.",
-  "problem_img": "5853.png",
-  "construction_cdl": [
-    "Shape(BA,AD,DB)",
-    "Shape(BD,DC,CB)",
-    "Collinear(ADC)"
-  ],
-  "text_cdl": [
-    "Equal(LengthOfLine(AB),4)",
-    "Equal(MeasureOfAngle(ACB),30)",
-    "Equal(MeasureOfAngle(BAC),45)",
-    "PerpendicularBetweenLine(AD,BD)"
-  ],
-  "image_cdl": [],
-  "goal_cdl": "Value(LengthOfLine(BC))",
-  "problem_answer": "4*sqrt(2)",
-  "theorem_seqs": [
-    "sine_theorem(1,BAC)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "sine_theorem(1,BAC)"
-    ]
-  }
+    "problem_id": 5853,
+    "source": "GeoQA-7877",
+    "problem_level": 1,
+    "problem_img": "5853.png",
+    "construction_cdl": [
+        "Shape(BA,AD,DB)",
+        "Shape(BD,DC,CB)",
+        "Collinear(ADC)"
+    ],
+    "text_cdl": [
+        "Equal(LengthOfLine(AB),4)",
+        "Equal(MeasureOfAngle(ACB),30)",
+        "Equal(MeasureOfAngle(BAC),45)",
+        "PerpendicularBetweenLine(AD,BD)"
+    ],
+    "image_cdl": [],
+    "goal_cdl": "Value(LengthOfLine(BC))",
+    "problem_answer": "4*sqrt(2)",
+    "theorem_seqs": [
+        "sine_theorem(1,BAC)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "sine_theorem(1,BAC)"
+        ]
+    }
 }

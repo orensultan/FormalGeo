@@ -1,37 +1,34 @@
 {
-  "problem_id": 2555,
-  "annotation": "ChenyangMao_2023-04-23",
-  "source": "Geometry3k-2682",
-  "problem_level": 1,
-  "problem_text_cn": "如图所示，CB=12，DB=20，∠DBC=60°，DBCA是平行四边形，DE垂直于CE。求DBCA的面积。",
-  "problem_text_en": "As shown in the diagram, CB=12, DB=20, ∠DBC=60°, DA and BC are opposite sides of the parallelogram DBCA, DE⊥CE. Find the area of quadrilateral DBCA.",
-  "problem_img": "2555.png",
-  "construction_cdl": [
-    "Shape(DB,BE,ED)",
-    "Shape(DE,EC,CA,AD)",
-    "Collinear(BEC)"
-  ],
-  "text_cdl": [
-    "Equal(LengthOfLine(CB),12)",
-    "Equal(LengthOfLine(DB),20)",
-    "Equal(MeasureOfAngle(DBC),60)",
-    "Parallelogram(DBCA)",
-    "PerpendicularBetweenLine(DE,CE)"
-  ],
-  "image_cdl": [
-    "Equal(LengthOfLine(CB),12)",
-    "Equal(LengthOfLine(DB),20)",
-    "Equal(MeasureOfAngle(DBC),60)",
-    "PerpendicularBetweenLine(DE,CE)"
-  ],
-  "goal_cdl": "Value(AreaOfQuadrilateral(DBCA))",
-  "problem_answer": "120*sqrt(3)",
-  "theorem_seqs": [
-    "parallelogram_area_formula_sine(1,DBCA)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "parallelogram_area_formula_sine(1,DBCA)"
-    ]
-  }
+    "problem_id": 2555,
+    "source": "Geometry3k-2682",
+    "problem_level": 1,
+    "problem_img": "2555.png",
+    "construction_cdl": [
+        "Shape(DB,BE,ED)",
+        "Shape(DE,EC,CA,AD)",
+        "Collinear(BEC)"
+    ],
+    "text_cdl": [
+        "Equal(LengthOfLine(CB),12)",
+        "Equal(LengthOfLine(DB),20)",
+        "Equal(MeasureOfAngle(DBC),60)",
+        "Parallelogram(DBCA)",
+        "PerpendicularBetweenLine(DE,CE)"
+    ],
+    "image_cdl": [
+        "Equal(LengthOfLine(CB),12)",
+        "Equal(LengthOfLine(DB),20)",
+        "Equal(MeasureOfAngle(DBC),60)",
+        "PerpendicularBetweenLine(DE,CE)"
+    ],
+    "goal_cdl": "Value(AreaOfQuadrilateral(DBCA))",
+    "problem_answer": "120*sqrt(3)",
+    "theorem_seqs": [
+        "parallelogram_area_formula_sine(1,DBCA)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "parallelogram_area_formula_sine(1,DBCA)"
+        ]
+    }
 }

@@ -1,46 +1,43 @@
 {
-  "problem_id": 2631,
-  "annotation": "DengfengYue_2023-04-23",
-  "source": "Geometry3k-2764",
-  "problem_level": 3,
-  "problem_text_cn": "如图所示，∠AYG=y+25°，∠BYD=3*x-15°，∠GBE=105°，DY平行于EB。求y的值。",
-  "problem_text_en": "As shown in the diagram, ∠AYG=y+25°, ∠BYD=3*x-15°, ∠GBE=105°, DY∥EB. Find the value of y.",
-  "problem_img": "2631.png",
-  "construction_cdl": [
-    "Shape(HD,DY,YH)",
-    "Shape(HY,YA,AH)",
-    "Shape(YB,BI,IA,AY)",
-    "Shape(DE,EB,BY,YD)",
-    "Shape(EG,GB,BE)",
-    "Shape(BG,GI,IB)",
-    "Collinear(HYBG)",
-    "Collinear(DYA)",
-    "Collinear(EBI)"
-  ],
-  "text_cdl": [
-    "Equal(MeasureOfAngle(AYG),y+25)",
-    "Equal(MeasureOfAngle(BYD),3*x-15)",
-    "Equal(MeasureOfAngle(GBE),105)",
-    "ParallelBetweenLine(DY,EB)"
-  ],
-  "image_cdl": [
-    "Equal(MeasureOfAngle(AYG),y+25)",
-    "Equal(MeasureOfAngle(BYD),3*x-15)",
-    "Equal(MeasureOfAngle(GBE),105)",
-    "ParallelBetweenLine(DY,EB)"
-  ],
-  "goal_cdl": "Value(y)",
-  "problem_answer": "50",
-  "theorem_seqs": [
-    "parallel_property_corresponding_angle(1,BE,YD,G)",
-    "flat_angle(1,AYD)",
-    "angle_addition(1,AYB,BYD)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "parallel_property_corresponding_angle(1,BE,YD,G)",
-      "flat_angle(1,AYD)",
-      "angle_addition(1,AYB,BYD)"
-    ]
-  }
+    "problem_id": 2631,
+    "source": "Geometry3k-2764",
+    "problem_level": 3,
+    "problem_img": "2631.png",
+    "construction_cdl": [
+        "Shape(HD,DY,YH)",
+        "Shape(HY,YA,AH)",
+        "Shape(YB,BI,IA,AY)",
+        "Shape(DE,EB,BY,YD)",
+        "Shape(EG,GB,BE)",
+        "Shape(BG,GI,IB)",
+        "Collinear(HYBG)",
+        "Collinear(DYA)",
+        "Collinear(EBI)"
+    ],
+    "text_cdl": [
+        "Equal(MeasureOfAngle(AYG),y+25)",
+        "Equal(MeasureOfAngle(BYD),3*x-15)",
+        "Equal(MeasureOfAngle(GBE),105)",
+        "ParallelBetweenLine(DY,EB)"
+    ],
+    "image_cdl": [
+        "Equal(MeasureOfAngle(AYG),y+25)",
+        "Equal(MeasureOfAngle(BYD),3*x-15)",
+        "Equal(MeasureOfAngle(GBE),105)",
+        "ParallelBetweenLine(DY,EB)"
+    ],
+    "goal_cdl": "Value(y)",
+    "problem_answer": "50",
+    "theorem_seqs": [
+        "parallel_property_corresponding_angle(1,BE,YD,G)",
+        "flat_angle(1,AYD)",
+        "angle_addition(1,AYB,BYD)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "parallel_property_corresponding_angle(1,BE,YD,G)",
+            "flat_angle(1,AYD)",
+            "angle_addition(1,AYB,BYD)"
+        ]
+    }
 }

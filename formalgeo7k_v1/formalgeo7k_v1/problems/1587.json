@@ -1,95 +1,92 @@
 {
-  "problem_id": 1587,
-  "annotation": "XiaoxiaoJin_2023-04-16",
-  "source": "Geometry3k-1647",
-  "problem_level": 16,
-  "problem_text_cn": "如图所示，AB=7，AI=7，⊙C的圆心为C，O是⊙O的圆心，⊙O的直径为DB，ID是圆C的直径，圆O的切线为AB，AI是圆O的切线，IA垂直于BA。求四边形ABDI的面积、1/2圆C面积和1/2圆O面积之和。",
-  "problem_text_en": "As shown in the diagram, AB=7, AI=7, the center of ⊙C is C, O is the center of ⊙O, the diameter of ⊙O is DB, the diameter of ⊙C is ID, AB is the tangent to circle O, AI is the tangent to ⊙C, IA⊥BA. Find the sum of the area of quadrilateral ABDI, half the area of circle C, and half the area of circle O.",
-  "problem_img": "1587.png",
-  "construction_cdl": [
-    "Shape(IC,CD,CDI)",
-    "Shape(DO,OB,OBD)",
-    "Shape(DC,CI,IA,AB,BO,OD)",
-    "Collinear(DOB)",
-    "Collinear(DCI)",
-    "Cocircular(C,ID)",
-    "Cocircular(O,DB)"
-  ],
-  "text_cdl": [
-    "Equal(LengthOfLine(AB),7)",
-    "Equal(LengthOfLine(AI),7)",
-    "IsCentreOfCircle(C,C)",
-    "IsCentreOfCircle(O,O)",
-    "IsDiameterOfCircle(DB,O)",
-    "IsDiameterOfCircle(ID,C)",
-    "IsTangentOfCircle(AB,O)",
-    "IsTangentOfCircle(AI,C)",
-    "PerpendicularBetweenLine(IA,BA)"
-  ],
-  "image_cdl": [
-    "Equal(LengthOfLine(AB),7)",
-    "Equal(LengthOfLine(AI),7)",
-    "IsCentreOfCircle(C,C)",
-    "IsCentreOfCircle(O,O)",
-    "IsDiameterOfCircle(DB,O)",
-    "IsDiameterOfCircle(ID,C)",
-    "IsTangentOfCircle(AB,O)",
-    "IsTangentOfCircle(AI,C)",
-    "PerpendicularBetweenLine(IA,BA)"
-  ],
-  "goal_cdl": "Value(Add(AreaOfQuadrilateral(ABDI),Mul(1/2,AreaOfCircle(C)),Mul(1/2,AreaOfCircle(O))))",
-  "problem_answer": "49*pi/4+49",
-  "theorem_seqs": [
-    "tangent_of_circle_property_perpendicular(1,AI,C,C)",
-    "tangent_of_circle_property_perpendicular(2,AB,O,O)",
-    "perpendicular_judgment_angle(1,DI,AI)",
-    "perpendicular_judgment_angle(1,AB,DB)",
-    "parallel_judgment_per_per(1,ID,AB)",
-    "parallel_judgment_per_per(1,AI,BD)",
-    "parallelogram_judgment_parallel_and_parallel(1,ABDI)",
-    "parallelogram_area_formula_sine(1,ABDI)",
-    "parallelogram_property_opposite_line_equal(1,ABDI)",
-    "parallelogram_property_opposite_line_equal(1,BDIA)",
-    "diameter_of_circle_property_length_equal(1,ID,C)",
-    "diameter_of_circle_property_length_equal(1,DB,O)",
-    "circle_property_length_of_radius_and_diameter(1,C)",
-    "circle_property_length_of_radius_and_diameter(1,O)",
-    "circle_area_formula(1,C)",
-    "circle_area_formula(1,O)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "tangent_of_circle_property_perpendicular(1,AI,C,C)",
-      "tangent_of_circle_property_perpendicular(2,AB,O,O)",
-      "diameter_of_circle_property_length_equal(1,ID,C)",
-      "diameter_of_circle_property_length_equal(1,DB,O)",
-      "circle_property_length_of_radius_and_diameter(1,C)",
-      "circle_property_length_of_radius_and_diameter(1,O)",
-      "circle_area_formula(1,C)",
-      "circle_area_formula(1,O)"
+    "problem_id": 1587,
+    "source": "Geometry3k-1647",
+    "problem_level": 16,
+    "problem_img": "1587.png",
+    "construction_cdl": [
+        "Shape(IC,CD,CDI)",
+        "Shape(DO,OB,OBD)",
+        "Shape(DC,CI,IA,AB,BO,OD)",
+        "Collinear(DOB)",
+        "Collinear(DCI)",
+        "Cocircular(C,ID)",
+        "Cocircular(O,DB)"
     ],
-    "tangent_of_circle_property_perpendicular(1,AI,C,C)": [
-      "perpendicular_judgment_angle(1,DI,AI)"
+    "text_cdl": [
+        "Equal(LengthOfLine(AB),7)",
+        "Equal(LengthOfLine(AI),7)",
+        "IsCentreOfCircle(C,C)",
+        "IsCentreOfCircle(O,O)",
+        "IsDiameterOfCircle(DB,O)",
+        "IsDiameterOfCircle(ID,C)",
+        "IsTangentOfCircle(AB,O)",
+        "IsTangentOfCircle(AI,C)",
+        "PerpendicularBetweenLine(IA,BA)"
     ],
-    "tangent_of_circle_property_perpendicular(2,AB,O,O)": [
-      "perpendicular_judgment_angle(1,AB,DB)"
+    "image_cdl": [
+        "Equal(LengthOfLine(AB),7)",
+        "Equal(LengthOfLine(AI),7)",
+        "IsCentreOfCircle(C,C)",
+        "IsCentreOfCircle(O,O)",
+        "IsDiameterOfCircle(DB,O)",
+        "IsDiameterOfCircle(ID,C)",
+        "IsTangentOfCircle(AB,O)",
+        "IsTangentOfCircle(AI,C)",
+        "PerpendicularBetweenLine(IA,BA)"
     ],
-    "perpendicular_judgment_angle(1,DI,AI)": [
-      "parallel_judgment_per_per(1,ID,AB)"
+    "goal_cdl": "Value(Add(AreaOfQuadrilateral(ABDI),Mul(1/2,AreaOfCircle(C)),Mul(1/2,AreaOfCircle(O))))",
+    "problem_answer": "49*pi/4+49",
+    "theorem_seqs": [
+        "tangent_of_circle_property_perpendicular(1,AI,C,C)",
+        "tangent_of_circle_property_perpendicular(2,AB,O,O)",
+        "perpendicular_judgment_angle(1,DI,AI)",
+        "perpendicular_judgment_angle(1,AB,DB)",
+        "parallel_judgment_per_per(1,ID,AB)",
+        "parallel_judgment_per_per(1,AI,BD)",
+        "parallelogram_judgment_parallel_and_parallel(1,ABDI)",
+        "parallelogram_area_formula_sine(1,ABDI)",
+        "parallelogram_property_opposite_line_equal(1,ABDI)",
+        "parallelogram_property_opposite_line_equal(1,BDIA)",
+        "diameter_of_circle_property_length_equal(1,ID,C)",
+        "diameter_of_circle_property_length_equal(1,DB,O)",
+        "circle_property_length_of_radius_and_diameter(1,C)",
+        "circle_property_length_of_radius_and_diameter(1,O)",
+        "circle_area_formula(1,C)",
+        "circle_area_formula(1,O)"
     ],
-    "perpendicular_judgment_angle(1,AB,DB)": [
-      "parallel_judgment_per_per(1,AI,BD)"
-    ],
-    "parallel_judgment_per_per(1,ID,AB)": [
-      "parallelogram_judgment_parallel_and_parallel(1,ABDI)"
-    ],
-    "parallel_judgment_per_per(1,AI,BD)": [
-      "parallelogram_judgment_parallel_and_parallel(1,ABDI)"
-    ],
-    "parallelogram_judgment_parallel_and_parallel(1,ABDI)": [
-      "parallelogram_area_formula_sine(1,ABDI)",
-      "parallelogram_property_opposite_line_equal(1,ABDI)",
-      "parallelogram_property_opposite_line_equal(1,BDIA)"
-    ]
-  }
+    "theorem_seqs_dag": {
+        "START": [
+            "tangent_of_circle_property_perpendicular(1,AI,C,C)",
+            "tangent_of_circle_property_perpendicular(2,AB,O,O)",
+            "diameter_of_circle_property_length_equal(1,ID,C)",
+            "diameter_of_circle_property_length_equal(1,DB,O)",
+            "circle_property_length_of_radius_and_diameter(1,C)",
+            "circle_property_length_of_radius_and_diameter(1,O)",
+            "circle_area_formula(1,C)",
+            "circle_area_formula(1,O)"
+        ],
+        "tangent_of_circle_property_perpendicular(1,AI,C,C)": [
+            "perpendicular_judgment_angle(1,DI,AI)"
+        ],
+        "tangent_of_circle_property_perpendicular(2,AB,O,O)": [
+            "perpendicular_judgment_angle(1,AB,DB)"
+        ],
+        "perpendicular_judgment_angle(1,DI,AI)": [
+            "parallel_judgment_per_per(1,ID,AB)"
+        ],
+        "perpendicular_judgment_angle(1,AB,DB)": [
+            "parallel_judgment_per_per(1,AI,BD)"
+        ],
+        "parallel_judgment_per_per(1,ID,AB)": [
+            "parallelogram_judgment_parallel_and_parallel(1,ABDI)"
+        ],
+        "parallel_judgment_per_per(1,AI,BD)": [
+            "parallelogram_judgment_parallel_and_parallel(1,ABDI)"
+        ],
+        "parallelogram_judgment_parallel_and_parallel(1,ABDI)": [
+            "parallelogram_area_formula_sine(1,ABDI)",
+            "parallelogram_property_opposite_line_equal(1,ABDI)",
+            "parallelogram_property_opposite_line_equal(1,BDIA)"
+        ]
+    }
 }

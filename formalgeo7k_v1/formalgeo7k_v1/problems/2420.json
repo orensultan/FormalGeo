@@ -1,39 +1,36 @@
 {
-  "problem_id": 2420,
-  "annotation": "YangLi_2023-04-23",
-  "source": "Geometry3k-2537",
-  "problem_level": 1,
-  "problem_text_cn": "如图所示，∠BFC=72°，∠CFD=4*a-1°，∠DFA=2*a-5°，F是圆F的圆心。求∠AFB的大小。",
-  "problem_text_en": "As shown in the diagram, ∠BFC=72°, ∠CFD=4*a-1°, ∠DFA=2*a-5°, the center of circle F is F. Find the measure of ∠AFB.",
-  "problem_img": "2420.png",
-  "construction_cdl": [
-    "Shape(BF,FC,FCB)",
-    "Shape(CF,FD,FDC)",
-    "Shape(DF,FA,FAD)",
-    "Shape(AF,FB,FBA)",
-    "Collinear(AFC)",
-    "Cocircular(F,BADC)"
-  ],
-  "text_cdl": [
-    "Equal(MeasureOfAngle(BFC),72)",
-    "Equal(MeasureOfAngle(CFD),4*a-1)",
-    "Equal(MeasureOfAngle(DFA),2*a-5)",
-    "IsCentreOfCircle(F,F)"
-  ],
-  "image_cdl": [
-    "Equal(MeasureOfAngle(BFC),72)",
-    "Equal(MeasureOfAngle(CFD),4*a-1)",
-    "Equal(MeasureOfAngle(DFA),2*a-5)",
-    "IsCentreOfCircle(F,F)"
-  ],
-  "goal_cdl": "Value(MeasureOfAngle(AFB))",
-  "problem_answer": "108",
-  "theorem_seqs": [
-    "adjacent_complementary_angle(1,AFB,BFC)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "adjacent_complementary_angle(1,AFB,BFC)"
-    ]
-  }
+    "problem_id": 2420,
+    "source": "Geometry3k-2537",
+    "problem_level": 1,
+    "problem_img": "2420.png",
+    "construction_cdl": [
+        "Shape(BF,FC,FCB)",
+        "Shape(CF,FD,FDC)",
+        "Shape(DF,FA,FAD)",
+        "Shape(AF,FB,FBA)",
+        "Collinear(AFC)",
+        "Cocircular(F,BADC)"
+    ],
+    "text_cdl": [
+        "Equal(MeasureOfAngle(BFC),72)",
+        "Equal(MeasureOfAngle(CFD),4*a-1)",
+        "Equal(MeasureOfAngle(DFA),2*a-5)",
+        "IsCentreOfCircle(F,F)"
+    ],
+    "image_cdl": [
+        "Equal(MeasureOfAngle(BFC),72)",
+        "Equal(MeasureOfAngle(CFD),4*a-1)",
+        "Equal(MeasureOfAngle(DFA),2*a-5)",
+        "IsCentreOfCircle(F,F)"
+    ],
+    "goal_cdl": "Value(MeasureOfAngle(AFB))",
+    "problem_answer": "108",
+    "theorem_seqs": [
+        "adjacent_complementary_angle(1,AFB,BFC)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "adjacent_complementary_angle(1,AFB,BFC)"
+        ]
+    }
 }

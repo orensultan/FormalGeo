@@ -1,54 +1,51 @@
 {
-  "problem_id": 5409,
-  "annotation": "XiaoxiaoJin_2023-05-21",
-  "source": "GeoQA-5706",
-  "problem_level": 7,
-  "problem_text_cn": "如图所示，AB=AC，BC=9，BD=5，BE=6，BD和EF是▱BEFD的一组对边。求△FEC的周长。",
-  "problem_text_en": "As shown in the diagram, AB=AC, BC=9, BD=5, BE=6, BEFD is a parallelogram. Find the perimeter of △FEC.",
-  "problem_img": "5409.png",
-  "construction_cdl": [
-    "Shape(AD,DF,FA)",
-    "Shape(DB,BE,EF,FD)",
-    "Shape(FE,EC,CF)",
-    "Collinear(ADB)",
-    "Collinear(AFC)",
-    "Collinear(BEC)"
-  ],
-  "text_cdl": [
-    "Equal(LengthOfLine(AB),LengthOfLine(AC))",
-    "Equal(LengthOfLine(BC),9)",
-    "Equal(LengthOfLine(BD),5)",
-    "Equal(LengthOfLine(BE),6)",
-    "Parallelogram(BEFD)"
-  ],
-  "image_cdl": [],
-  "goal_cdl": "Value(PerimeterOfTriangle(FEC))",
-  "problem_answer": "13",
-  "theorem_seqs": [
-    "parallelogram_property_opposite_line_equal(1,EFDB)",
-    "isosceles_triangle_judgment_line_equal(1,ABC)",
-    "isosceles_triangle_property_angle_equal(1,ABC)",
-    "parallel_property_corresponding_angle(2,BD,EF,C)",
-    "isosceles_triangle_judgment_angle_equal(1,FEC)",
-    "line_addition(1,BE,EC)",
-    "triangle_perimeter_formula(1,FEC)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "parallelogram_property_opposite_line_equal(1,EFDB)",
-      "isosceles_triangle_judgment_line_equal(1,ABC)",
-      "parallel_property_corresponding_angle(2,BD,EF,C)",
-      "line_addition(1,BE,EC)",
-      "triangle_perimeter_formula(1,FEC)"
+    "problem_id": 5409,
+    "source": "GeoQA-5706",
+    "problem_level": 7,
+    "problem_img": "5409.png",
+    "construction_cdl": [
+        "Shape(AD,DF,FA)",
+        "Shape(DB,BE,EF,FD)",
+        "Shape(FE,EC,CF)",
+        "Collinear(ADB)",
+        "Collinear(AFC)",
+        "Collinear(BEC)"
     ],
-    "isosceles_triangle_judgment_line_equal(1,ABC)": [
-      "isosceles_triangle_property_angle_equal(1,ABC)"
+    "text_cdl": [
+        "Equal(LengthOfLine(AB),LengthOfLine(AC))",
+        "Equal(LengthOfLine(BC),9)",
+        "Equal(LengthOfLine(BD),5)",
+        "Equal(LengthOfLine(BE),6)",
+        "Parallelogram(BEFD)"
     ],
-    "isosceles_triangle_property_angle_equal(1,ABC)": [
-      "isosceles_triangle_judgment_angle_equal(1,FEC)"
+    "image_cdl": [],
+    "goal_cdl": "Value(PerimeterOfTriangle(FEC))",
+    "problem_answer": "13",
+    "theorem_seqs": [
+        "parallelogram_property_opposite_line_equal(1,EFDB)",
+        "isosceles_triangle_judgment_line_equal(1,ABC)",
+        "isosceles_triangle_property_angle_equal(1,ABC)",
+        "parallel_property_corresponding_angle(2,BD,EF,C)",
+        "isosceles_triangle_judgment_angle_equal(1,FEC)",
+        "line_addition(1,BE,EC)",
+        "triangle_perimeter_formula(1,FEC)"
     ],
-    "parallel_property_corresponding_angle(2,BD,EF,C)": [
-      "isosceles_triangle_judgment_angle_equal(1,FEC)"
-    ]
-  }
+    "theorem_seqs_dag": {
+        "START": [
+            "parallelogram_property_opposite_line_equal(1,EFDB)",
+            "isosceles_triangle_judgment_line_equal(1,ABC)",
+            "parallel_property_corresponding_angle(2,BD,EF,C)",
+            "line_addition(1,BE,EC)",
+            "triangle_perimeter_formula(1,FEC)"
+        ],
+        "isosceles_triangle_judgment_line_equal(1,ABC)": [
+            "isosceles_triangle_property_angle_equal(1,ABC)"
+        ],
+        "isosceles_triangle_property_angle_equal(1,ABC)": [
+            "isosceles_triangle_judgment_angle_equal(1,FEC)"
+        ],
+        "parallel_property_corresponding_angle(2,BD,EF,C)": [
+            "isosceles_triangle_judgment_angle_equal(1,FEC)"
+        ]
+    }
 }

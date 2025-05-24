@@ -1,37 +1,34 @@
 {
-  "problem_id": 35,
-  "annotation": "XiaokaiZhang_2023-04-02",
-  "source": "Geometry3k-35",
-  "problem_level": 2,
-  "problem_text_cn": "如图所示，QR=2，VS=7，S是线段RT的中点，V是线段QU的中点，QUTR是梯形。求直线UT的长度。",
-  "problem_text_en": "As shown in the diagram, QR=2, VS=7, S is the midpoint of segment RT, V bisects segment QU, QU and TR are the non-parallel sides (legs) of trapezoid QUTR. Find the length of line UT.",
-  "problem_img": "35.png",
-  "construction_cdl": [
-    "Shape(QV,VS,SR,RQ)",
-    "Shape(VU,UT,TS,SV)",
-    "Collinear(QVU)",
-    "Collinear(RST)"
-  ],
-  "text_cdl": [
-    "Equal(LengthOfLine(QR),2)",
-    "Equal(LengthOfLine(VS),7)",
-    "IsMidpointOfLine(S,RT)",
-    "IsMidpointOfLine(V,QU)",
-    "Trapezoid(QUTR)"
-  ],
-  "image_cdl": [],
-  "goal_cdl": "Value(LengthOfLine(UT))",
-  "problem_answer": "12",
-  "theorem_seqs": [
-    "midsegment_of_quadrilateral_judgment_midpoint(1,VS,QUTR)",
-    "midsegment_of_quadrilateral_property_length(1,VS,QUTR)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "midsegment_of_quadrilateral_judgment_midpoint(1,VS,QUTR)"
+    "problem_id": 35,
+    "source": "Geometry3k-35",
+    "problem_level": 2,
+    "problem_img": "35.png",
+    "construction_cdl": [
+        "Shape(QV,VS,SR,RQ)",
+        "Shape(VU,UT,TS,SV)",
+        "Collinear(QVU)",
+        "Collinear(RST)"
     ],
-    "midsegment_of_quadrilateral_judgment_midpoint(1,VS,QUTR)": [
-      "midsegment_of_quadrilateral_property_length(1,VS,QUTR)"
-    ]
-  }
+    "text_cdl": [
+        "Equal(LengthOfLine(QR),2)",
+        "Equal(LengthOfLine(VS),7)",
+        "IsMidpointOfLine(S,RT)",
+        "IsMidpointOfLine(V,QU)",
+        "Trapezoid(QUTR)"
+    ],
+    "image_cdl": [],
+    "goal_cdl": "Value(LengthOfLine(UT))",
+    "problem_answer": "12",
+    "theorem_seqs": [
+        "midsegment_of_quadrilateral_judgment_midpoint(1,VS,QUTR)",
+        "midsegment_of_quadrilateral_property_length(1,VS,QUTR)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "midsegment_of_quadrilateral_judgment_midpoint(1,VS,QUTR)"
+        ],
+        "midsegment_of_quadrilateral_judgment_midpoint(1,VS,QUTR)": [
+            "midsegment_of_quadrilateral_property_length(1,VS,QUTR)"
+        ]
+    }
 }

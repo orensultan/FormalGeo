@@ -1,38 +1,35 @@
 {
-  "problem_id": 6928,
-  "annotation": "ChengQin_2023-06-04",
-  "source": "GeoQA-angle-10180",
-  "problem_level": 3,
-  "problem_text_cn": "如图所示，∠CBE=56°，O是圆O的圆心。求∠COA的大小。",
-  "problem_text_en": "As shown in the diagram, ∠CBE=56°, the center of circle O is O. Find the measure of ∠COA.",
-  "problem_img": "6928.png",
-  "construction_cdl": [
-    "Shape(DA,AO,OC,CD)",
-    "Shape(ODA,AD)",
-    "Shape(OCD,DC)",
-    "Shape(OA,AB,BC,CO)",
-    "Shape(OAB,BA)",
-    "Shape(OBC,CB)",
-    "Collinear(ABE)",
-    "Cocircular(O,ABCD)"
-  ],
-  "text_cdl": [
-    "Equal(MeasureOfAngle(CBE),56)",
-    "IsCentreOfCircle(O,O)"
-  ],
-  "image_cdl": [],
-  "goal_cdl": "Value(MeasureOfAngle(COA))",
-  "problem_answer": "112",
-  "theorem_seqs": [
-    "arc_property_circumference_angle_internal(1,OAC,B)",
-    "adjacent_complementary_angle(1,ABC,CBE)",
-    "arc_property_center_angle(1,OAC,O)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "arc_property_circumference_angle_internal(1,OAC,B)",
-      "adjacent_complementary_angle(1,ABC,CBE)",
-      "arc_property_center_angle(1,OAC,O)"
-    ]
-  }
+    "problem_id": 6928,
+    "source": "GeoQA-angle-10180",
+    "problem_level": 3,
+    "problem_img": "6928.png",
+    "construction_cdl": [
+        "Shape(DA,AO,OC,CD)",
+        "Shape(ODA,AD)",
+        "Shape(OCD,DC)",
+        "Shape(OA,AB,BC,CO)",
+        "Shape(OAB,BA)",
+        "Shape(OBC,CB)",
+        "Collinear(ABE)",
+        "Cocircular(O,ABCD)"
+    ],
+    "text_cdl": [
+        "Equal(MeasureOfAngle(CBE),56)",
+        "IsCentreOfCircle(O,O)"
+    ],
+    "image_cdl": [],
+    "goal_cdl": "Value(MeasureOfAngle(COA))",
+    "problem_answer": "112",
+    "theorem_seqs": [
+        "arc_property_circumference_angle_internal(1,OAC,B)",
+        "adjacent_complementary_angle(1,ABC,CBE)",
+        "arc_property_center_angle(1,OAC,O)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "arc_property_circumference_angle_internal(1,OAC,B)",
+            "adjacent_complementary_angle(1,ABC,CBE)",
+            "arc_property_center_angle(1,OAC,O)"
+        ]
+    }
 }

@@ -1,58 +1,55 @@
 {
-  "problem_id": 3430,
-  "annotation": "NaZhu_2023-04-30",
-  "source": "GeoQA-987",
-  "problem_level": 6,
-  "problem_text_cn": "如图所示，∠GHD=80°，∠MGA=∠HGM，AB平行于CD。求∠GMH的大小。",
-  "problem_text_en": "As shown in the diagram, ∠GHD=80°, ∠MGA=∠HGM, AB is parallel to CD. Find the measure of ∠GMH.",
-  "problem_img": "3430.png",
-  "construction_cdl": [
-    "Shape(GM,MH,HG)",
-    "Shape(AG,GE)",
-    "Shape(EG,GB)",
-    "Shape(MG,GA)",
-    "Shape(BG,GH)",
-    "Shape(CM,MG)",
-    "Shape(NM,MC)",
-    "Shape(HM,MN)",
-    "Shape(FH,HM)",
-    "Shape(DH,HF)",
-    "Shape(GH,HD)",
-    "Collinear(AGB)",
-    "Collinear(CMHD)",
-    "Collinear(EHF)",
-    "Collinear(GMN)"
-  ],
-  "text_cdl": [
-    "Equal(MeasureOfAngle(GHD),80)",
-    "Equal(MeasureOfAngle(MGA),MeasureOfAngle(HGM))",
-    "ParallelBetweenLine(AB,CD)"
-  ],
-  "image_cdl": [],
-  "goal_cdl": "Value(MeasureOfAngle(GMH))",
-  "problem_answer": "40",
-  "theorem_seqs": [
-    "parallel_property_collinear_extend(3,AB,CD,G)",
-    "parallel_property_collinear_extend(3,DC,GA,M)",
-    "parallel_property_collinear_extend(3,DC,GA,H)",
-    "parallel_property_alternate_interior_angle(2,AG,HD)",
-    "angle_addition(1,HGM,MGA)",
-    "parallel_property_alternate_interior_angle(2,AG,MD)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "parallel_property_collinear_extend(3,AB,CD,G)",
-      "angle_addition(1,HGM,MGA)"
+    "problem_id": 3430,
+    "source": "GeoQA-987",
+    "problem_level": 6,
+    "problem_img": "3430.png",
+    "construction_cdl": [
+        "Shape(GM,MH,HG)",
+        "Shape(AG,GE)",
+        "Shape(EG,GB)",
+        "Shape(MG,GA)",
+        "Shape(BG,GH)",
+        "Shape(CM,MG)",
+        "Shape(NM,MC)",
+        "Shape(HM,MN)",
+        "Shape(FH,HM)",
+        "Shape(DH,HF)",
+        "Shape(GH,HD)",
+        "Collinear(AGB)",
+        "Collinear(CMHD)",
+        "Collinear(EHF)",
+        "Collinear(GMN)"
     ],
-    "parallel_property_collinear_extend(3,AB,CD,G)": [
-      "parallel_property_collinear_extend(3,DC,GA,M)",
-      "parallel_property_collinear_extend(3,DC,GA,H)"
+    "text_cdl": [
+        "Equal(MeasureOfAngle(GHD),80)",
+        "Equal(MeasureOfAngle(MGA),MeasureOfAngle(HGM))",
+        "ParallelBetweenLine(AB,CD)"
     ],
-    "parallel_property_collinear_extend(3,DC,GA,M)": [
-      "parallel_property_alternate_interior_angle(2,AG,MD)"
+    "image_cdl": [],
+    "goal_cdl": "Value(MeasureOfAngle(GMH))",
+    "problem_answer": "40",
+    "theorem_seqs": [
+        "parallel_property_collinear_extend(3,AB,CD,G)",
+        "parallel_property_collinear_extend(3,DC,GA,M)",
+        "parallel_property_collinear_extend(3,DC,GA,H)",
+        "parallel_property_alternate_interior_angle(2,AG,HD)",
+        "angle_addition(1,HGM,MGA)",
+        "parallel_property_alternate_interior_angle(2,AG,MD)"
     ],
-    "parallel_property_collinear_extend(3,DC,GA,H)": [
-      "parallel_property_alternate_interior_angle(2,AG,HD)"
-    ]
-  }
+    "theorem_seqs_dag": {
+        "START": [
+            "parallel_property_collinear_extend(3,AB,CD,G)",
+            "angle_addition(1,HGM,MGA)"
+        ],
+        "parallel_property_collinear_extend(3,AB,CD,G)": [
+            "parallel_property_collinear_extend(3,DC,GA,M)",
+            "parallel_property_collinear_extend(3,DC,GA,H)"
+        ],
+        "parallel_property_collinear_extend(3,DC,GA,M)": [
+            "parallel_property_alternate_interior_angle(2,AG,MD)"
+        ],
+        "parallel_property_collinear_extend(3,DC,GA,H)": [
+            "parallel_property_alternate_interior_angle(2,AG,HD)"
+        ]
+    }
 }

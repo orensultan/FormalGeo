@@ -1,36 +1,33 @@
 {
-  "problem_id": 3572,
-  "annotation": "YanjunGuo_2023-04-30",
-  "source": "GeoQA-1210",
-  "problem_level": 3,
-  "problem_text_cn": "如图所示，∠ACD=40°，OD平分∠COB，CD∥OB。求∠ODC的大小。",
-  "problem_text_en": "As shown in the diagram, ∠ACD=40°, OD is the angle bisector of ∠COB, CD∥OB. Find the measure of ∠ODC.",
-  "problem_img": "3572.png",
-  "construction_cdl": [
-    "Shape(AC,CD,DA)",
-    "Shape(CO,OD,DC)",
-    "Shape(DO,OB,BD)",
-    "Collinear(ACO)",
-    "Collinear(ADB)"
-  ],
-  "text_cdl": [
-    "Equal(MeasureOfAngle(ACD),40)",
-    "IsBisectorOfAngle(OD,COB)",
-    "ParallelBetweenLine(CD,OB)"
-  ],
-  "image_cdl": [],
-  "goal_cdl": "Value(MeasureOfAngle(ODC))",
-  "problem_answer": "20",
-  "theorem_seqs": [
-    "parallel_property_corresponding_angle(1,CD,OB,A)",
-    "angle_addition(1,COD,DOB)",
-    "parallel_property_alternate_interior_angle(2,CD,OB)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "parallel_property_corresponding_angle(1,CD,OB,A)",
-      "angle_addition(1,COD,DOB)",
-      "parallel_property_alternate_interior_angle(2,CD,OB)"
-    ]
-  }
+    "problem_id": 3572,
+    "source": "GeoQA-1210",
+    "problem_level": 3,
+    "problem_img": "3572.png",
+    "construction_cdl": [
+        "Shape(AC,CD,DA)",
+        "Shape(CO,OD,DC)",
+        "Shape(DO,OB,BD)",
+        "Collinear(ACO)",
+        "Collinear(ADB)"
+    ],
+    "text_cdl": [
+        "Equal(MeasureOfAngle(ACD),40)",
+        "IsBisectorOfAngle(OD,COB)",
+        "ParallelBetweenLine(CD,OB)"
+    ],
+    "image_cdl": [],
+    "goal_cdl": "Value(MeasureOfAngle(ODC))",
+    "problem_answer": "20",
+    "theorem_seqs": [
+        "parallel_property_corresponding_angle(1,CD,OB,A)",
+        "angle_addition(1,COD,DOB)",
+        "parallel_property_alternate_interior_angle(2,CD,OB)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "parallel_property_corresponding_angle(1,CD,OB,A)",
+            "angle_addition(1,COD,DOB)",
+            "parallel_property_alternate_interior_angle(2,CD,OB)"
+        ]
+    }
 }

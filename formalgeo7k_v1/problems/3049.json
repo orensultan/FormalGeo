@@ -1,33 +1,30 @@
 {
-  "problem_id": 3049,
-  "annotation": "XiaokaiZhang_2023-04-16",
-  "source": "GeoQA-265",
-  "problem_level": 2,
-  "problem_text_cn": "如图所示，∠COB=145°，DO⊥CO。求∠DOA的大小。",
-  "problem_text_en": "As shown in the diagram, ∠COB=145°, DO is perpendicular to CO. Find the measure of ∠DOA.",
-  "problem_img": "3049.png",
-  "construction_cdl": [
-    "Shape(AO,OC)",
-    "Shape(CO,OB)",
-    "Shape(BO,OD)",
-    "Shape(DO,OA)",
-    "Collinear(AOB)"
-  ],
-  "text_cdl": [
-    "Equal(MeasureOfAngle(COB),145)",
-    "PerpendicularBetweenLine(DO,CO)"
-  ],
-  "image_cdl": [],
-  "goal_cdl": "Value(MeasureOfAngle(DOA))",
-  "problem_answer": "55",
-  "theorem_seqs": [
-    "adjacent_complementary_angle(1,AOC,COB)",
-    "angle_addition(1,DOA,AOC)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "adjacent_complementary_angle(1,AOC,COB)",
-      "angle_addition(1,DOA,AOC)"
-    ]
-  }
+    "problem_id": 3049,
+    "source": "GeoQA-265",
+    "problem_level": 2,
+    "problem_img": "3049.png",
+    "construction_cdl": [
+        "Shape(AO,OC)",
+        "Shape(CO,OB)",
+        "Shape(BO,OD)",
+        "Shape(DO,OA)",
+        "Collinear(AOB)"
+    ],
+    "text_cdl": [
+        "Equal(MeasureOfAngle(COB),145)",
+        "PerpendicularBetweenLine(DO,CO)"
+    ],
+    "image_cdl": [],
+    "goal_cdl": "Value(MeasureOfAngle(DOA))",
+    "problem_answer": "55",
+    "theorem_seqs": [
+        "adjacent_complementary_angle(1,AOC,COB)",
+        "angle_addition(1,DOA,AOC)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "adjacent_complementary_angle(1,AOC,COB)",
+            "angle_addition(1,DOA,AOC)"
+        ]
+    }
 }

@@ -1,36 +1,33 @@
 {
-  "problem_id": 2894,
-  "annotation": "YimingHe_2023-04-16",
-  "source": "GeoQA-63",
-  "problem_level": 3,
-  "problem_text_cn": "如图所示，∠ABC=40°，∠CAB=90°，BC平行于ED。求∠FDE的大小。",
-  "problem_text_en": "As shown in the diagram, ∠ABC=40°, ∠CAB=90°, BC∥ED. Find the measure of ∠FDE.",
-  "problem_img": "2894.png",
-  "construction_cdl": [
-    "Shape(AB,BC,CA)",
-    "Shape(BE,ED,DC,CB)",
-    "Shape(EG,GF,FD,DE)",
-    "Collinear(ABEG)",
-    "Collinear(ACDF)"
-  ],
-  "text_cdl": [
-    "Equal(MeasureOfAngle(ABC),40)",
-    "Equal(MeasureOfAngle(CAB),90)",
-    "ParallelBetweenLine(BC,ED)"
-  ],
-  "image_cdl": [],
-  "goal_cdl": "Value(MeasureOfAngle(FDE))",
-  "problem_answer": "130",
-  "theorem_seqs": [
-    "triangle_property_angle_sum(1,ABC)",
-    "parallel_property_corresponding_angle(2,DE,CB,A)",
-    "adjacent_complementary_angle(1,FDE,EDC)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "triangle_property_angle_sum(1,ABC)",
-      "parallel_property_corresponding_angle(2,DE,CB,A)",
-      "adjacent_complementary_angle(1,FDE,EDC)"
-    ]
-  }
+    "problem_id": 2894,
+    "source": "GeoQA-63",
+    "problem_level": 3,
+    "problem_img": "2894.png",
+    "construction_cdl": [
+        "Shape(AB,BC,CA)",
+        "Shape(BE,ED,DC,CB)",
+        "Shape(EG,GF,FD,DE)",
+        "Collinear(ABEG)",
+        "Collinear(ACDF)"
+    ],
+    "text_cdl": [
+        "Equal(MeasureOfAngle(ABC),40)",
+        "Equal(MeasureOfAngle(CAB),90)",
+        "ParallelBetweenLine(BC,ED)"
+    ],
+    "image_cdl": [],
+    "goal_cdl": "Value(MeasureOfAngle(FDE))",
+    "problem_answer": "130",
+    "theorem_seqs": [
+        "triangle_property_angle_sum(1,ABC)",
+        "parallel_property_corresponding_angle(2,DE,CB,A)",
+        "adjacent_complementary_angle(1,FDE,EDC)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "triangle_property_angle_sum(1,ABC)",
+            "parallel_property_corresponding_angle(2,DE,CB,A)",
+            "adjacent_complementary_angle(1,FDE,EDC)"
+        ]
+    }
 }

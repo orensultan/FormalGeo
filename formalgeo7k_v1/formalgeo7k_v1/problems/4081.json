@@ -1,34 +1,31 @@
 {
-  "problem_id": 4081,
-  "annotation": "YanjunGuo_2023-05-07",
-  "source": "GeoQA-2436",
-  "problem_level": 2,
-  "problem_text_cn": "如图所示，BC=6，DB=1/2，EB=1，△DEB相似于△ABC。求直线AC的长度。",
-  "problem_text_en": "As shown in the diagram, BC=6, DB=1/2, EB=1, triangle DEB is similar to triangle ABC.. Find the length of line AC.",
-  "problem_img": "4081.png",
-  "construction_cdl": [
-    "Shape(DE,EB,BD)",
-    "Shape(AB,BC,CA)",
-    "Shape(DB,BA)",
-    "Collinear(EBC)"
-  ],
-  "text_cdl": [
-    "Equal(LengthOfLine(BC),6)",
-    "Equal(LengthOfLine(DB),1/2)",
-    "Equal(LengthOfLine(EB),1)",
-    "SimilarBetweenTriangle(DEB,ABC)"
-  ],
-  "image_cdl": [],
-  "goal_cdl": "Value(LengthOfLine(AC))",
-  "problem_answer": "3",
-  "theorem_seqs": [
-    "similar_triangle_property_line_ratio(1,DEB,ABC)",
-    "similar_triangle_property_line_ratio(1,EBD,BCA)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "similar_triangle_property_line_ratio(1,DEB,ABC)",
-      "similar_triangle_property_line_ratio(1,EBD,BCA)"
-    ]
-  }
+    "problem_id": 4081,
+    "source": "GeoQA-2436",
+    "problem_level": 2,
+    "problem_img": "4081.png",
+    "construction_cdl": [
+        "Shape(DE,EB,BD)",
+        "Shape(AB,BC,CA)",
+        "Shape(DB,BA)",
+        "Collinear(EBC)"
+    ],
+    "text_cdl": [
+        "Equal(LengthOfLine(BC),6)",
+        "Equal(LengthOfLine(DB),1/2)",
+        "Equal(LengthOfLine(EB),1)",
+        "SimilarBetweenTriangle(DEB,ABC)"
+    ],
+    "image_cdl": [],
+    "goal_cdl": "Value(LengthOfLine(AC))",
+    "problem_answer": "3",
+    "theorem_seqs": [
+        "similar_triangle_property_line_ratio(1,DEB,ABC)",
+        "similar_triangle_property_line_ratio(1,EBD,BCA)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "similar_triangle_property_line_ratio(1,DEB,ABC)",
+            "similar_triangle_property_line_ratio(1,EBD,BCA)"
+        ]
+    }
 }

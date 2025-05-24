@@ -1,27 +1,24 @@
 {
-  "problem_id": 6288,
-  "annotation": "ZheZhu_2023-05-28",
-  "source": "GeoQA-8980",
-  "problem_level": 1,
-  "problem_text_cn": "如图所示，AB=3，ABCD是正方形。求ABCD的面积。",
-  "problem_text_en": "As shown in the diagram, AB=3, ABCD is a square. Find the area of quadrilateral ABCD.",
-  "problem_img": "6288.png",
-  "construction_cdl": [
-    "Shape(AB,BC,CD,DA)"
-  ],
-  "text_cdl": [
-    "Equal(LengthOfLine(AB),3)",
-    "Square(ABCD)"
-  ],
-  "image_cdl": [],
-  "goal_cdl": "Value(AreaOfQuadrilateral(ABCD))",
-  "problem_answer": "9",
-  "theorem_seqs": [
-    "parallelogram_area_formula_sine(1,DABC)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "parallelogram_area_formula_sine(1,DABC)"
-    ]
-  }
+    "problem_id": 6288,
+    "source": "GeoQA-8980",
+    "problem_level": 1,
+    "problem_img": "6288.png",
+    "construction_cdl": [
+        "Shape(AB,BC,CD,DA)"
+    ],
+    "text_cdl": [
+        "Equal(LengthOfLine(AB),3)",
+        "Square(ABCD)"
+    ],
+    "image_cdl": [],
+    "goal_cdl": "Value(AreaOfQuadrilateral(ABCD))",
+    "problem_answer": "9",
+    "theorem_seqs": [
+        "parallelogram_area_formula_sine(1,DABC)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "parallelogram_area_formula_sine(1,DABC)"
+        ]
+    }
 }

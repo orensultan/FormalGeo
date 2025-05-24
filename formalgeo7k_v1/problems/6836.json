@@ -1,31 +1,28 @@
 {
-  "problem_id": 6836,
-  "annotation": "ChenyangMao_2023-06-04",
-  "source": "GeoQA-angle-10052",
-  "problem_level": 2,
-  "problem_text_cn": "如图所示，∠DCE=80°，BA和CD是平行四边形ABCD的一组对边。求∠DAB的大小。",
-  "problem_text_en": "As shown in the diagram, ∠DCE=80°, AD and BC are opposite sides of the ▱ ABCD. Find the measure of ∠DAB.",
-  "problem_img": "6836.png",
-  "construction_cdl": [
-    "Shape(AB,BC,CD,DA)",
-    "Shape(DC,CE)",
-    "Collinear(BCE)"
-  ],
-  "text_cdl": [
-    "Equal(MeasureOfAngle(DCE),80)",
-    "Parallelogram(ABCD)"
-  ],
-  "image_cdl": [],
-  "goal_cdl": "Value(MeasureOfAngle(DAB))",
-  "problem_answer": "100",
-  "theorem_seqs": [
-    "parallelogram_property_opposite_angle_equal(1,ABCD)",
-    "adjacent_complementary_angle(1,BCD,DCE)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "parallelogram_property_opposite_angle_equal(1,ABCD)",
-      "adjacent_complementary_angle(1,BCD,DCE)"
-    ]
-  }
+    "problem_id": 6836,
+    "source": "GeoQA-angle-10052",
+    "problem_level": 2,
+    "problem_img": "6836.png",
+    "construction_cdl": [
+        "Shape(AB,BC,CD,DA)",
+        "Shape(DC,CE)",
+        "Collinear(BCE)"
+    ],
+    "text_cdl": [
+        "Equal(MeasureOfAngle(DCE),80)",
+        "Parallelogram(ABCD)"
+    ],
+    "image_cdl": [],
+    "goal_cdl": "Value(MeasureOfAngle(DAB))",
+    "problem_answer": "100",
+    "theorem_seqs": [
+        "parallelogram_property_opposite_angle_equal(1,ABCD)",
+        "adjacent_complementary_angle(1,BCD,DCE)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "parallelogram_property_opposite_angle_equal(1,ABCD)",
+            "adjacent_complementary_angle(1,BCD,DCE)"
+        ]
+    }
 }

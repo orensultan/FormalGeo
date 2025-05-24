@@ -1,36 +1,33 @@
 {
-  "problem_id": 3636,
-  "annotation": "QikeHuang_2023-04-30",
-  "source": "GeoQA-1323",
-  "problem_level": 2,
-  "problem_text_cn": "如图所示，∠ABE=20°，∠ABE=∠DEB，∠EAB=75°。求∠CED的大小。",
-  "problem_text_en": "As shown in the diagram, ∠ABE=20°, ∠ABE=∠DEB, ∠EAB=75°. Find the measure of ∠CED.",
-  "problem_img": "3636.png",
-  "construction_cdl": [
-    "Shape(AB,BE,EA)",
-    "Shape(EB,BD,DE)",
-    "Shape(ED,DC,CE)",
-    "Collinear(AEC)",
-    "Collinear(BDC)"
-  ],
-  "text_cdl": [
-    "Equal(MeasureOfAngle(ABE),20)",
-    "Equal(MeasureOfAngle(ABE),MeasureOfAngle(DEB))",
-    "Equal(MeasureOfAngle(EAB),75)"
-  ],
-  "image_cdl": [],
-  "goal_cdl": "Value(MeasureOfAngle(CED))",
-  "problem_answer": "75",
-  "theorem_seqs": [
-    "parallel_judgment_alternate_interior_angle(1,BA,DE)",
-    "parallel_property_corresponding_angle(1,ED,AB,C)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "parallel_judgment_alternate_interior_angle(1,BA,DE)"
+    "problem_id": 3636,
+    "source": "GeoQA-1323",
+    "problem_level": 2,
+    "problem_img": "3636.png",
+    "construction_cdl": [
+        "Shape(AB,BE,EA)",
+        "Shape(EB,BD,DE)",
+        "Shape(ED,DC,CE)",
+        "Collinear(AEC)",
+        "Collinear(BDC)"
     ],
-    "parallel_judgment_alternate_interior_angle(1,BA,DE)": [
-      "parallel_property_corresponding_angle(1,ED,AB,C)"
-    ]
-  }
+    "text_cdl": [
+        "Equal(MeasureOfAngle(ABE),20)",
+        "Equal(MeasureOfAngle(ABE),MeasureOfAngle(DEB))",
+        "Equal(MeasureOfAngle(EAB),75)"
+    ],
+    "image_cdl": [],
+    "goal_cdl": "Value(MeasureOfAngle(CED))",
+    "problem_answer": "75",
+    "theorem_seqs": [
+        "parallel_judgment_alternate_interior_angle(1,BA,DE)",
+        "parallel_property_corresponding_angle(1,ED,AB,C)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "parallel_judgment_alternate_interior_angle(1,BA,DE)"
+        ],
+        "parallel_judgment_alternate_interior_angle(1,BA,DE)": [
+            "parallel_property_corresponding_angle(1,ED,AB,C)"
+        ]
+    }
 }

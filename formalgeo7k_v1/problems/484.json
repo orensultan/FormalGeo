@@ -1,34 +1,31 @@
 {
-  "problem_id": 484,
-  "annotation": "JiaZou_2023-03-12",
-  "source": "Geometry3k-495",
-  "problem_level": 1,
-  "problem_text_cn": "如图所示，AB=5*x+5，AC=4*x，BC=8*x+9，△ABC的周长为65。求直线AC的长度。",
-  "problem_text_en": "As shown in the diagram, AB=5*x+5, AC=4*x, BC=8*x+9, the perimeter of triangle ABC is 65. Find the length of line AC.",
-  "problem_img": "484.png",
-  "construction_cdl": [
-    "Shape(AB,BC,CA)"
-  ],
-  "text_cdl": [
-    "Equal(LengthOfLine(AB),5*x+5)",
-    "Equal(LengthOfLine(AC),4*x)",
-    "Equal(LengthOfLine(BC),8*x+9)",
-    "Equal(PerimeterOfTriangle(ABC),65)"
-  ],
-  "image_cdl": [
-    "Equal(LengthOfLine(AB),5*x+5)",
-    "Equal(LengthOfLine(AC),4*x)",
-    "Equal(LengthOfLine(BC),8*x+9)",
-    "Equal(PerimeterOfTriangle(ABC),65)"
-  ],
-  "goal_cdl": "Value(LengthOfLine(AC))",
-  "problem_answer": "12",
-  "theorem_seqs": [
-    "triangle_perimeter_formula(1,ABC)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "triangle_perimeter_formula(1,ABC)"
-    ]
-  }
+    "problem_id": 484,
+    "source": "Geometry3k-495",
+    "problem_level": 1,
+    "problem_img": "484.png",
+    "construction_cdl": [
+        "Shape(AB,BC,CA)"
+    ],
+    "text_cdl": [
+        "Equal(LengthOfLine(AB),5*x+5)",
+        "Equal(LengthOfLine(AC),4*x)",
+        "Equal(LengthOfLine(BC),8*x+9)",
+        "Equal(PerimeterOfTriangle(ABC),65)"
+    ],
+    "image_cdl": [
+        "Equal(LengthOfLine(AB),5*x+5)",
+        "Equal(LengthOfLine(AC),4*x)",
+        "Equal(LengthOfLine(BC),8*x+9)",
+        "Equal(PerimeterOfTriangle(ABC),65)"
+    ],
+    "goal_cdl": "Value(LengthOfLine(AC))",
+    "problem_answer": "12",
+    "theorem_seqs": [
+        "triangle_perimeter_formula(1,ABC)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "triangle_perimeter_formula(1,ABC)"
+        ]
+    }
 }

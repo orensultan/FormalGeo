@@ -1,51 +1,48 @@
 {
-  "problem_id": 3561,
-  "annotation": "YanjunGuo_2023-04-30",
-  "source": "GeoQA-1191",
-  "problem_level": 5,
-  "problem_text_cn": "如图所示，Add(MeasureOfAngle(HBA)=MeasureOfAngle(DCB))，∠EDF=121°，BC∥HD。求∠GHB的大小。",
-  "problem_text_en": "As shown in the diagram, Add(MeasureOfAngle(HBA)=MeasureOfAngle(DCB)), ∠EDF=121°, BC∥HD. Find the measure of ∠GHB.",
-  "problem_img": "3561.png",
-  "construction_cdl": [
-    "Shape(HB,BA)",
-    "Shape(BH,HD,DC,CB)",
-    "Shape(GH,HB)",
-    "Shape(CD,DE)",
-    "Shape(ED,DF)",
-    "Shape(DH,HI)",
-    "Shape(FD,DH)",
-    "Shape(IH,HG)",
-    "Collinear(ABC)",
-    "Collinear(GHDE)",
-    "Collinear(BHI)",
-    "Collinear(CDF)"
-  ],
-  "text_cdl": [
-    "Equal(Add(MeasureOfAngle(HBA),MeasureOfAngle(DCB)),90)",
-    "Equal(MeasureOfAngle(EDF),121)",
-    "ParallelBetweenLine(BC,HD)"
-  ],
-  "image_cdl": [],
-  "goal_cdl": "Value(MeasureOfAngle(GHB))",
-  "problem_answer": "149",
-  "theorem_seqs": [
-    "parallel_property_collinear_extend(1,BC,HD,A)",
-    "parallel_property_collinear_extend(2,DH,BA,G)",
-    "vertical_angle(1,GDC,EDF)",
-    "parallel_property_ipsilateral_internal_angle(1,DH,CB)",
-    "parallel_property_ipsilateral_internal_angle(1,HG,BA)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "parallel_property_collinear_extend(1,BC,HD,A)",
-      "vertical_angle(1,GDC,EDF)",
-      "parallel_property_ipsilateral_internal_angle(1,DH,CB)"
+    "problem_id": 3561,
+    "source": "GeoQA-1191",
+    "problem_level": 5,
+    "problem_img": "3561.png",
+    "construction_cdl": [
+        "Shape(HB,BA)",
+        "Shape(BH,HD,DC,CB)",
+        "Shape(GH,HB)",
+        "Shape(CD,DE)",
+        "Shape(ED,DF)",
+        "Shape(DH,HI)",
+        "Shape(FD,DH)",
+        "Shape(IH,HG)",
+        "Collinear(ABC)",
+        "Collinear(GHDE)",
+        "Collinear(BHI)",
+        "Collinear(CDF)"
     ],
-    "parallel_property_collinear_extend(1,BC,HD,A)": [
-      "parallel_property_collinear_extend(2,DH,BA,G)"
+    "text_cdl": [
+        "Equal(Add(MeasureOfAngle(HBA),MeasureOfAngle(DCB)),90)",
+        "Equal(MeasureOfAngle(EDF),121)",
+        "ParallelBetweenLine(BC,HD)"
     ],
-    "parallel_property_collinear_extend(2,DH,BA,G)": [
-      "parallel_property_ipsilateral_internal_angle(1,HG,BA)"
-    ]
-  }
+    "image_cdl": [],
+    "goal_cdl": "Value(MeasureOfAngle(GHB))",
+    "problem_answer": "149",
+    "theorem_seqs": [
+        "parallel_property_collinear_extend(1,BC,HD,A)",
+        "parallel_property_collinear_extend(2,DH,BA,G)",
+        "vertical_angle(1,GDC,EDF)",
+        "parallel_property_ipsilateral_internal_angle(1,DH,CB)",
+        "parallel_property_ipsilateral_internal_angle(1,HG,BA)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "parallel_property_collinear_extend(1,BC,HD,A)",
+            "vertical_angle(1,GDC,EDF)",
+            "parallel_property_ipsilateral_internal_angle(1,DH,CB)"
+        ],
+        "parallel_property_collinear_extend(1,BC,HD,A)": [
+            "parallel_property_collinear_extend(2,DH,BA,G)"
+        ],
+        "parallel_property_collinear_extend(2,DH,BA,G)": [
+            "parallel_property_ipsilateral_internal_angle(1,HG,BA)"
+        ]
+    }
 }

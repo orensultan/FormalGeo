@@ -1,54 +1,51 @@
 {
-  "problem_id": 5436,
-  "annotation": "YangLi_2023-05-21",
-  "source": "GeoQA-5775",
-  "problem_level": 8,
-  "problem_text_cn": "如图所示，ABCD的周长为8，E是线段BC的中点，F平分线段DC，O平分线段AC，ABCD是▱。求四边形OECF的周长。",
-  "problem_text_en": "As shown in the diagram, the perimeter of ABCD is 8, E is the midpoint of segment BC, F is the midpoint of segment DC, O bisects segment AC, AD and BC are opposite sides of the ▱ ABCD. Find the perimeter of quadrilateral OECF.",
-  "problem_img": "5436.png",
-  "construction_cdl": [
-    "Shape(CF,FO,OC)",
-    "Shape(CO,OE,EC)",
-    "Shape(OF,FD,DA,AO)",
-    "Shape(EO,OA,AB,BE)",
-    "Collinear(AOC)",
-    "Collinear(DFC)",
-    "Collinear(BEC)"
-  ],
-  "text_cdl": [
-    "Equal(PerimeterOfQuadrilateral(ABCD),8)",
-    "IsMidpointOfLine(E,BC)",
-    "IsMidpointOfLine(F,DC)",
-    "IsMidpointOfLine(O,AC)",
-    "Parallelogram(ABCD)"
-  ],
-  "image_cdl": [],
-  "goal_cdl": "Value(PerimeterOfQuadrilateral(OECF))",
-  "problem_answer": "4",
-  "theorem_seqs": [
-    "quadrilateral_perimeter_formula(1,ABCD)",
-    "midsegment_of_triangle_judgment_midpoint(1,OE,CAB)",
-    "midsegment_of_triangle_judgment_midpoint(1,FO,CDA)",
-    "midsegment_of_triangle_property_length(1,OE,CAB)",
-    "midsegment_of_triangle_property_length(1,FO,CDA)",
-    "line_addition(1,DF,FC)",
-    "line_addition(1,CE,EB)",
-    "quadrilateral_perimeter_formula(1,CFOE)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "quadrilateral_perimeter_formula(1,ABCD)",
-      "midsegment_of_triangle_judgment_midpoint(1,OE,CAB)",
-      "midsegment_of_triangle_judgment_midpoint(1,FO,CDA)",
-      "line_addition(1,DF,FC)",
-      "line_addition(1,CE,EB)",
-      "quadrilateral_perimeter_formula(1,CFOE)"
+    "problem_id": 5436,
+    "source": "GeoQA-5775",
+    "problem_level": 8,
+    "problem_img": "5436.png",
+    "construction_cdl": [
+        "Shape(CF,FO,OC)",
+        "Shape(CO,OE,EC)",
+        "Shape(OF,FD,DA,AO)",
+        "Shape(EO,OA,AB,BE)",
+        "Collinear(AOC)",
+        "Collinear(DFC)",
+        "Collinear(BEC)"
     ],
-    "midsegment_of_triangle_judgment_midpoint(1,OE,CAB)": [
-      "midsegment_of_triangle_property_length(1,OE,CAB)"
+    "text_cdl": [
+        "Equal(PerimeterOfQuadrilateral(ABCD),8)",
+        "IsMidpointOfLine(E,BC)",
+        "IsMidpointOfLine(F,DC)",
+        "IsMidpointOfLine(O,AC)",
+        "Parallelogram(ABCD)"
     ],
-    "midsegment_of_triangle_judgment_midpoint(1,FO,CDA)": [
-      "midsegment_of_triangle_property_length(1,FO,CDA)"
-    ]
-  }
+    "image_cdl": [],
+    "goal_cdl": "Value(PerimeterOfQuadrilateral(OECF))",
+    "problem_answer": "4",
+    "theorem_seqs": [
+        "quadrilateral_perimeter_formula(1,ABCD)",
+        "midsegment_of_triangle_judgment_midpoint(1,OE,CAB)",
+        "midsegment_of_triangle_judgment_midpoint(1,FO,CDA)",
+        "midsegment_of_triangle_property_length(1,OE,CAB)",
+        "midsegment_of_triangle_property_length(1,FO,CDA)",
+        "line_addition(1,DF,FC)",
+        "line_addition(1,CE,EB)",
+        "quadrilateral_perimeter_formula(1,CFOE)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "quadrilateral_perimeter_formula(1,ABCD)",
+            "midsegment_of_triangle_judgment_midpoint(1,OE,CAB)",
+            "midsegment_of_triangle_judgment_midpoint(1,FO,CDA)",
+            "line_addition(1,DF,FC)",
+            "line_addition(1,CE,EB)",
+            "quadrilateral_perimeter_formula(1,CFOE)"
+        ],
+        "midsegment_of_triangle_judgment_midpoint(1,OE,CAB)": [
+            "midsegment_of_triangle_property_length(1,OE,CAB)"
+        ],
+        "midsegment_of_triangle_judgment_midpoint(1,FO,CDA)": [
+            "midsegment_of_triangle_property_length(1,FO,CDA)"
+        ]
+    }
 }

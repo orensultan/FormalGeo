@@ -1,49 +1,46 @@
 {
-  "problem_id": 3941,
-  "annotation": "FangzhenZhu_2023-05-07",
-  "source": "GeoQA-1862",
-  "problem_level": 5,
-  "problem_text_cn": "如图所示，∠DCA=20°，O是⊙O的圆心。求∠BAD的大小。",
-  "problem_text_en": "As shown in the diagram, ∠DCA=20°, O is the center of circle O. Find the measure of ∠BAD.",
-  "problem_img": "3941.png",
-  "construction_cdl": [
-    "Shape(OAD,DA)",
-    "Shape(EA,AD,DE)",
-    "Shape(ODB,BO,OE,ED)",
-    "Shape(CE,EO,OB,BC)",
-    "Shape(OBC,CB)",
-    "Shape(OCA,AC)",
-    "Shape(CA,AE,EC)",
-    "Collinear(AEOB)",
-    "Collinear(CED)",
-    "Cocircular(O,ADBC)"
-  ],
-  "text_cdl": [
-    "Equal(MeasureOfAngle(DCA),20)",
-    "IsCentreOfCircle(O,O)"
-  ],
-  "image_cdl": [
-    "Equal(MeasureOfAngle(DCA),20)",
-    "IsCentreOfCircle(O,O)"
-  ],
-  "goal_cdl": "Value(MeasureOfAngle(BAD))",
-  "problem_answer": "70",
-  "theorem_seqs": [
-    "diameter_of_circle_judgment_pass_centre(1,AOB,O)",
-    "diameter_of_circle_property_right_angle(1,BCA,O)",
-    "angle_addition(1,BCD,DCA)",
-    "arc_property_circumference_angle_external(1,ODB,C)",
-    "arc_property_circumference_angle_external(1,ODB,A)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "diameter_of_circle_judgment_pass_centre(1,AOB,O)",
-      "angle_addition(1,BCD,DCA)",
-      "arc_property_circumference_angle_external(1,ODB,C)",
-      "arc_property_circumference_angle_external(1,ODB,A)"
+    "problem_id": 3941,
+    "source": "GeoQA-1862",
+    "problem_level": 5,
+    "problem_img": "3941.png",
+    "construction_cdl": [
+        "Shape(OAD,DA)",
+        "Shape(EA,AD,DE)",
+        "Shape(ODB,BO,OE,ED)",
+        "Shape(CE,EO,OB,BC)",
+        "Shape(OBC,CB)",
+        "Shape(OCA,AC)",
+        "Shape(CA,AE,EC)",
+        "Collinear(AEOB)",
+        "Collinear(CED)",
+        "Cocircular(O,ADBC)"
     ],
-    "diameter_of_circle_judgment_pass_centre(1,AOB,O)": [
-      "diameter_of_circle_property_right_angle(1,BCA,O)"
-    ]
-  }
+    "text_cdl": [
+        "Equal(MeasureOfAngle(DCA),20)",
+        "IsCentreOfCircle(O,O)"
+    ],
+    "image_cdl": [
+        "Equal(MeasureOfAngle(DCA),20)",
+        "IsCentreOfCircle(O,O)"
+    ],
+    "goal_cdl": "Value(MeasureOfAngle(BAD))",
+    "problem_answer": "70",
+    "theorem_seqs": [
+        "diameter_of_circle_judgment_pass_centre(1,AOB,O)",
+        "diameter_of_circle_property_right_angle(1,BCA,O)",
+        "angle_addition(1,BCD,DCA)",
+        "arc_property_circumference_angle_external(1,ODB,C)",
+        "arc_property_circumference_angle_external(1,ODB,A)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "diameter_of_circle_judgment_pass_centre(1,AOB,O)",
+            "angle_addition(1,BCD,DCA)",
+            "arc_property_circumference_angle_external(1,ODB,C)",
+            "arc_property_circumference_angle_external(1,ODB,A)"
+        ],
+        "diameter_of_circle_judgment_pass_centre(1,AOB,O)": [
+            "diameter_of_circle_property_right_angle(1,BCA,O)"
+        ]
+    }
 }

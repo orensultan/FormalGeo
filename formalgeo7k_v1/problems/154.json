@@ -1,51 +1,48 @@
 {
-  "problem_id": 154,
-  "annotation": "XiaokaiZhang_2023-04-02",
-  "source": "Geometry3k-156",
-  "problem_level": 3,
-  "problem_text_cn": "如图所示，AH=RH，HA=6-x，IJ=4/3*y+1，JE=2*y，RH=2*x+3，HJ平行于AE，RI∥HJ。求y的值。",
-  "problem_text_en": "As shown in the diagram, AH=RH, HA=6-x, IJ=4/3*y+1, JE=2*y, RH=2*x+3, HJ is parallel to AE, RI is parallel to HJ. Find the value of y.",
-  "problem_img": "154.png",
-  "construction_cdl": [
-    "Shape(RH,HJ,JI,IR)",
-    "Shape(HA,AE,EJ,JH)",
-    "Collinear(RHA)",
-    "Collinear(IJE)"
-  ],
-  "text_cdl": [
-    "Equal(LengthOfLine(AH),LengthOfLine(RH))",
-    "Equal(LengthOfLine(HA),6-x)",
-    "Equal(LengthOfLine(IJ),4/3*y+1)",
-    "Equal(LengthOfLine(JE),2*y)",
-    "Equal(LengthOfLine(RH),2*x+3)",
-    "ParallelBetweenLine(HJ,AE)",
-    "ParallelBetweenLine(RI,HJ)"
-  ],
-  "image_cdl": [
-    "Equal(LengthOfLine(AH),LengthOfLine(RH))",
-    "Equal(LengthOfLine(HA),6-x)",
-    "Equal(LengthOfLine(IJ),4/3*y+1)",
-    "Equal(LengthOfLine(JE),2*y)",
-    "Equal(LengthOfLine(RH),2*x+3)",
-    "ParallelBetweenLine(HJ,AE)",
-    "ParallelBetweenLine(RI,HJ)"
-  ],
-  "goal_cdl": "Value(y)",
-  "problem_answer": "3/2",
-  "theorem_seqs": [
-    "parallel_judgment_par_par(1,RI,HJ,AE)",
-    "trapezoid_judgment_parallel(1,RAEI)",
-    "midsegment_of_quadrilateral_judgment_parallel(1,HJ,RAEI)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "parallel_judgment_par_par(1,RI,HJ,AE)"
+    "problem_id": 154,
+    "source": "Geometry3k-156",
+    "problem_level": 3,
+    "problem_img": "154.png",
+    "construction_cdl": [
+        "Shape(RH,HJ,JI,IR)",
+        "Shape(HA,AE,EJ,JH)",
+        "Collinear(RHA)",
+        "Collinear(IJE)"
     ],
-    "parallel_judgment_par_par(1,RI,HJ,AE)": [
-      "trapezoid_judgment_parallel(1,RAEI)"
+    "text_cdl": [
+        "Equal(LengthOfLine(AH),LengthOfLine(RH))",
+        "Equal(LengthOfLine(HA),6-x)",
+        "Equal(LengthOfLine(IJ),4/3*y+1)",
+        "Equal(LengthOfLine(JE),2*y)",
+        "Equal(LengthOfLine(RH),2*x+3)",
+        "ParallelBetweenLine(HJ,AE)",
+        "ParallelBetweenLine(RI,HJ)"
     ],
-    "trapezoid_judgment_parallel(1,RAEI)": [
-      "midsegment_of_quadrilateral_judgment_parallel(1,HJ,RAEI)"
-    ]
-  }
+    "image_cdl": [
+        "Equal(LengthOfLine(AH),LengthOfLine(RH))",
+        "Equal(LengthOfLine(HA),6-x)",
+        "Equal(LengthOfLine(IJ),4/3*y+1)",
+        "Equal(LengthOfLine(JE),2*y)",
+        "Equal(LengthOfLine(RH),2*x+3)",
+        "ParallelBetweenLine(HJ,AE)",
+        "ParallelBetweenLine(RI,HJ)"
+    ],
+    "goal_cdl": "Value(y)",
+    "problem_answer": "3/2",
+    "theorem_seqs": [
+        "parallel_judgment_par_par(1,RI,HJ,AE)",
+        "trapezoid_judgment_parallel(1,RAEI)",
+        "midsegment_of_quadrilateral_judgment_parallel(1,HJ,RAEI)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "parallel_judgment_par_par(1,RI,HJ,AE)"
+        ],
+        "parallel_judgment_par_par(1,RI,HJ,AE)": [
+            "trapezoid_judgment_parallel(1,RAEI)"
+        ],
+        "trapezoid_judgment_parallel(1,RAEI)": [
+            "midsegment_of_quadrilateral_judgment_parallel(1,HJ,RAEI)"
+        ]
+    }
 }

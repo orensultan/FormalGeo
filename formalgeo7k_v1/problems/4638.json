@@ -1,48 +1,45 @@
 {
-  "problem_id": 4638,
-  "annotation": "QikeHuang_2023-05-14",
-  "source": "GeoQA-3858",
-  "problem_level": 8,
-  "problem_text_cn": "如图所示，∠ADC=122°，O是圆O的圆心，圆O的切线为CD。求∠DCO的大小。",
-  "problem_text_en": "As shown in the diagram, ∠ADC=122°, O is the center of ⊙O, the tangent to ⊙O is CD. Find the measure of ∠DCO.",
-  "problem_img": "4638.png",
-  "construction_cdl": [
-    "Shape(DC,CB,ODB)",
-    "Shape(ODB,BO,OD)",
-    "Shape(DO,OA,AD)",
-    "Shape(DA,OAD)",
-    "Shape(AO,OB,OBA)",
-    "Collinear(CBOA)",
-    "Cocircular(O,ADB)"
-  ],
-  "text_cdl": [
-    "Equal(MeasureOfAngle(ADC),122)",
-    "IsCentreOfCircle(O,O)",
-    "IsTangentOfCircle(CD,O)"
-  ],
-  "image_cdl": [],
-  "goal_cdl": "Value(MeasureOfAngle(DCO))",
-  "problem_answer": "26",
-  "theorem_seqs": [
-    "radius_of_circle_property_length_equal(1,OA,O)",
-    "radius_of_circle_property_length_equal(1,OD,O)",
-    "angle_addition(1,ADO,ODC)",
-    "tangent_of_circle_property_perpendicular(1,CD,O,O)",
-    "sine_theorem(1,OAD)",
-    "adjacent_complementary_angle(1,BOD,DOA)",
-    "triangle_property_angle_sum(1,DOA)",
-    "triangle_property_angle_sum(1,DCO)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "radius_of_circle_property_length_equal(1,OA,O)",
-      "radius_of_circle_property_length_equal(1,OD,O)",
-      "angle_addition(1,ADO,ODC)",
-      "tangent_of_circle_property_perpendicular(1,CD,O,O)",
-      "sine_theorem(1,OAD)",
-      "adjacent_complementary_angle(1,BOD,DOA)",
-      "triangle_property_angle_sum(1,DOA)",
-      "triangle_property_angle_sum(1,DCO)"
-    ]
-  }
+    "problem_id": 4638,
+    "source": "GeoQA-3858",
+    "problem_level": 8,
+    "problem_img": "4638.png",
+    "construction_cdl": [
+        "Shape(DC,CB,ODB)",
+        "Shape(ODB,BO,OD)",
+        "Shape(DO,OA,AD)",
+        "Shape(DA,OAD)",
+        "Shape(AO,OB,OBA)",
+        "Collinear(CBOA)",
+        "Cocircular(O,ADB)"
+    ],
+    "text_cdl": [
+        "Equal(MeasureOfAngle(ADC),122)",
+        "IsCentreOfCircle(O,O)",
+        "IsTangentOfCircle(CD,O)"
+    ],
+    "image_cdl": [],
+    "goal_cdl": "Value(MeasureOfAngle(DCO))",
+    "problem_answer": "26",
+    "theorem_seqs": [
+        "radius_of_circle_property_length_equal(1,OA,O)",
+        "radius_of_circle_property_length_equal(1,OD,O)",
+        "angle_addition(1,ADO,ODC)",
+        "tangent_of_circle_property_perpendicular(1,CD,O,O)",
+        "sine_theorem(1,OAD)",
+        "adjacent_complementary_angle(1,BOD,DOA)",
+        "triangle_property_angle_sum(1,DOA)",
+        "triangle_property_angle_sum(1,DCO)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "radius_of_circle_property_length_equal(1,OA,O)",
+            "radius_of_circle_property_length_equal(1,OD,O)",
+            "angle_addition(1,ADO,ODC)",
+            "tangent_of_circle_property_perpendicular(1,CD,O,O)",
+            "sine_theorem(1,OAD)",
+            "adjacent_complementary_angle(1,BOD,DOA)",
+            "triangle_property_angle_sum(1,DOA)",
+            "triangle_property_angle_sum(1,DCO)"
+        ]
+    }
 }

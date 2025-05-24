@@ -1,42 +1,39 @@
 {
-  "problem_id": 5118,
-  "annotation": "YimingHe_2023-05-21",
-  "source": "GeoQA-4971",
-  "problem_level": 5,
-  "problem_text_cn": "如图所示，EF=5，三角形ABC为等边三角形，E平分线段AB，F是线段AC的中点。求四边形EBCF的周长。",
-  "problem_text_en": "As shown in the diagram, EF=5, △ABC is an equilateral △, E bisects segment AB, F is the midpoint of segment AC. Find the perimeter of quadrilateral EBCF.",
-  "problem_img": "5118.png",
-  "construction_cdl": [
-    "Shape(AE,EF,FA)",
-    "Shape(EB,BC,CF,FE)",
-    "Collinear(AEB)",
-    "Collinear(AFC)"
-  ],
-  "text_cdl": [
-    "Equal(LengthOfLine(EF),5)",
-    "EquilateralTriangle(ABC)",
-    "IsMidpointOfLine(E,AB)",
-    "IsMidpointOfLine(F,AC)"
-  ],
-  "image_cdl": [],
-  "goal_cdl": "Value(PerimeterOfQuadrilateral(EBCF))",
-  "problem_answer": "25",
-  "theorem_seqs": [
-    "line_addition(1,AE,EB)",
-    "line_addition(1,AF,FC)",
-    "quadrilateral_perimeter_formula(1,EBCF)",
-    "midsegment_of_triangle_judgment_midpoint(1,EF,ABC)",
-    "midsegment_of_triangle_property_length(1,EF,ABC)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "line_addition(1,AE,EB)",
-      "line_addition(1,AF,FC)",
-      "quadrilateral_perimeter_formula(1,EBCF)",
-      "midsegment_of_triangle_judgment_midpoint(1,EF,ABC)"
+    "problem_id": 5118,
+    "source": "GeoQA-4971",
+    "problem_level": 5,
+    "problem_img": "5118.png",
+    "construction_cdl": [
+        "Shape(AE,EF,FA)",
+        "Shape(EB,BC,CF,FE)",
+        "Collinear(AEB)",
+        "Collinear(AFC)"
     ],
-    "midsegment_of_triangle_judgment_midpoint(1,EF,ABC)": [
-      "midsegment_of_triangle_property_length(1,EF,ABC)"
-    ]
-  }
+    "text_cdl": [
+        "Equal(LengthOfLine(EF),5)",
+        "EquilateralTriangle(ABC)",
+        "IsMidpointOfLine(E,AB)",
+        "IsMidpointOfLine(F,AC)"
+    ],
+    "image_cdl": [],
+    "goal_cdl": "Value(PerimeterOfQuadrilateral(EBCF))",
+    "problem_answer": "25",
+    "theorem_seqs": [
+        "line_addition(1,AE,EB)",
+        "line_addition(1,AF,FC)",
+        "quadrilateral_perimeter_formula(1,EBCF)",
+        "midsegment_of_triangle_judgment_midpoint(1,EF,ABC)",
+        "midsegment_of_triangle_property_length(1,EF,ABC)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "line_addition(1,AE,EB)",
+            "line_addition(1,AF,FC)",
+            "quadrilateral_perimeter_formula(1,EBCF)",
+            "midsegment_of_triangle_judgment_midpoint(1,EF,ABC)"
+        ],
+        "midsegment_of_triangle_judgment_midpoint(1,EF,ABC)": [
+            "midsegment_of_triangle_property_length(1,EF,ABC)"
+        ]
+    }
 }

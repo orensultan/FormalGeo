@@ -1,22 +1,19 @@
 {
-  "problem_id": 4203,
-  "annotation": "YangLi_2023-05-07",
-  "source": "GeoQA-2902",
-  "problem_level": 0,
-  "problem_text_cn": "如图所示，∠BAC=30°。求tan(BA)的值。",
-  "problem_text_en": "As shown in the diagram, ∠BAC=30°. Find the value of tan(BA).",
-  "problem_img": "4203.png",
-  "construction_cdl": [
-    "Shape(CB,BA,AC)"
-  ],
-  "text_cdl": [
-    "Equal(MeasureOfAngle(BAC),30)"
-  ],
-  "image_cdl": [],
-  "goal_cdl": "Value(Tan(MeasureOfAngle(BAC)))",
-  "problem_answer": "sqrt(3)/3",
-  "theorem_seqs": [],
-  "theorem_seqs_dag": {
-    "START": []
-  }
+    "problem_id": 4203,
+    "source": "GeoQA-2902",
+    "problem_level": 0,
+    "problem_img": "4203.png",
+    "construction_cdl": [
+        "Shape(CB,BA,AC)"
+    ],
+    "text_cdl": [
+        "Equal(MeasureOfAngle(BAC),30)"
+    ],
+    "image_cdl": [],
+    "goal_cdl": "Value(Tan(MeasureOfAngle(BAC)))",
+    "problem_answer": "sqrt(3)/3",
+    "theorem_seqs": [],
+    "theorem_seqs_dag": {
+        "START": []
+    }
 }

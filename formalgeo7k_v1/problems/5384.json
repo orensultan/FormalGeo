@@ -1,53 +1,50 @@
 {
-  "problem_id": 5384,
-  "annotation": "QikeHuang_2023-05-21",
-  "source": "GeoQA-5668",
-  "problem_level": 6,
-  "problem_text_cn": "如图所示，AC=4，∠BCA=30°，∠CAB=30°，AN是OF的垂直平分线，AP垂直平分AB，AO⊥CO。求直线EF的长度。",
-  "problem_text_en": "As shown in the diagram, AC=4, ∠BCA=30°, ∠CAB=30°, AN perpendicular bisects OF, AP is the perpendicular bisector of OE, AO is perpendicular to CO. Find the length of line EF.",
-  "problem_img": "5384.png",
-  "construction_cdl": [
-    "Shape(AO,OM,MA)",
-    "Shape(AM,MN,NA)",
-    "Shape(MO,OP,PM)",
-    "Shape(MP,PE,EN,NM)",
-    "Shape(AN,NF,FA)",
-    "Shape(FN,NE,EF)",
-    "Shape(PO,OB,BP)",
-    "Shape(EP,PB,BC,CE)",
-    "Collinear(ANEC)",
-    "Collinear(AMPB)",
-    "Collinear(OMNF)",
-    "Collinear(OPE)",
-    "Collinear(OBC)"
-  ],
-  "text_cdl": [
-    "Equal(LengthOfLine(AC),4)",
-    "Equal(MeasureOfAngle(BCA),30)",
-    "Equal(MeasureOfAngle(CAB),30)",
-    "IsPerpendicularBisectorOfLine(AN,OF)",
-    "IsPerpendicularBisectorOfLine(AP,OE)",
-    "PerpendicularBetweenLine(AO,CO)"
-  ],
-  "image_cdl": [],
-  "goal_cdl": "Value(LengthOfLine(EF))",
-  "problem_answer": "2",
-  "theorem_seqs": [
-    "sine_theorem(1,AOC)",
-    "perpendicular_bisector_property_distance_equal(1,AP,OE)",
-    "perpendicular_bisector_property_distance_equal(1,AN,OF)",
-    "triangle_property_angle_sum(1,AOC)",
-    "perpendicular_bisector_property_bisector(1,AN,OF)",
-    "cosine_theorem(1,AEF)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "sine_theorem(1,AOC)",
-      "perpendicular_bisector_property_distance_equal(1,AP,OE)",
-      "perpendicular_bisector_property_distance_equal(1,AN,OF)",
-      "triangle_property_angle_sum(1,AOC)",
-      "perpendicular_bisector_property_bisector(1,AN,OF)",
-      "cosine_theorem(1,AEF)"
-    ]
-  }
+    "problem_id": 5384,
+    "source": "GeoQA-5668",
+    "problem_level": 6,
+    "problem_img": "5384.png",
+    "construction_cdl": [
+        "Shape(AO,OM,MA)",
+        "Shape(AM,MN,NA)",
+        "Shape(MO,OP,PM)",
+        "Shape(MP,PE,EN,NM)",
+        "Shape(AN,NF,FA)",
+        "Shape(FN,NE,EF)",
+        "Shape(PO,OB,BP)",
+        "Shape(EP,PB,BC,CE)",
+        "Collinear(ANEC)",
+        "Collinear(AMPB)",
+        "Collinear(OMNF)",
+        "Collinear(OPE)",
+        "Collinear(OBC)"
+    ],
+    "text_cdl": [
+        "Equal(LengthOfLine(AC),4)",
+        "Equal(MeasureOfAngle(BCA),30)",
+        "Equal(MeasureOfAngle(CAB),30)",
+        "IsPerpendicularBisectorOfLine(AN,OF)",
+        "IsPerpendicularBisectorOfLine(AP,OE)",
+        "PerpendicularBetweenLine(AO,CO)"
+    ],
+    "image_cdl": [],
+    "goal_cdl": "Value(LengthOfLine(EF))",
+    "problem_answer": "2",
+    "theorem_seqs": [
+        "sine_theorem(1,AOC)",
+        "perpendicular_bisector_property_distance_equal(1,AP,OE)",
+        "perpendicular_bisector_property_distance_equal(1,AN,OF)",
+        "triangle_property_angle_sum(1,AOC)",
+        "perpendicular_bisector_property_bisector(1,AN,OF)",
+        "cosine_theorem(1,AEF)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "sine_theorem(1,AOC)",
+            "perpendicular_bisector_property_distance_equal(1,AP,OE)",
+            "perpendicular_bisector_property_distance_equal(1,AN,OF)",
+            "triangle_property_angle_sum(1,AOC)",
+            "perpendicular_bisector_property_bisector(1,AN,OF)",
+            "cosine_theorem(1,AEF)"
+        ]
+    }
 }

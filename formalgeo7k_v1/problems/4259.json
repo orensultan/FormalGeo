@@ -1,48 +1,45 @@
 {
-  "problem_id": 4259,
-  "annotation": "ChenyangMao_2023-05-07",
-  "source": "GeoQA-3044",
-  "problem_level": 5,
-  "problem_text_cn": "如图所示，∠COA=52°，O是圆O的圆心，AC⊥OC。求∠BED的大小。",
-  "problem_text_en": "As shown in the diagram, ∠COA=52°, O is the center of circle O, AC is perpendicular to OC. Find the measure of ∠BED.",
-  "problem_img": "4259.png",
-  "construction_cdl": [
-    "Shape(OAD,DC,CA)",
-    "Shape(ODB,BC,CD)",
-    "Shape(ODB,BE,ED)",
-    "Shape(OA,AC,CO)",
-    "Shape(OBE,EB)",
-    "Shape(OEA,AO,OC,CD,CE)",
-    "Collinear(ACB)",
-    "Collinear(OCD)",
-    "Cocircular(O,ADBE)"
-  ],
-  "text_cdl": [
-    "Equal(MeasureOfAngle(COA),52)",
-    "IsCentreOfCircle(O,O)",
-    "PerpendicularBetweenLine(AC,OC)"
-  ],
-  "image_cdl": [],
-  "goal_cdl": "Value(MeasureOfAngle(BED))",
-  "problem_answer": "26",
-  "theorem_seqs": [
-    "circle_property_chord_perpendicular_bisect_arc(1,OAB,OCD)",
-    "congruent_arc_judgment_length_equal(1,OAD,ODB)",
-    "congruent_arc_property_measure_equal(1,OAD,ODB)",
-    "arc_property_center_angle(1,OAD,O)",
-    "arc_property_circumference_angle_external(1,ODB,E)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "circle_property_chord_perpendicular_bisect_arc(1,OAB,OCD)",
-      "arc_property_center_angle(1,OAD,O)",
-      "arc_property_circumference_angle_external(1,ODB,E)"
+    "problem_id": 4259,
+    "source": "GeoQA-3044",
+    "problem_level": 5,
+    "problem_img": "4259.png",
+    "construction_cdl": [
+        "Shape(OAD,DC,CA)",
+        "Shape(ODB,BC,CD)",
+        "Shape(ODB,BE,ED)",
+        "Shape(OA,AC,CO)",
+        "Shape(OBE,EB)",
+        "Shape(OEA,AO,OC,CD,CE)",
+        "Collinear(ACB)",
+        "Collinear(OCD)",
+        "Cocircular(O,ADBE)"
     ],
-    "circle_property_chord_perpendicular_bisect_arc(1,OAB,OCD)": [
-      "congruent_arc_judgment_length_equal(1,OAD,ODB)"
+    "text_cdl": [
+        "Equal(MeasureOfAngle(COA),52)",
+        "IsCentreOfCircle(O,O)",
+        "PerpendicularBetweenLine(AC,OC)"
     ],
-    "congruent_arc_judgment_length_equal(1,OAD,ODB)": [
-      "congruent_arc_property_measure_equal(1,OAD,ODB)"
-    ]
-  }
+    "image_cdl": [],
+    "goal_cdl": "Value(MeasureOfAngle(BED))",
+    "problem_answer": "26",
+    "theorem_seqs": [
+        "circle_property_chord_perpendicular_bisect_arc(1,OAB,OCD)",
+        "congruent_arc_judgment_length_equal(1,OAD,ODB)",
+        "congruent_arc_property_measure_equal(1,OAD,ODB)",
+        "arc_property_center_angle(1,OAD,O)",
+        "arc_property_circumference_angle_external(1,ODB,E)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "circle_property_chord_perpendicular_bisect_arc(1,OAB,OCD)",
+            "arc_property_center_angle(1,OAD,O)",
+            "arc_property_circumference_angle_external(1,ODB,E)"
+        ],
+        "circle_property_chord_perpendicular_bisect_arc(1,OAB,OCD)": [
+            "congruent_arc_judgment_length_equal(1,OAD,ODB)"
+        ],
+        "congruent_arc_judgment_length_equal(1,OAD,ODB)": [
+            "congruent_arc_property_measure_equal(1,OAD,ODB)"
+        ]
+    }
 }

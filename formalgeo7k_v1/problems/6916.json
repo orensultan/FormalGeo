@@ -1,43 +1,40 @@
 {
-  "problem_id": 6916,
-  "annotation": "ZheZhu_2023-06-04",
-  "source": "GeoQA-angle-10168",
-  "problem_level": 6,
-  "problem_text_cn": "如图所示，∠CAD=50°，O是圆O的圆心，圆O的直径为AD。求∠ABC的大小。",
-  "problem_text_en": "As shown in the diagram, ∠CAD=50°, the center of circle O is O, the diameter of ⊙O is AD. Find the measure of ∠ABC.",
-  "problem_img": "6916.png",
-  "construction_cdl": [
-    "Shape(ED,DC,CE)",
-    "Shape(OE,EC,CA,AO)",
-    "Shape(BE,EO,OA,AB)",
-    "Collinear(BEC)",
-    "Collinear(DEOA)",
-    "Cocircular(O,BDCA)"
-  ],
-  "text_cdl": [
-    "Equal(MeasureOfAngle(CAD),50)",
-    "IsCentreOfCircle(O,O)",
-    "IsDiameterOfCircle(AD,O)"
-  ],
-  "image_cdl": [],
-  "goal_cdl": "Value(MeasureOfAngle(ABC))",
-  "problem_answer": "40",
-  "theorem_seqs": [
-    "arc_property_center_angle(1,OAD,O)",
-    "arc_property_circumference_angle_external(1,OCA,B)",
-    "arc_property_circumference_angle_external(1,OCA,D)",
-    "arc_property_circumference_angle_external(1,OAD,C)",
-    "triangle_property_angle_sum(1,DCA)",
-    "flat_angle(1,DOA)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "arc_property_center_angle(1,OAD,O)",
-      "arc_property_circumference_angle_external(1,OCA,B)",
-      "arc_property_circumference_angle_external(1,OCA,D)",
-      "arc_property_circumference_angle_external(1,OAD,C)",
-      "triangle_property_angle_sum(1,DCA)",
-      "flat_angle(1,DOA)"
-    ]
-  }
+    "problem_id": 6916,
+    "source": "GeoQA-angle-10168",
+    "problem_level": 6,
+    "problem_img": "6916.png",
+    "construction_cdl": [
+        "Shape(ED,DC,CE)",
+        "Shape(OE,EC,CA,AO)",
+        "Shape(BE,EO,OA,AB)",
+        "Collinear(BEC)",
+        "Collinear(DEOA)",
+        "Cocircular(O,BDCA)"
+    ],
+    "text_cdl": [
+        "Equal(MeasureOfAngle(CAD),50)",
+        "IsCentreOfCircle(O,O)",
+        "IsDiameterOfCircle(AD,O)"
+    ],
+    "image_cdl": [],
+    "goal_cdl": "Value(MeasureOfAngle(ABC))",
+    "problem_answer": "40",
+    "theorem_seqs": [
+        "arc_property_center_angle(1,OAD,O)",
+        "arc_property_circumference_angle_external(1,OCA,B)",
+        "arc_property_circumference_angle_external(1,OCA,D)",
+        "arc_property_circumference_angle_external(1,OAD,C)",
+        "triangle_property_angle_sum(1,DCA)",
+        "flat_angle(1,DOA)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "arc_property_center_angle(1,OAD,O)",
+            "arc_property_circumference_angle_external(1,OCA,B)",
+            "arc_property_circumference_angle_external(1,OCA,D)",
+            "arc_property_circumference_angle_external(1,OAD,C)",
+            "triangle_property_angle_sum(1,DCA)",
+            "flat_angle(1,DOA)"
+        ]
+    }
 }

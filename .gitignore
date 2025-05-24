@@ -8,6 +8,16 @@ __pycache__
 dist
 src/FormalGeo.egg-info
 
-
 # large data files
 problems_similarity_results.csv
+
+# Problem JSON files
+formalgeo7k_v1/problems/*.json
+formalgeo7k_v1/formalgeo7k_v1/problems/*.json
+
+# Model files
+*.pth
+
+# Results
+results/diagrams/*.png
+results/level_1/*.txt

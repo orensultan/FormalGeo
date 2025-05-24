@@ -1,70 +1,67 @@
 {
-  "problem_id": 5812,
-  "annotation": "YanjunGuo_2023-05-28",
-  "source": "GeoQA-7767",
-  "problem_level": 11,
-  "problem_text_cn": "如图所示，AG=1，BF=2，∠GEF=90°，E是线段AB的中点，ABCD是正方形。求直线GF的长度。",
-  "problem_text_en": "As shown in the diagram, AG=1, BF=2, ∠GEF=90°, E bisects segment AB, ABCD is a square. Find the length of line GF.",
-  "problem_img": "5812.png",
-  "construction_cdl": [
-    "Shape(DG,GF,FC,CD)",
-    "Shape(FG,GE,EF)",
-    "Shape(GA,AE,EG)",
-    "Shape(FE,EB,BF)",
-    "Collinear(DGA)",
-    "Collinear(AEB)",
-    "Collinear(CFB)"
-  ],
-  "text_cdl": [
-    "Equal(LengthOfLine(AG),1)",
-    "Equal(LengthOfLine(BF),2)",
-    "Equal(MeasureOfAngle(GEF),90)",
-    "IsMidpointOfLine(E,AB)",
-    "Square(ABCD)"
-  ],
-  "image_cdl": [],
-  "goal_cdl": "Value(LengthOfLine(GF))",
-  "problem_answer": "3",
-  "theorem_seqs": [
-    "triangle_property_angle_sum(1,GAE)",
-    "angle_addition(1,AEG,GEF)",
-    "adjacent_complementary_angle(1,AEF,FEB)",
-    "similar_triangle_judgment_aa(1,EGA,FEB)",
-    "similar_triangle_property_line_ratio(1,EGA,FEB)",
-    "similar_triangle_property_line_ratio(1,GAE,EBF)",
-    "similar_triangle_property_line_ratio(1,AEG,BFE)",
-    "right_triangle_judgment_angle(1,GEF)",
-    "right_triangle_judgment_angle(1,GAE)",
-    "right_triangle_property_pythagorean(1,GEF)",
-    "right_triangle_property_pythagorean(1,GAE)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "triangle_property_angle_sum(1,GAE)",
-      "angle_addition(1,AEG,GEF)",
-      "adjacent_complementary_angle(1,AEF,FEB)",
-      "right_triangle_judgment_angle(1,GEF)",
-      "right_triangle_judgment_angle(1,GAE)"
+    "problem_id": 5812,
+    "source": "GeoQA-7767",
+    "problem_level": 11,
+    "problem_img": "5812.png",
+    "construction_cdl": [
+        "Shape(DG,GF,FC,CD)",
+        "Shape(FG,GE,EF)",
+        "Shape(GA,AE,EG)",
+        "Shape(FE,EB,BF)",
+        "Collinear(DGA)",
+        "Collinear(AEB)",
+        "Collinear(CFB)"
     ],
-    "triangle_property_angle_sum(1,GAE)": [
-      "similar_triangle_judgment_aa(1,EGA,FEB)"
+    "text_cdl": [
+        "Equal(LengthOfLine(AG),1)",
+        "Equal(LengthOfLine(BF),2)",
+        "Equal(MeasureOfAngle(GEF),90)",
+        "IsMidpointOfLine(E,AB)",
+        "Square(ABCD)"
     ],
-    "angle_addition(1,AEG,GEF)": [
-      "similar_triangle_judgment_aa(1,EGA,FEB)"
+    "image_cdl": [],
+    "goal_cdl": "Value(LengthOfLine(GF))",
+    "problem_answer": "3",
+    "theorem_seqs": [
+        "triangle_property_angle_sum(1,GAE)",
+        "angle_addition(1,AEG,GEF)",
+        "adjacent_complementary_angle(1,AEF,FEB)",
+        "similar_triangle_judgment_aa(1,EGA,FEB)",
+        "similar_triangle_property_line_ratio(1,EGA,FEB)",
+        "similar_triangle_property_line_ratio(1,GAE,EBF)",
+        "similar_triangle_property_line_ratio(1,AEG,BFE)",
+        "right_triangle_judgment_angle(1,GEF)",
+        "right_triangle_judgment_angle(1,GAE)",
+        "right_triangle_property_pythagorean(1,GEF)",
+        "right_triangle_property_pythagorean(1,GAE)"
     ],
-    "adjacent_complementary_angle(1,AEF,FEB)": [
-      "similar_triangle_judgment_aa(1,EGA,FEB)"
-    ],
-    "similar_triangle_judgment_aa(1,EGA,FEB)": [
-      "similar_triangle_property_line_ratio(1,EGA,FEB)",
-      "similar_triangle_property_line_ratio(1,GAE,EBF)",
-      "similar_triangle_property_line_ratio(1,AEG,BFE)"
-    ],
-    "right_triangle_judgment_angle(1,GEF)": [
-      "right_triangle_property_pythagorean(1,GEF)"
-    ],
-    "right_triangle_judgment_angle(1,GAE)": [
-      "right_triangle_property_pythagorean(1,GAE)"
-    ]
-  }
+    "theorem_seqs_dag": {
+        "START": [
+            "triangle_property_angle_sum(1,GAE)",
+            "angle_addition(1,AEG,GEF)",
+            "adjacent_complementary_angle(1,AEF,FEB)",
+            "right_triangle_judgment_angle(1,GEF)",
+            "right_triangle_judgment_angle(1,GAE)"
+        ],
+        "triangle_property_angle_sum(1,GAE)": [
+            "similar_triangle_judgment_aa(1,EGA,FEB)"
+        ],
+        "angle_addition(1,AEG,GEF)": [
+            "similar_triangle_judgment_aa(1,EGA,FEB)"
+        ],
+        "adjacent_complementary_angle(1,AEF,FEB)": [
+            "similar_triangle_judgment_aa(1,EGA,FEB)"
+        ],
+        "similar_triangle_judgment_aa(1,EGA,FEB)": [
+            "similar_triangle_property_line_ratio(1,EGA,FEB)",
+            "similar_triangle_property_line_ratio(1,GAE,EBF)",
+            "similar_triangle_property_line_ratio(1,AEG,BFE)"
+        ],
+        "right_triangle_judgment_angle(1,GEF)": [
+            "right_triangle_property_pythagorean(1,GEF)"
+        ],
+        "right_triangle_judgment_angle(1,GAE)": [
+            "right_triangle_property_pythagorean(1,GAE)"
+        ]
+    }
 }

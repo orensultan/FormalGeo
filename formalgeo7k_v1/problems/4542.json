@@ -1,39 +1,36 @@
 {
-  "problem_id": 4542,
-  "annotation": "YanjunGuo_2023-05-14",
-  "source": "GeoQA-3629",
-  "problem_level": 3,
-  "problem_text_cn": "如图所示，∠DOB=138°，O是圆O的圆心。求∠DCE的大小。",
-  "problem_text_en": "As shown in the diagram, ∠DOB=138°, the center of ⊙O is O. Find the measure of ∠DCE.",
-  "problem_img": "4542.png",
-  "construction_cdl": [
-    "Shape(BA,OAB)",
-    "Shape(AB,BO,OD,DA)",
-    "Shape(OB,BC,CD,DO)",
-    "Shape(CB,OBC)",
-    "Shape(DC,OCD)",
-    "Shape(AD,ODA)",
-    "Shape(OCD,CE,ED)",
-    "Collinear(BCE)",
-    "Cocircular(O,ABCD)"
-  ],
-  "text_cdl": [
-    "Equal(MeasureOfAngle(DOB),138)",
-    "IsCentreOfCircle(O,O)"
-  ],
-  "image_cdl": [],
-  "goal_cdl": "Value(MeasureOfAngle(DCE))",
-  "problem_answer": "69",
-  "theorem_seqs": [
-    "arc_property_center_angle(1,OBD,O)",
-    "arc_property_circumference_angle_internal(1,OBD,C)",
-    "adjacent_complementary_angle(1,BCD,DCE)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "arc_property_center_angle(1,OBD,O)",
-      "arc_property_circumference_angle_internal(1,OBD,C)",
-      "adjacent_complementary_angle(1,BCD,DCE)"
-    ]
-  }
+    "problem_id": 4542,
+    "source": "GeoQA-3629",
+    "problem_level": 3,
+    "problem_img": "4542.png",
+    "construction_cdl": [
+        "Shape(BA,OAB)",
+        "Shape(AB,BO,OD,DA)",
+        "Shape(OB,BC,CD,DO)",
+        "Shape(CB,OBC)",
+        "Shape(DC,OCD)",
+        "Shape(AD,ODA)",
+        "Shape(OCD,CE,ED)",
+        "Collinear(BCE)",
+        "Cocircular(O,ABCD)"
+    ],
+    "text_cdl": [
+        "Equal(MeasureOfAngle(DOB),138)",
+        "IsCentreOfCircle(O,O)"
+    ],
+    "image_cdl": [],
+    "goal_cdl": "Value(MeasureOfAngle(DCE))",
+    "problem_answer": "69",
+    "theorem_seqs": [
+        "arc_property_center_angle(1,OBD,O)",
+        "arc_property_circumference_angle_internal(1,OBD,C)",
+        "adjacent_complementary_angle(1,BCD,DCE)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "arc_property_center_angle(1,OBD,O)",
+            "arc_property_circumference_angle_internal(1,OBD,C)",
+            "adjacent_complementary_angle(1,BCD,DCE)"
+        ]
+    }
 }

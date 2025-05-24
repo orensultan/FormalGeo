@@ -1,62 +1,59 @@
 {
-  "problem_id": 5833,
-  "annotation": "QikeHuang_2023-05-28",
-  "source": "GeoQA-7832",
-  "problem_level": 8,
-  "problem_text_cn": "如图所示，AP=6，DC=6，DP=3，∠BDA=∠BCA。求直线AB的长度。",
-  "problem_text_en": "As shown in the diagram, AP=6, DC=6, DP=3, ∠BDA=∠BCA. Find the length of line AB.",
-  "problem_img": "5833.png",
-  "construction_cdl": [
-    "Shape(DA,AP,PD)",
-    "Shape(CD,DP,PC)",
-    "Shape(CP,PB,BC)",
-    "Shape(PA,AB,BP)",
-    "Collinear(DPB)",
-    "Collinear(APC)"
-  ],
-  "text_cdl": [
-    "Equal(LengthOfLine(AP),6)",
-    "Equal(LengthOfLine(DC),6)",
-    "Equal(LengthOfLine(DP),3)",
-    "Equal(MeasureOfAngle(BDA),MeasureOfAngle(BCA))"
-  ],
-  "image_cdl": [],
-  "goal_cdl": "Value(LengthOfLine(AB))",
-  "problem_answer": "12",
-  "theorem_seqs": [
-    "vertical_angle(1,DPC,BPA)",
-    "vertical_angle(1,APD,CPB)",
-    "mirror_similar_triangle_judgment_aa(1,BCP,APD)",
-    "mirror_similar_triangle_property_line_ratio(1,BCP,APD)",
-    "mirror_similar_triangle_property_line_ratio(1,CPB,DAP)",
-    "mirror_similar_triangle_judgment_sas(1,PCD,PAB)",
-    "mirror_similar_triangle_property_line_ratio(1,PCD,PAB)",
-    "mirror_similar_triangle_property_line_ratio(1,CDP,BPA)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "vertical_angle(1,DPC,BPA)",
-      "vertical_angle(1,APD,CPB)"
+    "problem_id": 5833,
+    "source": "GeoQA-7832",
+    "problem_level": 8,
+    "problem_img": "5833.png",
+    "construction_cdl": [
+        "Shape(DA,AP,PD)",
+        "Shape(CD,DP,PC)",
+        "Shape(CP,PB,BC)",
+        "Shape(PA,AB,BP)",
+        "Collinear(DPB)",
+        "Collinear(APC)"
     ],
-    "vertical_angle(1,DPC,BPA)": [
-      "mirror_similar_triangle_judgment_sas(1,PCD,PAB)"
+    "text_cdl": [
+        "Equal(LengthOfLine(AP),6)",
+        "Equal(LengthOfLine(DC),6)",
+        "Equal(LengthOfLine(DP),3)",
+        "Equal(MeasureOfAngle(BDA),MeasureOfAngle(BCA))"
     ],
-    "vertical_angle(1,APD,CPB)": [
-      "mirror_similar_triangle_judgment_aa(1,BCP,APD)"
+    "image_cdl": [],
+    "goal_cdl": "Value(LengthOfLine(AB))",
+    "problem_answer": "12",
+    "theorem_seqs": [
+        "vertical_angle(1,DPC,BPA)",
+        "vertical_angle(1,APD,CPB)",
+        "mirror_similar_triangle_judgment_aa(1,BCP,APD)",
+        "mirror_similar_triangle_property_line_ratio(1,BCP,APD)",
+        "mirror_similar_triangle_property_line_ratio(1,CPB,DAP)",
+        "mirror_similar_triangle_judgment_sas(1,PCD,PAB)",
+        "mirror_similar_triangle_property_line_ratio(1,PCD,PAB)",
+        "mirror_similar_triangle_property_line_ratio(1,CDP,BPA)"
     ],
-    "mirror_similar_triangle_judgment_aa(1,BCP,APD)": [
-      "mirror_similar_triangle_property_line_ratio(1,BCP,APD)",
-      "mirror_similar_triangle_property_line_ratio(1,CPB,DAP)"
-    ],
-    "mirror_similar_triangle_property_line_ratio(1,BCP,APD)": [
-      "mirror_similar_triangle_judgment_sas(1,PCD,PAB)"
-    ],
-    "mirror_similar_triangle_property_line_ratio(1,CPB,DAP)": [
-      "mirror_similar_triangle_judgment_sas(1,PCD,PAB)"
-    ],
-    "mirror_similar_triangle_judgment_sas(1,PCD,PAB)": [
-      "mirror_similar_triangle_property_line_ratio(1,PCD,PAB)",
-      "mirror_similar_triangle_property_line_ratio(1,CDP,BPA)"
-    ]
-  }
+    "theorem_seqs_dag": {
+        "START": [
+            "vertical_angle(1,DPC,BPA)",
+            "vertical_angle(1,APD,CPB)"
+        ],
+        "vertical_angle(1,DPC,BPA)": [
+            "mirror_similar_triangle_judgment_sas(1,PCD,PAB)"
+        ],
+        "vertical_angle(1,APD,CPB)": [
+            "mirror_similar_triangle_judgment_aa(1,BCP,APD)"
+        ],
+        "mirror_similar_triangle_judgment_aa(1,BCP,APD)": [
+            "mirror_similar_triangle_property_line_ratio(1,BCP,APD)",
+            "mirror_similar_triangle_property_line_ratio(1,CPB,DAP)"
+        ],
+        "mirror_similar_triangle_property_line_ratio(1,BCP,APD)": [
+            "mirror_similar_triangle_judgment_sas(1,PCD,PAB)"
+        ],
+        "mirror_similar_triangle_property_line_ratio(1,CPB,DAP)": [
+            "mirror_similar_triangle_judgment_sas(1,PCD,PAB)"
+        ],
+        "mirror_similar_triangle_judgment_sas(1,PCD,PAB)": [
+            "mirror_similar_triangle_property_line_ratio(1,PCD,PAB)",
+            "mirror_similar_triangle_property_line_ratio(1,CDP,BPA)"
+        ]
+    }
 }

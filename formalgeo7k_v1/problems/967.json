@@ -1,32 +1,29 @@
 {
-  "problem_id": 967,
-  "annotation": "XiaokaiZhang_2023-04-09",
-  "source": "Geometry3k-996",
-  "problem_level": 1,
-  "problem_text_cn": "如图所示，∠ACB=2*x°，∠DCA=x°。求x的值。",
-  "problem_text_en": "As shown in the diagram, ∠ACB=2*x°, ∠DCA=x°. Find the value of x.",
-  "problem_img": "967.png",
-  "construction_cdl": [
-    "Shape(DC,CA)",
-    "Shape(AC,CB)",
-    "Collinear(DCB)"
-  ],
-  "text_cdl": [
-    "Equal(MeasureOfAngle(ACB),2*x)",
-    "Equal(MeasureOfAngle(DCA),x)"
-  ],
-  "image_cdl": [
-    "Equal(MeasureOfAngle(ACB),2*x)",
-    "Equal(MeasureOfAngle(DCA),x)"
-  ],
-  "goal_cdl": "Value(x)",
-  "problem_answer": "60",
-  "theorem_seqs": [
-    "adjacent_complementary_angle(1,DCA,ACB)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "adjacent_complementary_angle(1,DCA,ACB)"
-    ]
-  }
+    "problem_id": 967,
+    "source": "Geometry3k-996",
+    "problem_level": 1,
+    "problem_img": "967.png",
+    "construction_cdl": [
+        "Shape(DC,CA)",
+        "Shape(AC,CB)",
+        "Collinear(DCB)"
+    ],
+    "text_cdl": [
+        "Equal(MeasureOfAngle(ACB),2*x)",
+        "Equal(MeasureOfAngle(DCA),x)"
+    ],
+    "image_cdl": [
+        "Equal(MeasureOfAngle(ACB),2*x)",
+        "Equal(MeasureOfAngle(DCA),x)"
+    ],
+    "goal_cdl": "Value(x)",
+    "problem_answer": "60",
+    "theorem_seqs": [
+        "adjacent_complementary_angle(1,DCA,ACB)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "adjacent_complementary_angle(1,DCA,ACB)"
+        ]
+    }
 }

@@ -1,51 +1,48 @@
 {
-  "problem_id": 4739,
-  "annotation": "YangLi_2023-05-14",
-  "source": "GeoQA-4079",
-  "problem_level": 6,
-  "problem_text_cn": "如图所示，AD=6，∠DAF=∠FAE，∠EAC=60°，⊙O的圆心为O，⊙O的切线为AD，AE是⊙O的切线，∠BAC是直角△BAC的直角。求直线OD的长度。",
-  "problem_text_en": "As shown in the diagram, AD=6, ∠DAF=∠FAE, ∠EAC=60°, O is the center of ⊙O, AD is the tangent to circle O, AE is the tangent to ⊙O, triangle BAC is a right triangle. Find the length of line OD.",
-  "problem_img": "4739.png",
-  "construction_cdl": [
-    "Shape(BE,EA,AC,CB)",
-    "Shape(DO,OE,OED)",
-    "Shape(FA,AE,OFE)",
-    "Shape(DA,AF,ODF)",
-    "Shape(EO,OF,OFE)",
-    "Shape(FO,OD,ODF)",
-    "Collinear(OFA)",
-    "Collinear(DAC)",
-    "Collinear(BEA)",
-    "Cocircular(O,DFE)"
-  ],
-  "text_cdl": [
-    "Equal(LengthOfLine(AD),6)",
-    "Equal(MeasureOfAngle(DAF),MeasureOfAngle(FAE))",
-    "Equal(MeasureOfAngle(EAC),60)",
-    "IsCentreOfCircle(O,O)",
-    "IsTangentOfCircle(AD,O)",
-    "IsTangentOfCircle(AE,O)",
-    "RightTriangle(BAC)"
-  ],
-  "image_cdl": [],
-  "goal_cdl": "Value(LengthOfLine(OD))",
-  "problem_answer": "6*sqrt(3)",
-  "theorem_seqs": [
-    "tangent_of_circle_property_perpendicular(1,AD,O,O)",
-    "angle_addition(1,DAE,EAC)",
-    "flat_angle(1,DAC)",
-    "angle_addition(1,DAO,OAE)",
-    "triangle_property_angle_sum(1,ODA)",
-    "sine_theorem(1,DAO)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "tangent_of_circle_property_perpendicular(1,AD,O,O)",
-      "angle_addition(1,DAE,EAC)",
-      "flat_angle(1,DAC)",
-      "angle_addition(1,DAO,OAE)",
-      "triangle_property_angle_sum(1,ODA)",
-      "sine_theorem(1,DAO)"
-    ]
-  }
+    "problem_id": 4739,
+    "source": "GeoQA-4079",
+    "problem_level": 6,
+    "problem_img": "4739.png",
+    "construction_cdl": [
+        "Shape(BE,EA,AC,CB)",
+        "Shape(DO,OE,OED)",
+        "Shape(FA,AE,OFE)",
+        "Shape(DA,AF,ODF)",
+        "Shape(EO,OF,OFE)",
+        "Shape(FO,OD,ODF)",
+        "Collinear(OFA)",
+        "Collinear(DAC)",
+        "Collinear(BEA)",
+        "Cocircular(O,DFE)"
+    ],
+    "text_cdl": [
+        "Equal(LengthOfLine(AD),6)",
+        "Equal(MeasureOfAngle(DAF),MeasureOfAngle(FAE))",
+        "Equal(MeasureOfAngle(EAC),60)",
+        "IsCentreOfCircle(O,O)",
+        "IsTangentOfCircle(AD,O)",
+        "IsTangentOfCircle(AE,O)",
+        "RightTriangle(BAC)"
+    ],
+    "image_cdl": [],
+    "goal_cdl": "Value(LengthOfLine(OD))",
+    "problem_answer": "6*sqrt(3)",
+    "theorem_seqs": [
+        "tangent_of_circle_property_perpendicular(1,AD,O,O)",
+        "angle_addition(1,DAE,EAC)",
+        "flat_angle(1,DAC)",
+        "angle_addition(1,DAO,OAE)",
+        "triangle_property_angle_sum(1,ODA)",
+        "sine_theorem(1,DAO)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "tangent_of_circle_property_perpendicular(1,AD,O,O)",
+            "angle_addition(1,DAE,EAC)",
+            "flat_angle(1,DAC)",
+            "angle_addition(1,DAO,OAE)",
+            "triangle_property_angle_sum(1,ODA)",
+            "sine_theorem(1,DAO)"
+        ]
+    }
 }

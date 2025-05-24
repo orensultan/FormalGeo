@@ -1,36 +1,33 @@
 {
-  "problem_id": 4556,
-  "annotation": "YanjunGuo_2023-05-14",
-  "source": "GeoQA-3666",
-  "problem_level": 2,
-  "problem_text_cn": "如图所示，∠ADC=115°，O是⊙O的圆心。求∠COA的大小。",
-  "problem_text_en": "As shown in the diagram, ∠ADC=115°, the center of ⊙O is O. Find the measure of ∠COA.",
-  "problem_img": "4556.png",
-  "construction_cdl": [
-    "Shape(AB,OBA)",
-    "Shape(BA,AO,OC,CB)",
-    "Shape(BC,OCB)",
-    "Shape(OA,AC,CO)",
-    "Shape(AD,DC,CA)",
-    "Shape(DA,OAD)",
-    "Shape(CD,ODC)",
-    "Cocircular(O,ADCB)"
-  ],
-  "text_cdl": [
-    "Equal(MeasureOfAngle(ADC),115)",
-    "IsCentreOfCircle(O,O)"
-  ],
-  "image_cdl": [],
-  "goal_cdl": "Value(MeasureOfAngle(COA))",
-  "problem_answer": "130",
-  "theorem_seqs": [
-    "arc_property_circumference_angle_internal(1,OAC,D)",
-    "arc_property_center_angle(1,OAC,O)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "arc_property_circumference_angle_internal(1,OAC,D)",
-      "arc_property_center_angle(1,OAC,O)"
-    ]
-  }
+    "problem_id": 4556,
+    "source": "GeoQA-3666",
+    "problem_level": 2,
+    "problem_img": "4556.png",
+    "construction_cdl": [
+        "Shape(AB,OBA)",
+        "Shape(BA,AO,OC,CB)",
+        "Shape(BC,OCB)",
+        "Shape(OA,AC,CO)",
+        "Shape(AD,DC,CA)",
+        "Shape(DA,OAD)",
+        "Shape(CD,ODC)",
+        "Cocircular(O,ADCB)"
+    ],
+    "text_cdl": [
+        "Equal(MeasureOfAngle(ADC),115)",
+        "IsCentreOfCircle(O,O)"
+    ],
+    "image_cdl": [],
+    "goal_cdl": "Value(MeasureOfAngle(COA))",
+    "problem_answer": "130",
+    "theorem_seqs": [
+        "arc_property_circumference_angle_internal(1,OAC,D)",
+        "arc_property_center_angle(1,OAC,O)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "arc_property_circumference_angle_internal(1,OAC,D)",
+            "arc_property_center_angle(1,OAC,O)"
+        ]
+    }
 }

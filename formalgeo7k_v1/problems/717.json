@@ -1,36 +1,33 @@
 {
-  "problem_id": 717,
-  "annotation": "YimingHe_2023-03-12",
-  "source": "Geometry3k-739",
-  "problem_level": 3,
-  "problem_text_cn": "如图所示，CD=22，∠DCX=18°，∠XDC=105°。求直线XD的长度。",
-  "problem_text_en": "As shown in the diagram, CD=22, ∠DCX=18°, ∠XDC=105°. Find the length of line XD.",
-  "problem_img": "717.png",
-  "construction_cdl": [
-    "Shape(CX,XD,DC)"
-  ],
-  "text_cdl": [
-    "Equal(LengthOfLine(CD),22)",
-    "Equal(MeasureOfAngle(DCX),18)",
-    "Equal(MeasureOfAngle(XDC),105)"
-  ],
-  "image_cdl": [
-    "Equal(LengthOfLine(CD),22)",
-    "Equal(MeasureOfAngle(DCX),18)",
-    "Equal(MeasureOfAngle(XDC),105)"
-  ],
-  "goal_cdl": "Value(LengthOfLine(XD))",
-  "problem_answer": "88*(-1+sqrt(5))/(-sqrt(30)-sqrt(2)+sqrt(5-sqrt(5))+sqrt(6)+sqrt(3)*sqrt(5-sqrt(5))+sqrt(10)+sqrt(5)*sqrt(5-sqrt(5))+sqrt(15)*sqrt(5-sqrt(5)))",
-  "theorem_seqs": [
-    "triangle_property_angle_sum(1,CXD)",
-    "sine_theorem(1,CXD)",
-    "sine_theorem(1,XDC)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "triangle_property_angle_sum(1,CXD)",
-      "sine_theorem(1,CXD)",
-      "sine_theorem(1,XDC)"
-    ]
-  }
+    "problem_id": 717,
+    "source": "Geometry3k-739",
+    "problem_level": 3,
+    "problem_img": "717.png",
+    "construction_cdl": [
+        "Shape(CX,XD,DC)"
+    ],
+    "text_cdl": [
+        "Equal(LengthOfLine(CD),22)",
+        "Equal(MeasureOfAngle(DCX),18)",
+        "Equal(MeasureOfAngle(XDC),105)"
+    ],
+    "image_cdl": [
+        "Equal(LengthOfLine(CD),22)",
+        "Equal(MeasureOfAngle(DCX),18)",
+        "Equal(MeasureOfAngle(XDC),105)"
+    ],
+    "goal_cdl": "Value(LengthOfLine(XD))",
+    "problem_answer": "88*(-1+sqrt(5))/(-sqrt(30)-sqrt(2)+sqrt(5-sqrt(5))+sqrt(6)+sqrt(3)*sqrt(5-sqrt(5))+sqrt(10)+sqrt(5)*sqrt(5-sqrt(5))+sqrt(15)*sqrt(5-sqrt(5)))",
+    "theorem_seqs": [
+        "triangle_property_angle_sum(1,CXD)",
+        "sine_theorem(1,CXD)",
+        "sine_theorem(1,XDC)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "triangle_property_angle_sum(1,CXD)",
+            "sine_theorem(1,CXD)",
+            "sine_theorem(1,XDC)"
+        ]
+    }
 }

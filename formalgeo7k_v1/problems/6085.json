@@ -1,46 +1,43 @@
 {
-  "problem_id": 6085,
-  "annotation": "RunanWang_2023-06-04",
-  "source": "GeoQA-8605",
-  "problem_level": 4,
-  "problem_text_cn": "如图所示，∠CBD=20°，⊙O的圆心为O，圆O的直径为BD。求∠BAC的大小。",
-  "problem_text_en": "As shown in the diagram, ∠CBD=20°, O is the center of circle O, BD is the diameter of circle O. Find the measure of ∠BAC.",
-  "problem_img": "6085.png",
-  "construction_cdl": [
-    "Shape(OBA,AB)",
-    "Shape(BA,AE,EO,OB)",
-    "Shape(BO,OE,EC,CB)",
-    "Shape(OCB,BC)",
-    "Shape(EA,AD,DE)",
-    "Shape(OAD,DA)",
-    "Shape(ODC,CE,ED)",
-    "Collinear(BOED)",
-    "Collinear(AEC)",
-    "Cocircular(O,BADC)"
-  ],
-  "text_cdl": [
-    "Equal(MeasureOfAngle(CBD),20)",
-    "IsCentreOfCircle(O,O)",
-    "IsDiameterOfCircle(BD,O)"
-  ],
-  "image_cdl": [
-    "Equal(MeasureOfAngle(CBD),20)",
-    "IsDiameterOfCircle(BD,O)"
-  ],
-  "goal_cdl": "Value(MeasureOfAngle(BAC))",
-  "problem_answer": "70",
-  "theorem_seqs": [
-    "diameter_of_circle_property_right_angle(1,BAD,O)",
-    "arc_property_circumference_angle_external(1,ODC,B)",
-    "arc_property_circumference_angle_external(1,ODC,A)",
-    "angle_addition(1,BAE,EAD)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "diameter_of_circle_property_right_angle(1,BAD,O)",
-      "arc_property_circumference_angle_external(1,ODC,B)",
-      "arc_property_circumference_angle_external(1,ODC,A)",
-      "angle_addition(1,BAE,EAD)"
-    ]
-  }
+    "problem_id": 6085,
+    "source": "GeoQA-8605",
+    "problem_level": 4,
+    "problem_img": "6085.png",
+    "construction_cdl": [
+        "Shape(OBA,AB)",
+        "Shape(BA,AE,EO,OB)",
+        "Shape(BO,OE,EC,CB)",
+        "Shape(OCB,BC)",
+        "Shape(EA,AD,DE)",
+        "Shape(OAD,DA)",
+        "Shape(ODC,CE,ED)",
+        "Collinear(BOED)",
+        "Collinear(AEC)",
+        "Cocircular(O,BADC)"
+    ],
+    "text_cdl": [
+        "Equal(MeasureOfAngle(CBD),20)",
+        "IsCentreOfCircle(O,O)",
+        "IsDiameterOfCircle(BD,O)"
+    ],
+    "image_cdl": [
+        "Equal(MeasureOfAngle(CBD),20)",
+        "IsDiameterOfCircle(BD,O)"
+    ],
+    "goal_cdl": "Value(MeasureOfAngle(BAC))",
+    "problem_answer": "70",
+    "theorem_seqs": [
+        "diameter_of_circle_property_right_angle(1,BAD,O)",
+        "arc_property_circumference_angle_external(1,ODC,B)",
+        "arc_property_circumference_angle_external(1,ODC,A)",
+        "angle_addition(1,BAE,EAD)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "diameter_of_circle_property_right_angle(1,BAD,O)",
+            "arc_property_circumference_angle_external(1,ODC,B)",
+            "arc_property_circumference_angle_external(1,ODC,A)",
+            "angle_addition(1,BAE,EAD)"
+        ]
+    }
 }

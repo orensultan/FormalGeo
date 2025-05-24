@@ -1,56 +1,53 @@
 {
-  "problem_id": 3417,
-  "annotation": "NaZhu_2023-04-30",
-  "source": "GeoQA-964",
-  "problem_level": 7,
-  "problem_text_cn": "如图所示，AB=AC，BC=10，∠DAB=90°，BD平分∠ABE，DA⊥BA，DE⊥CE。求三角形DEC的周长。",
-  "problem_text_en": "As shown in the diagram, AB=AC, BC=10, ∠DAB=90°, BD is the angle bisector of ∠ABE, DA⊥BA, DE is perpendicular to CE. Find the perimeter of △DEC.",
-  "problem_img": "3417.png",
-  "construction_cdl": [
-    "Shape(AB,BD,DA)",
-    "Shape(DB,BE,ED)",
-    "Shape(DE,EC,CD)",
-    "Collinear(ADC)",
-    "Collinear(BEC)"
-  ],
-  "text_cdl": [
-    "Equal(LengthOfLine(AB),LengthOfLine(AC))",
-    "Equal(LengthOfLine(BC),10)",
-    "Equal(MeasureOfAngle(DAB),90)",
-    "IsBisectorOfAngle(BD,ABE)",
-    "PerpendicularBetweenLine(DA,BA)",
-    "PerpendicularBetweenLine(DE,CE)"
-  ],
-  "image_cdl": [
-    "PerpendicularBetweenLine(DA,BA)"
-  ],
-  "goal_cdl": "Value(PerimeterOfTriangle(DEC))",
-  "problem_answer": "10",
-  "theorem_seqs": [
-    "adjacent_complementary_angle(1,BED,DEC)",
-    "bisector_of_angle_property_distance_equal(1,BD,ABE)",
-    "mirror_congruent_triangle_judgment_hl(1,BED,BDA)",
-    "mirror_congruent_triangle_property_line_equal(1,DBE,DAB)",
-    "line_addition(1,BE,EC)",
-    "line_addition(1,AD,DC)",
-    "triangle_perimeter_formula(1,DEC)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "adjacent_complementary_angle(1,BED,DEC)",
-      "line_addition(1,BE,EC)",
-      "line_addition(1,AD,DC)",
-      "triangle_perimeter_formula(1,DEC)"
+    "problem_id": 3417,
+    "source": "GeoQA-964",
+    "problem_level": 7,
+    "problem_img": "3417.png",
+    "construction_cdl": [
+        "Shape(AB,BD,DA)",
+        "Shape(DB,BE,ED)",
+        "Shape(DE,EC,CD)",
+        "Collinear(ADC)",
+        "Collinear(BEC)"
     ],
-    "adjacent_complementary_angle(1,BED,DEC)": [
-      "bisector_of_angle_property_distance_equal(1,BD,ABE)",
-      "mirror_congruent_triangle_judgment_hl(1,BED,BDA)"
+    "text_cdl": [
+        "Equal(LengthOfLine(AB),LengthOfLine(AC))",
+        "Equal(LengthOfLine(BC),10)",
+        "Equal(MeasureOfAngle(DAB),90)",
+        "IsBisectorOfAngle(BD,ABE)",
+        "PerpendicularBetweenLine(DA,BA)",
+        "PerpendicularBetweenLine(DE,CE)"
     ],
-    "bisector_of_angle_property_distance_equal(1,BD,ABE)": [
-      "mirror_congruent_triangle_judgment_hl(1,BED,BDA)"
+    "image_cdl": [
+        "PerpendicularBetweenLine(DA,BA)"
     ],
-    "mirror_congruent_triangle_judgment_hl(1,BED,BDA)": [
-      "mirror_congruent_triangle_property_line_equal(1,DBE,DAB)"
-    ]
-  }
+    "goal_cdl": "Value(PerimeterOfTriangle(DEC))",
+    "problem_answer": "10",
+    "theorem_seqs": [
+        "adjacent_complementary_angle(1,BED,DEC)",
+        "bisector_of_angle_property_distance_equal(1,BD,ABE)",
+        "mirror_congruent_triangle_judgment_hl(1,BED,BDA)",
+        "mirror_congruent_triangle_property_line_equal(1,DBE,DAB)",
+        "line_addition(1,BE,EC)",
+        "line_addition(1,AD,DC)",
+        "triangle_perimeter_formula(1,DEC)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "adjacent_complementary_angle(1,BED,DEC)",
+            "line_addition(1,BE,EC)",
+            "line_addition(1,AD,DC)",
+            "triangle_perimeter_formula(1,DEC)"
+        ],
+        "adjacent_complementary_angle(1,BED,DEC)": [
+            "bisector_of_angle_property_distance_equal(1,BD,ABE)",
+            "mirror_congruent_triangle_judgment_hl(1,BED,BDA)"
+        ],
+        "bisector_of_angle_property_distance_equal(1,BD,ABE)": [
+            "mirror_congruent_triangle_judgment_hl(1,BED,BDA)"
+        ],
+        "mirror_congruent_triangle_judgment_hl(1,BED,BDA)": [
+            "mirror_congruent_triangle_property_line_equal(1,DBE,DAB)"
+        ]
+    }
 }

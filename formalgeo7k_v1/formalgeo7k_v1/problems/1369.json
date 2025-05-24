@@ -1,31 +1,28 @@
 {
-  "problem_id": 1369,
-  "annotation": "ZheZhu_2023-04-09",
-  "source": "Geometry3k-1417",
-  "problem_level": 1,
-  "problem_text_cn": "如图所示，弧DCB的角度为96。求∠BAC的大小。",
-  "problem_text_en": "As shown in the diagram, the measure of ⌒DCB is 96. Find the measure of ∠BAC.",
-  "problem_img": "1369.png",
-  "construction_cdl": [
-    "Shape(DBA,AB)",
-    "Shape(DCB,BA,AC)",
-    "Shape(DAC,CD,DA)",
-    "Cocircular(D,BAC)"
-  ],
-  "text_cdl": [
-    "Equal(MeasureOfArc(DCB),96)"
-  ],
-  "image_cdl": [
-    "Equal(MeasureOfArc(DCB),96)"
-  ],
-  "goal_cdl": "Value(MeasureOfAngle(BAC))",
-  "problem_answer": "48",
-  "theorem_seqs": [
-    "arc_property_circumference_angle_external(1,DCB,A)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "arc_property_circumference_angle_external(1,DCB,A)"
-    ]
-  }
+    "problem_id": 1369,
+    "source": "Geometry3k-1417",
+    "problem_level": 1,
+    "problem_img": "1369.png",
+    "construction_cdl": [
+        "Shape(DBA,AB)",
+        "Shape(DCB,BA,AC)",
+        "Shape(DAC,CD,DA)",
+        "Cocircular(D,BAC)"
+    ],
+    "text_cdl": [
+        "Equal(MeasureOfArc(DCB),96)"
+    ],
+    "image_cdl": [
+        "Equal(MeasureOfArc(DCB),96)"
+    ],
+    "goal_cdl": "Value(MeasureOfAngle(BAC))",
+    "problem_answer": "48",
+    "theorem_seqs": [
+        "arc_property_circumference_angle_external(1,DCB,A)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "arc_property_circumference_angle_external(1,DCB,A)"
+        ]
+    }
 }

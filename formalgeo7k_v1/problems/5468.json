@@ -1,38 +1,35 @@
 {
-  "problem_id": 5468,
-  "annotation": "ChenyangMao_2023-05-21",
-  "source": "GeoQA-5883",
-  "problem_level": 4,
-  "problem_text_cn": "如图所示，CE=3，△ABC为等边△，D平分线段AC，DE⊥CE。求直线AB的长度。",
-  "problem_text_en": "As shown in the diagram, CE=3, △ABC is an equilateral △, D is the midpoint of segment AC, DE⊥CE. Find the length of line AB.",
-  "problem_img": "5468.png",
-  "construction_cdl": [
-    "Shape(AB,BE,ED,DA)",
-    "Shape(DE,EC,CD)",
-    "Collinear(ADC)",
-    "Collinear(BEC)"
-  ],
-  "text_cdl": [
-    "Equal(LengthOfLine(CE),3)",
-    "EquilateralTriangle(ABC)",
-    "IsMidpointOfLine(D,AC)",
-    "PerpendicularBetweenLine(DE,CE)"
-  ],
-  "image_cdl": [],
-  "goal_cdl": "Value(LengthOfLine(AB))",
-  "problem_answer": "12",
-  "theorem_seqs": [
-    "triangle_property_angle_sum(1,DEC)",
-    "equilateral_triangle_property_angle(1,CAB)",
-    "sine_theorem(1,CDE)",
-    "line_addition(1,AD,DC)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "triangle_property_angle_sum(1,DEC)",
-      "equilateral_triangle_property_angle(1,CAB)",
-      "sine_theorem(1,CDE)",
-      "line_addition(1,AD,DC)"
-    ]
-  }
+    "problem_id": 5468,
+    "source": "GeoQA-5883",
+    "problem_level": 4,
+    "problem_img": "5468.png",
+    "construction_cdl": [
+        "Shape(AB,BE,ED,DA)",
+        "Shape(DE,EC,CD)",
+        "Collinear(ADC)",
+        "Collinear(BEC)"
+    ],
+    "text_cdl": [
+        "Equal(LengthOfLine(CE),3)",
+        "EquilateralTriangle(ABC)",
+        "IsMidpointOfLine(D,AC)",
+        "PerpendicularBetweenLine(DE,CE)"
+    ],
+    "image_cdl": [],
+    "goal_cdl": "Value(LengthOfLine(AB))",
+    "problem_answer": "12",
+    "theorem_seqs": [
+        "triangle_property_angle_sum(1,DEC)",
+        "equilateral_triangle_property_angle(1,CAB)",
+        "sine_theorem(1,CDE)",
+        "line_addition(1,AD,DC)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "triangle_property_angle_sum(1,DEC)",
+            "equilateral_triangle_property_angle(1,CAB)",
+            "sine_theorem(1,CDE)",
+            "line_addition(1,AD,DC)"
+        ]
+    }
 }

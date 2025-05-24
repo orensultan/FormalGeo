@@ -1,56 +1,53 @@
 {
-  "problem_id": 1964,
-  "annotation": "ZheZhu_2023-04-16",
-  "source": "Geometry3k-2043",
-  "problem_level": 8,
-  "problem_text_cn": "如图所示，∠BEC=57°，AL∥BG，HC平行于FJ。求∠IDH的大小。",
-  "problem_text_en": "As shown in the diagram, ∠BEC=57°, AL is parallel to BG, HC∥FJ. Find the measure of ∠IDH.",
-  "problem_img": "1964.png",
-  "construction_cdl": [
-    "Shape(BE,EC)",
-    "Shape(KE,ED)",
-    "Shape(ID,DH)",
-    "Collinear(HDEC)",
-    "Collinear(FIKJ)",
-    "Collinear(ADIL)",
-    "Collinear(BEKG)"
-  ],
-  "text_cdl": [
-    "Equal(MeasureOfAngle(BEC),57)",
-    "ParallelBetweenLine(AL,BG)",
-    "ParallelBetweenLine(HC,FJ)"
-  ],
-  "image_cdl": [
-    "Equal(MeasureOfAngle(BEC),57)",
-    "ParallelBetweenLine(AL,BG)",
-    "ParallelBetweenLine(HC,FJ)"
-  ],
-  "goal_cdl": "Value(MeasureOfAngle(IDH))",
-  "problem_answer": "57",
-  "theorem_seqs": [
-    "vertical_angle(1,BEC,KED)",
-    "parallel_property_collinear_extend(3,AL,BG,D)",
-    "parallel_property_collinear_extend(3,GB,DA,E)",
-    "parallel_property_corresponding_angle(2,EB,DA,H)",
-    "angle_addition(1,ADI,IDH)",
-    "angle_addition(1,BEK,KED)",
-    "flat_angle(1,ADI)",
-    "flat_angle(1,BEK)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "vertical_angle(1,BEC,KED)",
-      "parallel_property_collinear_extend(3,AL,BG,D)",
-      "angle_addition(1,ADI,IDH)",
-      "angle_addition(1,BEK,KED)",
-      "flat_angle(1,ADI)",
-      "flat_angle(1,BEK)"
+    "problem_id": 1964,
+    "source": "Geometry3k-2043",
+    "problem_level": 8,
+    "problem_img": "1964.png",
+    "construction_cdl": [
+        "Shape(BE,EC)",
+        "Shape(KE,ED)",
+        "Shape(ID,DH)",
+        "Collinear(HDEC)",
+        "Collinear(FIKJ)",
+        "Collinear(ADIL)",
+        "Collinear(BEKG)"
     ],
-    "parallel_property_collinear_extend(3,AL,BG,D)": [
-      "parallel_property_collinear_extend(3,GB,DA,E)"
+    "text_cdl": [
+        "Equal(MeasureOfAngle(BEC),57)",
+        "ParallelBetweenLine(AL,BG)",
+        "ParallelBetweenLine(HC,FJ)"
     ],
-    "parallel_property_collinear_extend(3,GB,DA,E)": [
-      "parallel_property_corresponding_angle(2,EB,DA,H)"
-    ]
-  }
+    "image_cdl": [
+        "Equal(MeasureOfAngle(BEC),57)",
+        "ParallelBetweenLine(AL,BG)",
+        "ParallelBetweenLine(HC,FJ)"
+    ],
+    "goal_cdl": "Value(MeasureOfAngle(IDH))",
+    "problem_answer": "57",
+    "theorem_seqs": [
+        "vertical_angle(1,BEC,KED)",
+        "parallel_property_collinear_extend(3,AL,BG,D)",
+        "parallel_property_collinear_extend(3,GB,DA,E)",
+        "parallel_property_corresponding_angle(2,EB,DA,H)",
+        "angle_addition(1,ADI,IDH)",
+        "angle_addition(1,BEK,KED)",
+        "flat_angle(1,ADI)",
+        "flat_angle(1,BEK)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "vertical_angle(1,BEC,KED)",
+            "parallel_property_collinear_extend(3,AL,BG,D)",
+            "angle_addition(1,ADI,IDH)",
+            "angle_addition(1,BEK,KED)",
+            "flat_angle(1,ADI)",
+            "flat_angle(1,BEK)"
+        ],
+        "parallel_property_collinear_extend(3,AL,BG,D)": [
+            "parallel_property_collinear_extend(3,GB,DA,E)"
+        ],
+        "parallel_property_collinear_extend(3,GB,DA,E)": [
+            "parallel_property_corresponding_angle(2,EB,DA,H)"
+        ]
+    }
 }

@@ -1,33 +1,30 @@
 {
-  "problem_id": 3317,
-  "annotation": "YimingHe_2023-04-30",
-  "source": "GeoQA-703",
-  "problem_level": 2,
-  "problem_text_cn": "如图所示，∠BOA=15°，∠DOC=105°。求∠COA的大小。",
-  "problem_text_en": "As shown in the diagram, ∠BOA=15°, ∠DOC=105°. Find the measure of ∠COA.",
-  "problem_img": "3317.png",
-  "construction_cdl": [
-    "Shape(DO,OC)",
-    "Shape(CO,OB)",
-    "Shape(BO,OA)",
-    "Shape(AO,OD)",
-    "Collinear(DOB)"
-  ],
-  "text_cdl": [
-    "Equal(MeasureOfAngle(BOA),15)",
-    "Equal(MeasureOfAngle(DOC),105)"
-  ],
-  "image_cdl": [],
-  "goal_cdl": "Value(MeasureOfAngle(COA))",
-  "problem_answer": "90",
-  "theorem_seqs": [
-    "adjacent_complementary_angle(1,DOC,COB)",
-    "angle_addition(1,COB,BOA)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "adjacent_complementary_angle(1,DOC,COB)",
-      "angle_addition(1,COB,BOA)"
-    ]
-  }
+    "problem_id": 3317,
+    "source": "GeoQA-703",
+    "problem_level": 2,
+    "problem_img": "3317.png",
+    "construction_cdl": [
+        "Shape(DO,OC)",
+        "Shape(CO,OB)",
+        "Shape(BO,OA)",
+        "Shape(AO,OD)",
+        "Collinear(DOB)"
+    ],
+    "text_cdl": [
+        "Equal(MeasureOfAngle(BOA),15)",
+        "Equal(MeasureOfAngle(DOC),105)"
+    ],
+    "image_cdl": [],
+    "goal_cdl": "Value(MeasureOfAngle(COA))",
+    "problem_answer": "90",
+    "theorem_seqs": [
+        "adjacent_complementary_angle(1,DOC,COB)",
+        "angle_addition(1,COB,BOA)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "adjacent_complementary_angle(1,DOC,COB)",
+            "angle_addition(1,COB,BOA)"
+        ]
+    }
 }

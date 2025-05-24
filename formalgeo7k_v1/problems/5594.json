@@ -1,48 +1,45 @@
 {
-  "problem_id": 5594,
-  "annotation": "YimingHe_2023-05-28",
-  "source": "GeoQA-7125",
-  "problem_level": 6,
-  "problem_text_cn": "如图所示，△ABC的面积为16，Div(LengthOfLine(EC)=LengthOfLine(AE))，DE∥BC。求△ADE的面积。",
-  "problem_text_en": "As shown in the diagram, the area of △ABC is 16, Div(LengthOfLine(EC)=LengthOfLine(AE)), DE∥BC. Find the area of △ADE.",
-  "problem_img": "5594.png",
-  "construction_cdl": [
-    "Shape(AD,DE,EA)",
-    "Shape(DB,BC,CE,ED)",
-    "Collinear(ADB)",
-    "Collinear(AEC)"
-  ],
-  "text_cdl": [
-    "Equal(AreaOfTriangle(ABC),16)",
-    "Equal(Div(LengthOfLine(EC),LengthOfLine(AE)),3)",
-    "ParallelBetweenLine(DE,BC)"
-  ],
-  "image_cdl": [],
-  "goal_cdl": "Value(AreaOfTriangle(ADE))",
-  "problem_answer": "1",
-  "theorem_seqs": [
-    "line_addition(1,AE,EC)",
-    "parallel_property_corresponding_angle(1,DE,BC,A)",
-    "parallel_property_corresponding_angle(2,CB,ED,A)",
-    "similar_triangle_judgment_aa(1,ADE,ABC)",
-    "similar_triangle_property_line_ratio(1,DEA,BCA)",
-    "similar_triangle_property_area_square_ratio(1,ADE,ABC)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "line_addition(1,AE,EC)",
-      "parallel_property_corresponding_angle(1,DE,BC,A)",
-      "parallel_property_corresponding_angle(2,CB,ED,A)"
+    "problem_id": 5594,
+    "source": "GeoQA-7125",
+    "problem_level": 6,
+    "problem_img": "5594.png",
+    "construction_cdl": [
+        "Shape(AD,DE,EA)",
+        "Shape(DB,BC,CE,ED)",
+        "Collinear(ADB)",
+        "Collinear(AEC)"
     ],
-    "parallel_property_corresponding_angle(1,DE,BC,A)": [
-      "similar_triangle_judgment_aa(1,ADE,ABC)"
+    "text_cdl": [
+        "Equal(AreaOfTriangle(ABC),16)",
+        "Equal(Div(LengthOfLine(EC),LengthOfLine(AE)),3)",
+        "ParallelBetweenLine(DE,BC)"
     ],
-    "parallel_property_corresponding_angle(2,CB,ED,A)": [
-      "similar_triangle_judgment_aa(1,ADE,ABC)"
+    "image_cdl": [],
+    "goal_cdl": "Value(AreaOfTriangle(ADE))",
+    "problem_answer": "1",
+    "theorem_seqs": [
+        "line_addition(1,AE,EC)",
+        "parallel_property_corresponding_angle(1,DE,BC,A)",
+        "parallel_property_corresponding_angle(2,CB,ED,A)",
+        "similar_triangle_judgment_aa(1,ADE,ABC)",
+        "similar_triangle_property_line_ratio(1,DEA,BCA)",
+        "similar_triangle_property_area_square_ratio(1,ADE,ABC)"
     ],
-    "similar_triangle_judgment_aa(1,ADE,ABC)": [
-      "similar_triangle_property_area_square_ratio(1,ADE,ABC)",
-      "similar_triangle_property_line_ratio(1,DEA,BCA)"
-    ]
-  }
+    "theorem_seqs_dag": {
+        "START": [
+            "line_addition(1,AE,EC)",
+            "parallel_property_corresponding_angle(1,DE,BC,A)",
+            "parallel_property_corresponding_angle(2,CB,ED,A)"
+        ],
+        "parallel_property_corresponding_angle(1,DE,BC,A)": [
+            "similar_triangle_judgment_aa(1,ADE,ABC)"
+        ],
+        "parallel_property_corresponding_angle(2,CB,ED,A)": [
+            "similar_triangle_judgment_aa(1,ADE,ABC)"
+        ],
+        "similar_triangle_judgment_aa(1,ADE,ABC)": [
+            "similar_triangle_property_area_square_ratio(1,ADE,ABC)",
+            "similar_triangle_property_line_ratio(1,DEA,BCA)"
+        ]
+    }
 }

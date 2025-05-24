@@ -1,40 +1,37 @@
 {
-  "problem_id": 3634,
-  "annotation": "QikeHuang_2023-04-30",
-  "source": "GeoQA-1317",
-  "problem_level": 4,
-  "problem_text_cn": "如图所示，∠CBA=46°，∠FEC=160°，AB∥EF，EF平行于CD。求∠BCE的大小。",
-  "problem_text_en": "As shown in the diagram, ∠CBA=46°, ∠FEC=160°, AB∥EF, EF is parallel to CD. Find the measure of ∠BCE.",
-  "problem_img": "3634.png",
-  "construction_cdl": [
-    "Shape(CB,BA)",
-    "Shape(BC,CE,EF,FB)",
-    "Shape(EC,CD,DF,FE)",
-    "Collinear(BFD)"
-  ],
-  "text_cdl": [
-    "Equal(MeasureOfAngle(CBA),46)",
-    "Equal(MeasureOfAngle(FEC),160)",
-    "ParallelBetweenLine(AB,EF)",
-    "ParallelBetweenLine(EF,CD)"
-  ],
-  "image_cdl": [],
-  "goal_cdl": "Value(MeasureOfAngle(BCE))",
-  "problem_answer": "26",
-  "theorem_seqs": [
-    "parallel_judgment_par_par(1,AB,EF,CD)",
-    "parallel_property_alternate_interior_angle(2,AB,CD)",
-    "parallel_property_ipsilateral_internal_angle(1,EF,CD)",
-    "angle_addition(1,BCE,ECD)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "parallel_judgment_par_par(1,AB,EF,CD)",
-      "parallel_property_ipsilateral_internal_angle(1,EF,CD)",
-      "angle_addition(1,BCE,ECD)"
+    "problem_id": 3634,
+    "source": "GeoQA-1317",
+    "problem_level": 4,
+    "problem_img": "3634.png",
+    "construction_cdl": [
+        "Shape(CB,BA)",
+        "Shape(BC,CE,EF,FB)",
+        "Shape(EC,CD,DF,FE)",
+        "Collinear(BFD)"
     ],
-    "parallel_judgment_par_par(1,AB,EF,CD)": [
-      "parallel_property_alternate_interior_angle(2,AB,CD)"
-    ]
-  }
+    "text_cdl": [
+        "Equal(MeasureOfAngle(CBA),46)",
+        "Equal(MeasureOfAngle(FEC),160)",
+        "ParallelBetweenLine(AB,EF)",
+        "ParallelBetweenLine(EF,CD)"
+    ],
+    "image_cdl": [],
+    "goal_cdl": "Value(MeasureOfAngle(BCE))",
+    "problem_answer": "26",
+    "theorem_seqs": [
+        "parallel_judgment_par_par(1,AB,EF,CD)",
+        "parallel_property_alternate_interior_angle(2,AB,CD)",
+        "parallel_property_ipsilateral_internal_angle(1,EF,CD)",
+        "angle_addition(1,BCE,ECD)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "parallel_judgment_par_par(1,AB,EF,CD)",
+            "parallel_property_ipsilateral_internal_angle(1,EF,CD)",
+            "angle_addition(1,BCE,ECD)"
+        ],
+        "parallel_judgment_par_par(1,AB,EF,CD)": [
+            "parallel_property_alternate_interior_angle(2,AB,CD)"
+        ]
+    }
 }

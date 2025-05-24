@@ -1,46 +1,43 @@
 {
-  "problem_id": 2202,
-  "annotation": "XiaoxiaoJin_2023-04-23",
-  "source": "Geometry3k-2299",
-  "problem_level": 3,
-  "problem_text_cn": "如图所示，∠FHM=94°，DM平行于CA。求∠ACI的大小。",
-  "problem_text_en": "As shown in the diagram, ∠FHM=94°, DM is parallel to CA. Find the measure of ∠ACI.",
-  "problem_img": "2202.png",
-  "construction_cdl": [
-    "Shape(FH,HM)",
-    "Shape(MH,HC)",
-    "Shape(CH,HD)",
-    "Shape(DH,HF)",
-    "Shape(HC,CA)",
-    "Shape(AC,CI)",
-    "Shape(IC,CE)",
-    "Shape(EC,CH)",
-    "Collinear(FHCI)",
-    "Collinear(MHD)",
-    "Collinear(ACE)"
-  ],
-  "text_cdl": [
-    "Equal(MeasureOfAngle(FHM),94)",
-    "ParallelBetweenLine(DM,CA)"
-  ],
-  "image_cdl": [
-    "Equal(MeasureOfAngle(FHM),94)",
-    "ParallelBetweenLine(DM,CA)"
-  ],
-  "goal_cdl": "Value(MeasureOfAngle(ACI))",
-  "problem_answer": "86",
-  "theorem_seqs": [
-    "parallel_property_collinear_extend(3,DM,CA,H)",
-    "adjacent_complementary_angle(1,FHM,MHC)",
-    "parallel_property_corresponding_angle(2,HM,CA,I)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "parallel_property_collinear_extend(3,DM,CA,H)",
-      "adjacent_complementary_angle(1,FHM,MHC)"
+    "problem_id": 2202,
+    "source": "Geometry3k-2299",
+    "problem_level": 3,
+    "problem_img": "2202.png",
+    "construction_cdl": [
+        "Shape(FH,HM)",
+        "Shape(MH,HC)",
+        "Shape(CH,HD)",
+        "Shape(DH,HF)",
+        "Shape(HC,CA)",
+        "Shape(AC,CI)",
+        "Shape(IC,CE)",
+        "Shape(EC,CH)",
+        "Collinear(FHCI)",
+        "Collinear(MHD)",
+        "Collinear(ACE)"
     ],
-    "parallel_property_collinear_extend(3,DM,CA,H)": [
-      "parallel_property_corresponding_angle(2,HM,CA,I)"
-    ]
-  }
+    "text_cdl": [
+        "Equal(MeasureOfAngle(FHM),94)",
+        "ParallelBetweenLine(DM,CA)"
+    ],
+    "image_cdl": [
+        "Equal(MeasureOfAngle(FHM),94)",
+        "ParallelBetweenLine(DM,CA)"
+    ],
+    "goal_cdl": "Value(MeasureOfAngle(ACI))",
+    "problem_answer": "86",
+    "theorem_seqs": [
+        "parallel_property_collinear_extend(3,DM,CA,H)",
+        "adjacent_complementary_angle(1,FHM,MHC)",
+        "parallel_property_corresponding_angle(2,HM,CA,I)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "parallel_property_collinear_extend(3,DM,CA,H)",
+            "adjacent_complementary_angle(1,FHM,MHC)"
+        ],
+        "parallel_property_collinear_extend(3,DM,CA,H)": [
+            "parallel_property_corresponding_angle(2,HM,CA,I)"
+        ]
+    }
 }

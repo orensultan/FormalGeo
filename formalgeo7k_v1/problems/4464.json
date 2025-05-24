@@ -1,56 +1,53 @@
 {
-  "problem_id": 4464,
-  "annotation": "JiaZou_2023-05-14",
-  "source": "GeoQA-3443",
-  "problem_level": 9,
-  "problem_text_cn": "如图所示，AB=16，CD=20，∠AEO=90°，O是⊙O的圆心，圆O的直径为CD。求直线EP的长度。",
-  "problem_text_en": "As shown in the diagram, AB=16, CD=20, ∠AEO=90°, the center of ⊙O is O, CD is the diameter of ⊙O. Find the length of line EP.",
-  "problem_img": "4464.png",
-  "construction_cdl": [
-    "Shape(CO,OD,ODC)",
-    "Shape(AO,OC,OCA)",
-    "Shape(OA,AE,EO)",
-    "Shape(DO,OE,EB,OBD)",
-    "Shape(BA,OAB)",
-    "Collinear(COD)",
-    "Collinear(AEB)",
-    "Collinear(OEP)",
-    "Cocircular(O,APBDC)"
-  ],
-  "text_cdl": [
-    "Equal(LengthOfLine(AB),16)",
-    "Equal(LengthOfLine(CD),20)",
-    "Equal(MeasureOfAngle(AEO),90)",
-    "IsCentreOfCircle(O,O)",
-    "IsDiameterOfCircle(CD,O)"
-  ],
-  "image_cdl": [],
-  "goal_cdl": "Value(LengthOfLine(EP))",
-  "problem_answer": "4",
-  "theorem_seqs": [
-    "circle_property_chord_perpendicular_bisect_chord(1,O,OE,AB)",
-    "line_addition(1,AE,EB)",
-    "diameter_of_circle_property_length_equal(1,CD,O)",
-    "circle_property_length_of_radius_and_diameter(1,O)",
-    "radius_of_circle_property_length_equal(1,OA,O)",
-    "right_triangle_judgment_angle(1,AEO)",
-    "right_triangle_property_pythagorean(1,AEO)",
-    "radius_of_circle_property_length_equal(1,OP,O)",
-    "line_addition(1,OE,EP)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "circle_property_chord_perpendicular_bisect_chord(1,O,OE,AB)",
-      "line_addition(1,AE,EB)",
-      "diameter_of_circle_property_length_equal(1,CD,O)",
-      "circle_property_length_of_radius_and_diameter(1,O)",
-      "radius_of_circle_property_length_equal(1,OA,O)",
-      "right_triangle_judgment_angle(1,AEO)",
-      "radius_of_circle_property_length_equal(1,OP,O)",
-      "line_addition(1,OE,EP)"
+    "problem_id": 4464,
+    "source": "GeoQA-3443",
+    "problem_level": 9,
+    "problem_img": "4464.png",
+    "construction_cdl": [
+        "Shape(CO,OD,ODC)",
+        "Shape(AO,OC,OCA)",
+        "Shape(OA,AE,EO)",
+        "Shape(DO,OE,EB,OBD)",
+        "Shape(BA,OAB)",
+        "Collinear(COD)",
+        "Collinear(AEB)",
+        "Collinear(OEP)",
+        "Cocircular(O,APBDC)"
     ],
-    "right_triangle_judgment_angle(1,AEO)": [
-      "right_triangle_property_pythagorean(1,AEO)"
-    ]
-  }
+    "text_cdl": [
+        "Equal(LengthOfLine(AB),16)",
+        "Equal(LengthOfLine(CD),20)",
+        "Equal(MeasureOfAngle(AEO),90)",
+        "IsCentreOfCircle(O,O)",
+        "IsDiameterOfCircle(CD,O)"
+    ],
+    "image_cdl": [],
+    "goal_cdl": "Value(LengthOfLine(EP))",
+    "problem_answer": "4",
+    "theorem_seqs": [
+        "circle_property_chord_perpendicular_bisect_chord(1,O,OE,AB)",
+        "line_addition(1,AE,EB)",
+        "diameter_of_circle_property_length_equal(1,CD,O)",
+        "circle_property_length_of_radius_and_diameter(1,O)",
+        "radius_of_circle_property_length_equal(1,OA,O)",
+        "right_triangle_judgment_angle(1,AEO)",
+        "right_triangle_property_pythagorean(1,AEO)",
+        "radius_of_circle_property_length_equal(1,OP,O)",
+        "line_addition(1,OE,EP)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "circle_property_chord_perpendicular_bisect_chord(1,O,OE,AB)",
+            "line_addition(1,AE,EB)",
+            "diameter_of_circle_property_length_equal(1,CD,O)",
+            "circle_property_length_of_radius_and_diameter(1,O)",
+            "radius_of_circle_property_length_equal(1,OA,O)",
+            "right_triangle_judgment_angle(1,AEO)",
+            "radius_of_circle_property_length_equal(1,OP,O)",
+            "line_addition(1,OE,EP)"
+        ],
+        "right_triangle_judgment_angle(1,AEO)": [
+            "right_triangle_property_pythagorean(1,AEO)"
+        ]
+    }
 }

@@ -1,43 +1,40 @@
 {
-  "problem_id": 4079,
-  "annotation": "YanjunGuo_2023-05-07",
-  "source": "GeoQA-2433",
-  "problem_level": 5,
-  "problem_text_cn": "如图所示，AB=10，CD=15，△ABD与△MHD是相似三角形，△MAB相似于△MDC。求直线MH的长度。",
-  "problem_text_en": "As shown in the diagram, AB=10, CD=15, triangle ABD is similar to triangle MHD., triangle MAB is similar to triangle MDC.. Find the length of line MH.",
-  "problem_img": "4079.png",
-  "construction_cdl": [
-    "Shape(AB,BM,MA)",
-    "Shape(MB,BH,HM)",
-    "Shape(MH,HD,DM)",
-    "Shape(MD,DC,CM)",
-    "Collinear(AMD)",
-    "Collinear(BMC)",
-    "Collinear(BHD)"
-  ],
-  "text_cdl": [
-    "Equal(LengthOfLine(AB),10)",
-    "Equal(LengthOfLine(CD),15)",
-    "SimilarBetweenTriangle(ABD,MHD)",
-    "SimilarBetweenTriangle(MAB,MDC)"
-  ],
-  "image_cdl": [],
-  "goal_cdl": "Value(LengthOfLine(MH))",
-  "problem_answer": "6",
-  "theorem_seqs": [
-    "similar_triangle_property_line_ratio(1,MAB,MDC)",
-    "similar_triangle_property_line_ratio(1,BMA,CMD)",
-    "similar_triangle_property_line_ratio(1,BDA,HDM)",
-    "similar_triangle_property_line_ratio(1,DAB,DMH)",
-    "line_addition(1,AM,MD)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "similar_triangle_property_line_ratio(1,MAB,MDC)",
-      "similar_triangle_property_line_ratio(1,BMA,CMD)",
-      "similar_triangle_property_line_ratio(1,BDA,HDM)",
-      "similar_triangle_property_line_ratio(1,DAB,DMH)",
-      "line_addition(1,AM,MD)"
-    ]
-  }
+    "problem_id": 4079,
+    "source": "GeoQA-2433",
+    "problem_level": 5,
+    "problem_img": "4079.png",
+    "construction_cdl": [
+        "Shape(AB,BM,MA)",
+        "Shape(MB,BH,HM)",
+        "Shape(MH,HD,DM)",
+        "Shape(MD,DC,CM)",
+        "Collinear(AMD)",
+        "Collinear(BMC)",
+        "Collinear(BHD)"
+    ],
+    "text_cdl": [
+        "Equal(LengthOfLine(AB),10)",
+        "Equal(LengthOfLine(CD),15)",
+        "SimilarBetweenTriangle(ABD,MHD)",
+        "SimilarBetweenTriangle(MAB,MDC)"
+    ],
+    "image_cdl": [],
+    "goal_cdl": "Value(LengthOfLine(MH))",
+    "problem_answer": "6",
+    "theorem_seqs": [
+        "similar_triangle_property_line_ratio(1,MAB,MDC)",
+        "similar_triangle_property_line_ratio(1,BMA,CMD)",
+        "similar_triangle_property_line_ratio(1,BDA,HDM)",
+        "similar_triangle_property_line_ratio(1,DAB,DMH)",
+        "line_addition(1,AM,MD)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "similar_triangle_property_line_ratio(1,MAB,MDC)",
+            "similar_triangle_property_line_ratio(1,BMA,CMD)",
+            "similar_triangle_property_line_ratio(1,BDA,HDM)",
+            "similar_triangle_property_line_ratio(1,DAB,DMH)",
+            "line_addition(1,AM,MD)"
+        ]
+    }
 }

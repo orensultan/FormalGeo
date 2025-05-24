@@ -1,36 +1,33 @@
 {
-  "problem_id": 216,
-  "annotation": "XiaokaiZhang_2023-03-12",
-  "source": "Geometry3k-218",
-  "problem_level": 3,
-  "problem_text_cn": "如图所示，TV=TU，∠VTU=74°。求∠TUV的大小。",
-  "problem_text_en": "As shown in the diagram, TV=TU, ∠VTU=74°. Find the measure of ∠TUV.",
-  "problem_img": "216.png",
-  "construction_cdl": [
-    "Shape(TU,UV,VT)"
-  ],
-  "text_cdl": [
-    "Equal(LengthOfLine(TV),LengthOfLine(TU))",
-    "Equal(MeasureOfAngle(VTU),74)"
-  ],
-  "image_cdl": [
-    "Equal(LengthOfLine(TV),LengthOfLine(TU))",
-    "Equal(MeasureOfAngle(VTU),74)"
-  ],
-  "goal_cdl": "Value(MeasureOfAngle(TUV))",
-  "problem_answer": "53",
-  "theorem_seqs": [
-    "isosceles_triangle_judgment_line_equal(1,TUV)",
-    "isosceles_triangle_property_angle_equal(1,TUV)",
-    "triangle_property_angle_sum(1,TUV)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "isosceles_triangle_judgment_line_equal(1,TUV)",
-      "triangle_property_angle_sum(1,TUV)"
+    "problem_id": 216,
+    "source": "Geometry3k-218",
+    "problem_level": 3,
+    "problem_img": "216.png",
+    "construction_cdl": [
+        "Shape(TU,UV,VT)"
     ],
-    "isosceles_triangle_judgment_line_equal(1,TUV)": [
-      "isosceles_triangle_property_angle_equal(1,TUV)"
-    ]
-  }
+    "text_cdl": [
+        "Equal(LengthOfLine(TV),LengthOfLine(TU))",
+        "Equal(MeasureOfAngle(VTU),74)"
+    ],
+    "image_cdl": [
+        "Equal(LengthOfLine(TV),LengthOfLine(TU))",
+        "Equal(MeasureOfAngle(VTU),74)"
+    ],
+    "goal_cdl": "Value(MeasureOfAngle(TUV))",
+    "problem_answer": "53",
+    "theorem_seqs": [
+        "isosceles_triangle_judgment_line_equal(1,TUV)",
+        "isosceles_triangle_property_angle_equal(1,TUV)",
+        "triangle_property_angle_sum(1,TUV)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "isosceles_triangle_judgment_line_equal(1,TUV)",
+            "triangle_property_angle_sum(1,TUV)"
+        ],
+        "isosceles_triangle_judgment_line_equal(1,TUV)": [
+            "isosceles_triangle_property_angle_equal(1,TUV)"
+        ]
+    }
 }

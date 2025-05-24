@@ -1,40 +1,37 @@
 {
-  "problem_id": 5067,
-  "annotation": "ChengQin_2023-05-21",
-  "source": "GeoQA-4841",
-  "problem_level": 4,
-  "problem_text_cn": "如图所示，AB=9，AD=6，ED=3，△BCF镜像相似于△DEC，BA和CD是平行四边形ABCD的一组对边。求直线BF的长度。",
-  "problem_text_en": "As shown in the diagram, AB=9, AD=6, ED=3, △BCF is mirror similar to △DEC., quadrilateral ABCD is a ▱. Find the length of line BF.",
-  "problem_img": "5067.png",
-  "construction_cdl": [
-    "Shape(AF,FC,CE,EA)",
-    "Shape(FB,BC,CF)",
-    "Shape(EC,CD,DE)",
-    "Collinear(AED)",
-    "Collinear(AFB)"
-  ],
-  "text_cdl": [
-    "Equal(LengthOfLine(AB),9)",
-    "Equal(LengthOfLine(AD),6)",
-    "Equal(LengthOfLine(ED),3)",
-    "MirrorSimilarBetweenTriangle(BCF,DEC)",
-    "Parallelogram(ABCD)"
-  ],
-  "image_cdl": [],
-  "goal_cdl": "Value(LengthOfLine(BF))",
-  "problem_answer": "2",
-  "theorem_seqs": [
-    "parallelogram_property_opposite_line_equal(1,ABCD)",
-    "parallelogram_property_opposite_line_equal(1,DABC)",
-    "mirror_similar_triangle_property_line_ratio(1,FBC,ECD)",
-    "mirror_similar_triangle_property_line_ratio(1,CFB,CDE)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "parallelogram_property_opposite_line_equal(1,ABCD)",
-      "parallelogram_property_opposite_line_equal(1,DABC)",
-      "mirror_similar_triangle_property_line_ratio(1,FBC,ECD)",
-      "mirror_similar_triangle_property_line_ratio(1,CFB,CDE)"
-    ]
-  }
+    "problem_id": 5067,
+    "source": "GeoQA-4841",
+    "problem_level": 4,
+    "problem_img": "5067.png",
+    "construction_cdl": [
+        "Shape(AF,FC,CE,EA)",
+        "Shape(FB,BC,CF)",
+        "Shape(EC,CD,DE)",
+        "Collinear(AED)",
+        "Collinear(AFB)"
+    ],
+    "text_cdl": [
+        "Equal(LengthOfLine(AB),9)",
+        "Equal(LengthOfLine(AD),6)",
+        "Equal(LengthOfLine(ED),3)",
+        "MirrorSimilarBetweenTriangle(BCF,DEC)",
+        "Parallelogram(ABCD)"
+    ],
+    "image_cdl": [],
+    "goal_cdl": "Value(LengthOfLine(BF))",
+    "problem_answer": "2",
+    "theorem_seqs": [
+        "parallelogram_property_opposite_line_equal(1,ABCD)",
+        "parallelogram_property_opposite_line_equal(1,DABC)",
+        "mirror_similar_triangle_property_line_ratio(1,FBC,ECD)",
+        "mirror_similar_triangle_property_line_ratio(1,CFB,CDE)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "parallelogram_property_opposite_line_equal(1,ABCD)",
+            "parallelogram_property_opposite_line_equal(1,DABC)",
+            "mirror_similar_triangle_property_line_ratio(1,FBC,ECD)",
+            "mirror_similar_triangle_property_line_ratio(1,CFB,CDE)"
+        ]
+    }
 }

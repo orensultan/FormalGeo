@@ -1,45 +1,42 @@
 {
-  "problem_id": 2810,
-  "annotation": "RunanWang_2023-05-07",
-  "source": "Geometry3k-2959",
-  "problem_level": 3,
-  "problem_text_cn": "如图所示，AE=12，AE=BE，DE=11，DE=CE，四边形BDAC是菱形。求四边形BDAC的面积。",
-  "problem_text_en": "As shown in the diagram, AE=12, AE=BE, DE=11, DE=CE, BDAC is a rhombus. Find the area of BDAC.",
-  "problem_img": "2810.png",
-  "construction_cdl": [
-    "Shape(AE,ED,DA)",
-    "Shape(DE,EB,BD)",
-    "Shape(BE,EC,CB)",
-    "Shape(EA,AC,CE)",
-    "Collinear(DEC)",
-    "Collinear(AEB)"
-  ],
-  "text_cdl": [
-    "Equal(LengthOfLine(AE),12)",
-    "Equal(LengthOfLine(AE),LengthOfLine(BE))",
-    "Equal(LengthOfLine(DE),11)",
-    "Equal(LengthOfLine(DE),LengthOfLine(CE))",
-    "Rhombus(BDAC)"
-  ],
-  "image_cdl": [
-    "Equal(LengthOfLine(AE),12)",
-    "Equal(LengthOfLine(AE),LengthOfLine(BE))",
-    "Equal(LengthOfLine(DE),11)",
-    "Equal(LengthOfLine(DE),LengthOfLine(CE))",
-    "Rhombus(BDAC)"
-  ],
-  "goal_cdl": "Value(AreaOfQuadrilateral(BDAC))",
-  "problem_answer": "264",
-  "theorem_seqs": [
-    "line_addition(1,DE,EC)",
-    "line_addition(1,AE,EB)",
-    "kite_area_formula_diagonal(1,BDAC)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "line_addition(1,DE,EC)",
-      "line_addition(1,AE,EB)",
-      "kite_area_formula_diagonal(1,BDAC)"
-    ]
-  }
+    "problem_id": 2810,
+    "source": "Geometry3k-2959",
+    "problem_level": 3,
+    "problem_img": "2810.png",
+    "construction_cdl": [
+        "Shape(AE,ED,DA)",
+        "Shape(DE,EB,BD)",
+        "Shape(BE,EC,CB)",
+        "Shape(EA,AC,CE)",
+        "Collinear(DEC)",
+        "Collinear(AEB)"
+    ],
+    "text_cdl": [
+        "Equal(LengthOfLine(AE),12)",
+        "Equal(LengthOfLine(AE),LengthOfLine(BE))",
+        "Equal(LengthOfLine(DE),11)",
+        "Equal(LengthOfLine(DE),LengthOfLine(CE))",
+        "Rhombus(BDAC)"
+    ],
+    "image_cdl": [
+        "Equal(LengthOfLine(AE),12)",
+        "Equal(LengthOfLine(AE),LengthOfLine(BE))",
+        "Equal(LengthOfLine(DE),11)",
+        "Equal(LengthOfLine(DE),LengthOfLine(CE))",
+        "Rhombus(BDAC)"
+    ],
+    "goal_cdl": "Value(AreaOfQuadrilateral(BDAC))",
+    "problem_answer": "264",
+    "theorem_seqs": [
+        "line_addition(1,DE,EC)",
+        "line_addition(1,AE,EB)",
+        "kite_area_formula_diagonal(1,BDAC)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "line_addition(1,DE,EC)",
+            "line_addition(1,AE,EB)",
+            "kite_area_formula_diagonal(1,BDAC)"
+        ]
+    }
 }

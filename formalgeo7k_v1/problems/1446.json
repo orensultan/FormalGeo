@@ -1,53 +1,50 @@
 {
-  "problem_id": 1446,
-  "annotation": "YimingHe_2023-03-19",
-  "source": "Geometry3k-1499",
-  "problem_level": 6,
-  "problem_text_cn": "如图所示，AB=x-2，AD=10，CB=5，ED=4，EB∥DC。求x的值。",
-  "problem_text_en": "As shown in the diagram, AB=x-2, AD=10, CB=5, ED=4, EB is parallel to DC. Find the value of x.",
-  "problem_img": "1446.png",
-  "construction_cdl": [
-    "Shape(AE,EB,BA)",
-    "Shape(ED,DC,CB,BE)",
-    "Collinear(AED)",
-    "Collinear(ABC)"
-  ],
-  "text_cdl": [
-    "Equal(LengthOfLine(AB),x-2)",
-    "Equal(LengthOfLine(AD),10)",
-    "Equal(LengthOfLine(CB),5)",
-    "Equal(LengthOfLine(ED),4)",
-    "ParallelBetweenLine(EB,DC)"
-  ],
-  "image_cdl": [
-    "Equal(LengthOfLine(AB),x-2)",
-    "Equal(LengthOfLine(AD),10)",
-    "Equal(LengthOfLine(CB),5)",
-    "Equal(LengthOfLine(ED),4)",
-    "ParallelBetweenLine(EB,DC)"
-  ],
-  "goal_cdl": "Value(x)",
-  "problem_answer": "19/2",
-  "theorem_seqs": [
-    "parallel_property_corresponding_angle(1,EB,DC,A)",
-    "similar_triangle_judgment_aa(1,BAE,CAD)",
-    "line_addition(1,AE,ED)",
-    "line_addition(1,AB,BC)",
-    "similar_triangle_property_line_ratio(1,BAE,CAD)",
-    "similar_triangle_property_line_ratio(1,EBA,DCA)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "parallel_property_corresponding_angle(1,EB,DC,A)",
-      "line_addition(1,AE,ED)",
-      "line_addition(1,AB,BC)"
+    "problem_id": 1446,
+    "source": "Geometry3k-1499",
+    "problem_level": 6,
+    "problem_img": "1446.png",
+    "construction_cdl": [
+        "Shape(AE,EB,BA)",
+        "Shape(ED,DC,CB,BE)",
+        "Collinear(AED)",
+        "Collinear(ABC)"
     ],
-    "parallel_property_corresponding_angle(1,EB,DC,A)": [
-      "similar_triangle_judgment_aa(1,BAE,CAD)"
+    "text_cdl": [
+        "Equal(LengthOfLine(AB),x-2)",
+        "Equal(LengthOfLine(AD),10)",
+        "Equal(LengthOfLine(CB),5)",
+        "Equal(LengthOfLine(ED),4)",
+        "ParallelBetweenLine(EB,DC)"
     ],
-    "similar_triangle_judgment_aa(1,BAE,CAD)": [
-      "similar_triangle_property_line_ratio(1,BAE,CAD)",
-      "similar_triangle_property_line_ratio(1,EBA,DCA)"
-    ]
-  }
+    "image_cdl": [
+        "Equal(LengthOfLine(AB),x-2)",
+        "Equal(LengthOfLine(AD),10)",
+        "Equal(LengthOfLine(CB),5)",
+        "Equal(LengthOfLine(ED),4)",
+        "ParallelBetweenLine(EB,DC)"
+    ],
+    "goal_cdl": "Value(x)",
+    "problem_answer": "19/2",
+    "theorem_seqs": [
+        "parallel_property_corresponding_angle(1,EB,DC,A)",
+        "similar_triangle_judgment_aa(1,BAE,CAD)",
+        "line_addition(1,AE,ED)",
+        "line_addition(1,AB,BC)",
+        "similar_triangle_property_line_ratio(1,BAE,CAD)",
+        "similar_triangle_property_line_ratio(1,EBA,DCA)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "parallel_property_corresponding_angle(1,EB,DC,A)",
+            "line_addition(1,AE,ED)",
+            "line_addition(1,AB,BC)"
+        ],
+        "parallel_property_corresponding_angle(1,EB,DC,A)": [
+            "similar_triangle_judgment_aa(1,BAE,CAD)"
+        ],
+        "similar_triangle_judgment_aa(1,BAE,CAD)": [
+            "similar_triangle_property_line_ratio(1,BAE,CAD)",
+            "similar_triangle_property_line_ratio(1,EBA,DCA)"
+        ]
+    }
 }

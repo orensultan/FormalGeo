@@ -1,38 +1,35 @@
 {
-  "problem_id": 2722,
-  "annotation": "ZheZhu_2023-04-23",
-  "source": "Geometry3k-2867",
-  "problem_level": 2,
-  "problem_text_cn": "如图所示，∠CBD=55°，B是圆B的圆心。求⌒BAG的角度。",
-  "problem_text_en": "As shown in the diagram, ∠CBD=55°, B is the center of ⊙B. Find the measure of arc BAG.",
-  "problem_img": "2722.png",
-  "construction_cdl": [
-    "Shape(BCA,AB,BC)",
-    "Shape(BAG,GB,BA)",
-    "Shape(BGD,DB,BG)",
-    "Shape(BDC,CB,BD)",
-    "Collinear(ABD)",
-    "Collinear(CBG)",
-    "Cocircular(B,DCAG)"
-  ],
-  "text_cdl": [
-    "Equal(MeasureOfAngle(CBD),55)",
-    "IsCentreOfCircle(B,B)"
-  ],
-  "image_cdl": [
-    "Equal(MeasureOfAngle(CBD),55)",
-    "IsCentreOfCircle(B,B)"
-  ],
-  "goal_cdl": "Value(MeasureOfArc(BAG))",
-  "problem_answer": "55",
-  "theorem_seqs": [
-    "vertical_angle(1,CBD,GBA)",
-    "arc_property_center_angle(1,BAG,B)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "vertical_angle(1,CBD,GBA)",
-      "arc_property_center_angle(1,BAG,B)"
-    ]
-  }
+    "problem_id": 2722,
+    "source": "Geometry3k-2867",
+    "problem_level": 2,
+    "problem_img": "2722.png",
+    "construction_cdl": [
+        "Shape(BCA,AB,BC)",
+        "Shape(BAG,GB,BA)",
+        "Shape(BGD,DB,BG)",
+        "Shape(BDC,CB,BD)",
+        "Collinear(ABD)",
+        "Collinear(CBG)",
+        "Cocircular(B,DCAG)"
+    ],
+    "text_cdl": [
+        "Equal(MeasureOfAngle(CBD),55)",
+        "IsCentreOfCircle(B,B)"
+    ],
+    "image_cdl": [
+        "Equal(MeasureOfAngle(CBD),55)",
+        "IsCentreOfCircle(B,B)"
+    ],
+    "goal_cdl": "Value(MeasureOfArc(BAG))",
+    "problem_answer": "55",
+    "theorem_seqs": [
+        "vertical_angle(1,CBD,GBA)",
+        "arc_property_center_angle(1,BAG,B)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "vertical_angle(1,CBD,GBA)",
+            "arc_property_center_angle(1,BAG,B)"
+        ]
+    }
 }

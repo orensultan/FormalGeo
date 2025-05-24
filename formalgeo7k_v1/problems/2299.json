@@ -1,46 +1,43 @@
 {
-  "problem_id": 2299,
-  "annotation": "DengfengYue_2023-04-16",
-  "source": "Geometry3k-2405",
-  "problem_level": 3,
-  "problem_text_cn": "如图所示，∠BAD=38°，∠HCB=33°，BJ∥HC，DA∥BJ，DF∥HE。求∠ABC的大小。",
-  "problem_text_en": "As shown in the diagram, ∠BAD=38°, ∠HCB=33°, BJ∥HC, DA is parallel to BJ, DF is parallel to HE. Find the measure of ∠ABC.",
-  "problem_img": "2299.png",
-  "construction_cdl": [
-    "Shape(AB,BJ,JA)",
-    "Shape(BC,CJ,JB)",
-    "Shape(HC,CB,BA,AD,DH)",
-    "Collinear(AJC)",
-    "Collinear(GAB)",
-    "Collinear(BCI)",
-    "Collinear(DAF)",
-    "Collinear(HCE)"
-  ],
-  "text_cdl": [
-    "Equal(MeasureOfAngle(BAD),38)",
-    "Equal(MeasureOfAngle(HCB),33)",
-    "ParallelBetweenLine(BJ,HC)",
-    "ParallelBetweenLine(DA,BJ)",
-    "ParallelBetweenLine(DF,HE)"
-  ],
-  "image_cdl": [
-    "Equal(MeasureOfAngle(BAD),38)",
-    "Equal(MeasureOfAngle(HCB),33)",
-    "ParallelBetweenLine(BJ,HC)",
-    "ParallelBetweenLine(DA,BJ)"
-  ],
-  "goal_cdl": "Value(MeasureOfAngle(ABC))",
-  "problem_answer": "71",
-  "theorem_seqs": [
-    "parallel_property_alternate_interior_angle(2,DA,BJ)",
-    "parallel_property_alternate_interior_angle(1,BJ,HC)",
-    "angle_addition(1,ABJ,JBC)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "parallel_property_alternate_interior_angle(2,DA,BJ)",
-      "parallel_property_alternate_interior_angle(1,BJ,HC)",
-      "angle_addition(1,ABJ,JBC)"
-    ]
-  }
+    "problem_id": 2299,
+    "source": "Geometry3k-2405",
+    "problem_level": 3,
+    "problem_img": "2299.png",
+    "construction_cdl": [
+        "Shape(AB,BJ,JA)",
+        "Shape(BC,CJ,JB)",
+        "Shape(HC,CB,BA,AD,DH)",
+        "Collinear(AJC)",
+        "Collinear(GAB)",
+        "Collinear(BCI)",
+        "Collinear(DAF)",
+        "Collinear(HCE)"
+    ],
+    "text_cdl": [
+        "Equal(MeasureOfAngle(BAD),38)",
+        "Equal(MeasureOfAngle(HCB),33)",
+        "ParallelBetweenLine(BJ,HC)",
+        "ParallelBetweenLine(DA,BJ)",
+        "ParallelBetweenLine(DF,HE)"
+    ],
+    "image_cdl": [
+        "Equal(MeasureOfAngle(BAD),38)",
+        "Equal(MeasureOfAngle(HCB),33)",
+        "ParallelBetweenLine(BJ,HC)",
+        "ParallelBetweenLine(DA,BJ)"
+    ],
+    "goal_cdl": "Value(MeasureOfAngle(ABC))",
+    "problem_answer": "71",
+    "theorem_seqs": [
+        "parallel_property_alternate_interior_angle(2,DA,BJ)",
+        "parallel_property_alternate_interior_angle(1,BJ,HC)",
+        "angle_addition(1,ABJ,JBC)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "parallel_property_alternate_interior_angle(2,DA,BJ)",
+            "parallel_property_alternate_interior_angle(1,BJ,HC)",
+            "angle_addition(1,ABJ,JBC)"
+        ]
+    }
 }

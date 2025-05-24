@@ -1,42 +1,39 @@
 {
-  "problem_id": 3953,
-  "annotation": "FangzhenZhu_2023-05-07",
-  "source": "GeoQA-1879",
-  "problem_level": 3,
-  "problem_text_cn": "如图所示，∠AMD=100°，∠DAM=30°。求∠CBM的大小。",
-  "problem_text_en": "As shown in the diagram, ∠AMD=100°, ∠DAM=30°. Find the measure of ∠CBM.",
-  "problem_img": "3953.png",
-  "construction_cdl": [
-    "Shape(OCB,BC)",
-    "Shape(MC,CB,BM)",
-    "Shape(OBD,DM,MB)",
-    "Shape(ODA,AD)",
-    "Shape(MD,DA,AM)",
-    "Shape(OAC,AM,MA)",
-    "Collinear(CMD)",
-    "Collinear(AMB)",
-    "Cocircular(O,BDAC)"
-  ],
-  "text_cdl": [
-    "Equal(MeasureOfAngle(AMD),100)",
-    "Equal(MeasureOfAngle(DAM),30)"
-  ],
-  "image_cdl": [
-    "Equal(MeasureOfAngle(AMD),100)",
-    "Equal(MeasureOfAngle(DAM),30)"
-  ],
-  "goal_cdl": "Value(MeasureOfAngle(CBM))",
-  "problem_answer": "50",
-  "theorem_seqs": [
-    "arc_property_circumference_angle_external(1,OAC,B)",
-    "arc_property_circumference_angle_external(1,OAC,D)",
-    "triangle_property_angle_sum(1,AMD)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "arc_property_circumference_angle_external(1,OAC,B)",
-      "arc_property_circumference_angle_external(1,OAC,D)",
-      "triangle_property_angle_sum(1,AMD)"
-    ]
-  }
+    "problem_id": 3953,
+    "source": "GeoQA-1879",
+    "problem_level": 3,
+    "problem_img": "3953.png",
+    "construction_cdl": [
+        "Shape(OCB,BC)",
+        "Shape(MC,CB,BM)",
+        "Shape(OBD,DM,MB)",
+        "Shape(ODA,AD)",
+        "Shape(MD,DA,AM)",
+        "Shape(OAC,AM,MA)",
+        "Collinear(CMD)",
+        "Collinear(AMB)",
+        "Cocircular(O,BDAC)"
+    ],
+    "text_cdl": [
+        "Equal(MeasureOfAngle(AMD),100)",
+        "Equal(MeasureOfAngle(DAM),30)"
+    ],
+    "image_cdl": [
+        "Equal(MeasureOfAngle(AMD),100)",
+        "Equal(MeasureOfAngle(DAM),30)"
+    ],
+    "goal_cdl": "Value(MeasureOfAngle(CBM))",
+    "problem_answer": "50",
+    "theorem_seqs": [
+        "arc_property_circumference_angle_external(1,OAC,B)",
+        "arc_property_circumference_angle_external(1,OAC,D)",
+        "triangle_property_angle_sum(1,AMD)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "arc_property_circumference_angle_external(1,OAC,B)",
+            "arc_property_circumference_angle_external(1,OAC,D)",
+            "triangle_property_angle_sum(1,AMD)"
+        ]
+    }
 }

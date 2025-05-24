@@ -1,50 +1,47 @@
 {
-  "problem_id": 2869,
-  "annotation": "YimingHe_2023-04-16",
-  "source": "GeoQA-32",
-  "problem_level": 7,
-  "problem_text_cn": "如图所示，∠DBF=50°，D平分线段AB，△ADE与△FED是镜像全等三角形。求∠EDF的大小。",
-  "problem_text_en": "As shown in the diagram, ∠DBF=50°, D bisects segment AB, triangle ADE is mirror congruent to triangle FED. Find the measure of ∠EDF.",
-  "problem_img": "2869.png",
-  "construction_cdl": [
-    "Shape(AD,DE,EA)",
-    "Shape(DB,BF,FD)",
-    "Shape(DF,FE,ED)",
-    "Shape(EF,FC,CE)",
-    "Collinear(BFC)",
-    "Collinear(ADB)",
-    "Collinear(AEC)"
-  ],
-  "text_cdl": [
-    "Equal(MeasureOfAngle(DBF),50)",
-    "IsMidpointOfLine(D,AB)",
-    "MirrorCongruentBetweenTriangle(ADE,FED)"
-  ],
-  "image_cdl": [],
-  "goal_cdl": "Value(MeasureOfAngle(EDF))",
-  "problem_answer": "50",
-  "theorem_seqs": [
-    "mirror_congruent_triangle_property_line_equal(1,EAD,EDF)",
-    "isosceles_triangle_judgment_line_equal(1,DBF)",
-    "isosceles_triangle_property_angle_equal(1,DBF)",
-    "triangle_property_angle_sum(1,DBF)",
-    "adjacent_complementary_angle(1,ADF,FDB)",
-    "angle_addition(1,ADE,EDF)",
-    "mirror_congruent_triangle_property_angle_equal(1,DEA,DFE)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "mirror_congruent_triangle_property_line_equal(1,EAD,EDF)",
-      "triangle_property_angle_sum(1,DBF)",
-      "adjacent_complementary_angle(1,ADF,FDB)",
-      "angle_addition(1,ADE,EDF)",
-      "mirror_congruent_triangle_property_angle_equal(1,DEA,DFE)"
+    "problem_id": 2869,
+    "source": "GeoQA-32",
+    "problem_level": 7,
+    "problem_img": "2869.png",
+    "construction_cdl": [
+        "Shape(AD,DE,EA)",
+        "Shape(DB,BF,FD)",
+        "Shape(DF,FE,ED)",
+        "Shape(EF,FC,CE)",
+        "Collinear(BFC)",
+        "Collinear(ADB)",
+        "Collinear(AEC)"
     ],
-    "mirror_congruent_triangle_property_line_equal(1,EAD,EDF)": [
-      "isosceles_triangle_judgment_line_equal(1,DBF)"
+    "text_cdl": [
+        "Equal(MeasureOfAngle(DBF),50)",
+        "IsMidpointOfLine(D,AB)",
+        "MirrorCongruentBetweenTriangle(ADE,FED)"
     ],
-    "isosceles_triangle_judgment_line_equal(1,DBF)": [
-      "isosceles_triangle_property_angle_equal(1,DBF)"
-    ]
-  }
+    "image_cdl": [],
+    "goal_cdl": "Value(MeasureOfAngle(EDF))",
+    "problem_answer": "50",
+    "theorem_seqs": [
+        "mirror_congruent_triangle_property_line_equal(1,EAD,EDF)",
+        "isosceles_triangle_judgment_line_equal(1,DBF)",
+        "isosceles_triangle_property_angle_equal(1,DBF)",
+        "triangle_property_angle_sum(1,DBF)",
+        "adjacent_complementary_angle(1,ADF,FDB)",
+        "angle_addition(1,ADE,EDF)",
+        "mirror_congruent_triangle_property_angle_equal(1,DEA,DFE)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "mirror_congruent_triangle_property_line_equal(1,EAD,EDF)",
+            "triangle_property_angle_sum(1,DBF)",
+            "adjacent_complementary_angle(1,ADF,FDB)",
+            "angle_addition(1,ADE,EDF)",
+            "mirror_congruent_triangle_property_angle_equal(1,DEA,DFE)"
+        ],
+        "mirror_congruent_triangle_property_line_equal(1,EAD,EDF)": [
+            "isosceles_triangle_judgment_line_equal(1,DBF)"
+        ],
+        "isosceles_triangle_judgment_line_equal(1,DBF)": [
+            "isosceles_triangle_property_angle_equal(1,DBF)"
+        ]
+    }
 }

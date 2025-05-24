@@ -1,67 +1,64 @@
 {
-  "problem_id": 5381,
-  "annotation": "QikeHuang_2023-05-21",
-  "source": "GeoQA-5665",
-  "problem_level": 11,
-  "problem_text_cn": "如图所示，AB=AD，∠DAB=110°，AM垂直平分AB，CM垂直平分AB，AE⊥DE。求∠BCA的大小。",
-  "problem_text_en": "As shown in the diagram, AB=AD, ∠DAB=110°, AM is the perpendicular bisector of BN, CM perpendicular bisects NB, AE⊥DE. Find the measure of ∠BCA.",
-  "problem_img": "5381.png",
-  "construction_cdl": [
-    "Shape(DA,AE,ED)",
-    "Shape(EA,AN,NE)",
-    "Shape(NA,AM,MN)",
-    "Shape(MA,AB,BM)",
-    "Shape(NM,MC,CN)",
-    "Shape(MB,BC,CM)",
-    "Collinear(DENC)",
-    "Collinear(NMB)",
-    "Collinear(AMC)"
-  ],
-  "text_cdl": [
-    "Equal(LengthOfLine(AB),LengthOfLine(AD))",
-    "Equal(MeasureOfAngle(DAB),110)",
-    "IsPerpendicularBisectorOfLine(AM,BN)",
-    "IsPerpendicularBisectorOfLine(CM,NB)",
-    "PerpendicularBetweenLine(AE,DE)"
-  ],
-  "image_cdl": [],
-  "goal_cdl": "Value(MeasureOfAngle(BCA))",
-  "problem_answer": "35",
-  "theorem_seqs": [
-    "perpendicular_bisector_property_distance_equal(1,AM,BN)",
-    "perpendicular_bisector_property_bisector(1,AM,BN)",
-    "perpendicular_bisector_property_bisector(1,CM,NB)",
-    "isosceles_triangle_judgment_line_equal(1,AND)",
-    "adjacent_complementary_angle(1,CEA,AED)",
-    "altitude_of_triangle_judgment(1,AE,AND)",
-    "isosceles_triangle_property_line_coincidence(1,AND,E)",
-    "angle_addition(1,EAN,NAC)",
-    "angle_addition(1,DAE,EAC)",
-    "angle_addition(1,DAC,CAB)",
-    "triangle_property_angle_sum(1,ACE)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "perpendicular_bisector_property_distance_equal(1,AM,BN)",
-      "perpendicular_bisector_property_bisector(1,AM,BN)",
-      "perpendicular_bisector_property_bisector(1,CM,NB)",
-      "adjacent_complementary_angle(1,CEA,AED)",
-      "angle_addition(1,EAN,NAC)",
-      "angle_addition(1,DAE,EAC)",
-      "angle_addition(1,DAC,CAB)",
-      "triangle_property_angle_sum(1,ACE)"
+    "problem_id": 5381,
+    "source": "GeoQA-5665",
+    "problem_level": 11,
+    "problem_img": "5381.png",
+    "construction_cdl": [
+        "Shape(DA,AE,ED)",
+        "Shape(EA,AN,NE)",
+        "Shape(NA,AM,MN)",
+        "Shape(MA,AB,BM)",
+        "Shape(NM,MC,CN)",
+        "Shape(MB,BC,CM)",
+        "Collinear(DENC)",
+        "Collinear(NMB)",
+        "Collinear(AMC)"
     ],
-    "perpendicular_bisector_property_distance_equal(1,AM,BN)": [
-      "isosceles_triangle_judgment_line_equal(1,AND)"
+    "text_cdl": [
+        "Equal(LengthOfLine(AB),LengthOfLine(AD))",
+        "Equal(MeasureOfAngle(DAB),110)",
+        "IsPerpendicularBisectorOfLine(AM,BN)",
+        "IsPerpendicularBisectorOfLine(CM,NB)",
+        "PerpendicularBetweenLine(AE,DE)"
     ],
-    "isosceles_triangle_judgment_line_equal(1,AND)": [
-      "isosceles_triangle_property_line_coincidence(1,AND,E)"
+    "image_cdl": [],
+    "goal_cdl": "Value(MeasureOfAngle(BCA))",
+    "problem_answer": "35",
+    "theorem_seqs": [
+        "perpendicular_bisector_property_distance_equal(1,AM,BN)",
+        "perpendicular_bisector_property_bisector(1,AM,BN)",
+        "perpendicular_bisector_property_bisector(1,CM,NB)",
+        "isosceles_triangle_judgment_line_equal(1,AND)",
+        "adjacent_complementary_angle(1,CEA,AED)",
+        "altitude_of_triangle_judgment(1,AE,AND)",
+        "isosceles_triangle_property_line_coincidence(1,AND,E)",
+        "angle_addition(1,EAN,NAC)",
+        "angle_addition(1,DAE,EAC)",
+        "angle_addition(1,DAC,CAB)",
+        "triangle_property_angle_sum(1,ACE)"
     ],
-    "adjacent_complementary_angle(1,CEA,AED)": [
-      "altitude_of_triangle_judgment(1,AE,AND)"
-    ],
-    "altitude_of_triangle_judgment(1,AE,AND)": [
-      "isosceles_triangle_property_line_coincidence(1,AND,E)"
-    ]
-  }
+    "theorem_seqs_dag": {
+        "START": [
+            "perpendicular_bisector_property_distance_equal(1,AM,BN)",
+            "perpendicular_bisector_property_bisector(1,AM,BN)",
+            "perpendicular_bisector_property_bisector(1,CM,NB)",
+            "adjacent_complementary_angle(1,CEA,AED)",
+            "angle_addition(1,EAN,NAC)",
+            "angle_addition(1,DAE,EAC)",
+            "angle_addition(1,DAC,CAB)",
+            "triangle_property_angle_sum(1,ACE)"
+        ],
+        "perpendicular_bisector_property_distance_equal(1,AM,BN)": [
+            "isosceles_triangle_judgment_line_equal(1,AND)"
+        ],
+        "isosceles_triangle_judgment_line_equal(1,AND)": [
+            "isosceles_triangle_property_line_coincidence(1,AND,E)"
+        ],
+        "adjacent_complementary_angle(1,CEA,AED)": [
+            "altitude_of_triangle_judgment(1,AE,AND)"
+        ],
+        "altitude_of_triangle_judgment(1,AE,AND)": [
+            "isosceles_triangle_property_line_coincidence(1,AND,E)"
+        ]
+    }
 }

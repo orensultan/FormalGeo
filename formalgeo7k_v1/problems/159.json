@@ -1,40 +1,37 @@
 {
-  "problem_id": 159,
-  "annotation": "XiaokaiZhang_2023-04-02",
-  "source": "Geometry3k-161",
-  "problem_level": 2,
-  "problem_text_cn": "如图所示，∠DCG=3*x°，∠GBA=x+24°。求∠GBA的大小。",
-  "problem_text_en": "As shown in the diagram, ∠DCG=3*x°, ∠GBA=x+24°. Find the measure of ∠GBA.",
-  "problem_img": "159.png",
-  "construction_cdl": [
-    "Shape(OBA,AB)",
-    "Shape(GB,BA,AG)",
-    "Shape(OAD,DG,GA)",
-    "Shape(GD,DC,CG)",
-    "Shape(ODC,CD)",
-    "Shape(OCB.BG,GC)",
-    "Collinear(BGD)",
-    "Collinear(CGA)",
-    "Cocircular(O,BADC)"
-  ],
-  "text_cdl": [
-    "Equal(MeasureOfAngle(DCG),3*x)",
-    "Equal(MeasureOfAngle(GBA),x+24)"
-  ],
-  "image_cdl": [
-    "Equal(MeasureOfAngle(DCG),3*x)",
-    "Equal(MeasureOfAngle(GBA),x+24)"
-  ],
-  "goal_cdl": "Value(MeasureOfAngle(GBA))",
-  "problem_answer": "36",
-  "theorem_seqs": [
-    "arc_property_circumference_angle_external(1,OAD,B)",
-    "arc_property_circumference_angle_external(1,OAD,C)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "arc_property_circumference_angle_external(1,OAD,B)",
-      "arc_property_circumference_angle_external(1,OAD,C)"
-    ]
-  }
+    "problem_id": 159,
+    "source": "Geometry3k-161",
+    "problem_level": 2,
+    "problem_img": "159.png",
+    "construction_cdl": [
+        "Shape(OBA,AB)",
+        "Shape(GB,BA,AG)",
+        "Shape(OAD,DG,GA)",
+        "Shape(GD,DC,CG)",
+        "Shape(ODC,CD)",
+        "Shape(OCB.BG,GC)",
+        "Collinear(BGD)",
+        "Collinear(CGA)",
+        "Cocircular(O,BADC)"
+    ],
+    "text_cdl": [
+        "Equal(MeasureOfAngle(DCG),3*x)",
+        "Equal(MeasureOfAngle(GBA),x+24)"
+    ],
+    "image_cdl": [
+        "Equal(MeasureOfAngle(DCG),3*x)",
+        "Equal(MeasureOfAngle(GBA),x+24)"
+    ],
+    "goal_cdl": "Value(MeasureOfAngle(GBA))",
+    "problem_answer": "36",
+    "theorem_seqs": [
+        "arc_property_circumference_angle_external(1,OAD,B)",
+        "arc_property_circumference_angle_external(1,OAD,C)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "arc_property_circumference_angle_external(1,OAD,B)",
+            "arc_property_circumference_angle_external(1,OAD,C)"
+        ]
+    }
 }

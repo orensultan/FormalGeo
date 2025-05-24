@@ -1,31 +1,28 @@
 {
-  "problem_id": 3602,
-  "annotation": "QikeHuang_2023-04-30",
-  "source": "GeoQA-1265",
-  "problem_level": 2,
-  "problem_text_cn": "如图所示，∠BEA=80°，∠EBC=120°。求∠EAB的大小。",
-  "problem_text_en": "As shown in the diagram, ∠BEA=80°, ∠EBC=120°. Find the measure of ∠EAB.",
-  "problem_img": "3602.png",
-  "construction_cdl": [
-    "Shape(AB,BE,EA)",
-    "Shape(EB,BC)",
-    "Collinear(ABC)"
-  ],
-  "text_cdl": [
-    "Equal(MeasureOfAngle(BEA),80)",
-    "Equal(MeasureOfAngle(EBC),120)"
-  ],
-  "image_cdl": [],
-  "goal_cdl": "Value(MeasureOfAngle(EAB))",
-  "problem_answer": "40",
-  "theorem_seqs": [
-    "adjacent_complementary_angle(1,ABE,EBC)",
-    "triangle_property_angle_sum(1,ABE)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "adjacent_complementary_angle(1,ABE,EBC)",
-      "triangle_property_angle_sum(1,ABE)"
-    ]
-  }
+    "problem_id": 3602,
+    "source": "GeoQA-1265",
+    "problem_level": 2,
+    "problem_img": "3602.png",
+    "construction_cdl": [
+        "Shape(AB,BE,EA)",
+        "Shape(EB,BC)",
+        "Collinear(ABC)"
+    ],
+    "text_cdl": [
+        "Equal(MeasureOfAngle(BEA),80)",
+        "Equal(MeasureOfAngle(EBC),120)"
+    ],
+    "image_cdl": [],
+    "goal_cdl": "Value(MeasureOfAngle(EAB))",
+    "problem_answer": "40",
+    "theorem_seqs": [
+        "adjacent_complementary_angle(1,ABE,EBC)",
+        "triangle_property_angle_sum(1,ABE)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "adjacent_complementary_angle(1,ABE,EBC)",
+            "triangle_property_angle_sum(1,ABE)"
+        ]
+    }
 }

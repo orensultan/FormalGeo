@@ -1,87 +1,84 @@
 {
-  "problem_id": 155,
-  "annotation": "XiaokaiZhang_2023-04-02",
-  "source": "Geometry3k-157",
-  "problem_level": 16,
-  "problem_text_cn": "如图所示，AD=27，BA=CD，CH=7，∠ABC=135°，IH∥BC，CH⊥IH，HI垂直于BI。求四边形ABCD的周长。",
-  "problem_text_en": "As shown in the diagram, AD=27, BA=CD, CH=7, ∠ABC=135°, IH is parallel to BC, CH is perpendicular to IH, HI⊥BI. Find the perimeter of ABCD.",
-  "problem_img": "155.png",
-  "construction_cdl": [
-    "Shape(AB,BI,IA)",
-    "Shape(IB,BC,CH,HI)",
-    "Shape(HC,CD,DH)",
-    "Collinear(AIHD)"
-  ],
-  "text_cdl": [
-    "Equal(LengthOfLine(AD),27)",
-    "Equal(LengthOfLine(BA),LengthOfLine(CD))",
-    "Equal(LengthOfLine(CH),7)",
-    "Equal(MeasureOfAngle(ABC),135)",
-    "ParallelBetweenLine(IH,BC)",
-    "PerpendicularBetweenLine(CH,IH)",
-    "PerpendicularBetweenLine(HI,BI)"
-  ],
-  "image_cdl": [
-    "Equal(LengthOfLine(AD),27)",
-    "Equal(LengthOfLine(BA),LengthOfLine(CD))",
-    "Equal(LengthOfLine(CH),7)",
-    "Equal(MeasureOfAngle(ABC),135)",
-    "ParallelBetweenLine(IH,BC)",
-    "PerpendicularBetweenLine(CH,IH)",
-    "PerpendicularBetweenLine(HI,BI)"
-  ],
-  "goal_cdl": "Value(PerimeterOfQuadrilateral(ABCD))",
-  "problem_answer": "14*sqrt(2)+40",
-  "theorem_seqs": [
-    "adjacent_complementary_angle(1,HIB,BIA)",
-    "adjacent_complementary_angle(1,DHC,CHA)",
-    "parallel_judgment_ipsilateral_internal_angle(1,HC,IB)",
-    "parallelogram_judgment_parallel_and_parallel(1,IBCH)",
-    "parallelogram_property_opposite_line_equal(1,IBCH)",
-    "parallel_property_ipsilateral_internal_angle(1,IH,BC)",
-    "angle_addition(1,ABI,IBC)",
-    "triangle_property_angle_sum(1,ABI)",
-    "sine_theorem(1,IAB)",
-    "sine_theorem(1,BIA)",
-    "mirror_congruent_triangle_judgment_hl(2,BIA,CDH)",
-    "mirror_congruent_triangle_property_line_equal(1,BIA,CDH)",
-    "line_addition(1,AI,IH)",
-    "line_addition(1,AH,HD)",
-    "parallelogram_property_opposite_line_equal(1,BCHI)",
-    "quadrilateral_perimeter_formula(1,ABCD)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "adjacent_complementary_angle(1,HIB,BIA)",
-      "adjacent_complementary_angle(1,DHC,CHA)",
-      "parallel_judgment_ipsilateral_internal_angle(1,HC,IB)",
-      "parallel_property_ipsilateral_internal_angle(1,IH,BC)",
-      "angle_addition(1,ABI,IBC)",
-      "triangle_property_angle_sum(1,ABI)",
-      "sine_theorem(1,IAB)",
-      "sine_theorem(1,BIA)",
-      "line_addition(1,AI,IH)",
-      "line_addition(1,AH,HD)",
-      "quadrilateral_perimeter_formula(1,ABCD)"
+    "problem_id": 155,
+    "source": "Geometry3k-157",
+    "problem_level": 16,
+    "problem_img": "155.png",
+    "construction_cdl": [
+        "Shape(AB,BI,IA)",
+        "Shape(IB,BC,CH,HI)",
+        "Shape(HC,CD,DH)",
+        "Collinear(AIHD)"
     ],
-    "adjacent_complementary_angle(1,HIB,BIA)": [
-      "mirror_congruent_triangle_judgment_hl(2,BIA,CDH)"
+    "text_cdl": [
+        "Equal(LengthOfLine(AD),27)",
+        "Equal(LengthOfLine(BA),LengthOfLine(CD))",
+        "Equal(LengthOfLine(CH),7)",
+        "Equal(MeasureOfAngle(ABC),135)",
+        "ParallelBetweenLine(IH,BC)",
+        "PerpendicularBetweenLine(CH,IH)",
+        "PerpendicularBetweenLine(HI,BI)"
     ],
-    "adjacent_complementary_angle(1,DHC,CHA)": [
-      "mirror_congruent_triangle_judgment_hl(2,BIA,CDH)"
+    "image_cdl": [
+        "Equal(LengthOfLine(AD),27)",
+        "Equal(LengthOfLine(BA),LengthOfLine(CD))",
+        "Equal(LengthOfLine(CH),7)",
+        "Equal(MeasureOfAngle(ABC),135)",
+        "ParallelBetweenLine(IH,BC)",
+        "PerpendicularBetweenLine(CH,IH)",
+        "PerpendicularBetweenLine(HI,BI)"
     ],
-    "parallel_judgment_ipsilateral_internal_angle(1,HC,IB)": [
-      "parallelogram_judgment_parallel_and_parallel(1,IBCH)"
+    "goal_cdl": "Value(PerimeterOfQuadrilateral(ABCD))",
+    "problem_answer": "14*sqrt(2)+40",
+    "theorem_seqs": [
+        "adjacent_complementary_angle(1,HIB,BIA)",
+        "adjacent_complementary_angle(1,DHC,CHA)",
+        "parallel_judgment_ipsilateral_internal_angle(1,HC,IB)",
+        "parallelogram_judgment_parallel_and_parallel(1,IBCH)",
+        "parallelogram_property_opposite_line_equal(1,IBCH)",
+        "parallel_property_ipsilateral_internal_angle(1,IH,BC)",
+        "angle_addition(1,ABI,IBC)",
+        "triangle_property_angle_sum(1,ABI)",
+        "sine_theorem(1,IAB)",
+        "sine_theorem(1,BIA)",
+        "mirror_congruent_triangle_judgment_hl(2,BIA,CDH)",
+        "mirror_congruent_triangle_property_line_equal(1,BIA,CDH)",
+        "line_addition(1,AI,IH)",
+        "line_addition(1,AH,HD)",
+        "parallelogram_property_opposite_line_equal(1,BCHI)",
+        "quadrilateral_perimeter_formula(1,ABCD)"
     ],
-    "parallelogram_judgment_parallel_and_parallel(1,IBCH)": [
-      "parallelogram_property_opposite_line_equal(1,IBCH)",
-      "parallelogram_property_opposite_line_equal(1,BCHI)"
-    ],
-    "parallelogram_property_opposite_line_equal(1,IBCH)": [
-      "mirror_congruent_triangle_judgment_hl(2,BIA,CDH)"
-    ],
-    "mirror_congruent_triangle_judgment_hl(2,BIA,CDH)": [
-      "mirror_congruent_triangle_property_line_equal(1,BIA,CDH)"
-    ]
-  }
+    "theorem_seqs_dag": {
+        "START": [
+            "adjacent_complementary_angle(1,HIB,BIA)",
+            "adjacent_complementary_angle(1,DHC,CHA)",
+            "parallel_judgment_ipsilateral_internal_angle(1,HC,IB)",
+            "parallel_property_ipsilateral_internal_angle(1,IH,BC)",
+            "angle_addition(1,ABI,IBC)",
+            "triangle_property_angle_sum(1,ABI)",
+            "sine_theorem(1,IAB)",
+            "sine_theorem(1,BIA)",
+            "line_addition(1,AI,IH)",
+            "line_addition(1,AH,HD)",
+            "quadrilateral_perimeter_formula(1,ABCD)"
+        ],
+        "adjacent_complementary_angle(1,HIB,BIA)": [
+            "mirror_congruent_triangle_judgment_hl(2,BIA,CDH)"
+        ],
+        "adjacent_complementary_angle(1,DHC,CHA)": [
+            "mirror_congruent_triangle_judgment_hl(2,BIA,CDH)"
+        ],
+        "parallel_judgment_ipsilateral_internal_angle(1,HC,IB)": [
+            "parallelogram_judgment_parallel_and_parallel(1,IBCH)"
+        ],
+        "parallelogram_judgment_parallel_and_parallel(1,IBCH)": [
+            "parallelogram_property_opposite_line_equal(1,IBCH)",
+            "parallelogram_property_opposite_line_equal(1,BCHI)"
+        ],
+        "parallelogram_property_opposite_line_equal(1,IBCH)": [
+            "mirror_congruent_triangle_judgment_hl(2,BIA,CDH)"
+        ],
+        "mirror_congruent_triangle_judgment_hl(2,BIA,CDH)": [
+            "mirror_congruent_triangle_property_line_equal(1,BIA,CDH)"
+        ]
+    }
 }

@@ -1,33 +1,30 @@
 {
-  "problem_id": 2274,
-  "annotation": "DengfengYue_2023-04-16",
-  "source": "Geometry3k-2378",
-  "problem_level": 1,
-  "problem_text_cn": "如图所示，RS=5，SP=3，∠PQR=128°，四边形QRSP是平行四边形。求∠RSP的大小。",
-  "problem_text_en": "As shown in the diagram, RS=5, SP=3, ∠PQR=128°, QP and RS are opposite sides of the parallelogram QRSP. Find the measure of ∠RSP.",
-  "problem_img": "2274.png",
-  "construction_cdl": [
-    "Shape(QR,RS,SP,PQ)"
-  ],
-  "text_cdl": [
-    "Equal(LengthOfLine(RS),5)",
-    "Equal(LengthOfLine(SP),3)",
-    "Equal(MeasureOfAngle(PQR),128)",
-    "Parallelogram(QRSP)"
-  ],
-  "image_cdl": [
-    "Equal(LengthOfLine(RS),5)",
-    "Equal(LengthOfLine(SP),3)",
-    "Equal(MeasureOfAngle(PQR),128)"
-  ],
-  "goal_cdl": "Value(MeasureOfAngle(RSP))",
-  "problem_answer": "128",
-  "theorem_seqs": [
-    "parallelogram_property_opposite_angle_equal(1,QRSP)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "parallelogram_property_opposite_angle_equal(1,QRSP)"
-    ]
-  }
+    "problem_id": 2274,
+    "source": "Geometry3k-2378",
+    "problem_level": 1,
+    "problem_img": "2274.png",
+    "construction_cdl": [
+        "Shape(QR,RS,SP,PQ)"
+    ],
+    "text_cdl": [
+        "Equal(LengthOfLine(RS),5)",
+        "Equal(LengthOfLine(SP),3)",
+        "Equal(MeasureOfAngle(PQR),128)",
+        "Parallelogram(QRSP)"
+    ],
+    "image_cdl": [
+        "Equal(LengthOfLine(RS),5)",
+        "Equal(LengthOfLine(SP),3)",
+        "Equal(MeasureOfAngle(PQR),128)"
+    ],
+    "goal_cdl": "Value(MeasureOfAngle(RSP))",
+    "problem_answer": "128",
+    "theorem_seqs": [
+        "parallelogram_property_opposite_angle_equal(1,QRSP)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "parallelogram_property_opposite_angle_equal(1,QRSP)"
+        ]
+    }
 }

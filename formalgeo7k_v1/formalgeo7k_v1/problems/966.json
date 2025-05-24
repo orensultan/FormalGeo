@@ -1,41 +1,38 @@
 {
-  "problem_id": 966,
-  "annotation": "XiaokaiZhang_2023-04-09",
-  "source": "Geometry3k-995",
-  "problem_level": 1,
-  "problem_text_cn": "如图所示，∠BGC=40°，∠DGF=53°，CB垂直于GB，FG⊥CG，GF⊥DF。求∠GCB的大小。",
-  "problem_text_en": "As shown in the diagram, ∠BGC=40°, ∠DGF=53°, CB⊥GB, FG⊥CG, GF is perpendicular to DF. Find the measure of ∠GCB.",
-  "problem_img": "966.png",
-  "construction_cdl": [
-    "Shape(DG,GF,FD)",
-    "Shape(FG,GB,BA,AF)",
-    "Shape(BG,GC,CB)",
-    "Shape(AB,BC,CA)",
-    "Collinear(DFA)",
-    "Collinear(GBA)"
-  ],
-  "text_cdl": [
-    "Equal(MeasureOfAngle(BGC),40)",
-    "Equal(MeasureOfAngle(DGF),53)",
-    "PerpendicularBetweenLine(CB,GB)",
-    "PerpendicularBetweenLine(FG,CG)",
-    "PerpendicularBetweenLine(GF,DF)"
-  ],
-  "image_cdl": [
-    "Equal(MeasureOfAngle(BGC),40)",
-    "Equal(MeasureOfAngle(DGF),53)",
-    "PerpendicularBetweenLine(CB,GB)",
-    "PerpendicularBetweenLine(FG,CG)",
-    "PerpendicularBetweenLine(GF,DF)"
-  ],
-  "goal_cdl": "Value(MeasureOfAngle(GCB))",
-  "problem_answer": "50",
-  "theorem_seqs": [
-    "triangle_property_angle_sum(1,BGC)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "triangle_property_angle_sum(1,BGC)"
-    ]
-  }
+    "problem_id": 966,
+    "source": "Geometry3k-995",
+    "problem_level": 1,
+    "problem_img": "966.png",
+    "construction_cdl": [
+        "Shape(DG,GF,FD)",
+        "Shape(FG,GB,BA,AF)",
+        "Shape(BG,GC,CB)",
+        "Shape(AB,BC,CA)",
+        "Collinear(DFA)",
+        "Collinear(GBA)"
+    ],
+    "text_cdl": [
+        "Equal(MeasureOfAngle(BGC),40)",
+        "Equal(MeasureOfAngle(DGF),53)",
+        "PerpendicularBetweenLine(CB,GB)",
+        "PerpendicularBetweenLine(FG,CG)",
+        "PerpendicularBetweenLine(GF,DF)"
+    ],
+    "image_cdl": [
+        "Equal(MeasureOfAngle(BGC),40)",
+        "Equal(MeasureOfAngle(DGF),53)",
+        "PerpendicularBetweenLine(CB,GB)",
+        "PerpendicularBetweenLine(FG,CG)",
+        "PerpendicularBetweenLine(GF,DF)"
+    ],
+    "goal_cdl": "Value(MeasureOfAngle(GCB))",
+    "problem_answer": "50",
+    "theorem_seqs": [
+        "triangle_property_angle_sum(1,BGC)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "triangle_property_angle_sum(1,BGC)"
+        ]
+    }
 }

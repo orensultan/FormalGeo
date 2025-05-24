@@ -1,43 +1,40 @@
 {
-  "problem_id": 2010,
-  "annotation": "ZheZhu_2023-04-16",
-  "source": "Geometry3k-2095",
-  "problem_level": 3,
-  "problem_text_cn": "如图所示，∠AFD=50°，F是⊙F的圆心，CF垂直于BF。求⌒FEC的角度。",
-  "problem_text_en": "As shown in the diagram, ∠AFD=50°, the center of circle F is F, CF⊥BF. Find the measure of ⌒FEC.",
-  "problem_img": "2010.png",
-  "construction_cdl": [
-    "Shape(FCD,DF,FC)",
-    "Shape(FDA,AF,FD)",
-    "Shape(FAE,EF,FA)",
-    "Shape(FEB,BF,FE)",
-    "Shape(FBC,CF,FB)",
-    "Collinear(AFB)",
-    "Collinear(DFE)",
-    "Cocircular(F,CDAEB)"
-  ],
-  "text_cdl": [
-    "Equal(MeasureOfAngle(AFD),50)",
-    "IsCentreOfCircle(F,F)",
-    "PerpendicularBetweenLine(CF,BF)"
-  ],
-  "image_cdl": [
-    "Equal(MeasureOfAngle(AFD),50)",
-    "IsCentreOfCircle(F,F)",
-    "PerpendicularBetweenLine(CF,BF)"
-  ],
-  "goal_cdl": "Value(MeasureOfArc(FEC))",
-  "problem_answer": "140",
-  "theorem_seqs": [
-    "vertical_angle(1,AFD,BFE)",
-    "angle_addition(1,CFB,BFE)",
-    "arc_property_center_angle(1,FEC,F)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "vertical_angle(1,AFD,BFE)",
-      "angle_addition(1,CFB,BFE)",
-      "arc_property_center_angle(1,FEC,F)"
-    ]
-  }
+    "problem_id": 2010,
+    "source": "Geometry3k-2095",
+    "problem_level": 3,
+    "problem_img": "2010.png",
+    "construction_cdl": [
+        "Shape(FCD,DF,FC)",
+        "Shape(FDA,AF,FD)",
+        "Shape(FAE,EF,FA)",
+        "Shape(FEB,BF,FE)",
+        "Shape(FBC,CF,FB)",
+        "Collinear(AFB)",
+        "Collinear(DFE)",
+        "Cocircular(F,CDAEB)"
+    ],
+    "text_cdl": [
+        "Equal(MeasureOfAngle(AFD),50)",
+        "IsCentreOfCircle(F,F)",
+        "PerpendicularBetweenLine(CF,BF)"
+    ],
+    "image_cdl": [
+        "Equal(MeasureOfAngle(AFD),50)",
+        "IsCentreOfCircle(F,F)",
+        "PerpendicularBetweenLine(CF,BF)"
+    ],
+    "goal_cdl": "Value(MeasureOfArc(FEC))",
+    "problem_answer": "140",
+    "theorem_seqs": [
+        "vertical_angle(1,AFD,BFE)",
+        "angle_addition(1,CFB,BFE)",
+        "arc_property_center_angle(1,FEC,F)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "vertical_angle(1,AFD,BFE)",
+            "angle_addition(1,CFB,BFE)",
+            "arc_property_center_angle(1,FEC,F)"
+        ]
+    }
 }

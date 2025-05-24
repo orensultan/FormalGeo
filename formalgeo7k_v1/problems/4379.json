@@ -1,42 +1,39 @@
 {
-  "problem_id": 4379,
-  "annotation": "YimingHe_2023-05-14",
-  "source": "GeoQA-3303",
-  "problem_level": 3,
-  "problem_text_cn": "如图所示，∠CAB=36°，圆O的圆心为O，AB是圆O的直径，AE⊥CE。求∠BCD的大小。",
-  "problem_text_en": "As shown in the diagram, ∠CAB=36°, O is the center of circle O, AB is the diameter of ⊙O, AE⊥CE. Find the measure of ∠BCD.",
-  "problem_img": "4379.png",
-  "construction_cdl": [
-    "Shape(AC,OCA)",
-    "Shape(AO,OE,EC,CA)",
-    "Shape(CE,EB,BC)",
-    "Shape(CB,OBC)",
-    "Shape(AD,DE,EO,OA)",
-    "Shape(BE,ED,ODB)",
-    "Shape(DA,OAD)",
-    "Collinear(AOEB)",
-    "Collinear(CED)",
-    "Cocircular(O,ADBC)"
-  ],
-  "text_cdl": [
-    "Equal(MeasureOfAngle(CAB),36)",
-    "IsCentreOfCircle(O,O)",
-    "IsDiameterOfCircle(AB,O)",
-    "PerpendicularBetweenLine(AE,CE)"
-  ],
-  "image_cdl": [],
-  "goal_cdl": "Value(MeasureOfAngle(BCD))",
-  "problem_answer": "36",
-  "theorem_seqs": [
-    "triangle_property_angle_sum(1,AEC)",
-    "diameter_of_circle_property_right_angle(1,BCA,O)",
-    "angle_addition(1,BCE,ECA)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "triangle_property_angle_sum(1,AEC)",
-      "diameter_of_circle_property_right_angle(1,BCA,O)",
-      "angle_addition(1,BCE,ECA)"
-    ]
-  }
+    "problem_id": 4379,
+    "source": "GeoQA-3303",
+    "problem_level": 3,
+    "problem_img": "4379.png",
+    "construction_cdl": [
+        "Shape(AC,OCA)",
+        "Shape(AO,OE,EC,CA)",
+        "Shape(CE,EB,BC)",
+        "Shape(CB,OBC)",
+        "Shape(AD,DE,EO,OA)",
+        "Shape(BE,ED,ODB)",
+        "Shape(DA,OAD)",
+        "Collinear(AOEB)",
+        "Collinear(CED)",
+        "Cocircular(O,ADBC)"
+    ],
+    "text_cdl": [
+        "Equal(MeasureOfAngle(CAB),36)",
+        "IsCentreOfCircle(O,O)",
+        "IsDiameterOfCircle(AB,O)",
+        "PerpendicularBetweenLine(AE,CE)"
+    ],
+    "image_cdl": [],
+    "goal_cdl": "Value(MeasureOfAngle(BCD))",
+    "problem_answer": "36",
+    "theorem_seqs": [
+        "triangle_property_angle_sum(1,AEC)",
+        "diameter_of_circle_property_right_angle(1,BCA,O)",
+        "angle_addition(1,BCE,ECA)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "triangle_property_angle_sum(1,AEC)",
+            "diameter_of_circle_property_right_angle(1,BCA,O)",
+            "angle_addition(1,BCE,ECA)"
+        ]
+    }
 }

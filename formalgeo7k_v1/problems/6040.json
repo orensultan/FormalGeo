@@ -1,49 +1,46 @@
 {
-  "problem_id": 6040,
-  "annotation": "ChenyangMao_2023-05-28",
-  "source": "GeoQA-8537",
-  "problem_level": 5,
-  "problem_text_cn": "如图所示，∠DOB=50°，O是圆O的圆心，BE⊥OE。求∠CAD的大小。",
-  "problem_text_en": "As shown in the diagram, ∠DOB=50°, the center of ⊙O is O, BE⊥OE. Find the measure of ∠CAD.",
-  "problem_img": "6040.png",
-  "construction_cdl": [
-    "Shape(OAB,OBD,DA)",
-    "Shape(OCA,AC)",
-    "Shape(OB,BE,EO)",
-    "Shape(OE,EC,CO)",
-    "Shape(OBD,DE,EB)",
-    "Shape(ODC,CA,AD)",
-    "Shape(ODC,CE,ED)",
-    "Collinear(BEC)",
-    "Collinear(OED)",
-    "Cocircular(O,ABDC)"
-  ],
-  "text_cdl": [
-    "Equal(MeasureOfAngle(DOB),50)",
-    "IsCentreOfCircle(O,O)",
-    "PerpendicularBetweenLine(BE,OE)"
-  ],
-  "image_cdl": [],
-  "goal_cdl": "Value(MeasureOfAngle(CAD))",
-  "problem_answer": "25",
-  "theorem_seqs": [
-    "circle_property_chord_perpendicular_bisect_arc(1,OBC,OED)",
-    "congruent_arc_judgment_length_equal(1,OBD,ODC)",
-    "congruent_arc_property_measure_equal(1,OBD,ODC)",
-    "arc_property_center_angle(1,OBD,O)",
-    "arc_property_circumference_angle_external(1,ODC,A)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "circle_property_chord_perpendicular_bisect_arc(1,OBC,OED)",
-      "arc_property_center_angle(1,OBD,O)",
-      "arc_property_circumference_angle_external(1,ODC,A)"
+    "problem_id": 6040,
+    "source": "GeoQA-8537",
+    "problem_level": 5,
+    "problem_img": "6040.png",
+    "construction_cdl": [
+        "Shape(OAB,OBD,DA)",
+        "Shape(OCA,AC)",
+        "Shape(OB,BE,EO)",
+        "Shape(OE,EC,CO)",
+        "Shape(OBD,DE,EB)",
+        "Shape(ODC,CA,AD)",
+        "Shape(ODC,CE,ED)",
+        "Collinear(BEC)",
+        "Collinear(OED)",
+        "Cocircular(O,ABDC)"
     ],
-    "circle_property_chord_perpendicular_bisect_arc(1,OBC,OED)": [
-      "congruent_arc_judgment_length_equal(1,OBD,ODC)"
+    "text_cdl": [
+        "Equal(MeasureOfAngle(DOB),50)",
+        "IsCentreOfCircle(O,O)",
+        "PerpendicularBetweenLine(BE,OE)"
     ],
-    "congruent_arc_judgment_length_equal(1,OBD,ODC)": [
-      "congruent_arc_property_measure_equal(1,OBD,ODC)"
-    ]
-  }
+    "image_cdl": [],
+    "goal_cdl": "Value(MeasureOfAngle(CAD))",
+    "problem_answer": "25",
+    "theorem_seqs": [
+        "circle_property_chord_perpendicular_bisect_arc(1,OBC,OED)",
+        "congruent_arc_judgment_length_equal(1,OBD,ODC)",
+        "congruent_arc_property_measure_equal(1,OBD,ODC)",
+        "arc_property_center_angle(1,OBD,O)",
+        "arc_property_circumference_angle_external(1,ODC,A)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "circle_property_chord_perpendicular_bisect_arc(1,OBC,OED)",
+            "arc_property_center_angle(1,OBD,O)",
+            "arc_property_circumference_angle_external(1,ODC,A)"
+        ],
+        "circle_property_chord_perpendicular_bisect_arc(1,OBC,OED)": [
+            "congruent_arc_judgment_length_equal(1,OBD,ODC)"
+        ],
+        "congruent_arc_judgment_length_equal(1,OBD,ODC)": [
+            "congruent_arc_property_measure_equal(1,OBD,ODC)"
+        ]
+    }
 }

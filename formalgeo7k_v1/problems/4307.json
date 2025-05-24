@@ -1,39 +1,36 @@
 {
-  "problem_id": 4307,
-  "annotation": "ZheZhu_2023-05-07",
-  "source": "GeoQA-3137",
-  "problem_level": 3,
-  "problem_text_cn": "如图所示，∠BOA=38°，圆O的圆心为O，AO平行于BC。求∠OAC的大小。",
-  "problem_text_en": "As shown in the diagram, ∠BOA=38°, the center of ⊙O is O, AO is parallel to BC. Find the measure of ∠OAC.",
-  "problem_img": "4307.png",
-  "construction_cdl": [
-    "Shape(OA,AD,DO)",
-    "Shape(CD,DB,BC)",
-    "Shape(DA,OAB,BD)",
-    "Shape(OBC,CB)",
-    "Shape(OD,DC,OCA,AO)",
-    "Collinear(ADC)",
-    "Collinear(ODB)",
-    "Cocircular(O,ABC)"
-  ],
-  "text_cdl": [
-    "Equal(MeasureOfAngle(BOA),38)",
-    "IsCentreOfCircle(O,O)",
-    "ParallelBetweenLine(AO,BC)"
-  ],
-  "image_cdl": [],
-  "goal_cdl": "Value(MeasureOfAngle(OAC))",
-  "problem_answer": "19",
-  "theorem_seqs": [
-    "arc_property_center_angle(1,OAB,O)",
-    "arc_property_circumference_angle_external(1,OAB,C)",
-    "parallel_property_alternate_interior_angle(1,AO,BC)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "arc_property_center_angle(1,OAB,O)",
-      "arc_property_circumference_angle_external(1,OAB,C)",
-      "parallel_property_alternate_interior_angle(1,AO,BC)"
-    ]
-  }
+    "problem_id": 4307,
+    "source": "GeoQA-3137",
+    "problem_level": 3,
+    "problem_img": "4307.png",
+    "construction_cdl": [
+        "Shape(OA,AD,DO)",
+        "Shape(CD,DB,BC)",
+        "Shape(DA,OAB,BD)",
+        "Shape(OBC,CB)",
+        "Shape(OD,DC,OCA,AO)",
+        "Collinear(ADC)",
+        "Collinear(ODB)",
+        "Cocircular(O,ABC)"
+    ],
+    "text_cdl": [
+        "Equal(MeasureOfAngle(BOA),38)",
+        "IsCentreOfCircle(O,O)",
+        "ParallelBetweenLine(AO,BC)"
+    ],
+    "image_cdl": [],
+    "goal_cdl": "Value(MeasureOfAngle(OAC))",
+    "problem_answer": "19",
+    "theorem_seqs": [
+        "arc_property_center_angle(1,OAB,O)",
+        "arc_property_circumference_angle_external(1,OAB,C)",
+        "parallel_property_alternate_interior_angle(1,AO,BC)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "arc_property_center_angle(1,OAB,O)",
+            "arc_property_circumference_angle_external(1,OAB,C)",
+            "parallel_property_alternate_interior_angle(1,AO,BC)"
+        ]
+    }
 }

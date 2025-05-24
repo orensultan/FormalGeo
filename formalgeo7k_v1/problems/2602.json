@@ -1,41 +1,38 @@
 {
-  "problem_id": 2602,
-  "annotation": "DengfengYue_2023-04-23",
-  "source": "Geometry3k-2731",
-  "problem_level": 3,
-  "problem_text_cn": "如图所示，AC=12，CB=13，DE=5，DB和AC是▱DACB的一组对边，DE垂直于CE。求四边形DACB的周长。",
-  "problem_text_en": "As shown in the diagram, AC=12, CB=13, DE=5, AD and CB are opposite sides of the ▱ DACB, DE⊥CE. Find the perimeter of quadrilateral DACB.",
-  "problem_img": "2602.png",
-  "construction_cdl": [
-    "Shape(DA,AE,ED)",
-    "Shape(DE,EC,CB,BD)",
-    "Collinear(AEC)"
-  ],
-  "text_cdl": [
-    "Equal(LengthOfLine(AC),12)",
-    "Equal(LengthOfLine(CB),13)",
-    "Equal(LengthOfLine(DE),5)",
-    "Parallelogram(DACB)",
-    "PerpendicularBetweenLine(DE,CE)"
-  ],
-  "image_cdl": [
-    "Equal(LengthOfLine(AC),12)",
-    "Equal(LengthOfLine(CB),13)",
-    "Equal(LengthOfLine(DE),5)",
-    "PerpendicularBetweenLine(DE,CE)"
-  ],
-  "goal_cdl": "Value(PerimeterOfQuadrilateral(DACB))",
-  "problem_answer": "50",
-  "theorem_seqs": [
-    "parallelogram_property_opposite_line_equal(1,DACB)",
-    "parallelogram_property_opposite_line_equal(1,BDAC)",
-    "quadrilateral_perimeter_formula(1,DACB)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "parallelogram_property_opposite_line_equal(1,DACB)",
-      "parallelogram_property_opposite_line_equal(1,BDAC)",
-      "quadrilateral_perimeter_formula(1,DACB)"
-    ]
-  }
+    "problem_id": 2602,
+    "source": "Geometry3k-2731",
+    "problem_level": 3,
+    "problem_img": "2602.png",
+    "construction_cdl": [
+        "Shape(DA,AE,ED)",
+        "Shape(DE,EC,CB,BD)",
+        "Collinear(AEC)"
+    ],
+    "text_cdl": [
+        "Equal(LengthOfLine(AC),12)",
+        "Equal(LengthOfLine(CB),13)",
+        "Equal(LengthOfLine(DE),5)",
+        "Parallelogram(DACB)",
+        "PerpendicularBetweenLine(DE,CE)"
+    ],
+    "image_cdl": [
+        "Equal(LengthOfLine(AC),12)",
+        "Equal(LengthOfLine(CB),13)",
+        "Equal(LengthOfLine(DE),5)",
+        "PerpendicularBetweenLine(DE,CE)"
+    ],
+    "goal_cdl": "Value(PerimeterOfQuadrilateral(DACB))",
+    "problem_answer": "50",
+    "theorem_seqs": [
+        "parallelogram_property_opposite_line_equal(1,DACB)",
+        "parallelogram_property_opposite_line_equal(1,BDAC)",
+        "quadrilateral_perimeter_formula(1,DACB)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "parallelogram_property_opposite_line_equal(1,DACB)",
+            "parallelogram_property_opposite_line_equal(1,BDAC)",
+            "quadrilateral_perimeter_formula(1,DACB)"
+        ]
+    }
 }

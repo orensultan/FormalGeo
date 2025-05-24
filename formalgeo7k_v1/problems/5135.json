@@ -1,34 +1,31 @@
 {
-  "problem_id": 5135,
-  "annotation": "JiaZou_2023-05-21",
-  "source": "GeoQA-5016",
-  "problem_level": 2,
-  "problem_text_cn": "如图所示，∠ACB=90°，∠BAC=22°，△CBD与△CDE是镜像全等三角形。求∠DEC的大小。",
-  "problem_text_en": "As shown in the diagram, ∠ACB=90°, ∠BAC=22°, △CBD is mirror congruent to △CDE. Find the measure of ∠DEC.",
-  "problem_img": "5135.png",
-  "construction_cdl": [
-    "Shape(CB,BD,DC)",
-    "Shape(CD,DE,EC)",
-    "Shape(ED,DA,AE)",
-    "Collinear(CEA)",
-    "Collinear(BDA)"
-  ],
-  "text_cdl": [
-    "Equal(MeasureOfAngle(ACB),90)",
-    "Equal(MeasureOfAngle(BAC),22)",
-    "MirrorCongruentBetweenTriangle(CBD,CDE)"
-  ],
-  "image_cdl": [],
-  "goal_cdl": "Value(MeasureOfAngle(DEC))",
-  "problem_answer": "68",
-  "theorem_seqs": [
-    "triangle_property_angle_sum(1,ACB)",
-    "mirror_congruent_triangle_property_angle_equal(1,BDC,ECD)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "triangle_property_angle_sum(1,ACB)",
-      "mirror_congruent_triangle_property_angle_equal(1,BDC,ECD)"
-    ]
-  }
+    "problem_id": 5135,
+    "source": "GeoQA-5016",
+    "problem_level": 2,
+    "problem_img": "5135.png",
+    "construction_cdl": [
+        "Shape(CB,BD,DC)",
+        "Shape(CD,DE,EC)",
+        "Shape(ED,DA,AE)",
+        "Collinear(CEA)",
+        "Collinear(BDA)"
+    ],
+    "text_cdl": [
+        "Equal(MeasureOfAngle(ACB),90)",
+        "Equal(MeasureOfAngle(BAC),22)",
+        "MirrorCongruentBetweenTriangle(CBD,CDE)"
+    ],
+    "image_cdl": [],
+    "goal_cdl": "Value(MeasureOfAngle(DEC))",
+    "problem_answer": "68",
+    "theorem_seqs": [
+        "triangle_property_angle_sum(1,ACB)",
+        "mirror_congruent_triangle_property_angle_equal(1,BDC,ECD)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "triangle_property_angle_sum(1,ACB)",
+            "mirror_congruent_triangle_property_angle_equal(1,BDC,ECD)"
+        ]
+    }
 }

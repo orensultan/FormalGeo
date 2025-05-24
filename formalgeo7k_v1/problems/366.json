@@ -1,38 +1,35 @@
 {
-  "problem_id": 366,
-  "annotation": "NaZhu_2023-03-12",
-  "source": "Geometry3k-373",
-  "problem_level": 2,
-  "problem_text_cn": "如图所示，AC=20，BA=48，BC=x，CA⊥BA。求x的值。",
-  "problem_text_en": "As shown in the diagram, AC=20, BA=48, BC=x, CA⊥BA. Find the value of x.",
-  "problem_img": "366.png",
-  "construction_cdl": [
-    "Shape(BC,CA,AB)"
-  ],
-  "text_cdl": [
-    "Equal(LengthOfLine(AC),20)",
-    "Equal(LengthOfLine(BA),48)",
-    "Equal(LengthOfLine(BC),x)",
-    "PerpendicularBetweenLine(CA,BA)"
-  ],
-  "image_cdl": [
-    "Equal(LengthOfLine(AC),20)",
-    "Equal(LengthOfLine(BA),48)",
-    "Equal(LengthOfLine(BC),x)",
-    "PerpendicularBetweenLine(CA,BA)"
-  ],
-  "goal_cdl": "Value(x)",
-  "problem_answer": "52",
-  "theorem_seqs": [
-    "right_triangle_judgment_angle(1,CAB)",
-    "right_triangle_property_pythagorean(1,CAB)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "right_triangle_judgment_angle(1,CAB)"
+    "problem_id": 366,
+    "source": "Geometry3k-373",
+    "problem_level": 2,
+    "problem_img": "366.png",
+    "construction_cdl": [
+        "Shape(BC,CA,AB)"
     ],
-    "right_triangle_judgment_angle(1,CAB)": [
-      "right_triangle_property_pythagorean(1,CAB)"
-    ]
-  }
+    "text_cdl": [
+        "Equal(LengthOfLine(AC),20)",
+        "Equal(LengthOfLine(BA),48)",
+        "Equal(LengthOfLine(BC),x)",
+        "PerpendicularBetweenLine(CA,BA)"
+    ],
+    "image_cdl": [
+        "Equal(LengthOfLine(AC),20)",
+        "Equal(LengthOfLine(BA),48)",
+        "Equal(LengthOfLine(BC),x)",
+        "PerpendicularBetweenLine(CA,BA)"
+    ],
+    "goal_cdl": "Value(x)",
+    "problem_answer": "52",
+    "theorem_seqs": [
+        "right_triangle_judgment_angle(1,CAB)",
+        "right_triangle_property_pythagorean(1,CAB)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "right_triangle_judgment_angle(1,CAB)"
+        ],
+        "right_triangle_judgment_angle(1,CAB)": [
+            "right_triangle_property_pythagorean(1,CAB)"
+        ]
+    }
 }

@@ -1,45 +1,42 @@
 {
-  "problem_id": 1874,
-  "annotation": "YanjunGuo_2023-04-23",
-  "source": "Geometry3k-1946",
-  "problem_level": 2,
-  "problem_text_cn": "如图所示，∠ANC=30°，∠CEB=110°，∠ENI=130°，∠NCF=∠AFN。求∠FNA的大小。",
-  "problem_text_en": "As shown in the diagram, ∠ANC=30°, ∠CEB=110°, ∠ENI=130°, ∠NCF=∠AFN. Find the measure of ∠FNA.",
-  "problem_img": "1874.png",
-  "construction_cdl": [
-    "Shape(CA,AE,EC)",
-    "Shape(EA,AN,NE)",
-    "Shape(AF,FN,NA)",
-    "Shape(CE,EB)",
-    "Shape(BE,EN)",
-    "Shape(EN,NI)",
-    "Collinear(AEB)",
-    "Collinear(FNI)",
-    "Collinear(CEN)",
-    "Collinear(CAF)"
-  ],
-  "text_cdl": [
-    "Equal(MeasureOfAngle(ANC),30)",
-    "Equal(MeasureOfAngle(CEB),110)",
-    "Equal(MeasureOfAngle(ENI),130)",
-    "Equal(MeasureOfAngle(NCF),MeasureOfAngle(AFN))"
-  ],
-  "image_cdl": [
-    "Equal(MeasureOfAngle(ANC),30)",
-    "Equal(MeasureOfAngle(CEB),110)",
-    "Equal(MeasureOfAngle(ENI),130)",
-    "Equal(MeasureOfAngle(NCF),MeasureOfAngle(AFN))"
-  ],
-  "goal_cdl": "Value(MeasureOfAngle(FNA))",
-  "problem_answer": "20",
-  "theorem_seqs": [
-    "angle_addition(1,ANE,ENI)",
-    "adjacent_complementary_angle(1,FNA,ANI)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "angle_addition(1,ANE,ENI)",
-      "adjacent_complementary_angle(1,FNA,ANI)"
-    ]
-  }
+    "problem_id": 1874,
+    "source": "Geometry3k-1946",
+    "problem_level": 2,
+    "problem_img": "1874.png",
+    "construction_cdl": [
+        "Shape(CA,AE,EC)",
+        "Shape(EA,AN,NE)",
+        "Shape(AF,FN,NA)",
+        "Shape(CE,EB)",
+        "Shape(BE,EN)",
+        "Shape(EN,NI)",
+        "Collinear(AEB)",
+        "Collinear(FNI)",
+        "Collinear(CEN)",
+        "Collinear(CAF)"
+    ],
+    "text_cdl": [
+        "Equal(MeasureOfAngle(ANC),30)",
+        "Equal(MeasureOfAngle(CEB),110)",
+        "Equal(MeasureOfAngle(ENI),130)",
+        "Equal(MeasureOfAngle(NCF),MeasureOfAngle(AFN))"
+    ],
+    "image_cdl": [
+        "Equal(MeasureOfAngle(ANC),30)",
+        "Equal(MeasureOfAngle(CEB),110)",
+        "Equal(MeasureOfAngle(ENI),130)",
+        "Equal(MeasureOfAngle(NCF),MeasureOfAngle(AFN))"
+    ],
+    "goal_cdl": "Value(MeasureOfAngle(FNA))",
+    "problem_answer": "20",
+    "theorem_seqs": [
+        "angle_addition(1,ANE,ENI)",
+        "adjacent_complementary_angle(1,FNA,ANI)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "angle_addition(1,ANE,ENI)",
+            "adjacent_complementary_angle(1,FNA,ANI)"
+        ]
+    }
 }

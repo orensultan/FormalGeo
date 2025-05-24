@@ -1,33 +1,30 @@
 {
-  "problem_id": 3153,
-  "annotation": "JiaZou_2023-04-23",
-  "source": "GeoQA-418",
-  "problem_level": 2,
-  "problem_text_cn": "如图所示，∠AED=∠FEA，∠CEF=50°，四边形ABCD是长方形。求∠AED的大小。",
-  "problem_text_en": "As shown in the diagram, ∠AED=∠FEA, ∠CEF=50°, quadrilateral ABCD is a rectangle. Find the measure of ∠AED.",
-  "problem_img": "3153.png",
-  "construction_cdl": [
-    "Shape(DA,AE,ED)",
-    "Shape(EA,AF,FE)",
-    "Shape(DF,FA,AB,BC,CE)",
-    "Collinear(DEC)"
-  ],
-  "text_cdl": [
-    "Equal(MeasureOfAngle(AED),MeasureOfAngle(FEA))",
-    "Equal(MeasureOfAngle(CEF),50)",
-    "Rectangle(ABCD)"
-  ],
-  "image_cdl": [],
-  "goal_cdl": "Value(MeasureOfAngle(AED))",
-  "problem_answer": "65",
-  "theorem_seqs": [
-    "angle_addition(1,FEA,AED)",
-    "adjacent_complementary_angle(1,CEF,FED)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "angle_addition(1,FEA,AED)",
-      "adjacent_complementary_angle(1,CEF,FED)"
-    ]
-  }
+    "problem_id": 3153,
+    "source": "GeoQA-418",
+    "problem_level": 2,
+    "problem_img": "3153.png",
+    "construction_cdl": [
+        "Shape(DA,AE,ED)",
+        "Shape(EA,AF,FE)",
+        "Shape(DF,FA,AB,BC,CE)",
+        "Collinear(DEC)"
+    ],
+    "text_cdl": [
+        "Equal(MeasureOfAngle(AED),MeasureOfAngle(FEA))",
+        "Equal(MeasureOfAngle(CEF),50)",
+        "Rectangle(ABCD)"
+    ],
+    "image_cdl": [],
+    "goal_cdl": "Value(MeasureOfAngle(AED))",
+    "problem_answer": "65",
+    "theorem_seqs": [
+        "angle_addition(1,FEA,AED)",
+        "adjacent_complementary_angle(1,CEF,FED)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "angle_addition(1,FEA,AED)",
+            "adjacent_complementary_angle(1,CEF,FED)"
+        ]
+    }
 }

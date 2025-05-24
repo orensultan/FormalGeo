@@ -1,41 +1,38 @@
 {
-  "problem_id": 1213,
-  "annotation": "RunanWang_2023-04-23",
-  "source": "Geometry3k-1253",
-  "problem_level": 3,
-  "problem_text_cn": "如图所示，∠LBQ=4*x+61°，∠MBL=3*x°。求∠QBP的大小。",
-  "problem_text_en": "As shown in the diagram, ∠LBQ=4*x+61°, ∠MBL=3*x°. Find the measure of ∠QBP.",
-  "problem_img": "1213.png",
-  "construction_cdl": [
-    "Shape(MB,BL,BLM)",
-    "Shape(BM,BMP,PB)",
-    "Shape(BP,BPQ,QB)",
-    "Shape(BQ,BQK,KB)",
-    "Shape(LB,BK,BKL)",
-    "Collinear(MBQ)",
-    "Collinear(LBP)",
-    "Cocircular(B,LMPQK)"
-  ],
-  "text_cdl": [
-    "Equal(MeasureOfAngle(LBQ),4*x+61)",
-    "Equal(MeasureOfAngle(MBL),3*x)"
-  ],
-  "image_cdl": [
-    "Equal(MeasureOfAngle(LBQ),4*x+61)",
-    "Equal(MeasureOfAngle(MBL),3*x)"
-  ],
-  "goal_cdl": "Value(MeasureOfAngle(QBP))",
-  "problem_answer": "51",
-  "theorem_seqs": [
-    "adjacent_complementary_angle(1,MBL,LBQ)",
-    "adjacent_complementary_angle(1,PBM,MBL)",
-    "adjacent_complementary_angle(1,QBP,PBM)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "adjacent_complementary_angle(1,MBL,LBQ)",
-      "adjacent_complementary_angle(1,PBM,MBL)",
-      "adjacent_complementary_angle(1,QBP,PBM)"
-    ]
-  }
+    "problem_id": 1213,
+    "source": "Geometry3k-1253",
+    "problem_level": 3,
+    "problem_img": "1213.png",
+    "construction_cdl": [
+        "Shape(MB,BL,BLM)",
+        "Shape(BM,BMP,PB)",
+        "Shape(BP,BPQ,QB)",
+        "Shape(BQ,BQK,KB)",
+        "Shape(LB,BK,BKL)",
+        "Collinear(MBQ)",
+        "Collinear(LBP)",
+        "Cocircular(B,LMPQK)"
+    ],
+    "text_cdl": [
+        "Equal(MeasureOfAngle(LBQ),4*x+61)",
+        "Equal(MeasureOfAngle(MBL),3*x)"
+    ],
+    "image_cdl": [
+        "Equal(MeasureOfAngle(LBQ),4*x+61)",
+        "Equal(MeasureOfAngle(MBL),3*x)"
+    ],
+    "goal_cdl": "Value(MeasureOfAngle(QBP))",
+    "problem_answer": "51",
+    "theorem_seqs": [
+        "adjacent_complementary_angle(1,MBL,LBQ)",
+        "adjacent_complementary_angle(1,PBM,MBL)",
+        "adjacent_complementary_angle(1,QBP,PBM)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "adjacent_complementary_angle(1,MBL,LBQ)",
+            "adjacent_complementary_angle(1,PBM,MBL)",
+            "adjacent_complementary_angle(1,QBP,PBM)"
+        ]
+    }
 }

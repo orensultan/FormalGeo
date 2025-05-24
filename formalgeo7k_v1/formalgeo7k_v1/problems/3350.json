@@ -1,47 +1,44 @@
 {
-  "problem_id": 3350,
-  "annotation": "YimingHe_2023-04-30",
-  "source": "GeoQA-806",
-  "problem_level": 4,
-  "problem_text_cn": "如图所示，∠EFB=70°，AB∥CD。求∠IHC的大小。",
-  "problem_text_en": "As shown in the diagram, ∠EFB=70°, AB is parallel to CD. Find the measure of ∠IHC.",
-  "problem_img": "3350.png",
-  "construction_cdl": [
-    "Shape(AF,FE)",
-    "Shape(EF,FB)",
-    "Shape(HF,FA)",
-    "Shape(BF,FH)",
-    "Shape(CH,HF)",
-    "Shape(FH,HD)",
-    "Shape(IH,HC)",
-    "Shape(DH,HI)",
-    "Collinear(AFB)",
-    "Collinear(CHD)",
-    "Collinear(EFHI)"
-  ],
-  "text_cdl": [
-    "Equal(MeasureOfAngle(EFB),70)",
-    "ParallelBetweenLine(AB,CD)"
-  ],
-  "image_cdl": [],
-  "goal_cdl": "Value(MeasureOfAngle(IHC))",
-  "problem_answer": "70",
-  "theorem_seqs": [
-    "parallel_property_collinear_extend(3,AB,CD,F)",
-    "parallel_property_collinear_extend(3,DC,BF,H)",
-    "parallel_property_corresponding_angle(1,FB,HD,E)",
-    "vertical_angle(1,EHD,IHC)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "parallel_property_collinear_extend(3,AB,CD,F)",
-      "vertical_angle(1,EHD,IHC)"
+    "problem_id": 3350,
+    "source": "GeoQA-806",
+    "problem_level": 4,
+    "problem_img": "3350.png",
+    "construction_cdl": [
+        "Shape(AF,FE)",
+        "Shape(EF,FB)",
+        "Shape(HF,FA)",
+        "Shape(BF,FH)",
+        "Shape(CH,HF)",
+        "Shape(FH,HD)",
+        "Shape(IH,HC)",
+        "Shape(DH,HI)",
+        "Collinear(AFB)",
+        "Collinear(CHD)",
+        "Collinear(EFHI)"
     ],
-    "parallel_property_collinear_extend(3,AB,CD,F)": [
-      "parallel_property_collinear_extend(3,DC,BF,H)"
+    "text_cdl": [
+        "Equal(MeasureOfAngle(EFB),70)",
+        "ParallelBetweenLine(AB,CD)"
     ],
-    "parallel_property_collinear_extend(3,DC,BF,H)": [
-      "parallel_property_corresponding_angle(1,FB,HD,E)"
-    ]
-  }
+    "image_cdl": [],
+    "goal_cdl": "Value(MeasureOfAngle(IHC))",
+    "problem_answer": "70",
+    "theorem_seqs": [
+        "parallel_property_collinear_extend(3,AB,CD,F)",
+        "parallel_property_collinear_extend(3,DC,BF,H)",
+        "parallel_property_corresponding_angle(1,FB,HD,E)",
+        "vertical_angle(1,EHD,IHC)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "parallel_property_collinear_extend(3,AB,CD,F)",
+            "vertical_angle(1,EHD,IHC)"
+        ],
+        "parallel_property_collinear_extend(3,AB,CD,F)": [
+            "parallel_property_collinear_extend(3,DC,BF,H)"
+        ],
+        "parallel_property_collinear_extend(3,DC,BF,H)": [
+            "parallel_property_corresponding_angle(1,FB,HD,E)"
+        ]
+    }
 }

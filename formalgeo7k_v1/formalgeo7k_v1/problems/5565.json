@@ -1,36 +1,33 @@
 {
-  "problem_id": 5565,
-  "annotation": "ZheZhu_2023-05-21",
-  "source": "GeoQA-6834",
-  "problem_level": 4,
-  "problem_text_cn": "如图所示，AB=25，∠CAB=26°，∠CBD=52°。求直线BC的长度。",
-  "problem_text_en": "As shown in the diagram, AB=25, ∠CAB=26°, ∠CBD=52°. Find the length of line BC.",
-  "problem_img": "5565.png",
-  "construction_cdl": [
-    "Shape(CB,BD)",
-    "Shape(BC,CA,AB)",
-    "Collinear(ABD)"
-  ],
-  "text_cdl": [
-    "Equal(LengthOfLine(AB),25)",
-    "Equal(MeasureOfAngle(CAB),26)",
-    "Equal(MeasureOfAngle(CBD),52)"
-  ],
-  "image_cdl": [],
-  "goal_cdl": "Value(LengthOfLine(BC))",
-  "problem_answer": "25",
-  "theorem_seqs": [
-    "flat_angle(1,ABD)",
-    "angle_addition(1,ABC,CBD)",
-    "triangle_property_angle_sum(1,BCA)",
-    "sine_theorem(1,BCA)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "flat_angle(1,ABD)",
-      "angle_addition(1,ABC,CBD)",
-      "triangle_property_angle_sum(1,BCA)",
-      "sine_theorem(1,BCA)"
-    ]
-  }
+    "problem_id": 5565,
+    "source": "GeoQA-6834",
+    "problem_level": 4,
+    "problem_img": "5565.png",
+    "construction_cdl": [
+        "Shape(CB,BD)",
+        "Shape(BC,CA,AB)",
+        "Collinear(ABD)"
+    ],
+    "text_cdl": [
+        "Equal(LengthOfLine(AB),25)",
+        "Equal(MeasureOfAngle(CAB),26)",
+        "Equal(MeasureOfAngle(CBD),52)"
+    ],
+    "image_cdl": [],
+    "goal_cdl": "Value(LengthOfLine(BC))",
+    "problem_answer": "25",
+    "theorem_seqs": [
+        "flat_angle(1,ABD)",
+        "angle_addition(1,ABC,CBD)",
+        "triangle_property_angle_sum(1,BCA)",
+        "sine_theorem(1,BCA)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "flat_angle(1,ABD)",
+            "angle_addition(1,ABC,CBD)",
+            "triangle_property_angle_sum(1,BCA)",
+            "sine_theorem(1,BCA)"
+        ]
+    }
 }

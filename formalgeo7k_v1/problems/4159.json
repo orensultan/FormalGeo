@@ -1,28 +1,25 @@
 {
-  "problem_id": 4159,
-  "annotation": "XiaoxiaoJin_2023-05-07",
-  "source": "GeoQA-2785",
-  "problem_level": 1,
-  "problem_text_cn": "如图所示，AB=4，AC=4，BC=6。求cos(AB)的值。",
-  "problem_text_en": "As shown in the diagram, AB=4, AC=4, BC=6. Find the value of cos(AB).",
-  "problem_img": "4159.png",
-  "construction_cdl": [
-    "Shape(AB,BC,CA)"
-  ],
-  "text_cdl": [
-    "Equal(LengthOfLine(AB),4)",
-    "Equal(LengthOfLine(AC),4)",
-    "Equal(LengthOfLine(BC),6)"
-  ],
-  "image_cdl": [],
-  "goal_cdl": "Value(Cos(MeasureOfAngle(ABC)))",
-  "problem_answer": "3/4",
-  "theorem_seqs": [
-    "cosine_theorem(1,BCA)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "cosine_theorem(1,BCA)"
-    ]
-  }
+    "problem_id": 4159,
+    "source": "GeoQA-2785",
+    "problem_level": 1,
+    "problem_img": "4159.png",
+    "construction_cdl": [
+        "Shape(AB,BC,CA)"
+    ],
+    "text_cdl": [
+        "Equal(LengthOfLine(AB),4)",
+        "Equal(LengthOfLine(AC),4)",
+        "Equal(LengthOfLine(BC),6)"
+    ],
+    "image_cdl": [],
+    "goal_cdl": "Value(Cos(MeasureOfAngle(ABC)))",
+    "problem_answer": "3/4",
+    "theorem_seqs": [
+        "cosine_theorem(1,BCA)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "cosine_theorem(1,BCA)"
+        ]
+    }
 }

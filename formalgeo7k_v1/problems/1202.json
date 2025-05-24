@@ -1,44 +1,41 @@
 {
-  "problem_id": 1202,
-  "annotation": "JiaZou_2023-03-19",
-  "source": "Geometry3k-1242",
-  "problem_level": 3,
-  "problem_text_cn": "如图所示，∠RTS=47°，RU垂直于SU，TV⊥UV，VS⊥RS，∠TSR是直角△TSR的直角。求∠SUV的大小。",
-  "problem_text_en": "As shown in the diagram, ∠RTS=47°, RU is perpendicular to SU, TV⊥UV, VS⊥RS, TS and SR are the legs of the right triangle TSR. Find the measure of ∠SUV.",
-  "problem_img": "1202.png",
-  "construction_cdl": [
-    "Shape(SR,RU,US)",
-    "Shape(SU,UV,VS)",
-    "Shape(UT,TV,VU)",
-    "Collinear(RUT)",
-    "Collinear(SVT)"
-  ],
-  "text_cdl": [
-    "Equal(MeasureOfAngle(RTS),47)",
-    "PerpendicularBetweenLine(RU,SU)",
-    "PerpendicularBetweenLine(TV,UV)",
-    "PerpendicularBetweenLine(VS,RS)",
-    "RightTriangle(TSR)"
-  ],
-  "image_cdl": [
-    "Equal(MeasureOfAngle(RTS),47)",
-    "PerpendicularBetweenLine(RU,SU)",
-    "PerpendicularBetweenLine(RU,SU)",
-    "PerpendicularBetweenLine(TV,UV)",
-    "PerpendicularBetweenLine(VS,RS)"
-  ],
-  "goal_cdl": "Value(MeasureOfAngle(SUV))",
-  "problem_answer": "47",
-  "theorem_seqs": [
-    "adjacent_complementary_angle(1,RUS,SUT)",
-    "triangle_property_angle_sum(1,UTV)",
-    "angle_addition(1,SUV,VUT)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "adjacent_complementary_angle(1,RUS,SUT)",
-      "triangle_property_angle_sum(1,UTV)",
-      "angle_addition(1,SUV,VUT)"
-    ]
-  }
+    "problem_id": 1202,
+    "source": "Geometry3k-1242",
+    "problem_level": 3,
+    "problem_img": "1202.png",
+    "construction_cdl": [
+        "Shape(SR,RU,US)",
+        "Shape(SU,UV,VS)",
+        "Shape(UT,TV,VU)",
+        "Collinear(RUT)",
+        "Collinear(SVT)"
+    ],
+    "text_cdl": [
+        "Equal(MeasureOfAngle(RTS),47)",
+        "PerpendicularBetweenLine(RU,SU)",
+        "PerpendicularBetweenLine(TV,UV)",
+        "PerpendicularBetweenLine(VS,RS)",
+        "RightTriangle(TSR)"
+    ],
+    "image_cdl": [
+        "Equal(MeasureOfAngle(RTS),47)",
+        "PerpendicularBetweenLine(RU,SU)",
+        "PerpendicularBetweenLine(RU,SU)",
+        "PerpendicularBetweenLine(TV,UV)",
+        "PerpendicularBetweenLine(VS,RS)"
+    ],
+    "goal_cdl": "Value(MeasureOfAngle(SUV))",
+    "problem_answer": "47",
+    "theorem_seqs": [
+        "adjacent_complementary_angle(1,RUS,SUT)",
+        "triangle_property_angle_sum(1,UTV)",
+        "angle_addition(1,SUV,VUT)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "adjacent_complementary_angle(1,RUS,SUT)",
+            "triangle_property_angle_sum(1,UTV)",
+            "angle_addition(1,SUV,VUT)"
+        ]
+    }
 }

@@ -1,37 +1,34 @@
 {
-  "problem_id": 1533,
-  "annotation": "QikeHuang_2023-04-16",
-  "source": "Geometry3k-1592",
-  "problem_level": 1,
-  "problem_text_cn": "如图所示，GFEH的面积为525，四边形XBAC的面积为1575，AB=18，EF=x，GFEH与XBAC相似。求GFEH和XBAC的相似比。",
-  "problem_text_en": "As shown in the diagram, the area of GFEH is 525, the area of quadrilateral XBAC is 1575, AB=18, EF=x, quadrilateral GFEH is similar to quadrilateral XBAC. Find The ratio of similar quadrilaterals GFEH and XBAC.",
-  "problem_img": "1533.png",
-  "construction_cdl": [
-    "Shape(GF,FE,EH,HG)",
-    "Shape(XB,BA,AC,CX)"
-  ],
-  "text_cdl": [
-    "Equal(AreaOfQuadrilateral(GFEH),525)",
-    "Equal(AreaOfQuadrilateral(XBAC),1575)",
-    "Equal(LengthOfLine(AB),18)",
-    "Equal(LengthOfLine(EF),x)",
-    "SimilarBetweenQuadrilateral(GFEH,XBAC)"
-  ],
-  "image_cdl": [
-    "Equal(AreaOfQuadrilateral(GFEH),525)",
-    "Equal(AreaOfQuadrilateral(XBAC),1575)",
-    "Equal(LengthOfLine(AB),18)",
-    "Equal(LengthOfLine(EF),x)",
-    "SimilarBetweenQuadrilateral(GFEH,XBAC)"
-  ],
-  "goal_cdl": "Value(RatioOfSimilarQuadrilateral(GFEH,XBAC))",
-  "problem_answer": "sqrt(3)/3",
-  "theorem_seqs": [
-    "similar_quadrilateral_property_area_square_ratio(1,GFEH,XBAC)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "similar_quadrilateral_property_area_square_ratio(1,GFEH,XBAC)"
-    ]
-  }
+    "problem_id": 1533,
+    "source": "Geometry3k-1592",
+    "problem_level": 1,
+    "problem_img": "1533.png",
+    "construction_cdl": [
+        "Shape(GF,FE,EH,HG)",
+        "Shape(XB,BA,AC,CX)"
+    ],
+    "text_cdl": [
+        "Equal(AreaOfQuadrilateral(GFEH),525)",
+        "Equal(AreaOfQuadrilateral(XBAC),1575)",
+        "Equal(LengthOfLine(AB),18)",
+        "Equal(LengthOfLine(EF),x)",
+        "SimilarBetweenQuadrilateral(GFEH,XBAC)"
+    ],
+    "image_cdl": [
+        "Equal(AreaOfQuadrilateral(GFEH),525)",
+        "Equal(AreaOfQuadrilateral(XBAC),1575)",
+        "Equal(LengthOfLine(AB),18)",
+        "Equal(LengthOfLine(EF),x)",
+        "SimilarBetweenQuadrilateral(GFEH,XBAC)"
+    ],
+    "goal_cdl": "Value(RatioOfSimilarQuadrilateral(GFEH,XBAC))",
+    "problem_answer": "sqrt(3)/3",
+    "theorem_seqs": [
+        "similar_quadrilateral_property_area_square_ratio(1,GFEH,XBAC)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "similar_quadrilateral_property_area_square_ratio(1,GFEH,XBAC)"
+        ]
+    }
 }

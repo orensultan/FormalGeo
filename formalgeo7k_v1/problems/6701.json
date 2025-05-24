@@ -1,53 +1,50 @@
 {
-  "problem_id": 6701,
-  "annotation": "XiaoxiaoJin_2023-06-04",
-  "source": "GeoQA-9732",
-  "problem_level": 6,
-  "problem_text_cn": "如图所示，EG=GF，∠DOE=50°，⊙O的圆心为O，CD是圆O的直径。求∠FCD的大小。",
-  "problem_text_en": "As shown in the diagram, EG=GF, ∠DOE=50°, O is the center of circle O, CD is the diameter of ⊙O. Find the measure of ∠FCD.",
-  "problem_img": "6701.png",
-  "construction_cdl": [
-    "Shape(EO,OC,OCE)",
-    "Shape(OE,EG,GO)",
-    "Shape(CO,OG,GF,FC)",
-    "Shape(CF,OFC)",
-    "Shape(DG,GE,OED)",
-    "Shape(FG,GD,ODF)",
-    "Collinear(COGD)",
-    "Collinear(EGF)",
-    "Cocircular(O,CEDF)"
-  ],
-  "text_cdl": [
-    "Equal(LengthOfLine(EG),LengthOfLine(GF))",
-    "Equal(MeasureOfAngle(DOE),50)",
-    "IsCentreOfCircle(O,O)",
-    "IsDiameterOfCircle(CD,O)"
-  ],
-  "image_cdl": [],
-  "goal_cdl": "Value(MeasureOfAngle(FCD))",
-  "problem_answer": "25",
-  "theorem_seqs": [
-    "arc_property_center_angle(1,OED,O)",
-    "arc_property_circumference_angle_external(1,ODF,C)",
-    "circle_property_chord_perpendicular_bisect_chord(2,O,OG,EF)",
-    "circle_property_chord_perpendicular_bisect_arc(1,OEF,OGD)",
-    "congruent_arc_judgment_length_equal(1,OED,ODF)",
-    "congruent_arc_property_measure_equal(1,OED,ODF)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "arc_property_center_angle(1,OED,O)",
-      "arc_property_circumference_angle_external(1,ODF,C)",
-      "circle_property_chord_perpendicular_bisect_chord(2,O,OG,EF)"
+    "problem_id": 6701,
+    "source": "GeoQA-9732",
+    "problem_level": 6,
+    "problem_img": "6701.png",
+    "construction_cdl": [
+        "Shape(EO,OC,OCE)",
+        "Shape(OE,EG,GO)",
+        "Shape(CO,OG,GF,FC)",
+        "Shape(CF,OFC)",
+        "Shape(DG,GE,OED)",
+        "Shape(FG,GD,ODF)",
+        "Collinear(COGD)",
+        "Collinear(EGF)",
+        "Cocircular(O,CEDF)"
     ],
-    "circle_property_chord_perpendicular_bisect_chord(2,O,OG,EF)": [
-      "circle_property_chord_perpendicular_bisect_arc(1,OEF,OGD)"
+    "text_cdl": [
+        "Equal(LengthOfLine(EG),LengthOfLine(GF))",
+        "Equal(MeasureOfAngle(DOE),50)",
+        "IsCentreOfCircle(O,O)",
+        "IsDiameterOfCircle(CD,O)"
     ],
-    "circle_property_chord_perpendicular_bisect_arc(1,OEF,OGD)": [
-      "congruent_arc_judgment_length_equal(1,OED,ODF)"
+    "image_cdl": [],
+    "goal_cdl": "Value(MeasureOfAngle(FCD))",
+    "problem_answer": "25",
+    "theorem_seqs": [
+        "arc_property_center_angle(1,OED,O)",
+        "arc_property_circumference_angle_external(1,ODF,C)",
+        "circle_property_chord_perpendicular_bisect_chord(2,O,OG,EF)",
+        "circle_property_chord_perpendicular_bisect_arc(1,OEF,OGD)",
+        "congruent_arc_judgment_length_equal(1,OED,ODF)",
+        "congruent_arc_property_measure_equal(1,OED,ODF)"
     ],
-    "congruent_arc_judgment_length_equal(1,OED,ODF)": [
-      "congruent_arc_property_measure_equal(1,OED,ODF)"
-    ]
-  }
+    "theorem_seqs_dag": {
+        "START": [
+            "arc_property_center_angle(1,OED,O)",
+            "arc_property_circumference_angle_external(1,ODF,C)",
+            "circle_property_chord_perpendicular_bisect_chord(2,O,OG,EF)"
+        ],
+        "circle_property_chord_perpendicular_bisect_chord(2,O,OG,EF)": [
+            "circle_property_chord_perpendicular_bisect_arc(1,OEF,OGD)"
+        ],
+        "circle_property_chord_perpendicular_bisect_arc(1,OEF,OGD)": [
+            "congruent_arc_judgment_length_equal(1,OED,ODF)"
+        ],
+        "congruent_arc_judgment_length_equal(1,OED,ODF)": [
+            "congruent_arc_property_measure_equal(1,OED,ODF)"
+        ]
+    }
 }

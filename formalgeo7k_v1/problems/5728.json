@@ -1,46 +1,43 @@
 {
-  "problem_id": 5728,
-  "annotation": "XiaokaiZhang_2023-05-28",
-  "source": "GeoQA-7526",
-  "problem_level": 5,
-  "problem_text_cn": "如图所示，DA=5，DE=2，EF=4，EF∥AB，AD和BC是▱DABC的一组对边。求直线CD的长度。",
-  "problem_text_en": "As shown in the diagram, DA=5, DE=2, EF=4, EF is parallel to AB, quadrilateral DABC is a parallelogram. Find the length of line CD.",
-  "problem_img": "5728.png",
-  "construction_cdl": [
-    "Shape(DE,EF,FD)",
-    "Shape(EA,AB,BF,FE)",
-    "Shape(DF,FB,BC,CD)",
-    "Collinear(DEA)",
-    "Collinear(DFB)"
-  ],
-  "text_cdl": [
-    "Equal(LengthOfLine(DA),5)",
-    "Equal(LengthOfLine(DE),2)",
-    "Equal(LengthOfLine(EF),4)",
-    "ParallelBetweenLine(EF,AB)",
-    "Parallelogram(DABC)"
-  ],
-  "image_cdl": [],
-  "goal_cdl": "Value(LengthOfLine(CD))",
-  "problem_answer": "10",
-  "theorem_seqs": [
-    "parallel_property_corresponding_angle(1,EF,AB,D)",
-    "similar_triangle_judgment_aa(1,FDE,BDA)",
-    "similar_triangle_property_line_ratio(1,FDE,BDA)",
-    "similar_triangle_property_line_ratio(1,DEF,DAB)",
-    "parallelogram_property_opposite_line_equal(1,ABCD)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "parallel_property_corresponding_angle(1,EF,AB,D)",
-      "parallelogram_property_opposite_line_equal(1,ABCD)"
+    "problem_id": 5728,
+    "source": "GeoQA-7526",
+    "problem_level": 5,
+    "problem_img": "5728.png",
+    "construction_cdl": [
+        "Shape(DE,EF,FD)",
+        "Shape(EA,AB,BF,FE)",
+        "Shape(DF,FB,BC,CD)",
+        "Collinear(DEA)",
+        "Collinear(DFB)"
     ],
-    "parallel_property_corresponding_angle(1,EF,AB,D)": [
-      "similar_triangle_judgment_aa(1,FDE,BDA)"
+    "text_cdl": [
+        "Equal(LengthOfLine(DA),5)",
+        "Equal(LengthOfLine(DE),2)",
+        "Equal(LengthOfLine(EF),4)",
+        "ParallelBetweenLine(EF,AB)",
+        "Parallelogram(DABC)"
     ],
-    "similar_triangle_judgment_aa(1,FDE,BDA)": [
-      "similar_triangle_property_line_ratio(1,FDE,BDA)",
-      "similar_triangle_property_line_ratio(1,DEF,DAB)"
-    ]
-  }
+    "image_cdl": [],
+    "goal_cdl": "Value(LengthOfLine(CD))",
+    "problem_answer": "10",
+    "theorem_seqs": [
+        "parallel_property_corresponding_angle(1,EF,AB,D)",
+        "similar_triangle_judgment_aa(1,FDE,BDA)",
+        "similar_triangle_property_line_ratio(1,FDE,BDA)",
+        "similar_triangle_property_line_ratio(1,DEF,DAB)",
+        "parallelogram_property_opposite_line_equal(1,ABCD)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "parallel_property_corresponding_angle(1,EF,AB,D)",
+            "parallelogram_property_opposite_line_equal(1,ABCD)"
+        ],
+        "parallel_property_corresponding_angle(1,EF,AB,D)": [
+            "similar_triangle_judgment_aa(1,FDE,BDA)"
+        ],
+        "similar_triangle_judgment_aa(1,FDE,BDA)": [
+            "similar_triangle_property_line_ratio(1,FDE,BDA)",
+            "similar_triangle_property_line_ratio(1,DEF,DAB)"
+        ]
+    }
 }

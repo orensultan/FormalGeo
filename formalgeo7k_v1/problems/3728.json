@@ -1,36 +1,33 @@
 {
-  "problem_id": 3728,
-  "annotation": "YangLi_2023-04-30",
-  "source": "GeoQA-1509",
-  "problem_level": 2,
-  "problem_text_cn": "如图所示，DE=10，D平分线段AB，E是线段AC的中点，△AED相似于△ABC。求直线BC的长度。",
-  "problem_text_en": "As shown in the diagram, DE=10, D bisects segment AB, E is the midpoint of segment AC, triangle AED is similar to triangle ABC.. Find the length of line BC.",
-  "problem_img": "3728.png",
-  "construction_cdl": [
-    "Shape(DA,AE,ED)",
-    "Shape(DE,EC,CB,BD)",
-    "Collinear(ADB)",
-    "Collinear(AEC)"
-  ],
-  "text_cdl": [
-    "Equal(LengthOfLine(DE),10)",
-    "IsMidpointOfLine(D,AB)",
-    "IsMidpointOfLine(E,AC)",
-    "SimilarBetweenTriangle(AED,ABC)"
-  ],
-  "image_cdl": [],
-  "goal_cdl": "Value(LengthOfLine(BC))",
-  "problem_answer": "20",
-  "theorem_seqs": [
-    "midsegment_of_triangle_judgment_midpoint(1,ED,ACB)",
-    "midsegment_of_triangle_property_length(1,ED,ACB)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "midsegment_of_triangle_judgment_midpoint(1,ED,ACB)"
+    "problem_id": 3728,
+    "source": "GeoQA-1509",
+    "problem_level": 2,
+    "problem_img": "3728.png",
+    "construction_cdl": [
+        "Shape(DA,AE,ED)",
+        "Shape(DE,EC,CB,BD)",
+        "Collinear(ADB)",
+        "Collinear(AEC)"
     ],
-    "midsegment_of_triangle_judgment_midpoint(1,ED,ACB)": [
-      "midsegment_of_triangle_property_length(1,ED,ACB)"
-    ]
-  }
+    "text_cdl": [
+        "Equal(LengthOfLine(DE),10)",
+        "IsMidpointOfLine(D,AB)",
+        "IsMidpointOfLine(E,AC)",
+        "SimilarBetweenTriangle(AED,ABC)"
+    ],
+    "image_cdl": [],
+    "goal_cdl": "Value(LengthOfLine(BC))",
+    "problem_answer": "20",
+    "theorem_seqs": [
+        "midsegment_of_triangle_judgment_midpoint(1,ED,ACB)",
+        "midsegment_of_triangle_property_length(1,ED,ACB)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "midsegment_of_triangle_judgment_midpoint(1,ED,ACB)"
+        ],
+        "midsegment_of_triangle_judgment_midpoint(1,ED,ACB)": [
+            "midsegment_of_triangle_property_length(1,ED,ACB)"
+        ]
+    }
 }

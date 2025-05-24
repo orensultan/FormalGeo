@@ -1,42 +1,39 @@
 {
-  "problem_id": 1725,
-  "annotation": "NaZhu_2023-03-26",
-  "source": "Geometry3k-1790",
-  "problem_level": 6,
-  "problem_text_cn": "如图所示，∠FDG=28°，∠FGH和∠GHF是等腰△FGH的底角，∠GFD和∠FDG是等腰△GFD的底角。求∠HFG的大小。",
-  "problem_text_en": "As shown in the diagram, ∠FDG=28°, ∠FGH and ∠GHF are the base angles of the isosceles △ FGH, triangleGFD is an isosceles triangle. Find the measure of ∠HFG.",
-  "problem_img": "1725.png",
-  "construction_cdl": [
-    "Shape(FD,DG,GF)",
-    "Shape(FG,GH,HF)",
-    "Collinear(DGH)"
-  ],
-  "text_cdl": [
-    "Equal(MeasureOfAngle(FDG),28)",
-    "IsoscelesTriangle(FGH)",
-    "IsoscelesTriangle(GFD)"
-  ],
-  "image_cdl": [
-    "Equal(MeasureOfAngle(FDG),28)"
-  ],
-  "goal_cdl": "Value(MeasureOfAngle(HFG))",
-  "problem_answer": "68",
-  "theorem_seqs": [
-    "isosceles_triangle_property_angle_equal(1,GFD)",
-    "triangle_property_angle_sum(1,FDG)",
-    "flat_angle(1,DGH)",
-    "angle_addition(1,DGF,FGH)",
-    "isosceles_triangle_property_angle_equal(1,FGH)",
-    "triangle_property_angle_sum(1,FGH)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "isosceles_triangle_property_angle_equal(1,GFD)",
-      "triangle_property_angle_sum(1,FDG)",
-      "flat_angle(1,DGH)",
-      "angle_addition(1,DGF,FGH)",
-      "isosceles_triangle_property_angle_equal(1,FGH)",
-      "triangle_property_angle_sum(1,FGH)"
-    ]
-  }
+    "problem_id": 1725,
+    "source": "Geometry3k-1790",
+    "problem_level": 6,
+    "problem_img": "1725.png",
+    "construction_cdl": [
+        "Shape(FD,DG,GF)",
+        "Shape(FG,GH,HF)",
+        "Collinear(DGH)"
+    ],
+    "text_cdl": [
+        "Equal(MeasureOfAngle(FDG),28)",
+        "IsoscelesTriangle(FGH)",
+        "IsoscelesTriangle(GFD)"
+    ],
+    "image_cdl": [
+        "Equal(MeasureOfAngle(FDG),28)"
+    ],
+    "goal_cdl": "Value(MeasureOfAngle(HFG))",
+    "problem_answer": "68",
+    "theorem_seqs": [
+        "isosceles_triangle_property_angle_equal(1,GFD)",
+        "triangle_property_angle_sum(1,FDG)",
+        "flat_angle(1,DGH)",
+        "angle_addition(1,DGF,FGH)",
+        "isosceles_triangle_property_angle_equal(1,FGH)",
+        "triangle_property_angle_sum(1,FGH)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "isosceles_triangle_property_angle_equal(1,GFD)",
+            "triangle_property_angle_sum(1,FDG)",
+            "flat_angle(1,DGH)",
+            "angle_addition(1,DGF,FGH)",
+            "isosceles_triangle_property_angle_equal(1,FGH)",
+            "triangle_property_angle_sum(1,FGH)"
+        ]
+    }
 }

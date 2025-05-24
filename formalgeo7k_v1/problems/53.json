@@ -1,47 +1,44 @@
 {
-  "problem_id": 53,
-  "annotation": "XiaokaiZhang_2023-04-02",
-  "source": "Geometry3k-53",
-  "problem_level": 4,
-  "problem_text_cn": "如图所示，∠FOE=45°，O是⊙O的圆心，CO⊥AO，EO垂直于BO。求弧OAE的角度。",
-  "problem_text_en": "As shown in the diagram, ∠FOE=45°, the center of circle O is O, CO⊥AO, EO⊥BO. Find the measure of arc OAE.",
-  "problem_img": "53.png",
-  "construction_cdl": [
-    "Shape(OE,OEF,FO)",
-    "Shape(OF,OFA,AO)",
-    "Shape(OA,OAC,CO)",
-    "Shape(OC,OCB,BO)",
-    "Shape(OB,OBE,EO)",
-    "Collinear(EOC)",
-    "Collinear(AOB)",
-    "Cocircular(O,EFACB)"
-  ],
-  "text_cdl": [
-    "Equal(MeasureOfAngle(FOE),45)",
-    "IsCentreOfCircle(O,O)",
-    "PerpendicularBetweenLine(CO,AO)",
-    "PerpendicularBetweenLine(EO,BO)"
-  ],
-  "image_cdl": [
-    "Equal(MeasureOfAngle(FOE),45)",
-    "IsCentreOfCircle(O,O)",
-    "PerpendicularBetweenLine(CO,AO)",
-    "PerpendicularBetweenLine(EO,BO)"
-  ],
-  "goal_cdl": "Value(MeasureOfArc(OAE))",
-  "problem_answer": "270",
-  "theorem_seqs": [
-    "adjacent_complementary_angle(1,EOB,BOC)",
-    "angle_addition(1,EOB,BOC)",
-    "angle_addition(1,EOC,COA)",
-    "arc_property_center_angle(1,OAE,O)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "adjacent_complementary_angle(1,EOB,BOC)",
-      "angle_addition(1,EOB,BOC)",
-      "angle_addition(1,EOC,COA)",
-      "arc_property_center_angle(1,OAE,O)"
-    ]
-  }
+    "problem_id": 53,
+    "source": "Geometry3k-53",
+    "problem_level": 4,
+    "problem_img": "53.png",
+    "construction_cdl": [
+        "Shape(OE,OEF,FO)",
+        "Shape(OF,OFA,AO)",
+        "Shape(OA,OAC,CO)",
+        "Shape(OC,OCB,BO)",
+        "Shape(OB,OBE,EO)",
+        "Collinear(EOC)",
+        "Collinear(AOB)",
+        "Cocircular(O,EFACB)"
+    ],
+    "text_cdl": [
+        "Equal(MeasureOfAngle(FOE),45)",
+        "IsCentreOfCircle(O,O)",
+        "PerpendicularBetweenLine(CO,AO)",
+        "PerpendicularBetweenLine(EO,BO)"
+    ],
+    "image_cdl": [
+        "Equal(MeasureOfAngle(FOE),45)",
+        "IsCentreOfCircle(O,O)",
+        "PerpendicularBetweenLine(CO,AO)",
+        "PerpendicularBetweenLine(EO,BO)"
+    ],
+    "goal_cdl": "Value(MeasureOfArc(OAE))",
+    "problem_answer": "270",
+    "theorem_seqs": [
+        "adjacent_complementary_angle(1,EOB,BOC)",
+        "angle_addition(1,EOB,BOC)",
+        "angle_addition(1,EOC,COA)",
+        "arc_property_center_angle(1,OAE,O)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "adjacent_complementary_angle(1,EOB,BOC)",
+            "angle_addition(1,EOB,BOC)",
+            "angle_addition(1,EOC,COA)",
+            "arc_property_center_angle(1,OAE,O)"
+        ]
+    }
 }

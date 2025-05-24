@@ -1,32 +1,29 @@
 {
-  "problem_id": 3322,
-  "annotation": "YimingHe_2023-04-30",
-  "source": "GeoQA-717",
-  "problem_level": 2,
-  "problem_text_cn": "如图所示，∠AOB=40°，∠AOC=90°，∠BOD=90°。求∠COD的大小。",
-  "problem_text_en": "As shown in the diagram, ∠AOB=40°, ∠AOC=90°, ∠BOD=90°. Find the measure of ∠COD.",
-  "problem_img": "3322.png",
-  "construction_cdl": [
-    "Shape(AO,OB)",
-    "Shape(BO,OC)",
-    "Shape(CO,OD)"
-  ],
-  "text_cdl": [
-    "Equal(MeasureOfAngle(AOB),40)",
-    "Equal(MeasureOfAngle(AOC),90)",
-    "Equal(MeasureOfAngle(BOD),90)"
-  ],
-  "image_cdl": [],
-  "goal_cdl": "Value(MeasureOfAngle(COD))",
-  "problem_answer": "40",
-  "theorem_seqs": [
-    "angle_addition(1,AOB,BOC)",
-    "angle_addition(1,BOC,COD)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "angle_addition(1,AOB,BOC)",
-      "angle_addition(1,BOC,COD)"
-    ]
-  }
+    "problem_id": 3322,
+    "source": "GeoQA-717",
+    "problem_level": 2,
+    "problem_img": "3322.png",
+    "construction_cdl": [
+        "Shape(AO,OB)",
+        "Shape(BO,OC)",
+        "Shape(CO,OD)"
+    ],
+    "text_cdl": [
+        "Equal(MeasureOfAngle(AOB),40)",
+        "Equal(MeasureOfAngle(AOC),90)",
+        "Equal(MeasureOfAngle(BOD),90)"
+    ],
+    "image_cdl": [],
+    "goal_cdl": "Value(MeasureOfAngle(COD))",
+    "problem_answer": "40",
+    "theorem_seqs": [
+        "angle_addition(1,AOB,BOC)",
+        "angle_addition(1,BOC,COD)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "angle_addition(1,AOB,BOC)",
+            "angle_addition(1,BOC,COD)"
+        ]
+    }
 }

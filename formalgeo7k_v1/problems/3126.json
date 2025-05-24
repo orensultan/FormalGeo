@@ -1,36 +1,33 @@
 {
-  "problem_id": 3126,
-  "annotation": "YimingHe_2023-04-23",
-  "source": "GeoQA-379",
-  "problem_level": 3,
-  "problem_text_cn": "如图所示，MN=100，MO=60，NO=80，∠MOE=20°。求∠FON的大小。",
-  "problem_text_en": "As shown in the diagram, MN=100, MO=60, NO=80, ∠MOE=20°. Find the measure of ∠FON.",
-  "problem_img": "3126.png",
-  "construction_cdl": [
-    "Shape(NO,OM,MN)",
-    "Shape(MO,OE)",
-    "Shape(FO,ON)",
-    "Collinear(EOF)"
-  ],
-  "text_cdl": [
-    "Equal(LengthOfLine(MN),100)",
-    "Equal(LengthOfLine(MO),60)",
-    "Equal(LengthOfLine(NO),80)",
-    "Equal(MeasureOfAngle(MOE),20)"
-  ],
-  "image_cdl": [],
-  "goal_cdl": "Value(MeasureOfAngle(FON))",
-  "problem_answer": "70",
-  "theorem_seqs": [
-    "right_triangle_judgment_pythagorean_inverse(1,NOM)",
-    "angle_addition(1,NOM,MOE)",
-    "adjacent_complementary_angle(1,FON,NOE)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "right_triangle_judgment_pythagorean_inverse(1,NOM)",
-      "angle_addition(1,NOM,MOE)",
-      "adjacent_complementary_angle(1,FON,NOE)"
-    ]
-  }
+    "problem_id": 3126,
+    "source": "GeoQA-379",
+    "problem_level": 3,
+    "problem_img": "3126.png",
+    "construction_cdl": [
+        "Shape(NO,OM,MN)",
+        "Shape(MO,OE)",
+        "Shape(FO,ON)",
+        "Collinear(EOF)"
+    ],
+    "text_cdl": [
+        "Equal(LengthOfLine(MN),100)",
+        "Equal(LengthOfLine(MO),60)",
+        "Equal(LengthOfLine(NO),80)",
+        "Equal(MeasureOfAngle(MOE),20)"
+    ],
+    "image_cdl": [],
+    "goal_cdl": "Value(MeasureOfAngle(FON))",
+    "problem_answer": "70",
+    "theorem_seqs": [
+        "right_triangle_judgment_pythagorean_inverse(1,NOM)",
+        "angle_addition(1,NOM,MOE)",
+        "adjacent_complementary_angle(1,FON,NOE)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "right_triangle_judgment_pythagorean_inverse(1,NOM)",
+            "angle_addition(1,NOM,MOE)",
+            "adjacent_complementary_angle(1,FON,NOE)"
+        ]
+    }
 }

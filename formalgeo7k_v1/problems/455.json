@@ -1,43 +1,40 @@
 {
-  "problem_id": 455,
-  "annotation": "YimingHe_2023-04-02",
-  "source": "Geometry3k-465",
-  "problem_level": 2,
-  "problem_text_cn": "如图所示，AE=x，BE=2/3*x，CE=4*y，DE=3*y+4，四边形CABD是▱。求y的值。",
-  "problem_text_en": "As shown in the diagram, AE=x, BE=2/3*x, CE=4*y, DE=3*y+4, AC and BD are opposite sides of the ▱ CABD. Find the value of y.",
-  "problem_img": "455.png",
-  "construction_cdl": [
-    "Shape(CA,AE,EC)",
-    "Shape(EA,AB,BE)",
-    "Shape(EB,BD,DE)",
-    "Shape(ED,DC,CE)",
-    "Collinear(AED)",
-    "Collinear(CEB)"
-  ],
-  "text_cdl": [
-    "Equal(LengthOfLine(AE),x)",
-    "Equal(LengthOfLine(BE),2/3*x)",
-    "Equal(LengthOfLine(CE),4*y)",
-    "Equal(LengthOfLine(DE),3*y+4)",
-    "Parallelogram(CABD)"
-  ],
-  "image_cdl": [
-    "Equal(LengthOfLine(AE),x)",
-    "Equal(LengthOfLine(BE),2/3*x)",
-    "Equal(LengthOfLine(CE),4*y)",
-    "Equal(LengthOfLine(DE),3*y+4)",
-    "Parallelogram(CABD)"
-  ],
-  "goal_cdl": "Value(y)",
-  "problem_answer": "4/3",
-  "theorem_seqs": [
-    "parallelogram_property_diagonal_bisection(1,CABD,E)",
-    "parallelogram_property_diagonal_bisection(1,ABDC,E)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "parallelogram_property_diagonal_bisection(1,CABD,E)",
-      "parallelogram_property_diagonal_bisection(1,ABDC,E)"
-    ]
-  }
+    "problem_id": 455,
+    "source": "Geometry3k-465",
+    "problem_level": 2,
+    "problem_img": "455.png",
+    "construction_cdl": [
+        "Shape(CA,AE,EC)",
+        "Shape(EA,AB,BE)",
+        "Shape(EB,BD,DE)",
+        "Shape(ED,DC,CE)",
+        "Collinear(AED)",
+        "Collinear(CEB)"
+    ],
+    "text_cdl": [
+        "Equal(LengthOfLine(AE),x)",
+        "Equal(LengthOfLine(BE),2/3*x)",
+        "Equal(LengthOfLine(CE),4*y)",
+        "Equal(LengthOfLine(DE),3*y+4)",
+        "Parallelogram(CABD)"
+    ],
+    "image_cdl": [
+        "Equal(LengthOfLine(AE),x)",
+        "Equal(LengthOfLine(BE),2/3*x)",
+        "Equal(LengthOfLine(CE),4*y)",
+        "Equal(LengthOfLine(DE),3*y+4)",
+        "Parallelogram(CABD)"
+    ],
+    "goal_cdl": "Value(y)",
+    "problem_answer": "4/3",
+    "theorem_seqs": [
+        "parallelogram_property_diagonal_bisection(1,CABD,E)",
+        "parallelogram_property_diagonal_bisection(1,ABDC,E)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "parallelogram_property_diagonal_bisection(1,CABD,E)",
+            "parallelogram_property_diagonal_bisection(1,ABDC,E)"
+        ]
+    }
 }

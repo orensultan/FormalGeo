@@ -1,79 +1,76 @@
 {
-  "problem_id": 1623,
-  "annotation": "XiaoxiaoJin_2023-04-16",
-  "source": "Geometry3k-1683",
-  "problem_level": 11,
-  "problem_text_cn": "如图所示，WT=3，WX垂直于YX，XY垂直于ZY，YZ⊥WZ，ZW⊥XW，四边形WXYZ是正方形。求∠WTZ的大小。",
-  "problem_text_en": "As shown in the diagram, WT=3, WX is perpendicular to YX, XY⊥ZY, YZ⊥WZ, ZW⊥XW, quadrilateral WXYZ is a square. Find the measure of ∠WTZ.",
-  "problem_img": "1623.png",
-  "construction_cdl": [
-    "Shape(WX,XT,TW)",
-    "Shape(XY,YT,TX)",
-    "Shape(TY,YZ,ZT)",
-    "Shape(WT,TZ,ZW)",
-    "Collinear(XTZ)",
-    "Collinear(YTW)"
-  ],
-  "text_cdl": [
-    "Equal(LengthOfLine(WT),3)",
-    "PerpendicularBetweenLine(WX,YX)",
-    "PerpendicularBetweenLine(XY,ZY)",
-    "PerpendicularBetweenLine(YZ,WZ)",
-    "PerpendicularBetweenLine(ZW,XW)",
-    "Square(WXYZ)"
-  ],
-  "image_cdl": [
-    "PerpendicularBetweenLine(WX,YX)",
-    "PerpendicularBetweenLine(XY,ZY)",
-    "PerpendicularBetweenLine(YZ,WZ)",
-    "PerpendicularBetweenLine(ZW,XW)"
-  ],
-  "goal_cdl": "Value(MeasureOfAngle(WTZ))",
-  "problem_answer": "90",
-  "theorem_seqs": [
-    "line_addition(1,XT,TZ)",
-    "line_addition(1,YT,TW)",
-    "isosceles_triangle_judgment_line_equal(1,WXZ)",
-    "isosceles_triangle_property_angle_equal(1,WXZ)",
-    "triangle_property_angle_sum(1,WXZ)",
-    "parallelogram_property_diagonal_bisection(1,XYZW,T)",
-    "parallelogram_property_diagonal_bisection(1,YZWX,T)",
-    "rectangle_property_diagonal_equal(1,XYZW)",
-    "isosceles_triangle_judgment_line_equal(1,TZW)",
-    "isosceles_triangle_property_angle_equal(1,TZW)",
-    "triangle_property_angle_sum(1,TZW)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "line_addition(1,XT,TZ)",
-      "line_addition(1,YT,TW)",
-      "isosceles_triangle_judgment_line_equal(1,WXZ)",
-      "triangle_property_angle_sum(1,WXZ)",
-      "parallelogram_property_diagonal_bisection(1,XYZW,T)",
-      "parallelogram_property_diagonal_bisection(1,YZWX,T)",
-      "rectangle_property_diagonal_equal(1,XYZW)",
-      "triangle_property_angle_sum(1,TZW)"
+    "problem_id": 1623,
+    "source": "Geometry3k-1683",
+    "problem_level": 11,
+    "problem_img": "1623.png",
+    "construction_cdl": [
+        "Shape(WX,XT,TW)",
+        "Shape(XY,YT,TX)",
+        "Shape(TY,YZ,ZT)",
+        "Shape(WT,TZ,ZW)",
+        "Collinear(XTZ)",
+        "Collinear(YTW)"
     ],
-    "line_addition(1,XT,TZ)": [
-      "isosceles_triangle_judgment_line_equal(1,TZW)"
+    "text_cdl": [
+        "Equal(LengthOfLine(WT),3)",
+        "PerpendicularBetweenLine(WX,YX)",
+        "PerpendicularBetweenLine(XY,ZY)",
+        "PerpendicularBetweenLine(YZ,WZ)",
+        "PerpendicularBetweenLine(ZW,XW)",
+        "Square(WXYZ)"
     ],
-    "line_addition(1,YT,TW)": [
-      "isosceles_triangle_judgment_line_equal(1,TZW)"
+    "image_cdl": [
+        "PerpendicularBetweenLine(WX,YX)",
+        "PerpendicularBetweenLine(XY,ZY)",
+        "PerpendicularBetweenLine(YZ,WZ)",
+        "PerpendicularBetweenLine(ZW,XW)"
     ],
-    "isosceles_triangle_judgment_line_equal(1,WXZ)": [
-      "isosceles_triangle_property_angle_equal(1,WXZ)"
+    "goal_cdl": "Value(MeasureOfAngle(WTZ))",
+    "problem_answer": "90",
+    "theorem_seqs": [
+        "line_addition(1,XT,TZ)",
+        "line_addition(1,YT,TW)",
+        "isosceles_triangle_judgment_line_equal(1,WXZ)",
+        "isosceles_triangle_property_angle_equal(1,WXZ)",
+        "triangle_property_angle_sum(1,WXZ)",
+        "parallelogram_property_diagonal_bisection(1,XYZW,T)",
+        "parallelogram_property_diagonal_bisection(1,YZWX,T)",
+        "rectangle_property_diagonal_equal(1,XYZW)",
+        "isosceles_triangle_judgment_line_equal(1,TZW)",
+        "isosceles_triangle_property_angle_equal(1,TZW)",
+        "triangle_property_angle_sum(1,TZW)"
     ],
-    "parallelogram_property_diagonal_bisection(1,XYZW,T)": [
-      "isosceles_triangle_judgment_line_equal(1,TZW)"
-    ],
-    "parallelogram_property_diagonal_bisection(1,YZWX,T)": [
-      "isosceles_triangle_judgment_line_equal(1,TZW)"
-    ],
-    "rectangle_property_diagonal_equal(1,XYZW)": [
-      "isosceles_triangle_judgment_line_equal(1,TZW)"
-    ],
-    "isosceles_triangle_judgment_line_equal(1,TZW)": [
-      "isosceles_triangle_property_angle_equal(1,TZW)"
-    ]
-  }
+    "theorem_seqs_dag": {
+        "START": [
+            "line_addition(1,XT,TZ)",
+            "line_addition(1,YT,TW)",
+            "isosceles_triangle_judgment_line_equal(1,WXZ)",
+            "triangle_property_angle_sum(1,WXZ)",
+            "parallelogram_property_diagonal_bisection(1,XYZW,T)",
+            "parallelogram_property_diagonal_bisection(1,YZWX,T)",
+            "rectangle_property_diagonal_equal(1,XYZW)",
+            "triangle_property_angle_sum(1,TZW)"
+        ],
+        "line_addition(1,XT,TZ)": [
+            "isosceles_triangle_judgment_line_equal(1,TZW)"
+        ],
+        "line_addition(1,YT,TW)": [
+            "isosceles_triangle_judgment_line_equal(1,TZW)"
+        ],
+        "isosceles_triangle_judgment_line_equal(1,WXZ)": [
+            "isosceles_triangle_property_angle_equal(1,WXZ)"
+        ],
+        "parallelogram_property_diagonal_bisection(1,XYZW,T)": [
+            "isosceles_triangle_judgment_line_equal(1,TZW)"
+        ],
+        "parallelogram_property_diagonal_bisection(1,YZWX,T)": [
+            "isosceles_triangle_judgment_line_equal(1,TZW)"
+        ],
+        "rectangle_property_diagonal_equal(1,XYZW)": [
+            "isosceles_triangle_judgment_line_equal(1,TZW)"
+        ],
+        "isosceles_triangle_judgment_line_equal(1,TZW)": [
+            "isosceles_triangle_property_angle_equal(1,TZW)"
+        ]
+    }
 }

@@ -1,32 +1,29 @@
 {
-  "problem_id": 4069,
-  "annotation": "XiaokaiZhang_2023-05-07",
-  "source": "GeoQA-2389",
-  "problem_level": 2,
-  "problem_text_cn": "如图所示，AC=8/5，BC=1/2，EF=15，三角形ABC与三角形DEF是相似三角形。求直线DF的长度。",
-  "problem_text_en": "As shown in the diagram, AC=8/5, BC=1/2, EF=15, triangle ABC is similar to triangle DEF.. Find the length of line DF.",
-  "problem_img": "4069.png",
-  "construction_cdl": [
-    "Shape(AB,BC,CA)",
-    "Shape(DE,EF,FD)"
-  ],
-  "text_cdl": [
-    "Equal(LengthOfLine(AC),8/5)",
-    "Equal(LengthOfLine(BC),1/2)",
-    "Equal(LengthOfLine(EF),15)",
-    "SimilarBetweenTriangle(ABC,DEF)"
-  ],
-  "image_cdl": [],
-  "goal_cdl": "Value(LengthOfLine(DF))",
-  "problem_answer": "48",
-  "theorem_seqs": [
-    "similar_triangle_property_line_ratio(1,ABC,DEF)",
-    "similar_triangle_property_line_ratio(1,BCA,EFD)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "similar_triangle_property_line_ratio(1,ABC,DEF)",
-      "similar_triangle_property_line_ratio(1,BCA,EFD)"
-    ]
-  }
+    "problem_id": 4069,
+    "source": "GeoQA-2389",
+    "problem_level": 2,
+    "problem_img": "4069.png",
+    "construction_cdl": [
+        "Shape(AB,BC,CA)",
+        "Shape(DE,EF,FD)"
+    ],
+    "text_cdl": [
+        "Equal(LengthOfLine(AC),8/5)",
+        "Equal(LengthOfLine(BC),1/2)",
+        "Equal(LengthOfLine(EF),15)",
+        "SimilarBetweenTriangle(ABC,DEF)"
+    ],
+    "image_cdl": [],
+    "goal_cdl": "Value(LengthOfLine(DF))",
+    "problem_answer": "48",
+    "theorem_seqs": [
+        "similar_triangle_property_line_ratio(1,ABC,DEF)",
+        "similar_triangle_property_line_ratio(1,BCA,EFD)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "similar_triangle_property_line_ratio(1,ABC,DEF)",
+            "similar_triangle_property_line_ratio(1,BCA,EFD)"
+        ]
+    }
 }

@@ -1,40 +1,37 @@
 {
-  "problem_id": 4771,
-  "annotation": "YangLi_2023-05-14",
-  "source": "GeoQA-4152",
-  "problem_level": 4,
-  "problem_text_cn": "如图所示，∠ADC=30°，O是⊙O的圆心，BA是⊙O的切线。求∠CBA的大小。",
-  "problem_text_en": "As shown in the diagram, ∠ADC=30°, O is the center of ⊙O, BA is the tangent to circle O. Find the measure of ∠CBA.",
-  "problem_img": "4771.png",
-  "construction_cdl": [
-    "Shape(CB,BA,OCA)",
-    "Shape(AO,OC,OCA)",
-    "Shape(AD,DC,CO,OA)",
-    "Shape(CD,ODC)",
-    "Shape(DA,OAD)",
-    "Collinear(OCB)",
-    "Cocircular(O,ADC)"
-  ],
-  "text_cdl": [
-    "Equal(MeasureOfAngle(ADC),30)",
-    "IsCentreOfCircle(O,O)",
-    "IsTangentOfCircle(BA,O)"
-  ],
-  "image_cdl": [],
-  "goal_cdl": "Value(MeasureOfAngle(CBA))",
-  "problem_answer": "30",
-  "theorem_seqs": [
-    "tangent_of_circle_property_perpendicular(2,BA,O,O)",
-    "arc_property_circumference_angle_external(1,OCA,D)",
-    "arc_property_center_angle(1,OCA,O)",
-    "triangle_property_angle_sum(1,AOB)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "tangent_of_circle_property_perpendicular(2,BA,O,O)",
-      "arc_property_circumference_angle_external(1,OCA,D)",
-      "arc_property_center_angle(1,OCA,O)",
-      "triangle_property_angle_sum(1,AOB)"
-    ]
-  }
+    "problem_id": 4771,
+    "source": "GeoQA-4152",
+    "problem_level": 4,
+    "problem_img": "4771.png",
+    "construction_cdl": [
+        "Shape(CB,BA,OCA)",
+        "Shape(AO,OC,OCA)",
+        "Shape(AD,DC,CO,OA)",
+        "Shape(CD,ODC)",
+        "Shape(DA,OAD)",
+        "Collinear(OCB)",
+        "Cocircular(O,ADC)"
+    ],
+    "text_cdl": [
+        "Equal(MeasureOfAngle(ADC),30)",
+        "IsCentreOfCircle(O,O)",
+        "IsTangentOfCircle(BA,O)"
+    ],
+    "image_cdl": [],
+    "goal_cdl": "Value(MeasureOfAngle(CBA))",
+    "problem_answer": "30",
+    "theorem_seqs": [
+        "tangent_of_circle_property_perpendicular(2,BA,O,O)",
+        "arc_property_circumference_angle_external(1,OCA,D)",
+        "arc_property_center_angle(1,OCA,O)",
+        "triangle_property_angle_sum(1,AOB)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "tangent_of_circle_property_perpendicular(2,BA,O,O)",
+            "arc_property_circumference_angle_external(1,OCA,D)",
+            "arc_property_center_angle(1,OCA,O)",
+            "triangle_property_angle_sum(1,AOB)"
+        ]
+    }
 }

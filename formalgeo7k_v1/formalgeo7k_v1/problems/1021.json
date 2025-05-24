@@ -1,55 +1,52 @@
 {
-  "problem_id": 1021,
-  "annotation": "YanjunGuo_2023-04-09",
-  "source": "Geometry3k-1054",
-  "problem_level": 6,
-  "problem_text_cn": "如图所示，AF=1/2*y+20，CF=3*y，CG=20-3*x，FC=AF，HG=2*x-5，FG平行于AH。求x的值。",
-  "problem_text_en": "As shown in the diagram, AF=1/2*y+20, CF=3*y, CG=20-3*x, FC=AF, HG=2*x-5, FG∥AH. Find the value of x.",
-  "problem_img": "1021.png",
-  "construction_cdl": [
-    "Shape(CF,FG,GC)",
-    "Shape(FA,AH,HG,GF)",
-    "Collinear(CFA)",
-    "Collinear(CGH)"
-  ],
-  "text_cdl": [
-    "Equal(LengthOfLine(AF),1/2*y+20)",
-    "Equal(LengthOfLine(CF),3*y)",
-    "Equal(LengthOfLine(CG),20-3*x)",
-    "Equal(LengthOfLine(FC),LengthOfLine(AF))",
-    "Equal(LengthOfLine(HG),2*x-5)",
-    "ParallelBetweenLine(FG,AH)"
-  ],
-  "image_cdl": [
-    "Equal(LengthOfLine(AF),1/2*y+20)",
-    "Equal(LengthOfLine(CF),3*y)",
-    "Equal(LengthOfLine(CG),20-3*x)",
-    "Equal(LengthOfLine(FC),LengthOfLine(AF))",
-    "Equal(LengthOfLine(HG),2*x-5)",
-    "ParallelBetweenLine(FG,AH)"
-  ],
-  "goal_cdl": "Value(x)",
-  "problem_answer": "5",
-  "theorem_seqs": [
-    "parallel_property_corresponding_angle(1,FG,AH,C)",
-    "line_addition(1,AF,FC)",
-    "line_addition(1,HG,GC)",
-    "similar_triangle_judgment_aa(1,GCF,HCA)",
-    "similar_triangle_property_line_ratio(1,GCF,HCA)",
-    "similar_triangle_property_line_ratio(1,FGC,AHC)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "parallel_property_corresponding_angle(1,FG,AH,C)",
-      "line_addition(1,AF,FC)",
-      "line_addition(1,HG,GC)"
+    "problem_id": 1021,
+    "source": "Geometry3k-1054",
+    "problem_level": 6,
+    "problem_img": "1021.png",
+    "construction_cdl": [
+        "Shape(CF,FG,GC)",
+        "Shape(FA,AH,HG,GF)",
+        "Collinear(CFA)",
+        "Collinear(CGH)"
     ],
-    "parallel_property_corresponding_angle(1,FG,AH,C)": [
-      "similar_triangle_judgment_aa(1,GCF,HCA)"
+    "text_cdl": [
+        "Equal(LengthOfLine(AF),1/2*y+20)",
+        "Equal(LengthOfLine(CF),3*y)",
+        "Equal(LengthOfLine(CG),20-3*x)",
+        "Equal(LengthOfLine(FC),LengthOfLine(AF))",
+        "Equal(LengthOfLine(HG),2*x-5)",
+        "ParallelBetweenLine(FG,AH)"
     ],
-    "similar_triangle_judgment_aa(1,GCF,HCA)": [
-      "similar_triangle_property_line_ratio(1,GCF,HCA)",
-      "similar_triangle_property_line_ratio(1,FGC,AHC)"
-    ]
-  }
+    "image_cdl": [
+        "Equal(LengthOfLine(AF),1/2*y+20)",
+        "Equal(LengthOfLine(CF),3*y)",
+        "Equal(LengthOfLine(CG),20-3*x)",
+        "Equal(LengthOfLine(FC),LengthOfLine(AF))",
+        "Equal(LengthOfLine(HG),2*x-5)",
+        "ParallelBetweenLine(FG,AH)"
+    ],
+    "goal_cdl": "Value(x)",
+    "problem_answer": "5",
+    "theorem_seqs": [
+        "parallel_property_corresponding_angle(1,FG,AH,C)",
+        "line_addition(1,AF,FC)",
+        "line_addition(1,HG,GC)",
+        "similar_triangle_judgment_aa(1,GCF,HCA)",
+        "similar_triangle_property_line_ratio(1,GCF,HCA)",
+        "similar_triangle_property_line_ratio(1,FGC,AHC)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "parallel_property_corresponding_angle(1,FG,AH,C)",
+            "line_addition(1,AF,FC)",
+            "line_addition(1,HG,GC)"
+        ],
+        "parallel_property_corresponding_angle(1,FG,AH,C)": [
+            "similar_triangle_judgment_aa(1,GCF,HCA)"
+        ],
+        "similar_triangle_judgment_aa(1,GCF,HCA)": [
+            "similar_triangle_property_line_ratio(1,GCF,HCA)",
+            "similar_triangle_property_line_ratio(1,FGC,AHC)"
+        ]
+    }
 }

@@ -1,44 +1,41 @@
 {
-  "problem_id": 549,
-  "annotation": "JiaZou_2023-03-12",
-  "source": "Geometry3k-562",
-  "problem_level": 3,
-  "problem_text_cn": "如图所示，BC=6，CA=8，BA垂直于SA，SC⊥AC。求直线AB的长度。",
-  "problem_text_en": "As shown in the diagram, BC=6, CA=8, BA⊥SA, SC is perpendicular to AC. Find the length of line AB.",
-  "problem_img": "549.png",
-  "construction_cdl": [
-    "Shape(AC,CB,BA)",
-    "Shape(CA,AS,SC)",
-    "Collinear(SCB)"
-  ],
-  "text_cdl": [
-    "Equal(LengthOfLine(BC),6)",
-    "Equal(LengthOfLine(CA),8)",
-    "PerpendicularBetweenLine(BA,SA)",
-    "PerpendicularBetweenLine(SC,AC)"
-  ],
-  "image_cdl": [
-    "Equal(LengthOfLine(BC),6)",
-    "Equal(LengthOfLine(CA),8)",
-    "PerpendicularBetweenLine(BA,SA)",
-    "PerpendicularBetweenLine(SC,AC)"
-  ],
-  "goal_cdl": "Value(LengthOfLine(AB))",
-  "problem_answer": "10",
-  "theorem_seqs": [
-    "adjacent_complementary_angle(1,SCA,ACB)",
-    "right_triangle_judgment_angle(1,ACB)",
-    "right_triangle_property_pythagorean(1,ACB)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "adjacent_complementary_angle(1,SCA,ACB)"
+    "problem_id": 549,
+    "source": "Geometry3k-562",
+    "problem_level": 3,
+    "problem_img": "549.png",
+    "construction_cdl": [
+        "Shape(AC,CB,BA)",
+        "Shape(CA,AS,SC)",
+        "Collinear(SCB)"
     ],
-    "adjacent_complementary_angle(1,SCA,ACB)": [
-      "right_triangle_judgment_angle(1,ACB)"
+    "text_cdl": [
+        "Equal(LengthOfLine(BC),6)",
+        "Equal(LengthOfLine(CA),8)",
+        "PerpendicularBetweenLine(BA,SA)",
+        "PerpendicularBetweenLine(SC,AC)"
     ],
-    "right_triangle_judgment_angle(1,ACB)": [
-      "right_triangle_property_pythagorean(1,ACB)"
-    ]
-  }
+    "image_cdl": [
+        "Equal(LengthOfLine(BC),6)",
+        "Equal(LengthOfLine(CA),8)",
+        "PerpendicularBetweenLine(BA,SA)",
+        "PerpendicularBetweenLine(SC,AC)"
+    ],
+    "goal_cdl": "Value(LengthOfLine(AB))",
+    "problem_answer": "10",
+    "theorem_seqs": [
+        "adjacent_complementary_angle(1,SCA,ACB)",
+        "right_triangle_judgment_angle(1,ACB)",
+        "right_triangle_property_pythagorean(1,ACB)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "adjacent_complementary_angle(1,SCA,ACB)"
+        ],
+        "adjacent_complementary_angle(1,SCA,ACB)": [
+            "right_triangle_judgment_angle(1,ACB)"
+        ],
+        "right_triangle_judgment_angle(1,ACB)": [
+            "right_triangle_property_pythagorean(1,ACB)"
+        ]
+    }
 }

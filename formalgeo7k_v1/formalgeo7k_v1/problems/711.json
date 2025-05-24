@@ -1,33 +1,30 @@
 {
-  "problem_id": 711,
-  "annotation": "JiaZou_2023-04-09",
-  "source": "Geometry3k-731",
-  "problem_level": 1,
-  "problem_text_cn": "如图所示，∠DCF=53°。求∠ECB的大小。",
-  "problem_text_en": "As shown in the diagram, ∠DCF=53°. Find the measure of ∠ECB.",
-  "problem_img": "711.png",
-  "construction_cdl": [
-    "Shape(FC,CE)",
-    "Shape(DC,CF)",
-    "Shape(EC,CB)",
-    "Shape(BC,CD)",
-    "Collinear(FCB)",
-    "Collinear(DCE)"
-  ],
-  "text_cdl": [
-    "Equal(MeasureOfAngle(DCF),53)"
-  ],
-  "image_cdl": [
-    "Equal(MeasureOfAngle(DCF),53)"
-  ],
-  "goal_cdl": "Value(MeasureOfAngle(ECB))",
-  "problem_answer": "53",
-  "theorem_seqs": [
-    "vertical_angle(1,DCF,ECB)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "vertical_angle(1,DCF,ECB)"
-    ]
-  }
+    "problem_id": 711,
+    "source": "Geometry3k-731",
+    "problem_level": 1,
+    "problem_img": "711.png",
+    "construction_cdl": [
+        "Shape(FC,CE)",
+        "Shape(DC,CF)",
+        "Shape(EC,CB)",
+        "Shape(BC,CD)",
+        "Collinear(FCB)",
+        "Collinear(DCE)"
+    ],
+    "text_cdl": [
+        "Equal(MeasureOfAngle(DCF),53)"
+    ],
+    "image_cdl": [
+        "Equal(MeasureOfAngle(DCF),53)"
+    ],
+    "goal_cdl": "Value(MeasureOfAngle(ECB))",
+    "problem_answer": "53",
+    "theorem_seqs": [
+        "vertical_angle(1,DCF,ECB)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "vertical_angle(1,DCF,ECB)"
+        ]
+    }
 }

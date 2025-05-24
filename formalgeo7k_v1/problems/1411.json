@@ -1,39 +1,36 @@
 {
-  "problem_id": 1411,
-  "annotation": "YimingHe_2023-03-19",
-  "source": "Geometry3k-1461",
-  "problem_level": 1,
-  "problem_text_cn": "如图所示，∠ADF=35°，∠CFB=70°，AD垂直于BD，CE垂直于AE。求∠FCE的大小。",
-  "problem_text_en": "As shown in the diagram, ∠ADF=35°, ∠CFB=70°, AD is perpendicular to BD, CE is perpendicular to AE. Find the measure of ∠FCE.",
-  "problem_img": "1411.png",
-  "construction_cdl": [
-    "Shape(EA,AF,FC,CE)",
-    "Shape(AD,DF,FA)",
-    "Shape(FD,DB,BF)",
-    "Collinear(EAD)",
-    "Collinear(AFB)",
-    "Collinear(CFD)"
-  ],
-  "text_cdl": [
-    "Equal(MeasureOfAngle(ADF),35)",
-    "Equal(MeasureOfAngle(CFB),70)",
-    "PerpendicularBetweenLine(AD,BD)",
-    "PerpendicularBetweenLine(CE,AE)"
-  ],
-  "image_cdl": [
-    "Equal(MeasureOfAngle(ADF),35)",
-    "Equal(MeasureOfAngle(CFB),70)",
-    "PerpendicularBetweenLine(AD,BD)",
-    "PerpendicularBetweenLine(CE,AE)"
-  ],
-  "goal_cdl": "Value(MeasureOfAngle(FCE))",
-  "problem_answer": "55",
-  "theorem_seqs": [
-    "triangle_property_angle_sum(1,EDC)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "triangle_property_angle_sum(1,EDC)"
-    ]
-  }
+    "problem_id": 1411,
+    "source": "Geometry3k-1461",
+    "problem_level": 1,
+    "problem_img": "1411.png",
+    "construction_cdl": [
+        "Shape(EA,AF,FC,CE)",
+        "Shape(AD,DF,FA)",
+        "Shape(FD,DB,BF)",
+        "Collinear(EAD)",
+        "Collinear(AFB)",
+        "Collinear(CFD)"
+    ],
+    "text_cdl": [
+        "Equal(MeasureOfAngle(ADF),35)",
+        "Equal(MeasureOfAngle(CFB),70)",
+        "PerpendicularBetweenLine(AD,BD)",
+        "PerpendicularBetweenLine(CE,AE)"
+    ],
+    "image_cdl": [
+        "Equal(MeasureOfAngle(ADF),35)",
+        "Equal(MeasureOfAngle(CFB),70)",
+        "PerpendicularBetweenLine(AD,BD)",
+        "PerpendicularBetweenLine(CE,AE)"
+    ],
+    "goal_cdl": "Value(MeasureOfAngle(FCE))",
+    "problem_answer": "55",
+    "theorem_seqs": [
+        "triangle_property_angle_sum(1,EDC)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "triangle_property_angle_sum(1,EDC)"
+        ]
+    }
 }

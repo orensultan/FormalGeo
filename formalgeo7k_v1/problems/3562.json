@@ -1,35 +1,32 @@
 {
-  "problem_id": 3562,
-  "annotation": "YanjunGuo_2023-04-30",
-  "source": "GeoQA-1192",
-  "problem_level": 3,
-  "problem_text_cn": "如图所示，∠BCA=50°，CF平分∠ACM，BA平行于CF。求∠ABC的大小。",
-  "problem_text_en": "As shown in the diagram, ∠BCA=50°, CF is the angle bisector of ∠ACM, BA∥CF. Find the measure of ∠ABC.",
-  "problem_img": "3562.png",
-  "construction_cdl": [
-    "Shape(AB,BC,CA)",
-    "Shape(AC,CF)",
-    "Shape(FC,CM)",
-    "Collinear(BCM)"
-  ],
-  "text_cdl": [
-    "Equal(MeasureOfAngle(BCA),50)",
-    "IsBisectorOfAngle(CF,ACM)",
-    "ParallelBetweenLine(BA,CF)"
-  ],
-  "image_cdl": [],
-  "goal_cdl": "Value(MeasureOfAngle(ABC))",
-  "problem_answer": "65",
-  "theorem_seqs": [
-    "adjacent_complementary_angle(1,BCA,ACM)",
-    "angle_addition(1,ACF,FCM)",
-    "parallel_property_corresponding_angle(2,BA,CF,M)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "adjacent_complementary_angle(1,BCA,ACM)",
-      "angle_addition(1,ACF,FCM)",
-      "parallel_property_corresponding_angle(2,BA,CF,M)"
-    ]
-  }
+    "problem_id": 3562,
+    "source": "GeoQA-1192",
+    "problem_level": 3,
+    "problem_img": "3562.png",
+    "construction_cdl": [
+        "Shape(AB,BC,CA)",
+        "Shape(AC,CF)",
+        "Shape(FC,CM)",
+        "Collinear(BCM)"
+    ],
+    "text_cdl": [
+        "Equal(MeasureOfAngle(BCA),50)",
+        "IsBisectorOfAngle(CF,ACM)",
+        "ParallelBetweenLine(BA,CF)"
+    ],
+    "image_cdl": [],
+    "goal_cdl": "Value(MeasureOfAngle(ABC))",
+    "problem_answer": "65",
+    "theorem_seqs": [
+        "adjacent_complementary_angle(1,BCA,ACM)",
+        "angle_addition(1,ACF,FCM)",
+        "parallel_property_corresponding_angle(2,BA,CF,M)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "adjacent_complementary_angle(1,BCA,ACM)",
+            "angle_addition(1,ACF,FCM)",
+            "parallel_property_corresponding_angle(2,BA,CF,M)"
+        ]
+    }
 }

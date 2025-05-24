@@ -1,45 +1,42 @@
 {
-  "problem_id": 6166,
-  "annotation": "DengfengYue_2023-05-28",
-  "source": "GeoQA-8733",
-  "problem_level": 5,
-  "problem_text_cn": "如图所示，BO=8，CO=6，∠COB=90°，A是圆A的圆心，BC是圆A的直径。求直线CA的长度。",
-  "problem_text_en": "As shown in the diagram, BO=8, CO=6, ∠COB=90°, the center of ⊙A is A, the diameter of circle A is BC. Find the length of line CA.",
-  "problem_img": "6166.png",
-  "construction_cdl": [
-    "Shape(CB,ABC)",
-    "Shape(CO,OB,BC)",
-    "Shape(OC,ACO)",
-    "Shape(BO,AOB)",
-    "Collinear(CAB)",
-    "Cocircular(A,COB)"
-  ],
-  "text_cdl": [
-    "Equal(LengthOfLine(BO),8)",
-    "Equal(LengthOfLine(CO),6)",
-    "Equal(MeasureOfAngle(COB),90)",
-    "IsCentreOfCircle(A,A)",
-    "IsDiameterOfCircle(BC,A)"
-  ],
-  "image_cdl": [],
-  "goal_cdl": "Value(LengthOfLine(CA))",
-  "problem_answer": "5",
-  "theorem_seqs": [
-    "right_triangle_judgment_angle(1,COB)",
-    "right_triangle_property_pythagorean(1,COB)",
-    "radius_of_circle_property_length_equal(1,AC,A)",
-    "radius_of_circle_property_length_equal(1,AB,A)",
-    "line_addition(1,CA,AB)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "right_triangle_judgment_angle(1,COB)",
-      "radius_of_circle_property_length_equal(1,AC,A)",
-      "radius_of_circle_property_length_equal(1,AB,A)",
-      "line_addition(1,CA,AB)"
+    "problem_id": 6166,
+    "source": "GeoQA-8733",
+    "problem_level": 5,
+    "problem_img": "6166.png",
+    "construction_cdl": [
+        "Shape(CB,ABC)",
+        "Shape(CO,OB,BC)",
+        "Shape(OC,ACO)",
+        "Shape(BO,AOB)",
+        "Collinear(CAB)",
+        "Cocircular(A,COB)"
     ],
-    "right_triangle_judgment_angle(1,COB)": [
-      "right_triangle_property_pythagorean(1,COB)"
-    ]
-  }
+    "text_cdl": [
+        "Equal(LengthOfLine(BO),8)",
+        "Equal(LengthOfLine(CO),6)",
+        "Equal(MeasureOfAngle(COB),90)",
+        "IsCentreOfCircle(A,A)",
+        "IsDiameterOfCircle(BC,A)"
+    ],
+    "image_cdl": [],
+    "goal_cdl": "Value(LengthOfLine(CA))",
+    "problem_answer": "5",
+    "theorem_seqs": [
+        "right_triangle_judgment_angle(1,COB)",
+        "right_triangle_property_pythagorean(1,COB)",
+        "radius_of_circle_property_length_equal(1,AC,A)",
+        "radius_of_circle_property_length_equal(1,AB,A)",
+        "line_addition(1,CA,AB)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "right_triangle_judgment_angle(1,COB)",
+            "radius_of_circle_property_length_equal(1,AC,A)",
+            "radius_of_circle_property_length_equal(1,AB,A)",
+            "line_addition(1,CA,AB)"
+        ],
+        "right_triangle_judgment_angle(1,COB)": [
+            "right_triangle_property_pythagorean(1,COB)"
+        ]
+    }
 }

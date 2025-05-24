@@ -1,46 +1,43 @@
 {
-  "problem_id": 5203,
-  "annotation": "NaZhu_2023-05-21",
-  "source": "GeoQA-5204",
-  "problem_level": 4,
-  "problem_text_cn": "如图所示，AB=8，BC=6，圆O的圆心为O，四边形ABCD是长方形。求圆O的直径。",
-  "problem_text_en": "As shown in the diagram, AB=8, BC=6, the center of ⊙O is O, ABCD is a rectangle. Find the diameter of ⊙O.",
-  "problem_img": "5203.png",
-  "construction_cdl": [
-    "Shape(OAB,BA)",
-    "Shape(OBC,CB)",
-    "Shape(OCD,DC)",
-    "Shape(ODA,AD)",
-    "Shape(AB,BC,CO,OA)",
-    "Shape(CD,DA,AO,OC)",
-    "Collinear(AOC)",
-    "Cocircular(O,ABCD)"
-  ],
-  "text_cdl": [
-    "Equal(LengthOfLine(AB),8)",
-    "Equal(LengthOfLine(BC),6)",
-    "IsCentreOfCircle(O,O)",
-    "Rectangle(ABCD)"
-  ],
-  "image_cdl": [],
-  "goal_cdl": "Value(DiameterOfCircle(O))",
-  "problem_answer": "10",
-  "theorem_seqs": [
-    "right_triangle_judgment_angle(1,ABC)",
-    "right_triangle_property_pythagorean(1,ABC)",
-    "diameter_of_circle_judgment_pass_centre(1,AOC,O)",
-    "diameter_of_circle_property_length_equal(1,AC,O)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "right_triangle_judgment_angle(1,ABC)",
-      "diameter_of_circle_judgment_pass_centre(1,AOC,O)"
+    "problem_id": 5203,
+    "source": "GeoQA-5204",
+    "problem_level": 4,
+    "problem_img": "5203.png",
+    "construction_cdl": [
+        "Shape(OAB,BA)",
+        "Shape(OBC,CB)",
+        "Shape(OCD,DC)",
+        "Shape(ODA,AD)",
+        "Shape(AB,BC,CO,OA)",
+        "Shape(CD,DA,AO,OC)",
+        "Collinear(AOC)",
+        "Cocircular(O,ABCD)"
     ],
-    "right_triangle_judgment_angle(1,ABC)": [
-      "right_triangle_property_pythagorean(1,ABC)"
+    "text_cdl": [
+        "Equal(LengthOfLine(AB),8)",
+        "Equal(LengthOfLine(BC),6)",
+        "IsCentreOfCircle(O,O)",
+        "Rectangle(ABCD)"
     ],
-    "diameter_of_circle_judgment_pass_centre(1,AOC,O)": [
-      "diameter_of_circle_property_length_equal(1,AC,O)"
-    ]
-  }
+    "image_cdl": [],
+    "goal_cdl": "Value(DiameterOfCircle(O))",
+    "problem_answer": "10",
+    "theorem_seqs": [
+        "right_triangle_judgment_angle(1,ABC)",
+        "right_triangle_property_pythagorean(1,ABC)",
+        "diameter_of_circle_judgment_pass_centre(1,AOC,O)",
+        "diameter_of_circle_property_length_equal(1,AC,O)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "right_triangle_judgment_angle(1,ABC)",
+            "diameter_of_circle_judgment_pass_centre(1,AOC,O)"
+        ],
+        "right_triangle_judgment_angle(1,ABC)": [
+            "right_triangle_property_pythagorean(1,ABC)"
+        ],
+        "diameter_of_circle_judgment_pass_centre(1,AOC,O)": [
+            "diameter_of_circle_property_length_equal(1,AC,O)"
+        ]
+    }
 }

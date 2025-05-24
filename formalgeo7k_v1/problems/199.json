@@ -1,40 +1,37 @@
 {
-  "problem_id": 199,
-  "annotation": "XiaokaiZhang_2023-04-02",
-  "source": "Geometry3k-201",
-  "problem_level": 1,
-  "problem_text_cn": "如图所示，AJ=x，AK=x+2，AM=x+7，LA=x+10。求x的值。",
-  "problem_text_en": "As shown in the diagram, AJ=x, AK=x+2, AM=x+7, LA=x+10. Find the value of x.",
-  "problem_img": "199.png",
-  "construction_cdl": [
-    "Shape(AJ,OJM,MA)",
-    "Shape(AM,OML,LA)",
-    "Shape(AL,OLK,KA)",
-    "Shape(AK,OKJ,JA)",
-    "Collinear(JAL)",
-    "Collinear(KAM)",
-    "Cocircular(O,MLKJ)"
-  ],
-  "text_cdl": [
-    "Equal(LengthOfLine(AJ),x)",
-    "Equal(LengthOfLine(AK),x+2)",
-    "Equal(LengthOfLine(AM),x+7)",
-    "Equal(LengthOfLine(LA),x+10)"
-  ],
-  "image_cdl": [
-    "Equal(LengthOfLine(AJ),x)",
-    "Equal(LengthOfLine(AK),x+2)",
-    "Equal(LengthOfLine(AM),x+7)",
-    "Equal(LengthOfLine(LA),x+10)"
-  ],
-  "goal_cdl": "Value(x)",
-  "problem_answer": "14",
-  "theorem_seqs": [
-    "circle_property_circular_power_chord_and_chord(1,JAL,KAM,O)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "circle_property_circular_power_chord_and_chord(1,JAL,KAM,O)"
-    ]
-  }
+    "problem_id": 199,
+    "source": "Geometry3k-201",
+    "problem_level": 1,
+    "problem_img": "199.png",
+    "construction_cdl": [
+        "Shape(AJ,OJM,MA)",
+        "Shape(AM,OML,LA)",
+        "Shape(AL,OLK,KA)",
+        "Shape(AK,OKJ,JA)",
+        "Collinear(JAL)",
+        "Collinear(KAM)",
+        "Cocircular(O,MLKJ)"
+    ],
+    "text_cdl": [
+        "Equal(LengthOfLine(AJ),x)",
+        "Equal(LengthOfLine(AK),x+2)",
+        "Equal(LengthOfLine(AM),x+7)",
+        "Equal(LengthOfLine(LA),x+10)"
+    ],
+    "image_cdl": [
+        "Equal(LengthOfLine(AJ),x)",
+        "Equal(LengthOfLine(AK),x+2)",
+        "Equal(LengthOfLine(AM),x+7)",
+        "Equal(LengthOfLine(LA),x+10)"
+    ],
+    "goal_cdl": "Value(x)",
+    "problem_answer": "14",
+    "theorem_seqs": [
+        "circle_property_circular_power_chord_and_chord(1,JAL,KAM,O)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "circle_property_circular_power_chord_and_chord(1,JAL,KAM,O)"
+        ]
+    }
 }

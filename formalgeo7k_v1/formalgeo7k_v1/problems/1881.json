@@ -1,38 +1,35 @@
 {
-  "problem_id": 1881,
-  "annotation": "JiaZou_2023-03-26",
-  "source": "Geometry3k-1956",
-  "problem_level": 3,
-  "problem_text_cn": "如图所示，EH=HG，∠HGE=3*x+6°，EH垂直于GH。求x的值。",
-  "problem_text_en": "As shown in the diagram, EH=HG, ∠HGE=3*x+6°, EH⊥GH. Find the value of x.",
-  "problem_img": "1881.png",
-  "construction_cdl": [
-    "Shape(EH,HG,GE)"
-  ],
-  "text_cdl": [
-    "Equal(LengthOfLine(EH),LengthOfLine(HG))",
-    "Equal(MeasureOfAngle(HGE),3*x+6)",
-    "PerpendicularBetweenLine(EH,GH)"
-  ],
-  "image_cdl": [
-    "Equal(LengthOfLine(EH),LengthOfLine(HG))",
-    "Equal(MeasureOfAngle(HGE),3*x+6)",
-    "PerpendicularBetweenLine(EH,GH)"
-  ],
-  "goal_cdl": "Value(x)",
-  "problem_answer": "13",
-  "theorem_seqs": [
-    "triangle_property_angle_sum(1,HGE)",
-    "isosceles_triangle_judgment_line_equal(1,HGE)",
-    "isosceles_triangle_property_angle_equal(1,HGE)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "triangle_property_angle_sum(1,HGE)",
-      "isosceles_triangle_judgment_line_equal(1,HGE)"
+    "problem_id": 1881,
+    "source": "Geometry3k-1956",
+    "problem_level": 3,
+    "problem_img": "1881.png",
+    "construction_cdl": [
+        "Shape(EH,HG,GE)"
     ],
-    "isosceles_triangle_judgment_line_equal(1,HGE)": [
-      "isosceles_triangle_property_angle_equal(1,HGE)"
-    ]
-  }
+    "text_cdl": [
+        "Equal(LengthOfLine(EH),LengthOfLine(HG))",
+        "Equal(MeasureOfAngle(HGE),3*x+6)",
+        "PerpendicularBetweenLine(EH,GH)"
+    ],
+    "image_cdl": [
+        "Equal(LengthOfLine(EH),LengthOfLine(HG))",
+        "Equal(MeasureOfAngle(HGE),3*x+6)",
+        "PerpendicularBetweenLine(EH,GH)"
+    ],
+    "goal_cdl": "Value(x)",
+    "problem_answer": "13",
+    "theorem_seqs": [
+        "triangle_property_angle_sum(1,HGE)",
+        "isosceles_triangle_judgment_line_equal(1,HGE)",
+        "isosceles_triangle_property_angle_equal(1,HGE)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "triangle_property_angle_sum(1,HGE)",
+            "isosceles_triangle_judgment_line_equal(1,HGE)"
+        ],
+        "isosceles_triangle_judgment_line_equal(1,HGE)": [
+            "isosceles_triangle_property_angle_equal(1,HGE)"
+        ]
+    }
 }

@@ -1,73 +1,70 @@
 {
-  "problem_id": 5115,
-  "annotation": "YimingHe_2023-05-21",
-  "source": "GeoQA-4967",
-  "problem_level": 9,
-  "problem_text_cn": "如图所示，AB=8，AC=5，BC=7，AD是∠MAC的角平分线，E平分线段BC，CD垂直于AD。求直线DE的长度。",
-  "problem_text_en": "As shown in the diagram, AB=8, AC=5, BC=7, AD bisects ∠MAC, E is the midpoint of segment BC, CD⊥AD. Find the length of line DE.",
-  "problem_img": "5115.png",
-  "construction_cdl": [
-    "Shape(MA,AD,DM)",
-    "Shape(AB,BE,EO,OA)",
-    "Shape(OE,EC,CO)",
-    "Shape(AO,OD,DA)",
-    "Shape(OC,CD,DO)",
-    "Collinear(BAM)",
-    "Collinear(BEC)",
-    "Collinear(AOC)",
-    "Collinear(EOD)",
-    "Collinear(CDM)"
-  ],
-  "text_cdl": [
-    "Equal(LengthOfLine(AB),8)",
-    "Equal(LengthOfLine(AC),5)",
-    "Equal(LengthOfLine(BC),7)",
-    "IsBisectorOfAngle(AD,MAC)",
-    "IsMidpointOfLine(E,BC)",
-    "PerpendicularBetweenLine(CD,AD)"
-  ],
-  "image_cdl": [],
-  "goal_cdl": "Value(LengthOfLine(DE))",
-  "problem_answer": "13/2",
-  "theorem_seqs": [
-    "adjacent_complementary_angle(1,CDA,ADM)",
-    "triangle_property_angle_sum(1,ACD)",
-    "triangle_property_angle_sum(1,ADM)",
-    "isosceles_triangle_judgment_angle_equal(1,ACM)",
-    "altitude_of_triangle_judgment(1,AD,ACM)",
-    "isosceles_triangle_property_line_coincidence(1,ACM,D)",
-    "line_addition(1,BA,AM)",
-    "midsegment_of_triangle_judgment_midpoint(1,DE,CMB)",
-    "midsegment_of_triangle_property_length(1,DE,CMB)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "adjacent_complementary_angle(1,CDA,ADM)",
-      "triangle_property_angle_sum(1,ACD)",
-      "triangle_property_angle_sum(1,ADM)",
-      "altitude_of_triangle_judgment(1,AD,ACM)",
-      "line_addition(1,BA,AM)"
+    "problem_id": 5115,
+    "source": "GeoQA-4967",
+    "problem_level": 9,
+    "problem_img": "5115.png",
+    "construction_cdl": [
+        "Shape(MA,AD,DM)",
+        "Shape(AB,BE,EO,OA)",
+        "Shape(OE,EC,CO)",
+        "Shape(AO,OD,DA)",
+        "Shape(OC,CD,DO)",
+        "Collinear(BAM)",
+        "Collinear(BEC)",
+        "Collinear(AOC)",
+        "Collinear(EOD)",
+        "Collinear(CDM)"
     ],
-    "adjacent_complementary_angle(1,CDA,ADM)": [
-      "isosceles_triangle_judgment_angle_equal(1,ACM)"
+    "text_cdl": [
+        "Equal(LengthOfLine(AB),8)",
+        "Equal(LengthOfLine(AC),5)",
+        "Equal(LengthOfLine(BC),7)",
+        "IsBisectorOfAngle(AD,MAC)",
+        "IsMidpointOfLine(E,BC)",
+        "PerpendicularBetweenLine(CD,AD)"
     ],
-    "triangle_property_angle_sum(1,ACD)": [
-      "isosceles_triangle_judgment_angle_equal(1,ACM)"
+    "image_cdl": [],
+    "goal_cdl": "Value(LengthOfLine(DE))",
+    "problem_answer": "13/2",
+    "theorem_seqs": [
+        "adjacent_complementary_angle(1,CDA,ADM)",
+        "triangle_property_angle_sum(1,ACD)",
+        "triangle_property_angle_sum(1,ADM)",
+        "isosceles_triangle_judgment_angle_equal(1,ACM)",
+        "altitude_of_triangle_judgment(1,AD,ACM)",
+        "isosceles_triangle_property_line_coincidence(1,ACM,D)",
+        "line_addition(1,BA,AM)",
+        "midsegment_of_triangle_judgment_midpoint(1,DE,CMB)",
+        "midsegment_of_triangle_property_length(1,DE,CMB)"
     ],
-    "triangle_property_angle_sum(1,ADM)": [
-      "isosceles_triangle_judgment_angle_equal(1,ACM)"
-    ],
-    "isosceles_triangle_judgment_angle_equal(1,ACM)": [
-      "isosceles_triangle_property_line_coincidence(1,ACM,D)"
-    ],
-    "altitude_of_triangle_judgment(1,AD,ACM)": [
-      "isosceles_triangle_property_line_coincidence(1,ACM,D)"
-    ],
-    "isosceles_triangle_property_line_coincidence(1,ACM,D)": [
-      "midsegment_of_triangle_judgment_midpoint(1,DE,CMB)"
-    ],
-    "midsegment_of_triangle_judgment_midpoint(1,DE,CMB)": [
-      "midsegment_of_triangle_property_length(1,DE,CMB)"
-    ]
-  }
+    "theorem_seqs_dag": {
+        "START": [
+            "adjacent_complementary_angle(1,CDA,ADM)",
+            "triangle_property_angle_sum(1,ACD)",
+            "triangle_property_angle_sum(1,ADM)",
+            "altitude_of_triangle_judgment(1,AD,ACM)",
+            "line_addition(1,BA,AM)"
+        ],
+        "adjacent_complementary_angle(1,CDA,ADM)": [
+            "isosceles_triangle_judgment_angle_equal(1,ACM)"
+        ],
+        "triangle_property_angle_sum(1,ACD)": [
+            "isosceles_triangle_judgment_angle_equal(1,ACM)"
+        ],
+        "triangle_property_angle_sum(1,ADM)": [
+            "isosceles_triangle_judgment_angle_equal(1,ACM)"
+        ],
+        "isosceles_triangle_judgment_angle_equal(1,ACM)": [
+            "isosceles_triangle_property_line_coincidence(1,ACM,D)"
+        ],
+        "altitude_of_triangle_judgment(1,AD,ACM)": [
+            "isosceles_triangle_property_line_coincidence(1,ACM,D)"
+        ],
+        "isosceles_triangle_property_line_coincidence(1,ACM,D)": [
+            "midsegment_of_triangle_judgment_midpoint(1,DE,CMB)"
+        ],
+        "midsegment_of_triangle_judgment_midpoint(1,DE,CMB)": [
+            "midsegment_of_triangle_property_length(1,DE,CMB)"
+        ]
+    }
 }

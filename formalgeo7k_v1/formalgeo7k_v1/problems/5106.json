@@ -1,37 +1,34 @@
 {
-  "problem_id": 5106,
-  "annotation": "YimingHe_2023-05-21",
-  "source": "GeoQA-4941",
-  "problem_level": 3,
-  "problem_text_cn": "如图所示，∠CBE=63°，∠DAC=45°，AD∥BE，AD平行于FC，FC∥BE。求∠BCA的大小。",
-  "problem_text_en": "As shown in the diagram, ∠CBE=63°, ∠DAC=45°, AD∥BE, AD is parallel to FC, FC is parallel to BE. Find the measure of ∠BCA.",
-  "problem_img": "5106.png",
-  "construction_cdl": [
-    "Shape(DA,AC)",
-    "Shape(FC,CA)",
-    "Shape(BC,CF)",
-    "Shape(CB,BE)"
-  ],
-  "text_cdl": [
-    "Equal(MeasureOfAngle(CBE),63)",
-    "Equal(MeasureOfAngle(DAC),45)",
-    "ParallelBetweenLine(AD,BE)",
-    "ParallelBetweenLine(AD,FC)",
-    "ParallelBetweenLine(FC,BE)"
-  ],
-  "image_cdl": [],
-  "goal_cdl": "Value(MeasureOfAngle(BCA))",
-  "problem_answer": "108",
-  "theorem_seqs": [
-    "parallel_property_alternate_interior_angle(1,AD,FC)",
-    "parallel_property_alternate_interior_angle(2,FC,BE)",
-    "angle_addition(1,BCF,FCA)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "parallel_property_alternate_interior_angle(1,AD,FC)",
-      "parallel_property_alternate_interior_angle(2,FC,BE)",
-      "angle_addition(1,BCF,FCA)"
-    ]
-  }
+    "problem_id": 5106,
+    "source": "GeoQA-4941",
+    "problem_level": 3,
+    "problem_img": "5106.png",
+    "construction_cdl": [
+        "Shape(DA,AC)",
+        "Shape(FC,CA)",
+        "Shape(BC,CF)",
+        "Shape(CB,BE)"
+    ],
+    "text_cdl": [
+        "Equal(MeasureOfAngle(CBE),63)",
+        "Equal(MeasureOfAngle(DAC),45)",
+        "ParallelBetweenLine(AD,BE)",
+        "ParallelBetweenLine(AD,FC)",
+        "ParallelBetweenLine(FC,BE)"
+    ],
+    "image_cdl": [],
+    "goal_cdl": "Value(MeasureOfAngle(BCA))",
+    "problem_answer": "108",
+    "theorem_seqs": [
+        "parallel_property_alternate_interior_angle(1,AD,FC)",
+        "parallel_property_alternate_interior_angle(2,FC,BE)",
+        "angle_addition(1,BCF,FCA)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "parallel_property_alternate_interior_angle(1,AD,FC)",
+            "parallel_property_alternate_interior_angle(2,FC,BE)",
+            "angle_addition(1,BCF,FCA)"
+        ]
+    }
 }

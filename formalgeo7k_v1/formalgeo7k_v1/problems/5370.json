@@ -1,31 +1,28 @@
 {
-  "problem_id": 5370,
-  "annotation": "QikeHuang_2023-05-21",
-  "source": "GeoQA-5652",
-  "problem_level": 2,
-  "problem_text_cn": "如图所示，∠ABC=40°，∠DAB=150°，三角形ABC镜像全等于三角形ACD。求∠BCD的大小。",
-  "problem_text_en": "As shown in the diagram, ∠ABC=40°, ∠DAB=150°, △ABC is mirror congruent to △ACD. Find the measure of ∠BCD.",
-  "problem_img": "5370.png",
-  "construction_cdl": [
-    "Shape(AB,BC,CA)",
-    "Shape(AC,CD,DA)"
-  ],
-  "text_cdl": [
-    "Equal(MeasureOfAngle(ABC),40)",
-    "Equal(MeasureOfAngle(DAB),150)",
-    "MirrorCongruentBetweenTriangle(ABC,ACD)"
-  ],
-  "image_cdl": [],
-  "goal_cdl": "Value(MeasureOfAngle(BCD))",
-  "problem_answer": "130",
-  "theorem_seqs": [
-    "mirror_congruent_triangle_property_angle_equal(1,BCA,DAC)",
-    "quadrilateral_property_angle_sum(1,ABCD)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "mirror_congruent_triangle_property_angle_equal(1,BCA,DAC)",
-      "quadrilateral_property_angle_sum(1,ABCD)"
-    ]
-  }
+    "problem_id": 5370,
+    "source": "GeoQA-5652",
+    "problem_level": 2,
+    "problem_img": "5370.png",
+    "construction_cdl": [
+        "Shape(AB,BC,CA)",
+        "Shape(AC,CD,DA)"
+    ],
+    "text_cdl": [
+        "Equal(MeasureOfAngle(ABC),40)",
+        "Equal(MeasureOfAngle(DAB),150)",
+        "MirrorCongruentBetweenTriangle(ABC,ACD)"
+    ],
+    "image_cdl": [],
+    "goal_cdl": "Value(MeasureOfAngle(BCD))",
+    "problem_answer": "130",
+    "theorem_seqs": [
+        "mirror_congruent_triangle_property_angle_equal(1,BCA,DAC)",
+        "quadrilateral_property_angle_sum(1,ABCD)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "mirror_congruent_triangle_property_angle_equal(1,BCA,DAC)",
+            "quadrilateral_property_angle_sum(1,ABCD)"
+        ]
+    }
 }

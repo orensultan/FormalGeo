@@ -1,65 +1,62 @@
 {
-  "problem_id": 3750,
-  "annotation": "ChenyangMao_2023-04-30",
-  "source": "GeoQA-1548",
-  "problem_level": 9,
-  "problem_text_cn": "如图所示，ABCD的周长为16，四边形ABCD是▱，EO垂直于CO。求三角形DEC的周长。",
-  "problem_text_en": "As shown in the diagram, the perimeter of quadrilateral ABCD is 16, BA and CD are opposite sides of the ▱ ABCD, EO⊥CO. Find the perimeter of △DEC.",
-  "problem_img": "3750.png",
-  "construction_cdl": [
-    "Shape(EA,AO,OE)",
-    "Shape(FE,EO,OF)",
-    "Shape(DE,EF,FD)",
-    "Shape(DF,FC,CD)",
-    "Shape(CF,FO,OC)",
-    "Shape(CO,OB,BC)",
-    "Shape(BO,OA,AB)",
-    "Collinear(AOC)",
-    "Collinear(AED)",
-    "Collinear(EFC)",
-    "Collinear(BOFD)"
-  ],
-  "text_cdl": [
-    "Equal(PerimeterOfQuadrilateral(ABCD),16)",
-    "Parallelogram(ABCD)",
-    "PerpendicularBetweenLine(EO,CO)"
-  ],
-  "image_cdl": [
-    "Equal(PerimeterOfQuadrilateral(ABCD),16)",
-    "Parallelogram(ABCD)",
-    "PerpendicularBetweenLine(EO,CO)"
-  ],
-  "goal_cdl": "Value(PerimeterOfTriangle(DEC))",
-  "problem_answer": "8",
-  "theorem_seqs": [
-    "quadrilateral_perimeter_formula(1,ABCD)",
-    "parallelogram_property_opposite_line_equal(1,ABCD)",
-    "parallelogram_property_opposite_line_equal(1,BCDA)",
-    "parallelogram_property_diagonal_bisection(1,ABCD,O)",
-    "adjacent_complementary_angle(1,AOE,EOC)",
-    "perpendicular_bisector_judgment_per_and_mid(1,EO,AC)",
-    "perpendicular_bisector_property_distance_equal(1,EO,AC)",
-    "line_addition(1,AE,ED)",
-    "triangle_perimeter_formula(1,DEC)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "quadrilateral_perimeter_formula(1,ABCD)",
-      "parallelogram_property_opposite_line_equal(1,ABCD)",
-      "parallelogram_property_opposite_line_equal(1,BCDA)",
-      "parallelogram_property_diagonal_bisection(1,ABCD,O)",
-      "adjacent_complementary_angle(1,AOE,EOC)",
-      "line_addition(1,AE,ED)",
-      "triangle_perimeter_formula(1,DEC)"
+    "problem_id": 3750,
+    "source": "GeoQA-1548",
+    "problem_level": 9,
+    "problem_img": "3750.png",
+    "construction_cdl": [
+        "Shape(EA,AO,OE)",
+        "Shape(FE,EO,OF)",
+        "Shape(DE,EF,FD)",
+        "Shape(DF,FC,CD)",
+        "Shape(CF,FO,OC)",
+        "Shape(CO,OB,BC)",
+        "Shape(BO,OA,AB)",
+        "Collinear(AOC)",
+        "Collinear(AED)",
+        "Collinear(EFC)",
+        "Collinear(BOFD)"
     ],
-    "parallelogram_property_diagonal_bisection(1,ABCD,O)": [
-      "perpendicular_bisector_judgment_per_and_mid(1,EO,AC)"
+    "text_cdl": [
+        "Equal(PerimeterOfQuadrilateral(ABCD),16)",
+        "Parallelogram(ABCD)",
+        "PerpendicularBetweenLine(EO,CO)"
     ],
-    "adjacent_complementary_angle(1,AOE,EOC)": [
-      "perpendicular_bisector_judgment_per_and_mid(1,EO,AC)"
+    "image_cdl": [
+        "Equal(PerimeterOfQuadrilateral(ABCD),16)",
+        "Parallelogram(ABCD)",
+        "PerpendicularBetweenLine(EO,CO)"
     ],
-    "perpendicular_bisector_judgment_per_and_mid(1,EO,AC)": [
-      "perpendicular_bisector_property_distance_equal(1,EO,AC)"
-    ]
-  }
+    "goal_cdl": "Value(PerimeterOfTriangle(DEC))",
+    "problem_answer": "8",
+    "theorem_seqs": [
+        "quadrilateral_perimeter_formula(1,ABCD)",
+        "parallelogram_property_opposite_line_equal(1,ABCD)",
+        "parallelogram_property_opposite_line_equal(1,BCDA)",
+        "parallelogram_property_diagonal_bisection(1,ABCD,O)",
+        "adjacent_complementary_angle(1,AOE,EOC)",
+        "perpendicular_bisector_judgment_per_and_mid(1,EO,AC)",
+        "perpendicular_bisector_property_distance_equal(1,EO,AC)",
+        "line_addition(1,AE,ED)",
+        "triangle_perimeter_formula(1,DEC)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "quadrilateral_perimeter_formula(1,ABCD)",
+            "parallelogram_property_opposite_line_equal(1,ABCD)",
+            "parallelogram_property_opposite_line_equal(1,BCDA)",
+            "parallelogram_property_diagonal_bisection(1,ABCD,O)",
+            "adjacent_complementary_angle(1,AOE,EOC)",
+            "line_addition(1,AE,ED)",
+            "triangle_perimeter_formula(1,DEC)"
+        ],
+        "parallelogram_property_diagonal_bisection(1,ABCD,O)": [
+            "perpendicular_bisector_judgment_per_and_mid(1,EO,AC)"
+        ],
+        "adjacent_complementary_angle(1,AOE,EOC)": [
+            "perpendicular_bisector_judgment_per_and_mid(1,EO,AC)"
+        ],
+        "perpendicular_bisector_judgment_per_and_mid(1,EO,AC)": [
+            "perpendicular_bisector_property_distance_equal(1,EO,AC)"
+        ]
+    }
 }

@@ -1,43 +1,40 @@
 {
-  "problem_id": 6333,
-  "annotation": "ChengQin_2023-06-04",
-  "source": "GeoQA-9143",
-  "problem_level": 3,
-  "problem_text_cn": "如图所示，AD=6，EO平行于CD，ABCD是菱形。求直线OE的长度。",
-  "problem_text_en": "As shown in the diagram, AD=6, EO is parallel to CD, quadrilateral ABCD is a rhombus. Find the length of line OE.",
-  "problem_img": "6333.png",
-  "construction_cdl": [
-    "Shape(AB,BO,OA)",
-    "Shape(AO,OD,DA)",
-    "Shape(OB,BE,EO)",
-    "Shape(OE,EC,CO)",
-    "Shape(OC,CD,DO)",
-    "Collinear(AOC)",
-    "Collinear(BOD)",
-    "Collinear(BEC)"
-  ],
-  "text_cdl": [
-    "Equal(LengthOfLine(AD),6)",
-    "ParallelBetweenLine(EO,CD)",
-    "Rhombus(ABCD)"
-  ],
-  "image_cdl": [],
-  "goal_cdl": "Value(LengthOfLine(OE))",
-  "problem_answer": "3",
-  "theorem_seqs": [
-    "kite_property_diagonal_perpendicular_bisection(1,ABCD,O)",
-    "midsegment_of_triangle_judgment_parallel(2,EO,BCD)",
-    "midsegment_of_triangle_property_length(1,EO,BCD)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "kite_property_diagonal_perpendicular_bisection(1,ABCD,O)"
+    "problem_id": 6333,
+    "source": "GeoQA-9143",
+    "problem_level": 3,
+    "problem_img": "6333.png",
+    "construction_cdl": [
+        "Shape(AB,BO,OA)",
+        "Shape(AO,OD,DA)",
+        "Shape(OB,BE,EO)",
+        "Shape(OE,EC,CO)",
+        "Shape(OC,CD,DO)",
+        "Collinear(AOC)",
+        "Collinear(BOD)",
+        "Collinear(BEC)"
     ],
-    "kite_property_diagonal_perpendicular_bisection(1,ABCD,O)": [
-      "midsegment_of_triangle_judgment_parallel(2,EO,BCD)"
+    "text_cdl": [
+        "Equal(LengthOfLine(AD),6)",
+        "ParallelBetweenLine(EO,CD)",
+        "Rhombus(ABCD)"
     ],
-    "midsegment_of_triangle_judgment_parallel(2,EO,BCD)": [
-      "midsegment_of_triangle_property_length(1,EO,BCD)"
-    ]
-  }
+    "image_cdl": [],
+    "goal_cdl": "Value(LengthOfLine(OE))",
+    "problem_answer": "3",
+    "theorem_seqs": [
+        "kite_property_diagonal_perpendicular_bisection(1,ABCD,O)",
+        "midsegment_of_triangle_judgment_parallel(2,EO,BCD)",
+        "midsegment_of_triangle_property_length(1,EO,BCD)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "kite_property_diagonal_perpendicular_bisection(1,ABCD,O)"
+        ],
+        "kite_property_diagonal_perpendicular_bisection(1,ABCD,O)": [
+            "midsegment_of_triangle_judgment_parallel(2,EO,BCD)"
+        ],
+        "midsegment_of_triangle_judgment_parallel(2,EO,BCD)": [
+            "midsegment_of_triangle_property_length(1,EO,BCD)"
+        ]
+    }
 }

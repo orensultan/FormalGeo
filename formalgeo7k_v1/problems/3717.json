@@ -1,47 +1,44 @@
 {
-  "problem_id": 3717,
-  "annotation": "YangLi_2023-04-30",
-  "source": "GeoQA-1489",
-  "problem_level": 6,
-  "problem_text_cn": "如图所示，AC=6，BD=8，四边形ABCD是菱形。求直线AD的长度。",
-  "problem_text_en": "As shown in the diagram, AC=6, BD=8, ABCD is a rhombus. Find the length of line AD.",
-  "problem_img": "3717.png",
-  "construction_cdl": [
-    "Shape(AB,BO,OA)",
-    "Shape(BC,CO,OB)",
-    "Shape(OC,CD,DO)",
-    "Shape(AO,OD,DA)",
-    "Collinear(AOC)",
-    "Collinear(BOD)"
-  ],
-  "text_cdl": [
-    "Equal(LengthOfLine(AC),6)",
-    "Equal(LengthOfLine(BD),8)",
-    "Rhombus(ABCD)"
-  ],
-  "image_cdl": [],
-  "goal_cdl": "Value(LengthOfLine(AD))",
-  "problem_answer": "5",
-  "theorem_seqs": [
-    "line_addition(1,AO,OC)",
-    "line_addition(1,BO,OD)",
-    "kite_property_diagonal_perpendicular_bisection(1,ABCD,O)",
-    "kite_property_diagonal_perpendicular_bisection(1,BCDA,O)",
-    "right_triangle_judgment_angle(1,AOD)",
-    "right_triangle_property_pythagorean(1,AOD)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "line_addition(1,AO,OC)",
-      "line_addition(1,BO,OD)",
-      "kite_property_diagonal_perpendicular_bisection(1,ABCD,O)",
-      "kite_property_diagonal_perpendicular_bisection(1,BCDA,O)"
+    "problem_id": 3717,
+    "source": "GeoQA-1489",
+    "problem_level": 6,
+    "problem_img": "3717.png",
+    "construction_cdl": [
+        "Shape(AB,BO,OA)",
+        "Shape(BC,CO,OB)",
+        "Shape(OC,CD,DO)",
+        "Shape(AO,OD,DA)",
+        "Collinear(AOC)",
+        "Collinear(BOD)"
     ],
-    "kite_property_diagonal_perpendicular_bisection(1,ABCD,O)": [
-      "right_triangle_judgment_angle(1,AOD)"
+    "text_cdl": [
+        "Equal(LengthOfLine(AC),6)",
+        "Equal(LengthOfLine(BD),8)",
+        "Rhombus(ABCD)"
     ],
-    "right_triangle_judgment_angle(1,AOD)": [
-      "right_triangle_property_pythagorean(1,AOD)"
-    ]
-  }
+    "image_cdl": [],
+    "goal_cdl": "Value(LengthOfLine(AD))",
+    "problem_answer": "5",
+    "theorem_seqs": [
+        "line_addition(1,AO,OC)",
+        "line_addition(1,BO,OD)",
+        "kite_property_diagonal_perpendicular_bisection(1,ABCD,O)",
+        "kite_property_diagonal_perpendicular_bisection(1,BCDA,O)",
+        "right_triangle_judgment_angle(1,AOD)",
+        "right_triangle_property_pythagorean(1,AOD)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "line_addition(1,AO,OC)",
+            "line_addition(1,BO,OD)",
+            "kite_property_diagonal_perpendicular_bisection(1,ABCD,O)",
+            "kite_property_diagonal_perpendicular_bisection(1,BCDA,O)"
+        ],
+        "kite_property_diagonal_perpendicular_bisection(1,ABCD,O)": [
+            "right_triangle_judgment_angle(1,AOD)"
+        ],
+        "right_triangle_judgment_angle(1,AOD)": [
+            "right_triangle_property_pythagorean(1,AOD)"
+        ]
+    }
 }

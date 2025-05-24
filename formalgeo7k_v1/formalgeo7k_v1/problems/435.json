@@ -1,41 +1,38 @@
 {
-  "problem_id": 435,
-  "annotation": "JiaZou_2023-04-09",
-  "source": "Geometry3k-445",
-  "problem_level": 2,
-  "problem_text_cn": "如图所示，AB=17，AD=6，DC=15，CD垂直于AD，DA垂直于BA，四边形DABC是梯形。求DABC的面积。",
-  "problem_text_en": "As shown in the diagram, AB=17, AD=6, DC=15, CD⊥AD, DA⊥BA, DC and AB are the parallel sides of trapezoid DABC. Find the area of quadrilateral DABC.",
-  "problem_img": "435.png",
-  "construction_cdl": [
-    "Shape(DA,AB,BC,CD)"
-  ],
-  "text_cdl": [
-    "Equal(LengthOfLine(AB),17)",
-    "Equal(LengthOfLine(AD),6)",
-    "Equal(LengthOfLine(DC),15)",
-    "PerpendicularBetweenLine(CD,AD)",
-    "PerpendicularBetweenLine(DA,BA)",
-    "Trapezoid(DABC)"
-  ],
-  "image_cdl": [
-    "Equal(LengthOfLine(AB),17)",
-    "Equal(LengthOfLine(AD),6)",
-    "Equal(LengthOfLine(DC),15)",
-    "PerpendicularBetweenLine(CD,AD)",
-    "PerpendicularBetweenLine(DA,BA)"
-  ],
-  "goal_cdl": "Value(AreaOfQuadrilateral(DABC))",
-  "problem_answer": "96",
-  "theorem_seqs": [
-    "right_trapezoid_judgment_right_angle(1,DABC)",
-    "right_trapezoid_area_formular(1,DABC)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "right_trapezoid_judgment_right_angle(1,DABC)"
+    "problem_id": 435,
+    "source": "Geometry3k-445",
+    "problem_level": 2,
+    "problem_img": "435.png",
+    "construction_cdl": [
+        "Shape(DA,AB,BC,CD)"
     ],
-    "right_trapezoid_judgment_right_angle(1,DABC)": [
-      "right_trapezoid_area_formular(1,DABC)"
-    ]
-  }
+    "text_cdl": [
+        "Equal(LengthOfLine(AB),17)",
+        "Equal(LengthOfLine(AD),6)",
+        "Equal(LengthOfLine(DC),15)",
+        "PerpendicularBetweenLine(CD,AD)",
+        "PerpendicularBetweenLine(DA,BA)",
+        "Trapezoid(DABC)"
+    ],
+    "image_cdl": [
+        "Equal(LengthOfLine(AB),17)",
+        "Equal(LengthOfLine(AD),6)",
+        "Equal(LengthOfLine(DC),15)",
+        "PerpendicularBetweenLine(CD,AD)",
+        "PerpendicularBetweenLine(DA,BA)"
+    ],
+    "goal_cdl": "Value(AreaOfQuadrilateral(DABC))",
+    "problem_answer": "96",
+    "theorem_seqs": [
+        "right_trapezoid_judgment_right_angle(1,DABC)",
+        "right_trapezoid_area_formular(1,DABC)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "right_trapezoid_judgment_right_angle(1,DABC)"
+        ],
+        "right_trapezoid_judgment_right_angle(1,DABC)": [
+            "right_trapezoid_area_formular(1,DABC)"
+        ]
+    }
 }

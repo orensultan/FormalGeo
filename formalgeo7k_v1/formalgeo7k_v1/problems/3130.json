@@ -1,34 +1,31 @@
 {
-  "problem_id": 3130,
-  "annotation": "YimingHe_2023-04-23",
-  "source": "GeoQA-384",
-  "problem_level": 2,
-  "problem_text_cn": "如图所示，AC=5，BC=3，AB垂直于CB。求直线AB的长度与直线BC的长度之和。",
-  "problem_text_en": "As shown in the diagram, AC=5, BC=3, AB is perpendicular to CB. Find the sum of the length of line AB and the length of line BC.",
-  "problem_img": "3130.png",
-  "construction_cdl": [
-    "Shape(AB,BC,CA)"
-  ],
-  "text_cdl": [
-    "Equal(LengthOfLine(AC),5)",
-    "Equal(LengthOfLine(BC),3)",
-    "PerpendicularBetweenLine(AB,CB)"
-  ],
-  "image_cdl": [
-    "PerpendicularBetweenLine(AB,CB)"
-  ],
-  "goal_cdl": "Value(Add(LengthOfLine(AB),LengthOfLine(BC)))",
-  "problem_answer": "7",
-  "theorem_seqs": [
-    "right_triangle_judgment_angle(1,ABC)",
-    "right_triangle_property_pythagorean(1,ABC)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "right_triangle_judgment_angle(1,ABC)"
+    "problem_id": 3130,
+    "source": "GeoQA-384",
+    "problem_level": 2,
+    "problem_img": "3130.png",
+    "construction_cdl": [
+        "Shape(AB,BC,CA)"
     ],
-    "right_triangle_judgment_angle(1,ABC)": [
-      "right_triangle_property_pythagorean(1,ABC)"
-    ]
-  }
+    "text_cdl": [
+        "Equal(LengthOfLine(AC),5)",
+        "Equal(LengthOfLine(BC),3)",
+        "PerpendicularBetweenLine(AB,CB)"
+    ],
+    "image_cdl": [
+        "PerpendicularBetweenLine(AB,CB)"
+    ],
+    "goal_cdl": "Value(Add(LengthOfLine(AB),LengthOfLine(BC)))",
+    "problem_answer": "7",
+    "theorem_seqs": [
+        "right_triangle_judgment_angle(1,ABC)",
+        "right_triangle_property_pythagorean(1,ABC)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "right_triangle_judgment_angle(1,ABC)"
+        ],
+        "right_triangle_judgment_angle(1,ABC)": [
+            "right_triangle_property_pythagorean(1,ABC)"
+        ]
+    }
 }

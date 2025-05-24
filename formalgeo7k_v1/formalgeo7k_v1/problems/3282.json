@@ -1,47 +1,44 @@
 {
-  "problem_id": 3282,
-  "annotation": "XiaokaiZhang_2023-04-23",
-  "source": "GeoQA-594",
-  "problem_level": 4,
-  "problem_text_cn": "如图所示，∠MND=60°，AB∥CD。求∠AME的大小。",
-  "problem_text_en": "As shown in the diagram, ∠MND=60°, AB is parallel to CD. Find the measure of ∠AME.",
-  "problem_img": "3282.png",
-  "construction_cdl": [
-    "Shape(AM,ME)",
-    "Shape(EM,MB)",
-    "Shape(BM,MN)",
-    "Shape(NM,MA)",
-    "Shape(MN,ND)",
-    "Shape(DN,NF)",
-    "Shape(FN,NC)",
-    "Shape(CN,NM)",
-    "Collinear(AMB)",
-    "Collinear(CND)",
-    "Collinear(FNME)"
-  ],
-  "text_cdl": [
-    "Equal(MeasureOfAngle(MND),60)",
-    "ParallelBetweenLine(AB,CD)"
-  ],
-  "image_cdl": [],
-  "goal_cdl": "Value(MeasureOfAngle(AME))",
-  "problem_answer": "120",
-  "theorem_seqs": [
-    "parallel_property_collinear_extend(3,AB,CD,M)",
-    "parallel_property_collinear_extend(3,DC,MA,N)",
-    "parallel_property_alternate_interior_angle(2,AM,ND)",
-    "adjacent_complementary_angle(1,NMA,AME)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "parallel_property_collinear_extend(3,AB,CD,M)",
-      "adjacent_complementary_angle(1,NMA,AME)"
+    "problem_id": 3282,
+    "source": "GeoQA-594",
+    "problem_level": 4,
+    "problem_img": "3282.png",
+    "construction_cdl": [
+        "Shape(AM,ME)",
+        "Shape(EM,MB)",
+        "Shape(BM,MN)",
+        "Shape(NM,MA)",
+        "Shape(MN,ND)",
+        "Shape(DN,NF)",
+        "Shape(FN,NC)",
+        "Shape(CN,NM)",
+        "Collinear(AMB)",
+        "Collinear(CND)",
+        "Collinear(FNME)"
     ],
-    "parallel_property_collinear_extend(3,AB,CD,M)": [
-      "parallel_property_collinear_extend(3,DC,MA,N)"
+    "text_cdl": [
+        "Equal(MeasureOfAngle(MND),60)",
+        "ParallelBetweenLine(AB,CD)"
     ],
-    "parallel_property_collinear_extend(3,DC,MA,N)": [
-      "parallel_property_alternate_interior_angle(2,AM,ND)"
-    ]
-  }
+    "image_cdl": [],
+    "goal_cdl": "Value(MeasureOfAngle(AME))",
+    "problem_answer": "120",
+    "theorem_seqs": [
+        "parallel_property_collinear_extend(3,AB,CD,M)",
+        "parallel_property_collinear_extend(3,DC,MA,N)",
+        "parallel_property_alternate_interior_angle(2,AM,ND)",
+        "adjacent_complementary_angle(1,NMA,AME)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "parallel_property_collinear_extend(3,AB,CD,M)",
+            "adjacent_complementary_angle(1,NMA,AME)"
+        ],
+        "parallel_property_collinear_extend(3,AB,CD,M)": [
+            "parallel_property_collinear_extend(3,DC,MA,N)"
+        ],
+        "parallel_property_collinear_extend(3,DC,MA,N)": [
+            "parallel_property_alternate_interior_angle(2,AM,ND)"
+        ]
+    }
 }

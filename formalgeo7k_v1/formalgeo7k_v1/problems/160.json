@@ -1,41 +1,38 @@
 {
-  "problem_id": 160,
-  "annotation": "XiaokaiZhang_2023-04-02",
-  "source": "Geometry3k-162",
-  "problem_level": 2,
-  "problem_text_cn": "如图所示，∠CBD=55°，∠FBG=35°，⊙B的圆心为B。求⌒BFG的角度。",
-  "problem_text_en": "As shown in the diagram, ∠CBD=55°, ∠FBG=35°, B is the center of ⊙B. Find the measure of ⌒BFG.",
-  "problem_img": "160.png",
-  "construction_cdl": [
-    "Shape(BC,BCA,AB)",
-    "Shape(BA,BAG,GB)",
-    "Shape(BG,BGF,FB)",
-    "Shape(BF,BFD,DB)",
-    "Shape(BD,BDC,DB)",
-    "Collinear(CBG)",
-    "Collinear(ABD)",
-    "Cocircular(B,AGFDC)"
-  ],
-  "text_cdl": [
-    "Equal(MeasureOfAngle(CBD),55)",
-    "Equal(MeasureOfAngle(FBG),35)",
-    "IsCentreOfCircle(B,B)"
-  ],
-  "image_cdl": [
-    "Equal(MeasureOfAngle(CBD),55)",
-    "Equal(MeasureOfAngle(FBG),35)",
-    "IsCentreOfCircle(B,B)"
-  ],
-  "goal_cdl": "Value(MeasureOfArc(BFG))",
-  "problem_answer": "325",
-  "theorem_seqs": [
-    "round_angle(1,FBG,GBF)",
-    "arc_property_center_angle(1,BFG,B)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "round_angle(1,FBG,GBF)",
-      "arc_property_center_angle(1,BFG,B)"
-    ]
-  }
+    "problem_id": 160,
+    "source": "Geometry3k-162",
+    "problem_level": 2,
+    "problem_img": "160.png",
+    "construction_cdl": [
+        "Shape(BC,BCA,AB)",
+        "Shape(BA,BAG,GB)",
+        "Shape(BG,BGF,FB)",
+        "Shape(BF,BFD,DB)",
+        "Shape(BD,BDC,DB)",
+        "Collinear(CBG)",
+        "Collinear(ABD)",
+        "Cocircular(B,AGFDC)"
+    ],
+    "text_cdl": [
+        "Equal(MeasureOfAngle(CBD),55)",
+        "Equal(MeasureOfAngle(FBG),35)",
+        "IsCentreOfCircle(B,B)"
+    ],
+    "image_cdl": [
+        "Equal(MeasureOfAngle(CBD),55)",
+        "Equal(MeasureOfAngle(FBG),35)",
+        "IsCentreOfCircle(B,B)"
+    ],
+    "goal_cdl": "Value(MeasureOfArc(BFG))",
+    "problem_answer": "325",
+    "theorem_seqs": [
+        "round_angle(1,FBG,GBF)",
+        "arc_property_center_angle(1,BFG,B)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "round_angle(1,FBG,GBF)",
+            "arc_property_center_angle(1,BFG,B)"
+        ]
+    }
 }

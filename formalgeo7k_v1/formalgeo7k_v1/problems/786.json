@@ -1,48 +1,45 @@
 {
-  "problem_id": 786,
-  "annotation": "NaZhu_2023-04-09",
-  "source": "Geometry3k-811",
-  "problem_level": 3,
-  "problem_text_cn": "如图所示，WP=6，XP=8，YP=24，ZP=8，YZ和YX是风筝形WZYX的一组临边。求直线ZY的长度。",
-  "problem_text_en": "As shown in the diagram, WP=6, XP=8, YP=24, ZP=8, WZYX is a kite. Find the length of line ZY.",
-  "problem_img": "786.png",
-  "construction_cdl": [
-    "Shape(XW,WP,PX)",
-    "Shape(WZ,ZP,PW)",
-    "Shape(XP,PY,YX)",
-    "Shape(PZ,ZY,YP)",
-    "Collinear(XPZ)",
-    "Collinear(WPY)"
-  ],
-  "text_cdl": [
-    "Equal(LengthOfLine(WP),6)",
-    "Equal(LengthOfLine(XP),8)",
-    "Equal(LengthOfLine(YP),24)",
-    "Equal(LengthOfLine(ZP),8)",
-    "Kite(WZYX)"
-  ],
-  "image_cdl": [
-    "Equal(LengthOfLine(WP),6)",
-    "Equal(LengthOfLine(XP),8)",
-    "Equal(LengthOfLine(YP),24)",
-    "Equal(LengthOfLine(ZP),8)"
-  ],
-  "goal_cdl": "Value(LengthOfLine(ZY))",
-  "problem_answer": "8*sqrt(10)",
-  "theorem_seqs": [
-    "kite_property_diagonal_perpendicular_bisection(1,YXWZ,P)",
-    "right_triangle_judgment_angle(1,YPZ)",
-    "right_triangle_property_pythagorean(1,YPZ)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "kite_property_diagonal_perpendicular_bisection(1,YXWZ,P)"
+    "problem_id": 786,
+    "source": "Geometry3k-811",
+    "problem_level": 3,
+    "problem_img": "786.png",
+    "construction_cdl": [
+        "Shape(XW,WP,PX)",
+        "Shape(WZ,ZP,PW)",
+        "Shape(XP,PY,YX)",
+        "Shape(PZ,ZY,YP)",
+        "Collinear(XPZ)",
+        "Collinear(WPY)"
     ],
-    "kite_property_diagonal_perpendicular_bisection(1,YXWZ,P)": [
-      "right_triangle_judgment_angle(1,YPZ)"
+    "text_cdl": [
+        "Equal(LengthOfLine(WP),6)",
+        "Equal(LengthOfLine(XP),8)",
+        "Equal(LengthOfLine(YP),24)",
+        "Equal(LengthOfLine(ZP),8)",
+        "Kite(WZYX)"
     ],
-    "right_triangle_judgment_angle(1,YPZ)": [
-      "right_triangle_property_pythagorean(1,YPZ)"
-    ]
-  }
+    "image_cdl": [
+        "Equal(LengthOfLine(WP),6)",
+        "Equal(LengthOfLine(XP),8)",
+        "Equal(LengthOfLine(YP),24)",
+        "Equal(LengthOfLine(ZP),8)"
+    ],
+    "goal_cdl": "Value(LengthOfLine(ZY))",
+    "problem_answer": "8*sqrt(10)",
+    "theorem_seqs": [
+        "kite_property_diagonal_perpendicular_bisection(1,YXWZ,P)",
+        "right_triangle_judgment_angle(1,YPZ)",
+        "right_triangle_property_pythagorean(1,YPZ)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "kite_property_diagonal_perpendicular_bisection(1,YXWZ,P)"
+        ],
+        "kite_property_diagonal_perpendicular_bisection(1,YXWZ,P)": [
+            "right_triangle_judgment_angle(1,YPZ)"
+        ],
+        "right_triangle_judgment_angle(1,YPZ)": [
+            "right_triangle_property_pythagorean(1,YPZ)"
+        ]
+    }
 }

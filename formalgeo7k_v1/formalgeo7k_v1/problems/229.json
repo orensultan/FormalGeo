@@ -1,36 +1,33 @@
 {
-  "problem_id": 229,
-  "annotation": "XiaokaiZhang_2023-03-12",
-  "source": "Geometry3k-231",
-  "problem_level": 2,
-  "problem_text_cn": "如图所示，∠ACB=29°，∠CBA=x°，∠DAB=4*x°。求x的值。",
-  "problem_text_en": "As shown in the diagram, ∠ACB=29°, ∠CBA=x°, ∠DAB=4*x°. Find the value of x.",
-  "problem_img": "229.png",
-  "construction_cdl": [
-    "Shape(AC,CB,BA)",
-    "Shape(DA,AB)",
-    "Collinear(DAC)"
-  ],
-  "text_cdl": [
-    "Equal(MeasureOfAngle(ACB),29)",
-    "Equal(MeasureOfAngle(CBA),x)",
-    "Equal(MeasureOfAngle(DAB),4*x)"
-  ],
-  "image_cdl": [
-    "Equal(MeasureOfAngle(ACB),29)",
-    "Equal(MeasureOfAngle(CBA),x)",
-    "Equal(MeasureOfAngle(DAB),4*x)"
-  ],
-  "goal_cdl": "Value(x)",
-  "problem_answer": "29/3",
-  "theorem_seqs": [
-    "triangle_property_angle_sum(1,ACB)",
-    "adjacent_complementary_angle(1,DAB,BAC)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "triangle_property_angle_sum(1,ACB)",
-      "adjacent_complementary_angle(1,DAB,BAC)"
-    ]
-  }
+    "problem_id": 229,
+    "source": "Geometry3k-231",
+    "problem_level": 2,
+    "problem_img": "229.png",
+    "construction_cdl": [
+        "Shape(AC,CB,BA)",
+        "Shape(DA,AB)",
+        "Collinear(DAC)"
+    ],
+    "text_cdl": [
+        "Equal(MeasureOfAngle(ACB),29)",
+        "Equal(MeasureOfAngle(CBA),x)",
+        "Equal(MeasureOfAngle(DAB),4*x)"
+    ],
+    "image_cdl": [
+        "Equal(MeasureOfAngle(ACB),29)",
+        "Equal(MeasureOfAngle(CBA),x)",
+        "Equal(MeasureOfAngle(DAB),4*x)"
+    ],
+    "goal_cdl": "Value(x)",
+    "problem_answer": "29/3",
+    "theorem_seqs": [
+        "triangle_property_angle_sum(1,ACB)",
+        "adjacent_complementary_angle(1,DAB,BAC)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "triangle_property_angle_sum(1,ACB)",
+            "adjacent_complementary_angle(1,DAB,BAC)"
+        ]
+    }
 }

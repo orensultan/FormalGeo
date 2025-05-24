@@ -1,46 +1,43 @@
 {
-  "problem_id": 3504,
-  "annotation": "XiaokaiZhang_2023-04-30",
-  "source": "GeoQA-1110",
-  "problem_level": 6,
-  "problem_text_cn": "如图所示，∠CAB=40°，ED垂直平分AB，AB和AC是等腰△ABC的腰。求∠EBC的大小。",
-  "problem_text_en": "As shown in the diagram, ∠CAB=40°, ED is the perpendicular bisector of AB, AB and AC are the legs of the isosceles △ ABC. Find the measure of ∠EBC.",
-  "problem_img": "3504.png",
-  "construction_cdl": [
-    "Shape(AD,DE,EA)",
-    "Shape(ED,DB,BE)",
-    "Shape(EB,BC,CE)",
-    "Collinear(ADB)",
-    "Collinear(AEC)"
-  ],
-  "text_cdl": [
-    "Equal(MeasureOfAngle(CAB),40)",
-    "IsPerpendicularBisectorOfLine(ED,AB)",
-    "IsoscelesTriangle(ABC)"
-  ],
-  "image_cdl": [],
-  "goal_cdl": "Value(MeasureOfAngle(EBC))",
-  "problem_answer": "30",
-  "theorem_seqs": [
-    "isosceles_triangle_property_angle_equal(1,ABC)",
-    "triangle_property_angle_sum(1,ABC)",
-    "perpendicular_bisector_property_distance_equal(1,ED,AB)",
-    "isosceles_triangle_judgment_line_equal(1,EAB)",
-    "isosceles_triangle_property_angle_equal(1,EAB)",
-    "angle_addition(1,ABE,EBC)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "isosceles_triangle_property_angle_equal(1,ABC)",
-      "triangle_property_angle_sum(1,ABC)",
-      "perpendicular_bisector_property_distance_equal(1,ED,AB)",
-      "angle_addition(1,ABE,EBC)"
+    "problem_id": 3504,
+    "source": "GeoQA-1110",
+    "problem_level": 6,
+    "problem_img": "3504.png",
+    "construction_cdl": [
+        "Shape(AD,DE,EA)",
+        "Shape(ED,DB,BE)",
+        "Shape(EB,BC,CE)",
+        "Collinear(ADB)",
+        "Collinear(AEC)"
     ],
-    "perpendicular_bisector_property_distance_equal(1,ED,AB)": [
-      "isosceles_triangle_judgment_line_equal(1,EAB)"
+    "text_cdl": [
+        "Equal(MeasureOfAngle(CAB),40)",
+        "IsPerpendicularBisectorOfLine(ED,AB)",
+        "IsoscelesTriangle(ABC)"
     ],
-    "isosceles_triangle_judgment_line_equal(1,EAB)": [
-      "isosceles_triangle_property_angle_equal(1,EAB)"
-    ]
-  }
+    "image_cdl": [],
+    "goal_cdl": "Value(MeasureOfAngle(EBC))",
+    "problem_answer": "30",
+    "theorem_seqs": [
+        "isosceles_triangle_property_angle_equal(1,ABC)",
+        "triangle_property_angle_sum(1,ABC)",
+        "perpendicular_bisector_property_distance_equal(1,ED,AB)",
+        "isosceles_triangle_judgment_line_equal(1,EAB)",
+        "isosceles_triangle_property_angle_equal(1,EAB)",
+        "angle_addition(1,ABE,EBC)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "isosceles_triangle_property_angle_equal(1,ABC)",
+            "triangle_property_angle_sum(1,ABC)",
+            "perpendicular_bisector_property_distance_equal(1,ED,AB)",
+            "angle_addition(1,ABE,EBC)"
+        ],
+        "perpendicular_bisector_property_distance_equal(1,ED,AB)": [
+            "isosceles_triangle_judgment_line_equal(1,EAB)"
+        ],
+        "isosceles_triangle_judgment_line_equal(1,EAB)": [
+            "isosceles_triangle_property_angle_equal(1,EAB)"
+        ]
+    }
 }

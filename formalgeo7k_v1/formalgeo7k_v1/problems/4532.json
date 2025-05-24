@@ -1,41 +1,38 @@
 {
-  "problem_id": 4532,
-  "annotation": "XiaokaiZhang_2023-05-14",
-  "source": "GeoQA-3594",
-  "problem_level": 4,
-  "problem_text_cn": "如图所示，∠DAB=108°，CF是∠DCE的角平分线。求∠DCF的大小。",
-  "problem_text_en": "As shown in the diagram, ∠DAB=108°, CF is the angle bisector of ∠DCE. Find the measure of ∠DCF.",
-  "problem_img": "4532.png",
-  "construction_cdl": [
-    "Shape(ODA,AD)",
-    "Shape(OAB,BA)",
-    "Shape(OBC,CB)",
-    "Shape(OCD,DC)",
-    "Shape(AB,BC,CD,DA)",
-    "Shape(DC,CF)",
-    "Shape(FC,CE)",
-    "Collinear(BCE)",
-    "Cocircular(O,ABCD)"
-  ],
-  "text_cdl": [
-    "Equal(MeasureOfAngle(DAB),108)",
-    "IsBisectorOfAngle(CF,DCE)"
-  ],
-  "image_cdl": [],
-  "goal_cdl": "Value(MeasureOfAngle(DCF))",
-  "problem_answer": "54",
-  "theorem_seqs": [
-    "arc_property_circumference_angle_external(1,OBD,A)",
-    "arc_property_circumference_angle_internal(1,OBD,C)",
-    "adjacent_complementary_angle(1,BCD,DCE)",
-    "angle_addition(1,DCF,FCE)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "arc_property_circumference_angle_external(1,OBD,A)",
-      "arc_property_circumference_angle_internal(1,OBD,C)",
-      "adjacent_complementary_angle(1,BCD,DCE)",
-      "angle_addition(1,DCF,FCE)"
-    ]
-  }
+    "problem_id": 4532,
+    "source": "GeoQA-3594",
+    "problem_level": 4,
+    "problem_img": "4532.png",
+    "construction_cdl": [
+        "Shape(ODA,AD)",
+        "Shape(OAB,BA)",
+        "Shape(OBC,CB)",
+        "Shape(OCD,DC)",
+        "Shape(AB,BC,CD,DA)",
+        "Shape(DC,CF)",
+        "Shape(FC,CE)",
+        "Collinear(BCE)",
+        "Cocircular(O,ABCD)"
+    ],
+    "text_cdl": [
+        "Equal(MeasureOfAngle(DAB),108)",
+        "IsBisectorOfAngle(CF,DCE)"
+    ],
+    "image_cdl": [],
+    "goal_cdl": "Value(MeasureOfAngle(DCF))",
+    "problem_answer": "54",
+    "theorem_seqs": [
+        "arc_property_circumference_angle_external(1,OBD,A)",
+        "arc_property_circumference_angle_internal(1,OBD,C)",
+        "adjacent_complementary_angle(1,BCD,DCE)",
+        "angle_addition(1,DCF,FCE)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "arc_property_circumference_angle_external(1,OBD,A)",
+            "arc_property_circumference_angle_internal(1,OBD,C)",
+            "adjacent_complementary_angle(1,BCD,DCE)",
+            "angle_addition(1,DCF,FCE)"
+        ]
+    }
 }

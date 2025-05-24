@@ -1,35 +1,32 @@
 {
-  "problem_id": 1137,
-  "annotation": "YangLi_2023-04-09",
-  "source": "Geometry3k-1176",
-  "problem_level": 1,
-  "problem_text_cn": "如图所示，∠DFH=4*x°，∠HFA=2*x-6°。求∠HFA的大小。",
-  "problem_text_en": "As shown in the diagram, ∠DFH=4*x°, ∠HFA=2*x-6°. Find the measure of ∠HFA.",
-  "problem_img": "1137.png",
-  "construction_cdl": [
-    "Shape(DF,FH)",
-    "Shape(BF,FD)",
-    "Shape(AF,FB)",
-    "Shape(HF,FA)",
-    "Collinear(DFA)",
-    "Collinear(BFH)"
-  ],
-  "text_cdl": [
-    "Equal(MeasureOfAngle(DFH),4*x)",
-    "Equal(MeasureOfAngle(HFA),2*x-6)"
-  ],
-  "image_cdl": [
-    "Equal(MeasureOfAngle(DFH),4*x)",
-    "Equal(MeasureOfAngle(HFA),2*x-6)"
-  ],
-  "goal_cdl": "Value(MeasureOfAngle(HFA))",
-  "problem_answer": "56",
-  "theorem_seqs": [
-    "adjacent_complementary_angle(1,DFH,HFA)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "adjacent_complementary_angle(1,DFH,HFA)"
-    ]
-  }
+    "problem_id": 1137,
+    "source": "Geometry3k-1176",
+    "problem_level": 1,
+    "problem_img": "1137.png",
+    "construction_cdl": [
+        "Shape(DF,FH)",
+        "Shape(BF,FD)",
+        "Shape(AF,FB)",
+        "Shape(HF,FA)",
+        "Collinear(DFA)",
+        "Collinear(BFH)"
+    ],
+    "text_cdl": [
+        "Equal(MeasureOfAngle(DFH),4*x)",
+        "Equal(MeasureOfAngle(HFA),2*x-6)"
+    ],
+    "image_cdl": [
+        "Equal(MeasureOfAngle(DFH),4*x)",
+        "Equal(MeasureOfAngle(HFA),2*x-6)"
+    ],
+    "goal_cdl": "Value(MeasureOfAngle(HFA))",
+    "problem_answer": "56",
+    "theorem_seqs": [
+        "adjacent_complementary_angle(1,DFH,HFA)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "adjacent_complementary_angle(1,DFH,HFA)"
+        ]
+    }
 }

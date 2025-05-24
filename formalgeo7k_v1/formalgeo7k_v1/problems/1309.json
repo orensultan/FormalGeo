@@ -1,51 +1,48 @@
 {
-  "problem_id": 1309,
-  "annotation": "YimingHe_2023-03-19",
-  "source": "Geometry3k-1357",
-  "problem_level": 5,
-  "problem_text_cn": "如图所示，RT=13，XY=7，∠ZXY=124°，XZ是△SRT的中位线，YX是△RTS的中位线。求∠RYX的大小。",
-  "problem_text_en": "As shown in the diagram, RT=13, XY=7, ∠ZXY=124°, XZ is the midsegment of triangle SRT, YX is the midsegment of △ RTS. Find the measure of ∠RYX.",
-  "problem_img": "1309.png",
-  "construction_cdl": [
-    "Shape(SX,XZ,ZS)",
-    "Shape(XR,RY,YX)",
-    "Shape(XY,YT,TZ,ZX)",
-    "Collinear(RXS)",
-    "Collinear(RYT)",
-    "Collinear(SZT)"
-  ],
-  "text_cdl": [
-    "Equal(LengthOfLine(RT),13)",
-    "Equal(LengthOfLine(XY),7)",
-    "Equal(MeasureOfAngle(ZXY),124)",
-    "IsMidsegmentOfTriangle(XZ,SRT)",
-    "IsMidsegmentOfTriangle(YX,RTS)"
-  ],
-  "image_cdl": [
-    "Equal(LengthOfLine(RT),13)",
-    "Equal(LengthOfLine(XY),7)",
-    "Equal(MeasureOfAngle(ZXY),124)"
-  ],
-  "goal_cdl": "Value(MeasureOfAngle(RYX))",
-  "problem_answer": "124",
-  "theorem_seqs": [
-    "midsegment_of_triangle_property_parallel(1,XZ,SRT)",
-    "parallel_property_collinear_extend(3,TR,ZX,Y)",
-    "parallel_property_ipsilateral_internal_angle(1,XZ,YT)",
-    "flat_angle(1,RYT)",
-    "angle_addition(1,RYX,XYT)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "midsegment_of_triangle_property_parallel(1,XZ,SRT)",
-      "flat_angle(1,RYT)",
-      "angle_addition(1,RYX,XYT)"
+    "problem_id": 1309,
+    "source": "Geometry3k-1357",
+    "problem_level": 5,
+    "problem_img": "1309.png",
+    "construction_cdl": [
+        "Shape(SX,XZ,ZS)",
+        "Shape(XR,RY,YX)",
+        "Shape(XY,YT,TZ,ZX)",
+        "Collinear(RXS)",
+        "Collinear(RYT)",
+        "Collinear(SZT)"
     ],
-    "midsegment_of_triangle_property_parallel(1,XZ,SRT)": [
-      "parallel_property_collinear_extend(3,TR,ZX,Y)"
+    "text_cdl": [
+        "Equal(LengthOfLine(RT),13)",
+        "Equal(LengthOfLine(XY),7)",
+        "Equal(MeasureOfAngle(ZXY),124)",
+        "IsMidsegmentOfTriangle(XZ,SRT)",
+        "IsMidsegmentOfTriangle(YX,RTS)"
     ],
-    "parallel_property_collinear_extend(3,TR,ZX,Y)": [
-      "parallel_property_ipsilateral_internal_angle(1,XZ,YT)"
-    ]
-  }
+    "image_cdl": [
+        "Equal(LengthOfLine(RT),13)",
+        "Equal(LengthOfLine(XY),7)",
+        "Equal(MeasureOfAngle(ZXY),124)"
+    ],
+    "goal_cdl": "Value(MeasureOfAngle(RYX))",
+    "problem_answer": "124",
+    "theorem_seqs": [
+        "midsegment_of_triangle_property_parallel(1,XZ,SRT)",
+        "parallel_property_collinear_extend(3,TR,ZX,Y)",
+        "parallel_property_ipsilateral_internal_angle(1,XZ,YT)",
+        "flat_angle(1,RYT)",
+        "angle_addition(1,RYX,XYT)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "midsegment_of_triangle_property_parallel(1,XZ,SRT)",
+            "flat_angle(1,RYT)",
+            "angle_addition(1,RYX,XYT)"
+        ],
+        "midsegment_of_triangle_property_parallel(1,XZ,SRT)": [
+            "parallel_property_collinear_extend(3,TR,ZX,Y)"
+        ],
+        "parallel_property_collinear_extend(3,TR,ZX,Y)": [
+            "parallel_property_ipsilateral_internal_angle(1,XZ,YT)"
+        ]
+    }
 }

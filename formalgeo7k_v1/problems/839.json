@@ -1,40 +1,37 @@
 {
-  "problem_id": 839,
-  "annotation": "XiaokaiZhang_2023-03-19",
-  "source": "Geometry3k-868",
-  "problem_level": 2,
-  "problem_text_cn": "如图所示，BC=11，BO=35，CA=23，OA=25，OA⊥CA。求△OCB的面积。",
-  "problem_text_en": "As shown in the diagram, BC=11, BO=35, CA=23, OA=25, OA is perpendicular to CA. Find the area of triangle OCB.",
-  "problem_img": "839.png",
-  "construction_cdl": [
-    "Shape(OA,AC,CO)",
-    "Shape(OC,CB,BO)",
-    "Collinear(ACB)"
-  ],
-  "text_cdl": [
-    "Equal(LengthOfLine(BC),11)",
-    "Equal(LengthOfLine(BO),35)",
-    "Equal(LengthOfLine(CA),23)",
-    "Equal(LengthOfLine(OA),25)",
-    "PerpendicularBetweenLine(OA,CA)"
-  ],
-  "image_cdl": [
-    "Equal(LengthOfLine(BC),11)",
-    "Equal(LengthOfLine(BO),35)",
-    "Equal(LengthOfLine(CA),23)",
-    "Equal(LengthOfLine(OA),25)",
-    "PerpendicularBetweenLine(OA,CA)"
-  ],
-  "goal_cdl": "Value(AreaOfTriangle(OCB))",
-  "problem_answer": "275/2",
-  "theorem_seqs": [
-    "altitude_of_triangle_judgment(2,OA,OCB)",
-    "triangle_area_formula_common(1,OCB)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "altitude_of_triangle_judgment(2,OA,OCB)",
-      "triangle_area_formula_common(1,OCB)"
-    ]
-  }
+    "problem_id": 839,
+    "source": "Geometry3k-868",
+    "problem_level": 2,
+    "problem_img": "839.png",
+    "construction_cdl": [
+        "Shape(OA,AC,CO)",
+        "Shape(OC,CB,BO)",
+        "Collinear(ACB)"
+    ],
+    "text_cdl": [
+        "Equal(LengthOfLine(BC),11)",
+        "Equal(LengthOfLine(BO),35)",
+        "Equal(LengthOfLine(CA),23)",
+        "Equal(LengthOfLine(OA),25)",
+        "PerpendicularBetweenLine(OA,CA)"
+    ],
+    "image_cdl": [
+        "Equal(LengthOfLine(BC),11)",
+        "Equal(LengthOfLine(BO),35)",
+        "Equal(LengthOfLine(CA),23)",
+        "Equal(LengthOfLine(OA),25)",
+        "PerpendicularBetweenLine(OA,CA)"
+    ],
+    "goal_cdl": "Value(AreaOfTriangle(OCB))",
+    "problem_answer": "275/2",
+    "theorem_seqs": [
+        "altitude_of_triangle_judgment(2,OA,OCB)",
+        "triangle_area_formula_common(1,OCB)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "altitude_of_triangle_judgment(2,OA,OCB)",
+            "triangle_area_formula_common(1,OCB)"
+        ]
+    }
 }

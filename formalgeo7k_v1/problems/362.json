@@ -1,36 +1,33 @@
 {
-  "problem_id": 362,
-  "annotation": "JiaZou_2023-04-09",
-  "source": "Geometry3k-369",
-  "problem_level": 0,
-  "problem_text_cn": "如图所示，∠BFC=6*x°，∠CFD=3*x°，∠EFA=12*y-10°，EF⊥AF。求y的值。",
-  "problem_text_en": "As shown in the diagram, ∠BFC=6*x°, ∠CFD=3*x°, ∠EFA=12*y-10°, EF⊥AF. Find the value of y.",
-  "problem_img": "362.png",
-  "construction_cdl": [
-    "Shape(AF,FB)",
-    "Shape(BF,FC)",
-    "Shape(CF,FD)",
-    "Shape(DF,FE)",
-    "Shape(EF,FA)",
-    "Collinear(AFD)",
-    "Collinear(BFE)"
-  ],
-  "text_cdl": [
-    "Equal(MeasureOfAngle(BFC),6*x)",
-    "Equal(MeasureOfAngle(CFD),3*x)",
-    "Equal(MeasureOfAngle(EFA),12*y-10)",
-    "PerpendicularBetweenLine(EF,AF)"
-  ],
-  "image_cdl": [
-    "Equal(MeasureOfAngle(BFC),6*x)",
-    "Equal(MeasureOfAngle(CFD),3*x)",
-    "Equal(MeasureOfAngle(EFA),12*y-10)",
-    "PerpendicularBetweenLine(EF,AF)"
-  ],
-  "goal_cdl": "Value(y)",
-  "problem_answer": "25/3",
-  "theorem_seqs": [],
-  "theorem_seqs_dag": {
-    "START": []
-  }
+    "problem_id": 362,
+    "source": "Geometry3k-369",
+    "problem_level": 0,
+    "problem_img": "362.png",
+    "construction_cdl": [
+        "Shape(AF,FB)",
+        "Shape(BF,FC)",
+        "Shape(CF,FD)",
+        "Shape(DF,FE)",
+        "Shape(EF,FA)",
+        "Collinear(AFD)",
+        "Collinear(BFE)"
+    ],
+    "text_cdl": [
+        "Equal(MeasureOfAngle(BFC),6*x)",
+        "Equal(MeasureOfAngle(CFD),3*x)",
+        "Equal(MeasureOfAngle(EFA),12*y-10)",
+        "PerpendicularBetweenLine(EF,AF)"
+    ],
+    "image_cdl": [
+        "Equal(MeasureOfAngle(BFC),6*x)",
+        "Equal(MeasureOfAngle(CFD),3*x)",
+        "Equal(MeasureOfAngle(EFA),12*y-10)",
+        "PerpendicularBetweenLine(EF,AF)"
+    ],
+    "goal_cdl": "Value(y)",
+    "problem_answer": "25/3",
+    "theorem_seqs": [],
+    "theorem_seqs_dag": {
+        "START": []
+    }
 }

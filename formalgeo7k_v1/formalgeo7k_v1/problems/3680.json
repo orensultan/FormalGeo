@@ -1,46 +1,43 @@
 {
-  "problem_id": 3680,
-  "annotation": "XiaoxiaoJin_2023-04-30",
-  "source": "GeoQA-1418",
-  "problem_level": 4,
-  "problem_text_cn": "如图所示，AB=AE，∠EAB=30°，∠GAD=30°，BA和CD是▱ABCD的一组对边，AEFG是▱。求∠BCD的大小。",
-  "problem_text_en": "As shown in the diagram, AB=AE, ∠EAB=30°, ∠GAD=30°, quadrilateral ABCD is a parallelogram, AG and EF are opposite sides of the parallelogram AEFG. Find the measure of ∠BCD.",
-  "problem_img": "3680.png",
-  "construction_cdl": [
-    "Shape(AB,BE,EA)",
-    "Shape(EC,CH,HE)",
-    "Shape(AE,EH,HD,DA)",
-    "Shape(AD,DG,GA)",
-    "Shape(FD,DH,HF)",
-    "Collinear(BEC)",
-    "Collinear(EHF)",
-    "Collinear(FDG)",
-    "Collinear(CHD)"
-  ],
-  "text_cdl": [
-    "Equal(LengthOfLine(AB),LengthOfLine(AE))",
-    "Equal(MeasureOfAngle(EAB),30)",
-    "Equal(MeasureOfAngle(GAD),30)",
-    "Parallelogram(ABCD)",
-    "Parallelogram(AEFG)"
-  ],
-  "image_cdl": [],
-  "goal_cdl": "Value(MeasureOfAngle(BCD))",
-  "problem_answer": "105",
-  "theorem_seqs": [
-    "isosceles_triangle_judgment_line_equal(1,ABE)",
-    "isosceles_triangle_property_angle_equal(1,ABE)",
-    "triangle_property_angle_sum(1,ABE)",
-    "parallel_property_ipsilateral_internal_angle(1,BA,CD)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "isosceles_triangle_judgment_line_equal(1,ABE)",
-      "triangle_property_angle_sum(1,ABE)",
-      "parallel_property_ipsilateral_internal_angle(1,BA,CD)"
+    "problem_id": 3680,
+    "source": "GeoQA-1418",
+    "problem_level": 4,
+    "problem_img": "3680.png",
+    "construction_cdl": [
+        "Shape(AB,BE,EA)",
+        "Shape(EC,CH,HE)",
+        "Shape(AE,EH,HD,DA)",
+        "Shape(AD,DG,GA)",
+        "Shape(FD,DH,HF)",
+        "Collinear(BEC)",
+        "Collinear(EHF)",
+        "Collinear(FDG)",
+        "Collinear(CHD)"
     ],
-    "isosceles_triangle_judgment_line_equal(1,ABE)": [
-      "isosceles_triangle_property_angle_equal(1,ABE)"
-    ]
-  }
+    "text_cdl": [
+        "Equal(LengthOfLine(AB),LengthOfLine(AE))",
+        "Equal(MeasureOfAngle(EAB),30)",
+        "Equal(MeasureOfAngle(GAD),30)",
+        "Parallelogram(ABCD)",
+        "Parallelogram(AEFG)"
+    ],
+    "image_cdl": [],
+    "goal_cdl": "Value(MeasureOfAngle(BCD))",
+    "problem_answer": "105",
+    "theorem_seqs": [
+        "isosceles_triangle_judgment_line_equal(1,ABE)",
+        "isosceles_triangle_property_angle_equal(1,ABE)",
+        "triangle_property_angle_sum(1,ABE)",
+        "parallel_property_ipsilateral_internal_angle(1,BA,CD)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "isosceles_triangle_judgment_line_equal(1,ABE)",
+            "triangle_property_angle_sum(1,ABE)",
+            "parallel_property_ipsilateral_internal_angle(1,BA,CD)"
+        ],
+        "isosceles_triangle_judgment_line_equal(1,ABE)": [
+            "isosceles_triangle_property_angle_equal(1,ABE)"
+        ]
+    }
 }

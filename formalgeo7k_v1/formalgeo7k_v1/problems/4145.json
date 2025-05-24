@@ -1,30 +1,27 @@
 {
-  "problem_id": 4145,
-  "annotation": "XiaoxiaoJin_2023-05-07",
-  "source": "GeoQA-2730",
-  "problem_level": 2,
-  "problem_text_cn": "如图所示，AC=6，BC=8，∠ACB=90°。求tan(BA)的值。",
-  "problem_text_en": "As shown in the diagram, AC=6, BC=8, ∠ACB=90°. Find the value of tan(BA).",
-  "problem_img": "4145.png",
-  "construction_cdl": [
-    "Shape(AC,CB,BA)"
-  ],
-  "text_cdl": [
-    "Equal(LengthOfLine(AC),6)",
-    "Equal(LengthOfLine(BC),8)",
-    "Equal(MeasureOfAngle(ACB),90)"
-  ],
-  "image_cdl": [],
-  "goal_cdl": "Value(Tan(MeasureOfAngle(BAC)))",
-  "problem_answer": "4/3",
-  "theorem_seqs": [
-    "cosine_theorem(1,ACB)",
-    "cosine_theorem(1,CBA)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "cosine_theorem(1,ACB)",
-      "cosine_theorem(1,CBA)"
-    ]
-  }
+    "problem_id": 4145,
+    "source": "GeoQA-2730",
+    "problem_level": 2,
+    "problem_img": "4145.png",
+    "construction_cdl": [
+        "Shape(AC,CB,BA)"
+    ],
+    "text_cdl": [
+        "Equal(LengthOfLine(AC),6)",
+        "Equal(LengthOfLine(BC),8)",
+        "Equal(MeasureOfAngle(ACB),90)"
+    ],
+    "image_cdl": [],
+    "goal_cdl": "Value(Tan(MeasureOfAngle(BAC)))",
+    "problem_answer": "4/3",
+    "theorem_seqs": [
+        "cosine_theorem(1,ACB)",
+        "cosine_theorem(1,CBA)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "cosine_theorem(1,ACB)",
+            "cosine_theorem(1,CBA)"
+        ]
+    }
 }

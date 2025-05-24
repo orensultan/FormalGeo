@@ -1,34 +1,31 @@
 {
-  "problem_id": 409,
-  "annotation": "NaZhu_2023-03-12",
-  "source": "Geometry3k-417",
-  "problem_level": 1,
-  "problem_text_cn": "如图所示，AC=5，BA=12，CB=x，∠BAC=60°。求x的值。",
-  "problem_text_en": "As shown in the diagram, AC=5, BA=12, CB=x, ∠BAC=60°. Find the value of x.",
-  "problem_img": "409.png",
-  "construction_cdl": [
-    "Shape(CB,BA,AC)"
-  ],
-  "text_cdl": [
-    "Equal(LengthOfLine(AC),5)",
-    "Equal(LengthOfLine(BA),12)",
-    "Equal(LengthOfLine(CB),x)",
-    "Equal(MeasureOfAngle(BAC),60)"
-  ],
-  "image_cdl": [
-    "Equal(LengthOfLine(AC),5)",
-    "Equal(LengthOfLine(BA),12)",
-    "Equal(LengthOfLine(CB),x)",
-    "Equal(MeasureOfAngle(BAC),60)"
-  ],
-  "goal_cdl": "Value(x)",
-  "problem_answer": "sqrt(109)",
-  "theorem_seqs": [
-    "cosine_theorem(1,ACB)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "cosine_theorem(1,ACB)"
-    ]
-  }
+    "problem_id": 409,
+    "source": "Geometry3k-417",
+    "problem_level": 1,
+    "problem_img": "409.png",
+    "construction_cdl": [
+        "Shape(CB,BA,AC)"
+    ],
+    "text_cdl": [
+        "Equal(LengthOfLine(AC),5)",
+        "Equal(LengthOfLine(BA),12)",
+        "Equal(LengthOfLine(CB),x)",
+        "Equal(MeasureOfAngle(BAC),60)"
+    ],
+    "image_cdl": [
+        "Equal(LengthOfLine(AC),5)",
+        "Equal(LengthOfLine(BA),12)",
+        "Equal(LengthOfLine(CB),x)",
+        "Equal(MeasureOfAngle(BAC),60)"
+    ],
+    "goal_cdl": "Value(x)",
+    "problem_answer": "sqrt(109)",
+    "theorem_seqs": [
+        "cosine_theorem(1,ACB)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "cosine_theorem(1,ACB)"
+        ]
+    }
 }

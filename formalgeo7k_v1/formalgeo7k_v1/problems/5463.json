@@ -1,34 +1,31 @@
 {
-  "problem_id": 5463,
-  "annotation": "YangLi_2023-05-21",
-  "source": "GeoQA-5875",
-  "problem_level": 3,
-  "problem_text_cn": "如图所示，BC=8，∠ABC=150°，△BDC为直角△。求直线CD的长度。",
-  "problem_text_en": "As shown in the diagram, BC=8, ∠ABC=150°, △BDC is a right △. Find the length of line CD.",
-  "problem_img": "5463.png",
-  "construction_cdl": [
-    "Shape(CB,BD,DC)",
-    "Shape(AB,BC)",
-    "Collinear(ABD)"
-  ],
-  "text_cdl": [
-    "Equal(LengthOfLine(BC),8)",
-    "Equal(MeasureOfAngle(ABC),150)",
-    "RightTriangle(BDC)"
-  ],
-  "image_cdl": [],
-  "goal_cdl": "Value(LengthOfLine(CD))",
-  "problem_answer": "4",
-  "theorem_seqs": [
-    "flat_angle(1,ABD)",
-    "angle_addition(1,ABC,CBD)",
-    "sine_theorem(1,CBD)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "flat_angle(1,ABD)",
-      "angle_addition(1,ABC,CBD)",
-      "sine_theorem(1,CBD)"
-    ]
-  }
+    "problem_id": 5463,
+    "source": "GeoQA-5875",
+    "problem_level": 3,
+    "problem_img": "5463.png",
+    "construction_cdl": [
+        "Shape(CB,BD,DC)",
+        "Shape(AB,BC)",
+        "Collinear(ABD)"
+    ],
+    "text_cdl": [
+        "Equal(LengthOfLine(BC),8)",
+        "Equal(MeasureOfAngle(ABC),150)",
+        "RightTriangle(BDC)"
+    ],
+    "image_cdl": [],
+    "goal_cdl": "Value(LengthOfLine(CD))",
+    "problem_answer": "4",
+    "theorem_seqs": [
+        "flat_angle(1,ABD)",
+        "angle_addition(1,ABC,CBD)",
+        "sine_theorem(1,CBD)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "flat_angle(1,ABD)",
+            "angle_addition(1,ABC,CBD)",
+            "sine_theorem(1,CBD)"
+        ]
+    }
 }

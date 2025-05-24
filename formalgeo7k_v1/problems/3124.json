@@ -1,51 +1,48 @@
 {
-  "problem_id": 3124,
-  "annotation": "YimingHe_2023-04-23",
-  "source": "GeoQA-375",
-  "problem_level": 5,
-  "problem_text_cn": "如图所示，∠CDA=55°，∠DAC=40°，BE平行于FI。求∠FGC的大小。",
-  "problem_text_en": "As shown in the diagram, ∠CDA=55°, ∠DAC=40°, BE∥FI. Find the measure of ∠FGC.",
-  "problem_img": "3124.png",
-  "construction_cdl": [
-    "Shape(BC,CA)",
-    "Shape(AC,CD,DA)",
-    "Shape(AD,DE)",
-    "Shape(FG,GC)",
-    "Shape(GC,CB)",
-    "Shape(CG,GH,HD,DC)",
-    "Shape(ED,DH)",
-    "Shape(DH,HI)",
-    "Collinear(BCDE)",
-    "Collinear(FGHI)",
-    "Collinear(ACG)",
-    "Collinear(ADH)"
-  ],
-  "text_cdl": [
-    "Equal(MeasureOfAngle(CDA),55)",
-    "Equal(MeasureOfAngle(DAC),40)",
-    "ParallelBetweenLine(BE,FI)"
-  ],
-  "image_cdl": [],
-  "goal_cdl": "Value(MeasureOfAngle(FGC))",
-  "problem_answer": "95",
-  "theorem_seqs": [
-    "triangle_property_angle_sum(1,ACD)",
-    "vertical_angle(1,ACD,GCB)",
-    "parallel_property_collinear_extend(3,BE,FI,C)",
-    "parallel_property_collinear_extend(3,IF,CB,G)",
-    "parallel_property_ipsilateral_internal_angle(1,GF,CB)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "triangle_property_angle_sum(1,ACD)",
-      "vertical_angle(1,ACD,GCB)",
-      "parallel_property_collinear_extend(3,BE,FI,C)"
+    "problem_id": 3124,
+    "source": "GeoQA-375",
+    "problem_level": 5,
+    "problem_img": "3124.png",
+    "construction_cdl": [
+        "Shape(BC,CA)",
+        "Shape(AC,CD,DA)",
+        "Shape(AD,DE)",
+        "Shape(FG,GC)",
+        "Shape(GC,CB)",
+        "Shape(CG,GH,HD,DC)",
+        "Shape(ED,DH)",
+        "Shape(DH,HI)",
+        "Collinear(BCDE)",
+        "Collinear(FGHI)",
+        "Collinear(ACG)",
+        "Collinear(ADH)"
     ],
-    "parallel_property_collinear_extend(3,BE,FI,C)": [
-      "parallel_property_collinear_extend(3,IF,CB,G)"
+    "text_cdl": [
+        "Equal(MeasureOfAngle(CDA),55)",
+        "Equal(MeasureOfAngle(DAC),40)",
+        "ParallelBetweenLine(BE,FI)"
     ],
-    "parallel_property_collinear_extend(3,IF,CB,G)": [
-      "parallel_property_ipsilateral_internal_angle(1,GF,CB)"
-    ]
-  }
+    "image_cdl": [],
+    "goal_cdl": "Value(MeasureOfAngle(FGC))",
+    "problem_answer": "95",
+    "theorem_seqs": [
+        "triangle_property_angle_sum(1,ACD)",
+        "vertical_angle(1,ACD,GCB)",
+        "parallel_property_collinear_extend(3,BE,FI,C)",
+        "parallel_property_collinear_extend(3,IF,CB,G)",
+        "parallel_property_ipsilateral_internal_angle(1,GF,CB)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "triangle_property_angle_sum(1,ACD)",
+            "vertical_angle(1,ACD,GCB)",
+            "parallel_property_collinear_extend(3,BE,FI,C)"
+        ],
+        "parallel_property_collinear_extend(3,BE,FI,C)": [
+            "parallel_property_collinear_extend(3,IF,CB,G)"
+        ],
+        "parallel_property_collinear_extend(3,IF,CB,G)": [
+            "parallel_property_ipsilateral_internal_angle(1,GF,CB)"
+        ]
+    }
 }

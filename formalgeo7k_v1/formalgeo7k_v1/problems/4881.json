@@ -1,35 +1,32 @@
 {
-  "problem_id": 4881,
-  "annotation": "YifanWang_2023-05-21",
-  "source": "GeoQA-4404",
-  "problem_level": 2,
-  "problem_text_cn": "如图所示，⊙C的半径为5，圆D的半径为3，O是⊙C的圆心，⊙D的圆心为O。求⊙C的面积减去圆D的面积。",
-  "problem_text_en": "As shown in the diagram, the radius of ⊙C is 5, the radius of ⊙D is 3, O is the center of circle C, O is the center of ⊙D. Find the area of the circle C minus the area of the ⊙D.",
-  "problem_img": "4881.png",
-  "construction_cdl": [
-    "Shape(C)",
-    "Shape(D)",
-    "Collinear(AEOFB)",
-    "Cocircular(C,AB)",
-    "Cocircular(D,EF)"
-  ],
-  "text_cdl": [
-    "Equal(RadiusOfCircle(C),5)",
-    "Equal(RadiusOfCircle(D),3)",
-    "IsCentreOfCircle(O,C)",
-    "IsCentreOfCircle(O,D)"
-  ],
-  "image_cdl": [],
-  "goal_cdl": "Value(Sub(AreaOfCircle(C),AreaOfCircle(D)))",
-  "problem_answer": "16*pi",
-  "theorem_seqs": [
-    "circle_area_formula(1,C)",
-    "circle_area_formula(1,D)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "circle_area_formula(1,C)",
-      "circle_area_formula(1,D)"
-    ]
-  }
+    "problem_id": 4881,
+    "source": "GeoQA-4404",
+    "problem_level": 2,
+    "problem_img": "4881.png",
+    "construction_cdl": [
+        "Shape(C)",
+        "Shape(D)",
+        "Collinear(AEOFB)",
+        "Cocircular(C,AB)",
+        "Cocircular(D,EF)"
+    ],
+    "text_cdl": [
+        "Equal(RadiusOfCircle(C),5)",
+        "Equal(RadiusOfCircle(D),3)",
+        "IsCentreOfCircle(O,C)",
+        "IsCentreOfCircle(O,D)"
+    ],
+    "image_cdl": [],
+    "goal_cdl": "Value(Sub(AreaOfCircle(C),AreaOfCircle(D)))",
+    "problem_answer": "16*pi",
+    "theorem_seqs": [
+        "circle_area_formula(1,C)",
+        "circle_area_formula(1,D)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "circle_area_formula(1,C)",
+            "circle_area_formula(1,D)"
+        ]
+    }
 }

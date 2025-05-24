@@ -1,30 +1,27 @@
 {
-  "problem_id": 727,
-  "annotation": "YimingHe_2023-03-12",
-  "source": "Geometry3k-752",
-  "problem_level": 0,
-  "problem_text_cn": "如图所示，ML=17，MN=2*x+7，NL=3*x-4，NL=MN。求直线MN的长度。",
-  "problem_text_en": "As shown in the diagram, ML=17, MN=2*x+7, NL=3*x-4, NL=MN. Find the length of line MN.",
-  "problem_img": "727.png",
-  "construction_cdl": [
-    "Shape(ML,LN,NM)"
-  ],
-  "text_cdl": [
-    "Equal(LengthOfLine(ML),17)",
-    "Equal(LengthOfLine(MN),2*x+7)",
-    "Equal(LengthOfLine(NL),3*x-4)",
-    "Equal(LengthOfLine(NL),LengthOfLine(MN))"
-  ],
-  "image_cdl": [
-    "Equal(LengthOfLine(ML),17)",
-    "Equal(LengthOfLine(MN),2*x+7)",
-    "Equal(LengthOfLine(NL),3*x-4)",
-    "Equal(LengthOfLine(NL),LengthOfLine(MN))"
-  ],
-  "goal_cdl": "Value(LengthOfLine(MN))",
-  "problem_answer": "29",
-  "theorem_seqs": [],
-  "theorem_seqs_dag": {
-    "START": []
-  }
+    "problem_id": 727,
+    "source": "Geometry3k-752",
+    "problem_level": 0,
+    "problem_img": "727.png",
+    "construction_cdl": [
+        "Shape(ML,LN,NM)"
+    ],
+    "text_cdl": [
+        "Equal(LengthOfLine(ML),17)",
+        "Equal(LengthOfLine(MN),2*x+7)",
+        "Equal(LengthOfLine(NL),3*x-4)",
+        "Equal(LengthOfLine(NL),LengthOfLine(MN))"
+    ],
+    "image_cdl": [
+        "Equal(LengthOfLine(ML),17)",
+        "Equal(LengthOfLine(MN),2*x+7)",
+        "Equal(LengthOfLine(NL),3*x-4)",
+        "Equal(LengthOfLine(NL),LengthOfLine(MN))"
+    ],
+    "goal_cdl": "Value(LengthOfLine(MN))",
+    "problem_answer": "29",
+    "theorem_seqs": [],
+    "theorem_seqs_dag": {
+        "START": []
+    }
 }

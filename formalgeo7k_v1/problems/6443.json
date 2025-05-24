@@ -1,41 +1,38 @@
 {
-  "problem_id": 6443,
-  "annotation": "JiaZou_2023-06-04",
-  "source": "GeoQA-9319",
-  "problem_level": 5,
-  "problem_text_cn": "如图所示，AE=3，BE=2，AE是∠DAB的角平分线，BE是∠ABC的角平分线，AD和BC是平行四边形ABCD的一组对边。求△ABE的面积。",
-  "problem_text_en": "As shown in the diagram, AE=3, BE=2, AE is the angle bisector of ∠DAB, BE bisects ∠ABC, ABCD is a ▱. Find the area of triangle ABE.",
-  "problem_img": "6443.png",
-  "construction_cdl": [
-    "Shape(DA,AE,ED)",
-    "Shape(EA,AB,BE)",
-    "Shape(EB,BC,CE)",
-    "Collinear(DEC)"
-  ],
-  "text_cdl": [
-    "Equal(LengthOfLine(AE),3)",
-    "Equal(LengthOfLine(BE),2)",
-    "IsBisectorOfAngle(AE,DAB)",
-    "IsBisectorOfAngle(BE,ABC)",
-    "Parallelogram(ABCD)"
-  ],
-  "image_cdl": [],
-  "goal_cdl": "Value(AreaOfTriangle(ABE))",
-  "problem_answer": "3",
-  "theorem_seqs": [
-    "parallel_property_ipsilateral_internal_angle(1,AD,BC)",
-    "angle_addition(1,DAE,EAB)",
-    "angle_addition(1,ABE,EBC)",
-    "triangle_property_angle_sum(1,ABE)",
-    "triangle_area_formula_sine(1,EAB)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "parallel_property_ipsilateral_internal_angle(1,AD,BC)",
-      "angle_addition(1,DAE,EAB)",
-      "angle_addition(1,ABE,EBC)",
-      "triangle_property_angle_sum(1,ABE)",
-      "triangle_area_formula_sine(1,EAB)"
-    ]
-  }
+    "problem_id": 6443,
+    "source": "GeoQA-9319",
+    "problem_level": 5,
+    "problem_img": "6443.png",
+    "construction_cdl": [
+        "Shape(DA,AE,ED)",
+        "Shape(EA,AB,BE)",
+        "Shape(EB,BC,CE)",
+        "Collinear(DEC)"
+    ],
+    "text_cdl": [
+        "Equal(LengthOfLine(AE),3)",
+        "Equal(LengthOfLine(BE),2)",
+        "IsBisectorOfAngle(AE,DAB)",
+        "IsBisectorOfAngle(BE,ABC)",
+        "Parallelogram(ABCD)"
+    ],
+    "image_cdl": [],
+    "goal_cdl": "Value(AreaOfTriangle(ABE))",
+    "problem_answer": "3",
+    "theorem_seqs": [
+        "parallel_property_ipsilateral_internal_angle(1,AD,BC)",
+        "angle_addition(1,DAE,EAB)",
+        "angle_addition(1,ABE,EBC)",
+        "triangle_property_angle_sum(1,ABE)",
+        "triangle_area_formula_sine(1,EAB)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "parallel_property_ipsilateral_internal_angle(1,AD,BC)",
+            "angle_addition(1,DAE,EAB)",
+            "angle_addition(1,ABE,EBC)",
+            "triangle_property_angle_sum(1,ABE)",
+            "triangle_area_formula_sine(1,EAB)"
+        ]
+    }
 }

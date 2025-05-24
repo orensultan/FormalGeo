@@ -1,56 +1,53 @@
 {
-  "problem_id": 767,
-  "annotation": "JiaZou_2023-04-09",
-  "source": "Geometry3k-792",
-  "problem_level": 3,
-  "problem_text_cn": "如图所示，QR=6，RT=x，UT=4，VW=8，WP=3，RQ是圆O的切线，RS是圆O的切线，TS是圆O的切线，TU是圆O的切线。求x的值。",
-  "problem_text_en": "As shown in the diagram, QR=6, RT=x, UT=4, VW=8, WP=3, the tangent to circle Z is RQ, RS is the tangent to ⊙Z, the tangent to circle Z is TS, TU is the tangent to ⊙Z. Find the value of x.",
-  "problem_img": "767.png",
-  "construction_cdl": [
-    "Shape(QP,PW,ZQW)",
-    "Shape(WV,VU,ZWU)",
-    "Shape(UT,TS,ZUS)",
-    "Shape(SR,RQ,ZSQ)",
-    "Collinear(PQR)",
-    "Collinear(PWV)",
-    "Collinear(VUT)",
-    "Collinear(RST)",
-    "Cocircular(Z,QWUS)"
-  ],
-  "text_cdl": [
-    "Equal(LengthOfLine(QR),6)",
-    "Equal(LengthOfLine(RT),x)",
-    "Equal(LengthOfLine(UT),4)",
-    "Equal(LengthOfLine(VW),8)",
-    "Equal(LengthOfLine(WP),3)",
-    "IsTangentOfCircle(RQ,Z)",
-    "IsTangentOfCircle(RS,Z)",
-    "IsTangentOfCircle(TS,Z)",
-    "IsTangentOfCircle(TU,Z)"
-  ],
-  "image_cdl": [
-    "Equal(LengthOfLine(QR),6)",
-    "Equal(LengthOfLine(RT),x)",
-    "Equal(LengthOfLine(UT),4)",
-    "Equal(LengthOfLine(VW),8)",
-    "Equal(LengthOfLine(WP),3)",
-    "IsTangentOfCircle(RQ,Z)",
-    "IsTangentOfCircle(RS,Z)",
-    "IsTangentOfCircle(TS,Z)",
-    "IsTangentOfCircle(TU,Z)"
-  ],
-  "goal_cdl": "Value(x)",
-  "problem_answer": "10",
-  "theorem_seqs": [
-    "tangent_of_circle_property_length_equal(1,RS,RQ,Z)",
-    "tangent_of_circle_property_length_equal(1,TU,TS,Z)",
-    "line_addition(1,RS,ST)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "tangent_of_circle_property_length_equal(1,RS,RQ,Z)",
-      "tangent_of_circle_property_length_equal(1,TU,TS,Z)",
-      "line_addition(1,RS,ST)"
-    ]
-  }
+    "problem_id": 767,
+    "source": "Geometry3k-792",
+    "problem_level": 3,
+    "problem_img": "767.png",
+    "construction_cdl": [
+        "Shape(QP,PW,ZQW)",
+        "Shape(WV,VU,ZWU)",
+        "Shape(UT,TS,ZUS)",
+        "Shape(SR,RQ,ZSQ)",
+        "Collinear(PQR)",
+        "Collinear(PWV)",
+        "Collinear(VUT)",
+        "Collinear(RST)",
+        "Cocircular(Z,QWUS)"
+    ],
+    "text_cdl": [
+        "Equal(LengthOfLine(QR),6)",
+        "Equal(LengthOfLine(RT),x)",
+        "Equal(LengthOfLine(UT),4)",
+        "Equal(LengthOfLine(VW),8)",
+        "Equal(LengthOfLine(WP),3)",
+        "IsTangentOfCircle(RQ,Z)",
+        "IsTangentOfCircle(RS,Z)",
+        "IsTangentOfCircle(TS,Z)",
+        "IsTangentOfCircle(TU,Z)"
+    ],
+    "image_cdl": [
+        "Equal(LengthOfLine(QR),6)",
+        "Equal(LengthOfLine(RT),x)",
+        "Equal(LengthOfLine(UT),4)",
+        "Equal(LengthOfLine(VW),8)",
+        "Equal(LengthOfLine(WP),3)",
+        "IsTangentOfCircle(RQ,Z)",
+        "IsTangentOfCircle(RS,Z)",
+        "IsTangentOfCircle(TS,Z)",
+        "IsTangentOfCircle(TU,Z)"
+    ],
+    "goal_cdl": "Value(x)",
+    "problem_answer": "10",
+    "theorem_seqs": [
+        "tangent_of_circle_property_length_equal(1,RS,RQ,Z)",
+        "tangent_of_circle_property_length_equal(1,TU,TS,Z)",
+        "line_addition(1,RS,ST)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "tangent_of_circle_property_length_equal(1,RS,RQ,Z)",
+            "tangent_of_circle_property_length_equal(1,TU,TS,Z)",
+            "line_addition(1,RS,ST)"
+        ]
+    }
 }

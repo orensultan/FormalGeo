@@ -1,61 +1,58 @@
 {
-  "problem_id": 6401,
-  "annotation": "YimingHe_2023-06-04",
-  "source": "GeoQA-9262",
-  "problem_level": 8,
-  "problem_text_cn": "如图所示，∠DAB=65°，F平分线段AD，四边形ABCD是▱，DE垂直于BE。求∠EFA的大小。",
-  "problem_text_en": "As shown in the diagram, ∠DAB=65°, F bisects segment AD, BA and CD are opposite sides of the ▱ ABCD, DE is perpendicular to BE. Find the measure of ∠EFA.",
-  "problem_img": "6401.png",
-  "construction_cdl": [
-    "Shape(AE,EF,FA)",
-    "Shape(FE,ED,DF)",
-    "Shape(DE,EB,BC,CD)",
-    "Collinear(AFD)",
-    "Collinear(AEB)"
-  ],
-  "text_cdl": [
-    "Equal(MeasureOfAngle(DAB),65)",
-    "IsMidpointOfLine(F,AD)",
-    "Parallelogram(ABCD)",
-    "PerpendicularBetweenLine(DE,BE)"
-  ],
-  "image_cdl": [],
-  "goal_cdl": "Value(MeasureOfAngle(EFA))",
-  "problem_answer": "50",
-  "theorem_seqs": [
-    "adjacent_complementary_angle(1,AED,DEB)",
-    "line_addition(1,AF,FD)",
-    "right_triangle_judgment_angle(1,AED)",
-    "median_of_triangle_judgment(1,EF,EDA)",
-    "right_triangle_property_length_of_median(1,AED,F)",
-    "isosceles_triangle_judgment_line_equal(1,FAE)",
-    "isosceles_triangle_property_angle_equal(1,FAE)",
-    "triangle_property_angle_sum(1,FAE)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "adjacent_complementary_angle(1,AED,DEB)",
-      "line_addition(1,AF,FD)",
-      "median_of_triangle_judgment(1,EF,EDA)",
-      "triangle_property_angle_sum(1,FAE)"
+    "problem_id": 6401,
+    "source": "GeoQA-9262",
+    "problem_level": 8,
+    "problem_img": "6401.png",
+    "construction_cdl": [
+        "Shape(AE,EF,FA)",
+        "Shape(FE,ED,DF)",
+        "Shape(DE,EB,BC,CD)",
+        "Collinear(AFD)",
+        "Collinear(AEB)"
     ],
-    "adjacent_complementary_angle(1,AED,DEB)": [
-      "right_triangle_judgment_angle(1,AED)"
+    "text_cdl": [
+        "Equal(MeasureOfAngle(DAB),65)",
+        "IsMidpointOfLine(F,AD)",
+        "Parallelogram(ABCD)",
+        "PerpendicularBetweenLine(DE,BE)"
     ],
-    "line_addition(1,AF,FD)": [
-      "isosceles_triangle_judgment_line_equal(1,FAE)"
+    "image_cdl": [],
+    "goal_cdl": "Value(MeasureOfAngle(EFA))",
+    "problem_answer": "50",
+    "theorem_seqs": [
+        "adjacent_complementary_angle(1,AED,DEB)",
+        "line_addition(1,AF,FD)",
+        "right_triangle_judgment_angle(1,AED)",
+        "median_of_triangle_judgment(1,EF,EDA)",
+        "right_triangle_property_length_of_median(1,AED,F)",
+        "isosceles_triangle_judgment_line_equal(1,FAE)",
+        "isosceles_triangle_property_angle_equal(1,FAE)",
+        "triangle_property_angle_sum(1,FAE)"
     ],
-    "right_triangle_judgment_angle(1,AED)": [
-      "right_triangle_property_length_of_median(1,AED,F)"
-    ],
-    "median_of_triangle_judgment(1,EF,EDA)": [
-      "right_triangle_property_length_of_median(1,AED,F)"
-    ],
-    "right_triangle_property_length_of_median(1,AED,F)": [
-      "isosceles_triangle_judgment_line_equal(1,FAE)"
-    ],
-    "isosceles_triangle_judgment_line_equal(1,FAE)": [
-      "isosceles_triangle_property_angle_equal(1,FAE)"
-    ]
-  }
+    "theorem_seqs_dag": {
+        "START": [
+            "adjacent_complementary_angle(1,AED,DEB)",
+            "line_addition(1,AF,FD)",
+            "median_of_triangle_judgment(1,EF,EDA)",
+            "triangle_property_angle_sum(1,FAE)"
+        ],
+        "adjacent_complementary_angle(1,AED,DEB)": [
+            "right_triangle_judgment_angle(1,AED)"
+        ],
+        "line_addition(1,AF,FD)": [
+            "isosceles_triangle_judgment_line_equal(1,FAE)"
+        ],
+        "right_triangle_judgment_angle(1,AED)": [
+            "right_triangle_property_length_of_median(1,AED,F)"
+        ],
+        "median_of_triangle_judgment(1,EF,EDA)": [
+            "right_triangle_property_length_of_median(1,AED,F)"
+        ],
+        "right_triangle_property_length_of_median(1,AED,F)": [
+            "isosceles_triangle_judgment_line_equal(1,FAE)"
+        ],
+        "isosceles_triangle_judgment_line_equal(1,FAE)": [
+            "isosceles_triangle_property_angle_equal(1,FAE)"
+        ]
+    }
 }

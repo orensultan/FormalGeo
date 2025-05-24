@@ -1,73 +1,70 @@
 {
-  "problem_id": 5666,
-  "annotation": "JiaZou_2023-05-28",
-  "source": "GeoQA-7356",
-  "problem_level": 13,
-  "problem_text_cn": "如图所示，FG=2，G是线段DC的中点，ABCD是正方形。求直线AE的长度。",
-  "problem_text_en": "As shown in the diagram, FG=2, G is the midpoint of segment DC, ABCD is a square. Find the length of line AE.",
-  "problem_img": "5666.png",
-  "construction_cdl": [
-    "Shape(AF,FD,DA)",
-    "Shape(AB,BF,FA)",
-    "Shape(FB,BC,CG,GF)",
-    "Shape(DF,FG,GD)",
-    "Shape(GC,CE,EG)",
-    "Collinear(AFGE)",
-    "Collinear(BFD)",
-    "Collinear(BCE)",
-    "Collinear(DGC)"
-  ],
-  "text_cdl": [
-    "Equal(LengthOfLine(FG),2)",
-    "IsMidpointOfLine(G,DC)",
-    "Square(ABCD)"
-  ],
-  "image_cdl": [],
-  "goal_cdl": "Value(LengthOfLine(AE))",
-  "problem_answer": "12",
-  "theorem_seqs": [
-    "line_addition(1,DG,GC)",
-    "parallel_property_collinear_extend(3,DC,AB,G)",
-    "parallel_property_alternate_interior_angle(1,BA,GD)",
-    "vertical_angle(1,BFA,DFG)",
-    "similar_triangle_judgment_aa(1,ABF,GDF)",
-    "similar_triangle_property_line_ratio(1,FAB,FGD)",
-    "similar_triangle_property_line_ratio(1,BFA,DFG)",
-    "line_addition(1,AF,FG)",
-    "parallel_property_corresponding_angle(1,GC,AB,E)",
-    "similar_triangle_judgment_aa(1,CEG,BEA)",
-    "similar_triangle_property_line_ratio(1,CEG,BEA)",
-    "similar_triangle_property_line_ratio(1,EGC,EAB)",
-    "line_addition(1,AG,GE)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "line_addition(1,DG,GC)",
-      "parallel_property_collinear_extend(3,DC,AB,G)",
-      "vertical_angle(1,BFA,DFG)",
-      "line_addition(1,AF,FG)",
-      "line_addition(1,AG,GE)"
+    "problem_id": 5666,
+    "source": "GeoQA-7356",
+    "problem_level": 13,
+    "problem_img": "5666.png",
+    "construction_cdl": [
+        "Shape(AF,FD,DA)",
+        "Shape(AB,BF,FA)",
+        "Shape(FB,BC,CG,GF)",
+        "Shape(DF,FG,GD)",
+        "Shape(GC,CE,EG)",
+        "Collinear(AFGE)",
+        "Collinear(BFD)",
+        "Collinear(BCE)",
+        "Collinear(DGC)"
     ],
-    "parallel_property_collinear_extend(3,DC,AB,G)": [
-      "parallel_property_corresponding_angle(1,GC,AB,E)",
-      "parallel_property_alternate_interior_angle(1,BA,GD)"
+    "text_cdl": [
+        "Equal(LengthOfLine(FG),2)",
+        "IsMidpointOfLine(G,DC)",
+        "Square(ABCD)"
     ],
-    "parallel_property_alternate_interior_angle(1,BA,GD)": [
-      "similar_triangle_judgment_aa(1,ABF,GDF)"
+    "image_cdl": [],
+    "goal_cdl": "Value(LengthOfLine(AE))",
+    "problem_answer": "12",
+    "theorem_seqs": [
+        "line_addition(1,DG,GC)",
+        "parallel_property_collinear_extend(3,DC,AB,G)",
+        "parallel_property_alternate_interior_angle(1,BA,GD)",
+        "vertical_angle(1,BFA,DFG)",
+        "similar_triangle_judgment_aa(1,ABF,GDF)",
+        "similar_triangle_property_line_ratio(1,FAB,FGD)",
+        "similar_triangle_property_line_ratio(1,BFA,DFG)",
+        "line_addition(1,AF,FG)",
+        "parallel_property_corresponding_angle(1,GC,AB,E)",
+        "similar_triangle_judgment_aa(1,CEG,BEA)",
+        "similar_triangle_property_line_ratio(1,CEG,BEA)",
+        "similar_triangle_property_line_ratio(1,EGC,EAB)",
+        "line_addition(1,AG,GE)"
     ],
-    "vertical_angle(1,BFA,DFG)": [
-      "similar_triangle_judgment_aa(1,ABF,GDF)"
-    ],
-    "similar_triangle_judgment_aa(1,ABF,GDF)": [
-      "similar_triangle_property_line_ratio(1,BFA,DFG)",
-      "similar_triangle_property_line_ratio(1,FAB,FGD)"
-    ],
-    "parallel_property_corresponding_angle(1,GC,AB,E)": [
-      "similar_triangle_judgment_aa(1,CEG,BEA)"
-    ],
-    "similar_triangle_judgment_aa(1,CEG,BEA)": [
-      "similar_triangle_property_line_ratio(1,CEG,BEA)",
-      "similar_triangle_property_line_ratio(1,EGC,EAB)"
-    ]
-  }
+    "theorem_seqs_dag": {
+        "START": [
+            "line_addition(1,DG,GC)",
+            "parallel_property_collinear_extend(3,DC,AB,G)",
+            "vertical_angle(1,BFA,DFG)",
+            "line_addition(1,AF,FG)",
+            "line_addition(1,AG,GE)"
+        ],
+        "parallel_property_collinear_extend(3,DC,AB,G)": [
+            "parallel_property_corresponding_angle(1,GC,AB,E)",
+            "parallel_property_alternate_interior_angle(1,BA,GD)"
+        ],
+        "parallel_property_alternate_interior_angle(1,BA,GD)": [
+            "similar_triangle_judgment_aa(1,ABF,GDF)"
+        ],
+        "vertical_angle(1,BFA,DFG)": [
+            "similar_triangle_judgment_aa(1,ABF,GDF)"
+        ],
+        "similar_triangle_judgment_aa(1,ABF,GDF)": [
+            "similar_triangle_property_line_ratio(1,BFA,DFG)",
+            "similar_triangle_property_line_ratio(1,FAB,FGD)"
+        ],
+        "parallel_property_corresponding_angle(1,GC,AB,E)": [
+            "similar_triangle_judgment_aa(1,CEG,BEA)"
+        ],
+        "similar_triangle_judgment_aa(1,CEG,BEA)": [
+            "similar_triangle_property_line_ratio(1,CEG,BEA)",
+            "similar_triangle_property_line_ratio(1,EGC,EAB)"
+        ]
+    }
 }

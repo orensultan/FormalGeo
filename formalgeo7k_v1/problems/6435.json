@@ -1,27 +1,24 @@
 {
-  "problem_id": 6435,
-  "annotation": "JiaZou_2023-06-04",
-  "source": "GeoQA-9308",
-  "problem_level": 1,
-  "problem_text_cn": "如图所示，∠ABC=60°，四边形ABCD是▱。求∠CDA的大小。",
-  "problem_text_en": "As shown in the diagram, ∠ABC=60°, ABCD is a parallelogram. Find the measure of ∠CDA.",
-  "problem_img": "6435.png",
-  "construction_cdl": [
-    "Shape(AB,BC,CD,DA)"
-  ],
-  "text_cdl": [
-    "Equal(MeasureOfAngle(ABC),60)",
-    "Parallelogram(ABCD)"
-  ],
-  "image_cdl": [],
-  "goal_cdl": "Value(MeasureOfAngle(CDA))",
-  "problem_answer": "60",
-  "theorem_seqs": [
-    "parallelogram_property_opposite_angle_equal(1,BCDA)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "parallelogram_property_opposite_angle_equal(1,BCDA)"
-    ]
-  }
+    "problem_id": 6435,
+    "source": "GeoQA-9308",
+    "problem_level": 1,
+    "problem_img": "6435.png",
+    "construction_cdl": [
+        "Shape(AB,BC,CD,DA)"
+    ],
+    "text_cdl": [
+        "Equal(MeasureOfAngle(ABC),60)",
+        "Parallelogram(ABCD)"
+    ],
+    "image_cdl": [],
+    "goal_cdl": "Value(MeasureOfAngle(CDA))",
+    "problem_answer": "60",
+    "theorem_seqs": [
+        "parallelogram_property_opposite_angle_equal(1,BCDA)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "parallelogram_property_opposite_angle_equal(1,BCDA)"
+        ]
+    }
 }

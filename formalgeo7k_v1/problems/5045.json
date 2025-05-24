@@ -1,79 +1,76 @@
 {
-  "problem_id": 5045,
-  "annotation": "ChengQin_2023-05-21",
-  "source": "GeoQA-4794",
-  "problem_level": 13,
-  "problem_text_cn": "如图所示，AB=80，CD=20，AB⊥FB，BF垂直于EF，EF⊥CF，FC⊥DC。求直线EF的长度。",
-  "problem_text_en": "As shown in the diagram, AB=80, CD=20, AB is perpendicular to FB, BF is perpendicular to EF, EF is perpendicular to CF, FC is perpendicular to DC. Find the length of line EF.",
-  "problem_img": "5045.png",
-  "construction_cdl": [
-    "Shape(AB,BE,EA)",
-    "Shape(EB,BF,FE)",
-    "Shape(DE,EC,CD)",
-    "Shape(CE,EF,FC)",
-    "Collinear(AEC)",
-    "Collinear(BED)",
-    "Collinear(BFC)"
-  ],
-  "text_cdl": [
-    "Equal(LengthOfLine(AB),80)",
-    "Equal(LengthOfLine(CD),20)",
-    "PerpendicularBetweenLine(AB,FB)",
-    "PerpendicularBetweenLine(BF,EF)",
-    "PerpendicularBetweenLine(EF,CF)",
-    "PerpendicularBetweenLine(FC,DC)"
-  ],
-  "image_cdl": [],
-  "goal_cdl": "Value(LengthOfLine(EF))",
-  "problem_answer": "16",
-  "theorem_seqs": [
-    "parallel_judgment_per_per(1,BA,FE)",
-    "parallel_property_corresponding_angle(1,EF,AB,C)",
-    "similar_triangle_judgment_aa(1,CEF,CAB)",
-    "vertical_angle(1,BEA,DEC)",
-    "parallel_judgment_per_per(1,FE,CD)",
-    "parallel_judgment_par_par(1,BA,FE,CD)",
-    "parallel_property_alternate_interior_angle(2,BA,CD)",
-    "similar_triangle_judgment_aa(1,BEA,DEC)",
-    "similar_triangle_property_line_ratio(1,EAB,ECD)",
-    "similar_triangle_property_line_ratio(1,BEA,DEC)",
-    "line_addition(1,AE,EC)",
-    "similar_triangle_property_line_ratio(1,FCE,BCA)",
-    "similar_triangle_property_line_ratio(1,CEF,CAB)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "parallel_judgment_per_per(1,BA,FE)",
-      "vertical_angle(1,BEA,DEC)",
-      "parallel_judgment_per_per(1,FE,CD)",
-      "line_addition(1,AE,EC)"
+    "problem_id": 5045,
+    "source": "GeoQA-4794",
+    "problem_level": 13,
+    "problem_img": "5045.png",
+    "construction_cdl": [
+        "Shape(AB,BE,EA)",
+        "Shape(EB,BF,FE)",
+        "Shape(DE,EC,CD)",
+        "Shape(CE,EF,FC)",
+        "Collinear(AEC)",
+        "Collinear(BED)",
+        "Collinear(BFC)"
     ],
-    "parallel_judgment_per_per(1,BA,FE)": [
-      "parallel_judgment_par_par(1,BA,FE,CD)",
-      "parallel_property_corresponding_angle(1,EF,AB,C)"
+    "text_cdl": [
+        "Equal(LengthOfLine(AB),80)",
+        "Equal(LengthOfLine(CD),20)",
+        "PerpendicularBetweenLine(AB,FB)",
+        "PerpendicularBetweenLine(BF,EF)",
+        "PerpendicularBetweenLine(EF,CF)",
+        "PerpendicularBetweenLine(FC,DC)"
     ],
-    "parallel_property_corresponding_angle(1,EF,AB,C)": [
-      "similar_triangle_judgment_aa(1,CEF,CAB)"
+    "image_cdl": [],
+    "goal_cdl": "Value(LengthOfLine(EF))",
+    "problem_answer": "16",
+    "theorem_seqs": [
+        "parallel_judgment_per_per(1,BA,FE)",
+        "parallel_property_corresponding_angle(1,EF,AB,C)",
+        "similar_triangle_judgment_aa(1,CEF,CAB)",
+        "vertical_angle(1,BEA,DEC)",
+        "parallel_judgment_per_per(1,FE,CD)",
+        "parallel_judgment_par_par(1,BA,FE,CD)",
+        "parallel_property_alternate_interior_angle(2,BA,CD)",
+        "similar_triangle_judgment_aa(1,BEA,DEC)",
+        "similar_triangle_property_line_ratio(1,EAB,ECD)",
+        "similar_triangle_property_line_ratio(1,BEA,DEC)",
+        "line_addition(1,AE,EC)",
+        "similar_triangle_property_line_ratio(1,FCE,BCA)",
+        "similar_triangle_property_line_ratio(1,CEF,CAB)"
     ],
-    "similar_triangle_judgment_aa(1,CEF,CAB)": [
-      "similar_triangle_property_line_ratio(1,CEF,CAB)",
-      "similar_triangle_property_line_ratio(1,FCE,BCA)"
-    ],
-    "vertical_angle(1,BEA,DEC)": [
-      "similar_triangle_judgment_aa(1,BEA,DEC)"
-    ],
-    "parallel_judgment_per_per(1,FE,CD)": [
-      "parallel_judgment_par_par(1,BA,FE,CD)"
-    ],
-    "parallel_judgment_par_par(1,BA,FE,CD)": [
-      "parallel_property_alternate_interior_angle(2,BA,CD)"
-    ],
-    "parallel_property_alternate_interior_angle(2,BA,CD)": [
-      "similar_triangle_judgment_aa(1,BEA,DEC)"
-    ],
-    "similar_triangle_judgment_aa(1,BEA,DEC)": [
-      "similar_triangle_property_line_ratio(1,BEA,DEC)",
-      "similar_triangle_property_line_ratio(1,EAB,ECD)"
-    ]
-  }
+    "theorem_seqs_dag": {
+        "START": [
+            "parallel_judgment_per_per(1,BA,FE)",
+            "vertical_angle(1,BEA,DEC)",
+            "parallel_judgment_per_per(1,FE,CD)",
+            "line_addition(1,AE,EC)"
+        ],
+        "parallel_judgment_per_per(1,BA,FE)": [
+            "parallel_judgment_par_par(1,BA,FE,CD)",
+            "parallel_property_corresponding_angle(1,EF,AB,C)"
+        ],
+        "parallel_property_corresponding_angle(1,EF,AB,C)": [
+            "similar_triangle_judgment_aa(1,CEF,CAB)"
+        ],
+        "similar_triangle_judgment_aa(1,CEF,CAB)": [
+            "similar_triangle_property_line_ratio(1,CEF,CAB)",
+            "similar_triangle_property_line_ratio(1,FCE,BCA)"
+        ],
+        "vertical_angle(1,BEA,DEC)": [
+            "similar_triangle_judgment_aa(1,BEA,DEC)"
+        ],
+        "parallel_judgment_per_per(1,FE,CD)": [
+            "parallel_judgment_par_par(1,BA,FE,CD)"
+        ],
+        "parallel_judgment_par_par(1,BA,FE,CD)": [
+            "parallel_property_alternate_interior_angle(2,BA,CD)"
+        ],
+        "parallel_property_alternate_interior_angle(2,BA,CD)": [
+            "similar_triangle_judgment_aa(1,BEA,DEC)"
+        ],
+        "similar_triangle_judgment_aa(1,BEA,DEC)": [
+            "similar_triangle_property_line_ratio(1,BEA,DEC)",
+            "similar_triangle_property_line_ratio(1,EAB,ECD)"
+        ]
+    }
 }

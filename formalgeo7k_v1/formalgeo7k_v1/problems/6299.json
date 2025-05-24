@@ -1,46 +1,43 @@
 {
-  "problem_id": 6299,
-  "annotation": "ZheZhu_2023-05-28",
-  "source": "GeoQA-9025",
-  "problem_level": 5,
-  "problem_text_cn": "如图所示，DE=1，DF=2，∠CFD=90°，∠DEA=90°，∠FDC=∠EAD，ABCD是正方形。求四边形ABCD的面积。",
-  "problem_text_en": "As shown in the diagram, DE=1, DF=2, ∠CFD=90°, ∠DEA=90°, ∠FDC=∠EAD, ABCD is a square. Find the area of quadrilateral ABCD.",
-  "problem_img": "6299.png",
-  "construction_cdl": [
-    "Shape(EA,AD,DE)",
-    "Shape(AB,BC,CD,DA)",
-    "Shape(DC,CF,FD)",
-    "Collinear(EDF)"
-  ],
-  "text_cdl": [
-    "Equal(LengthOfLine(DE),1)",
-    "Equal(LengthOfLine(DF),2)",
-    "Equal(MeasureOfAngle(CFD),90)",
-    "Equal(MeasureOfAngle(DEA),90)",
-    "Equal(MeasureOfAngle(FDC),MeasureOfAngle(EAD))",
-    "Square(ABCD)"
-  ],
-  "image_cdl": [],
-  "goal_cdl": "Value(AreaOfQuadrilateral(ABCD))",
-  "problem_answer": "5",
-  "theorem_seqs": [
-    "congruent_triangle_judgment_aas(3,DEA,CFD)",
-    "congruent_triangle_property_line_equal(1,DEA,CFD)",
-    "right_triangle_judgment_angle(1,DEA)",
-    "right_triangle_property_pythagorean(1,DEA)",
-    "parallelogram_area_formula_sine(1,DABC)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "congruent_triangle_judgment_aas(3,DEA,CFD)",
-      "right_triangle_judgment_angle(1,DEA)",
-      "parallelogram_area_formula_sine(1,DABC)"
+    "problem_id": 6299,
+    "source": "GeoQA-9025",
+    "problem_level": 5,
+    "problem_img": "6299.png",
+    "construction_cdl": [
+        "Shape(EA,AD,DE)",
+        "Shape(AB,BC,CD,DA)",
+        "Shape(DC,CF,FD)",
+        "Collinear(EDF)"
     ],
-    "congruent_triangle_judgment_aas(3,DEA,CFD)": [
-      "congruent_triangle_property_line_equal(1,DEA,CFD)"
+    "text_cdl": [
+        "Equal(LengthOfLine(DE),1)",
+        "Equal(LengthOfLine(DF),2)",
+        "Equal(MeasureOfAngle(CFD),90)",
+        "Equal(MeasureOfAngle(DEA),90)",
+        "Equal(MeasureOfAngle(FDC),MeasureOfAngle(EAD))",
+        "Square(ABCD)"
     ],
-    "right_triangle_judgment_angle(1,DEA)": [
-      "right_triangle_property_pythagorean(1,DEA)"
-    ]
-  }
+    "image_cdl": [],
+    "goal_cdl": "Value(AreaOfQuadrilateral(ABCD))",
+    "problem_answer": "5",
+    "theorem_seqs": [
+        "congruent_triangle_judgment_aas(3,DEA,CFD)",
+        "congruent_triangle_property_line_equal(1,DEA,CFD)",
+        "right_triangle_judgment_angle(1,DEA)",
+        "right_triangle_property_pythagorean(1,DEA)",
+        "parallelogram_area_formula_sine(1,DABC)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "congruent_triangle_judgment_aas(3,DEA,CFD)",
+            "right_triangle_judgment_angle(1,DEA)",
+            "parallelogram_area_formula_sine(1,DABC)"
+        ],
+        "congruent_triangle_judgment_aas(3,DEA,CFD)": [
+            "congruent_triangle_property_line_equal(1,DEA,CFD)"
+        ],
+        "right_triangle_judgment_angle(1,DEA)": [
+            "right_triangle_property_pythagorean(1,DEA)"
+        ]
+    }
 }

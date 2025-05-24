@@ -1,39 +1,36 @@
 {
-  "problem_id": 2009,
-  "annotation": "ZheZhu_2023-04-16",
-  "source": "Geometry3k-2094",
-  "problem_level": 2,
-  "problem_text_cn": "如图所示，∠MLJ=30°，∠RLK=70°，四边形JMLK是平行四边形。求∠JML的大小。",
-  "problem_text_en": "As shown in the diagram, ∠MLJ=30°, ∠RLK=70°, JMLK is a ▱. Find the measure of ∠JML.",
-  "problem_img": "2009.png",
-  "construction_cdl": [
-    "Shape(JM,MR,RJ)",
-    "Shape(RM,ML,LR)",
-    "Shape(RL,LK,KR)",
-    "Shape(JR,RK,KJ)",
-    "Collinear(JRL)",
-    "Collinear(MRK)"
-  ],
-  "text_cdl": [
-    "Equal(MeasureOfAngle(MLJ),30)",
-    "Equal(MeasureOfAngle(RLK),70)",
-    "Parallelogram(JMLK)"
-  ],
-  "image_cdl": [
-    "Equal(MeasureOfAngle(MLJ),30)",
-    "Equal(MeasureOfAngle(RLK),70)",
-    "Parallelogram(JMLK)"
-  ],
-  "goal_cdl": "Value(MeasureOfAngle(JML))",
-  "problem_answer": "80",
-  "theorem_seqs": [
-    "angle_addition(1,MLR,RLK)",
-    "parallel_property_ipsilateral_internal_angle(1,MJ,LK)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "angle_addition(1,MLR,RLK)",
-      "parallel_property_ipsilateral_internal_angle(1,MJ,LK)"
-    ]
-  }
+    "problem_id": 2009,
+    "source": "Geometry3k-2094",
+    "problem_level": 2,
+    "problem_img": "2009.png",
+    "construction_cdl": [
+        "Shape(JM,MR,RJ)",
+        "Shape(RM,ML,LR)",
+        "Shape(RL,LK,KR)",
+        "Shape(JR,RK,KJ)",
+        "Collinear(JRL)",
+        "Collinear(MRK)"
+    ],
+    "text_cdl": [
+        "Equal(MeasureOfAngle(MLJ),30)",
+        "Equal(MeasureOfAngle(RLK),70)",
+        "Parallelogram(JMLK)"
+    ],
+    "image_cdl": [
+        "Equal(MeasureOfAngle(MLJ),30)",
+        "Equal(MeasureOfAngle(RLK),70)",
+        "Parallelogram(JMLK)"
+    ],
+    "goal_cdl": "Value(MeasureOfAngle(JML))",
+    "problem_answer": "80",
+    "theorem_seqs": [
+        "angle_addition(1,MLR,RLK)",
+        "parallel_property_ipsilateral_internal_angle(1,MJ,LK)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "angle_addition(1,MLR,RLK)",
+            "parallel_property_ipsilateral_internal_angle(1,MJ,LK)"
+        ]
+    }
 }

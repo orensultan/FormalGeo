@@ -1,45 +1,42 @@
 {
-  "problem_id": 6240,
-  "annotation": "FangzhenZhu_2023-06-04",
-  "source": "GeoQA-8839",
-  "problem_level": 5,
-  "problem_text_cn": "如图所示，AB=8，圆O的半径为5，⊙O的圆心为O，BC垂直于OC。求直线OC的长度。",
-  "problem_text_en": "As shown in the diagram, AB=8, the radius of circle O is 5, O is the center of circle O, BC⊥OC. Find the length of line OC.",
-  "problem_img": "6240.png",
-  "construction_cdl": [
-    "Shape(AO,OC,CA)",
-    "Shape(OAB,BC,CO,OA)",
-    "Shape(OBA,AC,CB)",
-    "Collinear(ACB)",
-    "Cocircular(O,BA)"
-  ],
-  "text_cdl": [
-    "Equal(LengthOfLine(AB),8)",
-    "Equal(RadiusOfCircle(O),5)",
-    "IsCentreOfCircle(O,O)",
-    "PerpendicularBetweenLine(BC,OC)"
-  ],
-  "image_cdl": [],
-  "goal_cdl": "Value(LengthOfLine(OC))",
-  "problem_answer": "3",
-  "theorem_seqs": [
-    "radius_of_circle_property_length_equal(1,OA,O)",
-    "circle_property_chord_perpendicular_bisect_chord(1,O,OC,BA)",
-    "line_addition(1,AC,CB)",
-    "right_triangle_judgment_angle(1,OCA)",
-    "right_triangle_property_pythagorean(1,OCA)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "radius_of_circle_property_length_equal(1,OA,O)",
-      "circle_property_chord_perpendicular_bisect_chord(1,O,OC,BA)",
-      "line_addition(1,AC,CB)"
+    "problem_id": 6240,
+    "source": "GeoQA-8839",
+    "problem_level": 5,
+    "problem_img": "6240.png",
+    "construction_cdl": [
+        "Shape(AO,OC,CA)",
+        "Shape(OAB,BC,CO,OA)",
+        "Shape(OBA,AC,CB)",
+        "Collinear(ACB)",
+        "Cocircular(O,BA)"
     ],
-    "circle_property_chord_perpendicular_bisect_chord(1,O,OC,BA)": [
-      "right_triangle_judgment_angle(1,OCA)"
+    "text_cdl": [
+        "Equal(LengthOfLine(AB),8)",
+        "Equal(RadiusOfCircle(O),5)",
+        "IsCentreOfCircle(O,O)",
+        "PerpendicularBetweenLine(BC,OC)"
     ],
-    "right_triangle_judgment_angle(1,OCA)": [
-      "right_triangle_property_pythagorean(1,OCA)"
-    ]
-  }
+    "image_cdl": [],
+    "goal_cdl": "Value(LengthOfLine(OC))",
+    "problem_answer": "3",
+    "theorem_seqs": [
+        "radius_of_circle_property_length_equal(1,OA,O)",
+        "circle_property_chord_perpendicular_bisect_chord(1,O,OC,BA)",
+        "line_addition(1,AC,CB)",
+        "right_triangle_judgment_angle(1,OCA)",
+        "right_triangle_property_pythagorean(1,OCA)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "radius_of_circle_property_length_equal(1,OA,O)",
+            "circle_property_chord_perpendicular_bisect_chord(1,O,OC,BA)",
+            "line_addition(1,AC,CB)"
+        ],
+        "circle_property_chord_perpendicular_bisect_chord(1,O,OC,BA)": [
+            "right_triangle_judgment_angle(1,OCA)"
+        ],
+        "right_triangle_judgment_angle(1,OCA)": [
+            "right_triangle_property_pythagorean(1,OCA)"
+        ]
+    }
 }

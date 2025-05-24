@@ -1,37 +1,34 @@
 {
-  "problem_id": 507,
-  "annotation": "JiaZou_2023-03-12",
-  "source": "Geometry3k-518",
-  "problem_level": 0,
-  "problem_text_cn": "如图所示，AC=2/3*x-4，AD=1/3*x+2，AD=AC，DE=5*y，EB=7/3*y+8，ED=EB。求y的值。",
-  "problem_text_en": "As shown in the diagram, AC=2/3*x-4, AD=1/3*x+2, AD=AC, DE=5*y, EB=7/3*y+8, ED=EB. Find the value of y.",
-  "problem_img": "507.png",
-  "construction_cdl": [
-    "Shape(DA,AE,ED)",
-    "Shape(EA,AC,CB,BE)",
-    "Collinear(DAC)",
-    "Collinear(DEB)"
-  ],
-  "text_cdl": [
-    "Equal(LengthOfLine(AC),2/3*x-4)",
-    "Equal(LengthOfLine(AD),1/3*x+2)",
-    "Equal(LengthOfLine(AD),LengthOfLine(AC))",
-    "Equal(LengthOfLine(DE),5*y)",
-    "Equal(LengthOfLine(EB),7/3*y+8)",
-    "Equal(LengthOfLine(ED),LengthOfLine(EB))"
-  ],
-  "image_cdl": [
-    "Equal(LengthOfLine(AC),2/3*x-4)",
-    "Equal(LengthOfLine(AD),1/3*x+2)",
-    "Equal(LengthOfLine(AD),LengthOfLine(AC))",
-    "Equal(LengthOfLine(DE),5*y)",
-    "Equal(LengthOfLine(EB),7/3*y+8)",
-    "Equal(LengthOfLine(ED),LengthOfLine(EB))"
-  ],
-  "goal_cdl": "Value(y)",
-  "problem_answer": "3",
-  "theorem_seqs": [],
-  "theorem_seqs_dag": {
-    "START": []
-  }
+    "problem_id": 507,
+    "source": "Geometry3k-518",
+    "problem_level": 0,
+    "problem_img": "507.png",
+    "construction_cdl": [
+        "Shape(DA,AE,ED)",
+        "Shape(EA,AC,CB,BE)",
+        "Collinear(DAC)",
+        "Collinear(DEB)"
+    ],
+    "text_cdl": [
+        "Equal(LengthOfLine(AC),2/3*x-4)",
+        "Equal(LengthOfLine(AD),1/3*x+2)",
+        "Equal(LengthOfLine(AD),LengthOfLine(AC))",
+        "Equal(LengthOfLine(DE),5*y)",
+        "Equal(LengthOfLine(EB),7/3*y+8)",
+        "Equal(LengthOfLine(ED),LengthOfLine(EB))"
+    ],
+    "image_cdl": [
+        "Equal(LengthOfLine(AC),2/3*x-4)",
+        "Equal(LengthOfLine(AD),1/3*x+2)",
+        "Equal(LengthOfLine(AD),LengthOfLine(AC))",
+        "Equal(LengthOfLine(DE),5*y)",
+        "Equal(LengthOfLine(EB),7/3*y+8)",
+        "Equal(LengthOfLine(ED),LengthOfLine(EB))"
+    ],
+    "goal_cdl": "Value(y)",
+    "problem_answer": "3",
+    "theorem_seqs": [],
+    "theorem_seqs_dag": {
+        "START": []
+    }
 }

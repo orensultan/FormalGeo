@@ -1,51 +1,48 @@
 {
-  "problem_id": 1227,
-  "annotation": "JiaZou_2023-03-19",
-  "source": "Geometry3k-1267",
-  "problem_level": 0,
-  "problem_text_cn": "如图所示，PY=2*c-1，YR=4*c-11，ZP=a+5，ZQ=3*a-11，∠PRZ=4*b-17°，∠QYR=7*b+6°，∠RXP=2*a+10°，∠ZRQ=3*b-4°，PX是△PRQ的高。求a的值。",
-  "problem_text_en": "As shown in the diagram, PY=2*c-1, YR=4*c-11, ZP=a+5, ZQ=3*a-11, ∠PRZ=4*b-17°, ∠QYR=7*b+6°, ∠RXP=2*a+10°, ∠ZRQ=3*b-4°, PX is the altitude of △ PRQ. Find the value of a.",
-  "problem_img": "1227.png",
-  "construction_cdl": [
-    "Shape(QZ,ZM,MN,NQ)",
-    "Shape(ZP,PM,MZ)",
-    "Shape(MP,PY,YA,AM)",
-    "Shape(NM,MA,AN)",
-    "Shape(AY,YR,RA)",
-    "Shape(XN,NA,AR,RX)",
-    "Shape(QN,NX,XQ)",
-    "Collinear(PZQ)",
-    "Collinear(PMNX)",
-    "Collinear(PYR)",
-    "Collinear(ZMAR)",
-    "Collinear(QNAY)",
-    "Collinear(QXR)"
-  ],
-  "text_cdl": [
-    "Equal(LengthOfLine(PY),2*c-1)",
-    "Equal(LengthOfLine(YR),4*c-11)",
-    "Equal(LengthOfLine(ZP),a+5)",
-    "Equal(LengthOfLine(ZQ),3*a-11)",
-    "Equal(MeasureOfAngle(PRZ),4*b-17)",
-    "Equal(MeasureOfAngle(QYR),7*b+6)",
-    "Equal(MeasureOfAngle(RXP),2*a+10)",
-    "Equal(MeasureOfAngle(ZRQ),3*b-4)",
-    "IsAltitudeOfTriangle(PX,PRQ)"
-  ],
-  "image_cdl": [
-    "Equal(LengthOfLine(PY),2*c-1)",
-    "Equal(LengthOfLine(YR),4*c-11)",
-    "Equal(LengthOfLine(ZP),a+5)",
-    "Equal(LengthOfLine(ZQ),3*a-11)",
-    "Equal(MeasureOfAngle(PRZ),4*b-17)",
-    "Equal(MeasureOfAngle(QYR),7*b+6)",
-    "Equal(MeasureOfAngle(RXP),2*a+10)",
-    "Equal(MeasureOfAngle(ZRQ),3*b-4)"
-  ],
-  "goal_cdl": "Value(a)",
-  "problem_answer": "40",
-  "theorem_seqs": [],
-  "theorem_seqs_dag": {
-    "START": []
-  }
+    "problem_id": 1227,
+    "source": "Geometry3k-1267",
+    "problem_level": 0,
+    "problem_img": "1227.png",
+    "construction_cdl": [
+        "Shape(QZ,ZM,MN,NQ)",
+        "Shape(ZP,PM,MZ)",
+        "Shape(MP,PY,YA,AM)",
+        "Shape(NM,MA,AN)",
+        "Shape(AY,YR,RA)",
+        "Shape(XN,NA,AR,RX)",
+        "Shape(QN,NX,XQ)",
+        "Collinear(PZQ)",
+        "Collinear(PMNX)",
+        "Collinear(PYR)",
+        "Collinear(ZMAR)",
+        "Collinear(QNAY)",
+        "Collinear(QXR)"
+    ],
+    "text_cdl": [
+        "Equal(LengthOfLine(PY),2*c-1)",
+        "Equal(LengthOfLine(YR),4*c-11)",
+        "Equal(LengthOfLine(ZP),a+5)",
+        "Equal(LengthOfLine(ZQ),3*a-11)",
+        "Equal(MeasureOfAngle(PRZ),4*b-17)",
+        "Equal(MeasureOfAngle(QYR),7*b+6)",
+        "Equal(MeasureOfAngle(RXP),2*a+10)",
+        "Equal(MeasureOfAngle(ZRQ),3*b-4)",
+        "IsAltitudeOfTriangle(PX,PRQ)"
+    ],
+    "image_cdl": [
+        "Equal(LengthOfLine(PY),2*c-1)",
+        "Equal(LengthOfLine(YR),4*c-11)",
+        "Equal(LengthOfLine(ZP),a+5)",
+        "Equal(LengthOfLine(ZQ),3*a-11)",
+        "Equal(MeasureOfAngle(PRZ),4*b-17)",
+        "Equal(MeasureOfAngle(QYR),7*b+6)",
+        "Equal(MeasureOfAngle(RXP),2*a+10)",
+        "Equal(MeasureOfAngle(ZRQ),3*b-4)"
+    ],
+    "goal_cdl": "Value(a)",
+    "problem_answer": "40",
+    "theorem_seqs": [],
+    "theorem_seqs_dag": {
+        "START": []
+    }
 }

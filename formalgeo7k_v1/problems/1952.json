@@ -1,40 +1,37 @@
 {
-  "problem_id": 1952,
-  "annotation": "ZheZhu_2023-04-16",
-  "source": "Geometry3k-2031",
-  "problem_level": 1,
-  "problem_text_cn": "如图所示，AD=x，CD=6，DB=3，DF=2。求x的值。",
-  "problem_text_en": "As shown in the diagram, AD=x, CD=6, DB=3, DF=2. Find the value of x.",
-  "problem_img": "1952.png",
-  "construction_cdl": [
-    "Shape(ECF,FD,DC)",
-    "Shape(EFB,BD,DF)",
-    "Shape(EBA,AD,DB)",
-    "Shape(EAC,CD,DA)",
-    "Collinear(FDA)",
-    "Collinear(CDB)",
-    "Cocircular(E,ACFB)"
-  ],
-  "text_cdl": [
-    "Equal(LengthOfLine(AD),x)",
-    "Equal(LengthOfLine(CD),6)",
-    "Equal(LengthOfLine(DB),3)",
-    "Equal(LengthOfLine(DF),2)"
-  ],
-  "image_cdl": [
-    "Equal(LengthOfLine(AD),x)",
-    "Equal(LengthOfLine(CD),6)",
-    "Equal(LengthOfLine(DB),3)",
-    "Equal(LengthOfLine(DF),2)"
-  ],
-  "goal_cdl": "Value(x)",
-  "problem_answer": "9",
-  "theorem_seqs": [
-    "circle_property_circular_power_chord_and_chord(1,ADF,CDB,E)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "circle_property_circular_power_chord_and_chord(1,ADF,CDB,E)"
-    ]
-  }
+    "problem_id": 1952,
+    "source": "Geometry3k-2031",
+    "problem_level": 1,
+    "problem_img": "1952.png",
+    "construction_cdl": [
+        "Shape(ECF,FD,DC)",
+        "Shape(EFB,BD,DF)",
+        "Shape(EBA,AD,DB)",
+        "Shape(EAC,CD,DA)",
+        "Collinear(FDA)",
+        "Collinear(CDB)",
+        "Cocircular(E,ACFB)"
+    ],
+    "text_cdl": [
+        "Equal(LengthOfLine(AD),x)",
+        "Equal(LengthOfLine(CD),6)",
+        "Equal(LengthOfLine(DB),3)",
+        "Equal(LengthOfLine(DF),2)"
+    ],
+    "image_cdl": [
+        "Equal(LengthOfLine(AD),x)",
+        "Equal(LengthOfLine(CD),6)",
+        "Equal(LengthOfLine(DB),3)",
+        "Equal(LengthOfLine(DF),2)"
+    ],
+    "goal_cdl": "Value(x)",
+    "problem_answer": "9",
+    "theorem_seqs": [
+        "circle_property_circular_power_chord_and_chord(1,ADF,CDB,E)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "circle_property_circular_power_chord_and_chord(1,ADF,CDB,E)"
+        ]
+    }
 }

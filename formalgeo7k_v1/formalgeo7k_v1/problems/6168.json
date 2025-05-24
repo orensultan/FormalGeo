@@ -1,46 +1,43 @@
 {
-  "problem_id": 6168,
-  "annotation": "DengfengYue_2023-05-28",
-  "source": "GeoQA-8735",
-  "problem_level": 5,
-  "problem_text_cn": "如图所示，BC=2，△ABC为等边△，⊙O的圆心为O，BC是圆O的直径。求直线CD的长度。",
-  "problem_text_en": "As shown in the diagram, BC=2, triangle ABC is an equilateral triangle, O is the center of ⊙O, the diameter of circle O is BC. Find the length of line CD.",
-  "problem_img": "6168.png",
-  "construction_cdl": [
-    "Shape(OED,EA,AD)",
-    "Shape(DC,CE,OED)",
-    "Shape(EC,OCE)",
-    "Shape(CD,DB,BO,OC)",
-    "Shape(BD,ODB)",
-    "Shape(CO,OB,OBC)",
-    "Collinear(BOC)",
-    "Collinear(ADB)",
-    "Collinear(AEC)",
-    "Cocircular(O,DBCE)"
-  ],
-  "text_cdl": [
-    "Equal(LengthOfLine(BC),2)",
-    "EquilateralTriangle(ABC)",
-    "IsCentreOfCircle(O,O)",
-    "IsDiameterOfCircle(BC,O)"
-  ],
-  "image_cdl": [],
-  "goal_cdl": "Value(LengthOfLine(CD))",
-  "problem_answer": "sqrt(3)",
-  "theorem_seqs": [
-    "triangle_property_angle_sum(1,ABC)",
-    "diameter_of_circle_property_right_angle(1,CDB,O)",
-    "sine_theorem(1,CDB)",
-    "sine_theorem(1,ABC)",
-    "sine_theorem(1,BCA)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "triangle_property_angle_sum(1,ABC)",
-      "diameter_of_circle_property_right_angle(1,CDB,O)",
-      "sine_theorem(1,CDB)",
-      "sine_theorem(1,ABC)",
-      "sine_theorem(1,BCA)"
-    ]
-  }
+    "problem_id": 6168,
+    "source": "GeoQA-8735",
+    "problem_level": 5,
+    "problem_img": "6168.png",
+    "construction_cdl": [
+        "Shape(OED,EA,AD)",
+        "Shape(DC,CE,OED)",
+        "Shape(EC,OCE)",
+        "Shape(CD,DB,BO,OC)",
+        "Shape(BD,ODB)",
+        "Shape(CO,OB,OBC)",
+        "Collinear(BOC)",
+        "Collinear(ADB)",
+        "Collinear(AEC)",
+        "Cocircular(O,DBCE)"
+    ],
+    "text_cdl": [
+        "Equal(LengthOfLine(BC),2)",
+        "EquilateralTriangle(ABC)",
+        "IsCentreOfCircle(O,O)",
+        "IsDiameterOfCircle(BC,O)"
+    ],
+    "image_cdl": [],
+    "goal_cdl": "Value(LengthOfLine(CD))",
+    "problem_answer": "sqrt(3)",
+    "theorem_seqs": [
+        "triangle_property_angle_sum(1,ABC)",
+        "diameter_of_circle_property_right_angle(1,CDB,O)",
+        "sine_theorem(1,CDB)",
+        "sine_theorem(1,ABC)",
+        "sine_theorem(1,BCA)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "triangle_property_angle_sum(1,ABC)",
+            "diameter_of_circle_property_right_angle(1,CDB,O)",
+            "sine_theorem(1,CDB)",
+            "sine_theorem(1,ABC)",
+            "sine_theorem(1,BCA)"
+        ]
+    }
 }

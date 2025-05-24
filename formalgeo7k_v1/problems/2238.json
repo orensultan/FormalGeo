@@ -1,45 +1,42 @@
 {
-  "problem_id": 2238,
-  "annotation": "YangLi_2023-04-09",
-  "source": "Geometry3k-2337",
-  "problem_level": 3,
-  "problem_text_cn": "如图所示，∠ADG=36°，∠AGF=104°，∠EFC=40°，AB垂直于BB。求∠GBF的大小。",
-  "problem_text_en": "As shown in the diagram, ∠ADG=36°, ∠AGF=104°, ∠EFC=40°, AB is perpendicular to BB. Find the measure of ∠GBF.",
-  "problem_img": "2238.png",
-  "construction_cdl": [
-    "Shape(AD,DG,GA)",
-    "Shape(GB,BF,FG)",
-    "Shape(FB,BC,CF)",
-    "Shape(GF,FE)",
-    "Shape(EF,FC)",
-    "Shape(AG,GF)",
-    "Collinear(DGFC)",
-    "Collinear(AGB)",
-    "Collinear(BFE)"
-  ],
-  "text_cdl": [
-    "Equal(MeasureOfAngle(ADG),36)",
-    "Equal(MeasureOfAngle(AGF),104)",
-    "Equal(MeasureOfAngle(EFC),40)",
-    "PerpendicularBetweenLine(AB,BC)"
-  ],
-  "image_cdl": [
-    "Equal(MeasureOfAngle(ADG),36)",
-    "Equal(MeasureOfAngle(AGF),104)",
-    "Equal(MeasureOfAngle(EFC),40)"
-  ],
-  "goal_cdl": "Value(MeasureOfAngle(GBF))",
-  "problem_answer": "64",
-  "theorem_seqs": [
-    "vertical_angle(1,BFG,EFC)",
-    "adjacent_complementary_angle(1,AGF,FGB)",
-    "triangle_property_angle_sum(1,GBF)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "vertical_angle(1,BFG,EFC)",
-      "adjacent_complementary_angle(1,AGF,FGB)",
-      "triangle_property_angle_sum(1,GBF)"
-    ]
-  }
+    "problem_id": 2238,
+    "source": "Geometry3k-2337",
+    "problem_level": 3,
+    "problem_img": "2238.png",
+    "construction_cdl": [
+        "Shape(AD,DG,GA)",
+        "Shape(GB,BF,FG)",
+        "Shape(FB,BC,CF)",
+        "Shape(GF,FE)",
+        "Shape(EF,FC)",
+        "Shape(AG,GF)",
+        "Collinear(DGFC)",
+        "Collinear(AGB)",
+        "Collinear(BFE)"
+    ],
+    "text_cdl": [
+        "Equal(MeasureOfAngle(ADG),36)",
+        "Equal(MeasureOfAngle(AGF),104)",
+        "Equal(MeasureOfAngle(EFC),40)",
+        "PerpendicularBetweenLine(AB,BC)"
+    ],
+    "image_cdl": [
+        "Equal(MeasureOfAngle(ADG),36)",
+        "Equal(MeasureOfAngle(AGF),104)",
+        "Equal(MeasureOfAngle(EFC),40)"
+    ],
+    "goal_cdl": "Value(MeasureOfAngle(GBF))",
+    "problem_answer": "64",
+    "theorem_seqs": [
+        "vertical_angle(1,BFG,EFC)",
+        "adjacent_complementary_angle(1,AGF,FGB)",
+        "triangle_property_angle_sum(1,GBF)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "vertical_angle(1,BFG,EFC)",
+            "adjacent_complementary_angle(1,AGF,FGB)",
+            "triangle_property_angle_sum(1,GBF)"
+        ]
+    }
 }

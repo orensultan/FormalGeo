@@ -1,63 +1,60 @@
 {
-  "problem_id": 4008,
-  "annotation": "ZheZhu_2023-04-30",
-  "source": "GeoQA-1981",
-  "problem_level": 8,
-  "problem_text_cn": "如图所示，⌒OAB的长度与⌒OBC的长度相等，⌒OAB的长度与⌒OCD的长度相等，⌒OCD的长度与弧OBC的长度相等，∠CEB=110°，圆O的圆心为O。求∠CDB的大小。",
-  "problem_text_en": "As shown in the diagram, the length of arc OAB is equal to the length of arc OBC, the length of ⌒OAB is equal to the length of ⌒OCD, the length of arc OCD is equal to the length of arc OBC, ∠CEB=110°, O is the center of circle O. Find the measure of ∠CDB.",
-  "problem_img": "4008.png",
-  "construction_cdl": [
-    "Shape(ED,ODA,AE)",
-    "Shape(EA,AB,BE)",
-    "Shape(OAB,BA)",
-    "Shape(EB,BC,CE)",
-    "Shape(OBC,CB)",
-    "Shape(EC,CD,DE)",
-    "Shape(OCD,DC)",
-    "Collinear(DEB)",
-    "Collinear(AEC)",
-    "Cocircular(O,DABC)"
-  ],
-  "text_cdl": [
-    "Equal(LengthOfArc(OAB),LengthOfArc(OBC))",
-    "Equal(LengthOfArc(OAB),LengthOfArc(OCD))",
-    "Equal(LengthOfArc(OCD),LengthOfArc(OBC))",
-    "Equal(MeasureOfAngle(CEB),110)",
-    "IsCentreOfCircle(O,O)"
-  ],
-  "image_cdl": [
-    "Equal(LengthOfArc(OAB),LengthOfArc(OBC))",
-    "Equal(LengthOfArc(OAB),LengthOfArc(OCD))",
-    "Equal(LengthOfArc(OCD),LengthOfArc(OBC))",
-    "Equal(MeasureOfAngle(CEB),110)",
-    "IsCentreOfCircle(O,O)"
-  ],
-  "goal_cdl": "Value(MeasureOfAngle(CDB))",
-  "problem_answer": "35",
-  "theorem_seqs": [
-    "congruent_arc_judgment_length_equal(1,OCD,OAB)",
-    "congruent_arc_judgment_length_equal(1,OCD,OBC)",
-    "congruent_arc_property_measure_equal(1,OCD,OAB)",
-    "congruent_arc_property_measure_equal(1,OCD,OBC)",
-    "arc_property_circumference_angle_external(1,OBC,D)",
-    "arc_property_circumference_angle_external(1,OCD,B)",
-    "arc_property_circumference_angle_external(1,OAB,C)",
-    "triangle_property_angle_sum(1,EBC)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "congruent_arc_judgment_length_equal(1,OCD,OAB)",
-      "congruent_arc_judgment_length_equal(1,OCD,OBC)",
-      "arc_property_circumference_angle_external(1,OBC,D)",
-      "arc_property_circumference_angle_external(1,OCD,B)",
-      "arc_property_circumference_angle_external(1,OAB,C)",
-      "triangle_property_angle_sum(1,EBC)"
+    "problem_id": 4008,
+    "source": "GeoQA-1981",
+    "problem_level": 8,
+    "problem_img": "4008.png",
+    "construction_cdl": [
+        "Shape(ED,ODA,AE)",
+        "Shape(EA,AB,BE)",
+        "Shape(OAB,BA)",
+        "Shape(EB,BC,CE)",
+        "Shape(OBC,CB)",
+        "Shape(EC,CD,DE)",
+        "Shape(OCD,DC)",
+        "Collinear(DEB)",
+        "Collinear(AEC)",
+        "Cocircular(O,DABC)"
     ],
-    "congruent_arc_judgment_length_equal(1,OCD,OAB)": [
-      "congruent_arc_property_measure_equal(1,OCD,OAB)"
+    "text_cdl": [
+        "Equal(LengthOfArc(OAB),LengthOfArc(OBC))",
+        "Equal(LengthOfArc(OAB),LengthOfArc(OCD))",
+        "Equal(LengthOfArc(OCD),LengthOfArc(OBC))",
+        "Equal(MeasureOfAngle(CEB),110)",
+        "IsCentreOfCircle(O,O)"
     ],
-    "congruent_arc_judgment_length_equal(1,OCD,OBC)": [
-      "congruent_arc_property_measure_equal(1,OCD,OBC)"
-    ]
-  }
+    "image_cdl": [
+        "Equal(LengthOfArc(OAB),LengthOfArc(OBC))",
+        "Equal(LengthOfArc(OAB),LengthOfArc(OCD))",
+        "Equal(LengthOfArc(OCD),LengthOfArc(OBC))",
+        "Equal(MeasureOfAngle(CEB),110)",
+        "IsCentreOfCircle(O,O)"
+    ],
+    "goal_cdl": "Value(MeasureOfAngle(CDB))",
+    "problem_answer": "35",
+    "theorem_seqs": [
+        "congruent_arc_judgment_length_equal(1,OCD,OAB)",
+        "congruent_arc_judgment_length_equal(1,OCD,OBC)",
+        "congruent_arc_property_measure_equal(1,OCD,OAB)",
+        "congruent_arc_property_measure_equal(1,OCD,OBC)",
+        "arc_property_circumference_angle_external(1,OBC,D)",
+        "arc_property_circumference_angle_external(1,OCD,B)",
+        "arc_property_circumference_angle_external(1,OAB,C)",
+        "triangle_property_angle_sum(1,EBC)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "congruent_arc_judgment_length_equal(1,OCD,OAB)",
+            "congruent_arc_judgment_length_equal(1,OCD,OBC)",
+            "arc_property_circumference_angle_external(1,OBC,D)",
+            "arc_property_circumference_angle_external(1,OCD,B)",
+            "arc_property_circumference_angle_external(1,OAB,C)",
+            "triangle_property_angle_sum(1,EBC)"
+        ],
+        "congruent_arc_judgment_length_equal(1,OCD,OAB)": [
+            "congruent_arc_property_measure_equal(1,OCD,OAB)"
+        ],
+        "congruent_arc_judgment_length_equal(1,OCD,OBC)": [
+            "congruent_arc_property_measure_equal(1,OCD,OBC)"
+        ]
+    }
 }

@@ -1,37 +1,34 @@
 {
-  "problem_id": 5722,
-  "annotation": "NaZhu_2023-05-28",
-  "source": "GeoQA-7504",
-  "problem_level": 3,
-  "problem_text_cn": "如图所示，Div(LengthOfLine(AD)=LengthOfLine(AC))，DE=10，∠ADE=∠BCE。求直线BC的长度。",
-  "problem_text_en": "As shown in the diagram, Div(LengthOfLine(AD)=LengthOfLine(AC)), DE=10, ∠ADE=∠BCE. Find the length of line BC.",
-  "problem_img": "5722.png",
-  "construction_cdl": [
-    "Shape(AD,DE,EA)",
-    "Shape(DB,BC,CE,ED)",
-    "Collinear(ADB)",
-    "Collinear(AEC)"
-  ],
-  "text_cdl": [
-    "Equal(Div(LengthOfLine(AD),LengthOfLine(AC)),2/3)",
-    "Equal(LengthOfLine(DE),10)",
-    "Equal(MeasureOfAngle(ADE),MeasureOfAngle(BCE))"
-  ],
-  "image_cdl": [],
-  "goal_cdl": "Value(LengthOfLine(BC))",
-  "problem_answer": "15",
-  "theorem_seqs": [
-    "mirror_similar_triangle_judgment_aa(1,EAD,BCA)",
-    "mirror_similar_triangle_property_line_ratio(1,EAD,BCA)",
-    "mirror_similar_triangle_property_line_ratio(1,ADE,ABC)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "mirror_similar_triangle_judgment_aa(1,EAD,BCA)"
+    "problem_id": 5722,
+    "source": "GeoQA-7504",
+    "problem_level": 3,
+    "problem_img": "5722.png",
+    "construction_cdl": [
+        "Shape(AD,DE,EA)",
+        "Shape(DB,BC,CE,ED)",
+        "Collinear(ADB)",
+        "Collinear(AEC)"
     ],
-    "mirror_similar_triangle_judgment_aa(1,EAD,BCA)": [
-      "mirror_similar_triangle_property_line_ratio(1,EAD,BCA)",
-      "mirror_similar_triangle_property_line_ratio(1,ADE,ABC)"
-    ]
-  }
+    "text_cdl": [
+        "Equal(Div(LengthOfLine(AD),LengthOfLine(AC)),2/3)",
+        "Equal(LengthOfLine(DE),10)",
+        "Equal(MeasureOfAngle(ADE),MeasureOfAngle(BCE))"
+    ],
+    "image_cdl": [],
+    "goal_cdl": "Value(LengthOfLine(BC))",
+    "problem_answer": "15",
+    "theorem_seqs": [
+        "mirror_similar_triangle_judgment_aa(1,EAD,BCA)",
+        "mirror_similar_triangle_property_line_ratio(1,EAD,BCA)",
+        "mirror_similar_triangle_property_line_ratio(1,ADE,ABC)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "mirror_similar_triangle_judgment_aa(1,EAD,BCA)"
+        ],
+        "mirror_similar_triangle_judgment_aa(1,EAD,BCA)": [
+            "mirror_similar_triangle_property_line_ratio(1,EAD,BCA)",
+            "mirror_similar_triangle_property_line_ratio(1,ADE,ABC)"
+        ]
+    }
 }

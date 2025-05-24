@@ -1,31 +1,28 @@
 {
-  "problem_id": 5103,
-  "annotation": "YimingHe_2023-05-21",
-  "source": "GeoQA-4929",
-  "problem_level": 2,
-  "problem_text_cn": "如图所示，Sub(PerimeterOfTriangle(ABD)=PerimeterOfTriangle(ADC))，AD是△ABC的中线。求直线AB的长度减去直线AC的长度。",
-  "problem_text_en": "As shown in the diagram, Sub(PerimeterOfTriangle(ABD)=PerimeterOfTriangle(ADC)), AD is the median of triangle ABC. Find the length of line AB minus the length of line AC.",
-  "problem_img": "5103.png",
-  "construction_cdl": [
-    "Shape(AB,BD,DA)",
-    "Shape(AD,DC,CA)",
-    "Collinear(BDC)"
-  ],
-  "text_cdl": [
-    "Equal(Sub(PerimeterOfTriangle(ABD),PerimeterOfTriangle(ADC)),3)",
-    "IsMedianOfTriangle(AD,ABC)"
-  ],
-  "image_cdl": [],
-  "goal_cdl": "Value(Sub(LengthOfLine(AB),LengthOfLine(AC)))",
-  "problem_answer": "3",
-  "theorem_seqs": [
-    "triangle_perimeter_formula(1,ABD)",
-    "triangle_perimeter_formula(1,ADC)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "triangle_perimeter_formula(1,ABD)",
-      "triangle_perimeter_formula(1,ADC)"
-    ]
-  }
+    "problem_id": 5103,
+    "source": "GeoQA-4929",
+    "problem_level": 2,
+    "problem_img": "5103.png",
+    "construction_cdl": [
+        "Shape(AB,BD,DA)",
+        "Shape(AD,DC,CA)",
+        "Collinear(BDC)"
+    ],
+    "text_cdl": [
+        "Equal(Sub(PerimeterOfTriangle(ABD),PerimeterOfTriangle(ADC)),3)",
+        "IsMedianOfTriangle(AD,ABC)"
+    ],
+    "image_cdl": [],
+    "goal_cdl": "Value(Sub(LengthOfLine(AB),LengthOfLine(AC)))",
+    "problem_answer": "3",
+    "theorem_seqs": [
+        "triangle_perimeter_formula(1,ABD)",
+        "triangle_perimeter_formula(1,ADC)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "triangle_perimeter_formula(1,ABD)",
+            "triangle_perimeter_formula(1,ADC)"
+        ]
+    }
 }

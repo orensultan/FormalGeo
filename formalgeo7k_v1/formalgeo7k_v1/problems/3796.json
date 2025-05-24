@@ -1,42 +1,39 @@
 {
-  "problem_id": 3796,
-  "annotation": "YifanWang_2023-05-07",
-  "source": "GeoQA-1641",
-  "problem_level": 2,
-  "problem_text_cn": "如图所示，∠AOD=150°，三角形AOB为直角三角形，CO和OD是直角三角形COD的两个直角边。求∠COB的大小。",
-  "problem_text_en": "As shown in the diagram, ∠AOD=150°, AO and OB are the legs of the right △ AOB, CO and OD are the legs of the right △ COD. Find the measure of ∠COB.",
-  "problem_img": "3796.png",
-  "construction_cdl": [
-    "Shape(AO,OE,EA)",
-    "Shape(CE,EF,FC)",
-    "Shape(FG,GB,BF)",
-    "Shape(EO,OG,GF,FE)",
-    "Shape(GO,OD,DG)",
-    "Collinear(BFEA)",
-    "Collinear(CEO)",
-    "Collinear(DGFC)",
-    "Collinear(OGB)"
-  ],
-  "text_cdl": [
-    "Equal(MeasureOfAngle(AOD),150)",
-    "RightTriangle(AOB)",
-    "RightTriangle(COD)"
-  ],
-  "image_cdl": [
-    "Equal(MeasureOfAngle(AOD),150)",
-    "RightTriangle(AOB)",
-    "RightTriangle(COD)"
-  ],
-  "goal_cdl": "Value(MeasureOfAngle(COB))",
-  "problem_answer": "30",
-  "theorem_seqs": [
-    "angle_addition(1,AOE,EOG)",
-    "angle_addition(1,AOE,EOD)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "angle_addition(1,AOE,EOG)",
-      "angle_addition(1,AOE,EOD)"
-    ]
-  }
+    "problem_id": 3796,
+    "source": "GeoQA-1641",
+    "problem_level": 2,
+    "problem_img": "3796.png",
+    "construction_cdl": [
+        "Shape(AO,OE,EA)",
+        "Shape(CE,EF,FC)",
+        "Shape(FG,GB,BF)",
+        "Shape(EO,OG,GF,FE)",
+        "Shape(GO,OD,DG)",
+        "Collinear(BFEA)",
+        "Collinear(CEO)",
+        "Collinear(DGFC)",
+        "Collinear(OGB)"
+    ],
+    "text_cdl": [
+        "Equal(MeasureOfAngle(AOD),150)",
+        "RightTriangle(AOB)",
+        "RightTriangle(COD)"
+    ],
+    "image_cdl": [
+        "Equal(MeasureOfAngle(AOD),150)",
+        "RightTriangle(AOB)",
+        "RightTriangle(COD)"
+    ],
+    "goal_cdl": "Value(MeasureOfAngle(COB))",
+    "problem_answer": "30",
+    "theorem_seqs": [
+        "angle_addition(1,AOE,EOG)",
+        "angle_addition(1,AOE,EOD)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "angle_addition(1,AOE,EOG)",
+            "angle_addition(1,AOE,EOD)"
+        ]
+    }
 }

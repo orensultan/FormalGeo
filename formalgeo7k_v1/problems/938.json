@@ -1,47 +1,44 @@
 {
-  "problem_id": 938,
-  "annotation": "XiaokaiZhang_2023-04-09",
-  "source": "Geometry3k-967",
-  "problem_level": 4,
-  "problem_text_cn": "如图所示，PY=3，XZ=18，ZY=XW，XY∥WZ。求直线PW的长度。",
-  "problem_text_en": "As shown in the diagram, PY=3, XZ=18, ZY=XW, XY is parallel to WZ. Find the length of line PW.",
-  "problem_img": "938.png",
-  "construction_cdl": [
-    "Shape(XW,WP,PX)",
-    "Shape(PW,WZ,ZP)",
-    "Shape(XP,PY,YX)",
-    "Shape(PZ,ZY,YP)",
-    "Collinear(XPZ)",
-    "Collinear(WPY)"
-  ],
-  "text_cdl": [
-    "Equal(LengthOfLine(PY),3)",
-    "Equal(LengthOfLine(XZ),18)",
-    "Equal(LengthOfLine(ZY),LengthOfLine(XW))",
-    "ParallelBetweenLine(XY,WZ)"
-  ],
-  "image_cdl": [
-    "Equal(LengthOfLine(ZY),LengthOfLine(XW))",
-    "ParallelBetweenLine(XY,WZ)"
-  ],
-  "goal_cdl": "Value(LengthOfLine(PW))",
-  "problem_answer": "15",
-  "theorem_seqs": [
-    "trapezoid_judgment_parallel(1,XWZY)",
-    "isosceles_trapezoid_judgment_line_equal(1,XWZY)",
-    "isosceles_trapezoid_property_diagonal_equal(1,XWZY)",
-    "line_addition(1,WP,PY)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "trapezoid_judgment_parallel(1,XWZY)",
-      "line_addition(1,WP,PY)"
+    "problem_id": 938,
+    "source": "Geometry3k-967",
+    "problem_level": 4,
+    "problem_img": "938.png",
+    "construction_cdl": [
+        "Shape(XW,WP,PX)",
+        "Shape(PW,WZ,ZP)",
+        "Shape(XP,PY,YX)",
+        "Shape(PZ,ZY,YP)",
+        "Collinear(XPZ)",
+        "Collinear(WPY)"
     ],
-    "trapezoid_judgment_parallel(1,XWZY)": [
-      "isosceles_trapezoid_judgment_line_equal(1,XWZY)"
+    "text_cdl": [
+        "Equal(LengthOfLine(PY),3)",
+        "Equal(LengthOfLine(XZ),18)",
+        "Equal(LengthOfLine(ZY),LengthOfLine(XW))",
+        "ParallelBetweenLine(XY,WZ)"
     ],
-    "isosceles_trapezoid_judgment_line_equal(1,XWZY)": [
-      "isosceles_trapezoid_property_diagonal_equal(1,XWZY)"
-    ]
-  }
+    "image_cdl": [
+        "Equal(LengthOfLine(ZY),LengthOfLine(XW))",
+        "ParallelBetweenLine(XY,WZ)"
+    ],
+    "goal_cdl": "Value(LengthOfLine(PW))",
+    "problem_answer": "15",
+    "theorem_seqs": [
+        "trapezoid_judgment_parallel(1,XWZY)",
+        "isosceles_trapezoid_judgment_line_equal(1,XWZY)",
+        "isosceles_trapezoid_property_diagonal_equal(1,XWZY)",
+        "line_addition(1,WP,PY)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "trapezoid_judgment_parallel(1,XWZY)",
+            "line_addition(1,WP,PY)"
+        ],
+        "trapezoid_judgment_parallel(1,XWZY)": [
+            "isosceles_trapezoid_judgment_line_equal(1,XWZY)"
+        ],
+        "isosceles_trapezoid_judgment_line_equal(1,XWZY)": [
+            "isosceles_trapezoid_property_diagonal_equal(1,XWZY)"
+        ]
+    }
 }

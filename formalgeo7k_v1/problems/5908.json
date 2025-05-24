@@ -1,32 +1,29 @@
 {
-  "problem_id": 5908,
-  "annotation": "YiwenHuang_2023-06-04",
-  "source": "GeoQA-8047",
-  "problem_level": 2,
-  "problem_text_cn": "如图所示，AB=10，BC=5，∠ACB=90°。求直线BC的长度与直线AC的长度之比。",
-  "problem_text_en": "As shown in the diagram, AB=10, BC=5, ∠ACB=90°. Find the ratio of the length of line BC to the length of line AC.",
-  "problem_img": "5908.png",
-  "construction_cdl": [
-    "Shape(BA,AC,CB)"
-  ],
-  "text_cdl": [
-    "Equal(LengthOfLine(AB),10)",
-    "Equal(LengthOfLine(BC),5)",
-    "Equal(MeasureOfAngle(ACB),90)"
-  ],
-  "image_cdl": [],
-  "goal_cdl": "Value(Div(LengthOfLine(BC),LengthOfLine(AC)))",
-  "problem_answer": "sqrt(3)/3",
-  "theorem_seqs": [
-    "right_triangle_judgment_angle(1,ACB)",
-    "right_triangle_property_pythagorean(1,ACB)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "right_triangle_judgment_angle(1,ACB)"
+    "problem_id": 5908,
+    "source": "GeoQA-8047",
+    "problem_level": 2,
+    "problem_img": "5908.png",
+    "construction_cdl": [
+        "Shape(BA,AC,CB)"
     ],
-    "right_triangle_judgment_angle(1,ACB)": [
-      "right_triangle_property_pythagorean(1,ACB)"
-    ]
-  }
+    "text_cdl": [
+        "Equal(LengthOfLine(AB),10)",
+        "Equal(LengthOfLine(BC),5)",
+        "Equal(MeasureOfAngle(ACB),90)"
+    ],
+    "image_cdl": [],
+    "goal_cdl": "Value(Div(LengthOfLine(BC),LengthOfLine(AC)))",
+    "problem_answer": "sqrt(3)/3",
+    "theorem_seqs": [
+        "right_triangle_judgment_angle(1,ACB)",
+        "right_triangle_property_pythagorean(1,ACB)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "right_triangle_judgment_angle(1,ACB)"
+        ],
+        "right_triangle_judgment_angle(1,ACB)": [
+            "right_triangle_property_pythagorean(1,ACB)"
+        ]
+    }
 }

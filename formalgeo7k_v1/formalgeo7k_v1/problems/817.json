@@ -1,52 +1,49 @@
 {
-  "problem_id": 817,
-  "annotation": "XiaokaiZhang_2023-03-19",
-  "source": "Geometry3k-844",
-  "problem_level": 6,
-  "problem_text_cn": "如图所示，BC=BA，BC=y，BD=12，CA=x，∠BCD=60°，BD⊥AD。求x的值。",
-  "problem_text_en": "As shown in the diagram, BC=BA, BC=y, BD=12, CA=x, ∠BCD=60°, BD⊥AD. Find the value of x.",
-  "problem_img": "817.png",
-  "construction_cdl": [
-    "Shape(BC,CD,DB)",
-    "Shape(BD,DA,AB)",
-    "Collinear(CDA)"
-  ],
-  "text_cdl": [
-    "Equal(LengthOfLine(BC),LengthOfLine(BA))",
-    "Equal(LengthOfLine(BC),y)",
-    "Equal(LengthOfLine(BD),12)",
-    "Equal(LengthOfLine(CA),x)",
-    "Equal(MeasureOfAngle(BCD),60)",
-    "PerpendicularBetweenLine(BD,AD)"
-  ],
-  "image_cdl": [
-    "Equal(LengthOfLine(BC),LengthOfLine(BA))",
-    "Equal(LengthOfLine(BC),y)",
-    "Equal(LengthOfLine(BD),12)",
-    "Equal(LengthOfLine(CA),x)",
-    "Equal(MeasureOfAngle(BCD),60)",
-    "PerpendicularBetweenLine(BD,AD)"
-  ],
-  "goal_cdl": "Value(x)",
-  "problem_answer": "8*sqrt(3)",
-  "theorem_seqs": [
-    "adjacent_complementary_angle(1,CDB,BDA)",
-    "triangle_property_angle_sum(1,CDB)",
-    "sine_theorem(1,CDB)",
-    "sine_theorem(1,BCD)",
-    "perpendicular_bisector_judgment_distance_equal(1,BD,CA)",
-    "line_addition(1,CD,DA)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "adjacent_complementary_angle(1,CDB,BDA)",
-      "triangle_property_angle_sum(1,CDB)",
-      "sine_theorem(1,CDB)",
-      "sine_theorem(1,BCD)",
-      "line_addition(1,CD,DA)"
+    "problem_id": 817,
+    "source": "Geometry3k-844",
+    "problem_level": 6,
+    "problem_img": "817.png",
+    "construction_cdl": [
+        "Shape(BC,CD,DB)",
+        "Shape(BD,DA,AB)",
+        "Collinear(CDA)"
     ],
-    "adjacent_complementary_angle(1,CDB,BDA)": [
-      "perpendicular_bisector_judgment_distance_equal(1,BD,CA)"
-    ]
-  }
+    "text_cdl": [
+        "Equal(LengthOfLine(BC),LengthOfLine(BA))",
+        "Equal(LengthOfLine(BC),y)",
+        "Equal(LengthOfLine(BD),12)",
+        "Equal(LengthOfLine(CA),x)",
+        "Equal(MeasureOfAngle(BCD),60)",
+        "PerpendicularBetweenLine(BD,AD)"
+    ],
+    "image_cdl": [
+        "Equal(LengthOfLine(BC),LengthOfLine(BA))",
+        "Equal(LengthOfLine(BC),y)",
+        "Equal(LengthOfLine(BD),12)",
+        "Equal(LengthOfLine(CA),x)",
+        "Equal(MeasureOfAngle(BCD),60)",
+        "PerpendicularBetweenLine(BD,AD)"
+    ],
+    "goal_cdl": "Value(x)",
+    "problem_answer": "8*sqrt(3)",
+    "theorem_seqs": [
+        "adjacent_complementary_angle(1,CDB,BDA)",
+        "triangle_property_angle_sum(1,CDB)",
+        "sine_theorem(1,CDB)",
+        "sine_theorem(1,BCD)",
+        "perpendicular_bisector_judgment_distance_equal(1,BD,CA)",
+        "line_addition(1,CD,DA)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "adjacent_complementary_angle(1,CDB,BDA)",
+            "triangle_property_angle_sum(1,CDB)",
+            "sine_theorem(1,CDB)",
+            "sine_theorem(1,BCD)",
+            "line_addition(1,CD,DA)"
+        ],
+        "adjacent_complementary_angle(1,CDB,BDA)": [
+            "perpendicular_bisector_judgment_distance_equal(1,BD,CA)"
+        ]
+    }
 }

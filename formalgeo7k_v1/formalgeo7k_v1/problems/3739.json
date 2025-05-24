@@ -1,33 +1,30 @@
 {
-  "problem_id": 3739,
-  "annotation": "YangLi_2023-04-30",
-  "source": "GeoQA-1532",
-  "problem_level": 2,
-  "problem_text_cn": "如图所示，∠CDO=80°，∠DOC=70°，三角形OAB镜像全等于三角形OCD。求∠ABO的大小。",
-  "problem_text_en": "As shown in the diagram, ∠CDO=80°, ∠DOC=70°, △OAB is mirror congruent to △OCD. Find the measure of ∠ABO.",
-  "problem_img": "3739.png",
-  "construction_cdl": [
-    "Shape(AB,BO,OA)",
-    "Shape(DO,OC,CD)",
-    "Collinear(AOC)",
-    "Collinear(BOD)"
-  ],
-  "text_cdl": [
-    "Equal(MeasureOfAngle(CDO),80)",
-    "Equal(MeasureOfAngle(DOC),70)",
-    "MirrorCongruentBetweenTriangle(OAB,OCD)"
-  ],
-  "image_cdl": [],
-  "goal_cdl": "Value(MeasureOfAngle(ABO))",
-  "problem_answer": "30",
-  "theorem_seqs": [
-    "triangle_property_angle_sum(1,DOC)",
-    "mirror_congruent_triangle_property_angle_equal(1,BOA,CDO)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "triangle_property_angle_sum(1,DOC)",
-      "mirror_congruent_triangle_property_angle_equal(1,BOA,CDO)"
-    ]
-  }
+    "problem_id": 3739,
+    "source": "GeoQA-1532",
+    "problem_level": 2,
+    "problem_img": "3739.png",
+    "construction_cdl": [
+        "Shape(AB,BO,OA)",
+        "Shape(DO,OC,CD)",
+        "Collinear(AOC)",
+        "Collinear(BOD)"
+    ],
+    "text_cdl": [
+        "Equal(MeasureOfAngle(CDO),80)",
+        "Equal(MeasureOfAngle(DOC),70)",
+        "MirrorCongruentBetweenTriangle(OAB,OCD)"
+    ],
+    "image_cdl": [],
+    "goal_cdl": "Value(MeasureOfAngle(ABO))",
+    "problem_answer": "30",
+    "theorem_seqs": [
+        "triangle_property_angle_sum(1,DOC)",
+        "mirror_congruent_triangle_property_angle_equal(1,BOA,CDO)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "triangle_property_angle_sum(1,DOC)",
+            "mirror_congruent_triangle_property_angle_equal(1,BOA,CDO)"
+        ]
+    }
 }

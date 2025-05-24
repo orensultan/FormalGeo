@@ -1,51 +1,48 @@
 {
-  "problem_id": 1990,
-  "annotation": "ZheZhu_2023-04-16",
-  "source": "Geometry3k-2074",
-  "problem_level": 5,
-  "problem_text_cn": "如图所示，AC=8，CB=15，⊙D的圆心为D。求圆D的直径。",
-  "problem_text_en": "As shown in the diagram, AC=8, CB=15, D is the center of ⊙D. Find the diameter of circle D.",
-  "problem_img": "1990.png",
-  "construction_cdl": [
-    "Shape(DBA,AD,DB)",
-    "Shape(DAC,CA)",
-    "Shape(DA,AC,CB,BD)",
-    "Shape(DCB,BC)",
-    "Collinear(ADB)",
-    "Cocircular(D,ACB)"
-  ],
-  "text_cdl": [
-    "Equal(LengthOfLine(AC),8)",
-    "Equal(LengthOfLine(CB),15)",
-    "IsCentreOfCircle(D,D)"
-  ],
-  "image_cdl": [
-    "Equal(LengthOfLine(AC),8)",
-    "Equal(LengthOfLine(CB),15)",
-    "IsCentreOfCircle(D,D)"
-  ],
-  "goal_cdl": "Value(DiameterOfCircle(D))",
-  "problem_answer": "17",
-  "theorem_seqs": [
-    "diameter_of_circle_judgment_pass_centre(1,ADB,D)",
-    "diameter_of_circle_property_right_angle(1,ACB,D)",
-    "right_triangle_judgment_angle(1,ACB)",
-    "right_triangle_property_pythagorean(1,ACB)",
-    "diameter_of_circle_property_length_equal(1,AB,D)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "diameter_of_circle_judgment_pass_centre(1,ADB,D)"
+    "problem_id": 1990,
+    "source": "Geometry3k-2074",
+    "problem_level": 5,
+    "problem_img": "1990.png",
+    "construction_cdl": [
+        "Shape(DBA,AD,DB)",
+        "Shape(DAC,CA)",
+        "Shape(DA,AC,CB,BD)",
+        "Shape(DCB,BC)",
+        "Collinear(ADB)",
+        "Cocircular(D,ACB)"
     ],
-    "diameter_of_circle_judgment_pass_centre(1,ADB,D)": [
-      "diameter_of_circle_property_length_equal(1,AB,D)",
-      "diameter_of_circle_property_right_angle(1,ACB,D)"
+    "text_cdl": [
+        "Equal(LengthOfLine(AC),8)",
+        "Equal(LengthOfLine(CB),15)",
+        "IsCentreOfCircle(D,D)"
     ],
-    "diameter_of_circle_property_right_angle(1,ACB,D)": [
-      "right_triangle_judgment_angle(1,ACB)"
+    "image_cdl": [
+        "Equal(LengthOfLine(AC),8)",
+        "Equal(LengthOfLine(CB),15)",
+        "IsCentreOfCircle(D,D)"
     ],
-    "right_triangle_judgment_angle(1,ACB)": [
-      "right_triangle_property_pythagorean(1,ACB)"
-    ]
-  }
+    "goal_cdl": "Value(DiameterOfCircle(D))",
+    "problem_answer": "17",
+    "theorem_seqs": [
+        "diameter_of_circle_judgment_pass_centre(1,ADB,D)",
+        "diameter_of_circle_property_right_angle(1,ACB,D)",
+        "right_triangle_judgment_angle(1,ACB)",
+        "right_triangle_property_pythagorean(1,ACB)",
+        "diameter_of_circle_property_length_equal(1,AB,D)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "diameter_of_circle_judgment_pass_centre(1,ADB,D)"
+        ],
+        "diameter_of_circle_judgment_pass_centre(1,ADB,D)": [
+            "diameter_of_circle_property_length_equal(1,AB,D)",
+            "diameter_of_circle_property_right_angle(1,ACB,D)"
+        ],
+        "diameter_of_circle_property_right_angle(1,ACB,D)": [
+            "right_triangle_judgment_angle(1,ACB)"
+        ],
+        "right_triangle_judgment_angle(1,ACB)": [
+            "right_triangle_property_pythagorean(1,ACB)"
+        ]
+    }
 }

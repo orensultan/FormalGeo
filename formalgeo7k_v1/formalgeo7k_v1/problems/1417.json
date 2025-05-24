@@ -1,43 +1,40 @@
 {
-  "problem_id": 1417,
-  "annotation": "YanjunGuo_2023-04-16",
-  "source": "Geometry3k-1468",
-  "problem_level": 2,
-  "problem_text_cn": "如图所示，∠AFD=3*x-9°，∠ECP=57°，CP平行于FA。求x的值。",
-  "problem_text_en": "As shown in the diagram, ∠AFD=3*x-9°, ∠ECP=57°, CP∥FA. Find the value of x.",
-  "problem_img": "1417.png",
-  "construction_cdl": [
-    "Shape(GC,CE)",
-    "Shape(EC,CP)",
-    "Shape(FC,CG)",
-    "Shape(PC,CF)",
-    "Shape(BF,FC)",
-    "Shape(CF,FA)",
-    "Shape(DF,FB)",
-    "Shape(AF,FD)",
-    "Collinear(GCP)",
-    "Collinear(BFA)",
-    "Collinear(ECFD)"
-  ],
-  "text_cdl": [
-    "Equal(MeasureOfAngle(AFD),3*x-9)",
-    "Equal(MeasureOfAngle(ECP),57)",
-    "ParallelBetweenLine(CP,FA)"
-  ],
-  "image_cdl": [
-    "Equal(MeasureOfAngle(AFD),3*x-9)",
-    "Equal(MeasureOfAngle(ECP),57)"
-  ],
-  "goal_cdl": "Value(x)",
-  "problem_answer": "44",
-  "theorem_seqs": [
-    "parallel_property_corresponding_angle(1,CP,FA,E)",
-    "adjacent_complementary_angle(1,CFA,AFD)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "parallel_property_corresponding_angle(1,CP,FA,E)",
-      "adjacent_complementary_angle(1,CFA,AFD)"
-    ]
-  }
+    "problem_id": 1417,
+    "source": "Geometry3k-1468",
+    "problem_level": 2,
+    "problem_img": "1417.png",
+    "construction_cdl": [
+        "Shape(GC,CE)",
+        "Shape(EC,CP)",
+        "Shape(FC,CG)",
+        "Shape(PC,CF)",
+        "Shape(BF,FC)",
+        "Shape(CF,FA)",
+        "Shape(DF,FB)",
+        "Shape(AF,FD)",
+        "Collinear(GCP)",
+        "Collinear(BFA)",
+        "Collinear(ECFD)"
+    ],
+    "text_cdl": [
+        "Equal(MeasureOfAngle(AFD),3*x-9)",
+        "Equal(MeasureOfAngle(ECP),57)",
+        "ParallelBetweenLine(CP,FA)"
+    ],
+    "image_cdl": [
+        "Equal(MeasureOfAngle(AFD),3*x-9)",
+        "Equal(MeasureOfAngle(ECP),57)"
+    ],
+    "goal_cdl": "Value(x)",
+    "problem_answer": "44",
+    "theorem_seqs": [
+        "parallel_property_corresponding_angle(1,CP,FA,E)",
+        "adjacent_complementary_angle(1,CFA,AFD)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "parallel_property_corresponding_angle(1,CP,FA,E)",
+            "adjacent_complementary_angle(1,CFA,AFD)"
+        ]
+    }
 }

@@ -1,37 +1,34 @@
 {
-  "problem_id": 708,
-  "annotation": "JiaZou_2023-04-09",
-  "source": "Geometry3k-728",
-  "problem_level": 2,
-  "problem_text_cn": "如图所示，∠WXY=4*x+15°，∠ZXV=2*x+65°。求∠YXZ的大小。",
-  "problem_text_en": "As shown in the diagram, ∠WXY=4*x+15°, ∠ZXV=2*x+65°. Find the measure of ∠YXZ.",
-  "problem_img": "708.png",
-  "construction_cdl": [
-    "Shape(XZ,XZY,YX)",
-    "Shape(XY,XYW,WX)",
-    "Shape(XW,XWV,VX)",
-    "Shape(XV,XVZ,ZX)",
-    "Collinear(ZXW)",
-    "Collinear(YXV)"
-  ],
-  "text_cdl": [
-    "Equal(MeasureOfAngle(WXY),4*x+15)",
-    "Equal(MeasureOfAngle(ZXV),2*x+65)"
-  ],
-  "image_cdl": [
-    "Equal(MeasureOfAngle(WXY),4*x+15)",
-    "Equal(MeasureOfAngle(ZXV),2*x+65)"
-  ],
-  "goal_cdl": "Value(MeasureOfAngle(YXZ))",
-  "problem_answer": "65",
-  "theorem_seqs": [
-    "vertical_angle(1,ZXV,WXY)",
-    "adjacent_complementary_angle(1,YXZ,ZXV)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "vertical_angle(1,ZXV,WXY)",
-      "adjacent_complementary_angle(1,YXZ,ZXV)"
-    ]
-  }
+    "problem_id": 708,
+    "source": "Geometry3k-728",
+    "problem_level": 2,
+    "problem_img": "708.png",
+    "construction_cdl": [
+        "Shape(XZ,XZY,YX)",
+        "Shape(XY,XYW,WX)",
+        "Shape(XW,XWV,VX)",
+        "Shape(XV,XVZ,ZX)",
+        "Collinear(ZXW)",
+        "Collinear(YXV)"
+    ],
+    "text_cdl": [
+        "Equal(MeasureOfAngle(WXY),4*x+15)",
+        "Equal(MeasureOfAngle(ZXV),2*x+65)"
+    ],
+    "image_cdl": [
+        "Equal(MeasureOfAngle(WXY),4*x+15)",
+        "Equal(MeasureOfAngle(ZXV),2*x+65)"
+    ],
+    "goal_cdl": "Value(MeasureOfAngle(YXZ))",
+    "problem_answer": "65",
+    "theorem_seqs": [
+        "vertical_angle(1,ZXV,WXY)",
+        "adjacent_complementary_angle(1,YXZ,ZXV)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "vertical_angle(1,ZXV,WXY)",
+            "adjacent_complementary_angle(1,YXZ,ZXV)"
+        ]
+    }
 }

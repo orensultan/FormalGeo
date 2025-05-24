@@ -1,41 +1,38 @@
 {
-  "problem_id": 1679,
-  "annotation": "YangLi_2023-04-16",
-  "source": "Geometry3k-1743",
-  "problem_level": 1,
-  "problem_text_cn": "如图所示，∠DFE=4-5*x°，∠IEG=7*x+100°，FD∥EI。求x的值。",
-  "problem_text_en": "As shown in the diagram, ∠DFE=4-5*x°, ∠IEG=7*x+100°, FD is parallel to EI. Find the value of x.",
-  "problem_img": "1679.png",
-  "construction_cdl": [
-    "Shape(DF,FE)",
-    "Shape(AF,FD)",
-    "Shape(HF,FA)",
-    "Shape(EF,FH)",
-    "Shape(FE,EI)",
-    "Shape(CE,EF)",
-    "Shape(GE,EC)",
-    "Shape(IE,EG)",
-    "Collinear(DFH)",
-    "Collinear(IEC)",
-    "Collinear(AFEG)"
-  ],
-  "text_cdl": [
-    "Equal(MeasureOfAngle(DFE),4-5*x)",
-    "Equal(MeasureOfAngle(IEG),7*x+100)",
-    "ParallelBetweenLine(FD,EI)"
-  ],
-  "image_cdl": [
-    "Equal(MeasureOfAngle(DFE),4-5*x)",
-    "Equal(MeasureOfAngle(IEG),7*x+100)"
-  ],
-  "goal_cdl": "Value(x)",
-  "problem_answer": "-8",
-  "theorem_seqs": [
-    "parallel_property_corresponding_angle(2,FD,EI,G)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "parallel_property_corresponding_angle(2,FD,EI,G)"
-    ]
-  }
+    "problem_id": 1679,
+    "source": "Geometry3k-1743",
+    "problem_level": 1,
+    "problem_img": "1679.png",
+    "construction_cdl": [
+        "Shape(DF,FE)",
+        "Shape(AF,FD)",
+        "Shape(HF,FA)",
+        "Shape(EF,FH)",
+        "Shape(FE,EI)",
+        "Shape(CE,EF)",
+        "Shape(GE,EC)",
+        "Shape(IE,EG)",
+        "Collinear(DFH)",
+        "Collinear(IEC)",
+        "Collinear(AFEG)"
+    ],
+    "text_cdl": [
+        "Equal(MeasureOfAngle(DFE),4-5*x)",
+        "Equal(MeasureOfAngle(IEG),7*x+100)",
+        "ParallelBetweenLine(FD,EI)"
+    ],
+    "image_cdl": [
+        "Equal(MeasureOfAngle(DFE),4-5*x)",
+        "Equal(MeasureOfAngle(IEG),7*x+100)"
+    ],
+    "goal_cdl": "Value(x)",
+    "problem_answer": "-8",
+    "theorem_seqs": [
+        "parallel_property_corresponding_angle(2,FD,EI,G)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "parallel_property_corresponding_angle(2,FD,EI,G)"
+        ]
+    }
 }

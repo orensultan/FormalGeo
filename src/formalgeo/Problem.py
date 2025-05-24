@@ -1,153 +1,27 @@
 import json
 import re
+import os
 from formalgeo.data import DatasetLoader
 from formalgeo.solver import Interactor
 from formalgeo.tools import show_solution
 
-dl = DatasetLoader(dataset_name="formalgeo7k_v1", datasets_path="formalgeo7k_v1")
-solver = Interactor(dl.predicate_GDL, dl.theorem_GDL)
+# Get the path to the project root (two directories up from this script)
+PROJECT_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..'))
+
+# Load GDL files directly
+with open(os.path.join(PROJECT_ROOT, 'formalgeo7k_v1/gdl/predicate_GDL.json'), 'r') as f:
+    predicate_GDL = json.load(f)
+with open(os.path.join(PROJECT_ROOT, 'formalgeo7k_v1/gdl/theorem_GDL.json'), 'r') as f:
+    theorem_GDL = json.load(f)
+
+# Create a solver instance with the loaded GDL files
+solver = Interactor(predicate_GDL, theorem_GDL)
+
+dl = DatasetLoader(dataset_name="formalgeo7k_v1", datasets_path=os.path.join(PROJECT_ROOT, "formalgeo7k_v1"))
 
 
-# def activate_theory_with_arguments(theory_with_templates, theory_with_args):
-#     # Extract the theory name and templates
-#     theory_name, templates = eval(theory_with_templates)
-#     premise_template = templates['premise']
-#     conclusion_template = templates['conclusion'][0]
-#
-#     # Extract the new theory name and its arguments
-#     theory_name_with_args, *args = re.findall(r'\w+', theory_with_args)
-#
-#     # Create a dictionary mapping from original variables to new arguments
-#     original_vars = re.findall(r'\w+', theory_name)
-#     substitutions = dict(zip(original_vars, args))
-#
-#     # Substitute the arguments in the premise and conclusion
-#     premise = premise_template
-#     for var, value in substitutions.items():
-#         premise = premise.replace(var, value)
-#
-#     conclusion = conclusion_template
-#     for var, value in substitutions.items():
-#         conclusion = conclusion.replace(var, value)
-#
-#     # Format the final theory
-#     activated_theory = f"('{theory_name_with_args}({', '.join(args[1:])})', " \
-#                        f"{{'premise': '{premise}', 'conclusion': ['{conclusion}']}})"
-#
-#     return activated_theory
 
 
-# def extract_arguments_from_theory(theory):
-#     _, args_str = theory.split('(')
-#     args_str = args_str.rstrip(')')
-#     arguments = args_str.split(',')[1:]  # Skip the first element if it's not part of the arguments
-#     return arguments
-
-# def get_theory_arguments(original_json, theory_call):
-#     theorem_data = json.loads(original_json)
-#     original_arguments = extract_arguments_from_theory(theorem_data['theorem'])
-#     new_arguments = extract_arguments_from_theory(theory_call)
-#     assert len(original_arguments) == len(new_arguments), "Argument lists have different lengths."
-#     for orig_arg, new_arg in zip(original_arguments, new_arguments):
-#         assert len(orig_arg) == len(new_arg), f"Argument '{orig_arg}' and '{new_arg}' have different lengths."
-#     return original_arguments, new_arguments
-
-
-# def replace_symbols(expression, mapping):
-#     substrings = re.findall(r'\(([A-Z]+)\)', expression)
-#     for substring in substrings:
-#         new_substring = ''.join(mapping.get(char, char) for char in substring)
-#         expression = expression.replace(substring, new_substring)
-#     return expression
-
-# def find_all_indices(concat_str, substring, start_index=0, current_indices=None):
-#     if current_indices is None:
-#         current_indices = []
-#     if len(current_indices) == len(substring):
-#         return [current_indices]
-#     result = []
-#     for i in range(start_index, len(concat_str)):
-#         if concat_str[i] == substring[len(current_indices)]:
-#             new_indices = current_indices + [i]
-#             result.extend(find_all_indices(concat_str, substring, i + 1, new_indices))
-#     return result
-
-# def get_substring_from_indices(concat_str, indices):
-#     return ''.join([concat_str[i] for i in indices])
-
-
-# def find_all_indices(original_args_concat, target_sequence):
-#     indices = []
-#     for char in target_sequence:
-#         index = original_args_concat.index(char)
-#         indices.append(index)
-#     return indices
-
-
-# def replace_in_expression(expression, original_args_concat, new_args_concat):
-#     substrings = re.findall(r'\(([A-Z]+)\)', expression)
-#     for target_sequence in substrings:
-#         print(f"\nProcessing target sequence '{target_sequence}':")
-#         result = find_all_indices(original_args_concat, target_sequence)
-#         print("All possible indices:", result)
-#
-#         if len(result) == 0:
-#             print(1)
-#         # Since we just want the indices where the letters appear
-#         selected_indices = result
-#         print("Selected Indices:", selected_indices)
-#
-#         substring_from_new_args = get_substring_from_indices(new_args_concat, selected_indices)
-#         print(
-#             f"Extracted Substring from New Args for '{target_sequence}': '{substring_from_new_args}' using indices {selected_indices}")
-#
-#         expression = expression.replace(f"({target_sequence})", f"({substring_from_new_args})")
-#
-#     return expression
-
-# def replace_in_premise_and_conclusion(premise, conclusion, original_args_concat, new_args_concat):
-#     updated_premise = replace_in_expression(premise, original_args_concat, new_args_concat)
-#
-#     updated_conclusion = []
-#     for concl in conclusion:
-#         updated_conclusion.append(replace_in_expression(concl, original_args_concat, new_args_concat))
-#
-#     return updated_premise, updated_conclusion
-
-# def get_theorem_seqs_expl(theorem_seqs):
-#     theorems_seqs_expl = []
-#     for theorem_call in theorem_seqs:
-#         theory_json = get_theory(theorem_call)
-#         original_args, new_args = get_theory_arguments(theory_json, theorem_call)
-#         original_args_concat,  new_args_concat= "".join(original_args), "".join(new_args)
-#         premise, conclusion = json.loads(theory_json)['premise'], json.loads(theory_json)['conclusion']
-#         updated_premise, updated_conclusion = replace_in_premise_and_conclusion(premise, conclusion,
-#                                                                                 original_args_concat, new_args_concat)
-#         updated_json = {
-#             "theorem": theorem_call,
-#             "premise": updated_premise,
-#             "conclusion": updated_conclusion
-#         }
-#         updated_json_str = json.dumps(updated_json, indent=4)
-#         theorems_seqs_expl.append(updated_json_str)
-#     return theorems_seqs_expl
-
-
-# def get_theorem_seqs_dag_expl(theorem_seqs_dag):
-#     theorems_seqs_dag_expl = []
-#     for key, val in theorem_seqs_dag.items():
-#         for v in val:
-#             theory_str = str(get_theory(v))
-#             input_string1 = v
-#             input_string2 = theory_str
-#             result1 = extract_substring_first_exp(input_string1)
-#             result2 = extract_substring_second_exp(input_string2)
-#             if len(result1.replace(",", "")) != len(result2.replace(",", "")):
-#                 raise ValueError("The extracted substrings must have the same length for character-level mapping.")
-#
-#             mapping_dict = {result2[i]: result1[i] for i in range(len(result2)) if result2[i].isupper()}
-#             theorems_seqs_dag_expl.append(replace_symbols(input_string2, mapping_dict))
-#     return theorems_seqs_dag_expl
 
 def modify_string(input_string):
     modified_string = re.sub(r'(\w+)-(\d+)', r'\1=\2', input_string)
@@ -251,7 +125,7 @@ class Problem:
 
 
 def get_theorem(theorem):
-    with open('formalgeo7k_v1/gdl/theorem_GDL.json', 'r') as file:
+    with open(os.path.join(PROJECT_ROOT, 'formalgeo7k_v1/gdl/theorem_GDL.json'), 'r') as file:
         theorems = json.load(file)
         matching_keys = [key for key, value in theorems.items() if theorem.split("(")[0] in key]
         key = matching_keys[0]

@@ -1,52 +1,49 @@
 {
-  "problem_id": 6365,
-  "annotation": "ChengQin_2023-06-04",
-  "source": "GeoQA-9217",
-  "problem_level": 5,
-  "problem_text_cn": "如图所示，PE=4，BF⊥PF，PE垂直于BE，ABCD是菱形。求直线PF的长度。",
-  "problem_text_en": "As shown in the diagram, PE=4, BF⊥PF, PE is perpendicular to BE, ABCD is a rhombus. Find the length of line PF.",
-  "problem_img": "6365.png",
-  "construction_cdl": [
-    "Shape(EB,BP,PE)",
-    "Shape(AE,EP,PD,DA)",
-    "Shape(BF,FP,PB)",
-    "Shape(PF,FC,CD,DP)",
-    "Collinear(BEA)",
-    "Collinear(BPD)",
-    "Collinear(BFC)"
-  ],
-  "text_cdl": [
-    "Equal(LengthOfLine(PE),4)",
-    "PerpendicularBetweenLine(BF,PF)",
-    "PerpendicularBetweenLine(PE,BE)",
-    "Rhombus(ABCD)"
-  ],
-  "image_cdl": [],
-  "goal_cdl": "Value(LengthOfLine(PF))",
-  "problem_answer": "4",
-  "theorem_seqs": [
-    "parallel_property_alternate_interior_angle(2,AD,BC)",
-    "isosceles_triangle_judgment_line_equal(1,ABD)",
-    "isosceles_triangle_property_angle_equal(1,ABD)",
-    "bisector_of_angle_judgment_angle_equal(1,BP,EBF)",
-    "bisector_of_angle_property_distance_equal(1,BP,EBF)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "parallel_property_alternate_interior_angle(2,AD,BC)",
-      "isosceles_triangle_judgment_line_equal(1,ABD)"
+    "problem_id": 6365,
+    "source": "GeoQA-9217",
+    "problem_level": 5,
+    "problem_img": "6365.png",
+    "construction_cdl": [
+        "Shape(EB,BP,PE)",
+        "Shape(AE,EP,PD,DA)",
+        "Shape(BF,FP,PB)",
+        "Shape(PF,FC,CD,DP)",
+        "Collinear(BEA)",
+        "Collinear(BPD)",
+        "Collinear(BFC)"
     ],
-    "parallel_property_alternate_interior_angle(2,AD,BC)": [
-      "bisector_of_angle_judgment_angle_equal(1,BP,EBF)"
+    "text_cdl": [
+        "Equal(LengthOfLine(PE),4)",
+        "PerpendicularBetweenLine(BF,PF)",
+        "PerpendicularBetweenLine(PE,BE)",
+        "Rhombus(ABCD)"
     ],
-    "isosceles_triangle_judgment_line_equal(1,ABD)": [
-      "isosceles_triangle_property_angle_equal(1,ABD)"
+    "image_cdl": [],
+    "goal_cdl": "Value(LengthOfLine(PF))",
+    "problem_answer": "4",
+    "theorem_seqs": [
+        "parallel_property_alternate_interior_angle(2,AD,BC)",
+        "isosceles_triangle_judgment_line_equal(1,ABD)",
+        "isosceles_triangle_property_angle_equal(1,ABD)",
+        "bisector_of_angle_judgment_angle_equal(1,BP,EBF)",
+        "bisector_of_angle_property_distance_equal(1,BP,EBF)"
     ],
-    "isosceles_triangle_property_angle_equal(1,ABD)": [
-      "bisector_of_angle_judgment_angle_equal(1,BP,EBF)"
-    ],
-    "bisector_of_angle_judgment_angle_equal(1,BP,EBF)": [
-      "bisector_of_angle_property_distance_equal(1,BP,EBF)"
-    ]
-  }
+    "theorem_seqs_dag": {
+        "START": [
+            "parallel_property_alternate_interior_angle(2,AD,BC)",
+            "isosceles_triangle_judgment_line_equal(1,ABD)"
+        ],
+        "parallel_property_alternate_interior_angle(2,AD,BC)": [
+            "bisector_of_angle_judgment_angle_equal(1,BP,EBF)"
+        ],
+        "isosceles_triangle_judgment_line_equal(1,ABD)": [
+            "isosceles_triangle_property_angle_equal(1,ABD)"
+        ],
+        "isosceles_triangle_property_angle_equal(1,ABD)": [
+            "bisector_of_angle_judgment_angle_equal(1,BP,EBF)"
+        ],
+        "bisector_of_angle_judgment_angle_equal(1,BP,EBF)": [
+            "bisector_of_angle_property_distance_equal(1,BP,EBF)"
+        ]
+    }
 }

@@ -1,75 +1,72 @@
 {
-  "problem_id": 2571,
-  "annotation": "ChenyangMao_2023-04-23",
-  "source": "Geometry3k-2699",
-  "problem_level": 7,
-  "problem_text_cn": "如图所示，AB=30，CD=30，⌒XCZ的角度为40，X是⊙X的圆心，AM⊥YM，DN垂直于ZN。求直线ND的长度。",
-  "problem_text_en": "As shown in the diagram, AB=30, CD=30, the measure of arc XCZ is 40, X is the center of circle X, AM is perpendicular to YM, DN is perpendicular to ZN. Find the length of line ND.",
-  "problem_img": "2571.png",
-  "construction_cdl": [
-    "Shape(XYA,AM,MY)",
-    "Shape(XAC,CX,XM,MA)",
-    "Shape(XCZ,ZN,NC)",
-    "Shape(NX,XC,CN)",
-    "Shape(XN,ND,DX)",
-    "Shape(XZD,DN,NZ)",
-    "Shape(XDB,BM,MX,XD)",
-    "Shape(XBY,YM,MB)",
-    "Collinear(XMY)",
-    "Collinear(XNZ)",
-    "Collinear(AMB)",
-    "Collinear(CND)",
-    "Cocircular(X,ACZDBY)"
-  ],
-  "text_cdl": [
-    "Equal(LengthOfLine(AB),30)",
-    "Equal(LengthOfLine(CD),30)",
-    "Equal(MeasureOfArc(XCZ),40)",
-    "IsCentreOfCircle(X,X)",
-    "PerpendicularBetweenLine(AM,YM)",
-    "PerpendicularBetweenLine(DN,ZN)"
-  ],
-  "image_cdl": [
-    "Equal(LengthOfLine(AB),30)",
-    "Equal(LengthOfLine(CD),30)",
-    "Equal(MeasureOfArc(XCZ),40)",
-    "IsCentreOfCircle(X,X)",
-    "PerpendicularBetweenLine(AM,YM)",
-    "PerpendicularBetweenLine(DN,ZN)"
-  ],
-  "goal_cdl": "Value(LengthOfLine(ND))",
-  "problem_answer": "15",
-  "theorem_seqs": [
-    "radius_of_circle_property_length_equal(1,XD,X)",
-    "radius_of_circle_property_length_equal(1,XC,X)",
-    "vertical_angle(1,CNX,DNZ)",
-    "adjacent_complementary_angle(1,XND,DNZ)",
-    "mirror_congruent_triangle_judgment_hl(1,CNX,DXN)",
-    "mirror_congruent_triangle_property_line_equal(1,XCN,XND)",
-    "line_addition(1,CN,ND)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "radius_of_circle_property_length_equal(1,XD,X)",
-      "radius_of_circle_property_length_equal(1,XC,X)",
-      "vertical_angle(1,CNX,DNZ)",
-      "adjacent_complementary_angle(1,XND,DNZ)",
-      "line_addition(1,CN,ND)"
+    "problem_id": 2571,
+    "source": "Geometry3k-2699",
+    "problem_level": 7,
+    "problem_img": "2571.png",
+    "construction_cdl": [
+        "Shape(XYA,AM,MY)",
+        "Shape(XAC,CX,XM,MA)",
+        "Shape(XCZ,ZN,NC)",
+        "Shape(NX,XC,CN)",
+        "Shape(XN,ND,DX)",
+        "Shape(XZD,DN,NZ)",
+        "Shape(XDB,BM,MX,XD)",
+        "Shape(XBY,YM,MB)",
+        "Collinear(XMY)",
+        "Collinear(XNZ)",
+        "Collinear(AMB)",
+        "Collinear(CND)",
+        "Cocircular(X,ACZDBY)"
     ],
-    "radius_of_circle_property_length_equal(1,XD,X)": [
-      "mirror_congruent_triangle_judgment_hl(1,CNX,DXN)"
+    "text_cdl": [
+        "Equal(LengthOfLine(AB),30)",
+        "Equal(LengthOfLine(CD),30)",
+        "Equal(MeasureOfArc(XCZ),40)",
+        "IsCentreOfCircle(X,X)",
+        "PerpendicularBetweenLine(AM,YM)",
+        "PerpendicularBetweenLine(DN,ZN)"
     ],
-    "radius_of_circle_property_length_equal(1,XC,X)": [
-      "mirror_congruent_triangle_judgment_hl(1,CNX,DXN)"
+    "image_cdl": [
+        "Equal(LengthOfLine(AB),30)",
+        "Equal(LengthOfLine(CD),30)",
+        "Equal(MeasureOfArc(XCZ),40)",
+        "IsCentreOfCircle(X,X)",
+        "PerpendicularBetweenLine(AM,YM)",
+        "PerpendicularBetweenLine(DN,ZN)"
     ],
-    "vertical_angle(1,CNX,DNZ)": [
-      "mirror_congruent_triangle_judgment_hl(1,CNX,DXN)"
+    "goal_cdl": "Value(LengthOfLine(ND))",
+    "problem_answer": "15",
+    "theorem_seqs": [
+        "radius_of_circle_property_length_equal(1,XD,X)",
+        "radius_of_circle_property_length_equal(1,XC,X)",
+        "vertical_angle(1,CNX,DNZ)",
+        "adjacent_complementary_angle(1,XND,DNZ)",
+        "mirror_congruent_triangle_judgment_hl(1,CNX,DXN)",
+        "mirror_congruent_triangle_property_line_equal(1,XCN,XND)",
+        "line_addition(1,CN,ND)"
     ],
-    "adjacent_complementary_angle(1,XND,DNZ)": [
-      "mirror_congruent_triangle_judgment_hl(1,CNX,DXN)"
-    ],
-    "mirror_congruent_triangle_judgment_hl(1,CNX,DXN)": [
-      "mirror_congruent_triangle_property_line_equal(1,XCN,XND)"
-    ]
-  }
+    "theorem_seqs_dag": {
+        "START": [
+            "radius_of_circle_property_length_equal(1,XD,X)",
+            "radius_of_circle_property_length_equal(1,XC,X)",
+            "vertical_angle(1,CNX,DNZ)",
+            "adjacent_complementary_angle(1,XND,DNZ)",
+            "line_addition(1,CN,ND)"
+        ],
+        "radius_of_circle_property_length_equal(1,XD,X)": [
+            "mirror_congruent_triangle_judgment_hl(1,CNX,DXN)"
+        ],
+        "radius_of_circle_property_length_equal(1,XC,X)": [
+            "mirror_congruent_triangle_judgment_hl(1,CNX,DXN)"
+        ],
+        "vertical_angle(1,CNX,DNZ)": [
+            "mirror_congruent_triangle_judgment_hl(1,CNX,DXN)"
+        ],
+        "adjacent_complementary_angle(1,XND,DNZ)": [
+            "mirror_congruent_triangle_judgment_hl(1,CNX,DXN)"
+        ],
+        "mirror_congruent_triangle_judgment_hl(1,CNX,DXN)": [
+            "mirror_congruent_triangle_property_line_equal(1,XCN,XND)"
+        ]
+    }
 }

@@ -1,59 +1,56 @@
 {
-  "problem_id": 3465,
-  "annotation": "NaZhu_2023-04-30",
-  "source": "GeoQA-1045",
-  "problem_level": 9,
-  "problem_text_cn": "如图所示，∠NAM=110°，DM是AB的垂直平分线，EN垂直平分AB。求∠EAD的大小。",
-  "problem_text_en": "As shown in the diagram, ∠NAM=110°, DM is the perpendicular bisector of AB, EN is the perpendicular bisector of AC. Find the measure of ∠EAD.",
-  "problem_img": "3465.png",
-  "construction_cdl": [
-    "Shape(AM,MD,DA)",
-    "Shape(MB,BD,DM)",
-    "Shape(AD,DE,EA)",
-    "Shape(AE,EN,NA)",
-    "Shape(NE,EC,CN)",
-    "Collinear(AMB)",
-    "Collinear(ANC)",
-    "Collinear(BDEC)"
-  ],
-  "text_cdl": [
-    "Equal(MeasureOfAngle(NAM),110)",
-    "IsPerpendicularBisectorOfLine(DM,AB)",
-    "IsPerpendicularBisectorOfLine(EN,AC)"
-  ],
-  "image_cdl": [],
-  "goal_cdl": "Value(MeasureOfAngle(EAD))",
-  "problem_answer": "40",
-  "theorem_seqs": [
-    "perpendicular_bisector_property_distance_equal(1,DM,AB)",
-    "perpendicular_bisector_property_distance_equal(1,EN,AC)",
-    "isosceles_triangle_judgment_line_equal(1,DAB)",
-    "isosceles_triangle_judgment_line_equal(1,ECA)",
-    "isosceles_triangle_property_angle_equal(1,DAB)",
-    "isosceles_triangle_property_angle_equal(1,ECA)",
-    "triangle_property_angle_sum(1,ABC)",
-    "angle_addition(1,EAD,DAM)",
-    "angle_addition(1,NAE,EAM)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "perpendicular_bisector_property_distance_equal(1,DM,AB)",
-      "perpendicular_bisector_property_distance_equal(1,EN,AC)",
-      "triangle_property_angle_sum(1,ABC)",
-      "angle_addition(1,EAD,DAM)",
-      "angle_addition(1,NAE,EAM)"
+    "problem_id": 3465,
+    "source": "GeoQA-1045",
+    "problem_level": 9,
+    "problem_img": "3465.png",
+    "construction_cdl": [
+        "Shape(AM,MD,DA)",
+        "Shape(MB,BD,DM)",
+        "Shape(AD,DE,EA)",
+        "Shape(AE,EN,NA)",
+        "Shape(NE,EC,CN)",
+        "Collinear(AMB)",
+        "Collinear(ANC)",
+        "Collinear(BDEC)"
     ],
-    "perpendicular_bisector_property_distance_equal(1,DM,AB)": [
-      "isosceles_triangle_judgment_line_equal(1,DAB)"
+    "text_cdl": [
+        "Equal(MeasureOfAngle(NAM),110)",
+        "IsPerpendicularBisectorOfLine(DM,AB)",
+        "IsPerpendicularBisectorOfLine(EN,AC)"
     ],
-    "perpendicular_bisector_property_distance_equal(1,EN,AC)": [
-      "isosceles_triangle_judgment_line_equal(1,ECA)"
+    "image_cdl": [],
+    "goal_cdl": "Value(MeasureOfAngle(EAD))",
+    "problem_answer": "40",
+    "theorem_seqs": [
+        "perpendicular_bisector_property_distance_equal(1,DM,AB)",
+        "perpendicular_bisector_property_distance_equal(1,EN,AC)",
+        "isosceles_triangle_judgment_line_equal(1,DAB)",
+        "isosceles_triangle_judgment_line_equal(1,ECA)",
+        "isosceles_triangle_property_angle_equal(1,DAB)",
+        "isosceles_triangle_property_angle_equal(1,ECA)",
+        "triangle_property_angle_sum(1,ABC)",
+        "angle_addition(1,EAD,DAM)",
+        "angle_addition(1,NAE,EAM)"
     ],
-    "isosceles_triangle_judgment_line_equal(1,DAB)": [
-      "isosceles_triangle_property_angle_equal(1,DAB)"
-    ],
-    "isosceles_triangle_judgment_line_equal(1,ECA)": [
-      "isosceles_triangle_property_angle_equal(1,ECA)"
-    ]
-  }
+    "theorem_seqs_dag": {
+        "START": [
+            "perpendicular_bisector_property_distance_equal(1,DM,AB)",
+            "perpendicular_bisector_property_distance_equal(1,EN,AC)",
+            "triangle_property_angle_sum(1,ABC)",
+            "angle_addition(1,EAD,DAM)",
+            "angle_addition(1,NAE,EAM)"
+        ],
+        "perpendicular_bisector_property_distance_equal(1,DM,AB)": [
+            "isosceles_triangle_judgment_line_equal(1,DAB)"
+        ],
+        "perpendicular_bisector_property_distance_equal(1,EN,AC)": [
+            "isosceles_triangle_judgment_line_equal(1,ECA)"
+        ],
+        "isosceles_triangle_judgment_line_equal(1,DAB)": [
+            "isosceles_triangle_property_angle_equal(1,DAB)"
+        ],
+        "isosceles_triangle_judgment_line_equal(1,ECA)": [
+            "isosceles_triangle_property_angle_equal(1,ECA)"
+        ]
+    }
 }

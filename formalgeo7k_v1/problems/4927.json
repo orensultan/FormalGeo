@@ -1,67 +1,64 @@
 {
-  "problem_id": 4927,
-  "annotation": "DengfengYue_2023-05-14",
-  "source": "GeoQA-4539",
-  "problem_level": 11,
-  "problem_text_cn": "如图所示，Div(LengthOfLine(AE)=LengthOfLine(AB))，M是线段AC的中点，BE∥CP，EA∥CP。求直线BC的长度与直线CD的长度之比。",
-  "problem_text_en": "As shown in the diagram, Div(LengthOfLine(AE)=LengthOfLine(AB)), M is the midpoint of segment AC, BE is parallel to CP, EA is parallel to CP. Find the ratio of the length of line BC to the length of line CD.",
-  "problem_img": "4927.png",
-  "construction_cdl": [
-    "Shape(AE,EM,MA)",
-    "Shape(EB,BC,CM,ME)",
-    "Shape(MC,CP,PM)",
-    "Shape(PC,CD,DP)",
-    "Collinear(AEB)",
-    "Collinear(AMC)",
-    "Collinear(EMPD)",
-    "Collinear(BCD)"
-  ],
-  "text_cdl": [
-    "Equal(Div(LengthOfLine(AE),LengthOfLine(AB)),1/4)",
-    "IsMidpointOfLine(M,AC)",
-    "ParallelBetweenLine(BE,CP)",
-    "ParallelBetweenLine(EA,CP)"
-  ],
-  "image_cdl": [],
-  "goal_cdl": "Value(Div(LengthOfLine(BC),LengthOfLine(CD)))",
-  "problem_answer": "2",
-  "theorem_seqs": [
-    "line_addition(1,BC,CD)",
-    "line_addition(1,AE,EB)",
-    "parallel_property_alternate_interior_angle(1,EA,CP)",
-    "parallel_property_alternate_interior_angle(2,EA,CP)",
-    "similar_triangle_judgment_aa(1,MAE,MCP)",
-    "similar_triangle_property_line_ratio(1,MAE,MCP)",
-    "similar_triangle_property_line_ratio(1,EMA,PMC)",
-    "parallel_property_corresponding_angle(2,BE,CP,D)",
-    "similar_triangle_judgment_aa(1,PCD,EBD)",
-    "similar_triangle_property_line_ratio(1,PCD,EBD)",
-    "similar_triangle_property_line_ratio(1,DPC,DEB)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "line_addition(1,BC,CD)",
-      "line_addition(1,AE,EB)",
-      "parallel_property_alternate_interior_angle(1,EA,CP)",
-      "parallel_property_alternate_interior_angle(2,EA,CP)",
-      "parallel_property_corresponding_angle(2,BE,CP,D)"
+    "problem_id": 4927,
+    "source": "GeoQA-4539",
+    "problem_level": 11,
+    "problem_img": "4927.png",
+    "construction_cdl": [
+        "Shape(AE,EM,MA)",
+        "Shape(EB,BC,CM,ME)",
+        "Shape(MC,CP,PM)",
+        "Shape(PC,CD,DP)",
+        "Collinear(AEB)",
+        "Collinear(AMC)",
+        "Collinear(EMPD)",
+        "Collinear(BCD)"
     ],
-    "parallel_property_alternate_interior_angle(1,EA,CP)": [
-      "similar_triangle_judgment_aa(1,MAE,MCP)"
+    "text_cdl": [
+        "Equal(Div(LengthOfLine(AE),LengthOfLine(AB)),1/4)",
+        "IsMidpointOfLine(M,AC)",
+        "ParallelBetweenLine(BE,CP)",
+        "ParallelBetweenLine(EA,CP)"
     ],
-    "parallel_property_alternate_interior_angle(2,EA,CP)": [
-      "similar_triangle_judgment_aa(1,MAE,MCP)"
+    "image_cdl": [],
+    "goal_cdl": "Value(Div(LengthOfLine(BC),LengthOfLine(CD)))",
+    "problem_answer": "2",
+    "theorem_seqs": [
+        "line_addition(1,BC,CD)",
+        "line_addition(1,AE,EB)",
+        "parallel_property_alternate_interior_angle(1,EA,CP)",
+        "parallel_property_alternate_interior_angle(2,EA,CP)",
+        "similar_triangle_judgment_aa(1,MAE,MCP)",
+        "similar_triangle_property_line_ratio(1,MAE,MCP)",
+        "similar_triangle_property_line_ratio(1,EMA,PMC)",
+        "parallel_property_corresponding_angle(2,BE,CP,D)",
+        "similar_triangle_judgment_aa(1,PCD,EBD)",
+        "similar_triangle_property_line_ratio(1,PCD,EBD)",
+        "similar_triangle_property_line_ratio(1,DPC,DEB)"
     ],
-    "similar_triangle_judgment_aa(1,MAE,MCP)": [
-      "similar_triangle_property_line_ratio(1,MAE,MCP)",
-      "similar_triangle_property_line_ratio(1,EMA,PMC)"
-    ],
-    "parallel_property_corresponding_angle(2,BE,CP,D)": [
-      "similar_triangle_judgment_aa(1,PCD,EBD)"
-    ],
-    "similar_triangle_judgment_aa(1,PCD,EBD)": [
-      "similar_triangle_property_line_ratio(1,PCD,EBD)",
-      "similar_triangle_property_line_ratio(1,DPC,DEB)"
-    ]
-  }
+    "theorem_seqs_dag": {
+        "START": [
+            "line_addition(1,BC,CD)",
+            "line_addition(1,AE,EB)",
+            "parallel_property_alternate_interior_angle(1,EA,CP)",
+            "parallel_property_alternate_interior_angle(2,EA,CP)",
+            "parallel_property_corresponding_angle(2,BE,CP,D)"
+        ],
+        "parallel_property_alternate_interior_angle(1,EA,CP)": [
+            "similar_triangle_judgment_aa(1,MAE,MCP)"
+        ],
+        "parallel_property_alternate_interior_angle(2,EA,CP)": [
+            "similar_triangle_judgment_aa(1,MAE,MCP)"
+        ],
+        "similar_triangle_judgment_aa(1,MAE,MCP)": [
+            "similar_triangle_property_line_ratio(1,MAE,MCP)",
+            "similar_triangle_property_line_ratio(1,EMA,PMC)"
+        ],
+        "parallel_property_corresponding_angle(2,BE,CP,D)": [
+            "similar_triangle_judgment_aa(1,PCD,EBD)"
+        ],
+        "similar_triangle_judgment_aa(1,PCD,EBD)": [
+            "similar_triangle_property_line_ratio(1,PCD,EBD)",
+            "similar_triangle_property_line_ratio(1,DPC,DEB)"
+        ]
+    }
 }

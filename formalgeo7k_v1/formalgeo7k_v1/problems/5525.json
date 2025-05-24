@@ -1,56 +1,53 @@
 {
-  "problem_id": 5525,
-  "annotation": "DengfengYue_2023-05-21",
-  "source": "GeoQA-6527",
-  "problem_level": 11,
-  "problem_text_cn": "如图所示，PO=12，圆O的半径为6，圆O的圆心为O，⊙O的切线为PA，PB是圆O的切线。求扇形OBA的面积。",
-  "problem_text_en": "As shown in the diagram, PO=12, the radius of ⊙O is 6, the center of ⊙O is O, PA is the tangent to circle O, PB is the tangent to ⊙O. Find the area of the sector OBA.",
-  "problem_img": "5525.png",
-  "construction_cdl": [
-    "Shape(CO,OB,OBC)",
-    "Shape(AO,OC,OCA)",
-    "Shape(BP,PC,OBC)",
-    "Shape(CP,PA,OCA)",
-    "Shape(BO,OA,OAB)",
-    "Collinear(OCP)",
-    "Cocircular(O,BCA)"
-  ],
-  "text_cdl": [
-    "Equal(LengthOfLine(PO),12)",
-    "Equal(RadiusOfCircle(O),6)",
-    "IsCentreOfCircle(O,O)",
-    "IsTangentOfCircle(PA,O)",
-    "IsTangentOfCircle(PB,O)"
-  ],
-  "image_cdl": [],
-  "goal_cdl": "Value(AreaOfSector(OBA))",
-  "problem_answer": "12*pi",
-  "theorem_seqs": [
-    "tangent_of_circle_property_perpendicular(2,PA,O,O)",
-    "tangent_of_circle_property_perpendicular(1,PB,O,O)",
-    "radius_of_circle_property_length_equal(1,OA,O)",
-    "radius_of_circle_property_length_equal(1,OB,O)",
-    "sine_theorem(1,OPA)",
-    "triangle_property_angle_sum(1,OBP)",
-    "triangle_property_angle_sum(1,AOP)",
-    "sine_theorem(1,OBP)",
-    "angle_addition(1,AOC,COB)",
-    "arc_property_center_angle(1,OBA,O)",
-    "sector_area_formula(1,OBA)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "tangent_of_circle_property_perpendicular(2,PA,O,O)",
-      "tangent_of_circle_property_perpendicular(1,PB,O,O)",
-      "radius_of_circle_property_length_equal(1,OA,O)",
-      "radius_of_circle_property_length_equal(1,OB,O)",
-      "sine_theorem(1,OPA)",
-      "triangle_property_angle_sum(1,OBP)",
-      "triangle_property_angle_sum(1,AOP)",
-      "sine_theorem(1,OBP)",
-      "angle_addition(1,AOC,COB)",
-      "arc_property_center_angle(1,OBA,O)",
-      "sector_area_formula(1,OBA)"
-    ]
-  }
+    "problem_id": 5525,
+    "source": "GeoQA-6527",
+    "problem_level": 11,
+    "problem_img": "5525.png",
+    "construction_cdl": [
+        "Shape(CO,OB,OBC)",
+        "Shape(AO,OC,OCA)",
+        "Shape(BP,PC,OBC)",
+        "Shape(CP,PA,OCA)",
+        "Shape(BO,OA,OAB)",
+        "Collinear(OCP)",
+        "Cocircular(O,BCA)"
+    ],
+    "text_cdl": [
+        "Equal(LengthOfLine(PO),12)",
+        "Equal(RadiusOfCircle(O),6)",
+        "IsCentreOfCircle(O,O)",
+        "IsTangentOfCircle(PA,O)",
+        "IsTangentOfCircle(PB,O)"
+    ],
+    "image_cdl": [],
+    "goal_cdl": "Value(AreaOfSector(OBA))",
+    "problem_answer": "12*pi",
+    "theorem_seqs": [
+        "tangent_of_circle_property_perpendicular(2,PA,O,O)",
+        "tangent_of_circle_property_perpendicular(1,PB,O,O)",
+        "radius_of_circle_property_length_equal(1,OA,O)",
+        "radius_of_circle_property_length_equal(1,OB,O)",
+        "sine_theorem(1,OPA)",
+        "triangle_property_angle_sum(1,OBP)",
+        "triangle_property_angle_sum(1,AOP)",
+        "sine_theorem(1,OBP)",
+        "angle_addition(1,AOC,COB)",
+        "arc_property_center_angle(1,OBA,O)",
+        "sector_area_formula(1,OBA)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "tangent_of_circle_property_perpendicular(2,PA,O,O)",
+            "tangent_of_circle_property_perpendicular(1,PB,O,O)",
+            "radius_of_circle_property_length_equal(1,OA,O)",
+            "radius_of_circle_property_length_equal(1,OB,O)",
+            "sine_theorem(1,OPA)",
+            "triangle_property_angle_sum(1,OBP)",
+            "triangle_property_angle_sum(1,AOP)",
+            "sine_theorem(1,OBP)",
+            "angle_addition(1,AOC,COB)",
+            "arc_property_center_angle(1,OBA,O)",
+            "sector_area_formula(1,OBA)"
+        ]
+    }
 }

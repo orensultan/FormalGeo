@@ -1,70 +1,67 @@
 {
-  "problem_id": 5692,
-  "annotation": "NaZhu_2023-05-28",
-  "source": "GeoQA-7424",
-  "problem_level": 9,
-  "problem_text_cn": "如图所示，DE=5，∠ABD=30°，∠FCE=30°，∠BDA是直角△BDA的直角，CE和EA是直角△CEA的两个直角边。求直线BC的长度。",
-  "problem_text_en": "As shown in the diagram, DE=5, ∠ABD=30°, ∠FCE=30°, ∠BDA is the right angle of the right triangle BDA, ∠CEA is the right angle of the right triangle CEA. Find the length of line BC.",
-  "problem_img": "5692.png",
-  "construction_cdl": [
-    "Shape(AB,BD,DA)",
-    "Shape(AD,DF,FA)",
-    "Shape(AF,FE,EA)",
-    "Shape(BC,CF,FD,DB)",
-    "Shape(EF,FC,CE)",
-    "Collinear(AFC)",
-    "Collinear(DFE)"
-  ],
-  "text_cdl": [
-    "Equal(LengthOfLine(DE),5)",
-    "Equal(MeasureOfAngle(ABD),30)",
-    "Equal(MeasureOfAngle(FCE),30)",
-    "RightTriangle(BDA)",
-    "RightTriangle(CEA)"
-  ],
-  "image_cdl": [],
-  "goal_cdl": "Value(LengthOfLine(BC))",
-  "problem_answer": "10",
-  "theorem_seqs": [
-    "similar_triangle_judgment_aa(1,ABD,ACE)",
-    "similar_triangle_property_angle_equal(1,ABD,ACE)",
-    "angle_addition(1,FAD,DAB)",
-    "angle_addition(1,EAF,FAD)",
-    "sine_theorem(1,ABD)",
-    "sine_theorem(1,ACE)",
-    "similar_triangle_judgment_sas(1,ABC,ADE)",
-    "similar_triangle_property_line_ratio(1,ABC,ADE)",
-    "similar_triangle_property_line_ratio(1,CAB,EAD)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "similar_triangle_judgment_aa(1,ABD,ACE)",
-      "angle_addition(1,FAD,DAB)",
-      "angle_addition(1,EAF,FAD)",
-      "sine_theorem(1,ABD)",
-      "sine_theorem(1,ACE)"
+    "problem_id": 5692,
+    "source": "GeoQA-7424",
+    "problem_level": 9,
+    "problem_img": "5692.png",
+    "construction_cdl": [
+        "Shape(AB,BD,DA)",
+        "Shape(AD,DF,FA)",
+        "Shape(AF,FE,EA)",
+        "Shape(BC,CF,FD,DB)",
+        "Shape(EF,FC,CE)",
+        "Collinear(AFC)",
+        "Collinear(DFE)"
     ],
-    "similar_triangle_judgment_aa(1,ABD,ACE)": [
-      "similar_triangle_property_angle_equal(1,ABD,ACE)"
+    "text_cdl": [
+        "Equal(LengthOfLine(DE),5)",
+        "Equal(MeasureOfAngle(ABD),30)",
+        "Equal(MeasureOfAngle(FCE),30)",
+        "RightTriangle(BDA)",
+        "RightTriangle(CEA)"
     ],
-    "similar_triangle_property_angle_equal(1,ABD,ACE)": [
-      "similar_triangle_judgment_sas(1,ABC,ADE)"
+    "image_cdl": [],
+    "goal_cdl": "Value(LengthOfLine(BC))",
+    "problem_answer": "10",
+    "theorem_seqs": [
+        "similar_triangle_judgment_aa(1,ABD,ACE)",
+        "similar_triangle_property_angle_equal(1,ABD,ACE)",
+        "angle_addition(1,FAD,DAB)",
+        "angle_addition(1,EAF,FAD)",
+        "sine_theorem(1,ABD)",
+        "sine_theorem(1,ACE)",
+        "similar_triangle_judgment_sas(1,ABC,ADE)",
+        "similar_triangle_property_line_ratio(1,ABC,ADE)",
+        "similar_triangle_property_line_ratio(1,CAB,EAD)"
     ],
-    "angle_addition(1,FAD,DAB)": [
-      "similar_triangle_judgment_sas(1,ABC,ADE)"
-    ],
-    "angle_addition(1,EAF,FAD)": [
-      "similar_triangle_judgment_sas(1,ABC,ADE)"
-    ],
-    "sine_theorem(1,ABD)": [
-      "similar_triangle_judgment_sas(1,ABC,ADE)"
-    ],
-    "sine_theorem(1,ACE)": [
-      "similar_triangle_judgment_sas(1,ABC,ADE)"
-    ],
-    "similar_triangle_judgment_sas(1,ABC,ADE)": [
-      "similar_triangle_property_line_ratio(1,ABC,ADE)",
-      "similar_triangle_property_line_ratio(1,CAB,EAD)"
-    ]
-  }
+    "theorem_seqs_dag": {
+        "START": [
+            "similar_triangle_judgment_aa(1,ABD,ACE)",
+            "angle_addition(1,FAD,DAB)",
+            "angle_addition(1,EAF,FAD)",
+            "sine_theorem(1,ABD)",
+            "sine_theorem(1,ACE)"
+        ],
+        "similar_triangle_judgment_aa(1,ABD,ACE)": [
+            "similar_triangle_property_angle_equal(1,ABD,ACE)"
+        ],
+        "similar_triangle_property_angle_equal(1,ABD,ACE)": [
+            "similar_triangle_judgment_sas(1,ABC,ADE)"
+        ],
+        "angle_addition(1,FAD,DAB)": [
+            "similar_triangle_judgment_sas(1,ABC,ADE)"
+        ],
+        "angle_addition(1,EAF,FAD)": [
+            "similar_triangle_judgment_sas(1,ABC,ADE)"
+        ],
+        "sine_theorem(1,ABD)": [
+            "similar_triangle_judgment_sas(1,ABC,ADE)"
+        ],
+        "sine_theorem(1,ACE)": [
+            "similar_triangle_judgment_sas(1,ABC,ADE)"
+        ],
+        "similar_triangle_judgment_sas(1,ABC,ADE)": [
+            "similar_triangle_property_line_ratio(1,ABC,ADE)",
+            "similar_triangle_property_line_ratio(1,CAB,EAD)"
+        ]
+    }
 }

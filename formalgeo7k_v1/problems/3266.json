@@ -1,38 +1,35 @@
 {
-  "problem_id": 3266,
-  "annotation": "XiaokaiZhang_2023-04-23",
-  "source": "GeoQA-572",
-  "problem_level": 3,
-  "problem_text_cn": "如图所示，∠ABC=45°，∠BCA=60°，DF∥AB，FE平行于CA。求∠EFD的大小。",
-  "problem_text_en": "As shown in the diagram, ∠ABC=45°, ∠BCA=60°, DF∥AB, FE is parallel to CA. Find the measure of ∠EFD.",
-  "problem_img": "3266.png",
-  "construction_cdl": [
-    "Shape(AE,EF,FD,DA)",
-    "Shape(EB,BF,FE)",
-    "Shape(DF,FC,CD)",
-    "Collinear(AEB)",
-    "Collinear(BFC)",
-    "Collinear(CDA)"
-  ],
-  "text_cdl": [
-    "Equal(MeasureOfAngle(ABC),45)",
-    "Equal(MeasureOfAngle(BCA),60)",
-    "ParallelBetweenLine(DF,AB)",
-    "ParallelBetweenLine(FE,CA)"
-  ],
-  "image_cdl": [],
-  "goal_cdl": "Value(MeasureOfAngle(EFD))",
-  "problem_answer": "75",
-  "theorem_seqs": [
-    "parallel_property_corresponding_angle(2,BA,FD,C)",
-    "parallel_property_ipsilateral_internal_angle(1,FE,CA)",
-    "angle_addition(1,EFD,DFC)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "parallel_property_corresponding_angle(2,BA,FD,C)",
-      "parallel_property_ipsilateral_internal_angle(1,FE,CA)",
-      "angle_addition(1,EFD,DFC)"
-    ]
-  }
+    "problem_id": 3266,
+    "source": "GeoQA-572",
+    "problem_level": 3,
+    "problem_img": "3266.png",
+    "construction_cdl": [
+        "Shape(AE,EF,FD,DA)",
+        "Shape(EB,BF,FE)",
+        "Shape(DF,FC,CD)",
+        "Collinear(AEB)",
+        "Collinear(BFC)",
+        "Collinear(CDA)"
+    ],
+    "text_cdl": [
+        "Equal(MeasureOfAngle(ABC),45)",
+        "Equal(MeasureOfAngle(BCA),60)",
+        "ParallelBetweenLine(DF,AB)",
+        "ParallelBetweenLine(FE,CA)"
+    ],
+    "image_cdl": [],
+    "goal_cdl": "Value(MeasureOfAngle(EFD))",
+    "problem_answer": "75",
+    "theorem_seqs": [
+        "parallel_property_corresponding_angle(2,BA,FD,C)",
+        "parallel_property_ipsilateral_internal_angle(1,FE,CA)",
+        "angle_addition(1,EFD,DFC)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "parallel_property_corresponding_angle(2,BA,FD,C)",
+            "parallel_property_ipsilateral_internal_angle(1,FE,CA)",
+            "angle_addition(1,EFD,DFC)"
+        ]
+    }
 }

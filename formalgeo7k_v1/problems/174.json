@@ -1,38 +1,35 @@
 {
-  "problem_id": 174,
-  "annotation": "XiaokaiZhang_2023-04-02",
-  "source": "Geometry3k-176",
-  "problem_level": 2,
-  "problem_text_cn": "如图所示，∠EAD=42°，圆A的圆心为A。求弧AEC的角度。",
-  "problem_text_en": "As shown in the diagram, ∠EAD=42°, A is the center of circle A. Find the measure of ⌒AEC.",
-  "problem_img": "174.png",
-  "construction_cdl": [
-    "Shape(AE,AEB,BA)",
-    "Shape(AB,ABC,CA)",
-    "Shape(AC,ACD,DA)",
-    "Shape(AD,ADE,EA)",
-    "Collinear(BAD)",
-    "Collinear(CAE)",
-    "Cocircular(A,BCDE)"
-  ],
-  "text_cdl": [
-    "Equal(MeasureOfAngle(EAD),42)",
-    "IsCentreOfCircle(A,A)"
-  ],
-  "image_cdl": [
-    "Equal(MeasureOfAngle(EAD),42)",
-    "IsCentreOfCircle(A,A)"
-  ],
-  "goal_cdl": "Value(MeasureOfArc(AEC))",
-  "problem_answer": "180",
-  "theorem_seqs": [
-    "flat_angle(1,CAE)",
-    "arc_property_center_angle(1,AEC,A)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "flat_angle(1,CAE)",
-      "arc_property_center_angle(1,AEC,A)"
-    ]
-  }
+    "problem_id": 174,
+    "source": "Geometry3k-176",
+    "problem_level": 2,
+    "problem_img": "174.png",
+    "construction_cdl": [
+        "Shape(AE,AEB,BA)",
+        "Shape(AB,ABC,CA)",
+        "Shape(AC,ACD,DA)",
+        "Shape(AD,ADE,EA)",
+        "Collinear(BAD)",
+        "Collinear(CAE)",
+        "Cocircular(A,BCDE)"
+    ],
+    "text_cdl": [
+        "Equal(MeasureOfAngle(EAD),42)",
+        "IsCentreOfCircle(A,A)"
+    ],
+    "image_cdl": [
+        "Equal(MeasureOfAngle(EAD),42)",
+        "IsCentreOfCircle(A,A)"
+    ],
+    "goal_cdl": "Value(MeasureOfArc(AEC))",
+    "problem_answer": "180",
+    "theorem_seqs": [
+        "flat_angle(1,CAE)",
+        "arc_property_center_angle(1,AEC,A)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "flat_angle(1,CAE)",
+            "arc_property_center_angle(1,AEC,A)"
+        ]
+    }
 }

@@ -1,48 +1,45 @@
 {
-  "problem_id": 3704,
-  "annotation": "YangLi_2023-04-30",
-  "source": "GeoQA-1466",
-  "problem_level": 5,
-  "problem_text_cn": "如图所示，∠BOF=42°，EC平行于OA，HO垂直于GO。求∠GEC的大小。",
-  "problem_text_en": "As shown in the diagram, ∠BOF=42°, EC is parallel to OA, HO is perpendicular to GO. Find the measure of ∠GEC.",
-  "problem_img": "3704.png",
-  "construction_cdl": [
-    "Shape(OE,EF,FO)",
-    "Shape(EO,OA)",
-    "Shape(CE,EO)",
-    "Shape(GE,EC)",
-    "Shape(FE,EG)",
-    "Shape(HF,FE)",
-    "Shape(DF,FH)",
-    "Shape(OF,FD)",
-    "Shape(BO,OF)",
-    "Collinear(AOB)",
-    "Collinear(CEFD)",
-    "Collinear(OEG)",
-    "Collinear(OFH)"
-  ],
-  "text_cdl": [
-    "Equal(MeasureOfAngle(BOF),42)",
-    "ParallelBetweenLine(EC,OA)",
-    "PerpendicularBetweenLine(HO,GO)"
-  ],
-  "image_cdl": [],
-  "goal_cdl": "Value(MeasureOfAngle(GEC))",
-  "problem_answer": "48",
-  "theorem_seqs": [
-    "angle_addition(1,BOF,FOE)",
-    "angle_addition(1,BOE,EOA)",
-    "flat_angle(1,BOA)",
-    "parallel_property_ipsilateral_internal_angle(1,EC,OA)",
-    "adjacent_complementary_angle(1,GEC,CEO)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "angle_addition(1,BOF,FOE)",
-      "angle_addition(1,BOE,EOA)",
-      "flat_angle(1,BOA)",
-      "parallel_property_ipsilateral_internal_angle(1,EC,OA)",
-      "adjacent_complementary_angle(1,GEC,CEO)"
-    ]
-  }
+    "problem_id": 3704,
+    "source": "GeoQA-1466",
+    "problem_level": 5,
+    "problem_img": "3704.png",
+    "construction_cdl": [
+        "Shape(OE,EF,FO)",
+        "Shape(EO,OA)",
+        "Shape(CE,EO)",
+        "Shape(GE,EC)",
+        "Shape(FE,EG)",
+        "Shape(HF,FE)",
+        "Shape(DF,FH)",
+        "Shape(OF,FD)",
+        "Shape(BO,OF)",
+        "Collinear(AOB)",
+        "Collinear(CEFD)",
+        "Collinear(OEG)",
+        "Collinear(OFH)"
+    ],
+    "text_cdl": [
+        "Equal(MeasureOfAngle(BOF),42)",
+        "ParallelBetweenLine(EC,OA)",
+        "PerpendicularBetweenLine(HO,GO)"
+    ],
+    "image_cdl": [],
+    "goal_cdl": "Value(MeasureOfAngle(GEC))",
+    "problem_answer": "48",
+    "theorem_seqs": [
+        "angle_addition(1,BOF,FOE)",
+        "angle_addition(1,BOE,EOA)",
+        "flat_angle(1,BOA)",
+        "parallel_property_ipsilateral_internal_angle(1,EC,OA)",
+        "adjacent_complementary_angle(1,GEC,CEO)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "angle_addition(1,BOF,FOE)",
+            "angle_addition(1,BOE,EOA)",
+            "flat_angle(1,BOA)",
+            "parallel_property_ipsilateral_internal_angle(1,EC,OA)",
+            "adjacent_complementary_angle(1,GEC,CEO)"
+        ]
+    }
 }

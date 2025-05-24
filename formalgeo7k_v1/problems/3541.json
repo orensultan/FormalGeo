@@ -1,38 +1,35 @@
 {
-  "problem_id": 3541,
-  "annotation": "YanjunGuo_2023-04-30",
-  "source": "GeoQA-1168",
-  "problem_level": 3,
-  "problem_text_cn": "如图所示，∠BAE=100°，∠ECD=120°，AB平行于EH，EH∥CD。求∠CEF的大小。",
-  "problem_text_en": "As shown in the diagram, ∠BAE=100°, ∠ECD=120°, AB∥EH, EH is parallel to CD. Find the measure of ∠CEF.",
-  "problem_img": "3541.png",
-  "construction_cdl": [
-    "Shape(BA,AE)",
-    "Shape(AE,EH)",
-    "Shape(HE,EC)",
-    "Shape(EC,CD)",
-    "Shape(CE,EF)",
-    "Collinear(AEF)"
-  ],
-  "text_cdl": [
-    "Equal(MeasureOfAngle(BAE),100)",
-    "Equal(MeasureOfAngle(ECD),120)",
-    "ParallelBetweenLine(AB,EH)",
-    "ParallelBetweenLine(EH,CD)"
-  ],
-  "image_cdl": [],
-  "goal_cdl": "Value(MeasureOfAngle(CEF))",
-  "problem_answer": "40",
-  "theorem_seqs": [
-    "parallel_property_corresponding_angle(2,AB,EH,F)",
-    "parallel_property_ipsilateral_internal_angle(1,EH,CD)",
-    "angle_addition(1,HEC,CEF)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "parallel_property_corresponding_angle(2,AB,EH,F)",
-      "parallel_property_ipsilateral_internal_angle(1,EH,CD)",
-      "angle_addition(1,HEC,CEF)"
-    ]
-  }
+    "problem_id": 3541,
+    "source": "GeoQA-1168",
+    "problem_level": 3,
+    "problem_img": "3541.png",
+    "construction_cdl": [
+        "Shape(BA,AE)",
+        "Shape(AE,EH)",
+        "Shape(HE,EC)",
+        "Shape(EC,CD)",
+        "Shape(CE,EF)",
+        "Collinear(AEF)"
+    ],
+    "text_cdl": [
+        "Equal(MeasureOfAngle(BAE),100)",
+        "Equal(MeasureOfAngle(ECD),120)",
+        "ParallelBetweenLine(AB,EH)",
+        "ParallelBetweenLine(EH,CD)"
+    ],
+    "image_cdl": [],
+    "goal_cdl": "Value(MeasureOfAngle(CEF))",
+    "problem_answer": "40",
+    "theorem_seqs": [
+        "parallel_property_corresponding_angle(2,AB,EH,F)",
+        "parallel_property_ipsilateral_internal_angle(1,EH,CD)",
+        "angle_addition(1,HEC,CEF)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "parallel_property_corresponding_angle(2,AB,EH,F)",
+            "parallel_property_ipsilateral_internal_angle(1,EH,CD)",
+            "angle_addition(1,HEC,CEF)"
+        ]
+    }
 }

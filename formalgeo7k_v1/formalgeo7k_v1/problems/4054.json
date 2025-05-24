@@ -1,42 +1,39 @@
 {
-  "problem_id": 4054,
-  "annotation": "XiaokaiZhang_2023-05-07",
-  "source": "GeoQA-2360",
-  "problem_level": 4,
-  "problem_text_cn": "如图所示，AB=3，AD=6，DE=16，BA∥CE。求直线EC的长度。",
-  "problem_text_en": "As shown in the diagram, AB=3, AD=6, DE=16, BA∥CE. Find the length of line EC.",
-  "problem_img": "4054.png",
-  "construction_cdl": [
-    "Shape(AD,DB,BA)",
-    "Shape(EA,AB,BC,CE)",
-    "Collinear(DAE)",
-    "Collinear(DBC)"
-  ],
-  "text_cdl": [
-    "Equal(LengthOfLine(AB),3)",
-    "Equal(LengthOfLine(AD),6)",
-    "Equal(LengthOfLine(DE),16)",
-    "ParallelBetweenLine(BA,CE)"
-  ],
-  "image_cdl": [],
-  "goal_cdl": "Value(LengthOfLine(EC))",
-  "problem_answer": "8",
-  "theorem_seqs": [
-    "parallel_property_corresponding_angle(1,BA,CE,D)",
-    "similar_triangle_judgment_aa(1,ADB,EDC)",
-    "similar_triangle_property_line_ratio(1,DBA,DCE)",
-    "similar_triangle_property_line_ratio(1,BAD,CED)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "parallel_property_corresponding_angle(1,BA,CE,D)"
+    "problem_id": 4054,
+    "source": "GeoQA-2360",
+    "problem_level": 4,
+    "problem_img": "4054.png",
+    "construction_cdl": [
+        "Shape(AD,DB,BA)",
+        "Shape(EA,AB,BC,CE)",
+        "Collinear(DAE)",
+        "Collinear(DBC)"
     ],
-    "parallel_property_corresponding_angle(1,BA,CE,D)": [
-      "similar_triangle_judgment_aa(1,ADB,EDC)"
+    "text_cdl": [
+        "Equal(LengthOfLine(AB),3)",
+        "Equal(LengthOfLine(AD),6)",
+        "Equal(LengthOfLine(DE),16)",
+        "ParallelBetweenLine(BA,CE)"
     ],
-    "similar_triangle_judgment_aa(1,ADB,EDC)": [
-      "similar_triangle_property_line_ratio(1,DBA,DCE)",
-      "similar_triangle_property_line_ratio(1,BAD,CED)"
-    ]
-  }
+    "image_cdl": [],
+    "goal_cdl": "Value(LengthOfLine(EC))",
+    "problem_answer": "8",
+    "theorem_seqs": [
+        "parallel_property_corresponding_angle(1,BA,CE,D)",
+        "similar_triangle_judgment_aa(1,ADB,EDC)",
+        "similar_triangle_property_line_ratio(1,DBA,DCE)",
+        "similar_triangle_property_line_ratio(1,BAD,CED)"
+    ],
+    "theorem_seqs_dag": {
+        "START": [
+            "parallel_property_corresponding_angle(1,BA,CE,D)"
+        ],
+        "parallel_property_corresponding_angle(1,BA,CE,D)": [
+            "similar_triangle_judgment_aa(1,ADB,EDC)"
+        ],
+        "similar_triangle_judgment_aa(1,ADB,EDC)": [
+            "similar_triangle_property_line_ratio(1,DBA,DCE)",
+            "similar_triangle_property_line_ratio(1,BAD,CED)"
+        ]
+    }
 }

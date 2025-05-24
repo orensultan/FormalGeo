@@ -1,46 +1,43 @@
 {
-  "problem_id": 5639,
-  "annotation": "JiaZou_2023-05-28",
-  "source": "GeoQA-7270",
-  "problem_level": 5,
-  "problem_text_cn": "如图所示，Div(LengthOfLine(AD)=LengthOfLine(BD))，Div(LengthOfLine(AE)=LengthOfLine(EC))，DE=3。求直线BC的长度。",
-  "problem_text_en": "As shown in the diagram, Div(LengthOfLine(AD)=LengthOfLine(BD)), Div(LengthOfLine(AE)=LengthOfLine(EC)), DE=3. Find the length of line BC.",
-  "problem_img": "5639.png",
-  "construction_cdl": [
-    "Shape(AD,DE,EA)",
-    "Shape(DB,BC,CE,ED)",
-    "Collinear(ADB)",
-    "Collinear(AEC)"
-  ],
-  "text_cdl": [
-    "Equal(Div(LengthOfLine(AD),LengthOfLine(BD)),1/2)",
-    "Equal(Div(LengthOfLine(AE),LengthOfLine(EC)),1/2)",
-    "Equal(LengthOfLine(DE),3)"
-  ],
-  "image_cdl": [],
-  "goal_cdl": "Value(LengthOfLine(BC))",
-  "problem_answer": "9",
-  "theorem_seqs": [
-    "line_addition(1,AD,DB)",
-    "line_addition(1,AE,EC)",
-    "similar_triangle_judgment_sas(1,ADE,ABC)",
-    "similar_triangle_property_line_ratio(1,ADE,ABC)",
-    "similar_triangle_property_line_ratio(1,DEA,BCA)"
-  ],
-  "theorem_seqs_dag": {
-    "START": [
-      "line_addition(1,AD,DB)",
-      "line_addition(1,AE,EC)"
+    "problem_id": 5639,
+    "source": "GeoQA-7270",
+    "problem_level": 5,
+    "problem_img": "5639.png",
+    "construction_cdl": [
+        "Shape(AD,DE,EA)",
+        "Shape(DB,BC,CE,ED)",
+        "Collinear(ADB)",
+        "Collinear(AEC)"
     ],
-    "line_addition(1,AD,DB)": [
-      "similar_triangle_judgment_sas(1,ADE,ABC)"
+    "text_cdl": [
+        "Equal(Div(LengthOfLine(AD),LengthOfLine(BD)),1/2)",
+        "Equal(Div(LengthOfLine(AE),LengthOfLine(EC)),1/2)",
+        "Equal(LengthOfLine(DE),3)"
     ],
-    "line_addition(1,AE,EC)": [
-      "similar_triangle_judgment_sas(1,ADE,ABC)"
+    "image_cdl": [],
+    "goal_cdl": "Value(LengthOfLine(BC))",
+    "problem_answer": "9",
+    "theorem_seqs": [
+        "line_addition(1,AD,DB)",
+        "line_addition(1,AE,EC)",
+        "similar_triangle_judgment_sas(1,ADE,ABC)",
+        "similar_triangle_property_line_ratio(1,ADE,ABC)",
+        "similar_triangle_property_line_ratio(1,DEA,BCA)"
     ],
-    "similar_triangle_judgment_sas(1,ADE,ABC)": [
-      "similar_triangle_property_line_ratio(1,ADE,ABC)",
-      "similar_triangle_property_line_ratio(1,DEA,BCA)"
-    ]
-  }
+    "theorem_seqs_dag": {
+        "START": [
+            "line_addition(1,AD,DB)",
+            "line_addition(1,AE,EC)"
+        ],
+        "line_addition(1,AD,DB)": [
+            "similar_triangle_judgment_sas(1,ADE,ABC)"
+        ],
+        "line_addition(1,AE,EC)": [
+            "similar_triangle_judgment_sas(1,ADE,ABC)"
+        ],
+        "similar_triangle_judgment_sas(1,ADE,ABC)": [
+            "similar_triangle_property_line_ratio(1,ADE,ABC)",
+            "similar_triangle_property_line_ratio(1,DEA,BCA)"
+        ]
+    }
 }
